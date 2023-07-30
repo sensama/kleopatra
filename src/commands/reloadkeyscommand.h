@@ -11,7 +11,7 @@
 
 #include <commands/command.h>
 
-namespace  Kleo
+namespace Kleo
 {
 
 class ReloadKeysCommand : public Command
@@ -32,4 +32,3 @@ private:
     inline const Private *d_func() const;
 };
 }
-

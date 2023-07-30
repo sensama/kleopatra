@@ -10,7 +10,6 @@
 #include "checksumsutils_p.h"
 #include <Libkleo/ChecksumDefinition>
 
-
 #include <QFile>
 #include <QTextStream>
 
@@ -39,8 +38,12 @@ static QString decode(const QString &encoded)
     for (const QChar ch : encoded)
         if (shift) {
             switch (ch.toLatin1()) {
-            case '\\': decoded += QLatin1Char('\\'); break;
-            case 'n':  decoded += QLatin1Char('\n'); break;
+            case '\\':
+                decoded += QLatin1Char('\\');
+                break;
+            case 'n':
+                decoded += QLatin1Char('\n');
+                break;
             default:
                 qCDebug(KLEOPATRA_LOG) << "invalid escape sequence" << '\\' << ch << "(interpreted as '" << ch << "')";
                 decoded += ch;
@@ -87,7 +90,7 @@ std::vector<ChecksumsUtils::File> ChecksumsUtils::parse_sum_file(const QString &
 }
 
 std::shared_ptr<Kleo::ChecksumDefinition> ChecksumsUtils::filename2definition(const QString &fileName,
-        const std::vector<std::shared_ptr<Kleo::ChecksumDefinition>> &checksumDefinitions)
+                                                                              const std::vector<std::shared_ptr<Kleo::ChecksumDefinition>> &checksumDefinitions)
 {
     auto matchFileName = [&fileName](const std::shared_ptr<Kleo::ChecksumDefinition> &cd) {
         if (!cd) {

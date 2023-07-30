@@ -17,12 +17,12 @@
 
 #include <stdexcept>
 
-#include <windows.h>
 #include <io.h>
+#include <windows.h>
 #include <winsock2.h>
 
-#include <cstring>
 #include <cstdlib>
+#include <cstring>
 
 using namespace Kleo;
 
@@ -67,4 +67,3 @@ void UiServer::Private::doMakeListeningSocket(const QByteArray &encodedFileName)
         throw;
     }
 }
-

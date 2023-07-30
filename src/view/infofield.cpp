@@ -51,11 +51,13 @@ InfoField::InfoField(const QString &label, QWidget *parent)
     mLayout->addStretch();
 }
 
-QLabel *InfoField::label() const {
+QLabel *InfoField::label() const
+{
     return mLabel;
 }
 
-QLayout *InfoField::layout() const {
+QLayout *InfoField::layout() const
+{
     return mLayout;
 }
 

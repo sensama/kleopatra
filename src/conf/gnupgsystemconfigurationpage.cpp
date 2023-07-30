@@ -7,12 +7,12 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <config-kleopatra.h>
 #include "gnupgsystemconfigurationpage.h"
+#include <config-kleopatra.h>
 
 #include <Libkleo/CryptoConfigModule>
-#include <QGpgME/Protocol>
 #include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
 
 #include <QVBoxLayout>
 
@@ -43,7 +43,6 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QObject *parent, cons
                                      widget());
 #endif
     lay->addWidget(mWidget);
-
 
     connect(mWidget, &CryptoConfigModule::changed, this, &Kleo::Config::GnuPGSystemConfigurationPage::markAsChanged);
 }

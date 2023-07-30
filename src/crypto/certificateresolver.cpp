@@ -32,56 +32,59 @@ using namespace GpgME;
 using namespace KMime::Types;
 using namespace KMime::HeaderParsing;
 
-std::vector< std::vector<Key> > CertificateResolver::resolveRecipients(const std::vector<Mailbox> &recipients, Protocol proto)
+std::vector<std::vector<Key>> CertificateResolver::resolveRecipients(const std::vector<Mailbox> &recipients, Protocol proto)
 {
-    std::vector< std::vector<Key> > result;
-    std::transform(recipients.begin(), recipients.end(),
-                   std::back_inserter(result), 
-                   [proto](const Mailbox &recipient) {
-                       return resolveRecipient(recipient, proto);
-                   });
+    std::vector<std::vector<Key>> result;
+    std::transform(recipients.begin(), recipients.end(), std::back_inserter(result), [proto](const Mailbox &recipient) {
+        return resolveRecipient(recipient, proto);
+    });
     return result;
 }
 
 std::vector<Key> CertificateResolver::resolveRecipient(const Mailbox &recipient, Protocol proto)
 {
     std::vector<Key> result = KeyCache::instance()->findByEMailAddress(recipient.address().constData());
-    auto end = std::remove_if(result.begin(), result.end(),
-                              [](const Key &key) { return key.canEncrypt(); });
+    auto end = std::remove_if(result.begin(), result.end(), [](const Key &key) {
+        return key.canEncrypt();
+    });
 
     if (proto != UnknownProtocol)
-        end = std::remove_if(result.begin(), end,
-                             [proto](const Key &key) { return key.protocol() != proto; });
+        end = std::remove_if(result.begin(), end, [proto](const Key &key) {
+            return key.protocol() != proto;
+        });
 
     result.erase(end, result.end());
     return result;
 }
 
-std::vector< std::vector<Key> > CertificateResolver::resolveSigners(const std::vector<Mailbox> &signers, Protocol proto)
+std::vector<std::vector<Key>> CertificateResolver::resolveSigners(const std::vector<Mailbox> &signers, Protocol proto)
 {
-    std::vector< std::vector<Key> > result;
-    std::transform(signers.begin(), signers.end(),
-                   std::back_inserter(result),
-                   [proto](const Mailbox &signer) {
-                       return resolveSigner(signer, proto);
-                   });
+    std::vector<std::vector<Key>> result;
+    std::transform(signers.begin(), signers.end(), std::back_inserter(result), [proto](const Mailbox &signer) {
+        return resolveSigner(signer, proto);
+    });
     return result;
 }
 
 std::vector<Key> CertificateResolver::resolveSigner(const Mailbox &signer, Protocol proto)
 {
     std::vector<Key> result = KeyCache::instance()->findByEMailAddress(signer.address().constData());
-    auto end = std::remove_if(result.begin(), result.end(),
-                              [](const Key &key) { return key.hasSecret(); });
-    end = std::remove_if(result.begin(), end,
+    auto end = std::remove_if(result.begin(), result.end(), [](const Key &key) {
+        return key.hasSecret();
+    });
+    end = std::remove_if(result.begin(),
+                         end,
 #if GPGMEPP_KEY_CANSIGN_IS_FIXED
-                         [](const Key &key) { return key.canSign(); });
+                         [](const Key &key) {
+                             return key.canSign();
+                         });
 #else
                          [](const Key &key) { return key.canReallySign(); });
 #endif
     if (proto != UnknownProtocol)
-        end = std::remove_if(result.begin(), end,
-                             [proto](const Key &key) { return key.protocol() != proto; });
+        end = std::remove_if(result.begin(), end, [proto](const Key &key) {
+            return key.protocol() != proto;
+        });
     result.erase(end, result.end());
     return result;
 }
@@ -90,6 +93,7 @@ class KConfigBasedRecipientPreferences::Private
 {
     friend class ::Kleo::Crypto::KConfigBasedRecipientPreferences;
     KConfigBasedRecipientPreferences *const q;
+
 public:
     explicit Private(const KSharedConfigPtr &config, KConfigBasedRecipientPreferences *qq);
     ~Private();
@@ -107,7 +111,11 @@ private:
     mutable bool m_dirty;
 };
 
-KConfigBasedRecipientPreferences::Private::Private(const KSharedConfigPtr &config, KConfigBasedRecipientPreferences *qq) : q(qq), m_config(config), m_parsed(false), m_dirty(false)
+KConfigBasedRecipientPreferences::Private::Private(const KSharedConfigPtr &config, KConfigBasedRecipientPreferences *qq)
+    : q(qq)
+    , m_config(config)
+    , m_parsed(false)
+    , m_dirty(false)
 {
     Q_ASSERT(m_config);
 }
@@ -125,7 +133,6 @@ void KConfigBasedRecipientPreferences::Private::writePrefs()
     const auto pgpPrefsKeys = pgpPrefs.keys();
     const auto cmsPrefsKeys = cmsPrefs.keys();
     const QSet<QByteArray> keys = QSet<QByteArray>(pgpPrefsKeys.begin(), pgpPrefsKeys.end()) + QSet<QByteArray>(cmsPrefsKeys.begin(), cmsPrefsKeys.end());
-
 
     int n = 0;
     for (const QByteArray &i : keys) {
@@ -162,7 +169,8 @@ void KConfigBasedRecipientPreferences::Private::ensurePrefsParsed() const
     m_parsed = true;
 }
 
-KConfigBasedRecipientPreferences::KConfigBasedRecipientPreferences(const KSharedConfigPtr &config) : d(new Private(config, this))
+KConfigBasedRecipientPreferences::KConfigBasedRecipientPreferences(const KSharedConfigPtr &config)
+    : d(new Private(config, this))
 {
 }
 
@@ -193,6 +201,7 @@ class KConfigBasedSigningPreferences::Private
 {
     friend class ::Kleo::Crypto::KConfigBasedSigningPreferences;
     KConfigBasedSigningPreferences *const q;
+
 public:
     explicit Private(const KSharedConfigPtr &config, KConfigBasedSigningPreferences *qq);
     ~Private();
@@ -210,7 +219,11 @@ private:
     mutable bool m_dirty;
 };
 
-KConfigBasedSigningPreferences::Private::Private(const KSharedConfigPtr &config, KConfigBasedSigningPreferences *qq) : q(qq), m_config(config), m_parsed(false), m_dirty(false)
+KConfigBasedSigningPreferences::Private::Private(const KSharedConfigPtr &config, KConfigBasedSigningPreferences *qq)
+    : q(qq)
+    , m_config(config)
+    , m_parsed(false)
+    , m_dirty(false)
 {
     Q_ASSERT(m_config);
 }
@@ -243,7 +256,8 @@ KConfigBasedSigningPreferences::Private::~Private()
     writePrefs();
 }
 
-KConfigBasedSigningPreferences::KConfigBasedSigningPreferences(const KSharedConfigPtr &config) : d(new Private(config, this))
+KConfigBasedSigningPreferences::KConfigBasedSigningPreferences(const KSharedConfigPtr &config)
+    : d(new Private(config, this))
 {
 }
 
@@ -267,4 +281,3 @@ void KConfigBasedSigningPreferences::setPreferredCertificate(Protocol protocol, 
     (protocol == CMS ? d->cmsSigningCertificate : d->pgpSigningCertificate) = certificate.keyID();
     d->m_dirty = true;
 }
-

@@ -61,4 +61,3 @@ private:
 } // namespace Kleo
 
 #endif // QT_NO_SYSTEMTRAYICON
-

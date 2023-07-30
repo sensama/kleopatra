@@ -19,7 +19,7 @@ namespace Kleo
 {
 /** The padwidget provides a general I/O area inside of kleopatra
  * and can be used as an alternative view to the tabwidget. */
-class PadWidget: public QWidget, public FocusFirstChild
+class PadWidget : public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
@@ -32,4 +32,3 @@ private:
     std::shared_ptr<Private> d;
 };
 } // namespace Kleo
-

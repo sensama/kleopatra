@@ -19,7 +19,8 @@
 #include <vector>
 
 class QModelIndex;
-template <typename T> class QList;
+template<typename T>
+class QList;
 class QAbstractItemView;
 
 namespace GpgME
@@ -83,7 +84,7 @@ public:
      *
      * @returns null QString on success. Error message otherwise.
      */
-    static QVector<Command *>commandsForFiles(const QStringList &files);
+    static QVector<Command *> commandsForFiles(const QStringList &files);
 
     /** Get a command for a query.
      *
@@ -126,6 +127,7 @@ protected:
 protected:
     class Private;
     kdtools::pimpl_ptr<Private> d;
+
 protected:
     explicit Command(Private *pp);
     explicit Command(QAbstractItemView *view, Private *pp);
@@ -136,4 +138,3 @@ protected:
 }
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::Command::Restrictions)
-

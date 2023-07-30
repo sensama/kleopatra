@@ -9,12 +9,14 @@
 
 #include <memory>
 
-namespace GpgME {
+namespace GpgME
+{
 class Key;
 class KeyListResult;
 }
 
-namespace Kleo {
+namespace Kleo
+{
 
 class WebOfTrustWidget : public QWidget
 {
@@ -40,4 +42,3 @@ private:
     const std::unique_ptr<Private> d;
 };
 } // namespace Kleo
-

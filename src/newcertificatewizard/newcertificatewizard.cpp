@@ -31,11 +31,12 @@ class NewCertificateWizard::Private
 {
     friend class ::Kleo::NewCertificateWizard;
     NewCertificateWizard *const q;
+
 public:
     explicit Private(NewCertificateWizard *qq)
-        : q(qq),
-          tmp(QDir::temp().absoluteFilePath(QStringLiteral("kleo-"))),
-          ui(q)
+        : q(qq)
+        , tmp(QDir::temp().absoluteFilePath(QStringLiteral("kleo-")))
+        , ui(q)
     {
         q->setWindowTitle(i18nc("@title:window", "Key Pair Creation Wizard"));
     }
@@ -49,31 +50,33 @@ private:
         ResultPage resultPage;
 
         explicit Ui(NewCertificateWizard *q)
-            : enterDetailsPage(q),
-              keyCreationPage(q),
-              resultPage(q)
+            : enterDetailsPage(q)
+            , keyCreationPage(q)
+            , resultPage(q)
         {
             KDAB_SET_OBJECT_NAME(enterDetailsPage);
             KDAB_SET_OBJECT_NAME(keyCreationPage);
             KDAB_SET_OBJECT_NAME(resultPage);
 
-            q->setOptions(NoBackButtonOnStartPage|DisabledBackButtonOnLastPage);
+            q->setOptions(NoBackButtonOnStartPage | DisabledBackButtonOnLastPage);
 
-            q->setPage(EnterDetailsPageId,   &enterDetailsPage);
-            q->setPage(KeyCreationPageId,    &keyCreationPage);
-            q->setPage(ResultPageId,         &resultPage);
+            q->setPage(EnterDetailsPageId, &enterDetailsPage);
+            q->setPage(KeyCreationPageId, &keyCreationPage);
+            q->setPage(ResultPageId, &resultPage);
         }
 
     } ui;
-
 };
 
 NewCertificateWizard::NewCertificateWizard(QWidget *p)
-    : QWizard(p), d(new Private(this))
+    : QWizard(p)
+    , d(new Private(this))
 {
 }
 
-NewCertificateWizard::~NewCertificateWizard() {}
+NewCertificateWizard::~NewCertificateWizard()
+{
+}
 
 void NewCertificateWizard::showEvent(QShowEvent *event)
 {

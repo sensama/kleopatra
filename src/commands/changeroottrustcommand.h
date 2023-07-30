@@ -77,7 +77,6 @@ public:
     {
         return ChangeRootTrustCommand::restrictions() | MustBeUntrustedRoot;
     }
-
 };
 
 class DistrustRootCommand : public ChangeRootTrustCommand
@@ -108,9 +107,7 @@ public:
     {
         return ChangeRootTrustCommand::restrictions() | MustBeTrustedRoot;
     }
-
 };
 
 }
 }
-

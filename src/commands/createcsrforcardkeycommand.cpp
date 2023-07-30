@@ -29,13 +29,13 @@
 
 #include <KLocalizedString>
 
+#include <KLocalizedString>
 #include <QDateTime>
 #include <QFile>
-#include <KLocalizedString>
 #include <QUrl>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/KeyGenerationJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/context.h>
 #include <gpgme++/engineinfo.h>
@@ -59,9 +59,9 @@ class CreateCSRForCardKeyCommand::Private : public CardCommand::Private
     {
         return static_cast<CreateCSRForCardKeyCommand *>(q);
     }
+
 public:
-    explicit Private(CreateCSRForCardKeyCommand *qq,
-                     const std::string &keyRef, const std::string &serialNumber, const std::string &appName, QWidget *parent);
+    explicit Private(CreateCSRForCardKeyCommand *qq, const std::string &keyRef, const std::string &serialNumber, const std::string &appName, QWidget *parent);
     ~Private() override;
 
 private:
@@ -95,7 +95,10 @@ const CreateCSRForCardKeyCommand::Private *CreateCSRForCardKeyCommand::d_func() 
 #define q q_func()
 
 CreateCSRForCardKeyCommand::Private::Private(CreateCSRForCardKeyCommand *qq,
-                                             const std::string &keyRef_, const std::string &serialNumber, const std::string &appName_, QWidget *parent)
+                                             const std::string &keyRef_,
+                                             const std::string &serialNumber,
+                                             const std::string &appName_,
+                                             QWidget *parent)
     : CardCommand::Private(qq, serialNumber, parent)
     , appName(appName_)
     , keyRef(keyRef_)
@@ -205,8 +208,9 @@ void CreateCSRForCardKeyCommand::Private::slotResult(const KeyGenerationResult &
     } else {
         const QUrl url = saveRequest(request);
         if (!url.isEmpty()) {
-            information(xi18nc("@info", "<para>Successfully wrote request to <filename>%1</filename>.</para>"
-                                        "<para>You should now send the request to the Certification Authority (CA).</para>",
+            information(xi18nc("@info",
+                               "<para>Successfully wrote request to <filename>%1</filename>.</para>"
+                               "<para>You should now send the request to the Certification Authority (CA).</para>",
                                url.toLocalFile()),
                         i18nc("@title", "Request Saved"));
         }
@@ -228,11 +232,11 @@ SaveToFileResult saveRequestToFile(const QString &filename, const QByteArray &re
     if (file.open(mode)) {
         const auto bytesWritten = file.write(request);
         if (bytesWritten < request.size()) {
-            return { QUrl(), file.errorString() };
+            return {QUrl(), file.errorString()};
         }
-        return { QUrl::fromLocalFile(file.fileName()), QString() };
+        return {QUrl::fromLocalFile(file.fileName()), QString()};
     }
-    return { QUrl(), file.errorString() };
+    return {QUrl(), file.errorString()};
 }
 }
 
@@ -241,8 +245,11 @@ QUrl CreateCSRForCardKeyCommand::Private::saveRequest(const QByteArray &request)
     const QString proposedFilename = QLatin1String("request_%1.p10").arg(QDateTime::currentDateTime().toString(QStringLiteral("yyyy-MM-dd_HHmmss")));
 
     while (true) {
-        const QString filePath = FileDialog::getSaveFileNameEx(
-            parentWidgetOrView(), i18nc("@title", "Save Request"), QStringLiteral("save_csr"), proposedFilename, i18n("PKCS#10 Requests (*.p10)"));
+        const QString filePath = FileDialog::getSaveFileNameEx(parentWidgetOrView(),
+                                                               i18nc("@title", "Save Request"),
+                                                               QStringLiteral("save_csr"),
+                                                               proposedFilename,
+                                                               i18n("PKCS#10 Requests (*.p10)"));
         if (filePath.isEmpty()) {
             // user canceled the dialog
             return QUrl();
@@ -268,8 +275,12 @@ void CreateCSRForCardKeyCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 CreateCSRForCardKeyCommand::CreateCSRForCardKeyCommand(const std::string &keyRef, const std::string &serialNumber, const std::string &appName, QWidget *parent)

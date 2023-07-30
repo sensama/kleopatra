@@ -28,7 +28,7 @@ class AssuanServerConnection : public QObject
 {
     Q_OBJECT
 public:
-    AssuanServerConnection(assuan_fd_t fd, const std::vector< std::shared_ptr<AssuanCommandFactory> > &factories, QObject *parent = nullptr);
+    AssuanServerConnection(assuan_fd_t fd, const std::vector<std::shared_ptr<AssuanCommandFactory>> &factories, QObject *parent = nullptr);
     ~AssuanServerConnection() override;
 
 public Q_SLOTS:
@@ -41,9 +41,9 @@ Q_SIGNALS:
 
 public:
     class Private;
+
 private:
     kdtools::pimpl_ptr<Private> d;
 };
 
 }
-

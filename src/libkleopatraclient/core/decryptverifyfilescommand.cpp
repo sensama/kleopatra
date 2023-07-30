@@ -18,5 +18,6 @@ DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(QObject *p)
     setOption("nohup");
 }
 
-DecryptVerifyFilesCommand::~DecryptVerifyFilesCommand() {}
-
+DecryptVerifyFilesCommand::~DecryptVerifyFilesCommand()
+{
+}

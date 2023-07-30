@@ -20,13 +20,11 @@
 #include <utils/input.h>
 #include <utils/output.h>
 
-
-
-#include <Libkleo/Stl_Util>
 #include <Libkleo/Classify>
+#include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
+#include <KLocalizedString>
 
 #include <exception>
 
@@ -41,6 +39,7 @@ class DecryptVerifyClipboardCommand::Private : public Command::Private
     {
         return static_cast<DecryptVerifyClipboardCommand *>(q);
     }
+
 public:
     explicit Private(DecryptVerifyClipboardCommand *qq, KeyListController *c);
     ~Private() override;
@@ -76,12 +75,11 @@ const DecryptVerifyClipboardCommand::Private *DecryptVerifyClipboardCommand::d_f
 #define q q_func()
 
 DecryptVerifyClipboardCommand::Private::Private(DecryptVerifyClipboardCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      shared_qq(qq, [](DecryptVerifyClipboardCommand*){}),
-      input(),
-      controller()
+    : Command::Private(qq, c)
+    , shared_qq(qq, [](DecryptVerifyClipboardCommand *) {})
+    , input()
+    , controller()
 {
-
 }
 
 DecryptVerifyClipboardCommand::Private::~Private()
@@ -104,8 +102,12 @@ DecryptVerifyClipboardCommand::DecryptVerifyClipboardCommand(QAbstractItemView *
 void DecryptVerifyClipboardCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
-    connect(&controller, &Controller::done, q, [this]() { slotControllerDone(); });
-    connect(&controller, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
+    connect(&controller, &Controller::done, q, [this]() {
+        slotControllerDone();
+    });
+    connect(&controller, &Controller::error, q, [this](int err, const QString &details) {
+        slotControllerError(err, details);
+    });
 }
 
 DecryptVerifyClipboardCommand::~DecryptVerifyClipboardCommand()
@@ -117,17 +119,15 @@ DecryptVerifyClipboardCommand::~DecryptVerifyClipboardCommand()
 bool DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard()
 {
     try {
-        return Input::createFromClipboard()->classification()
-               & (Class::CipherText | Class::ClearsignedMessage | Class::OpaqueSignature);
-    } catch (...) {}
+        return Input::createFromClipboard()->classification() & (Class::CipherText | Class::ClearsignedMessage | Class::OpaqueSignature);
+    } catch (...) {
+    }
     return false;
 }
 
 void DecryptVerifyClipboardCommand::doStart()
 {
-
     try {
-
         const std::shared_ptr<Input> input = Input::createFromClipboard();
 
         const unsigned int classification = input->classification();
@@ -152,9 +152,7 @@ void DecryptVerifyClipboardCommand::doStart()
         d->controller.start();
 
     } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1",
-                            QString::fromLocal8Bit(e.what())),
-                       i18n("Decrypt/Verify Clipboard Error"));
+        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Decrypt/Verify Clipboard Error"));
         d->finished();
     }
 }

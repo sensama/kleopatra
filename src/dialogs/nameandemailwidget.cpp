@@ -31,13 +31,13 @@ namespace
 {
 QString buildUserId(const QString &name, const QString &email)
 {
-   if (name.isEmpty()) {
-       return email;
-   } else if (email.isEmpty()) {
-       return name;
-   } else {
-       return QStringLiteral("%1 <%2>").arg(name, email);
-   }
+    if (name.isEmpty()) {
+        return email;
+    } else if (email.isEmpty()) {
+        return name;
+    } else {
+        return QStringLiteral("%1 <%2>").arg(name, email);
+    }
 }
 }
 
@@ -67,8 +67,9 @@ public:
             mainLayout->addWidget(ui.nameInput->errorLabel());
             mainLayout->addWidget(ui.nameInput->widget());
         }
-        connect(ui.nameInput->widget(), &QLineEdit::textChanged,
-                q, [this]() { Q_EMIT q->userIDChanged(); });
+        connect(ui.nameInput->widget(), &QLineEdit::textChanged, q, [this]() {
+            Q_EMIT q->userIDChanged();
+        });
 
         {
             ui.emailInput = FormTextInput<QLineEdit>::create(q);
@@ -81,10 +82,10 @@ public:
             mainLayout->addWidget(ui.emailInput->errorLabel());
             mainLayout->addWidget(ui.emailInput->widget());
         }
-        connect(ui.emailInput->widget(), &QLineEdit::textChanged,
-                q, [this]() { Q_EMIT q->userIDChanged(); });
+        connect(ui.emailInput->widget(), &QLineEdit::textChanged, q, [this]() {
+            Q_EMIT q->userIDChanged();
+        });
     }
-
 
     void setNamePattern(const QString &regexp)
     {
@@ -92,16 +93,14 @@ public:
             ui.nameInput->setValidator(Validation::simpleName(Validation::Optional));
             ui.nameInput->setInvalidEntryErrorMessage(
                 i18n("The name must not include <, >, and @."),
-                i18nc("text for screen readers",
-                        "The name must not include less-than sign, greater-than sign, and at sign."));
+                i18nc("text for screen readers", "The name must not include less-than sign, greater-than sign, and at sign."));
         } else {
             ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional));
-            ui.nameInput->setInvalidEntryErrorMessage(
-                i18n("The name must be in the format required by your organization and "
-                        "it must not include <, >, and @."),
-                i18nc("text for screen readers",
-                        "The name must be in the format required by your organization and "
-                        "it must not include less-than sign, greater-than sign, and at sign."));
+            ui.nameInput->setInvalidEntryErrorMessage(i18n("The name must be in the format required by your organization and "
+                                                           "it must not include <, >, and @."),
+                                                      i18nc("text for screen readers",
+                                                            "The name must be in the format required by your organization and "
+                                                            "it must not include less-than sign, greater-than sign, and at sign."));
         }
     }
 
@@ -109,12 +108,10 @@ public:
     {
         if (regexp.isEmpty()) {
             ui.emailInput->setValidator(Validation::email(Validation::Optional));
-            ui.emailInput->setInvalidEntryErrorMessage(i18n(
-                "Enter an email address in the correct format, like name@example.com."));
+            ui.emailInput->setInvalidEntryErrorMessage(i18n("Enter an email address in the correct format, like name@example.com."));
         } else {
             ui.emailInput->setValidator(Validation::email(regexp, Validation::Optional));
-            ui.emailInput->setInvalidEntryErrorMessage(i18n(
-                "Enter an email address in the correct format required by your organization."));
+            ui.emailInput->setInvalidEntryErrorMessage(i18n("Enter an email address in the correct format required by your organization."));
         }
     }
 

@@ -12,16 +12,15 @@
 #include "command.h"
 #include "command_p.h"
 
-#include "signencryptfilescommand.h"
-#include "importcertificatefromfilecommand.h"
+#include "checksumverifyfilescommand.h"
 #include "decryptverifyfilescommand.h"
 #include "detailscommand.h"
+#include "importcertificatefromfilecommand.h"
 #include "lookupcertificatescommand.h"
-#include "checksumverifyfilescommand.h"
+#include "signencryptfilescommand.h"
 
-#include <Libkleo/KeyCache>
 #include <Libkleo/Classify>
-
+#include <Libkleo/KeyCache>
 
 #include <view/tabwidget.h>
 
@@ -36,25 +35,25 @@ using namespace Kleo::Commands;
 using namespace GpgME;
 
 Command::Private::Private(Command *qq)
-    : q(qq),
-      autoDelete(true),
-      warnWhenRunningAtShutdown(true)
+    : q(qq)
+    , autoDelete(true)
+    , warnWhenRunningAtShutdown(true)
 {
 }
 
 Command::Private::Private(Command *qq, KeyListController *controller)
-    : q(qq),
-      autoDelete(true),
-      warnWhenRunningAtShutdown(true),
-      controller_(controller)
+    : q(qq)
+    , autoDelete(true)
+    , warnWhenRunningAtShutdown(true)
+    , controller_(controller)
 {
 }
 
 Command::Private::Private(Command *qq, QWidget *parent)
-    : q(qq),
-      autoDelete(true),
-      warnWhenRunningAtShutdown(true),
-      parentWidget_(parent)
+    : q(qq)
+    , autoDelete(true)
+    , warnWhenRunningAtShutdown(true)
+    , parentWidget_(parent)
 {
 }
 
@@ -64,7 +63,8 @@ Command::Private::~Private()
 }
 
 Command::Command(KeyListController *p)
-    : QObject(p), d(new Private(this, p))
+    : QObject(p)
+    , d(new Private(this, p))
 {
     if (p) {
         p->registerCommand(this);
@@ -72,7 +72,8 @@ Command::Command(KeyListController *p)
 }
 
 Command::Command(QAbstractItemView *v, KeyListController *p)
-    : QObject(p), d(new Private(this, p))
+    : QObject(p)
+    , d(new Private(this, p))
 {
     if (p) {
         p->registerCommand(this);
@@ -83,7 +84,8 @@ Command::Command(QAbstractItemView *v, KeyListController *p)
 }
 
 Command::Command(Private *pp)
-    : QObject(pp->controller_), d(pp)
+    : QObject(pp->controller_)
+    , d(pp)
 {
     if (pp->controller_) {
         pp->controller_->registerCommand(this);
@@ -91,7 +93,8 @@ Command::Command(Private *pp)
 }
 
 Command::Command(QAbstractItemView *v, Private *pp)
-    : QObject(pp->controller_), d(pp)
+    : QObject(pp->controller_)
+    , d(pp)
 {
     if (pp->controller_) {
         pp->controller_->registerCommand(this);
@@ -102,25 +105,29 @@ Command::Command(QAbstractItemView *v, Private *pp)
 }
 
 Command::Command(const GpgME::Key &key)
-    : QObject(nullptr), d(new Private(this))
+    : QObject(nullptr)
+    , d(new Private(this))
 {
     d->keys_ = std::vector<Key>(1, key);
 }
 
 Command::Command(const std::vector<GpgME::Key> &keys)
-    : QObject(nullptr), d(new Private(this))
+    : QObject(nullptr)
+    , d(new Private(this))
 {
     d->keys_ = keys;
 }
 
 Command::Command(const Key &key, Private *pp)
-    : QObject(nullptr), d(pp)
+    : QObject(nullptr)
+    , d(pp)
 {
     d->keys_ = std::vector<Key>(1, key);
 }
 
 Command::Command(const std::vector<GpgME::Key> &keys, Private *pp)
-    : QObject(nullptr), d(pp)
+    : QObject(nullptr)
+    , d(pp)
 {
     d->keys_ = keys;
 }
@@ -202,9 +209,12 @@ void Command::start()
 {
     // defer the actual start and return immediately to avoid problems if the
     // caller is deleted before start returns (e.g. an action of a context menu)
-    QMetaObject::invokeMethod(this, [this]() {
-        doStart();
-    }, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(
+        this,
+        [this]() {
+            doStart();
+        },
+        Qt::QueuedConnection);
 }
 
 void Command::cancel()
@@ -249,10 +259,10 @@ void Command::applyWindowID(QWidget *w) const
 }
 
 // static
-QVector <Command *> Command::commandsForFiles(const QStringList &files)
+QVector<Command *> Command::commandsForFiles(const QStringList &files)
 {
     QStringList importFiles, decryptFiles, encryptFiles, checksumFiles;
-    QVector <Command *> cmds;
+    QVector<Command *> cmds;
     for (const QString &fileName : files) {
         const unsigned int classification = classify(fileName);
 

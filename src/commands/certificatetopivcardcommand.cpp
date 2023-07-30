@@ -32,7 +32,7 @@
 
 #include <gpg-error.h>
 #if GPG_ERROR_VERSION_NUMBER >= 0x12400 // 1.36
-# define GPG_ERROR_HAS_NO_AUTH
+#define GPG_ERROR_HAS_NO_AUTH
 #endif
 
 #include "kleopatra_debug.h"
@@ -49,6 +49,7 @@ class CertificateToPIVCardCommand::Private : public CardCommand::Private
     {
         return static_cast<CertificateToPIVCardCommand *>(q);
     }
+
 public:
     explicit Private(CertificateToPIVCardCommand *qq, const std::string &slot, const std::string &serialno);
     ~Private() override;
@@ -79,7 +80,6 @@ const CertificateToPIVCardCommand::Private *CertificateToPIVCardCommand::d_func(
 #define q q_func()
 #define d d_func()
 
-
 CertificateToPIVCardCommand::Private::Private(CertificateToPIVCardCommand *qq, const std::string &slot, const std::string &serialno)
     : CardCommand::Private(qq, serialno, nullptr)
     , cardSlot(slot)
@@ -90,7 +90,8 @@ CertificateToPIVCardCommand::Private::~Private()
 {
 }
 
-namespace {
+namespace
+{
 static Key getCertificateToWriteToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> &card)
 {
     if (!cardSlot.empty()) {
@@ -99,10 +100,10 @@ static Key getCertificateToWriteToPIVCard(const std::string &cardSlot, const std
         if (certificate.isNull() || certificate.protocol() != GpgME::CMS) {
             return Key();
         }
-        if ((cardSlot == PIVCard::pivAuthenticationKeyRef() && certificate.canSign()) ||
-            (cardSlot == PIVCard::cardAuthenticationKeyRef() && certificate.canSign()) ||
-            (cardSlot == PIVCard::digitalSignatureKeyRef() && certificate.canSign()) ||
-            (cardSlot == PIVCard::keyManagementKeyRef() && certificate.canEncrypt())) {
+        if ((cardSlot == PIVCard::pivAuthenticationKeyRef() && certificate.canSign())
+            || (cardSlot == PIVCard::cardAuthenticationKeyRef() && certificate.canSign())
+            || (cardSlot == PIVCard::digitalSignatureKeyRef() && certificate.canSign())
+            || (cardSlot == PIVCard::keyManagementKeyRef() && certificate.canEncrypt())) {
             return certificate;
         }
     }
@@ -129,26 +130,27 @@ void CertificateToPIVCardCommand::Private::start()
         return;
     }
 
-    const QString certificateInfo = i18nc("X.509 certificate DN (validity, created: date)", "%1 (%2, created: %3)",
+    const QString certificateInfo = i18nc("X.509 certificate DN (validity, created: date)",
+                                          "%1 (%2, created: %3)",
                                           DN(certificate.userID(0).id()).prettyDN(),
                                           Formatting::complianceStringShort(certificate),
                                           Formatting::creationDateString(certificate));
-    const QString message = i18nc(
-        "@info %1 name of card slot, %2 serial number of card",
-        "<p>Please confirm that you want to write the following certificate to the %1 slot of card %2:</p>"
-        "<center>%3</center>",
-        PIVCard::keyDisplayName(cardSlot), QString::fromStdString(serialNumber()), certificateInfo);
+    const QString message = i18nc("@info %1 name of card slot, %2 serial number of card",
+                                  "<p>Please confirm that you want to write the following certificate to the %1 slot of card %2:</p>"
+                                  "<center>%3</center>",
+                                  PIVCard::keyDisplayName(cardSlot),
+                                  QString::fromStdString(serialNumber()),
+                                  certificateInfo);
     auto confirmButton = KStandardGuiItem::ok();
     confirmButton.setText(i18nc("@action:button", "Write certificate"));
     confirmButton.setToolTip(QString());
-    const auto choice = KMessageBox::questionTwoActions(
-        parentWidgetOrView(),
-        message,
-        i18nc("@title:window", "Write certificate to card"),
-        confirmButton,
-        KStandardGuiItem::cancel(),
-        QString(),
-        KMessageBox::Notify | KMessageBox::WindowModal);
+    const auto choice = KMessageBox::questionTwoActions(parentWidgetOrView(),
+                                                        message,
+                                                        i18nc("@title:window", "Write certificate to card"),
+                                                        confirmButton,
+                                                        KStandardGuiItem::cancel(),
+                                                        QString(),
+                                                        KMessageBox::Notify | KMessageBox::WindowModal);
     if (choice != KMessageBox::ButtonCode::PrimaryAction) {
         finished();
         return;
@@ -197,10 +199,12 @@ void CertificateToPIVCardCommand::Private::authenticate()
 
     auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
     cmd->setAutoResetCardToOpenPGP(false);
-    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
-            q, [this]() { authenticationFinished(); });
-    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
-            q, [this]() { authenticationCanceled(); });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished, q, [this]() {
+        authenticationFinished();
+    });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled, q, [this]() {
+        authenticationCanceled();
+    });
     cmd->start();
 }
 
@@ -219,7 +223,7 @@ void CertificateToPIVCardCommand::Private::authenticationCanceled()
     canceled();
 }
 
-CertificateToPIVCardCommand::CertificateToPIVCardCommand(const std::string& cardSlot, const std::string &serialno)
+CertificateToPIVCardCommand::CertificateToPIVCardCommand(const std::string &cardSlot, const std::string &serialno)
     : CardCommand(new Private(this, cardSlot, serialno))
 {
 }
@@ -231,8 +235,7 @@ CertificateToPIVCardCommand::~CertificateToPIVCardCommand()
 
 void CertificateToPIVCardCommand::certificateToPIVCardDone(const Error &err)
 {
-    qCDebug(KLEOPATRA_LOG) << "CertificateToPIVCardCommand::certificateToPIVCardDone():"
-                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
+    qCDebug(KLEOPATRA_LOG) << "CertificateToPIVCardCommand::certificateToPIVCardDone():" << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err) {
 #ifdef GPG_ERROR_HAS_NO_AUTH
         // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"

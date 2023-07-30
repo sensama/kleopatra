@@ -46,7 +46,8 @@ class LabelledWidget : public _detail::LabelledWidgetBase
 public:
     LabelledWidget()
         : _detail::LabelledWidgetBase{}
-    {}
+    {
+    }
 
     void createWidgets(QWidget *parent)
     {

@@ -21,20 +21,20 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <QGpgME/Protocol>
-#include <QGpgME/MultiDeleteJob>
 #include <QGpgME/DeleteJob>
+#include <QGpgME/MultiDeleteJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/key.h>
 
 #include <KLocalizedString>
 
-#include <QPointer>
 #include <QAbstractItemView>
+#include <QPointer>
 
+#include <KLazyLocalizedString>
 #include <algorithm>
 #include <vector>
-#include <KLazyLocalizedString>
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -47,6 +47,7 @@ class DeleteCertificatesCommand::Private : public Command::Private
     {
         return static_cast<DeleteCertificatesCommand *>(q);
     }
+
 public:
     explicit Private(DeleteCertificatesCommand *qq, KeyListController *c);
     ~Private() override;
@@ -77,8 +78,12 @@ public:
         applyWindowID(dialog);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         dialog->setWindowTitle(i18nc("@title:window", "Delete Certificates"));
-        connect(dialog, &QDialog::accepted, q_func(), [this]() { slotDialogAccepted(); });
-        connect(dialog, &QDialog::rejected, q_func(), [this]() { slotDialogRejected(); });
+        connect(dialog, &QDialog::accepted, q_func(), [this]() {
+            slotDialogAccepted();
+        });
+        connect(dialog, &QDialog::rejected, q_func(), [this]() {
+            slotDialogRejected();
+        });
     }
     void ensureDialogShown()
     {
@@ -115,24 +120,25 @@ const DeleteCertificatesCommand::Private *DeleteCertificatesCommand::d_func() co
 DeleteCertificatesCommand::Private::Private(DeleteCertificatesCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
 {
-
 }
 
-DeleteCertificatesCommand::Private::~Private() {}
+DeleteCertificatesCommand::Private::~Private()
+{
+}
 
 DeleteCertificatesCommand::DeleteCertificatesCommand(KeyListController *p)
     : Command(new Private(this, p))
 {
-
 }
 
 DeleteCertificatesCommand::DeleteCertificatesCommand(QAbstractItemView *v, KeyListController *p)
     : Command(v, new Private(this, p))
 {
-
 }
 
-DeleteCertificatesCommand::~DeleteCertificatesCommand() {}
+DeleteCertificatesCommand::~DeleteCertificatesCommand()
+{
+}
 
 namespace
 {
@@ -207,7 +213,6 @@ static const struct {
 
 void DeleteCertificatesCommand::doStart()
 {
-
     std::vector<Key> selected = d->keys();
     if (selected.empty()) {
         d->finished();
@@ -224,8 +229,10 @@ void DeleteCertificatesCommand::doStart()
 
     std::vector<Key> unselected;
     unselected.reserve(toBeDeleted.size());
-    std::set_difference(toBeDeleted.begin(), toBeDeleted.end(),
-                        selected.begin(), selected.end(),
+    std::set_difference(toBeDeleted.begin(),
+                        toBeDeleted.end(),
+                        selected.begin(),
+                        selected.end(),
                         std::back_inserter(unselected),
                         _detail::ByFingerprint<std::less>());
 
@@ -235,7 +242,6 @@ void DeleteCertificatesCommand::doStart()
     d->dialog->setUnselectedKeys(unselected);
 
     d->ensureDialogShown();
-
 }
 
 void DeleteCertificatesCommand::Private::slotDialogAccepted()
@@ -244,15 +250,14 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
     Q_ASSERT(!keys.empty());
 
     auto pgpBegin = keys.begin();
-    auto pgpEnd = std::stable_partition(pgpBegin, keys.end(),
-                                        [](const GpgME::Key &key) {
-                                            return key.protocol() != GpgME::CMS;
-                                        });
+    auto pgpEnd = std::stable_partition(pgpBegin, keys.end(), [](const GpgME::Key &key) {
+        return key.protocol() != GpgME::CMS;
+    });
     auto cmsBegin = pgpEnd;
     auto cmsEnd = keys.end();
 
     std::vector<Key> openpgp(pgpBegin, pgpEnd);
-    std::vector<Key>     cms(cmsBegin, cmsEnd);
+    std::vector<Key> cms(cmsBegin, cmsEnd);
 
     const unsigned int errorCase = //
         openpgp.empty() << 3U //
@@ -262,9 +267,7 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
 
     if (const unsigned int actions = deletionErrorCases[errorCase].actions) {
         information(KLocalizedString(deletionErrorCases[errorCase].text).toString(),
-                    (actions & Failure)
-                        ? i18n("Certificate Deletion Failed")
-                        : i18n("Certificate Deletion Problem"));
+                    (actions & Failure) ? i18n("Certificate Deletion Failed") : i18n("Certificate Deletion Problem"));
 
         if (actions & ClearCMS) {
             cms.clear();
@@ -290,8 +293,7 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
         startDeleteJob(GpgME::CMS);
     }
 
-    if ((pgpKeys.empty() || pgpError.code()) &&
-            (cmsKeys.empty() || cmsError.code())) {
+    if ((pgpKeys.empty() || pgpError.code()) && (cmsKeys.empty() || cmsError.code())) {
         showErrorsAndFinish();
     }
 }
@@ -316,11 +318,11 @@ void DeleteCertificatesCommand::Private::startDeleteJob(GpgME::Protocol protocol
     });
 
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(job.get(), &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(job.get(), &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(job.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
 
     if (const Error err = job->start(keys, true /*allowSecretKeyDeletion*/)) {
@@ -332,8 +334,8 @@ void DeleteCertificatesCommand::Private::startDeleteJob(GpgME::Protocol protocol
 
 void DeleteCertificatesCommand::Private::showErrorsAndFinish()
 {
-
-    Q_ASSERT(!pgpJob); Q_ASSERT(!cmsJob);
+    Q_ASSERT(!pgpJob);
+    Q_ASSERT(!cmsJob);
 
     if (pgpError || cmsError) {
         QString pgpErrorString;
@@ -345,10 +347,11 @@ void DeleteCertificatesCommand::Private::showErrorsAndFinish()
             cmsErrorString = i18n("CMS backend: %1", Formatting::errorAsString(cmsError));
         }
 
-        const QString msg = i18n("<qt><p>An error occurred while trying to delete "
-                                 "the certificate:</p>"
-                                 "<p><b>%1</b></p></qt>",
-                                 pgpError ? cmsError ? pgpErrorString + QLatin1String("</br>") + cmsErrorString : pgpErrorString : cmsErrorString);
+        const QString msg = i18n(
+            "<qt><p>An error occurred while trying to delete "
+            "the certificate:</p>"
+            "<p><b>%1</b></p></qt>",
+            pgpError ? cmsError ? pgpErrorString + QLatin1String("</br>") + cmsErrorString : pgpErrorString : cmsErrorString);
         error(msg, i18n("Certificate Deletion Failed"));
     } else if (!pgpError.isCanceled() && !cmsError.isCanceled()) {
         std::vector<Key> keys = pgpKeys;

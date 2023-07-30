@@ -21,8 +21,8 @@
 
 #include <KLocalizedString>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/ChangeExpiryJob>
+#include <QGpgME/Protocol>
 
 #include <QDateTime>
 
@@ -77,6 +77,7 @@ class ChangeExpiryCommand::Private : public Command::Private
     {
         return static_cast<ChangeExpiryCommand *>(q);
     }
+
 public:
     explicit Private(ChangeExpiryCommand *qq, KeyListController *c);
     ~Private() override;
@@ -194,8 +195,12 @@ void ChangeExpiryCommand::Private::ensureDialogCreated(ExpiryDialog::Mode mode)
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 void ChangeExpiryCommand::Private::createJob()
@@ -213,24 +218,26 @@ void ChangeExpiryCommand::Private::createJob()
     }
 
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(j, &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(j, &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
-    connect(j, &ChangeExpiryJob::result,
-            q, [this] (const auto &err) { slotResult(err); });
+    connect(j, &ChangeExpiryJob::result, q, [this](const auto &err) {
+        slotResult(err);
+    });
 
     job = j;
 }
 
 void ChangeExpiryCommand::Private::showErrorDialog(const Error &err)
 {
-    error(i18n("<p>An error occurred while trying to change "
-               "the end of the validity period for <b>%1</b>:</p><p>%2</p>",
-               Formatting::formatForComboBox(key),
-               Formatting::errorAsString(err)));
+    error(
+        i18n("<p>An error occurred while trying to change "
+             "the end of the validity period for <b>%1</b>:</p><p>%2</p>",
+             Formatting::formatForComboBox(key),
+             Formatting::errorAsString(err)));
 }
 
 void ChangeExpiryCommand::Private::showSuccessDialog()
@@ -273,10 +280,8 @@ void ChangeExpiryCommand::doStart()
 
     d->key = keys.front();
 
-    if (!d->subkey.isNull() &&
-            d->subkey.parent().primaryFingerprint() != d->key.primaryFingerprint()) {
-        qDebug() << "Invalid subkey" << d->subkey.fingerprint()
-                 << ": Not a subkey of key" << d->key.primaryFingerprint();
+    if (!d->subkey.isNull() && d->subkey.parent().primaryFingerprint() != d->key.primaryFingerprint()) {
+        qDebug() << "Invalid subkey" << d->subkey.fingerprint() << ": Not a subkey of key" << d->key.primaryFingerprint();
         d->finished();
         return;
     }
@@ -293,8 +298,8 @@ void ChangeExpiryCommand::doStart()
     Q_ASSERT(d->dialog);
     const Subkey subkey = !d->subkey.isNull() ? d->subkey : d->key.subkey(0);
     d->dialog->setDateOfExpiry((subkey.neverExpires() //
-                                ? QDate{} //
-                                : defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration)));
+                                    ? QDate{} //
+                                    : defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration)));
 #if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
     if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {
         d->dialog->setUpdateExpirationOfAllSubkeys(allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(d->key));
@@ -302,7 +307,6 @@ void ChangeExpiryCommand::doStart()
 #endif
 
     d->dialog->show();
-
 }
 
 void ChangeExpiryCommand::doCancel()

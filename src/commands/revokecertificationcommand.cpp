@@ -110,6 +110,7 @@ class RevokeCertificationCommand::Private : public Command::Private
     {
         return static_cast<RevokeCertificationCommand *>(q);
     }
+
 public:
     Private(InputType i, RevokeCertificationCommand *qq, KeyListController *c = nullptr);
 
@@ -363,4 +364,3 @@ void RevokeCertificationCommand::doCancel()
 #undef q
 
 #include "moc_revokecertificationcommand.cpp"
-

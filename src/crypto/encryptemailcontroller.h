@@ -64,10 +64,8 @@ public:
     void startResolveRecipients();
     void startResolveRecipients(const std::vector<KMime::Types::Mailbox> &recipients, const std::vector<KMime::Types::Mailbox> &senders);
 
-    void setInputAndOutput(const std::shared_ptr<Kleo::Input>   &input,
-                           const std::shared_ptr<Kleo::Output> &output);
-    void setInputsAndOutputs(const std::vector< std::shared_ptr<Kleo::Input> >   &inputs,
-                             const std::vector< std::shared_ptr<Kleo::Output> > &outputs);
+    void setInputAndOutput(const std::shared_ptr<Kleo::Input> &input, const std::shared_ptr<Kleo::Output> &output);
+    void setInputsAndOutputs(const std::vector<std::shared_ptr<Kleo::Input>> &inputs, const std::vector<std::shared_ptr<Kleo::Output>> &outputs);
 
     void start();
 
@@ -78,7 +76,6 @@ Q_SIGNALS:
     void recipientsResolved();
 
 private:
-
     void doTaskDone(const Task *task, const std::shared_ptr<const Kleo::Crypto::Task::Result> &) override;
 
     class Private;
@@ -87,5 +84,3 @@ private:
 
 } // Crypto
 } // Kleo
-
-

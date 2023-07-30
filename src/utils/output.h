@@ -71,8 +71,14 @@ public:
     virtual bool binaryOpt() const = 0;
     virtual void setBinaryOpt(bool value) = 0;
     /** Whether or not the output failed. */
-    virtual bool failed() const { return false; }
-    virtual QString fileName() const { return {}; }
+    virtual bool failed() const
+    {
+        return false;
+    }
+    virtual QString fileName() const
+    {
+        return {};
+    }
 
     static std::shared_ptr<Output> createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &);
     static std::shared_ptr<Output> createFromFile(const QString &fileName, bool forceOverwrite);
@@ -86,5 +92,3 @@ public:
     static std::shared_ptr<Output> createFromByteArray(QByteArray *data, const QString &label);
 };
 }
-
-

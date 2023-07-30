@@ -40,6 +40,7 @@ class ExpiryDialog::Private
 {
     friend class ::Kleo::Dialogs::ExpiryDialog;
     ExpiryDialog *const q;
+
 public:
     Private(Mode mode, ExpiryDialog *qq)
         : q{qq}
@@ -48,8 +49,9 @@ public:
         ui.neverRB->setEnabled(unlimitedValidityAllowed());
         ui.onRB->setEnabled(!fixedExpirationDate());
 
-        connect(ui.onCB, &KDateComboBox::dateChanged,
-                q, [this] () { slotOnDateChanged(); });
+        connect(ui.onCB, &KDateComboBox::dateChanged, q, [this]() {
+            slotOnDateChanged();
+        });
     }
 
 private:
@@ -80,9 +82,8 @@ private:
 
             {
                 auto label = new QLabel{qq};
-                label->setText(mode == Mode::UpdateIndividualSubkey ?
-                               i18n("Please select until when the subkey should be valid:") :
-                               i18n("Please select until when the certificate should be valid:"));
+                label->setText(mode == Mode::UpdateIndividualSubkey ? i18n("Please select until when the subkey should be valid:")
+                                                                    : i18n("Please select until when the certificate should be valid:"));
                 vboxLayout->addWidget(label);
             }
 
@@ -160,7 +161,7 @@ void ExpiryDialog::Private::setInitialFocus()
         return;
     }
     // give focus to the checked radio button
-    (void) focusFirstCheckedButton({ui.neverRB, ui.onRB});
+    (void)focusFirstCheckedButton({ui.neverRB, ui.onRB});
     initialFocusWasSet = true;
 }
 

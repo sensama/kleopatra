@@ -42,7 +42,7 @@
 
 #include <gpg-error.h>
 #if GPG_ERROR_VERSION_NUMBER >= 0x12400 // 1.36
-# define GPG_ERROR_HAS_NO_AUTH
+#define GPG_ERROR_HAS_NO_AUTH
 #endif
 
 #include "kleopatra_debug.h"
@@ -56,8 +56,7 @@ namespace
 {
 QString cardDisplayName(const std::shared_ptr<const Card> &card)
 {
-    return i18nc("smartcard application - serial number of smartcard", "%1 - %2",
-                 displayAppName(card->appName()), card->displaySerialNumber());
+    return i18nc("smartcard application - serial number of smartcard", "%1 - %2", displayAppName(card->appName()), card->displaySerialNumber());
 }
 }
 
@@ -68,6 +67,7 @@ class KeyToCardCommand::Private : public CardCommand::Private
     {
         return static_cast<KeyToCardCommand *>(q);
     }
+
 public:
     explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey);
     explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName);
@@ -131,10 +131,11 @@ KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const std::string &slot
 {
 }
 
-namespace {
+namespace
+{
 static std::shared_ptr<Card> getCardToTransferSubkeyTo(const Subkey &subkey, QWidget *parent)
 {
-    const std::vector<std::shared_ptr<Card> > suitableCards = KeyToCardCommand::getSuitableCards(subkey);
+    const std::vector<std::shared_ptr<Card>> suitableCards = KeyToCardCommand::getSuitableCards(subkey);
     if (suitableCards.empty()) {
         return std::shared_ptr<Card>();
     } else if (suitableCards.size() == 1) {
@@ -142,13 +143,18 @@ static std::shared_ptr<Card> getCardToTransferSubkeyTo(const Subkey &subkey, QWi
     }
 
     QStringList options;
-    for (const auto &card: suitableCards) {
+    for (const auto &card : suitableCards) {
         options.push_back(cardDisplayName(card));
     }
 
     bool ok;
-    const QString choice = QInputDialog::getItem(parent, i18n("Select Card"),
-        i18n("Please select the card the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
+    const QString choice = QInputDialog::getItem(parent,
+                                                 i18n("Select Card"),
+                                                 i18n("Please select the card the key should be written to:"),
+                                                 options,
+                                                 /* current= */ 0,
+                                                 /* editable= */ false,
+                                                 &ok);
     if (!ok) {
         return std::shared_ptr<Card>();
     }
@@ -189,7 +195,8 @@ void KeyToCardCommand::Private::start()
     }
 }
 
-namespace {
+namespace
+{
 static std::string getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
 {
     // Check if we need to ask the user for the slot
@@ -223,8 +230,13 @@ static std::string getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget
     }
 
     bool ok;
-    const QString choice = QInputDialog::getItem(parent, i18n("Select Card Slot"),
-        i18n("Please select the card slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
+    const QString choice = QInputDialog::getItem(parent,
+                                                 i18n("Select Card Slot"),
+                                                 i18n("Please select the card slot the key should be written to:"),
+                                                 options,
+                                                 /* current= */ 0,
+                                                 /* editable= */ false,
+                                                 &ok);
     const int choiceIndex = options.indexOf(choice);
     if (ok && choiceIndex >= 0) {
         return cardSlots[choiceIndex];
@@ -234,7 +246,8 @@ static std::string getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget
 }
 }
 
-void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
+void KeyToCardCommand::Private::startKeyToOpenPGPCard()
+{
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startKeyToOpenPGPCard()";
 
     const auto pgpCard = SmartCard::ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber());
@@ -263,20 +276,21 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
     // Check if we need to do the overwrite warning.
     const std::string existingKey = pgpCard->keyFingerprint(cardSlot);
     if (!existingKey.empty()) {
-        const auto encKeyWarning = (cardSlot == OpenPGPCard::pgpEncKeyRef()) ?
-            i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
-            QString{};
-        const QString message = i18nc(
-            "@info",
-            "<p>The card <em>%1</em> already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
-            "<p>If there is no backup the existing key will be irrecoverably lost.</p>",
-            cardDisplayName(pgpCard)) +
-            i18n("The existing key has the fingerprint:") +
-            QStringLiteral("<pre>%1</pre>").arg(Formatting::prettyID(existingKey.c_str())) +
-            encKeyWarning;
-        const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
-            i18nc("@title:window", "Overwrite existing key"),
-            KGuiItem{i18nc("@action:button", "Overwrite Existing Key")}, KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+        const auto encKeyWarning = (cardSlot == OpenPGPCard::pgpEncKeyRef())
+            ? i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.")
+            : QString{};
+        const QString message = i18nc("@info",
+                                      "<p>The card <em>%1</em> already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+                                      "<p>If there is no backup the existing key will be irrecoverably lost.</p>",
+                                      cardDisplayName(pgpCard))
+            + i18n("The existing key has the fingerprint:") + QStringLiteral("<pre>%1</pre>").arg(Formatting::prettyID(existingKey.c_str())) + encKeyWarning;
+        const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(),
+                                                               message,
+                                                               i18nc("@title:window", "Overwrite existing key"),
+                                                               KGuiItem{i18nc("@action:button", "Overwrite Existing Key")},
+                                                               KStandardGuiItem::cancel(),
+                                                               QString(),
+                                                               KMessageBox::Notify | KMessageBox::Dangerous);
         if (choice != KMessageBox::Continue) {
             finished();
             return;
@@ -287,25 +301,21 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
     const auto time = QDateTime::fromSecsSinceEpoch(quint32(subkey.creationTime()), Qt::UTC);
     const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3 %4")
-        .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()), QString::fromStdString(cardSlot), timestamp);
+                            .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()), QString::fromStdString(cardSlot), timestamp);
     ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, cmd.toUtf8(), q_func(), [this](const GpgME::Error &err) {
         keyToCardDone(err);
     });
 }
 
-namespace {
+namespace
+{
 static std::vector<Key> getSigningCertificates()
 {
     std::vector<Key> signingCertificates = KeyCache::instance()->secretKeys();
-    const auto it = std::remove_if(signingCertificates.begin(), signingCertificates.end(),
-                                   [](const Key &key) {
-                                       return ! (key.protocol() == GpgME::CMS &&
-                                                 !key.subkey(0).isNull() &&
-                                                 key.subkey(0).canSign() &&
-                                                 !key.subkey(0).canEncrypt() &&
-                                                 key.subkey(0).isSecret() &&
-                                                 !key.subkey(0).isCardKey());
-                                   });
+    const auto it = std::remove_if(signingCertificates.begin(), signingCertificates.end(), [](const Key &key) {
+        return !(key.protocol() == GpgME::CMS && !key.subkey(0).isNull() && key.subkey(0).canSign() && !key.subkey(0).canEncrypt() && key.subkey(0).isSecret()
+                 && !key.subkey(0).isCardKey());
+    });
     signingCertificates.erase(it, signingCertificates.end());
     return signingCertificates;
 }
@@ -313,20 +323,16 @@ static std::vector<Key> getSigningCertificates()
 static std::vector<Key> getEncryptionCertificates()
 {
     std::vector<Key> encryptionCertificates = KeyCache::instance()->secretKeys();
-    const auto it = std::remove_if(encryptionCertificates.begin(), encryptionCertificates.end(),
-                                   [](const Key &key) {
-                                       return ! (key.protocol() == GpgME::CMS &&
-                                                 !key.subkey(0).isNull() &&
-                                                 key.subkey(0).canEncrypt() &&
-                                                 key.subkey(0).isSecret() &&
-                                                 !key.subkey(0).isCardKey());
-                                   });
+    const auto it = std::remove_if(encryptionCertificates.begin(), encryptionCertificates.end(), [](const Key &key) {
+        return !(key.protocol() == GpgME::CMS && !key.subkey(0).isNull() && key.subkey(0).canEncrypt() && key.subkey(0).isSecret()
+                 && !key.subkey(0).isCardKey());
+    });
     encryptionCertificates.erase(it, encryptionCertificates.end());
     return encryptionCertificates;
 }
 }
 
-Subkey KeyToCardCommand::Private::getSubkeyToTransferToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> &/*card*/)
+Subkey KeyToCardCommand::Private::getSubkeyToTransferToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> & /*card*/)
 {
     if (cardSlot != PIVCard::cardAuthenticationKeyRef() && cardSlot != PIVCard::keyManagementKeyRef()) {
         return Subkey();
@@ -389,20 +395,21 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
     if (!overwriteExistingAlreadyApproved) {
         const std::string existingKey = pivCard->keyInfo(cardSlot).grip;
         if (!existingKey.empty() && (existingKey != subkey.keyGrip())) {
-            const QString decryptionWarning = (cardSlot == PIVCard::keyManagementKeyRef()) ?
-                i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
-                QString();
-            const QString message = i18nc(
-                "@info",
-                "<p>The card <em>%1</em> already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
-                "<p>If there is no backup the existing key will be irrecoverably lost.</p>",
-                cardDisplayName(pivCard)) +
-                i18n("The existing key has the key grip:") +
-                QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
-                decryptionWarning;
-            const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
-                i18nc("@title:window", "Overwrite existing key"),
-                KGuiItem{i18nc("@action:button", "Overwrite Existing Key")}, KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+            const QString decryptionWarning = (cardSlot == PIVCard::keyManagementKeyRef())
+                ? i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.")
+                : QString();
+            const QString message = i18nc("@info",
+                                          "<p>The card <em>%1</em> already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+                                          "<p>If there is no backup the existing key will be irrecoverably lost.</p>",
+                                          cardDisplayName(pivCard))
+                + i18n("The existing key has the key grip:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) + decryptionWarning;
+            const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(),
+                                                                   message,
+                                                                   i18nc("@title:window", "Overwrite existing key"),
+                                                                   KGuiItem{i18nc("@action:button", "Overwrite Existing Key")},
+                                                                   KStandardGuiItem::cancel(),
+                                                                   QString(),
+                                                                   KMessageBox::Notify | KMessageBox::Dangerous);
             if (choice != KMessageBox::Continue) {
                 finished();
                 return;
@@ -412,8 +419,8 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
     }
 
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3")
-        .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
-        .arg(QString::fromStdString(cardSlot));
+                            .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
+                            .arg(QString::fromStdString(cardSlot));
     ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, cmd.toUtf8(), q_func(), [this](const GpgME::Error &err) {
         keyToPIVCardDone(err);
     });
@@ -425,10 +432,12 @@ void KeyToCardCommand::Private::authenticate()
 
     auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
     cmd->setAutoResetCardToOpenPGP(false);
-    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
-            q, [this]() { authenticationFinished(); });
-    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
-            q, [this]() { authenticationCanceled(); });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished, q, [this]() {
+        authenticationFinished();
+    });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled, q, [this]() {
+        authenticationCanceled();
+    });
     cmd->start();
 }
 
@@ -469,15 +478,14 @@ void KeyToCardCommand::Private::updateDone()
 
 void KeyToCardCommand::Private::keyHasBeenCopiedToCard()
 {
-    const auto answer = KMessageBox::questionTwoActionsCancel(
-        parentWidgetOrView(),
-        xi18nc("@info",
-               "<para>The key has been copied to the card.</para>"
-               "<para>Do you want to delete the copy of the key stored on this computer?</para>"),
-        i18nc("@title:window", "Success"),
-        KGuiItem{i18nc("@action:button", "Create Backup and Delete Key")},
-        KGuiItem{i18nc("@action:button", "Delete Key")},
-        KGuiItem{i18nc("@action:button", "Keep Key")});
+    const auto answer = KMessageBox::questionTwoActionsCancel(parentWidgetOrView(),
+                                                              xi18nc("@info",
+                                                                     "<para>The key has been copied to the card.</para>"
+                                                                     "<para>Do you want to delete the copy of the key stored on this computer?</para>"),
+                                                              i18nc("@title:window", "Success"),
+                                                              KGuiItem{i18nc("@action:button", "Create Backup and Delete Key")},
+                                                              KGuiItem{i18nc("@action:button", "Delete Key")},
+                                                              KGuiItem{i18nc("@action:button", "Keep Key")});
     if (answer == KMessageBox::ButtonCode::Cancel) {
         finished();
         return;
@@ -512,8 +520,8 @@ QString proposeFilename(const Subkey &subkey)
     const auto usage = Formatting::usageString(subkey).replace(QLatin1String{", "}, QLatin1String{"_"});
     /* Not translated so it's better to use in tutorials etc. */
     filename = ((shortKeyID == shortSubkeyID) //
-                ? QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3"}.arg(name, shortKeyID, usage)
-                : QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3_%4"}.arg(name, shortKeyID, shortSubkeyID, usage));
+                    ? QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3"}.arg(name, shortKeyID, usage)
+                    : QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3_%4"}.arg(name, shortKeyID, shortSubkeyID, usage));
     filename.replace(u'/', u'_');
 
     return QDir{ApplicationState::lastUsedExportDirectory()}.filePath(filename + gnupgPrivateKeyBackupExtension());
@@ -521,12 +529,11 @@ QString proposeFilename(const Subkey &subkey)
 
 QString requestPrivateKeyBackupFilename(const QString &proposedFilename, QWidget *parent)
 {
-    auto filename = FileDialog::getSaveFileNameEx(
-        parent,
-        i18nc("@title:window", "Backup Secret Key"),
-        QStringLiteral("imp"),
-        proposedFilename,
-        i18nc("description of filename filter", "Secret Key Backup Files") + QLatin1String{" (*.gpgsk)"});
+    auto filename = FileDialog::getSaveFileNameEx(parent,
+                                                  i18nc("@title:window", "Backup Secret Key"),
+                                                  QStringLiteral("imp"),
+                                                  proposedFilename,
+                                                  i18nc("description of filename filter", "Secret Key Backup Files") + QLatin1String{" (*.gpgsk)"});
 
     if (!filename.isEmpty()) {
         const QFileInfo fi{filename};
@@ -618,14 +625,13 @@ void KeyToCardCommand::Private::startDeleteSecretKeyLocally()
         return;
     }
 
-    const auto answer = KMessageBox::questionTwoActions(
-        parentWidgetOrView(),
-        xi18n("Do you really want to delete the local copy of the secret key?"),
-        i18nc("@title:window", "Confirm Deletion"),
-        KStandardGuiItem::del(),
-        KStandardGuiItem::cancel(),
-        {},
-        KMessageBox::Notify | KMessageBox::Dangerous);
+    const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
+                                                        xi18n("Do you really want to delete the local copy of the secret key?"),
+                                                        i18nc("@title:window", "Confirm Deletion"),
+                                                        KStandardGuiItem::del(),
+                                                        KStandardGuiItem::cancel(),
+                                                        {},
+                                                        KMessageBox::Notify | KMessageBox::Dangerous);
     if (answer != KMessageBox::ButtonCode::PrimaryAction) {
         finished();
         return;
@@ -652,7 +658,7 @@ KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &subkey)
 {
 }
 
-KeyToCardCommand::KeyToCardCommand(const std::string& cardSlot, const std::string &serialNumber, const std::string &appName)
+KeyToCardCommand::KeyToCardCommand(const std::string &cardSlot, const std::string &serialNumber, const std::string &appName)
     : CardCommand(new Private(this, cardSlot, serialNumber, appName))
 {
 }
@@ -703,8 +709,7 @@ void KeyToCardCommand::Private::keyToCardDone(const GpgME::Error &err)
         return;
     }
     if (err) {
-        error(xi18nc("@info",
-                     "<para>Copying the key to the card failed:</para><para><message>%1</message></para>", Formatting::errorAsString(err)));
+        error(xi18nc("@info", "<para>Copying the key to the card failed:</para><para><message>%1</message></para>", Formatting::errorAsString(err)));
     }
     finished();
 }

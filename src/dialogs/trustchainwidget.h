@@ -5,10 +5,11 @@
 
 #pragma once
 
-#include <QWidget>
 #include <QDialog>
+#include <QWidget>
 
-namespace GpgME {
+namespace GpgME
+{
 class Key;
 }
 
@@ -39,5 +40,3 @@ public:
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;
 };
-
-

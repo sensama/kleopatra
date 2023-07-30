@@ -19,28 +19,31 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#include <QPrinter>
-#include <QPrintDialog>
-#include <QTextDocument>
 #include <QFontDatabase>
+#include <QPrintDialog>
+#include <QPrinter>
+#include <QTextDocument>
 
-#include "kleopatra_debug.h"
 #include "command_p.h"
+#include "kleopatra_debug.h"
 
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
-ExportPaperKeyCommand::ExportPaperKeyCommand(QAbstractItemView *v, KeyListController *c) :
-    GnuPGProcessCommand(v, c),
-    mParent(v)
+ExportPaperKeyCommand::ExportPaperKeyCommand(QAbstractItemView *v, KeyListController *c)
+    : GnuPGProcessCommand(v, c)
+    , mParent(v)
 {
 #if QT_DEPRECATED_SINCE(5, 13)
-    connect(&mPkProc, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+    connect(&mPkProc,
+            qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
 #else
-    connect(&mPkProc, &QProcess::finished,
+    connect(&mPkProc,
+            &QProcess::finished,
 #endif
-            this, &ExportPaperKeyCommand::pkProcFinished);
+            this,
+            &ExportPaperKeyCommand::pkProcFinished);
     mPkProc.setProgram(paperKeyInstallPath());
     mPkProc.setArguments(QStringList() << QStringLiteral("--output-type=base16"));
 
@@ -65,10 +68,12 @@ QStringList ExportPaperKeyCommand::arguments() const
 bool ExportPaperKeyCommand::preStartHook(QWidget *parent) const
 {
     if (paperKeyInstallPath().isNull()) {
-        KMessageBox::error(parent, xi18nc("@info", "<para><application>Kleopatra</application> uses "
-                                                   "<application>PaperKey</application> to create a minimized and"
-                                                   " printable version of your secret key.</para>"
-                                                   "<para>Please make sure it is installed.</para>"),
+        KMessageBox::error(parent,
+                           xi18nc("@info",
+                                  "<para><application>Kleopatra</application> uses "
+                                  "<application>PaperKey</application> to create a minimized and"
+                                  " printable version of your secret key.</para>"
+                                  "<para>Please make sure it is installed.</para>"),
                            i18nc("@title", "Failed to find PaperKey executable."));
         return false;
     }
@@ -124,5 +129,6 @@ QString ExportPaperKeyCommand::errorExitMessage(const QStringList &args) const
     return xi18nc("@info",
                   "<para>An error occurred while trying to export the secret key.</para> "
                   "<para>The output from <command>%1</command> was: <message>%2</message></para>",
-                  args[0], errorString());
+                  args[0],
+                  errorString());
 }

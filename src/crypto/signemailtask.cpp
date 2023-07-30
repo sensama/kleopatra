@@ -12,8 +12,8 @@
 #include "signemailtask.h"
 
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
+#include <utils/output.h>
 
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/Formatting>
@@ -22,8 +22,8 @@
 #include <QGpgME/Protocol>
 #include <QGpgME/SignJob>
 
-#include <gpgme++/signingresult.h>
 #include <gpgme++/key.h>
+#include <gpgme++/signingresult.h>
 
 #include <KLocalizedString>
 
@@ -44,9 +44,14 @@ class SignEMailResult : public Task::Result
 {
     const SigningResult m_result;
     const AuditLogEntry m_auditLog;
+
 public:
     explicit SignEMailResult(const SigningResult &r, const AuditLogEntry &auditLog)
-        : Task::Result(), m_result(r), m_auditLog(auditLog) {}
+        : Task::Result()
+        , m_result(r)
+        , m_auditLog(auditLog)
+    {
+    }
 
     QString overview() const override;
     QString details() const override;
@@ -76,6 +81,7 @@ class SignEMailTask::Private
 {
     friend class ::Kleo::Crypto::SignEMailTask;
     SignEMailTask *const q;
+
 public:
     explicit Private(SignEMailTask *qq);
 
@@ -98,25 +104,26 @@ private:
 };
 
 SignEMailTask::Private::Private(SignEMailTask *qq)
-    : q(qq),
-      input(),
-      output(),
-      signers(),
-      detached(false),
-      clearsign(false),
-      micAlg(),
-      job(nullptr)
+    : q(qq)
+    , input()
+    , output()
+    , signers()
+    , detached(false)
+    , clearsign(false)
+    , micAlg()
+    , job(nullptr)
 {
-
 }
 
 SignEMailTask::SignEMailTask(QObject *p)
-    : Task(p), d(new Private(this))
+    : Task(p)
+    , d(new Private(this))
 {
-
 }
 
-SignEMailTask::~SignEMailTask() {}
+SignEMailTask::~SignEMailTask()
+{
+}
 
 void SignEMailTask::setInput(const std::shared_ptr<Input> &input)
 {
@@ -183,8 +190,11 @@ void SignEMailTask::doStart()
     kleo_assert(job.get());
 
     job->start(d->signers,
-               d->input->ioDevice(), d->output->ioDevice(),
-               d->clearsign ? GpgME::Clearsigned : d->detached ? GpgME::Detached : GpgME::NormalSignatureMode);
+               d->input->ioDevice(),
+               d->output->ioDevice(),
+               d->clearsign      ? GpgME::Clearsigned
+                   : d->detached ? GpgME::Detached
+                                 : GpgME::NormalSignatureMode);
 
     d->job = job.release();
 }
@@ -201,7 +211,7 @@ std::unique_ptr<QGpgME::SignJob> SignEMailTask::Private::createJob(GpgME::Protoc
     const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(backend);
     bool shouldArmor = (proto == OpenPGP || q->asciiArmor()) && !output->binaryOpt();
-    std::unique_ptr<QGpgME::SignJob> signJob(backend->signJob(/*armor=*/ shouldArmor, /*textmode=*/false));
+    std::unique_ptr<QGpgME::SignJob> signJob(backend->signJob(/*armor=*/shouldArmor, /*textmode=*/false));
     kleo_assert(signJob.get());
     if (proto == CMS && !q->asciiArmor() && !output->binaryOpt()) {
         signJob->setOutputIsBase64Encoded(true);
@@ -213,8 +223,7 @@ std::unique_ptr<QGpgME::SignJob> SignEMailTask::Private::createJob(GpgME::Protoc
         q->setProgress(processed, total);
     });
 #endif
-    connect(signJob.get(), SIGNAL(result(GpgME::SigningResult,QByteArray)),
-            q, SLOT(slotResult(GpgME::SigningResult)));
+    connect(signJob.get(), SIGNAL(result(GpgME::SigningResult, QByteArray)), q, SLOT(slotResult(GpgME::SigningResult)));
     return signJob;
 }
 
@@ -222,11 +231,9 @@ static QString collect_micalgs(const GpgME::SigningResult &result, GpgME::Protoc
 {
     const std::vector<GpgME::CreatedSignature> css = result.createdSignatures();
     QStringList micalgs;
-    std::transform(css.begin(), css.end(),
-                   std::back_inserter(micalgs),
-                   [](const GpgME::CreatedSignature &sig) {
-                       return QString::fromLatin1(sig.hashAlgorithmAsString()).toLower();
-                   });
+    std::transform(css.begin(), css.end(), std::back_inserter(micalgs), [](const GpgME::CreatedSignature &sig) {
+        return QString::fromLatin1(sig.hashAlgorithmAsString()).toLower();
+    });
     if (proto == GpgME::OpenPGP)
         for (QStringList::iterator it = micalgs.begin(), end = micalgs.end(); it != end; ++it) {
             it->prepend(QLatin1String("pgp-"));
@@ -287,4 +294,3 @@ AuditLogEntry SignEMailResult::auditLog() const
 }
 
 #include "moc_signemailtask.cpp"
-

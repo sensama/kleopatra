@@ -5,10 +5,11 @@
 
 #pragma once
 
-#include <QWidget>
 #include <QDialog>
+#include <QWidget>
 
-namespace GpgME {
+namespace GpgME
+{
 class Key;
 }
 
@@ -27,7 +28,6 @@ private:
     const QScopedPointer<Private> d;
 };
 
-
 class SubKeysDialog : public QDialog
 {
     Q_OBJECT
@@ -42,4 +42,3 @@ private:
     void readConfig();
     void writeConfig();
 };
-

@@ -27,18 +27,18 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
-#include <KSharedConfig>
 #include <KMessageBox>
+#include <KSharedConfig>
 
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDir>
 #include <QGroupBox>
 #include <QHBoxLayout>
-#include <QPushButton>
-#include <QVBoxLayout>
 #include <QLabel>
+#include <QPushButton>
 #include <QRegularExpression>
+#include <QVBoxLayout>
 
 #include <memory>
 
@@ -60,9 +60,10 @@ void CryptoOperationsConfigWidget::setupGui()
     auto fileGrpLay = new QVBoxLayout;
     mPGPFileExtCB = new QCheckBox(i18n(R"(Create OpenPGP encrypted files with ".pgp" file extensions instead of ".gpg")"));
     mASCIIArmorCB = new QCheckBox(i18n("Create signed or encrypted files as text files."));
-    mASCIIArmorCB->setToolTip(i18nc("@info", "Set this option to encode encrypted or signed files as base64 encoded text. "
-                                             "So that they can be opened with an editor or sent in a mail body. "
-                                             "This will increase file size by one third."));
+    mASCIIArmorCB->setToolTip(i18nc("@info",
+                                    "Set this option to encode encrypted or signed files as base64 encoded text. "
+                                    "So that they can be opened with an editor or sent in a mail body. "
+                                    "This will increase file size by one third."));
     mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
     mAutoExtractArchivesCB = new QCheckBox(i18n("Automatically extract file archives after decryption"));
     mTmpDirCB = new QCheckBox(i18n("Create temporary decrypted files in the folder of the encrypted file."));
@@ -104,7 +105,9 @@ void CryptoOperationsConfigWidget::setupGui()
     }
 }
 
-CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}
+CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget()
+{
+}
 
 void CryptoOperationsConfigWidget::defaults()
 {
@@ -123,8 +126,7 @@ void CryptoOperationsConfigWidget::defaults()
     load(filePrefs, settings);
 }
 
-void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &filePrefs,
-                                        const Kleo::Settings &settings)
+void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &filePrefs, const Kleo::Settings &settings)
 {
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
     mPGPFileExtCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("UsePGPFileExt")));
@@ -161,7 +163,6 @@ void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &f
     }
     mArchiveDefinitionCB.setEnabled(!filePrefs.isImmutable(QStringLiteral("ArchiveCommand")));
 }
-
 
 void CryptoOperationsConfigWidget::load()
 {

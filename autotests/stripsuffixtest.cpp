@@ -7,11 +7,11 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
+#include "utils/path-helper.h"
 #include <QDebug>
 #include <QTest>
-#include "utils/path-helper.h"
 
-class StripSuffixTest: public QObject
+class StripSuffixTest : public QObject
 {
     Q_OBJECT
 

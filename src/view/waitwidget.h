@@ -12,7 +12,7 @@ class QLabel;
 namespace Kleo
 {
 
-class WaitWidget: public QWidget
+class WaitWidget : public QWidget
 {
     Q_OBJECT
 

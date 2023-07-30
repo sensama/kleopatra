@@ -39,6 +39,7 @@ class SetPIVCardApplicationAdministrationKeyCommand::Private : public CardComman
     {
         return static_cast<SetPIVCardApplicationAdministrationKeyCommand *>(q);
     }
+
 public:
     explicit Private(SetPIVCardApplicationAdministrationKeyCommand *qq, const std::string &serialNumber, QWidget *p);
     ~Private() override;
@@ -119,10 +120,12 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::authenticate()
     auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
     cmd->setAutoResetCardToOpenPGP(false);
     cmd->setPrompt(i18n("Please enter the old PIV Card Application Administration Key in hex-encoded form."));
-    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
-            q, [this]() { authenticationFinished(); });
-    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
-            q, [this]() { authenticationCanceled(); });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished, q, [this]() {
+        authenticationFinished();
+    });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled, q, [this]() {
+        authenticationCanceled();
+    });
     cmd->start();
 }
 
@@ -158,13 +161,16 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::ensureDialogCreated
 
     dialog = new PIVCardApplicationAdministrationKeyInputDialog(parentWidgetOrView());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setLabelText(newAdminKey.isEmpty() ?
-                         i18n("Please enter the new PIV Card Application Administration Key in hex-encoded form. "
-                              "The key needs to consist of 24 bytes, i.e. 48 hex-characters.") :
-                         i18n("Please enter the new PIV Card Application Administration Key again."));
+    dialog->setLabelText(newAdminKey.isEmpty() ? i18n("Please enter the new PIV Card Application Administration Key in hex-encoded form. "
+                                                      "The key needs to consist of 24 bytes, i.e. 48 hex-characters.")
+                                               : i18n("Please enter the new PIV Card Application Administration Key again."));
 
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 void SetPIVCardApplicationAdministrationKeyCommand::Private::slotDialogAccepted()
@@ -204,10 +210,9 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::slotDialogRejected(
     finished();
 }
 
-void SetPIVCardApplicationAdministrationKeyCommand::Private::slotResult(const GpgME::Error& err)
+void SetPIVCardApplicationAdministrationKeyCommand::Private::slotResult(const GpgME::Error &err)
 {
-    qCDebug(KLEOPATRA_LOG) << "SetPIVCardApplicationAdministrationKeyCommand::slotResult():"
-                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
+    qCDebug(KLEOPATRA_LOG) << "SetPIVCardApplicationAdministrationKeyCommand::slotResult():" << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err) {
         error(i18nc("@info", "Setting the PIV Card Application Administration Key failed: %1", Formatting::errorAsString(err)));
     } else if (!err.isCanceled()) {

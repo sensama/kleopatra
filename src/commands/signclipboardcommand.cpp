@@ -22,8 +22,8 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
+#include <KLocalizedString>
 
 #include <QApplication>
 #include <QClipboard>
@@ -42,6 +42,7 @@ class SignClipboardCommand::Private : public Command::Private
     {
         return static_cast<SignClipboardCommand *>(q);
     }
+
 public:
     explicit Private(SignClipboardCommand *qq, KeyListController *c);
     ~Private() override;
@@ -78,12 +79,11 @@ const SignClipboardCommand::Private *SignClipboardCommand::d_func() const
 #define q q_func()
 
 SignClipboardCommand::Private::Private(SignClipboardCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      shared_qq(qq, [](SignClipboardCommand*){}),
-      input(),
-      controller(SignEMailController::ClipboardMode)
+    : Command::Private(qq, c)
+    , shared_qq(qq, [](SignClipboardCommand *) {})
+    , input()
+    , controller(SignEMailController::ClipboardMode)
 {
-
 }
 
 SignClipboardCommand::Private::~Private()
@@ -109,8 +109,12 @@ void SignClipboardCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
     controller.setDetachedSignature(false);
-    connect(&controller, &Controller::done, q, [this]() { slotControllerDone(); });
-    connect(&controller, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
+    connect(&controller, &Controller::done, q, [this]() {
+        slotControllerDone();
+    });
+    connect(&controller, &Controller::error, q, [this](int err, const QString &details) {
+        slotControllerError(err, details);
+    });
 }
 
 SignClipboardCommand::~SignClipboardCommand()
@@ -132,20 +136,18 @@ bool SignClipboardCommand::canSignCurrentClipboard()
 
 void SignClipboardCommand::doStart()
 {
-
     try {
-
         // snapshot clipboard content here, in case it's being changed...
         d->input = Input::createFromClipboard();
 
-        connect(&d->controller, &SignEMailController::signersResolved, this, [this]() { d->slotSignersResolved(); });
+        connect(&d->controller, &SignEMailController::signersResolved, this, [this]() {
+            d->slotSignersResolved();
+        });
 
         d->controller.startResolveSigners();
 
     } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1",
-                            QString::fromLocal8Bit(e.what())),
-                       i18n("Sign Clipboard Error"));
+        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Sign Clipboard Error"));
         d->finished();
     }
 }
@@ -157,9 +159,7 @@ void SignClipboardCommand::Private::slotSignersResolved()
         input.reset(); // no longer needed, so don't keep a reference
         controller.start();
     } catch (const std::exception &e) {
-        information(i18n("An error occurred: %1",
-                         QString::fromLocal8Bit(e.what())),
-                    i18n("Sign Clipboard Error"));
+        information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Sign Clipboard Error"));
         finished();
     }
 }

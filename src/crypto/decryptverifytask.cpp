@@ -11,38 +11,38 @@
 
 #include "decryptverifytask.h"
 
-#include <QGpgME/Protocol>
-#include <QGpgME/VerifyOpaqueJob>
-#include <QGpgME/VerifyDetachedJob>
 #include <QGpgME/DecryptJob>
 #include <QGpgME/DecryptVerifyJob>
+#include <QGpgME/Protocol>
+#include <QGpgME/VerifyDetachedJob>
+#include <QGpgME/VerifyOpaqueJob>
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS
 #include <QGpgME/DecryptVerifyArchiveJob>
 #endif
 
 #include <Libkleo/AuditLogEntry>
+#include <Libkleo/Classify>
 #include <Libkleo/Compliance>
 #include <Libkleo/Dn>
-#include <Libkleo/KleoException>
-#include <Libkleo/Stl_Util>
-#include <Libkleo/KeyCache>
-#include <Libkleo/Predicates>
 #include <Libkleo/Formatting>
-#include <Libkleo/Classify>
+#include <Libkleo/KeyCache>
+#include <Libkleo/KleoException>
+#include <Libkleo/Predicates>
+#include <Libkleo/Stl_Util>
 
+#include <Libkleo/GnuPG>
 #include <utils/detail_p.h>
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
-#include <Libkleo/GnuPG>
+#include <utils/output.h>
 
 #include <KMime/HeaderParsing>
 
+#include <gpgme++/context.h>
+#include <gpgme++/decryptionresult.h>
 #include <gpgme++/error.h>
 #include <gpgme++/key.h>
 #include <gpgme++/verificationresult.h>
-#include <gpgme++/decryptionresult.h>
-#include <gpgme++/context.h>
 
 #include <gpg-error.h>
 
@@ -51,12 +51,12 @@
 #include <KFileUtils>
 #include <KLocalizedString>
 
-#include <QLocale>
 #include <QByteArray>
 #include <QDateTime>
 #include <QDir>
 #include <QFileInfo>
 #include <QIODevice>
+#include <QLocale>
 #include <QStringList>
 #include <QTextDocument> // Qt::escape
 
@@ -99,7 +99,6 @@ static std::string stripAngleBrackets(const std::string &str)
 
 static std::string email(const UserID &uid)
 {
-
     if (uid.parent().protocol() == OpenPGP) {
         if (const char *const email = uid.email()) {
             return stripAngleBrackets(email);
@@ -157,18 +156,22 @@ static std::vector<Mailbox> extractMailboxes(const std::vector<Key> &signers)
 static bool keyContainsMailbox(const Key &key, const Mailbox &mbox)
 {
     const std::vector<Mailbox> mbxs = extractMailboxes(key);
-    return std::find_if(mbxs.cbegin(), mbxs.cend(), 
+    return std::find_if(mbxs.cbegin(),
+                        mbxs.cend(),
                         [mbox](const Mailbox &m) {
                             return mailbox_equal(mbox, m, Qt::CaseInsensitive);
-                        }) != mbxs.cend();
+                        })
+        != mbxs.cend();
 }
 
 static bool keysContainMailbox(const std::vector<Key> &keys, const Mailbox &mbox)
 {
-    return std::find_if(keys.cbegin(), keys.cend(), 
+    return std::find_if(keys.cbegin(),
+                        keys.cend(),
                         [mbox](const Key &key) {
                             return keyContainsMailbox(key, mbox);
-                        }) != keys.cend();
+                        })
+        != keys.cend();
 }
 
 static bool relevantInDecryptVerifyContext(const VerificationResult &r)
@@ -200,10 +203,11 @@ static QString signatureSummaryToString(int summary)
     } else if (summary & Signature::BadPolicy) {
         return i18n("Bad policy");
     } else if (summary & Signature::SysError) {
-        return i18n("System error");    //### retrieve system error details?
+        return i18n("System error"); // ### retrieve system error details?
     } else if (summary & Signature::Red) {
         return i18n("Bad signature");
-    }return QString();
+    }
+    return QString();
 }
 
 static QString formatValidSignatureWithTrustLevel(const UserID &id)
@@ -240,8 +244,9 @@ static QString renderKey(const Key &key)
     }
 
     if (key.primaryFingerprint() && strlen(key.primaryFingerprint()) > 16 && key.numUserIDs()) {
-        const QString text = QStringLiteral("%1 (%2)").arg(Formatting::prettyNameAndEMail(key).toHtmlEscaped()).arg(
-            Formatting::prettyID(QString::fromLocal8Bit(key.primaryFingerprint()).right(16).toLatin1().constData()));
+        const QString text = QStringLiteral("%1 (%2)")
+                                 .arg(Formatting::prettyNameAndEMail(key).toHtmlEscaped())
+                                 .arg(Formatting::prettyID(QString::fromLocal8Bit(key.primaryFingerprint()).right(16).toLatin1().constData()));
         return renderKeyLink(QLatin1String(key.primaryFingerprint()), text);
     }
 
@@ -279,13 +284,13 @@ static QString formatSigningInformation(const Signature &sig)
     text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
 
     if (DeVSCompliance::isCompliant()) {
-        text +=
-            (QStringLiteral("<br/>")
-             + (sig.isDeVs()
-                ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                        "The signature is %1", DeVSCompliance::name(true))
-                : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                        "The signature <b>is not</b> %1.", DeVSCompliance::name(true))));
+        text += (QStringLiteral("<br/>")
+                 + (sig.isDeVs() ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                         "The signature is %1",
+                                         DeVSCompliance::name(true))
+                                 : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                         "The signature <b>is not</b> %1.",
+                                         DeVSCompliance::name(true))));
     }
 
     return text;
@@ -301,9 +306,7 @@ static QString formatInputOutputLabel(const QString &input, const QString &outpu
     if (output.isEmpty()) {
         return strikeOut(input, inputDeleted);
     }
-    return i18nc("Input file --> Output file (rarr is arrow", "%1 &rarr; %2",
-                 strikeOut(input, inputDeleted),
-                 strikeOut(output, outputDeleted));
+    return i18nc("Input file --> Output file (rarr is arrow", "%1 &rarr; %2", strikeOut(input, inputDeleted), strikeOut(output, outputDeleted));
 }
 
 static bool IsErrorOrCanceled(const GpgME::Error &err)
@@ -336,12 +339,13 @@ static UserID findUserIDByMailbox(const Key &key, const Mailbox &mbox)
     return UserID();
 }
 
-static void updateKeys(const VerificationResult &result) {
+static void updateKeys(const VerificationResult &result)
+{
     // This little hack works around the problem that GnuPG / GpgME does not
     // provide Key information in a verification result. The Key object is
     // a dummy just holding the KeyID. This hack ensures that all available
     // keys are fetched from the backend and are populated
-    for (const auto &sig: result.signatures()) {
+    for (const auto &sig : result.signatures()) {
         // Update key information
         sig.key(true, true);
     }
@@ -367,7 +371,11 @@ static QString ensureUniqueDirectory(const QString &path)
 class DecryptVerifyResult::SenderInfo
 {
 public:
-    explicit SenderInfo(const Mailbox &infSender, const std::vector<Key> &signers_) : informativeSender(infSender), signers(signers_) {}
+    explicit SenderInfo(const Mailbox &infSender, const std::vector<Key> &signers_)
+        : informativeSender(infSender)
+        , signers(signers_)
+    {
+    }
     const Mailbox informativeSender;
     const std::vector<Key> signers;
     bool hasInformativeSender() const
@@ -380,7 +388,9 @@ public:
     }
     bool hasKeys() const
     {
-        return std::any_of(signers.cbegin(), signers.cend(), [](const Key &key) { return !key.isNull(); });
+        return std::any_of(signers.cbegin(), signers.cend(), [](const Key &key) {
+            return !key.isNull();
+        });
     }
     std::vector<Mailbox> signerMailboxes() const
     {
@@ -437,12 +447,14 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
     if (bad > 0) {
         return i18np("<b>Invalid signature.</b>", "<b>%1 invalid signatures.</b>", bad);
     }
-    const uint warn = std::count_if(sigs.cbegin(), sigs.cend(), [](const Signature &sig) { return !IsGoodOrValid(sig); });
+    const uint warn = std::count_if(sigs.cbegin(), sigs.cend(), [](const Signature &sig) {
+        return !IsGoodOrValid(sig);
+    });
     if (warn == sigs.size()) {
         return i18np("<b>The data could not be verified.</b>", "<b>%1 signatures could not be verified.</b>", warn);
     }
 
-    //Good signature:
+    // Good signature:
     QString text;
     if (sigs.size() == 1) {
         text = i18n("<b>Valid signature by %1</b>", renderKeyEMailOnlyNameAsFallback(sigs[0].key()));
@@ -465,11 +477,9 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
 
     if (err.isCanceled()) {
         return i18n("<b>Decryption canceled.</b>");
-    }
-    else if (result.isLegacyCipherNoMDC()) {
+    } else if (result.isLegacyCipherNoMDC()) {
         return i18n("<b>Decryption failed: %1.</b>", i18n("No integrity protection (MDC)."));
-    }
-    else if (!errorString.isEmpty()) {
+    } else if (!errorString.isEmpty()) {
         return i18n("<b>Decryption failed: %1.</b>", errorString.toHtmlEscaped());
     } else if (err) {
         return i18n("<b>Decryption failed: %1.</b>", Formatting::errorAsString(err).toHtmlEscaped());
@@ -510,8 +520,10 @@ static QString formatSignature(const Signature &sig, const DecryptVerifyResult::
     if ((sig.validity() & Signature::Validity::Undefined) //
         || (sig.validity() & Signature::Validity::Unknown) //
         || (sig.summary() == Signature::Summary::None)) {
-        return text + (key.protocol() == OpenPGP ? i18n("The used key is not certified by you or any trusted person.") :
-               i18n("The used certificate is not certified by a trustworthy Certificate Authority or the Certificate Authority is unknown."));
+        return text
+            + (key.protocol() == OpenPGP
+                   ? i18n("The used key is not certified by you or any trusted person.")
+                   : i18n("The used certificate is not certified by a trustworthy Certificate Authority or the Certificate Authority is unknown."));
     }
 
     // Catch all fall through
@@ -525,10 +537,9 @@ static QString formatSignature(const Signature &sig, const DecryptVerifyResult::
 static QStringList format(const std::vector<Mailbox> &mbxs)
 {
     QStringList res;
-    std::transform(mbxs.cbegin(), mbxs.cend(), std::back_inserter(res),
-                   [](const Mailbox &mbox) {
-                       return mbox.prettyAddress();
-                   });
+    std::transform(mbxs.cbegin(), mbxs.cend(), std::back_inserter(res), [](const Mailbox &mbox) {
+        return mbox.prettyAddress();
+    });
     return res;
 }
 
@@ -546,7 +557,9 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     details = details.trimmed();
     details.replace(QLatin1Char('\n'), QStringLiteral("<br/><br/>"));
     if (info.conflicts()) {
-        details += i18n("<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>", info.informativeSender.prettyAddress(), format(info.signerMailboxes()).join(i18nc("separator for a list of e-mail addresses", ", ")));
+        details += i18n("<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>",
+                        info.informativeSender.prettyAddress(),
+                        format(info.signerMailboxes()).join(i18nc("separator for a list of e-mail addresses", ", ")));
     }
     return details;
 }
@@ -558,9 +571,7 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
     }
 
     if (knownRecipients.empty()) {
-        return QLatin1String("<i>") +
-               i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) +
-               QLatin1String("</i>");
+        return QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) + QLatin1String("</i>");
     }
 
     QString details = i18np("Recipient:", "Recipients:", numRecipients);
@@ -573,10 +584,8 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
             details += QLatin1String("<li>") + renderKey(key) + QLatin1String("</li>");
         }
         if (knownRecipients.size() < numRecipients) {
-            details += QLatin1String("<li><i>") +
-                       i18np("One unknown recipient", "%1 unknown recipients",
-                             numRecipients - knownRecipients.size()) +
-                       QLatin1String("</i></li>");
+            details += QLatin1String("<li><i>") + i18np("One unknown recipient", "%1 unknown recipients", numRecipients - knownRecipients.size())
+                + QLatin1String("</i></li>");
         }
         details += QLatin1String("</ul>");
     }
@@ -584,8 +593,11 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
     return details;
 }
 
-static QString formatDecryptionResultDetails(const DecryptionResult &res, const std::vector<Key> &recipients,
-                                             const QString &errorString, bool isSigned, const QPointer<Task> &task)
+static QString formatDecryptionResultDetails(const DecryptionResult &res,
+                                             const std::vector<Key> &recipients,
+                                             const QString &errorString,
+                                             bool isSigned,
+                                             const QPointer<Task> &task)
 {
     if ((res.error().code() == GPG_ERR_EIO || res.error().code() == GPG_ERR_NO_DATA) && !errorString.isEmpty()) {
         return i18n("Input error: %1", errorString);
@@ -598,16 +610,17 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
     QString details;
 
     if (DeVSCompliance::isCompliant()) {
-        details += ((res.isDeVs()
-                     ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                             "The decryption is %1.", DeVSCompliance::name(true))
-                     : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                             "The decryption <b>is not</b> %1.", DeVSCompliance::name(true)))
+        details += ((res.isDeVs() ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                          "The decryption is %1.",
+                                          DeVSCompliance::name(true))
+                                  : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                          "The decryption <b>is not</b> %1.",
+                                          DeVSCompliance::name(true)))
                     + QStringLiteral("<br/>"));
     }
 
     if (res.fileName()) {
-        const auto decVerifyTask = qobject_cast<AbstractDecryptVerifyTask*> (task.data());
+        const auto decVerifyTask = qobject_cast<AbstractDecryptVerifyTask *>(task.data());
         if (decVerifyTask) {
             const auto embedFileName = QString::fromUtf8(res.fileName()).toHtmlEscaped();
 
@@ -619,18 +632,18 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
     }
 
     if (!isSigned) {
-        details += i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.")
-                   + QLatin1String("<br/>");
+        details += i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.") + QLatin1String("<br/>");
     }
 
     if (res.isLegacyCipherNoMDC()) {
         details += i18nc("Integrity protection was missing because an old cipher was used.",
                          "<b>Hint:</b> If this file was encrypted before the year 2003 it is "
                          "likely that the file is legitimate.  This is because back "
-                         "then integrity protection was not widely used.") + QStringLiteral("<br/><br/>") +
-                   i18nc("The user is offered to force decrypt a non integrity protected message. With the strong advice to re-encrypt it.",
-                         "If you are confident that the file was not manipulated you should re-encrypt it after you have forced the decryption.") +
-                   QStringLiteral("<br/><br/>");
+                         "then integrity protection was not widely used.")
+            + QStringLiteral("<br/><br/>")
+            + i18nc("The user is offered to force decrypt a non integrity protected message. With the strong advice to re-encrypt it.",
+                    "If you are confident that the file was not manipulated you should re-encrypt it after you have forced the decryption.")
+            + QStringLiteral("<br/><br/>");
     }
 
     details += formatRecipientsDetails(recipients, res.numRecipients());
@@ -638,7 +651,7 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
     return details;
 }
 
-static QString formatDecryptVerifyResultOverview(const DecryptionResult &dr, const VerificationResult &vr, const  DecryptVerifyResult::SenderInfo &info)
+static QString formatDecryptVerifyResultOverview(const DecryptionResult &dr, const VerificationResult &vr, const DecryptVerifyResult::SenderInfo &info)
 {
     if (IsErrorOrCanceled(dr) || !relevantInDecryptVerifyContext(vr)) {
         return formatDecryptionResultOverview(dr);
@@ -647,11 +660,11 @@ static QString formatDecryptVerifyResultOverview(const DecryptionResult &dr, con
 }
 
 static QString formatDecryptVerifyResultDetails(const DecryptionResult &dr,
-        const VerificationResult &vr,
-        const std::vector<Key> &recipients,
-        const DecryptVerifyResult::SenderInfo &info,
-        const QString &errorString,
-        const QPointer<Task> &task)
+                                                const VerificationResult &vr,
+                                                const std::vector<Key> &recipients,
+                                                const DecryptVerifyResult::SenderInfo &info,
+                                                const QString &errorString,
+                                                const QPointer<Task> &task)
 {
     const QString drDetails = formatDecryptionResultDetails(dr, recipients, errorString, relevantInDecryptVerifyContext(vr), task);
     if (IsErrorOrCanceled(dr) || !relevantInDecryptVerifyContext(vr)) {
@@ -665,6 +678,7 @@ static QString formatDecryptVerifyResultDetails(const DecryptionResult &dr,
 class DecryptVerifyResult::Private
 {
     DecryptVerifyResult *const q;
+
 public:
     Private(DecryptVerifyOperation type,
             const VerificationResult &vr,
@@ -678,20 +692,20 @@ public:
             const AuditLogEntry &auditLog,
             Task *parentTask,
             const Mailbox &informativeSender,
-            DecryptVerifyResult *qq) :
-        q(qq),
-        m_type(type),
-        m_verificationResult(vr),
-        m_decryptionResult(dr),
-        m_stuff(stuff),
-        m_fileName(fileName),
-        m_error(error),
-        m_errorString(errString),
-        m_inputLabel(input),
-        m_outputLabel(output),
-        m_auditLog(auditLog),
-        m_parentTask(QPointer<Task>(parentTask)),
-        m_informativeSender(informativeSender)
+            DecryptVerifyResult *qq)
+        : q(qq)
+        , m_type(type)
+        , m_verificationResult(vr)
+        , m_decryptionResult(dr)
+        , m_stuff(stuff)
+        , m_fileName(fileName)
+        , m_error(error)
+        , m_errorString(errString)
+        , m_inputLabel(input)
+        , m_outputLabel(output)
+        , m_auditLog(auditLog)
+        , m_parentTask(QPointer<Task>(parentTask))
+        , m_informativeSender(informativeSender)
     {
     }
 
@@ -724,7 +738,7 @@ public:
     QString m_inputLabel;
     QString m_outputLabel;
     const AuditLogEntry m_auditLog;
-    QPointer <Task> m_parentTask;
+    QPointer<Task> m_parentTask;
     const Mailbox m_informativeSender;
 };
 
@@ -733,154 +747,156 @@ DecryptVerifyResult::SenderInfo DecryptVerifyResult::Private::makeSenderInfo() c
     return SenderInfo(m_informativeSender, KeyCache::instance()->findSigners(m_verificationResult));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const DecryptionResult &dr, const QByteArray &plaintext, const AuditLogEntry &auditLog)
+std::shared_ptr<DecryptVerifyResult>
+AbstractDecryptVerifyTask::fromDecryptResult(const DecryptionResult &dr, const QByteArray &plaintext, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Decrypt, //
-            VerificationResult(),
-            dr,
-            plaintext,
-            {},
-            {},
-            QString(),
-            inputLabel(),
-            outputLabel(),
-            auditLog,
-            this,
-            informativeSender()));
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(Decrypt, //
+                                                                        VerificationResult(),
+                                                                        dr,
+                                                                        plaintext,
+                                                                        {},
+                                                                        {},
+                                                                        QString(),
+                                                                        inputLabel(),
+                                                                        outputLabel(),
+                                                                        auditLog,
+                                                                        this,
+                                                                        informativeSender()));
 }
 
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const GpgME::Error &err, const QString &what, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Decrypt, //
-            VerificationResult(),
-            DecryptionResult(err),
-            QByteArray(),
-            {},
-            err,
-            what,
-            inputLabel(),
-            outputLabel(),
-            auditLog,
-            this,
-            informativeSender()));
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(Decrypt, //
+                                                                        VerificationResult(),
+                                                                        DecryptionResult(err),
+                                                                        QByteArray(),
+                                                                        {},
+                                                                        err,
+                                                                        what,
+                                                                        inputLabel(),
+                                                                        outputLabel(),
+                                                                        auditLog,
+                                                                        this,
+                                                                        informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLogEntry &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr,
+                                                                                        const VerificationResult &vr,
+                                                                                        const QByteArray &plaintext,
+                                                                                        const QString &fileName,
+                                                                                        const AuditLogEntry &auditLog)
 {
     const auto err = dr.error().code() ? dr.error() : vr.error();
-    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            DecryptVerify, //
-            vr,
-            dr,
-            plaintext,
-            fileName,
-            err,
-            QString(),
-            inputLabel(),
-            outputLabel(),
-            auditLog,
-            this,
-            informativeSender()));
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(DecryptVerify, //
+                                                                        vr,
+                                                                        dr,
+                                                                        plaintext,
+                                                                        fileName,
+                                                                        err,
+                                                                        QString(),
+                                                                        inputLabel(),
+                                                                        outputLabel(),
+                                                                        auditLog,
+                                                                        this,
+                                                                        informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
+std::shared_ptr<DecryptVerifyResult>
+AbstractDecryptVerifyTask::fromDecryptVerifyResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            DecryptVerify, //
-            VerificationResult(),
-            DecryptionResult(err),
-            QByteArray(),
-            {},
-            err,
-            details,
-            inputLabel(),
-            outputLabel(),
-            auditLog,
-            this,
-            informativeSender()));
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(DecryptVerify, //
+                                                                        VerificationResult(),
+                                                                        DecryptionResult(err),
+                                                                        QByteArray(),
+                                                                        {},
+                                                                        err,
+                                                                        details,
+                                                                        inputLabel(),
+                                                                        outputLabel(),
+                                                                        auditLog,
+                                                                        this,
+                                                                        informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const VerificationResult &vr, const QByteArray &plaintext, const AuditLogEntry &auditLog)
+std::shared_ptr<DecryptVerifyResult>
+AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const VerificationResult &vr, const QByteArray &plaintext, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Verify, //
-            vr,
-            DecryptionResult(),
-            plaintext,
-            {},
-            {},
-            QString(),
-            inputLabel(),
-            outputLabel(),
-            auditLog,
-            this,
-            informativeSender()));
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(Verify, //
+                                                                        vr,
+                                                                        DecryptionResult(),
+                                                                        plaintext,
+                                                                        {},
+                                                                        {},
+                                                                        QString(),
+                                                                        inputLabel(),
+                                                                        outputLabel(),
+                                                                        auditLog,
+                                                                        this,
+                                                                        informativeSender()));
 }
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
+std::shared_ptr<DecryptVerifyResult>
+AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Verify, //
-            VerificationResult(err),
-            DecryptionResult(),
-            QByteArray(),
-            {},
-            err,
-            details,
-            inputLabel(),
-            outputLabel(),
-            auditLog,
-            this,
-            informativeSender()));
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(Verify, //
+                                                                        VerificationResult(err),
+                                                                        DecryptionResult(),
+                                                                        QByteArray(),
+                                                                        {},
+                                                                        err,
+                                                                        details,
+                                                                        inputLabel(),
+                                                                        outputLabel(),
+                                                                        auditLog,
+                                                                        this,
+                                                                        informativeSender()));
 }
 
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const VerificationResult &vr, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Verify, //
-            vr,
-            DecryptionResult(),
-            QByteArray(),
-            {},
-            {},
-            QString(),
-            inputLabel(),
-            outputLabel(),
-            auditLog,
-            this,
-            informativeSender()));
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(Verify, //
+                                                                        vr,
+                                                                        DecryptionResult(),
+                                                                        QByteArray(),
+                                                                        {},
+                                                                        {},
+                                                                        QString(),
+                                                                        inputLabel(),
+                                                                        outputLabel(),
+                                                                        auditLog,
+                                                                        this,
+                                                                        informativeSender()));
 }
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
+std::shared_ptr<DecryptVerifyResult>
+AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Verify, //
-            VerificationResult(err),
-            DecryptionResult(),
-            QByteArray(),
-            {},
-            err,
-            details,
-            inputLabel(),
-            outputLabel(),
-            auditLog,
-            this,
-            informativeSender()));
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(Verify, //
+                                                                        VerificationResult(err),
+                                                                        DecryptionResult(),
+                                                                        QByteArray(),
+                                                                        {},
+                                                                        err,
+                                                                        details,
+                                                                        inputLabel(),
+                                                                        outputLabel(),
+                                                                        auditLog,
+                                                                        this,
+                                                                        informativeSender()));
 }
 
 DecryptVerifyResult::DecryptVerifyResult(DecryptVerifyOperation type,
-        const VerificationResult &vr,
-        const DecryptionResult &dr,
-        const QByteArray &stuff,
-        const QString &fileName,
-        const GpgME::Error &error,
-        const QString &errString,
-        const QString &inputLabel,
-        const QString &outputLabel,
-        const AuditLogEntry &auditLog,
-        Task *parentTask,
-        const Mailbox &informativeSender)
-    : Task::Result(), d(new Private(type, vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, this))
+                                         const VerificationResult &vr,
+                                         const DecryptionResult &dr,
+                                         const QByteArray &stuff,
+                                         const QString &fileName,
+                                         const GpgME::Error &error,
+                                         const QString &errString,
+                                         const QString &inputLabel,
+                                         const QString &outputLabel,
+                                         const AuditLogEntry &auditLog,
+                                         Task *parentTask,
+                                         const Mailbox &informativeSender)
+    : Task::Result()
+    , d(new Private(type, vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, this))
 {
 }
 
@@ -905,15 +921,19 @@ QString DecryptVerifyResult::details() const
 {
     if (d->isDecryptOnly()) {
         return formatDecryptionResultDetails(d->m_decryptionResult,
-                KeyCache::instance()->findRecipients(d->m_decryptionResult),
-                errorString(), false, d->m_parentTask);
+                                             KeyCache::instance()->findRecipients(d->m_decryptionResult),
+                                             errorString(),
+                                             false,
+                                             d->m_parentTask);
     }
     if (d->isVerifyOnly()) {
         return formatVerificationResultDetails(d->m_verificationResult, d->makeSenderInfo(), errorString());
     }
     return formatDecryptVerifyResultDetails(d->m_decryptionResult,
-                                            d->m_verificationResult, KeyCache::instance()->findRecipients(
-                                                    d->m_decryptionResult), d->makeSenderInfo(), errorString(),
+                                            d->m_verificationResult,
+                                            KeyCache::instance()->findRecipients(d->m_decryptionResult),
+                                            d->makeSenderInfo(),
+                                            errorString(),
                                             d->m_parentTask);
 }
 
@@ -967,9 +987,15 @@ public:
     QPointer<QGpgME::Job> job;
 };
 
-AbstractDecryptVerifyTask::AbstractDecryptVerifyTask(QObject *parent) : Task(parent), d(new Private) {}
+AbstractDecryptVerifyTask::AbstractDecryptVerifyTask(QObject *parent)
+    : Task(parent)
+    , d(new Private)
+{
+}
 
-AbstractDecryptVerifyTask::~AbstractDecryptVerifyTask() {}
+AbstractDecryptVerifyTask::~AbstractDecryptVerifyTask()
+{
+}
 
 void AbstractDecryptVerifyTask::cancel()
 {
@@ -1002,6 +1028,7 @@ void AbstractDecryptVerifyTask::setJob(QGpgME::Job *job)
 class DecryptVerifyTask::Private
 {
     DecryptVerifyTask *const q;
+
 public:
     explicit Private(DecryptVerifyTask *qq)
         : q{qq}
@@ -1045,7 +1072,8 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
                 q->emitResult(q->fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
                 return;
             } catch (const std::exception &e) {
-                q->emitResult(q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
+                q->emitResult(
+                    q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
                 return;
             } catch (...) {
                 q->emitResult(q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
@@ -1055,17 +1083,17 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
     }
     const int drErr = dr.error().code();
     const QString errorString = m_output ? m_output->errorString() : QString{};
-    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) ||
-          (m_output && m_output->failed())) {
-        q->emitResult(q->fromDecryptResult(drErr ? dr.error() : Error::fromCode(GPG_ERR_EIO),
-                    errorString, auditLog));
+    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) || (m_output && m_output->failed())) {
+        q->emitResult(q->fromDecryptResult(drErr ? dr.error() : Error::fromCode(GPG_ERR_EIO), errorString, auditLog));
         return;
     }
 
     q->emitResult(q->fromDecryptVerifyResult(dr, vr, plainText, m_output ? m_output->fileName() : QString{}, auditLog));
 }
 
-DecryptVerifyTask::DecryptVerifyTask(QObject *parent) : AbstractDecryptVerifyTask(parent), d(new Private(this))
+DecryptVerifyTask::DecryptVerifyTask(QObject *parent)
+    : AbstractDecryptVerifyTask(parent)
+    , d(new Private(this))
 {
 }
 
@@ -1100,7 +1128,10 @@ void DecryptVerifyTask::autodetectProtocolFromInput()
     }
     const Protocol p = findProtocol(d->m_input->classification());
     if (p == UnknownProtocol) {
-        throw Exception(gpg_error(GPG_ERR_NOTHING_FOUND), i18n("Could not determine whether this is an S/MIME or an OpenPGP signature/ciphertext - maybe it is neither ciphertext nor a signature?"), Exception::MessageOnly);
+        throw Exception(
+            gpg_error(GPG_ERR_NOTHING_FOUND),
+            i18n("Could not determine whether this is an S/MIME or an OpenPGP signature/ciphertext - maybe it is neither ciphertext nor a signature?"),
+            Exception::MessageOnly);
     }
     setProtocol(p);
 }
@@ -1202,9 +1233,12 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
         std::unique_ptr<QGpgME::DecryptVerifyJob> job{m_backend->decryptVerifyJob()};
         kleo_assert(job);
         setIgnoreMDCErrorFlag(job.get(), m_ignoreMDCError);
-        QObject::connect(job.get(), &QGpgME::DecryptVerifyJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult, const QByteArray &plainText) {
-            slotResult(decryptResult, verifyResult, plainText);
-        });
+        QObject::connect(job.get(),
+                         &QGpgME::DecryptVerifyJob::result,
+                         q,
+                         [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult, const QByteArray &plainText) {
+                             slotResult(decryptResult, verifyResult, plainText);
+                         });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
         connect(job.get(), &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
 #else
@@ -1218,7 +1252,8 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
     } catch (const GpgME::Exception &e) {
         q->emitResult(q->fromDecryptVerifyResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
-        q->emitResult(q->fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
+        q->emitResult(
+            q->fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
     } catch (...) {
         q->emitResult(q->fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLogEntry()));
     }
@@ -1230,9 +1265,12 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
     std::unique_ptr<QGpgME::DecryptVerifyArchiveJob> job{m_backend->decryptVerifyArchiveJob()};
     kleo_assert(job);
     setIgnoreMDCErrorFlag(job.get(), m_ignoreMDCError);
-    connect(job.get(), &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult) {
-        slotResult(decryptResult, verifyResult);
-    });
+    connect(job.get(),
+            &QGpgME::DecryptVerifyArchiveJob::result,
+            q,
+            [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult) {
+                slotResult(decryptResult, verifyResult);
+            });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(job.get(), &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
 #else
@@ -1266,6 +1304,7 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
 class DecryptTask::Private
 {
     DecryptTask *const q;
+
 public:
     explicit Private(DecryptTask *qq)
         : q{qq}
@@ -1276,8 +1315,7 @@ public:
 
     void registerJob(QGpgME::DecryptJob *job)
     {
-        q->connect(job, SIGNAL(result(GpgME::DecryptionResult,QByteArray)),
-                   q, SLOT(slotResult(GpgME::DecryptionResult,QByteArray)));
+        q->connect(job, SIGNAL(result(GpgME::DecryptionResult, QByteArray)), q, SLOT(slotResult(GpgME::DecryptionResult, QByteArray)));
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
         q->connect(job, &QGpgME::Job::jobProgress, q, &DecryptTask::setProgress);
 #else
@@ -1321,17 +1359,17 @@ void DecryptTask::Private::slotResult(const DecryptionResult &result, const QByt
 
     const int drErr = result.error().code();
     const QString errorString = m_output->errorString();
-    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) ||
-          m_output->failed()) {
-        q->emitResult(q->fromDecryptResult(result.error() ? result.error() : Error::fromCode(GPG_ERR_EIO),
-                    errorString, auditLog));
+    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) || m_output->failed()) {
+        q->emitResult(q->fromDecryptResult(result.error() ? result.error() : Error::fromCode(GPG_ERR_EIO), errorString, auditLog));
         return;
     }
 
     q->emitResult(q->fromDecryptResult(result, plainText, auditLog));
 }
 
-DecryptTask::DecryptTask(QObject *parent) : AbstractDecryptVerifyTask(parent), d(new Private(this))
+DecryptTask::DecryptTask(QObject *parent)
+    : AbstractDecryptVerifyTask(parent)
+    , d(new Private(this))
 {
 }
 
@@ -1366,7 +1404,9 @@ void DecryptTask::autodetectProtocolFromInput()
     }
     const Protocol p = findProtocol(d->m_input->classification());
     if (p == UnknownProtocol) {
-        throw Exception(gpg_error(GPG_ERR_NOTHING_FOUND), i18n("Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it is not ciphertext at all?"), Exception::MessageOnly);
+        throw Exception(gpg_error(GPG_ERR_NOTHING_FOUND),
+                        i18n("Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it is not ciphertext at all?"),
+                        Exception::MessageOnly);
     }
     setProtocol(p);
 }
@@ -1419,6 +1459,7 @@ void DecryptTask::doStart()
 class VerifyOpaqueTask::Private
 {
     VerifyOpaqueTask *const q;
+
 public:
     explicit Private(VerifyOpaqueTask *qq)
         : q{qq}
@@ -1461,7 +1502,8 @@ void VerifyOpaqueTask::Private::slotResult(const VerificationResult &result, con
                 q->emitResult(q->fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
                 return;
             } catch (const std::exception &e) {
-                q->emitResult(q->fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
+                q->emitResult(
+                    q->fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
                 return;
             } catch (...) {
                 q->emitResult(q->fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
@@ -1472,17 +1514,17 @@ void VerifyOpaqueTask::Private::slotResult(const VerificationResult &result, con
 
     const int drErr = result.error().code();
     const QString errorString = m_output ? m_output->errorString() : QString{};
-    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) ||
-          (m_output && m_output->failed())) {
-        q->emitResult(q->fromVerifyOpaqueResult(result.error() ? result.error() : Error::fromCode(GPG_ERR_EIO),
-                    errorString, auditLog));
+    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) || (m_output && m_output->failed())) {
+        q->emitResult(q->fromVerifyOpaqueResult(result.error() ? result.error() : Error::fromCode(GPG_ERR_EIO), errorString, auditLog));
         return;
     }
 
     q->emitResult(q->fromVerifyOpaqueResult(result, plainText, auditLog));
 }
 
-VerifyOpaqueTask::VerifyOpaqueTask(QObject *parent) : AbstractDecryptVerifyTask(parent), d(new Private(this))
+VerifyOpaqueTask::VerifyOpaqueTask(QObject *parent)
+    : AbstractDecryptVerifyTask(parent)
+    , d(new Private(this))
 {
 }
 
@@ -1517,7 +1559,9 @@ void VerifyOpaqueTask::autodetectProtocolFromInput()
     }
     const Protocol p = findProtocol(d->m_input->classification());
     if (p == UnknownProtocol) {
-        throw Exception(gpg_error(GPG_ERR_NOTHING_FOUND), i18n("Could not determine whether this is an S/MIME or an OpenPGP signature - maybe it is not a signature at all?"), Exception::MessageOnly);
+        throw Exception(gpg_error(GPG_ERR_NOTHING_FOUND),
+                        i18n("Could not determine whether this is an S/MIME or an OpenPGP signature - maybe it is not a signature at all?"),
+                        Exception::MessageOnly);
     }
     setProtocol(p);
 }
@@ -1596,7 +1640,8 @@ void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
     } catch (const GpgME::Exception &e) {
         q->emitResult(q->fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
-        q->emitResult(q->fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
+        q->emitResult(
+            q->fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
     } catch (...) {
         q->emitResult(q->fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLogEntry()));
     }
@@ -1637,6 +1682,7 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
 class VerifyDetachedTask::Private
 {
     VerifyDetachedTask *const q;
+
 public:
     explicit Private(VerifyDetachedTask *qq)
         : q{qq}
@@ -1647,8 +1693,7 @@ public:
 
     void registerJob(QGpgME::VerifyDetachedJob *job)
     {
-        q->connect(job, SIGNAL(result(GpgME::VerificationResult)),
-                   q, SLOT(slotResult(GpgME::VerificationResult)));
+        q->connect(job, SIGNAL(result(GpgME::VerificationResult)), q, SLOT(slotResult(GpgME::VerificationResult)));
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
         q->connect(job, &QGpgME::Job::jobProgress, q, &VerifyDetachedTask::setProgress);
 #else
@@ -1684,7 +1729,9 @@ void VerifyDetachedTask::Private::slotResult(const VerificationResult &result)
     }
 }
 
-VerifyDetachedTask::VerifyDetachedTask(QObject *parent) : AbstractDecryptVerifyTask(parent), d(new Private(this))
+VerifyDetachedTask::VerifyDetachedTask(QObject *parent)
+    : AbstractDecryptVerifyTask(parent)
+    , d(new Private(this))
 {
 }
 
@@ -1719,7 +1766,9 @@ void VerifyDetachedTask::autodetectProtocolFromInput()
     }
     const Protocol p = findProtocol(d->m_input->classification());
     if (p == UnknownProtocol) {
-        throw Exception(gpg_error(GPG_ERR_NOTHING_FOUND), i18n("Could not determine whether this is an S/MIME or an OpenPGP signature - maybe it is not a signature at all?"), Exception::MessageOnly);
+        throw Exception(gpg_error(GPG_ERR_NOTHING_FOUND),
+                        i18n("Could not determine whether this is an S/MIME or an OpenPGP signature - maybe it is not a signature at all?"),
+                        Exception::MessageOnly);
     }
     setProtocol(p);
 }
@@ -1732,12 +1781,12 @@ unsigned long long VerifyDetachedTask::inputSize() const
 QString VerifyDetachedTask::label() const
 {
     if (d->m_signedData) {
-        return xi18nc("Verification of a detached signature in progress. The first file contains the data."
-                      "The second file is the signature file.",
-                      "Verifying: <filename>%1</filename> with <filename>%2</filename>...",
-                      d->m_signedData->label(),
-                      d->m_input->label());
-
+        return xi18nc(
+            "Verification of a detached signature in progress. The first file contains the data."
+            "The second file is the signature file.",
+            "Verifying: <filename>%1</filename> with <filename>%2</filename>...",
+            d->m_signedData->label(),
+            d->m_input->label());
     }
     return i18n("Verifying signature: %1...", d->m_input->label());
 }
@@ -1745,12 +1794,12 @@ QString VerifyDetachedTask::label() const
 QString VerifyDetachedTask::inputLabel() const
 {
     if (d->m_signedData && d->m_input) {
-        return xi18nc("Verification of a detached signature summary. The first file contains the data."
-                      "The second file is signature.",
-                      "Verified <filename>%1</filename> with <filename>%2</filename>",
-                      d->m_signedData->label(),
-                      d->m_input->label());
-
+        return xi18nc(
+            "Verification of a detached signature summary. The first file contains the data."
+            "The second file is signature.",
+            "Verified <filename>%1</filename> with <filename>%2</filename>",
+            d->m_signedData->label(),
+            d->m_input->label());
     }
     return d->m_input ? d->m_input->label() : QString();
 }
@@ -1779,7 +1828,8 @@ void VerifyDetachedTask::doStart()
     } catch (const GpgME::Exception &e) {
         emitResult(fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
-        emitResult(fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
+        emitResult(
+            fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
     } catch (...) {
         emitResult(fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLogEntry()));
     }

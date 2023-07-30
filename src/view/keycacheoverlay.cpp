@@ -14,14 +14,15 @@
 #include "kleopatra_debug.h"
 #include "waitwidget.h"
 
-#include <QVBoxLayout>
-#include <QEvent>
 #include <KLocalizedString>
+#include <QEvent>
+#include <QVBoxLayout>
 
 using namespace Kleo;
 
 KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
-    : QWidget(parent), mBaseWidget(baseWidget)
+    : QWidget(parent)
+    , mBaseWidget(baseWidget)
 {
     const auto cache = KeyCache::instance();
 
@@ -39,7 +40,6 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
 
     vLay->addWidget(waitWidget);
 
-
     mBaseWidget->installEventFilter(this);
     mBaseWidget->setEnabled(false);
     reposition();
@@ -52,7 +52,7 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
             qCDebug(KLEOPATRA_LOG) << "Hiding overlay from watchdog";
             hideOverlay();
         }
-    } );
+    });
 
     mTimer.start(1000);
 
@@ -61,9 +61,8 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
 
 bool KeyCacheOverlay::eventFilter(QObject *object, QEvent *event)
 {
-    if (object == mBaseWidget &&
-            (event->type() == QEvent::Move || event->type() == QEvent::Resize ||
-             event->type() == QEvent::Show || event->type() == QEvent::Hide)) {
+    if (object == mBaseWidget
+        && (event->type() == QEvent::Move || event->type() == QEvent::Resize || event->type() == QEvent::Show || event->type() == QEvent::Hide)) {
         reposition();
     }
     return QWidget::eventFilter(object, event);
@@ -87,9 +86,9 @@ void KeyCacheOverlay::reposition()
 
 void KeyCacheOverlay::hideOverlay()
 {
-   mTimer.stop();
-   mBaseWidget->setEnabled(true);
-   hide();
-   mBaseWidget->removeEventFilter(this);
-   deleteLater();
+    mTimer.stop();
+    mBaseWidget->setEnabled(true);
+    hide();
+    mBaseWidget->removeEventFilter(this);
+    deleteLater();
 }

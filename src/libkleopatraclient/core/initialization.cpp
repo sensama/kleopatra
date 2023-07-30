@@ -23,5 +23,4 @@ Initialization::Initialization()
 
 Initialization::~Initialization()
 {
-
 }

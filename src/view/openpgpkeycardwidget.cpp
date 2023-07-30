@@ -55,8 +55,7 @@ KeyWidgets createKeyWidgets(const KeyPairInfo &keyInfo, QWidget *parent)
     keyWidgets.showCertificateDetailsButton->setEnabled(false);
     keyWidgets.generateButton = new QPushButton{i18nc("@action:button", "Generate Key"), parent};
     keyWidgets.generateButton->setEnabled(false);
-    if (keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate())
-    {
+    if (keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate()) {
         keyWidgets.createCSRButton = new QPushButton{i18nc("@action:button", "Create CSR"), parent};
         keyWidgets.createCSRButton->setToolTip(i18nc("@info:tooltip", "Create a certificate signing request for this key"));
         keyWidgets.createCSRButton->setEnabled(false);
@@ -96,13 +95,16 @@ OpenPGPKeyCardWidget::Private::Private(OpenPGPKeyCardWidget *q)
         const KeyWidgets keyWidgets = createKeyWidgets(keyInfo, q);
 
         const std::string keyRef = keyInfo.keyRef;
-        connect(keyWidgets.showCertificateDetailsButton, &QPushButton::clicked,
-                q, [this, keyRef] () { showCertificateDetails(keyRef); });
-        connect(keyWidgets.generateButton, &QPushButton::clicked,
-                q, [q, keyRef] () { Q_EMIT q->generateKeyRequested(keyRef); });
+        connect(keyWidgets.showCertificateDetailsButton, &QPushButton::clicked, q, [this, keyRef]() {
+            showCertificateDetails(keyRef);
+        });
+        connect(keyWidgets.generateButton, &QPushButton::clicked, q, [q, keyRef]() {
+            Q_EMIT q->generateKeyRequested(keyRef);
+        });
         if (keyWidgets.createCSRButton) {
-            connect(keyWidgets.createCSRButton, &QPushButton::clicked,
-                    q, [q, keyRef] () { Q_EMIT q->createCSRRequested(keyRef); });
+            connect(keyWidgets.createCSRButton, &QPushButton::clicked, q, [q, keyRef]() {
+                Q_EMIT q->createCSRRequested(keyRef);
+            });
         }
 
         const int row = grid->rowCount();
@@ -189,16 +191,12 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
                 widgets.keyInfoLabel->setTextFormat(Qt::PlainText);
                 QStringList toolTips;
                 toolTips.reserve(subkeys.size());
-                for (const auto &sub: subkeys) {
+                for (const auto &sub : subkeys) {
                     // Yep you can have one subkey associated with multiple primary keys.
                     const GpgME::Key key = sub.parent();
-                    toolTips << Formatting::toolTip(key,
-                                                    Formatting::Validity |
-                                                    Formatting::ExpiryDates |
-                                                    Formatting::UserIDs |
-                                                    Formatting::Fingerprint);
+                    toolTips << Formatting::toolTip(key, Formatting::Validity | Formatting::ExpiryDates | Formatting::UserIDs | Formatting::Fingerprint);
                     const auto uids = key.userIDs();
-                    for (const auto &uid: uids) {
+                    for (const auto &uid : uids) {
                         lines.push_back(Formatting::prettyUserID(uid));
                     }
                 }
@@ -210,9 +208,9 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
             lines.push_back(i18nc("@info", "<em>Invalid fingerprint</em>"));
         }
 
-        const QString fingerprint = widgets.keyInfoLabel->textFormat() == Qt::RichText ?
-                                    Formatting::prettyID(widgets.keyFingerprint.c_str()).replace(QLatin1Char(' '), QLatin1String("&nbsp;")) :
-                                    Formatting::prettyID(widgets.keyFingerprint.c_str());
+        const QString fingerprint = widgets.keyInfoLabel->textFormat() == Qt::RichText
+            ? Formatting::prettyID(widgets.keyFingerprint.c_str()).replace(QLatin1Char(' '), QLatin1String("&nbsp;"))
+            : Formatting::prettyID(widgets.keyFingerprint.c_str());
         lines.insert(0, fingerprint);
         const auto lineSeparator = widgets.keyInfoLabel->textFormat() == Qt::PlainText ? QLatin1String("\n") : QLatin1String("<br>");
         widgets.keyInfoLabel->setText(lines.join(lineSeparator));
@@ -241,8 +239,7 @@ void OpenPGPKeyCardWidget::Private::showCertificateDetails(const std::string &op
             return;
         }
     }
-    KMessageBox::error(q, i18nc("@info", "Sorry, I cannot find the key with fingerprint %1.",
-                                Formatting::prettyID(widgets.keyFingerprint.c_str())));
+    KMessageBox::error(q, i18nc("@info", "Sorry, I cannot find the key with fingerprint %1.", Formatting::prettyID(widgets.keyFingerprint.c_str())));
 }
 
 OpenPGPKeyCardWidget::OpenPGPKeyCardWidget(QWidget *parent)

@@ -17,16 +17,15 @@
 #include "crypto/certificateresolver.h"
 #include "utils/keys.h"
 
-#include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
 
 #include <utils/kleo_assert.h>
 
-
 #include <gpgme++/key.h>
 
-#include <QDialog>
 #include <KLocalizedString>
+#include <QDialog>
 
 #include <QButtonGroup>
 #include <QCheckBox>
@@ -58,7 +57,9 @@ static SignerResolvePage::Operation operationFromFlags(bool sign, bool encrypt)
 
 static QString formatLabel(Protocol p, const Key &key)
 {
-    return i18nc("%1=protocol (S/Mime, OpenPGP), %2=certificate", "Sign using %1: %2", Formatting::displayName(p),
+    return i18nc("%1=protocol (S/Mime, OpenPGP), %2=certificate",
+                 "Sign using %1: %2",
+                 Formatting::displayName(p),
                  !key.isNull() ? Formatting::formatForComboBox(key) : i18n("No certificate selected"));
 }
 
@@ -71,20 +72,22 @@ static std::vector<Protocol> supportedProtocols()
 }
 }
 
-AbstractSigningProtocolSelectionWidget::AbstractSigningProtocolSelectionWidget(QWidget *p, Qt::WindowFlags f) : QWidget(p, f)
+AbstractSigningProtocolSelectionWidget::AbstractSigningProtocolSelectionWidget(QWidget *p, Qt::WindowFlags f)
+    : QWidget(p, f)
 {
 }
 
-ReadOnlyProtocolSelectionWidget::ReadOnlyProtocolSelectionWidget(QWidget *p, Qt::WindowFlags f) : AbstractSigningProtocolSelectionWidget(p, f)
+ReadOnlyProtocolSelectionWidget::ReadOnlyProtocolSelectionWidget(QWidget *p, Qt::WindowFlags f)
+    : AbstractSigningProtocolSelectionWidget(p, f)
 {
     auto const layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     const auto supportedProtocolsLst = supportedProtocols();
-    for (const Protocol i: supportedProtocolsLst) {
+    for (const Protocol i : supportedProtocolsLst) {
         auto const l = new QLabel;
         l->setText(formatLabel(i, Key()));
         layout->addWidget(l);
-        m_labels[i] =  l;
+        m_labels[i] = l;
     }
 }
 
@@ -116,7 +119,6 @@ std::set<Protocol> ReadOnlyProtocolSelectionWidget::checkedProtocols() const
 SigningProtocolSelectionWidget::SigningProtocolSelectionWidget(QWidget *parent, Qt::WindowFlags f)
     : AbstractSigningProtocolSelectionWidget(parent, f)
 {
-
     m_buttonGroup = new QButtonGroup(this);
     connect(m_buttonGroup, &QButtonGroup::idClicked, this, &SigningProtocolSelectionWidget::userSelectionChanged);
 
@@ -151,9 +153,7 @@ bool SigningProtocolSelectionWidget::isProtocolChecked(Protocol p) const
 std::set<Protocol> SigningProtocolSelectionWidget::checkedProtocols() const
 {
     std::set<Protocol> res;
-    for (auto it = m_buttons.begin(), end = m_buttons.end();
-            it != end;
-            ++it)
+    for (auto it = m_buttons.begin(), end = m_buttons.end(); it != end; ++it)
         if (it->second->isChecked()) {
             res.insert(it->first);
         }
@@ -224,6 +224,7 @@ class SignerResolvePage::Private
 {
     friend class ::Kleo::Crypto::Gui::SignerResolvePage;
     SignerResolvePage *const q;
+
 public:
     explicit Private(SignerResolvePage *qq);
     ~Private();
@@ -349,7 +350,9 @@ std::shared_ptr<SignerResolvePage::Validator> SignerResolvePage::validator() con
     return d->validator;
 }
 
-SignerResolvePage::Private::~Private() {}
+SignerResolvePage::Private::~Private()
+{
+}
 
 bool SignerResolvePage::Private::protocolSelected(Protocol p) const
 {
@@ -488,31 +491,33 @@ SignerResolvePage::Operation SignerResolvePage::operation() const
 }
 
 SignerResolvePage::SignerResolvePage(QWidget *parent, Qt::WindowFlags f)
-    : WizardPage(parent, f), d(new Private(this))
+    : WizardPage(parent, f)
+    , d(new Private(this))
 {
     setTitle(i18n("<b>Choose Operation to be Performed</b>"));
-//    setSubTitle( i18n( "TODO" ) );
+    //    setSubTitle( i18n( "TODO" ) );
     setPresetProtocol(UnknownProtocol);
     d->setCertificates({});
     d->updateModeSelectionWidgets();
     d->operationButtonClicked(EncryptOnly);
 }
 
-SignerResolvePage::~SignerResolvePage() {}
+SignerResolvePage::~SignerResolvePage()
+{
+}
 
-void SignerResolvePage::setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers,
-        const std::vector< std::vector<GpgME::Key> > &keys)
+void SignerResolvePage::setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers, const std::vector<std::vector<GpgME::Key>> &keys)
 {
     kleo_assert(signers.empty() || signers.size() == keys.size());
 
     switch (signers.size()) {
     case 0:
         d->signerLabelLabel->setVisible(false);
-        d->signerLabel->setVisible(false);    // TODO: use default identity?
+        d->signerLabel->setVisible(false); // TODO: use default identity?
         break;
     case 1:
         d->signerLabelLabel->setVisible(true);
-        d->signerLabel->setVisible(true);   // TODO: use default identity?
+        d->signerLabel->setVisible(true); // TODO: use default identity?
         d->signerLabel->setText(signers.front().prettyAddress());
         break;
     default: // > 1
@@ -646,10 +651,7 @@ void SignerResolvePage::setAsciiArmorEnabled(bool enabled)
 void SignerResolvePage::setSigningPreferences(const std::shared_ptr<SigningPreferences> &prefs)
 {
     d->signingPreferences = prefs;
-    const CertificatePair certs = {
-        prefs ? prefs->preferredCertificate(OpenPGP) : Key(),
-        prefs ? prefs->preferredCertificate(CMS) : Key()
-    };
+    const CertificatePair certs = {prefs ? prefs->preferredCertificate(OpenPGP) : Key(), prefs ? prefs->preferredCertificate(CMS) : Key()};
     d->setCertificates(certs);
 }
 
@@ -664,4 +666,3 @@ void SignerResolvePage::onNext()
 
 #include "moc_signerresolvepage.cpp"
 #include "moc_signerresolvepage_p.cpp"
-

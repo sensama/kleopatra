@@ -15,9 +15,9 @@ class QButtonGroup;
 class QCheckBox;
 class QLabel;
 
-#include <vector>
 #include <map>
 #include <set>
+#include <vector>
 
 namespace Kleo
 {
@@ -77,4 +77,3 @@ private:
 }
 }
 }
-

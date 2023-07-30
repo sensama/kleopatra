@@ -35,4 +35,3 @@ struct KeyPairInfo {
 };
 } // namespace Smartcard
 } // namespace Kleopatra
-

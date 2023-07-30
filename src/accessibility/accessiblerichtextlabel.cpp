@@ -168,7 +168,7 @@ QString AccessibleRichTextLabel::text(int startOffset, int endOffset) const
     // most likely the client is asking for the selected text, so return it
     // instead of a slice of displayText() if the offsets match the selection
     if (startOffset == label()->selectionStart() //
-            && endOffset == startOffset + label()->selectedText().size()) {
+        && endOffset == startOffset + label()->selectedText().size()) {
         return label()->selectedText();
     }
     return displayText().mid(startOffset, endOffset - startOffset);
@@ -205,7 +205,7 @@ void AccessibleRichTextLabel::scrollToSubstring(int startIndex, int endIndex)
 
 QLabel *AccessibleRichTextLabel::label() const
 {
-    return qobject_cast<QLabel*>(object());
+    return qobject_cast<QLabel *>(object());
 }
 
 AnchorProvider *AccessibleRichTextLabel::anchorProvider() const
@@ -219,7 +219,7 @@ QString AccessibleRichTextLabel::displayText() const
     // information of QLabel
     QString str = label()->text();
     if (label()->textFormat() == Qt::RichText //
-            || (label()->textFormat() == Qt::AutoText && Qt::mightBeRichText(str))) {
+        || (label()->textFormat() == Qt::AutoText && Qt::mightBeRichText(str))) {
         QTextDocument doc;
         doc.setHtml(str);
         str = doc.toPlainText();

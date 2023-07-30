@@ -12,28 +12,28 @@
 #include "input.h"
 #include "input_p.h"
 
+#include "cached.h"
 #include "detail_p.h"
 #include "kdpipeiodevice.h"
-#include "windowsprocessdevice.h"
-#include "log.h"
 #include "kleo_assert.h"
-#include "cached.h"
+#include "log.h"
+#include "windowsprocessdevice.h"
 
-#include <Libkleo/KleoException>
 #include <Libkleo/Classify>
+#include <Libkleo/KleoException>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 
-#include <QFile>
-#include <QString>
-#include <QClipboard>
 #include <QApplication>
-#include <QByteArray>
 #include <QBuffer>
+#include <QByteArray>
+#include <QClipboard>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QProcess>
+#include <QString>
 
 #include <cerrno>
 
@@ -77,7 +77,7 @@ public:
     }
     unsigned int classification() const override
     {
-        return 0U;    // plain text
+        return 0U; // plain text
     }
     unsigned long long size() const override
     {
@@ -152,15 +152,14 @@ private:
 };
 #endif // QT_NO_CLIPBOARD
 
-class ByteArrayInput: public Input
+class ByteArrayInput : public Input
 {
 public:
-    explicit ByteArrayInput(QByteArray *data):
-        m_buffer(std::shared_ptr<QBuffer>(new QBuffer(data)))
+    explicit ByteArrayInput(QByteArray *data)
+        : m_buffer(std::shared_ptr<QBuffer>(new QBuffer(data)))
     {
         if (!m_buffer->open(QIODevice::ReadOnly))
-            throw Exception(gpg_error(GPG_ERR_EIO),
-                            QStringLiteral("Could not open bytearray for reading?!"));
+            throw Exception(gpg_error(GPG_ERR_EIO), QStringLiteral("Could not open bytearray for reading?!"));
     }
 
     void setLabel(const QString &label) override
@@ -210,15 +209,13 @@ std::shared_ptr<Input> Input::createFromPipeDevice(assuan_fd_t fd, const QString
 }
 
 PipeInput::PipeInput(assuan_fd_t fd)
-    : InputImplBase(),
-      m_io()
+    : InputImplBase()
+    , m_io()
 {
     std::shared_ptr<KDPipeIODevice> kdp(new KDPipeIODevice);
     errno = 0;
     if (!kdp->open(fd, QIODevice::ReadOnly))
-        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                        i18n("Could not open FD %1 for reading",
-                             _detail::assuanFD2int(fd)));
+        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n("Could not open FD %1 for reading", _detail::assuanFD2int(fd)));
     m_io = Log::instance()->createIOLogger(kdp, QStringLiteral("pipe-input"), Log::Read);
 }
 
@@ -239,31 +236,29 @@ std::shared_ptr<Input> Input::createFromFile(const std::shared_ptr<QFile> &file)
 }
 
 FileInput::FileInput(const QString &fileName)
-    : InputImplBase(),
-      m_io(), m_fileName(fileName)
+    : InputImplBase()
+    , m_io()
+    , m_fileName(fileName)
 {
     std::shared_ptr<QFile> file(new QFile(fileName));
 
     errno = 0;
     if (!file->open(QIODevice::ReadOnly))
-        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                        i18n("Could not open file \"%1\" for reading", fileName));
+        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n("Could not open file \"%1\" for reading", fileName));
     m_io = Log::instance()->createIOLogger(file, QStringLiteral("file-in"), Log::Read);
-
 }
 
 FileInput::FileInput(const std::shared_ptr<QFile> &file)
-    : InputImplBase(),
-      m_io(), m_fileName(file->fileName())
+    : InputImplBase()
+    , m_io()
+    , m_fileName(file->fileName())
 {
     kleo_assert(file);
     errno = 0;
     if (file->isOpen() && !file->isReadable())
-        throw Exception(gpg_error(GPG_ERR_INV_ARG),
-                        i18n("File \"%1\" is already open, but not for reading", file->fileName()));
+        throw Exception(gpg_error(GPG_ERR_INV_ARG), i18n("File \"%1\" is already open, but not for reading", file->fileName()));
     if (!file->isOpen() && !file->open(QIODevice::ReadOnly))
-        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                        i18n("Could not open file \"%1\" for reading", m_fileName));
+        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n("Could not open file \"%1\" for reading", m_fileName));
     m_io = Log::instance()->createIOLogger(file, QStringLiteral("file-in"), Log::Read);
 }
 
@@ -306,7 +301,10 @@ namespace
 {
 struct Outputter {
     const QByteArray &data;
-    explicit Outputter(const QByteArray &data) : data(data) {}
+    explicit Outputter(const QByteArray &data)
+        : data(data)
+    {
+    }
 };
 static QDebug operator<<(QDebug s, const Outputter &o)
 {
@@ -318,35 +316,30 @@ static QDebug operator<<(QDebug s, const Outputter &o)
 }
 
 ProcessStdOutInput::ProcessStdOutInput(const QString &cmd, const QStringList &args, const QDir &wd, const QByteArray &stdin_)
-    : InputImplBase(),
-      m_command(cmd),
-      m_arguments(args)
+    : InputImplBase()
+    , m_command(cmd)
+    , m_arguments(args)
 {
-    const QIODevice::OpenMode openMode =
-        stdin_.isEmpty() ? QIODevice::ReadOnly : QIODevice::ReadWrite;
+    const QIODevice::OpenMode openMode = stdin_.isEmpty() ? QIODevice::ReadOnly : QIODevice::ReadWrite;
     qCDebug(KLEOPATRA_LOG) << "cd" << wd.absolutePath() << '\n' << cmd << args << Outputter(stdin_);
     if (cmd.isEmpty())
-        throw Exception(gpg_error(GPG_ERR_INV_ARG),
-                        i18n("Command not specified"));
+        throw Exception(gpg_error(GPG_ERR_INV_ARG), i18n("Command not specified"));
 
 #ifndef Q_OS_WIN
-    m_proc = std::shared_ptr<QProcess> (new QProcess);
+    m_proc = std::shared_ptr<QProcess>(new QProcess);
     m_proc->setWorkingDirectory(wd.absolutePath());
     m_proc->start(cmd, args, openMode);
     if (!m_proc->waitForStarted())
-        throw Exception(gpg_error(GPG_ERR_EIO),
-                        i18n("Could not start %1 process: %2", cmd, m_proc->errorString()));
+        throw Exception(gpg_error(GPG_ERR_EIO), i18n("Could not start %1 process: %2", cmd, m_proc->errorString()));
 #else
-    m_proc = std::shared_ptr<Kleo::WindowsProcessDevice> (new WindowsProcessDevice(cmd, args, wd.absolutePath()));
+    m_proc = std::shared_ptr<Kleo::WindowsProcessDevice>(new WindowsProcessDevice(cmd, args, wd.absolutePath()));
     if (!m_proc->open(openMode)) {
-        throw Exception(gpg_error(GPG_ERR_EIO),
-                        i18n("Could not start %1 process: %2", cmd, m_proc->errorString()));
+        throw Exception(gpg_error(GPG_ERR_EIO), i18n("Could not start %1 process: %2", cmd, m_proc->errorString()));
     }
 #endif
     if (!stdin_.isEmpty()) {
         if (m_proc->write(stdin_) != stdin_.size())
-            throw Exception(gpg_error(GPG_ERR_EIO),
-                            i18n("Failed to write input to %1 process: %2", cmd, m_proc->errorString()));
+            throw Exception(gpg_error(GPG_ERR_EIO), i18n("Failed to write input to %1 process: %2", cmd, m_proc->errorString()));
         m_proc->closeWriteChannel();
     }
 }
@@ -361,7 +354,7 @@ QString ProcessStdOutInput::label() const
     if (m_arguments.size() > 3) {
         return i18nc("e.g. \"Output of tar xf - file1 ...\"", "Output of %1 ...", cmdline);
     } else {
-        return i18nc("e.g. \"Output of tar xf - file\"",      "Output of %1",     cmdline);
+        return i18nc("e.g. \"Output of tar xf - file\"", "Output of %1", cmdline);
     }
 }
 
@@ -379,8 +372,7 @@ QString ProcessStdOutInput::doErrorString() const
         return QString();
     }
     if (m_proc->error() == QProcess::UnknownError)
-        return i18n("Error while running %1:\n%2", m_command,
-                    QString::fromLocal8Bit(m_proc->readAllStandardError().trimmed().constData()));
+        return i18n("Error while running %1:\n%2", m_command, QString::fromLocal8Bit(m_proc->readAllStandardError().trimmed().constData()));
     else {
         return i18n("Failed to execute %1: %2", m_command, m_proc->errorString());
     }
@@ -414,14 +406,13 @@ static QByteArray dataFromClipboard(QClipboard::Mode mode)
 }
 
 ClipboardInput::ClipboardInput(QClipboard::Mode mode)
-    : Input(),
-      m_mode(mode),
-      m_buffer(new QBuffer)
+    : Input()
+    , m_mode(mode)
+    , m_buffer(new QBuffer)
 {
     m_buffer->setData(dataFromClipboard(mode));
     if (!m_buffer->open(QIODevice::ReadOnly))
-        throw Exception(gpg_error(GPG_ERR_EIO),
-                        i18n("Could not open clipboard for reading"));
+        throw Exception(gpg_error(GPG_ERR_EIO), i18n("Could not open clipboard for reading"));
 }
 
 void ClipboardInput::setLabel(const QString &)
@@ -448,13 +439,15 @@ unsigned int ClipboardInput::classification() const
 }
 #endif // QT_NO_CLIPBOARD
 
-Input::~Input() {}
+Input::~Input()
+{
+}
 
 void Input::finalize()
 {
     if (const std::shared_ptr<QIODevice> io = ioDevice())
         if (io->isOpen()) {
-            qCDebug(KLEOPATRA_LOG)  << "closing input";
+            qCDebug(KLEOPATRA_LOG) << "closing input";
             io->close();
         }
 }

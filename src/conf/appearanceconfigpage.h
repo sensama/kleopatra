@@ -8,8 +8,8 @@
 */
 
 #pragma once
-#include <kcmutils_version.h>
 #include <KCModule>
+#include <kcmutils_version.h>
 namespace Kleo
 {
 namespace Config
@@ -41,4 +41,3 @@ private:
 
 }
 }
-

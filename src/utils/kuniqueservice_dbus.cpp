@@ -16,10 +16,10 @@ class KUniqueService::KUniqueServicePrivate
     Q_DISABLE_COPY(KUniqueServicePrivate)
 
 public:
-    KUniqueServicePrivate(KUniqueService *q) : mService(KDBusService::Unique)
+    KUniqueServicePrivate(KUniqueService *q)
+        : mService(KDBusService::Unique)
     {
-        QObject::connect(&mService, &KDBusService::activateRequested,
-                         q, &KUniqueService::activateRequested);
+        QObject::connect(&mService, &KDBusService::activateRequested, q, &KUniqueService::activateRequested);
     }
 
     void setExitValue(int code)
@@ -31,7 +31,10 @@ private:
     KDBusService mService;
 };
 
-KUniqueService::KUniqueService() : d_ptr(new KUniqueServicePrivate(this)) {}
+KUniqueService::KUniqueService()
+    : d_ptr(new KUniqueServicePrivate(this))
+{
+}
 
 KUniqueService::~KUniqueService()
 {

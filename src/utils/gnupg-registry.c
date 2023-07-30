@@ -41,7 +41,7 @@ w32_shgetfolderpath(HWND a, int b, HANDLE c, DWORD d, LPSTR e)
     static HRESULT(WINAPI * func)(HWND, int, HANDLE, DWORD, LPSTR);
 
     if (!initialized) {
-        static const char *dllnames[] = { "shell32.dll", "shfolder.dll", NULL };
+        static const char *dllnames[] = {"shell32.dll", "shfolder.dll", NULL};
         void *handle;
         int i;
 
@@ -50,8 +50,7 @@ w32_shgetfolderpath(HWND a, int b, HANDLE c, DWORD d, LPSTR e)
         for (i = 0, handle = NULL; !handle && dllnames[i]; i++) {
             handle = LoadLibraryA(dllnames[i]);
             if (handle) {
-                func = (HRESULT(WINAPI *)(HWND, int, HANDLE, DWORD, LPSTR))
-                       GetProcAddress(handle, "SHGetFolderPathA");
+                func = (HRESULT(WINAPI *)(HWND, int, HANDLE, DWORD, LPSTR))GetProcAddress(handle, "SHGetFolderPathA");
                 if (!func) {
                     FreeLibrary(handle);
                     handle = NULL;
@@ -68,8 +67,7 @@ w32_shgetfolderpath(HWND a, int b, HANDLE c, DWORD d, LPSTR e)
 }
 
 /* Helper for read_w32_registry_string(). */
-static HKEY
-get_root_key(const char *root)
+static HKEY get_root_key(const char *root)
 {
     HKEY root_key;
 
@@ -96,8 +94,7 @@ get_root_key(const char *root)
 /* Return a string from the Win32 Registry or NULL in case of error.
    Caller must release the return value.  A NULL for root is an alias
    for HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE in turn.  */
-char *
-read_w32_registry_string(const char *root, const char *dir, const char *name)
+char *read_w32_registry_string(const char *root, const char *dir, const char *name)
 {
     HKEY root_key, key_handle;
     DWORD n1, nbytes, type;
@@ -109,11 +106,11 @@ read_w32_registry_string(const char *root, const char *dir, const char *name)
 
     if (RegOpenKeyExA(root_key, dir, 0, KEY_READ, &key_handle)) {
         if (root) {
-            return NULL;    /* no need for a RegClose, so return direct */
+            return NULL; /* no need for a RegClose, so return direct */
         }
         /* It seems to be common practice to fall back to HKLM. */
         if (RegOpenKeyExA(HKEY_LOCAL_MACHINE, dir, 0, KEY_READ, &key_handle)) {
-            return NULL;    /* still no need for a RegClose, so return direct */
+            return NULL; /* still no need for a RegClose, so return direct */
         }
     }
 
@@ -125,7 +122,7 @@ read_w32_registry_string(const char *root, const char *dir, const char *name)
         /* Try to fallback to HKLM also vor a missing value.  */
         RegCloseKey(key_handle);
         if (RegOpenKeyExA(HKEY_LOCAL_MACHINE, dir, 0, KEY_READ, &key_handle)) {
-            return NULL;    /* Nope.  */
+            return NULL; /* Nope.  */
         }
         if (RegQueryValueExA(key_handle, name, 0, NULL, NULL, &nbytes)) {
             goto leave;
@@ -136,7 +133,8 @@ read_w32_registry_string(const char *root, const char *dir, const char *name)
         goto leave;
     }
     if (RegQueryValueExA(key_handle, name, 0, &type, result, &n1)) {
-        free(result); result = NULL;
+        free(result);
+        result = NULL;
         goto leave;
     }
     result[nbytes] = 0; /* make sure it is really a string  */
@@ -158,7 +156,7 @@ read_w32_registry_string(const char *root, const char *dir, const char *name)
             }
             nbytes = ExpandEnvironmentStringsA(result, tmp, n1);
             if (nbytes && nbytes > n1) {
-                free(tmp);  /* oops - truncated, better don't expand at all */
+                free(tmp); /* oops - truncated, better don't expand at all */
                 goto leave;
             }
             tmp[nbytes] = 0;

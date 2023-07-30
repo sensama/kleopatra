@@ -49,6 +49,7 @@ class CreateOpenPGPKeyFromCardKeysCommand::Private : public CardCommand::Private
     {
         return static_cast<CreateOpenPGPKeyFromCardKeysCommand *>(q);
     }
+
 public:
     explicit Private(CreateOpenPGPKeyFromCardKeysCommand *qq, const std::string &serialNumber, const std::string &appName, QWidget *parent);
     ~Private() override;
@@ -79,7 +80,10 @@ const CreateOpenPGPKeyFromCardKeysCommand::Private *CreateOpenPGPKeyFromCardKeys
 #define d d_func()
 #define q q_func()
 
-CreateOpenPGPKeyFromCardKeysCommand::Private::Private(CreateOpenPGPKeyFromCardKeysCommand *qq, const std::string &serialNumber, const std::string &appName_, QWidget *parent)
+CreateOpenPGPKeyFromCardKeysCommand::Private::Private(CreateOpenPGPKeyFromCardKeysCommand *qq,
+                                                      const std::string &serialNumber,
+                                                      const std::string &appName_,
+                                                      QWidget *parent)
     : CardCommand::Private(qq, serialNumber, parent)
     , appName(appName_)
 {
@@ -108,12 +112,16 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::start()
     const Key signingKey = KeyCache::instance()->findSubkeyByKeyGrip(signingKeyGrip, OpenPGP).parent();
     if (!signingKey.isNull()) {
         const QString message = i18nc("@info",
-            "<p>There is already an OpenPGP key corresponding to the signing key on this card:</p><p>%1</p>"
-            "<p>Do you still want to create an OpenPGP key for the card keys?</p>",
-            Formatting::summaryLine(signingKey));
-        const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
-            i18nc("@title:window", "Create OpenPGP Key"),
-            KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify);
+                                      "<p>There is already an OpenPGP key corresponding to the signing key on this card:</p><p>%1</p>"
+                                      "<p>Do you still want to create an OpenPGP key for the card keys?</p>",
+                                      Formatting::summaryLine(signingKey));
+        const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(),
+                                                               message,
+                                                               i18nc("@title:window", "Create OpenPGP Key"),
+                                                               KStandardGuiItem::cont(),
+                                                               KStandardGuiItem::cancel(),
+                                                               QString(),
+                                                               KMessageBox::Notify);
         if (choice != KMessageBox::Continue) {
             finished();
             return;
@@ -148,7 +156,9 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::slotDialogAccepted()
         return;
     }
 
-    connect(job, &QGpgME::QuickJob::result, q, [this](const GpgME::Error &error) { slotResult(error); });
+    connect(job, &QGpgME::QuickJob::result, q, [this](const GpgME::Error &error) {
+        slotResult(error);
+    });
 
     const QString userID = Formatting::prettyNameAndEMail(OpenPGP, QString(), dialog->name(), dialog->email());
     const QDateTime expires = QDateTime();
@@ -184,8 +194,12 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 CreateOpenPGPKeyFromCardKeysCommand::CreateOpenPGPKeyFromCardKeysCommand(const std::string &serialNumber, const std::string &appName, QWidget *parent)

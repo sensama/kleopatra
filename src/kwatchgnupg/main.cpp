@@ -16,11 +16,11 @@
 #endif
 #include "utils/kuniqueservice.h"
 
-#include <KLocalizedString>
-#include <KCrash>
 #include "kwatchgnupg_debug.h"
-#include <QCommandLineParser>
+#include <KCrash>
+#include <KLocalizedString>
 #include <QApplication>
+#include <QCommandLineParser>
 
 int main(int argc, char **argv)
 {

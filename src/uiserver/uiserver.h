@@ -13,8 +13,8 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <memory>
 #include <cstdio>
+#include <memory>
 
 class QString;
 
@@ -57,4 +57,3 @@ private:
 };
 
 }
-

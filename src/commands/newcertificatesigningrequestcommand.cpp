@@ -32,6 +32,7 @@ class NewCertificateSigningRequestCommand::Private : public Command::Private
     {
         return static_cast<NewCertificateSigningRequestCommand *>(q);
     }
+
 public:
     explicit Private(NewCertificateSigningRequestCommand *qq, KeyListController *c)
         : Command::Private{qq, c}

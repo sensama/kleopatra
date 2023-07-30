@@ -31,10 +31,10 @@ public:
     explicit TaskCollection(QObject *parent = nullptr);
     ~TaskCollection() override;
 
-    std::vector<std::shared_ptr<Task> > tasks() const;
+    std::vector<std::shared_ptr<Task>> tasks() const;
     std::shared_ptr<Task> taskById(int id) const;
 
-    void setTasks(const std::vector<std::shared_ptr<Task> > &tasks);
+    void setTasks(const std::vector<std::shared_ptr<Task>> &tasks);
 
     bool isEmpty() const;
     size_t size() const;
@@ -58,4 +58,3 @@ private:
 };
 }
 }
-

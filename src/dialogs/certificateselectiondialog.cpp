@@ -22,27 +22,27 @@
 
 #include "utils/tags.h"
 
+#include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
 #include <Libkleo/KeyListModel>
-#include <Libkleo/KeyCache>
 
-#include <commands/reloadkeyscommand.h>
+#include <commands/importcertificatefromfilecommand.h>
 #include <commands/lookupcertificatescommand.h>
 #include <commands/newopenpgpcertificatecommand.h>
-#include <commands/importcertificatefromfilecommand.h>
+#include <commands/reloadkeyscommand.h>
 
 #include <gpgme++/key.h>
 
-#include <KLocalizedString>
 #include <KConfigDialog>
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <KSharedConfig>
 
-#include <QLabel>
-#include <QPushButton>
+#include <QAbstractItemView>
 #include <QDialogButtonBox>
 #include <QItemSelectionModel>
-#include <QAbstractItemView>
+#include <QLabel>
+#include <QPushButton>
 #include <QVBoxLayout>
 
 #include <algorithm>
@@ -52,13 +52,15 @@ using namespace Kleo::Dialogs;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
-
 CertificateSelectionDialog::Option CertificateSelectionDialog::optionsFromProtocol(Protocol proto)
 {
     switch (proto) {
-    case OpenPGP: return CertificateSelectionDialog::OpenPGPFormat;
-    case CMS:     return CertificateSelectionDialog::CMSFormat;
-    default:      return CertificateSelectionDialog::AnyFormat;
+    case OpenPGP:
+        return CertificateSelectionDialog::OpenPGPFormat;
+    case CMS:
+        return CertificateSelectionDialog::CMSFormat;
+    default:
+        return CertificateSelectionDialog::AnyFormat;
     }
 }
 
@@ -81,6 +83,7 @@ class CertificateSelectionDialog::Private
 {
     friend class ::Kleo::Dialogs::CertificateSelectionDialog;
     CertificateSelectionDialog *const q;
+
 public:
     explicit Private(CertificateSelectionDialog *qq);
 
@@ -127,10 +130,9 @@ private:
     }
     void updateLabelText()
     {
-        ui.label.setText(!customLabelText.isEmpty() ? customLabelText :
-                         (options & MultiSelection)
-                         ? i18n("Please select one or more of the following certificates:")
-                         : i18n("Please select one of the following certificates:"));
+        ui.label.setText(!customLabelText.isEmpty()       ? customLabelText
+                             : (options & MultiSelection) ? i18n("Please select one or more of the following certificates:")
+                                                          : i18n("Please select one of the following certificates:"));
     }
 
 private:
@@ -180,18 +182,26 @@ private:
 
         connect(&ui.buttonBox, &QDialogButtonBox::accepted, q, &CertificateSelectionDialog::accept);
         connect(&ui.buttonBox, &QDialogButtonBox::rejected, q, &CertificateSelectionDialog::reject);
-        connect(reloadButton, &QPushButton::clicked, q, [this] () { reload(); });
-        connect(lookupButton, &QPushButton::clicked, q, [this] () { lookup(); });
-        connect(ui.createButton, &QPushButton::clicked, q, [this] () { create(); });
-        connect(groupsButton, &QPushButton::clicked, q, [this] () { manageGroups(); });
-        connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged,
-                q, [this] () { slotKeysMayHaveChanged(); });
+        connect(reloadButton, &QPushButton::clicked, q, [this]() {
+            reload();
+        });
+        connect(lookupButton, &QPushButton::clicked, q, [this]() {
+            lookup();
+        });
+        connect(ui.createButton, &QPushButton::clicked, q, [this]() {
+            create();
+        });
+        connect(groupsButton, &QPushButton::clicked, q, [this]() {
+            manageGroups();
+        });
+        connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, q, [this]() {
+            slotKeysMayHaveChanged();
+        });
 
-        connect(importButton, &QPushButton::clicked, q, [importButton, q] () {
+        connect(importButton, &QPushButton::clicked, q, [importButton, q]() {
             importButton->setEnabled(false);
             auto cmd = new Kleo::ImportCertificateFromFileCommand();
-            connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished,
-                    q, [importButton]() {
+            connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished, q, [importButton]() {
                 importButton->setEnabled(true);
             });
             cmd->setParentWidget(q);
@@ -211,15 +221,17 @@ CertificateSelectionDialog::Private::Private(CertificateSelectionDialog *qq)
     ui.tabWidget.hierarchicalModel()->setRemarkKeys(tagKeys);
     ui.tabWidget.connectSearchBar(&ui.searchBar);
 
-    connect(&ui.tabWidget, &TabWidget::currentViewChanged,
-            q, [this] (QAbstractItemView *view) { slotCurrentViewChanged(view); });
+    connect(&ui.tabWidget, &TabWidget::currentViewChanged, q, [this](QAbstractItemView *view) {
+        slotCurrentViewChanged(view);
+    });
 
     updateLabelText();
     q->setWindowTitle(i18nc("@title:window", "Certificate Selection"));
 }
 
 CertificateSelectionDialog::CertificateSelectionDialog(QWidget *parent)
-    : QDialog(parent), d(new Private(this))
+    : QDialog(parent)
+    , d(new Private(this))
 {
     const KSharedConfig::Ptr config = KSharedConfig::openConfig(QStringLiteral("kleopatracertificateselectiondialogrc"));
     d->ui.tabWidget.loadViews(config.data());
@@ -228,7 +240,9 @@ CertificateSelectionDialog::CertificateSelectionDialog(QWidget *parent)
     d->slotKeysMayHaveChanged();
 }
 
-CertificateSelectionDialog::~CertificateSelectionDialog() {}
+CertificateSelectionDialog::~CertificateSelectionDialog()
+{
+}
 
 void CertificateSelectionDialog::setCustomLabelText(const QString &txt)
 {
@@ -297,13 +311,14 @@ QModelIndexList getGroupIndexes(const KeyListModelInterface *model, const std::v
 {
     QModelIndexList indexes;
     indexes.reserve(groups.size());
-    std::transform(groups.begin(), groups.end(),
-                   std::back_inserter(indexes),
-                   [model] (const KeyGroup &group) {
-                       return model->index(group);
-                   });
-    indexes.erase(std::remove_if(indexes.begin(), indexes.end(),
-                                 [] (const QModelIndex &index) { return !index.isValid(); }),
+    std::transform(groups.begin(), groups.end(), std::back_inserter(indexes), [model](const KeyGroup &group) {
+        return model->index(group);
+    });
+    indexes.erase(std::remove_if(indexes.begin(),
+                                 indexes.end(),
+                                 [](const QModelIndex &index) {
+                                     return !index.isValid();
+                                 }),
                   indexes.end());
     return indexes;
 }
@@ -346,11 +361,9 @@ std::vector<KeyGroup> getGroups(const KeyListModelInterface *model, const QModel
 {
     std::vector<KeyGroup> groups;
     groups.reserve(indexes.size());
-    std::transform(indexes.begin(), indexes.end(),
-                   std::back_inserter(groups),
-                   [model](const QModelIndex &idx) {
-                       return model->group(idx);
-                   });
+    std::transform(indexes.begin(), indexes.end(), std::back_inserter(groups), [model](const QModelIndex &idx) {
+        return model->group(idx);
+    });
     groups.erase(std::remove_if(groups.begin(), groups.end(), std::mem_fn(&Kleo::KeyGroup::isNull)), groups.end());
     return groups;
 }
@@ -413,34 +426,44 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
 
     switch (options & AnyFormat) {
     case OpenPGPFormat:
-        end = std::remove_if(keys.begin(), end, [](const Key &key) { return key.protocol() != OpenPGP; });
+        end = std::remove_if(keys.begin(), end, [](const Key &key) {
+            return key.protocol() != OpenPGP;
+        });
         break;
     case CMSFormat:
-        end = std::remove_if(keys.begin(), end, [](const Key &key) { return key.protocol() != CMS; });
+        end = std::remove_if(keys.begin(), end, [](const Key &key) {
+            return key.protocol() != CMS;
+        });
         break;
     default:
-    case AnyFormat:
-        ;
+    case AnyFormat:;
     }
 
     switch (options & AnyCertificate) {
     case SignOnly:
 #if GPGMEPP_KEY_CANSIGN_IS_FIXED
-        end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.canSign(); });
+        end = std::remove_if(keys.begin(), end, [](const Key &key) {
+            return !key.canSign();
+        });
 #else
-        end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.canReallySign(); });
+        end = std::remove_if(keys.begin(), end, [](const Key &key) {
+            return !key.canReallySign();
+        });
 #endif
         break;
     case EncryptOnly:
-        end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.canEncrypt(); });
+        end = std::remove_if(keys.begin(), end, [](const Key &key) {
+            return !key.canEncrypt();
+        });
         break;
     default:
-    case AnyCertificate:
-        ;
+    case AnyCertificate:;
     }
 
     if (options & SecretKeys) {
-        end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.hasSecret(); });
+        end = std::remove_if(keys.begin(), end, [](const Key &key) {
+            return !key.hasSecret();
+        });
     }
 
     keys.erase(end, keys.end());
@@ -450,11 +473,13 @@ void CertificateSelectionDialog::Private::slotCurrentViewChanged(QAbstractItemVi
 {
     if (!Kleo::contains(connectedViews, newView)) {
         connectedViews.push_back(newView);
-        connect(newView, &QAbstractItemView::doubleClicked,
-                q, [this] (const QModelIndex &index) { slotDoubleClicked(index); });
+        connect(newView, &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
+            slotDoubleClicked(index);
+        });
         Q_ASSERT(newView->selectionModel());
-        connect(newView->selectionModel(), &QItemSelectionModel::selectionChanged,
-                q, [this] (const QItemSelection &, const QItemSelection &) { slotSelectionChanged(); });
+        connect(newView->selectionModel(), &QItemSelectionModel::selectionChanged, q, [this](const QItemSelection &, const QItemSelection &) {
+            slotSelectionChanged();
+        });
     }
     slotSelectionChanged();
 }
@@ -476,7 +501,12 @@ void CertificateSelectionDialog::Private::slotDoubleClicked(const QModelIndex &i
     QItemSelectionModel *const sm = view->selectionModel();
     Q_ASSERT(sm);
     sm->select(idx, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-    QMetaObject::invokeMethod(q, [this]() {q->accept();}, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(
+        q,
+        [this]() {
+            q->accept();
+        },
+        Qt::QueuedConnection);
 }
 
 void CertificateSelectionDialog::accept()

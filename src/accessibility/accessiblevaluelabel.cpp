@@ -55,5 +55,5 @@ QString AccessibleValueLabel::text(QAccessible::Text t) const
 
 QLabel *AccessibleValueLabel::label() const
 {
-    return qobject_cast<QLabel*>(object());
+    return qobject_cast<QLabel *>(object());
 }

@@ -46,8 +46,7 @@ Q_SIGNALS:
 private:
     void setupGui();
 
-    void load(const Kleo::FileOperationsPreferences &filePrefs,
-              const Kleo::Settings &settings);
+    void load(const Kleo::FileOperationsPreferences &filePrefs, const Kleo::Settings &settings);
 
 private:
     QCheckBox *mPGPFileExtCB = nullptr;
@@ -63,4 +62,3 @@ private:
 
 }
 }
-

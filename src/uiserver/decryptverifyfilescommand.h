@@ -17,7 +17,7 @@ namespace Kleo
 class DecryptVerifyFilesCommand : public AssuanCommandMixin<DecryptVerifyFilesCommand, DecryptVerifyCommandFilesBase>
 {
 public:
-    //DecryptVerifyFilesCommand();
+    // DecryptVerifyFilesCommand();
     //~DecryptVerifyFilesCommand();
 
 private:
@@ -25,6 +25,7 @@ private:
     {
         return DecryptVerify;
     }
+
 public:
     static const char *staticName()
     {
@@ -33,4 +34,3 @@ public:
 };
 
 }
-

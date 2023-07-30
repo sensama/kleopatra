@@ -20,7 +20,7 @@ namespace SmartCard
 class Card;
 }
 
-class OpenPGPKeyCardWidget: public QWidget
+class OpenPGPKeyCardWidget : public QWidget
 {
     Q_OBJECT
 public:

@@ -19,8 +19,7 @@ class ImportCertificateFromKeyserverCommand : public ImportCertificatesCommand
 {
     Q_OBJECT
 public:
-    explicit ImportCertificateFromKeyserverCommand(const QStringList &keyIds,
-                                                   const QString &id = {});
+    explicit ImportCertificateFromKeyserverCommand(const QStringList &keyIds, const QString &id = {});
     ~ImportCertificateFromKeyserverCommand() override;
 
 private:
@@ -32,5 +31,3 @@ private:
     inline const Private *d_func() const;
 };
 }
-
-

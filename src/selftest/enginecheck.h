@@ -23,4 +23,3 @@ std::shared_ptr<SelfTest> makeGpgSmEngineCheckSelfTest();
 std::shared_ptr<SelfTest> makeGpgConfEngineCheckSelfTest();
 
 }
-

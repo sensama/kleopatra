@@ -40,7 +40,9 @@ enum Policy {
 class ExecutionContext
 {
 public:
-    virtual ~ExecutionContext() {}
+    virtual ~ExecutionContext()
+    {
+    }
     virtual void applyWindowID(QWidget *widget) const = 0;
 };
 
@@ -57,10 +59,10 @@ public:
 protected:
     void bringToForeground(QWidget *wid, bool stayOnTop = false);
     void applyWindowID(QWidget *wid);
+
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
 };
 
 }
-

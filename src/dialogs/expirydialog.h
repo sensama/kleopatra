@@ -27,8 +27,7 @@ class ExpiryDialog : public QDialog
 {
     Q_OBJECT
 public:
-    enum class Mode
-    {
+    enum class Mode {
         UpdateCertificateWithSubkeys,
         UpdateCertificateWithoutSubkeys,
         UpdateIndividualSubkey,
@@ -55,4 +54,3 @@ private:
 
 }
 }
-

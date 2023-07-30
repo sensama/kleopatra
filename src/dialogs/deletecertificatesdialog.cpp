@@ -17,23 +17,22 @@
 #include <Libkleo/KeyListModel>
 #include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
-#include <KMessageBox>
-#include <KStandardGuiItem>
 #include "kleopatra_debug.h"
 #include <KConfigGroup>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <KSharedConfig>
+#include <KStandardGuiItem>
 
-#include <QLabel>
-#include <QDialogButtonBox>
-#include <QVBoxLayout>
-#include <QWhatsThis>
 #include <QCursor>
+#include <QDialogButtonBox>
+#include <QLabel>
 #include <QPushButton>
 #include <QTreeView>
+#include <QVBoxLayout>
+#include <QWhatsThis>
 
 #include <gpgme++/key.h>
-
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -43,12 +42,12 @@ class DeleteCertificatesDialog::Private
 {
     friend class ::Kleo::Dialogs::DeleteCertificatesDialog;
     DeleteCertificatesDialog *const q;
+
 public:
     explicit Private(DeleteCertificatesDialog *qq)
-        : q(qq),
-          ui(q)
+        : q(qq)
+        , ui(q)
     {
-
     }
 
     void slotWhatsThisRequested()
@@ -89,13 +88,14 @@ private:
         QVBoxLayout vlay;
 
         explicit UI(DeleteCertificatesDialog *qq)
-            : selectedLB(i18n("These are the certificates you have selected for deletion:"), qq),
-              selectedKTV(qq),
-              unselectedLB(i18n("These certificates will be deleted even though you did <b>not</b> "
-                                 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"), qq),
-              unselectedKTV(qq),
-              buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel),
-              vlay(qq)
+            : selectedLB(i18n("These are the certificates you have selected for deletion:"), qq)
+            , selectedKTV(qq)
+            , unselectedLB(i18n("These certificates will be deleted even though you did <b>not</b> "
+                                "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"),
+                           qq)
+            , unselectedKTV(qq)
+            , buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel)
+            , vlay(qq)
         {
             KDAB_SET_OBJECT_NAME(selectedLB);
             KDAB_SET_OBJECT_NAME(selectedKTV);
@@ -110,16 +110,15 @@ private:
             vlay.addWidget(&unselectedKTV, 1);
             vlay.addWidget(&buttonBox);
 
-            const QString unselectedWhatsThis
-                = xi18nc("@info:whatsthis",
-                         "<title>Why do you want to delete more certificates than I selected?</title>"
-                         "<para>When you delete CA certificates (both root CAs and intermediate CAs), "
-                         "the certificates issued by them will also be deleted.</para>"
-                         "<para>This can be nicely seen in <application>Kleopatra</application>'s "
-                         "hierarchical view mode: In this mode, if you delete a certificate that has "
-                         "children, those children will also be deleted. Think of CA certificates as "
-                         "folders containing other certificates: When you delete the folder, you "
-                         "delete its contents, too.</para>");
+            const QString unselectedWhatsThis = xi18nc("@info:whatsthis",
+                                                       "<title>Why do you want to delete more certificates than I selected?</title>"
+                                                       "<para>When you delete CA certificates (both root CAs and intermediate CAs), "
+                                                       "the certificates issued by them will also be deleted.</para>"
+                                                       "<para>This can be nicely seen in <application>Kleopatra</application>'s "
+                                                       "hierarchical view mode: In this mode, if you delete a certificate that has "
+                                                       "children, those children will also be deleted. Think of CA certificates as "
+                                                       "folders containing other certificates: When you delete the folder, you "
+                                                       "delete its contents, too.</para>");
             unselectedLB.setContextMenuPolicy(Qt::NoContextMenu);
             unselectedLB.setWhatsThis(unselectedWhatsThis);
             unselectedKTV.setWhatsThis(unselectedWhatsThis);
@@ -143,7 +142,8 @@ private:
 };
 
 DeleteCertificatesDialog::DeleteCertificatesDialog(QWidget *p)
-    : QDialog(p), d(new Private(this))
+    : QDialog(p)
+    , d(new Private(this))
 {
     d->readConfig();
 }
@@ -160,7 +160,7 @@ void DeleteCertificatesDialog::setSelectedKeys(const std::vector<Key> &keys)
 
 void DeleteCertificatesDialog::setUnselectedKeys(const std::vector<Key> &keys)
 {
-    d->ui.unselectedLB .setVisible(!keys.empty());
+    d->ui.unselectedLB.setVisible(!keys.empty());
     d->ui.unselectedKTV.setVisible(!keys.empty());
     d->ui.unselectedKTV.setKeys(keys);
 }
@@ -178,50 +178,50 @@ std::vector<Key> DeleteCertificatesDialog::keys() const
 
 void DeleteCertificatesDialog::accept()
 {
-
     const std::vector<Key> sel = d->ui.selectedKTV.keys();
     const std::vector<Key> uns = d->ui.unselectedKTV.keys();
 
-    const uint secret = std::count_if(sel.cbegin(), sel.cend(), std::mem_fn(&Key::hasSecret))
-                        + std::count_if(uns.cbegin(), uns.cend(), std::mem_fn(&Key::hasSecret));
-    const uint total  = sel.size() + uns.size();
+    const uint secret =
+        std::count_if(sel.cbegin(), sel.cend(), std::mem_fn(&Key::hasSecret)) + std::count_if(uns.cbegin(), uns.cend(), std::mem_fn(&Key::hasSecret));
+    const uint total = sel.size() + uns.size();
 
     int ret = KMessageBox::Continue;
     if (secret)
         ret = KMessageBox::warningContinueCancel(this,
-                secret == total
-                ? i18np("The certificate to be deleted is your own. "
-                        "It contains private key material, "
-                        "which is needed to decrypt past communication "
-                        "encrypted to the certificate, and should therefore "
-                        "not be deleted.",
+                                                 secret == total ? i18np("The certificate to be deleted is your own. "
+                                                                         "It contains private key material, "
+                                                                         "which is needed to decrypt past communication "
+                                                                         "encrypted to the certificate, and should therefore "
+                                                                         "not be deleted.",
 
-                        "All of the certificates to be deleted "
-                        "are your own. "
-                        "They contain private key material, "
-                        "which is needed to decrypt past communication "
-                        "encrypted to the certificate, and should therefore "
-                        "not be deleted.",
+                                                                         "All of the certificates to be deleted "
+                                                                         "are your own. "
+                                                                         "They contain private key material, "
+                                                                         "which is needed to decrypt past communication "
+                                                                         "encrypted to the certificate, and should therefore "
+                                                                         "not be deleted.",
 
-                        secret)
-                : i18np("One of the certificates to be deleted "
-                        "is your own. "
-                        "It contains private key material, "
-                        "which is needed to decrypt past communication "
-                        "encrypted to the certificate, and should therefore "
-                        "not be deleted.",
+                                                                         secret)
+                                                                 : i18np("One of the certificates to be deleted "
+                                                                         "is your own. "
+                                                                         "It contains private key material, "
+                                                                         "which is needed to decrypt past communication "
+                                                                         "encrypted to the certificate, and should therefore "
+                                                                         "not be deleted.",
 
-                        "Some of the certificates to be deleted "
-                        "are your own. "
-                        "They contain private key material, "
-                        "which is needed to decrypt past communication "
-                        "encrypted to the certificate, and should therefore "
-                        "not be deleted.",
+                                                                         "Some of the certificates to be deleted "
+                                                                         "are your own. "
+                                                                         "They contain private key material, "
+                                                                         "which is needed to decrypt past communication "
+                                                                         "encrypted to the certificate, and should therefore "
+                                                                         "not be deleted.",
 
-                        secret),
-                i18n("Secret Key Deletion"),
-                KStandardGuiItem::guiItem(KStandardGuiItem::Delete),
-                KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+                                                                         secret),
+                                                 i18n("Secret Key Deletion"),
+                                                 KStandardGuiItem::guiItem(KStandardGuiItem::Delete),
+                                                 KStandardGuiItem::cancel(),
+                                                 QString(),
+                                                 KMessageBox::Notify | KMessageBox::Dangerous);
 
     if (ret == KMessageBox::Continue) {
         QDialog::accept();

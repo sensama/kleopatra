@@ -19,6 +19,7 @@ class WizardPage::Private
 {
     friend class ::WizardPage;
     WizardPage *const q;
+
 public:
     explicit Private(WizardPage *qq);
     ~Private();
@@ -35,15 +36,16 @@ private:
 WizardPage::Private::Private(WizardPage *qq)
     : q(qq)
 {
-
 }
 
-WizardPage::Private::~Private() {}
+WizardPage::Private::~Private()
+{
+}
 
 WizardPage::WizardPage(QWidget *parent, Qt::WindowFlags f)
-    : QWidget(parent, f), d(new Private(this))
+    : QWidget(parent, f)
+    , d(new Private(this))
 {
-
 }
 
 bool WizardPage::isCommitPage() const
@@ -121,7 +123,10 @@ void WizardPage::setCustomNextButton(const KGuiItem &item)
     d->customNextButton = item;
 }
 
-WizardPage::~WizardPage() {}
+WizardPage::~WizardPage()
+{
+}
 
-void WizardPage::onNext() {}
-
+void WizardPage::onNext()
+{
+}

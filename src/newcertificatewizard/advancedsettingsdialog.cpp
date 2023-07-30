@@ -66,13 +66,13 @@ static const char CMS_KEY_TYPE_ENTRY[] = "CMSKeyType";
 // for GnuPG 2.1. The whole subkey / usage generation needs
 // new api and a reworked dialog. (ah 10.3.16)
 // EDDSA should be supported, too.
-static const QStringList curveNames {
-    { QStringLiteral("brainpoolP256r1") },
-    { QStringLiteral("brainpoolP384r1") },
-    { QStringLiteral("brainpoolP512r1") },
-    { QStringLiteral("NIST P-256") },
-    { QStringLiteral("NIST P-384") },
-    { QStringLiteral("NIST P-521") },
+static const QStringList curveNames{
+    {QStringLiteral("brainpoolP256r1")},
+    {QStringLiteral("brainpoolP384r1")},
+    {QStringLiteral("brainpoolP512r1")},
+    {QStringLiteral("NIST P-256")},
+    {QStringLiteral("NIST P-384")},
+    {QStringLiteral("NIST P-521")},
 };
 
 namespace
@@ -189,8 +189,7 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
 
 }
 
-struct AdvancedSettingsDialog::UI
-{
+struct AdvancedSettingsDialog::UI {
     QTabWidget *tabWidget = nullptr;
     QRadioButton *rsaRB = nullptr;
     QComboBox *rsaKeyStrengthCB = nullptr;
@@ -395,7 +394,7 @@ struct AdvancedSettingsDialog::UI
         mainLayout->addWidget(tabWidget);
 
         buttonBox = new QDialogButtonBox{parent};
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
 
         mainLayout->addWidget(buttonBox);
     }
@@ -440,13 +439,12 @@ AdvancedSettingsDialog::AdvancedSettingsDialog(QWidget *parent)
     connect(ui->signingCB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotSigningAllowedToggled);
     connect(ui->encryptionCB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotEncryptionAllowedToggled);
 
-    connect(ui->expiryCB, &QAbstractButton::toggled,
-            this, [this](bool checked) {
-                ui->expiryDE->setEnabled(checked);
-                if (checked && !ui->expiryDE->isValid()) {
-                    setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
-                }
-            });
+    connect(ui->expiryCB, &QAbstractButton::toggled, this, [this](bool checked) {
+        ui->expiryDE->setEnabled(checked);
+        if (checked && !ui->expiryDE->isValid()) {
+            setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
+        }
+    });
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &AdvancedSettingsDialog::accept);
     connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -516,17 +514,12 @@ void AdvancedSettingsDialog::setKeyStrength(unsigned int strength)
 
 unsigned int AdvancedSettingsDialog::keyStrength() const
 {
-    return
-        ui->dsaRB->isChecked() ? get_keysize(ui->dsaKeyStrengthCB) :
-        ui->rsaRB->isChecked() ? get_keysize(ui->rsaKeyStrengthCB) : 0;
+    return ui->dsaRB->isChecked() ? get_keysize(ui->dsaKeyStrengthCB) : ui->rsaRB->isChecked() ? get_keysize(ui->rsaKeyStrengthCB) : 0;
 }
 
 void AdvancedSettingsDialog::setKeyType(Subkey::PubkeyAlgo algo)
 {
-    QRadioButton *const rb =
-        is_rsa(algo) ? ui->rsaRB :
-        is_dsa(algo) ? ui->dsaRB :
-        is_ecdsa(algo) || is_eddsa(algo) ? ui->ecdsaRB : nullptr;
+    QRadioButton *const rb = is_rsa(algo) ? ui->rsaRB : is_dsa(algo) ? ui->dsaRB : is_ecdsa(algo) || is_eddsa(algo) ? ui->ecdsaRB : nullptr;
     if (rb) {
         rb->setChecked(true);
     }
@@ -534,13 +527,10 @@ void AdvancedSettingsDialog::setKeyType(Subkey::PubkeyAlgo algo)
 
 Subkey::PubkeyAlgo AdvancedSettingsDialog::keyType() const
 {
-    return
-        ui->dsaRB->isChecked() ? Subkey::AlgoDSA :
-        ui->rsaRB->isChecked() ? Subkey::AlgoRSA :
-        ui->ecdsaRB->isChecked() ?
-            ui->ecdsaKeyCurvesCB->currentText() == QLatin1String("ed25519") ? Subkey::AlgoEDDSA :
-            Subkey::AlgoECDSA :
-        Subkey::AlgoUnknown;
+    return ui->dsaRB->isChecked()  ? Subkey::AlgoDSA
+        : ui->rsaRB->isChecked()   ? Subkey::AlgoRSA
+        : ui->ecdsaRB->isChecked() ? ui->ecdsaKeyCurvesCB->currentText() == QLatin1String("ed25519") ? Subkey::AlgoEDDSA : Subkey::AlgoECDSA
+                                   : Subkey::AlgoUnknown;
 }
 
 void AdvancedSettingsDialog::setKeyCurve(const QString &curve)
@@ -723,7 +713,7 @@ void AdvancedSettingsDialog::slotKeyMaterialSelectionChanged()
             ui->encryptionCB->setChecked(is_ecdh(sk_algo));
         }
     } else {
-        //assert( is_rsa( keyType() ) ); // it can happen through misconfiguration by the admin that no key type is selectable at all
+        // assert( is_rsa( keyType() ) ); // it can happen through misconfiguration by the admin that no key type is selectable at all
     }
 }
 
@@ -750,8 +740,8 @@ static void fill_combobox(QComboBox &cb, const QList<int> &sizes, const QStringL
          * defaults in Kleopatra its difficult to print out "default" here. To avoid confusion
          * about that its better not to show any default indication.  */
         cb.addItem(i < labels.size() && !labels[i].trimmed().isEmpty()
-                   ? i18ncp("%2: some admin-supplied text, %1: key size in bits", "%2 (1 bit)", "%2 (%1 bits)", size, labels[i].trimmed())
-                   : i18ncp("%1: key size in bits", "1 bit", "%1 bits", size),
+                       ? i18ncp("%2: some admin-supplied text, %1: key size in bits", "%2 (1 bit)", "%2 (%1 bits)", size, labels[i].trimmed())
+                       : i18ncp("%1: key size in bits", "1 bit", "%1 bits", size),
                    size);
         if (sizes[i] < 0) {
             cb.setCurrentIndex(cb.count() - 1);
@@ -761,7 +751,6 @@ static void fill_combobox(QComboBox &cb, const QList<int> &sizes, const QStringL
 
 void AdvancedSettingsDialog::fillKeySizeComboBoxen()
 {
-
     const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
 
     QList<int> rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << 2048 << -3072 << 4096);
@@ -852,7 +841,6 @@ void AdvancedSettingsDialog::loadDefaultGnuPGKeyType()
 
 void AdvancedSettingsDialog::loadDefaultKeyType()
 {
-
     if (protocol != CMS && protocol != OpenPGP) {
         return;
     }
@@ -872,9 +860,7 @@ void AdvancedSettingsDialog::loadDefaultKeyType()
         loadDefaultGnuPGKeyType();
     } else {
         if (!keyType.isEmpty() && keyType != QLatin1String("RSA"))
-            qCWarning(KLEOPATRA_LOG) << "invalid value \"" << qPrintable(keyType)
-                                     << "\" for entry \"[CertificateCreationWizard]"
-                                     << qPrintable(entry) << "\"";
+            qCWarning(KLEOPATRA_LOG) << "invalid value \"" << qPrintable(keyType) << "\" for entry \"[CertificateCreationWizard]" << qPrintable(entry) << "\"";
         setKeyType(Subkey::AlgoRSA);
         setSubkeyType(Subkey::AlgoRSA);
     }
@@ -906,7 +892,7 @@ void AdvancedSettingsDialog::loadDefaults()
 void AdvancedSettingsDialog::updateWidgetVisibility()
 {
     // Personal Details Page
-    if (protocol == OpenPGP) {    // ### hide until multi-uid is implemented
+    if (protocol == OpenPGP) { // ### hide until multi-uid is implemented
         if (ui->tabWidget->indexOf(ui->personalTab) != -1) {
             ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->personalTab));
         }
@@ -943,16 +929,16 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         //
         // Does anyone want to use NIST anyway?
         int i;
-        while ((i = ui->ecdsaKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1 ||
-               (i = ui->ecdsaKeyCurvesCB->findText(QStringLiteral("25519"), Qt::MatchEndsWith)) != -1) {
+        while ((i = ui->ecdsaKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1
+               || (i = ui->ecdsaKeyCurvesCB->findText(QStringLiteral("25519"), Qt::MatchEndsWith)) != -1) {
             ui->ecdsaKeyCurvesCB->removeItem(i);
         }
-        while ((i = ui->ecdhKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1 ||
-               (i = ui->ecdhKeyCurvesCB->findText(QStringLiteral("25519"), Qt::MatchEndsWith)) != -1) {
+        while ((i = ui->ecdhKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1
+               || (i = ui->ecdhKeyCurvesCB->findText(QStringLiteral("25519"), Qt::MatchEndsWith)) != -1) {
             ui->ecdhKeyCurvesCB->removeItem(i);
         }
     }
-    ui->certificationCB->setVisible(protocol == OpenPGP);   // gpgsm limitation?
+    ui->certificationCB->setVisible(protocol == OpenPGP); // gpgsm limitation?
     ui->authenticationCB->setVisible(protocol == OpenPGP);
 
     if (keyTypeImmutable) {

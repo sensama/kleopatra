@@ -7,9 +7,9 @@
 */
 #include "netkeywidget.h"
 
-#include "nullpinwidget.h"
 #include "keytreeview.h"
 #include "kleopatraapplication.h"
+#include "nullpinwidget.h"
 #include "systrayicon.h"
 
 #include "kleopatra_debug.h"
@@ -18,10 +18,10 @@
 #include "smartcard/readerstatus.h"
 
 #include "commands/changepincommand.h"
-#include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/createcsrforcardkeycommand.h"
-#include "commands/learncardkeyscommand.h"
+#include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/detailscommand.h"
+#include "commands/learncardkeyscommand.h"
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
@@ -30,13 +30,13 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 
+#include <QHBoxLayout>
 #include <QInputDialog>
 #include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QScrollArea>
 #include <QPushButton>
+#include <QScrollArea>
 #include <QTreeView>
+#include <QVBoxLayout>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -48,18 +48,18 @@ using namespace Kleo;
 using namespace Kleo::SmartCard;
 using namespace Kleo::Commands;
 
-NetKeyWidget::NetKeyWidget(QWidget *parent) :
-    QWidget(parent),
-    mSerialNumberLabel(new QLabel(this)),
-    mVersionLabel(new QLabel(this)),
-    mLearnKeysLabel(new QLabel(this)),
-    mErrorLabel(new QLabel(this)),
-    mNullPinWidget(new NullPinWidget(this)),
-    mLearnKeysBtn(new QPushButton(this)),
-    mChangeNKSPINBtn(new QPushButton(this)),
-    mChangeSigGPINBtn(new QPushButton(this)),
-    mTreeView(new KeyTreeView(this)),
-    mArea(new QScrollArea)
+NetKeyWidget::NetKeyWidget(QWidget *parent)
+    : QWidget(parent)
+    , mSerialNumberLabel(new QLabel(this))
+    , mVersionLabel(new QLabel(this))
+    , mLearnKeysLabel(new QLabel(this))
+    , mErrorLabel(new QLabel(this))
+    , mNullPinWidget(new NullPinWidget(this))
+    , mLearnKeysBtn(new QPushButton(this))
+    , mChangeNKSPINBtn(new QPushButton(this))
+    , mChangeSigGPINBtn(new QPushButton(this))
+    , mTreeView(new KeyTreeView(this))
+    , mArea(new QScrollArea)
 {
     auto vLay = new QVBoxLayout;
 
@@ -87,7 +87,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
 
     vLay->addWidget(mNullPinWidget);
 
-
     auto line1 = new QFrame();
     line1->setFrameShape(QFrame::HLine);
     vLay->addWidget(line1);
@@ -95,7 +94,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
 
     mLearnKeysLabel = new QLabel(i18n("There are unknown certificates on this card."));
     mLearnKeysBtn->setText(i18nc("@action", "Load Certificates"));
-    connect(mLearnKeysBtn, &QPushButton::clicked, this, [this] () {
+    connect(mLearnKeysBtn, &QPushButton::clicked, this, [this]() {
         mLearnKeysBtn->setEnabled(false);
         auto cmd = new LearnCardKeysCommand(GpgME::CMS);
         cmd->setParentWidget(this);
@@ -106,7 +105,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
             icon->setLearningInProgress(true);
         }
 
-        connect(cmd, &Command::finished, this, [icon] () {
+        connect(cmd, &Command::finished, this, [icon]() {
             ReaderStatus::mutableInstance()->updateStatus();
             icon->setLearningInProgress(false);
         });
@@ -125,8 +124,8 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
     mTreeView->setHierarchicalModel(AbstractKeyListModel::createHierarchicalKeyListModel(mTreeView));
     mTreeView->setHierarchicalView(true);
 
-    connect(mTreeView->view(), &QAbstractItemView::doubleClicked, this, [this] (const QModelIndex &idx) {
-        const auto klm = dynamic_cast<KeyListModelInterface *> (mTreeView->view()->model());
+    connect(mTreeView->view(), &QAbstractItemView::doubleClicked, this, [this](const QModelIndex &idx) {
+        const auto klm = dynamic_cast<KeyListModelInterface *>(mTreeView->view()->model());
         if (!klm) {
             qCDebug(KLEOPATRA_LOG) << "Unhandled Model: " << mTreeView->view()->model()->metaObject()->className();
             return;
@@ -136,7 +135,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
         cmd->start();
     });
     vLay->addWidget(mTreeView);
-
 
     // The action area
     auto line2 = new QFrame();
@@ -160,14 +158,20 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
         mCreateCSRButton->setToolTip(i18nc("@info:tooltip", "Create a certificate signing request for a key stored on the card."));
         mCreateCSRButton->setEnabled(false);
         actionLayout->addWidget(mCreateCSRButton);
-        connect(mCreateCSRButton, &QPushButton::clicked, this, [this] () { createCSR(); });
+        connect(mCreateCSRButton, &QPushButton::clicked, this, [this]() {
+            createCSR();
+        });
     }
 
     mChangeNKSPINBtn->setText(i18nc("NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
     mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
 
-    connect(mChangeNKSPINBtn, &QPushButton::clicked, this, [this] () { doChangePin(NetKeyCard::nksPinKeyRef()); });
-    connect(mChangeSigGPINBtn, &QPushButton::clicked, this, [this] () { doChangePin(NetKeyCard::sigGPinKeyRef()); });
+    connect(mChangeNKSPINBtn, &QPushButton::clicked, this, [this]() {
+        doChangePin(NetKeyCard::nksPinKeyRef());
+    });
+    connect(mChangeSigGPINBtn, &QPushButton::clicked, this, [this]() {
+        doChangePin(NetKeyCard::sigGPinKeyRef());
+    });
 
     actionLayout->addWidget(mChangeNKSPINBtn);
     actionLayout->addWidget(mChangeSigGPINBtn);
@@ -210,7 +214,7 @@ std::vector<KeyPairInfo> getKeysSuitableForCSRCreation(const NetKeyCard *netKeyC
 }
 }
 
-void NetKeyWidget::setCard(const NetKeyCard* card)
+void NetKeyWidget::setCard(const NetKeyCard *card)
 {
     mSerialNumber = card->serialNumber();
     mVersionLabel->setText(i18nc("1 is a Version number", "NetKey v%1 Card", card->appVersion()));
@@ -221,16 +225,14 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
      * to use SigG Certificates at all. So it should be optional to set the pins. */
     mNullPinWidget->setVisible(card->hasNKSNullPin() /*|| card->hasSigGNullPin()*/);
 
-    mNullPinWidget->setSigGVisible(false/*card->hasSigGNullPin()*/);
+    mNullPinWidget->setSigGVisible(false /*card->hasSigGNullPin()*/);
     mNullPinWidget->setNKSVisible(card->hasNKSNullPin());
     mChangeNKSPINBtn->setEnabled(!card->hasNKSNullPin());
 
     if (card->hasSigGNullPin()) {
-        mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card",
-                                   "Set SigG PIN"));
+        mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Set SigG PIN"));
     } else {
-        mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card",
-                                  "Change SigG PIN"));
+        mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
     }
 
     mLearnKeysBtn->setEnabled(true);
@@ -250,9 +252,7 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
     mTreeView->setKeys(keys);
 
     if (mKeyForCardKeysButton) {
-        mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin()
-                                          && card->hasSigningKey()
-                                          && card->hasEncryptionKey()
+        mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey()
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
     }
@@ -265,17 +265,15 @@ void NetKeyWidget::doChangePin(const std::string &keyRef)
 {
     const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
     if (!netKeyCard) {
-        KMessageBox::error(this,
-                           i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        KMessageBox::error(this, i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(mSerialNumber)));
         return;
     }
 
     auto cmd = new ChangePinCommand(mSerialNumber, NetKeyCard::AppName, this);
     this->setEnabled(false);
-    connect(cmd, &ChangePinCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &ChangePinCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->setKeyRef(keyRef);
     if ((keyRef == NetKeyCard::nksPinKeyRef() && netKeyCard->hasNKSNullPin()) //
         || (keyRef == NetKeyCard::sigGPinKeyRef() && netKeyCard->hasSigGNullPin())) {
@@ -288,10 +286,9 @@ void NetKeyWidget::createKeyFromCardKeys()
 {
     auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mSerialNumber, NetKeyCard::AppName, this);
     this->setEnabled(false);
-    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->start();
 }
 
@@ -305,8 +302,13 @@ std::string getKeyRef(const std::vector<KeyPairInfo> &keys, QWidget *parent)
     }
 
     bool ok;
-    const QString choice = QInputDialog::getItem(parent, i18n("Select Key"),
-        i18n("Please select the key you want to create a certificate signing request for:"), options, /* current= */ 0, /* editable= */ false, &ok);
+    const QString choice = QInputDialog::getItem(parent,
+                                                 i18n("Select Key"),
+                                                 i18n("Please select the key you want to create a certificate signing request for:"),
+                                                 options,
+                                                 /* current= */ 0,
+                                                 /* editable= */ false,
+                                                 &ok);
     return ok ? keys[options.indexOf(choice)].keyRef : std::string();
 }
 }
@@ -315,14 +317,12 @@ void NetKeyWidget::createCSR()
 {
     const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
     if (!netKeyCard) {
-        KMessageBox::error(this,
-                           i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        KMessageBox::error(this, i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(mSerialNumber)));
         return;
     }
     const auto suitableKeys = getKeysSuitableForCSRCreation(netKeyCard.get());
     if (suitableKeys.empty()) {
-        KMessageBox::error(this,
-                           i18n("Sorry! No keys suitable for creating a certificate signing request found on the smartcard."));
+        KMessageBox::error(this, i18n("Sorry! No keys suitable for creating a certificate signing request found on the smartcard."));
         return;
     }
     const auto keyRef = getKeyRef(suitableKeys, this);
@@ -331,9 +331,8 @@ void NetKeyWidget::createCSR()
     }
     auto cmd = new CreateCSRForCardKeyCommand(keyRef, mSerialNumber, NetKeyCard::AppName, this);
     this->setEnabled(false);
-    connect(cmd, &CreateCSRForCardKeyCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &CreateCSRForCardKeyCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->start();
 }

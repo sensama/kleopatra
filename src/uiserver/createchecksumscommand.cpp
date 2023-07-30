@@ -25,12 +25,12 @@ class CreateChecksumsCommand::Private
 private:
     friend class ::Kleo::CreateChecksumsCommand;
     CreateChecksumsCommand *const q;
+
 public:
     explicit Private(CreateChecksumsCommand *qq)
-        : q(qq),
-          controller()
+        : q(qq)
+        , controller()
     {
-
     }
 
 private:
@@ -41,25 +41,23 @@ private:
 };
 
 CreateChecksumsCommand::CreateChecksumsCommand()
-    : AssuanCommandMixin<CreateChecksumsCommand>(), d(new Private(this))
+    : AssuanCommandMixin<CreateChecksumsCommand>()
+    , d(new Private(this))
 {
-
 }
 
-CreateChecksumsCommand::~CreateChecksumsCommand() {}
+CreateChecksumsCommand::~CreateChecksumsCommand()
+{
+}
 
 void CreateChecksumsCommand::Private::checkForErrors() const
 {
-
     if (!q->numFiles())
-        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT),
-                        i18n("At least one FILE must be present"));
-
+        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT), i18n("At least one FILE must be present"));
 }
 
 int CreateChecksumsCommand::doStart()
 {
-
     d->checkForErrors();
 
     d->controller.reset(new CreateChecksumsController(shared_from_this()));
@@ -68,8 +66,22 @@ int CreateChecksumsCommand::doStart()
 
     d->controller->setFiles(fileNames());
 
-    connect(d->controller.get(), &Controller::done, this, [this]() { done(); }, Qt::QueuedConnection);
-    connect(d->controller.get(), &Controller::error, this, [this](int err, const QString &details) { done(err, details); }, Qt::QueuedConnection);
+    connect(
+        d->controller.get(),
+        &Controller::done,
+        this,
+        [this]() {
+            done();
+        },
+        Qt::QueuedConnection);
+    connect(
+        d->controller.get(),
+        &Controller::error,
+        this,
+        [this](int err, const QString &details) {
+            done(err, details);
+        },
+        Qt::QueuedConnection);
 
     d->controller->start();
 
@@ -82,4 +94,3 @@ void CreateChecksumsCommand::doCanceled()
         d->controller->cancel();
     }
 }
-

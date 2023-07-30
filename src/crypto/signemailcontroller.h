@@ -54,17 +54,15 @@ public:
 
     void setProtocol(GpgME::Protocol proto);
     GpgME::Protocol protocol() const;
-    //const char * protocolAsString() const;
+    // const char * protocolAsString() const;
 
     void startResolveSigners();
     void startResolveSigners(const std::vector<KMime::Types::Mailbox> &signers);
 
     void setDetachedSignature(bool detached);
 
-    void setInputAndOutput(const std::shared_ptr<Kleo::Input>   &input,
-                           const std::shared_ptr<Kleo::Output> &output);
-    void setInputsAndOutputs(const std::vector< std::shared_ptr<Kleo::Input> >   &inputs,
-                             const std::vector< std::shared_ptr<Kleo::Output> > &outputs);
+    void setInputAndOutput(const std::shared_ptr<Kleo::Input> &input, const std::shared_ptr<Kleo::Output> &output);
+    void setInputsAndOutputs(const std::vector<std::shared_ptr<Kleo::Input>> &inputs, const std::vector<std::shared_ptr<Kleo::Output>> &outputs);
 
     void start();
 
@@ -87,5 +85,3 @@ private:
 
 } // Crypto
 } // Kleo
-
-

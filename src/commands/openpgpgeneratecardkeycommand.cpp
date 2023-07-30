@@ -41,6 +41,7 @@ class OpenPGPGenerateCardKeyCommand::Private : public CardCommand::Private
     {
         return static_cast<OpenPGPGenerateCardKeyCommand *>(q);
     }
+
 public:
     explicit Private(OpenPGPGenerateCardKeyCommand *qq, const std::string &keyref, const std::string &serialNumber, QWidget *p);
 
@@ -95,7 +96,7 @@ void OpenPGPGenerateCardKeyCommand::Private::slotDialogRejected()
     finished();
 }
 
-void OpenPGPGenerateCardKeyCommand::Private::slotResult(const GpgME::Error& err)
+void OpenPGPGenerateCardKeyCommand::Private::slotResult(const GpgME::Error &err)
 {
     qCDebug(KLEOPATRA_LOG).nospace() << q << "::Private::" << __func__ << err;
 
@@ -117,8 +118,12 @@ void OpenPGPGenerateCardKeyCommand::Private::ensureDialogCreated()
     dialog = new GenCardKeyDialog(GenCardKeyDialog::KeyAlgorithm, parentWidgetOrView());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 void OpenPGPGenerateCardKeyCommand::Private::generateKey()
@@ -172,15 +177,18 @@ void OpenPGPGenerateCardKeyCommand::doStart()
     auto existingKey = pgpCard->keyInfo(d->keyRef).grip;
     if (!existingKey.empty()) {
         const QString warningText = i18nc("@info",
-            "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
-            "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
-            i18n("The existing key has the ID:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
-            (d->keyRef == OpenPGPCard::pgpEncKeyRef() ?
-             i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
-             QString());
-        const auto choice = KMessageBox::warningContinueCancel(d->parentWidgetOrView(), warningText,
-            i18nc("@title:window", "Overwrite Existing Key"),
-            KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+                                          "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+                                          "<p>If there is no backup the existing key will be irrecoverably lost.</p>")
+            + i18n("The existing key has the ID:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey))
+            + (d->keyRef == OpenPGPCard::pgpEncKeyRef() ? i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.")
+                                                        : QString());
+        const auto choice = KMessageBox::warningContinueCancel(d->parentWidgetOrView(),
+                                                               warningText,
+                                                               i18nc("@title:window", "Overwrite Existing Key"),
+                                                               KStandardGuiItem::cont(),
+                                                               KStandardGuiItem::cancel(),
+                                                               QString(),
+                                                               KMessageBox::Notify | KMessageBox::Dangerous);
         if (choice != KMessageBox::Continue) {
             d->finished();
             return;

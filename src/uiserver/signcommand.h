@@ -25,6 +25,7 @@ public:
 private:
     int doStart() override;
     void doCanceled() override;
+
 public:
     static const char *staticName()
     {
@@ -32,9 +33,9 @@ public:
     }
 
     class Private;
+
 private:
     kdtools::pimpl_ptr<Private> d;
 };
 
 }
-

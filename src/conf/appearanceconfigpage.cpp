@@ -13,7 +13,6 @@
 
 #include "appearanceconfigwidget.h"
 
-
 #include <QVBoxLayout>
 
 using namespace Kleo;
@@ -47,7 +46,6 @@ void AppearanceConfigurationPage::load()
 void AppearanceConfigurationPage::save()
 {
     mWidget->save();
-
 }
 
 void AppearanceConfigurationPage::defaults()

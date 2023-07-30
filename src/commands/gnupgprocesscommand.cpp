@@ -19,16 +19,16 @@
 #include <KLocalizedString>
 #include <KWindowSystem>
 
-#include <QString>
 #include <QByteArray>
-#include <QTextEdit>
-#include <QTimer>
 #include <QDialog>
 #include <QDialogButtonBox>
-#include <QPushButton>
-#include <QVBoxLayout>
 #include <QPointer>
 #include <QProcess>
+#include <QPushButton>
+#include <QString>
+#include <QTextEdit>
+#include <QTimer>
+#include <QVBoxLayout>
 
 static const int PROCESS_TERMINATE_TIMEOUT = 5000; // milliseconds
 
@@ -43,10 +43,10 @@ class OutputDialog : public QDialog
     Q_OBJECT
 public:
     explicit OutputDialog(QWidget *parent = nullptr)
-        : QDialog(parent),
-          vlay(this),
-          logTextWidget(this),
-          buttonBox(QDialogButtonBox::Cancel | QDialogButtonBox::Close, Qt::Horizontal, this)
+        : QDialog(parent)
+        , vlay(this)
+        , logTextWidget(this)
+        , buttonBox(QDialogButtonBox::Cancel | QDialogButtonBox::Close, Qt::Horizontal, this)
     {
         KDAB_SET_OBJECT_NAME(vlay);
         KDAB_SET_OBJECT_NAME(logTextWidget);
@@ -109,6 +109,7 @@ class GnuPGProcessCommand::Private : Command::Private
     {
         return static_cast<GnuPGProcessCommand *>(q);
     }
+
 public:
     explicit Private(GnuPGProcessCommand *qq, KeyListController *c);
     ~Private() override;
@@ -176,18 +177,20 @@ const GnuPGProcessCommand::Private *GnuPGProcessCommand::d_func() const
 #define q q_func()
 
 GnuPGProcessCommand::Private::Private(GnuPGProcessCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      process(),
-      dialog(),
-      errorBuffer(),
-      ignoresSuccessOrFailure(false),
-      showsOutputWindow(false),
-      canceled(false)
+    : Command::Private(qq, c)
+    , process()
+    , dialog()
+    , errorBuffer()
+    , ignoresSuccessOrFailure(false)
+    , showsOutputWindow(false)
+    , canceled(false)
 {
     process.setReadChannel(QProcess::StandardError);
 }
 
-GnuPGProcessCommand::Private::~Private() {}
+GnuPGProcessCommand::Private::~Private()
+{
+}
 
 GnuPGProcessCommand::GnuPGProcessCommand(KeyListController *c)
     : Command(new Private(this, c))
@@ -210,15 +213,24 @@ GnuPGProcessCommand::GnuPGProcessCommand(const GpgME::Key &key)
 void GnuPGProcessCommand::Private::init()
 {
 #if QT_DEPRECATED_SINCE(5, 13)
-    connect(&process, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+    connect(&process,
+            qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
 #else
-    connect(&process, &QProcess::finished,
+    connect(&process,
+            &QProcess::finished,
 #endif
-            q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
-    q->m_procReadyReadStdErrConnection = connect(&process, &QProcess::readyReadStandardError, q, [this]() { slotProcessReadyReadStandardError(); });
+            q,
+            [this](int exitCode, QProcess::ExitStatus status) {
+                slotProcessFinished(exitCode, status);
+            });
+    q->m_procReadyReadStdErrConnection = connect(&process, &QProcess::readyReadStandardError, q, [this]() {
+        slotProcessReadyReadStandardError();
+    });
 }
 
-GnuPGProcessCommand::~GnuPGProcessCommand() {}
+GnuPGProcessCommand::~GnuPGProcessCommand()
+{
+}
 
 QDialog *GnuPGProcessCommand::dialog() const
 {
@@ -232,12 +244,10 @@ bool GnuPGProcessCommand::preStartHook(QWidget *) const
 
 void GnuPGProcessCommand::postSuccessHook(QWidget *)
 {
-
 }
 
 void GnuPGProcessCommand::doStart()
 {
-
     if (!preStartHook(d->parentWidgetOrView())) {
         d->finished();
         return;
@@ -256,7 +266,8 @@ void GnuPGProcessCommand::doStart()
 
     if (!d->process.waitForStarted()) {
         d->error(i18n("Unable to start process %1. "
-                      "Please check your installation.", d->arguments[0]),
+                      "Please check your installation.",
+                      d->arguments[0]),
                  errorCaption());
         d->finished();
     } else {
@@ -377,5 +388,5 @@ QString GnuPGProcessCommand::successMessage(const QStringList &args) const
 #undef d
 #undef q
 
-#include "moc_gnupgprocesscommand.cpp"
 #include "gnupgprocesscommand.moc"
+#include "moc_gnupgprocesscommand.cpp"

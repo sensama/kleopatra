@@ -15,26 +15,26 @@
 
 #include "certificatedetailswidget.h"
 
-#include "kleopatra_debug.h"
 #include "exportdialog.h"
-#include "trustchainwidget.h"
+#include "kleopatra_debug.h"
 #include "subkeyswidget.h"
+#include "trustchainwidget.h"
 #include "weboftrustdialog.h"
 
-#include "commands/changepassphrasecommand.h"
-#include "commands/changeexpirycommand.h"
 #include "commands/certifycertificatecommand.h"
+#include "commands/changeexpirycommand.h"
+#include "commands/changepassphrasecommand.h"
 #ifdef MAILAKONADI_ENABLED
 #include "commands/exportopenpgpcerttoprovidercommand.h"
 #endif // MAILAKONADI_ENABLED
+#include "commands/adduseridcommand.h"
+#include "commands/detailscommand.h"
+#include "commands/dumpcertificatecommand.h"
+#include "commands/genrevokecommand.h"
 #include "commands/refreshcertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
 #include "commands/revokeuseridcommand.h"
 #include "commands/setprimaryuseridcommand.h"
-#include "commands/adduseridcommand.h"
-#include "commands/genrevokecommand.h"
-#include "commands/detailscommand.h"
-#include "commands/dumpcertificatecommand.h"
 #include "utils/accessibility.h"
 #include "utils/keys.h"
 #include "utils/tags.h"
@@ -42,11 +42,11 @@
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
-#include <Libkleo/Formatting>
 #include <Libkleo/Dn>
+#include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyHelpers>
-#include <Libkleo/GnuPG>
 #include <Libkleo/NavigatableTreeWidget>
 
 #include <KLocalizedString>
@@ -59,8 +59,8 @@
 #include <gpgme++/tofuinfo.h>
 
 #include <QGpgME/Debug>
-#include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
+#include <QGpgME/Protocol>
 
 #include <QClipboard>
 #include <QDateTime>
@@ -91,7 +91,8 @@ using namespace Kleo;
 
 namespace
 {
-std::vector<GpgME::UserID> selectedUserIDs(const QTreeWidget *treeWidget) {
+std::vector<GpgME::UserID> selectedUserIDs(const QTreeWidget *treeWidget)
+{
     if (!treeWidget) {
         return {};
     }
@@ -142,9 +143,7 @@ public:
 
     void updateKey();
     void setUpdatedKey(const GpgME::Key &key);
-    void keyListDone(const GpgME::KeyListResult &,
-                     const std::vector<GpgME::Key> &, const QString &,
-                     const GpgME::Error &);
+    void keyListDone(const GpgME::KeyListResult &, const std::vector<GpgME::Key> &, const QString &, const GpgME::Error &);
     void copyFingerprintToClipboard();
 
 private:
@@ -204,54 +203,54 @@ private:
 
             userIDs = new QWidget{parent};
             {
-            auto userIDsLayout = new QVBoxLayout{userIDs};
-            userIDsLayout->setContentsMargins({});
+                auto userIDsLayout = new QVBoxLayout{userIDs};
+                userIDsLayout->setContentsMargins({});
 
-            userIDTableLabel = new QLabel(i18n("User IDs:"), parent);
-            userIDsLayout->addWidget(userIDTableLabel);
+                userIDTableLabel = new QLabel(i18n("User IDs:"), parent);
+                userIDsLayout->addWidget(userIDTableLabel);
 
-            userIDTable = new NavigatableTreeWidget{parent};
-            userIDTableLabel->setBuddy(userIDTable);
-            userIDTable->setAccessibleName(i18n("User IDs"));
-            QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
-            __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
-            userIDTable->setHeaderItem(__qtreewidgetitem);
-            userIDTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-            userIDTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
-            userIDTable->setRootIsDecorated(false);
-            userIDTable->setUniformRowHeights(true);
-            userIDTable->setAllColumnsShowFocus(false);
+                userIDTable = new NavigatableTreeWidget{parent};
+                userIDTableLabel->setBuddy(userIDTable);
+                userIDTable->setAccessibleName(i18n("User IDs"));
+                QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+                __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
+                userIDTable->setHeaderItem(__qtreewidgetitem);
+                userIDTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+                userIDTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
+                userIDTable->setRootIsDecorated(false);
+                userIDTable->setUniformRowHeights(true);
+                userIDTable->setAllColumnsShowFocus(false);
 
-            userIDsLayout->addWidget(userIDTable);
+                userIDsLayout->addWidget(userIDTable);
 
-            {
-            auto buttonRow = new QHBoxLayout;
+                {
+                    auto buttonRow = new QHBoxLayout;
 
-            addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
-            buttonRow->addWidget(addUserIDBtn);
+                    addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
+                    buttonRow->addWidget(addUserIDBtn);
 
-            setPrimaryUserIDBtn = new QPushButton{i18nc("@action:button", "Flag as Primary"), parent};
-            setPrimaryUserIDBtn->setToolTip(i18nc("@info:tooltip", "Flag the selected user ID as the primary user ID of this key."));
-            buttonRow->addWidget(setPrimaryUserIDBtn);
+                    setPrimaryUserIDBtn = new QPushButton{i18nc("@action:button", "Flag as Primary"), parent};
+                    setPrimaryUserIDBtn->setToolTip(i18nc("@info:tooltip", "Flag the selected user ID as the primary user ID of this key."));
+                    buttonRow->addWidget(setPrimaryUserIDBtn);
 
-            certifyBtn = new QPushButton(i18nc("@action:button", "Certify User IDs"), parent);
-            buttonRow->addWidget(certifyBtn);
+                    certifyBtn = new QPushButton(i18nc("@action:button", "Certify User IDs"), parent);
+                    buttonRow->addWidget(certifyBtn);
 
-            webOfTrustBtn = new QPushButton(i18nc("@action:button", "Show Certifications"), parent);
-            buttonRow->addWidget(webOfTrustBtn);
+                    webOfTrustBtn = new QPushButton(i18nc("@action:button", "Show Certifications"), parent);
+                    buttonRow->addWidget(webOfTrustBtn);
 
-            revokeCertificationsBtn = new QPushButton(i18nc("@action:button", "Revoke Certifications"), parent);
-            buttonRow->addWidget(revokeCertificationsBtn);
+                    revokeCertificationsBtn = new QPushButton(i18nc("@action:button", "Revoke Certifications"), parent);
+                    buttonRow->addWidget(revokeCertificationsBtn);
 
-            revokeUserIDBtn = new QPushButton(i18nc("@action:button", "Revoke User ID"), parent);
-            buttonRow->addWidget(revokeUserIDBtn);
+                    revokeUserIDBtn = new QPushButton(i18nc("@action:button", "Revoke User ID"), parent);
+                    buttonRow->addWidget(revokeUserIDBtn);
 
-            buttonRow->addStretch(1);
+                    buttonRow->addStretch(1);
 
-            userIDsLayout->addLayout(buttonRow);
-            }
+                    userIDsLayout->addLayout(buttonRow);
+                }
 
-            userIDsLayout->addWidget(new KSeparator{Qt::Horizontal, parent});
+                userIDsLayout->addWidget(new KSeparator{Qt::Horizontal, parent});
             }
 
             mainLayout->addWidget(userIDs);
@@ -267,7 +266,7 @@ private:
                         continue;
                     }
                     const auto labelWithColon = i18nc("interpunctation for labels", "%1:", attributeLabel);
-                    const auto & [it, inserted] = smimeAttributeFields.try_emplace(attribute, std::make_unique<InfoField>(labelWithColon, parent));
+                    const auto &[it, inserted] = smimeAttributeFields.try_emplace(attribute, std::make_unique<InfoField>(labelWithColon, parent));
                     if (inserted) {
                         row++;
                         const auto &field = it->second;
@@ -367,11 +366,11 @@ private:
                 buttonRow->addWidget(changePassphraseBtn);
 
                 genRevokeBtn = new QPushButton(i18nc("@action:button", "Generate Revocation Certificate"), parent);
-                genRevokeBtn->setToolTip(u"<html>" %
-                                        i18n("A revocation certificate is a file that serves as a \"kill switch\" to publicly "
-                                            "declare that a key shall not anymore be used.  It is not possible "
-                                            "to retract such a revocation certificate once it has been published.") %
-                                        u"</html>");
+                genRevokeBtn->setToolTip(u"<html>"
+                                         % i18n("A revocation certificate is a file that serves as a \"kill switch\" to publicly "
+                                                "declare that a key shall not anymore be used.  It is not possible "
+                                                "to retract such a revocation certificate once it has been published.")
+                                         % u"</html>");
                 buttonRow->addWidget(genRevokeBtn);
 
                 buttonRow->addStretch(1);
@@ -388,45 +387,63 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
     ui.setupUi(q);
 
     ui.userIDTable->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui.userIDTable, &QAbstractItemView::customContextMenuRequested,
-            q, [this](const QPoint &p) { userIDTableContextMenuRequested(p); });
-    connect(ui.userIDTable, &QTreeWidget::itemSelectionChanged,
-            q, [this]() { updateUserIDActions(); });
-    connect(ui.addUserIDBtn, &QPushButton::clicked,
-            q, [this]() { addUserID(); });
-    connect(ui.setPrimaryUserIDBtn, &QPushButton::clicked,
-            q, [this]() { setPrimaryUserID(); });
-    connect(ui.revokeUserIDBtn, &QPushButton::clicked,
-            q, [this]() { revokeSelectedUserID(); });
-    connect(ui.changePassphraseBtn, &QPushButton::clicked,
-            q, [this]() { changePassphrase(); });
-    connect(ui.genRevokeBtn, &QPushButton::clicked,
-            q, [this]() { genRevokeCert(); });
-    connect(ui.changeExpirationAction, &QAction::triggered,
-            q, [this]() { changeExpiration(); });
-    connect(ui.showIssuerCertificateAction, &QAction::triggered,
-            q, [this]() { showIssuerCertificate(); });
-    connect(ui.trustChainDetailsBtn, &QPushButton::pressed,
-            q, [this]() { showTrustChainDialog(); });
-    connect(ui.moreDetailsBtn, &QPushButton::pressed,
-            q, [this]() { showMoreDetails(); });
-    connect(ui.refreshBtn, &QPushButton::clicked,
-            q, [this]() { refreshCertificate(); });
-    connect(ui.certifyBtn, &QPushButton::clicked,
-            q, [this]() { certifyUserIDs(); });
-    connect(ui.revokeCertificationsBtn, &QPushButton::clicked,
-            q, [this]() { revokeCertifications(); });
-    connect(ui.webOfTrustBtn, &QPushButton::clicked,
-            q, [this]() { webOfTrustClicked(); });
-    connect(ui.exportBtn, &QPushButton::clicked,
-            q, [this]() { exportClicked(); });
+    connect(ui.userIDTable, &QAbstractItemView::customContextMenuRequested, q, [this](const QPoint &p) {
+        userIDTableContextMenuRequested(p);
+    });
+    connect(ui.userIDTable, &QTreeWidget::itemSelectionChanged, q, [this]() {
+        updateUserIDActions();
+    });
+    connect(ui.addUserIDBtn, &QPushButton::clicked, q, [this]() {
+        addUserID();
+    });
+    connect(ui.setPrimaryUserIDBtn, &QPushButton::clicked, q, [this]() {
+        setPrimaryUserID();
+    });
+    connect(ui.revokeUserIDBtn, &QPushButton::clicked, q, [this]() {
+        revokeSelectedUserID();
+    });
+    connect(ui.changePassphraseBtn, &QPushButton::clicked, q, [this]() {
+        changePassphrase();
+    });
+    connect(ui.genRevokeBtn, &QPushButton::clicked, q, [this]() {
+        genRevokeCert();
+    });
+    connect(ui.changeExpirationAction, &QAction::triggered, q, [this]() {
+        changeExpiration();
+    });
+    connect(ui.showIssuerCertificateAction, &QAction::triggered, q, [this]() {
+        showIssuerCertificate();
+    });
+    connect(ui.trustChainDetailsBtn, &QPushButton::pressed, q, [this]() {
+        showTrustChainDialog();
+    });
+    connect(ui.moreDetailsBtn, &QPushButton::pressed, q, [this]() {
+        showMoreDetails();
+    });
+    connect(ui.refreshBtn, &QPushButton::clicked, q, [this]() {
+        refreshCertificate();
+    });
+    connect(ui.certifyBtn, &QPushButton::clicked, q, [this]() {
+        certifyUserIDs();
+    });
+    connect(ui.revokeCertificationsBtn, &QPushButton::clicked, q, [this]() {
+        revokeCertifications();
+    });
+    connect(ui.webOfTrustBtn, &QPushButton::clicked, q, [this]() {
+        webOfTrustClicked();
+    });
+    connect(ui.exportBtn, &QPushButton::clicked, q, [this]() {
+        exportClicked();
+    });
     if (ui.copyFingerprintAction) {
-        connect(ui.copyFingerprintAction, &QAction::triggered,
-                q, [this]() { copyFingerprintToClipboard(); });
+        connect(ui.copyFingerprintAction, &QAction::triggered, q, [this]() {
+            copyFingerprintToClipboard();
+        });
     }
 
-    connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
-            q, [this]() { keysMayHaveChanged(); });
+    connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, q, [this]() {
+        keysMayHaveChanged();
+    });
 }
 
 void CertificateDetailsWidget::Private::setupCommonProperties()
@@ -490,10 +507,8 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
     // update values of protocol-independent UI elements
     ui.validFromField->setValue(Formatting::creationDateString(key), Formatting::accessibleCreationDate(key));
-    ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Valid until:", "unlimited")),
-                              Formatting::accessibleExpirationDate(key));
-    ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()),
-                                  Formatting::accessibleHexID(key.primaryFingerprint()));
+    ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Valid until:", "unlimited")), Formatting::accessibleExpirationDate(key));
+    ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()), Formatting::accessibleHexID(key.primaryFingerprint()));
     if (DeVSCompliance::isCompliant()) {
         ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
@@ -515,7 +530,7 @@ void CertificateDetailsWidget::Private::setUpUserIDTable()
 {
     ui.userIDTable->clear();
 
-    QStringList headers = { i18n("Email"), i18n("Name"), i18n("Trust Level"), i18n("Tags") };
+    QStringList headers = {i18n("Email"), i18n("Name"), i18n("Trust Level"), i18n("Tags")};
     ui.userIDTable->setColumnCount(headers.count());
     ui.userIDTable->setColumnWidth(0, 200);
     ui.userIDTable->setColumnWidth(1, 200);
@@ -543,7 +558,7 @@ void CertificateDetailsWidget::Private::setUpUserIDTable()
 
         GpgME::Error err;
         QStringList tagList;
-        for (const auto &tag: uid.remarks(Tags::tagKeys(), err)) {
+        for (const auto &tag : uid.remarks(Tags::tagKeys(), err)) {
             if (err) {
                 qCWarning(KLEOPATRA_LOG) << "Getting remarks for user ID" << uid.id() << "failed:" << err;
             }
@@ -619,21 +634,18 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
 
 void CertificateDetailsWidget::Private::revokeUserID(const GpgME::UserID &userId)
 {
-    const QString message = xi18nc(
-        "@info",
-        "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?</para>",
-        QString::fromUtf8(userId.id()));
+    const QString message =
+        xi18nc("@info", "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?</para>", QString::fromUtf8(userId.id()));
     auto confirmButton = KStandardGuiItem::ok();
     confirmButton.setText(i18nc("@action:button", "Revoke User ID"));
     confirmButton.setToolTip({});
-    const auto choice = KMessageBox::questionTwoActions(
-        q->window(),
-        message,
-        i18nc("@title:window", "Confirm Revocation"),
-        confirmButton,
-        KStandardGuiItem::cancel(),
-        {},
-        KMessageBox::Notify | KMessageBox::WindowModal);
+    const auto choice = KMessageBox::questionTwoActions(q->window(),
+                                                        message,
+                                                        i18nc("@title:window", "Confirm Revocation"),
+                                                        confirmButton,
+                                                        KStandardGuiItem::cancel(),
+                                                        {},
+                                                        KMessageBox::Notify | KMessageBox::WindowModal);
     if (choice != KMessageBox::ButtonCode::PrimaryAction) {
         return;
     }
@@ -662,10 +674,9 @@ void CertificateDetailsWidget::Private::revokeSelectedUserID()
 void CertificateDetailsWidget::Private::changeExpiration()
 {
     auto cmd = new Kleo::Commands::ChangeExpiryCommand(key);
-    QObject::connect(cmd, &Kleo::Commands::ChangeExpiryCommand::finished,
-                     q, [this]() {
-                         ui.changeExpirationAction->setEnabled(true);
-                     });
+    QObject::connect(cmd, &Kleo::Commands::ChangeExpiryCommand::finished, q, [this]() {
+        ui.changeExpirationAction->setEnabled(true);
+    });
     ui.changeExpirationAction->setEnabled(false);
     cmd->start();
 }
@@ -673,10 +684,9 @@ void CertificateDetailsWidget::Private::changeExpiration()
 void CertificateDetailsWidget::Private::changePassphrase()
 {
     auto cmd = new Kleo::Commands::ChangePassphraseCommand(key);
-    QObject::connect(cmd, &Kleo::Commands::ChangePassphraseCommand::finished,
-                     q, [this]() {
-                         ui.changePassphraseBtn->setEnabled(true);
-                     });
+    QObject::connect(cmd, &Kleo::Commands::ChangePassphraseCommand::finished, q, [this]() {
+        ui.changePassphraseBtn->setEnabled(true);
+    });
     ui.changePassphraseBtn->setEnabled(false);
     cmd->start();
 }
@@ -684,10 +694,9 @@ void CertificateDetailsWidget::Private::changePassphrase()
 void CertificateDetailsWidget::Private::genRevokeCert()
 {
     auto cmd = new Kleo::Commands::GenRevokeCommand(key);
-    QObject::connect(cmd, &Kleo::Commands::GenRevokeCommand::finished,
-                     q, [this]() {
-                         ui.genRevokeBtn->setEnabled(true);
-                     });
+    QObject::connect(cmd, &Kleo::Commands::GenRevokeCommand::finished, q, [this]() {
+        ui.genRevokeBtn->setEnabled(true);
+    });
     ui.genRevokeBtn->setEnabled(false);
     cmd->start();
 }
@@ -695,10 +704,9 @@ void CertificateDetailsWidget::Private::genRevokeCert()
 void CertificateDetailsWidget::Private::refreshCertificate()
 {
     auto cmd = new Kleo::RefreshCertificateCommand{key};
-    QObject::connect(cmd, &Kleo::RefreshCertificateCommand::finished,
-                     q, [this]() {
-                         ui.refreshBtn->setEnabled(true);
-                     });
+    QObject::connect(cmd, &Kleo::RefreshCertificateCommand::finished, q, [this]() {
+        ui.refreshBtn->setEnabled(true);
+    });
     ui.refreshBtn->setEnabled(false);
     cmd->start();
 }
@@ -708,11 +716,10 @@ void CertificateDetailsWidget::Private::certifyUserIDs()
     const auto userIDs = selectedUserIDs(ui.userIDTable);
     auto cmd = userIDs.empty() ? new Kleo::Commands::CertifyCertificateCommand{key} //
                                : new Kleo::Commands::CertifyCertificateCommand{userIDs};
-    QObject::connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
-                     q, [this]() {
-                         updateKey();
-                         ui.certifyBtn->setEnabled(true);
-                     });
+    QObject::connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished, q, [this]() {
+        updateKey();
+        ui.certifyBtn->setEnabled(true);
+    });
     ui.certifyBtn->setEnabled(false);
     cmd->start();
 }
@@ -722,11 +729,10 @@ void CertificateDetailsWidget::Private::revokeCertifications()
     const auto userIDs = selectedUserIDs(ui.userIDTable);
     auto cmd = userIDs.empty() ? new Kleo::Commands::RevokeCertificationCommand{key} //
                                : new Kleo::Commands::RevokeCertificationCommand{userIDs};
-    QObject::connect(cmd, &Kleo::Command::finished,
-                     q, [this]() {
-                         updateKey();
-                         ui.revokeCertificationsBtn->setEnabled(true);
-                     });
+    QObject::connect(cmd, &Kleo::Command::finished, q, [this]() {
+        updateKey();
+        ui.revokeCertificationsBtn->setEnabled(true);
+    });
     ui.revokeCertificationsBtn->setEnabled(false);
     cmd->start();
 }
@@ -748,11 +754,10 @@ void CertificateDetailsWidget::Private::exportClicked()
 void CertificateDetailsWidget::Private::addUserID()
 {
     auto cmd = new Kleo::Commands::AddUserIDCommand(key);
-    QObject::connect(cmd, &Kleo::Commands::AddUserIDCommand::finished,
-                     q, [this]() {
-                         ui.addUserIDBtn->setEnabled(true);
-                         updateKey();
-                     });
+    QObject::connect(cmd, &Kleo::Commands::AddUserIDCommand::finished, q, [this]() {
+        ui.addUserIDBtn->setEnabled(true);
+        updateKey();
+    });
     ui.addUserIDBtn->setEnabled(false);
     cmd->start();
 }
@@ -819,11 +824,10 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
     auto menu = new QMenu(q);
 #if QGPGME_SUPPORTS_SET_PRIMARY_UID
     if (key.hasSecret()) {
-        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("favorite")),
-                                      i18nc("@action:inmenu", "Flag as Primary User ID"),
-                                      q, [this, singleUserID]() {
-                                          setPrimaryUserID(singleUserID);
-                                      });
+        auto action =
+            menu->addAction(QIcon::fromTheme(QStringLiteral("favorite")), i18nc("@action:inmenu", "Flag as Primary User ID"), q, [this, singleUserID]() {
+                setPrimaryUserID(singleUserID);
+            });
         action->setEnabled(!singleUserID.isNull() //
                            && !isPrimaryUserID //
                            && !Kleo::isRevokedOrExpired(singleUserID) //
@@ -833,43 +837,40 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
     {
         const auto actionText = userIDs.empty() ? i18nc("@action:inmenu", "Certify User IDs...")
                                                 : i18ncp("@action:inmenu", "Certify User ID...", "Certify User IDs...", userIDs.size());
-        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-sign")),
-                                      actionText,
-                                      q, [this]() {
-                                          certifyUserIDs();
-                                      });
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-sign")), actionText, q, [this]() {
+            certifyUserIDs();
+        });
         action->setEnabled(isLocalKey && keyCanBeCertified && canSignUserIDs);
     }
     if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
         const auto actionText = userIDs.empty() ? i18nc("@action:inmenu", "Revoke Certifications...")
                                                 : i18ncp("@action:inmenu", "Revoke Certification...", "Revoke Certifications...", userIDs.size());
-        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
-                                      actionText,
-                                      q, [this]() {
-                                          revokeCertifications();
-                                      });
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")), actionText, q, [this]() {
+            revokeCertifications();
+        });
         action->setEnabled(isLocalKey && canSignUserIDs);
     }
 #ifdef MAILAKONADI_ENABLED
     if (key.hasSecret()) {
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
                                       i18nc("@action:inmenu", "Publish at Mail Provider ..."),
-                                      q, [this, singleUserID]() {
-            auto cmd = new Kleo::Commands::ExportOpenPGPCertToProviderCommand(singleUserID);
-            ui.userIDTable->setEnabled(false);
-            connect(cmd, &Kleo::Commands::ExportOpenPGPCertToProviderCommand::finished,
-                    q, [this]() { ui.userIDTable->setEnabled(true); });
-            cmd->start();
-        });
+                                      q,
+                                      [this, singleUserID]() {
+                                          auto cmd = new Kleo::Commands::ExportOpenPGPCertToProviderCommand(singleUserID);
+                                          ui.userIDTable->setEnabled(false);
+                                          connect(cmd, &Kleo::Commands::ExportOpenPGPCertToProviderCommand::finished, q, [this]() {
+                                              ui.userIDTable->setEnabled(true);
+                                          });
+                                          cmd->start();
+                                      });
         action->setEnabled(!singleUserID.isNull());
     }
 #endif // MAILAKONADI_ENABLED
     {
-        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
-                                      i18nc("@action:inmenu", "Revoke User ID"),
-                                      q, [this, singleUserID]() {
-                                          revokeUserID(singleUserID);
-                                      });
+        auto action =
+            menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")), i18nc("@action:inmenu", "Revoke User ID"), q, [this, singleUserID]() {
+                revokeUserID(singleUserID);
+            });
         action->setEnabled(!singleUserID.isNull() && canCreateCertifications(key) && canRevokeUserID(singleUserID));
     }
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
@@ -900,17 +901,16 @@ QString CertificateDetailsWidget::Private::tofuTooltipString(const GpgME::UserID
 
     QString html = QStringLiteral("<table border=\"0\" cell-padding=\"5\">");
     const auto appendRow = [&html](const QString &lbl, const QString &val) {
-        html += QStringLiteral("<tr>"
-                               "<th style=\"text-align: right; padding-right: 5px; white-space: nowrap;\">%1:</th>"
-                               "<td style=\"white-space: nowrap;\">%2</td>"
-                               "</tr>")
+        html += QStringLiteral(
+                    "<tr>"
+                    "<th style=\"text-align: right; padding-right: 5px; white-space: nowrap;\">%1:</th>"
+                    "<td style=\"white-space: nowrap;\">%2</td>"
+                    "</tr>")
                     .arg(lbl, val);
     };
     const auto appendHeader = [this, &html](const QString &hdr) {
         html += QStringLiteral("<tr><th colspan=\"2\" style=\"background-color: %1; color: %2\">%3</th></tr>")
-                    .arg(q->palette().highlight().color().name(),
-                         q->palette().highlightedText().color().name(),
-                         hdr);
+                    .arg(q->palette().highlight().color().name(), q->palette().highlightedText().color().name(), hdr);
     };
     const auto dateTime = [](long ts) {
         QLocale l;
@@ -969,29 +969,21 @@ auto isGood(const GpgME::UserID::Signature &signature)
 
 auto accumulateTrustDomains(const std::vector<GpgME::UserID::Signature> &signatures)
 {
-    return std::accumulate(
-        std::begin(signatures), std::end(signatures),
-        std::set<QString>(),
-        [] (auto domains, const auto &signature) {
-            if (isGood(signature) && signature.isTrustSignature()) {
-                domains.insert(Formatting::trustSignatureDomain(signature));
-            }
-            return domains;
+    return std::accumulate(std::begin(signatures), std::end(signatures), std::set<QString>(), [](auto domains, const auto &signature) {
+        if (isGood(signature) && signature.isTrustSignature()) {
+            domains.insert(Formatting::trustSignatureDomain(signature));
         }
-    );
+        return domains;
+    });
 }
 
 auto accumulateTrustDomains(const std::vector<GpgME::UserID> &userIds)
 {
-    return std::accumulate(
-        std::begin(userIds), std::end(userIds),
-        std::set<QString>(),
-        [] (auto domains, const auto &userID) {
-            const auto newDomains = accumulateTrustDomains(userID.signatures());
-            std::copy(std::begin(newDomains), std::end(newDomains), std::inserter(domains, std::end(domains)));
-            return domains;
-        }
-    );
+    return std::accumulate(std::begin(userIds), std::end(userIds), std::set<QString>(), [](auto domains, const auto &userID) {
+        const auto newDomains = accumulateTrustDomains(userID.signatures());
+        std::copy(std::begin(newDomains), std::end(newDomains), std::inserter(domains, std::end(domains)));
+        return domains;
+    });
 }
 }
 
@@ -1011,18 +1003,19 @@ static QString formatDNToolTip(const Kleo::DN &dn)
     QString html = QStringLiteral("<table border=\"0\" cell-spacing=15>");
 
     const auto appendRow = [&html, dn](const QString &lbl, const QString &attr) {
-                                const QString val = dn[attr];
-                                if (!val.isEmpty()) {
-                                    html += QStringLiteral(
-                                            "<tr><th style=\"text-align: left; white-space: nowrap\">%1:</th>"
-                                                "<td style=\"white-space: nowrap\">%2</td>"
-                                            "</tr>").arg(lbl, val);
-                                }
-                            };
+        const QString val = dn[attr];
+        if (!val.isEmpty()) {
+            html += QStringLiteral(
+                        "<tr><th style=\"text-align: left; white-space: nowrap\">%1:</th>"
+                        "<td style=\"white-space: nowrap\">%2</td>"
+                        "</tr>")
+                        .arg(lbl, val);
+        }
+    };
     appendRow(i18n("Common Name"), QStringLiteral("CN"));
     appendRow(i18n("Organization"), QStringLiteral("O"));
     appendRow(i18n("Street"), QStringLiteral("STREET"));
-    appendRow(i18n("City"),  QStringLiteral("L"));
+    appendRow(i18n("City"), QStringLiteral("L"));
     appendRow(i18n("State"), QStringLiteral("ST"));
     appendRow(i18n("Country"), QStringLiteral("C"));
     html += QStringLiteral("</table>");
@@ -1084,10 +1077,7 @@ CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)
 
 CertificateDetailsWidget::~CertificateDetailsWidget() = default;
 
-void CertificateDetailsWidget::Private::keyListDone(const GpgME::KeyListResult &,
-                                                    const std::vector<GpgME::Key> &keys,
-                                                    const QString &,
-                                                    const GpgME::Error &)
+void CertificateDetailsWidget::Private::keyListDone(const GpgME::KeyListResult &, const std::vector<GpgME::Key> &keys, const QString &, const GpgME::Error &)
 {
     updateInProgress = false;
     if (keys.size() != 1) {
@@ -1127,8 +1117,8 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
     d->setUpdatedKey(key);
 
     // Run a keylistjob with full details (TOFU / Validate)
-    QGpgME::KeyListJob *job = key.protocol() == GpgME::OpenPGP ? QGpgME::openpgp()->keyListJob(false, true, true) :
-                                                                 QGpgME::smime()->keyListJob(false, true, true);
+    QGpgME::KeyListJob *job =
+        key.protocol() == GpgME::OpenPGP ? QGpgME::openpgp()->keyListJob(false, true, true) : QGpgME::smime()->keyListJob(false, true, true);
 
     auto ctx = QGpgME::Job::context(job);
     ctx->addKeyListMode(GpgME::WithTofu);
@@ -1138,8 +1128,10 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
     }
 
     // Windows QGpgME new style connect problem makes this necessary.
-    connect(job, SIGNAL(result(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)),
-            this, SLOT(keyListDone(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)));
+    connect(job,
+            SIGNAL(result(GpgME::KeyListResult, std::vector<GpgME::Key>, QString, GpgME::Error)),
+            this,
+            SLOT(keyListDone(GpgME::KeyListResult, std::vector<GpgME::Key>, QString, GpgME::Error)));
 
     job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
 }
@@ -1150,4 +1142,3 @@ GpgME::Key CertificateDetailsWidget::key() const
 }
 
 #include "moc_certificatedetailswidget.cpp"
-

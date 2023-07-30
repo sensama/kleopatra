@@ -12,28 +12,28 @@
 #include "signencrypttask.h"
 
 #include <utils/input.h>
+#include <utils/kleo_assert.h>
 #include <utils/output.h>
 #include <utils/path-helper.h>
-#include <utils/kleo_assert.h>
 
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/Formatting>
-#include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
+#include <Libkleo/Stl_Util>
 
-#include <QGpgME/Protocol>
-#include <QGpgME/SignJob>
-#include <QGpgME/SignEncryptJob>
 #include <QGpgME/EncryptJob>
+#include <QGpgME/Protocol>
+#include <QGpgME/SignEncryptJob>
+#include <QGpgME/SignJob>
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS
 #include <QGpgME/EncryptArchiveJob>
 #include <QGpgME/SignArchiveJob>
 #include <QGpgME/SignEncryptArchiveJob>
 #endif
 
-#include <gpgme++/signingresult.h>
 #include <gpgme++/encryptionresult.h>
 #include <gpgme++/key.h>
+#include <gpgme++/signingresult.h>
 
 #include <KLocalizedString>
 
@@ -51,7 +51,8 @@ namespace
 
 QString formatInputOutputLabel(const QString &input, const QString &output, bool outputDeleted)
 {
-    return i18nc("Input file --> Output file (rarr is arrow", "%1 &rarr; %2",
+    return i18nc("Input file --> Output file (rarr is arrow",
+                 "%1 &rarr; %2",
                  input.toHtmlEscaped(),
                  outputDeleted ? QStringLiteral("<s>%1</s>").arg(output.toHtmlEscaped()) : output.toHtmlEscaped());
 }
@@ -60,7 +61,16 @@ class ErrorResult : public Task::Result
 {
 public:
     ErrorResult(bool sign, bool encrypt, const Error &err, const QString &errStr, const QString &input, const QString &output, const AuditLogEntry &auditLog)
-        : Task::Result(), m_sign(sign), m_encrypt(encrypt), m_error(err), m_errString(errStr), m_inputLabel(input), m_outputLabel(output), m_auditLog(auditLog) {}
+        : Task::Result()
+        , m_sign(sign)
+        , m_encrypt(encrypt)
+        , m_error(err)
+        , m_errString(errStr)
+        , m_inputLabel(input)
+        , m_outputLabel(output)
+        , m_auditLog(auditLog)
+    {
+    }
 
     QString overview() const override;
     QString details() const override;
@@ -80,6 +90,7 @@ public:
     {
         return m_auditLog;
     }
+
 private:
     const bool m_sign;
     const bool m_encrypt;
@@ -92,8 +103,7 @@ private:
 
 namespace
 {
-struct LabelAndError
-{
+struct LabelAndError {
     QString label;
     QString errorString;
 };
@@ -103,40 +113,46 @@ class SignEncryptFilesResult : public Task::Result
 {
 public:
     SignEncryptFilesResult(const SigningResult &sr, const LabelAndError &input, const LabelAndError &output, bool outputCreated, const AuditLogEntry &auditLog)
-        : Task::Result(),
-          m_sresult(sr),
-          m_input{input},
-          m_output{output},
-          m_outputCreated(outputCreated),
-          m_auditLog(auditLog)
+        : Task::Result()
+        , m_sresult(sr)
+        , m_input{input}
+        , m_output{output}
+        , m_outputCreated(outputCreated)
+        , m_auditLog(auditLog)
     {
-        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString
-                               << "\noutputError:" << m_output.errorString;
+        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
         Q_ASSERT(!m_sresult.isNull());
     }
-    SignEncryptFilesResult(const EncryptionResult &er, const LabelAndError &input, const LabelAndError &output, bool outputCreated, const AuditLogEntry &auditLog)
-        : Task::Result(),
-          m_eresult(er),
-          m_input{input},
-          m_output{output},
-          m_outputCreated(outputCreated),
-          m_auditLog(auditLog)
+    SignEncryptFilesResult(const EncryptionResult &er,
+                           const LabelAndError &input,
+                           const LabelAndError &output,
+                           bool outputCreated,
+                           const AuditLogEntry &auditLog)
+        : Task::Result()
+        , m_eresult(er)
+        , m_input{input}
+        , m_output{output}
+        , m_outputCreated(outputCreated)
+        , m_auditLog(auditLog)
     {
-        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString
-                               << "\noutputError:" << m_output.errorString;
+        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
         Q_ASSERT(!m_eresult.isNull());
     }
-    SignEncryptFilesResult(const SigningResult &sr, const EncryptionResult &er, const LabelAndError &input, const LabelAndError &output, bool outputCreated,  const AuditLogEntry &auditLog)
-        : Task::Result(),
-          m_sresult(sr),
-          m_eresult(er),
-          m_input{input},
-          m_output{output},
-          m_outputCreated(outputCreated),
-          m_auditLog(auditLog)
+    SignEncryptFilesResult(const SigningResult &sr,
+                           const EncryptionResult &er,
+                           const LabelAndError &input,
+                           const LabelAndError &output,
+                           bool outputCreated,
+                           const AuditLogEntry &auditLog)
+        : Task::Result()
+        , m_sresult(sr)
+        , m_eresult(er)
+        , m_input{input}
+        , m_output{output}
+        , m_outputCreated(outputCreated)
+        , m_auditLog(auditLog)
     {
-        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString
-                               << "\noutputError:" << m_output.errorString;
+        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
         Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
     }
 
@@ -263,7 +279,9 @@ QString ErrorResult::overview() const
     if (m_sign && m_encrypt) {
         return canceled ? i18n("%1: <b>Sign/encrypt canceled.</b>", label) : i18n(" %1: Sign/encrypt failed.", label);
     }
-    return i18nc("label: result. Example: foo -> foo.gpg: Encryption failed.", "%1: <b>%2</b>", label,
+    return i18nc("label: result. Example: foo -> foo.gpg: Encryption failed.",
+                 "%1: <b>%2</b>",
+                 label,
                  m_sign ? makeSigningOverview(m_error) : makeEncryptionOverview(m_error));
 }
 
@@ -276,6 +294,7 @@ class SignEncryptTask::Private
 {
     friend class ::Kleo::Crypto::SignEncryptTask;
     SignEncryptTask *const q;
+
 public:
     explicit Private(SignEncryptTask *qq);
 
@@ -314,12 +333,12 @@ private:
     std::vector<Key> signers;
     std::vector<Key> recipients;
 
-    bool sign     : 1;
-    bool encrypt  : 1;
+    bool sign : 1;
+    bool encrypt : 1;
     bool detached : 1;
-    bool symmetric: 1;
-    bool clearsign: 1;
-    bool archive  : 1;
+    bool symmetric : 1;
+    bool clearsign : 1;
+    bool archive : 1;
 
     QPointer<QGpgME::Job> job;
     QString labelText;
@@ -344,12 +363,14 @@ std::shared_ptr<const Task::Result> SignEncryptTask::Private::makeErrorResult(co
 }
 
 SignEncryptTask::SignEncryptTask(QObject *p)
-    : Task(p), d(new Private(this))
+    : Task(p)
+    , d(new Private(this))
 {
-
 }
 
-SignEncryptTask::~SignEncryptTask() {}
+SignEncryptTask::~SignEncryptTask()
+{
+}
 
 void SignEncryptTask::setInputFileName(const QString &fileName)
 {
@@ -454,11 +475,10 @@ Protocol SignEncryptTask::protocol() const
         if (!d->recipients.empty()) {
             return d->recipients.front().protocol();
         } else {
-            return GpgME::OpenPGP;    // symmetric OpenPGP encryption
+            return GpgME::OpenPGP; // symmetric OpenPGP encryption
         }
     }
-    throw Kleo::Exception(gpg_error(GPG_ERR_INTERNAL),
-                          i18n("Cannot determine protocol for task"));
+    throw Kleo::Exception(gpg_error(GPG_ERR_INTERNAL), i18n("Cannot determine protocol for task"));
 }
 
 QString SignEncryptTask::label() const
@@ -542,9 +562,12 @@ bool SignEncryptTask::Private::removeExistingOutputFile()
             qCDebug(KLEOPATRA_LOG) << __func__ << "we have no permission to overwrite" << outputFileName;
         }
         if (!fileRemoved) {
-            QMetaObject::invokeMethod(q, [this]() {
-                slotResult(nullptr, SigningResult{}, EncryptionResult{Error::fromCode(GPG_ERR_EEXIST)});
-            }, Qt::QueuedConnection);
+            QMetaObject::invokeMethod(
+                q,
+                [this]() {
+                    slotResult(nullptr, SigningResult{}, EncryptionResult{Error::fromCode(GPG_ERR_EEXIST)});
+                },
+                Qt::QueuedConnection);
             return false;
         }
     }
@@ -571,8 +594,7 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
             }
 #endif
 
-            job->start(signers, recipients,
-                       input->ioDevice(), output->ioDevice(), flags);
+            job->start(signers, recipients, input->ioDevice(), output->ioDevice(), flags);
 
             this->job = job.release();
         } else {
@@ -591,12 +613,9 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
     } else if (sign) {
         std::unique_ptr<QGpgME::SignJob> job = createSignJob(proto);
         kleo_assert(job.get());
-        kleo_assert(! (detached && clearsign));
+        kleo_assert(!(detached && clearsign));
 
-        job->start(signers,
-                   input->ioDevice(), output->ioDevice(),
-                   detached ? GpgME::Detached : clearsign ?
-                              GpgME::Clearsigned : GpgME::NormalSignatureMode);
+        job->start(signers, input->ioDevice(), output->ioDevice(), detached ? GpgME::Detached : clearsign ? GpgME::Clearsigned : GpgME::NormalSignatureMode);
 
         this->job = job.release();
     } else {
@@ -625,8 +644,7 @@ std::unique_ptr<QGpgME::SignJob> SignEncryptTask::Private::createSignJob(GpgME::
         q->setProgress(processed, total);
     });
 #endif
-    connect(signJob.get(), SIGNAL(result(GpgME::SigningResult,QByteArray)),
-            q, SLOT(slotResult(GpgME::SigningResult)));
+    connect(signJob.get(), SIGNAL(result(GpgME::SigningResult, QByteArray)), q, SLOT(slotResult(GpgME::SigningResult)));
     return signJob;
 }
 
@@ -643,8 +661,10 @@ std::unique_ptr<QGpgME::SignEncryptJob> SignEncryptTask::Private::createSignEncr
         q->setProgress(processed, total);
     });
 #endif
-    connect(signEncryptJob.get(), SIGNAL(result(GpgME::SigningResult,GpgME::EncryptionResult,QByteArray)),
-            q, SLOT(slotResult(GpgME::SigningResult,GpgME::EncryptionResult)));
+    connect(signEncryptJob.get(),
+            SIGNAL(result(GpgME::SigningResult, GpgME::EncryptionResult, QByteArray)),
+            q,
+            SLOT(slotResult(GpgME::SigningResult, GpgME::EncryptionResult)));
     return signEncryptJob;
 }
 
@@ -661,8 +681,7 @@ std::unique_ptr<QGpgME::EncryptJob> SignEncryptTask::Private::createEncryptJob(G
         q->setProgress(processed, total);
     });
 #endif
-    connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult,QByteArray)),
-            q, SLOT(slotResult(GpgME::EncryptionResult)));
+    connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult, QByteArray)), q, SLOT(slotResult(GpgME::EncryptionResult)));
     return encryptJob;
 }
 
@@ -672,7 +691,7 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
     kleo_assert(!input);
     kleo_assert(!output);
 
-#if ! QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
+#if !QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
     output = Output::createFromFile(outputFileName, m_overwritePolicy);
 #endif
 
@@ -820,9 +839,7 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
         if (output) {
             output->cancel();
         }
-        q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
-                                      i18n("Input error: %1", escape( input->errorString())),
-                                      auditLog));
+        q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO), i18n("Input error: %1", escape(input->errorString())), auditLog));
         return;
     } else if (sresult.error().code() || eresult.error().code()) {
         if (output) {
@@ -890,10 +907,9 @@ QString SignEncryptFilesResult::errorString() const
     kleo_assert(sign || encrypt);
 
     if (sign && encrypt) {
-        return
-            m_sresult.error().code() ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString) :
-            m_eresult.error().code() ? makeResultDetails(m_eresult, m_input.errorString, m_output.errorString) :
-            QString();
+        return m_sresult.error().code() ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString)
+            : m_eresult.error().code()  ? makeResultDetails(m_eresult, m_input.errorString, m_output.errorString)
+                                        : QString();
     }
 
     return sign ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString) //

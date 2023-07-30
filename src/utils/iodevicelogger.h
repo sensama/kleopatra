@@ -52,4 +52,3 @@ private:
     kdtools::pimpl_ptr<Private> d;
 };
 }
-

@@ -14,7 +14,7 @@ class QPushButton;
 namespace Kleo
 {
 
-class NullPinWidget: public QWidget
+class NullPinWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -29,9 +29,7 @@ private:
 
 private:
     std::string mSerialNumber;
-    QPushButton *mNKSBtn,
-                *mSigGBtn;
+    QPushButton *mNKSBtn, *mSigGBtn;
 };
 
 } // namespace Kleo
-

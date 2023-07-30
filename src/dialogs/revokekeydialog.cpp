@@ -8,7 +8,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "revokekeydialog.h"
 
 #include "utils/accessibility.h"
@@ -58,8 +57,7 @@ protected:
     void focusOutEvent(QFocusEvent *event) override
     {
         Qt::FocusReason reason = event->reason();
-        if (reason != Qt::PopupFocusReason
-                || !(QApplication::activePopupWidget() && QApplication::activePopupWidget()->parentWidget() == this)) {
+        if (reason != Qt::PopupFocusReason || !(QApplication::activePopupWidget() && QApplication::activePopupWidget()->parentWidget() == this)) {
             Q_EMIT editingFinished();
         }
 
@@ -100,14 +98,10 @@ public:
 #if QGPGME_SUPPORTS_KEY_REVOCATION
         auto groupBox = new QGroupBox{i18nc("@title:group", "Reason for revocation"), q};
 
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "No reason specified"), q},
-                              static_cast<int>(RevocationReason::Unspecified));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key has been compromised"), q},
-                              static_cast<int>(RevocationReason::Compromised));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key is superseded"), q},
-                              static_cast<int>(RevocationReason::Superseded));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key is no longer used"), q},
-                              static_cast<int>(RevocationReason::NoLongerUsed));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "No reason specified"), q}, static_cast<int>(RevocationReason::Unspecified));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key is superseded"), q}, static_cast<int>(RevocationReason::Superseded));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key is no longer used"), q}, static_cast<int>(RevocationReason::NoLongerUsed));
         reasonGroup.button(static_cast<int>(RevocationReason::Unspecified))->setChecked(true);
 
         {
@@ -136,10 +130,12 @@ public:
             mainLayout->addWidget(ui.descriptionError);
         }
 
-        connect(ui.description, &TextEdit::editingFinished,
-                q, [this]() { onDescriptionEditingFinished(); });
-        connect(ui.description, &TextEdit::textChanged,
-                q, [this]() { onDescriptionTextChanged(); });
+        connect(ui.description, &TextEdit::editingFinished, q, [this]() {
+            onDescriptionEditingFinished();
+        });
+        connect(ui.description, &TextEdit::textChanged, q, [this]() {
+            onDescriptionTextChanged();
+        });
 
         ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
         auto okButton = ui.buttonBox->button(QDialogButtonBox::Ok);
@@ -148,7 +144,9 @@ public:
 
         mainLayout->addWidget(ui.buttonBox);
 
-        connect(ui.buttonBox, &QDialogButtonBox::accepted, q, [this]() { checkAccept(); });
+        connect(ui.buttonBox, &QDialogButtonBox::accepted, q, [this]() {
+            checkAccept();
+        });
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
 
         restoreGeometry();
@@ -274,9 +272,7 @@ RevokeKeyDialog::~RevokeKeyDialog() = default;
 void RevokeKeyDialog::setKey(const GpgME::Key &key)
 {
     d->key = key;
-    d->ui.infoLabel->setText(
-        xi18n("<para>You are about to revoke the following key:<nl/>%1</para>")
-        .arg(Formatting::summaryLine(key)));
+    d->ui.infoLabel->setText(xi18n("<para>You are about to revoke the following key:<nl/>%1</para>").arg(Formatting::summaryLine(key)));
 }
 
 #if QGPGME_SUPPORTS_KEY_REVOCATION

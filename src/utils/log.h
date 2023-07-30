@@ -11,7 +11,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include  <memory>
+#include <memory>
 
 #include <cstdio>
 
@@ -24,14 +24,12 @@ namespace Kleo
 class Log
 {
 public:
-
     enum OpenMode {
         Read = 0x1,
         Write = 0x2,
     };
 
-    static void messageHandler(QtMsgType type, const QMessageLogContext &ctx,
-                               const QString &msg);
+    static void messageHandler(QtMsgType type, const QMessageLogContext &ctx, const QString &msg);
 
     static std::shared_ptr<const Log> instance();
     static std::shared_ptr<Log> mutableInstance();
@@ -59,4 +57,3 @@ private:
 };
 
 }
-

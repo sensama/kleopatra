@@ -11,13 +11,13 @@
 
 #include "dragqueen.h"
 
+#include <QApplication>
 #include <QDrag>
 #include <QMouseEvent>
 #include <QStringList>
-#include <QVariant>
-#include <QApplication>
-#include <QUrl>
 #include <QStyle>
+#include <QUrl>
+#include <QVariant>
 
 #include <algorithm>
 
@@ -30,9 +30,9 @@ class MimeDataProxy : public QMimeData
     Q_OBJECT
 public:
     explicit MimeDataProxy(QMimeData *source)
-        : QMimeData(), m_source(source)
+        : QMimeData()
+        , m_source(source)
     {
-
     }
 
     QStringList formats() const override
@@ -109,8 +109,7 @@ protected:
                     return urls.front();
                 }
                 QList<QVariant> result;
-                std::copy(urls.begin(), urls.end(),
-                          std::back_inserter(result));
+                std::copy(urls.begin(), urls.end(), std::back_inserter(result));
                 return result;
             }
             break;
@@ -122,25 +121,24 @@ protected:
         v.convert(type);
         return v;
     }
+
 private:
     QPointer<QMimeData> m_source;
 };
 }
 
 DragQueen::DragQueen(QWidget *p, Qt::WindowFlags f)
-    : QLabel(p, f),
-      m_data(),
-      m_dragStartPosition()
+    : QLabel(p, f)
+    , m_data()
+    , m_dragStartPosition()
 {
-
 }
 
 DragQueen::DragQueen(const QString &t, QWidget *p, Qt::WindowFlags f)
-    : QLabel(t, p, f),
-      m_data(),
-      m_dragStartPosition()
+    : QLabel(t, p, f)
+    , m_data()
+    , m_dragStartPosition()
 {
-
 }
 
 DragQueen::~DragQueen()

@@ -13,16 +13,16 @@
 
 #include <settings.h>
 
-#include <commands/importcertificatefromclipboardcommand.h>
-#include <commands/encryptclipboardcommand.h>
-#include <commands/signclipboardcommand.h>
 #include <commands/decryptverifyclipboardcommand.h>
+#include <commands/encryptclipboardcommand.h>
+#include <commands/importcertificatefromclipboardcommand.h>
+#include <commands/signclipboardcommand.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/KeyCache>
 
-#include <KLocalizedString>
 #include <KActionMenu>
+#include <KLocalizedString>
 
 #include <QAction>
 #include <QApplication>
@@ -121,18 +121,18 @@ void ClipboardMenu::slotDecryptVerifyClipboard()
 namespace
 {
 
-bool hasSigningKeys(GpgME::Protocol protocol) {
+bool hasSigningKeys(GpgME::Protocol protocol)
+{
     if (!KeyCache::instance()->initialized()) {
         return false;
     }
-    return Kleo::any_of(KeyCache::instance()->keys(),
-                        [protocol](const auto &k) {
+    return Kleo::any_of(KeyCache::instance()->keys(), [protocol](const auto &k) {
 #if GPGMEPP_KEY_CANSIGN_IS_FIXED
         return k.hasSecret() && k.canSign() && (k.protocol() == protocol);
 #else
         return k.hasSecret() && k.canReallySign() && (k.protocol() == protocol);
 #endif
-                        });
+    });
 }
 
 }

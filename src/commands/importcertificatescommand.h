@@ -35,5 +35,3 @@ protected:
     explicit ImportCertificatesCommand(QAbstractItemView *view, Private *pp);
 };
 }
-
-

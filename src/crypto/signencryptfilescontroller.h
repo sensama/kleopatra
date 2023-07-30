@@ -33,12 +33,12 @@ public:
 
     void setProtocol(GpgME::Protocol proto);
     GpgME::Protocol protocol() const;
-    //const char * protocolAsString() const;
+    // const char * protocolAsString() const;
 
     enum Operation {
         SignDisallowed = 0,
         SignAllowed = 1,
-        SignSelected  = 2,
+        SignSelected = 2,
 
         SignMask = SignAllowed | SignSelected,
 
@@ -76,5 +76,3 @@ private:
 
 }
 }
-
-

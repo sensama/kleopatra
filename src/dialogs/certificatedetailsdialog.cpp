@@ -58,8 +58,7 @@ namespace
 {
 QString title(const GpgME::Key &key)
 {
-    switch (key.protocol())
-    {
+    switch (key.protocol()) {
     case GpgME::OpenPGP:
         return i18nc("@title:window", "OpenPGP Certificate");
     case GpgME::CMS:
@@ -73,10 +72,10 @@ QString title(const GpgME::Key &key)
 void CertificateDetailsDialog::setKey(const GpgME::Key &key)
 {
     setWindowTitle(title(key));
-    findChild<CertificateDetailsWidget*>()->setKey(key);
+    findChild<CertificateDetailsWidget *>()->setKey(key);
 }
 
 GpgME::Key CertificateDetailsDialog::key() const
 {
-    return findChild<CertificateDetailsWidget*>()->key();
+    return findChild<CertificateDetailsWidget *>()->key();
 }

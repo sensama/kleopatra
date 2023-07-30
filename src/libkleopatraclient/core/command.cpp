@@ -15,31 +15,31 @@
 #include <QtGlobal> // Q_OS_WIN
 
 #ifdef Q_OS_WIN // HACK: AllowSetForegroundWindow needs _WIN32_WINDOWS >= 0x0490 set
-# ifndef _WIN32_WINDOWS
-#  define _WIN32_WINDOWS 0x0500
-# endif
-# ifndef _WIN32_WINNT
-#  define _WIN32_WINNT 0x0500 // good enough for Vista too
-# endif
-# include <utils/gnupg-registry.h>
-# include <windows.h>
+#ifndef _WIN32_WINDOWS
+#define _WIN32_WINDOWS 0x0500
+#endif
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT 0x0500 // good enough for Vista too
+#endif
+#include <utils/gnupg-registry.h>
+#include <windows.h>
 #endif
 
-#include <QMutexLocker>
-#include <QFile>
 #include "libkleopatraclientcore_debug.h"
-#include <QDir>
-#include <QProcess>
 #include <KLocalizedString>
+#include <QDir>
+#include <QFile>
+#include <QMutexLocker>
+#include <QProcess>
 
 #include <assuan.h>
 #include <gpg-error.h>
 #include <gpgme++/error.h>
 
 #include <algorithm>
-#include <string>
-#include <sstream>
 #include <memory>
+#include <sstream>
+#include <string>
 #include <type_traits>
 
 using namespace KleopatraClientCopy;
@@ -72,8 +72,8 @@ static std::string hexencode(const std::string &in)
         case '+':
         case '=':
             result += '%';
-            result += hex[(ch & 0xF0) >> 4 ];
-            result += hex[(ch & 0x0F)      ];
+            result += hex[(ch & 0xF0) >> 4];
+            result += hex[(ch & 0x0F)];
             break;
         }
 
@@ -101,25 +101,28 @@ static std::string hexencode(const QByteArray &in)
 // end copied from kleopatra/utils/hex.cpp
 
 Command::Command(QObject *p)
-    : QObject(p), d(new Private(this))
+    : QObject(p)
+    , d(new Private(this))
 {
     d->init();
 }
 
 Command::Command(Private *pp, QObject *p)
-    : QObject(p), d(pp)
+    : QObject(p)
+    , d(pp)
 {
     d->init();
 }
 
 Command::~Command()
 {
-    delete d; d = nullptr;
+    delete d;
+    d = nullptr;
 }
 
 void Command::Private::init()
 {
-    connect(this, &QThread::started,  q, &Command::started);
+    connect(this, &QThread::started, q, &Command::started);
     connect(this, &QThread::finished, q, &Command::finished);
 }
 
@@ -196,11 +199,7 @@ void Command::setOptionValue(const char *name, const QVariant &value, bool criti
     if (!name || !*name) {
         return;
     }
-    const Private::Option opt = {
-        value,
-        true,
-        critical
-    };
+    const Private::Option opt = {value, true, critical};
     const QMutexLocker locker(&d->mutex);
     d->inputs.options[name] = opt;
 }
@@ -231,11 +230,7 @@ void Command::setOption(const char *name, bool critical)
         unsetOption(name);
     }
 
-    const Private::Option opt = {
-        QVariant(),
-        false,
-        critical
-    };
+    const Private::Option opt = {QVariant(), false, critical};
 
     d->inputs.options[name] = opt;
 }
@@ -381,8 +376,14 @@ using AssuanContextBase = std::shared_ptr<std::remove_pointer<assuan_context_t>:
 namespace
 {
 struct AssuanClientContext : AssuanContextBase {
-    AssuanClientContext() : AssuanContextBase() {}
-    explicit AssuanClientContext(assuan_context_t ctx) : AssuanContextBase(ctx, &my_assuan_release) {}
+    AssuanClientContext()
+        : AssuanContextBase()
+    {
+    }
+    explicit AssuanClientContext(assuan_context_t ctx)
+        : AssuanContextBase(ctx, &my_assuan_release)
+    {
+    }
     void reset(assuan_context_t ctx = nullptr)
     {
         AssuanContextBase::reset(ctx, &my_assuan_release);
@@ -390,15 +391,14 @@ struct AssuanClientContext : AssuanContextBase {
 };
 }
 
-static gpg_error_t
-my_assuan_transact(const AssuanClientContext &ctx,
-                   const char *command,
-                   gpg_error_t (*data_cb)(void *, const void *, size_t) = nullptr,
-                   void *data_cb_arg = nullptr,
-                   gpg_error_t (*inquire_cb)(void *, const char *) = nullptr,
-                   void *inquire_cb_arg = nullptr,
-                   gpg_error_t (*status_cb)(void *, const char *) = nullptr,
-                   void *status_cb_arg = nullptr)
+static gpg_error_t my_assuan_transact(const AssuanClientContext &ctx,
+                                      const char *command,
+                                      gpg_error_t (*data_cb)(void *, const void *, size_t) = nullptr,
+                                      void *data_cb_arg = nullptr,
+                                      gpg_error_t (*inquire_cb)(void *, const char *) = nullptr,
+                                      void *inquire_cb_arg = nullptr,
+                                      gpg_error_t (*status_cb)(void *, const char *) = nullptr,
+                                      void *status_cb_arg = nullptr)
 {
     return assuan_transact(ctx.get(), command, data_cb, data_cb_arg, inquire_cb, inquire_cb_arg, status_cb, status_cb_arg);
 }
@@ -406,8 +406,7 @@ my_assuan_transact(const AssuanClientContext &ctx,
 static QString to_error_string(int err)
 {
     char buffer[1024];
-    gpg_strerror_r(static_cast<gpg_error_t>(err),
-                   buffer, sizeof buffer);
+    gpg_strerror_r(static_cast<gpg_error_t>(err), buffer, sizeof buffer);
     buffer[sizeof buffer - 1] = '\0';
     return QString::fromLocal8Bit(buffer);
 }
@@ -535,7 +534,6 @@ static gpg_error_t send_sender(const AssuanClientContext &ctx, const QString &se
 
 void Command::Private::run()
 {
-
     // Take a snapshot of the input data, and clear the output data:
     Inputs in;
     Outputs out;
@@ -554,7 +552,7 @@ void Command::Private::run()
     AssuanClientContext ctx;
     gpg_error_t err = 0;
 
-    inquire_data id = { &in.inquireData, &ctx };
+    inquire_data id = {&in.inquireData, &ctx};
 
     const QString socketName = out.serverLocation;
     if (socketName.isEmpty()) {
@@ -566,8 +564,7 @@ void Command::Private::run()
         assuan_context_t naked_ctx = nullptr;
         err = assuan_new(&naked_ctx);
         if (err) {
-            out.errorString = i18n("Could not allocate resources to connect to Kleopatra UI server at %1: %2"
-                                   , socketName, to_error_string(err));
+            out.errorString = i18n("Could not allocate resources to connect to Kleopatra UI server at %1: %2", socketName, to_error_string(err));
             goto leave;
         }
 
@@ -592,8 +589,7 @@ void Command::Private::run()
     }
 
     if (err) {
-        out.errorString = i18n("Could not connect to Kleopatra UI server at %1: %2",
-                               socketName, to_error_string(err));
+        out.errorString = i18n("Could not connect to Kleopatra UI server at %1: %2", socketName, to_error_string(err));
         goto leave;
     }
 

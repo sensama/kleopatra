@@ -5,16 +5,18 @@
 
 #pragma once
 
-#include <QWidget>
 #include <QDialog>
+#include <QWidget>
 
-namespace GpgME {
+namespace GpgME
+{
 class Key;
 class Subkey;
 class Error;
 }
 
-namespace Kleo {
+namespace Kleo
+{
 
 class ExportWidget : public QWidget
 {
@@ -35,7 +37,6 @@ private:
     class Private;
     const QScopedPointer<Private> d;
 };
-
 
 class ExportDialog : public QDialog
 {

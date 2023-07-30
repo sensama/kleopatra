@@ -11,12 +11,12 @@
 
 #include "sender.h"
 
-#include <Libkleo/Predicates>
 #include <Libkleo/KeyCache>
+#include <Libkleo/Predicates>
 #include <Libkleo/Stl_Util>
 
-#include <utils/kleo_assert.h>
 #include <utils/cached.h>
+#include <utils/kleo_assert.h>
 
 #include <KMime/HeaderParsing>
 
@@ -35,14 +35,12 @@ namespace Types
 {
 static bool operator==(const AddrSpec &lhs, const AddrSpec &rhs)
 {
-    return lhs.localPart == rhs.localPart
-           && lhs.domain == rhs.domain;
+    return lhs.localPart == rhs.localPart && lhs.domain == rhs.domain;
 }
 
 static bool operator==(const Mailbox &lhs, const Mailbox &rhs)
 {
-    return lhs.name() == rhs.name()
-           && lhs.addrSpec() == rhs.addrSpec();
+    return lhs.name() == rhs.name() && lhs.addrSpec() == rhs.addrSpec();
 }
 
 static bool determine_ambiguous(const Mailbox &mb, const std::vector<Key> &keys)
@@ -57,6 +55,7 @@ static bool determine_ambiguous(const Mailbox &mb, const std::vector<Key> &keys)
 class Sender::Private
 {
     friend class ::Kleo::Crypto::Sender;
+
 public:
     explicit Private(const Mailbox &mb)
         : mailbox(mb)
@@ -67,12 +66,16 @@ public:
         const QString email = mb.addrSpec().asString();
         const std::vector<Key> signers = KeyCache::instance()->findSigningKeysByMailbox(email);
         const std::vector<Key> encrypt = KeyCache::instance()->findEncryptionKeysByMailbox(email);
-        kdtools::separate_if(signers.cbegin(), signers.cend(),
-                             std::back_inserter(pgpSigners), std::back_inserter(cmsSigners),
-                             [](const Key &key) { return key.protocol() == OpenPGP; });
-        kdtools::separate_if(encrypt.cbegin(), encrypt.cend(),
-                             std::back_inserter(pgpEncryptToSelfKeys), std::back_inserter(cmsEncryptToSelfKeys),
-                             [](const Key &key) { return key.protocol() == OpenPGP; });
+        kdtools::separate_if(signers.cbegin(), signers.cend(), std::back_inserter(pgpSigners), std::back_inserter(cmsSigners), [](const Key &key) {
+            return key.protocol() == OpenPGP;
+        });
+        kdtools::separate_if(encrypt.cbegin(),
+                             encrypt.cend(),
+                             std::back_inserter(pgpEncryptToSelfKeys),
+                             std::back_inserter(cmsEncryptToSelfKeys),
+                             [](const Key &key) {
+                                 return key.protocol() == OpenPGP;
+                             });
     }
 
 private:
@@ -86,7 +89,6 @@ private:
 Sender::Sender(const Mailbox &mb)
     : d(new Private(mb))
 {
-
 }
 
 void Sender::detach()

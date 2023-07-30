@@ -11,8 +11,8 @@
 
 #include <config-kleopatra.h>
 
-#include <QCommandLineParser>
 #include <KLocalizedString>
+#include <QCommandLineParser>
 
 static void kleopatra_options(QCommandLineParser *parser)
 {
@@ -48,10 +48,6 @@ static void kleopatra_options(QCommandLineParser *parser)
      * be opened with Kleopatra's query function. And while a browser should
      * urlescape such a query there might be tricks to inject a quote character
      * and as such inject command line options for Kleopatra in an URL. */
-    parser->addPositionalArgument(QStringLiteral("files"),
-                                  i18n("File(s) to process"),
-                                  QStringLiteral("-- [files..]"));
-    parser->addPositionalArgument(QStringLiteral("query"),
-                                  i18n("String or Fingerprint for query and search"),
-                                  QStringLiteral("-- [query..]"));
+    parser->addPositionalArgument(QStringLiteral("files"), i18n("File(s) to process"), QStringLiteral("-- [files..]"));
+    parser->addPositionalArgument(QStringLiteral("query"), i18n("String or Fingerprint for query and search"), QStringLiteral("-- [query..]"));
 }

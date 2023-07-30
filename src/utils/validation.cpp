@@ -21,7 +21,6 @@
 
 #include <QRegularExpression>
 
-
 using namespace Kleo;
 
 namespace
@@ -59,7 +58,10 @@ public:
 class EMailValidator : public QValidator
 {
 public:
-    EMailValidator() : QValidator{} {}
+    EMailValidator()
+        : QValidator{}
+    {
+    }
 
     State validate(QString &str, int &pos) const override
     {

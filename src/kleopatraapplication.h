@@ -22,7 +22,7 @@
 
 extern QElapsedTimer startupTimer;
 #define STARTUP_TIMING qCDebug(KLEOPATRA_LOG) << "Startup timing:" << startupTimer.elapsed() << "ms:"
-#define STARTUP_TRACE  qCDebug(KLEOPATRA_LOG) << "Startup timing:" << startupTimer.elapsed() << "ms:" << SRCNAME << __func__ << __LINE__;
+#define STARTUP_TRACE qCDebug(KLEOPATRA_LOG) << "Startup timing:" << startupTimer.elapsed() << "ms:" << SRCNAME << __func__ << __LINE__;
 
 class MainWindow;
 class SysTrayIcon;
@@ -62,8 +62,7 @@ public:
      *
      * @returns an empty QString on success. A localized error message otherwise.
      * */
-    QString newInstance(const QCommandLineParser &parser,
-                        const QString &workingDirectory = QString());
+    QString newInstance(const QCommandLineParser &parser, const QString &workingDirectory = QString());
 
     void setMainWindow(MainWindow *mw);
 
@@ -111,4 +110,3 @@ private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
 };
-

@@ -16,8 +16,8 @@
 
 #include <QLocale>
 
-#include <KLocalizedString>
 #include <KLazyLocalizedString>
+#include <KLocalizedString>
 static const char kleopatra_version[] = KLEOPATRA_VERSION_STRING;
 
 struct about_data {
@@ -28,37 +28,27 @@ struct about_data {
 };
 
 static const about_data authors[] = {
-    {kli18n("Andre Heinecke"), kli18n("Current Maintainer"),
-     "aheinecke@gnupg.org", nullptr},
+    {kli18n("Andre Heinecke"), kli18n("Current Maintainer"), "aheinecke@gnupg.org", nullptr},
     {kli18n("Marc Mutz"), kli18n("Former Maintainer"), "mutz@kde.org", nullptr},
-    {kli18n("Steffen Hansen"), kli18n("Former Maintainer"), "hansen@kde.org",
-     nullptr},
-    {kli18n("Matthias Kalle Dalheimer"), kli18n("Original Author"),
-     "kalle@kde.org", nullptr},
+    {kli18n("Steffen Hansen"), kli18n("Former Maintainer"), "hansen@kde.org", nullptr},
+    {kli18n("Matthias Kalle Dalheimer"), kli18n("Original Author"), "kalle@kde.org", nullptr},
 };
 
 static const about_data credits[] = {
-    {kli18n("David Faure"),
-     kli18n("Backend configuration framework, KIO integration"),
-     "faure@kde.org", nullptr},
+    {kli18n("David Faure"), kli18n("Backend configuration framework, KIO integration"), "faure@kde.org", nullptr},
     {kli18n("Michel Boyer de la Giroday"),
      kli18n("Key-state dependent colors and fonts in the certificates list"),
-     "michel@klaralvdalens-datakonsult.se", nullptr},
-    {kli18n("Thomas Moenicke"), kli18n("Artwork"), "tm@php-qt.org", nullptr},
-    {kli18n("Frank Osterfeld"),
-     kli18n("Resident gpgme/win wrangler, UI Server commands and dialogs"),
-     "osterfeld@kde.org", nullptr},
-    {kli18n("Karl-Heinz Zimmer"),
-     kli18n("DN display ordering support, infrastructure"), "khz@kde.org",
+     "michel@klaralvdalens-datakonsult.se",
      nullptr},
-    {kli18n("Laurent Montel"), kli18n("Qt5 port, general code maintenance"),
-     "montel@kde.org", nullptr},
+    {kli18n("Thomas Moenicke"), kli18n("Artwork"), "tm@php-qt.org", nullptr},
+    {kli18n("Frank Osterfeld"), kli18n("Resident gpgme/win wrangler, UI Server commands and dialogs"), "osterfeld@kde.org", nullptr},
+    {kli18n("Karl-Heinz Zimmer"), kli18n("DN display ordering support, infrastructure"), "khz@kde.org", nullptr},
+    {kli18n("Laurent Montel"), kli18n("Qt5 port, general code maintenance"), "montel@kde.org", nullptr},
 };
 
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kleopatra"),
-      (Kleo::brandingWindowTitle().isEmpty() ?
-       i18n("Kleopatra") : Kleo::brandingWindowTitle()),
+                 (Kleo::brandingWindowTitle().isEmpty() ? i18n("Kleopatra") : Kleo::brandingWindowTitle()),
 #ifdef Q_OS_WIN
                  Kleo::gpg4winVersion(),
                  Kleo::gpg4winDescription(),
@@ -69,24 +59,27 @@ AboutData::AboutData()
                  KAboutLicense::GPL,
                  i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0Dalheimer, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB\n"
                       "(c) 2004, 2007, 2008, 2009 Marc\u00A0Mutz, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB") //
-                 + QLatin1Char('\n') //
-                 + i18n("(c) 2016-2018 Intevation GmbH") //
-                 + QLatin1Char('\n') //
-                 + i18n("(c) 2010-%1 The Kleopatra developers, g10 Code GmbH", QStringLiteral("2023"))
-                 )
+                     + QLatin1Char('\n') //
+                     + i18n("(c) 2016-2018 Intevation GmbH") //
+                     + QLatin1Char('\n') //
+                     + i18n("(c) 2010-%1 The Kleopatra developers, g10 Code GmbH", QStringLiteral("2023")))
 {
 #ifdef Q_OS_WIN
     setOtherText(Kleo::gpg4winLongDescription());
 #endif
     using ::authors;
     using ::credits;
-    for (unsigned int i = 0; i < sizeof authors / sizeof * authors; ++i) {
-        addAuthor(KLocalizedString(authors[i].name).toString(), KLocalizedString(authors[i].desc).toString(),
-                  QLatin1String(authors[i].email), QLatin1String(authors[i].web));
+    for (unsigned int i = 0; i < sizeof authors / sizeof *authors; ++i) {
+        addAuthor(KLocalizedString(authors[i].name).toString(),
+                  KLocalizedString(authors[i].desc).toString(),
+                  QLatin1String(authors[i].email),
+                  QLatin1String(authors[i].web));
     }
-    for (unsigned int i = 0; i < sizeof credits / sizeof * credits; ++i) {
-        addCredit(KLocalizedString(credits[i].name).toString(), KLocalizedString(credits[i].desc).toString(),
-                  QLatin1String(credits[i].email), QLatin1String(credits[i].web));
+    for (unsigned int i = 0; i < sizeof credits / sizeof *credits; ++i) {
+        addCredit(KLocalizedString(credits[i].name).toString(),
+                  KLocalizedString(credits[i].desc).toString(),
+                  QLatin1String(credits[i].email),
+                  QLatin1String(credits[i].web));
     }
 
     /* For Linux it is possible that kleo is shipped as part
@@ -104,7 +97,7 @@ AboutData::AboutData()
         }
     } else {
 #ifdef Q_OS_WIN
-       setBugAddress("https://dev.gnupg.org/u/rgpg4win");
+        setBugAddress("https://dev.gnupg.org/u/rgpg4win");
 #endif
     }
 

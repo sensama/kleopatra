@@ -27,7 +27,8 @@ class Key;
 }
 
 class QFileInfo;
-template <typename T> class QList;
+template<typename T>
+class QList;
 using QFileInfoList = QList<QFileInfo>;
 
 namespace Kleo
@@ -100,7 +101,7 @@ public:
     bool recipientsUserMutable() const;
     void setRecipientsUserMutable(bool isMutable);
 
-    void setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers, const std::vector< std::vector<GpgME::Key> > &keys);
+    void setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers, const std::vector<std::vector<GpgME::Key>> &keys);
 
     void setTaskCollection(const std::shared_ptr<TaskCollection> &tasks);
 
@@ -137,4 +138,3 @@ private:
 }
 }
 }
-

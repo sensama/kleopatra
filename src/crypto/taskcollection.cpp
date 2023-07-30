@@ -14,8 +14,8 @@
 
 #include "taskcollection.h"
 
-#include "task.h"
 #include "kleopatra_debug.h"
+#include "task.h"
 
 #include <Libkleo/GnuPG>
 
@@ -32,6 +32,7 @@ using namespace Kleo::Crypto;
 class TaskCollection::Private
 {
     TaskCollection *const q;
+
 public:
     explicit Private(TaskCollection *qq);
 
@@ -40,7 +41,7 @@ public:
     void taskStarted();
     void calculateAndEmitProgress();
 
-    std::map<int, std::shared_ptr<Task> > m_tasks;
+    std::map<int, std::shared_ptr<Task>> m_tasks;
     mutable quint64 m_totalProgress;
     mutable quint64 m_progress;
     unsigned int m_nCompleted;
@@ -49,14 +50,14 @@ public:
     bool m_doneEmitted;
 };
 
-TaskCollection::Private::Private(TaskCollection *qq):
-    q(qq),
-    m_totalProgress(0),
-    m_progress(0),
-    m_nCompleted(0),
-    m_nErrors(0),
-    m_errorOccurred(false),
-    m_doneEmitted(false)
+TaskCollection::Private::Private(TaskCollection *qq)
+    : q(qq)
+    , m_totalProgress(0)
+    , m_progress(0)
+    , m_nCompleted(0)
+    , m_nErrors(0)
+    , m_errorOccurred(false)
+    , m_doneEmitted(false)
 {
 }
 
@@ -169,7 +170,9 @@ void TaskCollection::Private::calculateAndEmitProgress()
     }
 }
 
-TaskCollection::TaskCollection(QObject *parent) : QObject(parent), d(new Private(this))
+TaskCollection::TaskCollection(QObject *parent)
+    : QObject(parent)
+    , d(new Private(this))
 {
 }
 
@@ -198,9 +201,9 @@ std::shared_ptr<Task> TaskCollection::taskById(int id) const
     return it != d->m_tasks.end() ? it->second : std::shared_ptr<Task>();
 }
 
-std::vector<std::shared_ptr<Task> > TaskCollection::tasks() const
+std::vector<std::shared_ptr<Task>> TaskCollection::tasks() const
 {
-    std::vector<std::shared_ptr<Task> > res;
+    std::vector<std::shared_ptr<Task>> res;
     res.reserve(d->m_tasks.size());
     for (auto it = d->m_tasks.begin(), end = d->m_tasks.end(); it != end; ++it) {
         res.push_back(it->second);
@@ -208,7 +211,7 @@ std::vector<std::shared_ptr<Task> > TaskCollection::tasks() const
     return res;
 }
 
-void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task> > &tasks)
+void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task>> &tasks)
 {
     for (const std::shared_ptr<Task> &i : tasks) {
         Q_ASSERT(i);
@@ -216,10 +219,11 @@ void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task> > &tasks)
         connect(i.get(), &Task::progress, this, [this]() {
             d->taskProgress();
         });
-        connect(i.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
-                this, SLOT(taskResult(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
-        connect(i.get(), SIGNAL(started()),
-                this, SLOT(taskStarted()));
+        connect(i.get(),
+                SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+                this,
+                SLOT(taskResult(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+        connect(i.get(), SIGNAL(started()), this, SLOT(taskStarted()));
     }
 }
 

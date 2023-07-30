@@ -12,25 +12,25 @@
 
 #include "kleopatra_debug.h"
 
-#include "crypto/taskcollection.h"
 #include "crypto/decryptverifytask.h"
-#include "crypto/gui/resultpage.h"
 #include "crypto/gui/resultlistwidget.h"
+#include "crypto/gui/resultpage.h"
+#include "crypto/taskcollection.h"
 #include "utils/path-helper.h"
 
 #include <Libkleo/FileNameRequester>
 
-#include <QWindow>
-#include <QVBoxLayout>
-#include <QProgressBar>
 #include <QLabel>
+#include <QProgressBar>
 #include <QPushButton>
+#include <QVBoxLayout>
+#include <QWindow>
 
 #include <vector>
 
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KConfigGroup>
 #include <KSharedConfig>
 #include <KWindowConfig>
 
@@ -39,7 +39,9 @@ using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
 DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll, QWidget *parent)
-    : QDialog(parent), m_tasks(coll), m_buttonBox(new QDialogButtonBox)
+    : QDialog(parent)
+    , m_tasks(coll)
+    , m_buttonBox(new QDialogButtonBox)
 {
     readConfig();
     auto vLay = new QVBoxLayout(this);
@@ -75,7 +77,7 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
     layout()->addWidget(m_buttonBox);
 
     bool hasOutputs = false;
-    for (const auto &t: coll->tasks()) {
+    for (const auto &t : coll->tasks()) {
         if (!qobject_cast<VerifyDetachedTask *>(t.get())) {
             hasOutputs = true;
             break;
@@ -111,7 +113,7 @@ void DecryptVerifyFilesDialog::allDone()
     Q_ASSERT(m_tasks);
     m_progressBar->setRange(0, 100);
     m_progressBar->setValue(100);
-    for (const auto &i: m_progressLabelByTag.keys()) {
+    for (const auto &i : m_progressLabelByTag.keys()) {
         if (!i.isEmpty()) {
             m_progressLabelByTag.value(i)->setText(i18n("%1: All operations completed.", i));
         } else {
@@ -187,11 +189,11 @@ void DecryptVerifyFilesDialog::btnClicked(QAbstractButton *btn)
     }
 }
 
-void DecryptVerifyFilesDialog::checkAccept() {
+void DecryptVerifyFilesDialog::checkAccept()
+{
     const auto outLoc = outputLocation();
     if (outLoc.isEmpty()) {
-        KMessageBox::information(this, i18n("Please select an output folder."),
-                                 i18nc("@title:window", "No Output Folder"));
+        KMessageBox::information(this, i18n("Please select an output folder."), i18nc("@title:window", "No Output Folder"));
         return;
     }
     const QFileInfo fi(outLoc);
@@ -200,17 +202,24 @@ void DecryptVerifyFilesDialog::checkAccept() {
         qCDebug(KLEOPATRA_LOG) << "Output dir does not exist. Trying to create.";
         const QDir dir(outLoc);
         if (!dir.mkdir(outLoc)) {
-            KMessageBox::information(this, xi18nc("@info", "<para>Failed to create output folder <filename>%1</filename>.</para><para>Please select a different output folder.</para>", outLoc),
-                                     i18nc("@title:window", "Unusable Output Folder"));
+            KMessageBox::information(
+                this,
+                xi18nc("@info",
+                       "<para>Failed to create output folder <filename>%1</filename>.</para><para>Please select a different output folder.</para>",
+                       outLoc),
+                i18nc("@title:window", "Unusable Output Folder"));
         } else {
             accept();
         }
     } else if (!fi.isDir()) {
-        KMessageBox::information(this, i18n("Please select a different output folder."),
-                                 i18nc("@title:window", "Invalid Output Folder"));
+        KMessageBox::information(this, i18n("Please select a different output folder."), i18nc("@title:window", "Invalid Output Folder"));
     } else if (!Kleo::isWritable(fi)) {
-        KMessageBox::information(this, xi18nc("@info", "<para>Cannot write in the output folder <filename>%1</filename>.</para><para>Please select a different output folder.</para>", outLoc),
-                                 i18nc("@title:window", "Unusable Output Folder"));
+        KMessageBox::information(
+            this,
+            xi18nc("@info",
+                   "<para>Cannot write in the output folder <filename>%1</filename>.</para><para>Please select a different output folder.</para>",
+                   outLoc),
+            i18nc("@title:window", "Unusable Output Folder"));
     } else {
         accept();
     }

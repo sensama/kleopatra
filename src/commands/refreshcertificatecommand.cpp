@@ -10,8 +10,8 @@
 
 #include <config-kleopatra.h>
 
-#include "refreshcertificatecommand.h"
 #include "command_p.h"
+#include "refreshcertificatecommand.h"
 
 #include <Libkleo/Formatting>
 
@@ -20,8 +20,8 @@
 
 #include <QGpgME/Protocol>
 #if QGPGME_SUPPORTS_KEY_REFRESH
-#include <QGpgME/RefreshKeysJob>
 #include <QGpgME/ReceiveKeysJob>
+#include <QGpgME/RefreshKeysJob>
 #endif
 
 #include <gpgme++/importresult.h>
@@ -38,6 +38,7 @@ class RefreshCertificateCommand::Private : public Command::Private
     {
         return static_cast<RefreshCertificateCommand *>(q);
     }
+
 public:
     explicit Private(RefreshCertificateCommand *qq);
     ~Private() override;
@@ -113,8 +114,7 @@ void RefreshCertificateCommand::Private::start()
     case GpgME::CMS:
         refreshJob = startSMIMEJob();
         break;
-    default:
-        ; // cannot happen ;-)
+    default:; // cannot happen ;-)
     }
     if (!refreshJob) {
         finished();
@@ -143,16 +143,15 @@ std::unique_ptr<QGpgME::ReceiveKeysJob> RefreshCertificateCommand::Private::star
     std::unique_ptr<QGpgME::ReceiveKeysJob> refreshJob{QGpgME::openpgp()->receiveKeysJob()};
     Q_ASSERT(refreshJob);
 
-    connect(refreshJob.get(), &QGpgME::ReceiveKeysJob::result,
-            q, [this](const GpgME::ImportResult &result) {
-                onOpenPGPJobResult(result);
-            });
+    connect(refreshJob.get(), &QGpgME::ReceiveKeysJob::result, q, [this](const GpgME::ImportResult &result) {
+        onOpenPGPJobResult(result);
+    });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(refreshJob.get(), &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(refreshJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(refreshJob.get(), &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(refreshJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
 
     const GpgME::Error err = refreshJob->start({QString::fromLatin1(key.primaryFingerprint())});
@@ -170,16 +169,15 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificateCommand::Private::star
     std::unique_ptr<QGpgME::RefreshKeysJob> refreshJob{QGpgME::smime()->refreshKeysJob()};
     Q_ASSERT(refreshJob);
 
-    connect(refreshJob.get(), &QGpgME::RefreshKeysJob::result,
-            q, [this](const GpgME::Error &err) {
-                onSMIMEJobResult(err);
-            });
+    connect(refreshJob.get(), &QGpgME::RefreshKeysJob::result, q, [this](const GpgME::Error &err) {
+        onSMIMEJobResult(err);
+    });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(refreshJob.get(), &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(refreshJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(refreshJob.get(), &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(refreshJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
 
     const GpgME::Error err = refreshJob->start({key});
@@ -233,9 +231,9 @@ static auto informationOnChanges(const ImportResult &result)
 
     text = QLatin1String{"<p>"} + text + QLatin1String{"</p>"};
     if (result.numImported() > 0) {
-        text += QLatin1String{"<p>"} + i18np("Additionally, one new key has been retrieved.",
-                                             "Additionally, %1 new keys have been retrieved.",
-                                             result.numImported()) + QLatin1String{"</p>"};
+        text += QLatin1String{"<p>"}
+            + i18np("Additionally, one new key has been retrieved.", "Additionally, %1 new keys have been retrieved.", result.numImported())
+            + QLatin1String{"</p>"};
     }
 
     return text;
@@ -252,8 +250,7 @@ void RefreshCertificateCommand::Private::onOpenPGPJobResult(const ImportResult &
     }
 
     if (!result.error().isCanceled()) {
-        information(informationOnChanges(result),
-                    i18nc("@title:window", "Key Updated"));
+        information(informationOnChanges(result), i18nc("@title:window", "Key Updated"));
     }
     finished();
 }
@@ -267,8 +264,7 @@ void RefreshCertificateCommand::Private::onSMIMEJobResult(const Error &err)
     }
 
     if (!err.isCanceled()) {
-        information(i18nc("@info", "The certificate has been updated."),
-                    i18nc("@title:window", "Certificate Updated"));
+        information(i18nc("@info", "The certificate has been updated."), i18nc("@title:window", "Certificate Updated"));
     }
     finished();
 }

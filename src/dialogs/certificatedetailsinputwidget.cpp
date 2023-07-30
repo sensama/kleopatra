@@ -25,8 +25,8 @@
 
 #include <QLabel>
 #include <QLineEdit>
-#include <QValidator>
 #include <QVBoxLayout>
+#include <QValidator>
 
 #include "kleopatra_debug.h"
 
@@ -35,101 +35,109 @@ using namespace Kleo::Dialogs;
 
 namespace
 {
-    struct Line {
-        QString attr;
-        QString label;
-        QString regex;
-        QLineEdit *edit;
-        std::shared_ptr<QValidator> validator;
-        bool required;
-    };
+struct Line {
+    QString attr;
+    QString label;
+    QString regex;
+    QLineEdit *edit;
+    std::shared_ptr<QValidator> validator;
+    bool required;
+};
 
-    QString attributeFromKey(QString key)
-    {
-        return key.remove(QLatin1Char('!'));
-    }
+QString attributeFromKey(QString key)
+{
+    return key.remove(QLatin1Char('!'));
+}
 
-    QString attributeLabel(const QString &attr)
-    {
-        if (attr.isEmpty()) {
-            return QString();
-        }
-        const QString label = DN::attributeNameToLabel(attr);
-        if (!label.isEmpty()) {
-            return i18nc("Format string for the labels in the \"Your Personal Data\" page",
-                        "%1 (%2)", label, attr);
-        } else {
-            return attr;
-        }
-    }
-
-    QLineEdit * addRow(QGridLayout *l, const QString &label, const QString &preset, const std::shared_ptr<QValidator> &validator, bool readonly, bool required)
-    {
-        Q_ASSERT(l);
-
-        auto lb = new QLabel(l->parentWidget());
-        lb->setText(i18nc("interpunctation for labels", "%1:", label));
-
-        auto le = new QLineEdit(l->parentWidget());
-        le->setText(preset);
-        if (validator) {
-            le->setValidator(validator.get());
-        }
-        le->setReadOnly(readonly && le->hasAcceptableInput());
-
-        auto reqLB = new QLabel(l->parentWidget());
-        reqLB->setText(required ? i18n("(required)") : i18n("(optional)"));
-
-        const int row = l->rowCount();
-        l->addWidget(lb, row, 0);
-        l->addWidget(le, row, 1);
-        l->addWidget(reqLB, row, 2);
-        return le;
-    }
-
-    bool hasIntermediateInput(const QLineEdit *le)
-    {
-        QString text = le->text();
-        int pos = le->cursorPosition();
-        const QValidator *const v = le->validator();
-        return v && v->validate(text, pos) == QValidator::Intermediate;
-    }
-
-    QString requirementsAreMet(const QVector<Line> &lines)
-    {
-        for (const Line &line : lines) {
-            const QLineEdit *le = line.edit;
-            if (!le) {
-                continue;
-            }
-            qCDebug(KLEOPATRA_LOG) << "requirementsAreMet(): checking \"" << line.attr << "\" against \"" << le->text() << "\":";
-            if (le->text().trimmed().isEmpty()) {
-                if (line.required) {
-                    if (line.regex.isEmpty()) {
-                        return xi18nc("@info", "<interface>%1</interface> is required, but empty.", line.label);
-                    } else {
-                        return xi18nc("@info", "<interface>%1</interface> is required, but empty.<nl/>"
-                                      "Local Admin rule: <icode>%2</icode>", line.label, line.regex);
-                    }
-                }
-            } else if (hasIntermediateInput(le)) {
-                if (line.regex.isEmpty()) {
-                    return xi18nc("@info", "<interface>%1</interface> is incomplete.", line.label);
-                } else {
-                    return xi18nc("@info", "<interface>%1</interface> is incomplete.<nl/>"
-                                  "Local Admin rule: <icode>%2</icode>", line.label, line.regex);
-                }
-            } else if (!le->hasAcceptableInput()) {
-                if (line.regex.isEmpty()) {
-                    return xi18nc("@info", "<interface>%1</interface> is invalid.", line.label);
-                } else {
-                    return xi18nc("@info", "<interface>%1</interface> is invalid.<nl/>"
-                                  "Local Admin rule: <icode>%2</icode>", line.label, line.regex);
-                }
-            }
-        }
+QString attributeLabel(const QString &attr)
+{
+    if (attr.isEmpty()) {
         return QString();
     }
+    const QString label = DN::attributeNameToLabel(attr);
+    if (!label.isEmpty()) {
+        return i18nc("Format string for the labels in the \"Your Personal Data\" page", "%1 (%2)", label, attr);
+    } else {
+        return attr;
+    }
+}
+
+QLineEdit *addRow(QGridLayout *l, const QString &label, const QString &preset, const std::shared_ptr<QValidator> &validator, bool readonly, bool required)
+{
+    Q_ASSERT(l);
+
+    auto lb = new QLabel(l->parentWidget());
+    lb->setText(i18nc("interpunctation for labels", "%1:", label));
+
+    auto le = new QLineEdit(l->parentWidget());
+    le->setText(preset);
+    if (validator) {
+        le->setValidator(validator.get());
+    }
+    le->setReadOnly(readonly && le->hasAcceptableInput());
+
+    auto reqLB = new QLabel(l->parentWidget());
+    reqLB->setText(required ? i18n("(required)") : i18n("(optional)"));
+
+    const int row = l->rowCount();
+    l->addWidget(lb, row, 0);
+    l->addWidget(le, row, 1);
+    l->addWidget(reqLB, row, 2);
+    return le;
+}
+
+bool hasIntermediateInput(const QLineEdit *le)
+{
+    QString text = le->text();
+    int pos = le->cursorPosition();
+    const QValidator *const v = le->validator();
+    return v && v->validate(text, pos) == QValidator::Intermediate;
+}
+
+QString requirementsAreMet(const QVector<Line> &lines)
+{
+    for (const Line &line : lines) {
+        const QLineEdit *le = line.edit;
+        if (!le) {
+            continue;
+        }
+        qCDebug(KLEOPATRA_LOG) << "requirementsAreMet(): checking \"" << line.attr << "\" against \"" << le->text() << "\":";
+        if (le->text().trimmed().isEmpty()) {
+            if (line.required) {
+                if (line.regex.isEmpty()) {
+                    return xi18nc("@info", "<interface>%1</interface> is required, but empty.", line.label);
+                } else {
+                    return xi18nc("@info",
+                                  "<interface>%1</interface> is required, but empty.<nl/>"
+                                  "Local Admin rule: <icode>%2</icode>",
+                                  line.label,
+                                  line.regex);
+                }
+            }
+        } else if (hasIntermediateInput(le)) {
+            if (line.regex.isEmpty()) {
+                return xi18nc("@info", "<interface>%1</interface> is incomplete.", line.label);
+            } else {
+                return xi18nc("@info",
+                              "<interface>%1</interface> is incomplete.<nl/>"
+                              "Local Admin rule: <icode>%2</icode>",
+                              line.label,
+                              line.regex);
+            }
+        } else if (!le->hasAcceptableInput()) {
+            if (line.regex.isEmpty()) {
+                return xi18nc("@info", "<interface>%1</interface> is invalid.", line.label);
+            } else {
+                return xi18nc("@info",
+                              "<interface>%1</interface> is invalid.<nl/>"
+                              "Local Admin rule: <icode>%2</icode>",
+                              line.label,
+                              line.regex);
+            }
+        }
+    }
+    return QString();
+}
 }
 
 class CertificateDetailsInputWidget::Private
@@ -203,7 +211,7 @@ public:
     {
         // remember current attribute values as presets for next certificate
         KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
-        for ( const Line &line : ui.lines ) {
+        for (const Line &line : ui.lines) {
             const QString attr = attributeFromKey(line.attr);
             const QString value = line.edit->text().trimmed();
             config.writeEntry(attr, value);
@@ -238,8 +246,7 @@ public:
             const QString preset = config.readEntry(attr, defaultPreset);
             const bool required = key.endsWith(QLatin1Char('!'));
             const bool readonly = config.isEntryImmutable(attr);
-            const QString label = config.readEntry(attr + QLatin1String("_label"),
-                                                   attributeLabel(attr));
+            const QString label = config.readEntry(attr + QLatin1String("_label"), attributeLabel(attr));
             const QString regex = config.readEntry(attr + QLatin1String("_regex"));
 
             std::shared_ptr<QValidator> validator;
@@ -251,13 +258,17 @@ public:
 
             QLineEdit *le = addRow(ui.gridLayout, label, preset, validator, readonly, required);
 
-            const Line line = { attr, label, regex, le, validator, required };
+            const Line line = {attr, label, regex, le, validator, required};
             ui.lines.push_back(line);
 
             if (attr != QLatin1String("EMAIL")) {
-                connect(le, &QLineEdit::textChanged, [this] () { updateDN(); });
+                connect(le, &QLineEdit::textChanged, [this]() {
+                    updateDN();
+                });
             }
-            connect(le, &QLineEdit::textChanged, [this] () { checkRequirements(); });
+            connect(le, &QLineEdit::textChanged, [this]() {
+                checkRequirements();
+            });
         }
     }
 
@@ -269,7 +280,7 @@ public:
     QString cmsDN() const
     {
         DN dn;
-        for ( const Line &line : ui.lines ) {
+        for (const Line &line : ui.lines) {
             const QString text = line.edit->text().trimmed();
             if (text.isEmpty()) {
                 continue;
@@ -293,9 +304,9 @@ public:
         Q_EMIT q->validityChanged(error.isEmpty());
     }
 
-    QLineEdit * attributeWidget(const QString &attribute)
+    QLineEdit *attributeWidget(const QString &attribute)
     {
-        for ( const Line &line : ui.lines ) {
+        for (const Line &line : ui.lines) {
             if (attributeFromKey(line.attr) == attribute) {
                 return line.edit;
             }

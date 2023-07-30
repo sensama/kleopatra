@@ -10,4 +10,3 @@
 #include <config-kleopatra.h>
 
 #include "detail_p.h"
-

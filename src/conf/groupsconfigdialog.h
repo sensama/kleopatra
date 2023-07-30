@@ -37,4 +37,3 @@ private:
     class Private;
     const std::unique_ptr<Private> d;
 };
-

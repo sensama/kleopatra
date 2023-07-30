@@ -40,19 +40,20 @@ namespace Kleo::_detail
 class FormTextInputBase::Private
 {
     FormTextInputBase *q;
+
 public:
-    enum Error
-    {
+    enum Error {
         EntryOK,
         EntryMissing, // a required entry is missing
-        InvalidEntry  // the validator doesn't accept the entry
+        InvalidEntry // the validator doesn't accept the entry
     };
 
     Private(FormTextInputBase *q)
         : q{q}
         , mValueRequiredErrorMessage{defaultValueRequiredErrorMessage()}
         , mInvalidEntryErrorMessage{defaultInvalidEntryErrorMessage()}
-    {}
+    {
+    }
 
     QString annotatedIfRequired(const QString &text) const;
     void updateLabel();
@@ -371,8 +372,7 @@ QString FormTextInputBase::currentError() const
 bool FormTextInputBase::validate(const QString &text, int pos) const
 {
     QString textCopy = text;
-    if (d->mValidator && d->mValidator->validate(textCopy, pos) != QValidator::Acceptable)
-    {
+    if (d->mValidator && d->mValidator->validate(textCopy, pos) != QValidator::Acceptable) {
         return false;
     }
     return true;
@@ -410,8 +410,10 @@ template<>
 void Kleo::FormTextInput<QLineEdit>::connectWidget()
 {
     const auto w = widget();
-    QObject::connect(w, &QLineEdit::editingFinished,
-                     w, [this]() { onEditingFinished(); });
-    QObject::connect(w, &QLineEdit::textChanged,
-                     w, [this]() { onTextChanged(); });
+    QObject::connect(w, &QLineEdit::editingFinished, w, [this]() {
+        onEditingFinished();
+    });
+    QObject::connect(w, &QLineEdit::textChanged, w, [this]() {
+        onTextChanged();
+    });
 }

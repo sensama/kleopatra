@@ -9,17 +9,18 @@
 */
 #pragma once
 
+#include "crypto/task.h"
 #include <QDialog>
-#include <QString>
 #include <QDialogButtonBox>
 #include <QHash>
-#include "crypto/task.h"
+#include <QString>
 
 #include <memory>
 
 class QVBoxLayout;
 class QProgressBar;
-template <typename K, typename U> class QHash;
+template<typename K, typename U>
+class QHash;
 class QLabel;
 
 namespace Kleo
@@ -37,8 +38,7 @@ class DecryptVerifyFilesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll,
-                                      QWidget *parent = nullptr);
+    explicit DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll, QWidget *parent = nullptr);
     ~DecryptVerifyFilesDialog() override;
 
     void setOutputLocation(const QString &dir);
@@ -71,6 +71,5 @@ private:
 };
 
 } // namespace Gui
-} //namespace Crypto;
+} // namespace Crypto;
 } // namespace Kleo
-

@@ -23,14 +23,14 @@ struct KeyPairInfo;
 class P15Card;
 }
 
-class P15CardWidget: public QWidget
+class P15CardWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit P15CardWidget(QWidget *parent = nullptr);
     ~P15CardWidget() override;
 
-    void setCard(const SmartCard::P15Card* card);
+    void setCard(const SmartCard::P15Card *card);
 
 private:
     void searchPGPFpr(const std::string &fpr);

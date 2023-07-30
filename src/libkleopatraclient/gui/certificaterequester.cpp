@@ -11,12 +11,12 @@
 
 #include <libkleopatraclient/core/selectcertificatecommand.h>
 
-#include <QPointer>
-#include <QPushButton>
+#include <KLocalizedString>
+#include <QHBoxLayout>
 #include <QLineEdit>
 #include <QMessageBox>
-#include <QHBoxLayout>
-#include <KLocalizedString>
+#include <QPointer>
+#include <QPushButton>
 
 #include <memory>
 
@@ -27,20 +27,20 @@ class CertificateRequester::Private
 {
     friend class ::KleopatraClientCopy::Gui::CertificateRequester;
     CertificateRequester *const q;
+
 public:
     explicit Private(CertificateRequester *qq)
-        : q(qq),
-          selectedCertificates(),
-          command(),
-          multipleCertificatesAllowed(false),
-          onlySigningCertificatesAllowed(false),
-          onlyEncryptionCertificatesAllowed(false),
-          onlyOpenPGPCertificatesAllowed(false),
-          onlyX509CertificatesAllowed(false),
-          onlySecretKeysAllowed(false),
-          ui(q)
+        : q(qq)
+        , selectedCertificates()
+        , command()
+        , multipleCertificatesAllowed(false)
+        , onlySigningCertificatesAllowed(false)
+        , onlyEncryptionCertificatesAllowed(false)
+        , onlyOpenPGPCertificatesAllowed(false)
+        , onlyX509CertificatesAllowed(false)
+        , onlySecretKeysAllowed(false)
+        , ui(q)
     {
-
     }
 
 private:
@@ -91,9 +91,9 @@ private:
         QHBoxLayout hlay;
 
         explicit Ui(CertificateRequester *qq)
-            : lineEdit(qq),
-              button(i18n("Change..."), qq),
-              hlay(qq)
+            : lineEdit(qq)
+            , button(i18n("Change..."), qq)
+            , hlay(qq)
         {
             lineEdit.setObjectName(QStringLiteral("lineEdit"));
             button.setObjectName(QStringLiteral("button"));
@@ -104,22 +104,22 @@ private:
 
             lineEdit.setReadOnly(true);
 
-            connect(&button, SIGNAL(clicked()),
-                    qq, SLOT(slotButtonClicked()));
+            connect(&button, SIGNAL(clicked()), qq, SLOT(slotButtonClicked()));
         }
 
     } ui;
 };
 
 CertificateRequester::CertificateRequester(QWidget *p, Qt::WindowFlags f)
-    : QWidget(p, f), d(new Private(this))
+    : QWidget(p, f)
+    , d(new Private(this))
 {
-
 }
 
 CertificateRequester::~CertificateRequester()
 {
-    delete d; d = nullptr;
+    delete d;
+    d = nullptr;
 }
 
 void CertificateRequester::setMultipleCertificatesAllowed(bool allow)
@@ -240,10 +240,7 @@ void CertificateRequester::Private::slotCommandFinished()
     if (command->wasCanceled()) {
         /* do nothing */;
     } else if (command->error()) {
-        QMessageBox::information(q,
-                                 i18n("Kleopatra Error"),
-                                 i18n("There was an error while connecting to Kleopatra: %1",
-                                      command->errorString()));
+        QMessageBox::information(q, i18n("Kleopatra Error"), i18n("There was an error while connecting to Kleopatra: %1", command->errorString()));
     } else {
         q->setSelectedCertificates(command->selectedCertificates());
     }

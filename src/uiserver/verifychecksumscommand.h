@@ -48,4 +48,3 @@ private:
 }
 
 #endif // QT_NO_DIRMODEL
-

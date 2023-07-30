@@ -14,14 +14,14 @@
 
 #include "kleopatraapplication.h"
 
-#include "mainwindow.h"
 #include "kleopatra_options.h"
-#include "systrayicon.h"
+#include "mainwindow.h"
 #include "settings.h"
 #include "smimevalidationpreferences.h"
+#include "systrayicon.h"
 
-#include <smartcard/readerstatus.h>
 #include <conf/configuredialog.h>
+#include <smartcard/readerstatus.h>
 
 #include <Libkleo/GnuPG>
 #include <utils/kdpipeiodevice.h>
@@ -29,36 +29,36 @@
 
 #include <gpgme++/key.h>
 
+#include <Libkleo/Classify>
 #include <Libkleo/Dn>
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyGroupConfig>
-#include <Libkleo/Classify>
 #include <Libkleo/SystemInfo>
 
 #include <uiserver/uiserver.h>
 
-#include "commands/signencryptfilescommand.h"
-#include "commands/decryptverifyfilescommand.h"
-#include "commands/lookupcertificatescommand.h"
 #include "commands/checksumcreatefilescommand.h"
 #include "commands/checksumverifyfilescommand.h"
+#include "commands/decryptverifyfilescommand.h"
 #include "commands/detailscommand.h"
+#include "commands/lookupcertificatescommand.h"
 #include "commands/newcertificatesigningrequestcommand.h"
 #include "commands/newopenpgpcertificatecommand.h"
+#include "commands/signencryptfilescommand.h"
 
 #include "dialogs/updatenotification.h"
 
+#include "kleopatra_debug.h"
 #include <KIconLoader>
 #include <KLocalizedString>
-#include "kleopatra_debug.h"
 #include <KMessageBox>
 #include <KWindowSystem>
 
 #include <QDesktopServices>
-#include <QFile>
 #include <QDir>
+#include <QFile>
 #include <QFocusFrame>
 #if QT_CONFIG(graphicseffect)
 #include <QGraphicsEffect>
@@ -67,9 +67,8 @@
 #include <QStyleOption>
 #include <QStylePainter>
 
-#include <memory>
 #include <KSharedConfig>
-
+#include <memory>
 
 #ifdef Q_OS_WIN
 #include <QtPlatformHeaders/QWindowsWindowFunctions>
@@ -142,7 +141,7 @@ void FocusFrame::paintEvent(QPaintEvent *)
     initStyleOption(&option);
     const int vmargin = style()->pixelMetric(QStyle::PM_FocusFrameVMargin, &option);
     const int hmargin = style()->pixelMetric(QStyle::PM_FocusFrameHMargin, &option);
-    const QRect rect = clipRect(widget()).adjusted(0, 0, hmargin*2, vmargin*2);
+    const QRect rect = clipRect(widget()).adjusted(0, 0, hmargin * 2, vmargin * 2);
     p.setClipRect(rect);
     p.drawPrimitive(QStyle::PE_FrameFocusRect, option);
 }
@@ -152,6 +151,7 @@ class KleopatraApplication::Private
 {
     friend class ::KleopatraApplication;
     KleopatraApplication *const q;
+
 public:
     explicit Private(KleopatraApplication *qq)
         : q(qq)
@@ -161,7 +161,8 @@ public:
         , groupConfig{std::make_shared<KeyGroupConfig>(QStringLiteral("kleopatragroupsrc"))}
     {
     }
-    ~Private() {
+    ~Private()
+    {
 #ifndef QT_NO_SYSTEMTRAYICON
         delete sysTray;
 #endif
@@ -174,10 +175,8 @@ public:
         sysTray->setFirstCardWithNullPin(readerStatus->firstCardWithNullPin());
         sysTray->setAnyCardCanLearnKeys(readerStatus->anyCardCanLearnKeys());
 
-        connect(readerStatus.get(), &SmartCard::ReaderStatus::firstCardWithNullPinChanged,
-                sysTray, &SysTrayIcon::setFirstCardWithNullPin);
-        connect(readerStatus.get(), &SmartCard::ReaderStatus::anyCardCanLearnKeysChanged,
-                sysTray, &SysTrayIcon::setAnyCardCanLearnKeys);
+        connect(readerStatus.get(), &SmartCard::ReaderStatus::firstCardWithNullPinChanged, sysTray, &SysTrayIcon::setFirstCardWithNullPin);
+        connect(readerStatus.get(), &SmartCard::ReaderStatus::anyCardCanLearnKeysChanged, sysTray, &SysTrayIcon::setAnyCardCanLearnKeys);
 #endif
     }
 
@@ -186,22 +185,18 @@ private:
     {
         if (configureDialog) {
             if (q->mainWindow()) {
-                connect(configureDialog, SIGNAL(configCommitted()),
-                        q->mainWindow(), SLOT(slotConfigCommitted()));
+                connect(configureDialog, SIGNAL(configCommitted()), q->mainWindow(), SLOT(slotConfigCommitted()));
             }
-            connect(configureDialog, &ConfigureDialog::configCommitted,
-                    q, &KleopatraApplication::configurationChanged);
+            connect(configureDialog, &ConfigureDialog::configCommitted, q, &KleopatraApplication::configurationChanged);
         }
     }
     void disconnectConfigureDialog()
     {
         if (configureDialog) {
             if (q->mainWindow()) {
-                disconnect(configureDialog, SIGNAL(configCommitted()),
-                           q->mainWindow(), SLOT(slotConfigCommitted()));
+                disconnect(configureDialog, SIGNAL(configCommitted()), q->mainWindow(), SLOT(slotConfigCommitted()));
             }
-            disconnect(configureDialog, &ConfigureDialog::configCommitted,
-                       q, &KleopatraApplication::configurationChanged);
+            disconnect(configureDialog, &ConfigureDialog::configCommitted, q, &KleopatraApplication::configurationChanged);
         }
     }
 
@@ -288,23 +283,22 @@ public:
 };
 
 KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
-    : QApplication(argc, argv), d(new Private(this))
+    : QApplication(argc, argv)
+    , d(new Private(this))
 {
     // disable parent<->child navigation in tree views with left/right arrow keys
     // because this interferes with column by column navigation that is required
     // for accessibility
     setStyleSheet(QStringLiteral("QTreeView { arrow-keys-navigate-into-children: 0; }"));
-    connect(this, &QApplication::focusChanged,
-            this, [this](QWidget *, QWidget *now) {
-                d->updateFocusFrame(now);
-            });
+    connect(this, &QApplication::focusChanged, this, [this](QWidget *, QWidget *now) {
+        d->updateFocusFrame(now);
+    });
 }
 
 void KleopatraApplication::init()
 {
 #ifdef Q_OS_WIN
-    QWindowsWindowFunctions::setWindowActivationBehavior(
-            QWindowsWindowFunctions::AlwaysActivateWindow);
+    QWindowsWindowFunctions::setWindowActivationBehavior(QWindowsWindowFunctions::AlwaysActivateWindow);
 #endif
     const auto blockedUrlSchemes = Settings{}.blockedUrlSchemes();
     for (const auto &scheme : blockedUrlSchemes) {
@@ -320,8 +314,7 @@ void KleopatraApplication::init()
      * is killed while Kleopatra is running. */
     startGpgAgent();
     d->readerStatus.reset(new SmartCard::ReaderStatus);
-    connect(d->readerStatus.get(), &SmartCard::ReaderStatus::startOfGpgAgentRequested,
-            this, &KleopatraApplication::startGpgAgent);
+    connect(d->readerStatus.get(), &SmartCard::ReaderStatus::startOfGpgAgentRequested, this, &KleopatraApplication::startGpgAgent);
     d->setupKeyCache();
     d->setUpSysTrayIcon();
     d->setUpFilterManager();
@@ -354,8 +347,7 @@ namespace
 using Func = void (KleopatraApplication::*)(const QStringList &, GpgME::Protocol);
 }
 
-void KleopatraApplication::slotActivateRequested(const QStringList &arguments,
-        const QString &workingDirectory)
+void KleopatraApplication::slotActivateRequested(const QStringList &arguments, const QString &workingDirectory)
 {
     QCommandLineParser parser;
 
@@ -382,8 +374,7 @@ void KleopatraApplication::slotActivateRequested(const QStringList &arguments,
     Q_EMIT setExitValue(0);
 }
 
-QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
-        const QString &workingDirectory)
+QString KleopatraApplication::newInstance(const QCommandLineParser &parser, const QString &workingDirectory)
 {
     if (d->ignoreNewInstance) {
         qCDebug(KLEOPATRA_LOG) << "New instance ignored because of ignoreNewInstance";
@@ -500,16 +491,16 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         QString optionName;
         Func func;
     };
-    static const std::vector<FuncInfo> funcMap {
-        { QStringLiteral("import-certificate"), &KleopatraApplication::importCertificatesFromFile },
-        { QStringLiteral("encrypt"), &KleopatraApplication::encryptFiles },
-        { QStringLiteral("sign"), &KleopatraApplication::signFiles },
-        { QStringLiteral("encrypt-sign"), &KleopatraApplication::signEncryptFiles },
-        { QStringLiteral("sign-encrypt"), &KleopatraApplication::signEncryptFiles },
-        { QStringLiteral("decrypt"), &KleopatraApplication::decryptFiles },
-        { QStringLiteral("verify"), &KleopatraApplication::verifyFiles },
-        { QStringLiteral("decrypt-verify"), &KleopatraApplication::decryptVerifyFiles },
-        { QStringLiteral("checksum"), &KleopatraApplication::checksumFiles },
+    static const std::vector<FuncInfo> funcMap{
+        {QStringLiteral("import-certificate"), &KleopatraApplication::importCertificatesFromFile},
+        {QStringLiteral("encrypt"), &KleopatraApplication::encryptFiles},
+        {QStringLiteral("sign"), &KleopatraApplication::signFiles},
+        {QStringLiteral("encrypt-sign"), &KleopatraApplication::signEncryptFiles},
+        {QStringLiteral("sign-encrypt"), &KleopatraApplication::signEncryptFiles},
+        {QStringLiteral("decrypt"), &KleopatraApplication::decryptFiles},
+        {QStringLiteral("verify"), &KleopatraApplication::verifyFiles},
+        {QStringLiteral("decrypt-verify"), &KleopatraApplication::decryptVerifyFiles},
+        {QStringLiteral("checksum"), &KleopatraApplication::checksumFiles},
     };
 
     QString found;
@@ -537,7 +528,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                 openOrRaiseMainWindow();
             }
         } else {
-            for (const QString& fileName : std::as_const(files)) {
+            for (const QString &fileName : std::as_const(files)) {
                 QFileInfo fi(fileName);
                 if (!fi.isReadable()) {
                     errors << i18n("Cannot read \"%1\"", fileName);
@@ -668,7 +659,6 @@ void KleopatraApplication::restoreMainWindow()
     mw->setAttribute(Qt::WA_DeleteOnClose);
     setMainWindow(mw);
     d->connectConfigureDialog();
-
 }
 
 void KleopatraApplication::openOrRaiseMainWindow()
@@ -817,8 +807,7 @@ bool KleopatraApplication::ignoreNewInstance() const
 void KleopatraApplication::blockUrl(const QUrl &url)
 {
     qCDebug(KLEOPATRA_LOG) << "Blocking URL" << url;
-    KMessageBox::error(mainWindow(),i18n ("Opening an external link is administratively prohibited."),
-                i18n ("Prohibited"));
+    KMessageBox::error(mainWindow(), i18n("Opening an external link is administratively prohibited."), i18n("Prohibited"));
 }
 
 void KleopatraApplication::startGpgAgent()

@@ -25,7 +25,7 @@ class CertificateToPIVCardCommand : public CardCommand
 {
     Q_OBJECT
 public:
-    CertificateToPIVCardCommand(const std::string& cardSlot, const std::string &serialno);
+    CertificateToPIVCardCommand(const std::string &cardSlot, const std::string &serialno);
     ~CertificateToPIVCardCommand() override;
 
 public Q_SLOTS:
@@ -43,4 +43,3 @@ private:
 
 }
 }
-

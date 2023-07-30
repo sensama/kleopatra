@@ -18,7 +18,6 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -27,6 +26,7 @@ using namespace Kleo::Dialogs;
 class PIVCardApplicationAdministrationKeyInputDialog::Private
 {
     friend class ::Kleo::Dialogs::PIVCardApplicationAdministrationKeyInputDialog;
+
 public:
     explicit Private(PIVCardApplicationAdministrationKeyInputDialog *qq);
 
@@ -39,10 +39,11 @@ public:
     QByteArray adminKey;
 };
 
-PIVCardApplicationAdministrationKeyInputDialog::Private::Private(PIVCardApplicationAdministrationKeyInputDialog *qq): q(qq),
-    mLabel(new QLabel(qq)),
-    mHexEncodedAdminKeyEdit(new QLineEdit(qq)),
-    mOkButton(nullptr)
+PIVCardApplicationAdministrationKeyInputDialog::Private::Private(PIVCardApplicationAdministrationKeyInputDialog *qq)
+    : q(qq)
+    , mLabel(new QLabel(qq))
+    , mHexEncodedAdminKeyEdit(new QLineEdit(qq))
+    , mOkButton(nullptr)
 {
     auto vBox = new QVBoxLayout(q);
 
@@ -56,7 +57,9 @@ PIVCardApplicationAdministrationKeyInputDialog::Private::Private(PIVCardApplicat
         mHexEncodedAdminKeyEdit->setInputMask(QStringLiteral("HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH:HH;_"));
         mHexEncodedAdminKeyEdit->setFont(fixedFont);
         mHexEncodedAdminKeyEdit->setMinimumWidth(QFontMetrics(fixedFont).horizontalAdvance(QStringLiteral("HH:")) * 24);
-        connect(mHexEncodedAdminKeyEdit, &QLineEdit::textChanged, q, [this] () { checkAcceptable(); });
+        connect(mHexEncodedAdminKeyEdit, &QLineEdit::textChanged, q, [this]() {
+            checkAcceptable();
+        });
 
         vBox->addWidget(mHexEncodedAdminKeyEdit);
     }
@@ -67,8 +70,12 @@ PIVCardApplicationAdministrationKeyInputDialog::Private::Private(PIVCardApplicat
 
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(bbox, &QDialogButtonBox::rejected, q, [this]() {q->reject();});
-    connect(bbox, &QDialogButtonBox::accepted, q, [this]() {q->accept();});
+    connect(bbox, &QDialogButtonBox::rejected, q, [this]() {
+        q->reject();
+    });
+    connect(bbox, &QDialogButtonBox::accepted, q, [this]() {
+        q->accept();
+    });
 
     vBox->addWidget(bbox);
 
@@ -82,13 +89,13 @@ void PIVCardApplicationAdministrationKeyInputDialog::Private::checkAcceptable()
     mOkButton->setEnabled(mHexEncodedAdminKeyEdit->hasAcceptableInput());
 }
 
-
-PIVCardApplicationAdministrationKeyInputDialog::PIVCardApplicationAdministrationKeyInputDialog(QWidget *parent) : QDialog(parent),
-    d(new Private(this))
+PIVCardApplicationAdministrationKeyInputDialog::PIVCardApplicationAdministrationKeyInputDialog(QWidget *parent)
+    : QDialog(parent)
+    , d(new Private(this))
 {
 }
 
-void  PIVCardApplicationAdministrationKeyInputDialog::setLabelText(const QString& text)
+void PIVCardApplicationAdministrationKeyInputDialog::setLabelText(const QString &text)
 {
     d->mLabel->setText(text);
 }

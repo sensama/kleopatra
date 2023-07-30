@@ -41,8 +41,7 @@ public:
     explicit SignerResolvePage(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~SignerResolvePage() override;
 
-    void setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers,
-                                 const std::vector< std::vector<GpgME::Key> > &keys);
+    void setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers, const std::vector<std::vector<GpgME::Key>> &keys);
 
     std::vector<GpgME::Key> resolvedSigners() const;
     std::vector<GpgME::Key> signingCertificates(GpgME::Protocol protocol = GpgME::UnknownProtocol) const;
@@ -88,7 +87,9 @@ public:
     class Validator
     {
     public:
-        virtual ~Validator() {}
+        virtual ~Validator()
+        {
+        }
         virtual bool isComplete() const = 0;
         virtual QString explanation() const = 0;
         /**
@@ -120,5 +121,3 @@ private:
 }
 }
 }
-
-

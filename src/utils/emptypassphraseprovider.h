@@ -13,7 +13,7 @@
 
 #include <gpgme++/interfaces/passphraseprovider.h>
 
-class EmptyPassphraseProvider: public GpgME::PassphraseProvider
+class EmptyPassphraseProvider : public GpgME::PassphraseProvider
 {
 public:
     char *getPassphrase(const char *useridHint, const char *description, bool previousWasBad, bool &canceled) override;

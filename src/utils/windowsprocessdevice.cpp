@@ -37,39 +37,38 @@ class WindowsProcessDevice::Private
 public:
     ~Private();
 
-    Private(const QString &path, const QStringList &args, const QString &wd):
-        mPath(path),
-        mArgs(args),
-        mWorkingDirectory(wd),
-        mStdInRd(nullptr),
-        mStdInWr(nullptr),
-        mStdOutRd(nullptr),
-        mStdOutWr(nullptr),
-        mStdErrRd(nullptr),
-        mStdErrWr(nullptr),
-        mProc(nullptr),
-        mThread(nullptr),
-        mEnded(false)
+    Private(const QString &path, const QStringList &args, const QString &wd)
+        : mPath(path)
+        , mArgs(args)
+        , mWorkingDirectory(wd)
+        , mStdInRd(nullptr)
+        , mStdInWr(nullptr)
+        , mStdOutRd(nullptr)
+        , mStdOutWr(nullptr)
+        , mStdErrRd(nullptr)
+        , mStdErrWr(nullptr)
+        , mProc(nullptr)
+        , mThread(nullptr)
+        , mEnded(false)
     {
-
     }
 
-    bool start (QIODevice::OpenMode mode);
+    bool start(QIODevice::OpenMode mode);
 
     qint64 write(const char *data, qint64 size)
     {
         if (size < 0 || (size >> 32)) {
-            qCDebug (KLEOPATRA_LOG) << "Invalid write";
+            qCDebug(KLEOPATRA_LOG) << "Invalid write";
             return -1;
         }
 
         if (!mStdInWr) {
-            qCDebug (KLEOPATRA_LOG) << "Write to closed or read only device";
+            qCDebug(KLEOPATRA_LOG) << "Write to closed or read only device";
             return -1;
         }
 
         DWORD dwWritten;
-        if (!WriteFile(mStdInWr, data, (DWORD) size, &dwWritten, nullptr)) {
+        if (!WriteFile(mStdInWr, data, (DWORD)size, &dwWritten, nullptr)) {
             qCDebug(KLEOPATRA_LOG) << "Failed to write";
             return -1;
         }
@@ -83,7 +82,7 @@ public:
     qint64 read(char *data, qint64 maxSize)
     {
         if (!mStdOutRd) {
-            qCDebug (KLEOPATRA_LOG) << "Read of closed or write only device";
+            qCDebug(KLEOPATRA_LOG) << "Read of closed or write only device";
             return -1;
         }
 
@@ -92,7 +91,7 @@ public:
         }
 
         DWORD exitCode = 0;
-        if (GetExitCodeProcess (mProc, &exitCode)) {
+        if (GetExitCodeProcess(mProc, &exitCode)) {
             if (exitCode != STILL_ACTIVE) {
                 if (exitCode) {
                     qCDebug(KLEOPATRA_LOG) << "Non zero exit code";
@@ -108,12 +107,7 @@ public:
 
         if (mEnded) {
             DWORD avail = 0;
-            if (!PeekNamedPipe(mStdOutRd,
-                               nullptr,
-                               0,
-                               nullptr,
-                               &avail,
-                               nullptr)) {
+            if (!PeekNamedPipe(mStdOutRd, nullptr, 0, nullptr, &avail, nullptr)) {
                 qCDebug(KLEOPATRA_LOG) << "Failed to peek pipe";
                 return -1;
             }
@@ -124,7 +118,7 @@ public:
         }
 
         DWORD dwRead;
-        if (!ReadFile(mStdOutRd, data, (DWORD) maxSize, &dwRead, nullptr)) {
+        if (!ReadFile(mStdOutRd, data, (DWORD)maxSize, &dwRead, nullptr)) {
             qCDebug(KLEOPATRA_LOG) << "Failed to read";
             return -1;
         }
@@ -136,18 +130,13 @@ public:
     {
         QString ret;
         if (!mStdErrRd) {
-            qCDebug (KLEOPATRA_LOG) << "Read of closed stderr";
+            qCDebug(KLEOPATRA_LOG) << "Read of closed stderr";
         }
         DWORD dwRead = 0;
         do {
             char buf[4096];
             DWORD avail;
-            if (!PeekNamedPipe(mStdErrRd,
-                               nullptr,
-                               0,
-                               nullptr,
-                               &avail,
-                               nullptr)) {
+            if (!PeekNamedPipe(mStdErrRd, nullptr, 0, nullptr, &avail, nullptr)) {
                 qCDebug(KLEOPATRA_LOG) << "Failed to peek pipe";
                 return ret;
             }
@@ -156,8 +145,8 @@ public:
             }
             ReadFile(mStdErrRd, buf, 4096, &dwRead, nullptr);
             if (dwRead) {
-                QByteArray ba (buf, dwRead);
-                ret += QString::fromLocal8Bit (ba);
+                QByteArray ba(buf, dwRead);
+                ret += QString::fromLocal8Bit(ba);
             }
         } while (dwRead);
         return ret;
@@ -197,12 +186,9 @@ private:
     bool mEnded;
 };
 
-WindowsProcessDevice::WindowsProcessDevice(const QString &path,
-        const QStringList &args,
-        const QString &wd):
-    d(new Private(path, args, wd))
+WindowsProcessDevice::WindowsProcessDevice(const QString &path, const QStringList &args, const QString &wd)
+    : d(new Private(path, args, wd))
 {
-
 }
 
 bool WindowsProcessDevice::open(QIODevice::OpenMode mode)
@@ -245,15 +231,13 @@ QString getLastErrorString()
     wchar_t *lpMsgBuf = nullptr;
     DWORD dw = GetLastError();
 
-    FormatMessageW(
-        FORMAT_MESSAGE_ALLOCATE_BUFFER |
-        FORMAT_MESSAGE_FROM_SYSTEM |
-        FORMAT_MESSAGE_IGNORE_INSERTS,
-        NULL,
-        dw,
-        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-        (wchar_t *) &lpMsgBuf,
-        0, NULL);
+    FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                   NULL,
+                   dw,
+                   MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+                   (wchar_t *)&lpMsgBuf,
+                   0,
+                   NULL);
 
     QString ret = QString::fromWCharArray(lpMsgBuf);
 
@@ -266,17 +250,16 @@ WindowsProcessDevice::Private::~Private()
     if (mProc && mProc != INVALID_HANDLE_VALUE) {
         close();
     }
-    CloseHandleX (mThread);
-    CloseHandleX (mStdInRd);
-    CloseHandleX (mStdInWr);
-    CloseHandleX (mStdOutRd);
-    CloseHandleX (mStdOutWr);
-    CloseHandleX (mStdErrRd);
-    CloseHandleX (mStdErrWr);
+    CloseHandleX(mThread);
+    CloseHandleX(mStdInRd);
+    CloseHandleX(mStdInWr);
+    CloseHandleX(mStdOutRd);
+    CloseHandleX(mStdOutWr);
+    CloseHandleX(mStdErrRd);
+    CloseHandleX(mStdErrWr);
 }
 
-static QString qt_create_commandline(const QString &program, const QStringList &arguments,
-                                     const QString &nativeArguments)
+static QString qt_create_commandline(const QString &program, const QStringList &arguments, const QString &nativeArguments)
 {
     QString args;
     if (!program.isEmpty()) {
@@ -289,7 +272,7 @@ static QString qt_create_commandline(const QString &program, const QStringList &
         args = programName + QLatin1Char(' ');
     }
 
-    for (int i=0; i<arguments.size(); ++i) {
+    for (int i = 0; i < arguments.size(); ++i) {
         QString tmp = arguments.at(i);
         // Quotes are escaped and their preceding backslashes are doubled.
         tmp.replace(QRegularExpression(QLatin1String(R"--((\\*)")--")), QLatin1String(R"--(\1\1\")--"));
@@ -308,7 +291,7 @@ static QString qt_create_commandline(const QString &program, const QStringList &
 
     if (!nativeArguments.isEmpty()) {
         if (!args.isEmpty())
-             args += QLatin1Char(' ');
+            args += QLatin1Char(' ');
         args += nativeArguments;
     }
 
@@ -325,7 +308,7 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
     }
 
     SECURITY_ATTRIBUTES saAttr;
-    ZeroMemory (&saAttr, sizeof (SECURITY_ATTRIBUTES));
+    ZeroMemory(&saAttr, sizeof(SECURITY_ATTRIBUTES));
     saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
     saAttr.bInheritHandle = TRUE;
     saAttr.lpSecurityDescriptor = NULL;
@@ -360,7 +343,7 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
     siStartInfo.dwFlags |= STARTF_USESTDHANDLES;
 
     const auto args = qt_create_commandline(mPath, mArgs, QString());
-    wchar_t *cmdLine = wcsdup (reinterpret_cast<const wchar_t *>(args.utf16()));
+    wchar_t *cmdLine = wcsdup(reinterpret_cast<const wchar_t *>(args.utf16()));
     const wchar_t *proc = reinterpret_cast<const wchar_t *>(mPath.utf16());
     const QString nativeWorkingDirectory = QDir::toNativeSeparators(mWorkingDirectory);
     const wchar_t *wd = reinterpret_cast<const wchar_t *>(nativeWorkingDirectory.utf16());
@@ -371,14 +354,13 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
      * thirty handles. Open File handles in our child application can also cause the
      * read pipe not to be closed correcly on exit. */
     SIZE_T size;
-    bool suc = InitializeProcThreadAttributeList(NULL, 1, 0, &size) ||
-                         GetLastError() == ERROR_INSUFFICIENT_BUFFER;
+    bool suc = InitializeProcThreadAttributeList(NULL, 1, 0, &size) || GetLastError() == ERROR_INSUFFICIENT_BUFFER;
     if (!suc) {
         qCDebug(KLEOPATRA_LOG) << "Failed to get Attribute List size";
         mError = getLastErrorString();
         return false;
     }
-    LPPROC_THREAD_ATTRIBUTE_LIST attributeList = reinterpret_cast<LPPROC_THREAD_ATTRIBUTE_LIST> (HeapAlloc(GetProcessHeap(), 0, size));
+    LPPROC_THREAD_ATTRIBUTE_LIST attributeList = reinterpret_cast<LPPROC_THREAD_ATTRIBUTE_LIST>(HeapAlloc(GetProcessHeap(), 0, size));
     if (!attributeList) {
         qCDebug(KLEOPATRA_LOG) << "Failed to Allocate Attribute List";
         return false;
@@ -394,18 +376,11 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
     handles[0] = mStdOutWr;
     handles[1] = mStdErrWr;
     handles[2] = mStdInRd;
-    suc = UpdateProcThreadAttribute(attributeList,
-                                    0,
-                                    PROC_THREAD_ATTRIBUTE_HANDLE_LIST,
-                                    handles,
-                                    3 * sizeof(HANDLE),
-                                    NULL,
-                                    NULL);
+    suc = UpdateProcThreadAttribute(attributeList, 0, PROC_THREAD_ATTRIBUTE_HANDLE_LIST, handles, 3 * sizeof(HANDLE), NULL, NULL);
     if (!suc) {
         qCDebug(KLEOPATRA_LOG) << "Failed to Update Attribute List";
         mError = getLastErrorString();
         return false;
-
     }
     STARTUPINFOEX info;
     ZeroMemory(&info, sizeof(info));
@@ -416,20 +391,20 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
     // Now lets start
     qCDebug(KLEOPATRA_LOG) << "Spawning:" << args;
     suc = CreateProcessW(proc,
-                         cmdLine,       // command line
-                         NULL,          // process security attributes
-                         NULL,          // primary thread security attributes
-                         TRUE,          // handles are inherited
-                         CREATE_NO_WINDOW | EXTENDED_STARTUPINFO_PRESENT,// creation flags
-                         NULL,          // use parent's environment
-                         wd,          // use parent's current directory
-                         &info.StartupInfo,  // STARTUPINFO pointer
-                         &piProcInfo);  // receives PROCESS_INFORMATION
+                         cmdLine, // command line
+                         NULL, // process security attributes
+                         NULL, // primary thread security attributes
+                         TRUE, // handles are inherited
+                         CREATE_NO_WINDOW | EXTENDED_STARTUPINFO_PRESENT, // creation flags
+                         NULL, // use parent's environment
+                         wd, // use parent's current directory
+                         &info.StartupInfo, // STARTUPINFO pointer
+                         &piProcInfo); // receives PROCESS_INFORMATION
     DeleteProcThreadAttributeList(attributeList);
     HeapFree(GetProcessHeap(), 0, attributeList);
-    CloseHandleX (mStdOutWr);
-    CloseHandleX (mStdErrWr);
-    CloseHandleX (mStdInRd);
+    CloseHandleX(mStdOutWr);
+    CloseHandleX(mStdErrWr);
+    CloseHandleX(mStdInRd);
 
     free(cmdLine);
     if (!suc) {
@@ -441,11 +416,11 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
     mProc = piProcInfo.hProcess;
     mThread = piProcInfo.hThread;
     if (mode == QIODevice::WriteOnly) {
-        CloseHandleX (mStdOutRd);
+        CloseHandleX(mStdOutRd);
     }
 
     if (mode == QIODevice::ReadOnly) {
-        CloseHandleX (mStdInWr);
+        CloseHandleX(mStdInWr);
     }
 
     return true;

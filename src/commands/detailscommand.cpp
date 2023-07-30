@@ -9,13 +9,12 @@
 
 #include <config-kleopatra.h>
 
-#include "detailscommand.h"
 #include "command_p.h"
+#include "detailscommand.h"
 
 #include <dialogs/certificatedetailsdialog.h>
 
 #include "kleopatra_debug.h"
-
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -28,6 +27,7 @@ class DetailsCommand::Private : public Command::Private
     {
         return static_cast<DetailsCommand *>(q);
     }
+
 public:
     explicit Private(DetailsCommand *qq, KeyListController *c = nullptr);
     ~Private() override;
@@ -42,9 +42,9 @@ private:
         auto dlg = new CertificateDetailsDialog;
         applyWindowID(dlg);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
-        connect(dlg, &QDialog::finished, q_func(), [this] (int) {
-                slotDialogClosed();
-            });
+        connect(dlg, &QDialog::finished, q_func(), [this](int) {
+            slotDialogClosed();
+        });
 
         dialog = dlg;
     }
@@ -84,8 +84,8 @@ const DetailsCommand::Private *DetailsCommand::d_func() const
 #define d d_func()
 
 DetailsCommand::Private::Private(DetailsCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      dialog()
+    : Command::Private(qq, c)
+    , dialog()
 {
 }
 

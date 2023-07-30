@@ -17,8 +17,8 @@
 #include "userinfo_win_p.h"
 #endif
 
-#include <KEmailAddress>
 #include <KEMailSettings>
+#include <KEmailAddress>
 
 namespace
 {
@@ -32,12 +32,12 @@ static QString env_get_user_name(UserInfoDetail detail)
     const auto var = qEnvironmentVariable("EMAIL");
     if (!var.isEmpty()) {
         QString name, addrspec, comment;
-        const auto result = KEmailAddress::splitAddress (var, name, addrspec, comment);
+        const auto result = KEmailAddress::splitAddress(var, name, addrspec, comment);
         if (result == KEmailAddress::AddressOk) {
             return (detail == UserInfoEmailAddress ? addrspec : name);
         }
     }
-    return QString ();
+    return QString();
 }
 }
 

@@ -10,9 +10,9 @@
 
 #include <config-kleopatra.h>
 
-#include "revokekeycommand.h"
 #include "command_p.h"
 #include "dialogs/revokekeydialog.h"
+#include "revokekeycommand.h"
 
 #include <Libkleo/Formatting>
 
@@ -35,6 +35,7 @@ class RevokeKeyCommand::Private : public Command::Private
     {
         return static_cast<RevokeKeyCommand *>(q);
     }
+
 public:
     explicit Private(RevokeKeyCommand *qq, KeyListController *c = nullptr);
     ~Private() override;
@@ -138,8 +139,12 @@ void RevokeKeyCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, &QDialog::accepted, q, [this]() { onDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { onDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        onDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        onDialogRejected();
+    });
 }
 
 void RevokeKeyCommand::Private::onDialogAccepted()
@@ -165,9 +170,7 @@ std::vector<std::string> toStdStrings(const QStringList &l)
 {
     std::vector<std::string> v;
     v.reserve(l.size());
-    std::transform(std::begin(l), std::end(l),
-                   std::back_inserter(v),
-                   std::mem_fn(&QString::toStdString));
+    std::transform(std::begin(l), std::end(l), std::back_inserter(v), std::mem_fn(&QString::toStdString));
     return v;
 }
 
@@ -187,16 +190,15 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
     std::unique_ptr<QGpgME::RevokeKeyJob> revokeJob{QGpgME::openpgp()->revokeKeyJob()};
     Q_ASSERT(revokeJob);
 
-    connect(revokeJob.get(), &QGpgME::RevokeKeyJob::result,
-            q, [this](const GpgME::Error &err) {
-                onJobResult(err);
-            });
+    connect(revokeJob.get(), &QGpgME::RevokeKeyJob::result, q, [this](const GpgME::Error &err) {
+        onJobResult(err);
+    });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(revokeJob.get(), &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(revokeJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(revokeJob.get(), &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(revokeJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
 
     const auto description = descriptionToLines(dialog->description());
@@ -220,8 +222,7 @@ void RevokeKeyCommand::Private::onJobResult(const Error &err)
     }
 
     if (!err.isCanceled()) {
-        information(i18nc("@info", "The key was revoked successfully."),
-                    i18nc("@title:window", "Key Revoked"));
+        information(i18nc("@info", "The key was revoked successfully."), i18nc("@title:window", "Key Revoked"));
     }
     finished();
 }

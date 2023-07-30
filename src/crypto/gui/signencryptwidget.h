@@ -8,8 +8,8 @@
 */
 #pragma once
 
-#include <QWidget>
 #include <QVector>
+#include <QWidget>
 
 #include <gpgme++/global.h>
 
@@ -25,16 +25,11 @@ namespace Kleo
 class CertificateLineEdit;
 class KeyGroup;
 
-class SignEncryptWidget: public QWidget
+class SignEncryptWidget : public QWidget
 {
     Q_OBJECT
 public:
-    enum Operation {
-        NoOperation = 0x00,
-        Sign = 0x01,
-        Encrypt = 0x02,
-        SignAndEncrypt = Sign | Encrypt
-    };
+    enum Operation { NoOperation = 0x00, Sign = 0x01, Encrypt = 0x02, SignAndEncrypt = Sign | Encrypt };
     Q_DECLARE_FLAGS(Operations, Operation)
 
     /** If cmsSigEncExclusive is true CMS operations can be

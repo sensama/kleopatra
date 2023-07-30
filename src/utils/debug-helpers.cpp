@@ -81,8 +81,7 @@ static QWidget *simulateFocusNextPrevChild(QWidget *focusWidget, bool next)
         // \a next). This is to ensure that we can tab in and out of compound widgets
         // without getting stuck in a tab-loop between parent and child.
         QWidget *focusProxy = deepestFocusProxy(test);
-        const bool canTakeFocus = ((focusProxy ? focusProxy->focusPolicy() : test->focusPolicy())
-                                  & focus_flag) == focus_flag;
+        const bool canTakeFocus = ((focusProxy ? focusProxy->focusPolicy() : test->focusPolicy()) & focus_flag) == focus_flag;
         const bool composites = focusProxy ? (next ? focusProxy->isAncestorOf(test) : test->isAncestorOf(focusProxy)) //
                                            : false;
         if (canTakeFocus && !composites //
@@ -126,7 +125,7 @@ void Kleo::dumpTabOrder(QWidget *widget)
     }
     qCDebug(KLEOPATRA_LOG) << __func__ << "=====";
     // simulate Tab, Tab, Tab, ...
-    QSet<QWidget*> seen;
+    QSet<QWidget *> seen;
     qCDebug(KLEOPATRA_LOG).noquote().nospace() << indentByWidgetDepth(widget) << widget;
     for (auto w = simulateFocusNextPrevChild(widget, true); w && !seen.contains(w); w = simulateFocusNextPrevChild(w, true)) {
         qCDebug(KLEOPATRA_LOG).noquote().nospace() << indentByWidgetDepth(w) << w;

@@ -16,9 +16,8 @@
 
 #include <crypto/certificateresolver.h>
 
-#include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
-
+#include <Libkleo/KeyCache>
 
 #include <gpgme++/key.h>
 
@@ -32,8 +31,8 @@
 #include <QPointer>
 #include <QPushButton>
 #include <QRadioButton>
-#include <QToolButton>
 #include <QStringList>
+#include <QToolButton>
 #include <QVBoxLayout>
 
 using namespace GpgME;
@@ -43,7 +42,9 @@ using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 using namespace KMime::Types;
 
-ResolveRecipientsPage::ListWidget::ListWidget(QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), m_protocol(UnknownProtocol)
+ResolveRecipientsPage::ListWidget::ListWidget(QWidget *parent, Qt::WindowFlags flags)
+    : QWidget(parent, flags)
+    , m_protocol(UnknownProtocol)
 {
     m_listWidget = new QListWidget;
     m_listWidget->setSelectionMode(QAbstractItemView::MultiSelection);
@@ -109,7 +110,7 @@ Key ResolveRecipientsPage::ListWidget::selectedCertificate(const QString &id) co
 
 GpgME::Key ResolveRecipientsPage::ListWidget::selectedCertificate(const QString &id, GpgME::Protocol prot) const
 {
-    return  widgets.contains(id) ? widgets[id]->selectedCertificate(prot) : Key();
+    return widgets.contains(id) ? widgets[id]->selectedCertificate(prot) : Key();
 }
 
 QStringList ResolveRecipientsPage::ListWidget::identifiers() const
@@ -158,8 +159,12 @@ QStringList ResolveRecipientsPage::ListWidget::selectedEntries() const
     return entries;
 }
 
-ResolveRecipientsPage::ItemWidget::ItemWidget(const QString &id, const QString &name, const Mailbox &mbox,
-        QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), m_id(id), m_mailbox(mbox), m_protocol(UnknownProtocol), m_selected(false)
+ResolveRecipientsPage::ItemWidget::ItemWidget(const QString &id, const QString &name, const Mailbox &mbox, QWidget *parent, Qt::WindowFlags flags)
+    : QWidget(parent, flags)
+    , m_id(id)
+    , m_mailbox(mbox)
+    , m_protocol(UnknownProtocol)
+    , m_selected(false)
 {
     Q_ASSERT(!m_id.isEmpty());
     setAutoFillBackground(true);
@@ -174,13 +179,11 @@ ResolveRecipientsPage::ItemWidget::ItemWidget(const QString &id, const QString &
     m_certLabel->setText(i18n("<i>No certificate selected</i>"));
     layout->addWidget(m_certLabel);
     m_certCombo = new QComboBox;
-    connect(m_certCombo, SIGNAL(currentIndexChanged(int)),
-            this, SIGNAL(changed()));
+    connect(m_certCombo, SIGNAL(currentIndexChanged(int)), this, SIGNAL(changed()));
     layout->addWidget(m_certCombo);
     m_selectButton = new QToolButton;
     m_selectButton->setText(i18n("..."));
-    connect(m_selectButton, &QAbstractButton::clicked,
-            this, &ItemWidget::showSelectionDialog);
+    connect(m_selectButton, &QAbstractButton::clicked, this, &ItemWidget::showSelectionDialog);
     layout->addWidget(m_selectButton);
     layout->addSpacing(15);
     setCertificates(std::vector<Key>(), std::vector<Key>());
@@ -336,6 +339,7 @@ class ResolveRecipientsPage::Private
 {
     friend class ::Kleo::Crypto::Gui::ResolveRecipientsPage;
     ResolveRecipientsPage *const q;
+
 public:
     explicit Private(ResolveRecipientsPage *qq);
     ~Private();
@@ -365,7 +369,11 @@ private:
 };
 
 ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
-    : q(qq), m_presetProtocol(UnknownProtocol), m_selectedProtocol(m_presetProtocol), m_multipleProtocolsAllowed(false), m_recipientPreferences()
+    : q(qq)
+    , m_presetProtocol(UnknownProtocol)
+    , m_selectedProtocol(m_presetProtocol)
+    , m_multipleProtocolsAllowed(false)
+    , m_recipientPreferences()
 {
     connect(q, SIGNAL(completeChanged()), q, SLOT(completeChangedInternal()));
     q->setTitle(i18n("<b>Recipients</b>"));
@@ -388,8 +396,7 @@ ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
     m_removeButton = new QPushButton;
     m_removeButton->setEnabled(false);
     m_removeButton->setText(i18n("Remove Selected"));
-    connect(m_removeButton, SIGNAL(clicked()),
-            q, SLOT(removeSelectedEntries()));
+    connect(m_removeButton, SIGNAL(clicked()), q, SLOT(removeSelectedEntries()));
     buttonLayout->addWidget(m_removeButton);
     buttonLayout->addStretch();
     layout->addWidget(buttonWidget);
@@ -409,18 +416,23 @@ ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
     layout->addWidget(protocolWidget);
 }
 
-ResolveRecipientsPage::Private::~Private() {}
+ResolveRecipientsPage::Private::~Private()
+{
+}
 
 void ResolveRecipientsPage::Private::completeChangedInternal()
 {
     const bool isComplete = q->isComplete();
     const std::vector<Key> keys = q->resolvedCertificates();
-    const bool haveSecret = std::find_if(keys.begin(), keys.end(),
+    const bool haveSecret = std::find_if(keys.begin(),
+                                         keys.end(),
                                          [](const Key &key) {
                                              return key.hasSecret();
-                                        }) != keys.end();
+                                         })
+        != keys.end();
     if (isComplete && !haveSecret) {
-        q->setExplanation(i18n("<b>Warning:</b> None of the selected certificates seem to be your own. You will not be able to decrypt the encrypted data again."));
+        q->setExplanation(
+            i18n("<b>Warning:</b> None of the selected certificates seem to be your own. You will not be able to decrypt the encrypted data again."));
     } else {
         q->setExplanation(QString());
     }
@@ -457,11 +469,14 @@ bool ResolveRecipientsPage::isComplete() const
 }
 
 ResolveRecipientsPage::ResolveRecipientsPage(QWidget *parent)
-    : WizardPage(parent), d(new Private(this))
+    : WizardPage(parent)
+    , d(new Private(this))
 {
 }
 
-ResolveRecipientsPage::~ResolveRecipientsPage() {}
+ResolveRecipientsPage::~ResolveRecipientsPage()
+{
+}
 
 Protocol ResolveRecipientsPage::selectedProtocol() const
 {
@@ -583,9 +598,7 @@ void ResolveRecipientsPage::setAdditionalRecipientsInfo(const std::vector<Key> &
     if (recipients.empty()) {
         return;
     }
-    d->m_additionalRecipientsLabel->setText(
-        i18n("<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>",
-             listKeysForInfo(recipients)));
+    d->m_additionalRecipientsLabel->setText(i18n("<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>", listKeysForInfo(recipients)));
 }
 
 void ResolveRecipientsPage::setRecipients(const std::vector<Mailbox> &recipients, const std::vector<Mailbox> &encryptToSelfRecipients)
@@ -603,7 +616,7 @@ void ResolveRecipientsPage::setRecipients(const std::vector<Mailbox> &recipients
         d->m_listWidget->setCertificates(id, pgp, cms);
     }
     for (const Mailbox &i : recipients) {
-        //TODO:
+        // TODO:
         const QString address = i.prettyAddress();
         d->addRecipient(i);
         const std::vector<Key> pgp = makeSuggestions(d->m_recipientPreferences, i, OpenPGP);
@@ -693,5 +706,5 @@ void ResolveRecipientsPage::onNext()
     d->writeSelectedCertificatesToPreferences();
 }
 
-#include "moc_resolverecipientspage_p.cpp"
 #include "moc_resolverecipientspage.cpp"
+#include "moc_resolverecipientspage_p.cpp"

@@ -12,21 +12,21 @@
 
 #include <settings.h>
 
-#include <Libkleo/KleoException>
 #include <Libkleo/Classify>
 #include <Libkleo/Compliance>
-#include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
+#include <Libkleo/KleoException>
 #include <Libkleo/SystemInfo>
 
-#include "crypto/gui/signencryptwidget.h"
 #include "crypto/gui/resultitemwidget.h"
+#include "crypto/gui/signencryptwidget.h"
 
-#include "crypto/signencrypttask.h"
 #include "crypto/decryptverifytask.h"
-#include <Libkleo/GnuPG>
+#include "crypto/signencrypttask.h"
 #include "utils/input.h"
 #include "utils/output.h"
+#include <Libkleo/GnuPG>
 
 #include "commands/importcertificatefromdatacommand.h"
 
@@ -42,17 +42,17 @@
 #include <QProgressBar>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QStyle>
 #include <QTabWidget>
 #include <QTextEdit>
 #include <QVBoxLayout>
-#include <QStyle>
 
-#include <KLocalizedString>
 #include <KColorScheme>
+#include <KConfigGroup>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KMessageWidget>
 #include <KSharedConfig>
-#include <KConfigGroup>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -60,12 +60,12 @@ using namespace Kleo::Crypto::Gui;
 
 static GpgME::Protocol getProtocol(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result)
 {
-    const auto dvResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult*>(result.get());
+    const auto dvResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult *>(result.get());
     if (dvResult) {
-        for (const auto &key: KeyCache::instance()->findRecipients(dvResult->decryptionResult())) {
+        for (const auto &key : KeyCache::instance()->findRecipients(dvResult->decryptionResult())) {
             return key.protocol();
         }
-        for (const auto &key: KeyCache::instance()->findSigners(dvResult->verificationResult())) {
+        for (const auto &key : KeyCache::instance()->findSigners(dvResult->verificationResult())) {
             return key.protocol();
         }
     }
@@ -77,22 +77,22 @@ class PadWidget::Private
     friend class ::Kleo::PadWidget;
 
 public:
-    Private(PadWidget *qq):
-        q(qq),
-        mEdit(new QTextEdit),
-        mCryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-sign-encrypt")), i18n("Sign / Encrypt Notepad"))),
-        mDecryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-decrypt-verify")), i18n("Decrypt / Verify Notepad"))),
-        mImportBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("view-certificate-import")), i18n("Import Notepad"))),
-        mRevertBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("edit-undo")), i18n("Revert"))),
-        mMessageWidget{new KMessageWidget},
-        mAdditionalInfoLabel(new QLabel),
-        mSigEncWidget(new SignEncryptWidget(nullptr, true)),
-        mProgressBar(new QProgressBar),
-        mProgressLabel(new QLabel),
-        mLastResultWidget(nullptr),
-        mPGPRB(nullptr),
-        mCMSRB(nullptr),
-        mImportProto(GpgME::UnknownProtocol)
+    Private(PadWidget *qq)
+        : q(qq)
+        , mEdit(new QTextEdit)
+        , mCryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-sign-encrypt")), i18n("Sign / Encrypt Notepad")))
+        , mDecryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-decrypt-verify")), i18n("Decrypt / Verify Notepad")))
+        , mImportBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("view-certificate-import")), i18n("Import Notepad")))
+        , mRevertBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("edit-undo")), i18n("Revert")))
+        , mMessageWidget{new KMessageWidget}
+        , mAdditionalInfoLabel(new QLabel)
+        , mSigEncWidget(new SignEncryptWidget(nullptr, true))
+        , mProgressBar(new QProgressBar)
+        , mProgressLabel(new QLabel)
+        , mLastResultWidget(nullptr)
+        , mPGPRB(nullptr)
+        , mCMSRB(nullptr)
+        , mImportProto(GpgME::UnknownProtocol)
     {
         auto vLay = new QVBoxLayout(q);
 
@@ -113,9 +113,9 @@ public:
         mMessageWidget->setIcon(q->style()->standardIcon(QStyle::SP_MessageBoxWarning, nullptr, q));
         mMessageWidget->setText(i18n("Signing and encryption is not possible."));
         mMessageWidget->setToolTip(xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                                         "<para>You cannot use <application>Kleopatra</application> for signing or encryption "
-                                         "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
-                                         DeVSCompliance::name(true)));
+                                          "<para>You cannot use <application>Kleopatra</application> for signing or encryption "
+                                          "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
+                                          DeVSCompliance::name(true)));
         mMessageWidget->setCloseButtonVisible(false);
         mMessageWidget->setVisible(false);
         vLay->addWidget(mMessageWidget);
@@ -152,8 +152,7 @@ public:
         // Once S/MIME is supported add radio for S/MIME here.
 
         recipientsVLay->addWidget(mSigEncWidget);
-        tabWidget->addTab(recipientsWidget, QIcon::fromTheme(QStringLiteral("contact-new-symbolic")),
-                          i18n("Recipients"));
+        tabWidget->addTab(recipientsWidget, QIcon::fromTheme(QStringLiteral("contact-new-symbolic")), i18n("Recipients"));
 
         mEdit->setPlaceholderText(i18n("Enter a message to encrypt or decrypt..."));
 
@@ -186,43 +185,43 @@ public:
 
             protocolSelectionLay->addWidget(mPGPRB);
             protocolSelectionLay->addWidget(mCMSRB);
-            connect(mPGPRB, &QRadioButton::toggled, q, [this] (bool value) {
-                    if (value) {
-                        mSigEncWidget->setProtocol(GpgME::OpenPGP);
-                    }
-                });
-            connect(mCMSRB, &QRadioButton::toggled, q, [this] (bool value) {
-                    if (value) {
-                        mSigEncWidget->setProtocol(GpgME::CMS);
-                    }
-                });
+            connect(mPGPRB, &QRadioButton::toggled, q, [this](bool value) {
+                if (value) {
+                    mSigEncWidget->setProtocol(GpgME::OpenPGP);
+                }
+            });
+            connect(mCMSRB, &QRadioButton::toggled, q, [this](bool value) {
+                if (value) {
+                    mSigEncWidget->setProtocol(GpgME::CMS);
+                }
+            });
         }
 
         updateButtons();
 
-        connect(mEdit, &QTextEdit::textChanged, q, [this] () {
-                updateButtons();
-            });
+        connect(mEdit, &QTextEdit::textChanged, q, [this]() {
+            updateButtons();
+        });
 
-        connect(mCryptBtn, &QPushButton::clicked, q, [this] () {
-                doEncryptSign();
-            });
+        connect(mCryptBtn, &QPushButton::clicked, q, [this]() {
+            doEncryptSign();
+        });
 
         connect(mSigEncWidget, &SignEncryptWidget::operationChanged, q, [this]() {
-                updateButtons();
-            });
+            updateButtons();
+        });
 
-        connect(mDecryptBtn, &QPushButton::clicked, q, [this] () {
-                doDecryptVerify();
-            });
+        connect(mDecryptBtn, &QPushButton::clicked, q, [this]() {
+            doDecryptVerify();
+        });
 
         connect(mImportBtn, &QPushButton::clicked, q, [this]() {
             doImport();
         });
 
-        connect(mRevertBtn, &QPushButton::clicked, q, [this] () {
-                revert();
-            });
+        connect(mRevertBtn, &QPushButton::clicked, q, [this]() {
+            revert();
+        });
     }
 
     void revert()
@@ -235,7 +234,7 @@ public:
     {
         const auto decResult = result.decryptionResult();
 
-        for (const auto &recipient: decResult.recipients()) {
+        for (const auto &recipient : decResult.recipients()) {
             if (!recipient.keyID()) {
                 continue;
             }
@@ -250,7 +249,7 @@ public:
             if (key.isNull()) {
                 std::vector<std::string> subids;
                 subids.push_back(std::string(recipient.keyID()));
-                for (const auto &subkey: KeyCache::instance()->findSubkeysByKeyID(subids)) {
+                for (const auto &subkey : KeyCache::instance()->findSubkeysByKeyID(subids)) {
                     key = subkey.parent();
                     break;
                 }
@@ -263,9 +262,8 @@ public:
             }
 
             bool keyFound = false;
-            for (const auto &existingKey: mSigEncWidget->recipients()) {
-                if (existingKey.primaryFingerprint() && key.primaryFingerprint() &&
-                    !strcmp (existingKey.primaryFingerprint(), key.primaryFingerprint())) {
+            for (const auto &existingKey : mSigEncWidget->recipients()) {
+                if (existingKey.primaryFingerprint() && key.primaryFingerprint() && !strcmp(existingKey.primaryFingerprint(), key.primaryFingerprint())) {
                     keyFound = true;
                     break;
                 }
@@ -287,7 +285,7 @@ public:
             mLastResultWidget->showCloseButton(true);
             mStatusLay->addWidget(mLastResultWidget);
 
-            connect(mLastResultWidget, &ResultItemWidget::closeButtonClicked, q, [this] () {
+            connect(mLastResultWidget, &ResultItemWidget::closeButtonClicked, q, [this]() {
                 removeLastResultItem();
             });
         }
@@ -309,16 +307,14 @@ public:
 
         if (result->error()) {
             if (!result->errorString().isEmpty()) {
-                KMessageBox::error(q,
-                        result->errorString(),
-                        i18nc("@title", "Error in crypto action"));
+                KMessageBox::error(q, result->errorString(), i18nc("@title", "Error in crypto action"));
             }
         } else if (!result->error().isCanceled()) {
             mEdit->setPlainText(QString::fromUtf8(mOutputData));
             mOutputData.clear();
             mRevertBtn->setVisible(true);
 
-            const auto decryptVerifyResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult*>(result.get());
+            const auto decryptVerifyResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult *>(result.get());
             if (decryptVerifyResult) {
                 updateRecipientsFromResult(*decryptVerifyResult);
             }
@@ -330,13 +326,12 @@ public:
         doCryptoCommon();
         mSigEncWidget->clearAddedRecipients();
         mProgressLabel->setText(i18n("Decrypt / Verify") + QStringLiteral("..."));
-        auto input = Input::createFromByteArray(&mInputData,  i18n("Notepad"));
+        auto input = Input::createFromByteArray(&mInputData, i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
         AbstractDecryptVerifyTask *task;
         auto classification = input->classification();
-        if (classification & Class::OpaqueSignature ||
-            classification & Class::ClearsignedMessage) {
+        if (classification & Class::OpaqueSignature || classification & Class::ClearsignedMessage) {
             auto verifyTask = new VerifyOpaqueTask();
             verifyTask->setInput(input);
             verifyTask->setOutput(output);
@@ -350,20 +345,18 @@ public:
         try {
             task->autodetectProtocolFromInput();
         } catch (const Kleo::Exception &e) {
-            KMessageBox::error(q,
-                    e.message(),
-                    i18nc("@title", "Error in crypto action"));
+            KMessageBox::error(q, e.message(), i18nc("@title", "Error in crypto action"));
             updateButtons();
             mProgressBar->setVisible(false);
             mProgressLabel->setVisible(false);
             return;
         }
 
-        connect (task, &Task::result, q, [this, task] (const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
-                qCDebug(KLEOPATRA_LOG) << "Decrypt / Verify done. Err:" << result->error().code();
-                task->deleteLater();
-                cryptDone(result);
-            });
+        connect(task, &Task::result, q, [this, task](const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
+            qCDebug(KLEOPATRA_LOG) << "Decrypt / Verify done. Err:" << result->error().code();
+            task->deleteLater();
+            cryptDone(result);
+        });
         task->start();
     }
 
@@ -410,10 +403,9 @@ public:
         case SignEncryptWidget::SignAndEncrypt:
             mProgressLabel->setText(i18nc("@info:progress", "Signing and encrypting notepad..."));
             break;
-        default:
-            ;
+        default:;
         };
-        auto input = Input::createFromByteArray(&mInputData,  i18n("Notepad"));
+        auto input = Input::createFromByteArray(&mInputData, i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
         auto task = new SignEncryptTask();
@@ -443,11 +435,11 @@ public:
             task->setClearsign(true);
         }
 
-        connect (task, &Task::result, q, [this, task] (const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
-                qCDebug(KLEOPATRA_LOG) << "Encrypt / Sign done. Err:" << result->error().code();
-                task->deleteLater();
-                cryptDone(result);
-            });
+        connect(task, &Task::result, q, [this, task](const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
+            qCDebug(KLEOPATRA_LOG) << "Encrypt / Sign done. Err:" << result->error().code();
+            task->deleteLater();
+            cryptDone(result);
+        });
         task->start();
     }
 
@@ -456,14 +448,14 @@ public:
         doCryptoCommon();
         mProgressLabel->setText(i18n("Importing..."));
         auto cmd = new Kleo::ImportCertificateFromDataCommand(mInputData, mImportProto);
-        connect(cmd, &Kleo::ImportCertificatesCommand::finished, q, [this] () {
-                updateButtons();
-                mProgressBar->setVisible(false);
-                mProgressLabel->setVisible(false);
+        connect(cmd, &Kleo::ImportCertificatesCommand::finished, q, [this]() {
+            updateButtons();
+            mProgressBar->setVisible(false);
+            mProgressLabel->setVisible(false);
 
-                mRevertBtn->setVisible(true);
-                mEdit->setPlainText(QString());
-            });
+            mRevertBtn->setVisible(true);
+            mEdit->setPlainText(QString());
+        });
         cmd->start();
     }
 
@@ -474,8 +466,7 @@ public:
         auto type = data.type();
         if (type == GpgME::Data::PGPKey) {
             mImportProto = GpgME::OpenPGP;
-        } else if (type == GpgME::Data::X509Cert ||
-                   type == GpgME::Data::PKCS12) {
+        } else if (type == GpgME::Data::X509Cert || type == GpgME::Data::PKCS12) {
             mImportProto = GpgME::CMS;
         } else {
             mImportProto = GpgME::UnknownProtocol;
@@ -538,9 +529,9 @@ private:
     GpgME::Protocol mImportProto;
 };
 
-PadWidget::PadWidget(QWidget *parent):
-    QWidget(parent),
-    d(new Private(this))
+PadWidget::PadWidget(QWidget *parent)
+    : QWidget(parent)
+    , d(new Private(this))
 {
 }
 

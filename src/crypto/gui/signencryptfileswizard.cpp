@@ -19,30 +19,30 @@
 #include <fileoperationspreferences.h>
 #include <settings.h>
 
-#include <KLocalizedString>
-#include <KSharedConfig>
 #include <KColorScheme>
 #include <KConfigGroup>
-#include <KWindowConfig>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KMessageWidget>
+#include <KSharedConfig>
+#include <KWindowConfig>
 
 #include "kleopatra_debug.h"
 #include <Libkleo/Compliance>
-#include <Libkleo/GnuPG>
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/SystemInfo>
 
 #include <Libkleo/FileNameRequester>
-#include <QWindow>
-#include <QVBoxLayout>
-#include <QWizardPage>
-#include <QGroupBox>
-#include <QLabel>
-#include <QIcon>
 #include <QCheckBox>
+#include <QGroupBox>
+#include <QIcon>
+#include <QLabel>
 #include <QPushButton>
 #include <QStyle>
+#include <QVBoxLayout>
+#include <QWindow>
+#include <QWizardPage>
 
 #include <gpgme++/key.h>
 
@@ -78,8 +78,7 @@ public:
         setFocusPolicy(mRequester->focusPolicy());
         setFocusProxy(mRequester);
 
-        connect(mRequester, &FileNameRequester::fileNameChanged,
-                this, &FileNameRequesterWithIcon::fileNameChanged);
+        connect(mRequester, &FileNameRequester::fileNameChanged, this, &FileNameRequesterWithIcon::fileNameChanged);
     }
 
     void setIcon(const QIcon &icon)
@@ -129,20 +128,20 @@ private:
     FileNameRequester *mRequester;
 };
 
-class SigEncPage: public QWizardPage
+class SigEncPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
     explicit SigEncPage(QWidget *parent = nullptr)
-        : QWizardPage(parent),
-          mParent((SignEncryptFilesWizard *) parent),
-          mWidget(new SignEncryptWidget),
-          mOutLayout(new QVBoxLayout),
-          mOutputLabel{nullptr},
-          mArchive(false),
-          mUseOutputDir(false),
-          mSingleFile{true}
+        : QWizardPage(parent)
+        , mParent((SignEncryptFilesWizard *)parent)
+        , mWidget(new SignEncryptWidget)
+        , mOutLayout(new QVBoxLayout)
+        , mOutputLabel{nullptr}
+        , mArchive(false)
+        , mUseOutputDir(false)
+        , mSingleFile{true}
     {
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
         auto vLay = new QVBoxLayout(this);
@@ -150,19 +149,14 @@ public:
         if (!Settings{}.cmsEnabled()) {
             mWidget->setProtocol(GpgME::OpenPGP);
         }
-        mWidget->setSignAsText(i18nc("@option:check on SignEncryptPage",
-                                     "&Sign as:"));
-        mWidget->setEncryptForMeText(i18nc("@option:check on SignEncryptPage",
-                                           "Encrypt for &me:"));
-        mWidget->setEncryptForOthersText(i18nc("@option:check on SignEncryptPage",
-                                               "Encrypt for &others:"));
-        mWidget->setEncryptWithPasswordText(i18nc("@option:check on SignEncryptPage",
-                                                  "Encrypt with &password. Anyone you share the password with can read the data."));
+        mWidget->setSignAsText(i18nc("@option:check on SignEncryptPage", "&Sign as:"));
+        mWidget->setEncryptForMeText(i18nc("@option:check on SignEncryptPage", "Encrypt for &me:"));
+        mWidget->setEncryptForOthersText(i18nc("@option:check on SignEncryptPage", "Encrypt for &others:"));
+        mWidget->setEncryptWithPasswordText(
+            i18nc("@option:check on SignEncryptPage", "Encrypt with &password. Anyone you share the password with can read the data."));
         vLay->addWidget(mWidget);
-        connect(mWidget, &SignEncryptWidget::operationChanged, this,
-                &SigEncPage::updateCommitButton);
-        connect(mWidget, &SignEncryptWidget::keysChanged, this,
-                &SigEncPage::updateFileWidgets);
+        connect(mWidget, &SignEncryptWidget::operationChanged, this, &SigEncPage::updateCommitButton);
+        connect(mWidget, &SignEncryptWidget::keysChanged, this, &SigEncPage::updateFileWidgets);
 
         auto outputGrp = new QGroupBox(i18nc("@title:group", "Output"));
         outputGrp->setLayout(mOutLayout);
@@ -175,16 +169,14 @@ public:
 
         createRequesters(mOutLayout);
 
-        mUseOutputDirChk = new QCheckBox(i18nc("@option:check on SignEncryptPage",
-                                               "Encrypt / Sign &each file separately."));
-        mUseOutputDirChk->setToolTip(i18nc("@info:tooltip",
-                                           "Keep each file separate instead of creating an archive for all."));
+        mUseOutputDirChk = new QCheckBox(i18nc("@option:check on SignEncryptPage", "Encrypt / Sign &each file separately."));
+        mUseOutputDirChk->setToolTip(i18nc("@info:tooltip", "Keep each file separate instead of creating an archive for all."));
         mOutLayout->addWidget(mUseOutputDirChk);
-        connect (mUseOutputDirChk, &QCheckBox::toggled, this, [this] (bool state) {
-                    mUseOutputDir = state;
-                    mArchive = !mUseOutputDir && !mSingleFile;
-                    updateFileWidgets();
-                });
+        connect(mUseOutputDirChk, &QCheckBox::toggled, this, [this](bool state) {
+            mUseOutputDir = state;
+            mArchive = !mUseOutputDir && !mSingleFile;
+            updateFileWidgets();
+        });
 
         vLay->addWidget(outputGrp);
 
@@ -277,17 +269,19 @@ public:
         }
 
         if (sign && !encrypt && mArchive) {
-            return KMessageBox::warningContinueCancel(this,
-            xi18nc("@info",
-            "<para>Archiving in combination with sign-only currently requires what are known as opaque signatures - "
-            "unlike detached ones, these embed the content in the signature.</para>"
-            "<para>This format is rather unusual. You might want to archive the files separately, "
-            "and then sign the archive as one file with Kleopatra.</para>"
-            "<para>Future versions of Kleopatra are expected to also support detached signatures in this case.</para>"),
-            i18nc("@title:window", "Unusual Signature Warning"),
-            KStandardGuiItem::cont(), KStandardGuiItem::cancel(),
-            QStringLiteral("signencryptfileswizard-archive+sign-only-warning"))
-            == KMessageBox::Continue;
+            return KMessageBox::warningContinueCancel(
+                       this,
+                       xi18nc("@info",
+                              "<para>Archiving in combination with sign-only currently requires what are known as opaque signatures - "
+                              "unlike detached ones, these embed the content in the signature.</para>"
+                              "<para>This format is rather unusual. You might want to archive the files separately, "
+                              "and then sign the archive as one file with Kleopatra.</para>"
+                              "<para>Future versions of Kleopatra are expected to also support detached signatures in this case.</para>"),
+                       i18nc("@title:window", "Unusual Signature Warning"),
+                       KStandardGuiItem::cont(),
+                       KStandardGuiItem::cancel(),
+                       QStringLiteral("signencryptfileswizard-archive+sign-only-warning"))
+                == KMessageBox::Continue;
         } else if (sign && !encrypt) {
             return true;
         }
@@ -296,19 +290,21 @@ public:
             return true;
         }
         const auto recipientKeys = recipients();
-        const bool hasSecret = std::any_of(std::begin(recipientKeys), std::end(recipientKeys),
-                                           [](const auto &k) { return k.hasSecret(); });
+        const bool hasSecret = std::any_of(std::begin(recipientKeys), std::end(recipientKeys), [](const auto &k) {
+            return k.hasSecret();
+        });
         if (!hasSecret) {
             if (KMessageBox::warningContinueCancel(this,
-            xi18nc("@info",
-            "<para>None of the recipients you are encrypting to seems to be your own.</para>"
-            "<para>This means that you will not be able to decrypt the data anymore, once encrypted.</para>"
-            "<para>Do you want to continue, or cancel to change the recipient selection?</para>"),
-            i18nc("@title:window", "Encrypt-To-Self Warning"),
-            KStandardGuiItem::cont(),
-            KStandardGuiItem::cancel(),
-            QStringLiteral("warn-encrypt-to-non-self"), KMessageBox::Notify | KMessageBox::Dangerous)
-            == KMessageBox::Cancel) {
+                                                   xi18nc("@info",
+                                                          "<para>None of the recipients you are encrypting to seems to be your own.</para>"
+                                                          "<para>This means that you will not be able to decrypt the data anymore, once encrypted.</para>"
+                                                          "<para>Do you want to continue, or cancel to change the recipient selection?</para>"),
+                                                   i18nc("@title:window", "Encrypt-To-Self Warning"),
+                                                   KStandardGuiItem::cont(),
+                                                   KStandardGuiItem::cancel(),
+                                                   QStringLiteral("warn-encrypt-to-non-self"),
+                                                   KMessageBox::Notify | KMessageBox::Dangerous)
+                == KMessageBox::Cancel) {
                 return false;
             }
         }
@@ -340,7 +336,8 @@ private:
         QString nameFilterBinary;
         QString nameFilterAscii;
     };
-    void createRequesters(QBoxLayout *lay) {
+    void createRequesters(QBoxLayout *lay)
+    {
         static const std::array<RequesterInfo, 6> requestersInfo = {{
             {
                 SignEncryptFilesWizard::SignatureCMS,
@@ -414,7 +411,8 @@ private:
     }
 
 public:
-    void setOutputNames(const QMap<int, QString> &names) {
+    void setOutputNames(const QMap<int, QString> &names)
+    {
         Q_ASSERT(mOutNames.isEmpty());
         for (auto it = std::begin(names); it != std::end(names); ++it) {
             mRequesters.value(it.key())->setFileName(it.value());
@@ -423,7 +421,8 @@ public:
         updateFileWidgets();
     }
 
-    QMap <int, QString> outputNames() const {
+    QMap<int, QString> outputNames() const
+    {
         if (!mUseOutputDir) {
             auto ret = mOutNames;
             ret.remove(SignEncryptFilesWizard::Directory);
@@ -454,10 +453,9 @@ private Q_SLOTS:
         case SignEncryptWidget::SignAndEncrypt:
             label = i18nc("@action:button", "Sign / Encrypt");
             break;
-        default:
-            ;
+        default:;
         };
-        auto btn = qobject_cast<QPushButton*>(mParent->button(QWizard::CommitButton));
+        auto btn = qobject_cast<QPushButton *>(mParent->button(QWizard::CommitButton));
         if (!label.isEmpty()) {
             mParent->setButtonText(QWizard::CommitButton, label);
             if (DeVSCompliance::isActive()) {
@@ -480,11 +478,12 @@ private Q_SLOTS:
         }
         const std::vector<Key> recipients = mWidget->recipients();
         const Key sigKey = mWidget->signKey();
-        const bool pgp = mWidget->encryptSymmetric() ||
-                         std::any_of(std::cbegin(recipients), std::cend(recipients),
-                                     [](const auto &k) { return k.protocol() == Protocol::OpenPGP; });
-        const bool cms = std::any_of(std::cbegin(recipients), std::cend(recipients),
-                                     [](const auto &k) { return k.protocol() == Protocol::CMS; });
+        const bool pgp = mWidget->encryptSymmetric() || std::any_of(std::cbegin(recipients), std::cend(recipients), [](const auto &k) {
+                             return k.protocol() == Protocol::OpenPGP;
+                         });
+        const bool cms = std::any_of(std::cbegin(recipients), std::cend(recipients), [](const auto &k) {
+            return k.protocol() == Protocol::CMS;
+        });
 
         mOutLayout->setEnabled(false);
         if (cms || pgp || !sigKey.isNull()) {
@@ -496,14 +495,16 @@ private Q_SLOTS:
             mRequesters[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() != Protocol::OpenPGP && pgp);
             mRequesters[SignEncryptFilesWizard::SignaturePGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && !pgp);
             mRequesters[SignEncryptFilesWizard::Directory]->setVisible(mUseOutputDir);
-            auto firstNotHidden = std::find_if(std::cbegin(mRequesters), std::cend(mRequesters),
-                                               [](auto w) { return !w->isHidden(); });
+            auto firstNotHidden = std::find_if(std::cbegin(mRequesters), std::cend(mRequesters), [](auto w) {
+                return !w->isHidden();
+            });
             mOutputLabel->setBuddy(*firstNotHidden);
         } else {
             mPlaceholderWidget->setVisible(true);
             mOutputLabel->setVisible(false);
-            std::for_each(std::cbegin(mRequesters), std::cend(mRequesters),
-                          [](auto w) { w->setVisible(false); });
+            std::for_each(std::cbegin(mRequesters), std::cend(mRequesters), [](auto w) {
+                w->setVisible(false);
+            });
             mOutputLabel->setBuddy(nullptr);
         }
         mOutLayout->setEnabled(true);
@@ -512,8 +513,8 @@ private Q_SLOTS:
 private:
     SignEncryptFilesWizard *mParent;
     SignEncryptWidget *mWidget;
-    QMap <int, QString> mOutNames;
-    QMap <int, FileNameRequesterWithIcon *> mRequesters;
+    QMap<int, QString> mOutNames;
+    QMap<int, FileNameRequesterWithIcon *> mRequesters;
     QVBoxLayout *mOutLayout;
     QWidget *mPlaceholderWidget;
     QCheckBox *mUseOutputDirChk;
@@ -529,12 +530,11 @@ class ResultPage : public NewResultPage
 
 public:
     explicit ResultPage(QWidget *parent = nullptr)
-        : NewResultPage(parent),
-          mParent((SignEncryptFilesWizard *) parent)
+        : NewResultPage(parent)
+        , mParent((SignEncryptFilesWizard *)parent)
     {
         setTitle(i18nc("@title", "Results"));
-        setSubTitle(i18nc("@title",
-                          "Status and progress of the crypto operations is shown here."));
+        setSubTitle(i18nc("@title", "Status and progress of the crypto operations is shown here."));
     }
 
     void initializePage() override
@@ -559,8 +559,7 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     mSigEncPage = new SigEncPage(this);
     mResultPage = new ResultPage(this);
 
-    connect(this, &QWizard::currentIdChanged, this,
-            &SignEncryptFilesWizard::slotCurrentIdChanged);
+    connect(this, &QWizard::currentIdChanged, this, &SignEncryptFilesWizard::slotCurrentIdChanged);
     setPage(SigEncPageId, mSigEncPage);
     setPage(ResultPageId, mResultPage);
     setOptions(QWizard::IndependentPages | //
@@ -692,6 +691,5 @@ void SignEncryptFilesWizard::writeConfig()
     KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
     cfgGroup.sync();
 }
-
 
 #include "signencryptfileswizard.moc"

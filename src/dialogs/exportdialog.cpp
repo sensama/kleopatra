@@ -16,12 +16,12 @@
 
 #include <gpgme++/key.h>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/ExportJob>
+#include <QGpgME/Protocol>
 
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KConfigGroup>
 
 #include <Libkleo/Formatting>
 
@@ -32,7 +32,8 @@ class ExportWidget::Private
 public:
     Private(ExportWidget *qq)
         : q(qq)
-    {}
+    {
+    }
 
     void setupUi();
 
@@ -41,6 +42,7 @@ public:
     QTextEdit *textEdit;
     WaitWidget *waitWidget;
     unsigned int flags;
+
 private:
     ExportWidget *const q;
 };
@@ -85,13 +87,9 @@ static QString injectComments(const GpgME::Key &key, const QByteArray &data)
         return ret;
     }
 
-    auto overView = Formatting::toolTip(key, Formatting::Fingerprint |
-                                             Formatting::UserIDs |
-                                             Formatting::Issuer |
-                                             Formatting::Subject |
-                                             Formatting::ExpiryDates |
-                                             Formatting::CertificateType |
-                                             Formatting::CertificateUsage);
+    auto overView = Formatting::toolTip(key,
+                                        Formatting::Fingerprint | Formatting::UserIDs | Formatting::Issuer | Formatting::Subject | Formatting::ExpiryDates
+                                            | Formatting::CertificateType | Formatting::CertificateUsage);
 
     // Fixup the HTML coming from the toolTip for our own format.
     overView.remove(QLatin1String("<tr><th>"));
@@ -138,13 +136,11 @@ void ExportWidget::setKey(const GpgME::Subkey &key, unsigned int flags)
     d->subkey = key;
     d->flags = flags;
 
-    auto protocol = d->key.protocol() == GpgME::CMS ?
-                                         QGpgME::smime() : QGpgME::openpgp();
+    auto protocol = d->key.protocol() == GpgME::CMS ? QGpgME::smime() : QGpgME::openpgp();
 
     auto job = protocol->publicKeyExportJob(true);
 
-    connect(job, &QGpgME::ExportJob::result,
-            this, &ExportWidget::exportResult);
+    connect(job, &QGpgME::ExportJob::result, this, &ExportWidget::exportResult);
 
     job->setExportFlags(flags);
     job->start(QStringList() << QLatin1String(key.fingerprint()) + QLatin1Char('!'));
@@ -157,13 +153,11 @@ void ExportWidget::setKey(const GpgME::Key &key, unsigned int flags)
     d->key = key;
     d->flags = flags;
 
-    auto protocol = key.protocol() == GpgME::CMS ?
-                                      QGpgME::smime() : QGpgME::openpgp();
+    auto protocol = key.protocol() == GpgME::CMS ? QGpgME::smime() : QGpgME::openpgp();
 
     auto job = protocol->publicKeyExportJob(true);
 
-    connect(job, &QGpgME::ExportJob::result,
-            this, &ExportWidget::exportResult);
+    connect(job, &QGpgME::ExportJob::result, this, &ExportWidget::exportResult);
 
     job->setExportFlags(flags);
     job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
@@ -175,8 +169,8 @@ GpgME::Key ExportWidget::key() const
 }
 
 ExportDialog::ExportDialog(QWidget *parent)
-    : QDialog(parent),
-      mWidget(new ExportWidget(this))
+    : QDialog(parent)
+    , mWidget(new ExportWidget(this))
 {
     KConfigGroup dialog(KSharedConfig::openStateConfig(), "ExportDialog");
     const auto size = dialog.readEntry("Size", QSize(600, 800));
@@ -215,4 +209,3 @@ GpgME::Key ExportDialog::key() const
 {
     return mWidget->key();
 }
-

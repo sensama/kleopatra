@@ -33,8 +33,7 @@ SignEncryptFolderCommand::SignEncryptFolderCommand(KeyListController *c)
 
 QStringList SignEncryptFolderCommand::selectFiles() const
 {
-    const QString dir = QFileDialog::getExistingDirectory(qApp->activeWindow(),
-                                                          i18n("Select Folder to Sign and/or Encrypt"));
+    const QString dir = QFileDialog::getExistingDirectory(qApp->activeWindow(), i18n("Select Folder to Sign and/or Encrypt"));
     if (dir.isNull()) {
         return QStringList();
     }

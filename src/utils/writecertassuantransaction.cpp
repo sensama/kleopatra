@@ -30,7 +30,8 @@ WriteCertAssuanTransaction::~WriteCertAssuanTransaction()
 {
 }
 
-namespace {
+namespace
+{
 static bool startsWithKeyword(const char *string, const char *keyword)
 {
     // simplified version of has_leading_keyword() in gnupg/common/stringhelp.c
@@ -45,7 +46,8 @@ static bool startsWithKeyword(const char *string, const char *keyword)
 
 Data WriteCertAssuanTransaction::inquire(const char *name, const char *args, Error &err)
 {
-    (void)args; (void)err;
+    (void)args;
+    (void)err;
     qCDebug(KLEOPATRA_LOG) << "WriteCertAssuanTransaction::inquire() - name:" << name;
 
     if (startsWithKeyword(name, "CERTDATA")) {

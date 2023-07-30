@@ -10,12 +10,12 @@
 
 #include <config-kleopatra.h>
 
-#include "exportsecretkeycommand.h"
 #include "command_p.h"
+#include "exportsecretkeycommand.h"
 
 #include "fileoperationspreferences.h"
-#include <utils/applicationstate.h>
 #include "utils/filedialog.h"
+#include <utils/applicationstate.h>
 
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
@@ -23,8 +23,8 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/ExportJob>
+#include <QGpgME/Protocol>
 
 #include <QFileInfo>
 #include <QStandardPaths>
@@ -46,8 +46,7 @@ namespace
 
 QString openPGPCertificateFileExtension()
 {
-    return QLatin1String{outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate,
-                                             FileOperationsPreferences().usePGPFileExt())};
+    return QLatin1String{outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt())};
 }
 
 QString cmsCertificateFileExtension()
@@ -100,12 +99,11 @@ QString secretKeyFileFilters(GpgME::Protocol protocol)
 
 QString requestFilename(const Key &key, const QString &proposedFilename, QWidget *parent)
 {
-    auto filename = FileDialog::getSaveFileNameEx(
-        parent,
-        i18nc("@title:window", "Secret Key Backup"),
-        QStringLiteral("imp"),
-        proposedFilename,
-        secretKeyFileFilters(key.protocol()));
+    auto filename = FileDialog::getSaveFileNameEx(parent,
+                                                  i18nc("@title:window", "Secret Key Backup"),
+                                                  QStringLiteral("imp"),
+                                                  proposedFilename,
+                                                  secretKeyFileFilters(key.protocol()));
 
     if (!filename.isEmpty()) {
         const QFileInfo fi{filename};
@@ -132,6 +130,7 @@ class ExportSecretKeyCommand::Private : public Command::Private
     {
         return static_cast<ExportSecretKeyCommand *>(q);
     }
+
 public:
     explicit Private(ExportSecretKeyCommand *qq, KeyListController *c = nullptr);
     ~Private() override;
@@ -212,16 +211,15 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJ
         exportJob->setExportFlags(GpgME::Context::ExportPKCS12);
     }
 
-    connect(exportJob.get(), &QGpgME::ExportJob::result,
-            q, [this](const GpgME::Error &err, const QByteArray &keyData) {
-                onExportJobResult(err, keyData);
-            });
+    connect(exportJob.get(), &QGpgME::ExportJob::result, q, [this](const GpgME::Error &err, const QByteArray &keyData) {
+        onExportJobResult(err, keyData);
+    });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(exportJob.get(), &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(exportJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(exportJob.get(), &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(exportJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
 
     const GpgME::Error err = exportJob->start({QLatin1String{key.primaryFingerprint()}});
@@ -252,30 +250,26 @@ void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const 
     }
 
     if (keyData.isEmpty()) {
-        error(i18nc("@info", "The result of the backup is empty. Maybe you entered an empty or a wrong passphrase."),
-              errorCaption());
+        error(i18nc("@info", "The result of the backup is empty. Maybe you entered an empty or a wrong passphrase."), errorCaption());
         finished();
         return;
     }
 
     QFile f{filename};
     if (!f.open(QIODevice::WriteOnly)) {
-        error(xi18nc("@info", "Cannot open file <filename>%1</filename> for writing.", filename),
-              errorCaption());
+        error(xi18nc("@info", "Cannot open file <filename>%1</filename> for writing.", filename), errorCaption());
         finished();
         return;
     }
 
     const auto bytesWritten = f.write(keyData);
     if (bytesWritten != keyData.size()) {
-        error(xi18nc("@info", "Writing key to file <filename>%1</filename> failed.", filename),
-              errorCaption());
+        error(xi18nc("@info", "Writing key to file <filename>%1</filename> failed.", filename), errorCaption());
         finished();
         return;
     }
 
-    information(i18nc("@info", "The backup of the secret key was created successfully."),
-                i18nc("@title:window", "Secret Key Backup"));
+    information(i18nc("@info", "The backup of the secret key was created successfully."), i18nc("@title:window", "Secret Key Backup"));
     finished();
 }
 

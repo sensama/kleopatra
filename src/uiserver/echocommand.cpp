@@ -23,8 +23,8 @@
 #include <QByteArray>
 #include <QIODevice>
 
-#include <string>
 #include <algorithm>
+#include <string>
 
 using namespace Kleo;
 
@@ -38,15 +38,20 @@ public:
 };
 
 EchoCommand::EchoCommand()
-    : QObject(), AssuanCommandMixin<EchoCommand>(), d(new Private) {}
+    : QObject()
+    , AssuanCommandMixin<EchoCommand>()
+    , d(new Private)
+{
+}
 
-EchoCommand::~EchoCommand() {}
+EchoCommand::~EchoCommand()
+{
+}
 
 int EchoCommand::doStart()
 {
-
-    const std::vector< std::shared_ptr<Input> > in = inputs(), msg = messages();
-    const std::vector< std::shared_ptr<Output> > out = outputs();
+    const std::vector<std::shared_ptr<Input>> in = inputs(), msg = messages();
+    const std::vector<std::shared_ptr<Output>> out = outputs();
 
     if (!in.empty() && out.empty()) {
         return makeError(GPG_ERR_NOT_SUPPORTED);
@@ -77,8 +82,7 @@ int EchoCommand::doStart()
 
     // 2. if --inquire was given, inquire more data from the client:
     if (!keyword.empty()) {
-        if (const int err = inquire(keyword.c_str(), this,
-                                    SLOT(slotInquireData(int,QByteArray)))) {
+        if (const int err = inquire(keyword.c_str(), this, SLOT(slotInquireData(int, QByteArray)))) {
             return err;
         } else {
             ++d->operationsInFlight;
@@ -107,12 +111,10 @@ int EchoCommand::doStart()
 
 void EchoCommand::doCanceled()
 {
-
 }
 
 void EchoCommand::slotInquireData(int rc, const QByteArray &data)
 {
-
     --d->operationsInFlight;
 
     if (rc) {
@@ -129,13 +131,10 @@ void EchoCommand::slotInquireData(int rc, const QByteArray &data)
         done(e.error(), e.message());
     } catch (const std::exception &e) {
         done(makeError(GPG_ERR_UNEXPECTED),
-             i18n("Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1",
-                  QString::fromLocal8Bit(e.what())));
+             i18n("Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1", QString::fromLocal8Bit(e.what())));
     } catch (...) {
-        done(makeError(GPG_ERR_UNEXPECTED),
-             i18n("Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"));
+        done(makeError(GPG_ERR_UNEXPECTED), i18n("Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"));
     }
-
 }
 
 void EchoCommand::slotInputReadyRead()
@@ -146,7 +145,7 @@ void EchoCommand::slotInputReadyRead()
     QByteArray buffer;
     buffer.resize(in->bytesAvailable());
     const qint64 read = in->read(buffer.data(), buffer.size());
-    if (read == - 1) {
+    if (read == -1) {
         done(makeError(GPG_ERR_EIO));
         return;
     }
@@ -166,7 +165,6 @@ void EchoCommand::slotOutputBytesWritten()
     Q_ASSERT(out);
 
     if (!d->buffer.isEmpty()) {
-
         if (out->bytesToWrite()) {
             return;
         }
@@ -177,7 +175,6 @@ void EchoCommand::slotOutputBytesWritten()
             return;
         }
         d->buffer.remove(0, written);
-
     }
 
     if (out->isOpen() && d->buffer.isEmpty() && !inputs().at(0)->ioDevice()->isOpen()) {
@@ -187,4 +184,3 @@ void EchoCommand::slotOutputBytesWritten()
         }
     }
 }
-

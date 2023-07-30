@@ -17,33 +17,33 @@
 #include "importcertificatescommand_p.h"
 
 #include "certifycertificatecommand.h"
+#include "kleopatra_debug.h"
+#include <settings.h>
 #include <utils/keys.h>
 #include <utils/memory-helpers.h>
-#include <settings.h>
-#include "kleopatra_debug.h"
 
 #include <Libkleo/Algorithm>
-#include <Libkleo/KeyList>
-#include <Libkleo/KeyListSortFilterProxyModel>
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroupImportExport>
 #include <Libkleo/KeyHelpers>
+#include <Libkleo/KeyList>
+#include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/MessageBox>
 #include <Libkleo/Predicates>
-#include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
-#include <QGpgME/Protocol>
-#include <QGpgME/ImportJob>
-#include <QGpgME/ImportFromKeyserverJob>
 #include <QGpgME/ChangeOwnerTrustJob>
+#include <QGpgME/ImportFromKeyserverJob>
+#include <QGpgME/ImportJob>
+#include <QGpgME/Protocol>
 #if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
 #include <QGpgME/ReceiveKeysJob>
 #endif
 
+#include <gpgme++/context.h>
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>
-#include <gpgme++/context.h>
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
 
@@ -54,13 +54,13 @@
 #include <QEventLoop>
 #include <QProgressDialog>
 #include <QString>
-#include <QWidget>
-#include <QTreeView>
 #include <QTextDocument> // for Qt::escape
+#include <QTreeView>
+#include <QWidget>
 
-#include <memory>
 #include <algorithm>
 #include <map>
+#include <memory>
 #include <set>
 #include <unordered_set>
 
@@ -94,7 +94,9 @@ public:
         updateFindCache(results);
     }
 
-    ~ImportResultProxyModel() override {}
+    ~ImportResultProxyModel() override
+    {
+    }
 
     ImportResultProxyModel *clone() const override
     {
@@ -116,10 +118,8 @@ protected:
         }
         const QString fpr = index.data(KeyList::FingerprintRole).toString();
         // find information:
-        const std::vector<Import>::const_iterator it
-            = Kleo::binary_find(m_importsByFingerprint.begin(), m_importsByFingerprint.end(),
-                                fpr.toLatin1().constData(),
-                                ByImportFingerprint<std::less>());
+        const std::vector<Import>::const_iterator it =
+            Kleo::binary_find(m_importsByFingerprint.begin(), m_importsByFingerprint.end(), fpr.toLatin1().constData(), ByImportFingerprint<std::less>());
         if (it == m_importsByFingerprint.end()) {
             return AbstractKeyListSortFilterProxyModel::data(index, role);
         } else {
@@ -146,9 +146,7 @@ protected:
         //
         const QString fpr = index.data(KeyList::FingerprintRole).toString();
 
-        return std::binary_search(m_importsByFingerprint.begin(), m_importsByFingerprint.end(),
-                                  fpr.toLatin1().constData(),
-                                  ByImportFingerprint<std::less>());
+        return std::binary_search(m_importsByFingerprint.begin(), m_importsByFingerprint.end(), fpr.toLatin1().constData(), ByImportFingerprint<std::less>());
     }
 
 private:
@@ -164,13 +162,12 @@ private:
                 m_idsByFingerprint[it->fingerprint()].insert(r.id);
             }
         }
-        std::sort(m_importsByFingerprint.begin(), m_importsByFingerprint.end(),
-                  ByImportFingerprint<std::less>());
+        std::sort(m_importsByFingerprint.begin(), m_importsByFingerprint.end(), ByImportFingerprint<std::less>());
     }
 
 private:
     mutable std::vector<Import> m_importsByFingerprint;
-    mutable std::map< const char *, std::set<QString>, ByImportFingerprint<std::less> > m_idsByFingerprint;
+    mutable std::map<const char *, std::set<QString>, ByImportFingerprint<std::less>> m_idsByFingerprint;
     std::vector<ImportResultData> m_results;
 };
 
@@ -236,9 +233,9 @@ static QString make_tooltip(const std::vector<ImportResultData> &results)
 
     std::vector<QString> ids;
     ids.reserve(results.size());
-    std::transform(std::begin(results), std::end(results),
-                   std::back_inserter(ids),
-                   [](const auto &r) { return r.id; });
+    std::transform(std::begin(results), std::end(results), std::back_inserter(ids), [](const auto &r) {
+        return r.id;
+    });
     std::sort(std::begin(ids), std::end(ids));
     ids.erase(std::unique(std::begin(ids), std::end(ids)), std::end(ids));
 
@@ -246,24 +243,19 @@ static QString make_tooltip(const std::vector<ImportResultData> &results)
         if (ids.front().isEmpty()) {
             return {};
         } else
-            return i18nc("@info:tooltip",
-                         "Imported Certificates from %1",
-                         ids.front().toHtmlEscaped());
+            return i18nc("@info:tooltip", "Imported Certificates from %1", ids.front().toHtmlEscaped());
     else
-        return i18nc("@info:tooltip",
-                     "Imported certificates from these sources:<br/>%1",
-                     format_ids(ids));
+        return i18nc("@info:tooltip", "Imported certificates from these sources:<br/>%1", format_ids(ids));
 }
 
 void ImportCertificatesCommand::Private::setImportResultProxyModel(const std::vector<ImportResultData> &results)
 {
-    if (std::none_of(std::begin(results), std::end(results),
-                     [](const auto &r) { return r.result.numConsidered() > 0; })) {
+    if (std::none_of(std::begin(results), std::end(results), [](const auto &r) {
+            return r.result.numConsidered() > 0;
+        })) {
         return;
     }
-    q->addTemporaryView(i18nc("@title:tab", "Imported Certificates"),
-                        new ImportResultProxyModel(results),
-                        make_tooltip(results));
+    q->addTemporaryView(i18nc("@title:tab", "Imported Certificates"), new ImportResultProxyModel(results), make_tooltip(results));
     if (QTreeView *const tv = qobject_cast<QTreeView *>(parentWidgetOrView())) {
         tv->expandAll();
     }
@@ -274,8 +266,7 @@ int sum(const std::vector<ImportResult> &res, int (ImportResult::*fun)() const)
     return kdtools::accumulate_transform(res.begin(), res.end(), std::mem_fn(fun), 0);
 }
 
-static QString make_report(const std::vector<ImportResultData> &results,
-                           const std::vector<ImportedGroup> &groups)
+static QString make_report(const std::vector<ImportResultData> &results, const std::vector<ImportedGroup> &groups)
 {
     const KLocalizedString normalLine = ki18n("<tr><td align=\"right\">%1</td><td>%2</td></tr>");
     const KLocalizedString boldLine = ki18n("<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>");
@@ -283,9 +274,9 @@ static QString make_report(const std::vector<ImportResultData> &results,
 
     std::vector<ImportResult> res;
     res.reserve(results.size());
-    std::transform(std::begin(results), std::end(results),
-                   std::back_inserter(res),
-                   [](const auto &r) { return r.result; });
+    std::transform(std::begin(results), std::end(results), std::back_inserter(res), [](const auto &r) {
+        return r.result;
+    });
 
     const auto numProcessedCertificates = sum(res, &ImportResult::numConsidered);
 
@@ -293,47 +284,34 @@ static QString make_report(const std::vector<ImportResultData> &results,
 
     if (numProcessedCertificates > 0 || groups.size() == 0) {
         lines.push_back(headerLine.subs(i18n("Certificates")).toString());
-        lines.push_back(normalLine.subs(i18n("Total number processed:"))
-                        .subs(numProcessedCertificates).toString());
-        lines.push_back(normalLine.subs(i18n("Imported:"))
-                        .subs(sum(res, &ImportResult::numImported)).toString());
+        lines.push_back(normalLine.subs(i18n("Total number processed:")).subs(numProcessedCertificates).toString());
+        lines.push_back(normalLine.subs(i18n("Imported:")).subs(sum(res, &ImportResult::numImported)).toString());
         if (const int n = sum(res, &ImportResult::newSignatures))
-            lines.push_back(normalLine.subs(i18n("New signatures:"))
-                            .subs(n).toString());
+            lines.push_back(normalLine.subs(i18n("New signatures:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::newUserIDs))
-            lines.push_back(normalLine.subs(i18n("New user IDs:"))
-                            .subs(n).toString());
+            lines.push_back(normalLine.subs(i18n("New user IDs:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::numKeysWithoutUserID))
-            lines.push_back(normalLine.subs(i18n("Certificates without user IDs:"))
-                            .subs(n).toString());
+            lines.push_back(normalLine.subs(i18n("Certificates without user IDs:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::newSubkeys))
-            lines.push_back(normalLine.subs(i18n("New subkeys:"))
-                            .subs(n).toString());
+            lines.push_back(normalLine.subs(i18n("New subkeys:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::newRevocations))
-            lines.push_back(boldLine.subs(i18n("Newly revoked:"))
-                            .subs(n).toString());
+            lines.push_back(boldLine.subs(i18n("Newly revoked:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::notImported))
-            lines.push_back(boldLine.subs(i18n("Not imported:"))
-                            .subs(n).toString());
+            lines.push_back(boldLine.subs(i18n("Not imported:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::numUnchanged))
-            lines.push_back(normalLine.subs(i18n("Unchanged:"))
-                            .subs(n).toString());
+            lines.push_back(normalLine.subs(i18n("Unchanged:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::numSecretKeysConsidered))
-            lines.push_back(normalLine.subs(i18n("Secret keys processed:"))
-                            .subs(n).toString());
+            lines.push_back(normalLine.subs(i18n("Secret keys processed:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::numSecretKeysImported))
-            lines.push_back(normalLine.subs(i18n("Secret keys imported:"))
-                            .subs(n).toString());
-        if (const int n = sum(res, &ImportResult::numSecretKeysConsidered) - sum(res, &ImportResult::numSecretKeysImported) - sum(res, &ImportResult::numSecretKeysUnchanged))
+            lines.push_back(normalLine.subs(i18n("Secret keys imported:")).subs(n).toString());
+        if (const int n = sum(res, &ImportResult::numSecretKeysConsidered) - sum(res, &ImportResult::numSecretKeysImported)
+                - sum(res, &ImportResult::numSecretKeysUnchanged))
             if (n > 0)
-                lines.push_back(boldLine.subs(i18n("Secret keys <em>not</em> imported:"))
-                                .subs(n).toString());
+                lines.push_back(boldLine.subs(i18n("Secret keys <em>not</em> imported:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::numSecretKeysUnchanged))
-            lines.push_back(normalLine.subs(i18n("Secret keys unchanged:"))
-                            .subs(n).toString());
+            lines.push_back(normalLine.subs(i18n("Secret keys unchanged:")).subs(n).toString());
         if (const int n = sum(res, &ImportResult::numV3KeysSkipped))
-            lines.push_back(normalLine.subs(i18n("Deprecated PGP-2 keys skipped:"))
-                            .subs(n).toString());
+            lines.push_back(normalLine.subs(i18n("Deprecated PGP-2 keys skipped:")).subs(n).toString());
     }
 
     if (!lines.empty()) {
@@ -341,18 +319,14 @@ static QString make_report(const std::vector<ImportResultData> &results,
     }
 
     if (groups.size() > 0) {
-        const auto newGroups = std::count_if(std::begin(groups), std::end(groups),
-                                             [](const auto &g) {
-                                                 return g.status == ImportedGroup::Status::New;
-                                             });
+        const auto newGroups = std::count_if(std::begin(groups), std::end(groups), [](const auto &g) {
+            return g.status == ImportedGroup::Status::New;
+        });
         const auto updatedGroups = groups.size() - newGroups;
         lines.push_back(headerLine.subs(i18n("Certificate Groups")).toString());
-        lines.push_back(normalLine.subs(i18n("Total number processed:"))
-                        .subs(groups.size()).toString());
-        lines.push_back(normalLine.subs(i18n("New groups:"))
-                        .subs(newGroups).toString());
-        lines.push_back(normalLine.subs(i18n("Updated groups:"))
-                        .subs(updatedGroups).toString());
+        lines.push_back(normalLine.subs(i18n("Total number processed:")).subs(groups.size()).toString());
+        lines.push_back(normalLine.subs(i18n("New groups:")).subs(newGroups).toString());
+        lines.push_back(normalLine.subs(i18n("Updated groups:")).subs(updatedGroups).toString());
     }
 
     return lines.join(QLatin1String{});
@@ -363,16 +337,14 @@ static bool isImportFromSingleSource(const std::vector<ImportResultData> &res)
     return (res.size() == 1) || (res.size() == 2 && res[0].id == res[1].id);
 }
 
-static QString make_message_report(const std::vector<ImportResultData> &res,
-                                   const std::vector<ImportedGroup> &groups)
+static QString make_message_report(const std::vector<ImportResultData> &res, const std::vector<ImportedGroup> &groups)
 {
     QString report{QLatin1String{"<html>"}};
     if (res.empty()) {
         report += i18n("No imports (should not happen, please report a bug).");
     } else {
-        const QString title = isImportFromSingleSource(res) && !res.front().id.isEmpty() ?
-                              i18n("Detailed results of importing %1:", res.front().id) :
-                              i18n("Detailed results of import:");
+        const QString title = isImportFromSingleSource(res) && !res.front().id.isEmpty() ? i18n("Detailed results of importing %1:", res.front().id)
+                                                                                         : i18n("Detailed results of import:");
         report += QLatin1String{"<p>"} + title + QLatin1String{"</p>"};
         report += QLatin1String{"<p><table width=\"100%\">"};
         report += make_report(res, groups);
@@ -422,7 +394,7 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         return false;
     }
 
-    for (const auto &uid: key.userIDs()) {
+    for (const auto &uid : key.userIDs()) {
         if (uid.validity() >= GpgME::UserID::Marginal) {
             // Already marginal so don't bug the user
             return false;
@@ -512,8 +484,7 @@ auto consolidatedAuditLogEntries(const std::vector<ImportResultData> &res)
 }
 }
 
-void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res,
-                                                     const std::vector<ImportedGroup> &groups)
+void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res, const std::vector<ImportedGroup> &groups)
 {
     const auto singleOpenPGPImport = getSingleOpenPGPImport(res);
     if (!singleOpenPGPImport.isNull()) {
@@ -567,8 +538,9 @@ void ImportCertificatesCommand::Private::onImportResult(const ImportResult &resu
     Q_ASSERT(finishedJob);
     qCDebug(KLEOPATRA_LOG) << q << __func__ << finishedJob;
 
-    auto it = std::find_if(std::begin(runningJobs), std::end(runningJobs),
-                           [finishedJob](const auto &job) { return job.job == finishedJob; });
+    auto it = std::find_if(std::begin(runningJobs), std::end(runningJobs), [finishedJob](const auto &job) {
+        return job.job == finishedJob;
+    });
     Q_ASSERT(it != std::end(runningJobs));
     if (it == std::end(runningJobs)) {
         qCWarning(KLEOPATRA_LOG) << __func__ << "Error: Finished job not found";
@@ -604,7 +576,7 @@ void ImportCertificatesCommand::Private::addImportResult(const ImportResultData 
 static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidget *dialog)
 {
     std::unordered_set<std::string> askedAboutFingerprints;
-    for (const auto &r: results) {
+    for (const auto &r : results) {
         if (r.protocol != GpgME::Protocol::OpenPGP) {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping non-OpenPGP import";
             continue;
@@ -628,7 +600,7 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
 
             GpgME::Error err;
             auto ctx = wrap_unique(Context::createForProtocol(GpgME::Protocol::OpenPGP));
-            if (!ctx){
+            if (!ctx) {
                 qCWarning(KLEOPATRA_LOG) << "Failed to get context";
                 continue;
             }
@@ -647,20 +619,23 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
             const auto toTrustOwnerUserIDs{toTrustOwner.userIDs()};
             // ki18n(" ") as initializer because initializing with empty string leads to
             // (I18N_EMPTY_MESSAGE)
-            const KLocalizedString uids = std::accumulate(toTrustOwnerUserIDs.cbegin(), toTrustOwnerUserIDs.cend(), KLocalizedString{ki18n(" ")}, [](KLocalizedString temp, const auto &uid) {
-                return kxi18nc("@info", "%1<item>%2</item>").subs(temp).subs(Formatting::prettyNameAndEMail(uid));
-            });
+            const KLocalizedString uids = std::accumulate(toTrustOwnerUserIDs.cbegin(),
+                                                          toTrustOwnerUserIDs.cend(),
+                                                          KLocalizedString{ki18n(" ")},
+                                                          [](KLocalizedString temp, const auto &uid) {
+                                                              return kxi18nc("@info", "%1<item>%2</item>").subs(temp).subs(Formatting::prettyNameAndEMail(uid));
+                                                          });
 
             const QString str = xi18nc("@info",
-                "<para>You have imported a certificate with fingerprint</para>"
-                "<para><numid>%1</numid></para>"
-                "<para>"
-                "and user IDs"
-                "<list>%2</list>"
-                "</para>"
-                "<para>Is this your own certificate?</para>",
-                Formatting::prettyID(fpr),
-                uids);
+                                       "<para>You have imported a certificate with fingerprint</para>"
+                                       "<para><numid>%1</numid></para>"
+                                       "<para>"
+                                       "and user IDs"
+                                       "<list>%2</list>"
+                                       "</para>"
+                                       "<para>Is this your own certificate?</para>",
+                                       Formatting::prettyID(fpr),
+                                       uids);
 
             int k = KMessageBox::questionTwoActionsCancel(dialog,
                                                           str,
@@ -670,11 +645,11 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
             askedAboutFingerprints.insert(fpr);
 
             if (k == KMessageBox::ButtonCode::PrimaryAction) {
-                //To use the ChangeOwnerTrustJob over
-                //the CryptoBackendFactory
+                // To use the ChangeOwnerTrustJob over
+                // the CryptoBackendFactory
                 const QGpgME::Protocol *const backend = QGpgME::openpgp();
 
-                if (!backend){
+                if (!backend) {
                     qCWarning(KLEOPATRA_LOG) << "Failed to get CryptoBackend";
                     return;
                 }
@@ -708,8 +683,7 @@ static void handleExternalCMSImports(const std::vector<ImportResultData> &result
     // with validation to get the intermediate and root ca imported
     // automatically if trusted-certs and extra-certs are used.
     for (const auto &r : results) {
-        if (r.protocol == GpgME::CMS && r.type == ImportType::External
-                && !importFailed(r) && !importWasCanceled(r)) {
+        if (r.protocol == GpgME::CMS && r.type == ImportType::External && !importFailed(r) && !importWasCanceled(r)) {
             const auto imports = r.result.imports();
             std::for_each(std::begin(imports), std::end(imports), &validateImportedCertificate);
         }
@@ -740,7 +714,7 @@ void ImportCertificatesCommand::Private::processResults()
 
     showDetails(results, importedGroups);
 
-    auto tv = dynamic_cast<QTreeView *> (view());
+    auto tv = dynamic_cast<QTreeView *>(view());
     if (!tv) {
         qCDebug(KLEOPATRA_LOG) << "Failed to find treeview";
     } else {
@@ -775,8 +749,9 @@ void ImportCertificatesCommand::Private::tryToFinish()
         qCWarning(KLEOPATRA_LOG) << q << __func__ << "There is already a valid keyListConnection!";
     } else {
         auto keyCache = KeyCache::mutableInstance();
-        keyListConnection = connect(keyCache.get(), &KeyCache::keyListingDone,
-                                    q, [this]() { keyCacheUpdated(); });
+        keyListConnection = connect(keyCache.get(), &KeyCache::keyListingDone, q, [this]() {
+            keyCacheUpdated();
+        });
         keyCache->startKeyListing();
     }
 }
@@ -790,25 +765,19 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
 
     keyCacheAutoRefreshSuspension.reset();
 
-    const auto allIds = std::accumulate(std::cbegin(results), std::cend(results),
-                                        std::set<QString>{},
-                                        [](auto allIds, const auto &r) {
-                                            allIds.insert(r.id);
-                                            return allIds;
-                                        });
-    const auto canceledIds = std::accumulate(std::cbegin(results), std::cend(results),
-                                             std::set<QString>{},
-                                             [](auto canceledIds, const auto &r) {
-                                                 if (importWasCanceled(r)) {
-                                                     canceledIds.insert(r.id);
-                                                 }
-                                                 return canceledIds;
-                                             });
-    const auto totalConsidered = std::accumulate(std::cbegin(results), std::cend(results),
-                                                 0,
-                                                 [](auto totalConsidered, const auto &r) {
-                                                     return totalConsidered + r.result.numConsidered();
-                                                 });
+    const auto allIds = std::accumulate(std::cbegin(results), std::cend(results), std::set<QString>{}, [](auto allIds, const auto &r) {
+        allIds.insert(r.id);
+        return allIds;
+    });
+    const auto canceledIds = std::accumulate(std::cbegin(results), std::cend(results), std::set<QString>{}, [](auto canceledIds, const auto &r) {
+        if (importWasCanceled(r)) {
+            canceledIds.insert(r.id);
+        }
+        return canceledIds;
+    });
+    const auto totalConsidered = std::accumulate(std::cbegin(results), std::cend(results), 0, [](auto totalConsidered, const auto &r) {
+        return totalConsidered + r.result.numConsidered();
+    });
     if (totalConsidered == 0 && canceledIds.size() == allIds.size()) {
         // nothing was considered for import and at least one import per id was
         // canceled => treat the command as canceled
@@ -821,9 +790,7 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
 
 static ImportedGroup storeGroup(const KeyGroup &group, const QString &id)
 {
-    const auto status = KeyCache::instance()->group(group.id()).isNull() ?
-                        ImportedGroup::Status::New :
-                        ImportedGroup::Status::Updated;
+    const auto status = KeyCache::instance()->group(group.id()).isNull() ? ImportedGroup::Status::New : ImportedGroup::Status::Updated;
     if (status == ImportedGroup::Status::New) {
         KeyCache::mutableInstance()->insert(group);
     } else {
@@ -835,19 +802,15 @@ static ImportedGroup storeGroup(const KeyGroup &group, const QString &id)
 void ImportCertificatesCommand::Private::importGroups()
 {
     for (const auto &path : filesToImportGroupsFrom) {
-        const bool certificateImportSucceeded =
-            std::any_of(std::cbegin(results), std::cend(results),
-                        [path](const auto &r) {
-                            return r.id == path && !importFailed(r) && !importWasCanceled(r);
-                        });
+        const bool certificateImportSucceeded = std::any_of(std::cbegin(results), std::cend(results), [path](const auto &r) {
+            return r.id == path && !importFailed(r) && !importWasCanceled(r);
+        });
         if (certificateImportSucceeded) {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Importing groups from file" << path;
             const auto groups = readKeyGroups(path);
-            std::transform(std::begin(groups), std::end(groups),
-                           std::back_inserter(importedGroups),
-                           [path](const auto &group) {
-                               return storeGroup(group, path);
-                           });
+            std::transform(std::begin(groups), std::end(groups), std::back_inserter(importedGroups), [path](const auto &group) {
+                return storeGroup(group, path);
+            });
         }
         increaseProgressValue();
     }
@@ -856,26 +819,22 @@ void ImportCertificatesCommand::Private::importGroups()
 
 static auto accumulateNewKeys(std::vector<std::string> &fingerprints, const std::vector<GpgME::Import> &imports)
 {
-    return std::accumulate(std::begin(imports), std::end(imports),
-                           fingerprints,
-                           [](auto fingerprints, const auto &import) {
-                               if (import.status() == Import::NewKey) {
-                                   fingerprints.push_back(import.fingerprint());
-                               }
-                               return fingerprints;
-                           });
+    return std::accumulate(std::begin(imports), std::end(imports), fingerprints, [](auto fingerprints, const auto &import) {
+        if (import.status() == Import::NewKey) {
+            fingerprints.push_back(import.fingerprint());
+        }
+        return fingerprints;
+    });
 }
 
 static auto accumulateNewOpenPGPKeys(const std::vector<ImportResultData> &results)
 {
-    return std::accumulate(std::begin(results), std::end(results),
-                           std::vector<std::string>{},
-                           [](auto fingerprints, const auto &r) {
-                               if (r.protocol == GpgME::OpenPGP) {
-                                   fingerprints = accumulateNewKeys(fingerprints, r.result.imports());
-                               }
-                               return fingerprints;
-                           });
+    return std::accumulate(std::begin(results), std::end(results), std::vector<std::string>{}, [](auto fingerprints, const auto &r) {
+        if (r.protocol == GpgME::OpenPGP) {
+            fingerprints = accumulateNewKeys(fingerprints, r.result.imports());
+        }
+        return fingerprints;
+    });
 }
 
 std::set<QString> ImportCertificatesCommand::Private::getMissingSignerKeyIds(const std::vector<ImportResultData> &results)
@@ -891,9 +850,7 @@ void ImportCertificatesCommand::Private::importSignerKeys(const std::set<QString
 {
     Q_ASSERT(!keyIds.empty());
 
-    setProgressLabelText(i18np("Fetching 1 signer key... (this can take a while)",
-                               "Fetching %1 signer keys... (this can take a while)",
-                               keyIds.size()));
+    setProgressLabelText(i18np("Fetching 1 signer key... (this can take a while)", "Fetching %1 signer keys... (this can take a while)", keyIds.size()));
 
     setWaitForMoreJobs(true);
     // start one import per key id to allow canceling the key retrieval without
@@ -914,7 +871,9 @@ static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)
     }
 }
 
-void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const QByteArray &data, const QString &id,
+void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol,
+                                                     const QByteArray &data,
+                                                     const QString &id,
                                                      [[maybe_unused]] const ImportOptions &options)
 {
     Q_ASSERT(protocol != UnknownProtocol);
@@ -926,8 +885,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     std::unique_ptr<ImportJob> job = get_import_job(protocol);
     if (!job.get()) {
         nonWorkingProtocols.push_back(protocol);
-        error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
-                   Formatting::displayName(protocol)),
+        error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.", Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
         addImportResult({id, protocol, ImportType::Local, ImportResult{}, AuditLogEntry{}});
         return;
@@ -936,10 +894,14 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {
-        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { onImportResult(result); }),
+        connect(job.get(),
+                &AbstractImportJob::result,
+                q,
+                [this](const GpgME::ImportResult &result) {
+                    onImportResult(result);
+                }),
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-        connect(job.get(), &QGpgME::Job::jobProgress,
-                q, &Command::progress),
+        connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress),
 #else
         connect(job.get(), &QGpgME::Job::progress,
                 q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
@@ -990,8 +952,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     std::unique_ptr<ImportFromKeyserverJob> job = get_import_from_keyserver_job(protocol);
     if (!job.get()) {
         nonWorkingProtocols.push_back(protocol);
-        error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
-                   Formatting::displayName(protocol)),
+        error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.", Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
         addImportResult({id, protocol, ImportType::External, ImportResult{}, AuditLogEntry{}});
         return;
@@ -1000,10 +961,14 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {
-        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { onImportResult(result); }),
+        connect(job.get(),
+                &AbstractImportJob::result,
+                q,
+                [this](const GpgME::ImportResult &result) {
+                    onImportResult(result);
+                }),
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-        connect(job.get(), &QGpgME::Job::jobProgress,
-                q, &Command::progress),
+        connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress),
 #else
         connect(job.get(), &QGpgME::Job::progress,
                 q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
@@ -1049,12 +1014,14 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {
-        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) {
-            onImportResult(result);
-        }),
+        connect(job.get(),
+                &AbstractImportJob::result,
+                q,
+                [this](const GpgME::ImportResult &result) {
+                    onImportResult(result);
+                }),
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-        connect(job.get(), &QGpgME::Job::jobProgress,
-                q, &Command::progress),
+        connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress),
 #else
         connect(job.get(), &QGpgME::Job::progress,
                 q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
@@ -1092,7 +1059,9 @@ void ImportCertificatesCommand::Private::setUpProgressDialog()
     progressDialog->setMaximum(1);
     progressDialog->setValue(0);
     connect(progressDialog, &QProgressDialog::canceled, q, &Command::cancel);
-    connect(q, &Command::finished, progressDialog, [this]() { progressDialog->accept(); });
+    connect(q, &Command::finished, progressDialog, [this]() {
+        progressDialog->accept();
+    });
 }
 
 void ImportCertificatesCommand::Private::setProgressWindowTitle(const QString &title)

@@ -24,7 +24,7 @@
 
 #include <gpg-error.h>
 #if GPG_ERROR_VERSION_NUMBER >= 0x12400 // 1.36
-# define GPG_ERROR_HAS_BAD_AUTH
+#define GPG_ERROR_HAS_BAD_AUTH
 #endif
 
 #include "kleopatra_debug.h"
@@ -42,6 +42,7 @@ class AuthenticatePIVCardApplicationCommand::Private : public CardCommand::Priva
     {
         return static_cast<AuthenticatePIVCardApplicationCommand *>(q);
     }
+
 public:
     explicit Private(AuthenticatePIVCardApplicationCommand *qq, const std::string &serialNumber, QWidget *p);
     ~Private() override;
@@ -54,7 +55,7 @@ private:
     void slotDialogRejected();
 
 private:
-    void authenticate(const QByteArray& adminKey);
+    void authenticate(const QByteArray &adminKey);
     void retryAskingForKey();
     void ensureDialogCreated();
 
@@ -101,7 +102,7 @@ AuthenticatePIVCardApplicationCommand::~AuthenticatePIVCardApplicationCommand()
     qCDebug(KLEOPATRA_LOG) << "AuthenticatePIVCardApplicationCommand::~AuthenticatePIVCardApplicationCommand()";
 }
 
-void AuthenticatePIVCardApplicationCommand::setPrompt(const QString& prompt)
+void AuthenticatePIVCardApplicationCommand::setPrompt(const QString &prompt)
 {
     d->prompt = prompt;
 }
@@ -118,7 +119,7 @@ void AuthenticatePIVCardApplicationCommand::doCancel()
 {
 }
 
-void AuthenticatePIVCardApplicationCommand::Private::authenticate(const QByteArray& adminKey)
+void AuthenticatePIVCardApplicationCommand::Private::authenticate(const QByteArray &adminKey)
 {
     qCDebug(KLEOPATRA_LOG) << "AuthenticatePIVCardApplicationCommand::authenticate()";
 
@@ -138,8 +139,7 @@ void AuthenticatePIVCardApplicationCommand::Private::authenticate(const QByteArr
 
 void AuthenticatePIVCardApplicationCommand::Private::slotResult(const Error &err)
 {
-    qCDebug(KLEOPATRA_LOG) << "AuthenticatePIVCardApplicationCommand::slotResult():"
-                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
+    qCDebug(KLEOPATRA_LOG) << "AuthenticatePIVCardApplicationCommand::slotResult():" << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err.isCanceled()) {
         canceled();
         return;
@@ -171,12 +171,14 @@ void AuthenticatePIVCardApplicationCommand::Private::ensureDialogCreated()
 
     dialog = new PIVCardApplicationAdministrationKeyInputDialog(parentWidgetOrView());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setLabelText(prompt.isEmpty() ?
-                         i18n("Please enter the PIV Card Application Administration Key in hex-encoded form.") :
-                         prompt);
+    dialog->setLabelText(prompt.isEmpty() ? i18n("Please enter the PIV Card Application Administration Key in hex-encoded form.") : prompt);
 
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 void AuthenticatePIVCardApplicationCommand::Private::slotDialogAccepted()

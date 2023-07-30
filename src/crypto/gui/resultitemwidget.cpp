@@ -26,19 +26,19 @@
 #include <Libkleo/Classify>
 #include <Libkleo/SystemInfo>
 
-#include <gpgme++/key.h>
 #include <gpgme++/decryptionresult.h>
+#include <gpgme++/key.h>
 
-#include <KLocalizedString>
-#include <QPushButton>
-#include <KStandardGuiItem>
 #include "kleopatra_debug.h"
+#include <KColorScheme>
+#include <KGuiItem>
+#include <KLocalizedString>
+#include <KStandardGuiItem>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QPushButton>
 #include <QUrl>
 #include <QVBoxLayout>
-#include <KGuiItem>
-#include <KColorScheme>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -81,8 +81,11 @@ static QColor txtColorForVisualCode(Task::Result::VisualCode code)
 class ResultItemWidget::Private
 {
     ResultItemWidget *const q;
+
 public:
-    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq) : q(qq), m_result(result)
+    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq)
+        : q(qq)
+        , m_result(result)
     {
         Q_ASSERT(m_result);
     }
@@ -124,17 +127,16 @@ void ResultItemWidget::Private::addIgnoreMDCButton(QBoxLayout *lay)
     }
     const auto decResult = dvResult->decryptionResult();
 
-    if (decResult.isNull() || !decResult.error() || !decResult.isLegacyCipherNoMDC())
-    {
+    if (decResult.isNull() || !decResult.error() || !decResult.isLegacyCipherNoMDC()) {
         return;
     }
 
     auto btn = new QPushButton(i18n("Force decryption"));
     btn->setFixedSize(btn->sizeHint());
 
-    connect (btn, &QPushButton::clicked, q, [this] () {
+    connect(btn, &QPushButton::clicked, q, [this]() {
         if (m_result->parentTask()) {
-            const auto dvTask = dynamic_cast<DecryptVerifyTask*>(m_result->parentTask().data());
+            const auto dvTask = dynamic_cast<DecryptVerifyTask *>(m_result->parentTask().data());
             dvTask->setIgnoreMDCError(true);
             dvTask->start();
             q->setVisible(false);
@@ -161,7 +163,7 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
         return;
     }
 
-    for (const auto &sig: verifyResult.signatures()) {
+    for (const auto &sig : verifyResult.signatures()) {
         if (!(sig.summary() & GpgME::Signature::KeyMissing)) {
             continue;
         }
@@ -172,21 +174,19 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
         if (verifyResult.numSignatures() > 1) {
             suffix = QLatin1Char(' ') + keyid;
         }
-        btn = new QPushButton(search ? i18nc("1 is optional keyid. No space is intended as it can be empty.",
-                                       "Search%1", suffix)
-                                     : i18nc("1 is optional keyid. No space is intended as it can be empty.",
-                                       "Import%1", suffix));
+        btn = new QPushButton(search ? i18nc("1 is optional keyid. No space is intended as it can be empty.", "Search%1", suffix)
+                                     : i18nc("1 is optional keyid. No space is intended as it can be empty.", "Import%1", suffix));
 
         if (search) {
             btn->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
-            connect (btn, &QPushButton::clicked, q, [this, btn, keyid] () {
+            connect(btn, &QPushButton::clicked, q, [this, btn, keyid]() {
                 btn->setEnabled(false);
                 m_importCanceled = false;
                 auto cmd = new Kleo::Commands::LookupCertificatesCommand(keyid, nullptr);
-                connect(cmd, &Kleo::Commands::LookupCertificatesCommand::canceled,
-                        q, [this]() { m_importCanceled = true; });
-                connect(cmd, &Kleo::Commands::LookupCertificatesCommand::finished,
-                        q, [this, btn]() {
+                connect(cmd, &Kleo::Commands::LookupCertificatesCommand::canceled, q, [this]() {
+                    m_importCanceled = true;
+                });
+                connect(cmd, &Kleo::Commands::LookupCertificatesCommand::finished, q, [this, btn]() {
                     btn->setEnabled(true);
                     oneImportFinished();
                 });
@@ -195,14 +195,14 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
             });
         } else {
             btn->setIcon(QIcon::fromTheme(QStringLiteral("view-certificate-import")));
-            connect (btn, &QPushButton::clicked, q, [this, btn] () {
+            connect(btn, &QPushButton::clicked, q, [this, btn]() {
                 btn->setEnabled(false);
                 m_importCanceled = false;
                 auto cmd = new Kleo::ImportCertificateFromFileCommand();
-                connect(cmd, &Kleo::ImportCertificateFromFileCommand::canceled,
-                        q, [this]() { m_importCanceled = true; });
-                connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished,
-                        q, [this, btn]() {
+                connect(cmd, &Kleo::ImportCertificateFromFileCommand::canceled, q, [this]() {
+                    m_importCanceled = true;
+                });
+                connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished, q, [this, btn]() {
                     btn->setEnabled(true);
                     oneImportFinished();
                 });
@@ -224,15 +224,15 @@ static QUrl auditlog_url_template()
 void ResultItemWidget::Private::updateShowDetailsLabel()
 {
     const auto auditLogUrl = m_result->auditLog().asUrl(auditlog_url_template());
-    const auto auditLogLinkText =
-        m_result->hasError() ? i18n("Diagnostics") //
-                             : i18nc("The Audit Log is a detailed error log from the gnupg backend",
-                                     "Show Audit Log");
+    const auto auditLogLinkText = m_result->hasError() ? i18n("Diagnostics") //
+                                                       : i18nc("The Audit Log is a detailed error log from the gnupg backend", "Show Audit Log");
     m_auditLogLabel->setUrl(auditLogUrl, auditLogLinkText);
     m_auditLogLabel->setVisible(!auditLogUrl.isEmpty());
 }
 
-ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), d(new Private(result, this))
+ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags)
+    : QWidget(parent, flags)
+    , d(new Private(result, this))
 {
     const QColor color = colorForVisualCode(d->m_result->code());
     const QColor txtColor = txtColorForVisualCode(d->m_result->code());
@@ -263,8 +263,9 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     overview->setLinkColor(linkColor);
     setFocusPolicy(overview->focusPolicy());
     setFocusProxy(overview);
-    connect(overview, &QLabel::linkActivated,
-            this, [this](const auto &link) { d->slotLinkActivated(link); });
+    connect(overview, &QLabel::linkActivated, this, [this](const auto &link) {
+        d->slotLinkActivated(link);
+    });
 
     vlay->addWidget(overview);
     layout->addLayout(vlay);
@@ -279,8 +280,9 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     d->addIgnoreMDCButton(actionLayout);
 
     d->m_auditLogLabel = new UrlLabel;
-    connect(d->m_auditLogLabel, &QLabel::linkActivated,
-            this, [this](const auto &link) { d->slotLinkActivated(link); });
+    connect(d->m_auditLogLabel, &QLabel::linkActivated, this, [this](const auto &link) {
+        d->slotLinkActivated(link);
+    });
     actionLayout->addWidget(d->m_auditLogLabel);
     d->m_auditLogLabel->setStyleSheet(styleSheet);
     d->m_auditLogLabel->setLinkColor(linkColor);
@@ -290,8 +292,9 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     detailsLabel->setHtml(d->m_result->details());
     detailsLabel->setStyleSheet(styleSheet);
     detailsLabel->setLinkColor(linkColor);
-    connect(detailsLabel, &QLabel::linkActivated,
-            this, [this](const auto &link) { d->slotLinkActivated(link); });
+    connect(detailsLabel, &QLabel::linkActivated, this, [this](const auto &link) {
+        d->slotLinkActivated(link);
+    });
     vlay->addWidget(detailsLabel);
 
     d->m_closeButton = new QPushButton;

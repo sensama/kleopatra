@@ -11,14 +11,16 @@
 
 #pragma once
 
-#include <QWidget>
 #include <QDialog>
+#include <QWidget>
 
-namespace GpgME {
+namespace GpgME
+{
 class Key;
 }
 
-namespace Kleo {
+namespace Kleo
+{
 class WebOfTrustWidget;
 
 class WebOfTrustDialog : public QDialog

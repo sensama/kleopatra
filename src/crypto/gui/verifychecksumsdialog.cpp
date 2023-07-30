@@ -40,10 +40,10 @@ namespace
 {
 
 static Qt::GlobalColor statusColor[] = {
-    Qt::color0,   // Unknown - nothing
-    Qt::green,    // OK
-    Qt::red,      // Failed
-    Qt::darkRed,  // Error
+    Qt::color0, // Unknown - nothing
+    Qt::green, // OK
+    Qt::red, // Failed
+    Qt::darkRed, // Error
 };
 static_assert((sizeof(statusColor) / sizeof(*statusColor)) == VerifyChecksumsDialog::NumStatii, "");
 
@@ -55,14 +55,12 @@ public:
         : QFileSystemModel(parent)
         , statusMap()
     {
-
     }
 
     QVariant data(const QModelIndex &mi, int role = Qt::DisplayRole) const override
     {
         if (mi.isValid() && role == Qt::BackgroundRole && !SystemInfo::isHighContrastModeActive()) {
-            const QHash<QString, VerifyChecksumsDialog::Status>::const_iterator
-            it = statusMap.find(filePath(mi));
+            const QHash<QString, VerifyChecksumsDialog::Status>::const_iterator it = statusMap.find(filePath(mi));
             if (it != statusMap.end())
                 if (const Qt::GlobalColor c = statusColor[*it]) {
                     return QColor(c);
@@ -74,7 +72,6 @@ public:
 public Q_SLOTS:
     void setStatus(const QString &file, VerifyChecksumsDialog::Status status)
     {
-
         if (status >= VerifyChecksumsDialog::NumStatii || file.isEmpty()) {
             return;
         }
@@ -87,12 +84,11 @@ public Q_SLOTS:
             return;
         }
 
-        const QHash<QString, VerifyChecksumsDialog::Status>::iterator
-        it = statusMap.find(canonical);
+        const QHash<QString, VerifyChecksumsDialog::Status>::iterator it = statusMap.find(canonical);
 
         if (it != statusMap.end())
             if (*it == status) {
-                return;    // nothing to do
+                return; // nothing to do
             } else {
                 *it = status;
             }
@@ -155,7 +151,7 @@ struct BaseWidget {
         KDAB_SET_OBJECT_NAME(view);
 
         const int row = find_layout_item(*vlay);
-        vlay->insertWidget(row,   &label);
+        vlay->insertWidget(row, &label);
         vlay->insertWidget(row + 1, &view, 1);
 
         proxy.setSourceModel(model);
@@ -176,8 +172,9 @@ struct BaseWidget {
         for (int i = 0; i < proxy.rowCount(); ++i) {
             r = r.united(view.visualRect(proxy.index(proxy.columnCount() - 1, i)));
         }
-        view.setMinimumSize(QSize(qBound(r.width() + 4 * view.frameWidth(), 220 + 75 + 75 + 140 + 4 * view.frameWidth(), 1024), // 100 is the default defaultSectionSize
-                                  qBound(r.height(), 220, 512)));
+        view.setMinimumSize(
+            QSize(qBound(r.width() + 4 * view.frameWidth(), 220 + 75 + 75 + 140 + 4 * view.frameWidth(), 1024), // 100 is the default defaultSectionSize
+                  qBound(r.height(), 220, 512)));
     }
 
     void setBase(const QString &base)
@@ -202,13 +199,14 @@ class VerifyChecksumsDialog::Private
 {
     friend class ::Kleo::Crypto::Gui::VerifyChecksumsDialog;
     VerifyChecksumsDialog *const q;
+
 public:
     explicit Private(VerifyChecksumsDialog *qq)
-        : q(qq),
-          bases(),
-          errors(),
-          model(),
-          ui(q)
+        : q(qq)
+        , bases()
+        , errors()
+        , model()
+        , ui(q)
     {
         qRegisterMetaType<Status>("Kleo::Crypto::Gui::VerifyChecksumsDialog::Status");
     }
@@ -216,8 +214,7 @@ public:
 private:
     void slotErrorButtonClicked()
     {
-        KMessageBox::errorList(q, i18n("The following errors and warnings were recorded:"),
-                               errors, i18n("Checksum Verification Errors"));
+        KMessageBox::errorList(q, i18n("The following errors and warnings were recorded:"), errors, i18n("Checksum Verification Errors"));
     }
 
 private:
@@ -225,9 +222,9 @@ private:
     {
         const bool active = ui.isProgressBarActive();
         ui.progressLabel.setVisible(active);
-        ui.progressBar.  setVisible(active);
-        ui.errorLabel.   setVisible(!active);
-        ui.errorButton.  setVisible(!active && !errors.empty());
+        ui.progressBar.setVisible(active);
+        ui.errorLabel.setVisible(!active);
+        ui.errorButton.setVisible(!active && !errors.empty());
         if (errors.empty()) {
             ui.errorLabel.setText(i18n("No errors occurred"));
         } else {
@@ -251,13 +248,13 @@ private:
         QHBoxLayout hlay[2];
 
         explicit UI(VerifyChecksumsDialog *q)
-            : baseWidgets(),
-              progressLabel(i18n("Progress:"), q),
-              progressBar(q),
-              errorLabel(i18n("No errors occurred"), q),
-              errorButton(i18nc("Show Errors", "Show"), q),
-              buttonBox(QDialogButtonBox::Close, Qt::Horizontal, q),
-              vlay(q)
+            : baseWidgets()
+            , progressLabel(i18n("Progress:"), q)
+            , progressBar(q)
+            , errorLabel(i18n("No errors occurred"), q)
+            , errorButton(i18nc("Show Errors", "Show"), q)
+            , buttonBox(QDialogButtonBox::Close, Qt::Horizontal, q)
+            , vlay(q)
         {
             KDAB_SET_OBJECT_NAME(progressLabel);
             KDAB_SET_OBJECT_NAME(progressBar);
@@ -303,7 +300,6 @@ private:
 
         void setBases(const QStringList &bases, QFileSystemModel *model)
         {
-
             // create new BaseWidgets:
             for (unsigned int i = baseWidgets.size(), end = bases.size(); i < end; ++i) {
                 baseWidgets.push_back(new BaseWidget(model, vlay.parentWidget(), &vlay));
@@ -321,7 +317,6 @@ private:
             for (unsigned int i = 0; i < baseWidgets.size(); ++i) {
                 baseWidgets[i]->setBase(bases[i]);
             }
-
         }
 
         void setProgress(int cur, int tot)
@@ -341,13 +336,14 @@ private:
 };
 
 VerifyChecksumsDialog::VerifyChecksumsDialog(QWidget *parent)
-    : QDialog(parent),
-      d(new Private(this))
+    : QDialog(parent)
+    , d(new Private(this))
 {
-
 }
 
-VerifyChecksumsDialog::~VerifyChecksumsDialog() {}
+VerifyChecksumsDialog::~VerifyChecksumsDialog()
+{
+}
 
 // slot
 void VerifyChecksumsDialog::setBaseDirectories(const QStringList &bases)
@@ -390,7 +386,7 @@ void VerifyChecksumsDialog::clearStatusInformation()
     d->model.clearStatusInformation();
 }
 
-#include "verifychecksumsdialog.moc"
 #include "moc_verifychecksumsdialog.cpp"
+#include "verifychecksumsdialog.moc"
 
 #endif // QT_NO_DIRMODEL

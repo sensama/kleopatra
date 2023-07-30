@@ -10,12 +10,12 @@
 
 #include "command.h"
 
-#include <QThread>
 #include <QRecursiveMutex>
+#include <QThread>
 
+#include <QByteArray>
 #include <QString>
 #include <QStringList>
-#include <QByteArray>
 #include <QVariant>
 
 #include <map>
@@ -27,17 +27,19 @@ class KleopatraClientCopy::Command::Private : public QThread
 private:
     friend class ::KleopatraClientCopy::Command;
     Command *const q;
+
 public:
     explicit Private(Command *qq)
-        : QThread(),
-          q(qq),
-          mutex(),
-          inputs(),
-          outputs()
+        : QThread()
+        , q(qq)
+        , mutex()
+        , inputs()
+        , outputs()
     {
-
     }
-    ~Private() override {}
+    ~Private() override
+    {
+    }
 
 private:
     void init();
@@ -53,7 +55,12 @@ private:
         bool isCritical : 1;
     };
     struct Inputs {
-        Inputs() : parentWId(0), areRecipientsInformative(false), areSendersInformative(false) {}
+        Inputs()
+            : parentWId(0)
+            , areRecipientsInformative(false)
+            , areSendersInformative(false)
+        {
+        }
         std::map<std::string, Option> options;
         QStringList filePaths;
         QStringList recipients, senders;
@@ -61,10 +68,14 @@ private:
         WId parentWId;
         QByteArray command;
         bool areRecipientsInformative : 1;
-        bool areSendersInformative    : 1;
+        bool areSendersInformative : 1;
     } inputs;
     struct Outputs {
-        Outputs() : canceled(false), serverPid(0) {}
+        Outputs()
+            : canceled(false)
+            , serverPid(0)
+        {
+        }
         QString errorString;
         bool canceled : 1;
         QByteArray data;
@@ -72,4 +83,3 @@ private:
         QString serverLocation;
     } outputs;
 };
-

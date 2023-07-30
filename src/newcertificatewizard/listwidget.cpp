@@ -15,10 +15,10 @@
 
 #include <QIcon>
 
-#include <QStringListModel>
-#include <QRegularExpressionValidator>
 #include <QItemDelegate>
 #include <QLineEdit>
+#include <QRegularExpressionValidator>
+#include <QStringListModel>
 
 using namespace Kleo::NewCertificateUi;
 
@@ -30,9 +30,15 @@ class ItemDelegate : public QItemDelegate
     Q_OBJECT
 public:
     explicit ItemDelegate(QObject *p = nullptr)
-        : QItemDelegate(p), m_rx() {}
+        : QItemDelegate(p)
+        , m_rx()
+    {
+    }
     explicit ItemDelegate(const QRegularExpression &rx, QObject *p = nullptr)
-        : QItemDelegate(p), m_rx(rx) {}
+        : QItemDelegate(p)
+        , m_rx(rx)
+    {
+    }
 
     void setRegExpFilter(const QRegularExpression &rx)
     {
@@ -52,6 +58,7 @@ public:
             }
         return w;
     }
+
 private:
     QRegularExpression m_rx;
 };
@@ -61,22 +68,19 @@ class ListWidget::Private
 {
     friend class ::Kleo::NewCertificateUi::ListWidget;
     ListWidget *const q;
+
 public:
     explicit Private(ListWidget *qq)
-        : q(qq),
-          stringListModel(),
-          ui(q)
+        : q(qq)
+        , stringListModel()
+        , ui(q)
     {
         ui.listView->setModel(&stringListModel);
         ui.listView->setItemDelegate(&delegate);
-        connect(ui.listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-                q, SLOT(slotSelectionChanged()));
-        connect(&stringListModel, &QAbstractItemModel::dataChanged,
-                q, &ListWidget::itemsChanged);
-        connect(&stringListModel, &QAbstractItemModel::rowsInserted,
-                q, &ListWidget::itemsChanged);
-        connect(&stringListModel, &QAbstractItemModel::rowsRemoved,
-                q, &ListWidget::itemsChanged);
+        connect(ui.listView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), q, SLOT(slotSelectionChanged()));
+        connect(&stringListModel, &QAbstractItemModel::dataChanged, q, &ListWidget::itemsChanged);
+        connect(&stringListModel, &QAbstractItemModel::rowsInserted, q, &ListWidget::itemsChanged);
+        connect(&stringListModel, &QAbstractItemModel::rowsRemoved, q, &ListWidget::itemsChanged);
     }
 
 private:
@@ -182,16 +186,17 @@ private:
             downTB->setAccessibleName(i18nc("@action:button", "Move Down"));
         }
     } ui;
-
 };
 
 ListWidget::ListWidget(QWidget *p)
-    : QWidget(p), d(new Private(this))
+    : QWidget(p)
+    , d(new Private(this))
 {
-
 }
 
-ListWidget::~ListWidget() {}
+ListWidget::~ListWidget()
+{
+}
 
 QStringList ListWidget::items() const
 {
@@ -223,5 +228,5 @@ void ListWidget::setDefaultValue(const QString &df)
     d->defaultValue = df;
 }
 
-#include "moc_listwidget.cpp"
 #include "listwidget.moc"
+#include "moc_listwidget.cpp"

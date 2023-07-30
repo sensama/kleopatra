@@ -15,11 +15,11 @@
 
 #include <Libkleo/GnuPG>
 
-#include <QString>
 #include <QByteArray>
-#include <QTimer>
 #include <QFileDialog>
 #include <QProcess>
+#include <QString>
+#include <QTimer>
 
 #include <KLocalizedString>
 
@@ -35,6 +35,7 @@ class ImportCrlCommand::Private : Command::Private
     {
         return static_cast<ImportCrlCommand *>(q);
     }
+
 public:
     explicit Private(ImportCrlCommand *qq, KeyListController *c);
     ~Private() override;
@@ -52,8 +53,7 @@ private:
         // loadcrl can only work with DER encoded files
         //   (verified with dirmngr 1.0.3)
         const QString filter = QStringLiteral("%1 (*.crl *.arl *-crl.der *-arl.der)").arg(i18n("Certificate Revocation Lists, DER encoded"));
-        return QFileDialog::getOpenFileNames(parentWidgetOrView(), i18n("Select CRL File to Import"),
-                                             QString(), filter);
+        return QFileDialog::getOpenFileNames(parentWidgetOrView(), i18n("Select CRL File to Import"), QString(), filter);
     }
 #endif // QT_NO_FILEDIALOG
 
@@ -82,20 +82,20 @@ const ImportCrlCommand::Private *ImportCrlCommand::d_func() const
 #define q q_func()
 
 ImportCrlCommand::Private::Private(ImportCrlCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      files(),
-      process(),
-      errorBuffer(),
-      canceled(false),
-      firstRun(true)
+    : Command::Private(qq, c)
+    , files()
+    , process()
+    , errorBuffer()
+    , canceled(false)
+    , firstRun(true)
 {
-    process.setProgram (gpgSmPath());
-    process.setArguments(QStringList() <<
-                         QStringLiteral("--call-dirmngr") <<
-                         QStringLiteral("loadcrl"));
+    process.setProgram(gpgSmPath());
+    process.setArguments(QStringList() << QStringLiteral("--call-dirmngr") << QStringLiteral("loadcrl"));
 }
 
-ImportCrlCommand::Private::~Private() {}
+ImportCrlCommand::Private::~Private()
+{
+}
 
 ImportCrlCommand::ImportCrlCommand(KeyListController *c)
     : Command(new Private(this, c))
@@ -126,15 +126,24 @@ ImportCrlCommand::ImportCrlCommand(const QStringList &files, QAbstractItemView *
 void ImportCrlCommand::Private::init()
 {
 #if QT_DEPRECATED_SINCE(5, 13)
-    connect(&process, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+    connect(&process,
+            qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
 #else
-    connect(&process, &QProcess::finished,
+    connect(&process,
+            &QProcess::finished,
 #endif
-            q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
-    connect(&process, &QProcess::readyReadStandardError, q, [this]() { slotProcessReadyReadStandardError(); });
+            q,
+            [this](int exitCode, QProcess::ExitStatus status) {
+                slotProcessFinished(exitCode, status);
+            });
+    connect(&process, &QProcess::readyReadStandardError, q, [this]() {
+        slotProcessReadyReadStandardError();
+    });
 }
 
-ImportCrlCommand::~ImportCrlCommand() {}
+ImportCrlCommand::~ImportCrlCommand()
+{
+}
 
 void ImportCrlCommand::setFiles(const QStringList &files)
 {
@@ -143,7 +152,6 @@ void ImportCrlCommand::setFiles(const QStringList &files)
 
 void ImportCrlCommand::doStart()
 {
-
 #ifndef QT_NO_FILEDIALOG
     if (d->files.empty()) {
         d->files = d->getFileNames();
@@ -195,11 +203,11 @@ void ImportCrlCommand::Private::slotProcessFinished(int code, QProcess::ExitStat
                   i18n("Import CRL Error"));
         else if (code)
             error(i18n("An error occurred while trying to import the CRL file. "
-                       "The output from gpgsm was:\n%1", errorString()),
+                       "The output from gpgsm was:\n%1",
+                       errorString()),
                   i18n("Import CRL Error"));
         else if (files.empty())
-            information(i18n("CRL file imported successfully."),
-                        i18n("Import CRL Finished"));
+            information(i18n("CRL file imported successfully."), i18n("Import CRL Finished"));
     }
     if (!files.empty()) {
         q->doStart();

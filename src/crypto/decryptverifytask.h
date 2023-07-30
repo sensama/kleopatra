@@ -71,9 +71,14 @@ public Q_SLOTS:
 protected:
     std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::DecryptionResult &dr, const QByteArray &plaintext, const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::DecryptionResult &dr, const GpgME::VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::DecryptionResult &dr,
+                                                                 const GpgME::VerificationResult &vr,
+                                                                 const QByteArray &plaintext,
+                                                                 const QString &fileName,
+                                                                 const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::Error &err, const QString &what, const AuditLogEntry &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult>
+    fromVerifyOpaqueResult(const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::VerificationResult &vr, const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
@@ -159,7 +164,7 @@ public:
     void setOutput(const std::shared_ptr<Output> &output);
 
     void setProtocol(GpgME::Protocol prot);
-    void autodetectProtocolFromInput()override;
+    void autodetectProtocolFromInput() override;
 
     QString label() const override;
     GpgME::Protocol protocol() const override;
@@ -219,6 +224,7 @@ private:
 class DecryptVerifyResult : public Task::Result
 {
     friend class ::Kleo::Crypto::AbstractDecryptVerifyTask;
+
 public:
     class SenderInfo;
 
@@ -258,4 +264,3 @@ private:
 };
 }
 }
-

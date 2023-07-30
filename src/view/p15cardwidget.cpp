@@ -14,33 +14,33 @@
 
 #include "settings.h"
 
-#include "smartcard/p15card.h"
 #include "smartcard/openpgpcard.h"
+#include "smartcard/p15card.h"
 #include "smartcard/readerstatus.h"
 
 #include "commands/learncardkeyscommand.h"
 
-#include <QVBoxLayout>
 #include <QGridLayout>
 #include <QLabel>
+#include <QPushButton>
 #include <QScrollArea>
 #include <QStringList>
-#include <QPushButton>
+#include <QVBoxLayout>
 
 #include <KLocalizedString>
 #include <KSeparator>
 
 #include <Libkleo/Compat>
-#include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
+#include <Libkleo/KeyCache>
 
-#include <QGpgME/Protocol>
-#include <QGpgME/KeyListJob>
-#include <QGpgME/ImportFromKeyserverJob>
 #include <QGpgME/CryptoConfig>
-#include <gpgme++/keylistresult.h>
+#include <QGpgME/ImportFromKeyserverJob>
+#include <QGpgME/KeyListJob>
+#include <QGpgME/Protocol>
 #include <gpgme++/importresult.h>
+#include <gpgme++/keylistresult.h>
 
 #include "kleopatra_debug.h"
 
@@ -110,7 +110,7 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
 {
     /* Only do auto import from LDAP */
     auto conf = QGpgME::cryptoConfig();
-    Q_ASSERT (conf);
+    Q_ASSERT(conf);
     if (!Settings().alwaysSearchCardOnKeyserver() && !Kleo::keyserver().startsWith(QLatin1String{"ldap"})) {
         return;
     }
@@ -118,10 +118,10 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
     mStatusLabel->setVisible(true);
     qCDebug(KLEOPATRA_LOG) << "Looking for:" << fpr.c_str() << "on ldap server";
     QGpgME::KeyListJob *job = QGpgME::openpgp()->keyListJob(true);
-    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this, fpr] () {
-            qCDebug(KLEOPATRA_LOG) << "Updating key info after changes";
-            ReaderStatus::mutableInstance()->updateStatus();
-            mOpenPGPKeysWidget->update(nullptr);
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this, fpr]() {
+        qCDebug(KLEOPATRA_LOG) << "Updating key info after changes";
+        ReaderStatus::mutableInstance()->updateStatus();
+        mOpenPGPKeysWidget->update(nullptr);
     });
     connect(job, &QGpgME::KeyListJob::result, job, [this](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error) {
         if (keys.size() == 1) {
@@ -146,8 +146,7 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
 void P15CardWidget::setCard(const P15Card *card)
 {
     mCardSerialNumber = card->serialNumber();
-    mVersionLabel->setText(i18nc("%1 is a smartcard manufacturer", "%1 PKCS#15 card",
-                           QString::fromStdString(card->manufacturer())));
+    mVersionLabel->setText(i18nc("%1 is a smartcard manufacturer", "%1 PKCS#15 card", QString::fromStdString(card->manufacturer())));
     mSerialNumber->setText(card->displaySerialNumber());
     mSerialNumber->setToolTip(QString::fromStdString(card->serialNumber()));
 
@@ -177,7 +176,7 @@ void P15CardWidget::setCard(const P15Card *card)
     if (!Settings().autoLoadP15Certs()) {
         return;
     }
-    for (const auto &info: card->keyInfos()) {
+    for (const auto &info : card->keyInfos()) {
         const auto key = KeyCache::instance()->findSubkeyByKeyGrip(info.grip);
         if (key.isNull()) {
             auto cmd = new LearnCardKeysCommand(GpgME::CMS);
@@ -185,7 +184,7 @@ void P15CardWidget::setCard(const P15Card *card)
             cmd->setShowsOutputWindow(false);
             qCDebug(KLEOPATRA_LOG) << "Did not find:" << info.grip.c_str() << "Starting gpgsm --learn.";
             cmd->start();
-            connect(cmd, &Command::finished, this, [] () {
+            connect(cmd, &Command::finished, this, []() {
                 qCDebug(KLEOPATRA_LOG) << "Learn command finished.";
             });
             return;

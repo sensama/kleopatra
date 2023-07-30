@@ -18,7 +18,9 @@ SelectCertificateCommand::SelectCertificateCommand(QObject *p)
     setCommand("SELECT_CERTIFICATE");
 }
 
-SelectCertificateCommand::~SelectCertificateCommand() {}
+SelectCertificateCommand::~SelectCertificateCommand()
+{
+}
 
 void SelectCertificateCommand::setMultipleCertificatesAllowed(bool allow)
 {
@@ -132,4 +134,3 @@ QString SelectCertificateCommand::selectedCertificate() const
     const QStringList sl = selectedCertificates();
     return sl.empty() ? QString() : sl.front();
 }
-

@@ -11,17 +11,17 @@
 
 #include "decryptverifycommandemailbase.h"
 
-#include <crypto/decryptverifytask.h>
 #include <crypto/decryptverifyemailcontroller.h>
+#include <crypto/decryptverifytask.h>
 
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
+#include <utils/output.h>
 
-#include <Libkleo/Hex>
-#include <Libkleo/KleoException>
-#include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+#include <Libkleo/Hex>
+#include <Libkleo/KeyCache>
+#include <Libkleo/KleoException>
 
 #include <QGpgME/Protocol>
 
@@ -43,11 +43,12 @@ class DecryptVerifyCommandEMailBase::Private : public QObject
     Q_OBJECT
     friend class ::Kleo::DecryptVerifyCommandEMailBase;
     DecryptVerifyCommandEMailBase *const q;
+
 public:
     explicit Private(DecryptVerifyCommandEMailBase *qq)
-        : QObject(),
-          q(qq),
-          controller()
+        : QObject()
+        , q(qq)
+        , controller()
     {
     }
 
@@ -70,22 +71,22 @@ public Q_SLOTS:
     }
 
 public:
-
 private:
     std::shared_ptr<DecryptVerifyEMailController> controller;
 };
 
 DecryptVerifyCommandEMailBase::DecryptVerifyCommandEMailBase()
-    : AssuanCommandMixin<DecryptVerifyCommandEMailBase>(), d(new Private(this))
+    : AssuanCommandMixin<DecryptVerifyCommandEMailBase>()
+    , d(new Private(this))
 {
-
 }
 
-DecryptVerifyCommandEMailBase::~DecryptVerifyCommandEMailBase() {}
+DecryptVerifyCommandEMailBase::~DecryptVerifyCommandEMailBase()
+{
+}
 
 int DecryptVerifyCommandEMailBase::doStart()
 {
-
     d->checkForErrors();
 
     d->controller.reset(new DecryptVerifyEMailController(shared_from_this()));
@@ -111,8 +112,7 @@ int DecryptVerifyCommandEMailBase::doStart()
     }
     QObject::connect(d->controller.get(), &Controller::done, d.get(), &Private::slotDone, Qt::QueuedConnection);
     QObject::connect(d->controller.get(), &Controller::error, d.get(), &Private::slotError, Qt::QueuedConnection);
-    QObject::connect(d->controller.get(), &DecryptVerifyEMailController::verificationResult,
-                     d.get(), &Private::verificationResult, Qt::QueuedConnection);
+    QObject::connect(d->controller.get(), &DecryptVerifyEMailController::verificationResult, d.get(), &Private::verificationResult, Qt::QueuedConnection);
 
     d->controller->start();
 
@@ -122,18 +122,16 @@ int DecryptVerifyCommandEMailBase::doStart()
 void DecryptVerifyCommandEMailBase::Private::checkForErrors() const
 {
     if (!q->senders().empty() && !q->informativeSenders())
-        throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT),
-                              i18n("Cannot use non-info SENDER"));
+        throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT), i18n("Cannot use non-info SENDER"));
 
     if (!q->recipients().empty() && !q->informativeRecipients())
-        throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT),
-                              i18n("Cannot use non-info RECIPIENT"));
+        throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT), i18n("Cannot use non-info RECIPIENT"));
 
     // ### use informative recipients and senders
 
     const unsigned int numInputs = q->inputs().size();
     const unsigned int numMessages = q->messages().size();
-    const unsigned int numOutputs  = q->outputs().size();
+    const unsigned int numOutputs = q->outputs().size();
     const unsigned int numInformativeSenders = q->informativeSenders() ? q->senders().size() : 0;
 
     const DecryptVerifyOperation op = q->operation();
@@ -146,30 +144,27 @@ void DecryptVerifyCommandEMailBase::Private::checkForErrors() const
     }
 
     if (!numInputs)
-        throw Kleo::Exception(q->makeError(GPG_ERR_ASS_NO_INPUT),
-                              i18n("At least one INPUT needs to be provided"));
+        throw Kleo::Exception(q->makeError(GPG_ERR_ASS_NO_INPUT), i18n("At least one INPUT needs to be provided"));
 
     if (numInformativeSenders != 0)
         if (numInformativeSenders != numInputs)
-            throw Kleo::Exception(q->makeError(GPG_ERR_ASS_NO_INPUT),     //TODO use better error code if possible
+            throw Kleo::Exception(q->makeError(GPG_ERR_ASS_NO_INPUT), // TODO use better error code if possible
                                   i18n("INPUT/SENDER --info count mismatch"));
 
     if (numMessages) {
         if (numMessages != numInputs)
-            throw Kleo::Exception(q->makeError(GPG_ERR_ASS_NO_INPUT),     //TODO use better error code if possible
+            throw Kleo::Exception(q->makeError(GPG_ERR_ASS_NO_INPUT), // TODO use better error code if possible
                                   i18n("INPUT/MESSAGE count mismatch"));
         else if (op != Verify)
-            throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT),
-                                  i18n("MESSAGE can only be given for detached signature verification"));
+            throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT), i18n("MESSAGE can only be given for detached signature verification"));
     }
 
     if (numOutputs) {
         if (numOutputs != numInputs)
-            throw Kleo::Exception(q->makeError(GPG_ERR_ASS_NO_OUTPUT),    //TODO use better error code if possible
+            throw Kleo::Exception(q->makeError(GPG_ERR_ASS_NO_OUTPUT), // TODO use better error code if possible
                                   i18n("INPUT/OUTPUT count mismatch"));
         else if (numMessages)
-            throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT),
-                                  i18n("Cannot use OUTPUT and MESSAGE simultaneously"));
+            throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT), i18n("Cannot use OUTPUT and MESSAGE simultaneously"));
     }
 
     kleo_assert(proto != UnknownProtocol);
@@ -177,8 +172,9 @@ void DecryptVerifyCommandEMailBase::Private::checkForErrors() const
     const auto backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend)
         throw Kleo::Exception(q->makeError(GPG_ERR_UNSUPPORTED_PROTOCOL),
-                              proto == OpenPGP ? i18n("No backend support for OpenPGP") :
-                              proto == CMS     ? i18n("No backend support for S/MIME") : QString());
+                              proto == OpenPGP   ? i18n("No backend support for OpenPGP")
+                                  : proto == CMS ? i18n("No backend support for S/MIME")
+                                                 : QString());
 }
 
 void DecryptVerifyCommandEMailBase::doCanceled()
@@ -203,10 +199,10 @@ void DecryptVerifyCommandEMailBase::Private::verificationResult(const Verificati
         for (const Signature &sig : sigs) {
             const QString s = signatureToString(sig, sig.key(true, true));
             const char *color = summaryToString(sig.summary());
-            q->sendStatusEncoded("SIGSTATUS",
-                                 color + (' ' + hexencode(s.toUtf8().constData())));
+            q->sendStatusEncoded("SIGSTATUS", color + (' ' + hexencode(s.toUtf8().constData())));
         }
-    } catch (...) {}
+    } catch (...) {
+    }
 }
 
 #include "decryptverifycommandemailbase.moc"

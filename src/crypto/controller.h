@@ -50,19 +50,21 @@ Q_SIGNALS:
     /**
      * Private signal, you can connect to it, but derived classes cannot emit it.
      */
-    void error(int err, const QString &details
-    # ifndef DOXYGEN_SHOULD_SKIP_THIS
-        , QPrivateSignal
-    #endif
+    void error(int err,
+               const QString &details
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+               ,
+               QPrivateSignal
+#endif
     );
 
     /**
      * Private signal, you can connect to it, but derived classes cannot emit it.
      */
     void done(
-    # ifndef DOXYGEN_SHOULD_SKIP_THIS
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
         QPrivateSignal
-    #endif
+#endif
     );
 
 private:
@@ -72,4 +74,3 @@ private:
 
 }
 }
-

@@ -11,9 +11,9 @@
 
 #pragma once
 
+#include <QGridLayout>
 #include <QString>
 #include <vector>
-#include <QGridLayout>
 
 #include <gpgme++/key.h>
 
@@ -49,10 +49,14 @@ public:
      * @param q: Parent widget.
      * @param glay: Layout to add the widgets to.
      */
-    CertificateSelectionLine(const QString &toFrom, const QString &mailbox,
-                             const std::vector<GpgME::Key> &pgp, bool pgpAmbig,
-                             const std::vector<GpgME::Key> &cms, bool cmsAmbig,
-                             QWidget *q, QGridLayout &glay);
+    CertificateSelectionLine(const QString &toFrom,
+                             const QString &mailbox,
+                             const std::vector<GpgME::Key> &pgp,
+                             bool pgpAmbig,
+                             const std::vector<GpgME::Key> &cms,
+                             bool cmsAmbig,
+                             QWidget *q,
+                             QGridLayout &glay);
 
     void showHide(GpgME::Protocol proto, bool &first, bool showAll, bool op) const;
 
@@ -86,4 +90,3 @@ private:
 };
 
 } // namespace Kleo
-

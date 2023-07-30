@@ -17,21 +17,21 @@
 
 #include <Libkleo/FileNameRequester>
 
-#include <KLocalizedString>
 #include <KConfig>
+#include <KLocalizedString>
 #include <KPluralHandlingSpinBox>
 
-#include <QVBoxLayout>
-#include <QLabel>
+#include <KConfigGroup>
+#include <KSharedConfig>
 #include <QCheckBox>
 #include <QComboBox>
-#include <QPushButton>
-#include <QGroupBox>
-#include <KSharedConfig>
-#include <KConfigGroup>
 #include <QDialogButtonBox>
+#include <QGroupBox>
+#include <QLabel>
+#include <QPushButton>
+#include <QVBoxLayout>
 
-static const char *log_levels[] = { "none", "basic", "advanced", "expert", "guru" };
+static const char *log_levels[] = {"none", "basic", "advanced", "expert", "guru"};
 
 static int log_level_to_int(const QString &loglevel)
 {
@@ -151,7 +151,9 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     connect(okButton, &QPushButton::clicked, this, &KWatchGnuPGConfig::slotSave);
 }
 
-KWatchGnuPGConfig::~KWatchGnuPGConfig() {}
+KWatchGnuPGConfig::~KWatchGnuPGConfig()
+{
+}
 
 void KWatchGnuPGConfig::slotSetHistorySizeUnlimited()
 {
@@ -199,4 +201,3 @@ void KWatchGnuPGConfig::slotSave()
     Q_EMIT reconfigure();
     accept();
 }
-

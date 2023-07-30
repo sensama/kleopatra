@@ -25,8 +25,8 @@
 
 #include <gpgme++/key.h>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
+#include <KLocalizedString>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -39,6 +39,7 @@ class AddUserIDCommand::Private : public Command::Private
     {
         return static_cast<AddUserIDCommand *>(q);
     }
+
 public:
     explicit Private(AddUserIDCommand *qq, KeyListController *c);
     ~Private() override;
@@ -167,8 +168,12 @@ void AddUserIDCommand::Private::ensureDialogCreated()
     cleaner.add(dialog);
     applyWindowID(dialog);
 
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 void AddUserIDCommand::Private::createJob()
@@ -186,14 +191,15 @@ void AddUserIDCommand::Private::createJob()
     }
 
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(j, &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(j, &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
-    connect(j, &QGpgME::QuickJob::result,
-            q, [this](const GpgME::Error &err) { slotResult(err); });
+    connect(j, &QGpgME::QuickJob::result, q, [this](const GpgME::Error &err) {
+        slotResult(err);
+    });
 
     job = j;
 }

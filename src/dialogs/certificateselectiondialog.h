@@ -99,4 +99,3 @@ private:
 }
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::Dialogs::CertificateSelectionDialog::Options)
-

@@ -17,7 +17,7 @@
 namespace Kleo
 {
 /* Helper Widget that can be shown if a user has no keys */
-class WelcomeWidget: public QWidget, public FocusFirstChild
+class WelcomeWidget : public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
@@ -30,4 +30,3 @@ private:
     std::shared_ptr<Private> d;
 };
 } // namespace Kleo
-

@@ -11,12 +11,12 @@
 
 #include "output.h"
 
-#include "input_p.h"
-#include "detail_p.h"
-#include "kleo_assert.h"
-#include "kdpipeiodevice.h"
-#include "log.h"
 #include "cached.h"
+#include "detail_p.h"
+#include "input_p.h"
+#include "kdpipeiodevice.h"
+#include "kleo_assert.h"
+#include "log.h"
 #include "overwritedialog.h"
 
 #include <Libkleo/KleoException>
@@ -27,21 +27,21 @@
 
 #include "kleopatra_debug.h"
 
-#include <QFileInfo>
-#include <QTemporaryFile>
-#include <QString>
-#include <QClipboard>
 #include <QApplication>
 #include <QBuffer>
-#include <QPointer>
-#include <QWidget>
+#include <QClipboard>
 #include <QDir>
+#include <QFileInfo>
+#include <QPointer>
 #include <QProcess>
+#include <QString>
+#include <QTemporaryFile>
 #include <QTimer>
 #include <QUrl>
+#include <QWidget>
 
 #ifdef Q_OS_WIN
-# include <windows.h>
+#include <windows.h>
 #endif
 
 #include <cerrno>
@@ -49,8 +49,8 @@
 using namespace Kleo;
 using namespace Kleo::_detail;
 
-static const int PROCESS_MAX_RUNTIME_TIMEOUT = -1;     // no timeout
-static const int PROCESS_TERMINATE_TIMEOUT   = 5 * 1000; // 5s
+static const int PROCESS_MAX_RUNTIME_TIMEOUT = -1; // no timeout
+static const int PROCESS_TERMINATE_TIMEOUT = 5 * 1000; // 5s
 
 class OverwritePolicy::Private
 {
@@ -97,9 +97,9 @@ class TemporaryFile : public QTemporaryFile
 public:
     using QTemporaryFile::QTemporaryFile;
 
-    void close() override {
-        if (isOpen())
-        {
+    void close() override
+    {
+        if (isOpen()) {
             m_oldFileName = fileName();
         }
         QTemporaryFile::close();
@@ -111,10 +111,10 @@ public:
             return false;
         }
 #if defined(Q_OS_WIN)
-        //QTemporaryFile (tested with 4.3.3) creates the file handle as inheritable.
-        //The handle is then inherited by gpgsm, which prevents deletion of the temp file
-        //in FileOutput::doFinalize()
-        //There are no inheritable handles under wince
+        // QTemporaryFile (tested with 4.3.3) creates the file handle as inheritable.
+        // The handle is then inherited by gpgsm, which prevents deletion of the temp file
+        // in FileOutput::doFinalize()
+        // There are no inheritable handles under wince
         return SetHandleInformation((HANDLE)_get_osfhandle(handle()), HANDLE_FLAG_INHERIT, 0);
 #endif
         return true;
@@ -129,24 +129,40 @@ private:
     QString m_oldFileName;
 };
 
-template <typename T_IODevice>
+template<typename T_IODevice>
 struct inhibit_close : T_IODevice {
-    explicit inhibit_close() : T_IODevice() {}
-    template <typename T1>
-    explicit inhibit_close(T1 &t1) : T_IODevice(t1) {}
+    explicit inhibit_close()
+        : T_IODevice()
+    {
+    }
+    template<typename T1>
+    explicit inhibit_close(T1 &t1)
+        : T_IODevice(t1)
+    {
+    }
 
-    /* reimp */ void close() override {}
+    /* reimp */ void close() override
+    {
+    }
     void reallyClose()
     {
         T_IODevice::close();
     }
 };
 
-template <typename T_IODevice>
+template<typename T_IODevice>
 struct redirect_close : T_IODevice {
-    explicit redirect_close() : T_IODevice(), m_closed(false) {}
-    template <typename T1>
-    explicit redirect_close(T1 &t1) : T_IODevice(t1), m_closed(false) {}
+    explicit redirect_close()
+        : T_IODevice()
+        , m_closed(false)
+    {
+    }
+    template<typename T1>
+    explicit redirect_close(T1 &t1)
+        : T_IODevice(t1)
+        , m_closed(false)
+    {
+    }
 
     /* reimp */ void close() override
     {
@@ -158,6 +174,7 @@ struct redirect_close : T_IODevice {
     {
         return m_closed;
     }
+
 private:
     bool m_closed;
 };
@@ -199,31 +216,32 @@ class OutputImplBase : public Output
 {
 public:
     OutputImplBase()
-        : Output(),
-          m_defaultLabel(),
-          m_customLabel(),
-          m_errorString(),
-          m_isFinalized(false),
-          m_isFinalizing(false),
-          m_cancelPending(false),
-          m_canceled(false),
-          m_binaryOpt(false)
+        : Output()
+        , m_defaultLabel()
+        , m_customLabel()
+        , m_errorString()
+        , m_isFinalized(false)
+        , m_isFinalizing(false)
+        , m_cancelPending(false)
+        , m_canceled(false)
+        , m_binaryOpt(false)
     {
-
     }
 
     QString label() const override
     {
         return m_customLabel.isEmpty() ? m_defaultLabel : m_customLabel;
     }
-    void setLabel(const QString &label) override {
+    void setLabel(const QString &label) override
+    {
         m_customLabel = label;
     }
     void setDefaultLabel(const QString &l)
     {
         m_defaultLabel = l;
     }
-    void setBinaryOpt(bool value) override {
+    void setBinaryOpt(bool value) override
+    {
         m_binaryOpt = value;
     }
     bool binaryOpt() const override
@@ -243,44 +261,43 @@ public:
     {
         return m_isFinalized;
     }
-    void finalize() override {
+    void finalize() override
+    {
         qCDebug(KLEOPATRA_LOG) << this;
-        if (m_isFinalized || m_isFinalizing)
-        {
+        if (m_isFinalized || m_isFinalizing) {
             return;
         }
         m_isFinalizing = true;
         try {
             doFinalize();
-        } catch (...)
-        {
+        } catch (...) {
             m_isFinalizing = false;
             throw;
         }
         m_isFinalizing = false;
         m_isFinalized = true;
-        if (m_cancelPending)
-        {
+        if (m_cancelPending) {
             cancel();
         }
     }
 
-    void cancel() override {
+    void cancel() override
+    {
         qCDebug(KLEOPATRA_LOG) << this;
-        if (m_isFinalizing)
-        {
+        if (m_isFinalizing) {
             m_cancelPending = true;
-        } else if (!m_canceled)
-        {
+        } else if (!m_canceled) {
             m_isFinalizing = true;
             try {
                 doCancel();
-            } catch (...) {}
+            } catch (...) {
+            }
             m_isFinalizing = false;
             m_isFinalized = false;
             m_canceled = true;
         }
     }
+
 private:
     virtual QString doErrorString() const
     {
@@ -292,15 +309,16 @@ private:
     }
     virtual void doFinalize() = 0;
     virtual void doCancel() = 0;
+
 private:
     QString m_defaultLabel;
     QString m_customLabel;
     mutable cached<QString> m_errorString;
-    bool m_isFinalized   : 1;
-    bool m_isFinalizing  : 1;
+    bool m_isFinalized : 1;
+    bool m_isFinalizing : 1;
     bool m_cancelPending : 1;
-    bool m_canceled      : 1;
-    bool m_binaryOpt     : 1;
+    bool m_canceled : 1;
+    bool m_binaryOpt : 1;
 };
 
 class PipeOutput : public OutputImplBase
@@ -312,14 +330,17 @@ public:
     {
         return m_io;
     }
-    void doFinalize() override {
+    void doFinalize() override
+    {
         m_io->reallyClose();
     }
-    void doCancel() override {
+    void doCancel() override
+    {
         doFinalize();
     }
+
 private:
-    std::shared_ptr< inhibit_close<KDPipeIODevice> > m_io;
+    std::shared_ptr<inhibit_close<KDPipeIODevice>> m_io;
 };
 
 class ProcessStdInOutput : public OutputImplBase
@@ -331,7 +352,8 @@ public:
     {
         return m_proc;
     }
-    void doFinalize() override {
+    void doFinalize() override
+    {
         /*
           Make sure the data is written in the output here. If this
           is not done the output will be written in small chunks
@@ -340,12 +362,11 @@ public:
           This delay is mainly noticeable on Windows where it can
           take ~30 seconds to write out a 10MB file in the 512 byte
           chunks gpgme serves. */
-        qCDebug(KLEOPATRA_LOG) << "Waiting for " << m_proc->bytesToWrite()
-        << " Bytes to be written";
-        while (m_proc->waitForBytesWritten(PROCESS_MAX_RUNTIME_TIMEOUT));
+        qCDebug(KLEOPATRA_LOG) << "Waiting for " << m_proc->bytesToWrite() << " Bytes to be written";
+        while (m_proc->waitForBytesWritten(PROCESS_MAX_RUNTIME_TIMEOUT))
+            ;
 
-        if (!m_proc->isClosed())
-        {
+        if (!m_proc->isClosed()) {
             m_proc->close();
         }
         m_proc->waitForFinished(PROCESS_MAX_RUNTIME_TIMEOUT);
@@ -359,7 +380,8 @@ public:
         return !(m_proc->exitStatus() == QProcess::NormalExit && m_proc->exitCode() == 0);
     }
 
-    void doCancel() override {
+    void doCancel() override
+    {
         m_proc->terminate();
         QTimer::singleShot(PROCESS_TERMINATE_TIMEOUT, m_proc.get(), &QProcess::kill);
     }
@@ -371,7 +393,7 @@ private:
 private:
     const QString m_command;
     const QStringList m_arguments;
-    const std::shared_ptr< redirect_close<QProcess> > m_proc;
+    const std::shared_ptr<redirect_close<QProcess>> m_proc;
 };
 
 class FileOutput : public OutputImplBase
@@ -392,7 +414,8 @@ public:
         return m_tmpFile;
     }
     void doFinalize() override;
-    void doCancel() override {
+    void doCancel() override
+    {
         qCDebug(KLEOPATRA_LOG) << this;
     }
     QString fileName() const override
@@ -407,7 +430,7 @@ public:
 
 private:
     QString m_fileName;
-    std::shared_ptr< TemporaryFile > m_tmpFile;
+    std::shared_ptr<TemporaryFile> m_tmpFile;
     const std::shared_ptr<OverwritePolicy> m_policy;
     std::weak_ptr<OutputInput> m_attachedInput;
 };
@@ -424,28 +447,30 @@ public:
         return m_buffer;
     }
     void doFinalize() override;
-    void doCancel() override {}
+    void doCancel() override
+    {
+    }
 
 private:
     QString doErrorString() const override
     {
         return QString();
     }
+
 private:
     const QClipboard::Mode m_mode;
     std::shared_ptr<QBuffer> m_buffer;
 };
 #endif // QT_NO_CLIPBOARD
 
-class ByteArrayOutput: public OutputImplBase
+class ByteArrayOutput : public OutputImplBase
 {
 public:
-    explicit ByteArrayOutput(QByteArray *data):
-        m_buffer(std::shared_ptr<QBuffer>(new QBuffer(data)))
+    explicit ByteArrayOutput(QByteArray *data)
+        : m_buffer(std::shared_ptr<QBuffer>(new QBuffer(data)))
     {
         if (!m_buffer->open(QIODevice::WriteOnly))
-            throw Exception(gpg_error(GPG_ERR_EIO),
-                            QStringLiteral("Could not open bytearray for writing?!"));
+            throw Exception(gpg_error(GPG_ERR_EIO), QStringLiteral("Could not open bytearray for writing?!"));
     }
 
     QString label() const override
@@ -478,6 +503,7 @@ private:
     {
         return QString();
     }
+
 private:
     QString m_label;
     std::shared_ptr<QBuffer> m_buffer;
@@ -493,14 +519,12 @@ std::shared_ptr<Output> Output::createFromPipeDevice(assuan_fd_t fd, const QStri
 }
 
 PipeOutput::PipeOutput(assuan_fd_t fd)
-    : OutputImplBase(),
-      m_io(new inhibit_close<KDPipeIODevice>)
+    : OutputImplBase()
+    , m_io(new inhibit_close<KDPipeIODevice>)
 {
     errno = 0;
     if (!m_io->open(fd, QIODevice::WriteOnly))
-        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                        i18n("Could not open FD %1 for writing",
-                             assuanFD2int(fd)));
+        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n("Could not open FD %1 for writing", assuanFD2int(fd)));
 }
 
 std::shared_ptr<Output> Output::createFromFile(const QString &fileName, bool forceOverwrite)
@@ -516,16 +540,15 @@ std::shared_ptr<Output> Output::createFromFile(const QString &fileName, const st
 }
 
 FileOutput::FileOutput(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy)
-    : OutputImplBase(),
-      m_fileName(fileName),
-      m_tmpFile(new TemporaryFile(fileName)),
-      m_policy(policy)
+    : OutputImplBase()
+    , m_fileName(fileName)
+    , m_tmpFile(new TemporaryFile(fileName))
+    , m_policy(policy)
 {
     Q_ASSERT(m_policy);
     errno = 0;
     if (!m_tmpFile->openNonInheritable())
-        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                        i18n("Could not create temporary file for output \"%1\"", fileName));
+        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n("Could not create temporary file for output \"%1\"", fileName));
 }
 
 static QString suggestFileName(const QString &fileName)
@@ -557,10 +580,7 @@ QString OverwritePolicy::obtainOverwritePermission(const QString &fileName)
     if (d->options & MultipleFiles) {
         options |= OverwriteDialog::MultipleItems | OverwriteDialog::AllowSkip;
     }
-    OverwriteDialog dialog{d->parentWidget,
-                           i18nc("@title:window", "File Already Exists"),
-                           fileName,
-                           options};
+    OverwriteDialog dialog{d->parentWidget, i18nc("@title:window", "File Already Exists"), fileName, options};
     const auto result = static_cast<OverwriteDialog::Result>(dialog.exec());
     qCDebug(KLEOPATRA_LOG) << __func__ << "result:" << static_cast<int>(result);
     switch (result) {
@@ -615,7 +635,7 @@ void FileOutput::doFinalize()
     m_tmpFile->setAutoRemove(false);
     QPointer<QObject> guard = m_tmpFile.get();
     m_tmpFile.reset(); // really close the file - needed on Windows for renaming :/
-    kleo_assert(!guard);   // if this triggers, we need to audit for holder of std::shared_ptr<QIODevice>s.
+    kleo_assert(!guard); // if this triggers, we need to audit for holder of std::shared_ptr<QIODevice>s.
 
     const QFileInfo fi(tmpFileName);
     if (!fi.exists()) {
@@ -631,8 +651,7 @@ void FileOutput::doFinalize()
         }
         const QFileInfo fi2(tmpFileName);
         if (!fi2.exists()) {
-            throw Exception(gpg_error(GPG_ERR_EIO),
-                    QStringLiteral("Could not find temporary file \"%1\".").arg(tmpFileName));
+            throw Exception(gpg_error(GPG_ERR_EIO), QStringLiteral("Could not find temporary file \"%1\".").arg(tmpFileName));
         }
     }
 
@@ -651,8 +670,7 @@ void FileOutput::doFinalize()
     if (QFile::exists(m_fileName)) {
         const auto newFileName = m_policy->obtainOverwritePermission(m_fileName);
         if (newFileName.isEmpty()) {
-            throw Exception(gpg_error(GPG_ERR_CANCELED),
-                            i18n("Overwriting declined"));
+            throw Exception(gpg_error(GPG_ERR_CANCELED), i18n("Overwriting declined"));
         }
         if (newFileName == m_fileName) {
             qCDebug(KLEOPATRA_LOG) << this << "going to remove file for overwriting" << m_fileName;
@@ -678,9 +696,7 @@ void FileOutput::doFinalize()
 
     qCDebug(KLEOPATRA_LOG) << this << "renaming failed";
 
-    throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                    i18n(R"(Could not rename file "%1" to "%2")",
-                         tmpFileName, m_fileName));
+    throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n(R"(Could not rename file "%1" to "%2")", tmpFileName, m_fileName));
 }
 
 std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command)
@@ -699,21 +715,19 @@ std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, c
 }
 
 ProcessStdInOutput::ProcessStdInOutput(const QString &cmd, const QStringList &args, const QDir &wd)
-    : OutputImplBase(),
-      m_command(cmd),
-      m_arguments(args),
-      m_proc(new redirect_close<QProcess>)
+    : OutputImplBase()
+    , m_command(cmd)
+    , m_arguments(args)
+    , m_proc(new redirect_close<QProcess>)
 {
     qCDebug(KLEOPATRA_LOG) << "cd" << wd.absolutePath() << '\n' << cmd << args;
     if (cmd.isEmpty())
-        throw Exception(gpg_error(GPG_ERR_INV_ARG),
-                        i18n("Command not specified"));
+        throw Exception(gpg_error(GPG_ERR_INV_ARG), i18n("Command not specified"));
     m_proc->setWorkingDirectory(wd.absolutePath());
     m_proc->start(cmd, args);
     m_proc->setReadChannel(QProcess::StandardError);
     if (!m_proc->waitForStarted())
-        throw Exception(gpg_error(GPG_ERR_EIO),
-                        i18n("Could not start %1 process: %2", cmd, m_proc->errorString()));
+        throw Exception(gpg_error(GPG_ERR_EIO), i18n("Could not start %1 process: %2", cmd, m_proc->errorString()));
 }
 
 QString ProcessStdInOutput::label() const
@@ -726,7 +740,7 @@ QString ProcessStdInOutput::label() const
     if (m_arguments.size() > 3) {
         return i18nc("e.g. \"Input to tar xf - file1 ...\"", "Input to %1 ...", cmdline);
     } else {
-        return i18nc("e.g. \"Input to tar xf - file\"",      "Input to %1",     cmdline);
+        return i18nc("e.g. \"Input to tar xf - file\"", "Input to %1", cmdline);
     }
 }
 
@@ -737,8 +751,7 @@ QString ProcessStdInOutput::doErrorString() const
         return QString();
     }
     if (m_proc->error() == QProcess::UnknownError)
-        return i18n("Error while running %1: %2", m_command,
-                    QString::fromLocal8Bit(m_proc->readAllStandardError().trimmed().constData()));
+        return i18n("Error while running %1: %2", m_command, QString::fromLocal8Bit(m_proc->readAllStandardError().trimmed().constData()));
     else {
         return i18n("Failed to execute %1: %2", m_command, m_proc->errorString());
     }
@@ -751,14 +764,13 @@ std::shared_ptr<Output> Output::createFromClipboard()
 }
 
 ClipboardOutput::ClipboardOutput(QClipboard::Mode mode)
-    : OutputImplBase(),
-      m_mode(mode),
-      m_buffer(new QBuffer)
+    : OutputImplBase()
+    , m_mode(mode)
+    , m_buffer(new QBuffer)
 {
     errno = 0;
     if (!m_buffer->open(QIODevice::WriteOnly))
-        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                        i18n("Could not write to clipboard"));
+        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n("Could not write to clipboard"));
 }
 
 QString ClipboardOutput::label() const
@@ -782,21 +794,19 @@ void ClipboardOutput::doFinalize()
     if (QClipboard *const cb = QApplication::clipboard()) {
         cb->setText(QString::fromUtf8(m_buffer->data()));
     } else
-        throw Exception(gpg_error(GPG_ERR_EIO),
-                        i18n("Could not find clipboard"));
+        throw Exception(gpg_error(GPG_ERR_EIO), i18n("Could not find clipboard"));
 }
 #endif // QT_NO_CLIPBOARD
 
-Output::~Output() {}
-
+Output::~Output()
+{
+}
 
 OutputInput::OutputInput(const std::shared_ptr<FileOutput> &output)
     : m_output(output)
     , m_ioDevice(new QFile(output->fileName()))
 {
 }
-
-
 
 std::shared_ptr<Input> Input::createFromOutput(const std::shared_ptr<Output> &output)
 {

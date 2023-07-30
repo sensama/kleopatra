@@ -14,10 +14,10 @@
 #ifndef QT_NO_SYSTEMTRAYICON
 
 #include "kleopatra_debug.h"
-#include <QTimer>
-#include <QPointer>
-#include <QWidget>
 #include <QEvent>
+#include <QPointer>
+#include <QTimer>
+#include <QWidget>
 
 using namespace Kleo;
 
@@ -27,6 +27,7 @@ class SystemTrayIcon::Private
 {
     friend class ::SystemTrayIcon;
     SystemTrayIcon *const q;
+
 public:
     explicit Private(SystemTrayIcon *qq);
     ~Private();
@@ -78,36 +79,45 @@ private:
 };
 
 SystemTrayIcon::Private::Private(SystemTrayIcon *qq)
-    : q(qq),
-      attentionIconShown(false),
-      attentionAnimationTimer(),
-      mainWindow(),
-      attentionWindow()
+    : q(qq)
+    , attentionIconShown(false)
+    , attentionAnimationTimer()
+    , mainWindow()
+    , attentionWindow()
 {
     KDAB_SET_OBJECT_NAME(attentionAnimationTimer);
 
     attentionAnimationTimer.setSingleShot(false);
     attentionAnimationTimer.setInterval(1000 * ATTENTION_ANIMATION_FRAMES_PER_SEC / 2);
 
-    connect(q, &QSystemTrayIcon::activated, q, [this](QSystemTrayIcon::ActivationReason reason) { slotActivated(reason); });
-    connect(&attentionAnimationTimer, &QTimer::timeout, q, [this]() { slotAttentionAnimationTimerTimout(); });
+    connect(q, &QSystemTrayIcon::activated, q, [this](QSystemTrayIcon::ActivationReason reason) {
+        slotActivated(reason);
+    });
+    connect(&attentionAnimationTimer, &QTimer::timeout, q, [this]() {
+        slotAttentionAnimationTimerTimout();
+    });
 }
 
-SystemTrayIcon::Private::~Private() {}
+SystemTrayIcon::Private::~Private()
+{
+}
 
 SystemTrayIcon::SystemTrayIcon(QObject *p)
-    : QSystemTrayIcon(p), d(new Private(this))
+    : QSystemTrayIcon(p)
+    , d(new Private(this))
 {
-
 }
 
 SystemTrayIcon::SystemTrayIcon(const QIcon &icon, QObject *p)
-    : QSystemTrayIcon(icon, p), d(new Private(this))
+    : QSystemTrayIcon(icon, p)
+    , d(new Private(this))
 {
     d->normalIcon = d->attentionIcon = icon;
 }
 
-SystemTrayIcon::~SystemTrayIcon() {}
+SystemTrayIcon::~SystemTrayIcon()
+{
+}
 
 void SystemTrayIcon::setMainWindow(QWidget *mw)
 {
@@ -150,8 +160,8 @@ bool SystemTrayIcon::eventFilter(QObject *o, QEvent *e)
         switch (e->type()) {
         case QEvent::Close:
             doMainWindowClosed(static_cast<QWidget *>(o));
-        // fall through:
-        Q_FALLTHROUGH();
+            // fall through:
+            Q_FALLTHROUGH();
         case QEvent::Show:
         case QEvent::DeferredDelete:
             QMetaObject::invokeMethod(this, "slotEnableDisableActions", Qt::QueuedConnection);
@@ -161,8 +171,8 @@ bool SystemTrayIcon::eventFilter(QObject *o, QEvent *e)
         switch (e->type()) {
         case QEvent::Close:
             doAttentionWindowClosed(static_cast<QWidget *>(o));
-        // fall through:
-        Q_FALLTHROUGH();
+            // fall through:
+            Q_FALLTHROUGH();
         case QEvent::Show:
         case QEvent::DeferredDelete:
             QMetaObject::invokeMethod(this, "slotEnableDisableActions", Qt::QueuedConnection);
@@ -217,9 +227,15 @@ QIcon SystemTrayIcon::attentionIcon() const
     return d->attentionIcon;
 }
 
-void SystemTrayIcon::doMainWindowSet(QWidget *) {}
-void SystemTrayIcon::doMainWindowClosed(QWidget *) {}
-void SystemTrayIcon::doAttentionWindowClosed(QWidget *) {}
+void SystemTrayIcon::doMainWindowSet(QWidget *)
+{
+}
+void SystemTrayIcon::doMainWindowClosed(QWidget *)
+{
+}
+void SystemTrayIcon::doAttentionWindowClosed(QWidget *)
+{
+}
 
 #include "moc_systemtrayicon.cpp"
 

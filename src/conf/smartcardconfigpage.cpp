@@ -89,8 +89,7 @@ SmartCardConfigurationPage::SmartCardConfigurationPage(QObject *parent, const KP
 
         mainLayout->addLayout(l);
 
-        connect(d->mReaderPort, &ReaderPortSelection::valueChanged,
-                this, &SmartCardConfigurationPage::markAsChanged);
+        connect(d->mReaderPort, &ReaderPortSelection::valueChanged, this, &SmartCardConfigurationPage::markAsChanged);
     }
 
     mainLayout->addStretch();

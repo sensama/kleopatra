@@ -15,7 +15,6 @@
 
 #include <QMutex>
 
-
 using namespace Kleo;
 
 static const int GARBAGE_COLLECTION_INTERVAL = 60000; // 1min
@@ -23,11 +22,10 @@ static const int GARBAGE_COLLECTION_INTERVAL = 60000; // 1min
 static QMutex mutex;
 
 SessionData::SessionData()
-    : mementos(),
-      ref(0),
-      ripe(false)
+    : mementos()
+    , ref(0)
+    , ripe(false)
 {
-
 }
 
 // static
@@ -35,13 +33,15 @@ std::shared_ptr<SessionDataHandler> SessionDataHandler::instance()
 {
     mutex.lock();
     static SessionDataHandler handler;
-    return std::shared_ptr<SessionDataHandler>(&handler, [](SessionDataHandler*) { mutex.unlock(); });
+    return std::shared_ptr<SessionDataHandler>(&handler, [](SessionDataHandler *) {
+        mutex.unlock();
+    });
 }
 
 SessionDataHandler::SessionDataHandler()
-    : QObject(),
-      data(),
-      timer()
+    : QObject()
+    , data()
+    , timer()
 {
     timer.setInterval(GARBAGE_COLLECTION_INTERVAL);
     timer.setSingleShot(false);
@@ -72,8 +72,7 @@ void SessionDataHandler::exitSession(unsigned int id)
 
 std::shared_ptr<SessionData> SessionDataHandler::sessionDataInternal(unsigned int id) const
 {
-    auto
-    it = data.lower_bound(id);
+    auto it = data.lower_bound(id);
     if (it == data.end() || it->first != id) {
         const std::shared_ptr<SessionData> sd(new SessionData);
         it = data.insert(it, std::make_pair(id, sd));

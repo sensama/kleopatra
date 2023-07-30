@@ -17,20 +17,20 @@
 
 #include <gpgme++/key.h>
 
-#include <KProcess>
-#include <KMessageBox>
 #include <KLocalizedString>
-#include <QPushButton>
+#include <KMessageBox>
+#include <KProcess>
 #include <KStandardGuiItem>
+#include <QPushButton>
 
-#include <QString>
 #include <QByteArray>
-#include <QTimer>
-#include <QPointer>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QFontDatabase>
+#include <QHBoxLayout>
+#include <QPointer>
+#include <QString>
 #include <QTextEdit>
+#include <QTimer>
+#include <QVBoxLayout>
 
 static const int PROCESS_TERMINATE_TIMEOUT = 5000; // milliseconds
 
@@ -41,7 +41,8 @@ class DumpCertificateDialog : public QDialog
     Q_OBJECT
 public:
     explicit DumpCertificateDialog(QWidget *parent = nullptr)
-        : QDialog(parent), ui(this)
+        : QDialog(parent)
+        , ui(this)
     {
         resize(600, 500);
     }
@@ -62,17 +63,17 @@ public Q_SLOTS:
 
 private:
     struct Ui {
-        QTextEdit   logTextWidget;
-        QPushButton     updateButton, closeButton;
+        QTextEdit logTextWidget;
+        QPushButton updateButton, closeButton;
         QVBoxLayout vlay;
-        QHBoxLayout  hlay;
+        QHBoxLayout hlay;
 
         explicit Ui(DumpCertificateDialog *q)
-            : logTextWidget(q),
-              updateButton(i18nc("@action:button Update the log text widget", "&Update"), q),
-              closeButton(q),
-              vlay(q),
-              hlay()
+            : logTextWidget(q)
+            , updateButton(i18nc("@action:button Update the log text widget", "&Update"), q)
+            , closeButton(q)
+            , vlay(q)
+            , hlay()
         {
             KGuiItem::assign(&closeButton, KStandardGuiItem::close());
             KDAB_SET_OBJECT_NAME(logTextWidget);
@@ -92,10 +93,8 @@ private:
             hlay.addStretch(1);
             hlay.addWidget(&closeButton);
 
-            connect(&updateButton, &QAbstractButton::clicked,
-                    q, &DumpCertificateDialog::updateRequested);
-            connect(&closeButton, &QAbstractButton::clicked,
-                    q, &QWidget::close);
+            connect(&updateButton, &QAbstractButton::clicked, q, &DumpCertificateDialog::updateRequested);
+            connect(&closeButton, &QAbstractButton::clicked, q, &QWidget::close);
         }
     } ui;
 };
@@ -119,6 +118,7 @@ class DumpCertificateCommand::Private : Command::Private
     {
         return static_cast<DumpCertificateCommand *>(q);
     }
+
 public:
     explicit Private(DumpCertificateCommand *qq, KeyListController *c);
     ~Private() override;
@@ -190,12 +190,12 @@ const DumpCertificateCommand::Private *DumpCertificateCommand::d_func() const
 #define q q_func()
 
 DumpCertificateCommand::Private::Private(DumpCertificateCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      process(),
-      errorBuffer(),
-      outputBuffer(),
-      useDialog(true),
-      canceled(false)
+    : Command::Private(qq, c)
+    , process()
+    , errorBuffer()
+    , outputBuffer()
+    , useDialog(true)
+    , canceled(false)
 {
     process.setOutputChannelMode(KProcess::SeparateChannels);
     process.setReadChannel(KProcess::StandardOutput);
@@ -229,20 +229,31 @@ DumpCertificateCommand::DumpCertificateCommand(const GpgME::Key &k)
 void DumpCertificateCommand::Private::init()
 {
 #if QT_DEPRECATED_SINCE(5, 13)
-    connect(&process, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+    connect(&process,
+            qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
 #else
-    connect(&process, &QProcess::finished,
+    connect(&process,
+            &QProcess::finished,
 #endif
-            q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
-    connect(&process, &QProcess::readyReadStandardError, q, [this]() { slotProcessReadyReadStandardError(); });
-    connect(&process, &QProcess::readyReadStandardOutput, q, [this] { slotProcessReadyReadStandardOutput(); });
+            q,
+            [this](int exitCode, QProcess::ExitStatus status) {
+                slotProcessFinished(exitCode, status);
+            });
+    connect(&process, &QProcess::readyReadStandardError, q, [this]() {
+        slotProcessReadyReadStandardError();
+    });
+    connect(&process, &QProcess::readyReadStandardOutput, q, [this] {
+        slotProcessReadyReadStandardOutput();
+    });
 
     if (!key().isNull()) {
         process << gpgSmPath() << QStringLiteral("--dump-cert") << QLatin1String(key().primaryFingerprint());
     }
 }
 
-DumpCertificateCommand::~DumpCertificateCommand() {}
+DumpCertificateCommand::~DumpCertificateCommand()
+{
+}
 
 void DumpCertificateCommand::setUseDialog(bool use)
 {
@@ -261,7 +272,6 @@ QStringList DumpCertificateCommand::output() const
 
 void DumpCertificateCommand::doStart()
 {
-
     const std::vector<GpgME::Key> keys = d->keys();
     if (keys.size() != 1 || keys.front().protocol() != GpgME::CMS) {
         d->finished();
@@ -274,8 +284,12 @@ void DumpCertificateCommand::doStart()
         d->dialog->setAttribute(Qt::WA_DeleteOnClose);
         d->dialog->setWindowTitle(i18nc("@title:window", "Certificate Dump"));
 
-        connect(d->dialog, &DumpCertificateDialog::updateRequested, this, [this]() { d->slotUpdateRequested(); });
-        connect(d->dialog, &QObject::destroyed, this, [this]() { d->slotDialogDestroyed(); });
+        connect(d->dialog, &DumpCertificateDialog::updateRequested, this, [this]() {
+            d->slotUpdateRequested();
+        });
+        connect(d->dialog, &QObject::destroyed, this, [this]() {
+            d->slotDialogDestroyed();
+        });
     }
 
     d->refreshView();
@@ -283,7 +297,6 @@ void DumpCertificateCommand::doStart()
 
 void DumpCertificateCommand::Private::refreshView()
 {
-
     if (dialog) {
         dialog->clear();
     }
@@ -331,7 +344,8 @@ void DumpCertificateCommand::Private::slotProcessFinished(int code, QProcess::Ex
         else if (code)
             KMessageBox::error(dialog,
                                i18n("An error occurred while trying to dump the certificate. "
-                                    "The output from GpgSM was:\n%1", errorString()),
+                                    "The output from GpgSM was:\n%1",
+                                    errorString()),
                                i18n("Dump Certificate Error"));
     }
     if (!useDialog) {
@@ -342,5 +356,5 @@ void DumpCertificateCommand::Private::slotProcessFinished(int code, QProcess::Ex
 #undef d
 #undef q
 
-#include "moc_dumpcertificatecommand.cpp"
 #include "dumpcertificatecommand.moc"
+#include "moc_dumpcertificatecommand.cpp"

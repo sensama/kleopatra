@@ -15,7 +15,8 @@
 using namespace Kleo::SmartCard;
 
 // static
-KeyPairInfo KeyPairInfo::fromStatusLine(const std::string &s) {
+KeyPairInfo KeyPairInfo::fromStatusLine(const std::string &s)
+{
     // The format of a KEYPAIRINFO line is
     //   KEYPAIRINFO <hexgrip> <keyref> [usage] [keytime] [algostr]
     // The string s does not contain the leading "KEYPAIRINFO ".
@@ -86,11 +87,7 @@ void KeyPairInfo::update(const KeyPairInfo &other)
 // C++20: Replace with defaulted equality operator
 bool KeyPairInfo::operator==(const KeyPairInfo &other) const
 {
-    return keyRef == other.keyRef
-        && grip == other.grip
-        && usage == other.usage
-        && keyTime == other.keyTime
-        && algorithm == other.algorithm;
+    return keyRef == other.keyRef && grip == other.grip && usage == other.usage && keyTime == other.keyTime && algorithm == other.algorithm;
 }
 
 // C++20: Remove

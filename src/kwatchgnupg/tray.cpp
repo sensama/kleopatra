@@ -14,8 +14,8 @@
 #include "kwatchgnupgmainwin.h"
 
 #include "kwatchgnupg_debug.h"
-#include <KLocalizedString>
 #include <KIconLoader>
+#include <KLocalizedString>
 
 KWatchGnuPGTray::KWatchGnuPGTray(KWatchGnuPGMainWindow *mainwin)
     : KStatusNotifierItem(mainwin)
@@ -42,4 +42,3 @@ void KWatchGnuPGTray::setAttention(bool att)
         setIconByPixmap(mNormalPix);
     }
 }
-

@@ -11,19 +11,18 @@
 
 #include "decryptverifyfilescommand.h"
 
-#include "fileoperationspreferences.h"
 #include "command_p.h"
+#include "fileoperationspreferences.h"
 
-#include "crypto/decryptverifyfilescontroller.h"
 #include "crypto/autodecryptverifyfilescontroller.h"
+#include "crypto/decryptverifyfilescontroller.h"
 
 #include <utils/filedialog.h>
 
 #include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
-
+#include <KLocalizedString>
 
 #include <exception>
 
@@ -38,9 +37,9 @@ class DecryptVerifyFilesCommand::Private : public Command::Private
     {
         return static_cast<DecryptVerifyFilesCommand *>(q);
     }
+
 public:
-    explicit Private(DecryptVerifyFilesCommand *qq, KeyListController *c,
-                     bool forceManualMode=false);
+    explicit Private(DecryptVerifyFilesCommand *qq, KeyListController *c, bool forceManualMode = false);
     ~Private() override;
 
     QStringList selectFiles() const;
@@ -77,9 +76,9 @@ const DecryptVerifyFilesCommand::Private *DecryptVerifyFilesCommand::d_func() co
 #define q q_func()
 
 DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyListController *c, bool forceManualMode)
-    : Command::Private(qq, c),
-      files(),
-      shared_qq(qq, [](DecryptVerifyFilesCommand*){})
+    : Command::Private(qq, c)
+    , files()
+    , shared_qq(qq, [](DecryptVerifyFilesCommand *) {})
 {
     FileOperationsPreferences prefs;
     if (!forceManualMode && prefs.autoDecryptVerify()) {
@@ -87,7 +86,6 @@ DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyLi
     } else {
         mController = new DecryptVerifyFilesController();
     }
-
 }
 
 DecryptVerifyFilesCommand::Private::~Private()
@@ -125,8 +123,12 @@ DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(const QStringList &files, Q
 void DecryptVerifyFilesCommand::Private::init()
 {
     mController->setExecutionContext(shared_qq);
-    connect(mController, &Controller::done, q, [this]() { slotControllerDone(); });
-    connect(mController, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
+    connect(mController, &Controller::done, q, [this]() {
+        slotControllerDone();
+    });
+    connect(mController, &Controller::error, q, [this](int err, const QString &details) {
+        slotControllerError(err, details);
+    });
 }
 
 DecryptVerifyFilesCommand::~DecryptVerifyFilesCommand()
@@ -143,7 +145,8 @@ void DecryptVerifyFilesCommand::setOperation(DecryptVerifyOperation op)
 {
     try {
         d->mController->setOperation(op);
-    } catch (...) {}
+    } catch (...) {
+    }
 }
 
 DecryptVerifyOperation DecryptVerifyFilesCommand::operation() const
@@ -153,9 +156,7 @@ DecryptVerifyOperation DecryptVerifyFilesCommand::operation() const
 
 void DecryptVerifyFilesCommand::doStart()
 {
-
     try {
-
         if (d->files.empty()) {
             d->files = d->selectFiles();
         }
@@ -167,9 +168,7 @@ void DecryptVerifyFilesCommand::doStart()
         d->mController->start();
 
     } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1",
-                            QString::fromLocal8Bit(e.what())),
-                       i18n("Decrypt/Verify Files Error"));
+        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Decrypt/Verify Files Error"));
         d->finished();
     }
 }

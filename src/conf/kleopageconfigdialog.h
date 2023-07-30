@@ -47,4 +47,3 @@ private:
     QList<KCModule *> mChangedModules;
     QMap<QString, QString> mHelpUrls;
 };
-

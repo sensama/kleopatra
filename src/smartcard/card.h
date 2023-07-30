@@ -51,8 +51,8 @@ public:
     Card();
     virtual ~Card();
 
-    virtual bool operator == (const Card &other) const;
-    bool operator != (const Card &other) const;
+    virtual bool operator==(const Card &other) const;
+    bool operator!=(const Card &other) const;
 
     void setStatus(Status s);
     Status status() const;
@@ -105,8 +105,8 @@ public:
     QString errorMsg() const;
     void setErrorMsg(const QString &msg);
 
-    const std::vector<KeyPairInfo> & keyInfos() const;
-    const KeyPairInfo & keyInfo(const std::string &keyRef) const;
+    const std::vector<KeyPairInfo> &keyInfos() const;
+    const KeyPairInfo &keyInfo(const std::string &keyRef) const;
 
     std::string keyFingerprint(const std::string &keyRef) const;
 
@@ -145,4 +145,3 @@ private:
 };
 } // namespace Smartcard
 } // namespace Kleopatra
-

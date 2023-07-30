@@ -22,13 +22,12 @@ namespace SmartCard
 struct AlgorithmInfo;
 }
 
-class GenCardKeyDialog: public QDialog
+class GenCardKeyDialog : public QDialog
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-    struct KeyParams
-    {
+    struct KeyParams {
         QString name;
         QString email;
         QString comment;
@@ -63,5 +62,3 @@ private:
     std::shared_ptr<Private> d;
 };
 } // namespace Kleo
-
-

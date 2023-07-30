@@ -18,11 +18,11 @@
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 
-#include <QStandardPaths>
-#include <QString>
-#include <QStorageInfo>
-#include <QFileInfo>
 #include <QDir>
+#include <QFileInfo>
+#include <QStandardPaths>
+#include <QStorageInfo>
+#include <QString>
 
 #include <algorithm>
 
@@ -80,24 +80,20 @@ QString Kleo::heuristicBaseDirectory(const QStringList &fileNames)
 
 QStringList Kleo::makeRelativeTo(const QString &base, const QStringList &fileNames)
 {
-
     if (base.isEmpty()) {
         return fileNames;
     } else {
         return makeRelativeTo(QDir(base), fileNames);
     }
-
 }
 
 QStringList Kleo::makeRelativeTo(const QDir &baseDir, const QStringList &fileNames)
 {
     QStringList rv;
     rv.reserve(fileNames.size());
-    std::transform(fileNames.cbegin(), fileNames.cend(),
-                   std::back_inserter(rv),
-                   [&baseDir](const QString &file) {
-                       return baseDir.relativeFilePath(file);
-                   });
+    std::transform(fileNames.cbegin(), fileNames.cend(), std::back_inserter(rv), [&baseDir](const QString &file) {
+        return baseDir.relativeFilePath(file);
+    });
     return rv;
 }
 
@@ -165,28 +161,28 @@ void Kleo::recursivelyRemovePath(const QString &path)
     }
 }
 
-bool Kleo::recursivelyCopy(const QString &src,const QString &dest)
+bool Kleo::recursivelyCopy(const QString &src, const QString &dest)
 {
     QDir srcDir(src);
 
-    if(!srcDir.exists()) {
+    if (!srcDir.exists()) {
         return false;
     }
 
     QDir destDir(dest);
-    if(!destDir.exists() && !destDir.mkdir(dest)) {
+    if (!destDir.exists() && !destDir.mkdir(dest)) {
         return false;
     }
 
-    for(const auto &file: srcDir.entryList(QDir::Files | QDir::Hidden)) {
+    for (const auto &file : srcDir.entryList(QDir::Files | QDir::Hidden)) {
         const QString srcName = src + QLatin1Char('/') + file;
         const QString destName = dest + QLatin1Char('/') + file;
-        if(!QFile::copy(srcName, destName)) {
+        if (!QFile::copy(srcName, destName)) {
             return false;
         }
     }
 
-    for (const auto &dir: srcDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Hidden)) {
+    for (const auto &dir : srcDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Hidden)) {
         const QString srcName = src + QLatin1Char('/') + dir;
         const QString destName = dest + QLatin1Char('/') + dir;
         if (!recursivelyCopy(srcName, destName)) {

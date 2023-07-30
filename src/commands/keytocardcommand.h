@@ -38,7 +38,7 @@ public:
     KeyToCardCommand(const std::string &cardSlot, const std::string &serialNumber, const std::string &appName);
     ~KeyToCardCommand() override;
 
-    static std::vector<std::shared_ptr<Kleo::SmartCard::Card> > getSuitableCards(const GpgME::Subkey &subkey);
+    static std::vector<std::shared_ptr<Kleo::SmartCard::Card>> getSuitableCards(const GpgME::Subkey &subkey);
 
 private:
     void doStart() override;
@@ -52,4 +52,3 @@ private:
 
 }
 }
-

@@ -89,9 +89,10 @@ static QString dateToString(const QDate &date, QWidget *widget)
     // workaround for QLocale using "yy" way too often for years
     // stolen from KDateComboBox
     auto locale = widget ? widget->locale() : QLocale{};
-    const auto dateFormat = (locale.dateFormat(QLocale::ShortFormat) //
-                                    .replace(QLatin1String{"yy"}, QLatin1String{"yyyy"})
-                                    .replace(QLatin1String{"yyyyyyyy"}, QLatin1String{"yyyy"}));
+    const auto dateFormat = (locale
+                                 .dateFormat(QLocale::ShortFormat) //
+                                 .replace(QLatin1String{"yy"}, QLatin1String{"yyyy"})
+                                 .replace(QLatin1String{"yyyyyyyy"}, QLatin1String{"yyyy"}));
     return locale.toString(date, dateFormat);
 }
 
@@ -102,12 +103,16 @@ static QString validityPeriodHint(const Kleo::DateRange &dateRange, QWidget *wid
         if (dateRange.maximum == dateRange.minimum) {
             return i18nc("@info", "The date cannot be changed.");
         } else {
-            return i18nc("@info ... between <a date> and <another date>.", "Enter a date between %1 and %2.",
-                         dateToString(dateRange.minimum, widget), dateToString(dateRange.maximum, widget));
+            return i18nc("@info ... between <a date> and <another date>.",
+                         "Enter a date between %1 and %2.",
+                         dateToString(dateRange.minimum, widget),
+                         dateToString(dateRange.maximum, widget));
         }
     } else {
-        return i18nc("@info ... between <a date> and <another date>.", "Enter a date between %1 and %2.",
-                     dateToString(dateRange.minimum, widget), dateToString(Kleo::maximumAllowedDate(), widget));
+        return i18nc("@info ... between <a date> and <another date>.",
+                     "Enter a date between %1 and %2.",
+                     dateToString(dateRange.minimum, widget),
+                     dateToString(Kleo::maximumAllowedDate(), widget));
     }
 }
 
@@ -120,8 +125,8 @@ void Kleo::setUpExpirationDateComboBox(KDateComboBox *dateCB, const Kleo::DateRa
 {
     const auto dateRange = range.minimum.isValid() ? range : expirationDateRange();
     // enable warning on invalid or not allowed dates
-    dateCB->setOptions(KDateComboBox::EditDate | KDateComboBox::SelectDate | KDateComboBox::DatePicker |
-                       KDateComboBox::DateKeywords | KDateComboBox::WarnOnInvalid);
+    dateCB->setOptions(KDateComboBox::EditDate | KDateComboBox::SelectDate | KDateComboBox::DatePicker | KDateComboBox::DateKeywords
+                       | KDateComboBox::WarnOnInvalid);
     const auto hintAndErrorMessage = validityPeriodHint(dateRange, dateCB);
     dateCB->setDateRange(dateRange.minimum, dateRange.maximum.isValid() ? dateRange.maximum : maximumAllowedDate(), hintAndErrorMessage, hintAndErrorMessage);
     if (dateRange.minimum == dateRange.maximum) {

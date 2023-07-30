@@ -86,15 +86,13 @@ public:
             });
         }
 
-        connect(certificationsTV, &QAbstractItemView::doubleClicked,
-                q, [this]() {
-                    certificationDblClicked();
-                });
+        connect(certificationsTV, &QAbstractItemView::doubleClicked, q, [this]() {
+            certificationDblClicked();
+        });
         certificationsTV->setContextMenuPolicy(Qt::CustomContextMenu);
-        connect(certificationsTV, &QWidget::customContextMenuRequested,
-                q, [this] (const QPoint &p) {
-                    contextMenuRequested(p);
-                });
+        connect(certificationsTV, &QWidget::customContextMenuRequested, q, [this](const QPoint &p) {
+            contextMenuRequested(p);
+        });
         connect(certificationsTV->selectionModel(), &QItemSelectionModel::currentRowChanged, q, [this]() {
             updateActions();
         });
@@ -141,8 +139,7 @@ public:
         auto cmd = new Kleo::Commands::CertifyCertificateCommand(userID);
         cmd->setParentWidget(q);
         certificationsTV->setEnabled(false);
-        connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
-                q, [this]() {
+        connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished, q, [this]() {
             certificationsTV->setEnabled(true);
             // Trigger an update when done
             q->setKey(key);
@@ -163,8 +160,7 @@ public:
         }
         cmd->setParentWidget(q);
         certificationsTV->setEnabled(false);
-        connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
-                q, [this]() {
+        connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished, q, [this]() {
             certificationsTV->setEnabled(true);
             // Trigger an update when done
             q->setKey(key);
@@ -192,7 +188,8 @@ public:
         }
     }
 
-    void updateActions() {
+    void updateActions()
+    {
         const auto userCanSignUserIDs = userHasCertificationKey();
         const auto keyCanBeCertified = Kleo::canBeCertified(key);
         const auto userID = selectedUserID();
@@ -208,7 +205,8 @@ public:
                 case CertificationCanBeRevoked:
                     break;
                 case CertificationNotMadeWithOwnKey:
-                    revokeAction->setToolTip(i18n("You cannot revoke this certification because it wasn't made with one of your keys (or the required secret key is missing)."));
+                    revokeAction->setToolTip(
+                        i18n("You cannot revoke this certification because it wasn't made with one of your keys (or the required secret key is missing)."));
                     break;
                 case CertificationIsSelfSignature:
                     revokeAction->setToolTip(i18n("Revocation of self-certifications is currently not possible."));
@@ -230,7 +228,8 @@ public:
                 const bool canRevokeCertification = userCanRevokeCertifications(userID);
                 revokeAction->setEnabled(canRevokeCertification);
                 if (!canRevokeCertification) {
-                    revokeAction->setToolTip(i18n("You cannot revoke any of the certifications of this user ID. Select any of the certifications for details."));
+                    revokeAction->setToolTip(
+                        i18n("You cannot revoke any of the certifications of this user ID. Select any of the certifications for details."));
                 }
             } else {
                 revokeAction->setEnabled(false);
@@ -251,8 +250,7 @@ public:
         auto menu = new QMenu(q);
         if (!userID.isNull()) {
             addActionsForUserID(menu);
-        }
-        else if (!signature.isNull()) {
+        } else if (!signature.isNull()) {
             addActionsForSignature(menu);
         }
         connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
@@ -264,7 +262,7 @@ public:
         if (keyListJob) {
             return;
         }
-        QGpgME::KeyListJob *const job = QGpgME::openpgp()->keyListJob(/*remote*/false, /*includeSigs*/true, /*validate*/true);
+        QGpgME::KeyListJob *const job = QGpgME::openpgp()->keyListJob(/*remote*/ false, /*includeSigs*/ true, /*validate*/ true);
         if (!job) {
             return;
         }
@@ -273,17 +271,14 @@ public:
             job->addMode(GpgME::SignatureNotations);
         }
 
-        connect(job, &QGpgME::KeyListJob::result,
-            q, &WebOfTrustWidget::signatureListingDone);
+        connect(job, &QGpgME::KeyListJob::result, q, &WebOfTrustWidget::signatureListingDone);
 
-        connect(job, &QGpgME::KeyListJob::nextKey,
-            q, &WebOfTrustWidget::signatureListingNextKey);
+        connect(job, &QGpgME::KeyListJob::nextKey, q, &WebOfTrustWidget::signatureListingNextKey);
 
         job->start(QStringList(QString::fromLatin1(key.primaryFingerprint())));
         keyListJob = job;
     }
 };
-
 
 WebOfTrustWidget::WebOfTrustWidget(QWidget *parent)
     : QWidget{parent}
@@ -338,10 +333,11 @@ void WebOfTrustWidget::signatureListingNextKey(const GpgME::Key &key)
 void WebOfTrustWidget::signatureListingDone(const GpgME::KeyListResult &result)
 {
     if (result.error()) {
-        KMessageBox::information(this, xi18nc("@info",
-                                           "<para>An error occurred while loading the certifications: "
-                                           "<message>%1</message></para>",
-                                           Formatting::errorAsString(result.error())),
+        KMessageBox::information(this,
+                                 xi18nc("@info",
+                                        "<para>An error occurred while loading the certifications: "
+                                        "<message>%1</message></para>",
+                                        Formatting::errorAsString(result.error())),
                                  i18nc("@title", "Certifications Loading Failed"));
     }
     d->keyListJob = nullptr;

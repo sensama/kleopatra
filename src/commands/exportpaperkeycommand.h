@@ -12,8 +12,8 @@
 
 #include <commands/gnupgprocesscommand.h>
 
-#include <QString>
 #include <QProcess>
+#include <QString>
 
 class QWidget;
 
@@ -27,8 +27,7 @@ class ExportPaperKeyCommand : public GnuPGProcessCommand
     Q_OBJECT
 
 public:
-    explicit ExportPaperKeyCommand(QAbstractItemView *view,
-                                   KeyListController *parent);
+    explicit ExportPaperKeyCommand(QAbstractItemView *view, KeyListController *parent);
 
     static Restrictions restrictions()
     {
@@ -54,4 +53,3 @@ private:
 
 }
 }
-

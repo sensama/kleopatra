@@ -15,12 +15,11 @@
 
 #include "utils/keys.h"
 
-#include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
 #include <Libkleo/Stl_Util>
 
 #include <QByteArray>
-
 
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
@@ -29,6 +28,7 @@ class SigningCertificateSelectionWidget::Private
 {
     friend class ::SigningCertificateSelectionWidget;
     SigningCertificateSelectionWidget *const q;
+
 public:
     explicit Private(SigningCertificateSelectionWidget *qq);
     ~Private();
@@ -55,13 +55,12 @@ static void select_cert(QComboBox &cb, const GpgME::Key &key)
 
 static void add_cert(QComboBox &cb, const GpgME::Key &key)
 {
-    cb.addItem(Formatting::formatForComboBox(key),
-               QVariant(QByteArray(key.primaryFingerprint())));
-
+    cb.addItem(Formatting::formatForComboBox(key), QVariant(QByteArray(key.primaryFingerprint())));
 }
 
 SigningCertificateSelectionWidget::Private::Private(SigningCertificateSelectionWidget *qq)
-    : q(qq), ui()
+    : q(qq)
+    , ui()
 {
     ui.setupUi(q);
     addCandidates(GpgME::CMS, ui.cmsCombo);
@@ -69,15 +68,19 @@ SigningCertificateSelectionWidget::Private::Private(SigningCertificateSelectionW
     ui.rememberCO->setChecked(true);
 }
 
-SigningCertificateSelectionWidget::Private::~Private() {}
-
-SigningCertificateSelectionWidget::SigningCertificateSelectionWidget(QWidget *parent, Qt::WindowFlags f)
-    : QWidget(parent, f), d(new Private(this))
+SigningCertificateSelectionWidget::Private::~Private()
 {
-
 }
 
-SigningCertificateSelectionWidget::~SigningCertificateSelectionWidget() {}
+SigningCertificateSelectionWidget::SigningCertificateSelectionWidget(QWidget *parent, Qt::WindowFlags f)
+    : QWidget(parent, f)
+    , d(new Private(this))
+{
+}
+
+SigningCertificateSelectionWidget::~SigningCertificateSelectionWidget()
+{
+}
 
 void SigningCertificateSelectionWidget::setSelectedCertificates(const CertificatePair &certificates)
 {
@@ -96,16 +99,30 @@ std::vector<GpgME::Key> SigningCertificateSelectionWidget::Private::candidates(G
     std::vector<GpgME::Key> keys = KeyCache::instance()->keys();
     auto end = keys.end();
 
-    end = std::remove_if(keys.begin(), end, [prot](const GpgME::Key &key) { return key.protocol() != prot; });
-    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.hasSecret(); });
-    Q_ASSERT(std::all_of(keys.begin(), end, [](const GpgME::Key &key) { return key.hasSecret(); }));
+    end = std::remove_if(keys.begin(), end, [prot](const GpgME::Key &key) {
+        return key.protocol() != prot;
+    });
+    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) {
+        return !key.hasSecret();
+    });
+    Q_ASSERT(std::all_of(keys.begin(), end, [](const GpgME::Key &key) {
+        return key.hasSecret();
+    }));
 #if GPGMEPP_KEY_CANSIGN_IS_FIXED
-    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.canSign(); });
+    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) {
+        return !key.canSign();
+    });
 #else
-    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.canReallySign(); });
+    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) {
+        return !key.canReallySign();
+    });
 #endif
-    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return key.isExpired(); });
-    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return key.isRevoked(); });
+    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) {
+        return key.isExpired();
+    });
+    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) {
+        return key.isRevoked();
+    });
     keys.erase(end, keys.end());
     return keys;
 }
@@ -133,8 +150,7 @@ bool SigningCertificateSelectionWidget::rememberAsDefault() const
 
 void SigningCertificateSelectionWidget::setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols)
 {
-    setAllowedProtocols(allowedProtocols.find(GpgME::OpenPGP) != allowedProtocols.end(),
-                        allowedProtocols.find(GpgME::CMS) != allowedProtocols.end());
+    setAllowedProtocols(allowedProtocols.find(GpgME::OpenPGP) != allowedProtocols.end(), allowedProtocols.find(GpgME::CMS) != allowedProtocols.end());
 }
 
 void SigningCertificateSelectionWidget::setAllowedProtocols(bool pgp, bool cms)
@@ -145,4 +161,3 @@ void SigningCertificateSelectionWidget::setAllowedProtocols(bool pgp, bool cms)
     d->ui.cmsLabel->setVisible(cms);
     d->ui.cmsCombo->setVisible(cms);
 }
-

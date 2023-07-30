@@ -21,4 +21,3 @@ class SelfTest;
 std::shared_ptr<SelfTest> makeUiServerConnectivitySelfTest();
 
 }
-

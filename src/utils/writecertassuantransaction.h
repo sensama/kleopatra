@@ -16,7 +16,7 @@ class QByteArray;
 namespace Kleo
 {
 
-class WriteCertAssuanTransaction: public GpgME::DefaultAssuanTransaction
+class WriteCertAssuanTransaction : public GpgME::DefaultAssuanTransaction
 {
 public:
     explicit WriteCertAssuanTransaction(const QByteArray &certificateData);
@@ -30,4 +30,3 @@ private:
 };
 
 } // namespace Kleo
-

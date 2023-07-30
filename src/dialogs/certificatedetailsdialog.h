@@ -7,7 +7,8 @@
 
 #include <QDialog>
 
-namespace GpgME {
+namespace GpgME
+{
 class Key;
 }
 

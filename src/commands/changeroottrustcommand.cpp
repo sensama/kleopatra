@@ -12,26 +12,25 @@
 #include "changeroottrustcommand.h"
 #include "command_p.h"
 
-#include <Libkleo/KeyCache>
 #include <Libkleo/Dn>
 #include <Libkleo/GnuPG>
+#include <Libkleo/KeyCache>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 #include <QSaveFile>
 
-#include <QThread>
+#include <QByteArray>
+#include <QDir>
+#include <QFile>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QProcess>
 #include <QString>
 #include <QStringList>
-#include <QByteArray>
-#include <QFile>
-#include <QDir>
-#include <QProcess>
+#include <QThread>
 
 #include <gpgme++/key.h>
-
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -46,15 +45,16 @@ private:
     {
         return static_cast<ChangeRootTrustCommand *>(q);
     }
+
 public:
     explicit Private(ChangeRootTrustCommand *qq, KeyListController *c)
-        : QThread(), Command::Private(qq, c),
-          mutex(),
-          trust(Key::Ultimate),
-          trustListFile(QDir(gnupgHomeDirectory()).absoluteFilePath(QStringLiteral("trustlist.txt"))),
-          canceled(false)
+        : QThread()
+        , Command::Private(qq, c)
+        , mutex()
+        , trust(Key::Ultimate)
+        , trustListFile(QDir(gnupgHomeDirectory()).absoluteFilePath(QStringLiteral("trustlist.txt")))
+        , canceled(false)
     {
-
     }
 
 private:
@@ -74,7 +74,8 @@ private:
             KeyCache::mutableInstance()->reload(GpgME::CMS);
         } else
             Command::Private::error(i18n("Failed to update the trust database:\n"
-                                         "%1", error),
+                                         "%1",
+                                         error),
                                     i18n("Root Trust Update Failed"));
         Command::Private::finished();
     }
@@ -128,7 +129,9 @@ ChangeRootTrustCommand::ChangeRootTrustCommand(const GpgME::Key &key, QAbstractI
     setKey(key);
 }
 
-ChangeRootTrustCommand::~ChangeRootTrustCommand() {}
+ChangeRootTrustCommand::~ChangeRootTrustCommand()
+{
+}
 
 void ChangeRootTrustCommand::setTrust(Key::OwnerTrust trust)
 {
@@ -187,7 +190,6 @@ static QString run_gpgconf_reload_gpg_agent(const QString &gpgConfPath);
 
 void ChangeRootTrustCommand::Private::run()
 {
-
     QMutexLocker locker(&mutex);
 
     const auto key = keys().front();
@@ -195,7 +197,7 @@ void ChangeRootTrustCommand::Private::run()
     const auto dn = DN(key.userID(0).id());
     const Key::OwnerTrust trust = this->trust;
     const QString trustListFile = this->trustListFile;
-    const QString gpgConfPath   = this->gpgConfPath;
+    const QString gpgConfPath = this->gpgConfPath;
 
     locker.unlock();
 
@@ -207,7 +209,6 @@ void ChangeRootTrustCommand::Private::run()
     locker.relock();
 
     this->error = err;
-
 }
 
 static QString add_colons(const QString &fpr)
@@ -236,12 +237,13 @@ class KFixedSaveFile : public QSaveFile
 {
 public:
     explicit KFixedSaveFile(const QString &fileName)
-        : QSaveFile(fileName) {}
+        : QSaveFile(fileName)
+    {
+    }
     ~KFixedSaveFile() override
     {
         cancelWriting();
     }
-
 };
 
 }
@@ -251,7 +253,7 @@ QString change_trust_file(const QString &trustListFile, const QString &key, cons
 {
     QList<QByteArray> trustListFileContents;
 
-    if (QFile::exists(trustListFile)) {  // non-existence is not fatal...
+    if (QFile::exists(trustListFile)) { // non-existence is not fatal...
         if (QFile in(trustListFile); in.open(QIODevice::ReadOnly)) {
             trustListFileContents = in.readAll().split('\n');
             // remove last empty line to avoid adding more empty lines when we write the lines
@@ -259,8 +261,7 @@ QString change_trust_file(const QString &trustListFile, const QString &key, cons
                 trustListFileContents.pop_back();
             }
         } else { // ...but failure to open an existing file _is_
-            return i18n("Cannot open existing file \"%1\" for reading: %2",
-                        trustListFile, in.errorString());
+            return i18n("Cannot open existing file \"%1\" for reading: %2", trustListFile, in.errorString());
         }
         // the file is now closed, so KSaveFile doesn't clobber the original
     } else {
@@ -288,12 +289,10 @@ QString change_trust_file(const QString &trustListFile, const QString &key, cons
 
     KFixedSaveFile out(trustListFile);
     if (!out.open(QIODevice::WriteOnly))
-        return i18n("Cannot open file \"%1\" for reading and writing: %2",
-                    out.fileName() /*sic!*/, out.errorString());
+        return i18n("Cannot open file \"%1\" for reading and writing: %2", out.fileName() /*sic!*/, out.errorString());
 
     if (!out.setPermissions(QFile::ReadOwner | QFile::WriteOwner))
-        return i18n("Cannot set restrictive permissions on file %1: %2",
-                    out.fileName() /*sic!*/, out.errorString());
+        return i18n("Cannot set restrictive permissions on file %1: %2", out.fileName() /*sic!*/, out.errorString());
 
     const QString keyColon = add_colons(key);
 
@@ -305,7 +304,6 @@ QString change_trust_file(const QString &trustListFile, const QString &key, cons
     bool found = false;
 
     for (const QByteArray &rawLine : std::as_const(trustListFileContents)) {
-
         const QString line = QString::fromLatin1(rawLine.data(), rawLine.size());
         const QRegularExpressionMatch match = rx.match(line);
         if (!match.hasMatch()) {
@@ -315,9 +313,7 @@ QString change_trust_file(const QString &trustListFile, const QString &key, cons
         }
         const QString cap2 = match.captured(2);
         if (cap2 != key && cap2 != keyColon) {
-            qCDebug(KLEOPATRA_LOG) << qPrintable(key) << " != "
-                                   << qPrintable(cap2) << " != "
-                                   << qPrintable(keyColon);
+            qCDebug(KLEOPATRA_LOG) << qPrintable(key) << " != " << qPrintable(cap2) << " != " << qPrintable(keyColon);
             out.write(rawLine + '\n');
             continue;
         }
@@ -342,7 +338,7 @@ QString change_trust_file(const QString &trustListFile, const QString &key, cons
         // -> don't write - ie.erase
     }
 
-    if (!found) {  // add
+    if (!found) { // add
         out.write("\n");
         // write comment lines with DN attributes
         std::for_each(dn.begin(), dn.end(), [&out](const auto &attr) {
@@ -356,11 +352,9 @@ QString change_trust_file(const QString &trustListFile, const QString &key, cons
     }
 
     if (!out.commit())
-        return i18n("Failed to move file %1 to its final destination, %2: %3",
-                    out.fileName(), trustListFile, out.errorString());
+        return i18n("Failed to move file %1 to its final destination, %2: %3", out.fileName(), trustListFile, out.errorString());
 
     return QString();
-
 }
 
 // static
@@ -372,8 +366,7 @@ QString run_gpgconf_reload_gpg_agent(const QString &gpgConfPath)
 
     QProcess p;
     p.start(gpgConfPath, QStringList() << QStringLiteral("--reload") << QStringLiteral("gpg-agent"));
-    qCDebug(KLEOPATRA_LOG) <<  "starting " << qPrintable(gpgConfPath)
-                           << " --reload gpg-agent";
+    qCDebug(KLEOPATRA_LOG) << "starting " << qPrintable(gpgConfPath) << " --reload gpg-agent";
     p.waitForFinished(-1);
     qCDebug(KLEOPATRA_LOG) << "done";
     if (p.error() == QProcess::UnknownError) {
@@ -386,5 +379,5 @@ QString run_gpgconf_reload_gpg_agent(const QString &gpgConfPath)
 #undef q_func
 #undef d_func
 
-#include "moc_changeroottrustcommand.cpp"
 #include "changeroottrustcommand.moc"
+#include "moc_changeroottrustcommand.cpp"

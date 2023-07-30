@@ -16,7 +16,8 @@
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
-namespace {
+namespace
+{
 static QString formatVersion(int value)
 {
     if (value < 0) {
@@ -25,8 +26,8 @@ static QString formatVersion(int value)
 
     const unsigned int a = ((value >> 24) & 0xff);
     const unsigned int b = ((value >> 16) & 0xff);
-    const unsigned int c = ((value >>  8) & 0xff);
-    const unsigned int d = ((value      ) & 0xff);
+    const unsigned int c = ((value >> 8) & 0xff);
+    const unsigned int d = ((value)&0xff);
     if (a) {
         return QStringLiteral("%1.%2.%3.%4").arg(QString::number(a), QString::number(b), QString::number(c), QString::number(d));
     } else if (b) {
@@ -210,27 +211,16 @@ void Card::setCanLearnKeys(bool value)
     mCanLearn = value;
 }
 
-bool Card::operator == (const Card &other) const
+bool Card::operator==(const Card &other) const
 {
-    return mCanLearn == other.mCanLearn
-        && mHasNullPin == other.mHasNullPin
-        && mStatus == other.mStatus
-        && mSerialNumber == other.mSerialNumber
-        && mAppName == other.mAppName
-        && mAppVersion == other.mAppVersion
-        && mCardType == other.mCardType
-        && mCardVersion == other.mCardVersion
-        && mCardHolder == other.mCardHolder
-        && mSigningKeyRef == other.mSigningKeyRef
-        && mEncryptionKeyRef == other.mEncryptionKeyRef
-        && mAuthenticationKeyRef == other.mAuthenticationKeyRef
-        && mPinStates == other.mPinStates
-        && mErrMsg == other.mErrMsg
-        && mKeyInfos == other.mKeyInfos
+    return mCanLearn == other.mCanLearn && mHasNullPin == other.mHasNullPin && mStatus == other.mStatus && mSerialNumber == other.mSerialNumber
+        && mAppName == other.mAppName && mAppVersion == other.mAppVersion && mCardType == other.mCardType && mCardVersion == other.mCardVersion
+        && mCardHolder == other.mCardHolder && mSigningKeyRef == other.mSigningKeyRef && mEncryptionKeyRef == other.mEncryptionKeyRef
+        && mAuthenticationKeyRef == other.mAuthenticationKeyRef && mPinStates == other.mPinStates && mErrMsg == other.mErrMsg && mKeyInfos == other.mKeyInfos
         && mCardInfo == other.mCardInfo;
 }
 
-bool Card::operator != (const Card &other) const
+bool Card::operator!=(const Card &other) const
 {
     return !operator==(other);
 }
@@ -250,12 +240,12 @@ void Card::setInitialKeyInfos(const std::vector<KeyPairInfo> &infos)
     mKeyInfos = infos;
 }
 
-const std::vector<KeyPairInfo> & Card::keyInfos() const
+const std::vector<KeyPairInfo> &Card::keyInfos() const
 {
     return mKeyInfos;
 }
 
-const KeyPairInfo & Card::keyInfo(const std::string &keyRef) const
+const KeyPairInfo &Card::keyInfo(const std::string &keyRef) const
 {
     static const KeyPairInfo nullKey;
     for (const KeyPairInfo &k : mKeyInfos) {
@@ -269,15 +259,17 @@ const KeyPairInfo & Card::keyInfo(const std::string &keyRef) const
 void Card::setCardInfo(const std::vector<std::pair<std::string, std::string>> &infos)
 {
     qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
-    for (const auto &pair: infos) {
+    for (const auto &pair : infos) {
         qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
         parseCardInfo(pair.first, pair.second);
     }
     processCardInfo();
 }
 
-namespace {
-static int parseHexEncodedVersionTuple(const std::string &s) {
+namespace
+{
+static int parseHexEncodedVersionTuple(const std::string &s)
+{
     // s is a hex-encoded, unsigned int-packed version tuple,
     // i.e. each byte represents one part of the version tuple
     bool ok;
@@ -295,8 +287,7 @@ void Card::parseCardInfo(const std::string &name, const std::string &value)
     } else if (name == "CARDVERSION") {
         mCardVersion = parseHexEncodedVersionTuple(value);
     } else if (name == "DISP-NAME") {
-        auto list = QString::fromUtf8(QByteArray::fromStdString(value)).
-                    split(QStringLiteral("<<"), Qt::SkipEmptyParts);
+        auto list = QString::fromUtf8(QByteArray::fromStdString(value)).split(QStringLiteral("<<"), Qt::SkipEmptyParts);
         std::reverse(list.begin(), list.end());
         mCardHolder = list.join(QLatin1Char(' ')).replace(QLatin1Char('<'), QLatin1Char(' '));
     } else if (name == "KEYPAIRINFO") {
@@ -354,7 +345,7 @@ std::string Card::cardInfo(const std::string &name) const
     return range.first != range.second ? range.first->second : std::string();
 }
 
-void Card::updateKeyInfo(const KeyPairInfo& keyPairInfo)
+void Card::updateKeyInfo(const KeyPairInfo &keyPairInfo)
 {
     for (KeyPairInfo &k : mKeyInfos) {
         if (k.keyRef == keyPairInfo.keyRef) {

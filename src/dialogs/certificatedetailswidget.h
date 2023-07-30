@@ -10,7 +10,8 @@
 #include <memory>
 #include <vector>
 
-namespace GpgME {
+namespace GpgME
+{
 class Error;
 class Key;
 class KeyListResult;
@@ -32,7 +33,5 @@ private:
     std::unique_ptr<Private> d;
 
     // Windows QGpgME new style connect problem makes this necessary.
-    Q_PRIVATE_SLOT(d, void keyListDone(const GpgME::KeyListResult &,
-                   const std::vector<GpgME::Key> &, const QString &,
-                   const GpgME::Error &))
+    Q_PRIVATE_SLOT(d, void keyListDone(const GpgME::KeyListResult &, const std::vector<GpgME::Key> &, const QString &, const GpgME::Error &))
 };

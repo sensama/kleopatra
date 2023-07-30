@@ -26,7 +26,7 @@ namespace SmartCard
 class NetKeyCard;
 } // namespace SmartCard
 
-class NetKeyWidget: public QWidget
+class NetKeyWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -56,4 +56,3 @@ private:
     QScrollArea *mArea = nullptr;
 };
 } // namespace Kleo
-

@@ -22,7 +22,7 @@ public:
     explicit AuthenticatePIVCardApplicationCommand(const std::string &serialNumber, QWidget *parent);
     ~AuthenticatePIVCardApplicationCommand() override;
 
-    void setPrompt(const QString& prompt);
+    void setPrompt(const QString &prompt);
 
 private:
     void doStart() override;
@@ -36,4 +36,3 @@ private:
 
 } // namespace Commands
 } // namespace Kleo
-

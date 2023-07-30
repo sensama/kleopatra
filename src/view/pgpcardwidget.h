@@ -32,13 +32,13 @@ struct KeyPairInfo;
 class OpenPGPCard;
 } // namespace SmartCard
 
-class PGPCardWidget: public QWidget
+class PGPCardWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit PGPCardWidget(QWidget *parent = nullptr);
 
-    void setCard(const SmartCard::OpenPGPCard* card);
+    void setCard(const SmartCard::OpenPGPCard *card);
     void doGenKey(GenCardKeyDialog *dlg);
     void genKeyDone(const GpgME::Error &err, const std::string &backup);
 
@@ -68,4 +68,3 @@ private:
     std::string mRealSerial;
 };
 } // namespace Kleo
-

@@ -20,7 +20,7 @@ struct AlgorithmInfo;
 struct KeyPairInfo;
 
 /** Class to work with OpenPGP smartcards or compatible tokens */
-class OpenPGPCard: public Card
+class OpenPGPCard : public Card
 {
 public:
     explicit OpenPGPCard(const Card &card);
@@ -35,7 +35,7 @@ public:
     static std::string adminPinKeyRef();
     static std::string resetCodeKeyRef();
 
-    static const std::vector<KeyPairInfo> & supportedKeys();
+    static const std::vector<KeyPairInfo> &supportedKeys();
     static QString keyDisplayName(const std::string &keyRef);
 
     /**
@@ -76,5 +76,3 @@ private:
 };
 } // namespace Smartcard
 } // namespace Kleopatra
-
-

@@ -11,29 +11,28 @@
 
 #include "decryptverifyfilescontroller.h"
 
-#include <crypto/gui/decryptverifyoperationwidget.h>
-#include <crypto/gui/decryptverifyfileswizard.h>
 #include <crypto/decryptverifytask.h>
+#include <crypto/gui/decryptverifyfileswizard.h>
+#include <crypto/gui/decryptverifyoperationwidget.h>
 #include <crypto/taskcollection.h>
 
 #include <Libkleo/GnuPG>
-#include <utils/path-helper.h>
-#include <utils/input.h>
-#include <utils/output.h>
-#include <utils/kleo_assert.h>
 #include <utils/archivedefinition.h>
+#include <utils/input.h>
+#include <utils/kleo_assert.h>
+#include <utils/output.h>
+#include <utils/path-helper.h>
 
 #include <Libkleo/Classify>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
+#include <KLocalizedString>
 
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QPointer>
 #include <QTimer>
-
 
 using namespace GpgME;
 using namespace Kleo;
@@ -43,9 +42,12 @@ using namespace Kleo::Crypto::Gui;
 class DecryptVerifyFilesController::Private
 {
     DecryptVerifyFilesController *const q;
-public:
 
-    static std::shared_ptr<AbstractDecryptVerifyTask> taskFromOperationWidget(const DecryptVerifyOperationWidget *w, const QString &fileName, const QDir &outDir, const std::shared_ptr<OverwritePolicy> &overwritePolicy);
+public:
+    static std::shared_ptr<AbstractDecryptVerifyTask> taskFromOperationWidget(const DecryptVerifyOperationWidget *w,
+                                                                              const QString &fileName,
+                                                                              const QDir &outDir,
+                                                                              const std::shared_ptr<OverwritePolicy> &overwritePolicy);
 
     explicit Private(DecryptVerifyFilesController *qq);
 
@@ -54,7 +56,7 @@ public:
     void schedule();
 
     void prepareWizardFromPassedFiles();
-    std::vector<std::shared_ptr<Task> > buildTasks(const QStringList &, const std::shared_ptr<OverwritePolicy> &);
+    std::vector<std::shared_ptr<Task>> buildTasks(const QStringList &, const std::shared_ptr<OverwritePolicy> &);
 
     void ensureWizardCreated();
     void ensureWizardVisible();
@@ -67,32 +69,33 @@ public:
 
     QStringList m_passedFiles, m_filesAfterPreparation;
     QPointer<DecryptVerifyFilesWizard> m_wizard;
-    std::vector<std::shared_ptr<const DecryptVerifyResult> > m_results;
-    std::vector<std::shared_ptr<Task> > m_runnableTasks, m_completedTasks;
+    std::vector<std::shared_ptr<const DecryptVerifyResult>> m_results;
+    std::vector<std::shared_ptr<Task>> m_runnableTasks, m_completedTasks;
     std::shared_ptr<Task> m_runningTask;
     bool m_errorDetected;
     DecryptVerifyOperation m_operation;
 };
 
 // static
-std::shared_ptr<AbstractDecryptVerifyTask> DecryptVerifyFilesController::Private::taskFromOperationWidget(const DecryptVerifyOperationWidget *w, const QString &fileName, const QDir &outDir, const std::shared_ptr<OverwritePolicy> &overwritePolicy)
+std::shared_ptr<AbstractDecryptVerifyTask>
+DecryptVerifyFilesController::Private::taskFromOperationWidget(const DecryptVerifyOperationWidget *w,
+                                                               const QString &fileName,
+                                                               const QDir &outDir,
+                                                               const std::shared_ptr<OverwritePolicy> &overwritePolicy)
 {
-
     kleo_assert(w);
 
     std::shared_ptr<AbstractDecryptVerifyTask> task;
 
     switch (w->mode()) {
     case DecryptVerifyOperationWidget::VerifyDetachedWithSignature: {
-
         std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
         t->setInput(Input::createFromFile(fileName));
         t->setSignedData(Input::createFromFile(w->signedDataFileName()));
         task = t;
 
         kleo_assert(fileName == w->inputFileName());
-    }
-    break;
+    } break;
     case DecryptVerifyOperationWidget::VerifyDetachedWithSignedData: {
         std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
         t->setInput(Input::createFromFile(w->inputFileName()));
@@ -100,8 +103,7 @@ std::shared_ptr<AbstractDecryptVerifyTask> DecryptVerifyFilesController::Private
         task = t;
 
         kleo_assert(fileName == w->signedDataFileName());
-    }
-    break;
+    } break;
     case DecryptVerifyOperationWidget::DecryptVerifyOpaque: {
         const unsigned int classification = classify(fileName);
         qCDebug(KLEOPATRA_LOG) << "classified" << fileName << "as" << printableClassification(classification);
@@ -133,15 +135,17 @@ std::shared_ptr<AbstractDecryptVerifyTask> DecryptVerifyFilesController::Private
         }
 
         kleo_assert(fileName == w->inputFileName());
-    }
-    break;
+    } break;
     }
 
     task->autodetectProtocolFromInput();
     return task;
 }
 
-DecryptVerifyFilesController::Private::Private(DecryptVerifyFilesController *qq) : q(qq), m_errorDetected(false), m_operation(DecryptVerify)
+DecryptVerifyFilesController::Private::Private(DecryptVerifyFilesController *qq)
+    : q(qq)
+    , m_errorDetected(false)
+    , m_operation(DecryptVerify)
 {
     qRegisterMetaType<VerificationResult>();
 }
@@ -149,7 +153,7 @@ DecryptVerifyFilesController::Private::Private(DecryptVerifyFilesController *qq)
 void DecryptVerifyFilesController::Private::slotWizardOperationPrepared()
 {
     ensureWizardCreated();
-    std::vector<std::shared_ptr<Task> > tasks = buildTasks(m_filesAfterPreparation, std::make_shared<OverwritePolicy>(m_wizard, OverwritePolicy::MultipleFiles));
+    std::vector<std::shared_ptr<Task>> tasks = buildTasks(m_filesAfterPreparation, std::make_shared<OverwritePolicy>(m_wizard, OverwritePolicy::MultipleFiles));
     if (tasks.empty()) {
         reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT), i18n("No usable inputs found"));
     }
@@ -157,7 +161,7 @@ void DecryptVerifyFilesController::Private::slotWizardOperationPrepared()
     m_runnableTasks.swap(tasks);
 
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    for (const auto &i: m_runnableTasks) {
+    for (const auto &i : m_runnableTasks) {
         q->connectTask(i);
     }
     coll->setTasks(m_runnableTasks);
@@ -203,7 +207,7 @@ void DecryptVerifyFilesController::Private::schedule()
     }
     if (!m_runningTask) {
         kleo_assert(m_runnableTasks.empty());
-        for (const auto &i: m_results) {
+        for (const auto &i : m_results) {
             Q_EMIT q->verificationResult(i->verificationResult());
         }
         q->emitDoneOrError();
@@ -223,7 +227,6 @@ void DecryptVerifyFilesController::Private::ensureWizardCreated()
     connect(w.get(), SIGNAL(operationPrepared()), q, SLOT(slotWizardOperationPrepared()), Qt::QueuedConnection);
     connect(w.get(), SIGNAL(canceled()), q, SLOT(slotWizardCanceled()), Qt::QueuedConnection);
     m_wizard = w.release();
-
 }
 
 namespace
@@ -231,7 +234,11 @@ namespace
 struct FindExtension {
     const QString ext;
     const Protocol proto;
-    FindExtension(const QString &ext, Protocol proto) : ext(ext), proto(proto) {}
+    FindExtension(const QString &ext, Protocol proto)
+        : ext(ext)
+        , proto(proto)
+    {
+    }
     bool operator()(const std::shared_ptr<ArchiveDefinition> &ad) const
     {
         qCDebug(KLEOPATRA_LOG) << "   considering" << (ad ? ad->label() : QStringLiteral("<null>")) << "for" << ext;
@@ -247,7 +254,9 @@ struct FindExtension {
 };
 }
 
-std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_definition(GpgME::Protocol proto, const std::vector< std::shared_ptr<ArchiveDefinition> > &ads, const QString &filename)
+std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_definition(GpgME::Protocol proto,
+                                                                                         const std::vector<std::shared_ptr<ArchiveDefinition>> &ads,
+                                                                                         const QString &filename)
 {
     const QFileInfo fi(outputFileName(filename));
     QString extension = fi.completeSuffix();
@@ -256,13 +265,12 @@ std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_de
         return std::shared_ptr<ArchiveDefinition>();
     }
 
-    if (extension.endsWith(QLatin1String(".out"))) {     // added by outputFileName() -> remove
+    if (extension.endsWith(QLatin1String(".out"))) { // added by outputFileName() -> remove
         extension.chop(4);
     }
 
     for (;;) {
-        const auto it
-            = std::find_if(ads.begin(), ads.end(), FindExtension(extension, proto));
+        const auto it = std::find_if(ads.begin(), ads.end(), FindExtension(extension, proto));
         if (it != ads.end()) {
             return *it;
         }
@@ -277,17 +285,16 @@ std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_de
 void DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles()
 {
     ensureWizardCreated();
-    const std::vector< std::shared_ptr<ArchiveDefinition> > archiveDefinitions = ArchiveDefinition::getArchiveDefinitions();
+    const std::vector<std::shared_ptr<ArchiveDefinition>> archiveDefinitions = ArchiveDefinition::getArchiveDefinitions();
 
     unsigned int counter = 0;
-    for (const auto &fname: std::as_const(m_passedFiles)) {
+    for (const auto &fname : std::as_const(m_passedFiles)) {
         kleo_assert(!fname.isEmpty());
 
         const unsigned int classification = classify(fname);
         const Protocol proto = findProtocol(classification);
 
         if (mayBeOpaqueSignature(classification) || mayBeCipherText(classification) || mayBeDetachedSignature(classification)) {
-
             DecryptVerifyOperationWidget *const op = m_wizard->operationWidget(counter++);
             kleo_assert(op != nullptr);
 
@@ -315,7 +322,6 @@ void DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles()
             m_filesAfterPreparation << fname;
 
         } else {
-
             // probably the signed data file was selected:
             const QStringList signatures = findSignatures(fname);
 
@@ -331,7 +337,7 @@ void DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles()
                 op->setInputFileName(fname);
                 m_filesAfterPreparation << fname;
             } else {
-                for (const auto &s: signatures) {
+                for (const auto &s : signatures) {
                     DecryptVerifyOperationWidget *op = m_wizard->operationWidget(counter++);
                     kleo_assert(op != nullptr);
 
@@ -342,7 +348,6 @@ void DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles()
 
                     m_filesAfterPreparation << fname;
                 }
-
             }
         }
     }
@@ -351,7 +356,8 @@ void DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles()
     return;
 }
 
-std::vector< std::shared_ptr<Task> > DecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, const std::shared_ptr<OverwritePolicy> &overwritePolicy)
+std::vector<std::shared_ptr<Task>> DecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames,
+                                                                                     const std::shared_ptr<OverwritePolicy> &overwritePolicy)
 {
     const bool useOutDir = m_wizard->useOutputDirectory();
     const QFileInfo outDirInfo(m_wizard->outputDirectory());
@@ -361,12 +367,13 @@ std::vector< std::shared_ptr<Task> > DecryptVerifyFilesController::Private::buil
     const QDir outDir(outDirInfo.absoluteFilePath());
     kleo_assert(!useOutDir || outDir.exists());
 
-    std::vector<std::shared_ptr<Task> > tasks;
-    for (int i = 0, end  = fileNames.size(); i != end; ++i)
+    std::vector<std::shared_ptr<Task>> tasks;
+    for (int i = 0, end = fileNames.size(); i != end; ++i)
         try {
             const QDir fileDir = QFileInfo(fileNames[i]).absoluteDir();
             kleo_assert(fileDir.exists());
-            tasks.push_back(taskFromOperationWidget(m_wizard->operationWidget(static_cast<unsigned int>(i)), fileNames[i], useOutDir ? outDir : fileDir, overwritePolicy));
+            tasks.push_back(
+                taskFromOperationWidget(m_wizard->operationWidget(static_cast<unsigned int>(i)), fileNames[i], useOutDir ? outDir : fileDir, overwritePolicy));
         } catch (const GpgME::Exception &e) {
             tasks.push_back(Task::makeErrorTask(e.error(), QString::fromLocal8Bit(e.what()), fileNames[i]));
         }
@@ -385,11 +392,15 @@ void DecryptVerifyFilesController::Private::ensureWizardVisible()
     q->bringToForeground(m_wizard);
 }
 
-DecryptVerifyFilesController::DecryptVerifyFilesController(QObject *parent) : Controller(parent), d(new Private(this))
+DecryptVerifyFilesController::DecryptVerifyFilesController(QObject *parent)
+    : Controller(parent)
+    , d(new Private(this))
 {
 }
 
-DecryptVerifyFilesController::DecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent) : Controller(ctx, parent), d(new Private(this))
+DecryptVerifyFilesController::DecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
+    : Controller(ctx, parent)
+    , d(new Private(this))
 {
 }
 
@@ -416,7 +427,6 @@ DecryptVerifyOperation DecryptVerifyFilesController::operation() const
 
 void DecryptVerifyFilesController::Private::cancelAllTasks()
 {
-
     // we just kill all runnable tasks - this will not result in
     // signal emissions.
     m_runnableTasks.clear();

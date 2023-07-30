@@ -53,12 +53,10 @@ public Q_SLOTS:
     void setExitValue(int code);
 
 Q_SIGNALS:
-    void activateRequested(const QStringList &arguments,
-                           const QString &workingDirectory);
+    void activateRequested(const QStringList &arguments, const QString &workingDirectory);
 
 private:
-    void emitActivateRequested(const QStringList &arguments,
-                               const QString &workingDirectory)
+    void emitActivateRequested(const QStringList &arguments, const QString &workingDirectory)
     {
         Q_EMIT activateRequested(arguments, workingDirectory);
     }

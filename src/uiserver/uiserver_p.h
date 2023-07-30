@@ -10,23 +10,23 @@
 
 #include "uiserver.h"
 
-#include "assuanserverconnection.h"
 #include "assuancommand.h"
+#include "assuanserverconnection.h"
 
 #include <utils/wsastarter.h>
 
-#include <QTcpServer>
 #include <QFile>
+#include <QTcpServer>
 
 #include <assuan.h>
 
-#include <memory>
 #include <algorithm>
+#include <memory>
 #include <vector>
 
 namespace
 {
-template <typename Ex>
+template<typename Ex>
 void throw_(const QString &message)
 {
     throw Ex(message.toUtf8().constData());
@@ -41,6 +41,7 @@ class UiServer::Private : public QTcpServer
     Q_OBJECT
     friend class ::Kleo::UiServer;
     UiServer *const q;
+
 public:
     explicit Private(UiServer *qq);
     static bool isStaleAssuanSocket(const QString &socketName);
@@ -61,8 +62,8 @@ private Q_SLOTS:
 
 private:
     QFile file;
-    std::vector< std::shared_ptr<AssuanCommandFactory> > factories;
-    std::vector< std::shared_ptr<AssuanServerConnection> > connections;
+    std::vector<std::shared_ptr<AssuanCommandFactory>> factories;
+    std::vector<std::shared_ptr<AssuanServerConnection>> connections;
     QString suggestedSocketName;
     QString actualSocketName;
     assuan_sock_nonce_t nonce;
@@ -71,4 +72,3 @@ private:
 };
 
 }
-

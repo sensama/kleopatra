@@ -14,11 +14,11 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 
-#include <gpgme++/key.h>
-#include <gpgme++/importresult.h>
-#include <QGpgME/Protocol>
-#include <QGpgME/ImportJob>
 #include <QGpgME/ExportJob>
+#include <QGpgME/ImportJob>
+#include <QGpgME/Protocol>
+#include <gpgme++/importresult.h>
+#include <gpgme++/key.h>
 
 #include <Libkleo/KeyCache>
 
@@ -28,15 +28,15 @@
 #include <QFileDialog>
 #include <QTextStream>
 
-#include "kleopatra_debug.h"
 #include "command_p.h"
+#include "kleopatra_debug.h"
 
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
-ImportPaperKeyCommand::ImportPaperKeyCommand(const GpgME::Key &k) :
-    GnuPGProcessCommand(k)
+ImportPaperKeyCommand::ImportPaperKeyCommand(const GpgME::Key &k)
+    : GnuPGProcessCommand(k)
 {
 }
 
@@ -100,8 +100,7 @@ void ImportPaperKeyCommand::exportResult(const GpgME::Error &err, const QByteArr
     QTextStream in(&input);
     while (!in.atEnd()) {
         // Paperkey is picky, tabs may not be part. Neither may be empty lines.
-        const QString line = in.readLine().trimmed().replace(QLatin1Char('\t'), QStringLiteral("  ")) +
-            QLatin1Char('\n');
+        const QString line = in.readLine().trimmed().replace(QLatin1Char('\t'), QStringLiteral("  ")) + QLatin1Char('\n');
         out.write(line.toUtf8());
     }
     input.close();
@@ -132,8 +131,7 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
         Q_EMIT finished();
         return;
     }
-    if (!result.numSecretKeysImported() ||
-        (result.numSecretKeysUnchanged() == result.numSecretKeysImported())) {
+    if (!result.numSecretKeysImported() || (result.numSecretKeysUnchanged() == result.numSecretKeysImported())) {
         d->error(i18n("Failed to restore any secret keys."), errorCaption());
         Q_EMIT finished();
         return;
@@ -142,8 +140,7 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
     // Refresh the key after success
     KeyCache::mutableInstance()->reload(OpenPGP);
     Q_EMIT finished();
-    d->information(xi18nc("@info", "Successfully restored the secret key parts from <filename>%1</filename>",
-                   mFileName));
+    d->information(xi18nc("@info", "Successfully restored the secret key parts from <filename>%1</filename>", mFileName));
     return;
 }
 
@@ -151,36 +148,39 @@ void ImportPaperKeyCommand::doStart()
 {
     if (paperKeyInstallPath().isNull()) {
         KMessageBox::error(d->parentWidgetOrView(),
-                           xi18nc("@info", "<para><application>Kleopatra</application> uses "
-                                           "<application>PaperKey</application> to import your "
-                                           "text backup.</para>"
-                                           "<para>Please make sure it is installed.</para>"),
+                           xi18nc("@info",
+                                  "<para><application>Kleopatra</application> uses "
+                                  "<application>PaperKey</application> to import your "
+                                  "text backup.</para>"
+                                  "<para>Please make sure it is installed.</para>"),
                            i18nc("@title", "Failed to find PaperKey executable."));
         return;
     }
 
-
-    mFileName = QFileDialog::getOpenFileName(d->parentWidgetOrView(), i18n("Select input file"),
+    mFileName = QFileDialog::getOpenFileName(d->parentWidgetOrView(),
+                                             i18n("Select input file"),
                                              QString(),
                                              QStringLiteral("%1 (*.txt)").arg(i18n("Paper backup"))
 #ifdef Q_OS_WIN
-/* For whatever reason at least with Qt 5.6.1 the native file dialog crashes in
- * my (aheinecke) Windows 10 environment when invoked here.
- * In other places it works, with the same arguments as in other places (e.g. import)
- * it works. But not here. Maybe it's our (gpg4win) build? But why did it only
- * crash here?
- *
- * It does not crash immediately, the program flow continues for a while before it
- * crashes so this is hard to debug.
- *
- * There are some reports about this
- * QTBUG-33119 QTBUG-41416 where different people describe "bugs" but they
- * describe them differently also not really reproducible.
- * Anyway this works for now and for such an exotic feature its good enough for now.
- */
-                                             , 0, QFileDialog::DontUseNativeDialog
+                                             /* For whatever reason at least with Qt 5.6.1 the native file dialog crashes in
+                                              * my (aheinecke) Windows 10 environment when invoked here.
+                                              * In other places it works, with the same arguments as in other places (e.g. import)
+                                              * it works. But not here. Maybe it's our (gpg4win) build? But why did it only
+                                              * crash here?
+                                              *
+                                              * It does not crash immediately, the program flow continues for a while before it
+                                              * crashes so this is hard to debug.
+                                              *
+                                              * There are some reports about this
+                                              * QTBUG-33119 QTBUG-41416 where different people describe "bugs" but they
+                                              * describe them differently also not really reproducible.
+                                              * Anyway this works for now and for such an exotic feature its good enough for now.
+                                              */
+                                             ,
+                                             0,
+                                             QFileDialog::DontUseNativeDialog
 #endif
-                                             );
+    );
     if (mFileName.isEmpty()) {
         d->finished();
         return;
@@ -211,7 +211,8 @@ QString ImportPaperKeyCommand::errorExitMessage(const QStringList &args) const
                   "<para>An error occurred while trying to restore the secret key.</para> "
                   "<para>The output from <command>%1</command> was:</para>"
                   "<para><message>%2</message></para>",
-                  args[0], errorString());
+                  args[0],
+                  errorString());
 }
 
 QString ImportPaperKeyCommand::successMessage(const QStringList &) const

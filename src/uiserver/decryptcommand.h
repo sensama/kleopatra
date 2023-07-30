@@ -17,7 +17,7 @@ namespace Kleo
 class DecryptCommand : public AssuanCommandMixin<DecryptCommand, DecryptVerifyCommandEMailBase>
 {
 public:
-    //DecryptCommand();
+    // DecryptCommand();
     //~DecryptCommand();
 
 private:
@@ -29,6 +29,7 @@ private:
             return DecryptVerify;
         }
     }
+
 public:
     static const char *staticName()
     {
@@ -37,4 +38,3 @@ public:
 };
 
 }
-

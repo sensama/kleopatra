@@ -14,17 +14,25 @@
 namespace Kleo
 {
 
-template <typename T>
+template<typename T>
 class cached
 {
     T m_value;
     bool m_dirty;
 
-    using CallType = const typename std::conditional<std::is_standard_layout<T>::value && std::is_trivial<T>::value, T, T&>::type;
+    using CallType = const typename std::conditional<std::is_standard_layout<T>::value && std::is_trivial<T>::value, T, T &>::type;
 
 public:
-    cached() : m_value(), m_dirty(true) {}
-    /* implicit */ cached(const CallType value) : m_value(value), m_dirty(false) {}
+    cached()
+        : m_value()
+        , m_dirty(true)
+    {
+    }
+    /* implicit */ cached(const CallType value)
+        : m_value(value)
+        , m_dirty(false)
+    {
+    }
 
     operator T() const
     {
@@ -55,4 +63,3 @@ public:
 };
 
 }
-

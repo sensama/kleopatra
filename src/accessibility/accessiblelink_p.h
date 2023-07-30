@@ -19,7 +19,7 @@ namespace Kleo
 {
 class AnchorProvider;
 
-class AccessibleLink: public QAccessibleInterface, public QAccessibleActionInterface
+class AccessibleLink : public QAccessibleInterface, public QAccessibleActionInterface
 {
 public:
     AccessibleLink(QWidget *label, int index);
@@ -34,10 +34,10 @@ public:
     QAccessibleInterface *parent() const override;
     QAccessibleInterface *child(int index) const override;
     int childCount() const override;
-    int indexOfChild(const QAccessibleInterface * child) const override;
+    int indexOfChild(const QAccessibleInterface *child) const override;
 
     QString text(QAccessible::Text t) const override;
-    void setText(QAccessible::Text t, const QString & text) override;
+    void setText(QAccessible::Text t, const QString &text) override;
     QRect rect() const override;
     QAccessible::Role role() const override;
     QAccessible::State state() const override;

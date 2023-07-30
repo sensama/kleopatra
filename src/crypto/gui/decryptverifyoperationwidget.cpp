@@ -17,10 +17,10 @@
 
 #include <KLocalizedString>
 
-#include <QLabel>
 #include <QCheckBox>
-#include <QStackedLayout>
 #include <QComboBox>
+#include <QLabel>
+#include <QStackedLayout>
 
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
@@ -29,6 +29,7 @@ class DecryptVerifyOperationWidget::Private
 {
     friend class ::Kleo::Crypto::Gui::DecryptVerifyOperationWidget;
     DecryptVerifyOperationWidget *const q;
+
 public:
     explicit Private(DecryptVerifyOperationWidget *qq);
     ~Private();
@@ -36,47 +37,48 @@ public:
     void enableDisableWidgets()
     {
         const bool detached = ui.verifyDetachedCB.isChecked();
-        const bool archive  = ui.archiveCB.isChecked();
+        const bool archive = ui.archiveCB.isChecked();
         ui.archiveCB.setEnabled(!detached);
         ui.archivesCB.setEnabled(archive && !detached);
     }
+
 private:
     struct UI {
-        QGridLayout   glay;
-        QLabel         inputLB;
+        QGridLayout glay;
+        QLabel inputLB;
         QStackedLayout inputStack;
-        QLabel            inputFileNameLB;
+        QLabel inputFileNameLB;
         FileNameRequester inputFileNameRQ;
         //------
-        QCheckBox      verifyDetachedCB;
+        QCheckBox verifyDetachedCB;
         //------
-        QLabel         signedDataLB;
+        QLabel signedDataLB;
         QStackedLayout signedDataStack;
-        QLabel            signedDataFileNameLB;
+        QLabel signedDataFileNameLB;
         FileNameRequester signedDataFileNameRQ;
         //------
-        QHBoxLayout    hlay;
-        QCheckBox       archiveCB;
-        QComboBox       archivesCB;
+        QHBoxLayout hlay;
+        QCheckBox archiveCB;
+        QComboBox archivesCB;
 
         explicit UI(DecryptVerifyOperationWidget *q);
     } ui;
 };
 
 DecryptVerifyOperationWidget::Private::UI::UI(DecryptVerifyOperationWidget *q)
-    : glay(q),
-      inputLB(i18n("Input file:"), q),
-      inputStack(),
-      inputFileNameLB(q),
-      inputFileNameRQ(q),
-      verifyDetachedCB(i18n("&Input file is a detached signature"), q),
-      signedDataLB(i18n("&Signed data:"), q),
-      signedDataStack(),
-      signedDataFileNameLB(q),
-      signedDataFileNameRQ(q),
-      hlay(),
-      archiveCB(i18n("&Input file is an archive; unpack with:"), q),
-      archivesCB(q)
+    : glay(q)
+    , inputLB(i18n("Input file:"), q)
+    , inputStack()
+    , inputFileNameLB(q)
+    , inputFileNameRQ(q)
+    , verifyDetachedCB(i18n("&Input file is a detached signature"), q)
+    , signedDataLB(i18n("&Signed data:"), q)
+    , signedDataStack()
+    , signedDataFileNameLB(q)
+    , signedDataFileNameRQ(q)
+    , hlay()
+    , archiveCB(i18n("&Input file is an archive; unpack with:"), q)
+    , archivesCB(q)
 {
     KDAB_SET_OBJECT_NAME(glay);
     KDAB_SET_OBJECT_NAME(inputLB);
@@ -129,23 +131,27 @@ DecryptVerifyOperationWidget::Private::UI::UI(DecryptVerifyOperationWidget *q)
 }
 
 DecryptVerifyOperationWidget::Private::Private(DecryptVerifyOperationWidget *qq)
-    : q(qq),
-      ui(q)
+    : q(qq)
+    , ui(q)
 {
-
 }
 
-DecryptVerifyOperationWidget::Private::~Private() {}
+DecryptVerifyOperationWidget::Private::~Private()
+{
+}
 
 DecryptVerifyOperationWidget::DecryptVerifyOperationWidget(QWidget *p)
-    : QWidget(p), d(new Private(this))
+    : QWidget(p)
+    , d(new Private(this))
 {
     setMode(DecryptVerifyOpaque);
 }
 
-DecryptVerifyOperationWidget::~DecryptVerifyOperationWidget() {}
+DecryptVerifyOperationWidget::~DecryptVerifyOperationWidget()
+{
+}
 
-void DecryptVerifyOperationWidget::setArchiveDefinitions(const std::vector< std::shared_ptr<ArchiveDefinition> > &archiveDefinitions)
+void DecryptVerifyOperationWidget::setArchiveDefinitions(const std::vector<std::shared_ptr<ArchiveDefinition>> &archiveDefinitions)
 {
     d->ui.archivesCB.clear();
     for (const std::shared_ptr<ArchiveDefinition> &ad : archiveDefinitions) {
@@ -165,10 +171,10 @@ void DecryptVerifyOperationWidget::setMode(Mode mode, const std::shared_ptr<Arch
     QWidget *inputWidget;
     QWidget *signedDataWidget;
     if (mode == VerifyDetachedWithSignedData) {
-        inputWidget      = &d->ui.inputFileNameRQ;
+        inputWidget = &d->ui.inputFileNameRQ;
         signedDataWidget = &d->ui.signedDataFileNameLB;
     } else {
-        inputWidget      = &d->ui.inputFileNameLB;
+        inputWidget = &d->ui.inputFileNameLB;
         signedDataWidget = &d->ui.signedDataFileNameRQ;
     }
 
@@ -180,7 +186,7 @@ void DecryptVerifyOperationWidget::setMode(Mode mode, const std::shared_ptr<Arch
 
     d->ui.archiveCB.setChecked(ad.get() != nullptr);
     for (int i = 0, end = d->ui.archivesCB.count(); i != end; ++i) {
-        if (ad == d->ui.archivesCB.itemData(i).value< std::shared_ptr<ArchiveDefinition> >()) {
+        if (ad == d->ui.archivesCB.itemData(i).value<std::shared_ptr<ArchiveDefinition>>()) {
             d->ui.archivesCB.setCurrentIndex(i);
             return;
         }
@@ -234,7 +240,7 @@ QString DecryptVerifyOperationWidget::signedDataFileName() const
 std::shared_ptr<ArchiveDefinition> DecryptVerifyOperationWidget::selectedArchiveDefinition() const
 {
     if (mode() == DecryptVerifyOpaque && d->ui.archiveCB.isChecked()) {
-        return d->ui.archivesCB.itemData(d->ui.archivesCB.currentIndex()).value< std::shared_ptr<ArchiveDefinition> >();
+        return d->ui.archivesCB.itemData(d->ui.archivesCB.currentIndex()).value<std::shared_ptr<ArchiveDefinition>>();
     } else {
         return std::shared_ptr<ArchiveDefinition>();
     }

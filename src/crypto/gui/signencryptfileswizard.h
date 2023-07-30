@@ -22,7 +22,6 @@
 
 #include <memory>
 
-
 namespace GpgME
 {
 class Key;
@@ -100,4 +99,3 @@ private:
 };
 
 }
-

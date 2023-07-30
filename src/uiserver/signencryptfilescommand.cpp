@@ -26,12 +26,12 @@ class SignEncryptFilesCommand::Private : public QObject
 private:
     friend class ::Kleo::SignEncryptFilesCommand;
     SignEncryptFilesCommand *const q;
+
 public:
     explicit Private(SignEncryptFilesCommand *qq)
-        : q(qq),
-          controller()
+        : q(qq)
+        , controller()
     {
-
     }
 
 private:
@@ -46,51 +46,55 @@ private:
 };
 
 SignEncryptFilesCommand::SignEncryptFilesCommand()
-    : AssuanCommandMixin<SignEncryptFilesCommand>(), d(new Private(this))
+    : AssuanCommandMixin<SignEncryptFilesCommand>()
+    , d(new Private(this))
 {
-
 }
 
-SignEncryptFilesCommand::~SignEncryptFilesCommand() {}
+SignEncryptFilesCommand::~SignEncryptFilesCommand()
+{
+}
 
 void SignEncryptFilesCommand::Private::checkForErrors() const
 {
-
     if (!q->numFiles())
-        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT),
-                        i18n("At least one FILE must be present"));
+        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT), i18n("At least one FILE must be present"));
 
     if (!q->senders().empty())
         throw Exception(makeError(GPG_ERR_CONFLICT),
                         i18n("%1 is a filemanager mode command, "
                              "connection seems to be in email mode (%2 present)",
-                             QString::fromLatin1(q->name()), QStringLiteral("SENDER")));
+                             QString::fromLatin1(q->name()),
+                             QStringLiteral("SENDER")));
     if (!q->recipients().empty())
         throw Exception(makeError(GPG_ERR_CONFLICT),
                         i18n("%1 is a filemanager mode command, "
                              "connection seems to be in email mode (%2 present)",
-                             QString::fromLatin1(q->name()), QStringLiteral("RECIPIENT")));
+                             QString::fromLatin1(q->name()),
+                             QStringLiteral("RECIPIENT")));
 
     if (!q->inputs().empty())
         throw Exception(makeError(GPG_ERR_CONFLICT),
                         i18n("%1 is a filemanager mode command, "
                              "connection seems to be in email mode (%2 present)",
-                             QString::fromLatin1(q->name()), QStringLiteral("INPUT")));
+                             QString::fromLatin1(q->name()),
+                             QStringLiteral("INPUT")));
     if (!q->outputs().empty())
         throw Exception(makeError(GPG_ERR_CONFLICT),
                         i18n("%1 is a filemanager mode command, "
                              "connection seems to be in email mode (%2 present)",
-                             QString::fromLatin1(q->name()), QStringLiteral("OUTPUT")));
+                             QString::fromLatin1(q->name()),
+                             QStringLiteral("OUTPUT")));
     if (!q->messages().empty())
         throw Exception(makeError(GPG_ERR_CONFLICT),
                         i18n("%1 is a filemanager mode command, "
                              "connection seems to be in email mode (%2 present)",
-                             QString::fromLatin1(q->name()), QStringLiteral("MESSAGE")));
+                             QString::fromLatin1(q->name()),
+                             QStringLiteral("MESSAGE")));
 }
 
 int SignEncryptFilesCommand::doStart()
 {
-
     d->checkForErrors();
 
     d->controller.reset(new SignEncryptFilesController(shared_from_this()));
@@ -132,4 +136,3 @@ void SignEncryptFilesCommand::doCanceled()
 }
 
 #include "signencryptfilescommand.moc"
-

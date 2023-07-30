@@ -32,7 +32,7 @@ class KeyGroup;
  * The widget will use a single line HBox Layout. For larger dialog
  * see certificateslectiondialog.
  */
-class CertificateLineEdit: public QWidget
+class CertificateLineEdit : public QWidget
 {
     Q_OBJECT
 public:
@@ -45,9 +45,7 @@ public:
      * @param parent: The usual widget parent.
      * @param filter: The filters to use. See certificateselectiondialog.
      */
-    explicit CertificateLineEdit(AbstractKeyListModel *model,
-                                 KeyFilter *filter = nullptr,
-                                 QWidget *parent = nullptr);
+    explicit CertificateLineEdit(AbstractKeyListModel *model, KeyFilter *filter = nullptr, QWidget *parent = nullptr);
 
     ~CertificateLineEdit() override;
 

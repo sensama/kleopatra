@@ -49,7 +49,6 @@ void SMimeValidationConfigurationPage::load()
 void SMimeValidationConfigurationPage::save()
 {
     mWidget->save();
-
 }
 
 void SMimeValidationConfigurationPage::defaults()

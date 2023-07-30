@@ -47,19 +47,19 @@ QValidator::State MultiValidator::validate(QString &str, int &pos) const
 {
     std::vector<State> states;
     states.reserve(m_validators.size());
-    std::transform(std::cbegin(m_validators), std::cend(m_validators),
-                   std::back_inserter(states),
-                   [&str, &pos](const auto &val) {
-                       return val->validate(str, pos);
-                   });
+    std::transform(std::cbegin(m_validators), std::cend(m_validators), std::back_inserter(states), [&str, &pos](const auto &val) {
+        return val->validate(str, pos);
+    });
 
-    if (std::any_of(std::cbegin(states), std::cend(states),
-                    [](State state) { return state == Invalid; })) {
+    if (std::any_of(std::cbegin(states), std::cend(states), [](State state) {
+            return state == Invalid;
+        })) {
         return Invalid;
     }
 
-    if (std::all_of(std::cbegin(states), std::cend(states),
-                    [](State state) { return state == Acceptable; })) {
+    if (std::all_of(std::cbegin(states), std::cend(states), [](State state) {
+            return state == Acceptable;
+        })) {
         return Acceptable;
     }
 

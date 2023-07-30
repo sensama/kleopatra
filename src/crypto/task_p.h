@@ -23,7 +23,11 @@ class SimpleTask : public Task
 {
     Q_OBJECT
 public:
-    explicit SimpleTask(const QString &label) : m_result(), m_label(label) {}
+    explicit SimpleTask(const QString &label)
+        : m_result()
+        , m_label(label)
+    {
+    }
 
     void setResult(const std::shared_ptr<const Task::Result> &res)
     {
@@ -37,9 +41,13 @@ public:
     {
         return m_label;
     }
-    void cancel() override {}
+    void cancel() override
+    {
+    }
+
 private:
-    void doStart() override {
+    void doStart() override
+    {
         QTimer::singleShot(0, this, &SimpleTask::slotEmitResult);
     }
     unsigned long long inputSize() const override
@@ -52,6 +60,7 @@ private Q_SLOTS:
     {
         emitResult(m_result);
     }
+
 private:
     std::shared_ptr<const Task::Result> m_result;
     QString m_label;

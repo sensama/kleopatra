@@ -11,18 +11,18 @@
 
 #include "certifywidget.h"
 
+#include "view/infofield.h"
 #include <utils/accessibility.h>
 #include <utils/expiration.h>
 #include <utils/keys.h>
-#include "view/infofield.h"
 
 #include <settings.h>
 
 #include "kleopatra_debug.h"
 
-#include <KLocalizedString>
 #include <KConfigGroup>
 #include <KDateComboBox>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KMessageWidget>
 #include <KSeparator>
@@ -30,9 +30,9 @@
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/DefaultKeyFilter>
-#include <Libkleo/KeySelectionCombo>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeySelectionCombo>
 #include <Libkleo/Predicates>
 
 #include <QGpgME/ChangeOwnerTrustJob>
@@ -63,17 +63,16 @@ static QDebug operator<<(QDebug s, const GpgME::UserID &userID)
     return s << Formatting::prettyUserID(userID);
 }
 
-namespace {
+namespace
+{
 
 // Maybe move this in its own file
 // based on code from StackOverflow
-class AnimatedExpander: public QWidget
+class AnimatedExpander : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AnimatedExpander(const QString &title,
-                              const QString &accessibleTitle = {},
-                              QWidget *parent = nullptr);
+    explicit AnimatedExpander(const QString &title, const QString &accessibleTitle = {}, QWidget *parent = nullptr);
     void setContentLayout(QLayout *contentLayout);
 
 private:
@@ -90,8 +89,9 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
 {
 #ifdef Q_OS_WIN
     // draw dotted focus frame if button has focus; otherwise, draw invisible frame using background color
-    toggleButton.setStyleSheet(QStringLiteral("QToolButton { border: 1px solid palette(window); }"
-                                              "QToolButton:focus { border: 1px dotted palette(window-text); }"));
+    toggleButton.setStyleSheet(
+        QStringLiteral("QToolButton { border: 1px solid palette(window); }"
+                       "QToolButton:focus { border: 1px dotted palette(window-text); }"));
 #else
     // this works with Breeze style because Breeze draws the focus frame when drawing CE_ToolButtonLabel
     // while the Windows styles (and Qt's common base style) draw the focus frame before drawing CE_ToolButtonLabel
@@ -164,10 +164,11 @@ void AnimatedExpander::setContentLayout(QLayout *contentLayout)
     contentAnimation->setEndValue(contentHeight);
 }
 
-class SecKeyFilter: public DefaultKeyFilter
+class SecKeyFilter : public DefaultKeyFilter
 {
 public:
-    SecKeyFilter() : DefaultKeyFilter()
+    SecKeyFilter()
+        : DefaultKeyFilter()
     {
         setRevoked(DefaultKeyFilter::NotSet);
         setExpired(DefaultKeyFilter::NotSet);
@@ -201,7 +202,8 @@ class UserIDItem : public QStandardItem
 public:
     explicit UserIDItem(const GpgME::UserID &uid)
         : mUserId{uid}
-    {}
+    {
+    }
 
     GpgME::UserID userId()
     {
@@ -216,10 +218,11 @@ class UserIDModel : public QStandardItemModel
 {
     Q_OBJECT
 public:
-    enum Role {
-        UserID = Qt::UserRole
-    };
-    explicit UserIDModel(QObject *parent = nullptr) : QStandardItemModel(parent) {}
+    enum Role { UserID = Qt::UserRole };
+    explicit UserIDModel(QObject *parent = nullptr)
+        : QStandardItemModel(parent)
+    {
+    }
 
     GpgME::Key certificateToCertify() const
     {
@@ -232,7 +235,7 @@ public:
         clear();
         const std::vector<GpgME::UserID> ids = key.userIDs();
         int i = 0;
-        for (const auto &uid: key.userIDs()) {
+        for (const auto &uid : key.userIDs()) {
             if (uid.isRevoked() || uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
                 // Skip user IDs that cannot really be certified.
                 i++;
@@ -296,7 +299,7 @@ auto createInfoButton(const QString &text, QWidget *parent)
     infoBtn->setIcon(QIcon::fromTheme(QStringLiteral("help-contextual")));
     infoBtn->setFlat(true);
 
-    QObject::connect(infoBtn, &QPushButton::clicked, infoBtn, [infoBtn, text] () {
+    QObject::connect(infoBtn, &QPushButton::clicked, infoBtn, [infoBtn, text]() {
         const auto pos = infoBtn->mapToGlobal(QPoint()) + QPoint(infoBtn->width(), 0);
         showToolTip(pos, text, infoBtn);
     });
@@ -308,9 +311,7 @@ QString dateFormatWithFourDigitYear(QLocale::FormatType format)
 {
     // Force the year to be formatted as four digit number, so that
     // the user can distinguish between 2006 and 2106.
-    return QLocale{}.dateFormat(format).
-        replace(QLatin1String("yy"), QLatin1String("yyyy")).
-        replace(QLatin1String("yyyyyyyy"), QLatin1String("yyyy"));
+    return QLocale{}.dateFormat(format).replace(QLatin1String("yy"), QLatin1String("yyyy")).replace(QLatin1String("yyyyyyyy"), QLatin1String("yyyy"));
 }
 
 QString formatDate(const QDate &date, QLocale::FormatType format)
@@ -356,8 +357,9 @@ public:
 
         {
             auto label = new QLabel{i18n("Verify the fingerprint, mark the user IDs you want to certify, "
-                "and select the key you want to certify the user IDs with.<br>"
-                "<i>Note: Only the fingerprint clearly identifies the key and its owner.</i>"), q};
+                                         "and select the key you want to certify the user IDs with.<br>"
+                                         "<i>Note: Only the fingerprint clearly identifies the key and its owner.</i>"),
+                                    q};
             label->setWordWrap(true);
             labelHelper.addLabel(label);
             mainLay->addWidget(label);
@@ -377,7 +379,7 @@ public:
 
             row++;
             auto label = new QLabel{i18n("Certify with:"), q};
-            mSecKeySelect = new KeySelectionCombo{/* secretOnly= */true, q};
+            mSecKeySelect = new KeySelectionCombo{/* secretOnly= */ true, q};
             mSecKeySelect->setKeyFilter(std::make_shared<SecKeyFilter>());
             label->setBuddy(mSecKeySelect);
             grid->addWidget(label, row, 0);
@@ -392,7 +394,9 @@ public:
         mSetOwnerTrustAction->setToolTip(i18nc("@info:tooltip",
                                                "Click to set the trust level of the selected certification key to ultimate trust. "
                                                "This is what you usually want to do for your own keys."));
-        connect(mSetOwnerTrustAction, &QAction::triggered, q, [this] () { setOwnerTrust(); });
+        connect(mSetOwnerTrustAction, &QAction::triggered, q, [this]() {
+            setOwnerTrust();
+        });
         mMissingOwnerTrustInfo->addAction(mSetOwnerTrustAction);
         mMissingOwnerTrustInfo->setVisible(false);
 
@@ -435,10 +439,9 @@ public:
             mTagsLE = new QLineEdit{q};
             label->setBuddy(mTagsLE);
 
-            auto infoBtn = createInfoButton(i18n("You can use this to add additional info to a certification.") +
-                                            QStringLiteral("<br/><br/>") +
-                                            i18n("Tags created by anyone with full certification trust "
-                                                "are shown in the keylist and can be searched."),
+            auto infoBtn = createInfoButton(i18n("You can use this to add additional info to a certification.") + QStringLiteral("<br/><br/>")
+                                                + i18n("Tags created by anyone with full certification trust "
+                                                       "are shown in the keylist and can be searched."),
                                             q);
             infoBtn->setAccessibleName(i18n("Explain tags"));
 
@@ -460,11 +463,10 @@ public:
             mExpirationDateEdit->setDate(Kleo::defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
             mExpirationDateEdit->setEnabled(mExpirationCheckBox->isChecked());
 
-            auto infoBtn = createInfoButton(i18n("You can use this to set an expiration date for a certification.") +
-                                            QStringLiteral("<br/><br/>") +
-                                            i18n("By setting an expiration date, you can limit the validity of "
-                                                 "your certification to a certain amount of time. Once the expiration "
-                                                 "date has passed, your certification is no longer valid."),
+            auto infoBtn = createInfoButton(i18n("You can use this to set an expiration date for a certification.") + QStringLiteral("<br/><br/>")
+                                                + i18n("By setting an expiration date, you can limit the validity of "
+                                                       "your certification to a certain amount of time. Once the expiration "
+                                                       "date has passed, your certification is no longer valid."),
                                             q);
             infoBtn->setAccessibleName(i18n("Explain expiration"));
 
@@ -480,12 +482,11 @@ public:
 
             mTrustSignatureCB = new QCheckBox{q};
             mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
-            auto infoBtn = createInfoButton(i18n("You can use this to certify a trusted introducer for a domain.") +
-                                            QStringLiteral("<br/><br/>") +
-                                            i18n("All certificates with email addresses belonging to the domain "
-                                                 "that have been certified by the trusted introducer are treated "
-                                                 "as certified, i.e. a trusted introducer acts as a kind of "
-                                                 "intermediate CA for a domain."),
+            auto infoBtn = createInfoButton(i18n("You can use this to certify a trusted introducer for a domain.") + QStringLiteral("<br/><br/>")
+                                                + i18n("All certificates with email addresses belonging to the domain "
+                                                       "that have been certified by the trusted introducer are treated "
+                                                       "as certified, i.e. a trusted introducer acts as a kind of "
+                                                       "intermediate CA for a domain."),
                                             q);
             infoBtn->setAccessibleName(i18n("Explain trusted introducer"));
 
@@ -516,23 +517,23 @@ public:
             onItemChanged(item);
         });
 
-        connect(mExportCB, &QCheckBox::toggled, [this] (bool on) {
+        connect(mExportCB, &QCheckBox::toggled, [this](bool on) {
             mPublishCB->setEnabled(on);
         });
 
-        connect(mSecKeySelect, &KeySelectionCombo::currentKeyChanged, [this] (const GpgME::Key &) {
+        connect(mSecKeySelect, &KeySelectionCombo::currentKeyChanged, [this](const GpgME::Key &) {
             updateTags();
             checkOwnerTrust();
             Q_EMIT q->changed();
         });
 
-        connect(mExpirationCheckBox, &QCheckBox::toggled, q, [this] (bool checked) {
+        connect(mExpirationCheckBox, &QCheckBox::toggled, q, [this](bool checked) {
             mExpirationDateEdit->setEnabled(checked);
             Q_EMIT q->changed();
         });
         connect(mExpirationDateEdit, &KDateComboBox::dateChanged, q, &CertifyWidget::changed);
 
-        connect(mTrustSignatureCB, &QCheckBox::toggled, q, [this] (bool on) {
+        connect(mTrustSignatureCB, &QCheckBox::toggled, q, [this](bool on) {
             mTrustSignatureDomainLE->setEnabled(on);
             Q_EMIT q->changed();
         });
@@ -550,8 +551,8 @@ public:
         if (settings.certificationValidityInDays() > 0) {
             const QDate expirationDate = QDate::currentDate().addDays(settings.certificationValidityInDays());
             mExpirationDateEdit->setDate(expirationDate > mExpirationDateEdit->maximumDate() //
-                                         ? mExpirationDateEdit->maximumDate() //
-                                         : expirationDate);
+                                             ? mExpirationDateEdit->maximumDate() //
+                                             : expirationDate);
         }
 
         const KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
@@ -570,7 +571,7 @@ public:
         if (!remarkKey.isNull()) {
             std::vector<GpgME::UserID> uidsWithRemark;
             QString remark;
-            for (const auto &uid: mTarget.userIDs()) {
+            for (const auto &uid : mTarget.userIDs()) {
                 GpgME::Error err;
                 const char *c_remark = uid.remark(remarkKey, err);
                 if (c_remark) {
@@ -699,7 +700,7 @@ public:
     {
         mSetOwnerTrustAction->setEnabled(false);
         QGpgME::ChangeOwnerTrustJob *const j = QGpgME::openpgp()->changeOwnerTrustJob();
-        connect(j, &QGpgME::ChangeOwnerTrustJob::result, q, [this] (const GpgME::Error &err) {
+        connect(j, &QGpgME::ChangeOwnerTrustJob::result, q, [this](const GpgME::Error &err) {
             if (err) {
                 KMessageBox::error(q,
                                    i18n("<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>",

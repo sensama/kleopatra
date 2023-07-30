@@ -14,18 +14,18 @@
 
 #include <utils/applicationstate.h>
 
-#include <Libkleo/GnuPG>
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 
 #include <gpgme++/key.h>
 
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#include <QProcess>
-#include <QTextStream>
 #include <QFile>
 #include <QFileDialog>
+#include <QProcess>
+#include <QTextStream>
 
 #include "command_p.h"
 #include "kleopatra_debug.h"
@@ -34,8 +34,8 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
-GenRevokeCommand::GenRevokeCommand(QAbstractItemView *v, KeyListController *c) :
-    GnuPGProcessCommand(v, c)
+GenRevokeCommand::GenRevokeCommand(QAbstractItemView *v, KeyListController *c)
+    : GnuPGProcessCommand(v, c)
 {
 }
 
@@ -72,27 +72,30 @@ void GenRevokeCommand::postSuccessHook(QWidget *parentWidget)
     s << i18n("This is a revocation certificate for the OpenPGP key:") << "\n\n" //
       << "             " << Formatting::prettyNameAndEMail(d->key()) << "\n" //
       << "Fingerprint: " << d->key().primaryFingerprint() << "\n\n"
-      << i18n("A revocation certificate is a kind of \"kill switch\" to publicly\n"
-              "declare that a key shall not anymore be used.  It is not possible\n"
-              "to retract such a revocation certificate once it has been published.")
+      << i18n(
+             "A revocation certificate is a kind of \"kill switch\" to publicly\n"
+             "declare that a key shall not anymore be used.  It is not possible\n"
+             "to retract such a revocation certificate once it has been published.")
       << "\n\n"
-      << i18n("Use it to revoke this key in case of a compromise or loss of\n"
-              "the secret key.")
+      << i18n(
+             "Use it to revoke this key in case of a compromise or loss of\n"
+             "the secret key.")
       << "\n\n"
-      << i18n("To avoid an accidental use of this file, a colon has been inserted\n"
-              "before the 5 dashes below.  Remove this colon with a text editor\n"
-              "before importing and publishing this revocation certificate.")
-      << "\n\n:"
-      << revCert;
+      << i18n(
+             "To avoid an accidental use of this file, a colon has been inserted\n"
+             "before the 5 dashes below.  Remove this colon with a text editor\n"
+             "before importing and publishing this revocation certificate.")
+      << "\n\n:" << revCert;
     s.flush();
     qCDebug(KLEOPATRA_LOG) << "revocation certificate stored as:" << mOutputFileName;
 
     f.close();
     KMessageBox::information(d->parentWidgetOrView(),
-                             i18nc("@info", "Certificate successfully created.<br><br>"
-                                  "Note:<br>To prevent accidental import of the revocation<br>"
-                                  "it is required to manually edit the certificate<br>"
-                                  "before it can be imported."),
+                             i18nc("@info",
+                                   "Certificate successfully created.<br><br>"
+                                   "Note:<br>To prevent accidental import of the revocation<br>"
+                                   "it is required to manually edit the certificate<br>"
+                                   "before it can be imported."),
                              i18n("Revocation certificate created"));
 }
 
@@ -138,9 +141,7 @@ void GenRevokeCommand::doStart()
 
     GnuPGProcessCommand::doStart();
 
-
-    connect(proc, &QProcess::readyReadStandardOutput,
-            this, [proc] () {
+    connect(proc, &QProcess::readyReadStandardOutput, this, [proc]() {
         while (proc->canReadLine()) {
             const QString line = QString::fromUtf8(proc->readLine()).trimmed();
             // Command-fd is a stable interface, while this is all kind of hacky we
@@ -177,7 +178,6 @@ QStringList GenRevokeCommand::arguments() const
         QLatin1String(key.primaryFingerprint()),
     };
 }
-
 
 QString GenRevokeCommand::errorCaption() const
 {

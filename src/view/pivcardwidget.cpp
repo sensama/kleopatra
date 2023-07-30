@@ -43,7 +43,8 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
-namespace {
+namespace
+{
 static void layoutKeyWidgets(QGridLayout *grid, const QString &keyName, const PIVCardWidget::KeyWidgets &keyWidgets)
 {
     int row = grid->rowCount();
@@ -141,24 +142,32 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
 
     {
         auto button = new QPushButton(i18nc("@action:button", "Change PIN"));
-        button->setToolTip(i18nc("@info:tooltip", "Change the PIV Card Application PIN that activates the PIV Card "
+        button->setToolTip(i18nc("@info:tooltip",
+                                 "Change the PIV Card Application PIN that activates the PIV Card "
                                  "and enables private key operations using the stored keys."));
         actionLayout->addWidget(button);
-        connect(button, &QPushButton::clicked, this, [this] () { changePin(PIVCard::pinKeyRef()); });
+        connect(button, &QPushButton::clicked, this, [this]() {
+            changePin(PIVCard::pinKeyRef());
+        });
     }
     {
         auto button = new QPushButton(i18nc("@action:button", "Change PUK"));
         button->setToolTip(i18nc("@info:tooltip", "Change the PIN Unblocking Key that enables a reset of the PIN."));
         actionLayout->addWidget(button);
-        connect(button, &QPushButton::clicked, this, [this] () { changePin(PIVCard::pukKeyRef()); });
+        connect(button, &QPushButton::clicked, this, [this]() {
+            changePin(PIVCard::pukKeyRef());
+        });
     }
     {
         auto button = new QPushButton(i18nc("@action:button", "Change Admin Key"));
-        button->setToolTip(i18nc("@info:tooltip", "Change the PIV Card Application Administration Key that is used by the "
+        button->setToolTip(i18nc("@info:tooltip",
+                                 "Change the PIV Card Application Administration Key that is used by the "
                                  "PIV Card Application to authenticate the PIV Card Application Administrator and by the "
                                  "administrator (resp. Kleopatra) to authenticate the PIV Card Application."));
         actionLayout->addWidget(button);
-        connect(button, &QPushButton::clicked, this, [this] () { setAdminKey(); });
+        connect(button, &QPushButton::clicked, this, [this]() {
+            setAdminKey();
+        });
     }
 
     actionLayout->addStretch(-1);
@@ -179,31 +188,36 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const KeyPairInfo &key
     keyWidgets.certificateInfo->setTextInteractionFlags(Qt::TextBrowserInteraction);
     keyWidgets.generateButton = new QPushButton(i18nc("@action:button", "Generate"), this);
     keyWidgets.generateButton->setEnabled(false);
-    connect(keyWidgets.generateButton, &QPushButton::clicked,
-            this, [this, keyRef] () { generateKey(keyRef); });
+    connect(keyWidgets.generateButton, &QPushButton::clicked, this, [this, keyRef]() {
+        generateKey(keyRef);
+    });
     if (keyInfo.canSign() || keyInfo.canEncrypt()) {
         keyWidgets.createCSRButton = new QPushButton(i18nc("@action:button", "Create CSR"), this);
         keyWidgets.createCSRButton->setToolTip(i18nc("@info:tooltip", "Create a certificate signing request for this key"));
         keyWidgets.createCSRButton->setEnabled(false);
-        connect(keyWidgets.createCSRButton, &QPushButton::clicked,
-                this, [this, keyRef] () { createCSR(keyRef); });
+        connect(keyWidgets.createCSRButton, &QPushButton::clicked, this, [this, keyRef]() {
+            createCSR(keyRef);
+        });
     }
     keyWidgets.writeCertificateButton = new QPushButton(i18nc("@action:button", "Write Certificate"));
     keyWidgets.writeCertificateButton->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
     keyWidgets.writeCertificateButton->setEnabled(false);
-    connect(keyWidgets.writeCertificateButton, &QPushButton::clicked,
-            this, [this, keyRef] () { writeCertificateToCard(keyRef); });
+    connect(keyWidgets.writeCertificateButton, &QPushButton::clicked, this, [this, keyRef]() {
+        writeCertificateToCard(keyRef);
+    });
     keyWidgets.importCertificateButton = new QPushButton(i18nc("@action:button", "Import Certificate"));
     keyWidgets.importCertificateButton->setToolTip(i18nc("@info:tooltip", "Import the certificate stored on the card"));
     keyWidgets.importCertificateButton->setEnabled(false);
-    connect(keyWidgets.importCertificateButton, &QPushButton::clicked,
-            this, [this, keyRef] () { importCertificateFromCard(keyRef); });
+    connect(keyWidgets.importCertificateButton, &QPushButton::clicked, this, [this, keyRef]() {
+        importCertificateFromCard(keyRef);
+    });
     if (keyRef == PIVCard::cardAuthenticationKeyRef() || keyRef == PIVCard::keyManagementKeyRef()) {
         keyWidgets.writeKeyButton = new QPushButton(i18nc("@action:button", "Write Key"));
         keyWidgets.writeKeyButton->setToolTip(i18nc("@info:tooltip", "Write the key pair of a certificate to the card"));
         keyWidgets.writeKeyButton->setEnabled(true);
-        connect(keyWidgets.writeKeyButton, &QPushButton::clicked,
-                this, [this, keyRef] () { writeKeyToCard(keyRef); });
+        connect(keyWidgets.writeKeyButton, &QPushButton::clicked, this, [this, keyRef]() {
+            writeKeyToCard(keyRef);
+        });
     }
     mKeyWidgets.insert({keyRef, keyWidgets});
     return keyWidgets;
@@ -257,8 +271,7 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef)
         widgets.keyGrip->setText(QString());
         widgets.keyAlgorithm->setText(QString());
         widgets.generateButton->setText(i18nc("@action:button", "Generate"));
-        widgets.generateButton->setToolTip(
-            i18nc("@info:tooltip %1 display name of a key", "Generate %1", PIVCard::keyDisplayName(keyRef)));
+        widgets.generateButton->setToolTip(i18nc("@info:tooltip %1 display name of a key", "Generate %1", PIVCard::keyDisplayName(keyRef)));
         if (widgets.createCSRButton) {
             widgets.createCSRButton->setEnabled(false);
         }
@@ -267,11 +280,11 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef)
     } else {
         const Key certificate = KeyCache::instance()->findSubkeyByKeyGrip(grip, GpgME::CMS).parent();
         if (!certificate.isNull()) {
-            widgets.certificateInfo->setText(
-                i18nc("X.509 certificate DN (validity, created: date)", "%1 (%2, created: %3)",
-                      DN(certificate.userID(0).id()).prettyDN(),
-                      Formatting::complianceStringShort(certificate),
-                      Formatting::creationDateString(certificate)));
+            widgets.certificateInfo->setText(i18nc("X.509 certificate DN (validity, created: date)",
+                                                   "%1 (%2, created: %3)",
+                                                   DN(certificate.userID(0).id()).prettyDN(),
+                                                   Formatting::complianceStringShort(certificate),
+                                                   Formatting::creationDateString(certificate)));
             widgets.certificateInfo->setToolTip(Formatting::toolTip(certificate, toolTipOptions()));
             widgets.writeCertificateButton->setEnabled(true);
         } else {
@@ -285,8 +298,7 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef)
         widgets.importCertificateButton->setEnabled(!widgets.certificateData.empty());
 
         widgets.generateButton->setText(i18nc("@action:button", "Replace"));
-        widgets.generateButton->setToolTip(
-            i18nc("@info:tooltip %1 display name of a key", "Replace %1 with new key", PIVCard::keyDisplayName(keyRef)));
+        widgets.generateButton->setToolTip(i18nc("@info:tooltip %1 display name of a key", "Replace %1 with new key", PIVCard::keyDisplayName(keyRef)));
         if (widgets.createCSRButton) {
             widgets.createCSRButton->setEnabled(DeVSCompliance::algorithmIsCompliant(algo));
         }
@@ -299,10 +311,9 @@ void PIVCardWidget::generateKey(const std::string &keyref)
 {
     auto cmd = new PIVGenerateCardKeyCommand(mCardSerialNumber, this);
     this->setEnabled(false);
-    connect(cmd, &PIVGenerateCardKeyCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &PIVGenerateCardKeyCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->setKeyRef(keyref);
     cmd->start();
 }
@@ -311,10 +322,9 @@ void PIVCardWidget::createCSR(const std::string &keyref)
 {
     auto cmd = new CreateCSRForCardKeyCommand(keyref, mCardSerialNumber, PIVCard::AppName, this);
     this->setEnabled(false);
-    connect(cmd, &CreateCSRForCardKeyCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &CreateCSRForCardKeyCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->start();
 }
 
@@ -322,10 +332,9 @@ void PIVCardWidget::writeCertificateToCard(const std::string &keyref)
 {
     auto cmd = new CertificateToPIVCardCommand(keyref, mCardSerialNumber);
     this->setEnabled(false);
-    connect(cmd, &CertificateToPIVCardCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &CertificateToPIVCardCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->setParentWidget(this);
     cmd->start();
 }
@@ -334,11 +343,10 @@ void PIVCardWidget::importCertificateFromCard(const std::string &keyref)
 {
     auto cmd = new ImportCertificateFromPIVCardCommand(keyref, mCardSerialNumber);
     this->setEnabled(false);
-    connect(cmd, &ImportCertificateFromPIVCardCommand::finished,
-            this, [this, keyref] () {
-                this->updateKeyWidgets(keyref);
-                this->setEnabled(true);
-            });
+    connect(cmd, &ImportCertificateFromPIVCardCommand::finished, this, [this, keyref]() {
+        this->updateKeyWidgets(keyref);
+        this->setEnabled(true);
+    });
     cmd->setParentWidget(this);
     cmd->start();
 }
@@ -347,10 +355,9 @@ void PIVCardWidget::writeKeyToCard(const std::string &keyref)
 {
     auto cmd = new KeyToCardCommand(keyref, mCardSerialNumber, PIVCard::AppName);
     this->setEnabled(false);
-    connect(cmd, &KeyToCardCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &KeyToCardCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->setParentWidget(this);
     cmd->start();
 }
@@ -359,10 +366,9 @@ void PIVCardWidget::createKeyFromCardKeys()
 {
     auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mCardSerialNumber, PIVCard::AppName, this);
     this->setEnabled(false);
-    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->start();
 }
 
@@ -370,10 +376,9 @@ void PIVCardWidget::changePin(const std::string &keyRef)
 {
     auto cmd = new ChangePinCommand(mCardSerialNumber, PIVCard::AppName, this);
     this->setEnabled(false);
-    connect(cmd, &ChangePinCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &ChangePinCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->setKeyRef(keyRef);
     cmd->start();
 }
@@ -382,9 +387,8 @@ void PIVCardWidget::setAdminKey()
 {
     auto cmd = new SetPIVCardApplicationAdministrationKeyCommand(mCardSerialNumber, this);
     this->setEnabled(false);
-    connect(cmd, &SetPIVCardApplicationAdministrationKeyCommand::finished,
-            this, [this]() {
-                this->setEnabled(true);
-            });
+    connect(cmd, &SetPIVCardApplicationAdministrationKeyCommand::finished, this, [this]() {
+        this->setEnabled(true);
+    });
     cmd->start();
 }

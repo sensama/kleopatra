@@ -14,19 +14,19 @@
 
 #include "emailoperationspreferences.h"
 
-#include <crypto/gui/newresultpage.h>
 #include <crypto/decryptverifytask.h>
+#include <crypto/gui/newresultpage.h>
 #include <crypto/taskcollection.h>
 
 #include <Libkleo/GnuPG>
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
+#include <utils/output.h>
 
 #include <QGpgME/Protocol>
 
-#include <Libkleo/Formatting>
 #include <Libkleo/Classify>
+#include <Libkleo/Formatting>
 
 #include <KMime/HeaderParsing>
 
@@ -35,7 +35,6 @@
 #include <QPoint>
 #include <QPointer>
 #include <QTimer>
-
 
 using namespace GpgME;
 using namespace Kleo;
@@ -51,8 +50,8 @@ class DecryptVerifyEMailWizard : public QWizard
     Q_OBJECT
 public:
     explicit DecryptVerifyEMailWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {})
-        : QWizard(parent, f),
-          m_resultPage(this)
+        : QWizard(parent, f)
+        , m_resultPage(this)
     {
         KDAB_SET_OBJECT_NAME(m_resultPage);
 
@@ -84,14 +83,14 @@ private:
 class DecryptVerifyEMailController::Private
 {
     DecryptVerifyEMailController *const q;
-public:
 
+public:
     explicit Private(DecryptVerifyEMailController *qq);
 
     void slotWizardCanceled();
     void schedule();
 
-    std::vector<std::shared_ptr<AbstractDecryptVerifyTask> > buildTasks();
+    std::vector<std::shared_ptr<AbstractDecryptVerifyTask>> buildTasks();
 
     static DecryptVerifyEMailWizard *findOrCreateWizard(unsigned int id);
 
@@ -105,13 +104,13 @@ public:
 
     void cancelAllTasks();
 
-    std::vector<std::shared_ptr<Input> > m_inputs, m_signedDatas;
-    std::vector<std::shared_ptr<Output> > m_outputs;
+    std::vector<std::shared_ptr<Input>> m_inputs, m_signedDatas;
+    std::vector<std::shared_ptr<Output>> m_outputs;
 
     unsigned int m_sessionId;
     QPointer<DecryptVerifyEMailWizard> m_wizard;
-    std::vector<std::shared_ptr<const DecryptVerifyResult> > m_results;
-    std::vector<std::shared_ptr<AbstractDecryptVerifyTask> > m_runnableTasks, m_completedTasks;
+    std::vector<std::shared_ptr<const DecryptVerifyResult>> m_results;
+    std::vector<std::shared_ptr<AbstractDecryptVerifyTask>> m_runnableTasks, m_completedTasks;
     std::shared_ptr<AbstractDecryptVerifyTask> m_runningTask;
     bool m_silent;
     bool m_operationCompleted;
@@ -122,13 +121,13 @@ public:
 };
 
 DecryptVerifyEMailController::Private::Private(DecryptVerifyEMailController *qq)
-    : q(qq),
-      m_sessionId(0),
-      m_silent(false),
-      m_operationCompleted(false),
-      m_operation(DecryptVerify),
-      m_protocol(UnknownProtocol),
-      m_verificationMode(Detached)
+    : q(qq)
+    , m_sessionId(0)
+    , m_silent(false)
+    , m_operationCompleted(false)
+    , m_operation(DecryptVerify)
+    , m_protocol(UnknownProtocol)
+    , m_verificationMode(Detached)
 {
     qRegisterMetaType<VerificationResult>();
 }
@@ -159,7 +158,6 @@ void DecryptVerifyEMailController::doTaskDone(const Task *task, const std::share
     }
 
     QTimer::singleShot(0, this, SLOT(schedule()));
-
 }
 
 void DecryptVerifyEMailController::Private::schedule()
@@ -191,12 +189,11 @@ void DecryptVerifyEMailController::Private::ensureWizardCreated()
     DecryptVerifyEMailWizard *w = findOrCreateWizard(m_sessionId);
     connect(w, SIGNAL(destroyed()), q, SLOT(slotWizardCanceled()), Qt::QueuedConnection);
     m_wizard = w;
-
 }
 
 namespace
 {
-template <typename C>
+template<typename C>
 void collectGarbage(C &c)
 {
     auto it = c.begin();
@@ -212,23 +209,19 @@ void collectGarbage(C &c)
 // static
 DecryptVerifyEMailWizard *DecryptVerifyEMailController::Private::findOrCreateWizard(unsigned int id)
 {
-
-    static std::map<unsigned int, QPointer<DecryptVerifyEMailWizard> > s_wizards;
+    static std::map<unsigned int, QPointer<DecryptVerifyEMailWizard>> s_wizards;
 
     collectGarbage(s_wizards);
 
     qCDebug(KLEOPATRA_LOG) << "id = " << id;
 
     if (id != 0) {
-
-        const auto it
-            = s_wizards.find(id);
+        const auto it = s_wizards.find(id);
 
         if (it != s_wizards.end()) {
             Q_ASSERT(it->second && "This should have been garbage-collected");
             return it->second;
         }
-
     }
 
     auto w = new DecryptVerifyEMailWizard;
@@ -245,7 +238,7 @@ DecryptVerifyEMailWizard *DecryptVerifyEMailController::Private::findOrCreateWiz
     return w;
 }
 
-std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > DecryptVerifyEMailController::Private::buildTasks()
+std::vector<std::shared_ptr<AbstractDecryptVerifyTask>> DecryptVerifyEMailController::Private::buildTasks()
 {
     const uint numInputs = m_inputs.size();
     const uint numMessages = m_signedDatas.size();
@@ -254,29 +247,26 @@ std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > DecryptVerifyEMailCont
 
     // these are duplicated from DecryptVerifyCommandEMailBase::Private::checkForErrors with slightly modified error codes/messages
     if (!numInputs)
-        throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT),
-                              i18n("At least one input needs to be provided"));
+        throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT), i18n("At least one input needs to be provided"));
 
     if (numInformativeSenders > 0 && numInformativeSenders != numInputs)
-        throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT),     //TODO use better error code if possible
+        throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT), // TODO use better error code if possible
                               i18n("Informative sender/signed data count mismatch"));
 
     if (numMessages) {
         if (numMessages != numInputs)
-            throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT),     //TODO use better error code if possible
+            throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT), // TODO use better error code if possible
                                   i18n("Signature/signed data count mismatch"));
         else if (m_operation != Verify || m_verificationMode != Detached)
-            throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT),
-                                  i18n("Signed data can only be given for detached signature verification"));
+            throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT), i18n("Signed data can only be given for detached signature verification"));
     }
 
     if (numOutputs) {
         if (numOutputs != numInputs)
-            throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT),    //TODO use better error code if possible
+            throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT), // TODO use better error code if possible
                                   i18n("Input/Output count mismatch"));
         else if (numMessages)
-            throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT),
-                                  i18n("Cannot use output and signed data simultaneously"));
+            throw Kleo::Exception(makeGnuPGError(GPG_ERR_CONFLICT), i18n("Cannot use output and signed data simultaneously"));
     }
 
     kleo_assert(m_protocol != UnknownProtocol);
@@ -290,7 +280,7 @@ std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > DecryptVerifyEMailCont
         ensureWizardVisible();
     }
 
-    std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > tasks;
+    std::vector<std::shared_ptr<AbstractDecryptVerifyTask>> tasks;
 
     for (unsigned int i = 0; i < numInputs; ++i) {
         std::shared_ptr<AbstractDecryptVerifyTask> task;
@@ -302,8 +292,7 @@ std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > DecryptVerifyEMailCont
             t->setOutput(m_outputs.at(i));
             t->setProtocol(m_protocol);
             task = t;
-        }
-        break;
+        } break;
         case Verify: {
             if (m_verificationMode == Detached) {
                 std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
@@ -326,8 +315,7 @@ std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > DecryptVerifyEMailCont
                 t->setProtocol(m_protocol);
                 task = t;
             }
-        }
-        break;
+        } break;
         case DecryptVerify: {
             std::shared_ptr<DecryptVerifyTask> t(new DecryptVerifyTask);
             t->setInput(m_inputs.at(i));
@@ -354,11 +342,15 @@ void DecryptVerifyEMailController::Private::ensureWizardVisible()
     q->bringToForeground(m_wizard);
 }
 
-DecryptVerifyEMailController::DecryptVerifyEMailController(QObject *parent) : Controller(parent), d(new Private(this))
+DecryptVerifyEMailController::DecryptVerifyEMailController(QObject *parent)
+    : Controller(parent)
+    , d(new Private(this))
 {
 }
 
-DecryptVerifyEMailController::DecryptVerifyEMailController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent) : Controller(ctx, parent), d(new Private(this))
+DecryptVerifyEMailController::DecryptVerifyEMailController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
+    : Controller(ctx, parent)
+    , d(new Private(this))
 {
 }
 
@@ -372,7 +364,7 @@ void DecryptVerifyEMailController::start()
     d->m_runnableTasks = d->buildTasks();
 
     const std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    std::vector<std::shared_ptr<Task> > tsks;
+    std::vector<std::shared_ptr<Task>> tsks;
     for (std::shared_ptr<Task> i : std::as_const(d->m_runnableTasks)) {
         connectTask(i);
         tsks.push_back(i);
@@ -390,7 +382,7 @@ void DecryptVerifyEMailController::setInput(const std::shared_ptr<Input> &input)
     d->m_inputs.resize(1, input);
 }
 
-void DecryptVerifyEMailController::setInputs(const std::vector<std::shared_ptr<Input> > &inputs)
+void DecryptVerifyEMailController::setInputs(const std::vector<std::shared_ptr<Input>> &inputs)
 {
     d->m_inputs = inputs;
 }
@@ -400,7 +392,7 @@ void DecryptVerifyEMailController::setSignedData(const std::shared_ptr<Input> &d
     d->m_signedDatas.resize(1, data);
 }
 
-void DecryptVerifyEMailController::setSignedData(const std::vector<std::shared_ptr<Input> > &data)
+void DecryptVerifyEMailController::setSignedData(const std::vector<std::shared_ptr<Input>> &data)
 {
     d->m_signedDatas = data;
 }
@@ -410,7 +402,7 @@ void DecryptVerifyEMailController::setOutput(const std::shared_ptr<Output> &outp
     d->m_outputs.resize(1, output);
 }
 
-void DecryptVerifyEMailController::setOutputs(const std::vector<std::shared_ptr<Output> > &outputs)
+void DecryptVerifyEMailController::setOutputs(const std::vector<std::shared_ptr<Output>> &outputs)
 {
     d->m_outputs = outputs;
 }
@@ -465,7 +457,6 @@ void DecryptVerifyEMailController::cancel()
 
 void DecryptVerifyEMailController::Private::cancelAllTasks()
 {
-
     // we just kill all runnable tasks - this will not result in
     // signal emissions.
     m_runnableTasks.clear();

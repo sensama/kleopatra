@@ -16,12 +16,15 @@
 
 #include "kleopatra_debug.h"
 
-//#define ENABLE_HEADERVIEW_DEBUG
+// #define ENABLE_HEADERVIEW_DEBUG
 
 #ifdef ENABLE_HEADERVIEW_DEBUG
-# define hvDebug qDebug
+#define hvDebug qDebug
 #else
-# define hvDebug if ( true ) {} else qDebug
+#define hvDebug                                                                                                                                                \
+    if (true) {                                                                                                                                                \
+    } else                                                                                                                                                     \
+        qDebug
 #endif
 
 using namespace Kleo;
@@ -48,7 +51,7 @@ static void apply_section_sizes(QHeaderView *view, const std::vector<int> &newSi
 namespace
 {
 
-template <typename T_container>
+template<typename T_container>
 inline typename T_container::value_type lookup(const T_container &c, unsigned int i, const typename T_container::value_type &defaultValue)
 {
     return i < c.size() ? c[i] : defaultValue;
@@ -60,14 +63,19 @@ class HeaderView::Private
 {
     friend class ::Kleo::HeaderView;
     HeaderView *const q;
+
 public:
     Private(HeaderView *qq)
-        : q(qq),
-          mousePressed(false),
-          sizes()
+        : q(qq)
+        , mousePressed(false)
+        , sizes()
     {
-        connect(q, &QHeaderView::sectionCountChanged, q, [this](int oldCount, int newCount) { _klhv_slotSectionCountChanged(oldCount, newCount); });
-        connect(q, &QHeaderView::sectionResized, q, [this](int idx, int oldSize, int newSize) { _klhv_slotSectionResized(idx, oldSize, newSize); });
+        connect(q, &QHeaderView::sectionCountChanged, q, [this](int oldCount, int newCount) {
+            _klhv_slotSectionCountChanged(oldCount, newCount);
+        });
+        connect(q, &QHeaderView::sectionResized, q, [this](int idx, int oldSize, int newSize) {
+            _klhv_slotSectionResized(idx, oldSize, newSize);
+        });
     }
 
     void _klhv_slotSectionCountChanged(int oldCount, int newCount)
@@ -102,12 +110,14 @@ public:
 };
 
 HeaderView::HeaderView(Qt::Orientation o, QWidget *p)
-    : QHeaderView(o, p), d(new Private(this))
+    : QHeaderView(o, p)
+    , d(new Private(this))
 {
-
 }
 
-HeaderView::~HeaderView() {}
+HeaderView::~HeaderView()
+{
+}
 
 void HeaderView::setSectionSizes(const std::vector<int> &sizes)
 {

@@ -45,8 +45,7 @@ using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
 using namespace GpgME;
 
-struct KeyCreationPage::UI
-{
+struct KeyCreationPage::UI {
     UI(QWizardPage *parent)
     {
         parent->setTitle(i18nc("@title", "Creating Key Pair..."));
@@ -93,11 +92,9 @@ void KeyCreationPage::startJob()
         ctx->setPassphraseProvider(&mEmptyPassphraseProvider);
         ctx->setPinentryMode(Context::PinentryLoopback);
     }
-    connect(j, &QGpgME::KeyGenerationJob::result,
-            this, &KeyCreationPage::slotResult);
+    connect(j, &QGpgME::KeyGenerationJob::result, this, &KeyCreationPage::slotResult);
     if (const Error err = j->start(createGnupgKeyParms()))
-        setField(QStringLiteral("error"), i18n("Could not start key pair creation: %1",
-                                                Formatting::errorAsString(err)));
+        setField(QStringLiteral("error"), i18n("Could not start key pair creation: %1", Formatting::errorAsString(err)));
     else {
         job = j;
     }
@@ -109,8 +106,7 @@ KeyUsage KeyCreationPage::keyUsage() const
     if (signingAllowed()) {
         usage.setCanSign(true);
     }
-    if (encryptionAllowed() && !is_ecdh(subkeyType()) &&
-        !is_dsa(keyType()) && !is_rsa(subkeyType())) {
+    if (encryptionAllowed() && !is_ecdh(subkeyType()) && !is_dsa(keyType()) && !is_rsa(subkeyType())) {
         usage.setCanEncrypt(true);
     }
     if (authenticationAllowed()) {
@@ -127,8 +123,7 @@ KeyUsage KeyCreationPage::keyUsage() const
 KeyUsage KeyCreationPage::subkeyUsage() const
 {
     KeyUsage usage;
-    if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()) ||
-                                is_ecdh(subkeyType()))) {
+    if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()) || is_ecdh(subkeyType()))) {
         Q_ASSERT(subkeyType());
         usage.setCanEncrypt(true);
     }
@@ -193,23 +188,22 @@ void KeyCreationPage::slotResult(const GpgME::KeyGenerationResult &result, const
 {
     Q_UNUSED(auditLog)
     if (result.error().code() || (pgp() && !result.fingerprint())) {
-        setField(QStringLiteral("error"), result.error().isCanceled()
-                    ? i18n("Operation canceled.")
-                    : i18n("Could not create key pair: %1",
-                        Formatting::errorAsString(result.error())));
+        setField(QStringLiteral("error"),
+                 result.error().isCanceled() ? i18n("Operation canceled.") : i18n("Could not create key pair: %1", Formatting::errorAsString(result.error())));
         setField(QStringLiteral("url"), QString());
         setField(QStringLiteral("result"), QString());
     } else if (pgp()) {
         setField(QStringLiteral("error"), QString());
         setField(QStringLiteral("url"), QString());
-        setField(QStringLiteral("result"), i18n("Key pair created successfully.\n"
-                                                "Fingerprint: %1", Formatting::prettyID(result.fingerprint())));
+        setField(QStringLiteral("result"),
+                 i18n("Key pair created successfully.\n"
+                      "Fingerprint: %1",
+                      Formatting::prettyID(result.fingerprint())));
     } else {
         QFile file(tmpDir().absoluteFilePath(QStringLiteral("request.p10")));
 
         if (!file.open(QIODevice::WriteOnly)) {
-            setField(QStringLiteral("error"), i18n("Could not write output file %1: %2",
-                                                    file.fileName(), file.errorString()));
+            setField(QStringLiteral("error"), i18n("Could not write output file %1: %2", file.fileName(), file.errorString()));
             setField(QStringLiteral("url"), QString());
             setField(QStringLiteral("result"), QString());
         } else {
@@ -234,15 +228,15 @@ void KeyCreationPage::slotResult(const GpgME::KeyGenerationResult &result, const
             delete ctx;
         }
     }
-    setField(QStringLiteral("fingerprint"), result.fingerprint() ?
-                QString::fromLatin1(result.fingerprint()) : QString());
+    setField(QStringLiteral("fingerprint"), result.fingerprint() ? QString::fromLatin1(result.fingerprint()) : QString());
     job = nullptr;
     Q_EMIT completeChanged();
     const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
     if (config.readEntry("SkipResultPage", false)) {
         if (result.fingerprint()) {
-            KleopatraApplication::instance()->slotActivateRequested(QStringList() <<
-                    QStringLiteral("kleopatra") << QStringLiteral("--query") << QLatin1String(result.fingerprint()), QString());
+            KleopatraApplication::instance()->slotActivateRequested(QStringList() << QStringLiteral("kleopatra") << QStringLiteral("--query")
+                                                                                  << QLatin1String(result.fingerprint()),
+                                                                    QString());
             QMetaObject::invokeMethod(wizard(), "close", Qt::QueuedConnection);
         } else {
             QMetaObject::invokeMethod(wizard(), "next", Qt::QueuedConnection);

@@ -32,10 +32,9 @@ bool isLastValidUserID(const GpgME::UserID &userId)
         return false;
     }
     const auto userIds = userId.parent().userIDs();
-    const int numberOfValidUserIds = std::count_if(std::begin(userIds), std::end(userIds),
-                                                   [](const auto &u) {
-                                                       return !Kleo::isRevokedOrExpired(u);
-                                                   });
+    const int numberOfValidUserIds = std::count_if(std::begin(userIds), std::end(userIds), [](const auto &u) {
+        return !Kleo::isRevokedOrExpired(u);
+    });
     return numberOfValidUserIds == 1;
 }
 

@@ -18,14 +18,14 @@
 #include "kleopatra_debug.h"
 
 #ifdef Q_OS_WIN
-# include <selftest/registrycheck.h>
+#include <selftest/registrycheck.h>
 #endif
-#include <selftest/enginecheck.h>
-#include <selftest/gpgconfcheck.h>
-#include <selftest/uiservercheck.h>
-#include <selftest/gpgagentcheck.h>
-#include <selftest/libkleopatrarccheck.h>
 #include <selftest/compliancecheck.h>
+#include <selftest/enginecheck.h>
+#include <selftest/gpgagentcheck.h>
+#include <selftest/gpgconfcheck.h>
+#include <selftest/libkleopatrarccheck.h>
+#include <selftest/uiservercheck.h>
 
 #include <Libkleo/Stl_Util>
 
@@ -51,7 +51,7 @@ static const char *const components[] = {
     "gpgsm",
     "dirmngr",
 };
-static const unsigned int numComponents = sizeof components / sizeof * components;
+static const unsigned int numComponents = sizeof components / sizeof *components;
 
 class SelfTestCommand::Private : Command::Private
 {
@@ -60,6 +60,7 @@ class SelfTestCommand::Private : Command::Private
     {
         return static_cast<SelfTestCommand *>(q);
     }
+
 public:
     explicit Private(SelfTestCommand *qq, KeyListController *c);
     ~Private() override;
@@ -76,9 +77,15 @@ private:
         applyWindowID(dialog);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-        connect(dialog, &SelfTestDialog::updateRequested, q_func(), [this]() { slotUpdateRequested(); });
-        connect(dialog, &QDialog::accepted, q_func(), [this]() { slotDialogAccepted(); });
-        connect(dialog, &QDialog::rejected, q_func(), [this]() { slotDialogRejected(); });
+        connect(dialog, &SelfTestDialog::updateRequested, q_func(), [this]() {
+            slotUpdateRequested();
+        });
+        connect(dialog, &QDialog::accepted, q_func(), [this]() {
+            slotDialogAccepted();
+        });
+        connect(dialog, &QDialog::rejected, q_func(), [this]() {
+            slotDialogRejected();
+        });
 
         dialog->setRunAtStartUp(runAtStartUp());
         dialog->setAutomaticMode(automatic);
@@ -127,7 +134,7 @@ private:
 
     void runTests()
     {
-        std::vector< std::shared_ptr<Kleo::SelfTest> > tests;
+        std::vector<std::shared_ptr<Kleo::SelfTest>> tests;
 
 #if defined(Q_OS_WIN)
         qCDebug(KLEOPATRA_LOG) << "Checking Windows Registry...";
@@ -151,10 +158,9 @@ private:
         tests.push_back(makeDeVSComplianceCheckSelfTest());
         tests.push_back(makeLibKleopatraRcSelfTest());
 
-        if (!dialog && std::none_of(tests.cbegin(), tests.cend(),
-                                    [](const std::shared_ptr<SelfTest> &test) {
-                                        return test->failed();
-                                    })) {
+        if (!dialog && std::none_of(tests.cbegin(), tests.cend(), [](const std::shared_ptr<SelfTest> &test) {
+                return test->failed();
+            })) {
             finished();
             KConfigGroup config(KSharedConfig::openConfig(), "Self-Test");
             config.writeEntry("last-selftest-version", CURRENT_SELFTEST_VERSION);
@@ -211,17 +217,15 @@ const SelfTestCommand::Private *SelfTestCommand::d_func() const
 #define q q_func()
 
 SelfTestCommand::Private::Private(SelfTestCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      dialog(),
-      canceled(false),
-      automatic(false)
+    : Command::Private(qq, c)
+    , dialog()
+    , canceled(false)
+    , automatic(false)
 {
-
 }
 
 SelfTestCommand::Private::~Private()
 {
-
 }
 
 SelfTestCommand::SelfTestCommand(KeyListController *c)
@@ -238,10 +242,11 @@ SelfTestCommand::SelfTestCommand(QAbstractItemView *v, KeyListController *c)
 
 void SelfTestCommand::Private::init()
 {
-
 }
 
-SelfTestCommand::~SelfTestCommand() {}
+SelfTestCommand::~SelfTestCommand()
+{
+}
 
 void SelfTestCommand::setAutomaticMode(bool on)
 {
@@ -258,7 +263,6 @@ bool SelfTestCommand::isCanceled() const
 
 void SelfTestCommand::doStart()
 {
-
     if (d->automatic) {
         if (!d->runAtStartUp()) {
             d->finished();
@@ -269,7 +273,6 @@ void SelfTestCommand::doStart()
     }
 
     d->runTests();
-
 }
 
 void SelfTestCommand::doCancel()

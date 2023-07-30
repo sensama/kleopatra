@@ -20,6 +20,7 @@ class Kleo::CardCommand::Private : public Command::Private
     {
         return static_cast<Kleo::CardCommand *>(q);
     }
+
 public:
     explicit Private(CardCommand *qq, const std::string &serialNumber, QWidget *parent);
     ~Private() override;
@@ -42,4 +43,3 @@ private:
     std::string serialNumber_;
     bool autoResetCardToOpenPGP = true;
 };
-

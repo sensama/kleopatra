@@ -9,21 +9,21 @@
 
 #include <config-kleopatra.h>
 
-#include "createchecksumscontroller.h"
 #include "checksumsutils_p.h"
+#include "createchecksumscontroller.h"
 
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
+#include <utils/output.h>
 
-#include <Libkleo/Stl_Util>
 #include <Libkleo/ChecksumDefinition>
 #include <Libkleo/Classify>
+#include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
-#include <QTemporaryFile>
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <KSharedConfig>
+#include <QTemporaryFile>
 
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -31,20 +31,20 @@
 #include <QListWidget>
 #include <QVBoxLayout>
 
-#include <QPointer>
-#include <QFileInfo>
-#include <QThread>
-#include <QMutex>
-#include <QProgressDialog>
 #include <QDir>
+#include <QFileInfo>
+#include <QMutex>
+#include <QPointer>
 #include <QProcess>
+#include <QProgressDialog>
+#include <QThread>
 
 #include <gpg-error.h>
 
 #include <deque>
-#include <map>
-#include <limits>
 #include <functional>
+#include <limits>
+#include <map>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -57,17 +57,17 @@ class ResultDialog : public QDialog
     Q_OBJECT
 public:
     ResultDialog(const QStringList &created, const QStringList &errors, QWidget *parent = nullptr, Qt::WindowFlags f = {})
-        : QDialog(parent, f),
-          createdLB(created.empty()
-                    ? i18nc("@info", "No checksum files have been created.")
-                    : i18nc("@info", "These checksum files have been successfully created:"), this),
-          createdLW(this),
-          errorsLB(errors.empty()
-                   ? i18nc("@info", "There were no errors.") //
-                   : i18nc("@info", "The following errors were encountered:"), this),
-          errorsLW(this),
-          buttonBox(QDialogButtonBox::Ok, Qt::Horizontal, this),
-          vlay(this)
+        : QDialog(parent, f)
+        , createdLB(created.empty() ? i18nc("@info", "No checksum files have been created.")
+                                    : i18nc("@info", "These checksum files have been successfully created:"),
+                    this)
+        , createdLW(this)
+        , errorsLB(errors.empty() ? i18nc("@info", "There were no errors.") //
+                                  : i18nc("@info", "The following errors were encountered:"),
+                   this)
+        , errorsLW(this)
+        , buttonBox(QDialogButtonBox::Ok, Qt::Horizontal, this)
+        , vlay(this)
     {
         KDAB_SET_OBJECT_NAME(createdLB);
         KDAB_SET_OBJECT_NAME(createdLW);
@@ -136,8 +136,8 @@ private:
 static QStringList fs_sort(QStringList l)
 {
     std::sort(l.begin(), l.end(), [](const QString &lhs, const QString &rhs) {
-                                    return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
-                                  });
+        return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
+    });
     return l;
 }
 
@@ -146,12 +146,9 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
     fs_sort(l1);
     fs_sort(l2);
     QStringList result;
-    std::set_intersection(l1.begin(), l1.end(),
-                          l2.begin(), l2.end(),
-                          std::back_inserter(result),
-                          [](const QString &lhs, const QString &rhs) {
-                              return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
-                          });
+    std::set_intersection(l1.begin(), l1.end(), l2.begin(), l2.end(), std::back_inserter(result), [](const QString &lhs, const QString &rhs) {
+        return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
+    });
     return result;
 }
 
@@ -160,6 +157,7 @@ class CreateChecksumsController::Private : public QThread
     Q_OBJECT
     friend class ::Kleo::Crypto::CreateChecksumsController;
     CreateChecksumsController *const q;
+
 public:
     explicit Private(CreateChecksumsController *qq);
     ~Private() override;
@@ -180,8 +178,7 @@ private:
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         q->bringToForeground(dlg);
         if (!errors.empty())
-            q->setLastError(gpg_error(GPG_ERR_GENERAL),
-                            errors.join(QLatin1Char('\n')));
+            q->setLastError(gpg_error(GPG_ERR_GENERAL), errors.join(QLatin1Char('\n')));
         q->emitDoneOrError();
     }
     void slotProgress(int current, int total, const QString &what)
@@ -205,7 +202,7 @@ private:
     QPointer<QProgressDialog> progressDialog;
 #endif
     mutable QMutex mutex;
-    const std::vector< std::shared_ptr<ChecksumDefinition> > checksumDefinitions;
+    const std::vector<std::shared_ptr<ChecksumDefinition>> checksumDefinitions;
     std::shared_ptr<ChecksumDefinition> checksumDefinition;
     QStringList files;
     QStringList errors, created;
@@ -214,25 +211,24 @@ private:
 };
 
 CreateChecksumsController::Private::Private(CreateChecksumsController *qq)
-    : q(qq),
+    : q(qq)
+    ,
 #ifndef QT_NO_PROGRESSDIALOG
-      progressDialog(),
+    progressDialog()
+    ,
 #endif
-      mutex(),
-      checksumDefinitions(ChecksumDefinition::getChecksumDefinitions()),
-      checksumDefinition(ChecksumDefinition::getDefaultChecksumDefinition(checksumDefinitions)),
-      files(),
-      errors(),
-      created(),
-      allowAddition(false),
-      canceled(false)
+    mutex()
+    , checksumDefinitions(ChecksumDefinition::getChecksumDefinitions())
+    , checksumDefinition(ChecksumDefinition::getDefaultChecksumDefinition(checksumDefinitions))
+    , files()
+    , errors()
+    , created()
+    , allowAddition(false)
+    , canceled(false)
 {
-    connect(this, SIGNAL(progress(int,int,QString)),
-            q, SLOT(slotProgress(int,int,QString)));
-    connect(this, &Private::progress,
-            q, &Controller::progress);
-    connect(this, SIGNAL(finished()),
-            q, SLOT(slotOperationFinished()));
+    connect(this, SIGNAL(progress(int, int, QString)), q, SLOT(slotProgress(int, int, QString)));
+    connect(this, &Private::progress, q, &Controller::progress);
+    connect(this, SIGNAL(finished()), q, SLOT(slotOperationFinished()));
 }
 
 CreateChecksumsController::Private::~Private()
@@ -241,15 +237,15 @@ CreateChecksumsController::Private::~Private()
 }
 
 CreateChecksumsController::CreateChecksumsController(QObject *p)
-    : Controller(p), d(new Private(this))
+    : Controller(p)
+    , d(new Private(this))
 {
-
 }
 
 CreateChecksumsController::CreateChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *p)
-    : Controller(ctx, p), d(new Private(this))
+    : Controller(ctx, p)
+    , d(new Private(this))
 {
-
 }
 
 CreateChecksumsController::~CreateChecksumsController()
@@ -262,9 +258,10 @@ void CreateChecksumsController::setFiles(const QStringList &files)
     kleo_assert(!d->isRunning());
     kleo_assert(!files.empty());
     const std::vector<QRegularExpression> patterns = ChecksumsUtils::get_patterns(d->checksumDefinitions);
-    if (!std::all_of(files.cbegin(), files.cend(), ChecksumsUtils::matches_any(patterns)) &&
-            !std::none_of(files.cbegin(), files.cend(), ChecksumsUtils::matches_any(patterns))) {
-        throw Exception(gpg_error(GPG_ERR_INV_ARG), i18n("Create Checksums: input files must be either all checksum files or all files to be checksummed, not a mixture of both."));
+    if (!std::all_of(files.cbegin(), files.cend(), ChecksumsUtils::matches_any(patterns))
+        && !std::none_of(files.cbegin(), files.cend(), ChecksumsUtils::matches_any(patterns))) {
+        throw Exception(gpg_error(GPG_ERR_INV_ARG),
+                        i18n("Create Checksums: input files must be either all checksum files or all files to be checksummed, not a mixture of both."));
     }
     const QMutexLocker locker(&d->mutex);
     d->files = files;
@@ -285,7 +282,6 @@ bool CreateChecksumsController::allowAddition() const
 
 void CreateChecksumsController::start()
 {
-
     {
         const QMutexLocker locker(&d->mutex);
 
@@ -304,7 +300,6 @@ void CreateChecksumsController::start()
     }
 
     d->start();
-
 }
 
 void CreateChecksumsController::cancel()
@@ -331,10 +326,9 @@ static QStringList remove_checksum_files(QStringList l, const std::vector<QRegul
 {
     QStringList::iterator end = l.end();
     for (const auto &rx : rxs) {
-        end = std::remove_if(l.begin(), end,
-                             [rx](const QString &str) {
-                                return rx.match(str).hasMatch();
-                             });
+        end = std::remove_if(l.begin(), end, [rx](const QString &str) {
+            return rx.match(str).hasMatch();
+        });
     }
     l.erase(end, l.end());
     return l;
@@ -349,11 +343,11 @@ static quint64 aggregate_size(const QDir &dir, const QStringList &files)
     return n;
 }
 
-static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool allowAddition,
-        const std::function<void(int)> &progress,
-        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files,
+                                               bool allowAddition,
+                                               const std::function<void(int)> &progress,
+                                               const std::vector<std::shared_ptr<ChecksumDefinition>> &checksumDefinitions)
 {
-
     const std::vector<QRegularExpression> patterns = ChecksumsUtils::get_patterns(checksumDefinitions);
 
     std::vector<Dir> dirs;
@@ -362,7 +356,6 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
     int i = 0;
 
     for (const QString &file : files) {
-
         const QFileInfo fi(file);
         const QDir dir = fi.dir();
         const QStringList entries = remove_checksum_files(dir.entryList(QDir::Files), patterns);
@@ -374,8 +367,7 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
             const std::vector<ChecksumsUtils::File> parsed = ChecksumsUtils::parse_sum_file(fi.absoluteFilePath());
             QStringList oldInputFiles;
             oldInputFiles.reserve(parsed.size());
-            std::transform(parsed.cbegin(), parsed.cend(), std::back_inserter(oldInputFiles),
-                           std::mem_fn(&ChecksumsUtils::File::name));
+            std::transform(parsed.cbegin(), parsed.cend(), std::back_inserter(oldInputFiles), std::mem_fn(&ChecksumsUtils::File::name));
             inputFiles = fs_intersect(oldInputFiles, entries);
         }
 
@@ -392,7 +384,6 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
         if (progress) {
             progress(++i);
         }
-
     }
     return dirs;
 }
@@ -407,9 +398,11 @@ struct less_dir {
 };
 }
 
-static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const std::shared_ptr<ChecksumDefinition> &checksumDefinition, bool allowAddition,
-        const std::function<void(int)> &progress,
-        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+static std::vector<Dir> find_dirs_by_input_files(const QStringList &files,
+                                                 const std::shared_ptr<ChecksumDefinition> &checksumDefinition,
+                                                 bool allowAddition,
+                                                 const std::function<void(int)> &progress,
+                                                 const std::vector<std::shared_ptr<ChecksumDefinition>> &checksumDefinitions)
 {
     Q_UNUSED(allowAddition)
     if (!checksumDefinition) {
@@ -431,13 +424,11 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
         const QFileInfo fi(file);
         if (fi.isDir()) {
             QDir dir(file);
-            dirs2files[ dir ] = remove_checksum_files(dir.entryList(QDir::Files), patterns);
+            dirs2files[dir] = remove_checksum_files(dir.entryList(QDir::Files), patterns);
             const auto entryList = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-            std::transform(entryList.cbegin(), entryList.cend(),
-                           std::inserter(inputs, inputs.begin()),
-                           [&dir](const QString &entry) {
-                               return dir.absoluteFilePath(entry);
-                           });
+            std::transform(entryList.cbegin(), entryList.cend(), std::inserter(inputs, inputs.begin()), [&dir](const QString &entry) {
+                return dir.absoluteFilePath(entry);
+            });
         } else {
             dirs2files[fi.dir()].push_back(file);
         }
@@ -452,7 +443,6 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
     dirs.reserve(dirs2files.size());
 
     for (auto it = dirs2files.begin(), end = dirs2files.end(); it != end; ++it) {
-
         const QStringList inputFiles = remove_checksum_files(it->second, patterns);
         if (inputFiles.empty()) {
             continue;
@@ -470,7 +460,6 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
         if (progress) {
             progress(++i);
         }
-
     }
     return dirs;
 }
@@ -495,8 +484,7 @@ static QString process(const Dir &dir, bool *fatal)
             *fatal = true;
         }
         if (p.error() == QProcess::UnknownError)
-            return i18n("Error while running %1: %2", program,
-                        QString::fromLocal8Bit(p.readAllStandardError().trimmed().constData()));
+            return i18n("Error while running %1: %2", program, QString::fromLocal8Bit(p.readAllStandardError().trimmed().constData()));
         else {
             return i18n("Failed to execute %1: %2", program, p.errorString());
         }
@@ -520,11 +508,10 @@ static QDebug operator<<(QDebug s, const Dir &dir)
 
 void CreateChecksumsController::Private::run()
 {
-
     QMutexLocker locker(&mutex);
 
     const QStringList files = this->files;
-    const std::vector< std::shared_ptr<ChecksumDefinition> > checksumDefinitions = this->checksumDefinitions;
+    const std::vector<std::shared_ptr<ChecksumDefinition>> checksumDefinitions = this->checksumDefinitions;
     const std::shared_ptr<ChecksumDefinition> checksumDefinition = this->checksumDefinition;
     const bool allowAddition = this->allowAddition;
 
@@ -550,25 +537,22 @@ void CreateChecksumsController::Private::run()
     Q_EMIT progress(0, 0, scanning);
 
     const bool haveSumFiles = std::all_of(files.cbegin(), files.cend(), ChecksumsUtils::matches_any(ChecksumsUtils::get_patterns(checksumDefinitions)));
-    const auto progressCb = [this, &scanning](int c) { Q_EMIT progress(c, 0, scanning); };
-    const std::vector<Dir> dirs = haveSumFiles
-                                  ? find_dirs_by_sum_files(files, allowAddition, progressCb, checksumDefinitions)
-                                  : find_dirs_by_input_files(files, checksumDefinition, allowAddition, progressCb, checksumDefinitions);
+    const auto progressCb = [this, &scanning](int c) {
+        Q_EMIT progress(c, 0, scanning);
+    };
+    const std::vector<Dir> dirs = haveSumFiles ? find_dirs_by_sum_files(files, allowAddition, progressCb, checksumDefinitions)
+                                               : find_dirs_by_input_files(files, checksumDefinition, allowAddition, progressCb, checksumDefinitions);
 
     for (const Dir &dir : dirs) {
         qCDebug(KLEOPATRA_LOG) << dir;
     }
 
     if (!canceled) {
-
         Q_EMIT progress(0, 0, i18n("Calculating total size..."));
 
-        const quint64 total = kdtools::accumulate_transform(dirs.cbegin(), dirs.cend(),
-                                                            std::mem_fn(&Dir::totalSize),
-                                                            Q_UINT64_C(0));
+        const quint64 total = kdtools::accumulate_transform(dirs.cbegin(), dirs.cend(), std::mem_fn(&Dir::totalSize), Q_UINT64_C(0));
 
         if (!canceled) {
-
             //
             // Step 2: perform work (with progress reporting):
             //
@@ -578,8 +562,7 @@ void CreateChecksumsController::Private::run()
 
             quint64 done = 0;
             for (const Dir &dir : dirs) {
-                Q_EMIT progress(done / factor, total / factor,
-                                i18n("Checksumming (%2) in %1", dir.checksumDefinition->label(), dir.dir.path()));
+                Q_EMIT progress(done / factor, total / factor, i18n("Checksumming (%2) in %1", dir.checksumDefinition->label(), dir.dir.path()));
                 bool fatal = false;
                 const QString error = process(dir, &fatal);
                 if (!error.isEmpty()) {
@@ -593,7 +576,6 @@ void CreateChecksumsController::Private::run()
                 }
             }
             Q_EMIT progress(done / factor, total / factor, i18n("Done."));
-
         }
     }
 
@@ -603,8 +585,7 @@ void CreateChecksumsController::Private::run()
     this->created = created;
 
     // mutex unlocked by QMutexLocker
-
 }
 
-#include "moc_createchecksumscontroller.cpp"
 #include "createchecksumscontroller.moc"
+#include "moc_createchecksumscontroller.cpp"

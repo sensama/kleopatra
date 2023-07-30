@@ -9,26 +9,26 @@
 
 #include <config-kleopatra.h>
 
-#include "newsignencryptemailcontroller.h"
-#include "kleopatra_debug.h"
 #include "encryptemailtask.h"
+#include "kleopatra_debug.h"
+#include "newsignencryptemailcontroller.h"
+#include "recipient.h"
+#include "sender.h"
 #include "signemailtask.h"
 #include "taskcollection.h"
-#include "sender.h"
-#include "recipient.h"
 
 #include "emailoperationspreferences.h"
 
 #include <crypto/gui/signencryptemailconflictdialog.h>
 
 #include "utils/input.h"
+#include "utils/kleo_assert.h"
 #include "utils/output.h"
 #include <Libkleo/GnuPG>
-#include "utils/kleo_assert.h"
 
 #include <Libkleo/Compliance>
-#include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
+#include <Libkleo/Stl_Util>
 
 #include <gpgme++/key.h>
 
@@ -71,6 +71,7 @@ class NewSignEncryptEMailController::Private
 {
     friend class ::Kleo::Crypto::NewSignEncryptEMailController;
     NewSignEncryptEMailController *const q;
+
 public:
     explicit Private(NewSignEncryptEMailController *qq);
     ~Private();
@@ -96,25 +97,25 @@ private:
     bool detached : 1;
     Protocol presetProtocol;
     std::vector<Key> signers, recipients;
-    std::vector< std::shared_ptr<Task> > runnable, completed;
+    std::vector<std::shared_ptr<Task>> runnable, completed;
     std::shared_ptr<Task> cms, openpgp;
     QPointer<SignEncryptEMailConflictDialog> dialog;
 };
 
 NewSignEncryptEMailController::Private::Private(NewSignEncryptEMailController *qq)
-    : q(qq),
-      sign(false),
-      encrypt(false),
-      resolvingInProgress(false),
-      certificatesResolved(false),
-      detached(false),
-      presetProtocol(UnknownProtocol),
-      signers(),
-      recipients(),
-      runnable(),
-      cms(),
-      openpgp(),
-      dialog(new SignEncryptEMailConflictDialog)
+    : q(qq)
+    , sign(false)
+    , encrypt(false)
+    , resolvingInProgress(false)
+    , certificatesResolved(false)
+    , detached(false)
+    , presetProtocol(UnknownProtocol)
+    , signers()
+    , recipients()
+    , runnable()
+    , cms()
+    , openpgp()
+    , dialog(new SignEncryptEMailConflictDialog)
 {
     connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
     connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
@@ -126,15 +127,15 @@ NewSignEncryptEMailController::Private::~Private()
 }
 
 NewSignEncryptEMailController::NewSignEncryptEMailController(const std::shared_ptr<ExecutionContext> &xc, QObject *p)
-    : Controller(xc, p), d(new Private(this))
+    : Controller(xc, p)
+    , d(new Private(this))
 {
-
 }
 
 NewSignEncryptEMailController::NewSignEncryptEMailController(QObject *p)
-    : Controller(p), d(new Private(this))
+    : Controller(p)
+    , d(new Private(this))
 {
-
 }
 
 NewSignEncryptEMailController::~NewSignEncryptEMailController()
@@ -161,11 +162,12 @@ Protocol NewSignEncryptEMailController::protocol() const
 const char *NewSignEncryptEMailController::protocolAsString() const
 {
     switch (protocol()) {
-    case OpenPGP: return "OpenPGP";
-    case CMS:     return "CMS";
+    case OpenPGP:
+        return "OpenPGP";
+    case CMS:
+        return "CMS";
     default:
-        throw Kleo::Exception(gpg_error(GPG_ERR_INTERNAL),
-                              i18n("Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."));
+        throw Kleo::Exception(gpg_error(GPG_ERR_INTERNAL), i18n("Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."));
     }
 }
 
@@ -236,27 +238,23 @@ void NewSignEncryptEMailController::Private::slotDialogRejected()
 {
     resolvingInProgress = false;
     certificatesResolved = false;
-    QMetaObject::invokeMethod(q, "error", Qt::QueuedConnection,
-                              Q_ARG(int, gpg_error(GPG_ERR_CANCELED)),
-                              Q_ARG(QString, i18n("User cancel")));
+    QMetaObject::invokeMethod(q, "error", Qt::QueuedConnection, Q_ARG(int, gpg_error(GPG_ERR_CANCELED)), Q_ARG(QString, i18n("User cancel")));
 }
 
-void NewSignEncryptEMailController::startEncryption(const std::vector< std::shared_ptr<Input> > &inputs, const std::vector< std::shared_ptr<Output> > &outputs)
+void NewSignEncryptEMailController::startEncryption(const std::vector<std::shared_ptr<Input>> &inputs, const std::vector<std::shared_ptr<Output>> &outputs)
 {
-
     kleo_assert(d->encrypt);
     kleo_assert(!d->resolvingInProgress);
 
     kleo_assert(!inputs.empty());
     kleo_assert(outputs.size() == inputs.size());
 
-    std::vector< std::shared_ptr<Task> > tasks;
+    std::vector<std::shared_ptr<Task>> tasks;
     tasks.reserve(inputs.size());
 
     kleo_assert(!d->recipients.empty());
 
     for (unsigned int i = 0, end = inputs.size(); i < end; ++i) {
-
         const std::shared_ptr<EncryptEMailTask> task(new EncryptEMailTask);
 
         task->setInput(inputs[i]);
@@ -275,7 +273,7 @@ void NewSignEncryptEMailController::startEncryption(const std::vector< std::shar
 void NewSignEncryptEMailController::Private::startEncryption()
 {
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    std::vector<std::shared_ptr<Task> > tmp;
+    std::vector<std::shared_ptr<Task>> tmp;
     tmp.reserve(runnable.size());
     std::copy(runnable.cbegin(), runnable.cend(), std::back_inserter(tmp));
     coll->setTasks(tmp);
@@ -290,23 +288,21 @@ void NewSignEncryptEMailController::Private::startEncryption()
     schedule();
 }
 
-void NewSignEncryptEMailController::startSigning(const std::vector< std::shared_ptr<Input> > &inputs, const std::vector< std::shared_ptr<Output> > &outputs)
+void NewSignEncryptEMailController::startSigning(const std::vector<std::shared_ptr<Input>> &inputs, const std::vector<std::shared_ptr<Output>> &outputs)
 {
-
     kleo_assert(d->sign);
     kleo_assert(!d->resolvingInProgress);
 
     kleo_assert(!inputs.empty());
     kleo_assert(!outputs.empty());
 
-    std::vector< std::shared_ptr<Task> > tasks;
+    std::vector<std::shared_ptr<Task>> tasks;
     tasks.reserve(inputs.size());
 
     kleo_assert(!d->signers.empty());
     kleo_assert(std::none_of(d->signers.cbegin(), d->signers.cend(), std::mem_fn(&Key::isNull)));
 
     for (unsigned int i = 0, end = inputs.size(); i < end; ++i) {
-
         const std::shared_ptr<SignEMailTask> task(new SignEMailTask);
 
         task->setInput(inputs[i]);
@@ -326,7 +322,7 @@ void NewSignEncryptEMailController::startSigning(const std::vector< std::shared_
 void NewSignEncryptEMailController::Private::startSigning()
 {
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    std::vector<std::shared_ptr<Task> > tmp;
+    std::vector<std::shared_ptr<Task>> tmp;
     tmp.reserve(runnable.size());
     std::copy(runnable.cbegin(), runnable.cend(), std::back_inserter(tmp));
     coll->setTasks(tmp);
@@ -343,7 +339,6 @@ void NewSignEncryptEMailController::Private::startSigning()
 
 void NewSignEncryptEMailController::Private::schedule()
 {
-
     if (!cms)
         if (const std::shared_ptr<Task> t = takeRunnable(CMS)) {
             t->start();
@@ -365,8 +360,9 @@ void NewSignEncryptEMailController::Private::schedule()
 
 std::shared_ptr<Task> NewSignEncryptEMailController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const auto it = std::find_if(runnable.begin(), runnable.end(),
-                                 [proto](const std::shared_ptr<Task> &task) { return task->protocol() == proto; });
+    const auto it = std::find_if(runnable.begin(), runnable.end(), [proto](const std::shared_ptr<Task> &task) {
+        return task->protocol() == proto;
+    });
     if (it == runnable.end()) {
         return std::shared_ptr<Task>();
     }
@@ -383,14 +379,9 @@ void NewSignEncryptEMailController::doTaskDone(const Task *task, const std::shar
     if (result && result->hasError()) {
         QPointer<QObject> that = this;
         if (result->details().isEmpty())
-            KMessageBox::error(nullptr,
-                                       result->overview(),
-                                       i18nc("@title:window", "Error"));
+            KMessageBox::error(nullptr, result->overview(), i18nc("@title:window", "Error"));
         else
-            KMessageBox::detailedError(nullptr,
-                                       result->overview(),
-                                       result->details(),
-                                       i18nc("@title:window", "Error"));
+            KMessageBox::detailedError(nullptr, result->overview(), result->details(), i18nc("@title:window", "Error"));
         if (!that) {
             return;
         }
@@ -424,7 +415,6 @@ void NewSignEncryptEMailController::cancel()
 
 void NewSignEncryptEMailController::Private::cancelAllTasks()
 {
-
     // we just kill all runnable tasks - this will not result in
     // signal emissions.
     runnable.clear();

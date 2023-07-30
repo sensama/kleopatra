@@ -23,8 +23,8 @@
 #if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
 #include <queue>
 #endif
-#include <vector>
 #include <map>
+#include <vector>
 
 namespace GpgME
 {
@@ -46,15 +46,13 @@ class KeyCacheAutoRefreshSuspension;
 class QByteArray;
 class QProgressDialog;
 
-enum class ImportType
-{
+enum class ImportType {
     Unknown,
     Local,
     External,
 };
 
-struct ImportJobData
-{
+struct ImportJobData {
     QString id;
     GpgME::Protocol protocol = GpgME::UnknownProtocol;
     ImportType type = ImportType::Unknown;
@@ -64,8 +62,7 @@ struct ImportJobData
 
 bool operator==(const ImportJobData &lhs, const ImportJobData &rhs);
 
-struct ImportResultData
-{
+struct ImportResultData {
     QString id;
     GpgME::Protocol protocol = GpgME::UnknownProtocol;
     ImportType type = ImportType::Unknown;
@@ -73,10 +70,8 @@ struct ImportResultData
     Kleo::AuditLogEntry auditLog;
 };
 
-struct ImportedGroup
-{
-    enum class Status
-    {
+struct ImportedGroup {
+    enum class Status {
         New,
         Updated,
     };
@@ -85,8 +80,7 @@ struct ImportedGroup
     Status status;
 };
 
-struct ImportOptions
-{
+struct ImportOptions {
     QString importFilter;
     GpgME::Key::Origin keyOrigin = GpgME::Key::OriginUnknown;
     QString keyOriginUrl;
@@ -122,13 +116,10 @@ public:
 
     bool showPleaseCertify(const GpgME::Import &imp);
 
-    void keyListDone(const GpgME::KeyListResult &result,
-                     const std::vector<GpgME::Key> &keys,
-                     const QString &, const GpgME::Error&);
+    void keyListDone(const GpgME::KeyListResult &result, const std::vector<GpgME::Key> &keys, const QString &, const GpgME::Error &);
 
 private:
-    void showDetails(const std::vector<ImportResultData> &results,
-                     const std::vector<ImportedGroup> &groups);
+    void showDetails(const std::vector<ImportResultData> &results, const std::vector<ImportedGroup> &groups);
     void processResults();
     void tryToFinish();
     void keyCacheUpdated();
@@ -169,7 +160,11 @@ inline const Kleo::ImportCertificatesCommand::Private *Kleo::ImportCertificatesC
     return static_cast<const Private *>(d.get());
 }
 
-inline Kleo::ImportCertificatesCommand::ImportCertificatesCommand(Private *pp) : Command(pp) {}
-inline Kleo::ImportCertificatesCommand::ImportCertificatesCommand(QAbstractItemView *v, Private *pp) : Command(v, pp) {}
-
-
+inline Kleo::ImportCertificatesCommand::ImportCertificatesCommand(Private *pp)
+    : Command(pp)
+{
+}
+inline Kleo::ImportCertificatesCommand::ImportCertificatesCommand(QAbstractItemView *v, Private *pp)
+    : Command(v, pp)
+{
+}

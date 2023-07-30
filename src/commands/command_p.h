@@ -28,8 +28,10 @@
 class Kleo::Command::Private
 {
     friend class ::Kleo::Command;
+
 protected:
     Command *const q;
+
 public:
     explicit Private(Command *qq);
     explicit Private(Command *qq, KeyListController *controller);
@@ -94,7 +96,10 @@ public:
             KMessageBox::information(parentWidgetOrView(), text, title, noDontShowAgainName, options);
         }
     }
-    void information(const QString &text, const QString &caption = QString(), const QString &dontShowAgainName = QString(), KMessageBox::Options options = KMessageBox::Notify) const
+    void information(const QString &text,
+                     const QString &caption = QString(),
+                     const QString &dontShowAgainName = QString(),
+                     KMessageBox::Options options = KMessageBox::Notify) const
     {
         if (parentWId_) {
             KMessageBox::informationWId(parentWId_, text, caption, dontShowAgainName, options);
@@ -122,4 +127,3 @@ private:
     WId parentWId_ = 0;
     QPointer<KeyListController> controller_;
 };
-

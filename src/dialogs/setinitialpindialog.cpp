@@ -23,7 +23,6 @@
 
 #include <gpgme++/error.h>
 
-
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
@@ -40,12 +39,12 @@ enum State {
 
 const char *icons[] = {
     // PENDING(marc) use better icons, once available
-    "",                          // Unknown
-    "",                          // NotSet
-    "security-medium",           // AlreadySet
+    "", // Unknown
+    "", // NotSet
+    "security-medium", // AlreadySet
     "movie-process-working-kde", // Ongoing
-    "security-high",             // Ok
-    "security-low",              // Failed
+    "security-high", // Ok
+    "security-low", // Failed
 };
 
 static_assert(sizeof icons / sizeof(*icons) == NumStates, "");
@@ -53,7 +52,8 @@ static_assert(sizeof("movie-") == 7, "");
 
 static void update_widget(State state, bool delay, QLabel *resultLB, QLabel *lb, QPushButton *pb, QLabel *statusLB)
 {
-    Q_ASSERT(state >= 0); Q_ASSERT(state < NumStates);
+    Q_ASSERT(state >= 0);
+    Q_ASSERT(state < NumStates);
     const char *icon = icons[state];
     if (qstrncmp(icon, "movie-", sizeof("movie-") - 1) == 0) {
         resultLB->setMovie(KIconLoader::global()->loadMovie(QLatin1String(icon + sizeof("movie-")), KIconLoader::NoGroup));
@@ -65,7 +65,8 @@ static void update_widget(State state, bool delay, QLabel *resultLB, QLabel *lb,
     lb->setEnabled((state == NotSet || state == Failed) && !delay);
     pb->setEnabled((state == NotSet || state == Failed) && !delay);
     if (state == AlreadySet) {
-        statusLB->setText(xi18nc("@info", "No NullPin found. <warning>If this PIN was not set by you personally, the card might have been tampered with.</warning>"));
+        statusLB->setText(
+            xi18nc("@info", "No NullPin found. <warning>If this PIN was not set by you personally, the card might have been tampered with.</warning>"));
     }
 }
 
@@ -75,9 +76,7 @@ static QString format_error(const Error &err)
         return i18nc("@info", "Canceled setting PIN.");
     }
     if (err)
-        return xi18nc("@info",
-                      "There was an error setting the PIN: <message>%1</message>.",
-                      Formatting::errorAsString(err).toHtmlEscaped());
+        return xi18nc("@info", "There was an error setting the PIN: <message>%1</message>.", Formatting::errorAsString(err).toHtmlEscaped());
     else {
         return i18nc("@info", "PIN set successfully.");
     }
@@ -87,14 +86,14 @@ class SetInitialPinDialog::Private
 {
     friend class ::Kleo::Dialogs::SetInitialPinDialog;
     SetInitialPinDialog *const q;
+
 public:
     explicit Private(SetInitialPinDialog *qq)
-        : q(qq),
-          nksState(Unknown),
-          sigGState(Unknown),
-          ui(q)
+        : q(qq)
+        , nksState(Unknown)
+        , sigGState(Unknown)
+        , ui(q)
     {
-
     }
 
 private:
@@ -117,10 +116,8 @@ private:
 private:
     void updateWidgets()
     {
-        update_widget(nksState,  false,
-                      ui.nksResultIcon,  ui.nksLB,  ui.nksPB,  ui.nksStatusLB);
-        update_widget(sigGState, nksState == NotSet || nksState == Failed || nksState == Ongoing,
-                      ui.sigGResultIcon, ui.sigGLB, ui.sigGPB, ui.sigGStatusLB);
+        update_widget(nksState, false, ui.nksResultIcon, ui.nksLB, ui.nksPB, ui.nksStatusLB);
+        update_widget(sigGState, nksState == NotSet || nksState == Failed || nksState == Ongoing, ui.sigGResultIcon, ui.sigGLB, ui.sigGPB, ui.sigGStatusLB);
         ui.closePB()->setEnabled(q->isComplete());
         ui.cancelPB()->setEnabled(!q->isComplete());
     }
@@ -155,12 +152,14 @@ private:
 };
 
 SetInitialPinDialog::SetInitialPinDialog(QWidget *p)
-    : QDialog(p), d(new Private(this))
+    : QDialog(p)
+    , d(new Private(this))
 {
-
 }
 
-SetInitialPinDialog::~SetInitialPinDialog() {}
+SetInitialPinDialog::~SetInitialPinDialog()
+{
+}
 
 void SetInitialPinDialog::setNksPinPresent(bool on)
 {
@@ -194,7 +193,7 @@ void SetInitialPinDialog::setSigGPinSettingResult(const Error &err)
 
 bool SetInitialPinDialog::isComplete() const
 {
-    return (d->nksState  == Ok || d->nksState  == AlreadySet);
+    return (d->nksState == Ok || d->nksState == AlreadySet);
 }
 
 #include "moc_setinitialpindialog.cpp"

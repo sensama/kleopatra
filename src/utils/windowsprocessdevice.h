@@ -16,7 +16,6 @@
 class QString;
 #include <QStringList>
 
-
 namespace Kleo
 {
 /* Simplistic anonymous pipe io device
@@ -36,9 +35,9 @@ namespace Kleo
  * even the control of the buffer size is an advantage.
  *
  **/
-class WindowsProcessDevice: public QIODevice
+class WindowsProcessDevice : public QIODevice
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     WindowsProcessDevice(const QString &path, const QStringList &args, const QString &wd);
 
@@ -58,11 +57,13 @@ public:
 
     /* Get the an error string either stderr or a windows error */
     QString errorString();
+
 protected:
     /* Blocking read */
-    qint64 readData(char* data, qint64 maxSize) override;
+    qint64 readData(char *data, qint64 maxSize) override;
     /* Blocking write */
-    qint64 writeData(const char* data, qint64 size) override;
+    qint64 writeData(const char *data, qint64 size) override;
+
 private:
     Q_DISABLE_COPY(WindowsProcessDevice)
     class Private;

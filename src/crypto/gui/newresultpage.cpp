@@ -11,8 +11,8 @@
 
 #include "newresultpage.h"
 
-#include "resultlistwidget.h"
 #include "resultitemwidget.h"
+#include "resultlistwidget.h"
 
 #include <crypto/taskcollection.h>
 
@@ -24,9 +24,8 @@
 #include <QHash>
 #include <QLabel>
 #include <QProgressBar>
-#include <QVBoxLayout>
 #include <QTimer>
-
+#include <QVBoxLayout>
 
 static const int ProgressBarHideDelay = 2000; // 2 secs
 
@@ -37,6 +36,7 @@ using namespace Kleo::Crypto::Gui;
 class NewResultPage::Private
 {
     NewResultPage *const q;
+
 public:
     explicit Private(NewResultPage *qq);
 
@@ -46,7 +46,7 @@ public:
     void allDone();
     QLabel *labelForTag(const QString &tag);
 
-    std::vector< std::shared_ptr<TaskCollection> > m_collections;
+    std::vector<std::shared_ptr<TaskCollection>> m_collections;
     QTimer m_hideProgressTimer;
     QProgressBar *m_progressBar;
     QHash<QString, QLabel *> m_progressLabelByTag;
@@ -55,7 +55,9 @@ public:
     ResultListWidget *m_resultList;
 };
 
-NewResultPage::Private::Private(NewResultPage *qq) : q(qq), m_lastErrorItemIndex(0)
+NewResultPage::Private::Private(NewResultPage *qq)
+    : q(qq)
+    , m_lastErrorItemIndex(0)
 {
     m_hideProgressTimer.setInterval(ProgressBarHideDelay);
     m_hideProgressTimer.setSingleShot(true);
@@ -122,7 +124,9 @@ void NewResultPage::Private::started(const std::shared_ptr<Task> &task)
     }
 }
 
-NewResultPage::NewResultPage(QWidget *parent) : QWizardPage(parent), d(new Private(this))
+NewResultPage::NewResultPage(QWidget *parent)
+    : QWizardPage(parent)
+    , d(new Private(this))
 {
     setTitle(i18n("<b>Results</b>"));
 }
@@ -133,7 +137,7 @@ NewResultPage::~NewResultPage()
 
 void NewResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
-    //clear(); ### PENDING(marc) implement
+    // clear(); ### PENDING(marc) implement
     addTaskCollection(coll);
 }
 
@@ -150,17 +154,18 @@ void NewResultPage::addTaskCollection(const std::shared_ptr<TaskCollection> &col
     connect(coll.get(), &TaskCollection::progress, this, [this](int current, int total) {
         d->progress(current, total);
     });
-    connect(coll.get(), SIGNAL(done()),
-            this, SLOT(allDone()));
-    connect(coll.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
-    connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)),
-            this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
+    connect(coll.get(), SIGNAL(done()), this, SLOT(allDone()));
+    connect(coll.get(),
+            SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+            this,
+            SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)), this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
 
-    for (const std::shared_ptr<Task> &i : coll->tasks()) {    // create labels for all tags in collection
+    for (const std::shared_ptr<Task> &i : coll->tasks()) { // create labels for all tags in collection
         Q_ASSERT(i);
         QLabel *l = d->labelForTag(i->tag());
-        Q_ASSERT(l); (void)l;
+        Q_ASSERT(l);
+        (void)l;
     }
     Q_EMIT completeChanged();
 }

@@ -7,18 +7,19 @@
 */
 #pragma once
 
-#include <QWidget>
 #include <QString>
+#include <QWidget>
 
 namespace Kleo
 {
-class UnknownRecipientWidget: public QWidget
+class UnknownRecipientWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit UnknownRecipientWidget(const char *keyid, QWidget *parent = nullptr);
 
     QString keyID() const;
+
 private:
     QString mKeyID;
 };

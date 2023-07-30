@@ -14,22 +14,22 @@
 
 #include "sessiondata.h"
 
-#include <utils/detail_p.h>
 #include <Libkleo/GnuPG>
+#include <utils/detail_p.h>
 
-#include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
+#include <Libkleo/Stl_Util>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 
 #include <gpgme++/global.h>
 
-#include <QTcpSocket>
 #include <QDir>
 #include <QEventLoop>
-#include <QTimer>
 #include <QFile>
+#include <QTcpSocket>
+#include <QTimer>
 
 #include <algorithm>
 #include <cerrno>
@@ -43,14 +43,14 @@ void UiServer::setLogStream(FILE *stream)
 }
 
 UiServer::Private::Private(UiServer *qq)
-    : QTcpServer(),
-      q(qq),
-      file(),
-      factories(),
-      connections(),
-      suggestedSocketName(),
-      actualSocketName(),
-      cryptoCommandsEnabled(false)
+    : QTcpServer()
+    , q(qq)
+    , file()
+    , factories()
+    , connections()
+    , suggestedSocketName()
+    , actualSocketName()
+    , cryptoCommandsEnabled(false)
 {
     assuan_set_gpg_err_source(GPG_ERR_SOURCE_DEFAULT);
     assuan_sock_init();
@@ -66,7 +66,8 @@ bool UiServer::Private::isStaleAssuanSocket(const QString &fileName)
 }
 
 UiServer::UiServer(const QString &socket, QObject *p)
-    : QObject(p), d(new Private(this))
+    : QObject(p)
+    , d(new Private(this))
 {
     d->suggestedSocketName = d->makeFileName(socket);
 }
@@ -78,7 +79,8 @@ UiServer::~UiServer()
     }
 }
 
-namespace {
+namespace
+{
 using Iterator = std::vector<std::shared_ptr<AssuanCommandFactory>>::iterator;
 static bool empty(std::pair<Iterator, Iterator> iters)
 {
@@ -110,7 +112,6 @@ void UiServer::start()
 
 void UiServer::stop()
 {
-
     d->close();
 
     if (d->file.exists()) {
@@ -121,7 +122,6 @@ void UiServer::stop()
         SessionDataHandler::instance()->clear();
         Q_EMIT stopped();
     }
-
 }
 
 void UiServer::enableCryptoCommands(bool on)
@@ -130,10 +130,9 @@ void UiServer::enableCryptoCommands(bool on)
         return;
     }
     d->cryptoCommandsEnabled = on;
-    std::for_each(d->connections.cbegin(), d->connections.cend(),
-                  [on](std::shared_ptr<AssuanServerConnection> conn) {
-                      conn->enableCryptoCommands(on);
-                  });
+    std::for_each(d->connections.cbegin(), d->connections.cend(), [on](std::shared_ptr<AssuanServerConnection> conn) {
+        conn->enableCryptoCommands(on);
+    });
 }
 
 QString UiServer::socketName() const
@@ -169,7 +168,8 @@ bool UiServer::isStopping() const
 void UiServer::Private::slotConnectionClosed(Kleo::AssuanServerConnection *conn)
 {
     qCDebug(KLEOPATRA_LOG) << "UiServer: connection " << (void *)conn << " closed";
-    connections.erase(std::remove_if(connections.begin(), connections.end(),
+    connections.erase(std::remove_if(connections.begin(),
+                                     connections.end(),
                                      [conn](const std::shared_ptr<AssuanServerConnection> &other) {
                                          return conn == other.get();
                                      }),
@@ -190,12 +190,9 @@ void UiServer::Private::incomingConnection(qintptr fd)
             return;
         }
         const std::shared_ptr<AssuanServerConnection> c(new AssuanServerConnection((assuan_fd_t)fd, factories));
-        connect(c.get(), &AssuanServerConnection::closed,
-                this, &Private::slotConnectionClosed);
-        connect(c.get(), &AssuanServerConnection::startKeyManagerRequested,
-                q, &UiServer::startKeyManagerRequested, Qt::QueuedConnection);
-        connect(c.get(), &AssuanServerConnection::startConfigDialogRequested,
-                q, &UiServer::startConfigDialogRequested, Qt::QueuedConnection);
+        connect(c.get(), &AssuanServerConnection::closed, this, &Private::slotConnectionClosed);
+        connect(c.get(), &AssuanServerConnection::startKeyManagerRequested, q, &UiServer::startKeyManagerRequested, Qt::QueuedConnection);
+        connect(c.get(), &AssuanServerConnection::startConfigDialogRequested, q, &UiServer::startConfigDialogRequested, Qt::QueuedConnection);
         c->enableCryptoCommands(cryptoCommandsEnabled);
         connections.push_back(c);
         qCDebug(KLEOPATRA_LOG) << "UiServer: client connection " << (void *)c.get() << " established successfully";
@@ -254,7 +251,7 @@ void UiServer::Private::ensureDirectoryExists(const QString &path) const
     if (info.exists()) {
         return;
     }
-    const QDir dummy; //there is no static QDir::mkpath()...
+    const QDir dummy; // there is no static QDir::mkpath()...
     errno = 0;
     if (!dummy.mkpath(path)) {
         throw_<std::runtime_error>(i18n("Could not create GnuPG home directory %1: %2", path, systemErrorString()));
@@ -263,7 +260,6 @@ void UiServer::Private::ensureDirectoryExists(const QString &path) const
 
 void UiServer::Private::makeListeningSocket()
 {
-
     // First, create a file (we do this only for the name, gmpfh)
     const QString fileName = suggestedSocketName;
 

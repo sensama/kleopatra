@@ -11,36 +11,36 @@
 
 #include "signencryptemailconflictdialog.h"
 
-#include <crypto/sender.h>
 #include <crypto/recipient.h>
+#include <crypto/sender.h>
 
-#include "dialogs/certificateselectiondialog.h"
 #include "certificateselectionline.h"
+#include "dialogs/certificateselectiondialog.h"
 
-#include <Libkleo/GnuPG>
 #include "utils/gui-helper.h"
 #include "utils/kleo_assert.h"
+#include <Libkleo/GnuPG>
 
 #include <Libkleo/Compliance>
-#include <Libkleo/Stl_Util>
 #include <Libkleo/Formatting>
+#include <Libkleo/Stl_Util>
 #include <Libkleo/SystemInfo>
 
 #include <gpgme++/key.h>
 
 #include <KMime/HeaderParsing>
 
-#include <KLocalizedString>
 #include <KColorScheme>
+#include <KLocalizedString>
 
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QGroupBox>
 #include <QLabel>
 #include <QLayout>
-#include <QGroupBox>
-#include <QDialogButtonBox>
-#include <QCheckBox>
-#include <QRadioButton>
-#include <QPushButton>
 #include <QPointer>
+#include <QPushButton>
+#include <QRadioButton>
 #include <QSignalBlocker>
 #include <QToolButton>
 
@@ -56,17 +56,16 @@ using namespace GpgME;
 Q_DECLARE_METATYPE(GpgME::Key)
 Q_DECLARE_METATYPE(GpgME::UserID)
 
-static CertificateSelectionDialog *
-create_certificate_selection_dialog(QWidget *parent, Protocol proto)
+static CertificateSelectionDialog *create_certificate_selection_dialog(QWidget *parent, Protocol proto)
 {
     auto const dlg = new CertificateSelectionDialog(parent);
-    dlg->setOptions(proto == OpenPGP ? CertificateSelectionDialog::OpenPGPFormat :
-                    proto == CMS     ? CertificateSelectionDialog::CMSFormat : CertificateSelectionDialog::AnyFormat);
+    dlg->setOptions(proto == OpenPGP   ? CertificateSelectionDialog::OpenPGPFormat
+                        : proto == CMS ? CertificateSelectionDialog::CMSFormat
+                                       : CertificateSelectionDialog::AnyFormat);
     return dlg;
 }
 
-static CertificateSelectionDialog *
-create_encryption_certificate_selection_dialog(QWidget *parent, Protocol proto, const QString &mailbox)
+static CertificateSelectionDialog *create_encryption_certificate_selection_dialog(QWidget *parent, Protocol proto, const QString &mailbox)
 {
     CertificateSelectionDialog *const dlg = create_certificate_selection_dialog(parent, proto);
     dlg->setCustomLabelText(i18n("Please select an encryption certificate for recipient \"%1\"", mailbox));
@@ -76,8 +75,7 @@ create_encryption_certificate_selection_dialog(QWidget *parent, Protocol proto, 
     return dlg;
 }
 
-static CertificateSelectionDialog *
-create_signing_certificate_selection_dialog(QWidget *parent, Protocol proto, const QString &mailbox)
+static CertificateSelectionDialog *create_signing_certificate_selection_dialog(QWidget *parent, Protocol proto, const QString &mailbox)
 {
     CertificateSelectionDialog *const dlg = create_certificate_selection_dialog(parent, proto);
     dlg->setCustomLabelText(i18n("Please select a signing certificate for sender \"%1\"", mailbox));
@@ -90,42 +88,43 @@ create_signing_certificate_selection_dialog(QWidget *parent, Protocol proto, con
 
 static QString make_top_label_conflict_text(bool sign, bool enc)
 {
-    return
-        sign && enc ? i18n("Kleopatra cannot unambiguously determine matching certificates "
-                           "for all recipients/senders of the message.\n"
-                           "Please select the correct certificates for each recipient:") :
-        sign        ? i18n("Kleopatra cannot unambiguously determine matching certificates "
-                           "for the sender of the message.\n"
-                           "Please select the correct certificates for the sender:") :
-        enc         ? i18n("Kleopatra cannot unambiguously determine matching certificates "
-                           "for all recipients of the message.\n"
-                           "Please select the correct certificates for each recipient:") :
-                   (kleo_assert_fail(sign || enc), QString());
+    return sign && enc ? i18n(
+               "Kleopatra cannot unambiguously determine matching certificates "
+               "for all recipients/senders of the message.\n"
+               "Please select the correct certificates for each recipient:")
+        : sign ? i18n(
+              "Kleopatra cannot unambiguously determine matching certificates "
+              "for the sender of the message.\n"
+              "Please select the correct certificates for the sender:")
+        : enc ? i18n(
+              "Kleopatra cannot unambiguously determine matching certificates "
+              "for all recipients of the message.\n"
+              "Please select the correct certificates for each recipient:")
+              : (kleo_assert_fail(sign || enc), QString());
 }
 
 static QString make_top_label_quickmode_text(bool sign, bool enc)
 {
-    return
-        enc    ? i18n("Please verify that correct certificates have been selected for each recipient:") :
-        sign   ? i18n("Please verify that the correct certificate has been selected for the sender:") :
-                 (kleo_assert_fail(sign || enc), QString());
+    return enc ? i18n("Please verify that correct certificates have been selected for each recipient:")
+        : sign ? i18n("Please verify that the correct certificate has been selected for the sender:")
+               : (kleo_assert_fail(sign || enc), QString());
 }
 
 class SignEncryptEMailConflictDialog::Private
 {
     friend class ::Kleo::Crypto::Gui::SignEncryptEMailConflictDialog;
     SignEncryptEMailConflictDialog *const q;
+
 public:
     explicit Private(SignEncryptEMailConflictDialog *qq)
-        : q(qq),
-          senders(),
-          recipients(),
-          sign(true),
-          encrypt(true),
-          presetProtocol(UnknownProtocol),
-          ui(q)
+        : q(qq)
+        , senders()
+        , recipients()
+        , sign(true)
+        , encrypt(true)
+        , presetProtocol(UnknownProtocol)
+        , ui(q)
     {
-
     }
 
 private:
@@ -142,11 +141,9 @@ private:
 
         const bool needProtocolSelection = presetProtocol == UnknownProtocol;
 
-        const bool needShowAllRecipientsCB =
-            quickMode             ? false :
-            needProtocolSelection ? needShowAllRecipients(OpenPGP) || needShowAllRecipients(CMS) :
-                                    needShowAllRecipients(proto)
-            ;
+        const bool needShowAllRecipientsCB = quickMode ? false
+            : needProtocolSelection                    ? needShowAllRecipients(OpenPGP) || needShowAllRecipients(CMS)
+                                                       : needShowAllRecipients(proto);
 
         ui.showAllRecipientsCB.setVisible(needShowAllRecipientsCB);
 
@@ -172,20 +169,18 @@ private:
     bool needShowAllRecipients(Protocol proto) const
     {
         if (sign) {
-            if (const unsigned int num = std::count_if(ui.signers.cbegin(), ui.signers.cend(),
-                                                       [proto](const CertificateSelectionLine &l) {
-                                                           return l.wasInitiallyAmbiguous(proto);
-                                                       })) {
+            if (const unsigned int num = std::count_if(ui.signers.cbegin(), ui.signers.cend(), [proto](const CertificateSelectionLine &l) {
+                    return l.wasInitiallyAmbiguous(proto);
+                })) {
                 if (num != ui.signers.size()) {
                     return true;
                 }
             }
         }
         if (encrypt) {
-            if (const unsigned int num = std::count_if(ui.recipients.cbegin(), ui.recipients.cend(),
-                                                      [proto](const CertificateSelectionLine &l) {
-                                                          return l.wasInitiallyAmbiguous(proto);
-                                                      })) {
+            if (const unsigned int num = std::count_if(ui.recipients.cbegin(), ui.recipients.cend(), [proto](const CertificateSelectionLine &l) {
+                    return l.wasInitiallyAmbiguous(proto);
+                })) {
                 if (num != ui.recipients.size()) {
                     return true;
                 }
@@ -245,26 +240,24 @@ private:
     bool isComplete(Protocol proto) const;
 
 private:
-
     void updateComplianceStatus()
     {
         if (!DeVSCompliance::isCompliant()) {
             return;
         }
-        if (q->selectedProtocol() == UnknownProtocol ||
-            (q->resolvedSigningKeys().empty() && q->resolvedEncryptionKeys().empty())) {
+        if (q->selectedProtocol() == UnknownProtocol || (q->resolvedSigningKeys().empty() && q->resolvedEncryptionKeys().empty())) {
             return;
         }
         // Handle compliance
         bool de_vs = true;
-        for (const auto &key: q->resolvedSigningKeys()) {
+        for (const auto &key : q->resolvedSigningKeys()) {
             if (!DeVSCompliance::keyIsCompliant(key)) {
                 de_vs = false;
                 break;
             }
         }
         if (de_vs) {
-            for (const auto &key: q->resolvedEncryptionKeys()) {
+            for (const auto &key : q->resolvedEncryptionKeys()) {
                 if (!DeVSCompliance::keyIsCompliant(key)) {
                     de_vs = false;
                     break;
@@ -346,9 +339,9 @@ private:
         QCheckBox quickModeCB;
         QDialogButtonBox buttonBox;
         QVBoxLayout vlay;
-        QHBoxLayout  hlay;
-        QHBoxLayout  hlay2;
-        QGridLayout  glay;
+        QHBoxLayout hlay;
+        QHBoxLayout hlay2;
+        QGridLayout glay;
         std::vector<CertificateSelectionLine> signers, recipients;
         QLabel complianceLB;
 
@@ -358,20 +351,20 @@ private:
         }
 
         explicit Ui(SignEncryptEMailConflictDialog *q)
-            : conflictTopLB(make_top_label_conflict_text(true, true), q),
-              quickModeTopLB(make_top_label_quickmode_text(true, true), q),
-              showAllRecipientsCB(i18n("Show all recipients"), q),
-              pgpRB(i18n("OpenPGP"), q),
-              cmsRB(i18n("S/MIME"), q),
-              selectSigningCertificatesGB(i18n("Select Signing Certificate"), q),
-              selectEncryptionCertificatesGB(i18n("Select Encryption Certificate"), q),
-              quickModeCB(i18n("Only show this dialog in case of conflicts (experimental)"), q),
-              buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, q),
-              vlay(q),
-              hlay(),
-              glay(),
-              signers(),
-              recipients()
+            : conflictTopLB(make_top_label_conflict_text(true, true), q)
+            , quickModeTopLB(make_top_label_quickmode_text(true, true), q)
+            , showAllRecipientsCB(i18n("Show all recipients"), q)
+            , pgpRB(i18n("OpenPGP"), q)
+            , cmsRB(i18n("S/MIME"), q)
+            , selectSigningCertificatesGB(i18n("Select Signing Certificate"), q)
+            , selectEncryptionCertificatesGB(i18n("Select Encryption Certificate"), q)
+            , quickModeCB(i18n("Only show this dialog in case of conflicts (experimental)"), q)
+            , buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, q)
+            , vlay(q)
+            , hlay()
+            , glay()
+            , signers()
+            , recipients()
         {
             KDAB_SET_OBJECT_NAME(conflictTopLB);
             KDAB_SET_OBJECT_NAME(quickModeTopLB);
@@ -423,15 +416,12 @@ private:
             vlay.addWidget(&quickModeCB, 0, Qt::AlignRight);
             vlay.addLayout(&hlay2);
 
-
             connect(&buttonBox, &QDialogButtonBox::accepted, q, &SignEncryptEMailConflictDialog::accept);
             connect(&buttonBox, &QDialogButtonBox::rejected, q, &SignEncryptEMailConflictDialog::reject);
 
             connect(&showAllRecipientsCB, SIGNAL(toggled(bool)), q, SLOT(slotShowAllRecipientsToggled(bool)));
-            connect(&pgpRB, SIGNAL(toggled(bool)),
-                    q, SLOT(slotProtocolChanged()));
-            connect(&cmsRB, SIGNAL(toggled(bool)),
-                    q, SLOT(slotProtocolChanged()));
+            connect(&pgpRB, SIGNAL(toggled(bool)), q, SLOT(slotProtocolChanged()));
+            connect(&cmsRB, SIGNAL(toggled(bool)), q, SLOT(slotProtocolChanged()));
         }
 
         void clearSendersAndRecipients()
@@ -447,24 +437,20 @@ private:
 
         void addSelectSigningCertificatesGB()
         {
-            glay.addWidget(&selectSigningCertificatesGB,    glay.rowCount(), 0, 1, CertificateSelectionLine::NumColumns);
+            glay.addWidget(&selectSigningCertificatesGB, glay.rowCount(), 0, 1, CertificateSelectionLine::NumColumns);
         }
         void addSelectEncryptionCertificatesGB()
         {
             glay.addWidget(&selectEncryptionCertificatesGB, glay.rowCount(), 0, 1, CertificateSelectionLine::NumColumns);
         }
 
-        void addSigner(const QString &mailbox,
-                       const std::vector<Key> &pgp, bool pgpAmbiguous,
-                       const std::vector<Key> &cms, bool cmsAmbiguous, QWidget *q)
+        void addSigner(const QString &mailbox, const std::vector<Key> &pgp, bool pgpAmbiguous, const std::vector<Key> &cms, bool cmsAmbiguous, QWidget *q)
         {
             CertificateSelectionLine line(i18n("From:"), mailbox, pgp, pgpAmbiguous, cms, cmsAmbiguous, q, glay);
             signers.push_back(line);
         }
 
-        void addRecipient(const QString &mailbox,
-                          const std::vector<Key> &pgp, bool pgpAmbiguous,
-                          const std::vector<Key> &cms, bool cmsAmbiguous, QWidget *q)
+        void addRecipient(const QString &mailbox, const std::vector<Key> &pgp, bool pgpAmbiguous, const std::vector<Key> &cms, bool cmsAmbiguous, QWidget *q)
         {
             CertificateSelectionLine line(i18n("To:"), mailbox, pgp, pgpAmbiguous, cms, cmsAmbiguous, q, glay);
             recipients.push_back(line);
@@ -474,12 +460,14 @@ private:
 };
 
 SignEncryptEMailConflictDialog::SignEncryptEMailConflictDialog(QWidget *parent)
-    : QDialog(parent), d(new Private(this))
+    : QDialog(parent)
+    , d(new Private(this))
 {
-
 }
 
-SignEncryptEMailConflictDialog::~SignEncryptEMailConflictDialog() {}
+SignEncryptEMailConflictDialog::~SignEncryptEMailConflictDialog()
+{
+}
 
 void SignEncryptEMailConflictDialog::setPresetProtocol(Protocol p)
 {
@@ -560,9 +548,8 @@ void SignEncryptEMailConflictDialog::setRecipients(const std::vector<Recipient> 
 
 void SignEncryptEMailConflictDialog::pickProtocol()
 {
-
     if (selectedProtocol() != UnknownProtocol) {
-        return;    // already picked
+        return; // already picked
     }
 
     const bool pgp = d->isComplete(OpenPGP);
@@ -583,16 +570,18 @@ bool SignEncryptEMailConflictDialog::isComplete() const
 
 bool SignEncryptEMailConflictDialog::Private::isComplete(Protocol proto) const
 {
-    return (!sign || std::none_of(ui.signers.cbegin(), //
-                                  ui.signers.cend(),
-                                  [proto](const CertificateSelectionLine &l) {
-                                      return l.isStillAmbiguous(proto);
-                                  }))
-           && (!encrypt || std::none_of(ui.recipients.cbegin(), //
-                                        ui.recipients.cend(),
-                                        [proto](const CertificateSelectionLine &l) {
-                                            return l.isStillAmbiguous(proto);
-                                        }));
+    return (!sign
+            || std::none_of(ui.signers.cbegin(), //
+                            ui.signers.cend(),
+                            [proto](const CertificateSelectionLine &l) {
+                                return l.isStillAmbiguous(proto);
+                            }))
+        && (!encrypt
+            || std::none_of(ui.recipients.cbegin(), //
+                            ui.recipients.cend(),
+                            [proto](const CertificateSelectionLine &l) {
+                                return l.isStillAmbiguous(proto);
+                            }));
 }
 
 static std::vector<Key> get_keys(const std::vector<CertificateSelectionLine> &lines, Protocol proto)
@@ -604,16 +593,15 @@ static std::vector<Key> get_keys(const std::vector<CertificateSelectionLine> &li
 
     std::vector<Key> keys;
     keys.reserve(lines.size());
-    std::transform(lines.cbegin(), lines.cend(), std::back_inserter(keys),
-                   [proto](const CertificateSelectionLine &l) {
-                       return l.key(proto);
-                   });
+    std::transform(lines.cbegin(), lines.cend(), std::back_inserter(keys), [proto](const CertificateSelectionLine &l) {
+        return l.key(proto);
+    });
     return keys;
 }
 
 std::vector<Key> SignEncryptEMailConflictDialog::resolvedSigningKeys() const
 {
-    return d->sign    ? get_keys(d->ui.signers,    selectedProtocol()) : std::vector<Key>();
+    return d->sign ? get_keys(d->ui.signers, selectedProtocol()) : std::vector<Key>();
 }
 
 std::vector<Key> SignEncryptEMailConflictDialog::resolvedEncryptionKeys() const

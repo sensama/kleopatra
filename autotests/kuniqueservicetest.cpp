@@ -24,8 +24,8 @@
 
 #include "utils/kuniqueservice.h"
 
-#include <stdio.h>
 #include <chrono>
+#include <stdio.h>
 using namespace std::chrono_literals;
 
 class TestObject : public QObject
@@ -33,9 +33,11 @@ class TestObject : public QObject
     Q_OBJECT
 public:
     TestObject(KUniqueService *service)
-        : m_proc(nullptr), m_callCount(0),
-          m_service(service)
-    {}
+        : m_proc(nullptr)
+        , m_callCount(0)
+        , m_service(service)
+    {
+    }
 
     ~TestObject() override
     {
@@ -105,8 +107,7 @@ private:
     {
         // Duplicated from kglobalsettingstest.cpp - make a shared helper method?
         m_proc = new QProcess(this);
-        connect(m_proc, SIGNAL(finished(int,QProcess::ExitStatus)),
-                this, SLOT(slotProcessFinished(int,QProcess::ExitStatus)));
+        connect(m_proc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotProcessFinished(int, QProcess::ExitStatus)));
         QString appName = QStringLiteral("kuniqueservicetest");
 #ifdef Q_OS_WIN
         appName += QStringLiteral(".exe");
@@ -138,21 +139,17 @@ int main(int argc, char *argv[])
 
     KUniqueService service;
     TestObject testObject(&service);
-    QObject::connect(&service, SIGNAL(activateRequested(QStringList,QString)),
-                     &testObject, SLOT(slotActivateRequested(QStringList,QString)));
+    QObject::connect(&service, SIGNAL(activateRequested(QStringList, QString)), &testObject, SLOT(slotActivateRequested(QStringList, QString)));
 
     // Testcase for the problem coming from the old fork-on-startup solution:
     // the "Activate" D-Bus call would time out if the app took too much time
     // to be ready.
-    //printf("Sleeping.\n");
-    //sleep(200);
+    // printf("Sleeping.\n");
+    // sleep(200);
     QStringList args;
     args << QStringLiteral("dummy call");
 
-    QMetaObject::invokeMethod(&service, "activateRequested",
-                              Qt::QueuedConnection,
-                              Q_ARG(QStringList, args),
-                              Q_ARG(QString, QDir::currentPath()));
+    QMetaObject::invokeMethod(&service, "activateRequested", Qt::QueuedConnection, Q_ARG(QStringList, args), Q_ARG(QString, QDir::currentPath()));
     QTimer::singleShot(400ms, &testObject, SLOT(firstCall()));
 
     qDebug() << "Running.";
@@ -166,4 +163,3 @@ int main(int argc, char *argv[])
 }
 
 #include "kuniqueservicetest.moc"
-

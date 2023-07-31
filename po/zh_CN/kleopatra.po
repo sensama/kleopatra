@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-07-23 12:30\n"
+"PO-Revision-Date: 2023-07-30 07:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2561,7 +2561,7 @@ msgstr "密钥没有被更改。"
 #: src/commands/refreshcertificatecommand.cpp:214
 #, kde-format
 msgid "The key has been revoked."
-msgstr "此密钥已被撤销。"
+msgstr "此密钥已被吊销。"
 
 #: src/commands/refreshcertificatecommand.cpp:217
 #, kde-format
@@ -2571,7 +2571,7 @@ msgstr "密钥已更新"
 #: src/commands/refreshcertificatecommand.cpp:221
 #, kde-format
 msgid "New user IDs: %1"
-msgstr "新用户ID： %1"
+msgstr "新用户 ID：%1"
 
 #: src/commands/refreshcertificatecommand.cpp:224
 #, kde-format
@@ -3036,7 +3036,7 @@ msgstr "显示证书的标签"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
-msgstr ""
+msgstr "启用显示和使用附加到证书的标签。"
 
 #: src/conf/appearanceconfigwidget.cpp:364
 #, kde-format
@@ -3066,7 +3066,7 @@ msgstr "显示技术细节"
 #, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr ""
+msgstr "显示即将到期的证书"
 
 #: src/conf/appearanceconfigwidget.cpp:385
 #, kde-format
@@ -3095,7 +3095,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
-msgstr ""
+msgstr "如果您自己的证书即将过期，请选择提前警告的天数。"
 
 #: src/conf/appearanceconfigwidget.cpp:398
 #, kde-format
@@ -3109,7 +3109,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
-msgstr ""
+msgstr "如果他人的证书即将过期，请选择提前警告的天数。"
 
 #: src/conf/appearanceconfigwidget.cpp:416
 #, kde-format
@@ -4599,13 +4599,15 @@ msgid ""
 "<para>Failed to create output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
+"<para>无法创建输出文件夹 <filename>%1</filename>。</para><para>请选择其它输出"
+"文件夹。</para>"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:204
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:213
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
-msgstr ""
+msgstr "不可用的输出文件夹"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, kde-format
@@ -4616,7 +4618,7 @@ msgstr "请选择其他的输出文件夹。"
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
-msgstr ""
+msgstr "无效的输出文件夹"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:212
 #, kde-kuit-format
@@ -5578,19 +5580,19 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
-msgstr ""
+msgstr "正在创建签名和加密的压缩文件..."
 
 #: src/crypto/signencrypttask.cpp:715
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
-msgstr ""
+msgstr "正在创建加密的压缩文件..."
 
 #: src/crypto/signencrypttask.cpp:735
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
-msgstr ""
+msgstr "正在创建签名的压缩文件..."
 
 #: src/crypto/task.cpp:159
 #, kde-format
@@ -5750,7 +5752,7 @@ msgstr "用户 IDs："
 #: src/dialogs/certifywidget.cpp:403
 #, kde-format
 msgid "User IDs"
-msgstr "用户 IDs"
+msgstr "用户 ID"
 
 #: src/dialogs/certificatedetailswidget.cpp:230
 #, kde-format
@@ -5774,7 +5776,7 @@ msgstr "将选中的用户 ID 标记为此密钥的主用户 ID。"
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
-msgstr "认证用户IDs"
+msgstr "认证用户 ID"
 
 #: src/dialogs/certificatedetailswidget.cpp:240
 #, kde-format
@@ -5980,14 +5982,14 @@ msgstr "标记为主要用户 ID"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
-msgstr "认证用户ID..."
+msgstr "认证用户 ID..."
 
 #: src/dialogs/certificatedetailswidget.cpp:835
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
-msgstr[0] "认证用户ID..."
+msgstr[0] "认证用户 ID..."
 
 #: src/dialogs/certificatedetailswidget.cpp:844
 #, kde-format
@@ -6295,13 +6297,13 @@ msgstr "允许的最新认证日期是 %1。"
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "Two years from now"
-msgstr "今后两年"
+msgstr "两年后"
 
 #: src/dialogs/certifywidget.cpp:468
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "One year from now"
-msgstr "今后一年"
+msgstr "一年后"
 
 #: src/dialogs/certifywidget.cpp:473
 #, kde-format
@@ -7534,6 +7536,9 @@ msgid ""
 "(possibly clamped to the allowed minimum or maximum validity period) by "
 "default."
 msgstr ""
+"此设置指定新 OpenPGP 密钥默认有效的天数，或者换句话说，指定密钥过期的天数。将"
+"此设置为 0 表示无限有效性。如果未设置此设置或将其设置为负值，则默认情况下，新"
+"的 OpenPGP 密钥的有效期为三年 (可能固定在允许的最短或最长有效期内)。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -7555,6 +7560,8 @@ msgid ""
 "or, in other words, after how many days the new key will expire at the "
 "earliest."
 msgstr ""
+"此设置指定了一个新的 OpenPGP 密钥的有效天数，或者至少有效， 换言之，新钥匙最"
+"早将过期多少天。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
@@ -7577,6 +7584,9 @@ msgid ""
 "If this setting is not set or if it is set to a negative value, then "
 "unlimited validity is allowed."
 msgstr ""
+"此设置指定新的 OpenPGP 密钥最长有效的天数，或者换句话说，指定密钥最后过期的天"
+"数。如果未设置此设置或将其设置为负值，则默认情况下，新的 OpenPGP 密钥将有无限"
+"的有效期。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
@@ -7595,13 +7605,13 @@ msgstr "如果选中，则在新证书向导中隐藏高级设置按钮。"
 #: src/kcfg/settings.kcfg:67
 #, kde-format
 msgid "Default certification validity"
-msgstr ""
+msgstr "默认认证有效性"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
 #: src/kcfg/settings.kcfg:68
 #, kde-format
 msgid "Specifies the default validity of certifications in days."
-msgstr ""
+msgstr "指定证书在天内的默认有效性。"
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
 #: src/kcfg/settings.kcfg:69
@@ -7611,6 +7621,8 @@ msgid ""
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
+"此设置指定一个认证默认有效的天数，换句话说，在新认证将到期的天数之后。 将此设"
+"置为 0 以保证证书的无限有效性。"
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75
@@ -7791,7 +7803,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:163
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
-msgstr ""
+msgstr "通知即将到期的证书"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:165
@@ -7800,6 +7812,8 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
+"如果启用，当使用的\n"
+"        证书即将过期时，Kleopatra 将在某个地方显示通知。"
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:171
@@ -7841,6 +7855,8 @@ msgid ""
 "        of the keyserver protocol. Default behavior is to only do this for "
 "LDAP keyservers."
 msgstr ""
+"搜索密钥服务器，而不论智能卡密钥协议如何，无论密钥服务器协议是什么。\n"
+"        默认行为是仅用于 LDAP 密钥服务器。"
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:186
@@ -7862,6 +7878,8 @@ msgid ""
 "inserted with unknown certificates. This can take a while and blocks the "
 "smartcard while the command is running."
 msgstr ""
+"如果为真，那么如果一个 PKCS#15 智能卡被插入了未知的证书，Kleopatra 将调用 "
+"gpgsm --learning。 这可能需要一段时间，并在命令运行时屏蔽智能卡。"
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
 #: src/kcfg/settings.kcfg:194
@@ -7992,7 +8010,7 @@ msgstr "帮助(&H)"
 #: src/kleopatra.rc:98
 #, kde-format
 msgid "&More documentation"
-msgstr ""
+msgstr "更多文档(&M)"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/kleopatra.rc:113 src/kwatchgnupg/kwatchgnupgui.rc:13
@@ -8143,7 +8161,7 @@ msgstr "无法读取“%1”"
 #: src/kleopatraapplication.cpp:820
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
-msgstr ""
+msgstr "在行政上禁止打开外部链接。"
 
 #: src/kleopatraapplication.cpp:821
 #, kde-format
@@ -8281,6 +8299,9 @@ msgid ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 msgstr ""
+"<qt>无法初始化 Kleopatra Windows 资源管理器模块。<br/>给出的错误是： <b>%1</"
+"b><br/>这可能意味着您的安装有问题。 尝试重新安装或联系您的管理员以获得支持。"
+"<br/>您可以尝试继续使用 Kleopatra，但可能还有其他问题。</qt>"
 
 #: src/main.cpp:281
 #, kde-format
@@ -8306,6 +8327,8 @@ msgid ""
 "<nl/>You may instead want to close this window without exiting <application>"
 "%1</application>."
 msgstr ""
+"<application>%1</application> 可能被其他应用程序用作一种服务。<nl/>你可能想要"
+"关闭此窗口而不退出 <application>%1</application>。"
 
 #: src/mainwindow.cpp:205
 #, kde-format
@@ -8415,7 +8438,7 @@ msgstr "gpg4win-compendium-en.pdf"
 #: src/mainwindow.cpp:601
 #, kde-format
 msgid "&Quickguide"
-msgstr ""
+msgstr "快速向导(&Q)"
 
 #: src/mainwindow.cpp:603
 #, kde-format
@@ -8451,7 +8474,7 @@ msgstr "groupfeature_gnupgvsd_en.pdf"
 #: src/mainwindow.cpp:620
 #, kde-format
 msgid "&Mail encryption in Outlook"
-msgstr ""
+msgstr "Outlook 中的邮件加密(&M)"
 
 #: src/mainwindow.cpp:622
 #, kde-format
@@ -8464,14 +8487,14 @@ msgstr "gpgol_outlook_addin_en.pdf"
 #: src/mainwindow.cpp:628
 #, kde-format
 msgid "&Certification Management"
-msgstr ""
+msgstr "认证管理(&C)"
 
 #: src/mainwindow.cpp:630
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
-msgstr ""
+msgstr "certification_management_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:634
 #, kde-format
@@ -8998,6 +9021,9 @@ msgid ""
 "have an attachment, then attach the file <filename>%1</filename> manually.</"
 "para>"
 msgstr ""
+"<para><application>Kleopatra</application> 尝试通过您的默认邮件客户端发送邮"
+"件。</para><para>一些邮件客户端在以这种方式调用时不支持附件。</para><para>如"
+"果您的邮件客户端没有附件，请手动附上文件 <filename>%1</filename></para>"
 
 #: src/newcertificatewizard/resultpage.cpp:366
 #, kde-format
@@ -9038,6 +9064,8 @@ msgid ""
 "<para>The <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> 使用的 <application>GnuPG</"
+"application> 系统不是 %1。</para>"
 
 #: src/selftest/compliancecheck.cpp:60
 #, kde-kuit-format
@@ -10241,7 +10269,7 @@ msgstr "覆盖被拒绝"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
-msgstr ""
+msgstr "无法删除文件 <filename>%1</filename> 以覆盖。"
 
 #: src/utils/output.cpp:681
 #, kde-format
@@ -10286,13 +10314,13 @@ msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
-msgstr ""
+msgstr "文件 <filename>%1</filename> 已经存在。请输入不同的文件名称。"
 
 #: src/utils/overwritedialog.cpp:185
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr ""
+msgstr "文件 <filename>%1</filename> 已经存在。"
 
 #: src/utils/overwritedialog.cpp:190
 #, kde-format
@@ -10304,13 +10332,13 @@ msgstr "重命名："
 #, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
-msgstr ""
+msgstr "建议新名称(&N)"
 
 #: src/utils/overwritedialog.cpp:200
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
-msgstr ""
+msgstr "建议一个不存在的文件。"
 
 #: src/utils/overwritedialog.cpp:211
 #, kde-format
@@ -10322,7 +10350,7 @@ msgstr "重命名"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
-msgstr ""
+msgstr "保存给定名称的文件"
 
 #: src/utils/overwritedialog.cpp:218
 #, kde-format
@@ -10336,7 +10364,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
-msgstr ""
+msgstr "自动保存所有将覆盖已存在的具有不同名称的文件的文件。"
 
 #: src/utils/overwritedialog.cpp:227
 #, kde-format
@@ -10348,7 +10376,7 @@ msgstr "跳过"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
-msgstr ""
+msgstr "不写入此文件，跳过到下一项。"
 
 #: src/utils/overwritedialog.cpp:232
 #, kde-format
@@ -10362,7 +10390,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Do not write this file and any other files that would overwrite an already "
 "existing file."
-msgstr ""
+msgstr "不写入此文件和将覆盖已存在文件的其他文件。"
 
 #: src/utils/overwritedialog.cpp:238
 #, kde-format
@@ -10386,7 +10414,7 @@ msgstr "全部覆盖"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
-msgstr ""
+msgstr "覆盖现有文件和其他已经存在的文件。"
 
 #: src/utils/path-helper.cpp:158
 #, kde-format
@@ -10932,6 +10960,9 @@ msgid ""
 "encryption because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para>您不能使用 <application>Kleopatra</application> 签名或加密，因为 "
+"<application>Kleopatra</application> 使用的 <application>GnuPG</application> "
+"系统不是 %1。</para>"
 
 #: src/view/padwidget.cpp:150
 #, kde-format
@@ -11268,7 +11299,7 @@ msgstr "修改解锁码"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
-msgstr ""
+msgstr "更改允许重置 PIN 码的 PIN 解除屏蔽密钥。"
 
 #: src/view/pivcardwidget.cpp:156
 #, kde-format
@@ -11285,6 +11316,8 @@ msgid ""
 "by the administrator (resp. Kleopatra) to authenticate the PIV Card "
 "Application."
 msgstr ""
+"更改 PIV 卡应用程序用于验证 PIV 卡应用程序管理员和管理员（或 Kleopatra）用于"
+"验证 PIV 卡应用程序的 PIV 卡应用程序管理密钥。"
 
 #: src/view/pivcardwidget.cpp:180 src/view/pivcardwidget.cpp:259
 #, kde-format

@@ -34,8 +34,8 @@ void UrlLabel::setUrl(const QUrl &url, const QString &text)
         return;
     }
 
-    setHtml(templateString.arg(
-        url.url(QUrl::FullyEncoded),
+    setHtml(templateString.arg( //
+        url.url(QUrl::FullyEncoded), //
         text.isEmpty() ? url.toDisplayString().toHtmlEscaped() : text.toHtmlEscaped()));
 }
 
@@ -44,9 +44,12 @@ void UrlLabel::focusInEvent(QFocusEvent *event)
     // immediately focus the URL when the label get focus
     QLabel::focusInEvent(event);
     if (!hasSelectedText()) {
-        QMetaObject::invokeMethod(this, [this]() {
-            focusNextPrevChild(true);
-        }, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(
+            this,
+            [this]() {
+                focusNextPrevChild(true);
+            },
+            Qt::QueuedConnection);
     }
 }
 

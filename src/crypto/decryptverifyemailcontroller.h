@@ -49,13 +49,13 @@ public:
     ~DecryptVerifyEMailController() override;
 
     void setInput(const std::shared_ptr<Input> &input);
-    void setInputs(const std::vector<std::shared_ptr<Input> > &inputs);
+    void setInputs(const std::vector<std::shared_ptr<Input>> &inputs);
 
     void setSignedData(const std::shared_ptr<Input> &data);
-    void setSignedData(const std::vector<std::shared_ptr<Input> > &data);
+    void setSignedData(const std::vector<std::shared_ptr<Input>> &data);
 
     void setOutput(const std::shared_ptr<Output> &output);
-    void setOutputs(const std::vector<std::shared_ptr<Output> > &outputs);
+    void setOutputs(const std::vector<std::shared_ptr<Output>> &outputs);
 
     void setInformativeSenders(const std::vector<KMime::Types::Mailbox> &senders);
 
@@ -84,8 +84,7 @@ private:
     Q_PRIVATE_SLOT(d, void schedule())
 };
 
-} //namespace Crypto
-} //namespace Kleo
+} // namespace Crypto
+} // namespace Kleo
 
 Q_DECLARE_METATYPE(GpgME::VerificationResult)
-

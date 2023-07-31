@@ -8,10 +8,10 @@
 */
 
 #include <config-kleopatra.h>
+
 #include "appearanceconfigpage.h"
 
 #include "appearanceconfigwidget.h"
-
 
 #include <QVBoxLayout>
 
@@ -36,7 +36,6 @@ void AppearanceConfigurationPage::load()
 void AppearanceConfigurationPage::save()
 {
     mWidget->save();
-
 }
 
 void AppearanceConfigurationPage::defaults()

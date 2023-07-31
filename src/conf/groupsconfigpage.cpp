@@ -22,8 +22,8 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#include <QVBoxLayout>
 #include <QMutex>
+#include <QVBoxLayout>
 
 #include "kleopatra_debug.h"
 
@@ -35,6 +35,7 @@ class GroupsConfigPage::Private
     GroupsConfigPage *const q;
 
     Private(GroupsConfigPage *qq);
+
 public:
     ~Private() = default;
 
@@ -80,14 +81,14 @@ void GroupsConfigPage::Private::onKeysMayHaveChanged()
         buttonYes.setText(i18n("Save changes"));
         auto buttonNo = KStandardGuiItem::cancel();
         buttonNo.setText(i18n("Discard changes"));
-        const auto answer = KMessageBox::questionTwoActions(
-            q->topLevelWidget(),
-            xi18nc("@info",
-                   "<para>The certificates or the certificate groups have been updated in the background.</para>"
-                   "<para>Do you want to save your changes?</para>"),
-            i18nc("@title::window", "Save changes?"),
-            buttonYes,
-            buttonNo);
+        const auto answer =
+            KMessageBox::questionTwoActions(q->topLevelWidget(),
+                                            xi18nc("@info",
+                                                   "<para>The certificates or the certificate groups have been updated in the background.</para>"
+                                                   "<para>Do you want to save your changes?</para>"),
+                                            i18nc("@title::window", "Save changes?"),
+                                            buttonYes,
+                                            buttonNo);
         if (answer == KMessageBox::ButtonCode::PrimaryAction) {
             q->save();
         } else {
@@ -110,10 +111,13 @@ GroupsConfigPage::GroupsConfigPage(QWidget *parent)
 
     layout->addWidget(d->widget);
 
-    connect(d->widget, &GroupsConfigWidget::changed, this, [this] () { d->setChanged(true); });
+    connect(d->widget, &GroupsConfigWidget::changed, this, [this]() {
+        d->setChanged(true);
+    });
 
-    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged,
-            this, [this]() { d->onKeysMayHaveChanged(); });
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this]() {
+        d->onKeysMayHaveChanged();
+    });
 }
 
 GroupsConfigPage::~GroupsConfigPage() = default;

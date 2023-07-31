@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "log.h"
+
 #include "iodevicelogger.h"
 
 #include <Libkleo/KleoException>
@@ -22,14 +23,19 @@
 #include <QFile>
 #include <QString>
 
-
 using namespace Kleo;
 
 class Log::Private
 {
     Log *const q;
+
 public:
-    explicit Private(Log *qq) : q(qq), m_ioLoggingEnabled(false), m_logFile(nullptr) {}
+    explicit Private(Log *qq)
+        : q(qq)
+        , m_ioLoggingEnabled(false)
+        , m_logFile(nullptr)
+    {
+    }
     ~Private();
     bool m_ioLoggingEnabled;
     QString m_outputDirectory;
@@ -43,7 +49,7 @@ Log::Private::~Private()
     }
 }
 
-void Log::messageHandler(QtMsgType type, const QMessageLogContext &ctx, const QString& msg)
+void Log::messageHandler(QtMsgType type, const QMessageLogContext &ctx, const QString &msg)
 {
     const QString formattedMessage = qFormatLogMessage(type, ctx, msg);
     const QByteArray local8str = formattedMessage.toLocal8Bit();
@@ -61,8 +67,9 @@ void Log::messageHandler(QtMsgType type, const QMessageLogContext &ctx, const QS
         }
         toWrite -= written;
     }
-    //append newline:
-    while (fprintf(file, "\n") == 0);
+    // append newline:
+    while (fprintf(file, "\n") == 0)
+        ;
     fflush(file);
 }
 
@@ -83,7 +90,8 @@ std::shared_ptr<Log> Log::mutableInstance()
     }
 }
 
-Log::Log() : d(new Private(this))
+Log::Log()
+    : d(new Private(this))
 {
 }
 
@@ -148,4 +156,3 @@ std::shared_ptr<QIODevice> Log::createIOLogger(const std::shared_ptr<QIODevice> 
 
     return logger;
 }
-

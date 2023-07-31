@@ -13,9 +13,9 @@
 
 #include <dialogs/certificateselectiondialog.h>
 
-#include <Libkleo/Stl_Util>
-#include <Libkleo/KleoException>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KleoException>
+#include <Libkleo/Stl_Util>
 
 #include <gpgme++/key.h>
 
@@ -27,8 +27,8 @@
 #include <QByteArray>
 #include <QPointer>
 
-#include <string>
 #include <algorithm>
+#include <string>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -38,12 +38,12 @@ class SelectCertificateCommand::Private
 {
     friend class ::Kleo::SelectCertificateCommand;
     SelectCertificateCommand *const q;
-public:
-    Private(SelectCertificateCommand *qq) :
-        q(qq),
-        dialog()
-    {
 
+public:
+    Private(SelectCertificateCommand *qq)
+        : q(qq)
+        , dialog()
+    {
     }
 
 private:
@@ -60,7 +60,7 @@ private:
         dialog = new CertificateSelectionDialog;
         q->applyWindowID(dialog);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
-        //dialog->setWindowTitle( i18nc( "@title", "Certificate Selection" ) );
+        // dialog->setWindowTitle( i18nc( "@title", "Certificate Selection" ) );
         connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
         connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
     }
@@ -79,20 +79,26 @@ private:
 };
 
 SelectCertificateCommand::SelectCertificateCommand()
-    : QObject(), AssuanCommandMixin<SelectCertificateCommand>(), d(new Private(this)) {}
+    : QObject()
+    , AssuanCommandMixin<SelectCertificateCommand>()
+    , d(new Private(this))
+{
+}
 
-SelectCertificateCommand::~SelectCertificateCommand() {}
+SelectCertificateCommand::~SelectCertificateCommand()
+{
+}
 
 static const struct {
     const char *name;
     CertificateSelectionDialog::Option option;
 } option_table[] = {
-    { "multi",        CertificateSelectionDialog::MultiSelection },
-    { "sign-only",    CertificateSelectionDialog::SignOnly       },
-    { "encrypt-only", CertificateSelectionDialog::EncryptOnly    },
-    { "openpgp-only", CertificateSelectionDialog::OpenPGPFormat  },
-    { "x509-only",    CertificateSelectionDialog::CMSFormat      },
-    { "secret-only",  CertificateSelectionDialog::SecretKeys     },
+    {"multi", CertificateSelectionDialog::MultiSelection},
+    {"sign-only", CertificateSelectionDialog::SignOnly},
+    {"encrypt-only", CertificateSelectionDialog::EncryptOnly},
+    {"openpgp-only", CertificateSelectionDialog::OpenPGPFormat},
+    {"x509-only", CertificateSelectionDialog::CMSFormat},
+    {"secret-only", CertificateSelectionDialog::SecretKeys},
 };
 
 int SelectCertificateCommand::doStart()
@@ -100,7 +106,7 @@ int SelectCertificateCommand::doStart()
     d->ensureDialogCreated();
 
     CertificateSelectionDialog::Options opts;
-    for (unsigned int i = 0; i < sizeof option_table / sizeof * option_table; ++i) {
+    for (unsigned int i = 0; i < sizeof option_table / sizeof *option_table; ++i) {
         if (hasOption(option_table[i].name)) {
             opts |= option_table[i].option;
         }
@@ -115,8 +121,7 @@ int SelectCertificateCommand::doStart()
     }
     d->dialog->setOptions(opts);
 
-    if (const int err = inquire("SELECTED_CERTIFICATES",
-                                this, SLOT(slotSelectedCertificates(int,QByteArray)))) {
+    if (const int err = inquire("SELECTED_CERTIFICATES", this, SLOT(slotSelectedCertificates(int, QByteArray)))) {
         return err;
     }
 
@@ -168,11 +173,9 @@ void SelectCertificateCommand::Private::slotDialogAccepted()
         q->done(e.error(), e.message());
     } catch (const std::exception &e) {
         q->done(makeError(GPG_ERR_UNEXPECTED),
-                i18n("Caught unexpected exception in SelectCertificateCommand::Private::slotDialogAccepted: %1",
-                     QString::fromLocal8Bit(e.what())));
+                i18n("Caught unexpected exception in SelectCertificateCommand::Private::slotDialogAccepted: %1", QString::fromLocal8Bit(e.what())));
     } catch (...) {
-        q->done(makeError(GPG_ERR_UNEXPECTED),
-                i18n("Caught unknown exception in SelectCertificateCommand::Private::slotDialogAccepted"));
+        q->done(makeError(GPG_ERR_UNEXPECTED), i18n("Caught unknown exception in SelectCertificateCommand::Private::slotDialogAccepted"));
     }
 }
 

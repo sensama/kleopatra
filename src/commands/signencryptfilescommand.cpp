@@ -19,9 +19,8 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
-
+#include <KLocalizedString>
 
 #include <exception>
 
@@ -36,6 +35,7 @@ class SignEncryptFilesCommand::Private : public Command::Private
     {
         return static_cast<SignEncryptFilesCommand *>(q);
     }
+
 public:
     explicit Private(SignEncryptFilesCommand *qq, KeyListController *c);
     ~Private() override;
@@ -73,14 +73,14 @@ const SignEncryptFilesCommand::Private *SignEncryptFilesCommand::d_func() const
 #define q q_func()
 
 SignEncryptFilesCommand::Private::Private(SignEncryptFilesCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      files(),
-      shared_qq(qq, [](SignEncryptFilesCommand*){}),
-      controller()
+    : Command::Private(qq, c)
+    , files()
+    , shared_qq(qq, [](SignEncryptFilesCommand *) {})
+    , controller()
 {
-    controller.setOperationMode(SignEncryptFilesController::SignSelected |
-                                SignEncryptFilesController::EncryptSelected |
-                                SignEncryptFilesController::ArchiveAllowed);
+    controller.setOperationMode(SignEncryptFilesController::SignSelected //
+                                | SignEncryptFilesController::EncryptSelected //
+                                | SignEncryptFilesController::ArchiveAllowed);
 }
 
 SignEncryptFilesCommand::Private::~Private()
@@ -117,8 +117,12 @@ SignEncryptFilesCommand::SignEncryptFilesCommand(const QStringList &files, QAbst
 void SignEncryptFilesCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
-    connect(&controller, &Controller::done, q, [this]() { slotControllerDone(); });
-    connect(&controller, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
+    connect(&controller, &Controller::done, q, [this]() {
+        slotControllerDone();
+    });
+    connect(&controller, &Controller::error, q, [this](int err, const QString &details) {
+        slotControllerError(err, details);
+    });
 }
 
 SignEncryptFilesCommand::~SignEncryptFilesCommand()
@@ -149,7 +153,8 @@ void SignEncryptFilesCommand::setSigningPolicy(Policy policy)
     }
     try {
         d->controller.setOperationMode(mode);
-    } catch (...) {}
+    } catch (...) {
+    }
 }
 
 Policy SignEncryptFilesCommand::signingPolicy() const
@@ -186,7 +191,8 @@ void SignEncryptFilesCommand::setEncryptionPolicy(Policy policy)
     }
     try {
         d->controller.setOperationMode(mode);
-    } catch (...) {}
+    } catch (...) {
+    }
 }
 
 Policy SignEncryptFilesCommand::encryptionPolicy() const
@@ -252,9 +258,7 @@ GpgME::Protocol SignEncryptFilesCommand::protocol() const
 
 void SignEncryptFilesCommand::doStart()
 {
-
     try {
-
         if (d->files.empty()) {
             d->files = selectFiles();
         }
@@ -267,9 +271,7 @@ void SignEncryptFilesCommand::doStart()
         d->controller.start();
 
     } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1",
-                            QString::fromLocal8Bit(e.what())),
-                       i18n("Sign/Encrypt Files Error"));
+        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Sign/Encrypt Files Error"));
         d->finished();
     }
 }

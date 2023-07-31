@@ -36,7 +36,6 @@ void CryptoOperationsConfigurationPage::load()
 void CryptoOperationsConfigurationPage::save()
 {
     mWidget->save();
-
 }
 
 void CryptoOperationsConfigurationPage::defaults()

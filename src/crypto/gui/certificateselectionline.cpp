@@ -10,13 +10,13 @@
 */
 #include "certificateselectionline.h"
 
-#include <QToolButton>
+#include <QComboBox>
 #include <QLabel>
 #include <QStackedWidget>
-#include <QComboBox>
-#include <QStylePainter>
-#include <QStyleOptionComboBox>
 #include <QStyle>
+#include <QStyleOptionComboBox>
+#include <QStylePainter>
+#include <QToolButton>
 
 #include "utils/kleo_assert.h"
 
@@ -54,27 +54,24 @@ class ComboBox : public QComboBox
     Q_PROPERTY(QIcon initialIcon READ initialIcon WRITE setInitialIcon)
 public:
     explicit ComboBox(QWidget *parent = nullptr)
-        : QComboBox(parent),
-          m_initialText(),
-          m_initialIcon()
+        : QComboBox(parent)
+        , m_initialText()
+        , m_initialIcon()
     {
-
     }
 
     explicit ComboBox(const QString &initialText, QWidget *parent = nullptr)
-        : QComboBox(parent),
-          m_initialText(initialText),
-          m_initialIcon()
+        : QComboBox(parent)
+        , m_initialText(initialText)
+        , m_initialIcon()
     {
-
     }
 
     explicit ComboBox(const QIcon &initialIcon, const QString &initialText, QWidget *parent = nullptr)
-        : QComboBox(parent),
-          m_initialText(initialText),
-          m_initialIcon(initialIcon)
+        : QComboBox(parent)
+        , m_initialText(initialText)
+        , m_initialIcon(initialIcon)
     {
-
     }
 
     Q_REQUIRED_RESULT QString initialText() const
@@ -117,8 +114,7 @@ protected:
         initStyleOption(&opt);
         p.drawComplexControl(QStyle::CC_ComboBox, opt);
 
-        if (currentIndex() == -1)
-        {
+        if (currentIndex() == -1) {
             opt.currentText = m_initialText;
             opt.currentIcon = m_initialIcon;
         }
@@ -136,9 +132,13 @@ class Kleo::KeysComboBox : public ComboBox
     Q_OBJECT
 public:
     explicit KeysComboBox(QWidget *parent = nullptr)
-        : ComboBox(parent) {}
+        : ComboBox(parent)
+    {
+    }
     explicit KeysComboBox(const QString &initialText, QWidget *parent = nullptr)
-        : ComboBox(initialText, parent) {}
+        : ComboBox(initialText, parent)
+    {
+    }
     explicit KeysComboBox(const std::vector<Key> &keys, QWidget *parent = nullptr)
         : ComboBox(make_initial_text(keys), parent)
     {
@@ -182,19 +182,25 @@ public:
     {
         return qvariant_cast<Key>(itemData(currentIndex()));
     }
-
 };
 
-CertificateSelectionLine::CertificateSelectionLine(const QString &toFrom, const QString &mailbox, const std::vector<Key> &pgp, bool pgpAmbig, const std::vector<Key> &cms, bool cmsAmbig, QWidget *q, QGridLayout &glay)
-        : pgpAmbiguous(pgpAmbig),
-          cmsAmbiguous(cmsAmbig),
-          mToFromLB(new QLabel(toFrom, q)),
-          mMailboxLB(new QLabel(mailbox, q)),
-          mSbox(new QStackedWidget(q)),
-          mPgpCB(new KeysComboBox(pgp, mSbox)),
-          mCmsCB(new KeysComboBox(cms, mSbox)),
-          noProtocolCB(new KeysComboBox(i18n("(please choose between OpenPGP and S/MIME first)"), mSbox)),
-          mToolTB(new QToolButton(q))
+CertificateSelectionLine::CertificateSelectionLine(const QString &toFrom,
+                                                   const QString &mailbox,
+                                                   const std::vector<Key> &pgp,
+                                                   bool pgpAmbig,
+                                                   const std::vector<Key> &cms,
+                                                   bool cmsAmbig,
+                                                   QWidget *q,
+                                                   QGridLayout &glay)
+    : pgpAmbiguous(pgpAmbig)
+    , cmsAmbiguous(cmsAmbig)
+    , mToFromLB(new QLabel(toFrom, q))
+    , mMailboxLB(new QLabel(mailbox, q))
+    , mSbox(new QStackedWidget(q))
+    , mPgpCB(new KeysComboBox(pgp, mSbox))
+    , mCmsCB(new KeysComboBox(cms, mSbox))
+    , noProtocolCB(new KeysComboBox(i18n("(please choose between OpenPGP and S/MIME first)"), mSbox))
+    , mToolTB(new QToolButton(q))
 {
     QFont bold;
     bold.setBold(true);
@@ -224,10 +230,10 @@ CertificateSelectionLine::CertificateSelectionLine(const QString &toFrom, const 
 
     const int row = glay.rowCount();
     int col = 0;
-    glay.addWidget(mToFromLB,  row, col++);
+    glay.addWidget(mToFromLB, row, col++);
     glay.addWidget(mMailboxLB, row, col++);
-    glay.addWidget(mSbox,    row, col++);
-    glay.addWidget(mToolTB,    row, col++);
+    glay.addWidget(mSbox, row, col++);
+    glay.addWidget(mToolTB, row, col++);
     Q_ASSERT(col == NumColumns);
 
     q->connect(mPgpCB, SIGNAL(currentIndexChanged(int)), SLOT(slotCompleteChanged()));
@@ -251,7 +257,6 @@ void CertificateSelectionLine::addAndSelectCertificate(const Key &key) const
 void CertificateSelectionLine::showHide(Protocol proto, bool &first, bool showAll, bool op) const
 {
     if (op && (showAll || wasInitiallyAmbiguous(proto))) {
-
         mToFromLB->setVisible(first);
         first = false;
 
@@ -270,13 +275,11 @@ void CertificateSelectionLine::showHide(Protocol proto, bool &first, bool showAl
         mSbox->hide();
         mToolTB->hide();
     }
-
 }
 
 bool CertificateSelectionLine::wasInitiallyAmbiguous(Protocol proto) const
 {
-    return (proto == OpenPGP && pgpAmbiguous)
-           || (proto == CMS     && cmsAmbiguous);
+    return (proto == OpenPGP && pgpAmbiguous) || (proto == CMS && cmsAmbiguous);
 }
 
 bool CertificateSelectionLine::isStillAmbiguous(Protocol proto) const

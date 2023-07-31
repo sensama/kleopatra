@@ -8,6 +8,7 @@
 */
 #pragma once
 #include <KCModule>
+#include <kcmutils_version.h>
 namespace Kleo
 {
 class CryptoConfigModule;
@@ -35,4 +36,3 @@ private:
 
 }
 }
-

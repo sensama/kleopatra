@@ -41,8 +41,8 @@
 #include <QMetaProperty>
 #include <QPushButton>
 #include <QSpacerItem>
-#include <QValidator>
 #include <QVBoxLayout>
+#include <QValidator>
 
 #include "kleopatra_debug.h"
 
@@ -76,8 +76,7 @@ static QString attributeLabel(const QString &attr, bool pgp)
         if (pgp) {
             return label;
         } else
-            return i18nc("Format string for the labels in the \"Your Personal Data\" page",
-                         "%1 (%2)", label, attr);
+            return i18nc("Format string for the labels in the \"Your Personal Data\" page", "%1 (%2)", label, attr);
     else {
         return attr;
     }
@@ -88,8 +87,7 @@ static QString attributeFromKey(QString key)
     return key.remove(QLatin1Char('!'));
 }
 
-struct EnterDetailsPage::UI
-{
+struct EnterDetailsPage::UI {
     QGridLayout *gridLayout = nullptr;
     QLabel *nameLB = nullptr;
     QLineEdit *nameLE = nullptr;
@@ -209,11 +207,9 @@ EnterDetailsPage::EnterDetailsPage(QWidget *p)
     ui->errorLB->clear();
 
     connect(ui->advancedPB, &QPushButton::clicked, this, &EnterDetailsPage::slotAdvancedSettingsClicked);
-    connect(ui->resultLE, &QLineEdit::textChanged,
-            this, &QWizardPage::completeChanged);
+    connect(ui->resultLE, &QLineEdit::textChanged, this, &QWizardPage::completeChanged);
     // The email doesn't necessarily show up in ui->resultLE:
-    connect(ui->emailLE, &QLineEdit::textChanged,
-            this, &QWizardPage::completeChanged);
+    connect(ui->emailLE, &QLineEdit::textChanged, this, &QWizardPage::completeChanged);
     registerDialogPropertiesAsFields();
     registerField(QStringLiteral("dn"), ui->resultLE);
     registerField(QStringLiteral("name"), ui->nameLE);
@@ -255,7 +251,6 @@ void EnterDetailsPage::cleanupPage()
 
 void EnterDetailsPage::registerDialogPropertiesAsFields()
 {
-
     const QMetaObject *const mo = dialog->metaObject();
     for (unsigned int i = mo->propertyOffset(), end = i + mo->propertyCount(); i != end; ++i) {
         const QMetaProperty mp = mo->property(i);
@@ -263,13 +258,12 @@ void EnterDetailsPage::registerDialogPropertiesAsFields()
             registerField(QLatin1String(mp.name()), dialog, mp.name(), SIGNAL(accepted()));
         }
     }
-
 }
 
 void EnterDetailsPage::saveValues()
 {
     for (const Line &line : std::as_const(lineList)) {
-        savedValues[ attributeFromKey(line.attr) ] = line.edit->text().trimmed();
+        savedValues[attributeFromKey(line.attr)] = line.edit->text().trimmed();
     }
 }
 
@@ -298,7 +292,8 @@ static int row_index_of(QWidget *w, QGridLayout *l)
     return r;
 }
 
-static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, const QString &preset, const std::shared_ptr<QValidator> &validator, bool readonly, bool required)
+static QLineEdit *
+adjust_row(QGridLayout *l, int row, const QString &label, const QString &preset, const std::shared_ptr<QValidator> &validator, bool readonly, bool required)
 {
     Q_ASSERT(l);
     Q_ASSERT(row >= 0);
@@ -308,7 +303,7 @@ static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, cons
     Q_ASSERT(lb);
     auto le = qobject_cast<QLineEdit *>(l->itemAtPosition(row, 1)->widget());
     Q_ASSERT(le);
-    lb->setBuddy(le);   // For better accessibility
+    lb->setBuddy(le); // For better accessibility
     auto reqLB = qobject_cast<QLabel *>(l->itemAtPosition(row, 2)->widget());
     Q_ASSERT(reqLB);
 
@@ -334,9 +329,9 @@ static int add_row(QGridLayout *l, QList<QWidget *> *wl)
     Q_ASSERT(wl);
     const int row = l->rowCount();
     QWidget *w1, *w2, *w3;
-    l->addWidget(w1 = new QLabel(l->parentWidget()),    row, 0);
+    l->addWidget(w1 = new QLabel(l->parentWidget()), row, 0);
     l->addWidget(w2 = new QLineEdit(l->parentWidget()), row, 1);
-    l->addWidget(w3 = new QLabel(l->parentWidget()),    row, 2);
+    l->addWidget(w3 = new QLabel(l->parentWidget()), row, 2);
     wl->push_back(w1);
     wl->push_back(w2);
     wl->push_back(w3);
@@ -345,7 +340,6 @@ static int add_row(QGridLayout *l, QList<QWidget *> *wl)
 
 void EnterDetailsPage::updateForm()
 {
-
     clearForm();
 
     const auto settings = Kleo::Settings{};
@@ -356,7 +350,8 @@ void EnterDetailsPage::updateForm()
         if (pgp()) {
             attrOrder << QStringLiteral("NAME") << QStringLiteral("EMAIL");
         } else {
-            attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O") << QStringLiteral("C") << QStringLiteral("EMAIL!");
+            attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O") << QStringLiteral("C")
+                      << QStringLiteral("EMAIL!");
         }
     }
 
@@ -375,8 +370,7 @@ void EnterDetailsPage::updateForm()
         const QString preset = savedValues.value(attr, config.readEntry(attr, QString()));
         const bool required = key.endsWith(QLatin1Char('!'));
         const bool readonly = config.isEntryImmutable(attr);
-        const QString label = config.readEntry(attr + QLatin1String("_label"),
-                                               attributeLabel(attr, pgp()));
+        const QString label = config.readEntry(attr + QLatin1String("_label"), attributeLabel(attr, pgp()));
         const QString regex = config.readEntry(attr + QLatin1String("_regex"));
         const QString placeholder = config.readEntry(attr + QLatin1String{"_placeholder"});
 
@@ -405,7 +399,7 @@ void EnterDetailsPage::updateForm()
         QLineEdit *le = adjust_row(ui->gridLayout, row, label, preset, validator, readonly, required);
         le->setPlaceholderText(placeholder);
 
-        const Line line = { key, label, regex, le, validator };
+        const Line line = {key, label, regex, le, validator};
         lines[row] = line;
 
         if (!known) {
@@ -460,10 +454,7 @@ QString EnterDetailsPage::cmsDN() const
 
 QString EnterDetailsPage::pgpUserID() const
 {
-    return Formatting::prettyNameAndEMail(OpenPGP, QString(),
-                                          ui->nameLE->text().trimmed(),
-                                          ui->emailLE->text().trimmed(),
-                                          QString());
+    return Formatting::prettyNameAndEMail(OpenPGP, QString(), ui->nameLE->text().trimmed(), ui->emailLE->text().trimmed(), QString());
 }
 
 static bool has_intermediate_input(const QLineEdit *le)
@@ -489,23 +480,32 @@ static bool requirementsAreMet(const QList<EnterDetailsPage::Line> &list, QStrin
                 if (line.regex.isEmpty()) {
                     error = xi18nc("@info", "<interface>%1</interface> is required, but empty.", line.label);
                 } else
-                    error = xi18nc("@info", "<interface>%1</interface> is required, but empty.<nl/>"
-                                   "Local Admin rule: <icode>%2</icode>", line.label, line.regex);
+                    error = xi18nc("@info",
+                                   "<interface>%1</interface> is required, but empty.<nl/>"
+                                   "Local Admin rule: <icode>%2</icode>",
+                                   line.label,
+                                   line.regex);
                 return false;
             }
         } else if (has_intermediate_input(le)) {
             if (line.regex.isEmpty()) {
                 error = xi18nc("@info", "<interface>%1</interface> is incomplete.", line.label);
             } else
-                error = xi18nc("@info", "<interface>%1</interface> is incomplete.<nl/>"
-                               "Local Admin rule: <icode>%2</icode>", line.label, line.regex);
+                error = xi18nc("@info",
+                               "<interface>%1</interface> is incomplete.<nl/>"
+                               "Local Admin rule: <icode>%2</icode>",
+                               line.label,
+                               line.regex);
             return false;
         } else if (!le->hasAcceptableInput()) {
             if (line.regex.isEmpty()) {
                 error = xi18nc("@info", "<interface>%1</interface> is invalid.", line.label);
             } else
-                error = xi18nc("@info", "<interface>%1</interface> is invalid.<nl/>"
-                               "Local Admin rule: <icode>%2</icode>", line.label, line.regex);
+                error = xi18nc("@info",
+                               "<interface>%1</interface> is invalid.<nl/>"
+                               "Local Admin rule: <icode>%2</icode>",
+                               line.label,
+                               line.regex);
             return false;
         } else {
             allEmpty = false;

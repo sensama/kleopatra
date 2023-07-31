@@ -14,8 +14,8 @@
 
 #include <Libkleo/Formatting>
 
-#include <gpgme++/error.h>
 #include <gpgme++/context.h>
+#include <gpgme++/error.h>
 #include <gpgme++/keylistresult.h>
 
 #include <memory>
@@ -84,7 +84,7 @@ void NetKeyCard::setKeyPairInfo(const std::vector<KeyPairInfo> &infos)
 
     setCanLearnKeys(false);
     mKeys.clear();
-    for (const auto &info: infos) {
+    for (const auto &info : infos) {
         const auto key = lookup_key(klc.get(), info.grip);
         if (key.isNull()) {
             setCanLearnKeys(true);
@@ -92,7 +92,6 @@ void NetKeyCard::setKeyPairInfo(const std::vector<KeyPairInfo> &infos)
         mKeys.push_back(key);
     }
 }
-
 
 // State 0 -> NKS PIN Retry counter
 // State 1 -> NKS PUK Retry counter

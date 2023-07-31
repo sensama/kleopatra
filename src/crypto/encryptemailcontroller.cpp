@@ -10,18 +10,18 @@
 #include <config-kleopatra.h>
 
 #include "encryptemailcontroller.h"
-#include "kleopatra_debug.h"
 #include "encryptemailtask.h"
+#include "kleopatra_debug.h"
 #include "taskcollection.h"
 
 #include <crypto/gui/encryptemailwizard.h>
 
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
+#include <utils/output.h>
 
-#include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
+#include <Libkleo/Stl_Util>
 
 #include <gpgme++/key.h>
 
@@ -39,6 +39,7 @@ class EncryptEMailController::Private
 {
     friend class ::Kleo::Crypto::EncryptEMailController;
     EncryptEMailController *const q;
+
 public:
     explicit Private(Mode mode, EncryptEMailController *qq);
 
@@ -55,32 +56,31 @@ private:
 
 private:
     const Mode mode;
-    std::vector< std::shared_ptr<EncryptEMailTask> > runnable, completed;
+    std::vector<std::shared_ptr<EncryptEMailTask>> runnable, completed;
     std::shared_ptr<EncryptEMailTask> cms, openpgp;
     QPointer<EncryptEMailWizard> wizard;
 };
 
 EncryptEMailController::Private::Private(Mode m, EncryptEMailController *qq)
-    : q(qq),
-      mode(m),
-      runnable(),
-      cms(),
-      openpgp(),
-      wizard()
+    : q(qq)
+    , mode(m)
+    , runnable()
+    , cms()
+    , openpgp()
+    , wizard()
 {
-
 }
 
 EncryptEMailController::EncryptEMailController(const std::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *p)
-    : Controller(xc, p), d(new Private(mode, this))
+    : Controller(xc, p)
+    , d(new Private(mode, this))
 {
-
 }
 
 EncryptEMailController::EncryptEMailController(Mode mode, QObject *p)
-    : Controller(p), d(new Private(mode, this))
+    : Controller(p)
+    , d(new Private(mode, this))
 {
-
 }
 
 EncryptEMailController::~EncryptEMailController()
@@ -99,8 +99,7 @@ void EncryptEMailController::setProtocol(Protocol proto)
 {
     d->ensureWizardCreated();
     const Protocol protocol = d->wizard->presetProtocol();
-    kleo_assert(protocol == UnknownProtocol ||
-                protocol == proto);
+    kleo_assert(protocol == UnknownProtocol || protocol == proto);
 
     d->wizard->setPresetProtocol(proto);
 }
@@ -114,11 +113,12 @@ Protocol EncryptEMailController::protocol()
 const char *EncryptEMailController::protocolAsString()
 {
     switch (protocol()) {
-    case OpenPGP: return "OpenPGP";
-    case CMS:     return "CMS";
+    case OpenPGP:
+        return "OpenPGP";
+    case CMS:
+        return "CMS";
     default:
-        throw Kleo::Exception(gpg_error(GPG_ERR_INTERNAL),
-                              i18n("Call to EncryptEMailController::protocolAsString() is ambiguous."));
+        throw Kleo::Exception(gpg_error(GPG_ERR_INTERNAL), i18n("Call to EncryptEMailController::protocolAsString() is ambiguous."));
     }
 }
 
@@ -142,16 +142,15 @@ void EncryptEMailController::Private::slotWizardCanceled()
 
 void EncryptEMailController::setInputAndOutput(const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output)
 {
-    setInputsAndOutputs(std::vector< std::shared_ptr<Input> >(1, input), std::vector< std::shared_ptr<Output> >(1, output));
+    setInputsAndOutputs(std::vector<std::shared_ptr<Input>>(1, input), std::vector<std::shared_ptr<Output>>(1, output));
 }
 
-void EncryptEMailController::setInputsAndOutputs(const std::vector< std::shared_ptr<Input> > &inputs, const std::vector< std::shared_ptr<Output> > &outputs)
+void EncryptEMailController::setInputsAndOutputs(const std::vector<std::shared_ptr<Input>> &inputs, const std::vector<std::shared_ptr<Output>> &outputs)
 {
-
     kleo_assert(!inputs.empty());
     kleo_assert(outputs.size() == inputs.size());
 
-    std::vector< std::shared_ptr<EncryptEMailTask> > tasks;
+    std::vector<std::shared_ptr<EncryptEMailTask>> tasks;
     tasks.reserve(inputs.size());
 
     d->ensureWizardCreated();
@@ -160,7 +159,6 @@ void EncryptEMailController::setInputsAndOutputs(const std::vector< std::shared_
     kleo_assert(!keys.empty());
 
     for (unsigned int i = 0, end = inputs.size(); i < end; ++i) {
-
         const std::shared_ptr<EncryptEMailTask> task(new EncryptEMailTask);
         task->setInput(inputs[i]);
         task->setOutput(outputs[i]);
@@ -178,7 +176,7 @@ void EncryptEMailController::setInputsAndOutputs(const std::vector< std::shared_
 void EncryptEMailController::start()
 {
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    std::vector<std::shared_ptr<Task> > tmp;
+    std::vector<std::shared_ptr<Task>> tmp;
     std::copy(d->runnable.begin(), d->runnable.end(), std::back_inserter(tmp));
     coll->setTasks(tmp);
     d->ensureWizardCreated();
@@ -191,7 +189,6 @@ void EncryptEMailController::start()
 
 void EncryptEMailController::Private::schedule()
 {
-
     if (!cms)
         if (const std::shared_ptr<EncryptEMailTask> t = takeRunnable(CMS)) {
             t->start();
@@ -213,10 +210,9 @@ void EncryptEMailController::Private::schedule()
 
 std::shared_ptr<EncryptEMailTask> EncryptEMailController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const auto it = std::find_if(runnable.begin(), runnable.end(),
-                       [proto](const std::shared_ptr<Kleo::Crypto::EncryptEMailTask> &task) {
-                           return task->protocol() == proto;
-                       });
+    const auto it = std::find_if(runnable.begin(), runnable.end(), [proto](const std::shared_ptr<Kleo::Crypto::EncryptEMailTask> &task) {
+        return task->protocol() == proto;
+    });
     if (it == runnable.end()) {
         return std::shared_ptr<EncryptEMailTask>();
     }
@@ -244,7 +240,12 @@ void EncryptEMailController::doTaskDone(const Task *task, const std::shared_ptr<
         d->openpgp.reset();
     }
 
-    QMetaObject::invokeMethod(this, [this]() { d->schedule(); }, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(
+        this,
+        [this]() {
+            d->schedule();
+        },
+        Qt::QueuedConnection);
 }
 
 void EncryptEMailController::cancel()
@@ -261,7 +262,6 @@ void EncryptEMailController::cancel()
 
 void EncryptEMailController::Private::cancelAllTasks()
 {
-
     // we just kill all runnable tasks - this will not result in
     // signal emissions.
     runnable.clear();
@@ -284,7 +284,14 @@ void EncryptEMailController::Private::ensureWizardCreated()
     std::unique_ptr<EncryptEMailWizard> w(new EncryptEMailWizard);
     w->setAttribute(Qt::WA_DeleteOnClose);
     connect(w.get(), &EncryptEMailWizard::recipientsResolved, q, &EncryptEMailController::recipientsResolved, Qt::QueuedConnection);
-    connect(w.get(), &EncryptEMailWizard::canceled, q, [this]() { slotWizardCanceled(); }, Qt::QueuedConnection);
+    connect(
+        w.get(),
+        &EncryptEMailWizard::canceled,
+        q,
+        [this]() {
+            slotWizardCanceled();
+        },
+        Qt::QueuedConnection);
 
     wizard = w.release();
 }
@@ -296,4 +303,3 @@ void EncryptEMailController::Private::ensureWizardVisible()
 }
 
 #include "moc_encryptemailcontroller.cpp"
-

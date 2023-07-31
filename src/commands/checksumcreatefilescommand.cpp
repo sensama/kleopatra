@@ -19,9 +19,8 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
-
+#include <KLocalizedString>
 
 #include <exception>
 
@@ -36,6 +35,7 @@ class ChecksumCreateFilesCommand::Private : public Command::Private
     {
         return static_cast<ChecksumCreateFilesCommand *>(q);
     }
+
 public:
     explicit Private(ChecksumCreateFilesCommand *qq, KeyListController *c);
     ~Private() override;
@@ -73,10 +73,10 @@ const ChecksumCreateFilesCommand::Private *ChecksumCreateFilesCommand::d_func() 
 #define q q_func()
 
 ChecksumCreateFilesCommand::Private::Private(ChecksumCreateFilesCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      files(),
-      shared_qq(qq, [](ChecksumCreateFilesCommand*){}),
-      controller()
+    : Command::Private(qq, c)
+    , files()
+    , shared_qq(qq, [](ChecksumCreateFilesCommand *) {})
+    , controller()
 {
     controller.setAllowAddition(true);
 }
@@ -115,8 +115,12 @@ ChecksumCreateFilesCommand::ChecksumCreateFilesCommand(const QStringList &files,
 void ChecksumCreateFilesCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
-    connect(&controller, &Crypto::Controller::done, q, [this]() { slotControllerDone(); });
-    connect(&controller, &Crypto::Controller::error, q, [this](int err, const QString &details) { slotControllerError(err,details); });
+    connect(&controller, &Crypto::Controller::done, q, [this]() {
+        slotControllerDone();
+    });
+    connect(&controller, &Crypto::Controller::error, q, [this](int err, const QString &details) {
+        slotControllerError(err, details);
+    });
 }
 
 ChecksumCreateFilesCommand::~ChecksumCreateFilesCommand()
@@ -131,9 +135,7 @@ void ChecksumCreateFilesCommand::setFiles(const QStringList &files)
 
 void ChecksumCreateFilesCommand::doStart()
 {
-
     try {
-
         if (d->files.empty()) {
             d->files = d->selectFiles();
         }
@@ -146,9 +148,7 @@ void ChecksumCreateFilesCommand::doStart()
         d->controller.start();
 
     } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1",
-                            QString::fromLocal8Bit(e.what())),
-                       i18n("Create Checksum Files Error"));
+        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Create Checksum Files Error"));
         d->finished();
     }
 }

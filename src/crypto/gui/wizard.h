@@ -32,7 +32,7 @@ public:
     ~Wizard() override;
 
     enum Page {
-        InvalidPage = -1
+        InvalidPage = -1,
     };
 
     void setPage(int id, WizardPage *page);
@@ -74,5 +74,3 @@ private:
 }
 }
 }
-
-

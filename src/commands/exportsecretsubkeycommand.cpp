@@ -10,8 +10,8 @@
 
 #include <config-kleopatra.h>
 
-#include "exportsecretsubkeycommand.h"
 #include "command_p.h"
+#include "exportsecretsubkeycommand.h"
 
 #include "fileoperationspreferences.h"
 #include <utils/applicationstate.h>
@@ -44,8 +44,7 @@ namespace
 #if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
 QString openPGPCertificateFileExtension()
 {
-    return QLatin1String{outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate,
-                                             FileOperationsPreferences().usePGPFileExt())};
+    return QLatin1String{outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt())};
 }
 
 QString proposeFilename(const std::vector<Subkey> &subkeys)
@@ -63,8 +62,7 @@ QString proposeFilename(const std::vector<Subkey> &subkeys)
         const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
         const auto usage = Formatting::usageString(subkey).replace(QLatin1String{", "}, QLatin1String{"_"});
         /* Not translated so it's better to use in tutorials etc. */
-        filename = QStringView{u"%1_%2_SECRET_SUBKEY_%3_%4"}.arg(
-            name, shortKeyID, shortSubkeyID, usage);
+        filename = QStringView{u"%1_%2_SECRET_SUBKEY_%3_%4"}.arg(name, shortKeyID, shortSubkeyID, usage);
     } else {
         filename = i18nc("Generic filename for exported subkeys", "subkeys");
     }
@@ -75,12 +73,11 @@ QString proposeFilename(const std::vector<Subkey> &subkeys)
 
 QString requestFilename(const std::vector<Subkey> &subkeys, const QString &proposedFilename, QWidget *parent)
 {
-    auto filename = FileDialog::getSaveFileNameEx(
-        parent,
-        i18ncp("@title:window", "Export Subkey", "Export Subkeys", subkeys.size()),
-        QStringLiteral("imp"),
-        proposedFilename,
-        i18nc("description of filename filter", "Secret Key Files") + QLatin1String{" (*.asc *.gpg *.pgp)"});
+    auto filename = FileDialog::getSaveFileNameEx(parent,
+                                                  i18ncp("@title:window", "Export Subkey", "Export Subkeys", subkeys.size()),
+                                                  QStringLiteral("imp"),
+                                                  proposedFilename,
+                                                  i18nc("description of filename filter", "Secret Key Files") + QLatin1String{" (*.asc *.gpg *.pgp)"});
 
     if (!filename.isEmpty()) {
         const QFileInfo fi{filename};
@@ -99,11 +96,9 @@ QStringList getSubkeyFingerprints(const SubkeyContainer &subkeys)
     QStringList fingerprints;
 
     fingerprints.reserve(subkeys.size());
-    std::transform(std::begin(subkeys), std::end(subkeys),
-                   std::back_inserter(fingerprints),
-                   [](const auto &subkey) {
-                       return QLatin1String{subkey.fingerprint()} + u'!';
-                   });
+    std::transform(std::begin(subkeys), std::end(subkeys), std::back_inserter(fingerprints), [](const auto &subkey) {
+        return QLatin1String{subkey.fingerprint()} + u'!';
+    });
 
     return fingerprints;
 }
@@ -118,6 +113,7 @@ class ExportSecretSubkeyCommand::Private : public Command::Private
     {
         return static_cast<ExportSecretSubkeyCommand *>(q);
     }
+
 public:
     explicit Private(ExportSecretSubkeyCommand *qq);
     ~Private() override;
@@ -197,16 +193,15 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretSubkeyCommand::Private::startExpo
     std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->secretSubkeyExportJob(armor)};
     Q_ASSERT(exportJob);
 
-    connect(exportJob.get(), &QGpgME::ExportJob::result,
-            q, [this](const GpgME::Error &err, const QByteArray &keyData) {
-                onExportJobResult(err, keyData);
-            });
+    connect(exportJob.get(), &QGpgME::ExportJob::result, q, [this](const GpgME::Error &err, const QByteArray &keyData) {
+        onExportJobResult(err, keyData);
+    });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(exportJob.get(), &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(exportJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(exportJob.get(), &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(exportJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
 
     const GpgME::Error err = exportJob->start(getSubkeyFingerprints(subkeys));
@@ -237,16 +232,14 @@ void ExportSecretSubkeyCommand::Private::onExportJobResult(const Error &err, con
     }
 
     if (keyData.isEmpty()) {
-        error(i18nc("@info", "The result of the export is empty."),
-              i18nc("@title:window", "Export Failed"));
+        error(i18nc("@info", "The result of the export is empty."), i18nc("@title:window", "Export Failed"));
         finished();
         return;
     }
 
     QFile f{filename};
     if (!f.open(QIODevice::WriteOnly)) {
-        error(xi18nc("@info", "Cannot open file <filename>%1</filename> for writing.", filename),
-              i18nc("@title:window", "Export Failed"));
+        error(xi18nc("@info", "Cannot open file <filename>%1</filename> for writing.", filename), i18nc("@title:window", "Export Failed"));
         finished();
         return;
     }
@@ -256,16 +249,14 @@ void ExportSecretSubkeyCommand::Private::onExportJobResult(const Error &err, con
         error(xi18ncp("@info",
                       "Writing subkey to file <filename>%2</filename> failed.",
                       "Writing subkeys to file <filename>%2</filename> failed.",
-                      subkeys.size(), filename),
+                      subkeys.size(),
+                      filename),
               i18nc("@title:window", "Export Failed"));
         finished();
         return;
     }
 
-    information(i18ncp("@info",
-                       "The subkey was exported successfully.",
-                       "%1 subkeys were exported successfully.",
-                       subkeys.size()),
+    information(i18ncp("@info", "The subkey was exported successfully.", "%1 subkeys were exported successfully.", subkeys.size()),
                 i18nc("@title:window", "Secret Key Backup"));
     finished();
 }

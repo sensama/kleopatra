@@ -9,13 +9,13 @@
 
 #pragma once
 
-#include <QObject>
 #include <QMetaType>
+#include <QObject>
 
 #include "card.h"
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 namespace GpgME
 {
@@ -51,19 +51,18 @@ public:
     std::string firstCardWithNullPin() const;
     bool anyCardCanLearnKeys() const;
 
-    std::vector<std::shared_ptr<Card> > getCards() const;
+    std::vector<std::shared_ptr<Card>> getCards() const;
 
     std::shared_ptr<Card> getCard(const std::string &serialNumber, const std::string &appName) const;
 
-    template <typename T>
+    template<typename T>
     std::shared_ptr<T> getCard(const std::string &serialNumber) const
     {
         return std::dynamic_pointer_cast<T>(getCard(serialNumber, T::AppName));
     }
 
     static std::string switchCard(std::shared_ptr<GpgME::Context> &ctx, const std::string &serialNumber, GpgME::Error &err);
-    static std::string switchApp(std::shared_ptr<GpgME::Context> &ctx, const std::string &serialNumber,
-                                 const std::string &appName, GpgME::Error &err);
+    static std::string switchApp(std::shared_ptr<GpgME::Context> &ctx, const std::string &serialNumber, const std::string &appName, GpgME::Error &err);
     static GpgME::Error switchCardAndApp(const std::string &serialNumber, const std::string &appName);
     static GpgME::Error switchCardBackToOpenPGPApp(const std::string &serialNumber);
 
@@ -90,4 +89,3 @@ private:
 } // namespace Kleo
 
 Q_DECLARE_METATYPE(Kleo::SmartCard::Card::Status)
-

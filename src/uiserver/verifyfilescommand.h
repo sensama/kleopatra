@@ -17,7 +17,7 @@ namespace Kleo
 class VerifyFilesCommand : public AssuanCommandMixin<VerifyFilesCommand, DecryptVerifyCommandFilesBase>
 {
 public:
-    //VerifyFilesCommand();
+    // VerifyFilesCommand();
     //~VerifyFilesCommand();
 
 private:
@@ -34,4 +34,3 @@ public:
 };
 
 }
-

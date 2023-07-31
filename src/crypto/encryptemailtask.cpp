@@ -12,15 +12,15 @@
 #include "encryptemailtask.h"
 
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
+#include <utils/output.h>
 
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/EncryptJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/encryptionresult.h>
 #include <gpgme++/key.h>
@@ -41,9 +41,14 @@ class EncryptEMailResult : public Task::Result
 {
     const EncryptionResult m_result;
     const AuditLogEntry m_auditLog;
+
 public:
     EncryptEMailResult(const EncryptionResult &r, const AuditLogEntry &auditLog)
-        : Task::Result(), m_result(r), m_auditLog(auditLog) {}
+        : Task::Result()
+        , m_result(r)
+        , m_auditLog(auditLog)
+    {
+    }
 
     QString overview() const override;
     QString details() const override;
@@ -74,6 +79,7 @@ class EncryptEMailTask::Private
 {
     friend class ::Kleo::Crypto::EncryptEMailTask;
     EncryptEMailTask *const q;
+
 public:
     explicit Private(EncryptEMailTask *qq);
 
@@ -92,21 +98,22 @@ private:
 };
 
 EncryptEMailTask::Private::Private(EncryptEMailTask *qq)
-    : q(qq),
-      input(),
-      output(),
-      job(nullptr)
+    : q(qq)
+    , input()
+    , output()
+    , job(nullptr)
 {
-
 }
 
 EncryptEMailTask::EncryptEMailTask(QObject *p)
-    : Task(p), d(new Private(this))
+    : Task(p)
+    , d(new Private(this))
 {
-
 }
 
-EncryptEMailTask::~EncryptEMailTask() {}
+EncryptEMailTask::~EncryptEMailTask()
+{
+}
 
 void EncryptEMailTask::setInput(const std::shared_ptr<Input> &input)
 {
@@ -156,7 +163,8 @@ void EncryptEMailTask::doStart()
     kleo_assert(job.get());
 
     job->start(d->recipients,
-               d->input->ioDevice(), d->output->ioDevice(),
+               d->input->ioDevice(),
+               d->output->ioDevice(),
                /*alwaysTrust=*/true);
 
     d->job = job.release();
@@ -186,8 +194,7 @@ std::unique_ptr<QGpgME::EncryptJob> EncryptEMailTask::Private::createJob(GpgME::
         q->setProgress(processed, total);
     });
 #endif
-    connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult,QByteArray)),
-            q, SLOT(slotResult(GpgME::EncryptionResult)));
+    connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult, QByteArray)), q, SLOT(slotResult(GpgME::EncryptionResult)));
     return encryptJob;
 }
 
@@ -236,4 +243,3 @@ Task::Result::VisualCode EncryptEMailResult::code() const
 }
 
 #include "moc_encryptemailtask.cpp"
-

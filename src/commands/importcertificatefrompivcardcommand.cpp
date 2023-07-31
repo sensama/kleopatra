@@ -31,9 +31,9 @@ class ImportCertificateFromPIVCardCommand::Private : public CardCommand::Private
     {
         return static_cast<ImportCertificateFromPIVCardCommand *>(q);
     }
+
 public:
-    explicit Private(ImportCertificateFromPIVCardCommand *qq,
-                     const std::string &slot, const std::string &serialno);
+    explicit Private(ImportCertificateFromPIVCardCommand *qq, const std::string &slot, const std::string &serialno);
     ~Private() override;
 
 private:
@@ -58,9 +58,7 @@ const ImportCertificateFromPIVCardCommand::Private *ImportCertificateFromPIVCard
 #define q q_func()
 #define d d_func()
 
-
-ImportCertificateFromPIVCardCommand::Private::Private(ImportCertificateFromPIVCardCommand *qq,
-                                                      const std::string &slot, const std::string &serialno)
+ImportCertificateFromPIVCardCommand::Private::Private(ImportCertificateFromPIVCardCommand *qq, const std::string &slot, const std::string &serialno)
     : CardCommand::Private(qq, serialno, nullptr)
     , cardSlot(slot)
 {
@@ -89,10 +87,12 @@ void ImportCertificateFromPIVCardCommand::Private::start()
     }
 
     auto cmd = new ImportCertificateFromDataCommand(QByteArray::fromStdString(certificateData), GpgME::CMS, i18n("Card Certificate"));
-    connect(cmd, &ImportCertificateFromDataCommand::finished,
-            q, [this]() { importFinished(); });
-    connect(cmd, &ImportCertificateFromDataCommand::canceled,
-            q, [this]() { importCanceled(); });
+    connect(cmd, &ImportCertificateFromDataCommand::finished, q, [this]() {
+        importFinished();
+    });
+    connect(cmd, &ImportCertificateFromDataCommand::canceled, q, [this]() {
+        importCanceled();
+    });
     cmd->start();
 }
 
@@ -111,7 +111,7 @@ void ImportCertificateFromPIVCardCommand::Private::importCanceled()
     canceled();
 }
 
-ImportCertificateFromPIVCardCommand::ImportCertificateFromPIVCardCommand(const std::string& cardSlot, const std::string &serialno)
+ImportCertificateFromPIVCardCommand::ImportCertificateFromPIVCardCommand(const std::string &cardSlot, const std::string &serialno)
     : CardCommand(new Private(this, cardSlot, serialno))
 {
 }

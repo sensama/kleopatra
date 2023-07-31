@@ -21,17 +21,17 @@
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/ExportJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/key.h>
 
 #include <KLocalizedString>
 #include <QSaveFile>
 
+#include <QFileInfo>
 #include <QMap>
 #include <QPointer>
-#include <QFileInfo>
 
 #include <algorithm>
 #include <vector>
@@ -47,6 +47,7 @@ class ExportCertificateCommand::Private : public Command::Private
     {
         return static_cast<ExportCertificateCommand *>(q);
     }
+
 public:
     explicit Private(ExportCertificateCommand *qq, KeyListController *c);
     ~Private() override;
@@ -81,30 +82,30 @@ const ExportCertificateCommand::Private *ExportCertificateCommand::d_func() cons
 ExportCertificateCommand::Private::Private(ExportCertificateCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
 {
-
 }
 
-ExportCertificateCommand::Private::~Private() {}
+ExportCertificateCommand::Private::~Private()
+{
+}
 
 ExportCertificateCommand::ExportCertificateCommand(KeyListController *p)
     : Command(new Private(this, p))
 {
-
 }
 
 ExportCertificateCommand::ExportCertificateCommand(QAbstractItemView *v, KeyListController *p)
     : Command(v, new Private(this, p))
 {
-
 }
 
 ExportCertificateCommand::ExportCertificateCommand(const Key &key)
     : Command(key, new Private(this, nullptr))
 {
-
 }
 
-ExportCertificateCommand::~ExportCertificateCommand() {}
+ExportCertificateCommand::~ExportCertificateCommand()
+{
+}
 
 void ExportCertificateCommand::setOpenPGPFileName(const QString &fileName)
 {
@@ -137,10 +138,9 @@ void ExportCertificateCommand::doStart()
         return;
     }
 
-    const auto firstCms = std::partition(keys.begin(), keys.end(),
-                                         [](const GpgME::Key &key) {
-                                            return key.protocol() != GpgME::CMS;
-                                         });
+    const auto firstCms = std::partition(keys.begin(), keys.end(), [](const GpgME::Key &key) {
+        return key.protocol() != GpgME::CMS;
+    });
     std::vector<Key> openpgp, cms;
     std::copy(keys.begin(), firstCms, std::back_inserter(openpgp));
     std::copy(firstCms, keys.end(), std::back_inserter(cms));
@@ -189,12 +189,12 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
         if (name.isEmpty()) {
             name = Formatting::prettyEMail(key);
         }
+        const auto asciiArmoredCertificateClass = (protocol == OpenPGP ? Class::OpenPGP : Class::CMS) | Class::Ascii | Class::Certificate;
         /* Not translated so it's better to use in tutorials etc. */
-        proposedFileName += QStringLiteral("%1_%2_public.%3").arg(name).arg(
-                Formatting::prettyKeyID(key.shortKeyID())).arg(
-                QString::fromLatin1(outputFileExtension(protocol == OpenPGP
-                        ? Class::OpenPGP | Class::Ascii | Class::Certificate
-                        : Class::CMS | Class::Ascii | Class::Certificate, usePGPFileExt)));
+        proposedFileName += QStringLiteral("%1_%2_public.%3")
+                                .arg(name)
+                                .arg(Formatting::prettyKeyID(key.shortKeyID()))
+                                .arg(QString::fromLatin1(outputFileExtension(asciiArmoredCertificateClass, usePGPFileExt)));
     }
     if (protocol == GpgME::CMS) {
         if (!fileNames[GpgME::OpenPGP].isEmpty()) {
@@ -218,17 +218,14 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
     }
 
     auto fname = FileDialog::getSaveFileNameEx(parentWidgetOrView(),
-                          i18nc("1 is protocol", "Export %1 Certificates", Formatting::displayName(protocol)),
-                          QStringLiteral("imp"),
-                          proposedFileName,
-                          protocol == GpgME::OpenPGP
-                          ? i18n("OpenPGP Certificates") + QLatin1String(" (*.asc *.gpg *.pgp)")
-                          : i18n("S/MIME Certificates")  + QLatin1String(" (*.pem *.der)"));
+                                               i18nc("1 is protocol", "Export %1 Certificates", Formatting::displayName(protocol)),
+                                               QStringLiteral("imp"),
+                                               proposedFileName,
+                                               protocol == GpgME::OpenPGP ? i18n("OpenPGP Certificates") + QLatin1String(" (*.asc *.gpg *.pgp)")
+                                                                          : i18n("S/MIME Certificates") + QLatin1String(" (*.pem *.der)"));
 
     if (!fname.isEmpty() && protocol == GpgME::CMS && fileNames[GpgME::OpenPGP] == fname) {
-        KMessageBox::error(parentWidgetOrView(),
-                         i18n("You have to select different filenames for different protocols."),
-                         i18n("Export Error"));
+        KMessageBox::error(parentWidgetOrView(), i18n("You have to select different filenames for different protocols."), i18n("Export Error"));
         return false;
     }
     const QFileInfo fi(fname);
@@ -249,8 +246,8 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
     Q_ASSERT(backend);
     const QString fileName = fileNames[protocol];
     const bool binary = protocol == GpgME::OpenPGP
-                        ? fileName.endsWith(QLatin1String(".gpg"), Qt::CaseInsensitive) || fileName.endsWith(QLatin1String(".pgp"), Qt::CaseInsensitive)
-                        : fileName.endsWith(QLatin1String(".der"), Qt::CaseInsensitive);
+        ? fileName.endsWith(QLatin1String(".gpg"), Qt::CaseInsensitive) || fileName.endsWith(QLatin1String(".pgp"), Qt::CaseInsensitive)
+        : fileName.endsWith(QLatin1String(".der"), Qt::CaseInsensitive);
     std::unique_ptr<ExportJob> job(backend->publicKeyExportJob(!binary));
     Q_ASSERT(job.get());
 
@@ -259,11 +256,11 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
     });
 
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(job.get(), &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(job.get(), &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(job.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
 
     QStringList fingerprints;
@@ -289,10 +286,11 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
 void ExportCertificateCommand::Private::showError(const GpgME::Error &err)
 {
     Q_ASSERT(err);
-    const QString msg = i18n("<qt><p>An error occurred while trying to export "
-                             "the certificate:</p>"
-                             "<p><b>%1</b></p></qt>",
-                             Formatting::errorAsString(err));
+    const QString msg = i18n(
+        "<qt><p>An error occurred while trying to export "
+        "the certificate:</p>"
+        "<p><b>%1</b></p></qt>",
+        Formatting::errorAsString(err));
     error(msg, i18n("Certificate Export Failed"));
 }
 
@@ -337,8 +335,8 @@ void ExportCertificateCommand::Private::exportResult(const GpgME::Error &err, co
         return;
     }
     QSaveFile savefile(outFile);
-    //TODO: use KIO
-    const QString writeErrorMsg = i18n("Could not write to file %1.",  outFile);
+    // TODO: use KIO
+    const QString writeErrorMsg = i18n("Could not write to file %1.", outFile);
     const QString errorCaption = i18n("Certificate Export Failed");
     if (!savefile.open(QIODevice::WriteOnly)) {
         error(writeErrorMsg, errorCaption);
@@ -346,8 +344,7 @@ void ExportCertificateCommand::Private::exportResult(const GpgME::Error &err, co
         return;
     }
 
-    if (!write_complete(savefile, data) ||
-            !savefile.commit()) {
+    if (!write_complete(savefile, data) || !savefile.commit()) {
         error(writeErrorMsg, errorCaption);
     }
     finishedIfLastJob();

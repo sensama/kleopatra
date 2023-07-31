@@ -69,8 +69,9 @@ public:
         ui.treeView->view()->setSelectionMode(QAbstractItemView::SingleSelection);
         ui.treeView->setFlatModel(AbstractKeyListModel::createFlatKeyListModel(ui.treeView));
         ui.treeView->setHierarchicalView(false);
-        connect(ui.treeView->view(), &QAbstractItemView::doubleClicked,
-                q, [this] (const QModelIndex &index) { showKeyDetails(index); });
+        connect(ui.treeView->view(), &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
+            showKeyDetails(index);
+        });
         mainLayout->addWidget(ui.treeView);
 
         ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);

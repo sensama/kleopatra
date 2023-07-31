@@ -24,20 +24,20 @@ using namespace GpgME;
 
 namespace
 {
-    QString encodeDomainName(const QString &domain)
-    {
-        const QByteArray encodedDomain = QUrl::toAce(domain);
-        return encodedDomain.isEmpty() ? domain : QString::fromLatin1(encodedDomain);
-    }
+QString encodeDomainName(const QString &domain)
+{
+    const QByteArray encodedDomain = QUrl::toAce(domain);
+    return encodedDomain.isEmpty() ? domain : QString::fromLatin1(encodedDomain);
+}
 
-    QString encodeEmail(const QString &email)
-    {
-        const int at = email.lastIndexOf(QLatin1Char('@'));
-        if (at < 0) {
-            return email;
-        }
-        return email.left(at + 1) + encodeDomainName(email.mid(at + 1));
+QString encodeEmail(const QString &email)
+{
+    const int at = email.lastIndexOf(QLatin1Char('@'));
+    if (at < 0) {
+        return email;
     }
+    return email.left(at + 1) + encodeDomainName(email.mid(at + 1));
+}
 }
 
 class KeyParameters::Private
@@ -229,7 +229,7 @@ void KeyParameters::setEmail(const QString &email)
     d->emailAdresses = {email};
 }
 
-void KeyParameters::addEmail(const QString& email)
+void KeyParameters::addEmail(const QString &email)
 {
     d->emailAdresses.push_back(email);
 }
@@ -239,7 +239,7 @@ std::vector<QString> KeyParameters::emails() const
     return d->emailAdresses;
 }
 
-void KeyParameters::addDomainName(const QString& domain)
+void KeyParameters::addDomainName(const QString &domain)
 {
     d->domainNames.push_back(domain);
 }
@@ -249,7 +249,7 @@ std::vector<QString> KeyParameters::domainNames() const
     return d->domainNames;
 }
 
-void KeyParameters::addURI(const QString& uri)
+void KeyParameters::addURI(const QString &uri)
 {
     d->uris.push_back(uri);
 }

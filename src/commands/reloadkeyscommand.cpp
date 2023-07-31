@@ -9,9 +9,9 @@
 
 #include <config-kleopatra.h>
 
+#include "command_p.h"
 #include "reloadkeyscommand.h"
 #include "smartcard/readerstatus.h"
-#include "command_p.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -26,6 +26,7 @@ using namespace GpgME;
 class ReloadKeysCommand::Private : public Command::Private
 {
     friend class ::Kleo::ReloadKeysCommand;
+
 public:
     Private(ReloadKeysCommand *qq, KeyListController *controller);
     ~Private() override;
@@ -45,23 +46,25 @@ const ReloadKeysCommand::Private *ReloadKeysCommand::d_func() const
 ReloadKeysCommand::ReloadKeysCommand(KeyListController *p)
     : Command(new Private(this, p))
 {
-
 }
 
 ReloadKeysCommand::ReloadKeysCommand(QAbstractItemView *v, KeyListController *p)
     : Command(v, new Private(this, p))
 {
-
 }
 
-ReloadKeysCommand::~ReloadKeysCommand() {}
+ReloadKeysCommand::~ReloadKeysCommand()
+{
+}
 
 ReloadKeysCommand::Private::Private(ReloadKeysCommand *qq, KeyListController *controller)
     : Command::Private(qq, controller)
 {
 }
 
-ReloadKeysCommand::Private::~Private() {}
+ReloadKeysCommand::Private::~Private()
+{
+}
 
 void ReloadKeysCommand::Private::keyListingDone(const KeyListResult &result)
 {

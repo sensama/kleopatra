@@ -36,7 +36,10 @@ namespace Crypto
 class Recipient
 {
 public:
-    Recipient() : d() {}
+    Recipient()
+        : d()
+    {
+    }
     explicit Recipient(const KMime::Types::Mailbox &mailbox);
 
     void swap(Recipient &other)
@@ -82,4 +85,3 @@ inline bool operator!=(const Recipient &lhs, const Recipient &rhs)
 
 } // namespace Crypto
 } // namespace Kleo
-

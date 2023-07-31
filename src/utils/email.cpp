@@ -29,12 +29,11 @@ void Kleo::invokeMailer(const QString &subject, const QString &body, const QFile
 void Kleo::invokeMailer(const QString &to, const QString &subject, const QString &body, const QFileInfo &attachment)
 {
     const auto attachmentPath = attachment.filePath();
-    qCDebug(KLEOPATRA_LOG) << __func__ << "to:" << to << "subject:" << subject
-                            << "body:" << body << "attachment:" << attachmentPath;
+    qCDebug(KLEOPATRA_LOG) << __func__ << "to:" << to << "subject:" << subject << "body:" << body << "attachment:" << attachmentPath;
 
     // RFC 2368 says body's linebreaks need to be encoded as
     // "%0D%0A", so normalize body to CRLF:
-    //body.replace(QLatin1Char('\n'), QStringLiteral("\r\n")).remove(QStringLiteral("\r\r"));
+    // body.replace(QLatin1Char('\n'), QStringLiteral("\r\n")).remove(QStringLiteral("\r\r"));
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("subject"), subject);

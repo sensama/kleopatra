@@ -8,24 +8,22 @@
 
 #include "unknownrecipientwidget.h"
 
+#include <QFont>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
-#include <QFont>
 
 #include "commands/lookupcertificatescommand.h"
 
 #include <KLocalizedString>
 
 using namespace Kleo;
-UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid,
-                                               QWidget *parent):
-    QWidget(parent)
+UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid, QWidget *parent)
+    : QWidget(parent)
 {
     auto hLay = new QHBoxLayout(this);
 
-    auto caption = new QLabel(i18nc("Caption for an unknown key/certificate where only ID is known.",
-                              "Unknown Recipient:"));
+    auto caption = new QLabel(i18nc("Caption for an unknown key/certificate where only ID is known.", "Unknown Recipient:"));
 
     mKeyID = QString::fromLatin1(keyid);
 
@@ -34,16 +32,14 @@ UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid,
 
     auto lookUpBtn = new QPushButton(i18n("Search"));
 
-
     lookUpBtn->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
     lookUpBtn->setToolTip(i18n("Search on keyserver"));
-    connect (lookUpBtn, &QPushButton::clicked, this, [this, lookUpBtn] () {
+    connect(lookUpBtn, &QPushButton::clicked, this, [this, lookUpBtn]() {
         lookUpBtn->setEnabled(false);
         auto cmd = new Kleo::Commands::LookupCertificatesCommand(mKeyID, nullptr);
-        connect(cmd, &Kleo::Commands::LookupCertificatesCommand::finished,
-                this, [lookUpBtn]() {
-                    lookUpBtn->setEnabled(true);
-                });
+        connect(cmd, &Kleo::Commands::LookupCertificatesCommand::finished, this, [lookUpBtn]() {
+            lookUpBtn->setEnabled(true);
+        });
         cmd->setParentWidget(this->parentWidget());
         cmd->start();
     });
@@ -56,7 +52,8 @@ UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid,
     setToolTip(i18n("The data was encrypted to this key / certificate."));
 }
 
-QString UnknownRecipientWidget::keyID() const {
+QString UnknownRecipientWidget::keyID() const
+{
     return mKeyID;
 }
 

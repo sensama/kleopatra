@@ -31,9 +31,13 @@ class PrepSignCommand::Private : public QObject
 private:
     friend class ::Kleo::PrepSignCommand;
     PrepSignCommand *const q;
+
 public:
     explicit Private(PrepSignCommand *qq)
-        : q(qq), controller() {}
+        : q(qq)
+        , controller()
+    {
+    }
 
 private:
     void checkForErrors() const;
@@ -48,43 +52,37 @@ private:
 };
 
 PrepSignCommand::PrepSignCommand()
-    : AssuanCommandMixin<PrepSignCommand>(), d(new Private(this))
+    : AssuanCommandMixin<PrepSignCommand>()
+    , d(new Private(this))
 {
-
 }
 
-PrepSignCommand::~PrepSignCommand() {}
+PrepSignCommand::~PrepSignCommand()
+{
+}
 
 void PrepSignCommand::Private::checkForErrors() const
 {
-
     if (!q->inputs().empty() || !q->outputs().empty() || !q->messages().empty())
-        throw Exception(makeError(GPG_ERR_CONFLICT),
-                        i18n("INPUT/OUTPUT/MESSAGE may only be given after PREP_SIGN"));
+        throw Exception(makeError(GPG_ERR_CONFLICT), i18n("INPUT/OUTPUT/MESSAGE may only be given after PREP_SIGN"));
 
     if (q->numFiles())
-        throw Exception(makeError(GPG_ERR_CONFLICT),
-                        i18n("PREP_SIGN is an email mode command, connection seems to be in filemanager mode"));
+        throw Exception(makeError(GPG_ERR_CONFLICT), i18n("PREP_SIGN is an email mode command, connection seems to be in filemanager mode"));
 
     if (q->senders().empty())
-        throw Exception(makeError(GPG_ERR_CONFLICT),
-                        i18n("No SENDER given"));
+        throw Exception(makeError(GPG_ERR_CONFLICT), i18n("No SENDER given"));
 
-    const auto m = q->mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const auto m = q->mementoContent<std::shared_ptr<NewSignEncryptEMailController>>(NewSignEncryptEMailController::mementoName());
 
     if (m && m->isSigning()) {
-
         if (q->hasOption("protocol"))
             if (m->protocol() != q->checkProtocol(EMail))
-                throw Exception(makeError(GPG_ERR_CONFLICT),
-                                i18n("Protocol given conflicts with protocol determined by PREP_ENCRYPT in this session"));
+                throw Exception(makeError(GPG_ERR_CONFLICT), i18n("Protocol given conflicts with protocol determined by PREP_ENCRYPT in this session"));
 
         // ### check that any SENDER here is the same as the one for PREP_ENCRYPT
 
         // ### ditto RECIPIENT
-
     }
-
 }
 
 void PrepSignCommand::Private::connectController()
@@ -96,10 +94,9 @@ void PrepSignCommand::Private::connectController()
 
 int PrepSignCommand::doStart()
 {
-
     d->checkForErrors();
 
-    const auto seec = mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const auto seec = mementoContent<std::shared_ptr<NewSignEncryptEMailController>>(NewSignEncryptEMailController::mementoName());
 
     if (seec && seec->isSigning()) {
         // reuse the controller from a previous PREP_ENCRYPT --expect-sign, if available:
@@ -121,7 +118,7 @@ int PrepSignCommand::doStart()
         }
 
         if (hasOption("protocol"))
-            // --protocol is optional for PREP_SIGN
+        // --protocol is optional for PREP_SIGN
         {
             d->controller->setProtocol(checkProtocol(EMail));
         }
@@ -137,15 +134,13 @@ int PrepSignCommand::doStart()
 
 void PrepSignCommand::Private::slotSignersResolved()
 {
-    //hold local std::shared_ptr to member as q->done() deletes *this
+    // hold local std::shared_ptr to member as q->done() deletes *this
     const std::shared_ptr<NewSignEncryptEMailController> cont = controller;
     QPointer<Private> that(this);
 
     try {
-
         q->sendStatus("PROTOCOL", QLatin1String(controller->protocolAsString()));
-        q->registerMemento(NewSignEncryptEMailController::mementoName(),
-                           make_typed_memento(controller));
+        q->registerMemento(NewSignEncryptEMailController::mementoName(), make_typed_memento(controller));
         q->done();
         return;
 
@@ -153,11 +148,9 @@ void PrepSignCommand::Private::slotSignersResolved()
         q->done(e.error(), e.message());
     } catch (const std::exception &e) {
         q->done(makeError(GPG_ERR_UNEXPECTED),
-                i18n("Caught unexpected exception in PrepSignCommand::Private::slotRecipientsResolved: %1",
-                     QString::fromLocal8Bit(e.what())));
+                i18n("Caught unexpected exception in PrepSignCommand::Private::slotRecipientsResolved: %1", QString::fromLocal8Bit(e.what())));
     } catch (...) {
-        q->done(makeError(GPG_ERR_UNEXPECTED),
-                i18n("Caught unknown exception in PrepSignCommand::Private::slotRecipientsResolved"));
+        q->done(makeError(GPG_ERR_UNEXPECTED), i18n("Caught unknown exception in PrepSignCommand::Private::slotRecipientsResolved"));
     }
     if (that) { // isn't this always deleted here and thus unnecessary?
         q->removeMemento(NewSignEncryptEMailController::mementoName());

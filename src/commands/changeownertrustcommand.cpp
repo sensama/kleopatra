@@ -21,13 +21,12 @@
 
 #include <KLocalizedString>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/ChangeOwnerTrustJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/key.h>
 
 #include "kleopatra_debug.h"
-
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -41,6 +40,7 @@ class ChangeOwnerTrustCommand::Private : public Command::Private
     {
         return static_cast<ChangeOwnerTrustCommand *>(q);
     }
+
 public:
     Private(ChangeOwnerTrustCommand *qq, KeyListController *c);
 
@@ -100,11 +100,11 @@ void ChangeOwnerTrustCommand::doStart()
 
     if (key.hasSecret()) {
         const auto answer = KMessageBox::questionTwoActionsCancel(d->parentWidgetOrView(),
-                                                             xi18nc("@info", "Is '%1' your own certificate?", keyInfo),
-                                                             i18nc("@title:window", "Mark Own Certificate"),
-                                                             KGuiItem(i18nc("@action:button", "Yes, it's mine")),
-                                                             KGuiItem(i18nc("@action:button", "No, it's not mine")),
-                                                             KStandardGuiItem::cancel());
+                                                                  xi18nc("@info", "Is '%1' your own certificate?", keyInfo),
+                                                                  i18nc("@title:window", "Mark Own Certificate"),
+                                                                  KGuiItem(i18nc("@action:button", "Yes, it's mine")),
+                                                                  KGuiItem(i18nc("@action:button", "No, it's not mine")),
+                                                                  KStandardGuiItem::cancel());
         switch (answer) {
         case KMessageBox::ButtonCode::PrimaryAction: {
             if (key.ownerTrust() < Key::Ultimate) {
@@ -142,10 +142,10 @@ void ChangeOwnerTrustCommand::doStart()
                      "and confirms the identities of others.</emphasis></para>",
                      keyInfo);
         const auto answer = KMessageBox::questionTwoActions(d->parentWidgetOrView(),
-                                                       text,
-                                                       i18nc("@title:window", "Grant Certification Power"),
-                                                       KGuiItem(i18nc("@action:button", "Grant Power")),
-                                                       KStandardGuiItem::cancel());
+                                                            text,
+                                                            i18nc("@title:window", "Grant Certification Power"),
+                                                            KGuiItem(i18nc("@action:button", "Grant Power")),
+                                                            KStandardGuiItem::cancel());
         if (answer == KMessageBox::ButtonCode::PrimaryAction) {
             d->startJob(Key::OwnerTrust::Full);
         } else {
@@ -163,10 +163,10 @@ void ChangeOwnerTrustCommand::doStart()
                      "<para>Do you want to revoke this power?</para>",
                      keyInfo);
         const auto answer = KMessageBox::questionTwoActions(d->parentWidgetOrView(),
-                                                       text,
-                                                       i18nc("@title:window", "Revoke Certification Power"),
-                                                       KGuiItem(i18nc("@action:button", "Revoke Power")),
-                                                       KStandardGuiItem::cancel());
+                                                            text,
+                                                            i18nc("@title:window", "Revoke Certification Power"),
+                                                            KGuiItem(i18nc("@action:button", "Revoke Power")),
+                                                            KStandardGuiItem::cancel());
         if (answer == KMessageBox::ButtonCode::PrimaryAction) {
             d->startJob(Key::OwnerTrust::Unknown);
         } else {
@@ -218,13 +218,15 @@ void ChangeOwnerTrustCommand::Private::createJob()
     }
 
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(j, &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(j, &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
-    connect(j, &ChangeOwnerTrustJob::result, q, [this](const GpgME::Error &result) { slotResult(result); });
+    connect(j, &ChangeOwnerTrustJob::result, q, [this](const GpgME::Error &result) {
+        slotResult(result);
+    });
 
     job = j;
 }

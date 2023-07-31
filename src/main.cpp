@@ -21,53 +21,53 @@
 #include <commands/reloadkeyscommand.h>
 #include <commands/selftestcommand.h>
 
-#include <Libkleo/GnuPG>
-#include <utils/archivedefinition.h>
 #include "utils/kuniqueservice.h"
 #include "utils/userinfo.h"
+#include <Libkleo/GnuPG>
+#include <utils/archivedefinition.h>
 
-#include <uiserver/uiserver.h>
 #include <uiserver/assuancommand.h>
-#include <uiserver/echocommand.h>
+#include <uiserver/createchecksumscommand.h>
 #include <uiserver/decryptcommand.h>
-#include <uiserver/verifycommand.h>
-#include <uiserver/decryptverifyfilescommand.h>
 #include <uiserver/decryptfilescommand.h>
-#include <uiserver/verifyfilescommand.h>
+#include <uiserver/decryptverifyfilescommand.h>
+#include <uiserver/echocommand.h>
+#include <uiserver/encryptcommand.h>
+#include <uiserver/importfilescommand.h>
 #include <uiserver/prepencryptcommand.h>
 #include <uiserver/prepsigncommand.h>
-#include <uiserver/encryptcommand.h>
+#include <uiserver/selectcertificatecommand.h>
 #include <uiserver/signcommand.h>
 #include <uiserver/signencryptfilescommand.h>
-#include <uiserver/selectcertificatecommand.h>
-#include <uiserver/importfilescommand.h>
-#include <uiserver/createchecksumscommand.h>
+#include <uiserver/uiserver.h>
 #include <uiserver/verifychecksumscommand.h>
+#include <uiserver/verifycommand.h>
+#include <uiserver/verifyfilescommand.h>
 
 #include <Libkleo/ChecksumDefinition>
 
 #include "kleopatra_debug.h"
 #include "kleopatra_options.h"
 
+#include <KCrash>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KCrash>
 
 #include <QAccessible>
-#include <QTextDocument> // for Qt::escape
-#include <QMessageBox>
-#include <QTimer>
-#include <QTime>
-#include <QEventLoop>
-#include <QThreadPool>
 #include <QElapsedTimer>
+#include <QEventLoop>
+#include <QMessageBox>
+#include <QTextDocument> // for Qt::escape
+#include <QThreadPool>
+#include <QTime>
+#include <QTimer>
 
-#include <gpgme++/global.h>
 #include <gpgme++/error.h>
+#include <gpgme++/global.h>
 
-#include <memory>
-#include <iostream>
 #include <QCommandLineParser>
+#include <iostream>
+#include <memory>
 
 QElapsedTimer startupTimer;
 
@@ -78,7 +78,7 @@ static bool selfCheck()
     cmd.setAutomaticMode(true);
     QEventLoop loop;
     QObject::connect(&cmd, &Kleo::Commands::SelfTestCommand::finished, &loop, &QEventLoop::quit);
-    QTimer::singleShot(0, &cmd, &Kleo::Command::start);   // start() may Q_EMIT finished()...
+    QTimer::singleShot(0, &cmd, &Kleo::Command::start); // start() may Q_EMIT finished()...
     loop.exec();
     if (cmd.isCanceled()) {
         return false;
@@ -106,10 +106,8 @@ int main(int argc, char **argv)
     /* Create the unique service ASAP to prevent double starts if
      * the application is started twice very quickly. */
     KUniqueService service;
-    QObject::connect(&service, &KUniqueService::activateRequested,
-                     &app, &KleopatraApplication::slotActivateRequested);
-    QObject::connect(&app, &KleopatraApplication::setExitValue,
-    &service, [&service](int i) {
+    QObject::connect(&service, &KUniqueService::activateRequested, &app, &KleopatraApplication::slotActivateRequested);
+    QObject::connect(&app, &KleopatraApplication::setExitValue, &service, [&service](int i) {
         service.setExitValue(i);
     });
     STARTUP_TIMING << "Service created";
@@ -126,12 +124,13 @@ int main(int argc, char **argv)
     {
         const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
         if (gpgmeInitError) {
-            KMessageBox::error(nullptr, xi18nc("@info",
-                                        "<para>The version of the <application>GpgME</application> library you are running against "
-                                        "is older than the one that the <application>GpgME++</application> library was built against.</para>"
-                                        "<para><application>Kleopatra</application> will not function in this setting.</para>"
-                                        "<para>Please ask your administrator for help in resolving this issue.</para>"),
-                            i18nc("@title", "GpgME Too Old"));
+            KMessageBox::error(nullptr,
+                               xi18nc("@info",
+                                      "<para>The version of the <application>GpgME</application> library you are running against "
+                                      "is older than the one that the <application>GpgME++</application> library was built against.</para>"
+                                      "<para><application>Kleopatra</application> will not function in this setting.</para>"
+                                      "<para>Please ask your administrator for help in resolving this issue.</para>"),
+                               i18nc("@title", "GpgME Too Old"));
             return EXIT_FAILURE;
         }
         STARTUP_TIMING << "GPGME Initialized";
@@ -154,13 +153,15 @@ int main(int argc, char **argv)
          * that you are temporarily running with the "normal" user environment but
          * with elevated permissions.
          * */
-        if (KMessageBox::warningContinueCancel(nullptr, xi18nc("@info",
-                                               "<para><application>Kleopatra</application> cannot be run as adminstrator without "
-                                               "breaking file permissions in the GnuPG data folder.</para>"
-                                               "<para>To manage keys for other users please manage them as a normal user and "
-                                               "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>") +
-                                               xi18n("<para>Are you sure that you want to continue?</para>"),
-                                               i18nc("@title", "Running as Administrator")) != KMessageBox::Continue) {
+        if (KMessageBox::warningContinueCancel(nullptr,
+                                               xi18nc("@info",
+                                                      "<para><application>Kleopatra</application> cannot be run as adminstrator without "
+                                                      "breaking file permissions in the GnuPG data folder.</para>"
+                                                      "<para>To manage keys for other users please manage them as a normal user and "
+                                                      "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>")
+                                                   + xi18n("<para>Are you sure that you want to continue?</para>"),
+                                               i18nc("@title", "Running as Administrator"))
+            != KMessageBox::Continue) {
             return EXIT_FAILURE;
         }
         qCWarning(KLEOPATRA_LOG) << "User is running with administrative permissions.";
@@ -196,7 +197,7 @@ int main(int argc, char **argv)
 
         QObject::connect(server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
 
-#define REGISTER( Command ) server->registerCommandFactory( std::shared_ptr<Kleo::AssuanCommandFactory>( new Kleo::GenericAssuanCommandFactory<Kleo::Command> ) )
+#define REGISTER(Command) server->registerCommandFactory(std::shared_ptr<Kleo::AssuanCommandFactory>(new Kleo::GenericAssuanCommandFactory<Kleo::Command>))
         REGISTER(CreateChecksumsCommand);
         REGISTER(DecryptCommand);
         REGISTER(DecryptFilesCommand);
@@ -226,7 +227,8 @@ int main(int argc, char **argv)
         // only the Windows Explorer Plugin uses it. But the plan of GnuPG devs as of 2022 is to
         // change the Windows Explorer Plugin to use the command line and then remove the
         // UiServer for everyone.
-        QMessageBox::information(nullptr, i18n("GPG UI Server Error"),
+        QMessageBox::information(nullptr,
+                                 i18n("GPG UI Server Error"),
                                  i18nc("This error message is only shown on Windows when the socket to communicate with "
                                        "Windows Explorer could not be created. This often times means that the whole installation is "
                                        "buggy. e.g. GnuPG is not installed at all.",

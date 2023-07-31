@@ -23,11 +23,10 @@ public:
 
     // Inputs
 
-    using Command::setFilePaths;
     using Command::filePaths;
+    using Command::setFilePaths;
 
     // No Outputs
 };
 
 }
-

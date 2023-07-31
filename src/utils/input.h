@@ -35,7 +35,10 @@ public:
     virtual unsigned long long size() const = 0;
     virtual QString errorString() const = 0;
     /** Whether or not the input failed. */
-    virtual bool failed() const { return false; }
+    virtual bool failed() const
+    {
+        return false;
+    }
 
     void finalize(); // equivalent to ioDevice()->close();
 
@@ -48,12 +51,11 @@ public:
     static std::shared_ptr<Input> createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &workingDirectory);
     static std::shared_ptr<Input> createFromProcessStdOut(const QString &command, const QByteArray &stdin_);
     static std::shared_ptr<Input> createFromProcessStdOut(const QString &command, const QStringList &args, const QByteArray &stdin_);
-    static std::shared_ptr<Input> createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &workingDirectory, const QByteArray &stdin_);
+    static std::shared_ptr<Input>
+    createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &workingDirectory, const QByteArray &stdin_);
 #ifndef QT_NO_CLIPBOARD
     static std::shared_ptr<Input> createFromClipboard();
 #endif
     static std::shared_ptr<Input> createFromByteArray(QByteArray *data, const QString &label);
 };
 }
-
-

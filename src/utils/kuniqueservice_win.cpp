@@ -47,10 +47,10 @@ private:
     {
         WNDCLASS windowClass;
         const QString qWndName = getWindowName();
-        wchar_t *wndName = (wchar_t*)qWndName.utf16();
+        wchar_t *wndName = (wchar_t *)qWndName.utf16();
         windowClass.style = CS_GLOBALCLASS | CS_DBLCLKS;
         windowClass.lpfnWndProc = windowProc;
-        windowClass.hInstance   = (HINSTANCE) GetModuleHandle(NULL);
+        windowClass.hInstance = (HINSTANCE)GetModuleHandle(NULL);
         windowClass.lpszClassName = wndName;
         windowClass.hIcon = nullptr;
         windowClass.hCursor = nullptr;
@@ -59,45 +59,39 @@ private:
         windowClass.cbClsExtra = 0;
         windowClass.cbWndExtra = 0;
         RegisterClass(&windowClass);
-        mResponder = CreateWindow(wndName, wndName,
-                                  0, 0, 0, 10, 10, nullptr, nullptr,
-                                  (HINSTANCE)GetModuleHandle(NULL), nullptr);
-        qCDebug(KLEOPATRA_LOG) << "Created responder: " << qWndName
-                               << " with handle: " << mResponder;
+        mResponder = CreateWindow(wndName, wndName, 0, 0, 0, 10, 10, nullptr, nullptr, (HINSTANCE)GetModuleHandle(NULL), nullptr);
+        qCDebug(KLEOPATRA_LOG) << "Created responder: " << qWndName << " with handle: " << mResponder;
     }
 
     void handleRequest(const COPYDATASTRUCT *cds)
     {
         Q_Q(KUniqueService);
         if (cds->dwData != MY_DATA_TYPE) {
-            qCDebug(KLEOPATRA_LOG) << "Responder called with invalid data type:"
-                                   << cds->dwData;
+            qCDebug(KLEOPATRA_LOG) << "Responder called with invalid data type:" << cds->dwData;
             return;
         }
         if (mCurrentProcess) {
-            qCDebug(KLEOPATRA_LOG) << "Already serving. Terminating process: "
-                                   << mCurrentProcess;
+            qCDebug(KLEOPATRA_LOG) << "Already serving. Terminating process: " << mCurrentProcess;
             setExitValue(42);
         }
-        const QByteArray serialized(static_cast<const char*>(cds->lpData),
-                                    cds->cbData);
+        const QByteArray serialized(static_cast<const char *>(cds->lpData), cds->cbData);
         QDataStream ds(serialized);
         quint32 curProc;
         ds >> curProc;
-        mCurrentProcess = (HANDLE) curProc;
+        mCurrentProcess = (HANDLE)curProc;
         QString workDir;
         ds >> workDir;
         QStringList args;
         ds >> args;
-        qCDebug(KLEOPATRA_LOG) << "Process handle: " << mCurrentProcess
-                               << " requests activate with args "
-                               << args;
+        qCDebug(KLEOPATRA_LOG) << "Process handle: " << mCurrentProcess << " requests activate with args " << args;
         q->emitActivateRequested(args, workDir);
         return;
     }
 
-    KUniqueServicePrivate(KUniqueService *q) : q_ptr(q), mResponder(nullptr),
-                                               mCurrentProcess(nullptr)
+    KUniqueServicePrivate(KUniqueService *q)
+        : q_ptr(q)
+        , mResponder(nullptr)
+        , mCurrentProcess(nullptr)
     {
         HWND responder = getForeignResponder();
         if (!responder) {
@@ -122,32 +116,25 @@ private:
 
         // To allow the other process to terminate the process
         // needs a handle to us with the required access.
-        if (!DuplicateHandle(GetCurrentProcess(),
-                             GetCurrentProcess(),
-                             targetHandle,
-                             &mCurrentProcess,
-                             0,
-                             FALSE,
-                             DUPLICATE_SAME_ACCESS)) {
+        if (!DuplicateHandle(GetCurrentProcess(), GetCurrentProcess(), targetHandle, &mCurrentProcess, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
             qCDebug(KLEOPATRA_LOG) << "Failed to duplicate handle";
         }
         CloseHandle(targetHandle);
 
-        ds << (qint32) mCurrentProcess
-           << QDir::currentPath()
-           << QCoreApplication::arguments();
+        ds << (qint32)mCurrentProcess << QDir::currentPath() << QCoreApplication::arguments();
         COPYDATASTRUCT cds;
         cds.dwData = MY_DATA_TYPE;
         cds.cbData = serialized.size();
         cds.lpData = serialized.data();
 
         qCDebug(KLEOPATRA_LOG) << "Sending message to existing Window.";
-        SendMessage(responder, WM_COPYDATA, 0, (LPARAM) &cds);
+        SendMessage(responder, WM_COPYDATA, 0, (LPARAM)&cds);
         // Usually we should be terminated while sending the message.
         qCDebug(KLEOPATRA_LOG) << "Send message returned.";
     }
 
-    static KUniqueServicePrivate *instance(KUniqueService *q) {
+    static KUniqueServicePrivate *instance(KUniqueService *q)
+    {
         static KUniqueServicePrivate *self;
         if (self) {
             return self;
@@ -159,9 +146,8 @@ private:
 
     static LRESULT CALLBACK windowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
-        if (message == WM_COPYDATA)
-        {
-            const COPYDATASTRUCT *cds = (COPYDATASTRUCT*)lParam;
+        if (message == WM_COPYDATA) {
+            const COPYDATASTRUCT *cds = (COPYDATASTRUCT *)lParam;
             // windowProc must be static so the singleton pattern although
             // it doesn't make much sense in here.
             instance(nullptr)->handleRequest(cds);
@@ -179,13 +165,13 @@ private:
 
     void setExitValue(int code)
     {
-        TerminateProcess(mCurrentProcess, (unsigned int) code);
+        TerminateProcess(mCurrentProcess, (unsigned int)code);
         mCurrentProcess = nullptr;
     }
 };
 
-
-KUniqueService::KUniqueService() : d_ptr(KUniqueServicePrivate::instance(this))
+KUniqueService::KUniqueService()
+    : d_ptr(KUniqueServicePrivate::instance(this))
 {
 }
 

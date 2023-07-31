@@ -10,38 +10,40 @@
 #include <config-kleopatra.h>
 
 #include "kwatchgnupgmainwin.h"
-#include "kwatchgnupgconfig.h"
+
 #include "kwatchgnupg.h"
+#include "kwatchgnupgconfig.h"
 #include "tray.h"
 
 #include "utils/qt-cxx20-compat.h"
 
-#include <QGpgME/Protocol>
 #include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
 
 #include <QTextEdit>
 
-#include <KMessageBox>
-#include <KLocalizedString>
-#include <QApplication>
-#include <QAction>
 #include <KActionCollection>
-#include <KStandardAction>
-#include <KProcess>
 #include <KConfig>
-#include <KEditToolBar>
-#include <KShortcutsDialog>
-#include <QIcon>
 #include <KConfigGroup>
+#include <KEditToolBar>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KProcess>
+#include <KShortcutsDialog>
+#include <KStandardAction>
+#include <QAction>
+#include <QApplication>
+#include <QIcon>
 
-#include <QEventLoop>
-#include <QTextStream>
-#include <QDateTime>
-#include <QFileDialog>
 #include <KSharedConfig>
+#include <QDateTime>
+#include <QEventLoop>
+#include <QFileDialog>
+#include <QTextStream>
 
 KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
-    : KXmlGuiWindow(parent, Qt::Window), mConfig(nullptr)
+    : KXmlGuiWindow(parent, Qt::Window)
+    , mConfig(nullptr)
 {
     createActions();
     createGUI();
@@ -52,11 +54,9 @@ KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
     setCentralWidget(mCentralWidget);
 
     mWatcher = new KProcess;
-    connect(mWatcher, SIGNAL(finished(int,QProcess::ExitStatus)),
-            this, SLOT(slotWatcherExited(int,QProcess::ExitStatus)));
+    connect(mWatcher, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotWatcherExited(int, QProcess::ExitStatus)));
 
-    connect(mWatcher, &QProcess::readyReadStandardOutput,
-            this, &KWatchGnuPGMainWindow::slotReadStdout);
+    connect(mWatcher, &QProcess::readyReadStandardOutput, this, &KWatchGnuPGMainWindow::slotReadStdout);
 
     slotReadConfig();
     mSysTray = new KWatchGnuPGTray(this);
@@ -107,8 +107,7 @@ void KWatchGnuPGMainWindow::slotConfigureToolbars()
 
 void KWatchGnuPGMainWindow::startWatcher()
 {
-    disconnect(mWatcher, SIGNAL(finished(int,QProcess::ExitStatus)),
-               this, SLOT(slotWatcherExited(int,QProcess::ExitStatus)));
+    disconnect(mWatcher, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotWatcherExited(int, QProcess::ExitStatus)));
     if (mWatcher->state() == QProcess::Running) {
         mWatcher->kill();
         while (mWatcher->state() == QProcess::Running) {
@@ -130,13 +129,14 @@ void KWatchGnuPGMainWindow::startWatcher()
     mWatcher->start();
     const bool ok = mWatcher->waitForStarted();
     if (!ok) {
-        KMessageBox::error(this, i18n("The watchgnupg logging process could not be started.\nPlease install watchgnupg somewhere in your $PATH.\nThis log window is unable to display any useful information."));
+        KMessageBox::error(this,
+                           i18n("The watchgnupg logging process could not be started.\nPlease install watchgnupg somewhere in your $PATH.\nThis log window is "
+                                "unable to display any useful information."));
     } else {
         mCentralWidget->append(i18n("[%1] Log started", QDateTime::currentDateTime().toString(Qt::ISODate)));
         mCentralWidget->ensureCursorVisible();
     }
-    connect(mWatcher, SIGNAL(finished(int,QProcess::ExitStatus)),
-            this, SLOT(slotWatcherExited(int,QProcess::ExitStatus)));
+    connect(mWatcher, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotWatcherExited(int, QProcess::ExitStatus)));
 }
 
 void KWatchGnuPGMainWindow::setGnuPGConfig()
@@ -227,14 +227,12 @@ void KWatchGnuPGMainWindow::slotSaveAs()
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream(&file) << mCentralWidget->document()->toRawText();
     } else
-        KMessageBox::information(this, i18n("Could not save file %1: %2",
-                                            filename, file.errorString()));
+        KMessageBox::information(this, i18n("Could not save file %1: %2", filename, file.errorString()));
 }
 
 void KWatchGnuPGMainWindow::slotQuit()
 {
-    disconnect(mWatcher, SIGNAL(finished(int,QProcess::ExitStatus)),
-               this, SLOT(slotWatcherExited(int,QProcess::ExitStatus)));
+    disconnect(mWatcher, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotWatcherExited(int, QProcess::ExitStatus)));
     mWatcher->kill();
     qApp->quit();
 }
@@ -244,8 +242,7 @@ void KWatchGnuPGMainWindow::slotConfigure()
     if (!mConfig) {
         mConfig = new KWatchGnuPGConfig(this);
         mConfig->setObjectName(QStringLiteral("config dialog"));
-        connect(mConfig, &KWatchGnuPGConfig::reconfigure,
-                this, &KWatchGnuPGMainWindow::slotReadConfig);
+        connect(mConfig, &KWatchGnuPGConfig::reconfigure, this, &KWatchGnuPGMainWindow::slotReadConfig);
     }
     mConfig->loadConfig();
     mConfig->exec();
@@ -268,6 +265,5 @@ bool KWatchGnuPGMainWindow::queryClose()
     }
     return KMainWindow::queryClose();
 }
-
 
 #include "moc_kwatchgnupgmainwin.cpp"

@@ -46,5 +46,3 @@ private:
     QCheckBox *mWordWrapCB;
     QDialogButtonBox *mButtonBox;
 };
-
-

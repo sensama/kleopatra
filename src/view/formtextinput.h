@@ -30,10 +30,10 @@ protected:
 
 public:
     virtual ~FormTextInputBase();
-    FormTextInputBase(const FormTextInputBase&) = delete;
-    FormTextInputBase& operator=(const FormTextInputBase&) = delete;
-    FormTextInputBase(FormTextInputBase&&) = delete;
-    FormTextInputBase& operator=(FormTextInputBase&&) = delete;
+    FormTextInputBase(const FormTextInputBase &) = delete;
+    FormTextInputBase &operator=(const FormTextInputBase &) = delete;
+    FormTextInputBase(FormTextInputBase &&) = delete;
+    FormTextInputBase &operator=(FormTextInputBase &&) = delete;
 
     /**
      * Returns the label associated to the controlled widget. Use it to add

@@ -12,8 +12,8 @@
 #include <utils/pimpl_ptr.h>
 #include <utils/types.h>
 
-#include <gpgme++/global.h>
 #include <gpgme++/error.h>
+#include <gpgme++/global.h>
 
 #include <gpg-error.h>
 
@@ -21,9 +21,9 @@
 
 #include <qwindowdefs.h> // for WId
 
+#include <map>
 #include <memory>
 #include <string>
-#include <map>
 #include <vector>
 
 class QVariant;
@@ -195,15 +195,21 @@ public:
     class Memento
     {
     public:
-        virtual ~Memento() {}
+        virtual ~Memento()
+        {
+        }
     };
 
-    template <typename T>
+    template<typename T>
     class TypedMemento : public Memento
     {
         T m_t;
+
     public:
-        explicit TypedMemento(const T &t) : m_t(t) {}
+        explicit TypedMemento(const T &t)
+            : m_t(t)
+        {
+        }
 
         const T &get() const
         {
@@ -215,10 +221,10 @@ public:
         }
     };
 
-    template <typename T>
-    static std::shared_ptr< TypedMemento<T> > make_typed_memento(const T &t)
+    template<typename T>
+    static std::shared_ptr<TypedMemento<T>> make_typed_memento(const T &t)
     {
-        return std::shared_ptr< TypedMemento<T> >(new TypedMemento<T>(t));
+        return std::shared_ptr<TypedMemento<T>>(new TypedMemento<T>(t));
     }
 
     static int makeError(int code);
@@ -228,7 +234,7 @@ public:
     Mode checkMode() const;
 
     enum CheckProtocolOption {
-        AllowProtocolMissing = 0x01
+        AllowProtocolMissing = 0x01,
     };
 
     GpgME::Protocol checkProtocol(Mode mode, int options = 0) const;
@@ -254,7 +260,7 @@ public:
 
     bool hasMemento(const QByteArray &tag) const;
     std::shared_ptr<Memento> memento(const QByteArray &tag) const;
-    template <typename T>
+    template<typename T>
     std::shared_ptr<T> mementoAs(const QByteArray &tag) const
     {
         return std::dynamic_pointer_cast<T>(this->memento(tag));
@@ -262,10 +268,10 @@ public:
     QByteArray registerMemento(const std::shared_ptr<Memento> &mem);
     QByteArray registerMemento(const QByteArray &tag, const std::shared_ptr<Memento> &mem);
     void removeMemento(const QByteArray &tag);
-    template <typename T>
+    template<typename T>
     T mementoContent(const QByteArray &tag) const
     {
-        if (std::shared_ptr< TypedMemento<T> > m = mementoAs< TypedMemento<T> >(tag)) {
+        if (std::shared_ptr<TypedMemento<T>> m = mementoAs<TypedMemento<T>>(tag)) {
             return m->get();
         } else {
             return T();
@@ -276,9 +282,9 @@ public:
     QVariant option(const char *opt) const;
     const std::map<std::string, QVariant> &options() const;
 
-    const std::vector< std::shared_ptr<Input> > &inputs() const;
-    const std::vector< std::shared_ptr<Input> > &messages() const;
-    const std::vector< std::shared_ptr<Output> > &outputs() const;
+    const std::vector<std::shared_ptr<Input>> &inputs() const;
+    const std::vector<std::shared_ptr<Input>> &messages() const;
+    const std::vector<std::shared_ptr<Output>> &outputs() const;
 
     QStringList fileNames() const;
     unsigned int numFiles() const;
@@ -308,7 +314,7 @@ private:
     void doApplyWindowID(QWidget *w) const;
 
 private:
-    const std::map< QByteArray, std::shared_ptr<Memento> > &mementos() const;
+    const std::map<QByteArray, std::shared_ptr<Memento>> &mementos() const;
 
 private:
     friend class ::Kleo::AssuanCommandFactory;
@@ -319,7 +325,9 @@ private:
 class AssuanCommandFactory
 {
 public:
-    virtual ~AssuanCommandFactory() {}
+    virtual ~AssuanCommandFactory()
+    {
+    }
 
     virtual std::shared_ptr<AssuanCommand> create() const = 0;
     virtual const char *name() const = 0;
@@ -330,7 +338,7 @@ public:
     static gpg_error_t _handle(assuan_context_s *, char *, const char *);
 };
 
-template <typename Command>
+template<typename Command>
 class GenericAssuanCommandFactory : public AssuanCommandFactory
 {
     AssuanCommandFactory::_Handler _handler() const override
@@ -349,6 +357,7 @@ class GenericAssuanCommandFactory : public AssuanCommandFactory
     {
         return Command::staticName();
     }
+
 public:
     static std::shared_ptr<Command> make()
     {
@@ -356,7 +365,7 @@ public:
     }
 };
 
-template <typename Derived, typename Base = AssuanCommand>
+template<typename Derived, typename Base = AssuanCommand>
 class AssuanCommandMixin : public Base
 {
 protected:
@@ -367,4 +376,3 @@ protected:
 };
 
 }
-

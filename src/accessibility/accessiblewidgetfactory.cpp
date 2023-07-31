@@ -23,10 +23,10 @@ QAccessibleInterface *Kleo::accessibleWidgetFactory(const QString &classname, QO
     if (!object || !object->isWidgetType())
         return iface;
 
-    QWidget *widget = static_cast<QWidget*>(object);
+    QWidget *widget = static_cast<QWidget *>(object);
 
     if (classname == QString::fromLatin1(Kleo::HtmlLabel::staticMetaObject.className())
-            || classname == QString::fromLatin1(Kleo::UrlLabel::staticMetaObject.className())) {
+        || classname == QString::fromLatin1(Kleo::UrlLabel::staticMetaObject.className())) {
         iface = new AccessibleRichTextLabel{widget};
     } else if (classname == QLatin1String("QLabel") && Kleo::representAsAccessibleValueWidget(widget)) {
         iface = new AccessibleValueLabel{widget};

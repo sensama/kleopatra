@@ -8,10 +8,10 @@
 
 #include "kleopatra_debug.h"
 
-#include <QTreeWidgetItem>
-#include <QTreeWidget>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 #include <gpgme++/key.h>
 
@@ -23,7 +23,8 @@ class TrustChainWidget::Private
 public:
     Private(TrustChainWidget *qq)
         : q(qq)
-    {}
+    {
+    }
 
     GpgME::Key key;
     Ui::TrustChainWidget ui;
@@ -52,16 +53,14 @@ void TrustChainWidget::setKey(const GpgME::Key &key)
 
     d->key = key;
     d->ui.treeWidget->clear();
-    const auto chain = Kleo::KeyCache::instance()->findIssuers(key,
-                            Kleo::KeyCache::RecursiveSearch | Kleo::KeyCache::IncludeSubject);
+    const auto chain = Kleo::KeyCache::instance()->findIssuers(key, Kleo::KeyCache::RecursiveSearch | Kleo::KeyCache::IncludeSubject);
     if (chain.empty()) {
         return;
     }
     QTreeWidgetItem *last = nullptr;
     if (!chain.back().isRoot()) {
         last = new QTreeWidgetItem(d->ui.treeWidget);
-        last->setText(0, i18n("Issuer Certificate Not Found (%1)",
-                              Kleo::DN(chain.back().issuerName()).prettyDN()));
+        last->setText(0, i18n("Issuer Certificate Not Found (%1)", Kleo::DN(chain.back().issuerName()).prettyDN()));
         const QBrush &fg = d->ui.treeWidget->palette().brush(QPalette::Disabled, QPalette::WindowText);
         last->setForeground(0, fg);
     }
@@ -76,8 +75,6 @@ GpgME::Key TrustChainWidget::key() const
 {
     return d->key;
 }
-
-
 
 TrustChainDialog::TrustChainDialog(QWidget *parent)
     : QDialog(parent)
@@ -100,17 +97,16 @@ TrustChainDialog::~TrustChainDialog()
 
 void TrustChainDialog::setKey(const GpgME::Key &key)
 {
-    auto w = findChild<TrustChainWidget*>();
+    auto w = findChild<TrustChainWidget *>();
     Q_ASSERT(w);
     w->setKey(key);
 }
 
 GpgME::Key TrustChainDialog::key() const
 {
-    auto w = findChild<TrustChainWidget*>();
+    auto w = findChild<TrustChainWidget *>();
     Q_ASSERT(w);
     return w->key();
 }
-
 
 #include "moc_trustchainwidget.cpp"

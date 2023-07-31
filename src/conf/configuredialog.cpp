@@ -17,8 +17,8 @@
 #include "settings.h"
 
 #include <KConfig>
-#include <KLocalizedString>
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <KSharedConfig>
 
 #include "conf/appearanceconfigpage.h"

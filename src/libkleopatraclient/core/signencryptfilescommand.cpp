@@ -18,7 +18,7 @@ SignEncryptFilesCommand::SignEncryptFilesCommand(QObject *p)
     setOption("nohup");
 }
 
-SignEncryptFilesCommand::~SignEncryptFilesCommand() {}
-
-
+SignEncryptFilesCommand::~SignEncryptFilesCommand()
+{
+}
 #include "moc_signencryptfilescommand.cpp"

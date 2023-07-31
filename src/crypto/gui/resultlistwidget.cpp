@@ -21,8 +21,8 @@
 #include <Libkleo/Stl_Util>
 
 #include <KLocalizedString>
-#include <QPushButton>
 #include <KStandardGuiItem>
+#include <QPushButton>
 
 #include <QLabel>
 #include <QVBoxLayout>
@@ -36,6 +36,7 @@ using namespace Kleo::Crypto::Gui;
 class ResultListWidget::Private
 {
     ResultListWidget *const q;
+
 public:
     explicit Private(ResultListWidget *qq);
 
@@ -46,7 +47,7 @@ public:
     void addResultWidget(ResultItemWidget *widget);
     void resizeIfStandalone();
 
-    std::vector< std::shared_ptr<TaskCollection> > m_collections;
+    std::vector<std::shared_ptr<TaskCollection>> m_collections;
     bool m_standaloneMode = false;
     int m_lastErrorItemIndex = 0;
     ScrollArea *m_scrollArea = nullptr;
@@ -56,8 +57,8 @@ public:
 };
 
 ResultListWidget::Private::Private(ResultListWidget *qq)
-    : q(qq),
-      m_collections()
+    : q(qq)
+    , m_collections()
 {
     m_layout = new QVBoxLayout(q);
     m_layout->setContentsMargins(0, 0, 0, 0);
@@ -85,7 +86,9 @@ ResultListWidget::Private::Private(ResultListWidget *qq)
     m_closeButton->setEnabled(false);
 }
 
-ResultListWidget::ResultListWidget(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f), d(new Private(this))
+ResultListWidget::ResultListWidget(QWidget *parent, Qt::WindowFlags f)
+    : QWidget(parent, f)
+    , d(new Private(this))
 {
 }
 
@@ -109,8 +112,9 @@ void ResultListWidget::Private::resizeIfStandalone()
 void ResultListWidget::Private::addResultWidget(ResultItemWidget *widget)
 {
     Q_ASSERT(widget);
-    Q_ASSERT(std::any_of(m_collections.cbegin(), m_collections.cend(),
-                       [](const std::shared_ptr<TaskCollection> &t) { return !t->isEmpty(); }));
+    Q_ASSERT(std::any_of(m_collections.cbegin(), m_collections.cend(), [](const std::shared_ptr<TaskCollection> &t) {
+        return !t->isEmpty();
+    }));
 
     Q_ASSERT(m_scrollArea);
     Q_ASSERT(m_scrollArea->widget());
@@ -143,8 +147,9 @@ void ResultListWidget::Private::allTasksDone()
 void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result> &result)
 {
     Q_ASSERT(result);
-    Q_ASSERT(std::any_of(m_collections.cbegin(), m_collections.cend(),
-                       [](const std::shared_ptr<TaskCollection> &t) { return !t->isEmpty(); }));
+    Q_ASSERT(std::any_of(m_collections.cbegin(), m_collections.cend(), [](const std::shared_ptr<TaskCollection> &t) {
+        return !t->isEmpty();
+    }));
     auto wid = new ResultItemWidget(result);
     q->connect(wid, &ResultItemWidget::linkActivated, q, &ResultListWidget::linkActivated);
     q->connect(wid, &ResultItemWidget::closeButtonClicked, q, &ResultListWidget::close);
@@ -153,37 +158,35 @@ void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result>
 
 bool ResultListWidget::isComplete() const
 {
-    return std::all_of(d->m_collections.cbegin(), d->m_collections.cend(),
-                       std::mem_fn(&TaskCollection::allTasksCompleted));
+    return std::all_of(d->m_collections.cbegin(), d->m_collections.cend(), std::mem_fn(&TaskCollection::allTasksCompleted));
 }
 
 unsigned int ResultListWidget::totalNumberOfTasks() const
 {
-    return kdtools::accumulate_transform(d->m_collections.cbegin(),
-                                         d->m_collections.cend(),
-                                         std::mem_fn(&TaskCollection::size), 0U);
+    return kdtools::accumulate_transform(d->m_collections.cbegin(), d->m_collections.cend(), std::mem_fn(&TaskCollection::size), 0U);
 }
 
 unsigned int ResultListWidget::numberOfCompletedTasks() const
 {
-    return kdtools::accumulate_transform(d->m_collections.cbegin(), d->m_collections.cend(),
-                                         std::mem_fn(&TaskCollection::numberOfCompletedTasks), 0U);
+    return kdtools::accumulate_transform(d->m_collections.cbegin(), d->m_collections.cend(), std::mem_fn(&TaskCollection::numberOfCompletedTasks), 0U);
 }
 
 void ResultListWidget::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
-    //clear(); ### PENDING(marc) implement
+    // clear(); ### PENDING(marc) implement
     addTaskCollection(coll);
 }
 
 void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
-    Q_ASSERT(coll); Q_ASSERT(!coll->isEmpty());
+    Q_ASSERT(coll);
+    Q_ASSERT(!coll->isEmpty());
     d->m_collections.push_back(coll);
-    connect(coll.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
-    connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)),
-            this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
+    connect(coll.get(),
+            SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+            this,
+            SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)), this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
     connect(coll.get(), SIGNAL(done()), this, SLOT(allTasksDone()));
     setStandaloneMode(d->m_standaloneMode);
 }

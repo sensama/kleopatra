@@ -17,21 +17,21 @@
 #include "view/errorlabel.h"
 
 #include <QAccessible>
+#include <QAction>
 #include <QCompleter>
 #include <QPushButton>
-#include <QAction>
 #include <QSignalBlocker>
 
 #include "kleopatra_debug.h"
 
 #include <Libkleo/Debug>
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>
 #include <Libkleo/KeyGroup>
 #include <Libkleo/KeyList>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
-#include <Libkleo/Formatting>
 
 #include <KLocalizedString>
 
@@ -185,15 +185,13 @@ class CertificateLineEdit::Private
     CertificateLineEdit *q;
 
 public:
-    enum class Status
-    {
-        Empty,      //< text is empty
-        Success,    //< a certificate or group is set
-        None,       //< entered text does not match any certificates or groups
-        Ambiguous,  //< entered text matches multiple certificates or groups
+    enum class Status {
+        Empty, //< text is empty
+        Success, //< a certificate or group is set
+        None, //< entered text does not match any certificates or groups
+        Ambiguous, //< entered text matches multiple certificates or groups
     };
-    enum class CursorPositioning
-    {
+    enum class CursorPositioning {
         MoveToEnd,
         KeepPosition,
         MoveToStart,
@@ -239,7 +237,8 @@ public:
             : lineEdit{parent}
             , button{parent}
             , errorLabel{parent}
-        {}
+        {
+        }
 
         QLineEdit lineEdit;
         QToolButton button;
@@ -311,55 +310,75 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
         mFilterModel->setKeyFilter(mFilter);
     }
 
-    connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
-            q, [this]() { updateKey(CursorPositioning::KeepPosition); });
-    connect(KeyCache::instance().get(), &Kleo::KeyCache::groupUpdated,
-            q, [this](const KeyGroup &group) {
-                if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
-                    setTextWithBlockedSignals(Formatting::summaryLine(group), CursorPositioning::KeepPosition);
-                    // queue the update to ensure that the model has been updated
-                    QMetaObject::invokeMethod(q, [this]() { updateKey(CursorPositioning::KeepPosition); }, Qt::QueuedConnection);
-                }
-            });
-    connect(KeyCache::instance().get(), &Kleo::KeyCache::groupRemoved,
-            q, [this](const KeyGroup &group) {
-                if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
-                    mGroup = KeyGroup();
-                    QSignalBlocker blocky{&ui.lineEdit};
-                    ui.lineEdit.clear();
-                    // queue the update to ensure that the model has been updated
-                    QMetaObject::invokeMethod(q, [this]() { updateKey(CursorPositioning::KeepPosition); }, Qt::QueuedConnection);
-                }
-            });
-    connect(&ui.lineEdit, &QLineEdit::editingFinished,
-            q, [this]() {
-                // queue the call of editFinished() to ensure that QCompleter::activated is handled first
-                QMetaObject::invokeMethod(q, [this]() { editFinished(); }, Qt::QueuedConnection);
-            });
-    connect(&ui.lineEdit, &QLineEdit::textChanged,
-            q, [this]() { editChanged(); });
-    connect(&ui.lineEdit, &QLineEdit::customContextMenuRequested,
-            q, [this](const QPoint &pos) { showContextMenu(pos); });
-    connect(mStatusAction, &QAction::triggered,
-            q, [this]() { openDetailsDialog(); });
-    connect(mShowDetailsAction, &QAction::triggered,
-            q, [this]() { openDetailsDialog(); });
-    connect(&ui.button, &QToolButton::clicked,
-            q, &CertificateLineEdit::certificateSelectionRequested);
-    connect(mCompleter, qOverload<const QModelIndex &>(&QCompleter::activated),
-            q, [this] (const QModelIndex &index) {
-                Key key = mCompleter->completionModel()->data(index, KeyList::KeyRole).value<Key>();
-                auto group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();
-                if (!key.isNull()) {
-                    q->setKey(key);
-                } else if (!group.isNull()) {
-                    q->setGroup(group);
-                } else {
-                    qCDebug(KLEOPATRA_LOG) << "Activated item is neither key nor group";
-                }
-                // queue the call of editFinished() to ensure that QLineEdit finished its own work
-                QMetaObject::invokeMethod(q, [this]() { editFinished(); }, Qt::QueuedConnection);
-            });
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, q, [this]() {
+        updateKey(CursorPositioning::KeepPosition);
+    });
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::groupUpdated, q, [this](const KeyGroup &group) {
+        if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
+            setTextWithBlockedSignals(Formatting::summaryLine(group), CursorPositioning::KeepPosition);
+            // queue the update to ensure that the model has been updated
+            QMetaObject::invokeMethod(
+                q,
+                [this]() {
+                    updateKey(CursorPositioning::KeepPosition);
+                },
+                Qt::QueuedConnection);
+        }
+    });
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::groupRemoved, q, [this](const KeyGroup &group) {
+        if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
+            mGroup = KeyGroup();
+            QSignalBlocker blocky{&ui.lineEdit};
+            ui.lineEdit.clear();
+            // queue the update to ensure that the model has been updated
+            QMetaObject::invokeMethod(
+                q,
+                [this]() {
+                    updateKey(CursorPositioning::KeepPosition);
+                },
+                Qt::QueuedConnection);
+        }
+    });
+    connect(&ui.lineEdit, &QLineEdit::editingFinished, q, [this]() {
+        // queue the call of editFinished() to ensure that QCompleter::activated is handled first
+        QMetaObject::invokeMethod(
+            q,
+            [this]() {
+                editFinished();
+            },
+            Qt::QueuedConnection);
+    });
+    connect(&ui.lineEdit, &QLineEdit::textChanged, q, [this]() {
+        editChanged();
+    });
+    connect(&ui.lineEdit, &QLineEdit::customContextMenuRequested, q, [this](const QPoint &pos) {
+        showContextMenu(pos);
+    });
+    connect(mStatusAction, &QAction::triggered, q, [this]() {
+        openDetailsDialog();
+    });
+    connect(mShowDetailsAction, &QAction::triggered, q, [this]() {
+        openDetailsDialog();
+    });
+    connect(&ui.button, &QToolButton::clicked, q, &CertificateLineEdit::certificateSelectionRequested);
+    connect(mCompleter, qOverload<const QModelIndex &>(&QCompleter::activated), q, [this](const QModelIndex &index) {
+        Key key = mCompleter->completionModel()->data(index, KeyList::KeyRole).value<Key>();
+        auto group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();
+        if (!key.isNull()) {
+            q->setKey(key);
+        } else if (!group.isNull()) {
+            q->setGroup(group);
+        } else {
+            qCDebug(KLEOPATRA_LOG) << "Activated item is neither key nor group";
+        }
+        // queue the call of editFinished() to ensure that QLineEdit finished its own work
+        QMetaObject::invokeMethod(
+            q,
+            [this]() {
+                editFinished();
+            },
+            Qt::QueuedConnection);
+    });
     updateKey(CursorPositioning::Default);
 }
 
@@ -382,8 +401,7 @@ void CertificateLineEdit::Private::setTextWithBlockedSignals(const QString &s, C
     QSignalBlocker blocky{&ui.lineEdit};
     const auto cursorPos = ui.lineEdit.cursorPosition();
     ui.lineEdit.setText(s);
-    switch(positioning)
-    {
+    switch (positioning) {
     case CursorPositioning::KeepPosition:
         ui.lineEdit.setCursorPosition(cursorPos);
         break;
@@ -391,8 +409,7 @@ void CertificateLineEdit::Private::setTextWithBlockedSignals(const QString &s, C
         ui.lineEdit.setCursorPosition(0);
         break;
     case CursorPositioning::MoveToEnd:
-    default:
-        ; // setText() already moved the cursor to the end of the line
+    default:; // setText() already moved the cursor to the end of the line
     };
 }
 
@@ -400,16 +417,13 @@ void CertificateLineEdit::Private::showContextMenu(const QPoint &pos)
 {
     if (QMenu *menu = ui.lineEdit.createStandardContextMenu()) {
         auto *const firstStandardAction = menu->actions().value(0);
-        menu->insertActions(firstStandardAction,
-                            {mShowDetailsAction, createSeparatorAction(menu)});
+        menu->insertActions(firstStandardAction, {mShowDetailsAction, createSeparatorAction(menu)});
         menu->setAttribute(Qt::WA_DeleteOnClose);
         menu->popup(ui.lineEdit.mapToGlobal(pos));
     }
 }
 
-CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
-                                         KeyFilter *filter,
-                                         QWidget *parent)
+CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model, KeyFilter *filter, QWidget *parent)
     : QWidget{parent}
     , d{new Private{this, model, filter}}
 {
@@ -471,7 +485,6 @@ void CertificateLineEdit::Private::checkLocate()
     } else {
         mLocateJob = job;
         qCDebug(KLEOPATRA_LOG) << __func__ << "Started" << job << "for" << mailText;
-
     }
 }
 
@@ -695,7 +708,7 @@ void CertificateLineEdit::Private::updateAccessibleNameAndDescription()
     // Qt does not support IA2's "invalid entry" state (like WCAG's "aria-invalid" state attribute);
     // screen readers say something like "invalid data" if this state is set;
     // emulate this by adding "invalid data" to the accessible name of the input field
-    const auto name = errorShown ? mAccessibleName + QLatin1String{", "} + invalidEntryText()
+    const auto name = errorShown ? mAccessibleName + QLatin1String{", "} + invalidEntryText() //
                                  : mAccessibleName;
     if (ui.lineEdit.accessibleName() != name) {
         ui.lineEdit.setAccessibleName(name);
@@ -773,7 +786,7 @@ bool CertificateLineEdit::isEditingInProgress() const
 
 bool CertificateLineEdit::hasAcceptableInput() const
 {
-    return d->mStatus == Private::Status::Empty
+    return d->mStatus == Private::Status::Empty //
         || d->mStatus == Private::Status::Success;
 }
 

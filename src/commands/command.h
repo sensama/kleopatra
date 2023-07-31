@@ -19,7 +19,8 @@
 #include <vector>
 
 class QModelIndex;
-template <typename T> class QList;
+template<typename T>
+class QList;
 class QAbstractItemView;
 
 namespace GpgME
@@ -44,6 +45,7 @@ public:
     ~Command() override;
 
     enum Restriction {
+        // clang-format off
         NoRestriction      = 0x0000,
         NeedSelection      = 0x0001,
         OnlyOneKey         = 0x0002,
@@ -65,7 +67,8 @@ public:
         MustBeValid         = 0x1000, //< key is neither revoked nor expired nor otherwise "bad"
 
         _AllRestrictions_Helper,
-        AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1
+        AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1,
+        // clang-format on
     };
 
     Q_DECLARE_FLAGS(Restrictions, Restriction)
@@ -124,6 +127,7 @@ protected:
 protected:
     class Private;
     kdtools::pimpl_ptr<Private> d;
+
 protected:
     explicit Command(Private *pp);
     explicit Command(QAbstractItemView *view, Private *pp);
@@ -134,4 +138,3 @@ protected:
 }
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::Command::Restrictions)
-

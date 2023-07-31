@@ -87,7 +87,7 @@ void ScrollArea::adjustSizeOfWindowBy(const QSize &extent)
 bool ScrollArea::eventFilter(QObject *obj, QEvent *ev)
 {
     if (ev->type() == QEvent::Resize && obj == widget() && sizeAdjustPolicy() == AdjustToContents) {
-        const auto *const event = static_cast<QResizeEvent*>(ev);
+        const auto *const event = static_cast<QResizeEvent *>(ev);
         if (event->size().height() > event->oldSize().height()) {
             const auto currentViewportHeight = viewport()->height();
             const auto wantedViewportHeight = event->size().height();

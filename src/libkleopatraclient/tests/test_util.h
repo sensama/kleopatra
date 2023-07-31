@@ -1,8 +1,8 @@
 #pragma once
 
-#include <QStringList>
-#include <QFileInfo>
 #include <QFile>
+#include <QFileInfo>
+#include <QStringList>
 
 static QStringList filePathsFromArgs(int argc, char *argv[])
 {
@@ -12,4 +12,3 @@ static QStringList filePathsFromArgs(int argc, char *argv[])
     }
     return result;
 }
-

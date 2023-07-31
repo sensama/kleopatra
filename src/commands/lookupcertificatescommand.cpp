@@ -30,29 +30,29 @@
 #include <Libkleo/Stl_Util>
 
 #include <QGpgME/Debug>
-#include <QGpgME/Protocol>
-#include <QGpgME/KeyListJob>
 #include <QGpgME/ImportFromKeyserverJob>
+#include <QGpgME/KeyListJob>
+#include <QGpgME/Protocol>
 #if QGPGME_SUPPORTS_WKDLOOKUP
-# include <QGpgME/WKDLookupJob>
-# include <QGpgME/WKDLookupResult>
+#include <QGpgME/WKDLookupJob>
+#include <QGpgME/WKDLookupResult>
 #endif
 
 #include <gpgme++/data.h>
+#include <gpgme++/importresult.h>
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
-#include <gpgme++/importresult.h>
 
+#include "kleopatra_debug.h"
 #include <KLocalizedString>
 #include <KMessageBox>
-#include "kleopatra_debug.h"
 
 #include <QRegularExpression>
 
-#include <vector>
+#include <algorithm>
 #include <map>
 #include <set>
-#include <algorithm>
+#include <vector>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -67,6 +67,7 @@ class LookupCertificatesCommand::Private : public ImportCertificatesCommand::Pri
     {
         return static_cast<LookupCertificatesCommand *>(q);
     }
+
 public:
     explicit Private(LookupCertificatesCommand *qq, KeyListController *c);
     ~Private() override;
@@ -166,8 +167,8 @@ const LookupCertificatesCommand::Private *LookupCertificatesCommand::d_func() co
 #define q q_func()
 
 LookupCertificatesCommand::Private::Private(LookupCertificatesCommand *qq, KeyListController *c)
-    : ImportCertificatesCommand::Private(qq, c),
-      dialog()
+    : ImportCertificatesCommand::Private(qq, c)
+    , dialog()
 {
     if (!Settings{}.cmsEnabled()) {
         protocol = GpgME::OpenPGP;
@@ -207,7 +208,6 @@ LookupCertificatesCommand::LookupCertificatesCommand(QAbstractItemView *v, KeyLi
 
 void LookupCertificatesCommand::Private::init()
 {
-
 }
 
 LookupCertificatesCommand::~LookupCertificatesCommand()
@@ -227,7 +227,6 @@ GpgME::Protocol LookupCertificatesCommand::protocol() const
 
 void LookupCertificatesCommand::doStart()
 {
-
     if (!d->checkConfig()) {
         d->finished();
         return;
@@ -248,7 +247,6 @@ void LookupCertificatesCommand::doStart()
     }
 
     d->dialog->show();
-
 }
 
 void LookupCertificatesCommand::Private::createDialog()
@@ -259,12 +257,22 @@ void LookupCertificatesCommand::Private::createDialog()
     dialog = new LookupCertificatesDialog;
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    connect(dialog, &LookupCertificatesDialog::searchTextChanged, q, [this](const QString &text) { slotSearchTextChanged(text); });
+    connect(dialog, &LookupCertificatesDialog::searchTextChanged, q, [this](const QString &text) {
+        slotSearchTextChanged(text);
+    });
     using CertsVec = std::vector<GpgME::Key>;
-    connect(dialog, &LookupCertificatesDialog::saveAsRequested, q, [this](const CertsVec &certs) { slotSaveAsRequested(certs); });
-    connect(dialog, &LookupCertificatesDialog::importRequested, q, [this](const CertsVec &certs) { slotImportRequested(certs); });
-    connect(dialog, &LookupCertificatesDialog::detailsRequested, q, [this](const GpgME::Key &gpgKey) { slotDetailsRequested(gpgKey); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &LookupCertificatesDialog::saveAsRequested, q, [this](const CertsVec &certs) {
+        slotSaveAsRequested(certs);
+    });
+    connect(dialog, &LookupCertificatesDialog::importRequested, q, [this](const CertsVec &certs) {
+        slotImportRequested(certs);
+    });
+    connect(dialog, &LookupCertificatesDialog::detailsRequested, q, [this](const GpgME::Key &gpgKey) {
+        slotDetailsRequested(gpgKey);
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 static auto searchTextToEmailAddress(const QString &s)
@@ -276,7 +284,7 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
 {
     // pressing return might trigger both search and dialog destruction (search focused and default key set)
     // On Windows, the dialog is then destroyed before this slot is called
-    if (dialog) {   //thus test
+    if (dialog) { // thus test
         dialog->setPassive(true);
         dialog->setCertificates(std::vector<Key>());
         dialog->showInformation({});
@@ -313,12 +321,16 @@ void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, 
     if (!klj) {
         return;
     }
-    connect(klj, &QGpgME::KeyListJob::result, q, [this](const GpgME::KeyListResult &result) { slotKeyListResult(result); });
-    connect(klj, &QGpgME::KeyListJob::nextKey, q, [this](const GpgME::Key &key) { slotNextKey(key); });
+    connect(klj, &QGpgME::KeyListJob::result, q, [this](const GpgME::KeyListResult &result) {
+        slotKeyListResult(result);
+    });
+    connect(klj, &QGpgME::KeyListJob::nextKey, q, [this](const GpgME::Key &key) {
+        slotNextKey(key);
+    });
     if (const Error err = klj->start(QStringList(str))) {
         keyListing.result.mergeWith(KeyListResult(err));
     } else if (proto == CMS) {
-        keyListing.cms     = klj;
+        keyListing.cms = klj;
     } else {
         keyListing.openpgp = klj;
     }
@@ -332,8 +344,9 @@ void LookupCertificatesCommand::Private::startWKDLookupJob(const QString &str)
         qCDebug(KLEOPATRA_LOG) << "Failed to create WKDLookupJob";
         return;
     }
-    connect(job, &WKDLookupJob::result,
-            q, [this](const WKDLookupResult &result) { slotWKDLookupResult(result); });
+    connect(job, &WKDLookupJob::result, q, [this](const WKDLookupResult &result) {
+        slotWKDLookupResult(result);
+    });
     if (const Error err = job->start(str)) {
         keyListing.result.mergeWith(KeyListResult{err});
     } else {
@@ -381,15 +394,12 @@ static auto removeKeysNotMatchingEmail(const std::vector<Key> &keys, const std::
     std::vector<Key> filteredKeys;
 
     const auto addrSpec = UserID::addrSpecFromString(email.c_str());
-    std::copy_if(std::begin(keys), std::end(keys),
-                 std::back_inserter(filteredKeys),
-                 [addrSpec](const auto &key) {
-                     const auto uids = key.userIDs();
-                     return std::any_of(std::begin(uids), std::end(uids),
-                                        [addrSpec](const auto &uid) {
-                                            return uid.addrSpec() == addrSpec;
-                                        });
-                 });
+    std::copy_if(std::begin(keys), std::end(keys), std::back_inserter(filteredKeys), [addrSpec](const auto &key) {
+        const auto uids = key.userIDs();
+        return std::any_of(std::begin(uids), std::end(uids), [addrSpec](const auto &uid) {
+            return uid.addrSpec() == addrSpec;
+        });
+    });
 
     return filteredKeys;
 }
@@ -410,12 +420,14 @@ void LookupCertificatesCommand::Private::slotWKDLookupResult(const WKDLookupResu
     if (!keys.empty()) {
         keyListing.wkdKeyData = QByteArray::fromStdString(result.keyData().toString());
         keyListing.wkdSource = QString::fromStdString(result.source());
-        std::copy(std::begin(keys), std::end(keys),
-                  std::back_inserter(keyListing.keys));
+        std::copy(std::begin(keys), std::end(keys), std::back_inserter(keyListing.keys));
         // remember the keys retrieved via WKD for import
-        std::transform(std::begin(keys), std::end(keys),
+        std::transform(std::begin(keys),
+                       std::end(keys),
                        std::inserter(keyListing.wkdKeyFingerprints, std::begin(keyListing.wkdKeyFingerprints)),
-                       [](const auto &k) { return k.primaryFingerprint(); });
+                       [](const auto &k) {
+                           return k.primaryFingerprint();
+                       });
     }
 
     tryToFinishKeyLookup();
@@ -446,8 +458,7 @@ void showKeysWithoutFingerprintsNotification(QWidget *parent, GpgME::Protocol pr
                          "<para>You may want to configure a different OpenPGP keyserver "
                          "in the configuration dialog.</para>");
     }
-    KMessageBox::information(parent, message, i18nc("@title", "Invalid Server Reply"),
-                             QStringLiteral("certificates-lookup-missing-fingerprints"));
+    KMessageBox::information(parent, message, i18nc("@title", "Invalid Server Reply"), QStringLiteral("certificates-lookup-missing-fingerprints"));
 }
 }
 
@@ -496,46 +507,34 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
     dialog = nullptr;
 
     Q_ASSERT(!keys.empty());
-    Q_ASSERT(std::none_of(keys.cbegin(), keys.cend(), [](const Key &key) { return key.isNull(); }));
+    Q_ASSERT(std::none_of(keys.cbegin(), keys.cend(), [](const Key &key) {
+        return key.isNull();
+    }));
 
     std::vector<Key> wkdKeys, otherKeys;
     otherKeys.reserve(keys.size());
-    kdtools::separate_if(std::begin(keys), std::end(keys),
-                         std::back_inserter(wkdKeys),
-                         std::back_inserter(otherKeys),
-                         [this](const auto &key) {
-                             return key.primaryFingerprint() &&
-                                    keyListing.wkdKeyFingerprints.find(key.primaryFingerprint()) != std::end(keyListing.wkdKeyFingerprints);
-                         });
+    kdtools::separate_if(std::begin(keys), std::end(keys), std::back_inserter(wkdKeys), std::back_inserter(otherKeys), [this](const auto &key) {
+        return key.primaryFingerprint() && keyListing.wkdKeyFingerprints.find(key.primaryFingerprint()) != std::end(keyListing.wkdKeyFingerprints);
+    });
 
     std::vector<Key> pgp, cms;
     pgp.reserve(otherKeys.size());
     cms.reserve(otherKeys.size());
-    kdtools::separate_if(otherKeys.begin(), otherKeys.end(),
-                         std::back_inserter(pgp),
-                         std::back_inserter(cms),
-                         [](const Key &key) {
-                             return key.protocol() == GpgME::OpenPGP;
-                         });
+    kdtools::separate_if(otherKeys.begin(), otherKeys.end(), std::back_inserter(pgp), std::back_inserter(cms), [](const Key &key) {
+        return key.protocol() == GpgME::OpenPGP;
+    });
 
     setWaitForMoreJobs(true);
     if (!wkdKeys.empty()) {
         // set an import filter, so that only user IDs matching the email address used for the WKD lookup are imported
         const QString importFilter = QLatin1String{"keep-uid=mbox = "} + searchTextToEmailAddress(keyListing.pattern);
-        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource,
-                    {importFilter, Key::OriginWKD, keyListing.wkdSource});
+        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource, {importFilter, Key::OriginWKD, keyListing.wkdSource});
     }
     if (!pgp.empty()) {
-        startImport(OpenPGP, pgp,
-                    i18nc(R"(@title %1:"OpenPGP" or "S/MIME")",
-                          "%1 Certificate Server",
-                          Formatting::displayName(OpenPGP)));
+        startImport(OpenPGP, pgp, i18nc(R"(@title %1:"OpenPGP" or "S/MIME")", "%1 Certificate Server", Formatting::displayName(OpenPGP)));
     }
     if (!cms.empty()) {
-        startImport(CMS, cms,
-                    i18nc(R"(@title %1:"OpenPGP" or "S/MIME")",
-                          "%1 Certificate Server",
-                          Formatting::displayName(CMS)));
+        startImport(CMS, cms, i18nc(R"(@title %1:"OpenPGP" or "S/MIME")", "%1 Certificate Server", Formatting::displayName(CMS)));
     }
     setWaitForMoreJobs(false);
 }
@@ -567,9 +566,8 @@ void LookupCertificatesCommand::Private::showError(QWidget *parent, const KeyLis
     if (!result.error()) {
         return;
     }
-    KMessageBox::information(parent, i18nc("@info",
-                                           "Failed to search on certificate server. The error returned was:\n%1",
-                                           Formatting::errorAsString(result.error())));
+    KMessageBox::information(parent,
+                             i18nc("@info", "Failed to search on certificate server. The error returned was:\n%1", Formatting::errorAsString(result.error())));
 }
 
 void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyListResult &result)

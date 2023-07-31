@@ -42,7 +42,7 @@ public:
     enum Mode {
         VerifyDetachedWithSignature,
         VerifyDetachedWithSignedData,
-        DecryptVerifyOpaque
+        DecryptVerifyOpaque,
     };
     void setMode(Mode mode, const std::shared_ptr<ArchiveDefinition> &ad);
     void setMode(Mode mode);
@@ -54,7 +54,7 @@ public:
     void setSignedDataFileName(const QString &name);
     QString signedDataFileName() const;
 
-    void setArchiveDefinitions(const std::vector< std::shared_ptr<ArchiveDefinition> > &ads);
+    void setArchiveDefinitions(const std::vector<std::shared_ptr<ArchiveDefinition>> &ads);
     std::shared_ptr<ArchiveDefinition> selectedArchiveDefinition() const;
 
 Q_SIGNALS:
@@ -69,4 +69,3 @@ private:
 }
 }
 }
-

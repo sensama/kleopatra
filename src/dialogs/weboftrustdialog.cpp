@@ -26,9 +26,9 @@
 
 #include <gpgme++/key.h>
 
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KConfigGroup>
 
 #include <algorithm>
 #include <set>
@@ -74,8 +74,7 @@ WebOfTrustDialog::WebOfTrustDialog(QWidget *parent)
     addActionButton(bbox, mWidget->certifyAction());
     addActionButton(bbox, mWidget->revokeAction());
 
-    mFetchKeysBtn = bbox->addButton(i18nc("@action:button", "Fetch Missing Keys"),
-                                    QDialogButtonBox::ActionRole);
+    mFetchKeysBtn = bbox->addButton(i18nc("@action:button", "Fetch Missing Keys"), QDialogButtonBox::ActionRole);
     mFetchKeysBtn->setToolTip(i18nc("@info:tooltip", "Look up and import all keys that were used to certify the user IDs of this key"));
     connect(mFetchKeysBtn, &QPushButton::pressed, this, &WebOfTrustDialog::fetchMissingKeys);
 #if !QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
@@ -113,8 +112,7 @@ void WebOfTrustDialog::fetchMissingKeys()
     auto cmd = new Kleo::ImportCertificateFromKeyserverCommand{QStringList{std::begin(missingSignerKeyIds), std::end(missingSignerKeyIds)}};
     cmd->setParentWidget(this);
     mFetchKeysBtn->setEnabled(false);
-    connect(cmd, &Kleo::ImportCertificateFromKeyserverCommand::finished,
-            this, [this]() {
+    connect(cmd, &Kleo::ImportCertificateFromKeyserverCommand::finished, this, [this]() {
         // Trigger an update when done
         setKey(key());
         mFetchKeysBtn->setEnabled(true);

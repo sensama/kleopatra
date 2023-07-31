@@ -31,7 +31,8 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
-namespace Kleo::Commands::Compat {
+namespace Kleo::Commands::Compat
+{
 
 ExportSecretKeyCommand::ExportSecretKeyCommand(QAbstractItemView *v, KeyListController *c)
     : GnuPGProcessCommand(v, c)
@@ -43,7 +44,9 @@ ExportSecretKeyCommand::ExportSecretKeyCommand(const Key &key)
 {
 }
 
-ExportSecretKeyCommand::~ExportSecretKeyCommand() {}
+ExportSecretKeyCommand::~ExportSecretKeyCommand()
+{
+}
 
 bool ExportSecretKeyCommand::preStartHook(QWidget *parent) const
 {
@@ -62,23 +65,23 @@ bool ExportSecretKeyCommand::preStartHook(QWidget *parent) const
         name = Formatting::prettyEMail(key);
     }
     /* Not translated so it's better to use in tutorials etc. */
-    proposedFileName = QStringLiteral("%1_%2_SECRET.%3").arg(name).arg(
-            Formatting::prettyKeyID(key.shortKeyID())).arg(
-            QString::fromLatin1(outputFileExtension(protocol == OpenPGP
-                    ? Class::OpenPGP | Class::Ascii | Class::Certificate
-                    : Class::CMS | Class::Binary | Class::ExportedPSM, usePGPFileExt)));
+    proposedFileName = QStringLiteral("%1_%2_SECRET.%3")
+                           .arg(name)
+                           .arg(Formatting::prettyKeyID(key.shortKeyID()))
+                           .arg(QString::fromLatin1(outputFileExtension(protocol == OpenPGP ? Class::OpenPGP | Class::Ascii | Class::Certificate
+                                                                                            : Class::CMS | Class::Binary | Class::ExportedPSM,
+                                                                        usePGPFileExt)));
 
     m_filename = FileDialog::getSaveFileNameEx(parent ? parent : d->parentWidgetOrView(),
-                          i18n("Backup Secret Key"),
-                          QStringLiteral("imp"),
-                          proposedFileName,
-                          protocol == GpgME::OpenPGP
-                          ? i18n("Secret Key Files") + QLatin1String(" (*.asc *.gpg *.pgp)")
-                          : i18n("Secret Key Files")  + QLatin1String(" (*.p12)"));
+                                               i18n("Backup Secret Key"),
+                                               QStringLiteral("imp"),
+                                               proposedFileName,
+                                               protocol == GpgME::OpenPGP ? i18n("Secret Key Files") + QLatin1String(" (*.asc *.gpg *.pgp)")
+                                                                          : i18n("Secret Key Files") + QLatin1String(" (*.p12)"));
 
-    m_armor = m_filename.endsWith (QLatin1String (".asc"));
+    m_armor = m_filename.endsWith(QLatin1String(".asc"));
 
-    return !m_filename.isEmpty ();
+    return !m_filename.isEmpty();
 }
 
 QStringList ExportSecretKeyCommand::arguments() const
@@ -128,7 +131,8 @@ QString ExportSecretKeyCommand::crashExitMessage(const QStringList &args) const
     return xi18nc("@info",
                   "<para>The GPG or GpgSM process that tried to export the secret key "
                   "ended prematurely because of an unexpected error.</para>"
-                  "<para>Please check the output of <icode>%1</icode> for details.</para>", args.join(QLatin1Char(' ')));
+                  "<para>Please check the output of <icode>%1</icode> for details.</para>",
+                  args.join(QLatin1Char(' ')));
 }
 
 QString ExportSecretKeyCommand::errorExitMessage(const QStringList &args) const
@@ -136,7 +140,8 @@ QString ExportSecretKeyCommand::errorExitMessage(const QStringList &args) const
     return xi18nc("@info",
                   "<para>An error occurred while trying to export the secret key.</para> "
                   "<para>The output from <command>%1</command> was: <message>%2</message></para>",
-                  args[0], errorString());
+                  args[0],
+                  errorString());
 }
 
 QString ExportSecretKeyCommand::successMessage(const QStringList &) const
@@ -149,11 +154,10 @@ QString ExportSecretKeyCommand::successMessage(const QStringList &) const
 
 void ExportSecretKeyCommand::postSuccessHook(QWidget *)
 {
-    Q_ASSERT (process());
+    Q_ASSERT(process());
     const auto data = process()->readAllStandardOutput();
     if (!data.size()) {
-        d->error (i18nc("@info", "Possibly bad passphrase given."),
-                  errorCaption());
+        d->error(i18nc("@info", "Possibly bad passphrase given."), errorCaption());
         mHasError = true;
         return;
     }
@@ -161,8 +165,7 @@ void ExportSecretKeyCommand::postSuccessHook(QWidget *)
     /* The filedialog already asked for replace ok. */
     file.open(QIODevice::ReadWrite | QIODevice::Truncate);
     if (file.write(data) != data.size()) {
-        d->error(i18nc("@info", "Failed to write data."),
-                 errorCaption());
+        d->error(i18nc("@info", "Failed to write data."), errorCaption());
         mHasError = true;
     }
     file.close();

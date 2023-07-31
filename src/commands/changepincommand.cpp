@@ -36,6 +36,7 @@ class ChangePinCommand::Private : public CardCommand::Private
     {
         return static_cast<ChangePinCommand *>(q);
     }
+
 public:
     explicit Private(ChangePinCommand *qq, const std::string &serialNumber, const std::string &appName, QWidget *p);
     ~Private() override;
@@ -102,7 +103,6 @@ void ChangePinCommand::setMode(ChangePinMode mode)
     d->mode = mode;
 }
 
-
 void ChangePinCommand::doStart()
 {
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::doStart()";
@@ -138,7 +138,8 @@ void ChangePinCommand::Private::changePin()
     });
 }
 
-namespace {
+namespace
+{
 static QString errorMessage(const std::string &keyRef, ChangePinCommand::ChangePinMode mode, const QString &errorText)
 {
     // see cmd_passwd() in gpg-card.c
@@ -204,10 +205,9 @@ static QString successMessage(const std::string &keyRef, ChangePinCommand::Chang
 }
 }
 
-void ChangePinCommand::Private::slotResult(const GpgME::Error& err)
+void ChangePinCommand::Private::slotResult(const GpgME::Error &err)
 {
-    qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::slotResult():"
-                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
+    qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::slotResult():" << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err) {
         error(errorMessage(keyRef, mode, Formatting::errorAsString(err)));
     } else if (!err.isCanceled()) {

@@ -18,8 +18,8 @@ class QWidget;
 
 namespace GpgME
 {
-    class Error;
-    class Key;
+class Error;
+class Key;
 } // namespace GpgME
 
 namespace Kleo
@@ -62,4 +62,3 @@ private:
 
 }
 }
-

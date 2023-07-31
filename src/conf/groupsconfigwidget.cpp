@@ -104,8 +104,7 @@ public:
     }
 };
 
-struct Selection
-{
+struct Selection {
     KeyGroup current;
     std::vector<KeyGroup> selected;
 };
@@ -196,19 +195,29 @@ public:
 
         groupsLayout->addLayout(groupsButtonLayout, row, 1);
 
-        mainLayout->addLayout(groupsLayout, /*stretch=*/ 1);
+        mainLayout->addLayout(groupsLayout, /*stretch=*/1);
 
         connect(ui.groupsFilter, &QLineEdit::textChanged, q, [this](const auto &s) {
             groupsFilterModel->setFilterRegularExpression(QRegularExpression::escape(s));
         });
-        connect(ui.groupsList->selectionModel(), &QItemSelectionModel::selectionChanged,
-                q, [this] () { selectionChanged(); });
-        connect(ui.groupsList, &QListView::doubleClicked,
-                q, [this] (const QModelIndex &index) { editGroup(index); });
-        connect(ui.newButton, &QPushButton::clicked, q, [this] () { addGroup(); });
-        connect(ui.editButton, &QPushButton::clicked, q, [this] () { editGroup(); });
-        connect(ui.deleteButton, &QPushButton::clicked, q, [this] () { deleteGroup(); });
-        connect(ui.exportButton, &QPushButton::clicked, q, [this] () { exportGroup(); });
+        connect(ui.groupsList->selectionModel(), &QItemSelectionModel::selectionChanged, q, [this]() {
+            selectionChanged();
+        });
+        connect(ui.groupsList, &QListView::doubleClicked, q, [this](const QModelIndex &index) {
+            editGroup(index);
+        });
+        connect(ui.newButton, &QPushButton::clicked, q, [this]() {
+            addGroup();
+        });
+        connect(ui.editButton, &QPushButton::clicked, q, [this]() {
+            editGroup();
+        });
+        connect(ui.deleteButton, &QPushButton::clicked, q, [this]() {
+            deleteGroup();
+        });
+        connect(ui.exportButton, &QPushButton::clicked, q, [this]() {
+            exportGroup();
+        });
     }
 
     ~Private()
@@ -238,9 +247,9 @@ private:
     auto getGroups(const QModelIndexList &indexes)
     {
         std::vector<KeyGroup> groups;
-        std::transform(std::begin(indexes), std::end(indexes),
-                       std::back_inserter(groups),
-                       [this](const auto &index) { return getGroup(index); });
+        std::transform(std::begin(indexes), std::end(indexes), std::back_inserter(groups), [this](const auto &index) {
+            return getGroup(index);
+        });
         return groups;
     }
 
@@ -266,9 +275,9 @@ private:
     void selectionChanged()
     {
         const auto selectedGroups = getGroups(selectedRows());
-        const bool allSelectedGroupsAreEditable =
-            std::all_of(std::begin(selectedGroups), std::end(selectedGroups),
-                        [](const auto &g) { return !g.isNull() && !g.isImmutable(); });
+        const bool allSelectedGroupsAreEditable = std::all_of(std::begin(selectedGroups), std::end(selectedGroups), [](const auto &g) {
+            return !g.isNull() && !g.isImmutable();
+        });
         ui.editButton->setEnabled(selectedGroups.size() == 1 && allSelectedGroupsAreEditable);
         ui.deleteButton->setEnabled(!selectedGroups.empty() && allSelectedGroupsAreEditable);
         ui.exportButton->setEnabled(selectedGroups.size() == 1);
@@ -300,8 +309,7 @@ private:
         KeyGroup group = KeyGroup(newId, i18nc("default name for new group of keys", "New Group"), {}, KeyGroup::ApplicationConfig);
         group.setIsImmutable(false);
 
-        const KeyGroup newGroup = showEditGroupDialog(
-            group, i18nc("@title:window a group of keys", "New Group"), EditGroupDialog::GroupName);
+        const KeyGroup newGroup = showEditGroupDialog(group, i18nc("@title:window a group of keys", "New Group"), EditGroupDialog::GroupName);
         if (newGroup.isNull()) {
             return;
         }
@@ -338,8 +346,7 @@ private:
             return;
         }
 
-        const KeyGroup updatedGroup = showEditGroupDialog(
-            group, i18nc("@title:window a group of keys", "Edit Group"), EditGroupDialog::KeysFilter);
+        const KeyGroup updatedGroup = showEditGroupDialog(group, i18nc("@title:window a group of keys", "Edit Group"), EditGroupDialog::KeysFilter);
         if (updatedGroup.isNull()) {
             return;
         }

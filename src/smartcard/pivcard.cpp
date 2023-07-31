@@ -66,13 +66,13 @@ std::string PIVCard::pukKeyRef()
 }
 
 // static
-const std::vector<KeyPairInfo> & PIVCard::supportedKeys()
+const std::vector<KeyPairInfo> &PIVCard::supportedKeys()
 {
     static const std::vector<KeyPairInfo> keyInfos = {
         {PIVCard::pivAuthenticationKeyRef(), "", "a", "", ""},
         {PIVCard::cardAuthenticationKeyRef(), "", "a", "", ""},
         {PIVCard::digitalSignatureKeyRef(), "", "sc", "", ""},
-        {PIVCard::keyManagementKeyRef(), "", "e", "", ""}
+        {PIVCard::keyManagementKeyRef(), "", "e", "", ""},
     };
 
     return keyInfos;
@@ -82,10 +82,10 @@ const std::vector<KeyPairInfo> & PIVCard::supportedKeys()
 QString PIVCard::keyDisplayName(const std::string &keyRef)
 {
     static const QMap<std::string, QString> displayNames = {
-        { PIVCard::pivAuthenticationKeyRef(), i18n("PIV Authentication Key") },
-        { PIVCard::cardAuthenticationKeyRef(), i18n("Card Authentication Key") },
-        { PIVCard::digitalSignatureKeyRef(), i18n("Digital Signature Key") },
-        { PIVCard::keyManagementKeyRef(), i18n("Key Management Key") },
+        {PIVCard::pivAuthenticationKeyRef(), i18n("PIV Authentication Key")},
+        {PIVCard::cardAuthenticationKeyRef(), i18n("Card Authentication Key")},
+        {PIVCard::digitalSignatureKeyRef(), i18n("Digital Signature Key")},
+        {PIVCard::keyManagementKeyRef(), i18n("Key Management Key")},
     };
 
     return displayNames.value(keyRef);
@@ -96,22 +96,22 @@ std::vector<AlgorithmInfo> PIVCard::supportedAlgorithms(const std::string &keyRe
 {
     if (keyRef == PIVCard::keyManagementKeyRef()) {
         return {
-            { "rsa2048", i18n("RSA key transport (2048 bits)") },
-            { "nistp256", i18n("ECDH (Curve P-256)") },
-            { "nistp384", i18n("ECDH (Curve P-384)") }
+            {"rsa2048", i18n("RSA key transport (2048 bits)")},
+            {"nistp256", i18n("ECDH (Curve P-256)")},
+            {"nistp384", i18n("ECDH (Curve P-384)")},
         };
     } else if (keyRef == PIVCard::digitalSignatureKeyRef()) {
         return {
-            { "rsa2048", i18n("RSA (2048 bits)") },
-            { "nistp256", i18n("ECDSA (Curve P-256)") },
-            { "nistp384", i18n("ECDSA (Curve P-384)") }
+            {"rsa2048", i18n("RSA (2048 bits)")},
+            {"nistp256", i18n("ECDSA (Curve P-256)")},
+            {"nistp384", i18n("ECDSA (Curve P-384)")},
         };
     }
 
     // NIST SP 800-78-4 does not allow Curve P-384 for PIV Authentication key or Card Authentication key
     return {
-        { "rsa2048", i18n("RSA (2048 bits)") },
-        { "nistp256", i18n("ECDSA (Curve P-256)") },
+        {"rsa2048", i18n("RSA (2048 bits)")},
+        {"nistp256", i18n("ECDSA (Curve P-256)")},
     };
 }
 

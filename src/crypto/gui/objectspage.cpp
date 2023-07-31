@@ -13,15 +13,14 @@
 
 #include <utils/filedialog.h>
 
-#include <QIcon>
 #include <KLocalizedString>
+#include <QIcon>
 
 #include <QFileInfo>
-#include <QListWidget>
 #include <QHBoxLayout>
+#include <QListWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
-
 
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
@@ -30,6 +29,7 @@ class ObjectsPage::Private
 {
     friend class ::Kleo::Crypto::Gui::ObjectsPage;
     ObjectsPage *const q;
+
 public:
     explicit Private(ObjectsPage *qq);
     ~Private();
@@ -38,7 +38,7 @@ public:
     void remove();
     void listSelectionChanged();
     enum Role {
-        AbsoluteFilePathRole = Qt::UserRole
+        AbsoluteFilePathRole = Qt::UserRole,
     };
 
 private:
@@ -66,7 +66,9 @@ ObjectsPage::Private::Private(ObjectsPage *qq)
     listSelectionChanged();
 }
 
-ObjectsPage::Private::~Private() {}
+ObjectsPage::Private::~Private()
+{
+}
 
 void ObjectsPage::Private::add()
 {
@@ -94,14 +96,13 @@ void ObjectsPage::Private::listSelectionChanged()
 }
 
 ObjectsPage::ObjectsPage(QWidget *parent, Qt::WindowFlags f)
-    : WizardPage(parent, f), d(new Private(this))
+    : WizardPage(parent, f)
+    , d(new Private(this))
 {
-
 }
 
 ObjectsPage::~ObjectsPage()
 {
-
 }
 
 void ObjectsPage::setFiles(const QStringList &list)
@@ -140,4 +141,3 @@ bool ObjectsPage::isComplete() const
 }
 
 #include "moc_objectspage.cpp"
-

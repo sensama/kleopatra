@@ -33,7 +33,9 @@ class WizardPage : public QWizardPage
     Q_OBJECT
 protected:
     explicit WizardPage(QWidget *parent = nullptr)
-        : QWizardPage(parent) {}
+        : QWizardPage(parent)
+    {
+    }
 
     NewCertificateWizard *wizard() const
     {
@@ -57,7 +59,11 @@ protected:
     }
 
 protected:
-#define FIELD(type, name) type name() const { return field( QStringLiteral(#name) ).value<type>(); }
+#define FIELD(type, name)                                                                                                                                      \
+    type name() const                                                                                                                                          \
+    {                                                                                                                                                          \
+        return field(QStringLiteral(#name)).value<type>();                                                                                                     \
+    }
     FIELD(bool, signingAllowed)
     FIELD(bool, encryptionAllowed)
     FIELD(bool, certificationAllowed)

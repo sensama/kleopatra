@@ -54,18 +54,24 @@
 class __KDAB__CheckerImplBase
 {
 public:
-    virtual ~__KDAB__CheckerImplBase() {}
+    virtual ~__KDAB__CheckerImplBase()
+    {
+    }
     virtual void checkInvariants() const = 0;
 };
 
-template <typename T_Class>
+template<typename T_Class>
 class __KDAB__CheckerImpl : public __KDAB__CheckerImplBase
 {
     KDAB_DISABLE_COPY(__KDAB__CheckerImpl);
     const T_Class *const p;
+
 public:
     __KDAB__CheckerImpl(const T_Class *t)
-        : __KDAB__CheckerImplBase(), p(t) {}
+        : __KDAB__CheckerImplBase()
+        , p(t)
+    {
+    }
     void checkInvariants() const
     {
         try {
@@ -76,13 +82,14 @@ public:
     }
 };
 
-template <bool check_in_ctor, bool check_in_dtor>
+template<bool check_in_ctor, bool check_in_dtor>
 class __KDAB__Checker
 {
     KDAB_DISABLE_COPY(__KDAB__Checker);
     const __KDAB__CheckerImplBase *const checker;
+
 public:
-    template <typename T_Class>
+    template<typename T_Class>
     __KDAB__Checker(const T_Class *t)
         : checker(new __KDAB__CheckerImpl<T_Class>(t))
     {
@@ -99,24 +106,21 @@ public:
     }
 };
 
-#define KDAB_MAKE_CHECKABLE( Class ) \
-    private:                         \
-    void __KDAB_Checker__checkInvariants__() const;    \
+#define KDAB_MAKE_CHECKABLE(Class)                                                                                                                             \
+private:                                                                                                                                                       \
+    void __KDAB_Checker__checkInvariants__() const;                                                                                                            \
     friend class __KDAB__CheckerImpl<Class>;
 
-#define KDAB_DEFINE_CHECKS( Class )                             \
-    void Class::__KDAB_Checker__checkInvariants__() const
+#define KDAB_DEFINE_CHECKS(Class) void Class::__KDAB_Checker__checkInvariants__() const
 
 #ifndef NDEBUG
-# define __KDAB_CHECK_HELPER__( ctor, dtor ) \
-    const __KDAB__Checker<ctor,dtor> __checker_uglified__( this )
+#define __KDAB_CHECK_HELPER__(ctor, dtor) const __KDAB__Checker<ctor, dtor> __checker_uglified__(this)
 #else
-# define __KDAB_CHECK_HELPER__( ctor, dtor ) \
-    do {} while (0)
+#define __KDAB_CHECK_HELPER__(ctor, dtor)                                                                                                                      \
+    do {                                                                                                                                                       \
+    } while (0)
 #endif
 
-#define KDAB_CHECK_THIS __KDAB_CHECK_HELPER__( true, true )
-#define KDAB_CHECK_CTOR __KDAB_CHECK_HELPER__( false, true )
-#define KDAB_CHECK_DTOR __KDAB_CHECK_HELPER__( true, false )
-
-
+#define KDAB_CHECK_THIS __KDAB_CHECK_HELPER__(true, true)
+#define KDAB_CHECK_CTOR __KDAB_CHECK_HELPER__(false, true)
+#define KDAB_CHECK_DTOR __KDAB_CHECK_HELPER__(true, false)

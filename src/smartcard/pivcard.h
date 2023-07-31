@@ -18,7 +18,7 @@ struct AlgorithmInfo;
 struct KeyPairInfo;
 
 /** Class to work with PIV smartcards or compatible tokens */
-class PIVCard: public Card
+class PIVCard : public Card
 {
 public:
     explicit PIVCard(const Card &card);
@@ -33,7 +33,7 @@ public:
     static std::string pinKeyRef();
     static std::string pukKeyRef();
 
-    static const std::vector<KeyPairInfo> & supportedKeys();
+    static const std::vector<KeyPairInfo> &supportedKeys();
     static QString keyDisplayName(const std::string &keyRef);
     static std::vector<AlgorithmInfo> supportedAlgorithms(const std::string &keyRef);
 
@@ -42,4 +42,3 @@ public:
 };
 } // namespace Smartcard
 } // namespace Kleopatra
-

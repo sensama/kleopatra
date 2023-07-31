@@ -22,6 +22,7 @@ using namespace Kleo;
 class HtmlLabel::Private
 {
     HtmlLabel *q;
+
 public:
     Private(HtmlLabel *qq)
         : q{qq}
@@ -50,7 +51,6 @@ void HtmlLabel::Private::updateText(const QString &newText)
     }
     mAnchorCache.setText(q->text());
 }
-
 
 HtmlLabel::HtmlLabel(QWidget *parent)
     : HtmlLabel{{}, parent}

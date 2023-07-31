@@ -18,10 +18,10 @@
 #include <tagspreferences.h>
 #include <tooltippreferences.h>
 
-#include <Libkleo/KeyFilterManager>
-#include <Libkleo/Dn>
 #include <Libkleo/DNAttributeOrderConfigWidget>
+#include <Libkleo/Dn>
 #include <Libkleo/ExpiryCheckerConfig>
+#include <Libkleo/KeyFilterManager>
 #include <Libkleo/SystemInfo>
 
 #include <KConfig>
@@ -52,8 +52,8 @@ using namespace Kleo::Config;
 
 enum {
     HasNameRole = Qt::UserRole + 0x1234, /*!< Records that the user has assigned a name (to avoid comparing with i18n-strings) */
-    HasFontRole,                         /*!< Records that the user has chosen  completely different font (as opposed to italic/bold/strikeout) */
-    IconNameRole,                        /*!< Records the name of the icon (since QIcon won't give it out again, once set) */
+    HasFontRole, /*!< Records that the user has chosen  completely different font (as opposed to italic/bold/strikeout) */
+    IconNameRole, /*!< Records the name of the icon (since QIcon won't give it out again, once set) */
     MayChangeNameRole,
     MayChangeForegroundRole,
     MayChangeBackgroundRole,
@@ -155,7 +155,7 @@ static void apply_config(const KConfigGroup &group, QListWidgetItem *item)
     if (group.hasKey("font")) {
         const QFont font = group.readEntry("font", defaultFont);
         item->setData(Qt::FontRole, font != defaultFont ? font : QVariant());
-        item->setData(HasFontRole,  font != defaultFont);
+        item->setData(HasFontRole, font != defaultFont);
     } else {
         QFont font = defaultFont;
         font.setStrikeOut(group.readEntry("font-strikeout", false));
@@ -228,7 +228,7 @@ static void set_default_appearance(QListWidgetItem *item)
     erase_if_allowed(item, StoredBackgroundRole, MayChangeBackgroundRole);
     erase_if_allowed(item, Qt::BackgroundRole, MayChangeBackgroundRole);
     erase_if_allowed(item, Qt::DecorationRole, MayChangeIconRole);
-    static const int fontRoles[] = { Qt::FontRole, HasFontRole };
+    static const int fontRoles[] = {Qt::FontRole, HasFontRole};
     static const int fontAllowRoles[] = {
         MayChangeFontRole,
         MayChangeItalicRole,
@@ -335,69 +335,72 @@ public:
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
 
         {
-        auto tab = new QWidget{parent};
-        auto tabLayout = new QVBoxLayout{tab};
+            auto tab = new QWidget{parent};
+            auto tabLayout = new QVBoxLayout{tab};
 
-        useTagsCheckBox = new QCheckBox{i18nc("@option:check", "Show tags attached to certificates"), tab};
-        useTagsCheckBox->setToolTip(i18nc("@info:tooltip", "Enable display and usage of tags attached to certificates."));
-        tabLayout->addWidget(useTagsCheckBox);
+            useTagsCheckBox = new QCheckBox{i18nc("@option:check", "Show tags attached to certificates"), tab};
+            useTagsCheckBox->setToolTip(i18nc("@info:tooltip", "Enable display and usage of tags attached to certificates."));
+            tabLayout->addWidget(useTagsCheckBox);
 
-        tabLayout->addWidget(new KSeparator{tab});
+            tabLayout->addWidget(new KSeparator{tab});
 
-        auto label = new QLabel{tab};
-        label->setText(i18nc("@info", "Show the following information in certificate list tooltips:"));
-        tabLayout->addWidget(label);
+            auto label = new QLabel{tab};
+            label->setText(i18nc("@info", "Show the following information in certificate list tooltips:"));
+            tabLayout->addWidget(label);
 
-        tooltipValidityCheckBox = new QCheckBox{i18nc("@option:check", "Show validity"), tab};
-        tabLayout->addWidget(tooltipValidityCheckBox);
+            tooltipValidityCheckBox = new QCheckBox{i18nc("@option:check", "Show validity"), tab};
+            tabLayout->addWidget(tooltipValidityCheckBox);
 
-        tooltipOwnerCheckBox = new QCheckBox{i18nc("@option:check", "Show owner information"), tab};
-        tabLayout->addWidget(tooltipOwnerCheckBox);
+            tooltipOwnerCheckBox = new QCheckBox{i18nc("@option:check", "Show owner information"), tab};
+            tabLayout->addWidget(tooltipOwnerCheckBox);
 
-        tooltipDetailsCheckBox = new QCheckBox{i18nc("@option:check", "Show technical details"), tab};
-        tabLayout->addWidget(tooltipDetailsCheckBox);
+            tooltipDetailsCheckBox = new QCheckBox{i18nc("@option:check", "Show technical details"), tab};
+            tabLayout->addWidget(tooltipDetailsCheckBox);
 
-        tabLayout->addWidget(new KSeparator{tab});
+            tabLayout->addWidget(new KSeparator{tab});
 
-        showExpirationCheckBox = new QCheckBox{i18nc("@option:check", "Show upcoming certificate expiration"), tab};
-        tabLayout->addWidget(showExpirationCheckBox);
+            showExpirationCheckBox = new QCheckBox{i18nc("@option:check", "Show upcoming certificate expiration"), tab};
+            tabLayout->addWidget(showExpirationCheckBox);
 
-        {
-        auto gridLayout = new QGridLayout;
-        const ExpiryCheckerConfig expiryConfig;
-        {
-        auto label = new QLabel{i18nc("@label:spinbox", "Threshold for own certificates:"), tab};
-        ownCertificateThresholdSpinBox = new PluralHandlingSpinBox{tab};
-        label->setBuddy(ownCertificateThresholdSpinBox);
-        const auto configItem = expiryConfig.ownKeyThresholdInDaysItem();
-        ownCertificateThresholdSpinBox->setMinimum(configItem->minValue().toInt());
-        ownCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
-        ownCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
-        ownCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
-        ownCertificateThresholdSpinBox->setToolTip(i18nc("@info:tooltip", "Select the number of days you want to be warned in advance, if your own certificate is about to expire soon."));
-        gridLayout->addWidget(label, 0, 0);
-        gridLayout->addWidget(ownCertificateThresholdSpinBox, 0, 1);
-        }
-        {
-        auto label = new QLabel{i18nc("@label:spinbox", "Threshold for other certificates:"), tab};
-        otherCertificateThresholdSpinBox = new PluralHandlingSpinBox{tab};
-        label->setBuddy(otherCertificateThresholdSpinBox);
-        const auto configItem = expiryConfig.otherKeyThresholdInDaysItem();
-        otherCertificateThresholdSpinBox->setMinimum(configItem->minValue().toInt());
-        otherCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
-        otherCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
-        otherCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
-        otherCertificateThresholdSpinBox->setToolTip(i18nc("@info:tooltip", "Select the number of days you want to be warned in advance, if another person's certificate is about to expire soon."));
-        gridLayout->addWidget(label, 1, 0);
-        gridLayout->addWidget(otherCertificateThresholdSpinBox, 1, 1);
-        }
-        gridLayout->setColumnStretch(2, 1);
-        tabLayout->addLayout(gridLayout);
-        }
+            {
+                auto gridLayout = new QGridLayout;
+                const ExpiryCheckerConfig expiryConfig;
+                {
+                    auto label = new QLabel{i18nc("@label:spinbox", "Threshold for own certificates:"), tab};
+                    ownCertificateThresholdSpinBox = new PluralHandlingSpinBox{tab};
+                    label->setBuddy(ownCertificateThresholdSpinBox);
+                    const auto configItem = expiryConfig.ownKeyThresholdInDaysItem();
+                    ownCertificateThresholdSpinBox->setMinimum(configItem->minValue().toInt());
+                    ownCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
+                    ownCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
+                    ownCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
+                    ownCertificateThresholdSpinBox->setToolTip(
+                        i18nc("@info:tooltip", "Select the number of days you want to be warned in advance, if your own certificate is about to expire soon."));
+                    gridLayout->addWidget(label, 0, 0);
+                    gridLayout->addWidget(ownCertificateThresholdSpinBox, 0, 1);
+                }
+                {
+                    auto label = new QLabel{i18nc("@label:spinbox", "Threshold for other certificates:"), tab};
+                    otherCertificateThresholdSpinBox = new PluralHandlingSpinBox{tab};
+                    label->setBuddy(otherCertificateThresholdSpinBox);
+                    const auto configItem = expiryConfig.otherKeyThresholdInDaysItem();
+                    otherCertificateThresholdSpinBox->setMinimum(configItem->minValue().toInt());
+                    otherCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
+                    otherCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
+                    otherCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
+                    otherCertificateThresholdSpinBox->setToolTip(
+                        i18nc("@info:tooltip",
+                              "Select the number of days you want to be warned in advance, if another person's certificate is about to expire soon."));
+                    gridLayout->addWidget(label, 1, 0);
+                    gridLayout->addWidget(otherCertificateThresholdSpinBox, 1, 1);
+                }
+                gridLayout->setColumnStretch(2, 1);
+                tabLayout->addLayout(gridLayout);
+            }
 
-        tabLayout->addStretch(1);
+            tabLayout->addStretch(1);
 
-        tabWidget->addTab(tab, i18nc("@title:tab", "General"));
+            tabWidget->addTab(tab, i18nc("@title:tab", "General"));
         }
 
         auto tab_2 = new QWidget();
@@ -486,6 +489,7 @@ class AppearanceConfigWidget::Private : public Ui_AppearanceConfigWidget
 {
     friend class ::Kleo::Config::AppearanceConfigWidget;
     AppearanceConfigWidget *const q;
+
 public:
     explicit Private(AppearanceConfigWidget *qq)
         : Ui_AppearanceConfigWidget()
@@ -572,12 +576,15 @@ private:
 };
 
 AppearanceConfigWidget::AppearanceConfigWidget(QWidget *p, Qt::WindowFlags f)
-    : QWidget(p, f), d(new Private(this))
+    : QWidget(p, f)
+    , d(new Private(this))
 {
-//    load();
+    //    load();
 }
 
-AppearanceConfigWidget::~AppearanceConfigWidget() {}
+AppearanceConfigWidget::~AppearanceConfigWidget()
+{
+}
 
 void AppearanceConfigWidget::Private::slotSelectionChanged()
 {
@@ -613,7 +620,6 @@ void AppearanceConfigWidget::Private::enableDisableActions(QListWidgetItem *item
 
 void AppearanceConfigWidget::Private::slotDefaultClicked()
 {
-
     QListWidgetItem *const item = selectedItem();
     if (!item) {
         return;
@@ -774,10 +780,14 @@ void AppearanceConfigWidget::Private::slotIconClicked()
         return;
     }
 
-    const QString iconName = KIconDialog::getIcon( /* repeating default arguments begin */
-                                 KIconLoader::Desktop, KIconLoader::Application, false, 0, false,
-                                 /* repeating default arguments end */
-                                 q);
+    const QString iconName = KIconDialog::getIcon(/* repeating default arguments begin */
+                                                  KIconLoader::Desktop,
+                                                  KIconLoader::Application,
+                                                  false,
+                                                  0,
+                                                  false,
+                                                  /* repeating default arguments end */
+                                                  q);
     if (iconName.isEmpty()) {
         return;
     }

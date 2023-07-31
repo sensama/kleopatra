@@ -116,7 +116,7 @@ QAccessible::State AccessibleLink::state() const
 void *AccessibleLink::interface_cast(QAccessible::InterfaceType t)
 {
     if (t == QAccessible::ActionInterface) {
-        return static_cast<QAccessibleActionInterface*>(this);
+        return static_cast<QAccessibleActionInterface *>(this);
     }
     return nullptr;
 }

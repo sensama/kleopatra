@@ -48,4 +48,3 @@ void make_actions_from_data(const std::vector<action_data> &data, KActionCollect
 QAction *make_action_from_data(const action_data &ad, KActionCollection *coll);
 QAction *createAction(const action_data &ad, KActionCollection *coll);
 }
-

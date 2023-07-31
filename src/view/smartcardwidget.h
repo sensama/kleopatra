@@ -18,7 +18,7 @@ namespace Kleo
 {
 
 /* SmartCardWidget a generic widget to interact with smartcards */
-class SmartCardWidget: public QWidget, public FocusFirstChild
+class SmartCardWidget : public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:

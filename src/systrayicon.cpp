@@ -13,34 +13,33 @@
 
 #ifndef QT_NO_SYSTEMTRAYICON
 
-#include "mainwindow.h"
 #include "kleopatraapplication.h"
+#include "mainwindow.h"
 
 #include <smartcard/readerstatus.h>
 
 #include <utils/clipboardmenu.h>
 
-#include <commands/importcertificatefromclipboardcommand.h>
-#include <commands/encryptclipboardcommand.h>
-#include <commands/signclipboardcommand.h>
 #include <commands/decryptverifyclipboardcommand.h>
-#include <commands/setinitialpincommand.h>
+#include <commands/encryptclipboardcommand.h>
+#include <commands/importcertificatefromclipboardcommand.h>
 #include <commands/learncardkeyscommand.h>
+#include <commands/setinitialpincommand.h>
+#include <commands/signclipboardcommand.h>
 
-#include <QIcon>
-#include <KLocalizedString>
 #include <KAboutApplicationDialog>
 #include <KAboutData>
 #include <KActionMenu>
+#include <KLocalizedString>
 #include <QEventLoopLocker>
+#include <QIcon>
 
-#include <QMenu>
 #include <QAction>
 #include <QApplication>
 #include <QClipboard>
+#include <QMenu>
 #include <QPointer>
 #include <QSignalBlocker>
-
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -50,6 +49,7 @@ class SysTrayIcon::Private
 {
     friend class ::SysTrayIcon;
     SysTrayIcon *const q;
+
 public:
     explicit Private(SysTrayIcon *qq);
     ~Private();
@@ -71,8 +71,8 @@ private:
 
     void enableDisableActions()
     {
-        //work around a Qt bug (seen with Qt 4.4.0, Windows): QClipBoard->mimeData() triggers QClipboard::changed(),
-        //triggering slotEnableDisableActions again
+        // work around a Qt bug (seen with Qt 4.4.0, Windows): QClipBoard->mimeData() triggers QClipboard::changed(),
+        // triggering slotEnableDisableActions again
         const QSignalBlocker blocker(QApplication::clipboard());
         openCertificateManagerAction.setEnabled(!q->mainWindow() || !q->mainWindow()->isVisible());
         setInitialPinAction.setEnabled(!firstCardWithNullPin.empty());
@@ -126,21 +126,24 @@ private:
 };
 
 SysTrayIcon::Private::Private(SysTrayIcon *qq)
-    : q(qq),
-      menu(),
-      openCertificateManagerAction(i18nc("@action:inmenu", "&Open Certificate Manager..."), q),
-      configureAction(QIcon::fromTheme(QStringLiteral("configure")),
-                      xi18nc("@action:inmenu", "&Configure <application>%1</application>...", KAboutData::applicationData().displayName()), q),
-      aboutAction(QIcon::fromTheme(QStringLiteral("kleopatra")),
-                  xi18nc("@action:inmenu", "&About <application>%1</application>...", KAboutData::applicationData().displayName()), q),
-      quitAction(QIcon::fromTheme(QStringLiteral("application-exit")),
-                 xi18nc("@action:inmenu", "&Shutdown <application>%1</application>", KAboutData::applicationData().displayName()), q),
-      clipboardMenu(q),
-      cardMenu(i18nc("@title:menu", "SmartCard")),
-      updateCardStatusAction(i18nc("@action:inmenu", "Update Card Status"), q),
-      setInitialPinAction(i18nc("@action:inmenu", "Set NetKey v3 Initial PIN..."), q),
-      learnCertificatesAction(i18nc("@action:inmenu", "Learn NetKey v3 Card Certificates"), q),
-      aboutDialog()
+    : q(qq)
+    , menu()
+    , openCertificateManagerAction(i18nc("@action:inmenu", "&Open Certificate Manager..."), q)
+    , configureAction(QIcon::fromTheme(QStringLiteral("configure")),
+                      xi18nc("@action:inmenu", "&Configure <application>%1</application>...", KAboutData::applicationData().displayName()),
+                      q)
+    , aboutAction(QIcon::fromTheme(QStringLiteral("kleopatra")),
+                  xi18nc("@action:inmenu", "&About <application>%1</application>...", KAboutData::applicationData().displayName()),
+                  q)
+    , quitAction(QIcon::fromTheme(QStringLiteral("application-exit")),
+                 xi18nc("@action:inmenu", "&Shutdown <application>%1</application>", KAboutData::applicationData().displayName()),
+                 q)
+    , clipboardMenu(q)
+    , cardMenu(i18nc("@title:menu", "SmartCard"))
+    , updateCardStatusAction(i18nc("@action:inmenu", "Update Card Status"), q)
+    , setInitialPinAction(i18nc("@action:inmenu", "Set NetKey v3 Initial PIN..."), q)
+    , learnCertificatesAction(i18nc("@action:inmenu", "Learn NetKey v3 Card Certificates"), q)
+    , aboutDialog()
 {
     q->setNormalIcon(QIcon::fromTheme(QStringLiteral("kleopatra")));
     q->setAttentionIcon(QIcon::fromTheme(QStringLiteral("auth-sim-locked")));
@@ -163,8 +166,7 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     connect(&setInitialPinAction, SIGNAL(triggered()), q, SLOT(slotSetInitialPin()));
     connect(&learnCertificatesAction, SIGNAL(triggered()), q, SLOT(slotLearnCertificates()));
 
-    connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)),
-            q, SLOT(slotEnableDisableActions()));
+    connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), q, SLOT(slotEnableDisableActions()));
 
     menu.addAction(&openCertificateManagerAction);
     menu.addAction(&configureAction);
@@ -183,10 +185,13 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     clipboardMenu.setMainWindow(q->mainWindow());
 }
 
-SysTrayIcon::Private::~Private() {}
+SysTrayIcon::Private::~Private()
+{
+}
 
 SysTrayIcon::SysTrayIcon(QObject *p)
-    : SystemTrayIcon(p), d(new Private(this))
+    : SystemTrayIcon(p)
+    , d(new Private(this))
 {
     slotEnableDisableActions();
 }
@@ -209,7 +214,7 @@ void SysTrayIcon::doActivated()
 {
     if (const QWidget *const aw = attentionWindow())
         if (aw->isVisible()) {
-            return;    // ignore clicks while an attention window is open.
+            return; // ignore clicks while an attention window is open.
         }
     if (!d->firstCardWithNullPin.empty()) {
         d->slotSetInitialPin();

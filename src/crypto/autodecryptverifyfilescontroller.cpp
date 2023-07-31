@@ -16,19 +16,19 @@
 
 #include "fileoperationspreferences.h"
 
-#include <crypto/gui/decryptverifyoperationwidget.h>
-#include <crypto/gui/decryptverifyfilesdialog.h>
 #include <crypto/decryptverifytask.h>
+#include <crypto/gui/decryptverifyfilesdialog.h>
+#include <crypto/gui/decryptverifyoperationwidget.h>
 #include <crypto/taskcollection.h>
 
 #include "commands/decryptverifyfilescommand.h"
 
 #include <Libkleo/GnuPG>
-#include <utils/path-helper.h>
-#include <utils/input.h>
-#include <utils/output.h>
-#include <utils/kleo_assert.h>
 #include <utils/archivedefinition.h>
+#include <utils/input.h>
+#include <utils/kleo_assert.h>
+#include <utils/output.h>
+#include <utils/path-helper.h>
 
 #include <Libkleo/Classify>
 
@@ -36,9 +36,9 @@
 #include <KIO/CopyJob>
 #include <KIO/Global>
 #endif
+#include "kleopatra_debug.h"
 #include <KLocalizedString>
 #include <KMessageBox>
-#include "kleopatra_debug.h"
 
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS
 #include <QGpgME/DecryptVerifyArchiveJob>
@@ -46,10 +46,10 @@
 
 #include <QDir>
 #include <QFile>
-#include <QFileInfo>
-#include <QTimer>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QTemporaryDir>
+#include <QTimer>
 
 #include <gpgme++/decryptionresult.h>
 
@@ -61,6 +61,7 @@ using namespace Kleo::Crypto::Gui;
 class AutoDecryptVerifyFilesController::Private
 {
     AutoDecryptVerifyFilesController *const q;
+
 public:
     explicit Private(AutoDecryptVerifyFilesController *qq);
 
@@ -68,7 +69,7 @@ public:
 
     QString getEmbeddedFileName(const QString &fileName) const;
     void exec();
-    std::vector<std::shared_ptr<Task> > buildTasks(const QStringList &, QStringList &);
+    std::vector<std::shared_ptr<Task>> buildTasks(const QStringList &, QStringList &);
 
     struct CryptoFile {
         QString baseName;
@@ -87,8 +88,8 @@ public:
     void cancelAllTasks();
 
     QStringList m_passedFiles, m_filesAfterPreparation;
-    std::vector<std::shared_ptr<const DecryptVerifyResult> > m_results;
-    std::vector<std::shared_ptr<Task> > m_runnableTasks, m_completedTasks;
+    std::vector<std::shared_ptr<const DecryptVerifyResult>> m_results;
+    std::vector<std::shared_ptr<Task>> m_runnableTasks, m_completedTasks;
     std::shared_ptr<Task> m_runningTask;
     bool m_errorDetected = false;
     DecryptVerifyOperation m_operation = DecryptVerify;
@@ -96,7 +97,8 @@ public:
     std::unique_ptr<QTemporaryDir> m_workDir;
 };
 
-AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq) : q(qq)
+AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq)
+    : q(qq)
 {
     qRegisterMetaType<VerificationResult>();
 }
@@ -140,7 +142,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
     Q_ASSERT(!m_dialog);
 
     QStringList undetected;
-    std::vector<std::shared_ptr<Task> > tasks = buildTasks(m_passedFiles, undetected);
+    std::vector<std::shared_ptr<Task>> tasks = buildTasks(m_passedFiles, undetected);
 
     if (!undetected.isEmpty()) {
         // Since GpgME 1.7.0 Classification is supposed to be reliable
@@ -178,7 +180,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
         const QDir outDir(m_dialog->outputLocation());
         bool overWriteAll = false;
         qCDebug(KLEOPATRA_LOG) << workdir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
-        for (const QFileInfo &fi: workdir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
+        for (const QFileInfo &fi : workdir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
             const auto inpath = fi.absoluteFilePath();
 
             if (fi.isDir()) {
@@ -211,16 +213,18 @@ void AutoDecryptVerifyFilesController::Private::exec()
                         break;
                     }
                     reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                                xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>"
+                                xi18nc("@info",
+                                       "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>"
                                        "<para><message>%3</message></para>",
-                                       inpath, destPath, job->errorString()));
+                                       inpath,
+                                       destPath,
+                                       job->errorString()));
                 }
 #else
                 // On Windows, KIO::move does not work for folders when crossing partition boundaries
                 if (!moveDir(inpath, destPath)) {
-                     reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                                 xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>",
-                                        inpath, destPath));
+                    reportError(makeGnuPGError(GPG_ERR_GENERAL),
+                                xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>", inpath, destPath));
                 }
 #endif
                 continue;
@@ -266,16 +270,12 @@ void AutoDecryptVerifyFilesController::Private::exec()
                     overWriteAll = true;
                 }
                 if (!QFile::remove(outpath)) {
-                    reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                                xi18n("Failed to delete <filename>%1</filename>.",
-                                      outpath));
+                    reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to delete <filename>%1</filename>.", outpath));
                     continue;
                 }
             }
             if (!QFile::rename(inpath, outpath)) {
-                reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                            xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.",
-                                  inpath, outpath));
+                reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.", inpath, outpath));
             }
         }
     }
@@ -285,9 +285,9 @@ void AutoDecryptVerifyFilesController::Private::exec()
 QList<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)
 {
     const auto isSignature = [](int classification) -> bool {
-        return mayBeDetachedSignature(classification)
-                || mayBeOpaqueSignature(classification)
-                || (classification & Class::TypeMask) == Class::ClearsignedMessage;
+        return mayBeDetachedSignature(classification) //
+            || mayBeOpaqueSignature(classification) //
+            || (classification & Class::TypeMask) == Class::ClearsignedMessage;
     };
 
     QList<CryptoFile> out;
@@ -298,11 +298,9 @@ QList<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFi
         cFile.classification = classify(file);
         cFile.protocol = findProtocol(cFile.classification);
 
-        auto it = std::find_if(out.begin(), out.end(),
-                               [&cFile](const CryptoFile &other) {
-                                    return other.protocol == cFile.protocol
-                                            && other.baseName == cFile.baseName;
-                               });
+        auto it = std::find_if(out.begin(), out.end(), [&cFile](const CryptoFile &other) {
+            return other.protocol == cFile.protocol && other.baseName == cFile.baseName;
+        });
         if (it != out.end()) {
             // If we found a file with the same basename, make sure that encrypted
             // file is before the signature file, so that we first decrypt and then
@@ -333,20 +331,19 @@ static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
 #endif
 }
 
-std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
+std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
 {
     // sort files so that we make sure we first decrypt and then verify
     QList<CryptoFile> cryptoFiles = classifyAndSortFiles(fileNames);
 
-    std::vector<std::shared_ptr<Task> > tasks;
+    std::vector<std::shared_ptr<Task>> tasks;
     for (auto it = cryptoFiles.begin(), end = cryptoFiles.end(); it != end; ++it) {
         auto &cFile = (*it);
         QFileInfo fi(cFile.fileName);
         qCDebug(KLEOPATRA_LOG) << "classified" << cFile.fileName << "as" << printableClassification(cFile.classification);
 
         if (!fi.isReadable()) {
-            reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT),
-                        xi18n("Cannot open <filename>%1</filename> for reading.", cFile.fileName));
+            reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT), xi18n("Cannot open <filename>%1</filename> for reading.", cFile.fileName));
             continue;
         }
 
@@ -404,7 +401,8 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
             // Detached signature, try to find data or ask the user.
             QString signedDataFileName = cFile.baseName;
             if (!QFile::exists(signedDataFileName)) {
-                signedDataFileName = QFileDialog::getOpenFileName(nullptr, xi18n("Select the file to verify with the signature <filename>%1</filename>", fi.fileName()),
+                signedDataFileName = QFileDialog::getOpenFileName(nullptr,
+                                                                  xi18n("Select the file to verify with the signature <filename>%1</filename>", fi.fileName()),
                                                                   fi.path());
             }
             if (signedDataFileName.isEmpty()) {
@@ -427,8 +425,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
             if (!signatures.empty()) {
                 for (const QString &sig : signatures) {
                     const auto classification = classify(sig);
-                    qCDebug(KLEOPATRA_LOG) << "Guessing: " << sig << " is a signature for: " << cFile.fileName
-                                           << "Classification: " << classification;
+                    qCDebug(KLEOPATRA_LOG) << "Guessing: " << sig << " is a signature for: " << cFile.fileName << "Classification: " << classification;
                     const auto proto = findProtocol(classification);
                     if (proto == GpgME::UnknownProtocol) {
                         qCDebug(KLEOPATRA_LOG) << "Could not determine protocol. Skipping guess.";
@@ -544,13 +541,15 @@ void AutoDecryptVerifyFilesController::setFiles(const QStringList &files)
     d->m_passedFiles = files;
 }
 
-AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(QObject *parent) :
-    DecryptVerifyFilesController(parent), d(new Private(this))
+AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(QObject *parent)
+    : DecryptVerifyFilesController(parent)
+    , d(new Private(this))
 {
 }
 
-AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent) :
-    DecryptVerifyFilesController(ctx, parent), d(new Private(this))
+AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
+    : DecryptVerifyFilesController(ctx, parent)
+    , d(new Private(this))
 {
 }
 
@@ -576,7 +575,6 @@ DecryptVerifyOperation AutoDecryptVerifyFilesController::operation() const
 
 void AutoDecryptVerifyFilesController::Private::cancelAllTasks()
 {
-
     // we just kill all runnable tasks - this will not result in
     // signal emissions.
     m_runnableTasks.clear();
@@ -621,4 +619,3 @@ void AutoDecryptVerifyFilesController::doTaskDone(const Task *task, const std::s
     QTimer::singleShot(0, this, SLOT(schedule()));
 }
 #include "moc_autodecryptverifyfilescontroller.cpp"
-

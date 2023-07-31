@@ -61,7 +61,7 @@ public:
         auto mainLayout = new QVBoxLayout{q};
 
         {
-            const auto infoText = nameIsRequired || emailIsRequired
+            const auto infoText = nameIsRequired || emailIsRequired //
                 ? i18n("Enter a name and an email address to use for the user ID.")
                 : i18n("Enter a name and/or an email address to use for the user ID.");
             auto label = new QLabel{infoText, q};
@@ -115,7 +115,9 @@ public:
         connect(ui.nameAndEmail, &NameAndEmailWidget::userIDChanged, q, [this]() {
             updateResultLabel();
         });
-        connect(ui.buttonBox, &QDialogButtonBox::accepted, q, [this]() { checkAccept(); });
+        connect(ui.buttonBox, &QDialogButtonBox::accepted, q, [this]() {
+            checkAccept();
+        });
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
 
         updateResultLabel();
@@ -125,8 +127,7 @@ private:
     void checkAccept()
     {
         QStringList errors;
-        if (ui.nameAndEmail->userID().isEmpty()
-                && !ui.nameAndEmail->nameIsRequired() && !ui.nameAndEmail->emailIsRequired()) {
+        if (ui.nameAndEmail->userID().isEmpty() && !ui.nameAndEmail->nameIsRequired() && !ui.nameAndEmail->emailIsRequired()) {
             errors.push_back(i18n("Enter a name or an email address."));
         }
         const auto nameError = ui.nameAndEmail->nameError();
@@ -149,9 +150,9 @@ private:
     void updateResultLabel()
     {
         ui.resultLabel->setHtml(i18nc("@info",
-            "<div>This is how the new user ID will be stored in the certificate:</div>"
-            "<center><strong>%1</strong></center>",
-            ui.nameAndEmail->userID().toHtmlEscaped()));
+                                      "<div>This is how the new user ID will be stored in the certificate:</div>"
+                                      "<center><strong>%1</strong></center>",
+                                      ui.nameAndEmail->userID().toHtmlEscaped()));
     }
 };
 

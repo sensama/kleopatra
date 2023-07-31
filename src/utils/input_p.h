@@ -9,19 +9,25 @@
 
 #pragma once
 
-#include "input.h"
 #include "cached.h"
+#include "input.h"
 
-#include <QString>
-#include <QIODevice>
 #include <KLocalizedString>
+#include <QIODevice>
+#include <QString>
 
-namespace Kleo {
+namespace Kleo
+{
 
 class InputImplBase : public Input
 {
 public:
-    InputImplBase() : Input(), m_customLabel(), m_defaultLabel() {}
+    InputImplBase()
+        : Input()
+        , m_customLabel()
+        , m_defaultLabel()
+    {
+    }
 
     QString label() const override
     {
@@ -63,4 +69,3 @@ private:
 };
 
 }
-

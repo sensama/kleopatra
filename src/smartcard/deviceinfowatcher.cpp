@@ -72,7 +72,8 @@ void DeviceInfoWatcher::Worker::start()
         }
         qCWarning(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::start: Connecting to the agent failed too often. Giving up.";
     } else if (err.code() == GPG_ERR_EPIPE) {
-        qCDebug(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::start: Assuan transaction failed with broken pipe. The agent seems to have died. Resetting context.";
+        qCDebug(KLEOPATRA_LOG)
+            << "DeviceInfoWatcher::Worker::start: Assuan transaction failed with broken pipe. The agent seems to have died. Resetting context.";
         mContext.reset();
         QMetaObject::invokeMethod(this, "start", Qt::QueuedConnection);
     } else {
@@ -92,7 +93,7 @@ void DeviceInfoWatcher::Worker::poll()
     }
 }
 
-void DeviceInfoWatcher::Worker::status(const char* status, const char* details)
+void DeviceInfoWatcher::Worker::status(const char *status, const char *details)
 {
     qCDebug(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::status:" << status << details;
     if (status && std::strcmp(status, "DEVINFO_STATUS") == 0) {
@@ -117,10 +118,8 @@ void DeviceInfoWatcher::Private::start()
     worker->moveToThread(&workerThread);
     connect(&workerThread, &QThread::started, worker, &DeviceInfoWatcher::Worker::start);
     connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
-    connect(worker, &DeviceInfoWatcher::Worker::statusChanged,
-            q, &DeviceInfoWatcher::statusChanged);
-    connect(worker, &DeviceInfoWatcher::Worker::startOfGpgAgentRequested,
-            q, &DeviceInfoWatcher::startOfGpgAgentRequested);
+    connect(worker, &DeviceInfoWatcher::Worker::statusChanged, q, &DeviceInfoWatcher::statusChanged);
+    connect(worker, &DeviceInfoWatcher::Worker::startOfGpgAgentRequested, q, &DeviceInfoWatcher::startOfGpgAgentRequested);
     workerThread.start();
 }
 

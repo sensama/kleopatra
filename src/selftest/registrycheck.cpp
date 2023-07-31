@@ -18,7 +18,6 @@
 
 #include <QSettings>
 
-
 using namespace Kleo;
 using namespace Kleo::_detail;
 
@@ -39,7 +38,6 @@ public:
 
     void runTest()
     {
-
         m_passed = !QSettings(gnupg_path, QSettings::NativeFormat).contains(gnupg_key);
 
         if (m_passed) {
@@ -48,17 +46,14 @@ public:
 
         m_error = i18n("Obsolete registry entries found");
 
-        m_explanation
-            = xi18nc("@info",
-                     "<para>Kleopatra detected an obsolete registry key (<resource>%1\\%2</resource>), "
-                     "added by either a previous <application>Gpg4win</application> version or "
-                     "applications such as <application>WinPT</application> or <application>EnigMail</application>.</para>"
-                     "<para>Keeping the entry might lead to an old GnuPG backend being used.</para>",
-                     gnupg_path, gnupg_key);
-        m_proposedFix = xi18nc("@info",
-                               "<para>Delete registry key <resource>%1\\%2</resource>.</para>",
-                               gnupg_path, gnupg_key);
-
+        m_explanation = xi18nc("@info",
+                               "<para>Kleopatra detected an obsolete registry key (<resource>%1\\%2</resource>), "
+                               "added by either a previous <application>Gpg4win</application> version or "
+                               "applications such as <application>WinPT</application> or <application>EnigMail</application>.</para>"
+                               "<para>Keeping the entry might lead to an old GnuPG backend being used.</para>",
+                               gnupg_path,
+                               gnupg_key);
+        m_proposedFix = xi18nc("@info", "<para>Delete registry key <resource>%1\\%2</resource>.</para>", gnupg_path, gnupg_key);
     }
 
     /* reimp */ bool canFixAutomatically() const override
@@ -68,7 +63,6 @@ public:
 
     /* reimp */ bool fix() override
     {
-
         QSettings settings(gnupg_path, QSettings::NativeFormat);
         if (!settings.contains(gnupg_key)) {
             return true;
@@ -78,12 +72,9 @@ public:
         settings.sync();
 
         if (settings.status() != QSettings::NoError) {
-            KMessageBox::error(
-                0,
-                xi18nc("@info",
-                       "Could not delete the registry key <resource>%1\\%2</resource>",
-                       gnupg_path, gnupg_key),
-                i18nc("@title", "Error Deleting Registry Key"));
+            KMessageBox::error(0,
+                               xi18nc("@info", "Could not delete the registry key <resource>%1\\%2</resource>", gnupg_path, gnupg_key),
+                               i18nc("@title", "Error Deleting Registry Key"));
             return false;
         }
 
@@ -93,7 +84,6 @@ public:
         m_proposedFix.clear();
         return true;
     }
-
 };
 }
 

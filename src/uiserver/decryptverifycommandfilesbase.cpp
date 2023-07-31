@@ -14,23 +14,23 @@
 
 #include <crypto/decryptverifytask.h>
 
-#include "crypto/decryptverifyfilescontroller.h"
 #include "crypto/autodecryptverifyfilescontroller.h"
+#include "crypto/decryptverifyfilescontroller.h"
 
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
+#include <utils/output.h>
 
-#include <Libkleo/Hex>
-#include <Libkleo/Stl_Util>
-#include <Libkleo/KleoException>
-#include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+#include <Libkleo/Hex>
+#include <Libkleo/KeyCache>
+#include <Libkleo/KleoException>
+#include <Libkleo/Stl_Util>
 
+#include <gpgme++/decryptionresult.h>
 #include <gpgme++/error.h>
 #include <gpgme++/key.h>
 #include <gpgme++/verificationresult.h>
-#include <gpgme++/decryptionresult.h>
 
 #include <KLocalizedString>
 
@@ -50,11 +50,12 @@ class DecryptVerifyCommandFilesBase::Private : public QObject
     Q_OBJECT
     friend class ::Kleo::DecryptVerifyCommandFilesBase;
     DecryptVerifyCommandFilesBase *const q;
+
 public:
     explicit Private(DecryptVerifyCommandFilesBase *qq)
-        : QObject(),
-          q(qq),
-          controller()
+        : QObject()
+        , q(qq)
+        , controller()
     {
     }
 
@@ -77,22 +78,22 @@ public Q_SLOTS:
     }
 
 public:
-
 private:
     std::shared_ptr<DecryptVerifyFilesController> controller;
 };
 
 DecryptVerifyCommandFilesBase::DecryptVerifyCommandFilesBase()
-    : AssuanCommandMixin<DecryptVerifyCommandFilesBase>(), d(new Private(this))
+    : AssuanCommandMixin<DecryptVerifyCommandFilesBase>()
+    , d(new Private(this))
 {
-
 }
 
-DecryptVerifyCommandFilesBase::~DecryptVerifyCommandFilesBase() {}
+DecryptVerifyCommandFilesBase::~DecryptVerifyCommandFilesBase()
+{
+}
 
 int DecryptVerifyCommandFilesBase::doStart()
 {
-
     d->checkForErrors();
 
     FileOperationsPreferences prefs;
@@ -107,8 +108,7 @@ int DecryptVerifyCommandFilesBase::doStart()
 
     QObject::connect(d->controller.get(), &Controller::done, d.get(), &Private::slotDone, Qt::QueuedConnection);
     QObject::connect(d->controller.get(), &Controller::error, d.get(), &Private::slotError, Qt::QueuedConnection);
-    QObject::connect(d->controller.get(), &DecryptVerifyFilesController::verificationResult,
-                     d.get(), &Private::verificationResult, Qt::QueuedConnection);
+    QObject::connect(d->controller.get(), &DecryptVerifyFilesController::verificationResult, d.get(), &Private::verificationResult, Qt::QueuedConnection);
 
     d->controller->start();
 
@@ -129,16 +129,14 @@ struct is_file {
 void DecryptVerifyCommandFilesBase::Private::checkForErrors() const
 {
     if (!q->senders().empty())
-        throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT),
-                              i18n("Cannot use SENDER"));
+        throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT), i18n("Cannot use SENDER"));
 
     if (!q->recipients().empty())
-        throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT),
-                              i18n("Cannot use RECIPIENT"));
+        throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT), i18n("Cannot use RECIPIENT"));
 
     const unsigned int numInputs = q->inputs().size();
     const unsigned int numMessages = q->messages().size();
-    const unsigned int numOutputs  = q->outputs().size();
+    const unsigned int numOutputs = q->outputs().size();
 
     if (numInputs) {
         throw Kleo::Exception(q->makeError(GPG_ERR_CONFLICT), i18n("INPUT present"));
@@ -151,12 +149,9 @@ void DecryptVerifyCommandFilesBase::Private::checkForErrors() const
     }
     const QStringList fileNames = q->fileNames();
     if (fileNames.empty())
-        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT),
-                        i18n("At least one FILE must be present"));
+        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT), i18n("At least one FILE must be present"));
     if (!std::all_of(fileNames.cbegin(), fileNames.cend(), is_file()))
-        throw Exception(makeError(GPG_ERR_INV_ARG),
-                        i18n("DECRYPT/VERIFY_FILES cannot use directories as input"));
-
+        throw Exception(makeError(GPG_ERR_INV_ARG), i18n("DECRYPT/VERIFY_FILES cannot use directories as input"));
 }
 
 void DecryptVerifyCommandFilesBase::doCanceled()
@@ -181,10 +176,10 @@ void DecryptVerifyCommandFilesBase::Private::verificationResult(const Verificati
         for (const Signature &sig : sigs) {
             const QString s = signatureToString(sig, sig.key(true, true));
             const char *color = summaryToString(sig.summary());
-            q->sendStatusEncoded("SIGSTATUS",
-                                 color + (' ' + hexencode(s.toUtf8().constData())));
+            q->sendStatusEncoded("SIGSTATUS", color + (' ' + hexencode(s.toUtf8().constData())));
         }
-    } catch (...) {}
+    } catch (...) {
+    }
 }
 
 #include "decryptverifycommandfilesbase.moc"

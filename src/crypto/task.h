@@ -16,8 +16,8 @@
 
 #include <gpgme++/global.h>
 
-#include <memory>
 #include <QPointer>
+#include <memory>
 
 namespace Kleo
 {
@@ -87,6 +87,7 @@ private:
 class Task::Result
 {
     const QString m_nonce;
+
 public:
     Result();
     virtual ~Result();
@@ -103,7 +104,7 @@ public:
         Warning,
         Danger,
         NeutralSuccess,
-        NeutralError
+        NeutralError,
     };
 
     virtual QString icon() const;
@@ -113,7 +114,10 @@ public:
     virtual QString errorString() const = 0;
     virtual VisualCode code() const = 0;
     virtual AuditLogEntry auditLog() const = 0;
-    virtual QPointer<Task> parentTask() const {return QPointer<Task>();}
+    virtual QPointer<Task> parentTask() const
+    {
+        return QPointer<Task>();
+    }
 
 protected:
     static QString iconPath(VisualCode code);
@@ -126,5 +130,3 @@ private:
 
 }
 }
-
-

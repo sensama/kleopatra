@@ -15,14 +15,14 @@
 
 #include "command_p.h"
 
-#include "exportopenpgpcertstoservercommand.h"
 #include "dialogs/certifycertificatedialog.h"
+#include "exportopenpgpcertstoservercommand.h"
 #include "utils/keys.h"
 #include "utils/tags.h"
 
 #include <Libkleo/Algorithm>
-#include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/SignKeyJob>
@@ -47,6 +47,7 @@ class CertifyCertificateCommand::Private : public Command::Private
     {
         return static_cast<CertifyCertificateCommand *>(q);
     }
+
 public:
     explicit Private(CertifyCertificateCommand *qq, KeyListController *c);
     ~Private() override;
@@ -82,10 +83,10 @@ const CertifyCertificateCommand::Private *CertifyCertificateCommand::d_func() co
 #define q q_func()
 
 CertifyCertificateCommand::Private::Private(CertifyCertificateCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      uids(),
-      dialog(),
-      job()
+    : Command::Private(qq, c)
+    , uids()
+    , dialog()
+    , job()
 {
 }
 
@@ -142,8 +143,7 @@ CertifyCertificateCommand::~CertifyCertificateCommand()
 void CertifyCertificateCommand::doStart()
 {
     const std::vector<Key> keys = d->keys();
-    if (keys.size() != 1 ||
-            keys.front().protocol() != GpgME::OpenPGP) {
+    if (keys.size() != 1 || keys.front().protocol() != GpgME::OpenPGP) {
         d->finished();
         return;
     }
@@ -163,8 +163,7 @@ void CertifyCertificateCommand::doStart()
     auto findAnyGoodKey = []() {
         const std::vector<Key> secKeys = KeyCache::instance()->secretKeys();
         return std::any_of(secKeys.cbegin(), secKeys.cend(), [](const Key &secKey) {
-            return secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked()
-                   && !secKey.isExpired() && !secKey.isInvalid();
+            return secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked() && !secKey.isExpired() && !secKey.isInvalid();
         });
     };
 
@@ -234,15 +233,14 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
     } else if (err) {
         error(i18n("<p>An error occurred while trying to certify<br/><br/>"
                    "<b>%1</b>:</p><p>\t%2</p>",
-              Formatting::formatForComboBox(target),
-              Formatting::errorAsString(err)),
+                   Formatting::formatForComboBox(target),
+                   Formatting::errorAsString(err)),
               i18n("Certification Error"));
     } else if (dialog && dialog->exportableCertificationSelected() && dialog->sendToServer()) {
         auto const cmd = new ExportOpenPGPCertsToServerCommand(target);
         cmd->start();
     } else {
-        information(i18n("Certification successful."),
-                    i18n("Certification Succeeded"));
+        information(i18n("Certification successful."), i18n("Certification Succeeded"));
     }
 
     if (!dialog->tags().isEmpty()) {
@@ -309,8 +307,12 @@ void CertifyCertificateCommand::Private::ensureDialogCreated()
     dialog = new CertifyCertificateDialog;
     applyWindowID(dialog);
 
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
-    connect(dialog, &QDialog::accepted, q, [this]() { slotCertificationPrepared(); });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotCertificationPrepared();
+    });
 }
 
 void CertifyCertificateCommand::Private::createJob()
@@ -329,13 +331,15 @@ void CertifyCertificateCommand::Private::createJob()
     }
 
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(j, &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(j, &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
-    connect(j, &SignKeyJob::result, q, [this](const GpgME::Error &result) { slotResult(result); });
+    connect(j, &SignKeyJob::result, q, [this](const GpgME::Error &result) {
+        slotResult(result);
+    });
 
     job = j;
 }

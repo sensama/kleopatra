@@ -88,16 +88,18 @@ bool Kleo::representAsAccessibleValueWidget(const QWidget *widget)
 
 QString Kleo::invalidEntryText()
 {
-    return i18nc("text for screen readers to indicate that the associated object, "
-                 "such as a form field, has an error",
-                 "invalid entry");
+    return i18nc(
+        "text for screen readers to indicate that the associated object, "
+        "such as a form field, has an error",
+        "invalid entry");
 }
 
 QString Kleo::requiredText()
 {
-    return i18nc("text for screen readers to indicate that the associated object, "
-                 "such as a form field must be filled out",
-                 "required");
+    return i18nc(
+        "text for screen readers to indicate that the associated object, "
+        "such as a form field must be filled out",
+        "required");
 }
 
 void Kleo::selectLabelText(QLabel *label)
@@ -125,12 +127,12 @@ static void notifyAccessibilityClientsAboutToolTip(const QPoint &pos, QWidget *p
 {
 #ifdef Q_OS_WIN
     // On Windows, the tool tip's parent widget is a desktop screen widget (see implementation of QToolTip::showText)
-QT_WARNING_PUSH
-QT_WARNING_DISABLE_DEPRECATED
+    QT_WARNING_PUSH
+    QT_WARNING_DISABLE_DEPRECATED
     const auto desktop = QApplication::desktop();
     const int screenNumber = desktop->isVirtualDesktop() ? desktop->screenNumber(pos) : desktop->screenNumber(parent);
     parent = desktop->screen(screenNumber);
-QT_WARNING_POP
+    QT_WARNING_POP
 #else
     Q_UNUSED(pos);
 #endif
@@ -178,10 +180,9 @@ void LabelHelper::accessibilityActiveChanged(bool active)
 {
     // Allow text labels to get focus if accessibility is active
     const auto focusPolicy = active ? Qt::StrongFocus : Qt::ClickFocus;
-    std::for_each(std::cbegin(mLabels), std::cend(mLabels),
-                  [focusPolicy](const auto &label) {
-                      if (label) {
-                          label->setFocusPolicy(focusPolicy);
-                      }
-                  });
+    std::for_each(std::cbegin(mLabels), std::cend(mLabels), [focusPolicy](const auto &label) {
+        if (label) {
+            label->setFocusPolicy(focusPolicy);
+        }
+    });
 }

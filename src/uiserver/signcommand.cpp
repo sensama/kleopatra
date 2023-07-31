@@ -13,8 +13,8 @@
 
 #include <crypto/newsignencryptemailcontroller.h>
 
-#include <utils/kleo_assert.h>
 #include <utils/input.h>
+#include <utils/kleo_assert.h>
 #include <utils/output.h>
 
 #include <Libkleo/KleoException>
@@ -32,17 +32,17 @@ class SignCommand::Private : public QObject
 private:
     friend class ::Kleo::SignCommand;
     SignCommand *const q;
+
 public:
     explicit Private(SignCommand *qq)
-        : q(qq), controller()
+        : q(qq)
+        , controller()
     {
-
     }
 
 private:
     void checkForErrors() const;
     void connectController();
-
 
 private Q_SLOTS:
     void slotSignersResolved();
@@ -55,59 +55,49 @@ private:
 };
 
 SignCommand::SignCommand()
-    : AssuanCommandMixin<SignCommand>(), d(new Private(this))
+    : AssuanCommandMixin<SignCommand>()
+    , d(new Private(this))
 {
-
 }
 
-SignCommand::~SignCommand() {}
+SignCommand::~SignCommand()
+{
+}
 
 void SignCommand::Private::checkForErrors() const
 {
-
     if (q->numFiles())
-        throw Exception(makeError(GPG_ERR_CONFLICT),
-                        i18n("SIGN is an email mode command, connection seems to be in filemanager mode"));
+        throw Exception(makeError(GPG_ERR_CONFLICT), i18n("SIGN is an email mode command, connection seems to be in filemanager mode"));
 
     if (!q->recipients().empty() && !q->informativeRecipients())
-        throw Exception(makeError(GPG_ERR_CONFLICT),
-                        i18n("RECIPIENT may not be given prior to SIGN, except with --info"));
+        throw Exception(makeError(GPG_ERR_CONFLICT), i18n("RECIPIENT may not be given prior to SIGN, except with --info"));
 
     if (q->inputs().empty())
-        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT),
-                        i18n("At least one INPUT must be present"));
+        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT), i18n("At least one INPUT must be present"));
 
     if (q->outputs().size() != q->inputs().size())
-        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT),
-                        i18n("INPUT/OUTPUT count mismatch"));
+        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT), i18n("INPUT/OUTPUT count mismatch"));
 
     if (!q->messages().empty())
-        throw Exception(makeError(GPG_ERR_INV_VALUE),
-                        i18n("MESSAGE command is not allowed before SIGN"));
+        throw Exception(makeError(GPG_ERR_INV_VALUE), i18n("MESSAGE command is not allowed before SIGN"));
 
-    const auto m = q->mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const auto m = q->mementoContent<std::shared_ptr<NewSignEncryptEMailController>>(NewSignEncryptEMailController::mementoName());
 
     if (m && m->isSigning()) {
-
         if (m->protocol() != q->checkProtocol(EMail))
-            throw Exception(makeError(GPG_ERR_CONFLICT),
-                            i18n("Protocol given conflicts with protocol determined by PREP_ENCRYPT in this session"));
+            throw Exception(makeError(GPG_ERR_CONFLICT), i18n("Protocol given conflicts with protocol determined by PREP_ENCRYPT in this session"));
 
         // ### check that any SENDER here is the same as the one for PREP_ENCRYPT
 
         // ### ditto RECIPIENT
 
     } else {
-
         // ### support the stupid "default signer" semantics of GpgOL
         // ### where SENDER is missing
         if (false)
             if (q->senders().empty() || q->informativeSenders())
-                throw Exception(makeError(GPG_ERR_MISSING_VALUE),
-                                i18n("No senders given, or only with --info"));
-
+                throw Exception(makeError(GPG_ERR_MISSING_VALUE), i18n("No senders given, or only with --info"));
     }
-
 }
 
 void SignCommand::Private::connectController()
@@ -121,10 +111,9 @@ void SignCommand::Private::connectController()
 
 int SignCommand::doStart()
 {
-
     d->checkForErrors();
 
-    const auto seec = mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const auto seec = mementoContent<std::shared_ptr<NewSignEncryptEMailController>>(NewSignEncryptEMailController::mementoName());
 
     if (seec && seec->isSigning()) {
         // reuse the controller from a previous PREP_ENCRYPT --expect-sign, if available:
@@ -160,7 +149,7 @@ int SignCommand::doStart()
 
 void SignCommand::Private::slotSignersResolved()
 {
-    //hold local std::shared_ptr to member as q->done() deletes *this
+    // hold local std::shared_ptr to member as q->done() deletes *this
     const std::shared_ptr<NewSignEncryptEMailController> cont(controller);
 
     try {
@@ -181,22 +170,19 @@ void SignCommand::Private::slotSignersResolved()
         q->done(e.error(), e.message());
     } catch (const std::exception &e) {
         q->done(makeError(GPG_ERR_UNEXPECTED),
-                i18n("Caught unexpected exception in SignCommand::Private::slotRecipientsResolved: %1",
-                     QString::fromLocal8Bit(e.what())));
+                i18n("Caught unexpected exception in SignCommand::Private::slotRecipientsResolved: %1", QString::fromLocal8Bit(e.what())));
     } catch (...) {
-        q->done(makeError(GPG_ERR_UNEXPECTED),
-                i18n("Caught unknown exception in SignCommand::Private::slotRecipientsResolved"));
+        q->done(makeError(GPG_ERR_UNEXPECTED), i18n("Caught unknown exception in SignCommand::Private::slotRecipientsResolved"));
     }
     cont->cancel();
 }
 
 void SignCommand::Private::slotMicAlgDetermined(const QString &micalg)
 {
-    //hold local std::shared_ptr to member as q->done() deletes *this
+    // hold local std::shared_ptr to member as q->done() deletes *this
     const std::shared_ptr<NewSignEncryptEMailController> cont(controller);
 
     try {
-
         q->sendStatus("MICALG", micalg);
         return;
 
@@ -204,11 +190,9 @@ void SignCommand::Private::slotMicAlgDetermined(const QString &micalg)
         q->done(e.error(), e.message());
     } catch (const std::exception &e) {
         q->done(makeError(GPG_ERR_UNEXPECTED),
-                i18n("Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1",
-                     QString::fromLocal8Bit(e.what())));
+                i18n("Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1", QString::fromLocal8Bit(e.what())));
     } catch (...) {
-        q->done(makeError(GPG_ERR_UNEXPECTED),
-                i18n("Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"));
+        q->done(makeError(GPG_ERR_UNEXPECTED), i18n("Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"));
     }
     cont->cancel();
 }

@@ -9,14 +9,14 @@
 
 #pragma once
 
+#include <QMetaType>
 #include <QString>
 #include <QStringList>
-#include <QMetaType>
 
 #include <gpgme++/global.h> // GpgME::Protocol
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 class QDir;
 
@@ -33,6 +33,7 @@ class ArchiveDefinition
 {
 protected:
     ArchiveDefinition(const QString &id, const QString &label);
+
 public:
     virtual ~ArchiveDefinition();
 
@@ -74,8 +75,8 @@ public:
     static QString installPath();
     static void setInstallPath(const QString &ip);
 
-    static std::vector< std::shared_ptr<ArchiveDefinition> > getArchiveDefinitions();
-    static std::vector< std::shared_ptr<ArchiveDefinition> > getArchiveDefinitions(QStringList &errors);
+    static std::vector<std::shared_ptr<ArchiveDefinition>> getArchiveDefinitions();
+    static std::vector<std::shared_ptr<ArchiveDefinition>> getArchiveDefinitions(QStringList &errors);
 
 protected:
     void setPackCommandArgumentPassingMethod(GpgME::Protocol p, ArgumentPassingMethod method)
@@ -96,6 +97,7 @@ private:
     virtual QString doGetUnpackCommand(GpgME::Protocol p) const = 0;
     virtual QStringList doGetPackArguments(GpgME::Protocol p, const QStringList &files) const = 0;
     virtual QStringList doGetUnpackArguments(GpgME::Protocol p, const QString &file) const = 0;
+
 private:
     const QString m_id;
     const QString m_label;
@@ -107,5 +109,3 @@ private:
 }
 
 Q_DECLARE_METATYPE(std::shared_ptr<Kleo::ArchiveDefinition>)
-
-

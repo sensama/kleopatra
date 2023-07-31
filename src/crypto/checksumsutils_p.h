@@ -18,7 +18,8 @@ namespace Kleo
 class ChecksumDefinition;
 }
 
-namespace ChecksumsUtils {
+namespace ChecksumsUtils
+{
 #ifdef Q_OS_UNIX
 // Can we use QAbstractFileEngine::caseSensitive()?
 static const Qt::CaseSensitivity fs_cs = Qt::CaseSensitive;
@@ -33,11 +34,15 @@ std::vector<QRegularExpression> get_patterns(const std::vector<std::shared_ptr<K
 
 struct matches_any {
     const std::vector<QRegularExpression> m_regexps;
-    explicit matches_any(const std::vector<QRegularExpression> &regexps) : m_regexps(regexps) {}
+    explicit matches_any(const std::vector<QRegularExpression> &regexps)
+        : m_regexps(regexps)
+    {
+    }
     bool operator()(const QString &s) const
     {
-        return std::any_of(m_regexps.cbegin(), m_regexps.cend(),
-                           [&s](const QRegularExpression &rx) { return rx.match(s).hasMatch(); });
+        return std::any_of(m_regexps.cbegin(), m_regexps.cend(), [&s](const QRegularExpression &rx) {
+            return rx.match(s).hasMatch();
+        });
     }
 };
 
@@ -50,6 +55,6 @@ struct File {
 std::vector<File> parse_sum_file(const QString &fileName);
 
 std::shared_ptr<Kleo::ChecksumDefinition> filename2definition(const QString &fileName,
-        const std::vector<std::shared_ptr<Kleo::ChecksumDefinition>> &checksumDefinitions);
+                                                              const std::vector<std::shared_ptr<Kleo::ChecksumDefinition>> &checksumDefinitions);
 
 } // namespace ChecksumsUtils

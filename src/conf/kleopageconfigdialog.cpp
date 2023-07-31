@@ -31,9 +31,9 @@
 #include <QUrl>
 
 #include <KCModule>
-#include <KStandardGuiItem>
-#include <KMessageBox>
 #include <KLocalizedString>
+#include <KMessageBox>
+#include <KStandardGuiItem>
 
 #include "kleopatra_debug.h"
 
@@ -43,37 +43,30 @@ KleoPageConfigDialog::KleoPageConfigDialog(QWidget *parent)
     setModal(false);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(this);
-    buttonBox->setStandardButtons(QDialogButtonBox::Help
-                                  | QDialogButtonBox::RestoreDefaults
-                                  | QDialogButtonBox::Cancel
-                                  | QDialogButtonBox::Apply
-                                  | QDialogButtonBox::Ok
+    buttonBox->setStandardButtons(QDialogButtonBox::Help //
+                                  | QDialogButtonBox::RestoreDefaults //
+                                  | QDialogButtonBox::Cancel //
+                                  | QDialogButtonBox::Apply //
+                                  | QDialogButtonBox::Ok //
                                   | QDialogButtonBox::Reset);
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Ok), KStandardGuiItem::ok());
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
-    KGuiItem::assign(buttonBox->button(QDialogButtonBox::RestoreDefaults),
-                                       KStandardGuiItem::defaults());
+    KGuiItem::assign(buttonBox->button(QDialogButtonBox::RestoreDefaults), KStandardGuiItem::defaults());
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Apply), KStandardGuiItem::apply());
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Reset), KStandardGuiItem::reset());
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Help), KStandardGuiItem::help());
     buttonBox->button(QDialogButtonBox::Reset)->setEnabled(false);
     buttonBox->button(QDialogButtonBox::Apply)->setEnabled(false);
 
-    connect(buttonBox->button(QDialogButtonBox::Apply), &QAbstractButton::clicked,
-            this, &KleoPageConfigDialog::slotApplyClicked);
-    connect(buttonBox->button(QDialogButtonBox::Ok), &QAbstractButton::clicked,
-            this, &KleoPageConfigDialog::slotOkClicked);
-    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), &QAbstractButton::clicked,
-            this, &KleoPageConfigDialog::slotDefaultClicked);
-    connect(buttonBox->button(QDialogButtonBox::Help), &QAbstractButton::clicked,
-            this, &KleoPageConfigDialog::slotHelpClicked);
-    connect(buttonBox->button(QDialogButtonBox::Reset), &QAbstractButton::clicked,
-            this, &KleoPageConfigDialog::slotUser1Clicked);
+    connect(buttonBox->button(QDialogButtonBox::Apply), &QAbstractButton::clicked, this, &KleoPageConfigDialog::slotApplyClicked);
+    connect(buttonBox->button(QDialogButtonBox::Ok), &QAbstractButton::clicked, this, &KleoPageConfigDialog::slotOkClicked);
+    connect(buttonBox->button(QDialogButtonBox::RestoreDefaults), &QAbstractButton::clicked, this, &KleoPageConfigDialog::slotDefaultClicked);
+    connect(buttonBox->button(QDialogButtonBox::Help), &QAbstractButton::clicked, this, &KleoPageConfigDialog::slotHelpClicked);
+    connect(buttonBox->button(QDialogButtonBox::Reset), &QAbstractButton::clicked, this, &KleoPageConfigDialog::slotUser1Clicked);
 
     setButtonBox(buttonBox);
 
-    connect(this, &KPageDialog::currentPageChanged,
-            this, &KleoPageConfigDialog::slotCurrentPageChanged);
+    connect(this, &KPageDialog::currentPageChanged, this, &KleoPageConfigDialog::slotCurrentPageChanged);
 }
 
 void KleoPageConfigDialog::slotCurrentPageChanged(KPageWidgetItem *current, KPageWidgetItem *previous)
@@ -84,17 +77,16 @@ void KleoPageConfigDialog::slotCurrentPageChanged(KPageWidgetItem *current, KPag
     blockSignals(true);
     setCurrentPage(previous);
 
-    KCModule *previousModule = qobject_cast<KCModule*>(previous->widget());
+    KCModule *previousModule = qobject_cast<KCModule *>(previous->widget());
     bool canceled = false;
     if (previousModule && mChangedModules.contains(previousModule)) {
-        const int queryUser = KMessageBox::warningTwoActionsCancel(
-            this,
-            i18n("The settings of the current module have changed.\n"
-                 "Do you want to apply the changes or discard them?"),
-            i18n("Apply Settings"),
-            KStandardGuiItem::apply(),
-            KStandardGuiItem::discard(),
-            KStandardGuiItem::cancel());
+        const int queryUser = KMessageBox::warningTwoActionsCancel(this,
+                                                                   i18n("The settings of the current module have changed.\n"
+                                                                        "Do you want to apply the changes or discard them?"),
+                                                                   i18n("Apply Settings"),
+                                                                   KStandardGuiItem::apply(),
+                                                                   KStandardGuiItem::discard(),
+                                                                   KStandardGuiItem::cancel());
         if (queryUser == KMessageBox::ButtonCode::PrimaryAction) {
             previousModule->save();
         } else if (queryUser == KMessageBox::ButtonCode::SecondaryAction) {
@@ -130,7 +122,7 @@ void KleoPageConfigDialog::slotDefaultClicked()
         return;
     }
 
-    KCModule *module = qobject_cast<KCModule*>(item->widget());
+    KCModule *module = qobject_cast<KCModule *>(item->widget());
     if (!module) {
         return;
     }
@@ -145,7 +137,7 @@ void KleoPageConfigDialog::slotUser1Clicked()
         return;
     }
 
-    KCModule *module = qobject_cast<KCModule*>(item->widget());
+    KCModule *module = qobject_cast<KCModule *>(item->widget());
     if (!module) {
         return;
     }
@@ -176,8 +168,7 @@ void KleoPageConfigDialog::slotHelpClicked()
     QUrl docUrl;
 
 #ifdef Q_OS_WIN
-    docUrl = QUrl(QLatin1String("https://docs.kde.org/index.php?branch=stable5&language=")
-                  + QLocale().name() + QLatin1String("&application=kleopatra"));
+    docUrl = QUrl(QLatin1String("https://docs.kde.org/index.php?branch=stable5&language=") + QLocale().name() + QLatin1String("&application=kleopatra"));
 #else
     docUrl = QUrl(QStringLiteral("help:/")).resolved(QUrl(docPath)); // same code as in KHelpClient::invokeHelp
 #endif
@@ -203,7 +194,7 @@ void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath
 
 void KleoPageConfigDialog::moduleChanged(bool state)
 {
-    KCModule *module = qobject_cast<KCModule*>(sender());
+    KCModule *module = qobject_cast<KCModule *>(sender());
     qCDebug(KLEOPATRA_LOG) << "Module changed: " << state << " mod " << module;
     if (mChangedModules.contains(module)) {
         if (!state) {
@@ -224,12 +215,13 @@ void KleoPageConfigDialog::clientChanged()
     if (!item) {
         return;
     }
-    KCModule *module = qobject_cast<KCModule*>(item->widget());
+    KCModule *module = qobject_cast<KCModule *>(item->widget());
 
     if (!module) {
         return;
     }
-    qCDebug(KLEOPATRA_LOG) << "Client changed: " << " mod " << module;
+    qCDebug(KLEOPATRA_LOG) << "Client changed: "
+                           << " mod " << module;
 
     bool change = mChangedModules.contains(module);
 

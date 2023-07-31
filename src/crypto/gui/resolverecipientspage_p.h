@@ -44,7 +44,7 @@ public:
     void showSelectionDialog(const QString &id);
 
     enum Role {
-        IdRole = Qt::UserRole
+        IdRole = Qt::UserRole,
     };
 
 Q_SIGNALS:
@@ -71,8 +71,7 @@ public:
 
     QString id() const;
     KMime::Types::Mailbox mailbox() const;
-    void setCertificates(const std::vector<GpgME::Key> &pgp,
-                         const std::vector<GpgME::Key> &cms);
+    void setCertificates(const std::vector<GpgME::Key> &pgp, const std::vector<GpgME::Key> &cms);
     GpgME::Key selectedCertificate() const;
     GpgME::Key selectedCertificate(GpgME::Protocol prot) const;
     std::vector<GpgME::Key> certificates() const;
@@ -104,4 +103,3 @@ private:
     std::vector<GpgME::Key> m_pgp, m_cms;
     bool m_selected;
 };
-

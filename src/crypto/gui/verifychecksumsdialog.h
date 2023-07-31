@@ -36,7 +36,7 @@ public:
         OK,
         Failed,
         Error,
-        NumStatii
+        NumStatii,
     };
 
 public Q_SLOTS:
@@ -61,4 +61,3 @@ private:
 Q_DECLARE_METATYPE(Kleo::Crypto::Gui::VerifyChecksumsDialog::Status)
 
 #endif // QT_NO_DIRMODEL
-

@@ -16,7 +16,6 @@
 
 #include <utils/pimpl_ptr.h>
 
-
 class QAbstractItemView;
 
 class KConfigGroup;
@@ -46,7 +45,8 @@ public:
 
     QAbstractItemView *addView(const QString &title = QString(), const QString &keyFilterID = QString(), const QString &searchString = QString());
     QAbstractItemView *addView(const KConfigGroup &group);
-    QAbstractItemView *addTemporaryView(const QString &title = QString(), AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &tabToolTip = QString());
+    QAbstractItemView *
+    addTemporaryView(const QString &title = QString(), AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &tabToolTip = QString());
 
     void loadViews(const KConfig *cfg);
     void saveViews(KConfig *cfg) const;
@@ -85,4 +85,3 @@ private:
 };
 
 }
-

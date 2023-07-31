@@ -21,16 +21,16 @@
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>
 
-#include <KLocalizedString>
 #include <KConfigGroup>
+#include <KLocalizedString>
 
+#include <QDir>
 #include <QFile>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QString>
 #include <QTextCodec>
 #include <QWidget>
-#include <QFileInfo>
-#include <QDir>
 
 #include <KSharedConfig>
 
@@ -47,6 +47,7 @@ class ImportCertificateFromFileCommand::Private : public ImportCertificatesComma
     {
         return static_cast<ImportCertificateFromFileCommand *>(q);
     }
+
 public:
     explicit Private(ImportCertificateFromFileCommand *qq, KeyListController *c);
     ~Private() override;
@@ -67,13 +68,14 @@ const ImportCertificateFromFileCommand::Private *ImportCertificateFromFileComman
 }
 
 ImportCertificateFromFileCommand::Private::Private(ImportCertificateFromFileCommand *qq, KeyListController *c)
-    : ImportCertificatesCommand::Private(qq, c),
-      files()
+    : ImportCertificatesCommand::Private(qq, c)
+    , files()
 {
-
 }
 
-ImportCertificateFromFileCommand::Private::~Private() {}
+ImportCertificateFromFileCommand::Private::~Private()
+{
+}
 
 #define d d_func()
 #define q q_func()
@@ -81,19 +83,16 @@ ImportCertificateFromFileCommand::Private::~Private() {}
 ImportCertificateFromFileCommand::ImportCertificateFromFileCommand()
     : ImportCertificatesCommand(new Private(this, nullptr))
 {
-
 }
 
 ImportCertificateFromFileCommand::ImportCertificateFromFileCommand(KeyListController *p)
     : ImportCertificatesCommand(new Private(this, p))
 {
-
 }
 
 ImportCertificateFromFileCommand::ImportCertificateFromFileCommand(QAbstractItemView *v, KeyListController *p)
     : ImportCertificatesCommand(v, new Private(this, p))
 {
-
 }
 
 ImportCertificateFromFileCommand::ImportCertificateFromFileCommand(const QStringList &files, KeyListController *p)
@@ -108,7 +107,9 @@ ImportCertificateFromFileCommand::ImportCertificateFromFileCommand(const QString
     d->files = files;
 }
 
-ImportCertificateFromFileCommand::~ImportCertificateFromFileCommand() {}
+ImportCertificateFromFileCommand::~ImportCertificateFromFileCommand()
+{
+}
 
 void ImportCertificateFromFileCommand::setFiles(const QStringList &files)
 {
@@ -124,11 +125,9 @@ void ImportCertificateFromFileCommand::doStart()
     }
 
     d->setProgressWindowTitle(i18nc("@title:window", "Importing Certificates"));
-    d->setProgressLabelText(i18np("Importing certificates from 1 file...",
-                                  "Importing certificates from %1 files...",
-                                  d->files.size()));
+    d->setProgressLabelText(i18np("Importing certificates from 1 file...", "Importing certificates from %1 files...", d->files.size()));
 
-    //TODO: use KIO here
+    // TODO: use KIO here
     d->setWaitForMoreJobs(true);
     for (const QString &fn : std::as_const(d->files)) {
         QFile in(fn);
@@ -161,7 +160,8 @@ static QStringList get_file_name(QWidget *parent)
         const KConfigGroup group(config, "Import Certificate");
         previousDir = group.readPathEntry("last-open-file-directory", QDir::homePath());
     }
-    const QStringList files = QFileDialog::getOpenFileNames(parent, i18n("Select Certificate File"), previousDir, certificateFilter + QLatin1String(";;") + anyFilesFilter);
+    const QStringList files =
+        QFileDialog::getOpenFileNames(parent, i18n("Select Certificate File"), previousDir, certificateFilter + QLatin1String(";;") + anyFilesFilter);
     if (!files.empty())
         if (const KSharedConfig::Ptr config = KSharedConfig::openConfig()) {
             KConfigGroup group(config, "Import Certificate");
@@ -180,6 +180,5 @@ bool ImportCertificateFromFileCommand::Private::ensureHaveFile()
 
 #undef d
 #undef q
-
 
 #include "moc_importcertificatefromfilecommand.cpp"

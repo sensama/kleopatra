@@ -13,11 +13,11 @@
 class KDPipeIODevice : public QIODevice
 {
     Q_OBJECT
-    //KDAB_MAKE_CHECKABLE( KDPipeIODevice )
+    // KDAB_MAKE_CHECKABLE( KDPipeIODevice )
 public:
     enum DebugLevel {
         NoDebug,
-        Debug
+        Debug,
     };
 
     static DebugLevel debugLevel();
@@ -60,5 +60,3 @@ private:
     class Private;
     Private *d;
 };
-
-

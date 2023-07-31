@@ -16,8 +16,8 @@
 #include <gpgme++/global.h>
 
 #include <memory>
-#include <vector>
 #include <utility>
+#include <vector>
 
 namespace KMime
 {
@@ -75,11 +75,9 @@ public:
 
     void setDetachedSignature(bool detached);
 
-    void startSigning(const std::vector< std::shared_ptr<Kleo::Input> > &inputs,
-                      const std::vector< std::shared_ptr<Kleo::Output> > &outputs);
+    void startSigning(const std::vector<std::shared_ptr<Kleo::Input>> &inputs, const std::vector<std::shared_ptr<Kleo::Output>> &outputs);
 
-    void startEncryption(const std::vector< std::shared_ptr<Kleo::Input> > &inputs,
-                         const std::vector< std::shared_ptr<Kleo::Output> > &outputs);
+    void startEncryption(const std::vector<std::shared_ptr<Kleo::Input>> &inputs, const std::vector<std::shared_ptr<Kleo::Output>> &outputs);
 
 public Q_SLOTS:
     void cancel();
@@ -89,7 +87,6 @@ Q_SIGNALS:
     void reportMicAlg(const QString &micAlg);
 
 private:
-
     void doTaskDone(const Task *task, const std::shared_ptr<const Kleo::Crypto::Task::Result> &) override;
 
     class Private;
@@ -101,5 +98,3 @@ private:
 
 } // Crypto
 } // Kleo
-
-

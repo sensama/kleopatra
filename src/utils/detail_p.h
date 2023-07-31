@@ -11,7 +11,6 @@
 
 #include <assuan.h>
 
-
 #ifdef _WIN32
 #include <io.h>
 #endif
@@ -21,21 +20,21 @@ namespace Kleo
 namespace _detail
 {
 
-template <template <typename U> class Op>
+template<template<typename U> class Op>
 struct ByName {
     using result_type = bool;
 
-    template <typename T>
+    template<typename T>
     bool operator()(const T &lhs, const T &rhs) const
     {
         return Op<int>()(qstricmp(lhs->name(), rhs->name()), 0);
     }
-    template <typename T>
+    template<typename T>
     bool operator()(const T &lhs, const char *rhs) const
     {
         return Op<int>()(qstricmp(lhs->name(), rhs), 0);
     }
-    template <typename T>
+    template<typename T>
     bool operator()(const char *lhs, const T &rhs) const
     {
         return Op<int>()(qstricmp(lhs, rhs->name()), 0);
@@ -73,8 +72,8 @@ static inline assuan_fd_t translate_libc2sys_fd(int fd)
 #endif
 }
 
-//returns an integer representation of the assuan_fd_t,
-//suitable for debug output
+// returns an integer representation of the assuan_fd_t,
+// suitable for debug output
 static inline qulonglong assuanFD2int(assuan_fd_t fd)
 {
 #ifdef _WIN32
@@ -85,4 +84,3 @@ static inline qulonglong assuanFD2int(assuan_fd_t fd)
 }
 }
 }
-

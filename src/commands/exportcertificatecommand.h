@@ -43,5 +43,3 @@ private:
     inline const Private *d_func() const;
 };
 }
-
-

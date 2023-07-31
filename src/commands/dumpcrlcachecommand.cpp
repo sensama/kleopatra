@@ -15,21 +15,21 @@
 
 #include <Libkleo/GnuPG>
 
-#include <KProcess>
-#include <KMessageBox>
-#include <KLocalizedString>
-#include <QPushButton>
-#include <KStandardGuiItem>
 #include <KConfigGroup>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KProcess>
+#include <KStandardGuiItem>
+#include <QPushButton>
 
-#include <QString>
-#include <QByteArray>
-#include <QTimer>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <KSharedConfig>
+#include <QByteArray>
 #include <QFontDatabase>
+#include <QHBoxLayout>
+#include <QString>
 #include <QTextEdit>
+#include <QTimer>
+#include <QVBoxLayout>
 
 static const int PROCESS_TERMINATE_TIMEOUT = 5000; // milliseconds
 
@@ -40,7 +40,9 @@ class DumpCrlCacheDialog : public QDialog
     Q_OBJECT
 public:
     explicit DumpCrlCacheDialog(QWidget *parent = nullptr)
-        : QDialog(parent), ui(this), mWithRevocations(false)
+        : QDialog(parent)
+        , ui(this)
+        , mWithRevocations(false)
     {
         readConfig();
     }
@@ -64,11 +66,13 @@ public Q_SLOTS:
     }
 
 public:
-    void setWithRevocations (bool value) {
+    void setWithRevocations(bool value)
+    {
         mWithRevocations = value;
     }
 
-    Q_REQUIRED_RESULT bool withRevocations () {
+    Q_REQUIRED_RESULT bool withRevocations()
+    {
         return mWithRevocations;
     }
 
@@ -90,17 +94,17 @@ private:
     }
 
     struct Ui {
-        QTextEdit   logTextWidget;
-        QPushButton     updateButton, closeButton, revocationsButton;
+        QTextEdit logTextWidget;
+        QPushButton updateButton, closeButton, revocationsButton;
         QVBoxLayout vlay;
-        QHBoxLayout  hlay;
+        QHBoxLayout hlay;
 
         explicit Ui(DumpCrlCacheDialog *q)
-            : logTextWidget(q),
-              updateButton(i18nc("@action:button Update the log text widget", "&Update"), q),
-              closeButton(q),
-              vlay(q),
-              hlay()
+            : logTextWidget(q)
+            , updateButton(i18nc("@action:button Update the log text widget", "&Update"), q)
+            , closeButton(q)
+            , vlay(q)
+            , hlay()
         {
             KGuiItem::assign(&closeButton, KStandardGuiItem::close());
             KDAB_SET_OBJECT_NAME(logTextWidget);
@@ -122,13 +126,10 @@ private:
             hlay.addStretch(1);
             hlay.addWidget(&closeButton);
 
-            connect(&updateButton, &QAbstractButton::clicked,
-                    q, &DumpCrlCacheDialog::updateRequested);
-            connect(&closeButton, &QAbstractButton::clicked,
-                    q, &QWidget::close);
+            connect(&updateButton, &QAbstractButton::clicked, q, &DumpCrlCacheDialog::updateRequested);
+            connect(&closeButton, &QAbstractButton::clicked, q, &QWidget::close);
 
-            connect(&revocationsButton, &QAbstractButton::clicked,
-                    q, [q, this] () {
+            connect(&revocationsButton, &QAbstractButton::clicked, q, [q, this]() {
                 q->mWithRevocations = true;
                 revocationsButton.setEnabled(false);
                 q->updateRequested();
@@ -157,6 +158,7 @@ class DumpCrlCacheCommand::Private : Command::Private
     {
         return static_cast<DumpCrlCacheCommand *>(q);
     }
+
 public:
     explicit Private(DumpCrlCacheCommand *qq, KeyListController *c);
     ~Private() override;
@@ -188,9 +190,7 @@ private:
                 count++;
                 continue;
             } else if (count) {
-                dialog->append (QLatin1Char(' ') +
-                    i18nc("Count of revocations in a CRL",
-                          "Entries:") + QStringLiteral("\t\t%1\n").arg(count));
+                dialog->append(QLatin1Char(' ') + i18nc("Count of revocations in a CRL", "Entries:") + QStringLiteral("\t\t%1\n").arg(count));
                 count = 0;
             }
             dialog->append(stringFromGpgOutput(line));
@@ -239,11 +239,11 @@ const DumpCrlCacheCommand::Private *DumpCrlCacheCommand::d_func() const
 #define q q_func()
 
 DumpCrlCacheCommand::Private::Private(DumpCrlCacheCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      dialog(nullptr),
-      process(),
-      errorBuffer(),
-      canceled(false)
+    : Command::Private(qq, c)
+    , dialog(nullptr)
+    , process()
+    , errorBuffer()
+    , canceled(false)
 {
     process.setOutputChannelMode(KProcess::SeparateChannels);
     process.setReadChannel(KProcess::StandardOutput);
@@ -272,33 +272,46 @@ DumpCrlCacheCommand::DumpCrlCacheCommand(QAbstractItemView *v, KeyListController
 void DumpCrlCacheCommand::Private::init()
 {
 #if QT_DEPRECATED_SINCE(5, 13)
-    connect(&process, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+    connect(&process,
+            qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
 #else
-    connect(&process, &QProcess::finished,
+    connect(&process,
+            &QProcess::finished,
 #endif
-            q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
-    connect(&process, &QProcess::readyReadStandardError, q, [this]() { slotProcessReadyReadStandardError(); });
-    connect(&process, &QProcess::readyReadStandardOutput, q, [this] { slotProcessReadyReadStandardOutput(); });
+            q,
+            [this](int exitCode, QProcess::ExitStatus status) {
+                slotProcessFinished(exitCode, status);
+            });
+    connect(&process, &QProcess::readyReadStandardError, q, [this]() {
+        slotProcessReadyReadStandardError();
+    });
+    connect(&process, &QProcess::readyReadStandardOutput, q, [this] {
+        slotProcessReadyReadStandardOutput();
+    });
 }
 
-DumpCrlCacheCommand::~DumpCrlCacheCommand() {}
+DumpCrlCacheCommand::~DumpCrlCacheCommand()
+{
+}
 
 void DumpCrlCacheCommand::doStart()
 {
-
     d->dialog = new DumpCrlCacheDialog;
     d->dialog->setAttribute(Qt::WA_DeleteOnClose);
     d->dialog->setWindowTitle(i18nc("@title:window", "CRL Cache Dump"));
 
-    connect(d->dialog, &DumpCrlCacheDialog::updateRequested, this, [this]() { d->slotUpdateRequested(); });
-    connect(d->dialog, &QObject::destroyed, this, [this]() { d->slotDialogDestroyed(); });
+    connect(d->dialog, &DumpCrlCacheDialog::updateRequested, this, [this]() {
+        d->slotUpdateRequested();
+    });
+    connect(d->dialog, &QObject::destroyed, this, [this]() {
+        d->slotDialogDestroyed();
+    });
 
     d->refreshView();
 }
 
 void DumpCrlCacheCommand::Private::refreshView()
 {
-
     dialog->clear();
 
     process.start();
@@ -339,7 +352,8 @@ void DumpCrlCacheCommand::Private::slotProcessFinished(int code, QProcess::ExitS
         else if (code)
             KMessageBox::error(dialog,
                                i18n("An error occurred while trying to dump the CRL cache. "
-                                    "The output from GpgSM was:\n%1", errorString()),
+                                    "The output from GpgSM was:\n%1",
+                                    errorString()),
                                i18n("Dump CRL Cache Error"));
     }
 }
@@ -347,5 +361,5 @@ void DumpCrlCacheCommand::Private::slotProcessFinished(int code, QProcess::ExitS
 #undef d
 #undef q
 
-#include "moc_dumpcrlcachecommand.cpp"
 #include "dumpcrlcachecommand.moc"
+#include "moc_dumpcrlcachecommand.cpp"

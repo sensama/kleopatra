@@ -48,8 +48,6 @@ public:
 
     void setSelectedCertificate(const QString &cert);
     QString selectedCertificate() const;
-
 };
 
 }
-

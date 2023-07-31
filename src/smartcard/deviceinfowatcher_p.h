@@ -52,6 +52,7 @@ class DeviceInfoWatcher::Private
 {
     friend class ::Kleo::DeviceInfoWatcher;
     DeviceInfoWatcher *const q;
+
 public:
     explicit Private(DeviceInfoWatcher *qq);
     ~Private();
@@ -64,4 +65,3 @@ private:
 };
 
 }
-

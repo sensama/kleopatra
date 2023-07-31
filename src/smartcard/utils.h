@@ -21,4 +21,3 @@ QString displayAppName(const std::string &appName);
 
 } // namespace Smartcard
 } // namespace Kleopatra
-

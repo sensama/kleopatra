@@ -12,22 +12,22 @@
 #include "archivedefinition.h"
 
 #include <utils/input.h>
+#include <utils/kleo_assert.h>
 #include <utils/output.h>
 #include <utils/path-helper.h>
-#include <utils/kleo_assert.h>
 
 #include <gpgme++/exception.h>
 
-#include <KSharedConfig>
-#include <KConfigGroup>
 #include "kleopatra_debug.h"
-#include <KLocalizedString>
 #include <KConfig>
+#include <KConfigGroup>
+#include <KLocalizedString>
+#include <KSharedConfig>
 #include <KShell>
 
+#include <QCoreApplication>
 #include <QDir>
 #include <QMutex>
-#include <QCoreApplication>
 #include <QRegularExpression>
 
 #include <QStandardPaths>
@@ -72,7 +72,7 @@ static const QLatin1String FILE_PLACEHOLDER("%f");
 static const QLatin1String FILE_PLACEHOLDER_7BIT("%F");
 static const QLatin1String INSTALLPATH_PLACEHOLDER("%I");
 static const QLatin1String NULL_SEPARATED_STDIN_INDICATOR("0|");
-static const QLatin1Char   NEWLINE_SEPARATED_STDIN_INDICATOR('|');
+static const QLatin1Char NEWLINE_SEPARATED_STDIN_INDICATOR('|');
 
 namespace
 {
@@ -80,14 +80,16 @@ namespace
 class ArchiveDefinitionError : public Kleo::Exception
 {
     const QString m_id;
+
 public:
     ArchiveDefinitionError(const QString &id, const QString &message)
-        : Kleo::Exception(GPG_ERR_INV_PARAMETER, i18n("Error in archive definition %1: %2", id, message), MessageOnly),
-          m_id(id)
+        : Kleo::Exception(GPG_ERR_INV_PARAMETER, i18n("Error in archive definition %1: %2", id, message), MessageOnly)
+        , m_id(id)
     {
-
     }
-    ~ArchiveDefinitionError() throw() override {}
+    ~ArchiveDefinitionError() throw() override
+    {
+    }
 
     const QString &archiveDefinitionId() const
     {
@@ -100,9 +102,13 @@ public:
 static QString try_extensions(const QString &path)
 {
     static const char exts[][4] = {
-        "", "exe", "bat", "bin", "cmd",
+        "",
+        "exe",
+        "bat",
+        "bin",
+        "cmd",
     };
-    static const size_t numExts = sizeof exts / sizeof * exts;
+    static const size_t numExts = sizeof exts / sizeof *exts;
     for (unsigned int i = 0; i < numExts; ++i) {
         const QFileInfo fi(path + QLatin1Char('.') + QLatin1String(exts[i]));
         if (fi.exists()) {
@@ -112,8 +118,14 @@ static QString try_extensions(const QString &path)
     return QString();
 }
 
-static void parse_command(QString cmdline, const QString &id, const QString &whichCommand,
-                          QString *command, QStringList *prefix, QStringList *suffix, ArchiveDefinition::ArgumentPassingMethod *method, bool parseFilePlaceholder)
+static void parse_command(QString cmdline,
+                          const QString &id,
+                          const QString &whichCommand,
+                          QString *command,
+                          QStringList *prefix,
+                          QStringList *suffix,
+                          ArchiveDefinition::ArgumentPassingMethod *method,
+                          bool parseFilePlaceholder)
 {
     Q_ASSERT(prefix);
     Q_ASSERT(suffix);
@@ -134,9 +146,9 @@ static void parse_command(QString cmdline, const QString &id, const QString &whi
     if (*method != ArchiveDefinition::CommandLine && cmdline.contains(FILE_PLACEHOLDER)) {
         throw ArchiveDefinitionError(id, i18n("Cannot use both %f and | in '%1'", whichCommand));
     }
-    cmdline.replace(FILE_PLACEHOLDER,        QLatin1String("__files_go_here__"))
-    .replace(INSTALLPATH_PLACEHOLDER, QStringLiteral("__path_goes_here__"))
-    .replace(FILE_PLACEHOLDER_7BIT, QStringLiteral("__file7Bit_go_here__"));
+    cmdline.replace(FILE_PLACEHOLDER, QLatin1String("__files_go_here__"))
+        .replace(INSTALLPATH_PLACEHOLDER, QStringLiteral("__path_goes_here__"))
+        .replace(FILE_PLACEHOLDER_7BIT, QStringLiteral("__file7Bit_go_here__"));
     l = KShell::splitArgs(cmdline, KShell::AbortOnMeta | KShell::TildeExpand, &errors);
     l = l.replaceInStrings(QStringLiteral("__files_go_here__"), FILE_PLACEHOLDER);
     l = l.replaceInStrings(QStringLiteral("__file7Bit_go_here__"), FILE_PLACEHOLDER_7BIT);
@@ -197,8 +209,7 @@ class KConfigBasedArchiveDefinition : public ArchiveDefinition
 {
 public:
     explicit KConfigBasedArchiveDefinition(const KConfigGroup &group)
-        : ArchiveDefinition(group.readEntryUntranslated(ID_ENTRY),
-                            group.readEntry(NAME_ENTRY))
+        : ArchiveDefinition(group.readEntryUntranslated(ID_ENTRY), group.readEntry(NAME_ENTRY))
     {
         if (id().isEmpty()) {
             throw ArchiveDefinitionError(group.name(), i18n("'%1' entry is empty/missing", ID_ENTRY));
@@ -235,42 +246,90 @@ public:
 
         // pack-command(-openpgp)
         if (group.hasKey(PACK_COMMAND_OPENPGP_ENTRY))
-            parse_command(group.readEntry(PACK_COMMAND_OPENPGP_ENTRY), id(), PACK_COMMAND_OPENPGP_ENTRY,
-                          &m_packCommand[OpenPGP], &m_packPrefixArguments[OpenPGP], &m_packPostfixArguments[OpenPGP], &method, true);
+            parse_command(group.readEntry(PACK_COMMAND_OPENPGP_ENTRY),
+                          id(),
+                          PACK_COMMAND_OPENPGP_ENTRY,
+                          &m_packCommand[OpenPGP],
+                          &m_packPrefixArguments[OpenPGP],
+                          &m_packPostfixArguments[OpenPGP],
+                          &method,
+                          true);
         else
-            parse_command(group.readEntry(PACK_COMMAND_ENTRY), id(), PACK_COMMAND_ENTRY,
-                          &m_packCommand[OpenPGP], &m_packPrefixArguments[OpenPGP], &m_packPostfixArguments[OpenPGP], &method, true);
+            parse_command(group.readEntry(PACK_COMMAND_ENTRY),
+                          id(),
+                          PACK_COMMAND_ENTRY,
+                          &m_packCommand[OpenPGP],
+                          &m_packPrefixArguments[OpenPGP],
+                          &m_packPostfixArguments[OpenPGP],
+                          &method,
+                          true);
         setPackCommandArgumentPassingMethod(OpenPGP, method);
 
         // pack-command(-cms)
         if (group.hasKey(PACK_COMMAND_CMS_ENTRY))
-            parse_command(group.readEntry(PACK_COMMAND_CMS_ENTRY), id(), PACK_COMMAND_CMS_ENTRY,
-                          &m_packCommand[CMS], &m_packPrefixArguments[CMS], &m_packPostfixArguments[CMS], &method, true);
+            parse_command(group.readEntry(PACK_COMMAND_CMS_ENTRY),
+                          id(),
+                          PACK_COMMAND_CMS_ENTRY,
+                          &m_packCommand[CMS],
+                          &m_packPrefixArguments[CMS],
+                          &m_packPostfixArguments[CMS],
+                          &method,
+                          true);
         else
-            parse_command(group.readEntry(PACK_COMMAND_ENTRY), id(), PACK_COMMAND_ENTRY,
-                          &m_packCommand[CMS], &m_packPrefixArguments[CMS], &m_packPostfixArguments[CMS], &method, true);
+            parse_command(group.readEntry(PACK_COMMAND_ENTRY),
+                          id(),
+                          PACK_COMMAND_ENTRY,
+                          &m_packCommand[CMS],
+                          &m_packPrefixArguments[CMS],
+                          &m_packPostfixArguments[CMS],
+                          &method,
+                          true);
         setPackCommandArgumentPassingMethod(CMS, method);
 
         QStringList dummy;
 
         // unpack-command(-openpgp)
         if (group.hasKey(UNPACK_COMMAND_OPENPGP_ENTRY))
-            parse_command(group.readEntry(UNPACK_COMMAND_OPENPGP_ENTRY), id(), UNPACK_COMMAND_OPENPGP_ENTRY,
-                          &m_unpackCommand[OpenPGP], &m_unpackArguments[OpenPGP], &dummy, &method, false);
+            parse_command(group.readEntry(UNPACK_COMMAND_OPENPGP_ENTRY),
+                          id(),
+                          UNPACK_COMMAND_OPENPGP_ENTRY,
+                          &m_unpackCommand[OpenPGP],
+                          &m_unpackArguments[OpenPGP],
+                          &dummy,
+                          &method,
+                          false);
         else
-            parse_command(group.readEntry(UNPACK_COMMAND_ENTRY), id(), UNPACK_COMMAND_ENTRY,
-                          &m_unpackCommand[OpenPGP], &m_unpackArguments[OpenPGP], &dummy, &method, false);
+            parse_command(group.readEntry(UNPACK_COMMAND_ENTRY),
+                          id(),
+                          UNPACK_COMMAND_ENTRY,
+                          &m_unpackCommand[OpenPGP],
+                          &m_unpackArguments[OpenPGP],
+                          &dummy,
+                          &method,
+                          false);
         if (method != CommandLine) {
             throw ArchiveDefinitionError(id(), i18n("cannot use argument passing on standard input for unpack-command"));
         }
 
         // unpack-command(-cms)
         if (group.hasKey(UNPACK_COMMAND_CMS_ENTRY))
-            parse_command(group.readEntry(UNPACK_COMMAND_CMS_ENTRY), id(), UNPACK_COMMAND_CMS_ENTRY,
-                          &m_unpackCommand[CMS], &m_unpackArguments[CMS], &dummy, &method, false);
+            parse_command(group.readEntry(UNPACK_COMMAND_CMS_ENTRY),
+                          id(),
+                          UNPACK_COMMAND_CMS_ENTRY,
+                          &m_unpackCommand[CMS],
+                          &m_unpackArguments[CMS],
+                          &dummy,
+                          &method,
+                          false);
         else
-            parse_command(group.readEntry(UNPACK_COMMAND_ENTRY), id(), UNPACK_COMMAND_ENTRY,
-                          &m_unpackCommand[CMS], &m_unpackArguments[CMS], &dummy, &method, false);
+            parse_command(group.readEntry(UNPACK_COMMAND_ENTRY),
+                          id(),
+                          UNPACK_COMMAND_ENTRY,
+                          &m_unpackCommand[CMS],
+                          &m_unpackArguments[CMS],
+                          &dummy,
+                          &method,
+                          false);
         if (method != CommandLine) {
             throw ArchiveDefinitionError(id(), i18n("cannot use argument passing on standard input for unpack-command"));
         }
@@ -317,13 +376,15 @@ private:
 }
 
 ArchiveDefinition::ArchiveDefinition(const QString &id, const QString &label)
-    : m_id(id),
-      m_label(label)
+    : m_id(id)
+    , m_label(label)
 {
-    m_packCommandMethod[GpgME::OpenPGP]   = m_packCommandMethod[GpgME::CMS] = CommandLine;
+    m_packCommandMethod[GpgME::OpenPGP] = m_packCommandMethod[GpgME::CMS] = CommandLine;
 }
 
-ArchiveDefinition::~ArchiveDefinition() {}
+ArchiveDefinition::~ArchiveDefinition()
+{
+}
 
 QString ArchiveDefinition::stripExtension(GpgME::Protocol p, const QString &filePath) const
 {
@@ -365,19 +426,11 @@ std::shared_ptr<Input> ArchiveDefinition::createInputFromPackCommand(GpgME::Prot
     qCDebug(KLEOPATRA_LOG) << "relative" << relative;
     switch (m_packCommandMethod[p]) {
     case CommandLine:
-        return Input::createFromProcessStdOut(doGetPackCommand(p),
-                                              doGetPackArguments(p, relative),
-                                              QDir(base));
+        return Input::createFromProcessStdOut(doGetPackCommand(p), doGetPackArguments(p, relative), QDir(base));
     case NewlineSeparatedInputFile:
-        return Input::createFromProcessStdOut(doGetPackCommand(p),
-                                              doGetPackArguments(p, QStringList()),
-                                              QDir(base),
-                                              make_input(relative, '\n'));
+        return Input::createFromProcessStdOut(doGetPackCommand(p), doGetPackArguments(p, QStringList()), QDir(base), make_input(relative, '\n'));
     case NullSeparatedInputFile:
-        return Input::createFromProcessStdOut(doGetPackCommand(p),
-                                              doGetPackArguments(p, QStringList()),
-                                              QDir(base),
-                                              make_input(relative, '\0'));
+        return Input::createFromProcessStdOut(doGetPackCommand(p), doGetPackArguments(p, QStringList()), QDir(base), make_input(relative, '\0'));
     case NumArgumentPassingMethods:
         Q_ASSERT(!"Should not happen");
     }
@@ -388,22 +441,20 @@ std::shared_ptr<Output> ArchiveDefinition::createOutputFromUnpackCommand(GpgME::
 {
     checkProtocol(p);
     const QFileInfo fi(file);
-    return Output::createFromProcessStdIn(doGetUnpackCommand(p),
-                                          doGetUnpackArguments(p, fi.absoluteFilePath()),
-                                          wd);
+    return Output::createFromProcessStdIn(doGetUnpackCommand(p), doGetUnpackArguments(p, fi.absoluteFilePath()), wd);
 }
 
 // static
-std::vector< std::shared_ptr<ArchiveDefinition> > ArchiveDefinition::getArchiveDefinitions()
+std::vector<std::shared_ptr<ArchiveDefinition>> ArchiveDefinition::getArchiveDefinitions()
 {
     QStringList errors;
     return getArchiveDefinitions(errors);
 }
 
 // static
-std::vector< std::shared_ptr<ArchiveDefinition> > ArchiveDefinition::getArchiveDefinitions(QStringList &errors)
+std::vector<std::shared_ptr<ArchiveDefinition>> ArchiveDefinition::getArchiveDefinitions(QStringList &errors)
 {
-    std::vector< std::shared_ptr<ArchiveDefinition> > result;
+    std::vector<std::shared_ptr<ArchiveDefinition>> result;
     KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
     const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Archive Definition #")));
     result.reserve(groups.size());

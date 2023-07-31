@@ -18,7 +18,7 @@ namespace Kleo
 class VerifyCommand : public AssuanCommandMixin<VerifyCommand, DecryptVerifyCommandEMailBase>
 {
 public:
-    //VerifyCommand();
+    // VerifyCommand();
     //~VerifyCommand();
 
 private:
@@ -30,6 +30,7 @@ private:
     {
         return EMail;
     }
+
 public:
     static const char *staticName()
     {
@@ -38,4 +39,3 @@ public:
 };
 
 }
-

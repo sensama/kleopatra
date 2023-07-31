@@ -11,12 +11,12 @@
 
 #include "recipient.h"
 
-#include <Libkleo/Predicates>
 #include <Libkleo/KeyCache>
+#include <Libkleo/Predicates>
 #include <Libkleo/Stl_Util>
 
-#include <utils/kleo_assert.h>
 #include <utils/cached.h>
+#include <utils/kleo_assert.h>
 
 #include <KMime/HeaderParsing>
 
@@ -33,14 +33,12 @@ namespace Types
 {
 static bool operator==(const AddrSpec &lhs, const AddrSpec &rhs)
 {
-    return lhs.localPart == rhs.localPart
-           && lhs.domain == rhs.domain;
+    return lhs.localPart == rhs.localPart && lhs.domain == rhs.domain;
 }
 
 static bool operator==(const Mailbox &lhs, const Mailbox &rhs)
 {
-    return lhs.name() == rhs.name()
-           && lhs.addrSpec() == rhs.addrSpec();
+    return lhs.name() == rhs.name() && lhs.addrSpec() == rhs.addrSpec();
 }
 
 static bool determine_ambiguous(const Mailbox &mb, const std::vector<Key> &keys)
@@ -56,6 +54,7 @@ static bool determine_ambiguous(const Mailbox &mb, const std::vector<Key> &keys)
 class Recipient::Private
 {
     friend class ::Kleo::Crypto::Recipient;
+
 public:
     explicit Private(const Mailbox &mb)
         : mailbox(mb)
@@ -64,9 +63,13 @@ public:
         // ### that don't match, for the case where there's a low
         // ### total number of keys
         const std::vector<Key> encrypt = KeyCache::instance()->findEncryptionKeysByMailbox(mb.addrSpec().asString());
-        kdtools::separate_if(encrypt.cbegin(), encrypt.cend(),
-                             std::back_inserter(pgpEncryptionKeys), std::back_inserter(cmsEncryptionKeys),
-                             [](const Key &key) { return key.protocol() == OpenPGP; });
+        kdtools::separate_if(encrypt.cbegin(),
+                             encrypt.cend(),
+                             std::back_inserter(pgpEncryptionKeys),
+                             std::back_inserter(cmsEncryptionKeys),
+                             [](const Key &key) {
+                                 return key.protocol() == OpenPGP;
+                             });
     }
 
 private:
@@ -80,7 +83,6 @@ private:
 Recipient::Recipient(const Mailbox &mb)
     : d(new Private(mb))
 {
-
 }
 
 void Recipient::detach()
@@ -93,15 +95,12 @@ void Recipient::detach()
 bool Recipient::deepEquals(const Recipient &other) const
 {
     static const _detail::ByFingerprint<std::equal_to> compare = {};
-    return mailbox() == other.mailbox()
-           && compare(d->cmsEncryptionKey, other.d->cmsEncryptionKey)
-           && compare(d->pgpEncryptionUid.parent(), other.d->pgpEncryptionUid.parent())
-           && strcmp(d->pgpEncryptionUid.id(), other.d->pgpEncryptionUid.id())
-           && std::equal(d->pgpEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(),
-                         other.d->pgpEncryptionKeys.cbegin(), compare)
-           && std::equal(d->cmsEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(),
-                         other.d->cmsEncryptionKeys.cbegin(), compare)
-           ;
+    return mailbox() == other.mailbox() //
+        && compare(d->cmsEncryptionKey, other.d->cmsEncryptionKey) //
+        && compare(d->pgpEncryptionUid.parent(), other.d->pgpEncryptionUid.parent()) //
+        && strcmp(d->pgpEncryptionUid.id(), other.d->pgpEncryptionUid.id()) //
+        && std::equal(d->pgpEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(), other.d->pgpEncryptionKeys.cbegin(), compare)
+        && std::equal(d->cmsEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(), other.d->cmsEncryptionKeys.cbegin(), compare);
 }
 
 bool Recipient::isEncryptionAmbiguous(GpgME::Protocol proto) const

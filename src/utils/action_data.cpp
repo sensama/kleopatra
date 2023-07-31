@@ -11,15 +11,14 @@
 
 #include "action_data.h"
 
-#include <KToggleAction>
 #include <KActionCollection>
+#include <KToggleAction>
 #include <QAction>
 #include <QIcon>
 #include <QKeySequence>
 
 QAction *Kleo::createAction(const action_data &ad, KActionCollection *coll)
 {
-
     QAction *const a = ad.actionType == KFToggleAction ? new KToggleAction(coll) : new QAction(coll);
     a->setObjectName(QLatin1String(ad.name));
     a->setText(ad.text);
@@ -43,7 +42,6 @@ QAction *Kleo::createAction(const action_data &ad, KActionCollection *coll)
 
 QAction *Kleo::make_action_from_data(const action_data &ad, KActionCollection *coll)
 {
-
     QAction *const a = createAction(ad, coll);
     if (!ad.shortcut.isEmpty()) {
         coll->setDefaultShortcut(a, QKeySequence(ad.shortcut));

@@ -18,7 +18,7 @@ namespace SmartCard
 struct KeyPairInfo;
 
 /** Class to work with NetKey smartcards or compatible tokens */
-class NetKeyCard: public Card
+class NetKeyCard : public Card
 {
 public:
     explicit NetKeyCard(const Card &card);
@@ -31,16 +31,14 @@ public:
     bool hasSigGNullPin() const;
     bool hasNKSNullPin() const;
 
-    std::vector <GpgME::Key> keys() const;
+    std::vector<GpgME::Key> keys() const;
 
 private:
     void processCardInfo() override;
     void setKeyPairInfo(const std::vector<KeyPairInfo> &infos);
 
 private:
-    std::vector <GpgME::Key> mKeys;
+    std::vector<GpgME::Key> mKeys;
 };
 } // namespace Smartcard
 } // namespace Kleopatra
-
-

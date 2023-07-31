@@ -32,13 +32,13 @@ struct KeyPairInfo;
 class OpenPGPCard;
 } // namespace SmartCard
 
-class PGPCardWidget: public QWidget
+class PGPCardWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit PGPCardWidget(QWidget *parent = nullptr);
 
-    void setCard(const SmartCard::OpenPGPCard* card);
+    void setCard(const SmartCard::OpenPGPCard *card);
     void doGenKey(GenCardKeyDialog *dlg);
     void genKeyDone(const GpgME::Error &err, const std::string &backup);
 
@@ -56,10 +56,10 @@ private:
     void doChangePin(const std::string &keyRef, Commands::ChangePinCommand::ChangePinMode mode = Commands::ChangePinCommand::NormalMode);
 
 private:
-    QLabel *mSerialNumber = nullptr,
-           *mCardHolderLabel = nullptr,
-           *mVersionLabel = nullptr,
-           *mUrlLabel = nullptr;
+    QLabel *mSerialNumber = nullptr;
+    QLabel *mCardHolderLabel = nullptr;
+    QLabel *mVersionLabel = nullptr;
+    QLabel *mUrlLabel = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
     OpenPGPKeyCardWidget *mKeysWidget = nullptr;
     QString mUrl;
@@ -68,4 +68,3 @@ private:
     std::string mRealSerial;
 };
 } // namespace Kleo
-

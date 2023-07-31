@@ -27,12 +27,12 @@ class VerifyChecksumsCommand::Private
 private:
     friend class ::Kleo::VerifyChecksumsCommand;
     VerifyChecksumsCommand *const q;
+
 public:
     explicit Private(VerifyChecksumsCommand *qq)
-        : q(qq),
-          controller()
+        : q(qq)
+        , controller()
     {
-
     }
 
 private:
@@ -43,33 +43,45 @@ private:
 };
 
 VerifyChecksumsCommand::VerifyChecksumsCommand()
-    : AssuanCommandMixin<VerifyChecksumsCommand>(), d(new Private(this))
+    : AssuanCommandMixin<VerifyChecksumsCommand>()
+    , d(new Private(this))
 {
-
 }
 
-VerifyChecksumsCommand::~VerifyChecksumsCommand() {}
+VerifyChecksumsCommand::~VerifyChecksumsCommand()
+{
+}
 
 void VerifyChecksumsCommand::Private::checkForErrors() const
 {
-
     if (!q->numFiles())
-        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT),
-                        i18n("At least one FILE must be present"));
-
+        throw Exception(makeError(GPG_ERR_ASS_NO_INPUT), i18n("At least one FILE must be present"));
 }
 
 int VerifyChecksumsCommand::doStart()
 {
-
     d->checkForErrors();
 
     d->controller.reset(new VerifyChecksumsController(shared_from_this()));
 
     d->controller->setFiles(fileNames());
 
-    QObject::connect(d->controller.get(), &Controller::done, this, [this]() { done(); }, Qt::QueuedConnection);
-    QObject::connect(d->controller.get(), &Controller::error, this, [this](int err, const QString &details) { done(err, details); }, Qt::QueuedConnection);
+    QObject::connect(
+        d->controller.get(),
+        &Controller::done,
+        this,
+        [this]() {
+            done();
+        },
+        Qt::QueuedConnection);
+    QObject::connect(
+        d->controller.get(),
+        &Controller::error,
+        this,
+        [this](int err, const QString &details) {
+            done(err, details);
+        },
+        Qt::QueuedConnection);
 
     d->controller->start();
 

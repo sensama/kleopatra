@@ -9,38 +9,39 @@
 
 #include <config-kleopatra.h>
 
-#include "searchbar.h"
 #include "tabwidget.h"
+
 #include "keytreeview.h"
 #include "kleopatra_debug.h"
+#include "searchbar.h"
 
 #include <settings.h>
 
 #include <utils/action_data.h>
 
-#include <Libkleo/Stl_Util>
 #include <Libkleo/KeyFilter>
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
+#include <Libkleo/Stl_Util>
 
 #include <gpgme++/key.h>
 
-#include <KLocalizedString>
-#include <QTabWidget>
-#include <KConfigGroup>
-#include <KSharedConfig>
-#include <KConfig>
-#include <QAction>
 #include <KActionCollection>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KLocalizedString>
+#include <KSharedConfig>
+#include <QAction>
 #include <QInputDialog>
+#include <QTabWidget>
 
-#include <QTreeView>
-#include <QToolButton>
-#include <QMenu>
-#include <QVBoxLayout>
-#include <QRegularExpression>
 #include <QAbstractProxyModel>
+#include <QMenu>
+#include <QRegularExpression>
+#include <QToolButton>
+#include <QTreeView>
+#include <QVBoxLayout>
 
 #include <map>
 
@@ -54,8 +55,15 @@ class Page : public Kleo::KeyTreeView
 {
     Q_OBJECT
     Page(const Page &other);
+
 public:
-    Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &toolTip = QString(), QWidget *parent = nullptr, const KConfigGroup &group = KConfigGroup());
+    Page(const QString &title,
+         const QString &id,
+         const QString &text,
+         AbstractKeyListSortFilterProxyModel *proxy = nullptr,
+         const QString &toolTip = QString(),
+         QWidget *parent = nullptr,
+         const KConfigGroup &group = KConfigGroup());
     Page(const KConfigGroup &group, QWidget *parent = nullptr);
     ~Page() override;
 
@@ -133,30 +141,35 @@ private:
 } // anon namespace
 
 Page::Page(const Page &other)
-    : KeyTreeView(other),
-      m_title(other.m_title),
-      m_toolTip(other.m_toolTip),
-      m_isTemporary(other.m_isTemporary),
-      m_canBeClosed(other.m_canBeClosed),
-      m_canBeRenamed(other.m_canBeRenamed),
-      m_canChangeStringFilter(other.m_canChangeStringFilter),
-      m_canChangeKeyFilter(other.m_canChangeKeyFilter),
-      m_canChangeHierarchical(other.m_canChangeHierarchical)
+    : KeyTreeView(other)
+    , m_title(other.m_title)
+    , m_toolTip(other.m_toolTip)
+    , m_isTemporary(other.m_isTemporary)
+    , m_canBeClosed(other.m_canBeClosed)
+    , m_canBeRenamed(other.m_canBeRenamed)
+    , m_canChangeStringFilter(other.m_canChangeStringFilter)
+    , m_canChangeKeyFilter(other.m_canChangeKeyFilter)
+    , m_canChangeHierarchical(other.m_canChangeHierarchical)
 {
     init();
 }
 
-Page::Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy, const QString &toolTip, QWidget *parent,
+Page::Page(const QString &title,
+           const QString &id,
+           const QString &text,
+           AbstractKeyListSortFilterProxyModel *proxy,
+           const QString &toolTip,
+           QWidget *parent,
            const KConfigGroup &group)
-    : KeyTreeView(text, KeyFilterManager::instance()->keyFilterByID(id), proxy, parent, group),
-      m_title(title),
-      m_toolTip(toolTip),
-      m_isTemporary(false),
-      m_canBeClosed(true),
-      m_canBeRenamed(true),
-      m_canChangeStringFilter(true),
-      m_canChangeKeyFilter(true),
-      m_canChangeHierarchical(true)
+    : KeyTreeView(text, KeyFilterManager::instance()->keyFilterByID(id), proxy, parent, group)
+    , m_title(title)
+    , m_toolTip(toolTip)
+    , m_isTemporary(false)
+    , m_canBeClosed(true)
+    , m_canBeRenamed(true)
+    , m_canChangeStringFilter(true)
+    , m_canChangeKeyFilter(true)
+    , m_canChangeHierarchical(true)
 {
     init();
 }
@@ -170,17 +183,15 @@ static const char SORT_COLUMN[] = "sort-column";
 static const char SORT_DESCENDING[] = "sort-descending";
 
 Page::Page(const KConfigGroup &group, QWidget *parent)
-    : KeyTreeView(group.readEntry(STRING_FILTER_ENTRY),
-                  KeyFilterManager::instance()->keyFilterByID(group.readEntry(KEY_FILTER_ENTRY)),
-                  nullptr, parent, group),
-      m_title(group.readEntry(TITLE_ENTRY)),
-      m_toolTip(),
-      m_isTemporary(false),
-      m_canBeClosed(!group.isImmutable()),
-      m_canBeRenamed(!group.isEntryImmutable(TITLE_ENTRY)),
-      m_canChangeStringFilter(!group.isEntryImmutable(STRING_FILTER_ENTRY)),
-      m_canChangeKeyFilter(!group.isEntryImmutable(KEY_FILTER_ENTRY)),
-      m_canChangeHierarchical(!group.isEntryImmutable(HIERARCHICAL_VIEW_ENTRY))
+    : KeyTreeView(group.readEntry(STRING_FILTER_ENTRY), KeyFilterManager::instance()->keyFilterByID(group.readEntry(KEY_FILTER_ENTRY)), nullptr, parent, group)
+    , m_title(group.readEntry(TITLE_ENTRY))
+    , m_toolTip()
+    , m_isTemporary(false)
+    , m_canBeClosed(!group.isImmutable())
+    , m_canBeRenamed(!group.isEntryImmutable(TITLE_ENTRY))
+    , m_canChangeStringFilter(!group.isEntryImmutable(STRING_FILTER_ENTRY))
+    , m_canChangeKeyFilter(!group.isEntryImmutable(KEY_FILTER_ENTRY))
+    , m_canChangeHierarchical(!group.isEntryImmutable(HIERARCHICAL_VIEW_ENTRY))
 {
     init();
     setHierarchicalView(group.readEntry(HIERARCHICAL_VIEW_ENTRY, true));
@@ -189,31 +200,30 @@ Page::Page(const KConfigGroup &group, QWidget *parent)
     sizes.reserve(settings.size());
     std::copy(settings.cbegin(), settings.cend(), std::back_inserter(sizes));
     setColumnSizes(sizes);
-    setSortColumn(group.readEntry(SORT_COLUMN, 0),
-                  group.readEntry(SORT_DESCENDING, true) ? Qt::DescendingOrder : Qt::AscendingOrder);
+    setSortColumn(group.readEntry(SORT_COLUMN, 0), group.readEntry(SORT_DESCENDING, true) ? Qt::DescendingOrder : Qt::AscendingOrder);
 }
 
 void Page::init()
 {
-
 }
 
-Page::~Page() {}
+Page::~Page()
+{
+}
 
 void Page::saveTo(KConfigGroup &group) const
 {
-
-    group.writeEntry(TITLE_ENTRY,         m_title);
+    group.writeEntry(TITLE_ENTRY, m_title);
     group.writeEntry(STRING_FILTER_ENTRY, stringFilter());
-    group.writeEntry(KEY_FILTER_ENTRY,    keyFilter() ? keyFilter()->id() : QString());
+    group.writeEntry(KEY_FILTER_ENTRY, keyFilter() ? keyFilter()->id() : QString());
     group.writeEntry(HIERARCHICAL_VIEW_ENTRY, isHierarchicalView());
     QList<int> settings;
     const auto sizes = columnSizes();
     settings.reserve(sizes.size());
     std::copy(sizes.cbegin(), sizes.cend(), std::back_inserter(settings));
-    group.writeEntry(COLUMN_SIZES,        settings);
-    group.writeEntry(SORT_COLUMN,         sortColumn());
-    group.writeEntry(SORT_DESCENDING,     sortOrder() == Qt::DescendingOrder);
+    group.writeEntry(COLUMN_SIZES, settings);
+    group.writeEntry(SORT_COLUMN, sortColumn());
+    group.writeEntry(SORT_DESCENDING, sortOrder() == Qt::DescendingOrder);
 }
 
 void Page::setStringFilter(const QString &filter)
@@ -304,7 +314,9 @@ public:
     constexpr static const char *ExpandAll = "window_expand_all";
     constexpr static const char *CollapseAll = "window_collapse_all";
 
-    explicit Actions() {}
+    explicit Actions()
+    {
+    }
 
     void insert(const std::string &name, QAction *action)
     {
@@ -353,9 +365,12 @@ class TabWidget::Private
 {
     friend class ::Kleo::TabWidget;
     TabWidget *const q;
+
 public:
     explicit Private(TabWidget *qq);
-    ~Private() {}
+    ~Private()
+    {
+    }
 
 private:
     void slotContextMenu(const QPoint &p);
@@ -474,8 +489,10 @@ TabWidget::Private::Private(TabWidget *qq)
     // create "Close Tab" button after tab widget to ensure correct tab order
     closeTabButton = new QToolButton{q};
 
-    connect(tabWidget, &QTabWidget::currentChanged, q, [this](int index) { currentIndexChanged(index); });
-    connect(tabWidget->tabBar(), &QWidget::customContextMenuRequested, q, [this](const QPoint & p) {
+    connect(tabWidget, &QTabWidget::currentChanged, q, [this](int index) {
+        currentIndexChanged(index);
+    });
+    connect(tabWidget->tabBar(), &QWidget::customContextMenuRequested, q, [this](const QPoint &p) {
         slotContextMenu(p);
     });
 }
@@ -517,7 +534,7 @@ void TabWidget::Private::slotContextMenu(const QPoint &p)
     }
 
     if (contextMenuPage == current || action == newAction) {
-        return;    // performed through signal/slot connections...
+        return; // performed through signal/slot connections...
     }
 
 #ifndef QT_NO_INPUTDIALOG
@@ -690,11 +707,13 @@ void TabWidget::Private::collapseAll(Page *page)
 }
 
 TabWidget::TabWidget(QWidget *p, Qt::WindowFlags f)
-    : QWidget(p, f), d(new Private(this))
+    : QWidget(p, f)
+    , d(new Private(this))
 {
 }
 
-TabWidget::~TabWidget() {
+TabWidget::~TabWidget()
+{
     saveViews(KSharedConfig::openConfig().data());
 }
 
@@ -810,44 +829,121 @@ void TabWidget::createActions(KActionCollection *coll)
         return;
     }
     const action_data actionDataNew = {
-        "window_new_tab", i18n("New Tab"), i18n("Open a new tab"),
-        "tab-new-background", this, [this](bool) { d->slotNewTab(); }, QStringLiteral("CTRL+SHIFT+N")
+        "window_new_tab",
+        i18n("New Tab"),
+        i18n("Open a new tab"),
+        "tab-new-background",
+        this,
+        [this](bool) {
+            d->slotNewTab();
+        },
+        QStringLiteral("CTRL+SHIFT+N"),
     };
 
     d->newAction = make_action_from_data(actionDataNew, coll);
 
     const std::vector<action_data> actionData = {
         {
-            Actions::Rename, i18n("Rename Tab..."), i18n("Rename this tab"),
-            "edit-rename", this, [this](bool) { d->slotRenameCurrentTab(); }, QStringLiteral("CTRL+SHIFT+R"), RegularQAction, Disabled
+            Actions::Rename,
+            i18n("Rename Tab..."),
+            i18n("Rename this tab"),
+            "edit-rename",
+            this,
+            [this](bool) {
+                d->slotRenameCurrentTab();
+            },
+            QStringLiteral("CTRL+SHIFT+R"),
+            RegularQAction,
+            Disabled,
         },
         {
-            Actions::Duplicate, i18n("Duplicate Tab"), i18n("Duplicate this tab"),
-            "tab-duplicate", this, [this](bool) { d->slotDuplicateCurrentTab(); }, QStringLiteral("CTRL+SHIFT+D")
+            Actions::Duplicate,
+            i18n("Duplicate Tab"),
+            i18n("Duplicate this tab"),
+            "tab-duplicate",
+            this,
+            [this](bool) {
+                d->slotDuplicateCurrentTab();
+            },
+            QStringLiteral("CTRL+SHIFT+D"),
         },
         {
-            Actions::Close, i18n("Close Tab"), i18n("Close this tab"),
-            "tab-close", this, [this](bool) { d->slotCloseCurrentTab(); }, QStringLiteral("CTRL+SHIFT+W"), RegularQAction, Disabled
+            Actions::Close,
+            i18n("Close Tab"),
+            i18n("Close this tab"),
+            "tab-close",
+            this,
+            [this](bool) {
+                d->slotCloseCurrentTab();
+            },
+            QStringLiteral("CTRL+SHIFT+W"),
+            RegularQAction,
+            Disabled,
         }, // ### CTRL-W when available
         {
-            Actions::MoveLeft, i18n("Move Tab Left"), i18n("Move this tab left"),
-            nullptr, this, [this](bool) { d->slotMoveCurrentTabLeft(); }, QStringLiteral("CTRL+SHIFT+LEFT"), RegularQAction, Disabled
+            Actions::MoveLeft,
+            i18n("Move Tab Left"),
+            i18n("Move this tab left"),
+            nullptr,
+            this,
+            [this](bool) {
+                d->slotMoveCurrentTabLeft();
+            },
+            QStringLiteral("CTRL+SHIFT+LEFT"),
+            RegularQAction,
+            Disabled,
         },
         {
-            Actions::MoveRight, i18n("Move Tab Right"), i18n("Move this tab right"),
-            nullptr, this, [this](bool) { d->slotMoveCurrentTabRight(); }, QStringLiteral("CTRL+SHIFT+RIGHT"), RegularQAction, Disabled
+            Actions::MoveRight,
+            i18n("Move Tab Right"),
+            i18n("Move this tab right"),
+            nullptr,
+            this,
+            [this](bool) {
+                d->slotMoveCurrentTabRight();
+            },
+            QStringLiteral("CTRL+SHIFT+RIGHT"),
+            RegularQAction,
+            Disabled,
         },
         {
-            Actions::Hierarchical, i18n("Hierarchical Certificate List"), QString(),
-            nullptr, this, [this](bool on) { d->slotToggleHierarchicalView(on); }, QString(), KFToggleAction, Disabled
+            Actions::Hierarchical,
+            i18n("Hierarchical Certificate List"),
+            QString(),
+            nullptr,
+            this,
+            [this](bool on) {
+                d->slotToggleHierarchicalView(on);
+            },
+            QString(),
+            KFToggleAction,
+            Disabled,
         },
         {
-            Actions::ExpandAll, i18n("Expand All"), QString(),
-            nullptr, this, [this](bool) { d->slotExpandAll(); }, QStringLiteral("CTRL+."), RegularQAction, Disabled
+            Actions::ExpandAll,
+            i18n("Expand All"),
+            QString(),
+            nullptr,
+            this,
+            [this](bool) {
+                d->slotExpandAll();
+            },
+            QStringLiteral("CTRL+."),
+            RegularQAction,
+            Disabled,
         },
         {
-            Actions::CollapseAll, i18n("Collapse All"), QString(),
-            nullptr, this, [this](bool) { d->slotCollapseAll(); }, QStringLiteral("CTRL+,"), RegularQAction, Disabled
+            Actions::CollapseAll,
+            i18n("Collapse All"),
+            QString(),
+            nullptr,
+            this,
+            [this](bool) {
+                d->slotCollapseAll();
+            },
+            QStringLiteral("CTRL+,"),
+            RegularQAction,
+            Disabled,
         },
     };
 
@@ -913,10 +1009,18 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
     page->setFlatModel(flatModel);
     page->setHierarchicalModel(hierarchicalModel);
 
-    connect(page, &Page::titleChanged, q, [this](const QString &text) { slotPageTitleChanged(text); });
-    connect(page, &Page::keyFilterChanged, q, [this](const std::shared_ptr<Kleo::KeyFilter> &filter) { slotPageKeyFilterChanged(filter); });
-    connect(page, &Page::stringFilterChanged, q, [this](const QString &text) { slotPageStringFilterChanged(text); });
-    connect(page, &Page::hierarchicalChanged, q, [this](bool on) { slotPageHierarchyChanged(on); });
+    connect(page, &Page::titleChanged, q, [this](const QString &text) {
+        slotPageTitleChanged(text);
+    });
+    connect(page, &Page::keyFilterChanged, q, [this](const std::shared_ptr<Kleo::KeyFilter> &filter) {
+        slotPageKeyFilterChanged(filter);
+    });
+    connect(page, &Page::stringFilterChanged, q, [this](const QString &text) {
+        slotPageStringFilterChanged(text);
+    });
+    connect(page, &Page::hierarchicalChanged, q, [this](bool on) {
+        slotPageHierarchyChanged(on);
+    });
 
     if (columnReference) {
         page->setColumnSizes(columnReference->columnSizes());

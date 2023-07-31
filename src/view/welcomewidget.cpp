@@ -13,28 +13,28 @@
 
 #include "htmllabel.h"
 
-#include <version-kleopatra.h>
 #include <Libkleo/GnuPG>
+#include <version-kleopatra.h>
 
-#include <QVBoxLayout>
+#include <QAction>
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QToolButton>
-#include <QAction>
+#include <QVBoxLayout>
 
 #include "commands/importcertificatefromfilecommand.h"
 #include "commands/newopenpgpcertificatecommand.h"
 
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KConfigGroup>
 
 static const QString templ = QStringLiteral(
-"<h3>%1</h3>" // Welcome
-"<p>%2<p/><p>%3</p>" // Intro + Explanation
-"<ul><li>%4</li><li>%5</li></ul>" //
-"<p>%6</p>" // More info
-"");
+    "<h3>%1</h3>" // Welcome
+    "<p>%2<p/><p>%3</p>" // Intro + Explanation
+    "<ul><li>%4</li><li>%5</li></ul>" //
+    "<p>%6</p>" // More info
+    "");
 
 using namespace Kleo;
 
@@ -56,7 +56,15 @@ protected:
         case Qt::Key_Enter:
         case Qt::Key_Return: {
             // forward as key press of Key_Select to QToolButton
-            QKeyEvent alternateEvent{e->type(), Qt::Key_Select, e->modifiers(), e->nativeScanCode(), e->nativeVirtualKey(), e->nativeModifiers(), e->text(), e->isAutoRepeat(), static_cast<ushort>(e->count())};
+            QKeyEvent alternateEvent{e->type(),
+                                     Qt::Key_Select,
+                                     e->modifiers(),
+                                     e->nativeScanCode(),
+                                     e->nativeVirtualKey(),
+                                     e->nativeModifiers(),
+                                     e->text(),
+                                     e->isAutoRepeat(),
+                                     static_cast<ushort>(e->count())};
             QToolButton::keyPressEvent(&alternateEvent);
             if (!alternateEvent.isAccepted()) {
                 e->ignore();
@@ -74,7 +82,15 @@ protected:
         case Qt::Key_Enter:
         case Qt::Key_Return: {
             // forward as key release of Key_Select to QToolButton
-            QKeyEvent alternateEvent{e->type(), Qt::Key_Select, e->modifiers(), e->nativeScanCode(), e->nativeVirtualKey(), e->nativeModifiers(), e->text(), e->isAutoRepeat(), static_cast<ushort>(e->count())};
+            QKeyEvent alternateEvent{e->type(),
+                                     Qt::Key_Select,
+                                     e->modifiers(),
+                                     e->nativeScanCode(),
+                                     e->nativeVirtualKey(),
+                                     e->nativeModifiers(),
+                                     e->text(),
+                                     e->isAutoRepeat(),
+                                     static_cast<ushort>(e->count())};
             QToolButton::keyReleaseEvent(&alternateEvent);
             if (!alternateEvent.isAccepted()) {
                 e->ignore();
@@ -91,12 +107,14 @@ protected:
 class WelcomeWidget::Private
 {
 public:
-    Private(WelcomeWidget *qq): q(qq)
+    Private(WelcomeWidget *qq)
+        : q(qq)
     {
         auto vLay = new QVBoxLayout(q);
         auto hLay = new QHBoxLayout;
 
-        const QString welcome = i18nc("%1 is version", "Welcome to Kleopatra %1",
+        const QString welcome = i18nc("%1 is version",
+                                      "Welcome to Kleopatra %1",
 #ifdef Q_OS_WIN
                                       Kleo::gpg4winVersion());
 #else
@@ -126,8 +144,12 @@ public:
         importAction->setText(i18n("Import..."));
         importAction->setIcon(QIcon::fromTheme(QStringLiteral("view-certificate-import")));
 
-        connect(importAction, &QAction::triggered, q, [this] () { import(); });
-        connect(genKeyAction, &QAction::triggered, q, [this] () { generate(); });
+        connect(importAction, &QAction::triggered, q, [this]() {
+            import();
+        });
+        connect(genKeyAction, &QAction::triggered, q, [this]() {
+            generate();
+        });
 
         mGenerateBtn = new ToolButton{q};
         mGenerateBtn->setDefaultAction(genKeyAction);
@@ -177,8 +199,7 @@ public:
         auto cmd = new Kleo::ImportCertificateFromFileCommand();
         cmd->setParentWidget(q);
 
-        QObject::connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished,
-                q, [this]() {
+        QObject::connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished, q, [this]() {
             mImportBtn->setEnabled(true);
         });
         cmd->start();
@@ -190,8 +211,7 @@ public:
         auto cmd = new NewOpenPGPCertificateCommand;
         cmd->setParentWidget(q);
 
-        QObject::connect(cmd, &NewOpenPGPCertificateCommand::finished,
-                q, [this]() {
+        QObject::connect(cmd, &NewOpenPGPCertificateCommand::finished, q, [this]() {
             mGenerateBtn->setEnabled(true);
         });
         cmd->start();
@@ -203,9 +223,9 @@ public:
     ToolButton *mImportBtn = nullptr;
 };
 
-
-WelcomeWidget::WelcomeWidget (QWidget *parent): QWidget(parent),
-    d(new Private(this))
+WelcomeWidget::WelcomeWidget(QWidget *parent)
+    : QWidget(parent)
+    , d(new Private(this))
 {
 }
 

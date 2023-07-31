@@ -26,7 +26,7 @@ protected:
     enum Operation {
         SignDisallowed = 0,
         SignAllowed = 1,
-        SignSelected  = 2,
+        SignSelected = 2,
 
         SignMask = SignAllowed | SignSelected,
 
@@ -42,9 +42,11 @@ private:
     {
         return SignSelected | EncryptSelected;
     }
+
 private:
     int doStart() override;
     void doCanceled() override;
+
 public:
     static const char *staticName()
     {
@@ -52,6 +54,7 @@ public:
     }
 
     class Private;
+
 private:
     kdtools::pimpl_ptr<Private> d;
 };
@@ -92,4 +95,3 @@ public:
 };
 
 }
-

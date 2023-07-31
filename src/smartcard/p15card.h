@@ -25,7 +25,7 @@ namespace SmartCard
  *
  * The specialization is required for specific app support.
  **/
-class P15Card: public Card
+class P15Card : public Card
 {
 public:
     explicit P15Card(const Card &card);

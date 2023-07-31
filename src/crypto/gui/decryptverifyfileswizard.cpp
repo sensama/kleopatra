@@ -19,14 +19,14 @@
 #include <crypto/task.h>
 #include <crypto/taskcollection.h>
 
-#include <utils/scrollarea.h>
 #include <utils/kleo_assert.h>
+#include <utils/scrollarea.h>
 
-#include <Libkleo/Stl_Util>
 #include <Libkleo/FileNameRequester>
+#include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
 #include <KGuiItem>
+#include <KLocalizedString>
 
 #include <QBoxLayout>
 #include <QCheckBox>
@@ -93,22 +93,22 @@ public:
                 const QString dataFileName = w->signedDataFileName();
                 return !sigFileName.isEmpty() && !dataFileName.isEmpty() && QFile::exists(sigFileName) && QFile::exists(dataFileName);
             }
-            case DecryptVerifyOperationWidget::DecryptVerifyOpaque:
-                ;
+            case DecryptVerifyOperationWidget::DecryptVerifyOpaque:;
             }
             return true;
         });
     }
+
 private:
     std::vector<DecryptVerifyOperationWidget *> m_widgets;
 
     struct UI {
         QCheckBox useOutputDirectoryCB;
-        QLabel            outputDirectoryLB;
+        QLabel outputDirectoryLB;
         FileNameRequester outputDirectoryFNR;
-        ScrollArea       scrollArea; // ### replace with KDScrollArea when done
-        QVBoxLayout     vlay;
-        QHBoxLayout      hlay;
+        ScrollArea scrollArea; // ### replace with KDScrollArea when done
+        QVBoxLayout vlay;
+        QHBoxLayout hlay;
 
         explicit UI(OperationsWidget *q);
     } m_ui;
@@ -119,6 +119,7 @@ class DecryptVerifyFilesWizard::Private
 {
     friend class ::Kleo::Crypto::Gui::DecryptVerifyFilesWizard;
     DecryptVerifyFilesWizard *const q;
+
 public:
     Private(DecryptVerifyFilesWizard *qq);
     ~Private();
@@ -134,12 +135,14 @@ private:
 };
 
 DecryptVerifyFilesWizard::DecryptVerifyFilesWizard(QWidget *p, Qt::WindowFlags f)
-    : Wizard(p, f), d(new Private(this))
+    : Wizard(p, f)
+    , d(new Private(this))
 {
-
 }
 
-DecryptVerifyFilesWizard::~DecryptVerifyFilesWizard() {}
+DecryptVerifyFilesWizard::~DecryptVerifyFilesWizard()
+{
+}
 
 void DecryptVerifyFilesWizard::setOutputDirectory(const QString &dir)
 {
@@ -177,9 +180,9 @@ void DecryptVerifyFilesWizard::setTaskCollection(const std::shared_ptr<TaskColle
 }
 
 DecryptVerifyFilesWizard::Private::Private(DecryptVerifyFilesWizard *qq)
-    : q(qq),
-      operationsPage(q),
-      resultPage(q)
+    : q(qq)
+    , operationsPage(q)
+    , resultPage(q)
 {
     q->setPage(DecryptVerifyFilesWizard::OperationsPage, &operationsPage);
     q->setPage(DecryptVerifyFilesWizard::ResultPage, &resultPage);
@@ -191,27 +194,34 @@ DecryptVerifyFilesWizard::Private::Private(DecryptVerifyFilesWizard *qq)
     operationsPage.setCommitPage(true);
 }
 
-DecryptVerifyFilesWizard::Private::~Private() {}
+DecryptVerifyFilesWizard::Private::~Private()
+{
+}
 
 OperationsWidget::OperationsWidget(QWidget *p)
-    : WizardPage(p), m_widgets(), m_ui(this)
+    : WizardPage(p)
+    , m_widgets()
+    , m_ui(this)
 {
     setTitle(i18n("<b>Choose operations to be performed</b>"));
-    setSubTitle(i18n("Here you can check and, if needed, override "
-                     "the operations Kleopatra detected for the input given."));
+    setSubTitle(
+        i18n("Here you can check and, if needed, override "
+             "the operations Kleopatra detected for the input given."));
     setCommitPage(true);
     setCustomNextButton(KGuiItem(i18n("&Decrypt/Verify")));
 }
 
-OperationsWidget::~OperationsWidget() {}
+OperationsWidget::~OperationsWidget()
+{
+}
 
 OperationsWidget::UI::UI(OperationsWidget *q)
-    : useOutputDirectoryCB(i18n("Create all output files in a single folder"), q),
-      outputDirectoryLB(i18n("&Output folder:"), q),
-      outputDirectoryFNR(q),
-      scrollArea(q),
-      vlay(q),
-      hlay()
+    : useOutputDirectoryCB(i18n("Create all output files in a single folder"), q)
+    , outputDirectoryLB(i18n("&Output folder:"), q)
+    , outputDirectoryFNR(q)
+    , scrollArea(q)
+    , vlay(q)
+    , hlay()
 {
     KDAB_SET_OBJECT_NAME(useOutputDirectoryCB);
     KDAB_SET_OBJECT_NAME(outputDirectoryLB);
@@ -242,7 +252,6 @@ OperationsWidget::UI::UI(OperationsWidget *q)
 
 void OperationsWidget::ensureIndexAvailable(unsigned int idx)
 {
-
     if (idx < m_widgets.size()) {
         return;
     }

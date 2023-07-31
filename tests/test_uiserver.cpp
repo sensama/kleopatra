@@ -22,11 +22,11 @@
 #include "utils/wsastarter.h"
 
 #ifndef Q_OS_WIN
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <errno.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 #endif
 
 #include <cstdlib>
@@ -51,29 +51,32 @@ static std::map<std::string, std::string> inquireData;
 
 static void usage(const std::string &msg = std::string())
 {
-    std::cerr << msg << std::endl <<
-              "\n"
-              "Usage: test_uiserver <socket> [<io>] [<options>] [<inquire>] command [<args>]\n"
-              "where:\n"
+    std::cerr << msg << std::endl
+              << "\n"
+                 "Usage: test_uiserver <socket> [<io>] [<options>] [<inquire>] command [<args>]\n"
+                 "where:\n"
 #ifdef Q_OS_WIN
-              "      <io>: [--input[-fd] <file>] [--output[-fd] <file>] [--message[-fd] <file>]\n"
+                 "      <io>: [--input[-fd] <file>] [--output[-fd] <file>] [--message[-fd] <file>]\n"
 #else
-              "      <io>: [--input <file>] [--output <file>] [--message <file>]\n"
+                 "      <io>: [--input <file>] [--output <file>] [--message <file>]\n"
 #endif
-              " <options>: *[--option name=value]\n"
-              " <inquire>: [--inquire keyword=<file>]\n";
+                 " <options>: *[--option name=value]\n"
+                 " <inquire>: [--inquire keyword=<file>]\n";
     exit(1);
 }
 
 static gpg_error_t data(void *void_ctx, const void *buffer, size_t len)
 {
-    (void)void_ctx; (void)buffer; (void)len;
+    (void)void_ctx;
+    (void)buffer;
+    (void)len;
     return 0; // ### implement me
 }
 
 static gpg_error_t status(void *void_ctx, const char *line)
 {
-    (void)void_ctx; (void)line;
+    (void)void_ctx;
+    (void)line;
     return 0;
 }
 
@@ -100,13 +103,12 @@ static gpg_error_t inquire(void *void_ctx, const char *keyword)
 
 int main(int argc, char *argv[])
 {
-
     const Kleo::WSAStarter _wsastarter;
 
     assuan_set_gpg_err_source(GPG_ERR_SOURCE_DEFAULT);
 
     if (argc < 3) {
-        usage();    // need socket and command, at least
+        usage(); // need socket and command, at least
     }
 
     const char *socket = argv[1];
@@ -135,14 +137,14 @@ int main(int argc, char *argv[])
             inFDs.push_back(inFD);
         } else if (qstrcmp(arg, "--output-fd") == 0) {
             int outFD;
-            if ((outFD = open(argv[++optind], O_WRONLY | O_CREAT, 0666)) ==  -1) {
+            if ((outFD = open(argv[++optind], O_WRONLY | O_CREAT, 0666)) == -1) {
                 perror("--output-fd open()");
                 return 1;
             }
             outFDs.push_back(outFD);
         } else if (qstrcmp(arg, "--message-fd") == 0) {
             int msgFD;
-            if ((msgFD = open(argv[++optind], O_RDONLY)) ==  -1) {
+            if ((msgFD = open(argv[++optind], O_RDONLY)) == -1) {
                 perror("--message-fd open()");
                 return 1;
             }

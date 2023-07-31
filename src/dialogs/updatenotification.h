@@ -9,8 +9,8 @@
 
 #pragma once
 
-#include <QString>
 #include <QDialog>
+#include <QString>
 
 namespace Kleo
 {

@@ -21,11 +21,11 @@
 
 #include <QGpgME/CryptoConfig>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
+#include <KLocalizedString>
 
 #if HAVE_QDBUS
-# include <QDBusConnection>
+#include <QDBusConnection>
 #endif
 
 using namespace Kleo;
@@ -36,10 +36,11 @@ class SMimeValidationConfigurationWidget::Private
 {
     friend class ::Kleo::Config::SMimeValidationConfigurationWidget;
     SMimeValidationConfigurationWidget *const q;
+
 public:
     explicit Private(SMimeValidationConfigurationWidget *qq)
-        : q(qq),
-          ui(qq)
+        : q(qq)
+        , ui(qq)
     {
 #if HAVE_QDBUS
         QDBusConnection::sessionBus().connect(QString(), QString(), QStringLiteral("org.kde.kleo.CryptoConfig"), QStringLiteral("changed"), q, SLOT(load()));
@@ -83,9 +84,7 @@ public:
 private:
     void enableDisableActions()
     {
-        ui.customHTTPProxy->setEnabled(ui.useCustomHTTPProxyRB->isChecked() &&
-                                       !ui.disableHTTPCB->isChecked() &&
-                                       customHTTPProxyWritable);
+        ui.customHTTPProxy->setEnabled(ui.useCustomHTTPProxyRB->isChecked() && !ui.disableHTTPCB->isChecked() && customHTTPProxyWritable);
     }
 
 private:
@@ -108,18 +107,20 @@ private:
             OCSPResponderSignature->setOnlyX509CertificatesAllowed(true);
             OCSPResponderSignature->setOnlySigningCertificatesAllowed(true);
             OCSPResponderSignature->setMultipleCertificatesAllowed(false);
-            //OCSPResponderSignature->setAllowedKeys( KeySelectionDialog::TrustedKeys|KeySelectionDialog::ValidKeys );
+            // OCSPResponderSignature->setAllowedKeys( KeySelectionDialog::TrustedKeys|KeySelectionDialog::ValidKeys );
         }
     } ui;
 };
 
 SMimeValidationConfigurationWidget::SMimeValidationConfigurationWidget(QWidget *p, Qt::WindowFlags f)
-    : QWidget(p, f), d(new Private(this))
+    : QWidget(p, f)
+    , d(new Private(this))
 {
-
 }
 
-SMimeValidationConfigurationWidget::~SMimeValidationConfigurationWidget() {}
+SMimeValidationConfigurationWidget::~SMimeValidationConfigurationWidget()
+{
+}
 
 static void disableDirmngrWidget(QWidget *w)
 {
@@ -140,38 +141,36 @@ static void initializeDirmngrCheckbox(QCheckBox *cb, CryptoConfigEntry *entry)
 struct SMIMECryptoConfigEntries {
     enum ShowError {
         DoNotShowError,
-        DoShowError
+        DoShowError,
     };
 
     SMIMECryptoConfigEntries(CryptoConfig *config)
-        : mConfig(config),
-          // Checkboxes
-          mCheckUsingOCSPConfigEntry(configEntry("gpgsm", "enable-ocsp", CryptoConfigEntry::ArgType_None)),
-          mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "allow-ocsp", CryptoConfigEntry::ArgType_None)),
-          mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "disable-policy-checks", CryptoConfigEntry::ArgType_None)),
-          mNeverConsultConfigEntry(configEntry("gpgsm", "disable-crl-checks", CryptoConfigEntry::ArgType_None)),
-          mAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, DoNotShowError)), // legacy entry -> ignore error
-          mFetchMissingConfigEntry(configEntry("gpgsm", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None)),
-          mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None)),
-          // dirmngr-0.9.0 options
-          mIgnoreServiceURLEntry(configEntry("dirmngr", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None)),
-          mIgnoreHTTPDPEntry(configEntry("dirmngr", "ignore-http-dp", CryptoConfigEntry::ArgType_None)),
-          mDisableHTTPEntry(configEntry("dirmngr", "disable-http", CryptoConfigEntry::ArgType_None)),
-          mHonorHTTPProxy(configEntry("dirmngr", "honor-http-proxy", CryptoConfigEntry::ArgType_None)),
-          mIgnoreLDAPDPEntry(configEntry("dirmngr", "ignore-ldap-dp", CryptoConfigEntry::ArgType_None)),
-          mDisableLDAPEntry(configEntry("dirmngr", "disable-ldap", CryptoConfigEntry::ArgType_None)),
-          // Other widgets
-          mOCSPResponderURLConfigEntry(configEntry("dirmngr", "ocsp-responder", CryptoConfigEntry::ArgType_String)),
-          mOCSPResponderSignature(configEntry("dirmngr", "ocsp-signer", CryptoConfigEntry::ArgType_String)),
-          mCustomHTTPProxy(configEntry("dirmngr", "http-proxy", CryptoConfigEntry::ArgType_String)),
-          mCustomLDAPProxy(configEntry("dirmngr", "ldap-proxy", CryptoConfigEntry::ArgType_String))
+        : mConfig(config)
+        // Checkboxes
+        , mCheckUsingOCSPConfigEntry(configEntry("gpgsm", "enable-ocsp", CryptoConfigEntry::ArgType_None))
+        , mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "allow-ocsp", CryptoConfigEntry::ArgType_None))
+        , mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "disable-policy-checks", CryptoConfigEntry::ArgType_None))
+        , mNeverConsultConfigEntry(configEntry("gpgsm", "disable-crl-checks", CryptoConfigEntry::ArgType_None))
+        , mAllowMarkTrustedConfigEntry(
+              configEntry("gpg-agent", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, DoNotShowError)) // legacy entry -> ignore error
+        , mFetchMissingConfigEntry(configEntry("gpgsm", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None))
+        , mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None))
+        // dirmngr-0.9.0 options
+        , mIgnoreServiceURLEntry(configEntry("dirmngr", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None))
+        , mIgnoreHTTPDPEntry(configEntry("dirmngr", "ignore-http-dp", CryptoConfigEntry::ArgType_None))
+        , mDisableHTTPEntry(configEntry("dirmngr", "disable-http", CryptoConfigEntry::ArgType_None))
+        , mHonorHTTPProxy(configEntry("dirmngr", "honor-http-proxy", CryptoConfigEntry::ArgType_None))
+        , mIgnoreLDAPDPEntry(configEntry("dirmngr", "ignore-ldap-dp", CryptoConfigEntry::ArgType_None))
+        , mDisableLDAPEntry(configEntry("dirmngr", "disable-ldap", CryptoConfigEntry::ArgType_None))
+        // Other widgets
+        , mOCSPResponderURLConfigEntry(configEntry("dirmngr", "ocsp-responder", CryptoConfigEntry::ArgType_String))
+        , mOCSPResponderSignature(configEntry("dirmngr", "ocsp-signer", CryptoConfigEntry::ArgType_String))
+        , mCustomHTTPProxy(configEntry("dirmngr", "http-proxy", CryptoConfigEntry::ArgType_String))
+        , mCustomLDAPProxy(configEntry("dirmngr", "ldap-proxy", CryptoConfigEntry::ArgType_String))
     {
     }
 
-    CryptoConfigEntry *configEntry(const char *componentName,
-                                   const char *entryName,
-                                   int argType,
-                                   ShowError showError=DoShowError);
+    CryptoConfigEntry *configEntry(const char *componentName, const char *entryName, int argType, ShowError showError = DoShowError);
 
     CryptoConfig *const mConfig;
 
@@ -196,7 +195,6 @@ struct SMIMECryptoConfigEntries {
     CryptoConfigEntry *const mOCSPResponderSignature;
     CryptoConfigEntry *const mCustomHTTPProxy;
     CryptoConfigEntry *const mCustomLDAPProxy;
-
 };
 
 void SMimeValidationConfigurationWidget::defaults()
@@ -252,7 +250,7 @@ void SMimeValidationConfigurationWidget::load()
     }
     d->ui.neverConsultCB->setEnabled(e.mNeverConsultConfigEntry && !e.mNeverConsultConfigEntry->isReadOnly());
     if (e.mNoAllowMarkTrustedConfigEntry) {
-        d->ui.allowMarkTrustedCB->hide();    // this option was only here to _enable_ allow-mark-trusted, and makes no sense if it's already default on
+        d->ui.allowMarkTrustedCB->hide(); // this option was only here to _enable_ allow-mark-trusted, and makes no sense if it's already default on
     }
     if (e.mAllowMarkTrustedConfigEntry) {
         d->ui.allowMarkTrustedCB->setChecked(e.mAllowMarkTrustedConfigEntry->boolValue());
@@ -356,7 +354,7 @@ void SMimeValidationConfigurationWidget::save() const
         e.mOCSPResponderSignature->setStringValue(txt);
     }
 
-    //dirmngr-0.9.0 options
+    // dirmngr-0.9.0 options
     saveCheckBoxToKleoEntry(d->ui.ignoreServiceURLCB, e.mIgnoreServiceURLEntry);
     saveCheckBoxToKleoEntry(d->ui.ignoreHTTPDPCB, e.mIgnoreHTTPDPEntry);
     saveCheckBoxToKleoEntry(d->ui.disableHTTPCB, e.mDisableHTTPEntry);
@@ -381,21 +379,23 @@ void SMimeValidationConfigurationWidget::save() const
     config->sync(true);
 }
 
-CryptoConfigEntry *SMIMECryptoConfigEntries::configEntry(const char *componentName,
-        const char *entryName,
-        int /*CryptoConfigEntry::ArgType*/ argType,
-        ShowError showError)
+CryptoConfigEntry *
+SMIMECryptoConfigEntries::configEntry(const char *componentName, const char *entryName, int /*CryptoConfigEntry::ArgType*/ argType, ShowError showError)
 {
     CryptoConfigEntry *const entry = getCryptoConfigEntry(mConfig, componentName, entryName);
     if (!entry) {
         if (showError == DoShowError) {
-            qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf doesn't seem to know the entry for %1/%2").arg(QLatin1String(componentName), QLatin1String(entryName));
+            qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf doesn't seem to know the entry for %1/%2")
+                                            .arg(QLatin1String(componentName), QLatin1String(entryName));
         }
         return nullptr;
     }
     if (entry->argType() != argType || entry->isList()) {
         if (showError == DoShowError) {
-            qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf has wrong type for %1/%2: %3 %4").arg(QLatin1String(componentName), QLatin1String(entryName)).arg(entry->argType()).arg(entry->isList());
+            qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf has wrong type for %1/%2: %3 %4")
+                                            .arg(QLatin1String(componentName), QLatin1String(entryName))
+                                            .arg(entry->argType())
+                                            .arg(entry->isList());
         }
         return nullptr;
     }

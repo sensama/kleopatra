@@ -46,4 +46,3 @@ private:
 };
 
 #endif // QT_NO_SYSTEMTRAYICON
-

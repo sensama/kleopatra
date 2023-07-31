@@ -15,16 +15,15 @@
 
 #include <Libkleo/Formatting>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/ChangePasswdJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/key.h>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
+#include <KLocalizedString>
 
 #include <gpg-error.h>
-
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -38,6 +37,7 @@ class ChangePassphraseCommand::Private : public Command::Private
     {
         return static_cast<ChangePassphraseCommand *>(q);
     }
+
 public:
     explicit Private(ChangePassphraseCommand *qq, KeyListController *c);
     ~Private() override;
@@ -71,11 +71,10 @@ const ChangePassphraseCommand::Private *ChangePassphraseCommand::d_func() const
 #define q q_func()
 
 ChangePassphraseCommand::Private::Private(ChangePassphraseCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      key(),
-      job()
+    : Command::Private(qq, c)
+    , key()
+    , job()
 {
-
 }
 
 ChangePassphraseCommand::Private::~Private()
@@ -103,7 +102,6 @@ ChangePassphraseCommand::ChangePassphraseCommand(const GpgME::Key &key)
 
 void ChangePassphraseCommand::Private::init()
 {
-
 }
 
 ChangePassphraseCommand::~ChangePassphraseCommand()
@@ -113,7 +111,6 @@ ChangePassphraseCommand::~ChangePassphraseCommand()
 
 void ChangePassphraseCommand::doStart()
 {
-
     const std::vector<Key> keys = d->keys();
     if (keys.size() != 1 || !keys.front().hasSecret()) {
         d->finished();
@@ -124,15 +121,11 @@ void ChangePassphraseCommand::doStart()
 
     d->createJob();
     d->startJob();
-
 }
 
 void ChangePassphraseCommand::Private::startJob()
 {
-    const Error err = job
-                      ? job->start(key)
-                      : Error::fromCode(GPG_ERR_NOT_SUPPORTED)
-                      ;
+    const Error err = job ? job->start(key) : Error::fromCode(GPG_ERR_NOT_SUPPORTED);
     if (err) {
         showErrorDialog(err);
         finished();
@@ -174,13 +167,15 @@ void ChangePassphraseCommand::Private::createJob()
     }
 
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(j, &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(j, &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
-    connect(j, &ChangePasswdJob::result, q, [this](const GpgME::Error &result) { slotResult(result); });
+    connect(j, &ChangePasswdJob::result, q, [this](const GpgME::Error &result) {
+        slotResult(result);
+    });
 
     job = j;
 }
@@ -196,8 +191,7 @@ void ChangePassphraseCommand::Private::showErrorDialog(const Error &err)
 
 void ChangePassphraseCommand::Private::showSuccessDialog()
 {
-    information(i18n("Passphrase changed successfully."),
-                i18n("Passphrase Change Succeeded"));
+    information(i18n("Passphrase changed successfully."), i18n("Passphrase Change Succeeded"));
 }
 
 #undef d

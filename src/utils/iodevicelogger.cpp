@@ -16,11 +16,15 @@ using namespace Kleo;
 class IODeviceLogger::Private
 {
     IODeviceLogger *const q;
-public:
 
+public:
     static bool write(const std::shared_ptr<QIODevice> &dev, const char *data, qint64 max);
 
-    explicit Private(const std::shared_ptr<QIODevice> &io_, IODeviceLogger *qq) : q(qq), io(io_), writeLog(), readLog()
+    explicit Private(const std::shared_ptr<QIODevice> &io_, IODeviceLogger *qq)
+        : q(qq)
+        , io(io_)
+        , writeLog()
+        , readLog()
     {
         Q_ASSERT(io);
         connect(io.get(), &QIODevice::aboutToClose, q, &QIODevice::aboutToClose);
@@ -54,7 +58,9 @@ bool IODeviceLogger::Private::write(const std::shared_ptr<QIODevice> &dev, const
     return true;
 }
 
-IODeviceLogger::IODeviceLogger(const std::shared_ptr<QIODevice> &iod, QObject *parent) : QIODevice(parent), d(new Private(iod, this))
+IODeviceLogger::IODeviceLogger(const std::shared_ptr<QIODevice> &iod, QObject *parent)
+    : QIODevice(parent)
+    , d(new Private(iod, this))
 {
 }
 
@@ -164,6 +170,5 @@ qint64 IODeviceLogger::readLineData(char *data, qint64 maxSize)
     }
     return num;
 }
-
 
 #include "moc_iodevicelogger.cpp"

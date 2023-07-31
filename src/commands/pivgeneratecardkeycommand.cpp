@@ -27,7 +27,7 @@
 
 #include <gpg-error.h>
 #if GPG_ERROR_VERSION_NUMBER >= 0x12400 // 1.36
-# define GPG_ERROR_HAS_NO_AUTH
+#define GPG_ERROR_HAS_NO_AUTH
 #endif
 
 #include "kleopatra_debug.h"
@@ -44,6 +44,7 @@ class PIVGenerateCardKeyCommand::Private : public CardCommand::Private
     {
         return static_cast<PIVGenerateCardKeyCommand *>(q);
     }
+
 public:
     explicit Private(PIVGenerateCardKeyCommand *qq, const std::string &serialNumber, QWidget *p);
     ~Private() override;
@@ -128,15 +129,18 @@ void PIVGenerateCardKeyCommand::doStart()
     auto existingKey = pivCard->keyInfo(d->keyRef).grip;
     if (!existingKey.empty()) {
         const QString warningText = i18nc("@info",
-            "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
-            "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
-            i18n("The existing key has the ID:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
-            (d->keyRef == PIVCard::keyManagementKeyRef() ?
-             i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
-             QString());
-        const auto choice = KMessageBox::warningContinueCancel(d->parentWidgetOrView(), warningText,
-            i18nc("@title:window", "Overwrite existing key"),
-            KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+                                          "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+                                          "<p>If there is no backup the existing key will be irrecoverably lost.</p>")
+            + i18n("The existing key has the ID:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey))
+            + (d->keyRef == PIVCard::keyManagementKeyRef() ? i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.")
+                                                           : QString());
+        const auto choice = KMessageBox::warningContinueCancel(d->parentWidgetOrView(),
+                                                               warningText,
+                                                               i18nc("@title:window", "Overwrite existing key"),
+                                                               KStandardGuiItem::cont(),
+                                                               KStandardGuiItem::cancel(),
+                                                               QString(),
+                                                               KMessageBox::Notify | KMessageBox::Dangerous);
         if (choice != KMessageBox::Continue) {
             d->finished();
             return;
@@ -159,10 +163,12 @@ void PIVGenerateCardKeyCommand::Private::authenticate()
 
     auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
     cmd->setAutoResetCardToOpenPGP(false);
-    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
-            q, [this]() { authenticationFinished(); });
-    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
-            q, [this]() { authenticationCanceled(); });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished, q, [this]() {
+        authenticationFinished();
+    });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled, q, [this]() {
+        authenticationCanceled();
+    });
     cmd->start();
 }
 
@@ -206,10 +212,9 @@ void PIVGenerateCardKeyCommand::Private::generateKey()
     });
 }
 
-void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error& err)
+void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error &err)
 {
-    qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::slotResult():"
-                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
+    qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::slotResult():" << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err) {
 #ifdef GPG_ERROR_HAS_NO_AUTH
         if (err.code() == GPG_ERR_NO_AUTH) {
@@ -249,8 +254,12 @@ void PIVGenerateCardKeyCommand::Private::ensureDialogCreated()
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setSupportedAlgorithms(PIVCard::supportedAlgorithms(keyRef), "rsa2048");
 
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        slotDialogRejected();
+    });
 }
 
 #undef d

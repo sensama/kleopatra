@@ -13,12 +13,12 @@
 
 #include "objectspage.h"
 #include "resolverecipientspage.h"
-#include "signerresolvepage.h"
 #include "resultpage.h"
+#include "signerresolvepage.h"
 
+#include <crypto/certificateresolver.h>
 #include <crypto/task.h>
 #include <crypto/taskcollection.h>
-#include <crypto/certificateresolver.h>
 
 #include <utils/kleo_assert.h>
 
@@ -43,6 +43,7 @@ class SignEncryptWizard::Private
 {
     friend class ::Kleo::Crypto::Gui::SignEncryptWizard;
     SignEncryptWizard *const q;
+
 public:
     explicit Private(SignEncryptWizard *qq);
     ~Private();
@@ -56,17 +57,17 @@ public:
 };
 
 SignEncryptWizard::Private::Private(SignEncryptWizard *qq)
-    : q(qq),
-      recipientResolvePage(new ResolveRecipientsPage),
-      signerResolvePage(new SignerResolvePage),
-      objectsPage(new ObjectsPage),
-      resultPage(new ResultPage)
+    : q(qq)
+    , recipientResolvePage(new ResolveRecipientsPage)
+    , signerResolvePage(new SignerResolvePage)
+    , objectsPage(new ObjectsPage)
+    , resultPage(new ResultPage)
 {
     q->setPage(Page::ResolveSigner, signerResolvePage);
     q->setPage(Page::Objects, objectsPage);
     q->setPage(Page::ResolveRecipients, recipientResolvePage);
     q->setPage(Page::Result, resultPage);
-    //TODO: move the RecipientPreferences creation out of here, don't create a new instance for each wizard
+    // TODO: move the RecipientPreferences creation out of here, don't create a new instance for each wizard
     recipientResolvePage->setRecipientPreferences(std::shared_ptr<RecipientPreferences>(new KConfigBasedRecipientPreferences(KSharedConfig::openConfig())));
     signerResolvePage->setSigningPreferences(std::shared_ptr<SigningPreferences>(new KConfigBasedSigningPreferences(KSharedConfig::openConfig())));
     q->resize(QSize(640, 480).expandedTo(q->sizeHint()));
@@ -78,7 +79,7 @@ void SignEncryptWizard::onNext(int currentId)
         QTimer::singleShot(0, this, &SignEncryptWizard::recipientsResolved);
     }
     if (currentId == Page::ResolveSigner) {
-        //FIXME: Sign&Encrypt is only supported by OpenPGP. Remove this when we support this for CMS, too
+        // FIXME: Sign&Encrypt is only supported by OpenPGP. Remove this when we support this for CMS, too
         if (encryptionSelected() && signingSelected()) {
             setPresetProtocol(OpenPGP);
         }
@@ -89,14 +90,19 @@ void SignEncryptWizard::onNext(int currentId)
     }
 }
 
-SignEncryptWizard::Private::~Private() {}
-
-SignEncryptWizard::SignEncryptWizard(QWidget *p, Qt::WindowFlags f)
-    : Wizard(p, f), d(new Private(this))
+SignEncryptWizard::Private::~Private()
 {
 }
 
-SignEncryptWizard::~SignEncryptWizard() {}
+SignEncryptWizard::SignEncryptWizard(QWidget *p, Qt::WindowFlags f)
+    : Wizard(p, f)
+    , d(new Private(this))
+{
+}
+
+SignEncryptWizard::~SignEncryptWizard()
+{
+}
 
 void SignEncryptWizard::setCommitPage(Page::Id page)
 {
@@ -200,7 +206,7 @@ void SignEncryptWizard::setRecipients(const std::vector<Mailbox> &recipients, co
     d->recipientResolvePage->setRecipients(recipients, encryptToSelfRecipients);
 }
 
-void SignEncryptWizard::setSignersAndCandidates(const std::vector<Mailbox> &signers, const std::vector< std::vector<Key> > &keys)
+void SignEncryptWizard::setSignersAndCandidates(const std::vector<Mailbox> &signers, const std::vector<std::vector<Key>> &keys)
 {
     d->signerResolvePage->setSignersAndCandidates(signers, keys);
 }
@@ -280,6 +286,5 @@ void SignEncryptWizard::setKeepResultPageOpenWhenDone(bool keep)
 {
     d->resultPage->setKeepOpenWhenDone(keep);
 }
-
 
 #include "moc_signencryptwizard.cpp"

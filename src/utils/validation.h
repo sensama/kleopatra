@@ -23,7 +23,7 @@ namespace Validation
 
 enum Flags {
     Optional,
-    Required
+    Required,
 };
 
 std::shared_ptr<QValidator> email(Flags flags = Required);

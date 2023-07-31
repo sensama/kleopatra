@@ -18,20 +18,19 @@
 
 #include <KGuiItem>
 #include <KLocalizedString>
-#include <QPushButton>
 #include <KStandardGuiItem>
+#include <QPushButton>
 
+#include "kleopatra_debug.h"
 #include <QDialogButtonBox>
 #include <QFrame>
 #include <QLabel>
 #include <QStackedWidget>
 #include <QTimer>
 #include <QVBoxLayout>
-#include "kleopatra_debug.h"
 
 #include <map>
 #include <set>
-
 
 using namespace Kleo::Crypto::Gui;
 
@@ -39,6 +38,7 @@ class Wizard::Private
 {
     friend class ::Wizard;
     Wizard *const q;
+
 public:
     explicit Private(Wizard *qq);
     ~Private();
@@ -68,7 +68,8 @@ private:
 };
 
 Wizard::Private::Private(Wizard *qq)
-    : q(qq), stack(new QStackedWidget)
+    : q(qq)
+    , stack(new QStackedWidget)
 {
     nextPageTimer = new QTimer(q);
     nextPageTimer->setInterval(0);
@@ -177,9 +178,9 @@ void Wizard::Private::updateHeader()
 }
 
 Wizard::Wizard(QWidget *parent, Qt::WindowFlags f)
-    : QDialog(parent, f), d(new Private(this))
+    : QDialog(parent, f)
+    , d(new Private(this))
 {
-
 }
 
 Wizard::~Wizard()

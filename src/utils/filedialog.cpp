@@ -11,8 +11,8 @@
 
 #include "filedialog.h"
 
-#include <QFileDialog>
 #include <QDir>
+#include <QFileDialog>
 #include <QMap>
 
 using namespace Kleo;
@@ -36,7 +36,7 @@ static QString dir(const QString &id)
 static void update(const QString &fname, const QString &id)
 {
     if (!fname.isEmpty()) {
-        (*dir_id_2_dir_map())[ id ] = QFileInfo(fname).absolutePath();
+        (*dir_id_2_dir_map())[id] = QFileInfo(fname).absolutePath();
     }
 }
 

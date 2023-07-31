@@ -8,8 +8,8 @@
 */
 #pragma once
 
-#include <QWidget>
 #include <QTimer>
+#include <QWidget>
 
 namespace Kleo
 {
@@ -19,7 +19,7 @@ namespace Kleo
  * Overlay widget to block KeyCache-dependent widgets if the Keycache
  * is not initialized.
  */
-class KeyCacheOverlay: public QWidget
+class KeyCacheOverlay : public QWidget
 {
     Q_OBJECT
 public:
@@ -46,4 +46,3 @@ private:
 };
 
 } // namespace Kleo
-

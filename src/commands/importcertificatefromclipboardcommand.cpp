@@ -21,9 +21,9 @@
 
 #include <KLocalizedString>
 
+#include <QApplication>
 #include <QByteArray>
 #include <QClipboard>
-#include <QApplication>
 #include <QMimeData>
 
 using namespace GpgME;
@@ -36,6 +36,7 @@ class ImportCertificateFromClipboardCommand::Private : public ImportCertificates
     {
         return static_cast<ImportCertificateFromClipboardCommand *>(q);
     }
+
 public:
     explicit Private(ImportCertificateFromClipboardCommand *qq, KeyListController *c);
     ~Private() override;
@@ -58,18 +59,18 @@ const ImportCertificateFromClipboardCommand::Private *ImportCertificateFromClipb
 ImportCertificateFromClipboardCommand::Private::Private(ImportCertificateFromClipboardCommand *qq, KeyListController *c)
     : ImportCertificatesCommand::Private(qq, c)
 {
-
 }
 
-ImportCertificateFromClipboardCommand::Private::~Private() {}
+ImportCertificateFromClipboardCommand::Private::~Private()
+{
+}
 
 // static
 bool ImportCertificateFromClipboardCommand::canImportCurrentClipboard()
 {
     if (const QClipboard *clip = QApplication::clipboard())
         if (const QMimeData *mime = clip->mimeData())
-            return mime->hasText()
-                   && mayBeAnyCertStoreType(classifyContent(mime->text().toUtf8()));
+            return mime->hasText() && mayBeAnyCertStoreType(classifyContent(mime->text().toUtf8()));
     return false;
 }
 
@@ -79,20 +80,19 @@ bool ImportCertificateFromClipboardCommand::canImportCurrentClipboard()
 ImportCertificateFromClipboardCommand::ImportCertificateFromClipboardCommand(KeyListController *p)
     : ImportCertificatesCommand(new Private(this, p))
 {
-
 }
 
 ImportCertificateFromClipboardCommand::ImportCertificateFromClipboardCommand(QAbstractItemView *v, KeyListController *p)
     : ImportCertificatesCommand(v, new Private(this, p))
 {
-
 }
 
-ImportCertificateFromClipboardCommand::~ImportCertificateFromClipboardCommand() {}
+ImportCertificateFromClipboardCommand::~ImportCertificateFromClipboardCommand()
+{
+}
 
 void ImportCertificateFromClipboardCommand::doStart()
 {
-
     if (!d->ensureHaveClipboard()) {
         Q_EMIT canceled();
         d->finished();
@@ -102,8 +102,7 @@ void ImportCertificateFromClipboardCommand::doStart()
     d->setWaitForMoreJobs(true);
     const unsigned int classification = classifyContent(d->input);
     if (!mayBeAnyCertStoreType(classification)) {
-        d->error(i18n("Clipboard contents do not look like a certificate."),
-                 i18n("Certificate Import Failed"));
+        d->error(i18n("Clipboard contents do not look like a certificate."), i18n("Certificate Import Failed"));
     } else {
         const GpgME::Protocol protocol = findProtocol(classification);
         if (protocol == GpgME::UnknownProtocol) {

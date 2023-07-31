@@ -18,16 +18,16 @@
 
 #include <KLocalizedString>
 
-#include <QVBoxLayout>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QVBoxLayout>
 
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
 
 SigningCertificateSelectionDialog::SigningCertificateSelectionDialog(QWidget *parent)
-    : QDialog(parent),
-      widget(new SigningCertificateSelectionWidget(this))
+    : QDialog(parent)
+    , widget(new SigningCertificateSelectionWidget(this))
 {
     setWindowTitle(i18nc("@title:window", "Select Signing Certificates"));
     auto mainLayout = new QVBoxLayout(this);
@@ -41,7 +41,9 @@ SigningCertificateSelectionDialog::SigningCertificateSelectionDialog(QWidget *pa
     mainLayout->addWidget(buttonBox);
 }
 
-SigningCertificateSelectionDialog::~SigningCertificateSelectionDialog() {}
+SigningCertificateSelectionDialog::~SigningCertificateSelectionDialog()
+{
+}
 
 void SigningCertificateSelectionDialog::setSelectedCertificates(const CertificatePair &certificates)
 {
@@ -62,6 +64,5 @@ void SigningCertificateSelectionDialog::setAllowedProtocols(const std::set<GpgME
 {
     widget->setAllowedProtocols(allowedProtocols);
 }
-
 
 #include "moc_signingcertificateselectiondialog.cpp"

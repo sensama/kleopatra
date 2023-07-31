@@ -16,4 +16,3 @@ class AboutData : public KAboutData
 public:
     AboutData();
 };
-

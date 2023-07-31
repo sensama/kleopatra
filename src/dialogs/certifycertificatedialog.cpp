@@ -19,20 +19,19 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
-#include <KStandardGuiItem>
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <KMessageBox>
+#include <KSharedConfig>
+#include <KStandardGuiItem>
 
-#include <QVBoxLayout>
 #include <QDialogButtonBox>
 #include <QKeyEvent>
 #include <QPushButton>
 #include <QToolTip>
+#include <QVBoxLayout>
 
 #include <gpg-error.h>
-
 
 using namespace GpgME;
 using namespace Kleo;
@@ -48,8 +47,7 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
     mainLay->addWidget(mCertWidget);
 
     auto buttonBox = new QDialogButtonBox{this};
-    buttonBox->setStandardButtons(QDialogButtonBox::Cancel |
-                                  QDialogButtonBox::Ok);
+    buttonBox->setStandardButtons(QDialogButtonBox::Cancel | QDialogButtonBox::Ok);
     const auto okButton = buttonBox->button(QDialogButtonBox::Ok);
     KGuiItem::assign(okButton, KStandardGuiItem::ok());
     okButton->setText(i18n("Certify"));
@@ -60,7 +58,7 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
     mainLay->addWidget(buttonBox);
 
     okButton->setEnabled(mCertWidget->isValid());
-    connect(mCertWidget, &CertifyWidget::changed, this, [this, okButton] () {
+    connect(mCertWidget, &CertifyWidget::changed, this, [this, okButton]() {
         okButton->setEnabled(mCertWidget->isValid());
     });
 

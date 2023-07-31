@@ -17,12 +17,12 @@
 
 #include <stdexcept>
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/un.h>
-#include <cstdio>
 #include <cerrno>
+#include <cstdio>
 #include <cstring>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <sys/un.h>
 
 using namespace Kleo;
 
@@ -68,4 +68,3 @@ void UiServer::Private::doMakeListeningSocket(const QByteArray &encodedFileName)
         throw;
     }
 }
-

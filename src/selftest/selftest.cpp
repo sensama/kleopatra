@@ -10,12 +10,15 @@
 #include <config-kleopatra.h>
 
 #include "selftest.h"
+
 #include "implementation_p.h"
 
 using namespace Kleo;
 using namespace Kleo::_detail;
 
-SelfTest::~SelfTest() {}
+SelfTest::~SelfTest()
+{
+}
 
 bool SelfTest::canFixAutomatically() const
 {
@@ -27,18 +30,19 @@ bool SelfTest::fix()
 }
 
 SelfTestImplementation::SelfTestImplementation(const QString &title)
-    : SelfTest(),
-      m_name(title),
-      m_error(),
-      m_explanation(),
-      m_proposedFix(),
-      m_skipped(false),
-      m_passed(false)
+    : SelfTest()
+    , m_name(title)
+    , m_error()
+    , m_explanation()
+    , m_proposedFix()
+    , m_skipped(false)
+    , m_passed(false)
 {
-
 }
 
-SelfTestImplementation::~SelfTestImplementation() {}
+SelfTestImplementation::~SelfTestImplementation()
+{
+}
 
 // bool SelfTestImplementation::ensureEngineVersion( GpgME::Engine engine, int major, int minor, int patch )
 // in enginecheck.cpp, since it reuses the instrumentation there

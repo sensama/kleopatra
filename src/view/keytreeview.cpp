@@ -22,26 +22,26 @@
 #include "utils/headerview.h"
 #include "utils/tags.h"
 
-#include <Libkleo/Stl_Util>
-#include <Libkleo/KeyFilter>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyFilter>
+#include <Libkleo/Stl_Util>
 
 #include <gpgme++/key.h>
 
 #include "kleopatra_debug.h"
-#include <QTimer>
+#include <QAction>
+#include <QContextMenuEvent>
+#include <QEvent>
 #include <QHeaderView>
-#include <QItemSelectionModel>
 #include <QItemSelection>
+#include <QItemSelectionModel>
 #include <QLayout>
 #include <QList>
 #include <QMenu>
-#include <QAction>
-#include <QEvent>
-#include <QContextMenuEvent>
+#include <QTimer>
 
-#include <KSharedConfig>
 #include <KLocalizedString>
+#include <KSharedConfig>
 
 #define TAGS_COLUMN 13
 
@@ -79,14 +79,13 @@ protected:
                 mHeaderPopup = new QMenu(this);
                 mHeaderPopup->setTitle(i18n("View Columns"));
                 for (int i = 0; i < model()->columnCount(); ++i) {
-                    QAction *tmp
-                        = mHeaderPopup->addAction(model()->headerData(i, Qt::Horizontal).toString());
+                    QAction *tmp = mHeaderPopup->addAction(model()->headerData(i, Qt::Horizontal).toString());
                     tmp->setData(QVariant(i));
                     tmp->setCheckable(true);
                     mColumnActions << tmp;
                 }
 
-                connect(mHeaderPopup, &QMenu::triggered, this, [this] (QAction *action) {
+                connect(mHeaderPopup, &QMenu::triggered, this, [this](QAction *action) {
                     const int col = action->data().toInt();
                     if ((col == TAGS_COLUMN) && action->isChecked()) {
                         Tags::enableTags();
@@ -97,7 +96,7 @@ protected:
                         hideColumn(col);
                     }
 
-                    auto tv = qobject_cast<KeyTreeView *> (parent());
+                    auto tv = qobject_cast<KeyTreeView *>(parent());
                     if (tv) {
                         tv->resizeColumns();
                     }
@@ -140,7 +139,7 @@ private:
     QList<QAction *> mColumnActions;
 };
 
-const KeyListModelInterface * keyListModel(const QTreeView &view)
+const KeyListModelInterface *keyListModel(const QTreeView &view)
 {
     const KeyListModelInterface *const klmi = dynamic_cast<KeyListModelInterface *>(view.model());
     Q_ASSERT(klmi);
@@ -150,50 +149,52 @@ const KeyListModelInterface * keyListModel(const QTreeView &view)
 } // anon namespace
 
 KeyTreeView::KeyTreeView(QWidget *parent)
-    : QWidget(parent),
-      m_proxy(new KeyListSortFilterProxyModel(this)),
-      m_additionalProxy(nullptr),
-      m_view(new TreeView(this)),
-      m_flatModel(nullptr),
-      m_hierarchicalModel(nullptr),
-      m_stringFilter(),
-      m_keyFilter(),
-      m_isHierarchical(true)
+    : QWidget(parent)
+    , m_proxy(new KeyListSortFilterProxyModel(this))
+    , m_additionalProxy(nullptr)
+    , m_view(new TreeView(this))
+    , m_flatModel(nullptr)
+    , m_hierarchicalModel(nullptr)
+    , m_stringFilter()
+    , m_keyFilter()
+    , m_isHierarchical(true)
 {
     init();
 }
 
 KeyTreeView::KeyTreeView(const KeyTreeView &other)
-    : QWidget(nullptr),
-      m_proxy(new KeyListSortFilterProxyModel(this)),
-      m_additionalProxy(other.m_additionalProxy ? other.m_additionalProxy->clone() : nullptr),
-      m_view(new TreeView(this)),
-      m_flatModel(other.m_flatModel),
-      m_hierarchicalModel(other.m_hierarchicalModel),
-      m_stringFilter(other.m_stringFilter),
-      m_keyFilter(other.m_keyFilter),
-      m_group(other.m_group),
-      m_isHierarchical(other.m_isHierarchical)
+    : QWidget(nullptr)
+    , m_proxy(new KeyListSortFilterProxyModel(this))
+    , m_additionalProxy(other.m_additionalProxy ? other.m_additionalProxy->clone() : nullptr)
+    , m_view(new TreeView(this))
+    , m_flatModel(other.m_flatModel)
+    , m_hierarchicalModel(other.m_hierarchicalModel)
+    , m_stringFilter(other.m_stringFilter)
+    , m_keyFilter(other.m_keyFilter)
+    , m_group(other.m_group)
+    , m_isHierarchical(other.m_isHierarchical)
 {
     init();
     setColumnSizes(other.columnSizes());
     setSortColumn(other.sortColumn(), other.sortOrder());
 }
 
-KeyTreeView::KeyTreeView(const QString &text, const std::shared_ptr<KeyFilter> &kf,
-                         AbstractKeyListSortFilterProxyModel *proxy, QWidget *parent,
+KeyTreeView::KeyTreeView(const QString &text,
+                         const std::shared_ptr<KeyFilter> &kf,
+                         AbstractKeyListSortFilterProxyModel *proxy,
+                         QWidget *parent,
                          const KConfigGroup &group)
-    : QWidget(parent),
-      m_proxy(new KeyListSortFilterProxyModel(this)),
-      m_additionalProxy(proxy),
-      m_view(new TreeView(this)),
-      m_flatModel(nullptr),
-      m_hierarchicalModel(nullptr),
-      m_stringFilter(text),
-      m_keyFilter(kf),
-      m_group(group),
-      m_isHierarchical(true),
-      m_onceResized(false)
+    : QWidget(parent)
+    , m_proxy(new KeyListSortFilterProxyModel(this))
+    , m_additionalProxy(proxy)
+    , m_view(new TreeView(this))
+    , m_flatModel(nullptr)
+    , m_hierarchicalModel(nullptr)
+    , m_stringFilter(text)
+    , m_keyFilter(kf)
+    , m_group(group)
+    , m_isHierarchical(true)
+    , m_onceResized(false)
 {
     init();
 }
@@ -297,12 +298,21 @@ void KeyTreeView::init()
 
     auto rearangingModel = new KeyRearrangeColumnsProxyModel(this);
     rearangingModel->setSourceModel(m_proxy);
-    rearangingModel->setSourceColumns(QList<int>() << KeyList::PrettyName << KeyList::PrettyEMail << KeyList::Validity << KeyList::ValidFrom
-                                                   << KeyList::ValidUntil << KeyList::TechnicalDetails << KeyList::KeyID << KeyList::Fingerprint
-                                                   << KeyList::OwnerTrust << KeyList::Origin << KeyList::LastUpdate << KeyList::Issuer
-                                                   << KeyList::SerialNumber
-                                                   // If a column is added before this TAGS_COLUMN define has to be updated accordingly
-                                                   << KeyList::Remarks);
+    rearangingModel->setSourceColumns(QList<int>() << KeyList::PrettyName //
+                                                     << KeyList::PrettyEMail //
+                                                     << KeyList::Validity //
+                                                     << KeyList::ValidFrom //
+                                                     << KeyList::ValidUntil //
+                                                     << KeyList::TechnicalDetails //
+                                                     << KeyList::KeyID //
+                                                     << KeyList::Fingerprint //
+                                                     << KeyList::OwnerTrust //
+                                                     << KeyList::Origin //
+                                                     << KeyList::LastUpdate //
+                                                     << KeyList::Issuer //
+                                                     << KeyList::SerialNumber //
+                                                     // If a column is added before this TAGS_COLUMN define has to be updated accordingly
+                                                     << KeyList::Remarks);
     m_view->setModel(rearangingModel);
 
     /* Handle expansion state */
@@ -310,7 +320,7 @@ void KeyTreeView::init()
         m_expandedKeys = m_group.readEntry("Expanded", QStringList());
     }
 
-    connect(m_view, &QTreeView::expanded, this, [this] (const QModelIndex &index) {
+    connect(m_view, &QTreeView::expanded, this, [this](const QModelIndex &index) {
         if (!index.isValid()) {
             return;
         }
@@ -329,7 +339,7 @@ void KeyTreeView::init()
         }
     });
 
-    connect(m_view, &QTreeView::collapsed, this, [this] (const QModelIndex &index) {
+    connect(m_view, &QTreeView::collapsed, this, [this](const QModelIndex &index) {
         if (!index.isValid()) {
             return;
         }
@@ -343,11 +353,11 @@ void KeyTreeView::init()
         }
     });
 
-    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this] () {
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this]() {
         /* We use a single shot timer here to ensure that the keysMayHaveChanged
          * handlers are all handled before we restore the expand state so that
          * the model is already populated. */
-        QTimer::singleShot(0, [this] () {
+        QTimer::singleShot(0, [this]() {
             restoreExpandState();
             setUpTagKeys();
             if (!m_onceResized) {
@@ -368,7 +378,7 @@ void KeyTreeView::restoreExpandState()
         qCWarning(KLEOPATRA_LOG) << "Restore expand state before keycache available. Aborting.";
         return;
     }
-    for (const auto &fpr: std::as_const(m_expandedKeys)) {
+    for (const auto &fpr : std::as_const(m_expandedKeys)) {
         const KeyListModelInterface *const km = keyListModel(*m_view);
         if (!km) {
             qCWarning(KLEOPATRA_LOG) << "invalid model";
@@ -504,7 +514,7 @@ void KeyTreeView::setFlatModel(AbstractKeyListModel *model)
     }
     m_flatModel = model;
     if (!m_isHierarchical)
-        // TODO: this fails when called after setHierarchicalView( false )...
+    // TODO: this fails when called after setHierarchicalView( false )...
     {
         find_last_proxy(m_proxy)->setSourceModel(model);
     }
@@ -550,22 +560,18 @@ namespace
 QItemSelection itemSelectionFromKeys(const std::vector<Key> &keys, const QTreeView &view)
 {
     const QModelIndexList indexes = keyListModel(view)->indexes(keys);
-    return std::accumulate(
-        indexes.cbegin(), indexes.cend(),
-        QItemSelection(),
-        [] (QItemSelection selection, const QModelIndex &index) {
-            if (index.isValid()) {
-                selection.merge(QItemSelection(index, index), QItemSelectionModel::Select);
-            }
-            return selection;
-        });
+    return std::accumulate(indexes.cbegin(), indexes.cend(), QItemSelection(), [](QItemSelection selection, const QModelIndex &index) {
+        if (index.isValid()) {
+            selection.merge(QItemSelection(index, index), QItemSelectionModel::Select);
+        }
+        return selection;
+    });
 }
 }
 
 void KeyTreeView::selectKeys(const std::vector<Key> &keys)
 {
-    m_view->selectionModel()->select(itemSelectionFromKeys(keys, *m_view),
-                                     QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+    m_view->selectionModel()->select(itemSelectionFromKeys(keys, *m_view), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 }
 
 std::vector<Key> KeyTreeView::selectedKeys() const
@@ -579,7 +585,7 @@ void KeyTreeView::setHierarchicalView(bool on)
         return;
     }
     if (on && !hierarchicalModel()) {
-        qCWarning(KLEOPATRA_LOG) <<  "hierarchical view requested, but no hierarchical model set";
+        qCWarning(KLEOPATRA_LOG) << "hierarchical view requested, but no hierarchical model set";
         return;
     }
     if (!on && !flatModel()) {
@@ -669,21 +675,19 @@ void KeyTreeView::removeKeys(const std::vector<Key> &keys)
     _detail::remove_duplicates_by_fpr(sorted);
     std::vector<Key> newKeys;
     newKeys.reserve(m_keys.size());
-    std::set_difference(m_keys.begin(), m_keys.end(),
-                        sorted.begin(), sorted.end(),
-                        std::back_inserter(newKeys),
-                        _detail::ByFingerprint<std::less>());
+    std::set_difference(m_keys.begin(), m_keys.end(), sorted.begin(), sorted.end(), std::back_inserter(newKeys), _detail::ByFingerprint<std::less>());
     m_keys.swap(newKeys);
 
     if (m_flatModel) {
-        std::for_each(sorted.cbegin(), sorted.cend(),
-                      [this](const Key &key) { m_flatModel->removeKey(key); });
+        std::for_each(sorted.cbegin(), sorted.cend(), [this](const Key &key) {
+            m_flatModel->removeKey(key);
+        });
     }
     if (m_hierarchicalModel) {
-        std::for_each(sorted.cbegin(), sorted.cend(),
-                      [this](const Key &key) { m_hierarchicalModel->removeKey(key); });
+        std::for_each(sorted.cbegin(), sorted.cend(), [this](const Key &key) {
+            m_hierarchicalModel->removeKey(key);
+        });
     }
-
 }
 
 void KeyTreeView::disconnectSearchBar()

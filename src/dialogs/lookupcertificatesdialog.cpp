@@ -41,6 +41,7 @@ class LookupCertificatesDialog::Private
 {
     friend class ::Kleo::Dialogs::LookupCertificatesDialog;
     LookupCertificatesDialog *const q;
+
 public:
     explicit Private(LookupCertificatesDialog *qq);
     ~Private();
@@ -83,7 +84,7 @@ private:
         if (!view) {
             return std::vector<Key>();
         }
-        const auto *const model = dynamic_cast<KeyListModelInterface*>(view->model());
+        const auto *const model = dynamic_cast<KeyListModelInterface *>(view->model());
         Q_ASSERT(model);
         const QItemSelectionModel *const sm = view->selectionModel();
         Q_ASSERT(sm);
@@ -94,6 +95,7 @@ private:
     {
         return ui.resultTV->selectedKeys().size();
     }
+
 private:
     bool passive;
 
@@ -170,7 +172,7 @@ private:
             verticalLayout->addLayout(gridLayout);
 
             buttonBox = new QDialogButtonBox{dialog};
-            buttonBox->setStandardButtons(QDialogButtonBox::Close|QDialogButtonBox::Save);
+            buttonBox->setStandardButtons(QDialogButtonBox::Close | QDialogButtonBox::Save);
             verticalLayout->addWidget(buttonBox);
 
             QObject::connect(findED, SIGNAL(returnPressed()), findPB, SLOT(animateClick()));
@@ -199,22 +201,19 @@ private:
             importPB()->setText(i18n("Import"));
             importPB()->setEnabled(false);
 
-            connect(resultTV->view(), SIGNAL(doubleClicked(QModelIndex)),
-                    importPB(), SLOT(animateClick()));
+            connect(resultTV->view(), SIGNAL(doubleClicked(QModelIndex)), importPB(), SLOT(animateClick()));
 
             findED->setFocus();
 
-            connect(selectAllPB, &QPushButton::clicked,
-                    resultTV->view(), &QTreeView::selectAll);
-            connect(deselectAllPB, &QPushButton::clicked,
-                    resultTV->view(), &QTreeView::clearSelection);
+            connect(selectAllPB, &QPushButton::clicked, resultTV->view(), &QTreeView::selectAll);
+            connect(deselectAllPB, &QPushButton::clicked, resultTV->view(), &QTreeView::clearSelection);
         }
 
         QPushButton *importPB() const
         {
             return buttonBox->button(QDialogButtonBox::Save);
         }
-        QPushButton *closePB()  const
+        QPushButton *closePB() const
         {
             return buttonBox->button(QDialogButtonBox::Close);
         }
@@ -222,15 +221,16 @@ private:
 };
 
 LookupCertificatesDialog::Private::Private(LookupCertificatesDialog *qq)
-    : q(qq),
-      passive(false),
-      ui(q)
+    : q(qq)
+    , passive(false)
+    , ui(q)
 {
-    connect(ui.resultTV->view()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-            q, SLOT(slotSelectionChanged()));
+    connect(ui.resultTV->view()->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), q, SLOT(slotSelectionChanged()));
 }
 
-LookupCertificatesDialog::Private::~Private() {}
+LookupCertificatesDialog::Private::~Private()
+{
+}
 
 void LookupCertificatesDialog::Private::readConfig()
 {
@@ -257,7 +257,8 @@ void LookupCertificatesDialog::Private::writeConfig()
 }
 
 LookupCertificatesDialog::LookupCertificatesDialog(QWidget *p, Qt::WindowFlags f)
-    : QDialog(p, f), d(new Private(this))
+    : QDialog(p, f)
+    , d(new Private(this))
 {
     d->ui.findPB->setEnabled(false);
     d->readConfig();
@@ -341,8 +342,7 @@ void LookupCertificatesDialog::Private::enableDisableWidgets()
     ui.detailsPB->setEnabled(n == 1);
     ui.saveAsPB->setEnabled(n == 1);
     ui.importPB()->setEnabled(n != 0);
-    ui.importPB()->setDefault(false);   // otherwise Import becomes default button if enabled and return triggers both a search and accept()
+    ui.importPB()->setDefault(false); // otherwise Import becomes default button if enabled and return triggers both a search and accept()
 }
 
 #include "moc_lookupcertificatesdialog.cpp"
-

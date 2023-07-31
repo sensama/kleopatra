@@ -84,13 +84,13 @@ private:
 };
 
 GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
-    : KConfigDialog(parent, GroupsConfigDialog::dialogName(), /*config=*/ nullptr)
+    : KConfigDialog(parent, GroupsConfigDialog::dialogName(), /*config=*/nullptr)
     , d(new Private(this))
 {
     setWindowTitle(i18nc("@title:window", "Configure Groups"));
     setFaceType(KPageDialog::Plain);
 
-    const auto *const item = addPage(d->configPage, i18n("Groups"), /*pixmapName=*/ QString(), /*header=*/ QString(), /*manage=*/ false);
+    const auto *const item = addPage(d->configPage, i18n("Groups"), /*pixmapName=*/QString(), /*header=*/QString(), /*manage=*/false);
     // prevent scroll area embedding the config page from receiving focus
     const auto scrollAreas = item->widget()->findChildren<QScrollArea *>();
     for (auto sa : scrollAreas) {
@@ -104,11 +104,11 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
     KGuiItem::assign(resetButton, KStandardGuiItem::reset());
     resetButton->setEnabled(false);
 
-    const auto helpAction = new Kleo::DocAction(QIcon::fromTheme(QStringLiteral("help")),
-            i18n("Help"),
-            i18nc("Only available in German and English. Leave to English for other languages.",
-                  "handout_group-feature_gnupg_en.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto helpAction =
+        new Kleo::DocAction(QIcon::fromTheme(QStringLiteral("help")),
+                            i18n("Help"),
+                            i18nc("Only available in German and English. Leave to English for other languages.", "handout_group-feature_gnupg_en.pdf"),
+                            QStringLiteral("../share/doc/gnupg-vsd"));
     if (helpAction->isEnabled()) {
         auto helpButton = buttonBox()->button(QDialogButtonBox::Help);
         if (helpButton) {
@@ -123,8 +123,7 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
     // prevent accidental closing of dialog when pressing Enter while the search field has focus
     Kleo::unsetAutoDefaultButtons(this);
 
-    connect(buttonBox()->button(QDialogButtonBox::Reset), &QAbstractButton::clicked,
-            this, &GroupsConfigDialog::updateWidgets);
+    connect(buttonBox()->button(QDialogButtonBox::Reset), &QAbstractButton::clicked, this, &GroupsConfigDialog::updateWidgets);
 
     connect(d->configPage, &GroupsConfigPage::changed, this, [this]() {
         updateButtons();

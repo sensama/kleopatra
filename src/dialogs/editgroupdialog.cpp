@@ -79,13 +79,13 @@ public:
         auto mainLayout = new QVBoxLayout(q);
 
         {
-        auto groupNameLayout = new QHBoxLayout();
-        auto label = new QLabel(i18nc("Name of a group of keys", "Name:"), q);
-        groupNameLayout->addWidget(label);
-        ui.groupNameEdit = new QLineEdit(q);
-        label->setBuddy(ui.groupNameEdit);
-        groupNameLayout->addWidget(ui.groupNameEdit);
-        mainLayout->addLayout(groupNameLayout);
+            auto groupNameLayout = new QHBoxLayout();
+            auto label = new QLabel(i18nc("Name of a group of keys", "Name:"), q);
+            groupNameLayout->addWidget(label);
+            ui.groupNameEdit = new QLineEdit(q);
+            label->setBuddy(ui.groupNameEdit);
+            groupNameLayout->addWidget(ui.groupNameEdit);
+            mainLayout->addLayout(groupNameLayout);
         }
 
         mainLayout->addWidget(new KSeparator(Qt::Horizontal, q));
@@ -125,9 +125,9 @@ public:
         if (!Settings{}.cmsEnabled()) {
             ui.availableKeysList->setKeyFilter(createOpenPGPOnlyKeyFilter());
         }
-        availableKeysLayout->addWidget(ui.availableKeysList, /*stretch=*/ 1);
+        availableKeysLayout->addWidget(ui.availableKeysList, /*stretch=*/1);
 
-        centerLayout->addWidget(availableKeysGroupBox, /*stretch=*/ 1);
+        centerLayout->addWidget(availableKeysGroupBox, /*stretch=*/1);
 
         auto buttonsLayout = new QHBoxLayout;
         buttonsLayout->addStretch(1);
@@ -179,9 +179,9 @@ public:
         ui.groupKeysList->view()->setRootIsDecorated(false);
         ui.groupKeysList->setFlatModel(groupKeysModel);
         ui.groupKeysList->setHierarchicalView(false);
-        groupKeysLayout->addWidget(ui.groupKeysList, /*stretch=*/ 1);
+        groupKeysLayout->addWidget(ui.groupKeysList, /*stretch=*/1);
 
-        centerLayout->addWidget(groupKeysGroupBox, /*stretch=*/ 1);
+        centerLayout->addWidget(groupKeysGroupBox, /*stretch=*/1);
 
         mainLayout->addLayout(centerLayout);
 
@@ -197,28 +197,35 @@ public:
         // prevent accidental closing of dialog when pressing Enter while a search field has focus
         Kleo::unsetAutoDefaultButtons(q);
 
-        connect(ui.groupNameEdit, &QLineEdit::textChanged,
-                q, [okButton] (const QString &text) {
-                    okButton->setEnabled(!text.trimmed().isEmpty());
-                });
-        connect(ui.availableKeysFilter, &QLineEdit::textChanged,
-                ui.availableKeysList, &KeyTreeView::setStringFilter);
-        connect(ui.availableKeysList->view()->selectionModel(), &QItemSelectionModel::selectionChanged,
-                q, [addButton] (const QItemSelection &selected, const QItemSelection &) {
+        connect(ui.groupNameEdit, &QLineEdit::textChanged, q, [okButton](const QString &text) {
+            okButton->setEnabled(!text.trimmed().isEmpty());
+        });
+        connect(ui.availableKeysFilter, &QLineEdit::textChanged, ui.availableKeysList, &KeyTreeView::setStringFilter);
+        connect(ui.availableKeysList->view()->selectionModel(),
+                &QItemSelectionModel::selectionChanged,
+                q,
+                [addButton](const QItemSelection &selected, const QItemSelection &) {
                     addButton->setEnabled(!selected.isEmpty());
                 });
-        connect(ui.availableKeysList->view(), &QAbstractItemView::doubleClicked,
-                q, [this] (const QModelIndex &index) { showKeyDetails(index); });
-        connect(ui.groupKeysFilter, &QLineEdit::textChanged,
-                ui.groupKeysList, &KeyTreeView::setStringFilter);
-        connect(ui.groupKeysList->view()->selectionModel(), &QItemSelectionModel::selectionChanged,
-                q, [removeButton] (const QItemSelection &selected, const QItemSelection &) {
+        connect(ui.availableKeysList->view(), &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
+            showKeyDetails(index);
+        });
+        connect(ui.groupKeysFilter, &QLineEdit::textChanged, ui.groupKeysList, &KeyTreeView::setStringFilter);
+        connect(ui.groupKeysList->view()->selectionModel(),
+                &QItemSelectionModel::selectionChanged,
+                q,
+                [removeButton](const QItemSelection &selected, const QItemSelection &) {
                     removeButton->setEnabled(!selected.isEmpty());
                 });
-        connect(ui.groupKeysList->view(), &QAbstractItemView::doubleClicked,
-                q, [this] (const QModelIndex &index) { showKeyDetails(index); });
-        connect(addButton, &QPushButton::clicked, q, [this] () { addKeysToGroup(); });
-        connect(removeButton, &QPushButton::clicked, q, [this] () { removeKeysFromGroup(); });
+        connect(ui.groupKeysList->view(), &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
+            showKeyDetails(index);
+        });
+        connect(addButton, &QPushButton::clicked, q, [this]() {
+            addKeysToGroup();
+        });
+        connect(removeButton, &QPushButton::clicked, q, [this]() {
+            removeKeysFromGroup();
+        });
         connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &EditGroupDialog::accept);
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &EditGroupDialog::reject);
 
@@ -229,8 +236,7 @@ public:
         // calculate default size with enough space for the key list
         const auto fm = q->fontMetrics();
         const QSize sizeHint = q->sizeHint();
-        const QSize defaultSize = QSize(qMax(sizeHint.width(), 150 * fm.horizontalAdvance(QLatin1Char('x'))),
-                                        sizeHint.height());
+        const QSize defaultSize = QSize(qMax(sizeHint.width(), 150 * fm.horizontalAdvance(QLatin1Char('x'))), sizeHint.height());
         restoreLayout(defaultSize);
     }
 

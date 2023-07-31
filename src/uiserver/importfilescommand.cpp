@@ -19,21 +19,20 @@
 
 #include <gpg-error.h>
 
-
-#include <string>
 #include <algorithm>
+#include <string>
 
 using namespace Kleo;
-
 
 class ImportFilesCommand::Private
 {
     friend class ::Kleo::ImportFilesCommand;
     ImportFilesCommand *const q;
+
 public:
-    Private(ImportFilesCommand *qq) :
-        q(qq),
-        command(nullptr)
+    Private(ImportFilesCommand *qq)
+        : q(qq)
+        , command(nullptr)
     {
         KDAB_SET_OBJECT_NAME(command);
         command.setAutoDelete(false);
@@ -57,13 +56,18 @@ private:
 };
 
 ImportFilesCommand::ImportFilesCommand()
-    : QObject(), AssuanCommandMixin<ImportFilesCommand>(), d(new Private(this)) {}
+    : QObject()
+    , AssuanCommandMixin<ImportFilesCommand>()
+    , d(new Private(this))
+{
+}
 
-ImportFilesCommand::~ImportFilesCommand() {}
+ImportFilesCommand::~ImportFilesCommand()
+{
+}
 
 int ImportFilesCommand::doStart()
 {
-
     d->command.setParentWId(parentWId());
     d->command.setFiles(fileNames());
     d->command.start();

@@ -9,7 +9,6 @@ using namespace KleopatraClientCopy;
 
 int main(int argc, char *argv[])
 {
-
     QApplication app(argc, argv);
 
     SignEncryptFilesCommand cmd;
@@ -22,10 +21,9 @@ int main(int argc, char *argv[])
     int rc = app.exec();
 
     if (cmd.error() && !cmd.wasCanceled())
-        QMessageBox::information(nullptr, QStringLiteral("Kleopatra Error"),
-                                 QStringLiteral("There was an error while connecting to Kleopatra: %1")
-                                 .arg(cmd.errorString()));
+        QMessageBox::information(nullptr,
+                                 QStringLiteral("Kleopatra Error"),
+                                 QStringLiteral("There was an error while connecting to Kleopatra: %1").arg(cmd.errorString()));
 
     return rc;
-
 }

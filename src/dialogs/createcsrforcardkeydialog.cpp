@@ -39,8 +39,9 @@ public:
         auto mainLayout = new QVBoxLayout(q);
 
         ui.detailsWidget = new CertificateDetailsInputWidget();
-        connect(ui.detailsWidget, &CertificateDetailsInputWidget::validityChanged,
-                q, [this] (bool valid) { onValidityChanged(valid); });
+        connect(ui.detailsWidget, &CertificateDetailsInputWidget::validityChanged, q, [this](bool valid) {
+            onValidityChanged(valid);
+        });
 
         ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
         connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &QDialog::accept);

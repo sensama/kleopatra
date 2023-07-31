@@ -27,9 +27,9 @@ class ImportCertificateFromDataCommand::Private : public ImportCertificatesComma
     {
         return static_cast<ImportCertificateFromDataCommand *>(q);
     }
+
 public:
-    explicit Private(ImportCertificateFromDataCommand *qq,
-                     const QByteArray &data, GpgME::Protocol proto, const QString &id);
+    explicit Private(ImportCertificateFromDataCommand *qq, const QByteArray &data, GpgME::Protocol proto, const QString &id);
     ~Private() override;
 
 private:
@@ -47,27 +47,29 @@ const ImportCertificateFromDataCommand::Private *ImportCertificateFromDataComman
     return static_cast<const Private *>(d.get());
 }
 
-ImportCertificateFromDataCommand::Private::Private(ImportCertificateFromDataCommand *qq,
-                                                   const QByteArray &data,
-                                                   GpgME::Protocol proto,
-                                                   const QString &id)
-    : ImportCertificatesCommand::Private(qq, nullptr), mData(data), mProto(proto), mId(id)
+ImportCertificateFromDataCommand::Private::Private(ImportCertificateFromDataCommand *qq, const QByteArray &data, GpgME::Protocol proto, const QString &id)
+    : ImportCertificatesCommand::Private(qq, nullptr)
+    , mData(data)
+    , mProto(proto)
+    , mId(id)
 {
 }
 
-ImportCertificateFromDataCommand::Private::~Private() {}
+ImportCertificateFromDataCommand::Private::~Private()
+{
+}
 
 #define d d_func()
 #define q q_func()
 
-ImportCertificateFromDataCommand::ImportCertificateFromDataCommand(const QByteArray &data,
-                                                                   GpgME::Protocol proto,
-                                                                   const QString &id)
+ImportCertificateFromDataCommand::ImportCertificateFromDataCommand(const QByteArray &data, GpgME::Protocol proto, const QString &id)
     : ImportCertificatesCommand(new Private(this, data, proto, id))
 {
 }
 
-ImportCertificateFromDataCommand::~ImportCertificateFromDataCommand() {}
+ImportCertificateFromDataCommand::~ImportCertificateFromDataCommand()
+{
+}
 
 void ImportCertificateFromDataCommand::doStart()
 {

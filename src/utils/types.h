@@ -20,27 +20,29 @@ namespace Kleo
 enum DecryptVerifyOperation {
     Decrypt,
     Verify,
-    DecryptVerify/*,
-        VerifyOpaque,
-        VerifyDetached*/
+    DecryptVerify,
+    // VerifyOpaque,
+    // VerifyDetached,
 };
 
 enum VerificationMode {
     Opaque,
-    Detached
+    Detached,
 };
 
 enum Policy {
     NoPolicy,
     Allow,
     Force,
-    Deny
+    Deny,
 };
 
 class ExecutionContext
 {
 public:
-    virtual ~ExecutionContext() {}
+    virtual ~ExecutionContext()
+    {
+    }
     virtual void applyWindowID(QWidget *widget) const = 0;
 };
 
@@ -57,10 +59,10 @@ public:
 protected:
     void bringToForeground(QWidget *wid, bool stayOnTop = false);
     void applyWindowID(QWidget *wid);
+
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
 };
 
 }
-

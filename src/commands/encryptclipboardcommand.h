@@ -44,4 +44,3 @@ private:
 }
 
 #endif // QT_NO_CLIPBOARD
-

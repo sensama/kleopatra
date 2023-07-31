@@ -15,8 +15,8 @@
 
 #include <QTimer>
 
-#include <memory>
 #include <map>
+#include <memory>
 
 namespace Kleo
 {
@@ -26,8 +26,7 @@ class SessionDataHandler;
 class SessionData
 {
 public:
-
-    std::map< QByteArray, std::shared_ptr<AssuanCommand::Memento> > mementos;
+    std::map<QByteArray, std::shared_ptr<AssuanCommand::Memento>> mementos;
 
 private:
     friend class ::Kleo::SessionDataHandler;
@@ -40,7 +39,6 @@ class SessionDataHandler : public QObject
 {
     Q_OBJECT
 public:
-
     static std::shared_ptr<SessionDataHandler> instance();
 
     void enterSession(unsigned int id);
@@ -54,7 +52,7 @@ private Q_SLOTS:
     void slotCollectGarbage();
 
 private:
-    mutable std::map< unsigned int, std::shared_ptr<SessionData> > data;
+    mutable std::map<unsigned int, std::shared_ptr<SessionData>> data;
     QTimer timer;
 
 private:
@@ -63,4 +61,3 @@ private:
 };
 
 }
-

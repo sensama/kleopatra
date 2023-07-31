@@ -21,7 +21,8 @@ class QWidget;
 namespace Kleo
 {
 
-class InfoField {
+class InfoField
+{
 public:
     InfoField(const QString &label, QWidget *parent);
 

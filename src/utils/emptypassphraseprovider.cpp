@@ -13,7 +13,7 @@
 
 #include <gpg-error.h>
 
-char *EmptyPassphraseProvider::getPassphrase(const char *, const char *, bool , bool &)
+char *EmptyPassphraseProvider::getPassphrase(const char *, const char *, bool, bool &)
 {
     return gpgrt_strdup("");
 }

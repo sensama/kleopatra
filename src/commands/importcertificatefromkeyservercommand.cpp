@@ -25,9 +25,9 @@ class ImportCertificateFromKeyserverCommand::Private : public ImportCertificates
     {
         return static_cast<ImportCertificateFromKeyserverCommand *>(q);
     }
+
 public:
-    explicit Private(ImportCertificateFromKeyserverCommand *qq,
-                     const QStringList &keyIds, const QString &id);
+    explicit Private(ImportCertificateFromKeyserverCommand *qq, const QStringList &keyIds, const QString &id);
     ~Private() override;
 
 private:
@@ -50,8 +50,7 @@ const ImportCertificateFromKeyserverCommand::Private *ImportCertificateFromKeyse
 #define q q_func()
 #define d d_func()
 
-ImportCertificateFromKeyserverCommand::Private::Private(ImportCertificateFromKeyserverCommand *qq,
-                                                        const QStringList &keyIds, const QString &id)
+ImportCertificateFromKeyserverCommand::Private::Private(ImportCertificateFromKeyserverCommand *qq, const QStringList &keyIds, const QString &id)
     : ImportCertificatesCommand::Private{qq, nullptr}
     , mKeyIds{keyIds}
     , mId{id}
@@ -63,9 +62,7 @@ ImportCertificateFromKeyserverCommand::Private::~Private() = default;
 void ImportCertificateFromKeyserverCommand::Private::start()
 {
     setProgressWindowTitle(i18nc("@title:window", "Fetching Keys"));
-    setProgressLabelText(i18np("Fetching 1 key... (this can take a while)",
-                               "Fetching %1 keys... (this can take a while)",
-                               mKeyIds.size()));
+    setProgressLabelText(i18np("Fetching 1 key... (this can take a while)", "Fetching %1 keys... (this can take a while)", mKeyIds.size()));
 
     setWaitForMoreJobs(true);
     // start one import per key id to allow canceling the key retrieval without

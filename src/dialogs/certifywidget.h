@@ -9,13 +9,13 @@
 
 #include <QWidget>
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 namespace GpgME
 {
-    class Key;
-    class UserID;
+class Key;
+class UserID;
 } // namespace GpgME
 
 namespace Kleo
@@ -73,4 +73,3 @@ private:
 };
 
 } // namespace Kleo
-

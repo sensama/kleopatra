@@ -11,8 +11,8 @@
 
 #include "crypto/controller.h"
 
-#include "utils/types.h"
 #include "utils/archivedefinition.h"
+#include "utils/types.h"
 
 #include <QMetaType>
 
@@ -44,8 +44,8 @@ public Q_SLOTS:
     virtual void cancel();
 
 protected:
-    std::shared_ptr<ArchiveDefinition> pick_archive_definition(GpgME::Protocol proto,
-            const std::vector< std::shared_ptr<ArchiveDefinition> > &ads, const QString &filename);
+    std::shared_ptr<ArchiveDefinition>
+    pick_archive_definition(GpgME::Protocol proto, const std::vector<std::shared_ptr<ArchiveDefinition>> &ads, const QString &filename);
 
 Q_SIGNALS:
     void verificationResult(const GpgME::VerificationResult &);
@@ -65,4 +65,3 @@ private:
 }
 
 Q_DECLARE_METATYPE(GpgME::VerificationResult)
-

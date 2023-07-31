@@ -27,20 +27,20 @@
 #ifdef Q_OS_WIN
 WINBOOL SetForegroundWindowEx(HWND hWnd)
 {
-    //Attach foreground window thread to our thread
+    // Attach foreground window thread to our thread
     const DWORD ForeGroundID = GetWindowThreadProcessId(::GetForegroundWindow(), NULL);
-    const DWORD CurrentID   = GetCurrentThreadId();
+    const DWORD CurrentID = GetCurrentThreadId();
     WINBOOL retval;
 
     AttachThreadInput(ForeGroundID, CurrentID, TRUE);
-    //Do our stuff here
+    // Do our stuff here
     HWND hLastActivePopupWnd = GetLastActivePopup(hWnd);
     retval = SetForegroundWindow(hLastActivePopupWnd);
 
-    //Detach the attached thread
+    // Detach the attached thread
     AttachThreadInput(ForeGroundID, CurrentID, FALSE);
     return retval;
-}// End SetForegroundWindowEx
+} // End SetForegroundWindowEx
 #endif
 
 void Kleo::aggressive_raise(QWidget *w, bool stayOnTop)
@@ -64,8 +64,7 @@ void Kleo::aggressive_raise(QWidget *w, bool stayOnTop)
     /* Even if SetForgeoundWindow / SetForegroundWinowEx don't fail
      * we sometimes are still not in the foreground. So we try yet
      * another hack by using SetWindowPos */
-    if (!SetWindowPos(wid, HWND_TOPMOST, 0, 0, 0, 0,
-                      SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW)) {
+    if (!SetWindowPos(wid, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW)) {
         OutputDebugStringA("SetWindowPos failed.");
     }
     /* sometimes we want to stay on top even if the user
@@ -73,11 +72,10 @@ void Kleo::aggressive_raise(QWidget *w, bool stayOnTop)
      * Outlook might show the "Help I'm unresponsive so I must have
      * crashed" Popup if the user clicks into Outlook while a dialog
      * from us is active. */
-     else if (!stayOnTop) {
+    else if (!stayOnTop) {
         // Without moving back to NOTOPMOST we just stay on top.
         // Even if the user changes focus.
-        SetWindowPos(wid, HWND_NOTOPMOST, 0, 0, 0, 0,
-                     SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+        SetWindowPos(wid, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
     }
 #else
     Q_UNUSED(stayOnTop)
@@ -122,18 +120,16 @@ bool focusFirstButtonIf(const std::vector<QAbstractButton *> &buttons, UnaryPred
 
 bool Kleo::focusFirstCheckedButton(const std::vector<QAbstractButton *> &buttons)
 {
-    return focusFirstButtonIf(buttons,
-                              [](auto btn) {
-                                  return btn && btn->isEnabled() && btn->isChecked();
-                              });
+    return focusFirstButtonIf(buttons, [](auto btn) {
+        return btn && btn->isEnabled() && btn->isChecked();
+    });
 }
 
 bool Kleo::focusFirstEnabledButton(const std::vector<QAbstractButton *> &buttons)
 {
-    return focusFirstButtonIf(buttons,
-                              [](auto btn) {
-                                  return btn && btn->isEnabled();
-                              });
+    return focusFirstButtonIf(buttons, [](auto btn) {
+        return btn && btn->isEnabled();
+    });
 }
 
 void Kleo::unsetDefaultButtons(const QDialogButtonBox *buttonBox)

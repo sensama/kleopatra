@@ -11,7 +11,6 @@
 
 #include "controller.h"
 
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 
@@ -19,11 +18,11 @@ class Controller::Private
 {
     friend class ::Kleo::Crypto::Controller;
     Controller *const q;
+
 public:
     explicit Private(Controller *qq)
         : q(qq)
     {
-
     }
 
 private:
@@ -32,18 +31,22 @@ private:
 };
 
 Controller::Controller(QObject *parent)
-    : QObject(parent), ExecutionContextUser(), d(new Private(this))
+    : QObject(parent)
+    , ExecutionContextUser()
+    , d(new Private(this))
 {
-
 }
 
 Controller::Controller(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
-    : QObject(parent), ExecutionContextUser(ctx), d(new Private(this))
+    : QObject(parent)
+    , ExecutionContextUser(ctx)
+    , d(new Private(this))
 {
-
 }
 
-Controller::~Controller() {}
+Controller::~Controller()
+{
+}
 
 void Controller::taskDone(const std::shared_ptr<const Task::Result> &result)
 {
@@ -52,7 +55,9 @@ void Controller::taskDone(const std::shared_ptr<const Task::Result> &result)
     doTaskDone(task, result);
 }
 
-void Controller::doTaskDone(const Task *, const std::shared_ptr<const Task::Result> &) {}
+void Controller::doTaskDone(const Task *, const std::shared_ptr<const Task::Result> &)
+{
+}
 
 void Controller::connectTask(const std::shared_ptr<Task> &task)
 {
@@ -76,6 +81,5 @@ void Controller::emitDoneOrError()
         Q_EMIT done(QPrivateSignal{});
     }
 }
-
 
 #include "moc_controller.cpp"

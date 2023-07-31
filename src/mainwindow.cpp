@@ -8,86 +8,87 @@
 */
 
 #include <config-kleopatra.h>
-#include "mainwindow.h"
+
 #include "aboutdata.h"
+#include "mainwindow.h"
 #include "settings.h"
 
 #include <interfaces/focusfirstchild.h>
 
+#include "view/keycacheoverlay.h"
+#include "view/keylistcontroller.h"
 #include "view/padwidget.h"
 #include "view/searchbar.h"
-#include "view/tabwidget.h"
-#include "view/keylistcontroller.h"
-#include "view/keycacheoverlay.h"
 #include "view/smartcardwidget.h"
+#include "view/tabwidget.h"
 #include "view/welcomewidget.h"
 
-#include "commands/selftestcommand.h"
-#include "commands/importcrlcommand.h"
-#include "commands/importcertificatefromfilecommand.h"
 #include "commands/decryptverifyfilescommand.h"
+#include "commands/importcertificatefromfilecommand.h"
+#include "commands/importcrlcommand.h"
+#include "commands/selftestcommand.h"
 #include "commands/signencryptfilescommand.h"
 
 #include "conf/groupsconfigdialog.h"
 
-#include "utils/detail_p.h"
-#include <Libkleo/GnuPG>
 #include "utils/action_data.h"
-#include "utils/filedialog.h"
 #include "utils/clipboardmenu.h"
+#include "utils/detail_p.h"
+#include "utils/filedialog.h"
 #include "utils/gui-helper.h"
 #include "utils/qt-cxx20-compat.h"
+#include <Libkleo/GnuPG>
 
 #include "dialogs/updatenotification.h"
 
-#include <KXMLGUIFactory>
-#include <QApplication>
-#include <QSize>
-#include <QLineEdit>
-#include <KActionMenu>
-#include <KActionCollection>
-#include <KLocalizedString>
-#include <KStandardAction>
-#include <QAction>
-#include <KAboutData>
-#include <KMessageBox>
-#include <KStandardGuiItem>
-#include <KShortcutsDialog>
-#include <KToolBar>
-#include <KEditToolBar>
 #include "kleopatra_debug.h"
-#include <KConfigGroup>
-#include <KConfigDialog>
+#include <KAboutData>
+#include <KActionCollection>
+#include <KActionMenu>
 #include <KColorScheme>
+#include <KConfigDialog>
+#include <KConfigGroup>
+#include <KEditToolBar>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KShortcutsDialog>
+#include <KStandardAction>
+#include <KStandardGuiItem>
+#include <KToolBar>
+#include <KXMLGUIFactory>
+#include <QAction>
+#include <QApplication>
+#include <QLineEdit>
+#include <QSize>
 
 #include <QAbstractItemView>
 #include <QCloseEvent>
-#include <QMenu>
-#include <QTimer>
-#include <QProcess>
-#include <QVBoxLayout>
-#include <QMimeData>
 #include <QDesktopServices>
 #include <QDir>
+#include <QLabel>
+#include <QMenu>
+#include <QMimeData>
+#include <QPixmap>
+#include <QProcess>
 #include <QStackedWidget>
 #include <QStatusBar>
-#include <QLabel>
-#include <QPixmap>
+#include <QTimer>
+#include <QVBoxLayout>
 
+#include <Libkleo/Classify>
 #include <Libkleo/Compliance>
+#include <Libkleo/DocAction>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
+#include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/Stl_Util>
-#include <Libkleo/Classify>
-#include <Libkleo/KeyCache>
-#include <Libkleo/DocAction>
 #include <Libkleo/SystemInfo>
 
-#include <vector>
 #include <KSharedConfig>
 #include <chrono>
+#include <vector>
 using namespace std::chrono_literals;
 
 using namespace Kleo;
@@ -116,14 +117,14 @@ namespace
 static const std::vector<QString> mainViewActionNames = {
     QStringLiteral("view_certificate_overview"),
     QStringLiteral("manage_smartcard"),
-    QStringLiteral("pad_view")
+    QStringLiteral("pad_view"),
 };
 
 class CertificateView : public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
-    CertificateView(QWidget* parent = nullptr)
+    CertificateView(QWidget *parent = nullptr)
         : QWidget{parent}
         , ui{this}
     {
@@ -174,22 +175,22 @@ public:
     explicit Private(MainWindow *qq);
     ~Private();
 
-    template <typename T>
+    template<typename T>
     void createAndStart()
     {
         (new T(this->currentView(), &this->controller))->start();
     }
-    template <typename T>
+    template<typename T>
     void createAndStart(QAbstractItemView *view)
     {
         (new T(view, &this->controller))->start();
     }
-    template <typename T>
+    template<typename T>
     void createAndStart(const QStringList &a)
     {
         (new T(a, this->currentView(), &this->controller))->start();
     }
-    template <typename T>
+    template<typename T>
     void createAndStart(const QStringList &a, QAbstractItemView *view)
     {
         (new T(a, view, &this->controller))->start();
@@ -242,17 +243,16 @@ public:
             auto statusBar = std::make_unique<QStatusBar>();
             auto statusLbl = std::make_unique<QLabel>(DeVSCompliance::name());
             if (!SystemInfo::isHighContrastModeActive()) {
-                const auto color = KColorScheme(QPalette::Active, KColorScheme::View).foreground(
-                    DeVSCompliance::isCompliant() ? KColorScheme::NormalText: KColorScheme::NegativeText
-                ).color();
-                const auto background = KColorScheme(QPalette::Active, KColorScheme::View).background(
-                    DeVSCompliance::isCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground
-                ).color();
-                statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").
-                                        arg(color.name()).arg(background.name()));
+                const auto color = KColorScheme(QPalette::Active, KColorScheme::View)
+                                       .foreground(DeVSCompliance::isCompliant() ? KColorScheme::NormalText : KColorScheme::NegativeText)
+                                       .color();
+                const auto background = KColorScheme(QPalette::Active, KColorScheme::View)
+                                            .background(DeVSCompliance::isCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground)
+                                            .color();
+                statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").arg(color.name()).arg(background.name()));
             }
             statusBar->insertPermanentWidget(0, statusLbl.release());
-            q->setStatusBar(statusBar.release());  // QMainWindow takes ownership
+            q->setStatusBar(statusBar.release()); // QMainWindow takes ownership
         } else {
             q->setStatusBar(nullptr);
         }
@@ -278,8 +278,9 @@ public:
     {
         // Warning: Don't assume that the program needs to be in PATH. On Windows, it will also be found next to the calling process.
         if (!QProcess::startDetached(QStringLiteral("kwatchgnupg"), QStringList()))
-            KMessageBox::error(q, i18n("Could not start the GnuPG Log Viewer (kwatchgnupg). "
-                                       "Please check your installation."),
+            KMessageBox::error(q,
+                               i18n("Could not start the GnuPG Log Viewer (kwatchgnupg). "
+                                    "Please check your installation."),
                                i18n("Error Starting KWatchGnuPG"));
     }
 
@@ -307,7 +308,7 @@ public:
     {
         const auto coll = q->actionCollection();
         if (coll) {
-            for ( const QString &name : mainViewActionNames ) {
+            for (const QString &name : mainViewActionNames) {
                 if (auto action = coll->action(name)) {
                     action->setChecked(name == actionName);
                 }
@@ -360,7 +361,7 @@ private:
     {
         const auto curWidget = ui.stackWidget->currentWidget();
         if (curWidget == ui.scWidget || curWidget == ui.padWidget) {
-           return;
+            return;
         }
         showCertificateView();
     }
@@ -404,10 +405,10 @@ MainWindow::Private::UI::UI(MainWindow *q)
 }
 
 MainWindow::Private::Private(MainWindow *qq)
-    : q(qq),
-      controller(q),
-      firstShow(true),
-      ui(q)
+    : q(qq)
+    , controller(q)
+    , firstShow(true)
+    , ui(q)
 {
     KDAB_SET_OBJECT_NAME(controller);
 
@@ -431,22 +432,24 @@ MainWindow::Private::Private(MainWindow *qq)
         action->setChecked(true);
     }
 
-    connect(&controller, SIGNAL(contextMenuRequested(QAbstractItemView*,QPoint)), q, SLOT(slotContextMenuRequested(QAbstractItemView*,QPoint)));
-    connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this] () {keyListingDone();});
+    connect(&controller, SIGNAL(contextMenuRequested(QAbstractItemView *, QPoint)), q, SLOT(slotContextMenuRequested(QAbstractItemView *, QPoint)));
+    connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this]() {
+        keyListingDone();
+    });
 
     q->createGUI(QStringLiteral("kleopatra.rc"));
 
     // make toolbar buttons accessible by keyboard
-    auto toolbar = q->findChild<KToolBar*>();
+    auto toolbar = q->findChild<KToolBar *>();
     if (toolbar) {
-        auto toolbarButtons = toolbar->findChildren<QToolButton*>();
+        auto toolbarButtons = toolbar->findChildren<QToolButton *>();
         for (auto b : toolbarButtons) {
             b->setFocusPolicy(Qt::TabFocus);
         }
         // move toolbar and its child widgets before the central widget in the tab order;
         // this is necessary to make Shift+Tab work as expected
         forceSetTabOrder(q, toolbar);
-        auto toolbarChildren = toolbar->findChildren<QWidget*>();
+        auto toolbarChildren = toolbar->findChildren<QWidget *>();
         std::for_each(std::rbegin(toolbarChildren), std::rend(toolbarChildren), [toolbar](auto w) {
             forceSetTabOrder(toolbar, w);
         });
@@ -492,63 +495,122 @@ MainWindow::Private::Private(MainWindow *qq)
     }
 }
 
-MainWindow::Private::~Private() {}
+MainWindow::Private::~Private()
+{
+}
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
-    : KXmlGuiWindow(parent, flags), d(new Private(this))
-{}
+    : KXmlGuiWindow(parent, flags)
+    , d(new Private(this))
+{
+}
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow()
+{
+}
 
 void MainWindow::Private::setupActions()
 {
-
     KActionCollection *const coll = q->actionCollection();
 
     const std::vector<action_data> action_data = {
-        // see keylistcontroller.cpp for more actions
-        // Tools menu
+    // see keylistcontroller.cpp for more actions
+    // Tools menu
 #ifndef Q_OS_WIN
         {
-            "tools_start_kwatchgnupg", i18n("GnuPG Log Viewer"), QString(),
-            "kwatchgnupg", q, [this](bool) { gnupgLogViewer(); }, QString()
+            "tools_start_kwatchgnupg",
+            i18n("GnuPG Log Viewer"),
+            QString(),
+            "kwatchgnupg",
+            q,
+            [this](bool) {
+                gnupgLogViewer();
+            },
+            QString(),
         },
 #endif
         {
-            "tools_restart_backend", i18nc("@action:inmenu", "Restart Background Processes"),
+            "tools_restart_backend",
+            i18nc("@action:inmenu", "Restart Background Processes"),
             i18nc("@info:tooltip", "Restart the background processes, e.g. after making changes to the configuration."),
-            "view-refresh", q, [this](bool) { restartDaemons(); }, {}
+            "view-refresh",
+            q,
+            [this](bool) {
+                restartDaemons();
+            },
+            {},
         },
-        // Help menu
+    // Help menu
 #ifdef Q_OS_WIN
         {
-            "help_check_updates", i18n("Check for updates"), QString(),
-            "gpg4win-compact", q, [this](bool) { forceUpdateCheck(); }, QString()
+            "help_check_updates",
+            i18n("Check for updates"),
+            QString(),
+            "gpg4win-compact",
+            q,
+            [this](bool) {
+                forceUpdateCheck();
+            },
+            QString(),
         },
 #endif
         // View menu
         {
-            "view_certificate_overview", i18nc("@action show certificate overview", "Certificates"),
-            i18n("Show certificate overview"), "view-certificate", q, [this](bool) { showCertificateView(); }, QString()
+            "view_certificate_overview",
+            i18nc("@action show certificate overview", "Certificates"),
+            i18n("Show certificate overview"),
+            "view-certificate",
+            q,
+            [this](bool) {
+                showCertificateView();
+            },
+            QString(),
         },
         {
-            "pad_view", i18nc("@action show input / output area for encrypting/signing resp. decrypting/verifying text", "Notepad"),
-            i18n("Show pad for encrypting/decrypting and signing/verifying text"), "note", q, [this](bool) { showPadView(); }, QString()
+            "pad_view",
+            i18nc("@action show input / output area for encrypting/signing resp. decrypting/verifying text", "Notepad"),
+            i18n("Show pad for encrypting/decrypting and signing/verifying text"),
+            "note",
+            q,
+            [this](bool) {
+                showPadView();
+            },
+            QString(),
         },
         {
-            "manage_smartcard", i18nc("@action show smartcard management view", "Smartcards"),
-            i18n("Show smartcard management"), "auth-sim-locked", q, [this](bool) { showSmartcardView(); }, QString()
+            "manage_smartcard",
+            i18nc("@action show smartcard management view", "Smartcards"),
+            i18n("Show smartcard management"),
+            "auth-sim-locked",
+            q,
+            [this](bool) {
+                showSmartcardView();
+            },
+            QString(),
         },
         // Settings menu
         {
-            "settings_self_test", i18n("Perform Self-Test"), QString(),
-            nullptr, q, [this](bool) { selfTest(); }, QString()
+            "settings_self_test",
+            i18n("Perform Self-Test"),
+            QString(),
+            nullptr,
+            q,
+            [this](bool) {
+                selfTest();
+            },
+            QString(),
         },
         {
-            "configure_groups", i18n("Configure Groups..."), QString(),
-            "group", q, [this](bool) { configureGroups(); }, QString()
-        }
-    };
+            "configure_groups",
+            i18n("Configure Groups..."),
+            QString(),
+            "group",
+            q,
+            [this](bool) {
+                configureGroups();
+            },
+            QString(),
+        }};
 
     make_actions_from_data(action_data, coll);
 
@@ -558,7 +620,7 @@ void MainWindow::Private::setupActions()
         }
     }
 
-    for ( const QString &name : mainViewActionNames ) {
+    for (const QString &name : mainViewActionNames) {
         if (auto action = coll->action(name)) {
             action->setCheckable(true);
         }
@@ -581,72 +643,81 @@ void MainWindow::Private::setupActions()
     coll->addAction(QStringLiteral("clipboard_menu"), clipboadMenu->clipboardMenu());
 
     /* Add additional help actions for documentation */
-    const auto compendium = new DocAction(QIcon::fromTheme(QStringLiteral("gpg4win-compact")), i18n("Gpg4win Compendium"),
-            i18nc("The Gpg4win compendium is only available"
-                  "at this point (24.7.2017) in german and english."
-                  "Please check with Gpg4win before translating this filename.",
-                  "gpg4win-compendium-en.pdf"),
-            QStringLiteral("../share/gpg4win"));
+    const auto compendium = new DocAction(QIcon::fromTheme(QStringLiteral("gpg4win-compact")),
+                                          i18n("Gpg4win Compendium"),
+                                          i18nc("The Gpg4win compendium is only available"
+                                                "at this point (24.7.2017) in german and english."
+                                                "Please check with Gpg4win before translating this filename.",
+                                                "gpg4win-compendium-en.pdf"),
+                                          QStringLiteral("../share/gpg4win"));
     coll->addAction(QStringLiteral("help_doc_compendium"), compendium);
 
     /* Documentation centered around the german approved VS-NfD mode for official
      * RESTRICTED communication. This is only available in some distributions with
      * the focus on official communications. */
-    const auto quickguide = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("&Quickguide"),
-            i18nc("Only available in German and English. Leave to English for other languages.",
-                  "encrypt_and_sign_gnupgvsd_en.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto quickguide =
+        new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
+                      i18n("&Quickguide"),
+                      i18nc("Only available in German and English. Leave to English for other languages.", "encrypt_and_sign_gnupgvsd_en.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_quickguide"), quickguide);
 
-    const auto symguide = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("&Password-based encryption"),
-            i18nc("Only available in German and English. Leave to English for other languages.",
-                  "symmetric_encryption_gnupgvsd_en.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto symguide =
+        new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
+                      i18n("&Password-based encryption"),
+                      i18nc("Only available in German and English. Leave to English for other languages.", "symmetric_encryption_gnupgvsd_en.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_symenc"), symguide);
 
-    const auto groups = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("&Group configuration"),
-            i18nc("Only available in German and English. Leave to English for other languages.",
-                  "groupfeature_gnupgvsd_en.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto groups = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
+                                      i18n("&Group configuration"),
+                                      i18nc("Only available in German and English. Leave to English for other languages.", "groupfeature_gnupgvsd_en.pdf"),
+                                      QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_groups"), groups);
 
 #ifdef Q_OS_WIN
-    const auto gpgol = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("&Mail encryption in Outlook"),
-            i18nc("Only available in German and English. Leave to English for other languages. Only shown on Windows.",
-                  "gpgol_outlook_addin_en.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto gpgol =
+        new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
+                      i18n("&Mail encryption in Outlook"),
+                      i18nc("Only available in German and English. Leave to English for other languages. Only shown on Windows.", "gpgol_outlook_addin_en.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_gpgol"), gpgol);
 #endif
 
     /* The submenu with advanced topics */
-    const auto certmngmnt = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("&Certification Management"),
-            i18nc("Only available in German and English. Leave to English for other languages.",
-                  "certification_management_gnupgvsd_en.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto certmngmnt =
+        new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
+                      i18n("&Certification Management"),
+                      i18nc("Only available in German and English. Leave to English for other languages.", "certification_management_gnupgvsd_en.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_cert_management"), certmngmnt);
 
-    const auto smartcard = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("&Smartcard setup"),
-            i18nc("Only available in German and English. Leave to English for other languages.",
-                  "smartcard_setup_gnupgvsd_en.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto smartcard =
+        new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
+                      i18n("&Smartcard setup"),
+                      i18nc("Only available in German and English. Leave to English for other languages.", "smartcard_setup_gnupgvsd_en.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_smartcard"), smartcard);
 
-    const auto man_gnupg = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("GnuPG Command&line"),
-            QStringLiteral("gnupg_manual_en.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto man_gnupg = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
+                                         i18n("GnuPG Command&line"),
+                                         QStringLiteral("gnupg_manual_en.pdf"),
+                                         QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_gnupg"), man_gnupg);
 
     /* The secops */
-    const auto vsa10573 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")), i18n("SecOps VSA-10573"),
-            i18nc("Only available in German and English. Leave to English for other languages.",
-                  "BSI-VSA-10573-ENG_secops-20220207.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto vsa10573 =
+        new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
+                      i18n("SecOps VSA-10573"),
+                      i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10573-ENG_secops-20220207.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_vsa10573"), vsa10573);
 
-    const auto vsa10584 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")), i18n("SecOps VSA-10584"),
-            i18nc("Only available in German and English. Leave to English for other languages.",
-                  "BSI-VSA-10584-ENG_secops-20220207.pdf"),
-            QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto vsa10584 =
+        new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
+                      i18n("SecOps VSA-10584"),
+                      i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10584-ENG_secops-20220207.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_vsa10584"), vsa10584);
 
     q->setStandardToolBarMenuEnabled(true);
@@ -669,10 +740,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qCDebug(KLEOPATRA_LOG);
     if (d->controller.hasRunningCommands()) {
         if (d->controller.shutdownWarningRequired()) {
-            const int ret = KMessageBox::warningContinueCancel(this, i18n("There are still some background operations ongoing. "
-                            "These will be terminated when closing the window. "
-                            "Proceed?"),
-                            i18n("Ongoing Background Tasks"));
+            const int ret = KMessageBox::warningContinueCancel(this,
+                                                               i18n("There are still some background operations ongoing. "
+                                                                    "These will be terminated when closing the window. "
+                                                                    "Proceed?"),
+                                                               i18n("Ongoing Background Tasks"));
             if (ret != KMessageBox::Continue) {
                 e->ignore();
                 return;
@@ -687,8 +759,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
             connect(&d->controller, &KeyListController::commandsExecuting, &ev, &QEventLoop::quit);
             ev.exec();
             if (d->controller.hasRunningCommands())
-                qCWarning(KLEOPATRA_LOG)
-                        << "controller still has commands running, this may crash now...";
+                qCWarning(KLEOPATRA_LOG) << "controller still has commands running, this may crash now...";
             setEnabled(true);
         }
     }
@@ -739,11 +810,8 @@ static QStringList extract_local_files(const QMimeData *data)
     }
     // end workaround
     QStringList result;
-    std::transform(urls.begin(), end,
-                   std::back_inserter(result),
-                   std::mem_fn(&QUrl::toLocalFile));
-    result.erase(std::remove_if(result.begin(), result.end(),
-                                std::mem_fn(&QString::isEmpty)), result.end());
+    std::transform(urls.begin(), end, std::back_inserter(result), std::mem_fn(&QUrl::toLocalFile));
+    result.erase(std::remove_if(result.begin(), result.end(), std::mem_fn(&QString::isEmpty)), result.end());
     return result;
 }
 
@@ -787,7 +855,7 @@ void MainWindow::dropEvent(QDropEvent *e)
     }
 
     QAction *const importCerts = mayBeAnyCertStoreType(classification) ? menu.addAction(i18n("Import Certificates")) : nullptr;
-    QAction *const importCRLs  = mayBeCertificateRevocationList(classification) ? menu.addAction(i18n("Import CRLs")) : nullptr;
+    QAction *const importCRLs = mayBeCertificateRevocationList(classification) ? menu.addAction(i18n("Import CRLs")) : nullptr;
     if (importCerts || importCRLs) {
         menu.addSeparator();
     }

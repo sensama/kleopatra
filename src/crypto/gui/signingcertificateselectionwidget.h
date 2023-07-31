@@ -16,7 +16,8 @@
 
 #include <set>
 
-template <typename K, typename U> class QMap;
+template<typename K, typename U>
+class QMap;
 
 namespace GpgME
 {
@@ -55,5 +56,3 @@ private:
 }
 }
 }
-
-

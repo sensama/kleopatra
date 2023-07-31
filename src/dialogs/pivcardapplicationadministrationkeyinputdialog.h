@@ -16,7 +16,7 @@ namespace Kleo
 {
 namespace Dialogs
 {
-class PIVCardApplicationAdministrationKeyInputDialog: public QDialog
+class PIVCardApplicationAdministrationKeyInputDialog : public QDialog
 {
     Q_OBJECT
     Q_PROPERTY(QString labelText READ labelText WRITE setLabelText)
@@ -24,7 +24,7 @@ class PIVCardApplicationAdministrationKeyInputDialog: public QDialog
 public:
     explicit PIVCardApplicationAdministrationKeyInputDialog(QWidget *parent = nullptr);
 
-    void setLabelText(const QString& text);
+    void setLabelText(const QString &text);
     QString labelText() const;
 
     QByteArray adminKey() const;
@@ -35,5 +35,3 @@ private:
 };
 } // namespace Dialogs
 } // namespace Kleo
-
-

@@ -10,9 +10,9 @@
 #pragma once
 
 #include <QLabel>
-#include <QPointer>
-#include <QPoint>
 #include <QMimeData>
+#include <QPoint>
+#include <QPointer>
 
 namespace Kleo
 {
@@ -43,5 +43,3 @@ private:
 };
 
 }
-
-

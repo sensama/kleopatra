@@ -17,9 +17,9 @@
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Assuan>
+#include <Libkleo/FileSystemWatcher>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
-#include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Stl_Util>
 
@@ -31,16 +31,16 @@
 
 #include <gpg-error.h>
 
-#include "openpgpcard.h"
 #include "netkeycard.h"
-#include "pivcard.h"
+#include "openpgpcard.h"
 #include "p15card.h"
+#include "pivcard.h"
 
 #include <QMutex>
-#include <QWaitCondition>
-#include <QThread>
 #include <QPointer>
 #include <QRegularExpression>
+#include <QThread>
+#include <QWaitCondition>
 
 #include "utils/kdtoolsglobal.h"
 
@@ -52,9 +52,8 @@ using namespace GpgME;
 
 static ReaderStatus *self = nullptr;
 
-#define xtoi_1(p)   (*(p) <= '9'? (*(p)- '0'): \
-                     *(p) <= 'F'? (*(p)-'A'+10):(*(p)-'a'+10))
-#define xtoi_2(p)   ((xtoi_1(p) * 16) + xtoi_1((p)+1))
+#define xtoi_1(p) (*(p) <= '9' ? (*(p) - '0') : *(p) <= 'F' ? (*(p) - 'A' + 10) : (*(p) - 'a' + 10))
+#define xtoi_2(p) ((xtoi_1(p) * 16) + xtoi_1((p) + 1))
 
 static const char *flags[] = {
     "NOCARD",
@@ -62,7 +61,7 @@ static const char *flags[] = {
     "ACTIVE",
     "USABLE",
 };
-static_assert(sizeof flags / sizeof * flags == Card::_NumScdStates, "");
+static_assert(sizeof flags / sizeof *flags == Card::_NumScdStates, "");
 
 static const char *prettyFlags[] = {
     "NoCard",
@@ -71,7 +70,7 @@ static const char *prettyFlags[] = {
     "CardUsable",
     "CardError",
 };
-static_assert(sizeof prettyFlags / sizeof * prettyFlags == Card::NumStates, "");
+static_assert(sizeof prettyFlags / sizeof *prettyFlags == Card::NumStates, "");
 
 Q_DECLARE_METATYPE(GpgME::Error)
 
@@ -89,7 +88,7 @@ static bool gpgHasMultiCardMultiAppSupport()
     return !(engineInfo(GpgME::GpgEngine).engineVersion() < "2.3.0");
 }
 
-static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
+static QDebug operator<<(QDebug s, const std::vector<std::pair<std::string, std::string>> &v)
 {
     using pair = std::pair<std::string, std::string>;
     s << '(';
@@ -104,15 +103,12 @@ struct CardApp {
     std::string appName;
 };
 
-static void logUnexpectedStatusLine(const std::pair<std::string, std::string> &line,
-                                    const std::string &prefix = std::string(),
-                                    const std::string &command = std::string())
+static void
+logUnexpectedStatusLine(const std::pair<std::string, std::string> &line, const std::string &prefix = std::string(), const std::string &command = std::string())
 {
-    qCWarning(KLEOPATRA_LOG) << (!prefix.empty() ? QString::fromStdString(prefix + ": ") : QString())
-            << "Unexpected status line"
-            << (!command.empty() ? QString::fromStdString(" on " + command + ":") : QLatin1String(":"))
-            << QString::fromStdString(line.first)
-            << QString::fromStdString(line.second);
+    qCWarning(KLEOPATRA_LOG) << (!prefix.empty() ? QString::fromStdString(prefix + ": ") : QString()) << "Unexpected status line"
+                             << (!command.empty() ? QString::fromStdString(" on " + command + ":") : QLatin1String(":")) << QString::fromStdString(line.first)
+                             << QString::fromStdString(line.second);
 }
 
 static int parse_app_version(const std::string &s)
@@ -129,10 +125,14 @@ static Card::PinState parse_pin_state(const QString &s)
         return Card::UnknownPinState;
     }
     switch (i) {
-    case -4: return Card::NullPin;
-    case -3: return Card::PinBlocked;
-    case -2: return Card::NoPin;
-    case -1: return Card::UnknownPinState;
+    case -4:
+        return Card::NullPin;
+    case -3:
+        return Card::PinBlocked;
+    case -2:
+        return Card::NoPin;
+    case -1:
+        return Card::UnknownPinState;
     default:
         if (i < 0) {
             return Card::UnknownPinState;
@@ -178,7 +178,7 @@ static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, 
         if (err) {
             return result;
         }
-        for (const auto &statusLine: statusLines) {
+        for (const auto &statusLine : statusLines) {
             if (statusLine.first == "SERIALNO") {
                 const auto serialNumberAndApps = QByteArray::fromStdString(statusLine.second).split(' ');
                 if (serialNumberAndApps.size() >= 2) {
@@ -188,9 +188,9 @@ static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, 
                         // sort the apps to get a stable order independently of the currently selected application
                         std::sort(apps.begin(), apps.end());
                     }
-                    for (const auto &app: apps) {
+                    for (const auto &app : apps) {
                         qCDebug(KLEOPATRA_LOG) << "getCardsAndApps(): Found card" << serialNumber << "with app" << app;
-                        result.push_back({ serialNumber.toStdString(), app.toStdString() });
+                        result.push_back({serialNumber.toStdString(), app.toStdString()});
                     }
                 } else {
                     logUnexpectedStatusLine(statusLine, "getCardsAndApps()", command);
@@ -207,12 +207,13 @@ static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, 
         }
         // use SCD GETATTR APPTYPE to find out which app is active
         auto appName = scd_getattr_status(gpgAgent, "APPTYPE", err);
-        std::transform(appName.begin(), appName.end(), appName.begin(),
-                       [](unsigned char c){ return std::tolower(c); });
+        std::transform(appName.begin(), appName.end(), appName.begin(), [](unsigned char c) {
+            return std::tolower(c);
+        });
         if (err) {
             return result;
         }
-        result.push_back({ serialNumber, appName });
+        result.push_back({serialNumber, appName});
     }
     return result;
 }
@@ -227,51 +228,49 @@ static std::string switchCard(std::shared_ptr<Context> &gpgAgent, const std::str
     if (statusLines.size() == 1 && statusLines[0].first == "SERIALNO" && statusLines[0].second == serialNumber) {
         return serialNumber;
     }
-    qCWarning(KLEOPATRA_LOG) << "switchCard():" << command << "returned" << statusLines
-            << "(expected:" << "SERIALNO " + serialNumber << ")";
+    qCWarning(KLEOPATRA_LOG) << "switchCard():" << command << "returned" << statusLines << "(expected:"
+                             << "SERIALNO " + serialNumber << ")";
     return std::string();
 }
 
-static std::string switchApp(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber,
-                             const std::string &appName, Error &err)
+static std::string switchApp(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber, const std::string &appName, Error &err)
 {
     const std::string command = "SCD SWITCHAPP " + appName;
     const auto statusLines = Assuan::sendStatusLinesCommand(gpgAgent, command.c_str(), err);
     if (err) {
         return std::string();
     }
-    if (statusLines.size() == 1 && statusLines[0].first == "SERIALNO" &&
-        statusLines[0].second.find(serialNumber + ' ' + appName) == 0) {
+    if (statusLines.size() == 1 && statusLines[0].first == "SERIALNO" && statusLines[0].second.find(serialNumber + ' ' + appName) == 0) {
         return appName;
     }
-    qCWarning(KLEOPATRA_LOG) << "switchApp():" << command << "returned" << statusLines
-            << "(expected:" << "SERIALNO " + serialNumber + ' ' + appName + "..." << ")";
+    qCWarning(KLEOPATRA_LOG) << "switchApp():" << command << "returned" << statusLines << "(expected:"
+                             << "SERIALNO " + serialNumber + ' ' + appName + "..."
+                             << ")";
     return std::string();
 }
 
-static std::vector<std::string> getCardApps(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber,
-                                            Error &err)
+static std::vector<std::string> getCardApps(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber, Error &err)
 {
     const auto cardApps = getCardsAndApps(gpgAgent, WithReportedAppOrder, err);
     if (err) {
         return {};
     }
     std::vector<std::string> apps;
-    kdtools::transform_if(cardApps.begin(),
-                          cardApps.end(),
-                          std::back_inserter(apps),
-                          [](const auto &cardApp) {
-                              return cardApp.appName;
-                          },
-                          [serialNumber](const auto &cardApp) {
-                              return cardApp.serialNumber == serialNumber;
-                          });
+    kdtools::transform_if(
+        cardApps.begin(),
+        cardApps.end(),
+        std::back_inserter(apps),
+        [](const auto &cardApp) {
+            return cardApp.appName;
+        },
+        [serialNumber](const auto &cardApp) {
+            return cardApp.serialNumber == serialNumber;
+        });
     qCDebug(KLEOPATRA_LOG) << __func__ << "apps:" << apps;
     return apps;
 }
 
-static void switchCardBackToOpenPGPApp(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber,
-                                       Error &err)
+static void switchCardBackToOpenPGPApp(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber, Error &err)
 {
     if (!gpgHasMultiCardMultiAppSupport()) {
         return;
@@ -285,37 +284,49 @@ static void switchCardBackToOpenPGPApp(std::shared_ptr<Context> &gpgAgent, const
     }
 }
 
-static const char * get_openpgp_card_manufacturer_from_serial_number(const std::string &serialno)
+static const char *get_openpgp_card_manufacturer_from_serial_number(const std::string &serialno)
 {
     qCDebug(KLEOPATRA_LOG) << "get_openpgp_card_manufacturer_from_serial_number(" << serialno.c_str() << ")";
 
-    const bool isProperOpenPGPCardSerialNumber =
-        serialno.size() == 32 && serialno.substr(0, 12) == "D27600012401";
+    const bool isProperOpenPGPCardSerialNumber = serialno.size() == 32 && serialno.substr(0, 12) == "D27600012401";
     if (isProperOpenPGPCardSerialNumber) {
         const char *sn = serialno.c_str();
-        const int manufacturerId = xtoi_2(sn + 16)*256 + xtoi_2(sn + 18);
+        const int manufacturerId = xtoi_2(sn + 16) * 256 + xtoi_2(sn + 18);
         switch (manufacturerId) {
-            case 0x0001: return "PPC Card Systems";
-            case 0x0002: return "Prism";
-            case 0x0003: return "OpenFortress";
-            case 0x0004: return "Wewid";
-            case 0x0005: return "ZeitControl";
-            case 0x0006: return "Yubico";
-            case 0x0007: return "OpenKMS";
-            case 0x0008: return "LogoEmail";
+        case 0x0001:
+            return "PPC Card Systems";
+        case 0x0002:
+            return "Prism";
+        case 0x0003:
+            return "OpenFortress";
+        case 0x0004:
+            return "Wewid";
+        case 0x0005:
+            return "ZeitControl";
+        case 0x0006:
+            return "Yubico";
+        case 0x0007:
+            return "OpenKMS";
+        case 0x0008:
+            return "LogoEmail";
 
-            case 0x002A: return "Magrathea";
+        case 0x002A:
+            return "Magrathea";
 
-            case 0x1337: return "Warsaw Hackerspace";
+        case 0x1337:
+            return "Warsaw Hackerspace";
 
-            case 0xF517: return "FSIJ";
+        case 0xF517:
+            return "FSIJ";
 
-            /* 0x0000 and 0xFFFF are defined as test cards per spec,
-               0xFF00 to 0xFFFE are assigned for use with randomly created
-               serial numbers.  */
-            case 0x0000:
-            case 0xffff: return "test card";
-            default: return (manufacturerId & 0xff00) == 0xff00 ? "unmanaged S/N range" : "unknown";
+        /* 0x0000 and 0xFFFF are defined as test cards per spec,
+           0xFF00 to 0xFFFE are assigned for use with randomly created
+           serial numbers.  */
+        case 0x0000:
+        case 0xffff:
+            return "test card";
+        default:
+            return (manufacturerId & 0xff00) == 0xff00 ? "unmanaged S/N range" : "unknown";
         }
     } else {
         return "unknown";
@@ -340,23 +351,24 @@ static std::vector<std::string> get_openpgp_card_supported_algorithms_announced_
     }
 
     std::vector<std::string> algos;
-    kdtools::transform_if(lines.cbegin(),
-                          lines.cend(),
-                          std::back_inserter(algos),
-                          [](const auto &line) {
-                              auto algo = line.second.substr(cardSlotPrefix.size());
-                              // map a few algorithms to the standard names used by us
-                              const auto mapping = algoMapping.find(algo);
-                              if (mapping != algoMapping.end()) {
-                                  algo = mapping->second;
-                              }
-                              return algo;
-                          },
-                          [](const auto &line) {
-                              // only consider KEY-ATTR-INFO status lines for the first card slot;
-                              // for now, we assume that all card slots support the same algorithms
-                              return line.first == "KEY-ATTR-INFO" && line.second.starts_with(cardSlotPrefix);
-                          });
+    kdtools::transform_if(
+        lines.cbegin(),
+        lines.cend(),
+        std::back_inserter(algos),
+        [](const auto &line) {
+            auto algo = line.second.substr(cardSlotPrefix.size());
+            // map a few algorithms to the standard names used by us
+            const auto mapping = algoMapping.find(algo);
+            if (mapping != algoMapping.end()) {
+                algo = mapping->second;
+            }
+            return algo;
+        },
+        [](const auto &line) {
+            // only consider KEY-ATTR-INFO status lines for the first card slot;
+            // for now, we assume that all card slots support the same algorithms
+            return line.first == "KEY-ATTR-INFO" && line.second.starts_with(cardSlotPrefix);
+        });
     // remove duplicate algorithms
     std::sort(algos.begin(), algos.end());
     algos.erase(std::unique(algos.begin(), algos.end()), algos.end());
@@ -393,11 +405,7 @@ static std::vector<std::string> get_openpgp_card_supported_algorithms(Card *card
             "brainpoolP512r1",
         };
     }
-    return {
-       "rsa2048",
-       "rsa3072",
-       "rsa4096"
-    };
+    return {"rsa2048", "rsa3072", "rsa4096"};
 }
 
 static bool isOpenPGPCardSerialNumber(const std::string &serialNumber)
@@ -563,7 +571,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
 
     if (err.code()) {
         qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR NKS-VERSION failed:" << err;
-        ci->setErrorMsg(QStringLiteral ("NKS-VERSION failed: ") + Formatting::errorAsString(err));
+        ci->setErrorMsg(QStringLiteral("NKS-VERSION failed: ") + Formatting::errorAsString(err));
         return;
     }
 
@@ -576,11 +584,10 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     setDisplaySerialNumber(nkCard, gpg_agent);
 
     // the following only works for NKS v3...
-    const auto chvStatus = QString::fromStdString(
-            scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QLatin1Char(' '));
+    const auto chvStatus = QString::fromStdString(scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QLatin1Char(' '));
     if (err.code()) {
         qCDebug(KLEOPATRA_LOG) << "Running SCD GETATTR CHV-STATUS failed:" << err;
-        ci->setErrorMsg(QStringLiteral ("CHV-Status failed: ") + Formatting::errorAsString(err));
+        ci->setErrorMsg(QStringLiteral("CHV-Status failed: ") + Formatting::errorAsString(err));
         return;
     }
 
@@ -590,8 +597,8 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     // Pin1 (Normal pin) Pin2 (Normal PUK)
     // SigG1 SigG PUK.
     int num = 0;
-    for (const auto &state: chvStatus) {
-        const auto parsed = parse_pin_state (state);
+    for (const auto &state : chvStatus) {
+        const auto parsed = parse_pin_state(state);
         states.push_back(parsed);
         if (parsed == Card::NullPin) {
             if (num == 0) {
@@ -693,12 +700,12 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
 static bool isCardNotPresentError(const GpgME::Error &err)
 {
     // see fixup_scd_errors() in gpg-card.c
-    return err && ((err.code() == GPG_ERR_CARD_NOT_PRESENT) ||
-                   ((err.code() == GPG_ERR_ENODEV || err.code() == GPG_ERR_CARD_REMOVED) &&
-                    (err.sourceID() == GPG_ERR_SOURCE_SCD)));
+    return err
+        && ((err.code() == GPG_ERR_CARD_NOT_PRESENT)
+            || ((err.code() == GPG_ERR_ENODEV || err.code() == GPG_ERR_CARD_REMOVED) && (err.sourceID() == GPG_ERR_SOURCE_SCD)));
 }
 
-static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Context> &gpgAgent)
+static std::vector<std::shared_ptr<Card>> update_cardinfo(std::shared_ptr<Context> &gpgAgent)
 {
     qCDebug(KLEOPATRA_LOG) << "update_cardinfo()";
 
@@ -710,12 +717,12 @@ static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Conte
         if (err) {
             if (isCardNotPresentError(err)) {
                 qCDebug(KLEOPATRA_LOG) << "update_cardinfo: No card present";
-                return std::vector<std::shared_ptr<Card> >();
+                return std::vector<std::shared_ptr<Card>>();
             } else {
                 qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
                 auto ci = std::shared_ptr<Card>(new Card());
                 ci->setStatus(Card::CardError);
-                return std::vector<std::shared_ptr<Card> >(1, ci);
+                return std::vector<std::shared_ptr<Card>>(1, ci);
             }
         }
     }
@@ -725,17 +732,17 @@ static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Conte
     if (err) {
         if (isCardNotPresentError(err)) {
             qCDebug(KLEOPATRA_LOG) << "update_cardinfo: No card present";
-            return std::vector<std::shared_ptr<Card> >();
+            return std::vector<std::shared_ptr<Card>>();
         } else {
             qCWarning(KLEOPATRA_LOG) << "Getting active apps on all inserted cards failed:" << err;
             auto ci = std::shared_ptr<Card>(new Card());
             ci->setStatus(Card::CardError);
-            return std::vector<std::shared_ptr<Card> >(1, ci);
+            return std::vector<std::shared_ptr<Card>>(1, ci);
         }
     }
 
-    std::vector<std::shared_ptr<Card> > cards;
-    for (const auto &cardApp: cardApps) {
+    std::vector<std::shared_ptr<Card>> cards;
+    for (const auto &cardApp : cardApps) {
         const auto card = get_card_status(cardApp.serialNumber, cardApp.appName, gpgAgent);
         cards.push_back(card);
     }
@@ -748,11 +755,11 @@ struct Transaction {
     QByteArray command;
     QPointer<QObject> receiver;
     ReaderStatus::TransactionFunc slot;
-    AssuanTransaction* assuanTransaction;
+    AssuanTransaction *assuanTransaction;
 };
 
-static const Transaction updateTransaction = { { "__all__", "__all__" }, "__update__", nullptr, nullptr, nullptr };
-static const Transaction quitTransaction   = { { "__all__", "__all__" }, "__quit__",   nullptr, nullptr, nullptr };
+static const Transaction updateTransaction = {{"__all__", "__all__"}, "__update__", nullptr, nullptr, nullptr};
+static const Transaction quitTransaction = {{"__all__", "__all__"}, "__quit__", nullptr, nullptr, nullptr};
 
 namespace
 {
@@ -761,15 +768,14 @@ class ReaderStatusThread : public QThread
     Q_OBJECT
 public:
     explicit ReaderStatusThread(QObject *parent = nullptr)
-        : QThread(parent),
-          m_gnupgHomePath(Kleo::gnupgHomeDirectory()),
-          m_transactions(1, updateTransaction)   // force initial scan
+        : QThread(parent)
+        , m_gnupgHomePath(Kleo::gnupgHomeDirectory())
+        , m_transactions(1, updateTransaction) // force initial scan
     {
-        connect(this, &ReaderStatusThread::oneTransactionFinished,
-                this, &ReaderStatusThread::slotOneTransactionFinished);
+        connect(this, &ReaderStatusThread::oneTransactionFinished, this, &ReaderStatusThread::slotOneTransactionFinished);
     }
 
-    std::vector<std::shared_ptr<Card> > cardInfos() const
+    std::vector<std::shared_ptr<Card>> cardInfos() const
     {
         const QMutexLocker locker(&m_mutex);
         return m_cardInfos;
@@ -829,21 +835,27 @@ private Q_SLOTS:
         ft.splice(ft.begin(), m_finishedTransactions);
         for (const Transaction &t : std::as_const(ft))
             if (t.receiver && t.slot) {
-                QMetaObject::invokeMethod(t.receiver, [&t, &err]() { t.slot(err); }, Qt::DirectConnection);
+                QMetaObject::invokeMethod(
+                    t.receiver,
+                    [&t, &err]() {
+                        t.slot(err);
+                    },
+                    Qt::DirectConnection);
             }
     }
 
 private:
-    void run() override {
+    void run() override
+    {
         while (true) {
             std::shared_ptr<Context> gpgAgent;
 
             CardApp cardApp;
             QByteArray command;
             bool nullSlot = false;
-            AssuanTransaction* assuanTransaction = nullptr;
+            AssuanTransaction *assuanTransaction = nullptr;
             std::list<Transaction> item;
-            std::vector<std::shared_ptr<Card> > oldCards;
+            std::vector<std::shared_ptr<Card>> oldCards;
 
             while (!KeyCache::instance()->initialized()) {
                 qCDebug(KLEOPATRA_LOG) << "Waiting for Keycache to be initialized.";
@@ -857,8 +869,8 @@ private:
             }
             gpgAgent = std::shared_ptr<Context>(c.release());
 
-            KDAB_SYNCHRONIZED(m_mutex) {
-
+            KDAB_SYNCHRONIZED(m_mutex)
+            {
                 while (m_transactions.empty()) {
                     // go to sleep waiting for more work:
                     qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: waiting for commands";
@@ -869,8 +881,7 @@ private:
                 // copying, so we own it without really importing
                 // it into this thread (the QPointer isn't
                 // thread-safe):
-                item.splice(item.end(),
-                            m_transactions, m_transactions.begin());
+                item.splice(item.end(), m_transactions, m_transactions.begin());
 
                 // make local copies of the interesting stuff so
                 // we can release the mutex again:
@@ -885,26 +896,27 @@ private:
             qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: new iteration command=" << command << " ; nullSlot=" << nullSlot;
             // now, let's see what we got:
             if (nullSlot && command == quitTransaction.command) {
-                return;    // quit
+                return; // quit
             }
 
             if ((nullSlot && command == updateTransaction.command)) {
                 bool anyError = false;
 
                 if (cardApp.serialNumber == "__all__" || cardApp.appName == "__all__") {
-                    std::vector<std::shared_ptr<Card> > newCards = update_cardinfo(gpgAgent);
+                    std::vector<std::shared_ptr<Card>> newCards = update_cardinfo(gpgAgent);
 
-                    KDAB_SYNCHRONIZED(m_mutex) {
+                    KDAB_SYNCHRONIZED(m_mutex)
+                    {
                         m_cardInfos = newCards;
                     }
 
                     bool anyLC = false;
                     std::string firstCardWithNullPin;
-                    for (const auto &newCard: newCards) {
+                    for (const auto &newCard : newCards) {
                         const auto serialNumber = newCard->serialNumber();
                         const auto appName = newCard->appName();
-                        const auto matchingOldCard = std::find_if(oldCards.cbegin(), oldCards.cend(),
-                            [serialNumber, appName] (const std::shared_ptr<Card> &card) {
+                        const auto matchingOldCard =
+                            std::find_if(oldCards.cbegin(), oldCards.cend(), [serialNumber, appName](const std::shared_ptr<Card> &card) {
                                 return card->serialNumber() == serialNumber && card->appName() == appName;
                             });
                         if (matchingOldCard == oldCards.cend()) {
@@ -927,7 +939,7 @@ private:
                             anyError = true;
                         }
                     }
-                    for (const auto &oldCard: oldCards) {
+                    for (const auto &oldCard : oldCards) {
                         qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << oldCard->serialNumber() << "with app" << oldCard->appName() << "was removed";
                         Q_EMIT cardRemoved(oldCard->serialNumber(), oldCard->appName());
                     }
@@ -941,11 +953,11 @@ private:
 
                     bool cardWasAdded = false;
                     bool cardWasChanged = false;
-                    KDAB_SYNCHRONIZED(m_mutex) {
-                        const auto matchingCard = std::find_if(m_cardInfos.begin(), m_cardInfos.end(),
-                            [serialNumber, appName](const auto &card) {
-                                return card->serialNumber() == serialNumber && card->appName() == appName;
-                            });
+                    KDAB_SYNCHRONIZED(m_mutex)
+                    {
+                        const auto matchingCard = std::find_if(m_cardInfos.begin(), m_cardInfos.end(), [serialNumber, appName](const auto &card) {
+                            return card->serialNumber() == serialNumber && card->appName() == appName;
+                        });
                         if (matchingCard == m_cardInfos.end()) {
                             m_cardInfos.push_back(updatedCard);
                             cardWasAdded = true;
@@ -1001,7 +1013,7 @@ private:
     QWaitCondition m_waitForTransactions;
     const QString m_gnupgHomePath;
     // protected by m_mutex:
-    std::vector<std::shared_ptr<Card> > m_cardInfos;
+    std::vector<std::shared_ptr<Card>> m_cardInfos;
     std::list<Transaction> m_transactions, m_finishedTransactions;
 };
 
@@ -1011,29 +1023,24 @@ class ReaderStatus::Private : ReaderStatusThread
 {
     friend class Kleo::SmartCard::ReaderStatus;
     ReaderStatus *const q;
+
 public:
     explicit Private(ReaderStatus *qq)
-        : ReaderStatusThread(qq),
-          q(qq),
-          watcher()
+        : ReaderStatusThread(qq)
+        , q(qq)
+        , watcher()
     {
         KDAB_SET_OBJECT_NAME(watcher);
 
         qRegisterMetaType<Card::Status>("Kleo::SmartCard::Card::Status");
         qRegisterMetaType<GpgME::Error>("GpgME::Error");
 
-        connect(this, &::ReaderStatusThread::cardAdded,
-                q, &ReaderStatus::cardAdded);
-        connect(this, &::ReaderStatusThread::cardChanged,
-                q, &ReaderStatus::cardChanged);
-        connect(this, &::ReaderStatusThread::cardRemoved,
-                q, &ReaderStatus::cardRemoved);
-        connect(this, &::ReaderStatusThread::updateFinished,
-                q, &ReaderStatus::updateFinished);
-        connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged,
-                q, &ReaderStatus::firstCardWithNullPinChanged);
-        connect(this, &::ReaderStatusThread::anyCardCanLearnKeysChanged,
-                q, &ReaderStatus::anyCardCanLearnKeysChanged);
+        connect(this, &::ReaderStatusThread::cardAdded, q, &ReaderStatus::cardAdded);
+        connect(this, &::ReaderStatusThread::cardChanged, q, &ReaderStatus::cardChanged);
+        connect(this, &::ReaderStatusThread::cardRemoved, q, &ReaderStatus::cardRemoved);
+        connect(this, &::ReaderStatusThread::updateFinished, q, &ReaderStatus::updateFinished);
+        connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged, q, &ReaderStatus::firstCardWithNullPinChanged);
+        connect(this, &::ReaderStatusThread::anyCardCanLearnKeysChanged, q, &ReaderStatus::anyCardCanLearnKeysChanged);
 
         if (DeviceInfoWatcher::isSupported()) {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using new DeviceInfoWatcher";
@@ -1061,16 +1068,18 @@ private:
     std::string firstCardWithNullPinImpl() const
     {
         const auto cis = cardInfos();
-        const auto firstWithNullPin = std::find_if(cis.cbegin(), cis.cend(),
-                                                   [](const std::shared_ptr<Card> &ci) { return ci->hasNullPin(); });
+        const auto firstWithNullPin = std::find_if(cis.cbegin(), cis.cend(), [](const std::shared_ptr<Card> &ci) {
+            return ci->hasNullPin();
+        });
         return firstWithNullPin != cis.cend() ? (*firstWithNullPin)->serialNumber() : std::string();
     }
 
     bool anyCardCanLearnKeysImpl() const
     {
         const auto cis = cardInfos();
-        return std::any_of(cis.cbegin(), cis.cend(),
-                           [](const std::shared_ptr<Card> &ci) { return ci->canLearnKeys(); });
+        return std::any_of(cis.cbegin(), cis.cend(), [](const std::shared_ptr<Card> &ci) {
+            return ci->canLearnKeys();
+        });
     }
 
 private:
@@ -1079,7 +1088,8 @@ private:
 };
 
 ReaderStatus::ReaderStatus(QObject *parent)
-    : QObject(parent), d(new Private(this))
+    : QObject(parent)
+    , d(new Private(this))
 {
     self = this;
 
@@ -1096,8 +1106,7 @@ void ReaderStatus::startMonitoring()
 {
     d->start();
     if (DeviceInfoWatcher::isSupported()) {
-        connect(&d->devInfoWatcher, &DeviceInfoWatcher::startOfGpgAgentRequested,
-                this, &ReaderStatus::startOfGpgAgentRequested);
+        connect(&d->devInfoWatcher, &DeviceInfoWatcher::startOfGpgAgentRequested, this, &ReaderStatus::startOfGpgAgentRequested);
         d->devInfoWatcher.start();
     }
 }
@@ -1131,8 +1140,8 @@ bool ReaderStatus::anyCardCanLearnKeys() const
 
 void ReaderStatus::startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &command, QObject *receiver, const TransactionFunc &slot)
 {
-    const CardApp cardApp = { card->serialNumber(), card->appName() };
-    const Transaction t = { cardApp, command, receiver, slot, nullptr };
+    const CardApp cardApp = {card->serialNumber(), card->appName()};
+    const Transaction t = {cardApp, command, receiver, slot, nullptr};
     d->addTransaction(t);
 }
 
@@ -1142,8 +1151,8 @@ void ReaderStatus::startTransaction(const std::shared_ptr<Card> &card,
                                     const TransactionFunc &slot,
                                     std::unique_ptr<AssuanTransaction> transaction)
 {
-    const CardApp cardApp = { card->serialNumber(), card->appName() };
-    const Transaction t = { cardApp, command, receiver, slot, transaction.release() };
+    const CardApp cardApp = {card->serialNumber(), card->appName()};
+    const Transaction t = {cardApp, command, receiver, slot, transaction.release()};
     d->addTransaction(t);
 }
 
@@ -1154,19 +1163,19 @@ void ReaderStatus::updateStatus()
 
 void ReaderStatus::updateCard(const std::string &serialNumber, const std::string &appName)
 {
-    const CardApp cardApp = { serialNumber, appName };
-    const Transaction t = { cardApp, updateTransaction.command, nullptr, nullptr, nullptr };
+    const CardApp cardApp = {serialNumber, appName};
+    const Transaction t = {cardApp, updateTransaction.command, nullptr, nullptr, nullptr};
     d->addTransaction(t);
 }
 
-std::vector <std::shared_ptr<Card> > ReaderStatus::getCards() const
+std::vector<std::shared_ptr<Card>> ReaderStatus::getCards() const
 {
     return d->cardInfos();
 }
 
 std::shared_ptr<Card> ReaderStatus::getCard(const std::string &serialNumber, const std::string &appName) const
 {
-    for (const auto &card: d->cardInfos()) {
+    for (const auto &card : d->cardInfos()) {
         if (card->serialNumber() == serialNumber && card->appName() == appName) {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::getCard() - Found card with serial number" << serialNumber << "and app" << appName;
             return card;
@@ -1177,13 +1186,13 @@ std::shared_ptr<Card> ReaderStatus::getCard(const std::string &serialNumber, con
 }
 
 // static
-std::string ReaderStatus::switchCard(std::shared_ptr<Context>& ctx, const std::string& serialNumber, Error& err)
+std::string ReaderStatus::switchCard(std::shared_ptr<Context> &ctx, const std::string &serialNumber, Error &err)
 {
     return ::switchCard(ctx, serialNumber, err);
 }
 
 // static
-std::string ReaderStatus::switchApp(std::shared_ptr<Context>& ctx, const std::string& serialNumber, const std::string& appName, Error& err)
+std::string ReaderStatus::switchApp(std::shared_ptr<Context> &ctx, const std::string &serialNumber, const std::string &appName, Error &err)
 {
     return ::switchApp(ctx, serialNumber, appName, err);
 }

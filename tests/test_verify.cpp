@@ -9,19 +9,18 @@
 
 #include "kleo_test.h"
 
+#include <QGpgME/DecryptVerifyJob>
+#include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
 #include <QGpgME/VerifyDetachedJob>
-#include <QGpgME/KeyListJob>
-#include <QGpgME/DecryptVerifyJob>
 
-
-#include <gpgme++/error.h>
-#include <gpgme++/verificationresult.h>
-#include <gpgme++/decryptionresult.h>
-#include <gpgme++/key.h>
-#include <QTimer>
 #include <QObject>
 #include <QSignalSpy>
+#include <QTimer>
+#include <gpgme++/decryptionresult.h>
+#include <gpgme++/error.h>
+#include <gpgme++/key.h>
+#include <gpgme++/verificationresult.h>
 
 #include <chrono>
 using namespace std::chrono_literals;
@@ -36,7 +35,6 @@ class VerifyTest : public QObject
 {
     Q_OBJECT
 private:
-
     // Data shared with all tests
     QByteArray mSignature;
     QByteArray mSignedData;
@@ -72,8 +70,7 @@ public Q_SLOTS:
         // Start a key list job
         QGpgME::KeyListJob *job = mBackend->keyListJob();
         mParallelKeyListJobs.append(job);
-        connect(job, &QGpgME::Job::done,
-                this, &VerifyTest::slotParallelKeyListJobFinished);
+        connect(job, &QGpgME::Job::done, this, &VerifyTest::slotParallelKeyListJobFinished);
         QVERIFY(!job->start(QStringList()));
     }
 
@@ -142,7 +139,7 @@ private Q_SLOTS:
         QVERIFY(spy.isValid());
         GpgME::Error err = job->start(mSignature, mSignedData);
         QVERIFY(!err);
-        QTest::qWait(1000);   // ### we need to enter the event loop, can be done nicer though
+        QTest::qWait(1000); // ### we need to enter the event loop, can be done nicer though
 
         QCOMPARE(spy.count(), 1);
         auto result = spy.takeFirst().at(0).value<GpgME::VerificationResult>();
@@ -150,7 +147,7 @@ private Q_SLOTS:
 
         GpgME::Signature sig = result.signature(0);
         QCOMPARE(sig.summary() & GpgME::Signature::KeyMissing, 0);
-        QCOMPARE((quint64) sig.creationTime(), Q_UINT64_C(1530524124));
+        QCOMPARE((quint64)sig.creationTime(), Q_UINT64_C(1530524124));
         QCOMPARE(sig.validity(), GpgME::Signature::Full);
     }
 
@@ -158,8 +155,7 @@ private Q_SLOTS:
      * encrypted PGP messages */
     void testDecryptVerifyOpaqueSigned()
     {
-        const QString sigFileName = QLatin1String(KLEO_TEST_DATADIR) +
-                                    QLatin1String("/test.data.signed-opaque.asc");
+        const QString sigFileName = QLatin1String(KLEO_TEST_DATADIR) + QLatin1String("/test.data.signed-opaque.asc");
         std::pair<GpgME::DecryptionResult, GpgME::VerificationResult> result;
         QByteArray plaintext;
         QFile sigFile(sigFileName);
@@ -174,8 +170,7 @@ private Q_SLOTS:
         GpgME::Signature sig = result.second.signature(0);
         QVERIFY(sig.validity() == GpgME::Signature::Validity::Full);
         QVERIFY(!sig.status().code());
-        QVERIFY(QString::fromUtf8(plaintext).startsWith(
-                    QLatin1String("/* -*- mode: c++; c-basic-offset:4 -*-")));
+        QVERIFY(QString::fromUtf8(plaintext).startsWith(QLatin1String("/* -*- mode: c++; c-basic-offset:4 -*-")));
     }
 
 #ifndef GPGME_MULTITHREADED_KEYLIST_BROKEN
@@ -192,8 +187,7 @@ private Q_SLOTS:
             QGpgME::VerifyDetachedJob *job = mBackend->verifyDetachedJob();
             mParallelVerifyJobs.append(job);
             QVERIFY(!job->start(mSignature, mSignedData));
-            connect(job, SIGNAL(result(GpgME::VerificationResult)),
-                    this, SLOT(slotParallelVerifyJobFinished(GpgME::VerificationResult)));
+            connect(job, SIGNAL(result(GpgME::VerificationResult)), this, SLOT(slotParallelVerifyJobFinished(GpgME::VerificationResult)));
         }
 
         mEventLoop.exec();

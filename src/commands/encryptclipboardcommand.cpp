@@ -24,8 +24,8 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
+#include <KLocalizedString>
 
 #include <QApplication>
 #include <QClipboard>
@@ -44,6 +44,7 @@ class EncryptClipboardCommand::Private : public Command::Private
     {
         return static_cast<EncryptClipboardCommand *>(q);
     }
+
 public:
     explicit Private(EncryptClipboardCommand *qq, KeyListController *c);
     ~Private() override;
@@ -80,10 +81,10 @@ const EncryptClipboardCommand::Private *EncryptClipboardCommand::d_func() const
 #define q q_func()
 
 EncryptClipboardCommand::Private::Private(EncryptClipboardCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      shared_qq(qq, [](EncryptClipboardCommand*){}),
-      input(),
-      controller(EncryptEMailController::ClipboardMode)
+    : Command::Private(qq, c)
+    , shared_qq(qq, [](EncryptClipboardCommand *) {})
+    , input()
+    , controller(EncryptEMailController::ClipboardMode)
 {
     if (!Settings{}.cmsEnabled()) {
         controller.setProtocol(GpgME::OpenPGP);
@@ -110,8 +111,12 @@ EncryptClipboardCommand::EncryptClipboardCommand(QAbstractItemView *v, KeyListCo
 void EncryptClipboardCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
-    connect(&controller, &Controller::done, q, [this]() { slotControllerDone(); });
-    connect(&controller, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
+    connect(&controller, &Controller::done, q, [this]() {
+        slotControllerDone();
+    });
+    connect(&controller, &Controller::error, q, [this](int err, const QString &details) {
+        slotControllerError(err, details);
+    });
 }
 
 EncryptClipboardCommand::~EncryptClipboardCommand()
@@ -131,20 +136,18 @@ bool EncryptClipboardCommand::canEncryptCurrentClipboard()
 
 void EncryptClipboardCommand::doStart()
 {
-
     try {
-
         // snapshot clipboard content here, in case it's being changed...
         d->input = Input::createFromClipboard();
 
-        connect(&d->controller, &EncryptEMailController::recipientsResolved, this, [this]() { d->slotRecipientsResolved(); });
+        connect(&d->controller, &EncryptEMailController::recipientsResolved, this, [this]() {
+            d->slotRecipientsResolved();
+        });
 
         d->controller.startResolveRecipients();
 
     } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1",
-                            QString::fromLocal8Bit(e.what())),
-                       i18n("Encrypt Clipboard Error"));
+        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Encrypt Clipboard Error"));
         d->finished();
     }
 }
@@ -156,9 +159,7 @@ void EncryptClipboardCommand::Private::slotRecipientsResolved()
         input.reset(); // no longer needed, so don't keep a reference
         controller.start();
     } catch (const std::exception &e) {
-        information(i18n("An error occurred: %1",
-                         QString::fromLocal8Bit(e.what())),
-                    i18n("Encrypt Clipboard Error"));
+        information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Encrypt Clipboard Error"));
         finished();
     }
 }

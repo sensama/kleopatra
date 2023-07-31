@@ -4,9 +4,9 @@
 */
 #include "waitwidget.h"
 
-#include <QProgressBar>
-#include <QLabel>
 #include <QHBoxLayout>
+#include <QLabel>
+#include <QProgressBar>
 
 using namespace Kleo;
 

@@ -14,14 +14,16 @@
 using namespace Kleo;
 
 #ifdef _WIN32
-# include <winsock2.h>
+#include <winsock2.h>
 #else
 using WSADATA = int;
 static inline int WSAStartup(int, int *)
 {
     return 0;
 }
-static inline void WSACleanup() {}
+static inline void WSACleanup()
+{
+}
 #endif
 
 static int startWSA()
@@ -33,7 +35,6 @@ static int startWSA()
 WSAStarter::WSAStarter()
     : startupError(startWSA())
 {
-
 }
 
 WSAStarter::~WSAStarter()

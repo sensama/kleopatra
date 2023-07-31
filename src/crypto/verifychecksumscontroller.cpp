@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "verifychecksumscontroller.h"
+
 #include "checksumsutils_p.h"
 
 #ifndef QT_NO_DIRMODEL
@@ -17,22 +18,22 @@
 #include <crypto/gui/verifychecksumsdialog.h>
 
 #include <utils/input.h>
-#include <utils/output.h>
 #include <utils/kleo_assert.h>
+#include <utils/output.h>
 
-#include <Libkleo/Stl_Util>
 #include <Libkleo/ChecksumDefinition>
 #include <Libkleo/Classify>
+#include <Libkleo/Stl_Util>
 
 #include <KLocalizedString>
 
-#include <QPointer>
-#include <QFileInfo>
-#include <QThread>
-#include <QMutex>
-#include <QProgressDialog>
 #include <QDir>
+#include <QFileInfo>
+#include <QMutex>
+#include <QPointer>
 #include <QProcess>
+#include <QProgressDialog>
+#include <QThread>
 
 #include <gpg-error.h>
 
@@ -73,14 +74,19 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
 }
 #endif
 
-namespace {
+namespace
+{
 struct matches_none_of {
     const std::vector<QRegularExpression> m_regexps;
-    explicit matches_none_of(const std::vector<QRegularExpression> &regexps) : m_regexps(regexps) {}
+    explicit matches_none_of(const std::vector<QRegularExpression> &regexps)
+        : m_regexps(regexps)
+    {
+    }
     bool operator()(const QString &s) const
     {
-        return std::none_of(m_regexps.cbegin(), m_regexps.cend(),
-                            [&s](const QRegularExpression &rx) { return rx.match(s).hasMatch(); });
+        return std::none_of(m_regexps.cbegin(), m_regexps.cend(), [&s](const QRegularExpression &rx) {
+            return rx.match(s).hasMatch();
+        });
     }
 };
 }
@@ -90,6 +96,7 @@ class VerifyChecksumsController::Private : public QThread
     Q_OBJECT
     friend class ::Kleo::Crypto::VerifyChecksumsController;
     VerifyChecksumsController *const q;
+
 public:
     explicit Private(VerifyChecksumsController *qq);
     ~Private() override;
@@ -108,8 +115,7 @@ private:
         }
 
         if (!errors.empty())
-            q->setLastError(gpg_error(GPG_ERR_GENERAL),
-                            errors.join(QLatin1Char('\n')));
+            q->setLastError(gpg_error(GPG_ERR_GENERAL), errors.join(QLatin1Char('\n')));
         q->emitDoneOrError();
     }
 
@@ -119,25 +125,23 @@ private:
 private:
     QPointer<VerifyChecksumsDialog> dialog;
     mutable QMutex mutex;
-    const std::vector< std::shared_ptr<ChecksumDefinition> > checksumDefinitions;
+    const std::vector<std::shared_ptr<ChecksumDefinition>> checksumDefinitions;
     QStringList files;
     QStringList errors;
     volatile bool canceled;
 };
 
 VerifyChecksumsController::Private::Private(VerifyChecksumsController *qq)
-    : q(qq),
-      dialog(),
-      mutex(),
-      checksumDefinitions(ChecksumDefinition::getChecksumDefinitions()),
-      files(),
-      errors(),
-      canceled(false)
+    : q(qq)
+    , dialog()
+    , mutex()
+    , checksumDefinitions(ChecksumDefinition::getChecksumDefinitions())
+    , files()
+    , errors()
+    , canceled(false)
 {
-    connect(this, &Private::progress,
-            q, &Controller::progress);
-    connect(this, SIGNAL(finished()),
-            q, SLOT(slotOperationFinished()));
+    connect(this, &Private::progress, q, &Controller::progress);
+    connect(this, SIGNAL(finished()), q, SLOT(slotOperationFinished()));
 }
 
 VerifyChecksumsController::Private::~Private()
@@ -146,15 +150,15 @@ VerifyChecksumsController::Private::~Private()
 }
 
 VerifyChecksumsController::VerifyChecksumsController(QObject *p)
-    : Controller(p), d(new Private(this))
+    : Controller(p)
+    , d(new Private(this))
 {
-
 }
 
 VerifyChecksumsController::VerifyChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *p)
-    : Controller(ctx, p), d(new Private(this))
+    : Controller(ctx, p)
+    , d(new Private(this))
 {
-
 }
 
 VerifyChecksumsController::~VerifyChecksumsController()
@@ -172,7 +176,6 @@ void VerifyChecksumsController::setFiles(const QStringList &files)
 
 void VerifyChecksumsController::start()
 {
-
     {
         const QMutexLocker locker(&d->mutex);
 
@@ -180,14 +183,10 @@ void VerifyChecksumsController::start()
         d->dialog->setAttribute(Qt::WA_DeleteOnClose);
         d->dialog->setWindowTitle(i18nc("@title:window", "Verify Checksum Results"));
 
-        connect(d->dialog.data(), &VerifyChecksumsDialog::canceled,
-                this, &VerifyChecksumsController::cancel);
-        connect(d.get(), &Private::baseDirectories,
-                d->dialog.data(), &VerifyChecksumsDialog::setBaseDirectories);
-        connect(d.get(), &Private::progress,
-                d->dialog.data(), &VerifyChecksumsDialog::setProgress);
-        connect(d.get(), &Private::status,
-                d->dialog.data(), &VerifyChecksumsDialog::setStatus);
+        connect(d->dialog.data(), &VerifyChecksumsDialog::canceled, this, &VerifyChecksumsController::cancel);
+        connect(d.get(), &Private::baseDirectories, d->dialog.data(), &VerifyChecksumsDialog::setBaseDirectories);
+        connect(d.get(), &Private::progress, d->dialog.data(), &VerifyChecksumsDialog::setProgress);
+        connect(d.get(), &Private::status, d->dialog.data(), &VerifyChecksumsDialog::setStatus);
 
         d->canceled = false;
         d->errors.clear();
@@ -196,7 +195,6 @@ void VerifyChecksumsController::start()
     d->start();
 
     d->dialog->show();
-
 }
 
 void VerifyChecksumsController::cancel()
@@ -220,9 +218,7 @@ struct SumFile {
 
 static QStringList filter_checksum_files(QStringList l, const std::vector<QRegularExpression> &rxs)
 {
-    l.erase(std::remove_if(l.begin(), l.end(),
-                           matches_none_of(rxs)),
-            l.end());
+    l.erase(std::remove_if(l.begin(), l.end(), matches_none_of(rxs)), l.end());
     return l;
 }
 
@@ -253,18 +249,17 @@ struct sumfile_contains_file {
     const QDir dir;
     const QString fileName;
     sumfile_contains_file(const QDir &dir_, const QString &fileName_)
-        : dir(dir_), fileName(fileName_) {}
+        : dir(dir_)
+        , fileName(fileName_)
+    {
+    }
     bool operator()(const QString &sumFile) const
     {
         const std::vector<ChecksumsUtils::File> files = ChecksumsUtils::parse_sum_file(dir.absoluteFilePath(sumFile));
-        qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:      found " << files.size()
-                               << " files listed in " << qPrintable(dir.absoluteFilePath(sumFile));
+        qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:      found " << files.size() << " files listed in " << qPrintable(dir.absoluteFilePath(sumFile));
         for (const ChecksumsUtils::File &file : files) {
             const bool isSameFileName = (QString::compare(file.name, fileName, ChecksumsUtils::fs_cs) == 0);
-            qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:        "
-                                   << qPrintable(file.name) << " == "
-                                   << qPrintable(fileName)  << " ? "
-                                   << isSameFileName;
+            qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:        " << qPrintable(file.name) << " == " << qPrintable(fileName) << " ? " << isSameFileName;
             if (isSameFileName) {
                 return true;
             }
@@ -286,7 +281,6 @@ struct sumfile_contains_file {
 
 static QStringList find_base_directories(const QStringList &files)
 {
-
     // Step 1: find base dirs:
 
     std::set<QDir, less_dir> dirs;
@@ -319,9 +313,10 @@ static QStringList find_base_directories(const QStringList &files)
     return rv;
 }
 
-static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, QStringList &errors,
-        const std::function<void(int)> &progress,
-        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+static std::vector<SumFile> find_sums_by_input_files(const QStringList &files,
+                                                     QStringList &errors,
+                                                     const std::function<void(int)> &progress,
+                                                     const std::vector<std::shared_ptr<ChecksumDefinition>> &checksumDefinitions)
 {
     const std::vector<QRegularExpression> patterns = ChecksumsUtils::get_patterns(checksumDefinitions);
 
@@ -346,15 +341,12 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
             const QStringList sumfiles = filter_checksum_files(dir.entryList(QDir::Files), patterns);
             qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:   found " << sumfiles.size()
                                    << " sum files: " << qPrintable(sumfiles.join(QLatin1String(", ")));
-            dirs2sums[ dir ].insert(sumfiles.begin(), sumfiles.end());
+            dirs2sums[dir].insert(sumfiles.begin(), sumfiles.end());
             const QStringList dirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-            qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:   found " << dirs.size()
-                                   << " subdirs, prepending";
-            std::transform(dirs.cbegin(), dirs.cend(),
-                           std::inserter(inputs, inputs.begin()),
-                           [&dir](const QString &path) {
-                               return dir.absoluteFilePath(path);
-                           });
+            qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:   found " << dirs.size() << " subdirs, prepending";
+            std::transform(dirs.cbegin(), dirs.cend(), std::inserter(inputs, inputs.begin()), [&dir](const QString &path) {
+                return dir.absoluteFilePath(path);
+            });
         } else if (is_sum_file(fileName)) {
             qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:   it's a sum file";
             dirs2sums[fi.dir()].insert(fileName);
@@ -364,8 +356,7 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
             const QStringList sumfiles = filter_checksum_files(dir.entryList(QDir::Files), patterns);
             qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:   found " << sumfiles.size()
                                    << " potential sumfiles: " << qPrintable(sumfiles.join(QLatin1String(", ")));
-            const auto it = std::find_if(sumfiles.cbegin(), sumfiles.cend(),
-                                         sumfile_contains_file(dir, fileName));
+            const auto it = std::find_if(sumfiles.cbegin(), sumfiles.cend(), sumfile_contains_file(dir, fileName));
             if (it == sumfiles.end()) {
                 errors.push_back(i18n("Cannot find checksums file for file %1", file));
             } else {
@@ -383,7 +374,6 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
     sumfiles.reserve(dirs2sums.size());
 
     for (auto it = dirs2sums.begin(), end = dirs2sums.end(); it != end; ++it) {
-
         if (it->second.empty()) {
             continue;
         }
@@ -391,12 +381,10 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
         const QDir &dir = it->first;
 
         for (const QString &sumFileName : std::as_const(it->second)) {
-
             const std::vector<ChecksumsUtils::File> summedfiles = ChecksumsUtils::parse_sum_file(dir.absoluteFilePath(sumFileName));
             QStringList files;
             files.reserve(summedfiles.size());
-            std::transform(summedfiles.cbegin(), summedfiles.cend(),
-                           std::back_inserter(files), std::mem_fn(&ChecksumsUtils::File::name));
+            std::transform(summedfiles.cbegin(), summedfiles.cend(), std::back_inserter(files), std::mem_fn(&ChecksumsUtils::File::name));
             const SumFile sumFile = {
                 it->first,
                 sumFileName,
@@ -404,13 +392,11 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
                 ChecksumsUtils::filename2definition(sumFileName, checksumDefinitions),
             };
             sumfiles.push_back(sumFile);
-
         }
 
         if (progress) {
             progress(++i);
         }
-
     }
     return sumfiles;
 }
@@ -419,7 +405,8 @@ static QStringList c_lang_environment()
 {
     static const QRegularExpression re(QRegularExpression::anchoredPattern(u"LANG=.*"), ChecksumsUtils::s_regex_cs);
     QStringList env = QProcess::systemEnvironment();
-    env.erase(std::remove_if(env.begin(), env.end(),
+    env.erase(std::remove_if(env.begin(),
+                             env.end(),
                              [](const QString &str) {
                                  return re.match(str).hasMatch();
                              }),
@@ -432,10 +419,10 @@ static const struct {
     const char *string;
     VerifyChecksumsDialog::Status status;
 } statusStrings[] = {
-    { "OK",     VerifyChecksumsDialog::OK     },
-    { "FAILED", VerifyChecksumsDialog::Failed },
+    {"OK", VerifyChecksumsDialog::OK},
+    {"FAILED", VerifyChecksumsDialog::Failed},
 };
-static const size_t numStatusStrings = sizeof statusStrings / sizeof * statusStrings;
+static const size_t numStatusStrings = sizeof statusStrings / sizeof *statusStrings;
 
 static VerifyChecksumsDialog::Status string2status(const QByteArray &str)
 {
@@ -446,8 +433,8 @@ static VerifyChecksumsDialog::Status string2status(const QByteArray &str)
     return VerifyChecksumsDialog::Unknown;
 }
 
-static QString process(const SumFile &sumFile, bool *fatal, const QStringList &env,
-                       const std::function<void(const QString &, VerifyChecksumsDialog::Status)> &status)
+static QString
+process(const SumFile &sumFile, bool *fatal, const QStringList &env, const std::function<void(const QString &, VerifyChecksumsDialog::Status)> &status)
 {
     QProcess p;
     p.setEnvironment(env);
@@ -482,8 +469,7 @@ static QString process(const SumFile &sumFile, bool *fatal, const QStringList &e
             *fatal = true;
         }
         if (p.error() == QProcess::UnknownError)
-            return i18n("Error while running %1: %2", program,
-                        QString::fromLocal8Bit(p.readAllStandardError().trimmed().constData()));
+            return i18n("Error while running %1: %2", program, QString::fromLocal8Bit(p.readAllStandardError().trimmed().constData()));
         else {
             return i18n("Failed to execute %1: %2", program, p.errorString());
         }
@@ -502,11 +488,10 @@ static QDebug operator<<(QDebug s, const SumFile &sum)
 
 void VerifyChecksumsController::Private::run()
 {
-
     QMutexLocker locker(&mutex);
 
     const QStringList files = this->files;
-    const std::vector< std::shared_ptr<ChecksumDefinition> > checksumDefinitions = this->checksumDefinitions;
+    const std::vector<std::shared_ptr<ChecksumDefinition>> checksumDefinitions = this->checksumDefinitions;
 
     locker.unlock();
 
@@ -525,8 +510,12 @@ void VerifyChecksumsController::Private::run()
     const QString scanning = i18n("Scanning directories...");
     Q_EMIT progress(0, 0, scanning);
 
-    const auto progressCb = [this, scanning](int arg) { Q_EMIT progress(arg, 0, scanning); };
-    const auto statusCb = [this](const QString &str, VerifyChecksumsDialog::Status st) { Q_EMIT status(str, st); };
+    const auto progressCb = [this, scanning](int arg) {
+        Q_EMIT progress(arg, 0, scanning);
+    };
+    const auto statusCb = [this](const QString &str, VerifyChecksumsDialog::Status st) {
+        Q_EMIT status(str, st);
+    };
 
     const std::vector<SumFile> sumfiles = find_sums_by_input_files(files, errors, progressCb, checksumDefinitions);
 
@@ -535,15 +524,11 @@ void VerifyChecksumsController::Private::run()
     }
 
     if (!canceled) {
-
         Q_EMIT progress(0, 0, i18n("Calculating total size..."));
 
-        const quint64 total
-            = kdtools::accumulate_transform(sumfiles.cbegin(), sumfiles.cend(),
-                                            std::mem_fn(&SumFile::totalSize), Q_UINT64_C(0));
+        const quint64 total = kdtools::accumulate_transform(sumfiles.cbegin(), sumfiles.cend(), std::mem_fn(&SumFile::totalSize), Q_UINT64_C(0));
 
         if (!canceled) {
-
             //
             // Step 2: perform work (with progress reporting):
             //
@@ -555,8 +540,7 @@ void VerifyChecksumsController::Private::run()
 
             quint64 done = 0;
             for (const SumFile &sumFile : sumfiles) {
-                Q_EMIT progress(done / factor, total / factor,
-                                i18n("Verifying checksums (%2) in %1", sumFile.checksumDefinition->label(), sumFile.dir.path()));
+                Q_EMIT progress(done / factor, total / factor, i18n("Verifying checksums (%2) in %1", sumFile.checksumDefinition->label(), sumFile.dir.path()));
                 bool fatal = false;
                 const QString error = process(sumFile, &fatal, env, statusCb);
                 if (!error.isEmpty()) {
@@ -568,7 +552,6 @@ void VerifyChecksumsController::Private::run()
                 }
             }
             Q_EMIT progress(done / factor, total / factor, i18n("Done."));
-
         }
     }
 
@@ -577,7 +560,6 @@ void VerifyChecksumsController::Private::run()
     this->errors = errors;
 
     // mutex unlocked by QMutexLocker
-
 }
 
 #include "moc_verifychecksumscontroller.cpp"

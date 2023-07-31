@@ -59,10 +59,10 @@ void Kleo::dumpFocusChain(QWidget *window)
 static QWidget *simulateFocusNextPrevChild(QWidget *focusWidget, bool next)
 {
     // taken from QApplicationPrivate::focusNextPrevChild_helper:
-//     uint focus_flag = qt_tab_all_widgets() ? Qt::TabFocus : Qt::StrongFocus;
+    // uint focus_flag = qt_tab_all_widgets() ? Qt::TabFocus : Qt::StrongFocus;
     uint focus_flag = Qt::TabFocus;
 
-//     QWidget *f = toplevel->focusWidget();
+    // QWidget *f = toplevel->focusWidget();
     QWidget *f = focusWidget;
     QWidget *toplevel = focusWidget->window();
     if (!f)
@@ -70,44 +70,42 @@ static QWidget *simulateFocusNextPrevChild(QWidget *focusWidget, bool next)
 
     QWidget *w = f;
     QWidget *test = f->nextInFocusChain();
-//     bool seenWindow = false;
-//     bool focusWidgetAfterWindow = false;
+    // bool seenWindow = false;
+    // bool focusWidgetAfterWindow = false;
     while (test && test != f) {
-//         if (test->isWindow())
-//             seenWindow = true;
+        // if (test->isWindow())
+        //     seenWindow = true;
 
         // If the next focus widget has a focus proxy, we need to check to ensure
         // that the proxy is in the correct parent-child direction (according to
         // \a next). This is to ensure that we can tab in and out of compound widgets
         // without getting stuck in a tab-loop between parent and child.
         QWidget *focusProxy = deepestFocusProxy(test);
-        const bool canTakeFocus = ((focusProxy ? focusProxy->focusPolicy() : test->focusPolicy())
-                                  & focus_flag) == focus_flag;
-        const bool composites = focusProxy ? (next ? focusProxy->isAncestorOf(test)
-                                                   : test->isAncestorOf(focusProxy))
+        const bool canTakeFocus = ((focusProxy ? focusProxy->focusPolicy() : test->focusPolicy()) & focus_flag) == focus_flag;
+        const bool composites = focusProxy ? (next ? focusProxy->isAncestorOf(test) : test->isAncestorOf(focusProxy)) //
                                            : false;
-        if (canTakeFocus && !composites
-            && test->isVisibleTo(toplevel) && test->isEnabled()
-            && !(w->windowType() == Qt::SubWindow && !w->isAncestorOf(test))
-            && (toplevel->windowType() != Qt::SubWindow || toplevel->isAncestorOf(test))
+        if (canTakeFocus && !composites //
+            && test->isVisibleTo(toplevel) && test->isEnabled() //
+            && !(w->windowType() == Qt::SubWindow && !w->isAncestorOf(test)) //
+            && (toplevel->windowType() != Qt::SubWindow || toplevel->isAncestorOf(test)) //
             && f != focusProxy) {
             w = test;
-//             if (seenWindow)
-//                 focusWidgetAfterWindow = true;
+            // if (seenWindow)
+            //     focusWidgetAfterWindow = true;
             if (next)
                 break;
         }
         test = test->nextInFocusChain();
     }
 
-//     if (wrappingOccurred != nullptr)
-//         *wrappingOccurred = next ? focusWidgetAfterWindow : !focusWidgetAfterWindow;
+    // if (wrappingOccurred != nullptr)
+    //     *wrappingOccurred = next ? focusWidgetAfterWindow : !focusWidgetAfterWindow;
 
     if (w == f) {
-//         if (qt_in_tab_key_event) {
-//             w->window()->setAttribute(Qt::WA_KeyboardFocusChange);
-//             w->update();
-//         }
+        // if (qt_in_tab_key_event) {
+        //     w->window()->setAttribute(Qt::WA_KeyboardFocusChange);
+        //     w->update();
+        // }
         return nullptr;
     }
 
@@ -127,7 +125,7 @@ void Kleo::dumpTabOrder(QWidget *widget)
     }
     qCDebug(KLEOPATRA_LOG) << __func__ << "=====";
     // simulate Tab, Tab, Tab, ...
-    QSet<QWidget*> seen;
+    QSet<QWidget *> seen;
     qCDebug(KLEOPATRA_LOG).noquote().nospace() << indentByWidgetDepth(widget) << widget;
     for (auto w = simulateFocusNextPrevChild(widget, true); w && !seen.contains(w); w = simulateFocusNextPrevChild(w, true)) {
         qCDebug(KLEOPATRA_LOG).noquote().nospace() << indentByWidgetDepth(w) << w;

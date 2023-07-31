@@ -10,6 +10,7 @@
 
 #pragma once
 #include <KCModule>
+#include <kcmutils_version.h>
 
 #include <memory>
 

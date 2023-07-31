@@ -8,8 +8,10 @@
 */
 
 #include <config-kleopatra.h>
+
 #include "task.h"
 #include "task_p.h"
+
 #include "kleopatra_debug.h"
 
 #include <Libkleo/KleoException>
@@ -24,7 +26,6 @@
 #include <KIconLoader>
 #include <KLocalizedString>
 
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace GpgME;
@@ -36,7 +37,11 @@ class ErrorResult : public Task::Result
 {
 public:
     ErrorResult(const GpgME::Error &error, const QString &details)
-        : Task::Result(), m_error(error), m_details(details) {}
+        : Task::Result()
+        , m_error(error)
+        , m_details(details)
+    {
+    }
 
     QString overview() const override
     {
@@ -62,6 +67,7 @@ public:
     {
         return AuditLogEntry();
     }
+
 private:
     const GpgME::Error m_error;
     const QString m_details;
@@ -72,6 +78,7 @@ class Task::Private
 {
     friend class ::Kleo::Crypto::Task;
     Task *const q;
+
 public:
     explicit Private(Task *qq);
 
@@ -88,18 +95,23 @@ static int nextTaskId = 0;
 }
 
 Task::Private::Private(Task *qq)
-    : q(qq), m_progress(0), m_totalProgress(0), m_asciiArmor(false), m_id(nextTaskId++)
+    : q(qq)
+    , m_progress(0)
+    , m_totalProgress(0)
+    , m_asciiArmor(false)
+    , m_id(nextTaskId++)
 {
-
 }
 
 Task::Task(QObject *p)
-    : QObject(p), d(new Private(this))
+    : QObject(p)
+    , d(new Private(this))
 {
-
 }
 
-Task::~Task() {}
+Task::~Task()
+{
+}
 
 void Task::setAsciiArmor(bool armor)
 {
@@ -154,9 +166,17 @@ void Task::start()
     } catch (const GpgME::Exception &e) {
         QMetaObject::invokeMethod(this, "emitError", Qt::QueuedConnection, Q_ARG(GpgME::Error, e.error()), Q_ARG(QString, QString::fromLocal8Bit(e.what())));
     } catch (const std::exception &e) {
-        QMetaObject::invokeMethod(this, "emitError", Qt::QueuedConnection, Q_ARG(GpgME::Error, Error::fromCode(GPG_ERR_UNEXPECTED)), Q_ARG(QString, QString::fromLocal8Bit(e.what())));
+        QMetaObject::invokeMethod(this,
+                                  "emitError",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(GpgME::Error, Error::fromCode(GPG_ERR_UNEXPECTED)),
+                                  Q_ARG(QString, QString::fromLocal8Bit(e.what())));
     } catch (...) {
-        QMetaObject::invokeMethod(this, "emitError", Qt::QueuedConnection, Q_ARG(GpgME::Error, Error::fromCode(GPG_ERR_UNEXPECTED)), Q_ARG(QString, i18n("Unknown exception in Task::start()")));
+        QMetaObject::invokeMethod(this,
+                                  "emitError",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(GpgME::Error, Error::fromCode(GPG_ERR_UNEXPECTED)),
+                                  Q_ARG(QString, i18n("Unknown exception in Task::start()")));
     }
     Q_EMIT started(QPrivateSignal());
 }
@@ -181,11 +201,18 @@ std::shared_ptr<Task::Result> Task::makeErrorResult(const GpgME::Error &error, c
 class Task::Result::Private
 {
 public:
-    Private() {}
+    Private()
+    {
+    }
 };
 
-Task::Result::Result() : d(new Private()) {}
-Task::Result::~Result() {}
+Task::Result::Result()
+    : d(new Private())
+{
+}
+Task::Result::~Result()
+{
+}
 
 bool Task::Result::hasError() const
 {
@@ -216,7 +243,6 @@ QString Task::Result::iconPath(VisualCode code)
     case NeutralSuccess:
     default:
         return QString();
-
     }
 }
 

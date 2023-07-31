@@ -18,8 +18,8 @@
 #include <Libkleo/NavigatableTreeView>
 #include <Libkleo/SystemInfo>
 
-#include <KLocalizedString>
 #include <KColorScheme>
+#include <KLocalizedString>
 
 #include <QAbstractTableModel>
 #include <QApplication>
@@ -36,7 +36,6 @@
 
 #include "kleopatra_debug.h"
 
-
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 
@@ -48,10 +47,9 @@ class Model : public QAbstractTableModel
     Q_OBJECT
 public:
     explicit Model(QObject *parent = nullptr)
-        : QAbstractTableModel(parent),
-          m_tests()
+        : QAbstractTableModel(parent)
+        , m_tests()
     {
-
     }
 
     enum Column {
@@ -91,18 +89,18 @@ public:
                 case TestName:
                     return m_tests[row]->name();
                 case TestResult:
-                    return
-                        m_tests[row]->skipped() ? i18n("Skipped") :
-                        m_tests[row]->passed()  ? i18n("Passed") :
-                        /* else */                m_tests[row]->shortError();
+                    return m_tests[row]->skipped() ? i18n("Skipped") //
+                        : m_tests[row]->passed()   ? i18n("Passed")
+                                                   : m_tests[row]->shortError();
                 }
                 break;
             case Qt::BackgroundRole:
                 if (!SystemInfo::isHighContrastModeActive()) {
                     KColorScheme scheme(qApp->palette().currentColorGroup());
-                    return (m_tests[row]->skipped() ? scheme.background(KColorScheme::NeutralBackground) :
-                            m_tests[row]->passed()  ? scheme.background(KColorScheme::PositiveBackground) :
-                            scheme.background(KColorScheme::NegativeBackground)).color();
+                    return (m_tests[row]->skipped()      ? scheme.background(KColorScheme::NeutralBackground)
+                                : m_tests[row]->passed() ? scheme.background(KColorScheme::PositiveBackground)
+                                                         : scheme.background(KColorScheme::NegativeBackground))
+                        .color();
                 }
             }
         return QVariant();
@@ -110,12 +108,12 @@ public:
 
     QVariant headerData(int section, Qt::Orientation o, int role) const override
     {
-        if (o == Qt::Horizontal &&
-                section >= 0 && section < NumColumns &&
-                role == Qt::DisplayRole)
+        if (o == Qt::Horizontal && section >= 0 && section < NumColumns && role == Qt::DisplayRole)
             switch (section) {
-            case TestName:   return i18n("Test Name");
-            case TestResult: return i18n("Result");
+            case TestName:
+                return i18n("Test Name");
+            case TestResult:
+                return i18n("Result");
             }
         return QVariant();
     }
@@ -161,7 +159,8 @@ class Proxy : public QSortFilterProxyModel
     Q_OBJECT
 public:
     explicit Proxy(QObject *parent = nullptr)
-        : QSortFilterProxyModel(parent), m_showAll(true)
+        : QSortFilterProxyModel(parent)
+        , m_showAll(true)
     {
         setDynamicSortFilter(true);
     }
@@ -192,21 +191,17 @@ private:
             return true;
         }
         if (const Model *const model = qobject_cast<Model *>(sourceModel())) {
-            if (!src_parent.isValid() && src_row >= 0 &&
-                    src_row < model->rowCount(src_parent)) {
+            if (!src_parent.isValid() && src_row >= 0 && src_row < model->rowCount(src_parent)) {
                 if (const std::shared_ptr<SelfTest> &t = model->at(src_row)) {
                     return !t->passed();
                 } else {
-                    qCWarning(KLEOPATRA_LOG) <<  "NULL test??";
+                    qCWarning(KLEOPATRA_LOG) << "NULL test??";
                 }
             } else {
                 if (src_parent.isValid()) {
-                    qCWarning(KLEOPATRA_LOG) <<  "view asks for subitems!";
+                    qCWarning(KLEOPATRA_LOG) << "view asks for subitems!";
                 } else {
-                    qCWarning(KLEOPATRA_LOG) << "index " << src_row
-                                             << " is out of range [" << 0
-                                             << "," <<  model->rowCount(src_parent)
-                                             << "]";
+                    qCWarning(KLEOPATRA_LOG) << "index " << src_row << " is out of range [" << 0 << "," << model->rowCount(src_parent) << "]";
                 }
             }
         } else {
@@ -214,9 +209,8 @@ private:
             if (!sourceModel()) {
                 qCWarning(KLEOPATRA_LOG) << "a null pointer";
             } else {
-                qCWarning(KLEOPATRA_LOG) <<  sourceModel()->metaObject()->className();
+                qCWarning(KLEOPATRA_LOG) << sourceModel()->metaObject()->className();
             }
-
         }
         return false;
     }
@@ -257,12 +251,13 @@ class SelfTestDialog::Private
 {
     friend class ::Kleo::Dialogs::SelfTestDialog;
     SelfTestDialog *const q;
+
 public:
     explicit Private(SelfTestDialog *qq)
-        : q(qq),
-          model(q),
-          proxy(q),
-          ui(q)
+        : q(qq)
+        , model(q)
+        , proxy(q)
+        , ui(q)
     {
         proxy.setSourceModel(&model);
         ui.resultsTV->setModel(&proxy);
@@ -307,7 +302,12 @@ private:
             ui.proposedCorrectiveActionGB->setVisible(!t->passed() && !action.isEmpty());
             ui.proposedCorrectiveActionLB->setText(action);
             ui.doItPB->setVisible(!t->passed() && t->canFixAutomatically());
-            QMetaObject::invokeMethod(q, [this]() { ensureCurrentItemIsVisible(); }, Qt::QueuedConnection);
+            QMetaObject::invokeMethod(
+                q,
+                [this]() {
+                    ensureCurrentItemIsVisible();
+                },
+                Qt::QueuedConnection);
         }
     }
     void slotDoItClicked()
@@ -366,9 +366,9 @@ private:
             auto mainLayout = new QVBoxLayout{qq};
 
             {
-                auto label = new QLabel{xi18n(
-                    "<para>These are the results of the Kleopatra self-test suite. Click on a test for details.</para>"
-                    "<para>Note that all but the first failure might be due to prior tests failing.</para>"), qq};
+                auto label = new QLabel{xi18n("<para>These are the results of the Kleopatra self-test suite. Click on a test for details.</para>"
+                                              "<para>Note that all but the first failure might be due to prior tests failing.</para>"),
+                                        qq};
                 label->setWordWrap(true);
                 labelHelper.addLabel(label);
 
@@ -468,7 +468,7 @@ private:
             mainLayout->addWidget(runAtStartUpCB);
 
             buttonBox = new QDialogButtonBox{qq};
-            buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Close|QDialogButtonBox::Ok);
+            buttonBox->setStandardButtons(QDialogButtonBox::Cancel | QDialogButtonBox::Close | QDialogButtonBox::Ok);
             buttonBox->button(QDialogButtonBox::Ok)->setText(i18nc("@action:button", "Continue"));
             rerunPB = buttonBox->addButton(i18nc("@action:button", "Rerun Tests"), QDialogButtonBox::ActionRole);
 
@@ -478,7 +478,8 @@ private:
 };
 
 SelfTestDialog::SelfTestDialog(QWidget *p, Qt::WindowFlags f)
-    : QDialog(p, f), d(new Private(this))
+    : QDialog(p, f)
+    , d(new Private(this))
 {
     setWindowTitle(i18nc("@title:window", "Self Test"));
     resize(448, 610);
@@ -513,5 +514,5 @@ void SelfTestDialog::setAutomaticMode(bool automatic)
     d->ui.buttonBox->button(QDialogButtonBox::Close)->setVisible(!automatic);
 }
 
-#include "selftestdialog.moc"
 #include "moc_selftestdialog.cpp"
+#include "selftestdialog.moc"

@@ -9,8 +9,8 @@
 
 #include <config-kleopatra.h>
 
-#include "setinitialpincommand.h"
 #include "cardcommand_p.h"
+#include "setinitialpincommand.h"
 
 #include "dialogs/setinitialpindialog.h"
 
@@ -18,7 +18,6 @@
 #include "smartcard/readerstatus.h"
 
 #include <KLocalizedString>
-
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -33,6 +32,7 @@ class SetInitialPinCommand::Private : public CardCommand::Private
     {
         return static_cast<SetInitialPinCommand *>(q);
     }
+
 public:
     explicit Private(SetInitialPinCommand *qq, const std::string &serialNumber);
     ~Private() override;
@@ -53,10 +53,18 @@ private:
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->setWindowTitle(i18nc("@title:window", "Set Initial Pin"));
 
-        connect(dlg, &SetInitialPinDialog::nksPinRequested, q_func(), [this]() { slotNksPinRequested(); });
-        connect(dlg, &SetInitialPinDialog::sigGPinRequested, q_func(), [this]() { slotSigGPinRequested(); });
-        connect(dlg, &QDialog::rejected, q_func(), [this]() { slotDialogRejected(); });
-        connect(dlg, &QDialog::accepted, q_func(), [this]() { slotDialogAccepted(); });
+        connect(dlg, &SetInitialPinDialog::nksPinRequested, q_func(), [this]() {
+            slotNksPinRequested();
+        });
+        connect(dlg, &SetInitialPinDialog::sigGPinRequested, q_func(), [this]() {
+            slotSigGPinRequested();
+        });
+        connect(dlg, &QDialog::rejected, q_func(), [this]() {
+            slotDialogRejected();
+        });
+        connect(dlg, &QDialog::accepted, q_func(), [this]() {
+            slotDialogAccepted();
+        });
 
         dialog = dlg;
     }
@@ -129,12 +137,14 @@ const SetInitialPinCommand::Private *SetInitialPinCommand::d_func() const
 #define d d_func()
 
 SetInitialPinCommand::Private::Private(SetInitialPinCommand *qq, const std::string &serialNumber)
-    : CardCommand::Private(qq, serialNumber, nullptr),
-      dialog()
+    : CardCommand::Private(qq, serialNumber, nullptr)
+    , dialog()
 {
 }
 
-SetInitialPinCommand::Private::~Private() {}
+SetInitialPinCommand::Private::~Private()
+{
+}
 
 SetInitialPinCommand::SetInitialPinCommand(const std::string &serialNumber)
     : CardCommand(new Private(this, serialNumber))
@@ -142,7 +152,9 @@ SetInitialPinCommand::SetInitialPinCommand(const std::string &serialNumber)
     d->init();
 }
 
-SetInitialPinCommand::~SetInitialPinCommand() {}
+SetInitialPinCommand::~SetInitialPinCommand()
+{
+}
 
 QDialog *SetInitialPinCommand::dialog()
 {

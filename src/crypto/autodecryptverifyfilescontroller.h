@@ -16,7 +16,6 @@
 
 #include <utils/types.h>
 
-
 #include <memory>
 #include <vector>
 
@@ -53,4 +52,3 @@ private:
 
 }
 }
-

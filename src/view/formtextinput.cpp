@@ -40,19 +40,20 @@ namespace Kleo::_detail
 class FormTextInputBase::Private
 {
     FormTextInputBase *q;
+
 public:
-    enum Error
-    {
+    enum Error {
         EntryOK,
         EntryMissing, // a required entry is missing
-        InvalidEntry  // the validator doesn't accept the entry
+        InvalidEntry // the validator doesn't accept the entry
     };
 
     Private(FormTextInputBase *q)
         : q{q}
         , mValueRequiredErrorMessage{defaultValueRequiredErrorMessage()}
         , mInvalidEntryErrorMessage{defaultInvalidEntryErrorMessage()}
-    {}
+    {
+    }
 
     QString annotatedIfRequired(const QString &text) const;
     void updateLabel();
@@ -82,9 +83,8 @@ public:
 
 QString FormTextInputBase::Private::annotatedIfRequired(const QString &text) const
 {
-    return mRequired
-        ? i18nc("@label label text (required)", "%1 (required)", text)
-        : text;
+    return mRequired ? i18nc("@label label text (required)", "%1 (required)", text) //
+                     : text;
 }
 
 void FormTextInputBase::Private::updateLabel()
@@ -206,7 +206,7 @@ void FormTextInputBase::Private::updateAccessibleNameAndDescription()
     // Qt does not support "described-by" relations (like WCAG's "aria-describedby" relationship attribute);
     // emulate this by setting the hint text and, if the error is shown, the error message as accessible
     // description of the input field
-    const auto description = errorShown ? accessibleDescription() + QLatin1String{" "} + mErrorLabel->accessibleName()
+    const auto description = errorShown ? accessibleDescription() + QLatin1String{" "} + mErrorLabel->accessibleName() //
                                         : accessibleDescription();
     if (mWidget && mWidget->accessibleDescription() != description) {
         mWidget->setAccessibleDescription(description);
@@ -372,8 +372,7 @@ QString FormTextInputBase::currentError() const
 bool FormTextInputBase::validate(const QString &text, int pos) const
 {
     QString textCopy = text;
-    if (d->mValidator && d->mValidator->validate(textCopy, pos) != QValidator::Acceptable)
-    {
+    if (d->mValidator && d->mValidator->validate(textCopy, pos) != QValidator::Acceptable) {
         return false;
     }
     return true;
@@ -411,8 +410,10 @@ template<>
 void Kleo::FormTextInput<QLineEdit>::connectWidget()
 {
     const auto w = widget();
-    QObject::connect(w, &QLineEdit::editingFinished,
-                     w, [this]() { onEditingFinished(); });
-    QObject::connect(w, &QLineEdit::textChanged,
-                     w, [this]() { onTextChanged(); });
+    QObject::connect(w, &QLineEdit::editingFinished, w, [this]() {
+        onEditingFinished();
+    });
+    QObject::connect(w, &QLineEdit::textChanged, w, [this]() {
+        onTextChanged();
+    });
 }

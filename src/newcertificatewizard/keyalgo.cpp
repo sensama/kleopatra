@@ -18,23 +18,23 @@ using namespace GpgME;
 bool Kleo::NewCertificateUi::is_algo(GpgME::Subkey::PubkeyAlgo algo, KeyAlgo what)
 {
     switch (algo) {
-        case Subkey::AlgoRSA:
-        case Subkey::AlgoRSA_E:
-        case Subkey::AlgoRSA_S:
-            return what == RSA;
-        case Subkey::AlgoELG_E:
-        case Subkey::AlgoELG:
-            return what == ELG;
-        case Subkey::AlgoDSA:
-            return what == DSA;
-        case Subkey::AlgoECDSA:
-            return what == ECDSA;
-        case Subkey::AlgoECDH:
-            return what == ECDH;
-        case Subkey::AlgoEDDSA:
-            return what == EDDSA;
-        default:
-            break;
+    case Subkey::AlgoRSA:
+    case Subkey::AlgoRSA_E:
+    case Subkey::AlgoRSA_S:
+        return what == RSA;
+    case Subkey::AlgoELG_E:
+    case Subkey::AlgoELG:
+        return what == ELG;
+    case Subkey::AlgoDSA:
+        return what == DSA;
+    case Subkey::AlgoECDSA:
+        return what == ECDSA;
+    case Subkey::AlgoECDH:
+        return what == ECDH;
+    case Subkey::AlgoEDDSA:
+        return what == EDDSA;
+    default:
+        break;
     }
     return false;
 }

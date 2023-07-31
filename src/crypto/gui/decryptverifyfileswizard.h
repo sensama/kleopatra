@@ -32,7 +32,7 @@ class DecryptVerifyFilesWizard : public Wizard
 public:
     enum Page {
         OperationsPage = 0,
-        ResultPage
+        ResultPage,
     };
 
     explicit DecryptVerifyFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {});
@@ -60,4 +60,3 @@ private:
 }
 }
 }
-

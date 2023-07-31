@@ -28,15 +28,17 @@ using namespace Kleo::Commands;
 using namespace GpgME;
 
 LearnCardKeysCommand::LearnCardKeysCommand(GpgME::Protocol proto)
-    : GnuPGProcessCommand(nullptr), m_protocol(proto)
+    : GnuPGProcessCommand(nullptr)
+    , m_protocol(proto)
 {
     setIgnoresSuccessOrFailure(true);
     setShowsOutputWindow(true);
-    connect(this, &Command::finished,
-            SmartCard::ReaderStatus::mutableInstance(), &SmartCard::ReaderStatus::updateStatus);
+    connect(this, &Command::finished, SmartCard::ReaderStatus::mutableInstance(), &SmartCard::ReaderStatus::updateStatus);
 }
 
-LearnCardKeysCommand::~LearnCardKeysCommand() {}
+LearnCardKeysCommand::~LearnCardKeysCommand()
+{
+}
 
 Protocol LearnCardKeysCommand::protocol() const
 {
@@ -67,7 +69,8 @@ QString LearnCardKeysCommand::crashExitMessage(const QStringList &args) const
     return xi18nc("@info",
                   "<para>The GPG or GpgSM process that tried to learn the smart card "
                   "ended prematurely because of an unexpected error.</para>"
-                  "<para>Please check the output of <icode>%1</icode> for details.</para>", args.join(QLatin1Char(' ')));
+                  "<para>Please check the output of <icode>%1</icode> for details.</para>",
+                  args.join(QLatin1Char(' ')));
 }
 
 QString LearnCardKeysCommand::errorExitMessage(const QStringList &) const
@@ -95,18 +98,17 @@ void LearnCardKeysCommand::doStart()
         return;
     }
 
-    const auto dlg = new QProgressDialog(i18n("Loading certificates... (this can take a while)"),
-            i18n("Show Details"), 0, 0, d->parentWidgetOrView());
+    const auto dlg = new QProgressDialog(i18n("Loading certificates... (this can take a while)"), i18n("Show Details"), 0, 0, d->parentWidgetOrView());
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->setModal(true);
-    connect(dlg, &QProgressDialog::canceled, this, [detailsDlg] () {
-            if (detailsDlg) {
-                detailsDlg->show();
-            }
-        });
-    connect(this, &LearnCardKeysCommand::finished, this, [dlg] () {
-            dlg->accept();
-        });
+    connect(dlg, &QProgressDialog::canceled, this, [detailsDlg]() {
+        if (detailsDlg) {
+            detailsDlg->show();
+        }
+    });
+    connect(this, &LearnCardKeysCommand::finished, this, [dlg]() {
+        dlg->accept();
+    });
     dlg->show();
 }
 

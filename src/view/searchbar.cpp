@@ -20,9 +20,9 @@
 
 #include <KLocalizedString>
 
-#include <QLineEdit>
 #include <QComboBox>
 #include <QHBoxLayout>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QSortFilterProxyModel>
 
@@ -57,6 +57,7 @@ class SearchBar::Private
 {
     friend class ::Kleo::SearchBar;
     SearchBar *const q;
+
 public:
     explicit Private(SearchBar *qq);
     ~Private();
@@ -107,10 +108,9 @@ private:
         }
         const auto filter = KeyFilterManager::instance()->keyFilterByID(notCertifiedKeysFilterId());
         if (filter) {
-            if (Kleo::any_of(KeyCache::instance()->keys(),
-                             [filter](const auto &key) {
-                                 return filter->matches(key, KeyFilter::Filtering);
-                             })) {
+            if (Kleo::any_of(KeyCache::instance()->keys(), [filter](const auto &key) {
+                    return filter->matches(key, KeyFilter::Filtering);
+                })) {
                 certifyButton->show();
                 return;
             }
@@ -145,11 +145,12 @@ SearchBar::Private::Private(SearchBar *qq)
     certifyButton = new QPushButton(q);
     certifyButton->setIcon(QIcon::fromTheme(QStringLiteral("security-medium")));
     certifyButton->setAccessibleName(i18n("Show not certified certificates"));
-    certifyButton->setToolTip(i18n("Some certificates are not yet certified. "
-                                   "Click here to see a list of these certificates."
-                                   "<br/><br/>"
-                                   "Certification is required to make sure that the certificates "
-                                   "actually belong to the identity they claim to belong to."));
+    certifyButton->setToolTip(
+        i18n("Some certificates are not yet certified. "
+             "Click here to see a list of these certificates."
+             "<br/><br/>"
+             "Certification is required to make sure that the certificates "
+             "actually belong to the identity they claim to belong to."));
     certifyButton->hide();
     layout->addWidget(certifyButton);
 
@@ -164,23 +165,32 @@ SearchBar::Private::Private(SearchBar *qq)
     KDAB_SET_OBJECT_NAME(certifyButton);
 
     connect(lineEdit, &QLineEdit::textChanged, q, &SearchBar::stringFilterChanged);
-    connect(combo, qOverload<int>(&QComboBox::currentIndexChanged), q, [this](int index) { slotKeyFilterChanged(index); });
-    connect(certifyButton, &QPushButton::clicked, q, [this]() { listNotCertifiedKeys(); });
+    connect(combo, qOverload<int>(&QComboBox::currentIndexChanged), q, [this](int index) {
+        slotKeyFilterChanged(index);
+    });
+    connect(certifyButton, &QPushButton::clicked, q, [this]() {
+        listNotCertifiedKeys();
+    });
 
-    connect(KeyCache::instance().get(), &KeyCache::keyListingDone,
-            q, [this]() { showOrHideCertifyButton(); });
+    connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this]() {
+        showOrHideCertifyButton();
+    });
     showOrHideCertifyButton();
 }
 
-SearchBar::Private::~Private() {}
-
-SearchBar::SearchBar(QWidget *parent, Qt::WindowFlags f)
-    : QWidget(parent, f), d(new Private(this))
+SearchBar::Private::~Private()
 {
-
 }
 
-SearchBar::~SearchBar() {}
+SearchBar::SearchBar(QWidget *parent, Qt::WindowFlags f)
+    : QWidget(parent, f)
+    , d(new Private(this))
+{
+}
+
+SearchBar::~SearchBar()
+{
+}
 
 void SearchBar::updateClickMessage(const QString &shortcutStr)
 {

@@ -37,6 +37,7 @@ class RevokeUserIDCommand::Private : public Command::Private
     {
         return static_cast<RevokeUserIDCommand *>(q);
     }
+
 public:
     explicit Private(RevokeUserIDCommand *qq, const UserID &userId);
     ~Private() override;
@@ -100,14 +101,15 @@ void RevokeUserIDCommand::Private::createJob()
     }
 
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(j, &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(j, &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
-    connect(j, &QGpgME::QuickJob::result,
-            q, [this](const GpgME::Error &err) { slotResult(err); });
+    connect(j, &QGpgME::QuickJob::result, q, [this](const GpgME::Error &err) {
+        slotResult(err);
+    });
 
     job = j;
 }
@@ -128,14 +130,14 @@ void RevokeUserIDCommand::Private::showErrorDialog(const Error &err)
     error(xi18nc("@info",
                  "<para>An error occurred while trying to revoke the user ID<nl/><emphasis>%1</emphasis>.</para>"
                  "<para><message>%2</message></para>",
-                 QString::fromUtf8(userId.id()), Formatting::errorAsString(err)),
+                 QString::fromUtf8(userId.id()),
+                 Formatting::errorAsString(err)),
           i18nc("@title:window", "Revocation Failed"));
 }
 
 void RevokeUserIDCommand::Private::showSuccessDialog()
 {
-    information(xi18nc("@info", "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been revoked successfully.</para>",
-                       QString::fromUtf8(userId.id())),
+    information(xi18nc("@info", "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been revoked successfully.</para>", QString::fromUtf8(userId.id())),
                 i18nc("@title:window", "Revocation Succeeded"));
 }
 

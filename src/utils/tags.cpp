@@ -46,9 +46,8 @@ GpgME::Key Tags::tagKey()
 std::vector<GpgME::Key> Tags::tagKeys()
 {
     std::vector<GpgME::Key> ret;
-    for (const auto &key: KeyCache::instance()->keys()) {
-        if (key.isNull() || key.isRevoked() || key.isExpired() ||
-            key.isDisabled() || key.isInvalid() || key.protocol() != GpgME::OpenPGP) {
+    for (const auto &key : KeyCache::instance()->keys()) {
+        if (key.isNull() || key.isRevoked() || key.isExpired() || key.isDisabled() || key.isInvalid() || key.protocol() != GpgME::OpenPGP) {
             continue;
         }
         if (key.ownerTrust() >= GpgME::Key::Full) {

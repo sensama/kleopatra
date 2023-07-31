@@ -9,8 +9,8 @@
 
 #pragma once
 
-#include <QIcon>
 #include <KStatusNotifierItem>
+#include <QIcon>
 
 class KWatchGnuPGMainWindow;
 
@@ -23,9 +23,8 @@ public:
 
 public Q_SLOTS:
     void setAttention(bool att);
+
 private:
     QIcon mNormalPix;
     QIcon mAttentionPix;
 };
-
-

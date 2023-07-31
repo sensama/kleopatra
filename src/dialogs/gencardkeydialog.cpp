@@ -13,18 +13,18 @@
 #include "utils/qt-cxx20-compat.h"
 #include "utils/userinfo.h"
 
-#include <QDialogButtonBox>
-#include <QLineEdit>
-#include <QComboBox>
 #include <QCheckBox>
+#include <QComboBox>
+#include <QDialogButtonBox>
 #include <QGridLayout>
-#include <QVBoxLayout>
-#include <QPushButton>
 #include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QVBoxLayout>
 
+#include <KColorScheme>
 #include <KEmailAddress>
 #include <KLocalizedString>
-#include <KColorScheme>
 
 #include "kleopatra_debug.h"
 
@@ -33,13 +33,14 @@ using namespace Kleo;
 class GenCardKeyDialog::Private
 {
 public:
-    Private(GenCardKeyDialog *qq, KeyAttributes requiredAttributes): q(qq),
-        mOkButton(nullptr),
-        mNameEdit(nullptr),
-        mEmailEdit(nullptr),
-        mInvalidEmailLabel(nullptr),
-        mAlgorithmCombo(nullptr),
-        mBackupCheckBox(nullptr)
+    Private(GenCardKeyDialog *qq, KeyAttributes requiredAttributes)
+        : q(qq)
+        , mOkButton(nullptr)
+        , mNameEdit(nullptr)
+        , mEmailEdit(nullptr)
+        , mInvalidEmailLabel(nullptr)
+        , mAlgorithmCombo(nullptr)
+        , mBackupCheckBox(nullptr)
     {
         auto vBox = new QVBoxLayout(q);
         auto grid = new QGridLayout;
@@ -59,9 +60,12 @@ public:
         if (requiredAttributes & KeyOwnerEmail) {
             auto mailLabel = new QLabel(i18n("EMail:"));
             mEmailEdit = new QLineEdit(userEmailAddress());
-            connect(mEmailEdit, &QLineEdit::textChanged, q, [this]() {checkAcceptable();});
-            mInvalidEmailLabel = new QLabel(QStringLiteral("<font size='small' color='%1'>%2</font>").arg(
-                KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color().name(), i18n("Invalid EMail")));
+            connect(mEmailEdit, &QLineEdit::textChanged, q, [this]() {
+                checkAcceptable();
+            });
+            mInvalidEmailLabel = new QLabel(
+                QStringLiteral("<font size='small' color='%1'>%2</font>")
+                    .arg(KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color().name(), i18n("Invalid EMail")));
 
             grid->addWidget(mailLabel, row, 0);
             grid->addWidget(mEmailEdit, row++, 1);
@@ -76,8 +80,8 @@ public:
         }
         if (requiredAttributes & LocalKeyBackup) {
             mBackupCheckBox = new QCheckBox(i18n("Backup encryption key"));
-            mBackupCheckBox->setToolTip(i18n("Backup the encryption key in a file.") + QStringLiteral("<br/>") +
-                                        i18n("You will be asked for a passphrase to protect that file during key generation."));
+            mBackupCheckBox->setToolTip(i18n("Backup the encryption key in a file.") + QStringLiteral("<br/>")
+                                        + i18n("You will be asked for a passphrase to protect that file during key generation."));
             mBackupCheckBox->setChecked(true);
 
             grid->addWidget(mBackupCheckBox, row++, 0, 1, 2);
@@ -91,8 +95,12 @@ public:
 
         mOkButton->setDefault(true);
         mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-        connect(bbox, &QDialogButtonBox::rejected, q, [this]() {q->reject();});
-        connect(bbox, &QDialogButtonBox::accepted, q, [this]() {accept();});
+        connect(bbox, &QDialogButtonBox::rejected, q, [this]() {
+            q->reject();
+        });
+        connect(bbox, &QDialogButtonBox::accepted, q, [this]() {
+            accept();
+        });
 
         vBox->addWidget(bbox);
 
@@ -126,7 +134,7 @@ public:
         }
 
         mAlgorithmCombo->clear();
-        for (const auto &algorithm: algorithms) {
+        for (const auto &algorithm : algorithms) {
             mAlgorithmCombo->addItem(algorithm.displayName, QByteArray::fromStdString(algorithm.id));
         }
         mAlgorithmCombo->setCurrentIndex(mAlgorithmCombo->findData(QByteArray::fromStdString(defaultAlgo)));
@@ -156,8 +164,9 @@ public:
     QCheckBox *mBackupCheckBox;
 };
 
-GenCardKeyDialog::GenCardKeyDialog(KeyAttributes requiredAttributes, QWidget *parent) : QDialog(parent),
-    d(new Private(this, requiredAttributes))
+GenCardKeyDialog::GenCardKeyDialog(KeyAttributes requiredAttributes, QWidget *parent)
+    : QDialog(parent)
+    , d(new Private(this, requiredAttributes))
 {
 }
 

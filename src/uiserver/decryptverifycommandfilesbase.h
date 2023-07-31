@@ -28,7 +28,7 @@ public:
         DecryptMask = 0x3,
 
         VerifyOff = 0x00,
-        //VerifyOn  = 0x10, // non-sensical
+        // VerifyOn  = 0x10, // non-sensical
         VerifyImplied = 0x20,
 
         VerifyMask = 0x30
@@ -43,6 +43,7 @@ private:
 private:
     int doStart() override;
     void doCanceled() override;
+
 public:
     // ### FIXME fix this
     static const char *staticName()
@@ -51,8 +52,8 @@ public:
     }
 
     class Private;
+
 private:
     kdtools::pimpl_ptr<Private> d;
 };
 }
-

@@ -13,7 +13,6 @@
 
 #include <gpgme++/global.h>
 
-
 namespace Kleo
 {
 
@@ -21,9 +20,7 @@ class ImportCertificateFromDataCommand : public ImportCertificatesCommand
 {
     Q_OBJECT
 public:
-    explicit ImportCertificateFromDataCommand(const QByteArray &data,
-                                              GpgME::Protocol proto,
-                                              const QString &id = QString());
+    explicit ImportCertificateFromDataCommand(const QByteArray &data, GpgME::Protocol proto, const QString &id = QString());
     ~ImportCertificateFromDataCommand() override;
 
 private:
@@ -35,5 +32,3 @@ private:
     inline const Private *d_func() const;
 };
 }
-
-

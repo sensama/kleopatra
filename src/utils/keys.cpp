@@ -32,10 +32,9 @@ bool isLastValidUserID(const GpgME::UserID &userId)
         return false;
     }
     const auto userIds = userId.parent().userIDs();
-    const int numberOfValidUserIds = std::count_if(std::begin(userIds), std::end(userIds),
-                                                   [](const auto &u) {
-                                                       return !Kleo::isRevokedOrExpired(u);
-                                                   });
+    const int numberOfValidUserIds = std::count_if(std::begin(userIds), std::end(userIds), [](const auto &u) {
+        return !Kleo::isRevokedOrExpired(u);
+    });
     return numberOfValidUserIds == 1;
 }
 
@@ -92,7 +91,7 @@ bool Kleo::canBeUsedForSecretKeyOperations(const GpgME::Key &key)
 bool Kleo::canRevokeUserID(const GpgME::UserID &userId)
 {
     return (!userId.isNull() //
-            && userId.parent().protocol() == GpgME::OpenPGP
+            && userId.parent().protocol() == GpgME::OpenPGP //
             && !isLastValidUserID(userId));
 }
 
@@ -158,7 +157,7 @@ static time_t creationDate(const GpgME::UserID &uid)
 
 bool Kleo::userIDsAreEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs)
 {
-    return (qstrcmp(lhs.parent().primaryFingerprint(), rhs.parent().primaryFingerprint()) == 0
-            && qstrcmp(lhs.id(), rhs.id()) == 0
+    return (qstrcmp(lhs.parent().primaryFingerprint(), rhs.parent().primaryFingerprint()) == 0 //
+            && qstrcmp(lhs.id(), rhs.id()) == 0 //
             && creationDate(lhs) == creationDate(rhs));
 }

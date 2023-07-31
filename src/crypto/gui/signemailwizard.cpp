@@ -23,7 +23,6 @@
 
 #include <gpgme++/key.h>
 
-
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
 using namespace GpgME;
@@ -51,7 +50,9 @@ private:
 }
 
 SignerResolveValidator::SignerResolveValidator(SignerResolvePage *page)
-    : SignerResolvePage::Validator(), m_page(page), complete(true)
+    : SignerResolvePage::Validator()
+    , m_page(page)
+    , complete(true)
 {
     Q_ASSERT(m_page);
 }

@@ -25,12 +25,9 @@ static inline void really_check(QAbstractButton &b, bool on)
     b.setAutoExclusive(excl);
 }
 
-static inline bool xconnect(const QObject *a, const char *signal,
-                            const QObject *b, const char *slot)
+static inline bool xconnect(const QObject *a, const char *signal, const QObject *b, const char *slot)
 {
-    return
-        QObject::connect(a, signal, b, slot) &&
-        QObject::connect(b, signal, a, slot);
+    return QObject::connect(a, signal, b, slot) && QObject::connect(b, signal, a, slot);
 }
 
 /** Aggressively raise a window to foreground. May be platform

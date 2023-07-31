@@ -9,8 +9,8 @@
 
 #pragma once
 
-#include <kxmlguiwindow.h>
 #include <QProcess>
+#include <kxmlguiwindow.h>
 
 class KWatchGnuPGTray;
 class KWatchGnuPGConfig;
@@ -54,5 +54,3 @@ private:
     KWatchGnuPGTray *mSysTray;
     KWatchGnuPGConfig *mConfig;
 };
-
-

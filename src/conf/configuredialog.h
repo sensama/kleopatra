@@ -22,7 +22,7 @@
  * and the KleoPageConfigDialog. Which is just a KPageView
  * with the necessary bits of the KCMultiDialog behavior.
  */
-# include "kleopageconfigdialog.h"
+#include "kleopageconfigdialog.h"
 
 class ConfigureDialog : public KleoPageConfigDialog
 {
@@ -33,6 +33,4 @@ public:
 
 protected:
     void hideEvent(QHideEvent *) override;
-
 };
-

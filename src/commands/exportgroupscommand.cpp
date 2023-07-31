@@ -10,11 +10,11 @@
 
 #include <config-kleopatra.h>
 
-#include "exportgroupscommand.h"
 #include "command_p.h"
+#include "exportgroupscommand.h"
 
-#include <utils/applicationstate.h>
 #include "utils/filedialog.h"
+#include <utils/applicationstate.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
@@ -25,8 +25,8 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/ExportJob>
+#include <QGpgME/Protocol>
 
 #include <QFileInfo>
 #include <QStandardPaths>
@@ -61,12 +61,12 @@ QString requestFilename(QWidget *parent, const std::vector<KeyGroup> &groups)
 {
     const QString proposedFilename = proposeFilename(groups);
 
-    auto filename = FileDialog::getSaveFileNameEx(
-        parent,
-        i18ncp("@title:window", "Export Certificate Group", "Export Certificate Groups", groups.size()),
-        QStringLiteral("imp"),
-        proposedFilename,
-        i18nc("filename filter like Certificate Groups (*.foo)", "Certificate Groups (*%1)", certificateGroupFileExtension));
+    auto filename =
+        FileDialog::getSaveFileNameEx(parent,
+                                      i18ncp("@title:window", "Export Certificate Group", "Export Certificate Groups", groups.size()),
+                                      QStringLiteral("imp"),
+                                      proposedFilename,
+                                      i18nc("filename filter like Certificate Groups (*.foo)", "Certificate Groups (*%1)", certificateGroupFileExtension));
     if (!filename.isEmpty()) {
         const QFileInfo fi{filename};
         if (fi.suffix().isEmpty()) {
@@ -87,6 +87,7 @@ class ExportGroupsCommand::Private : public Command::Private
     {
         return static_cast<ExportGroupsCommand *>(q);
     }
+
 public:
     explicit Private(ExportGroupsCommand *qq);
     ~Private() override;
@@ -141,27 +142,21 @@ void ExportGroupsCommand::Private::start()
         return;
     }
 
-    const auto groupKeys = std::accumulate(std::begin(groups), std::end(groups),
-                                           KeyGroup::Keys{},
-                                           [](auto allKeys, const auto &group) {
-                                                const auto keys = group.keys();
-                                                allKeys.insert(std::begin(keys), std::end(keys));
-                                                return allKeys;
-                                           });
+    const auto groupKeys = std::accumulate(std::begin(groups), std::end(groups), KeyGroup::Keys{}, [](auto allKeys, const auto &group) {
+        const auto keys = group.keys();
+        allKeys.insert(std::begin(keys), std::end(keys));
+        return allKeys;
+    });
 
     std::vector<Key> openpgpKeys;
     std::vector<Key> cmsKeys;
-    std::partition_copy(std::begin(groupKeys), std::end(groupKeys),
-                        std::back_inserter(openpgpKeys),
-                        std::back_inserter(cmsKeys),
-                        [](const GpgME::Key &key) {
-                            return key.protocol() == GpgME::OpenPGP;
-                        });
+    std::partition_copy(std::begin(groupKeys), std::end(groupKeys), std::back_inserter(openpgpKeys), std::back_inserter(cmsKeys), [](const GpgME::Key &key) {
+        return key.protocol() == GpgME::OpenPGP;
+    });
 
     // remove/overwrite existing file
     if (QFile::exists(filename) && !QFile::remove(filename)) {
-        error(xi18n("Cannot overwrite existing <filename>%1</filename>.", filename),
-              i18nc("@title:window", "Export Failed"));
+        error(xi18n("Cannot overwrite existing <filename>%1</filename>.", filename), i18nc("@title:window", "Export Failed"));
         finished();
         return;
     }
@@ -186,8 +181,7 @@ bool ExportGroupsCommand::Private::exportGroups()
 {
     const auto result = writeKeyGroups(filename, groups);
     if (result != WriteKeyGroups::Success) {
-        error(xi18n("Writing groups to file <filename>%1</filename> failed.", filename),
-              i18nc("@title:window", "Export Failed"));
+        error(xi18n("Writing groups to file <filename>%1</filename> failed.", filename), i18nc("@title:window", "Export Failed"));
     }
     return result == WriteKeyGroups::Success;
 }
@@ -196,20 +190,19 @@ bool ExportGroupsCommand::Private::startExportJob(GpgME::Protocol protocol, cons
 {
     const QGpgME::Protocol *const backend = (protocol == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     Q_ASSERT(backend);
-    std::unique_ptr<ExportJob> jobOwner(backend->publicKeyExportJob(/*armor=*/ true));
+    std::unique_ptr<ExportJob> jobOwner(backend->publicKeyExportJob(/*armor=*/true));
     auto job = jobOwner.get();
     Q_ASSERT(job);
 
-    connect(job, &ExportJob::result,
-            q, [this, job](const GpgME::Error &err, const QByteArray &keyData) {
-                onExportJobResult(job, err, keyData);
-            });
+    connect(job, &ExportJob::result, q, [this, job](const GpgME::Error &err, const QByteArray &keyData) {
+        onExportJobResult(job, err, keyData);
+    });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(job, &QGpgME::Job::jobProgress,
-            q, &Command::progress);
+    connect(job, &QGpgME::Job::jobProgress, q, &Command::progress);
 #else
-    connect(job, &QGpgME::Job::progress,
-            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
 #endif
 
     const GpgME::Error err = job->start(Kleo::getFingerprints(keys));
@@ -235,16 +228,14 @@ void ExportGroupsCommand::Private::onExportJobResult(const QGpgME::Job *job, con
 
     QFile f{filename};
     if (!f.open(QIODevice::WriteOnly | QIODevice::Append)) {
-        error(xi18n("Cannot open file <filename>%1</filename> for writing.", filename),
-              i18nc("@title:window", "Export Failed"));
+        error(xi18n("Cannot open file <filename>%1</filename> for writing.", filename), i18nc("@title:window", "Export Failed"));
         finishedIfLastJob(job);
         return;
     }
 
     const auto bytesWritten = f.write(keyData);
     if (bytesWritten != keyData.size()) {
-        error(xi18n("Writing certificates to file <filename>%1</filename> failed.", filename),
-              i18nc("@title:window", "Export Failed"));
+        error(xi18n("Writing certificates to file <filename>%1</filename> failed.", filename), i18nc("@title:window", "Export Failed"));
     }
 
     finishedIfLastJob(job);
@@ -270,12 +261,11 @@ void ExportGroupsCommand::Private::finishedIfLastJob(const QGpgME::Job *job)
 
 void ExportGroupsCommand::Private::cancelJobs()
 {
-    std::for_each(std::cbegin(exportJobs), std::cend(exportJobs),
-                  [](const auto &job) {
-                      if (job) {
-                          job->slotCancel();
-                      }
-                  });
+    std::for_each(std::cbegin(exportJobs), std::cend(exportJobs), [](const auto &job) {
+        if (job) {
+            job->slotCancel();
+        }
+    });
     exportJobs.clear();
 }
 

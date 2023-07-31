@@ -9,9 +9,9 @@
 
 #include <config-kleopatra.h>
 
-#include "resultpage.h"
-#include "resultlistwidget.h"
 #include "resultitemwidget.h"
+#include "resultlistwidget.h"
+#include "resultpage.h"
 
 #include <crypto/taskcollection.h>
 
@@ -25,7 +25,6 @@
 #include <QProgressBar>
 #include <QVBoxLayout>
 
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
@@ -33,6 +32,7 @@ using namespace Kleo::Crypto::Gui;
 class ResultPage::Private
 {
     ResultPage *const q;
+
 public:
     explicit Private(ResultPage *qq);
 
@@ -51,7 +51,8 @@ public:
     QCheckBox *m_keepOpenCB;
 };
 
-ResultPage::Private::Private(ResultPage *qq) : q(qq)
+ResultPage::Private::Private(ResultPage *qq)
+    : q(qq)
 {
     QBoxLayout *const layout = new QVBoxLayout(q);
     auto const labels = new QWidget;
@@ -110,7 +111,9 @@ void ResultPage::Private::started(const std::shared_ptr<Task> &task)
     }
 }
 
-ResultPage::ResultPage(QWidget *parent, Qt::WindowFlags flags) : WizardPage(parent, flags), d(new Private(this))
+ResultPage::ResultPage(QWidget *parent, Qt::WindowFlags flags)
+    : WizardPage(parent, flags)
+    , d(new Private(this))
 {
     setTitle(i18n("<b>Results</b>"));
 }
@@ -141,14 +144,14 @@ void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
     connect(d->m_tasks.get(), &TaskCollection::progress, this, [this](int current, int total) {
         d->progress(current, total);
     });
-    connect(d->m_tasks.get(), SIGNAL(done()),
-            this, SLOT(allDone()));
-    connect(d->m_tasks.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
-    connect(d->m_tasks.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)),
-            this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
+    connect(d->m_tasks.get(), SIGNAL(done()), this, SLOT(allDone()));
+    connect(d->m_tasks.get(),
+            SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+            this,
+            SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(d->m_tasks.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)), this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
 
-    for (const std::shared_ptr<Task> &i : d->m_tasks->tasks()) {    // create labels for all tags in collection
+    for (const std::shared_ptr<Task> &i : d->m_tasks->tasks()) { // create labels for all tags in collection
         Q_ASSERT(i && d->labelForTag(i->tag()));
         Q_UNUSED(i)
     }

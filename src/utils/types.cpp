@@ -9,8 +9,8 @@
 
 #include <config-kleopatra.h>
 
-#include "utils/types.h"
 #include "utils/gui-helper.h"
+#include "utils/types.h"
 
 #include <QList>
 #include <QWidget>
@@ -25,13 +25,13 @@ class ExecutionContextUser::Private
 {
     friend class ::Kleo::ExecutionContextUser;
     ExecutionContextUser *const q;
+
 public:
     explicit Private(const std::shared_ptr<const ExecutionContext> &ctx, ExecutionContextUser *qq)
-        : q(qq),
-          executionContext(ctx),
-          idApplied()
+        : q(qq)
+        , executionContext(ctx)
+        , idApplied()
     {
-
     }
 
 private:
@@ -56,16 +56,16 @@ void ExecutionContextUser::applyWindowID(QWidget *wid)
 ExecutionContextUser::ExecutionContextUser()
     : d(new Private(std::shared_ptr<const ExecutionContext>(), this))
 {
-
 }
 
 ExecutionContextUser::ExecutionContextUser(const std::shared_ptr<const ExecutionContext> &ctx)
     : d(new Private(ctx, this))
 {
-
 }
 
-ExecutionContextUser::~ExecutionContextUser() {}
+ExecutionContextUser::~ExecutionContextUser()
+{
+}
 
 void ExecutionContextUser::setExecutionContext(const std::shared_ptr<const ExecutionContext> &ctx)
 {
@@ -84,4 +84,3 @@ void ExecutionContextUser::bringToForeground(QWidget *wid, bool stayOnTop)
     wid->show();
     aggressive_raise(wid, stayOnTop);
 }
-

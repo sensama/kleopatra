@@ -21,9 +21,11 @@ class EncryptCommand : public Kleo::AssuanCommandMixin<EncryptCommand>
 public:
     EncryptCommand();
     ~EncryptCommand() override;
+
 private:
     int doStart() override;
     void doCanceled() override;
+
 public:
     static const char *staticName()
     {
@@ -31,9 +33,9 @@ public:
     }
 
     class Private;
+
 private:
     kdtools::pimpl_ptr<Private> d;
 };
 
 }
-

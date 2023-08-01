@@ -8,7 +8,7 @@ else()
 endif()
 
 ecm_qt_declare_logging_category(_kleopatraclientcore_common_SRCS HEADER libkleopatraclientcore_debug.h IDENTIFIER LIBKLEOPATRACLIENTCORE_LOG CATEGORY_NAME org.kde.pim.libkleopatraclientcore
-        DESCRIPTION "kleopatra (kleopatra)"
+        DESCRIPTION "kleopatra client core (kleopatra)"
         OLD_CATEGORY_NAMES log_libkleopatraclientcore
         EXPORT KLEOPATRA
     )

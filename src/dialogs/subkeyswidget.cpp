@@ -16,9 +16,7 @@
 #include "subkeyswidget.h"
 
 #include "commands/changeexpirycommand.h"
-#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
 #include "commands/exportsecretsubkeycommand.h"
-#endif
 #include "commands/importpaperkeycommand.h"
 #include "commands/keytocardcommand.h"
 #include "exportdialog.h"
@@ -169,7 +167,6 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         action->setEnabled(secretSubkeyStoredInKeyRing && !KeyToCardCommand::getSuitableCards(subkey).empty());
     }
 
-#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
     const bool isPrimarySubkey = subkey.keyID() == key.keyID();
     if (isOwnKey && !isPrimarySubkey) {
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")), i18n("Export secret subkey"), q, [this, subkey]() {
@@ -183,7 +180,6 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         });
         action->setEnabled(secretSubkeyStoredInKeyRing);
     }
-#endif
 
     menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));
 }

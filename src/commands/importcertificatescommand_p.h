@@ -20,10 +20,8 @@
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>
 
-#if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
-#include <queue>
-#endif
 #include <map>
+#include <queue>
 #include <vector>
 
 namespace GpgME
@@ -136,9 +134,7 @@ private:
     bool waitForMoreJobs = false;
     bool importingSignerKeys = false;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
-#if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
     std::queue<ImportJobData> pendingJobs;
-#endif
     std::vector<ImportJobData> runningJobs;
     std::vector<QString> filesToImportGroupsFrom;
     std::vector<ImportResultData> results;

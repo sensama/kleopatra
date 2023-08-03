@@ -23,15 +23,13 @@
 #include <Libkleo/KleoException>
 #include <Libkleo/Stl_Util>
 
+#include <QGpgME/EncryptArchiveJob>
 #include <QGpgME/EncryptJob>
 #include <QGpgME/Protocol>
-#include <QGpgME/SignEncryptJob>
-#include <QGpgME/SignJob>
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
-#include <QGpgME/EncryptArchiveJob>
 #include <QGpgME/SignArchiveJob>
 #include <QGpgME/SignEncryptArchiveJob>
-#endif
+#include <QGpgME/SignEncryptJob>
+#include <QGpgME/SignJob>
 
 #include <gpgme++/encryptionresult.h>
 #include <gpgme++/key.h>
@@ -311,12 +309,10 @@ private:
     std::unique_ptr<QGpgME::SignEncryptJob> createSignEncryptJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::EncryptJob> createEncryptJob(GpgME::Protocol proto);
 
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
     void startSignEncryptArchiveJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::SignArchiveJob> createSignArchiveJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::SignEncryptArchiveJob> createSignEncryptArchiveJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::EncryptArchiveJob> createEncryptArchiveJob(GpgME::Protocol proto);
-#endif
 
     std::shared_ptr<const Task::Result> makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog);
 
@@ -501,12 +497,10 @@ unsigned long long SignEncryptTask::inputSize() const
     return d->input ? d->input->size() : 0U;
 }
 
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
 static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
 {
     return (protocol == GpgME::OpenPGP) && QGpgME::SignEncryptArchiveJob::isSupported();
 }
-#endif
 
 void SignEncryptTask::doStart()
 {
@@ -519,12 +513,9 @@ void SignEncryptTask::doStart()
     }
 
     const auto proto = protocol();
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
     if (d->archive && archiveJobsCanBeUsed(proto)) {
         d->startSignEncryptArchiveJob(proto);
-    } else
-#endif
-    {
+    } else {
         if (!d->output) {
             d->output = Output::createFromFile(d->outputFileName, d->m_overwritePolicy);
         }
@@ -593,11 +584,9 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
         if (sign) {
             std::unique_ptr<QGpgME::SignEncryptJob> job = createSignEncryptJob(proto);
             kleo_assert(job.get());
-#if QGPGME_SUPPORTS_SET_FILENAME
             if (inputFileNames.size() == 1) {
                 job->setFileName(inputFileNames.front());
             }
-#endif
 
             job->start(signers, recipients, input->ioDevice(), output->ioDevice(), flags);
 
@@ -605,11 +594,9 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
         } else {
             std::unique_ptr<QGpgME::EncryptJob> job = createEncryptJob(proto);
             kleo_assert(job.get());
-#if QGPGME_SUPPORTS_SET_FILENAME
             if (inputFileNames.size() == 1) {
                 job->setFileName(inputFileNames.front());
             }
-#endif
 
             job->start(recipients, input->ioDevice(), output->ioDevice(), flags);
 
@@ -642,13 +629,7 @@ std::unique_ptr<QGpgME::SignJob> SignEncryptTask::Private::createSignJob(GpgME::
     kleo_assert(backend);
     std::unique_ptr<QGpgME::SignJob> signJob(backend->signJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signJob.get());
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(signJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
-#else
-    connect(signJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
-        q->setProgress(processed, total);
-    });
-#endif
     connect(signJob.get(), SIGNAL(result(GpgME::SigningResult, QByteArray)), q, SLOT(slotResult(GpgME::SigningResult)));
     return signJob;
 }
@@ -659,13 +640,7 @@ std::unique_ptr<QGpgME::SignEncryptJob> SignEncryptTask::Private::createSignEncr
     kleo_assert(backend);
     std::unique_ptr<QGpgME::SignEncryptJob> signEncryptJob(backend->signEncryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signEncryptJob.get());
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(signEncryptJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
-#else
-    connect(signEncryptJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
-        q->setProgress(processed, total);
-    });
-#endif
     connect(signEncryptJob.get(),
             SIGNAL(result(GpgME::SigningResult, GpgME::EncryptionResult, QByteArray)),
             q,
@@ -679,18 +654,11 @@ std::unique_ptr<QGpgME::EncryptJob> SignEncryptTask::Private::createEncryptJob(G
     kleo_assert(backend);
     std::unique_ptr<QGpgME::EncryptJob> encryptJob(backend->encryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(encryptJob.get());
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(encryptJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
-#else
-    connect(encryptJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
-        q->setProgress(processed, total);
-    });
-#endif
     connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult, QByteArray)), q, SLOT(slotResult(GpgME::EncryptionResult)));
     return encryptJob;
 }
 
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
 void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
 {
     kleo_assert(!input);
@@ -822,7 +790,6 @@ std::unique_ptr<QGpgME::EncryptArchiveJob> SignEncryptTask::Private::createEncry
     });
     return encryptJob;
 }
-#endif
 
 void SignEncryptTask::Private::slotResult(const SigningResult &result)
 {

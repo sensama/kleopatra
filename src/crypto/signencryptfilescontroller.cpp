@@ -33,9 +33,7 @@
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
 #include <QGpgME/SignEncryptArchiveJob>
-#endif
 
 #include <QDir>
 #include <QFileInfo>
@@ -402,11 +400,7 @@ static std::shared_ptr<SignEncryptTask> createSignEncryptTaskForFileInfo(const Q
 
 static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
 {
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
     return (protocol == GpgME::OpenPGP) && QGpgME::SignEncryptArchiveJob::isSupported();
-#else
-    return false;
-#endif
 }
 
 static std::shared_ptr<SignEncryptTask> createArchiveSignEncryptTaskForFiles(const QStringList &files,

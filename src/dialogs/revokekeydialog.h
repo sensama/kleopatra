@@ -19,9 +19,7 @@
 namespace GpgME
 {
 class Key;
-#if QGPGME_SUPPORTS_KEY_REVOCATION
 enum class RevocationReason;
-#endif
 }
 
 namespace Kleo
@@ -36,9 +34,7 @@ public:
 
     void setKey(const GpgME::Key &key);
 
-#if QGPGME_SUPPORTS_KEY_REVOCATION
     GpgME::RevocationReason reason() const;
-#endif
     QString description() const;
 
 private:

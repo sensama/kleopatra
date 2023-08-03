@@ -33,10 +33,8 @@
 #include <QGpgME/ImportFromKeyserverJob>
 #include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
-#if QGPGME_SUPPORTS_WKDLOOKUP
 #include <QGpgME/WKDLookupJob>
 #include <QGpgME/WKDLookupResult>
-#endif
 
 #include <gpgme++/data.h>
 #include <gpgme++/importresult.h>
@@ -78,9 +76,7 @@ private:
     void slotSearchTextChanged(const QString &str);
     void slotNextKey(const Key &key);
     void slotKeyListResult(const KeyListResult &result);
-#if QGPGME_SUPPORTS_WKDLOOKUP
     void slotWKDLookupResult(const WKDLookupResult &result);
-#endif
     void tryToFinishKeyLookup();
     void slotImportRequested(const std::vector<Key> &keys);
     void slotDetailsRequested(const Key &key);
@@ -100,22 +96,18 @@ private:
         const auto cbp = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
         return cbp ? cbp->keyListJob(true) : nullptr;
     }
-#if QGPGME_SUPPORTS_WKDLOOKUP
     WKDLookupJob *createWKDLookupJob() const
     {
         const auto cbp = QGpgME::openpgp();
         return cbp ? cbp->wkdLookupJob() : nullptr;
     }
-#endif
     ImportFromKeyserverJob *createImportJob(GpgME::Protocol proto) const
     {
         const auto cbp = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
         return cbp ? cbp->importFromKeyserverJob() : nullptr;
     }
     void startKeyListJob(GpgME::Protocol proto, const QString &str);
-#if QGPGME_SUPPORTS_WKDLOOKUP
     void startWKDLookupJob(const QString &str);
-#endif
     bool checkConfig() const;
 
     QWidget *dialogOrParentWidgetOrView() const
@@ -134,9 +126,7 @@ private:
     QPointer<LookupCertificatesDialog> dialog;
     struct KeyListingVariables {
         QPointer<KeyListJob> cms, openpgp;
-#if QGPGME_SUPPORTS_WKDLOOKUP
         QPointer<WKDLookupJob> wkdJob;
-#endif
         QString pattern;
         KeyListResult result;
         std::vector<Key> keys;
@@ -306,11 +296,9 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
             startKeyListJob(OpenPGP, QStringLiteral("0x") + str);
         } else {
             startKeyListJob(OpenPGP, str);
-#if QGPGME_SUPPORTS_WKDLOOKUP
             if (str.contains(QLatin1Char{'@'}) && !searchTextToEmailAddress(str).isEmpty()) {
                 startWKDLookupJob(str);
             }
-#endif
         }
     }
 }
@@ -336,7 +324,6 @@ void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, 
     }
 }
 
-#if QGPGME_SUPPORTS_WKDLOOKUP
 void LookupCertificatesCommand::Private::startWKDLookupJob(const QString &str)
 {
     const auto job = createWKDLookupJob();
@@ -353,7 +340,6 @@ void LookupCertificatesCommand::Private::startWKDLookupJob(const QString &str)
         keyListing.wkdJob = job;
     }
 }
-#endif
 
 void LookupCertificatesCommand::Private::slotNextKey(const Key &key)
 {
@@ -388,7 +374,6 @@ void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &
     tryToFinishKeyLookup();
 }
 
-#if QGPGME_SUPPORTS_WKDLOOKUP
 static auto removeKeysNotMatchingEmail(const std::vector<Key> &keys, const std::string &email)
 {
     std::vector<Key> filteredKeys;
@@ -432,7 +417,6 @@ void LookupCertificatesCommand::Private::slotWKDLookupResult(const WKDLookupResu
 
     tryToFinishKeyLookup();
 }
-#endif
 
 namespace
 {
@@ -464,11 +448,7 @@ void showKeysWithoutFingerprintsNotification(QWidget *parent, GpgME::Protocol pr
 
 void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
 {
-    if (keyListing.cms || keyListing.openpgp
-#if QGPGME_SUPPORTS_WKDLOOKUP
-        || keyListing.wkdJob
-#endif
-    ) {
+    if (keyListing.cms || keyListing.openpgp || keyListing.wkdJob) {
         // still waiting for jobs to complete
         return;
     }

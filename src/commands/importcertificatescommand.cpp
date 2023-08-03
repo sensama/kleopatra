@@ -36,9 +36,7 @@
 #include <QGpgME/ImportFromKeyserverJob>
 #include <QGpgME/ImportJob>
 #include <QGpgME/Protocol>
-#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
 #include <QGpgME/ReceiveKeysJob>
-#endif
 
 #include <gpgme++/context.h>
 #include <gpgme++/global.h>
@@ -693,7 +691,6 @@ void ImportCertificatesCommand::Private::processResults()
 {
     importGroups();
 
-#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     if (Settings{}.retrieveSignerKeysAfterImport() && !importingSignerKeys) {
         importingSignerKeys = true;
         const auto missingSignerKeys = getMissingSignerKeyIds(results);
@@ -702,7 +699,6 @@ void ImportCertificatesCommand::Private::processResults()
             return;
         }
     }
-#endif
 
     handleExternalCMSImports(results);
 
@@ -733,7 +729,6 @@ void ImportCertificatesCommand::Private::tryToFinish()
         qCDebug(KLEOPATRA_LOG) << q << __func__ << "There are unfinished jobs -> keep going";
         return;
     }
-#if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
     if (!pendingJobs.empty()) {
         qCDebug(KLEOPATRA_LOG) << q << __func__ << "There are pending jobs -> start the next one";
         auto job = pendingJobs.front();
@@ -742,7 +737,6 @@ void ImportCertificatesCommand::Private::tryToFinish()
         runningJobs.push_back(job);
         return;
     }
-#endif
 
     if (keyListConnection) {
         qCWarning(KLEOPATRA_LOG) << q << __func__ << "There is already a valid keyListConnection!";
@@ -899,34 +893,17 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol,
                 [this](const GpgME::ImportResult &result) {
                     onImportResult(result);
                 }),
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
         connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress),
-#else
-        connect(job.get(), &QGpgME::Job::progress,
-                q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
-#endif
     };
 
-#if QGPGME_SUPPORTS_IMPORT_WITH_FILTER
     job->setImportFilter(options.importFilter);
-#endif
-#if QGPGME_SUPPORTS_IMPORT_WITH_KEY_ORIGIN
     job->setKeyOrigin(options.keyOrigin, options.keyOriginUrl);
-#endif
-#if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
     const GpgME::Error err = job->startLater(data);
-#else
-    const GpgME::Error err = job->start(data);
-#endif
     if (err.code()) {
         addImportResult({id, protocol, ImportType::Local, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
-#if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
         pendingJobs.push({id, protocol, ImportType::Local, job.release(), connections});
-#else
-        runningJobs.push_back({id, protocol, ImportType::Local, job.release(), connections});
-#endif
     }
 }
 
@@ -966,12 +943,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
                 [this](const GpgME::ImportResult &result) {
                     onImportResult(result);
                 }),
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
         connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress),
-#else
-        connect(job.get(), &QGpgME::Job::progress,
-                q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
-#endif
     };
 
     const GpgME::Error err = job->start(keys);
@@ -987,15 +959,11 @@ static auto get_receive_keys_job(GpgME::Protocol protocol)
 {
     Q_ASSERT(protocol != UnknownProtocol);
 
-#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     std::unique_ptr<ReceiveKeysJob> job{};
     if (const auto backend = (protocol == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime())) {
         job.reset(backend->receiveKeysJob());
     }
     return job;
-#else
-    return std::unique_ptr<Job>{};
-#endif
 }
 
 void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [[maybe_unused]] const QStringList &keyIds, const QString &id)
@@ -1009,7 +977,6 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
         return;
     }
 
-#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {
@@ -1019,12 +986,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
                 [this](const GpgME::ImportResult &result) {
                     onImportResult(result);
                 }),
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
         connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress),
-#else
-        connect(job.get(), &QGpgME::Job::progress,
-                q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
-#endif
     };
 
     const GpgME::Error err = job->start(keyIds);
@@ -1034,7 +996,6 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
         increaseProgressMaximum();
         runningJobs.push_back({id, protocol, ImportType::External, job.release(), connections});
     }
-#endif
 }
 
 void ImportCertificatesCommand::Private::importGroupsFromFile(const QString &filename)

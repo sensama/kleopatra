@@ -307,18 +307,6 @@ auto createInfoButton(const QString &text, QWidget *parent)
     return infoBtn;
 }
 
-QString dateFormatWithFourDigitYear(QLocale::FormatType format)
-{
-    // Force the year to be formatted as four digit number, so that
-    // the user can distinguish between 2006 and 2106.
-    return QLocale{}.dateFormat(format).replace(QLatin1String("yy"), QLatin1String("yyyy")).replace(QLatin1String("yyyyyyyy"), QLatin1String("yyyy"));
-}
-
-QString formatDate(const QDate &date, QLocale::FormatType format)
-{
-    return QLocale{}.toString(date, dateFormatWithFourDigitYear(format));
-}
-
 class ListView : public QListView
 {
     Q_OBJECT

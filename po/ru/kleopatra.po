@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-31 00:48+0000\n"
+"POT-Creation-Date: 2023-08-04 00:47+0000\n"
 "PO-Revision-Date: 2023-04-30 15:26+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -6075,7 +6075,7 @@ msgid "User IDs:"
 msgstr "Идентификаторы пользователей:"
 
 #: src/dialogs/certificatedetailswidget.cpp:214
-#: src/dialogs/certifywidget.cpp:408
+#: src/dialogs/certifywidget.cpp:396
 #, kde-format
 msgid "User IDs"
 msgstr "Идентификаторы пользователей"
@@ -6153,7 +6153,7 @@ msgid "Change Validity"
 msgstr "Изменить действительность"
 
 #: src/dialogs/certificatedetailswidget.cpp:299
-#: src/dialogs/certifywidget.cpp:376
+#: src/dialogs/certifywidget.cpp:364
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Отпечаток:"
@@ -6545,7 +6545,7 @@ msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Заверение сертификата: %1"
 
-#: src/dialogs/certifywidget.cpp:359
+#: src/dialogs/certifywidget.cpp:347
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6557,18 +6557,18 @@ msgstr ""
 "<br><i>Примечание: ключ и его владельца явным образом определяет только "
 "отпечаток.</i>"
 
-#: src/dialogs/certifywidget.cpp:381
+#: src/dialogs/certifywidget.cpp:369
 #, kde-format
 msgid "Certify with:"
 msgstr "Заверить с использованием:"
 
-#: src/dialogs/certifywidget.cpp:393
+#: src/dialogs/certifywidget.cpp:381
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Установить доверие владельцу"
 
-#: src/dialogs/certifywidget.cpp:395
+#: src/dialogs/certifywidget.cpp:383
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6578,37 +6578,37 @@ msgstr ""
 "Позволяет установить абсолютный уровень доверия для выбранного ключа "
 "сертификации. Обычно это требуется сделать для собственных ключей."
 
-#: src/dialogs/certifywidget.cpp:413
+#: src/dialogs/certifywidget.cpp:401
 #, kde-format
 msgid "Advanced"
 msgstr "Расширенный"
 
-#: src/dialogs/certifywidget.cpp:413
+#: src/dialogs/certifywidget.cpp:401
 #, kde-format
 msgid "Show advanced options"
 msgstr "Показать дополнительные параметры"
 
-#: src/dialogs/certifywidget.cpp:419
+#: src/dialogs/certifywidget.cpp:407
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Заверить для всех (с возможностью экспорта)"
 
-#: src/dialogs/certifywidget.cpp:426
+#: src/dialogs/certifywidget.cpp:414
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Опубликовать результат на сервере ключей"
 
-#: src/dialogs/certifywidget.cpp:438
+#: src/dialogs/certifywidget.cpp:426
 #, kde-format
 msgid "Tags:"
 msgstr "Метки:"
 
-#: src/dialogs/certifywidget.cpp:442
+#: src/dialogs/certifywidget.cpp:430
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Эта информация будет добавлена в сертификат."
 
-#: src/dialogs/certifywidget.cpp:443
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6617,22 +6617,22 @@ msgstr ""
 "Метки, созданные при полном доверии к сертификату, выводятся в списке ключей "
 "и могут быть использованы для поиска."
 
-#: src/dialogs/certifywidget.cpp:446
+#: src/dialogs/certifywidget.cpp:434
 #, kde-format
 msgid "Explain tags"
 msgstr "Пояснение меток"
 
-#: src/dialogs/certifywidget.cpp:459
+#: src/dialogs/certifywidget.cpp:447
 #, kde-format
 msgid "Expiration:"
 msgstr "Срок действия:"
 
-#: src/dialogs/certifywidget.cpp:466
+#: src/dialogs/certifywidget.cpp:454
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Здесь возможно установить дату истечения срока действия сертификата."
 
-#: src/dialogs/certifywidget.cpp:467
+#: src/dialogs/certifywidget.cpp:455
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6643,22 +6643,22 @@ msgstr ""
 "сертификатов определённым количеством времени. По истечении срока действия "
 "сертификат будет недействительным."
 
-#: src/dialogs/certifywidget.cpp:471
+#: src/dialogs/certifywidget.cpp:459
 #, kde-format
 msgid "Explain expiration"
 msgstr "Пояснение срока действия"
 
-#: src/dialogs/certifywidget.cpp:484
+#: src/dialogs/certifywidget.cpp:472
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Подтвердить как доверенного представителя"
 
-#: src/dialogs/certifywidget.cpp:485
+#: src/dialogs/certifywidget.cpp:473
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "Подтвердить доверенного представителя для домена."
 
-#: src/dialogs/certifywidget.cpp:486
+#: src/dialogs/certifywidget.cpp:474
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6670,34 +6670,34 @@ msgstr ""
 "сертифицированные, то есть доверенный представитель действует как "
 "промежуточный центр сертификации для домена. "
 
-#: src/dialogs/certifywidget.cpp:491
+#: src/dialogs/certifywidget.cpp:479
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr "Пояснение доверенного представителя"
 
-#: src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:489
 #, kde-format
 msgid "Domain:"
 msgstr "Домен:"
 
-#: src/dialogs/certifywidget.cpp:691
+#: src/dialogs/certifywidget.cpp:679
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Это ваш собственный ключ?"
 
-#: src/dialogs/certifywidget.cpp:706
+#: src/dialogs/certifywidget.cpp:694
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
 "<p>Не удалось изменить уровень доверия к ключу <b>«%1»</b>:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:709
+#: src/dialogs/certifywidget.cpp:697
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Ошибка при изменении уровня доверия"
 
-#: src/dialogs/certifywidget.cpp:716
+#: src/dialogs/certifywidget.cpp:704
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Уровень доверия владельцу установлен."

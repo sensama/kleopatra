@@ -475,7 +475,7 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                 if ((ad->id() == QLatin1String{"tar"}) && archiveJobsCanBeUsed(cFile.protocol)) {
                     // we don't need an output
                 } else {
-                    output = ad->createOutputFromUnpackCommand(cFile.protocol, cFile.fileName, wd);
+                    output = ad->createOutputFromUnpackCommand(cFile.protocol, ad->stripExtension(cFile.protocol, cFile.baseName), wd);
                 }
             } else {
                 output = Output::createFromFile(wd.absoluteFilePath(outputFileName(fi.fileName())), false);

@@ -13,8 +13,8 @@
 
 #include "emailoperationspreferences.h"
 
-#include <crypto/gui/resultitemwidget.h>
 #include <crypto/decryptverifytask.h>
+#include <crypto/gui/resultitemwidget.h>
 
 #include <utils/gui-helper.h>
 #include <utils/scrollarea.h>
@@ -157,8 +157,7 @@ void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result>
 
     const auto viewableContentType = result->viewableContentType();
 
-    if (viewableContentType == Task::Result::ContentType::Mime
-        || viewableContentType == Task::Result::ContentType::Mbox) {
+    if (viewableContentType == Task::Result::ContentType::Mime || viewableContentType == Task::Result::ContentType::Mbox) {
         wid->setShowButton(i18nc("@action:button", "Show Email"), true);
         q->connect(wid, &ResultItemWidget::showButtonClicked, q, [this, result] {
             Q_EMIT q->showButtonClicked(result);

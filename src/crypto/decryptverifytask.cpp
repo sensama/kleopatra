@@ -372,7 +372,6 @@ static bool mimeTypeInherits(const QMimeType &mimeType, const QString &mimeTypeN
     // inherits is expensive on an invalid mimeType
     return mimeType.isValid() && mimeType.inherits(mimeTypeName);
 }
-
 }
 
 class DecryptVerifyResult::SenderInfo

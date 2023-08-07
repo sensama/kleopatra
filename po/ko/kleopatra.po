@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-07-23 23:54+0200\n"
+"PO-Revision-Date: 2023-08-06 23:11+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -241,35 +241,28 @@ msgid "Writing the certificate to the card succeeded."
 msgstr "인증서를 카드에 기록했습니다."
 
 #: src/commands/certifycertificatecommand.cpp:154
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Key Revoked"
+#, kde-format
 msgctxt "@title:window"
 msgid "Key is Revoked"
 msgstr "키 철회됨"
 
 #: src/commands/certifycertificatecommand.cpp:154
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key is superseded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Key is Expired"
-msgstr "키가 대체됨"
+msgstr "키 만료됨"
 
 #: src/commands/certifycertificatecommand.cpp:156
-#, fuzzy, kde-format
-#| msgid "The key has been revoked."
+#, kde-format
 msgctxt "@info"
 msgid "This key has been revoked. You cannot certify it."
-msgstr "키가 철회되었습니다."
+msgstr "이 키가 철회되었습니다. 이 키를 인증할 수 없습니다."
 
 #: src/commands/certifycertificatecommand.cpp:157
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "This subkey is required for encryption."
+#, kde-format
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
-msgstr "암호화할 때 이 하위 키가 필요합니다."
+msgstr "이 키가 만료되었습니다. 이 키를 인증할 수 없습니다."
 
 #: src/commands/certifycertificatecommand.cpp:174
 #, kde-kuit-format
@@ -290,9 +283,7 @@ msgid "Certification Not Possible"
 msgstr "자격 증명 불가능"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Create"
+#, kde-format
 msgid "Create"
 msgstr "생성"
 
@@ -332,31 +323,29 @@ msgid "End of validity period changed successfully."
 msgstr "유효 기간 종료 시점을 변경했습니다."
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
-#| msgid "(unknown certificate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "(알 수 없는 인증서)"
+msgstr "'%1'이(가) 사용자의 인증서입니까?"
 
 #: src/commands/changeownertrustcommand.cpp:104
 #: src/commands/importcertificatescommand.cpp:662
-#, fuzzy, kde-format
-#| msgid "Card Certificate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "카드 인증서"
+msgstr "내 인증서 표시"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr ""
+msgstr "예, 내 인증서입니다"
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr ""
+msgstr "아니요, 내 인증서가 아닙니다"
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -2170,22 +2159,19 @@ msgid ""
 msgstr "죄송합니다! 이 카드로 키를 전송하는 것은 아직 지원지 않습니다."
 
 #: src/commands/keytocardcommand.cpp:213
-#, fuzzy, kde-format
-#| msgid "Signature"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Signature"
 msgstr "서명"
 
 #: src/commands/keytocardcommand.cpp:217
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "암호화"
 
 #: src/commands/keytocardcommand.cpp:221
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "인증"
@@ -2319,11 +2305,10 @@ msgid "Create Backup and Delete Key"
 msgstr "비밀 키 백업"
 
 #: src/commands/keytocardcommand.cpp:479
-#, fuzzy, kde-format
-#| msgid "Select Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Delete Key"
-msgstr "키 선택"
+msgstr "키 삭제"
 
 #: src/commands/keytocardcommand.cpp:480
 #, fuzzy, kde-format
@@ -2334,8 +2319,7 @@ msgid "Keep Key"
 msgstr "키 철회"
 
 #: src/commands/keytocardcommand.cpp:526
-#, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "비밀 키 백업"
@@ -2380,12 +2364,10 @@ msgid "Do you really want to delete the local copy of the secret key?"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:624
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Confirm Revocation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
-msgstr "철회 확인"
+msgstr "삭제 확인"
 
 #: src/commands/keytocardcommand.cpp:643
 #, fuzzy, kde-kuit-format
@@ -2921,9 +2903,7 @@ msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] "<para>다음 키를 철회하려고 합니다:<nl/>%1</para>"
 
 #: src/commands/revokecertificationcommand.cpp:98
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Certifications"
+#, kde-format
 msgid "Revoke Certifications"
 msgstr "인증 철회"
 
@@ -3186,29 +3166,25 @@ msgid "Enable display and usage of tags attached to certificates."
 msgstr "키에 첨부된 태그를 표시하고 사용합니다."
 
 #: src/conf/appearanceconfigwidget.cpp:364
-#, fuzzy, kde-format
-#| msgid "Show the following information in certificate list tooltips:"
+#, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr "인증서 목록 풍선 도움말에 다음 정보 표시:"
 
 #: src/conf/appearanceconfigwidget.cpp:367
-#, fuzzy, kde-format
-#| msgid "Show validity"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "유효 여부 표시"
 
 #: src/conf/appearanceconfigwidget.cpp:370
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "소유자 정보 표시"
 
 #: src/conf/appearanceconfigwidget.cpp:373
-#, fuzzy, kde-format
-#| msgid "Show technical details"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "기술 정보 표시"
@@ -3267,19 +3243,16 @@ msgid ""
 msgstr ""
 
 #: src/conf/appearanceconfigwidget.cpp:416
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Generate"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
-msgstr "생성"
+msgstr "일반"
 
 #: src/conf/appearanceconfigwidget.cpp:436
-#, fuzzy, kde-format
-#| msgid "Set &Icon..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Icon..."
-msgstr "아이콘 설정(&I)..."
+msgstr "아이콘 설정..."
 
 #: src/conf/appearanceconfigwidget.cpp:443
 #, fuzzy, kde-format
@@ -3310,29 +3283,25 @@ msgid "Italic"
 msgstr "이탤릭"
 
 #: src/conf/appearanceconfigwidget.cpp:471
-#, fuzzy, kde-format
-#| msgid "Bold"
+#, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "굵게"
 
 #: src/conf/appearanceconfigwidget.cpp:478
-#, fuzzy, kde-format
-#| msgid "Strikeout"
+#, kde-format
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "취소선"
 
 #: src/conf/appearanceconfigwidget.cpp:487
-#, fuzzy, kde-format
-#| msgid "Default Appearance"
+#, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "기본 모양"
 
 #: src/conf/appearanceconfigwidget.cpp:495
-#, fuzzy, kde-format
-#| msgid "Certificate Categories"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "인증서 분류"
@@ -5399,17 +5368,13 @@ msgid "Sign"
 msgstr "서명"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:452
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "암호화"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:455
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Sign / Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "서명/암호화"
@@ -6602,10 +6567,9 @@ msgid "Explain trusted introducer"
 msgstr "신뢰할 수 있는 도입자 설명"
 
 #: src/dialogs/certifywidget.cpp:510
-#, fuzzy, kde-format
-#| msgid "Domain"
+#, kde-format
 msgid "Domain:"
-msgstr "도메인"
+msgstr "도메인:"
 
 #: src/dialogs/certifywidget.cpp:700
 #, kde-format
@@ -10698,11 +10662,10 @@ msgstr ""
 "덮어쓰시겠습니까?"
 
 #: src/utils/overwritedialog.cpp:190
-#, fuzzy, kde-format
-#| msgid "Real name:"
+#, kde-format
 msgctxt "@label"
 msgid "Rename:"
-msgstr "실명:"
+msgstr "이름 바꾸기:"
 
 #: src/utils/overwritedialog.cpp:199
 #, fuzzy, kde-format
@@ -10746,11 +10709,10 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:227
-#, fuzzy, kde-format
-#| msgid "Skipped"
+#, kde-format
 msgctxt "@action:button"
 msgid "Skip"
-msgstr "건너뜀"
+msgstr "건너뛰기"
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
@@ -10762,7 +10724,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
-msgstr ""
+msgstr "모두 건너뛰기"
 
 #: src/utils/overwritedialog.cpp:234
 #, kde-format
@@ -10773,11 +10735,10 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:238
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
-msgstr "모두 덮어쓰기"
+msgstr "덮어쓰기"
 
 #: src/utils/overwritedialog.cpp:240
 #, fuzzy, kde-format
@@ -10787,8 +10748,7 @@ msgid "Overwrite the existing file."
 msgstr "존재하는 파일을 덮어쓰시겠습니까?"
 
 #: src/utils/overwritedialog.cpp:244
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "모두 덮어쓰기"
@@ -11440,8 +11400,7 @@ msgid "Encrypt Notepad"
 msgstr "메모장 서명/암호화"
 
 #: src/view/padwidget.cpp:504
-#, fuzzy, kde-format
-#| msgid "Sign / Encrypt Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "메모장 서명/암호화"

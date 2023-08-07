@@ -101,6 +101,7 @@ public:
     const std::shared_ptr<const Task::Result> m_result;
     UrlLabel *m_auditLogLabel = nullptr;
     QPushButton *m_closeButton = nullptr;
+    QPushButton *m_showButton = nullptr;
     bool m_importCanceled = false;
 };
 
@@ -297,6 +298,11 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     });
     vlay->addWidget(detailsLabel);
 
+    d->m_showButton = new QPushButton;
+    d->m_showButton->setVisible(false);
+    connect(d->m_showButton, &QAbstractButton::clicked, this, &ResultItemWidget::showButtonClicked);
+    actionLayout->addWidget(d->m_showButton);
+
     d->m_closeButton = new QPushButton;
     KGuiItem::assign(d->m_closeButton, KStandardGuiItem::close());
     d->m_closeButton->setFixedSize(d->m_closeButton->sizeHint());
@@ -319,6 +325,12 @@ ResultItemWidget::~ResultItemWidget()
 void ResultItemWidget::showCloseButton(bool show)
 {
     d->m_closeButton->setVisible(show);
+}
+
+void ResultItemWidget::setShowButton(const QString &text, bool show)
+{
+    d->m_showButton->setText(text);
+    d->m_showButton->setVisible(show);
 }
 
 bool ResultItemWidget::hasErrorResult() const

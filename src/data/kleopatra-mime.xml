@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// This file is part of Kleopatra, the KDE keymanager
+SPDX-FileCopyrightText: 2003 Jonathan Blandford <jrb@redhat.com>
+SPDX-FileCopyrightText: 2023 g10 Code GmbH
+SPDX-FileContributor: Carl Schwan <carl.schwan@gnupg.com>
+SPDX-License-Identifier: GPL-2.0-or-later
+-->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="message/rfc822">
+    <comment>email message</comment>
+    <generic-icon name="text-x-generic"/>
+    <sub-class-of type="text/plain"/>
+    <magic>
+      <match type="string" value="#! rnews" offset="0"/>
+      <match type="string" value="Content-Type:" offset="0"/>
+      <match type="string" value="Forward to" offset="0"/>
+      <match type="string" value="From:" offset="0"/>
+      <match type="string" value="N#! rnews" offset="0"/>
+      <match type="string" value="Pipe to" offset="0"/>
+      <match type="string" value="Received:" offset="0"/>
+      <match type="string" value="Relay-Version:" offset="0"/>
+      <match type="string" value="Return-Path:" offset="0"/>
+      <match type="string" value="Return-path:" offset="0"/>
+      <match type="string" value="Subject: " offset="0"/>
+      <match type="string" value="To:" offset="0"/>
+    </magic>
+    <glob pattern="*.eml"/>
+  </mime-type>
+</mime-info>

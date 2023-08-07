@@ -89,6 +89,8 @@ class Task::Result
     const QString m_nonce;
 
 public:
+    class Content;
+
     Result();
     virtual ~Result();
 
@@ -107,6 +109,12 @@ public:
         NeutralError,
     };
 
+    enum class ContentType {
+        None,
+        Mime,
+        Mbox,
+    };
+
     virtual QString icon() const;
     virtual QString overview() const = 0;
     virtual QString details() const = 0;
@@ -118,6 +126,7 @@ public:
     {
         return QPointer<Task>();
     }
+    virtual ContentType viewableContentType() const;
 
 protected:
     static QString iconPath(VisualCode code);
@@ -127,6 +136,5 @@ private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
 };
-
 }
 }

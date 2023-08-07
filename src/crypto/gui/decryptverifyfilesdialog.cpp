@@ -17,6 +17,7 @@
 #include "crypto/gui/resultpage.h"
 #include "crypto/taskcollection.h"
 #include "utils/path-helper.h"
+#include "dialogs/messageviewerdialog.h"
 
 #include <Libkleo/FileNameRequester>
 
@@ -30,6 +31,7 @@
 
 #include <KConfigGroup>
 #include <KLocalizedString>
+#include <KLocalizedContext>
 #include <KMessageBox>
 #include <KSharedConfig>
 #include <KWindowConfig>
@@ -62,6 +64,8 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
     m_progressBar = new QProgressBar;
     vLay->addWidget(m_progressBar);
     m_resultList = new ResultListWidget;
+    connect(m_resultList, &ResultListWidget::showButtonClicked,
+            this, &DecryptVerifyFilesDialog::showContent);
     vLay->addWidget(m_resultList);
 
     m_tasks = coll;
@@ -247,6 +251,14 @@ void DecryptVerifyFilesDialog::writeConfig()
     KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "DecryptVerifyFilesDialog");
     KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
     cfgGroup.sync();
+}
+
+void DecryptVerifyFilesDialog::showContent(const std::shared_ptr<const Task::Result> &result)
+{
+    if (auto decryptVerifyResult = std::dynamic_pointer_cast<const DecryptVerifyResult>(result)) {
+        MessageViewerDialog dialog(decryptVerifyResult->fileName());
+        dialog.exec();
+    }
 }
 
 #include "moc_decryptverifyfilesdialog.cpp"

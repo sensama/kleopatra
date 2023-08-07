@@ -235,6 +235,7 @@ public:
     VisualCode code() const override;
     AuditLogEntry auditLog() const override;
     QPointer<Task> parentTask() const override;
+    Task::Result::ContentType viewableContentType() const override;
 
     GpgME::VerificationResult verificationResult() const;
     GpgME::DecryptionResult decryptionResult() const;

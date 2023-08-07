@@ -38,3 +38,5 @@ MessageViewerDialog::MessageViewerDialog(const QString &fileName, QWidget *paren
 }
 
 MessageViewerDialog::~MessageViewerDialog() = default;
+
+#include "moc_messageviewerdialog.cpp"

@@ -323,7 +323,7 @@ void KleopatraApplication::init()
     // Under Linux the Theme is set outside. On Windows we have to do
     // it ourself.
     if (SystemInfo::isDarkModeActive()) {
-        QIcon::setThemeName("breeze-dark");
+        QIcon::setThemeName(QStringLiteral("breeze-dark"));
     }
 #endif
 #ifndef QT_NO_SYSTEMTRAYICON

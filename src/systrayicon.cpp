@@ -36,7 +36,6 @@
 
 #include <QAction>
 #include <QApplication>
-#include <QClipboard>
 #include <QMenu>
 #include <QPointer>
 #include <QSignalBlocker>
@@ -71,9 +70,6 @@ private:
 
     void enableDisableActions()
     {
-        // work around a Qt bug (seen with Qt 4.4.0, Windows): QClipBoard->mimeData() triggers QClipboard::changed(),
-        // triggering slotEnableDisableActions again
-        const QSignalBlocker blocker(QApplication::clipboard());
         openCertificateManagerAction.setEnabled(!q->mainWindow() || !q->mainWindow()->isVisible());
         setInitialPinAction.setEnabled(!firstCardWithNullPin.empty());
         learnCertificatesAction.setEnabled(anyCardCanLearnKeys);
@@ -165,8 +161,6 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     connect(&updateCardStatusAction, &QAction::triggered, ReaderStatus::instance(), &ReaderStatus::updateStatus);
     connect(&setInitialPinAction, SIGNAL(triggered()), q, SLOT(slotSetInitialPin()));
     connect(&learnCertificatesAction, SIGNAL(triggered()), q, SLOT(slotLearnCertificates()));
-
-    connect(QApplication::clipboard(), SIGNAL(changed(QClipboard::Mode)), q, SLOT(slotEnableDisableActions()));
 
     menu.addAction(&openCertificateManagerAction);
     menu.addAction(&configureAction);

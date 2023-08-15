@@ -17,6 +17,8 @@
 #if QGPGME_HAS_TOLOGSTRING
 // intentionally left blank
 #else
+#include <sstream>
+
 namespace QGpgME
 {
 template<class GpgMEClass>

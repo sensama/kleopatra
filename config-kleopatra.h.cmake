@@ -60,3 +60,6 @@
 
 /* Whether QGpgMe supports isMime on an decryptionResult */
 #cmakedefine01 QGPGME_SUPPORTS_IS_MIME
+
+/* Whether QGpgME provides the toLogString helper */
+#cmakedefine01 QGPGME_HAS_TOLOGSTRING

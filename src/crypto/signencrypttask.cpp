@@ -11,10 +11,12 @@
 
 #include "signencrypttask.h"
 
+#include <utils/gpgme-compat.h>
 #include <utils/input.h>
 #include <utils/kleo_assert.h>
 #include <utils/output.h>
 #include <utils/path-helper.h>
+#include <utils/qt-cxx20-compat.h>
 
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/Formatting>
@@ -833,6 +835,8 @@ void SignEncryptTask::Private::slotResult(const EncryptionResult &result)
 
 void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningResult &sresult, const EncryptionResult &eresult)
 {
+    qCDebug(KLEOPATRA_LOG) << q << __func__ << "job:" << job << "signing result:" << QGpgME::toLogString(sresult)
+                           << "encryption result:" << QGpgME::toLogString(eresult);
     const AuditLogEntry auditLog = AuditLogEntry::fromJob(job);
     bool outputCreated = false;
     if (input && input->failed()) {

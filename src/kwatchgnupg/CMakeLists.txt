@@ -49,6 +49,7 @@ target_link_libraries(kwatchgnupg
   KPim6::Libkleo
   KF6::CoreAddons
   KF6::Crash
+  KF6::StatusNotifierItem
 )
 
 install(TARGETS kwatchgnupg ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

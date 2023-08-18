@@ -337,16 +337,16 @@ void KleopatraApplication::init()
     d->sysTray->show();
 #endif
     setQuitOnLastWindowClosed(false);
+
+    // Sync config when we are about to quit
+    connect(this, &QApplication::aboutToQuit, this, []() {
+        KSharedConfig::openConfig()->sync();
+    });
 }
 
 KleopatraApplication::~KleopatraApplication()
 {
-    // main window doesn't receive "close" signal and cannot
-    // save settings before app exit
     delete d->mainWindow;
-
-    // work around kdelibs bug https://bugs.kde.org/show_bug.cgi?id=162514
-    KSharedConfig::openConfig()->sync();
 }
 
 namespace

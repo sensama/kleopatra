@@ -129,7 +129,7 @@ Wizard::Private::Private(Wizard *qq)
 
 Wizard::Private::~Private()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
 }
 
 bool Wizard::Private::isLastPage(int id) const
@@ -185,7 +185,7 @@ Wizard::Wizard(QWidget *parent, Qt::WindowFlags f)
 
 Wizard::~Wizard()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
 }
 
 void Wizard::setPage(int id, WizardPage *widget)

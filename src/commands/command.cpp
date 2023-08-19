@@ -59,7 +59,7 @@ Command::Private::Private(Command *qq, QWidget *parent)
 
 Command::Private::~Private()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
 }
 
 Command::Command(KeyListController *p)
@@ -134,7 +134,7 @@ Command::Command(const std::vector<GpgME::Key> &keys, Private *pp)
 
 Command::~Command()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
 }
 
 void Command::setAutoDelete(bool on)

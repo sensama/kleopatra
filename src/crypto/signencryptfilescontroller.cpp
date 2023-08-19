@@ -101,7 +101,7 @@ SignEncryptFilesController::Private::Private(SignEncryptFilesController *qq)
 
 SignEncryptFilesController::Private::~Private()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
 }
 
 QString SignEncryptFilesController::Private::titleForOperation(unsigned int op)
@@ -149,7 +149,7 @@ SignEncryptFilesController::SignEncryptFilesController(const std::shared_ptr<con
 
 SignEncryptFilesController::~SignEncryptFilesController()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     if (d->wizard && !d->wizard->isVisible()) {
         delete d->wizard;
     }
@@ -357,7 +357,7 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
 
 void SignEncryptFilesController::Private::slotWizardCanceled()
 {
-    qCDebug(KLEOPATRA_LOG) << this << __func__;
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
     q->cancel();
     reportError(gpg_error(GPG_ERR_CANCELED), i18n("User cancel"));
 }

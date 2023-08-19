@@ -593,7 +593,7 @@ void SignEncryptFilesWizard::slotCurrentIdChanged(int id)
 
 SignEncryptFilesWizard::~SignEncryptFilesWizard()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     writeConfig();
 }
 

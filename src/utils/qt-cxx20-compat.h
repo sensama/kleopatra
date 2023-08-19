@@ -10,12 +10,20 @@
 
 #pragma once
 
-#include <Qt>
+#include <QDebug>
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 // define some bitwise operators to avoid warning that bitwise operation between
 // different enumeration types is deprecated
 inline int operator|(Qt::Modifier modifier, Qt::Key key)
 {
     return static_cast<int>(modifier) | static_cast<int>(key);
+}
+#endif
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 5, 0)
+static QDebug operator<<(QDebug s, const std::string &string)
+{
+    return s << QString::fromStdString(string);
 }
 #endif

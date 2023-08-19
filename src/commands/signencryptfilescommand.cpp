@@ -85,7 +85,7 @@ SignEncryptFilesCommand::Private::Private(SignEncryptFilesCommand *qq, KeyListCo
 
 SignEncryptFilesCommand::Private::~Private()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
 }
 
 SignEncryptFilesCommand::SignEncryptFilesCommand(KeyListController *c)
@@ -127,7 +127,7 @@ void SignEncryptFilesCommand::Private::init()
 
 SignEncryptFilesCommand::~SignEncryptFilesCommand()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
 }
 
 void SignEncryptFilesCommand::setFiles(const QStringList &files)
@@ -278,7 +278,7 @@ void SignEncryptFilesCommand::doStart()
 
 void SignEncryptFilesCommand::doCancel()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     d->controller.cancel();
 }
 

@@ -43,6 +43,7 @@
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/decryptverifyfilescommand.h"
 #include "commands/detailscommand.h"
+#include "commands/importcertificatefromfilecommand.h"
 #include "commands/lookupcertificatescommand.h"
 #include "commands/newcertificatesigningrequestcommand.h"
 #include "commands/newopenpgpcertificatecommand.h"
@@ -491,6 +492,11 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
         QString optionName;
         Func func;
     };
+
+    // While most of these options can be handled by the content autodetection
+    // below it might be useful to override the autodetection if the input is in
+    // doubt and you e.g. only want to import .asc files or fail and not decrypt them
+    // if they are actually encrypted data.
     static const std::vector<FuncInfo> funcMap{
         {QStringLiteral("import-certificate"), &KleopatraApplication::importCertificatesFromFile},
         {QStringLiteral("encrypt"), &KleopatraApplication::encryptFiles},
@@ -547,6 +553,9 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
                         d->connectConfigureDialog();
                     }
                     cmd->setParentWidget(mw);
+                }
+                if (dynamic_cast<ImportCertificateFromFileCommand *>(cmd)) {
+                    openOrRaiseMainWindow();
                 }
                 cmd->start();
             }

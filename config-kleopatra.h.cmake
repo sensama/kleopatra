@@ -57,3 +57,6 @@
 
 /* Whether the archive jobs allow setting an input filename instead of passing an input IO device */
 #cmakedefine01 QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
+
+/* Whether QGpgME supports the WKD refresh job */
+#cmakedefine01 QGPGME_SUPPORTS_WKD_REFRESH_JOB

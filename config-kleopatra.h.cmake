@@ -63,3 +63,6 @@
 
 /* Whether QGpgME provides the toLogString helper */
 #cmakedefine01 QGPGME_HAS_TOLOGSTRING
+
+/* Whether QGpgME supports the WKD refresh job */
+#cmakedefine01 QGPGME_SUPPORTS_WKD_REFRESH_JOB

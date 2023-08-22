@@ -18,6 +18,7 @@
 #include "importcertificatefromfilecommand.h"
 #include "lookupcertificatescommand.h"
 #include "signencryptfilescommand.h"
+#include "viewemailfilescommand.h"
 
 #include <Libkleo/Classify>
 #include <Libkleo/KeyCache>
@@ -261,12 +262,14 @@ void Command::applyWindowID(QWidget *w) const
 // static
 QVector<Command *> Command::commandsForFiles(const QStringList &files)
 {
-    QStringList importFiles, decryptFiles, encryptFiles, checksumFiles;
+    QStringList importFiles, decryptFiles, encryptFiles, checksumFiles, emailFiles;
     QVector<Command *> cmds;
     for (const QString &fileName : files) {
         const unsigned int classification = classify(fileName);
 
-        if (classification & Class::AnyCertStoreType) {
+        if (classification & Class::MimeFile) {
+            emailFiles << fileName;
+        } else if (classification & Class::AnyCertStoreType) {
             importFiles << fileName;
         } else if (classification & Class::AnyMessageType) {
             // For any message we decrypt / verify. This includes
@@ -292,6 +295,9 @@ QVector<Command *> Command::commandsForFiles(const QStringList &files)
     }
     if (!checksumFiles.isEmpty()) {
         cmds << new ChecksumVerifyFilesCommand(checksumFiles, nullptr);
+    }
+    if (!emailFiles.isEmpty()) {
+        cmds << new ViewEmailFilesCommand(emailFiles, nullptr);
     }
     return cmds;
 }

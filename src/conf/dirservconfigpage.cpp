@@ -175,7 +175,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 
 #if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     ++row;
-    mFetchMissingSignerKeysCB = new QCheckBox{q};
+    mFetchMissingSignerKeysCB = new QCheckBox{q->widget()};
     mFetchMissingSignerKeysCB->setText(i18nc("@option:check", "Retrieve missing certification keys when importing new keys"));
     mFetchMissingSignerKeysCB->setToolTip(xi18nc("@info:tooltip",
                                                  "If enabled, then Kleopatra will automatically try to retrieve the keys "

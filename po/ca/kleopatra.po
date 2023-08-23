@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-22 00:47+0000\n"
-"PO-Revision-Date: 2023-08-08 10:29+0200\n"
+"PO-Revision-Date: 2023-08-22 11:29+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -2754,6 +2754,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Ha fallat l'actualització del certificat des d'un servidor de claus, "
+"un servidor LDAP o un Active Directory:</para><para><message>%1</message></"
+"para><para>Ha fallat l'actualització del certificat a través del directori "
+"de claus web:</para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:354
 #: src/commands/refreshcertificatecommand.cpp:385
@@ -2767,24 +2771,21 @@ msgstr "L'actualització ha fallat"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Resultat de l'actualització des d'un servidor de claus, un servidor LDAP o "
+"un Active Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:362
 #: src/commands/refreshcertificatecommand.cpp:369
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>Ha fallat la sol·licitud de desament.</para><para><message>%1</"
-"message></para>"
+msgstr "<para>Ha fallat l'actualització: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:367
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Resultat de l'actualització des d'un directori de claus web"
 
 #: src/commands/refreshcertificatecommand.cpp:382
 #, kde-kuit-format
@@ -12237,44 +12238,3 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
-
-#~ msgid "The certification must be valid at least until tomorrow."
-#~ msgstr "La certificació ha de ser vàlida almenys fins demà."
-
-#~ msgid "The latest allowed certification date is %1."
-#~ msgstr "La darrera data de certificació permesa és %1."
-
-#~ msgid "Valid for %1 day"
-#~ msgid_plural "Valid for %1 days"
-#~ msgstr[0] "Vàlida durant %1 dia"
-#~ msgstr[1] "Vàlida durant %1 dies"
-
-#~ msgid "Valid for %1 week"
-#~ msgid_plural "Valid for %1 weeks"
-#~ msgstr[0] "Vàlida durant %1 setmana"
-#~ msgstr[1] "Vàlida durant %1 setmanes"
-
-#~ msgid "Valid for %1 month"
-#~ msgid_plural "Valid for %1 months"
-#~ msgstr[0] "Vàlida durant %1 mes"
-#~ msgstr[1] "Vàlida durant %1 mesos"
-
-#~ msgid "Valid for %1 year"
-#~ msgid_plural "Valid for %1 years"
-#~ msgstr[0] "Vàlida durant %1 any"
-#~ msgstr[1] "Vàlida durant %1 anys"
-
-#~ msgid "Valid for:"
-#~ msgstr "Vàlida durant:"
-
-#~ msgid "Days"
-#~ msgstr "Dies"
-
-#~ msgid "Weeks"
-#~ msgstr "Setmanes"
-
-#~ msgid "Months"
-#~ msgstr "Mesos"
-
-#~ msgid "Years"
-#~ msgstr "Anys"

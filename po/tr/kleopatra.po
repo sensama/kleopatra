@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-22 00:47+0000\n"
-"PO-Revision-Date: 2023-08-10 22:06+0300\n"
+"PO-Revision-Date: 2023-08-22 14:55+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -2728,6 +2728,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Sertifikayı bir anahtar sunucusundan, LDAP sunucusundan veya Active "
+"Directory'den güncelleme başarısız oldu:</para><para><message>%1</message></"
+"para><para>Sertifikayı Web Anahtar Dizini'nden güncelleme başarısız oldu:</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:354
 #: src/commands/refreshcertificatecommand.cpp:385
@@ -2741,23 +2745,21 @@ msgstr "Güncelleme Başarısız"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Anahtar sunucusundan, LDAP sunucusundan veya Active Directory'den güncelleme "
+"sonucu"
 
 #: src/commands/refreshcertificatecommand.cpp:362
 #: src/commands/refreshcertificatecommand.cpp:369
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>İsteği kaydetme başarısız.</para><para><message>%1</message></para>"
+msgstr "<para>Güncelleme başarısız oldu: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:367
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Web Anahtar Dizini'nden güncelleme sonucu"
 
 #: src/commands/refreshcertificatecommand.cpp:382
 #, kde-kuit-format

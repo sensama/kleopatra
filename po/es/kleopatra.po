@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-22 00:47+0000\n"
-"PO-Revision-Date: 2023-08-13 00:49+0200\n"
+"PO-Revision-Date: 2023-08-22 12:46+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -2764,6 +2764,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>La actualización del certificado desde un servidor de claves, un "
+"servidor LDAP o el directorio activo ha fallado:</para><para><message>%1</"
+"message></para><para>La actualización del certificado mediante el directorio "
+"de claves web ha fallado:</para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:354
 #: src/commands/refreshcertificatecommand.cpp:385
@@ -2777,24 +2781,21 @@ msgstr "La actualización ha fallado"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Resultado de actualizar desde el servidor de claves, el servidor LDAP o el "
+"directorio activo"
 
 #: src/commands/refreshcertificatecommand.cpp:362
 #: src/commands/refreshcertificatecommand.cpp:369
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>Ha ocurrido un error al guardar la petición.</para><para><message>%1</"
-"message></para>"
+msgstr "<para>La actualización ha fallado: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:367
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Resultado de actualizar mediante directorio de claves web"
 
 #: src/commands/refreshcertificatecommand.cpp:382
 #, kde-kuit-format

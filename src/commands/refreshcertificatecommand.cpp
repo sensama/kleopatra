@@ -10,8 +10,9 @@
 
 #include <config-kleopatra.h>
 
-#include "refreshcertificatecommand.h"
 #include "command_p.h"
+#include "refreshcertificatecommand.h"
+#include <settings.h>
 
 #include <Libkleo/Formatting>
 
@@ -223,7 +224,12 @@ std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificateCommand::Private::start
     });
     connect(refreshJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 
-    const GpgME::Error err = refreshJob->start({key});
+    Error err;
+    if (Settings{}.queryWKDsForAllUserIDs()) {
+        err = refreshJob->start(key.userIDs());
+    } else {
+        err = refreshJob->start({key});
+    }
     if (err) {
         wkdRefreshResult = ImportResult{err};
         return {};

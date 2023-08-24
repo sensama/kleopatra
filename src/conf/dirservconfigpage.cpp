@@ -101,6 +101,7 @@ private:
     Kleo::LabelledWidget<QTimeEdit> mTimeout;
     Kleo::LabelledWidget<QSpinBox> mMaxItems;
     QCheckBox *mFetchMissingSignerKeysCB = nullptr;
+    QCheckBox *mQueryWKDsForAllUserIDsCB = nullptr;
 
     QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
     QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
@@ -225,6 +226,16 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     glay->addWidget(mFetchMissingSignerKeysCB, row, 0, 1, 3);
 #endif
 
+    ++row;
+    mQueryWKDsForAllUserIDsCB = new QCheckBox{q};
+    mQueryWKDsForAllUserIDsCB->setText(i18nc("@option:check", "Query certificate directories of providers for all user IDs"));
+    mQueryWKDsForAllUserIDsCB->setToolTip(xi18nc("@info:tooltip",
+                                                 "By default, Kleopatra only queries the certificate directories of providers (WKD) "
+                                                 "for user IDs that were originally retrieved from a WKD when you update an OpenPGP "
+                                                 "certificate. If this option is enabled, then Kleopatra will query WKDs for all user IDs."));
+    connect(mQueryWKDsForAllUserIDsCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::markAsChanged);
+    glay->addWidget(mQueryWKDsForAllUserIDsCB, row, 0, 1, 3);
+
     glay->setRowStretch(++row, 1);
     glay->setColumnStretch(2, 1);
 }
@@ -346,9 +357,9 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
 #if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     mFetchMissingSignerKeysCB->setChecked(settings.retrieveSignerKeysAfterImport());
     mFetchMissingSignerKeysCB->setEnabled(!settings.isImmutable(QStringLiteral("RetrieveSignerKeysAfterImport")));
-#else
-    Q_UNUSED(settings)
 #endif
+    mQueryWKDsForAllUserIDsCB->setChecked(settings.queryWKDsForAllUserIDs());
+    mQueryWKDsForAllUserIDsCB->setEnabled(!settings.isImmutable(QStringLiteral("QueryWKDsForAllUserIDs")));
 }
 
 void DirectoryServicesConfigurationPage::Private::load()
@@ -432,11 +443,12 @@ void DirectoryServicesConfigurationPage::Private::save()
 
     mConfig->sync(true);
 
-#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     Settings settings;
+#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     settings.setRetrieveSignerKeysAfterImport(mFetchMissingSignerKeysCB->isChecked());
-    settings.save();
 #endif
+    settings.setQueryWKDsForAllUserIDs(mQueryWKDsForAllUserIDsCB->isChecked());
+    settings.save();
 }
 
 void DirectoryServicesConfigurationPage::Private::defaults()
@@ -458,6 +470,7 @@ void DirectoryServicesConfigurationPage::Private::defaults()
 
     Settings settings;
     settings.setRetrieveSignerKeysAfterImport(settings.findItem(QStringLiteral("RetrieveSignerKeysAfterImport"))->getDefault().toBool());
+    settings.setQueryWKDsForAllUserIDs(settings.findItem(QStringLiteral("QueryWKDsForAllUserIDs"))->getDefault().toBool());
 
     load(settings);
 }

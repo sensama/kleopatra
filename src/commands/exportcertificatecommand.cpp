@@ -194,7 +194,7 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
         proposedFileName += QStringLiteral("%1_%2_public.%3")
                                 .arg(name)
                                 .arg(Formatting::prettyKeyID(key.shortKeyID()))
-                                .arg(QString::fromLatin1(outputFileExtension(asciiArmoredCertificateClass, usePGPFileExt)));
+                                .arg(outputFileExtension(asciiArmoredCertificateClass, usePGPFileExt));
     }
     if (protocol == GpgME::CMS) {
         if (!fileNames[GpgME::OpenPGP].isEmpty()) {

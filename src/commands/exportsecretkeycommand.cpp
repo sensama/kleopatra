@@ -46,13 +46,13 @@ namespace
 
 QString openPGPCertificateFileExtension()
 {
-    return QLatin1String{outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt())};
+    return outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt());
 }
 
 QString cmsCertificateFileExtension()
 {
-    return QLatin1String{outputFileExtension(Class::CMS | Class::Binary | Class::ExportedPSM,
-                                             /*usePGPFileExt=*/false)};
+    return outputFileExtension(Class::CMS | Class::Binary | Class::ExportedPSM,
+                               /*usePGPFileExt=*/false);
 }
 
 QString certificateFileExtension(GpgME::Protocol protocol)

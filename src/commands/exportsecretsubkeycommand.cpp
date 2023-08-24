@@ -44,7 +44,7 @@ namespace
 #if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
 QString openPGPCertificateFileExtension()
 {
-    return QLatin1String{outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt())};
+    return outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt());
 }
 
 QString proposeFilename(const std::vector<Subkey> &subkeys)

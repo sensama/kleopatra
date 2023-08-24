@@ -157,6 +157,13 @@
          useful in combination with trusted introducers.</whatsthis>
      <default>false</default>
    </entry>
+   <entry name="QueryWKDsForAllUserIDs" type="Bool">
+     <label>Query certificate directories of providers for all user IDs</label>
+     <whatsthis>By default, Kleopatra only queries the certificate directories of providers (WKD)
+         for user IDs that were originally retrieved from a WKD when you update an OpenPGP certificate.
+         If this option is enabled, then Kleopatra will query WKDs for all user IDs.</whatsthis>
+     <default>false</default>
+   </entry>
  </group>
  <group name="Notifications">
    <entry name="ShowExpiryNotifications" type="Bool">

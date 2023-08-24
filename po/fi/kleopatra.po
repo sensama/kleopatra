@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-16 00:47+0000\n"
+"POT-Creation-Date: 2023-08-22 00:47+0000\n"
 "PO-Revision-Date: 2023-07-24 21:39+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -2529,7 +2529,7 @@ msgid "No Directory Servers Configured"
 msgstr "Ei määritettyjä hakemistopalvelimia"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:474
+#: src/kleopatraapplication.cpp:475
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Sinulla ei ole oikeutta luoda S/MIME-varmenteen allekirjoituspyyntöjä."
@@ -2632,79 +2632,123 @@ msgctxt "@title:window"
 msgid "Overwrite Existing Key"
 msgstr "Korvaa olemassa oleva avain"
 
-#: src/commands/refreshcertificatecommand.cpp:125
+#: src/commands/refreshcertificatecommand.cpp:135
 #, kde-format
 msgid "The backend does not support updating individual certificates."
 msgstr "Taustajärjestelmä ei tue yksittäisten varmenteiden päivittämistä."
 
-#: src/commands/refreshcertificatecommand.cpp:162
+#: src/commands/refreshcertificatecommand.cpp:172
+#: src/commands/refreshcertificatecommand.cpp:230
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Päivitetään avainta…"
 
-#: src/commands/refreshcertificatecommand.cpp:188
+#: src/commands/refreshcertificatecommand.cpp:198
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Päivitetään varmennetta…"
 
-#: src/commands/refreshcertificatecommand.cpp:208
+#: src/commands/refreshcertificatecommand.cpp:250
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "Avain ei ole muuttunut."
 
-#: src/commands/refreshcertificatecommand.cpp:212
+#: src/commands/refreshcertificatecommand.cpp:254
 #, kde-format
 msgid "The key has been revoked."
 msgstr "Avain on peruttu."
 
-#: src/commands/refreshcertificatecommand.cpp:215
+#: src/commands/refreshcertificatecommand.cpp:257
 #, kde-format
 msgid "The key has been updated."
 msgstr "Avain on päivitetty."
 
-#: src/commands/refreshcertificatecommand.cpp:219
+#: src/commands/refreshcertificatecommand.cpp:261
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Uusia käyttäjätunnuksia: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:222
+#: src/commands/refreshcertificatecommand.cpp:264
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Uusia aliavaimia: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:225
+#: src/commands/refreshcertificatecommand.cpp:267
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Uusia allekirjoituksia: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:235
+#: src/commands/refreshcertificatecommand.cpp:277
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "Lisäksi on noudettu yksi uusi avain."
 msgstr[1] "Lisäksi on noudettu %1 uutta avainta."
 
-#: src/commands/refreshcertificatecommand.cpp:253
+#: src/commands/refreshcertificatecommand.cpp:306
+#: src/commands/refreshcertificatecommand.cpp:340
+#: src/commands/refreshcertificatecommand.cpp:374
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "Avain päivitetty"
 
-#: src/commands/refreshcertificatecommand.cpp:267
+#: src/commands/refreshcertificatecommand.cpp:329
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "Varmenne on päivitetty."
 
-#: src/commands/refreshcertificatecommand.cpp:267
+#: src/commands/refreshcertificatecommand.cpp:329
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Varmenne päivitetty"
 
-#: src/commands/refreshcertificatecommand.cpp:275
+#: src/commands/refreshcertificatecommand.cpp:348
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Updating the certificate from a keyserver, an LDAP server, or Active "
+"Directory failed:</para><para><message>%1</message></para><para>Updating the "
+"certificate via Web Key Directory failed:</para><para><message>%2</message></"
+"para>"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:354
+#: src/commands/refreshcertificatecommand.cpp:385
+#, kde-format
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "Päivitys epäonnistui"
+
+#: src/commands/refreshcertificatecommand.cpp:360
+#, kde-format
+msgctxt "@info"
+msgid "Result of update from keyserver, LDAP server, or Active Directory"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:362
+#: src/commands/refreshcertificatecommand.cpp:369
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid "<para>The update failed: <message>%1</message></para>"
+msgstr ""
+"<para>Pyynnön tallentaminen epäonnistui.</para><para><message>%1</message></"
+"para>"
+
+#: src/commands/refreshcertificatecommand.cpp:367
+#, kde-format
+msgctxt "@info"
+msgid "Result of update via Web Key Directory"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:382
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2713,12 +2757,6 @@ msgid ""
 msgstr ""
 "<para>Varmennetta päivitettäessä tapahtui virhe:</para><para><message>%1</"
 "message></para>"
-
-#: src/commands/refreshcertificatecommand.cpp:278
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Päivitys epäonnistui"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:43
 #, kde-kuit-format
@@ -8376,47 +8414,47 @@ msgstr "Käsiteltävä(t) tiedosto(t)"
 msgid "String or Fingerprint for query and search"
 msgstr "Etsittävä merkkijono tai sormenjälki"
 
-#: src/kleopatraapplication.cpp:370
+#: src/kleopatraapplication.cpp:371
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Komennon suoritus epäonnistui"
 
-#: src/kleopatraapplication.cpp:412
+#: src/kleopatraapplication.cpp:413
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Monitulkintainen käytänne: --openpgp ja --cms"
 
-#: src/kleopatraapplication.cpp:446
+#: src/kleopatraapplication.cpp:447
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search-parametrin hakujonoa ei annettu"
 
-#: src/kleopatraapplication.cpp:457
+#: src/kleopatraapplication.cpp:458
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query-parametrille ei annettu sormenjälkeä"
 
-#: src/kleopatraapplication.cpp:513
+#: src/kleopatraapplication.cpp:519
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Monitulkintaiset komennot: ”%1” ja ”%2”"
 
-#: src/kleopatraapplication.cpp:520
+#: src/kleopatraapplication.cpp:526
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "”%1”-komennolle ei annettu tiedostoparametreja"
 
-#: src/kleopatraapplication.cpp:534
+#: src/kleopatraapplication.cpp:540
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Ei voida lukea: ”%1”"
 
-#: src/kleopatraapplication.cpp:810
+#: src/kleopatraapplication.cpp:819
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Ulkoisen linkin avaaminen on ylläpidollisesti kielletty."
 
-#: src/kleopatraapplication.cpp:810
+#: src/kleopatraapplication.cpp:819
 #, kde-format
 msgid "Prohibited"
 msgstr "Kielletty"

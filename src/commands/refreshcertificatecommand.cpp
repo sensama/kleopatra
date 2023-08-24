@@ -12,6 +12,7 @@
 
 #include "command_p.h"
 #include "refreshcertificatecommand.h"
+#include <settings.h>
 
 #include <Libkleo/Formatting>
 
@@ -22,6 +23,9 @@
 #if QGPGME_SUPPORTS_KEY_REFRESH
 #include <QGpgME/ReceiveKeysJob>
 #include <QGpgME/RefreshKeysJob>
+#endif
+#if QGPGME_SUPPORTS_WKD_REFRESH_JOB
+#include <QGpgME/WKDRefreshJob>
 #endif
 
 #include <gpgme++/importresult.h>
@@ -47,11 +51,16 @@ public:
     void cancel();
 
 #if QGPGME_SUPPORTS_KEY_REFRESH
-    std::unique_ptr<QGpgME::ReceiveKeysJob> startOpenPGPJob();
+    std::unique_ptr<QGpgME::ReceiveKeysJob> startReceiveKeysJob();
     std::unique_ptr<QGpgME::RefreshKeysJob> startSMIMEJob();
 #endif
-    void onOpenPGPJobResult(const ImportResult &result);
+#if QGPGME_SUPPORTS_WKD_REFRESH_JOB
+    std::unique_ptr<QGpgME::WKDRefreshJob> startWKDRefreshJob();
+#endif
+    void onReceiveKeysJobResult(const ImportResult &result);
+    void onWKDRefreshJobResult(const ImportResult &result);
     void onSMIMEJobResult(const Error &err);
+    void showOpenPGPResult();
     void showError(const Error &err);
 
 private:
@@ -59,6 +68,8 @@ private:
 #if QGPGME_SUPPORTS_KEY_REFRESH
     QPointer<QGpgME::Job> job;
 #endif
+    ImportResult receiveKeysResult;
+    ImportResult wkdRefreshResult;
 };
 
 RefreshCertificateCommand::Private *RefreshCertificateCommand::d_func()
@@ -109,7 +120,7 @@ void RefreshCertificateCommand::Private::start()
     std::unique_ptr<QGpgME::Job> refreshJob;
     switch (key.protocol()) {
     case GpgME::OpenPGP:
-        refreshJob = startOpenPGPJob();
+        refreshJob = startReceiveKeysJob();
         break;
     case GpgME::CMS:
         refreshJob = startSMIMEJob();
@@ -138,13 +149,13 @@ void RefreshCertificateCommand::Private::cancel()
 }
 
 #if QGPGME_SUPPORTS_KEY_REFRESH
-std::unique_ptr<QGpgME::ReceiveKeysJob> RefreshCertificateCommand::Private::startOpenPGPJob()
+std::unique_ptr<QGpgME::ReceiveKeysJob> RefreshCertificateCommand::Private::startReceiveKeysJob()
 {
     std::unique_ptr<QGpgME::ReceiveKeysJob> refreshJob{QGpgME::openpgp()->receiveKeysJob()};
     Q_ASSERT(refreshJob);
 
     connect(refreshJob.get(), &QGpgME::ReceiveKeysJob::result, q, [this](const GpgME::ImportResult &result) {
-        onOpenPGPJobResult(result);
+        onReceiveKeysJobResult(result);
     });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(refreshJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
@@ -186,6 +197,43 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificateCommand::Private::star
         return {};
     }
     Q_EMIT q->info(i18nc("@info:status", "Updating certificate..."));
+
+    return refreshJob;
+}
+#endif
+
+#if QGPGME_SUPPORTS_WKD_REFRESH_JOB
+std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificateCommand::Private::startWKDRefreshJob()
+{
+    // check if key is eligible for WKD refresh, i.e. if any user ID has WKD as origin
+    const auto userIds = key.userIDs();
+    const auto eligibleForWKDRefresh = std::any_of(userIds.begin(), userIds.end(), [](const auto &userId) {
+        return !userId.isRevoked() && !userId.addrSpec().empty() && userId.origin() == Key::OriginWKD;
+    });
+    if (!eligibleForWKDRefresh) {
+        wkdRefreshResult = ImportResult{Error::fromCode(GPG_ERR_USER_1)};
+        return {};
+    }
+
+    std::unique_ptr<QGpgME::WKDRefreshJob> refreshJob{QGpgME::openpgp()->wkdRefreshJob()};
+    Q_ASSERT(refreshJob);
+
+    connect(refreshJob.get(), &QGpgME::WKDRefreshJob::result, q, [this](const GpgME::ImportResult &result) {
+        onWKDRefreshJobResult(result);
+    });
+    connect(refreshJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
+
+    Error err;
+    if (Settings{}.queryWKDsForAllUserIDs()) {
+        err = refreshJob->start(key.userIDs());
+    } else {
+        err = refreshJob->start({key});
+    }
+    if (err) {
+        wkdRefreshResult = ImportResult{err};
+        return {};
+    }
+    Q_EMIT q->info(i18nc("@info:status", "Updating key..."));
 
     return refreshJob;
 }
@@ -241,18 +289,38 @@ static auto informationOnChanges(const ImportResult &result)
 
 }
 
-void RefreshCertificateCommand::Private::onOpenPGPJobResult(const ImportResult &result)
+void RefreshCertificateCommand::Private::onReceiveKeysJobResult(const ImportResult &result)
 {
-    if (result.error()) {
-        showError(result.error());
+    receiveKeysResult = result;
+
+    if (result.error().isCanceled()) {
         finished();
         return;
     }
 
-    if (!result.error().isCanceled()) {
+#if QGPGME_SUPPORTS_WKD_REFRESH_JOB
+    std::unique_ptr<QGpgME::Job> refreshJob = startWKDRefreshJob();
+    if (!refreshJob) {
+        showOpenPGPResult();
+        return;
+    }
+    job = refreshJob.release();
+#else
+    if (result.error()) {
+        showError(result.error());
+    } else {
         information(informationOnChanges(result), i18nc("@title:window", "Key Updated"));
     }
+
     finished();
+#endif
+}
+
+void RefreshCertificateCommand::Private::onWKDRefreshJobResult(const ImportResult &result)
+{
+    wkdRefreshResult = result;
+
+    showOpenPGPResult();
 }
 
 void RefreshCertificateCommand::Private::onSMIMEJobResult(const Error &err)
@@ -266,6 +334,51 @@ void RefreshCertificateCommand::Private::onSMIMEJobResult(const Error &err)
     if (!err.isCanceled()) {
         information(i18nc("@info", "The certificate has been updated."), i18nc("@title:window", "Certificate Updated"));
     }
+    finished();
+}
+
+void RefreshCertificateCommand::Private::showOpenPGPResult()
+{
+    if (wkdRefreshResult.error().code() == GPG_ERR_USER_1 || wkdRefreshResult.error().isCanceled()) {
+        if (receiveKeysResult.error()) {
+            showError(receiveKeysResult.error());
+        } else {
+            information(informationOnChanges(receiveKeysResult), i18nc("@title:window", "Key Updated"));
+        }
+        finished();
+        return;
+    }
+
+    if (receiveKeysResult.error() && wkdRefreshResult.error()) {
+        error(xi18nc("@info",
+                     "<para>Updating the certificate from a keyserver, an LDAP server, or Active Directory failed:</para>"
+                     "<para><message>%1</message></para>"
+                     "<para>Updating the certificate via Web Key Directory failed:</para>"
+                     "<para><message>%2</message></para>",
+                     Formatting::errorAsString(receiveKeysResult.error()),
+                     Formatting::errorAsString(wkdRefreshResult.error())),
+              i18nc("@title:window", "Update Failed"));
+        finished();
+        return;
+    }
+
+    QString text;
+    text += QLatin1String{"<p><strong>"} + i18nc("@info", "Result of update from keyserver, LDAP server, or Active Directory") + QLatin1String{"</strong></p>"};
+    if (receiveKeysResult.error()) {
+        text += xi18nc("@info", "<para>The update failed: <message>%1</message></para>", Formatting::errorAsString(receiveKeysResult.error()));
+    } else {
+        text += informationOnChanges(receiveKeysResult);
+    }
+
+    text += QLatin1String{"<p><strong>"} + i18nc("@info", "Result of update via Web Key Directory") + QLatin1String{"</strong></p>"};
+    if (wkdRefreshResult.error()) {
+        text += xi18nc("@info", "<para>The update failed: <message>%1</message></para>", Formatting::errorAsString(wkdRefreshResult.error()));
+    } else {
+        text += informationOnChanges(wkdRefreshResult);
+    }
+
+    information(text, i18nc("@title:window", "Key Updated"));
+
     finished();
 }
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-16 00:47+0000\n"
+"POT-Creation-Date: 2023-08-22 00:47+0000\n"
 "PO-Revision-Date: 2023-08-09 11:24+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -2554,7 +2554,7 @@ msgid "No Directory Servers Configured"
 msgstr "Няма конфигурирани сървъри на директории"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:474
+#: src/kleopatraapplication.cpp:475
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -2659,79 +2659,123 @@ msgctxt "@title:window"
 msgid "Overwrite Existing Key"
 msgstr "Презаписване на съществуващ ключ"
 
-#: src/commands/refreshcertificatecommand.cpp:125
+#: src/commands/refreshcertificatecommand.cpp:135
 #, kde-format
 msgid "The backend does not support updating individual certificates."
 msgstr "Не се поддържа актуализиране на индивидуални сертификати."
 
-#: src/commands/refreshcertificatecommand.cpp:162
+#: src/commands/refreshcertificatecommand.cpp:172
+#: src/commands/refreshcertificatecommand.cpp:230
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Актуализиране на ключ..."
 
-#: src/commands/refreshcertificatecommand.cpp:188
+#: src/commands/refreshcertificatecommand.cpp:198
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Актуализиране на сертификат..."
 
-#: src/commands/refreshcertificatecommand.cpp:208
+#: src/commands/refreshcertificatecommand.cpp:250
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "Ключът е  непроменени."
 
-#: src/commands/refreshcertificatecommand.cpp:212
+#: src/commands/refreshcertificatecommand.cpp:254
 #, kde-format
 msgid "The key has been revoked."
 msgstr "Ключът е анулиран."
 
-#: src/commands/refreshcertificatecommand.cpp:215
+#: src/commands/refreshcertificatecommand.cpp:257
 #, kde-format
 msgid "The key has been updated."
 msgstr "Ключът е актуализиран."
 
-#: src/commands/refreshcertificatecommand.cpp:219
+#: src/commands/refreshcertificatecommand.cpp:261
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Нови номера (UID): %1"
 
-#: src/commands/refreshcertificatecommand.cpp:222
+#: src/commands/refreshcertificatecommand.cpp:264
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Нови подключове: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:225
+#: src/commands/refreshcertificatecommand.cpp:267
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Нови подписи: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:235
+#: src/commands/refreshcertificatecommand.cpp:277
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "Допълнително е извлечен един нов ключ."
 msgstr[1] "Допълнително са извлечени %1 нови ключове."
 
-#: src/commands/refreshcertificatecommand.cpp:253
+#: src/commands/refreshcertificatecommand.cpp:306
+#: src/commands/refreshcertificatecommand.cpp:340
+#: src/commands/refreshcertificatecommand.cpp:374
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "Ключът е актуализиран"
 
-#: src/commands/refreshcertificatecommand.cpp:267
+#: src/commands/refreshcertificatecommand.cpp:329
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "Сертификатът е актуализиран."
 
-#: src/commands/refreshcertificatecommand.cpp:267
+#: src/commands/refreshcertificatecommand.cpp:329
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Сертификатът е актуализиран"
 
-#: src/commands/refreshcertificatecommand.cpp:275
+#: src/commands/refreshcertificatecommand.cpp:348
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Updating the certificate from a keyserver, an LDAP server, or Active "
+"Directory failed:</para><para><message>%1</message></para><para>Updating the "
+"certificate via Web Key Directory failed:</para><para><message>%2</message></"
+"para>"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:354
+#: src/commands/refreshcertificatecommand.cpp:385
+#, kde-format
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "Грешка при актуализиране"
+
+#: src/commands/refreshcertificatecommand.cpp:360
+#, kde-format
+msgctxt "@info"
+msgid "Result of update from keyserver, LDAP server, or Active Directory"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:362
+#: src/commands/refreshcertificatecommand.cpp:369
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid "<para>The update failed: <message>%1</message></para>"
+msgstr ""
+"<para>Записването на заявката е неуспешно.</para><para><message>%1</"
+"message></para>"
+
+#: src/commands/refreshcertificatecommand.cpp:367
+#, kde-format
+msgctxt "@info"
+msgid "Result of update via Web Key Directory"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:382
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2740,12 +2784,6 @@ msgid ""
 msgstr ""
 "<para>Възникна грешка пр актуализиране на сертификата:</para><para><message>"
 "%1</message></para>"
-
-#: src/commands/refreshcertificatecommand.cpp:278
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Грешка при актуализиране"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:43
 #, kde-kuit-format
@@ -8473,47 +8511,47 @@ msgstr "Файл (и) за обработка"
 msgid "String or Fingerprint for query and search"
 msgstr "Низ или отпечатък за заявка и търсене"
 
-#: src/kleopatraapplication.cpp:370
+#: src/kleopatraapplication.cpp:371
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Неуспешно изпълнение на команда"
 
-#: src/kleopatraapplication.cpp:412
+#: src/kleopatraapplication.cpp:413
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Неясен протокол: --openpgp и --cms"
 
-#: src/kleopatraapplication.cpp:446
+#: src/kleopatraapplication.cpp:447
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Не е посочен низ за търсене за --search"
 
-#: src/kleopatraapplication.cpp:457
+#: src/kleopatraapplication.cpp:458
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Не е посочен аргумент за пръстов отпечатък за --query"
 
-#: src/kleopatraapplication.cpp:513
+#: src/kleopatraapplication.cpp:519
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Двусмислени команди \"%1\"и \"%2\""
 
-#: src/kleopatraapplication.cpp:520
+#: src/kleopatraapplication.cpp:526
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Не са посочени файлове за командата \"%1\""
 
-#: src/kleopatraapplication.cpp:534
+#: src/kleopatraapplication.cpp:540
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Не може да се прочете \"%1\""
 
-#: src/kleopatraapplication.cpp:810
+#: src/kleopatraapplication.cpp:819
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Отварянето на външна връзка е административно забранено."
 
-#: src/kleopatraapplication.cpp:810
+#: src/kleopatraapplication.cpp:819
 #, kde-format
 msgid "Prohibited"
 msgstr "Забранено"

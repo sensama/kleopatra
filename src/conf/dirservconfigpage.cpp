@@ -185,7 +185,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 #endif
 
     ++row;
-    mQueryWKDsForAllUserIDsCB = new QCheckBox{q};
+    mQueryWKDsForAllUserIDsCB = new QCheckBox{q->widget()};
     mQueryWKDsForAllUserIDsCB->setText(i18nc("@option:check", "Query certificate directories of providers for all user IDs"));
     mQueryWKDsForAllUserIDsCB->setToolTip(xi18nc("@info:tooltip",
                                                  "By default, Kleopatra only queries the certificate directories of providers (WKD) "

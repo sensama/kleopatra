@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-25 00:47+0000\n"
-"PO-Revision-Date: 2023-08-22 13:25+0200\n"
+"POT-Creation-Date: 2023-08-26 00:47+0000\n"
+"PO-Revision-Date: 2023-08-25 12:47+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -3579,6 +3579,7 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Certificaatmappen van leveranciers voor alle gebruiker-ID's ondervragen"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3589,6 +3590,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"Standaard ondervraagt Kleopatra alleen de certificaatmappen van leveranciers "
+"(WKD) op gebruiker-ID's die oorspronkelijk opgehaald zijn van een WKD toen u "
+"een OpenPGP certificaat bijwerkte. Als deze optie is ingeschakeld zal "
+"Kleopatra WKD's voor alle gebruiker-ID's ondervragen."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -4796,7 +4801,7 @@ msgstr "Call to EncryptEMailController::protocolAsString() is ambiguous."
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:161
-#: src/crypto/signencryptfilescontroller.cpp:362
+#: src/crypto/signencryptfilescontroller.cpp:363
 #, kde-format
 msgid "User cancel"
 msgstr "Gebruiker annuleren"
@@ -5862,13 +5867,13 @@ msgstr "Archief en bestanden met ondertekening/versleuteling"
 msgid "Sign/Encrypt Files"
 msgstr "Bestanden ondertekenen/versleutelen"
 
-#: src/crypto/signencryptfilescontroller.cpp:270
+#: src/crypto/signencryptfilescontroller.cpp:271
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archief"
 
-#: src/crypto/signencryptfilescontroller.cpp:679
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5877,7 +5882,7 @@ msgstr ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:681
+#: src/crypto/signencryptfilescontroller.cpp:682
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -7060,6 +7065,12 @@ msgstr "Op server opzoeken"
 msgid "Import"
 msgstr "Importeren"
 
+#: src/dialogs/messageviewerdialog.cpp:134
+#, kde-format
+msgctxt "@info"
+msgid "Unable to read file"
+msgstr ""
+
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
 msgctxt "@label"
@@ -8236,6 +8247,7 @@ msgstr ""
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Certificaatmappen van leveranciers voor alle gebruiker-ID's ondervragen"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8248,6 +8260,12 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"Standaard ondervraagt Kleopatra alleen de certificaatmappen van leveranciers "
+"(WKD)\n"
+"         op gebruiker-ID's die oorspronkelijk opgehaald zijn van een WKD "
+"toen u een OpenPGP certificaat bijwerkte.\n"
+"         Als deze optie is ingeschakeld zal Kleopatra WKD's voor alle "
+"gebruiker-ID's ondervragen."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170

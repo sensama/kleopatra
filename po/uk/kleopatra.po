@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-25 00:47+0000\n"
-"PO-Revision-Date: 2023-08-22 07:59+0300\n"
+"POT-Creation-Date: 2023-08-26 00:47+0000\n"
+"PO-Revision-Date: 2023-08-25 09:45+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -3603,6 +3603,8 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Надсилати запит до каталогів сертифікатів надавачів для усіх ідентифікаторів "
+"користувачів"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3613,6 +3615,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"Типово, Kleopatra надсилає запит до каталогів сертифікатів надавачів (WKD) "
+"для ідентифікаторів, які було початково отримано з WKD, коли ви оновлюєте "
+"сертифікат OpenPGP. Якщо позначено цей пункт, Kleopatra надсилатиме запит до "
+"WKD для усіх ідентифікаторів користувачів."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -4820,7 +4826,7 @@ msgstr "Виклик EncryptEMailController::protocolAsString() є невизн�
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:161
-#: src/crypto/signencryptfilescontroller.cpp:362
+#: src/crypto/signencryptfilescontroller.cpp:363
 #, kde-format
 msgid "User cancel"
 msgstr "Скасовано користувачем"
@@ -5881,13 +5887,13 @@ msgstr "Архівувати і підписати/зашифрувати фай
 msgid "Sign/Encrypt Files"
 msgstr "Підписати/Зашифрувати файли"
 
-#: src/crypto/signencryptfilescontroller.cpp:270
+#: src/crypto/signencryptfilescontroller.cpp:271
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "архів"
 
-#: src/crypto/signencryptfilescontroller.cpp:679
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5896,7 +5902,7 @@ msgstr ""
 "Отримано неочікуване виключення у SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:681
+#: src/crypto/signencryptfilescontroller.cpp:682
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -7102,6 +7108,12 @@ msgstr "Пошук на сервері"
 msgid "Import"
 msgstr "Імпортувати"
 
+#: src/dialogs/messageviewerdialog.cpp:134
+#, kde-format
+msgctxt "@info"
+msgid "Unable to read file"
+msgstr ""
+
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
 msgctxt "@label"
@@ -8276,6 +8288,8 @@ msgstr ""
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Надсилати запит до каталогів сертифікатів надавачів для усіх ідентифікаторів "
+"користувачів"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8288,6 +8302,11 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"Типово, Kleopatra надсилає запит до каталогів сертифікатів надавачів (WKD)\n"
+"для ідентифікаторів, які було початково отримано з WKD, коли ви оновлюєте "
+"сертифікат OpenPGP.\n"
+"Якщо позначено цей пункт, Kleopatra надсилатиме запит до WKD для усіх "
+"ідентифікаторів користувачів."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170

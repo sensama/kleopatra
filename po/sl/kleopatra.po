@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-25 00:47+0000\n"
-"PO-Revision-Date: 2023-08-22 09:22+0200\n"
+"POT-Creation-Date: 2023-08-26 00:47+0000\n"
+"PO-Revision-Date: 2023-08-25 08:35+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.3.2\n"
 
@@ -3568,7 +3568,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
-msgstr ""
+msgstr "Poiščite imenike potrdil ponudnikov za vse določilnike uporabnikov"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3579,6 +3579,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"Privzeto Kleopatra poizveduje le v imenikih potrdil ponudnikov (WKD) za "
+"določilnike uporabnikov, ki so bili prvotno pridobljeni iz WKD, ko "
+"posodobite potrdilo OpenPGP. Če je ta možnost omogočena, bo Kleopatra "
+"poizvedovala po WKD za vse določilnike uporabnikov."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -4773,7 +4777,7 @@ msgstr "Klic funkcije EncryptEMailController::protocolAsString() je dvoumen."
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:161
-#: src/crypto/signencryptfilescontroller.cpp:362
+#: src/crypto/signencryptfilescontroller.cpp:363
 #, kde-format
 msgid "User cancel"
 msgstr "Preklicano od uporabnika"
@@ -5826,13 +5830,13 @@ msgstr "Arhiviraj in podpiši/šifriraj datoteke"
 msgid "Sign/Encrypt Files"
 msgstr "Podpiši/šifriraj datoteke"
 
-#: src/crypto/signencryptfilescontroller.cpp:270
+#: src/crypto/signencryptfilescontroller.cpp:271
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "arhiv"
 
-#: src/crypto/signencryptfilescontroller.cpp:679
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5841,7 +5845,7 @@ msgstr ""
 "Ujeta nepričakovana izjema v SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:681
+#: src/crypto/signencryptfilescontroller.cpp:682
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -7028,6 +7032,12 @@ msgstr "Poišči potrdila na strežniku"
 msgid "Import"
 msgstr "Uvozi"
 
+#: src/dialogs/messageviewerdialog.cpp:134
+#, kde-format
+msgctxt "@info"
+msgid "Unable to read file"
+msgstr ""
+
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
 msgctxt "@label"
@@ -8175,7 +8185,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:161
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
-msgstr ""
+msgstr "Poiščite imenike potrdil ponudnikov za vse določilnike uporabnikov"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8188,6 +8198,11 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"Kleopatra privzeto poizveduje samo po imenikih potrdil ponudnikov (WKD)\n"
+"          za določilnike uporabnikov, ki so bili prvotno pridobljeni iz WKD, "
+"ko posodobite potrdilo OpenPGP.\n"
+"          Če je ta možnost omogočena, bo Kleopatra poizvedovala po WKD za "
+"vse določilnike uporabnikov."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170

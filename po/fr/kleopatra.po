@@ -1,5 +1,6 @@
 # translation of kleopatra.po to Français
 # traduction de kleopatra.po en français
+# SPDX-FileCopyrightText: 2012, 2013, 2020, 2021, 2022, 2023 xavier <xavier.besnard@neuf.fr>
 # Joëlle Cornavin <jcornavi@kde-france.org>, 2004.
 # Delafond <gerard@delafond.org>, 2004.
 # Matthieu Robin <kde@macolu.org>, 2004, 2005.
@@ -10,7 +11,6 @@
 # Bruno Patri <bruno.patri@gmail.com>, 2008.
 # Sébastien Renard <Sebastien.Renard@digitalfox.org>, 2008.
 # Guillaume Pujol <guill.p@gmail.com>, 2008, 2012.
-# xavier <xavier.besnard@neuf.fr>, 2012, 2013, 2020, 2021, 2022.
 # Sebastien Renard <renard@kde.org>, 2013, 2014, 2015.
 # Vincent Pinon <vpinon@kde.org>, 2017, 2018.
 # Simon Depiets <sdepiets@gmail.com>, 2018, 2019.
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-25 00:47+0000\n"
-"PO-Revision-Date: 2023-07-06 09:39+0200\n"
+"POT-Creation-Date: 2023-08-26 00:47+0000\n"
+"PO-Revision-Date: 2023-08-24 14:05+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.04.2\n"
+"X-Generator: Lokalize 23.07.90\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2808,6 +2808,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Échec de la mise à jour du certificat à partir du serveur de clés, le "
+"serveur « LDAP » ou « Active Directory » :</para><para><message>%1</"
+"message></para><para>Échec de la mise à jour du certificat à partir du "
+"dossier des clés Internet : </para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:360
 #: src/commands/refreshcertificatecommand.cpp:391
@@ -2821,24 +2825,23 @@ msgstr "Échec de la mise à jour"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Résultat de la mise à jour grâce au serveur de clés, le serveur « LDAP » ou "
+"« Active Directory »"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:375
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
 msgstr ""
-"<para>L'enregistrement de la requête a échoué.</para><para><message>%1</"
-"message></para>"
+"<para>La mise à jour n'a pas pu être réalisée avec succès.</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:373
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Résultat de la mise à jour grâce au dossier des clés Internet"
 
 #: src/commands/refreshcertificatecommand.cpp:388
 #, kde-kuit-format
@@ -4870,7 +4873,7 @@ msgstr "L'appel de EncryptEMailController::protocolAsString() est ambigu."
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:161
-#: src/crypto/signencryptfilescontroller.cpp:362
+#: src/crypto/signencryptfilescontroller.cpp:363
 #, kde-format
 msgid "User cancel"
 msgstr "Annulation par l'utilisateur"
@@ -5197,11 +5200,10 @@ msgid "Show Audit Log"
 msgstr "Afficher le journal d'audit"
 
 #: src/crypto/gui/resultlistwidget.cpp:162
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Email"
-msgstr "Afficher les détails"
+msgstr "Afficher un courriel"
 
 #: src/crypto/gui/resultpage.cpp:66
 #, kde-format
@@ -5954,13 +5956,13 @@ msgstr "Archiver et chiffrer / signer des fichiers"
 msgid "Sign/Encrypt Files"
 msgstr "Signer / chiffrer des fichiers"
 
-#: src/crypto/signencryptfilescontroller.cpp:270
+#: src/crypto/signencryptfilescontroller.cpp:271
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archive"
 
-#: src/crypto/signencryptfilescontroller.cpp:679
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5969,7 +5971,7 @@ msgstr ""
 "Réception d'une exception inattendue dans SignEncryptFilesController::"
 "Private::slotWizardOperationPrepared : %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:681
+#: src/crypto/signencryptfilescontroller.cpp:682
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -7166,6 +7168,12 @@ msgstr "Rechercher sur le serveur"
 msgid "Import"
 msgstr "Importer"
 
+#: src/dialogs/messageviewerdialog.cpp:134
+#, kde-format
+msgctxt "@info"
+msgid "Unable to read file"
+msgstr ""
+
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
 msgctxt "@label"
@@ -8054,14 +8062,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for two "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
 "or, in other words, after how many days the key will expire. Set this to 0 "
@@ -8072,10 +8073,10 @@ msgid ""
 msgstr ""
 "Ce paramètre spécifie le nombre de jours de validité par défaut d'une "
 "nouvelle clé « OpenPGP », ou, en d'autres termes, le nombre de jours après "
-"lequel la clé expirera. Définissez-le à 0 pour une validité illimitée. Si ce "
-"paramètre n'est pas défini ou s'il est défini à une valeur négative, alors, "
-"les nouvelles clés « OpenPGP » seront valables pour deux ans par défaut "
-"(éventuellement limitée à la période de validité minimale ou maximale "
+"lesquels la clé expirera. Définissez-le à 0 pour une validité illimitée. Si "
+"ce paramètre n'est pas défini ou s'il est défini à une valeur négative, "
+"alors, les nouvelles clés « OpenPGP » seront valables pour trois ans par "
+"défaut (éventuellement limitée à la période de validité minimale ou maximale "
 "autorisée)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -10856,40 +10857,31 @@ msgid "OpenPGP-Sign..."
 msgstr "Signature OpenPGP..."
 
 #: src/utils/expiration.cpp:104
-#, fuzzy, kde-format
-#| msgid "The validity period cannot be changed."
+#, kde-format
 msgctxt "@info"
 msgid "The date cannot be changed."
-msgstr "Il est impossible de modifier la période de validité."
+msgstr "Il est impossible de modifier la date."
 
 #: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "... between <a date> and <another date>."
-#| msgid "The validity period must end between %1 and %2."
+#, kde-format
 msgctxt "@info ... between <a date> and <another date>."
 msgid "Enter a date between %1 and %2."
-msgstr "La période de validité doit se terminer entre %1 et %2."
+msgstr "Saisir une date entre %1 et %2."
 
 #: src/utils/expiration.cpp:139
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "Two years from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Three years from now"
-msgstr "Deux années à partir de maintenant"
+msgstr "Trois années à partir de maintenant"
 
 #: src/utils/expiration.cpp:140
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "Two years from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Two years from now"
 msgstr "Deux années à partir de maintenant"
 
 #: src/utils/expiration.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "One year from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "One year from now"
 msgstr "Une année à partir de maintenant"

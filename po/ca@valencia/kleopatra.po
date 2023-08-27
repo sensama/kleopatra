@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-26 00:47+0000\n"
-"PO-Revision-Date: 2023-08-08 10:29+0200\n"
+"PO-Revision-Date: 2023-08-26 11:05+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -2756,6 +2756,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>No s'ha pogut fer l'actualització del certificat des d'un servidor de "
+"claus, un servidor LDAP o un Active Directory:</para><para><message>%1</"
+"message></para><para>No s'ha pogut fer l'actualització del certificat a "
+"través del directori de claus web:</para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:360
 #: src/commands/refreshcertificatecommand.cpp:391
@@ -2769,24 +2773,21 @@ msgstr "No s'ha pogut fer l'actualització"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Resultat de l'actualització des d'un servidor de claus, un servidor LDAP o "
+"un Active Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:375
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>Ha fallat la sol·licitud de guardada.</para><para><message>%1</"
-"message></para>"
+msgstr "<para>No s'ha pogut fer l'actualització: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:373
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Resultat de l'actualització des d'un directori de claus web"
 
 #: src/commands/refreshcertificatecommand.cpp:388
 #, kde-kuit-format
@@ -3578,6 +3579,8 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Consulta els directoris de certificats dels proveïdors per a tots els ID "
+"d'usuari"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3588,6 +3591,11 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"De manera predeterminada, Kleopatra només consulta els directoris de "
+"certificats dels proveïdors (WKD) per als identificadors d'usuari que es van "
+"recuperar originalment d'un WKD quan actualitzeu un certificat OpenPGP. Si "
+"esta opció està activada, Kleopatra consultarà els WKD per a tots els ID "
+"d'usuari."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -7053,7 +7061,7 @@ msgstr "Importa"
 #, kde-format
 msgctxt "@info"
 msgid "Unable to read file"
-msgstr ""
+msgstr "No s'ha pogut llegir el fitxer"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8232,6 +8240,8 @@ msgstr ""
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Consulta els directoris de certificats dels proveïdors per a tots els ID "
+"d'usuari"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8244,6 +8254,12 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"De manera predeterminada, Kleopatra només consulta els directoris de "
+"certificats dels proveïdors (WKD)\n"
+"         per als identificadors d'usuari que es van recuperar originalment "
+"d'un WKD quan actualitzeu un certificat OpenPGP.\n"
+"         Si esta opció està activada, Kleopatra consultarà els WKD per a "
+"tots els ID d'usuari."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170
@@ -8845,7 +8861,7 @@ msgid ""
 "Restart the background processes, e.g. after making changes to the "
 "configuration."
 msgstr ""
-"Reinicia els processos en segon pla, p. ex. després de fer canvis a la "
+"Reinicia els processos en segon pla, p. ex., després de fer canvis a la "
 "configuració."
 
 #: src/mainwindow.cpp:553

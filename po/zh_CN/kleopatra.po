@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-08-02 12:43\n"
+"PO-Revision-Date: 2023-08-27 03:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2385,7 +2385,7 @@ msgstr[0] "忽略了%1个没有名字和电子邮件地址的证书。"
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
-msgstr "%1 证书服务器..."
+msgstr "%1 证书服务器"
 
 #: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
@@ -2599,7 +2599,7 @@ msgstr "密钥已更新"
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
-msgstr "证书已更新"
+msgstr "证书已更新。"
 
 #: src/commands/refreshcertificatecommand.cpp:271
 #, kde-format
@@ -2840,7 +2840,7 @@ msgstr ""
 #: src/commands/revokecertificationcommand.cpp:331
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
-msgstr "您不能撤销此密钥的任何认证。"
+msgstr "您不能吊销此密钥的任何认证。"
 
 #: src/commands/revokecertificationcommand.cpp:334
 #, kde-format
@@ -5928,8 +5928,8 @@ msgid ""
 "publicly declare that a key shall not anymore be used.  It is not possible "
 "to retract such a revocation certificate once it has been published."
 msgstr ""
-"撤销证书是一种充当「实验室安全开关」的文件，可以公开声明不再使用此密钥。 一旦"
-"发布，就不可能收回撤销证书。"
+"吊销证书是一种充当“安全开关” (kill switch) 的文件，用于公开声明不再使用此密"
+"钥。一旦发布，就不可能撤回吊销证书。"
 
 #: src/dialogs/certificatedetailswidget.cpp:493
 #, kde-format
@@ -8723,24 +8723,24 @@ msgstr "有效期不能更改。"
 #, kde-format
 msgctxt "... between today and <another date>."
 msgid "The validity period must end between today and %1."
-msgstr ""
+msgstr "有效期必须在今天到 %1 之间结束。"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:492
 #, kde-format
 msgctxt "... between <a date> and <another date>."
 msgid "The validity period must end between %1 and %2."
-msgstr ""
+msgstr "有效期必须在 %1 到 %2 之间结束。"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:497
 #, kde-format
 msgid "The validity period must end after today."
-msgstr ""
+msgstr "有效期必须在今天之后结束。"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:499
 #, kde-format
 msgctxt "... after <a date>."
 msgid "The validity period must end after %1."
-msgstr ""
+msgstr "有效期必须在 %1 之后结束。"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:799
 #, kde-format

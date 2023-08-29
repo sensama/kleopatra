@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-22 00:47+0000\n"
+"POT-Creation-Date: 2023-08-26 00:47+0000\n"
 "PO-Revision-Date: 2023-04-30 15:26+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -2655,55 +2655,55 @@ msgctxt "@title:window"
 msgid "Overwrite Existing Key"
 msgstr "Замена существующего ключа"
 
-#: src/commands/refreshcertificatecommand.cpp:135
+#: src/commands/refreshcertificatecommand.cpp:136
 #, kde-format
 msgid "The backend does not support updating individual certificates."
 msgstr "Модуль не поддерживает обновление отдельных сертификатов."
 
-#: src/commands/refreshcertificatecommand.cpp:172
-#: src/commands/refreshcertificatecommand.cpp:230
+#: src/commands/refreshcertificatecommand.cpp:173
+#: src/commands/refreshcertificatecommand.cpp:236
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Обновление ключа…"
 
-#: src/commands/refreshcertificatecommand.cpp:198
+#: src/commands/refreshcertificatecommand.cpp:199
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Обновление сертификата..."
 
-#: src/commands/refreshcertificatecommand.cpp:250
+#: src/commands/refreshcertificatecommand.cpp:256
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "Ключ не изменился."
 
-#: src/commands/refreshcertificatecommand.cpp:254
+#: src/commands/refreshcertificatecommand.cpp:260
 #, kde-format
 msgid "The key has been revoked."
 msgstr "Ключ отозван."
 
-#: src/commands/refreshcertificatecommand.cpp:257
+#: src/commands/refreshcertificatecommand.cpp:263
 #, kde-format
 msgid "The key has been updated."
 msgstr "Ключ обновлён."
 
-#: src/commands/refreshcertificatecommand.cpp:261
+#: src/commands/refreshcertificatecommand.cpp:267
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Новые идентификаторы пользователей: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:264
+#: src/commands/refreshcertificatecommand.cpp:270
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Новые подключи: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:267
+#: src/commands/refreshcertificatecommand.cpp:273
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Новые подписи: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:277
+#: src/commands/refreshcertificatecommand.cpp:283
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
@@ -2712,27 +2712,27 @@ msgstr[1] "Кроме того, было получено %1 новых ключ
 msgstr[2] "Кроме того, было получено %1 новых ключей."
 msgstr[3] "Кроме того, был получен один новый ключ."
 
-#: src/commands/refreshcertificatecommand.cpp:306
-#: src/commands/refreshcertificatecommand.cpp:340
-#: src/commands/refreshcertificatecommand.cpp:374
+#: src/commands/refreshcertificatecommand.cpp:312
+#: src/commands/refreshcertificatecommand.cpp:346
+#: src/commands/refreshcertificatecommand.cpp:380
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "Ключ обновлён"
 
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:335
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "Сертификат обновлён."
 
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:335
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Сертификат обновлён"
 
-#: src/commands/refreshcertificatecommand.cpp:348
+#: src/commands/refreshcertificatecommand.cpp:354
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2742,21 +2742,21 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:354
-#: src/commands/refreshcertificatecommand.cpp:385
+#: src/commands/refreshcertificatecommand.cpp:360
+#: src/commands/refreshcertificatecommand.cpp:391
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Ошибка обновления"
 
-#: src/commands/refreshcertificatecommand.cpp:360
+#: src/commands/refreshcertificatecommand.cpp:366
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:362
-#: src/commands/refreshcertificatecommand.cpp:369
+#: src/commands/refreshcertificatecommand.cpp:368
+#: src/commands/refreshcertificatecommand.cpp:375
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2766,13 +2766,13 @@ msgid "<para>The update failed: <message>%1</message></para>"
 msgstr ""
 "<para>Не удалось сохранить запрос.</para><para><message>%1</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:367
+#: src/commands/refreshcertificatecommand.cpp:373
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:382
+#: src/commands/refreshcertificatecommand.cpp:388
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3527,17 +3527,17 @@ msgstr "Программа для подсчёта контрольных сум
 msgid "Archive command to use when archiving files:"
 msgstr "Программа для создания архивов:"
 
-#: src/conf/dirservconfigpage.cpp:133
+#: src/conf/dirservconfigpage.cpp:134
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "Сервер ключей OpenPGP:"
 
-#: src/conf/dirservconfigpage.cpp:145 src/conf/dirservconfigpage.cpp:147
+#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "Службы каталогов X.509"
 
-#: src/conf/dirservconfigpage.cpp:166 src/conf/dirservconfigpage.cpp:170
+#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3546,23 +3546,23 @@ msgstr ""
 "Невозможно настроить службы каталогов, потому что используемые библиотеки "
 "gpgme устарели."
 
-#: src/conf/dirservconfigpage.cpp:187
+#: src/conf/dirservconfigpage.cpp:188
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "Время ожидания &LDAP (мин:с):"
 
-#: src/conf/dirservconfigpage.cpp:200
+#: src/conf/dirservconfigpage.cpp:201
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "&Максимальное количество записей в результате запроса:"
 
-#: src/conf/dirservconfigpage.cpp:213
+#: src/conf/dirservconfigpage.cpp:214
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr "Получать отсутствующие ключи сертификации при импорте новых ключей"
 
-#: src/conf/dirservconfigpage.cpp:215
+#: src/conf/dirservconfigpage.cpp:216
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3573,12 +3573,28 @@ msgstr ""
 "ключи, которые использовались для проверки идентификаторов пользователей "
 "новых импортированных ключей OpenPGP."
 
-#: src/conf/dirservconfigpage.cpp:455 src/conf/dirservconfigpage.cpp:459
+#: src/conf/dirservconfigpage.cpp:224
+#, kde-format
+msgctxt "@option:check"
+msgid "Query certificate directories of providers for all user IDs"
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:226
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"By default, Kleopatra only queries the certificate directories of providers "
+"(WKD) for user IDs that were originally retrieved from a WKD when you update "
+"an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
+"WKDs for all user IDs."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "Внутренняя ошибка: gpgconf не может обработать запись %1/%2"
 
-#: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:475
+#: src/conf/dirservconfigpage.cpp:481 src/conf/dirservconfigpage.cpp:488
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Внутренняя ошибка: gpgconf возвращает неверный тип для %1/%2: %3 %4"
@@ -4778,7 +4794,7 @@ msgstr "Неоднозначный вызов EncryptEMailController::protocolAs
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:161
-#: src/crypto/signencryptfilescontroller.cpp:362
+#: src/crypto/signencryptfilescontroller.cpp:363
 #, kde-format
 msgid "User cancel"
 msgstr "Отменено пользователем"
@@ -5847,13 +5863,13 @@ msgstr "Архивировать и подписать/зашифровать ф
 msgid "Sign/Encrypt Files"
 msgstr "Подписать/зашифровать файлы"
 
-#: src/crypto/signencryptfilescontroller.cpp:270
+#: src/crypto/signencryptfilescontroller.cpp:271
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "архив"
 
-#: src/crypto/signencryptfilescontroller.cpp:679
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5862,7 +5878,7 @@ msgstr ""
 "Произошёл сбой в SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:681
+#: src/crypto/signencryptfilescontroller.cpp:682
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -7059,6 +7075,12 @@ msgstr "Поиск на сервере"
 msgid "Import"
 msgstr "Импорт"
 
+#: src/dialogs/messageviewerdialog.cpp:134
+#, kde-format
+msgctxt "@info"
+msgid "Unable to read file"
+msgstr ""
+
 # Имя человека, которому принадлежит gpg-ключ. --aspotashev
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8237,15 +8259,33 @@ msgstr ""
 "         опцию полезно использовать в сочетании с доверенными "
 "представителями."
 
+#. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
+#: src/kcfg/settings.kcfg:161
+#, kde-format
+msgid "Query certificate directories of providers for all user IDs"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
+#: src/kcfg/settings.kcfg:164
+#, kde-format
+msgid ""
+"By default, Kleopatra only queries the certificate directories of providers "
+"(WKD)\n"
+"         for user IDs that were originally retrieved from a WKD when you "
+"update an OpenPGP certificate.\n"
+"         If this option is enabled, then Kleopatra will query WKDs for all "
+"user IDs."
+msgstr ""
+
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:163
+#: src/kcfg/settings.kcfg:170
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "Notify about upcoming certificate expiration"
 msgstr "(не найдены соответствующие сертификаты)"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:165
+#: src/kcfg/settings.kcfg:172
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8253,13 +8293,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:178
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Схемы URL-адресов для блокировки"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:173
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8271,13 +8311,13 @@ msgstr ""
 "во внешних приложениях."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:179
+#: src/kcfg/settings.kcfg:186
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Всегда выполнять поиск сертификатов смарт-карты на сервере ключей"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8287,7 +8327,7 @@ msgstr ""
 "ключей."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:182
+#: src/kcfg/settings.kcfg:189
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8300,20 +8340,20 @@ msgstr ""
 "        По умолчанию такой поиск выполняется только для серверов ключей LDAP."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:193
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "Пытаться загружать сертификаты S/MIME со смарт-карт PKCS#15"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:187
+#: src/kcfg/settings.kcfg:194
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
 "Автоматически загружать сертификаты S/MIME со смарт-карт PKCS#15 (CardOS)"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:188
+#: src/kcfg/settings.kcfg:195
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8326,7 +8366,7 @@ msgstr ""
 "будет заблокирована."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:194
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Отключить параметры профиля"

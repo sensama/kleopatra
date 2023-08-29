@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-22 00:47+0000\n"
-"PO-Revision-Date: 2023-08-02 12:40\n"
+"POT-Creation-Date: 2023-08-26 00:47+0000\n"
+"PO-Revision-Date: 2023-08-27 03:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2383,7 +2383,7 @@ msgstr[0] "忽略了%1个没有名字和电子邮件地址的证书。"
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
-msgstr "%1 证书服务器..."
+msgstr "%1 证书服务器"
 
 #: src/commands/lookupcertificatescommand.cpp:570
 #, kde-format
@@ -2534,81 +2534,81 @@ msgctxt "@title:window"
 msgid "Overwrite Existing Key"
 msgstr "覆盖当前密钥"
 
-#: src/commands/refreshcertificatecommand.cpp:135
+#: src/commands/refreshcertificatecommand.cpp:136
 #, kde-format
 msgid "The backend does not support updating individual certificates."
 msgstr "后端不支持更新个人证书。"
 
-#: src/commands/refreshcertificatecommand.cpp:172
-#: src/commands/refreshcertificatecommand.cpp:230
+#: src/commands/refreshcertificatecommand.cpp:173
+#: src/commands/refreshcertificatecommand.cpp:236
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "正在更新密钥..."
 
-#: src/commands/refreshcertificatecommand.cpp:198
+#: src/commands/refreshcertificatecommand.cpp:199
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "正在更新证书..."
 
-#: src/commands/refreshcertificatecommand.cpp:250
+#: src/commands/refreshcertificatecommand.cpp:256
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "密钥没有被更改。"
 
-#: src/commands/refreshcertificatecommand.cpp:254
+#: src/commands/refreshcertificatecommand.cpp:260
 #, kde-format
 msgid "The key has been revoked."
 msgstr "此密钥已被吊销。"
 
-#: src/commands/refreshcertificatecommand.cpp:257
+#: src/commands/refreshcertificatecommand.cpp:263
 #, kde-format
 msgid "The key has been updated."
 msgstr "密钥已更新"
 
-#: src/commands/refreshcertificatecommand.cpp:261
+#: src/commands/refreshcertificatecommand.cpp:267
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "新用户 ID：%1"
 
-#: src/commands/refreshcertificatecommand.cpp:264
+#: src/commands/refreshcertificatecommand.cpp:270
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "新子密钥： %1"
 
-#: src/commands/refreshcertificatecommand.cpp:267
+#: src/commands/refreshcertificatecommand.cpp:273
 #, kde-format
 msgid "New signatures: %1"
 msgstr "新签名： %1"
 
-#: src/commands/refreshcertificatecommand.cpp:277
+#: src/commands/refreshcertificatecommand.cpp:283
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "此外，已检索到 %1 个新密钥。"
 
-#: src/commands/refreshcertificatecommand.cpp:306
-#: src/commands/refreshcertificatecommand.cpp:340
-#: src/commands/refreshcertificatecommand.cpp:374
+#: src/commands/refreshcertificatecommand.cpp:312
+#: src/commands/refreshcertificatecommand.cpp:346
+#: src/commands/refreshcertificatecommand.cpp:380
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "密钥已更新"
 
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:335
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
-msgstr "证书已更新"
+msgstr "证书已更新。"
 
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:335
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "证书已更新"
 
-#: src/commands/refreshcertificatecommand.cpp:348
+#: src/commands/refreshcertificatecommand.cpp:354
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2618,36 +2618,33 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:354
-#: src/commands/refreshcertificatecommand.cpp:385
+#: src/commands/refreshcertificatecommand.cpp:360
+#: src/commands/refreshcertificatecommand.cpp:391
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "更新失败"
 
-#: src/commands/refreshcertificatecommand.cpp:360
+#: src/commands/refreshcertificatecommand.cpp:366
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:362
-#: src/commands/refreshcertificatecommand.cpp:369
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#: src/commands/refreshcertificatecommand.cpp:368
+#: src/commands/refreshcertificatecommand.cpp:375
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr "<para>保存请求失败。</para><para><message>%1</message></para>"
+msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:367
+#: src/commands/refreshcertificatecommand.cpp:373
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:382
+#: src/commands/refreshcertificatecommand.cpp:388
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2874,7 +2871,7 @@ msgstr ""
 #: src/commands/revokecertificationcommand.cpp:332
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
-msgstr "您不能撤销此密钥的任何认证。"
+msgstr "您不能吊销此密钥的任何认证。"
 
 #: src/commands/revokecertificationcommand.cpp:335
 #, kde-format
@@ -3331,40 +3328,40 @@ msgstr "创建校验和文件时所用的校验和程序："
 msgid "Archive command to use when archiving files:"
 msgstr "压缩文件时使用的压缩命令："
 
-#: src/conf/dirservconfigpage.cpp:133
+#: src/conf/dirservconfigpage.cpp:134
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "OpenPGP 密钥服务器："
 
-#: src/conf/dirservconfigpage.cpp:145 src/conf/dirservconfigpage.cpp:147
+#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "X.509 目录服务"
 
-#: src/conf/dirservconfigpage.cpp:166 src/conf/dirservconfigpage.cpp:170
+#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
 "libraries are too old."
 msgstr "您所使用的 gpgme 库太旧，无法配置目录服务。"
 
-#: src/conf/dirservconfigpage.cpp:187
+#: src/conf/dirservconfigpage.cpp:188
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "LDAP 超时(分:秒)(&T)："
 
-#: src/conf/dirservconfigpage.cpp:200
+#: src/conf/dirservconfigpage.cpp:201
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "查询所返回的最大项目数(&M)："
 
-#: src/conf/dirservconfigpage.cpp:213
+#: src/conf/dirservconfigpage.cpp:214
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr "导入新密钥时获取缺失的验证密钥"
 
-#: src/conf/dirservconfigpage.cpp:215
+#: src/conf/dirservconfigpage.cpp:216
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3373,12 +3370,28 @@ msgid ""
 msgstr ""
 "如果启用，Kleopatra 将自动尝试检索用于认证新导入 OpenPGP 密钥的用户ID的密钥。"
 
-#: src/conf/dirservconfigpage.cpp:455 src/conf/dirservconfigpage.cpp:459
+#: src/conf/dirservconfigpage.cpp:224
+#, kde-format
+msgctxt "@option:check"
+msgid "Query certificate directories of providers for all user IDs"
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:226
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"By default, Kleopatra only queries the certificate directories of providers "
+"(WKD) for user IDs that were originally retrieved from a WKD when you update "
+"an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
+"WKDs for all user IDs."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "后端错误：gpgconf 未能找到 %1/%2 的项"
 
-#: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:475
+#: src/conf/dirservconfigpage.cpp:481 src/conf/dirservconfigpage.cpp:488
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "后端错误：gpgconf 格式错误 %1/%2: %3 %4"
@@ -4502,7 +4515,7 @@ msgstr "对 EncryptEMailController::protocolAsString() 的调用不明确。"
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:161
-#: src/crypto/signencryptfilescontroller.cpp:362
+#: src/crypto/signencryptfilescontroller.cpp:363
 #, kde-format
 msgid "User cancel"
 msgstr "用户取消"
@@ -4822,11 +4835,10 @@ msgid "Show Audit Log"
 msgstr "显示审核日志"
 
 #: src/crypto/gui/resultlistwidget.cpp:162
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Email"
-msgstr "显示细节"
+msgstr ""
 
 #: src/crypto/gui/resultpage.cpp:66
 #, kde-format
@@ -5534,13 +5546,13 @@ msgstr "压缩并签名/加密文件"
 msgid "Sign/Encrypt Files"
 msgstr "签名/加密文件"
 
-#: src/crypto/signencryptfilescontroller.cpp:270
+#: src/crypto/signencryptfilescontroller.cpp:271
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archive"
 
-#: src/crypto/signencryptfilescontroller.cpp:679
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5549,7 +5561,7 @@ msgstr ""
 "在 SignEncryptFilesController::Private::slotWizardOperationPrepared 调用中捕"
 "捉到不可预料的异常：%1"
 
-#: src/crypto/signencryptfilescontroller.cpp:681
+#: src/crypto/signencryptfilescontroller.cpp:682
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5970,8 +5982,8 @@ msgid ""
 "publicly declare that a key shall not anymore be used.  It is not possible "
 "to retract such a revocation certificate once it has been published."
 msgstr ""
-"撤销证书是一种充当「实验室安全开关」的文件，可以公开声明不再使用此密钥。 一旦"
-"发布，就不可能收回撤销证书。"
+"吊销证书是一种充当“安全开关” (kill switch) 的文件，用于公开声明不再使用此密"
+"钥。一旦发布，就不可能撤回吊销证书。"
 
 #: src/dialogs/certificatedetailswidget.cpp:510
 #, kde-format
@@ -6679,6 +6691,12 @@ msgstr "在服务器上查找"
 #, kde-format
 msgid "Import"
 msgstr "导入"
+
+#: src/dialogs/messageviewerdialog.cpp:134
+#, kde-format
+msgctxt "@info"
+msgid "Unable to read file"
+msgstr ""
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7770,14 +7788,32 @@ msgstr ""
 "         用于认证新导入的 OpenPGP 密钥的用户 ID 的密钥。\n"
 "         这与受信任的介绍人结合使用很有用。"
 
+#. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
+#: src/kcfg/settings.kcfg:161
+#, kde-format
+msgid "Query certificate directories of providers for all user IDs"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
+#: src/kcfg/settings.kcfg:164
+#, kde-format
+msgid ""
+"By default, Kleopatra only queries the certificate directories of providers "
+"(WKD)\n"
+"         for user IDs that were originally retrieved from a WKD when you "
+"update an OpenPGP certificate.\n"
+"         If this option is enabled, then Kleopatra will query WKDs for all "
+"user IDs."
+msgstr ""
+
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:163
+#: src/kcfg/settings.kcfg:170
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "通知即将到期的证书"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:165
+#: src/kcfg/settings.kcfg:172
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -7787,13 +7823,13 @@ msgstr ""
 "        证书即将过期时，Kleopatra 将在某个地方显示通知。"
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:178
 #, kde-format
 msgid "URL schemes to block"
 msgstr "要阻止的 URL 方案"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:173
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -7804,13 +7840,13 @@ msgstr ""
 "         这可用于防止应用程序打开某些 URL 的外部应用程序。"
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:179
+#: src/kcfg/settings.kcfg:186
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "总是在密钥服务器上搜索智能卡证书"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -7818,7 +7854,7 @@ msgid ""
 msgstr "搜索配置密钥服务器上属于智能卡密钥的证书。"
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:182
+#: src/kcfg/settings.kcfg:189
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -7830,19 +7866,19 @@ msgstr ""
 "        默认行为是仅用于 LDAP 密钥服务器。"
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:193
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "尝试从 PKCS#15 智能卡加载 S/MIME 证书"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:187
+#: src/kcfg/settings.kcfg:194
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "从 PKCS#15 (CardOS) 智能卡自动加载 S/MIME 证书"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:188
+#: src/kcfg/settings.kcfg:195
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -7853,7 +7889,7 @@ msgstr ""
 "gpgsm --learning。 这可能需要一段时间，并在命令运行时屏蔽智能卡。"
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:194
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Disable profile settings"
 msgstr "禁用配置文件设置"

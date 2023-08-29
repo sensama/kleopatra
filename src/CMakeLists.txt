@@ -204,6 +204,8 @@ set(_kleopatra_SRCS
   commands/signencryptfilescommand.h
   commands/signencryptfoldercommand.cpp
   commands/signencryptfoldercommand.h
+  commands/viewemailfilescommand.cpp
+  commands/viewemailfilescommand.h
   conf/configuredialog.cpp
   conf/configuredialog.h
   conf/groupsconfigdialog.cpp

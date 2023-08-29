@@ -225,7 +225,7 @@ unsigned int SignEncryptFilesController::operationMode() const
     return d->operation;
 }
 
-static const char *extension(bool pgp, bool sign, bool encrypt, bool ascii, bool detached)
+static QString extension(bool pgp, bool sign, bool encrypt, bool ascii, bool detached)
 {
     unsigned int cls = pgp ? Class::OpenPGP : Class::CMS;
     if (encrypt) {
@@ -235,10 +235,11 @@ static const char *extension(bool pgp, bool sign, bool encrypt, bool ascii, bool
     }
     cls |= ascii ? Class::Ascii : Class::Binary;
     const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
-    if (const char *const ext = outputFileExtension(cls, usePGPFileExt)) {
+    const auto ext = outputFileExtension(cls, usePGPFileExt);
+    if (!ext.isEmpty()) {
         return ext;
     } else {
-        return "out";
+        return QStringLiteral("out");
     }
 }
 
@@ -279,11 +280,11 @@ static QMap<int, QString> buildOutputNames(const QStringList &files, const bool 
     const FileOperationsPreferences prefs;
     const bool ascii = prefs.addASCIIArmor();
 
-    nameMap.insert(SignEncryptFilesWizard::SignatureCMS, baseNameCms + QString::fromLatin1(extension(false, true, false, ascii, true)));
-    nameMap.insert(SignEncryptFilesWizard::EncryptedCMS, baseNameCms + QString::fromLatin1(extension(false, false, true, ascii, false)));
-    nameMap.insert(SignEncryptFilesWizard::CombinedPGP, baseNamePgp + QString::fromLatin1(extension(true, true, true, ascii, false)));
-    nameMap.insert(SignEncryptFilesWizard::EncryptedPGP, baseNamePgp + QString::fromLatin1(extension(true, false, true, ascii, false)));
-    nameMap.insert(SignEncryptFilesWizard::SignaturePGP, baseNamePgp + QString::fromLatin1(extension(true, true, false, ascii, true)));
+    nameMap.insert(SignEncryptFilesWizard::SignatureCMS, baseNameCms + extension(false, true, false, ascii, true));
+    nameMap.insert(SignEncryptFilesWizard::EncryptedCMS, baseNameCms + extension(false, false, true, ascii, false));
+    nameMap.insert(SignEncryptFilesWizard::CombinedPGP, baseNamePgp + extension(true, true, true, ascii, false));
+    nameMap.insert(SignEncryptFilesWizard::EncryptedPGP, baseNamePgp + extension(true, false, true, ascii, false));
+    nameMap.insert(SignEncryptFilesWizard::SignaturePGP, baseNamePgp + extension(true, true, false, ascii, true));
     nameMap.insert(SignEncryptFilesWizard::Directory, heuristicBaseDirectory(files));
     return nameMap;
 }
@@ -304,11 +305,11 @@ static QMap<int, QString> buildOutputNamesForDir(const QString &file, const QMap
     const FileOperationsPreferences prefs;
     const bool ascii = prefs.addASCIIArmor();
 
-    ret.insert(SignEncryptFilesWizard::SignatureCMS, baseName + QString::fromLatin1(extension(false, true, false, ascii, true)));
-    ret.insert(SignEncryptFilesWizard::EncryptedCMS, baseName + QString::fromLatin1(extension(false, false, true, ascii, false)));
-    ret.insert(SignEncryptFilesWizard::CombinedPGP, baseName + QString::fromLatin1(extension(true, true, true, ascii, false)));
-    ret.insert(SignEncryptFilesWizard::EncryptedPGP, baseName + QString::fromLatin1(extension(true, false, true, ascii, false)));
-    ret.insert(SignEncryptFilesWizard::SignaturePGP, baseName + QString::fromLatin1(extension(true, true, false, ascii, true)));
+    ret.insert(SignEncryptFilesWizard::SignatureCMS, baseName + extension(false, true, false, ascii, true));
+    ret.insert(SignEncryptFilesWizard::EncryptedCMS, baseName + extension(false, false, true, ascii, false));
+    ret.insert(SignEncryptFilesWizard::CombinedPGP, baseName + extension(true, true, true, ascii, false));
+    ret.insert(SignEncryptFilesWizard::EncryptedPGP, baseName + extension(true, false, true, ascii, false));
+    ret.insert(SignEncryptFilesWizard::SignaturePGP, baseName + extension(true, true, false, ascii, true));
     return ret;
 }
 

@@ -65,12 +65,12 @@ bool ExportSecretKeyCommand::preStartHook(QWidget *parent) const
         name = Formatting::prettyEMail(key);
     }
     /* Not translated so it's better to use in tutorials etc. */
-    proposedFileName = QStringLiteral("%1_%2_SECRET.%3")
-                           .arg(name)
-                           .arg(Formatting::prettyKeyID(key.shortKeyID()))
-                           .arg(QString::fromLatin1(outputFileExtension(protocol == OpenPGP ? Class::OpenPGP | Class::Ascii | Class::Certificate
-                                                                                            : Class::CMS | Class::Binary | Class::ExportedPSM,
-                                                                        usePGPFileExt)));
+    proposedFileName =
+        QStringLiteral("%1_%2_SECRET.%3")
+            .arg(name)
+            .arg(Formatting::prettyKeyID(key.shortKeyID()))
+            .arg(outputFileExtension(protocol == OpenPGP ? Class::OpenPGP | Class::Ascii | Class::Certificate : Class::CMS | Class::Binary | Class::ExportedPSM,
+                                     usePGPFileExt));
 
     m_filename = FileDialog::getSaveFileNameEx(parent ? parent : d->parentWidgetOrView(),
                                                i18n("Backup Secret Key"),

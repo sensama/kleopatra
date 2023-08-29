@@ -81,7 +81,7 @@ KMime::Message::Ptr openFile(const QString &fileName)
             }
             startOfMessage += 1; // the message starts after the '\n'
         }
-        QVector<KMime::Message::Ptr> listMessages;
+        QList<KMime::Message::Ptr> listMessages;
 
         // check for multiple messages in the file
         int endOfMessage = content.indexOf("\nFrom ", startOfMessage);

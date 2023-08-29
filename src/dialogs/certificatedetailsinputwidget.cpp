@@ -94,7 +94,7 @@ bool hasIntermediateInput(const QLineEdit *le)
     return v && v->validate(text, pos) == QValidator::Intermediate;
 }
 
-QString requirementsAreMet(const QVector<Line> &lines)
+QString requirementsAreMet(const QList<Line> &lines)
 {
     for (const Line &line : lines) {
         const QLineEdit *le = line.edit;

@@ -413,8 +413,8 @@ public:
             label->setBuddy(mTagsLE);
 
             const auto tooltip = i18n("You can use this to add additional info to a certification.") + QStringLiteral("<br/><br/>")
-                                 + i18n("Tags created by anyone with full certification trust "
-                                        "are shown in the keylist and can be searched.");
+                + i18n("Tags created by anyone with full certification trust "
+                       "are shown in the keylist and can be searched.");
             label->setToolTip(tooltip);
             mTagsLE->setToolTip(tooltip);
 
@@ -436,9 +436,9 @@ public:
             mExpirationDateEdit->setEnabled(mExpirationCheckBox->isChecked());
 
             const auto tooltip = i18n("You can use this to set an expiration date for a certification.") + QStringLiteral("<br/><br/>")
-                                                + i18n("By setting an expiration date, you can limit the validity of "
-                                                       "your certification to a certain amount of time. Once the expiration "
-                                                       "date has passed, your certification is no longer valid.");
+                + i18n("By setting an expiration date, you can limit the validity of "
+                       "your certification to a certain amount of time. Once the expiration "
+                       "date has passed, your certification is no longer valid.");
             mExpirationCheckBox->setToolTip(tooltip);
             mExpirationDateEdit->setToolTip(tooltip);
 
@@ -452,10 +452,10 @@ public:
             mTrustSignatureCB = new QCheckBox{q};
             mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
             const auto tooltip = i18n("You can use this to certify a trusted introducer for a domain.") + QStringLiteral("<br/><br/>")
-                                                + i18n("All certificates with email addresses belonging to the domain "
-                                                       "that have been certified by the trusted introducer are treated "
-                                                       "as certified, i.e. a trusted introducer acts as a kind of "
-                                                       "intermediate CA for a domain.");
+                + i18n("All certificates with email addresses belonging to the domain "
+                       "that have been certified by the trusted introducer are treated "
+                       "as certified, i.e. a trusted introducer acts as a kind of "
+                       "intermediate CA for a domain.");
             mTrustSignatureCB->setToolTip(tooltip);
 
             advLay->addWidget(mTrustSignatureCB);

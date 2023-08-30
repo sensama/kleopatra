@@ -51,7 +51,6 @@
 #include <QScrollArea>
 #include <QStandardItemModel>
 #include <QToolButton>
-#include <QToolTip>
 #include <QVBoxLayout>
 
 #include <gpgme++/key.h>
@@ -293,20 +292,6 @@ auto checkBoxSize(const QCheckBox *checkBox)
     return checkBox->style()->sizeFromContents(QStyle::CT_CheckBox, &opt, QSize(), checkBox);
 }
 
-auto createInfoButton(const QString &text, QWidget *parent)
-{
-    auto infoBtn = new QPushButton{parent};
-    infoBtn->setIcon(QIcon::fromTheme(QStringLiteral("help-contextual")));
-    infoBtn->setFlat(true);
-
-    QObject::connect(infoBtn, &QPushButton::clicked, infoBtn, [infoBtn, text]() {
-        const auto pos = infoBtn->mapToGlobal(QPoint()) + QPoint(infoBtn->width(), 0);
-        showToolTip(pos, text, infoBtn);
-    });
-
-    return infoBtn;
-}
-
 class ListView : public QListView
 {
     Q_OBJECT
@@ -427,15 +412,14 @@ public:
             mTagsLE = new QLineEdit{q};
             label->setBuddy(mTagsLE);
 
-            auto infoBtn = createInfoButton(i18n("You can use this to add additional info to a certification.") + QStringLiteral("<br/><br/>")
-                                                + i18n("Tags created by anyone with full certification trust "
-                                                       "are shown in the keylist and can be searched."),
-                                            q);
-            infoBtn->setAccessibleName(i18n("Explain tags"));
+            const auto tooltip = i18n("You can use this to add additional info to a certification.") + QStringLiteral("<br/><br/>")
+                                 + i18n("Tags created by anyone with full certification trust "
+                                        "are shown in the keylist and can be searched.");
+            label->setToolTip(tooltip);
+            mTagsLE->setToolTip(tooltip);
 
             tagsLay->addWidget(label);
             tagsLay->addWidget(mTagsLE, 1);
-            tagsLay->addWidget(infoBtn);
 
             advLay->addLayout(tagsLay);
         }
@@ -451,37 +435,30 @@ public:
             mExpirationDateEdit->setDate(Kleo::defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
             mExpirationDateEdit->setEnabled(mExpirationCheckBox->isChecked());
 
-            auto infoBtn = createInfoButton(i18n("You can use this to set an expiration date for a certification.") + QStringLiteral("<br/><br/>")
+            const auto tooltip = i18n("You can use this to set an expiration date for a certification.") + QStringLiteral("<br/><br/>")
                                                 + i18n("By setting an expiration date, you can limit the validity of "
                                                        "your certification to a certain amount of time. Once the expiration "
-                                                       "date has passed, your certification is no longer valid."),
-                                            q);
-            infoBtn->setAccessibleName(i18n("Explain expiration"));
+                                                       "date has passed, your certification is no longer valid.");
+            mExpirationCheckBox->setToolTip(tooltip);
+            mExpirationDateEdit->setToolTip(tooltip);
 
             layout->addWidget(mExpirationCheckBox);
             layout->addWidget(mExpirationDateEdit, 1);
-            layout->addWidget(infoBtn);
 
             advLay->addLayout(layout);
         }
 
         {
-            auto layout = new QHBoxLayout;
-
             mTrustSignatureCB = new QCheckBox{q};
             mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
-            auto infoBtn = createInfoButton(i18n("You can use this to certify a trusted introducer for a domain.") + QStringLiteral("<br/><br/>")
+            const auto tooltip = i18n("You can use this to certify a trusted introducer for a domain.") + QStringLiteral("<br/><br/>")
                                                 + i18n("All certificates with email addresses belonging to the domain "
                                                        "that have been certified by the trusted introducer are treated "
                                                        "as certified, i.e. a trusted introducer acts as a kind of "
-                                                       "intermediate CA for a domain."),
-                                            q);
-            infoBtn->setAccessibleName(i18n("Explain trusted introducer"));
+                                                       "intermediate CA for a domain.");
+            mTrustSignatureCB->setToolTip(tooltip);
 
-            layout->addWidget(mTrustSignatureCB, 1);
-            layout->addWidget(infoBtn);
-
-            advLay->addLayout(layout);
+            advLay->addWidget(mTrustSignatureCB);
         }
         {
             auto layout = new QHBoxLayout;

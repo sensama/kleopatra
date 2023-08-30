@@ -33,6 +33,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeySelectionCombo>
+#include <Libkleo/NavigatableTreeWidget>
 #include <Libkleo/Predicates>
 
 #include <QGpgME/ChangeOwnerTrustJob>
@@ -44,18 +45,19 @@
 #include <QIcon>
 #include <QLabel>
 #include <QLineEdit>
-#include <QListView>
 #include <QParallelAnimationGroup>
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QScrollArea>
-#include <QStandardItemModel>
 #include <QToolButton>
 #include <QVBoxLayout>
 
 #include <gpgme++/key.h>
 
+Q_DECLARE_METATYPE(GpgME::UserID)
+
 using namespace Kleo;
+using namespace GpgME;
 
 static QDebug operator<<(QDebug s, const GpgME::UserID &userID)
 {
@@ -196,114 +198,24 @@ private:
     GpgME::Key mExcludedKey;
 };
 
-class UserIDItem : public QStandardItem
-{
-public:
-    explicit UserIDItem(const GpgME::UserID &uid)
-        : mUserId{uid}
-    {
-    }
-
-    GpgME::UserID userId()
-    {
-        return mUserId;
-    }
-
-private:
-    GpgME::UserID mUserId;
-};
-
-class UserIDModel : public QStandardItemModel
-{
-    Q_OBJECT
-public:
-    enum Role { UserID = Qt::UserRole };
-    explicit UserIDModel(QObject *parent = nullptr)
-        : QStandardItemModel(parent)
-    {
-    }
-
-    GpgME::Key certificateToCertify() const
-    {
-        return m_key;
-    }
-
-    void setKey(const GpgME::Key &key)
-    {
-        m_key = key;
-        clear();
-        const std::vector<GpgME::UserID> ids = key.userIDs();
-        int i = 0;
-        for (const auto &uid : key.userIDs()) {
-            if (uid.isRevoked() || uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
-                // Skip user IDs that cannot really be certified.
-                i++;
-                continue;
-            }
-            const auto item = new UserIDItem{uid};
-            item->setText(Formatting::prettyUserID(uid));
-            item->setCheckable(true);
-            item->setEditable(false);
-            item->setCheckState(Qt::Checked);
-            appendRow(item);
-            i++;
-        }
-    }
-
-    void setCheckedUserIDs(const std::vector<GpgME::UserID> &uids)
-    {
-        for (int i = 0, end = rowCount(); i != end; ++i) {
-            const auto uidItem = userIdItem(i);
-            const auto itemUserId = uidItem->userId();
-            const bool userIdIsInList = Kleo::any_of(uids, [itemUserId](const auto &uid) {
-                return Kleo::userIDsAreEqual(itemUserId, uid);
-            });
-            uidItem->setCheckState(userIdIsInList ? Qt::Checked : Qt::Unchecked);
-        }
-    }
-
-    std::vector<GpgME::UserID> checkedUserIDs() const
-    {
-        std::vector<GpgME::UserID> userIds;
-        userIds.reserve(rowCount());
-        for (int i = 0; i < rowCount(); ++i) {
-            const auto uidItem = userIdItem(i);
-            if (uidItem->checkState() == Qt::Checked) {
-                userIds.push_back(uidItem->userId());
-            }
-        }
-        qCDebug(KLEOPATRA_LOG) << "Checked user IDs:" << userIds;
-        return userIds;
-    }
-
-private:
-    UserIDItem *userIdItem(int row) const
-    {
-        return static_cast<UserIDItem *>(item(row));
-    }
-
-private:
-    GpgME::Key m_key;
-};
-
 auto checkBoxSize(const QCheckBox *checkBox)
 {
     QStyleOptionButton opt;
     return checkBox->style()->sizeFromContents(QStyle::CT_CheckBox, &opt, QSize(), checkBox);
 }
 
-class ListView : public QListView
+class TreeWidget : public NavigatableTreeWidget
 {
     Q_OBJECT
 public:
-    using QListView::QListView;
+    using NavigatableTreeWidget::NavigatableTreeWidget;
 
 protected:
     void focusInEvent(QFocusEvent *event) override
     {
-        QListView::focusInEvent(event);
+        NavigatableTreeWidget::focusInEvent(event);
         // queue the invokation, so that it happens after the widget itself got focus
-        QMetaObject::invokeMethod(this, &ListView::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, &TreeWidget::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
     }
 
 private:
@@ -317,11 +229,12 @@ private:
         setCurrentIndex(current);
     }
 };
-
 }
 
 class CertifyWidget::Private
 {
+    enum Role { UserIdRole = Qt::UserRole };
+
 public:
     Private(CertifyWidget *qq)
         : q{qq}
@@ -377,9 +290,15 @@ public:
 
         mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
 
-        userIdListView = new ListView{q};
+        userIdListView = new TreeWidget{q};
         userIdListView->setAccessibleName(i18n("User IDs"));
-        userIdListView->setModel(&mUserIDModel);
+        userIdListView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        userIdListView->setSelectionMode(QAbstractItemView::SingleSelection);
+        userIdListView->setRootIsDecorated(false);
+        userIdListView->setUniformRowHeights(true);
+        userIdListView->setAllColumnsShowFocus(false);
+        userIdListView->setHeaderHidden(true);
+        userIdListView->setHeaderLabels({i18nc("@title:column", "User ID")});
         mainLay->addWidget(userIdListView, 1);
 
         // Setup the advanced area
@@ -478,7 +397,7 @@ public:
 
         expander->setContentLayout(advLay);
 
-        connect(&mUserIDModel, &QStandardItemModel::itemChanged, q, [this](QStandardItem *item) {
+        connect(userIdListView, &QTreeWidget::itemChanged, q, [this](auto item, auto) {
             onItemChanged(item);
         });
 
@@ -524,6 +443,23 @@ public:
         mSecKeySelect->setDefaultKey(conf.readEntry("LastKey", QString()));
         mExportCB->setChecked(conf.readEntry("ExportCheckState", false));
         mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
+    }
+
+    void setUpUserIdList()
+    {
+        userIdListView->clear();
+        for (const auto &uid : mTarget.userIDs()) {
+            if (uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
+                // Skip user IDs that cannot really be certified.
+                continue;
+            }
+            auto item = new QTreeWidgetItem;
+            item->setData(0, UserIdRole, QVariant::fromValue(uid));
+            item->setData(0, Qt::DisplayRole, Kleo::Formatting::prettyUserID(uid));
+            item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+            item->setCheckState(0, Qt::Checked);
+            userIdListView->addTopLevelItem(item);
+        }
     }
 
     void updateTags()
@@ -574,8 +510,8 @@ public:
     {
         mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
                             Formatting::accessibleHexID(key.primaryFingerprint()));
-        mUserIDModel.setKey(key);
         mTarget = key;
+        setUpUserIdList();
 
         auto keyFilter = std::make_shared<SecKeyFilter>();
         keyFilter->setExcludedKey(mTarget);
@@ -590,14 +526,35 @@ public:
         return mSecKeySelect->currentKey();
     }
 
+    GpgME::UserID getUserId(const QTreeWidgetItem *item) const
+    {
+        return item ? item->data(0, UserIdRole).value<UserID>() : UserID{};
+    }
+
     void selectUserIDs(const std::vector<GpgME::UserID> &uids)
     {
-        mUserIDModel.setCheckedUserIDs(uids);
+        for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
+            const auto uidItem = userIdListView->topLevelItem(i);
+            const auto itemUserId = getUserId(uidItem);
+            const bool userIdIsInList = Kleo::any_of(uids, [itemUserId](const auto &uid) {
+                return Kleo::userIDsAreEqual(itemUserId, uid);
+            });
+            uidItem->setCheckState(0, userIdIsInList ? Qt::Checked : Qt::Unchecked);
+        }
     }
 
     std::vector<GpgME::UserID> selectedUserIDs() const
     {
-        return mUserIDModel.checkedUserIDs();
+        std::vector<GpgME::UserID> userIds;
+        userIds.reserve(userIdListView->topLevelItemCount());
+        for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
+            const auto *const uidItem = userIdListView->topLevelItem(i);
+            if (uidItem->checkState(0) == Qt::Checked) {
+                userIds.push_back(getUserId(uidItem));
+            }
+        }
+        qCDebug(KLEOPATRA_LOG) << "Checked user IDs:" << userIds;
+        return userIds;
     }
 
     bool exportableSelected() const
@@ -684,7 +641,7 @@ public:
         j->start(secKey(), GpgME::Key::Ultimate);
     }
 
-    void onItemChanged(QStandardItem *item)
+    void onItemChanged(QTreeWidgetItem *item)
     {
         Q_EMIT q->changed();
 
@@ -694,7 +651,7 @@ public:
             QAccessible::State st;
             st.checked = true;
             QAccessibleStateChangeEvent e(userIdListView, st);
-            e.setChild(item->index().row());
+            e.setChild(userIdListView->indexOfTopLevelItem(item));
             QAccessible::updateAccessibility(&e);
         }
 #endif
@@ -705,7 +662,7 @@ public:
     std::unique_ptr<InfoField> mFprField;
     KeySelectionCombo *mSecKeySelect = nullptr;
     KMessageWidget *mMissingOwnerTrustInfo = nullptr;
-    ListView *userIdListView = nullptr;
+    NavigatableTreeWidget *userIdListView = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;
     QLineEdit *mTagsLE = nullptr;
@@ -717,7 +674,6 @@ public:
 
     LabelHelper labelHelper;
 
-    UserIDModel mUserIDModel;
     GpgME::Key mTarget;
 };
 

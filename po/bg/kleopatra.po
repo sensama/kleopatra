@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-26 00:47+0000\n"
-"PO-Revision-Date: 2023-08-09 11:24+0200\n"
+"PO-Revision-Date: 2023-08-29 15:15+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -2743,6 +2743,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Неуспешно актуализиране на сертификата от ключов сървър, LDAP сървър "
+"или ActiveDirectory:</para><para><message>%1</message></para><para>Неуспешно "
+"актуализиране на сертификата чрез Web Key Directory:</para><para><message>"
+"%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:360
 #: src/commands/refreshcertificatecommand.cpp:391
@@ -2756,24 +2760,20 @@ msgstr "Грешка при актуализиране"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Резултат от актуализиране на keyserver, LDAP сървър или Active Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:375
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>Записването на заявката е неуспешно.</para><para><message>%1</"
-"message></para>"
+msgstr "<para>Грешка при актуализиране: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:373
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Резултат от актуализиране чрез Web Key Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:388
 #, kde-kuit-format
@@ -3567,6 +3567,8 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Заявка на справочници със сертификати на доставчици за всички потребителски "
+"идентификатори"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3577,6 +3579,11 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"По подразбиране Kleopatra прави заявки само в директориите на сертификати на "
+"доставчиците(WKD) за потребителски идентификатори, които първоначално са "
+"били извлечени от WKD, когато актуализиратеOpenPGP сертификат. Ако тази "
+"опция е активирана, Kleopatra ще направи запитванеWKD за всички "
+"потребителски идентификатори."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -7026,7 +7033,7 @@ msgstr "Импортиране"
 #, kde-format
 msgctxt "@info"
 msgid "Unable to read file"
-msgstr ""
+msgstr "Грешка при четене на файл"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8191,6 +8198,8 @@ msgstr ""
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Заявка на справочници със сертификати на доставчици за всички потребителски "
+"идентификатори"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8203,6 +8212,12 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"По подразбиране Kleopatra прави заявки само в директориите на сертификати  "
+"на доставчиците (WKD)\n"
+"         за потребителски идентификатори, които първоначално са били "
+"извлечени от WKD, когато актуализиратеOpenPGP сертификат.\n"
+"         Ако тази опция е активирана, Kleopatra ще направи запитванеWKD за "
+"всички потребителски идентификатори."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170

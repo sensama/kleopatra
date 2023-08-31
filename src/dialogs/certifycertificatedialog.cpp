@@ -84,7 +84,7 @@ void CertifyCertificateDialog::setCertificateToCertify(const Key &key, const std
         return Kleo::userIDBelongsToKey(uid, key);
     }));
     setWindowTitle(i18nc("@title:window arg is name, email of certificate holder", "Certify Certificate: %1", Formatting::prettyName(key)));
-    mCertWidget->setTarget(key, uids);
+    mCertWidget->setCertificate(key, uids);
 }
 
 bool CertifyCertificateDialog::exportableCertificationSelected() const

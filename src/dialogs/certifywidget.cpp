@@ -234,6 +234,10 @@ private:
 class CertifyWidget::Private
 {
     enum Role { UserIdRole = Qt::UserRole };
+    enum Mode {
+        SingleCertification,
+        BulkCertification,
+    };
 
 public:
     Private(CertifyWidget *qq)
@@ -448,17 +452,19 @@ public:
     void setUpUserIdList(const std::vector<GpgME::UserID> &uids)
     {
         userIdListView->clear();
-        for (const auto &uid : uids) {
-            if (uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
-                // Skip user IDs that cannot really be certified.
-                continue;
+        if (mMode == SingleCertification) {
+            for (const auto &uid : uids) {
+                if (uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
+                    // Skip user IDs that cannot really be certified.
+                    continue;
+                }
+                auto item = new QTreeWidgetItem;
+                item->setData(0, UserIdRole, QVariant::fromValue(uid));
+                item->setData(0, Qt::DisplayRole, Kleo::Formatting::prettyUserID(uid));
+                item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+                item->setCheckState(0, Qt::Checked);
+                userIdListView->addTopLevelItem(item);
             }
-            auto item = new QTreeWidgetItem;
-            item->setData(0, UserIdRole, QVariant::fromValue(uid));
-            item->setData(0, Qt::DisplayRole, Kleo::Formatting::prettyUserID(uid));
-            item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-            item->setCheckState(0, Qt::Checked);
-            userIdListView->addTopLevelItem(item);
         }
     }
 
@@ -469,6 +475,9 @@ public:
             QString remark;
         };
 
+        if (mMode != SingleCertification) {
+            return;
+        }
         if (mTagsLE->isModified()) {
             return;
         }
@@ -506,30 +515,40 @@ public:
 
     void updateTrustSignatureDomain()
     {
-        if (mTrustSignatureDomainLE->text().isEmpty() && mTarget.numUserIDs() == 1) {
-            // try to guess the domain to use for the trust signature
-            const auto address = mTarget.userID(0).addrSpec();
-            const auto atPos = address.find('@');
-            if (atPos != std::string::npos) {
-                const auto domain = address.substr(atPos + 1);
-                mTrustSignatureDomainLE->setText(QString::fromUtf8(domain.c_str(), domain.size()));
+        if (mMode == SingleCertification) {
+            if (mTrustSignatureDomainLE->text().isEmpty() && certificate().numUserIDs() == 1) {
+                // try to guess the domain to use for the trust signature
+                const auto address = certificate().userID(0).addrSpec();
+                const auto atPos = address.find('@');
+                if (atPos != std::string::npos) {
+                    const auto domain = address.substr(atPos + 1);
+                    mTrustSignatureDomainLE->setText(QString::fromUtf8(domain.c_str(), domain.size()));
+                }
             }
         }
     }
 
-    void setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
+    void setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
     {
+        Q_ASSERT(!key.isNull());
+        mMode = SingleCertification;
+        mKeys = {key};
         mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
                             Formatting::accessibleHexID(key.primaryFingerprint()));
-        mTarget = key;
-        setUpUserIdList(uids.empty() ? mTarget.userIDs() : uids);
+        setUpUserIdList(uids.empty() ? key.userIDs() : uids);
 
         auto keyFilter = std::make_shared<SecKeyFilter>();
-        keyFilter->setExcludedKey(mTarget);
+        keyFilter->setExcludedKey(key);
         mSecKeySelect->setKeyFilter(keyFilter);
 
         updateTags();
         updateTrustSignatureDomain();
+    }
+
+    GpgME::Key certificate() const
+    {
+        Q_ASSERT(mMode == SingleCertification);
+        return !mKeys.empty() ? mKeys.front() : Key{};
     }
 
     GpgME::Key secKey() const
@@ -583,27 +602,26 @@ public:
         return mTagsLE->text().trimmed();
     }
 
-    GpgME::Key target() const
-    {
-        return mTarget;
-    }
-
     bool isValid() const
     {
         static const QRegularExpression domainNameRegExp{QStringLiteral(R"(^\s*((xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}\s*$)"),
                                                          QRegularExpression::CaseInsensitiveOption};
 
         // do not accept null keys
-        if (mTarget.isNull() || mSecKeySelect->currentKey().isNull()) {
+        if (mKeys.empty() || mSecKeySelect->currentKey().isNull()) {
             return false;
         }
         // do not accept empty list of user IDs
         if (selectedUserIDs().empty()) {
             return false;
         }
-        // do not accept if the key to certify is selected as certification key;
-        // this shouldn't happen because the key to certify is excluded from the choice, but better safe than sorry
-        if (_detail::ByFingerprint<std::equal_to>()(mTarget, mSecKeySelect->currentKey())) {
+        // do not accept if any of the keys to certify is selected as certification key;
+        // this shouldn't happen because the keys to certify are excluded from the choice, but better safe than sorry
+        const auto certificationKey = mSecKeySelect->currentKey();
+        const auto keyToCertifySelectedAsCertificationKey = std::any_of(mKeys.cbegin(), mKeys.cend(), [certificationKey](const auto &key) {
+            return _detail::ByFingerprint<std::equal_to>()(key, certificationKey);
+        });
+        if (keyToCertifySelectedAsCertificationKey) {
             return false;
         }
         if (mExpirationCheckBox->isChecked() && !mExpirationDateEdit->isValid()) {
@@ -685,7 +703,8 @@ public:
 
     LabelHelper labelHelper;
 
-    GpgME::Key mTarget;
+    Mode mMode = SingleCertification;
+    std::vector<GpgME::Key> mKeys;
 };
 
 CertifyWidget::CertifyWidget(QWidget *parent)
@@ -696,14 +715,14 @@ CertifyWidget::CertifyWidget(QWidget *parent)
 
 Kleo::CertifyWidget::~CertifyWidget() = default;
 
-void CertifyWidget::setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
+void CertifyWidget::setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
 {
-    d->setTarget(key, uids);
+    d->setCertificate(key, uids);
 }
 
-GpgME::Key CertifyWidget::target() const
+GpgME::Key CertifyWidget::certificate() const
 {
-    return d->target();
+    return d->certificate();
 }
 
 void CertifyWidget::selectUserIDs(const std::vector<GpgME::UserID> &uids)
@@ -756,5 +775,4 @@ bool CertifyWidget::isValid() const
     return d->isValid();
 }
 
-// For UserID model
 #include "certifywidget.moc"

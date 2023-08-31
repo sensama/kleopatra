@@ -30,10 +30,10 @@ public:
     ~CertifyWidget() override;
 
     /* Set the key to certify */
-    void setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids);
+    void setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids);
 
     /* Get the key to certify */
-    GpgME::Key target() const;
+    GpgME::Key certificate() const;
 
     /* Select specific user IDs. Default: all */
     void selectUserIDs(const std::vector<GpgME::UserID> &uids);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 00:47+0000\n"
+"POT-Creation-Date: 2023-08-31 00:47+0000\n"
 "PO-Revision-Date: 2023-08-26 10:01+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -6129,7 +6129,7 @@ msgid "User IDs:"
 msgstr "Gebruiker-id's:"
 
 #: src/dialogs/certificatedetailswidget.cpp:214
-#: src/dialogs/certifywidget.cpp:396
+#: src/dialogs/certifywidget.cpp:294
 #, kde-format
 msgid "User IDs"
 msgstr "Gebruiker-id's"
@@ -6207,7 +6207,7 @@ msgid "Change Validity"
 msgstr "Geldigheid wijzigen"
 
 #: src/dialogs/certificatedetailswidget.cpp:299
-#: src/dialogs/certifywidget.cpp:364
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Vingerafdruk:"
@@ -6594,7 +6594,7 @@ msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Certificeer certificaat: %1"
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6606,18 +6606,18 @@ msgstr ""
 "wilt certificeren.<br/><i>Opmerking: alleen de vingerafdruk identificeert "
 "duidelijk de sleutel en zijn eigenaar.</i>"
 
-#: src/dialogs/certifywidget.cpp:369
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid "Certify with:"
 msgstr "Certificeer met:"
 
-#: src/dialogs/certifywidget.cpp:381
+#: src/dialogs/certifywidget.cpp:279
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Vertrouwen van eigenaar instellen"
 
-#: src/dialogs/certifywidget.cpp:383
+#: src/dialogs/certifywidget.cpp:281
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6628,38 +6628,45 @@ msgstr ""
 "volledig vertrouwen in te stellen. Dit is wat u gewoonlijk wilt doen voor uw "
 "eigen sleutels."
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:301
+#, fuzzy, kde-format
+#| msgid "User IDs"
+msgctxt "@title:column"
+msgid "User ID"
+msgstr "Gebruiker-id's"
+
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Show advanced options"
 msgstr "Geavanceerde opties tonen"
 
-#: src/dialogs/certifywidget.cpp:407
+#: src/dialogs/certifywidget.cpp:311
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certificeer zodat iedereen het ziet (te exporteren)"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Achteraf op de keyserver publiceren"
 
-#: src/dialogs/certifywidget.cpp:426
+#: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "Tags:"
 msgstr "Tags:"
 
-#: src/dialogs/certifywidget.cpp:430
+#: src/dialogs/certifywidget.cpp:334
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 "U kunt dit gebruiken om extra informatie toe te voegen aan een certificatie."
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:335
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6668,24 +6675,19 @@ msgstr ""
 "Tags aangemaakt door iedereen met volledige vertrouwen in de certificatie "
 "worden getoond in de lijst met sleutels en kan doorzocht worden."
 
-#: src/dialogs/certifywidget.cpp:434
-#, kde-format
-msgid "Explain tags"
-msgstr "Tags uitleggen"
-
-#: src/dialogs/certifywidget.cpp:447
+#: src/dialogs/certifywidget.cpp:350
 #, kde-format
 msgid "Expiration:"
 msgstr "Verloopdatum:"
 
-#: src/dialogs/certifywidget.cpp:454
+#: src/dialogs/certifywidget.cpp:357
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "U kunt dit gebruiken om een geldigheidsdatum voor een certificatie in te "
 "stellen."
 
-#: src/dialogs/certifywidget.cpp:455
+#: src/dialogs/certifywidget.cpp:358
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6696,24 +6698,19 @@ msgstr ""
 "certificatie beperken tot een bepaalde hoeveelheid tijd. Nadat de "
 "geldigheidsdatum is gepasseerd, is uw certificatie niet langer geldig."
 
-#: src/dialogs/certifywidget.cpp:459
-#, kde-format
-msgid "Explain expiration"
-msgstr "Verloopmoment uitleggen"
-
-#: src/dialogs/certifywidget.cpp:472
+#: src/dialogs/certifywidget.cpp:372
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Als vertrouwde introduceerder certificeren"
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:373
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "U kunt dit gebruiken om een vertrouwde introduceerder voor een domein te "
 "certificeren."
 
-#: src/dialogs/certifywidget.cpp:474
+#: src/dialogs/certifywidget.cpp:374
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6725,22 +6722,17 @@ msgstr ""
 "gecertificeerd, d.w.z. een vertrouwde introduceerder treedt op als een soort "
 "van intermediaire CA voor een domein."
 
-#: src/dialogs/certifywidget.cpp:479
-#, kde-format
-msgid "Explain trusted introducer"
-msgstr "Vertrouwde introduceerder uitleggen"
-
-#: src/dialogs/certifywidget.cpp:489
+#: src/dialogs/certifywidget.cpp:385
 #, kde-format
 msgid "Domain:"
 msgstr "Domein:"
 
-#: src/dialogs/certifywidget.cpp:679
+#: src/dialogs/certifywidget.cpp:613
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Is dit uw eigen sleutel?"
 
-#: src/dialogs/certifywidget.cpp:694
+#: src/dialogs/certifywidget.cpp:628
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -6748,12 +6740,12 @@ msgstr ""
 "<p>Het vertrouwen van de certificatiesleutel <b>%1</b> wijzigen is mislukt:</"
 "p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:697
+#: src/dialogs/certifywidget.cpp:631
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Wijziging van vertrouwen van certificaat is mislukt"
 
-#: src/dialogs/certifywidget.cpp:704
+#: src/dialogs/certifywidget.cpp:638
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Vertrouwen van eigenaar instellen is gelukt."
@@ -12282,6 +12274,15 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgid "Explain tags"
+#~ msgstr "Tags uitleggen"
+
+#~ msgid "Explain expiration"
+#~ msgstr "Verloopmoment uitleggen"
+
+#~ msgid "Explain trusted introducer"
+#~ msgstr "Vertrouwde introduceerder uitleggen"
 
 #~ msgid "The certification must be valid at least until tomorrow."
 #~ msgstr "De certificatie moet minstens tot morgen geldig zijn."

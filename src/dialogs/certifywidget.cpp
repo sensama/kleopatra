@@ -132,6 +132,19 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
     setLayout(&mainLayout);
     QObject::connect(&toggleButton, &QToolButton::clicked, [this](const bool checked) {
         if (checked) {
+            // update the size of the content area
+            const auto collapsedHeight = sizeHint().height() - contentArea.maximumHeight();
+            auto contentHeight = contentArea.layout()->sizeHint().height();
+            for (int i = 0; i < toggleAnimation.animationCount() - 1; ++i) {
+                auto expanderAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(i));
+                expanderAnimation->setDuration(animationDuration);
+                expanderAnimation->setStartValue(collapsedHeight);
+                expanderAnimation->setEndValue(collapsedHeight + contentHeight);
+            }
+            auto contentAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(toggleAnimation.animationCount() - 1));
+            contentAnimation->setDuration(animationDuration);
+            contentAnimation->setStartValue(0);
+            contentAnimation->setEndValue(contentHeight);
             // make the content visible when expanding starts
             contentArea.setVisible(true);
         }
@@ -151,18 +164,6 @@ void AnimatedExpander::setContentLayout(QLayout *contentLayout)
 {
     delete contentArea.layout();
     contentArea.setLayout(contentLayout);
-    const auto collapsedHeight = sizeHint().height() - contentArea.maximumHeight();
-    auto contentHeight = contentLayout->sizeHint().height();
-    for (int i = 0; i < toggleAnimation.animationCount() - 1; ++i) {
-        auto expanderAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(i));
-        expanderAnimation->setDuration(animationDuration);
-        expanderAnimation->setStartValue(collapsedHeight);
-        expanderAnimation->setEndValue(collapsedHeight + contentHeight);
-    }
-    auto contentAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(toggleAnimation.animationCount() - 1));
-    contentAnimation->setDuration(animationDuration);
-    contentAnimation->setStartValue(0);
-    contentAnimation->setEndValue(contentHeight);
 }
 
 class SecKeyFilter : public DefaultKeyFilter

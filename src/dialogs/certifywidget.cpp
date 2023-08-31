@@ -14,6 +14,7 @@
 #include "view/infofield.h"
 #include <utils/accessibility.h>
 #include <utils/expiration.h>
+#include <utils/gui-helper.h>
 #include <utils/keys.h>
 
 #include <settings.h>
@@ -219,6 +220,18 @@ protected:
         QMetaObject::invokeMethod(this, &TreeWidget::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
     }
 
+    bool edit(const QModelIndex &index, EditTrigger trigger, QEvent *event) override
+    {
+        if (event && event->type() == QEvent::KeyPress) {
+            const auto *const keyEvent = static_cast<QKeyEvent *>(event);
+            if (keyEvent->key() == Qt::Key_Space || keyEvent->key() == Qt::Key_Select) {
+                // toggle checked state regardless of the index's column
+                return NavigatableTreeWidget::edit(index.siblingAtColumn(0), trigger, event);
+            }
+        }
+        return NavigatableTreeWidget::edit(index, trigger, event);
+    }
+
 private:
     void forceAccessibleFocusEventForCurrentItem()
     {
@@ -229,6 +242,11 @@ private:
         setCurrentIndex({});
         setCurrentIndex(current);
     }
+};
+
+struct UserIDCheckState {
+    GpgME::UserID userId;
+    Qt::CheckState checkState;
 };
 }
 
@@ -247,13 +265,13 @@ public:
         auto mainLay = new QVBoxLayout{q};
 
         {
-            auto label = new QLabel{i18n("Verify the fingerprint, mark the user IDs you want to certify, "
+            mInfoLabel = new QLabel{i18n("Verify the fingerprint, mark the user IDs you want to certify, "
                                          "and select the key you want to certify the user IDs with.<br>"
                                          "<i>Note: Only the fingerprint clearly identifies the key and its owner.</i>"),
                                     q};
-            label->setWordWrap(true);
-            labelHelper.addLabel(label);
-            mainLay->addWidget(label);
+            mInfoLabel->setWordWrap(true);
+            labelHelper.addLabel(mInfoLabel);
+            mainLay->addWidget(mInfoLabel);
         }
 
         mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
@@ -294,6 +312,14 @@ public:
         mainLay->addWidget(mMissingOwnerTrustInfo);
 
         mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
+
+        mBadCertificatesInfo = new KMessageWidget{q};
+        mBadCertificatesInfo->setMessageType(KMessageWidget::Warning);
+        mBadCertificatesInfo->setIcon(QIcon::fromTheme(QStringLiteral("data-warning"), QIcon::fromTheme(QStringLiteral("dialog-warning"))));
+        mBadCertificatesInfo->setText(i18nc("@info", "One or more certificates cannot be certified."));
+        mBadCertificatesInfo->setCloseButtonVisible(false);
+        mBadCertificatesInfo->setVisible(false);
+        mainLay->addWidget(mBadCertificatesInfo);
 
         userIdListView = new TreeWidget{q};
         userIdListView->setAccessibleName(i18n("User IDs"));
@@ -374,6 +400,7 @@ public:
 
         {
             mTrustSignatureCB = new QCheckBox{q};
+            mTrustSignatureWidgets.addWidget(mTrustSignatureCB);
             mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
             const auto tooltip = i18n("You can use this to certify a trusted introducer for a domain.") + QStringLiteral("<br/><br/>")
                 + i18n("All certificates with email addresses belonging to the domain "
@@ -388,8 +415,10 @@ public:
             auto layout = new QHBoxLayout;
 
             auto label = new QLabel{i18n("Domain:"), q};
+            mTrustSignatureWidgets.addWidget(label);
 
             mTrustSignatureDomainLE = new QLineEdit{q};
+            mTrustSignatureWidgets.addWidget(mTrustSignatureDomainLE);
             mTrustSignatureDomainLE->setEnabled(mTrustSignatureCB->isChecked());
             label->setBuddy(mTrustSignatureDomainLE);
 
@@ -411,6 +440,7 @@ public:
         });
 
         connect(mSecKeySelect, &KeySelectionCombo::currentKeyChanged, [this](const GpgME::Key &) {
+            updateSelectedUserIds();
             updateTags();
             checkOwnerTrust();
             Q_EMIT q->changed();
@@ -450,10 +480,32 @@ public:
         mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
     }
 
-    void setUpUserIdList(const std::vector<GpgME::UserID> &uids)
+    void setMode(Mode mode)
+    {
+        mMode = mode;
+        switch (mMode) {
+        case SingleCertification:
+            break;
+        case BulkCertification: {
+            mInfoLabel->setText(i18nc("@info",
+                                      "Verify the fingerprints, mark the user IDs you want to certify, "
+                                      "and select the certificate you want to certify the user IDs with.<br>"
+                                      "<i>Note: Only the fingerprints clearly identify the certificate and its owner.</i>"));
+            mFprField->setVisible(false);
+            mTrustSignatureWidgets.setVisible(false);
+            break;
+        }
+        }
+    }
+
+    void setUpUserIdList(const std::vector<GpgME::UserID> &uids = {})
     {
         userIdListView->clear();
         if (mMode == SingleCertification) {
+            userIdListView->setColumnCount(1);
+            userIdListView->setHeaderHidden(true);
+            // set header labels for accessibility tools to overwrite the default "1"
+            userIdListView->setHeaderLabels({i18nc("@title:column", "User ID")});
             for (const auto &uid : uids) {
                 if (uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
                     // Skip user IDs that cannot really be certified.
@@ -465,6 +517,75 @@ public:
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
                 item->setCheckState(0, Qt::Checked);
                 userIdListView->addTopLevelItem(item);
+            }
+        } else {
+            const QStringList headers = {i18nc("@title:column", "User ID"), i18nc("@title:column", "Fingerprint")};
+            userIdListView->setColumnCount(headers.count());
+            userIdListView->setHeaderHidden(false);
+            userIdListView->setHeaderLabels(headers);
+            for (const auto &key : mKeys) {
+                const auto &uid = key.userID(0);
+                auto item = new QTreeWidgetItem;
+                item->setData(0, UserIdRole, QVariant::fromValue(uid));
+                item->setData(0, Qt::DisplayRole, Kleo::Formatting::prettyUserID(uid));
+                item->setData(1, Qt::DisplayRole, Kleo::Formatting::prettyID(key.primaryFingerprint()));
+                item->setData(1, Qt::AccessibleTextRole, Kleo::Formatting::accessibleHexID(key.primaryFingerprint()));
+
+                if ((key.protocol() != OpenPGP) || uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
+                    item->setFlags(Qt::NoItemFlags);
+                    item->setCheckState(0, Qt::Unchecked);
+                    if (key.protocol() == CMS) {
+                        item->setData(0, Qt::ToolTipRole, i18nc("@info:tooltip", "S/MIME certificates cannot be certified."));
+                        item->setData(1, Qt::ToolTipRole, i18nc("@info:tooltip", "S/MIME certificates cannot be certified."));
+                    } else {
+                        item->setData(0, Qt::ToolTipRole, i18nc("@info:tooltip", "Expired or revoked certificates cannot be certified."));
+                        item->setData(1, Qt::ToolTipRole, i18nc("@info:tooltip", "Expired or revoked certificates cannot be certified."));
+                    }
+                } else {
+                    item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+                    item->setCheckState(0, Qt::Checked);
+                }
+                userIdListView->addTopLevelItem(item);
+            }
+            userIdListView->resizeColumnToContents(0);
+            userIdListView->resizeColumnToContents(1);
+        }
+    }
+
+    void updateSelectedUserIds()
+    {
+        if (mMode == SingleCertification) {
+            return;
+        }
+
+        // restore check state of primary user ID of previous certification key
+        if (!mCertificationKey.isNull()) {
+            for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
+                const auto uidItem = userIdListView->topLevelItem(i);
+                const auto itemUserId = getUserId(uidItem);
+                if (userIDBelongsToKey(itemUserId, mCertificationKey)) {
+                    uidItem->setCheckState(0, mCertificationKeyUserIDCheckState);
+                    uidItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+                    break; // we only show the primary user IDs
+                }
+            }
+        }
+
+        mCertificationKey = mSecKeySelect->currentKey();
+
+        // save and unset check state of primary user ID of current certification key
+        if (!mCertificationKey.isNull()) {
+            for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
+                const auto uidItem = userIdListView->topLevelItem(i);
+                const auto itemUserId = getUserId(uidItem);
+                if (userIDBelongsToKey(itemUserId, mCertificationKey)) {
+                    mCertificationKeyUserIDCheckState = uidItem->checkState(0);
+                    if (mCertificationKeyUserIDCheckState) {
+                        uidItem->setCheckState(0, Qt::Unchecked);
+                    }
+                    uidItem->setFlags(Qt::ItemIsSelectable);
+                    break; // we only show the primary user IDs
+                }
             }
         }
     }
@@ -532,7 +653,7 @@ public:
     void setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
     {
         Q_ASSERT(!key.isNull());
-        mMode = SingleCertification;
+        setMode(SingleCertification);
         mKeys = {key};
         mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
                             Formatting::accessibleHexID(key.primaryFingerprint()));
@@ -550,6 +671,29 @@ public:
     {
         Q_ASSERT(mMode == SingleCertification);
         return !mKeys.empty() ? mKeys.front() : Key{};
+    }
+
+    void setCertificates(const std::vector<GpgME::Key> &keys)
+    {
+        setMode(BulkCertification);
+        mKeys = keys;
+
+        // check for certificates that cannot be certified
+        const auto haveBadCertificates = Kleo::any_of(mKeys, [](const auto &key) {
+            const auto &uid = key.userID(0);
+            return (key.protocol() != OpenPGP) || uid.isInvalid() || Kleo::isRevokedOrExpired(uid);
+        });
+        if (haveBadCertificates) {
+            mBadCertificatesInfo->animatedShow();
+        }
+
+        setUpUserIdList();
+    }
+
+    std::vector<GpgME::Key> certificates() const
+    {
+        Q_ASSERT(mMode != SingleCertification);
+        return mKeys;
     }
 
     GpgME::Key secKey() const
@@ -613,16 +757,16 @@ public:
             return false;
         }
         // do not accept empty list of user IDs
-        if (selectedUserIDs().empty()) {
+        const auto userIds = selectedUserIDs();
+        if (userIds.empty()) {
             return false;
         }
-        // do not accept if any of the keys to certify is selected as certification key;
-        // this shouldn't happen because the keys to certify are excluded from the choice, but better safe than sorry
+        // do not accept if any of the selected user IDs belongs to the certification key
         const auto certificationKey = mSecKeySelect->currentKey();
-        const auto keyToCertifySelectedAsCertificationKey = std::any_of(mKeys.cbegin(), mKeys.cend(), [certificationKey](const auto &key) {
-            return _detail::ByFingerprint<std::equal_to>()(key, certificationKey);
+        const auto userIdToCertifyBelongsToCertificationKey = std::any_of(userIds.cbegin(), userIds.cend(), [certificationKey](const auto &userId) {
+            return Kleo::userIDBelongsToKey(userId, certificationKey);
         });
-        if (keyToCertifySelectedAsCertificationKey) {
+        if (userIdToCertifyBelongsToCertificationKey) {
             return false;
         }
         if (mExpirationCheckBox->isChecked() && !mExpirationDateEdit->isValid()) {
@@ -689,13 +833,16 @@ public:
 
 public:
     CertifyWidget *const q;
+    QLabel *mInfoLabel = nullptr;
     std::unique_ptr<InfoField> mFprField;
     KeySelectionCombo *mSecKeySelect = nullptr;
     KMessageWidget *mMissingOwnerTrustInfo = nullptr;
+    KMessageWidget *mBadCertificatesInfo = nullptr;
     NavigatableTreeWidget *userIdListView = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;
     QLineEdit *mTagsLE = nullptr;
+    BulkStateChanger mTrustSignatureWidgets;
     QCheckBox *mTrustSignatureCB = nullptr;
     QLineEdit *mTrustSignatureDomainLE = nullptr;
     QCheckBox *mExpirationCheckBox = nullptr;
@@ -706,6 +853,9 @@ public:
 
     Mode mMode = SingleCertification;
     std::vector<GpgME::Key> mKeys;
+
+    GpgME::Key mCertificationKey;
+    Qt::CheckState mCertificationKeyUserIDCheckState;
 };
 
 CertifyWidget::CertifyWidget(QWidget *parent)
@@ -724,6 +874,16 @@ void CertifyWidget::setCertificate(const GpgME::Key &key, const std::vector<GpgM
 GpgME::Key CertifyWidget::certificate() const
 {
     return d->certificate();
+}
+
+void CertifyWidget::setCertificates(const std::vector<GpgME::Key> &keys)
+{
+    d->setCertificates(keys);
+}
+
+std::vector<GpgME::Key> CertifyWidget::certificates() const
+{
+    return d->certificates();
 }
 
 void CertifyWidget::selectUserIDs(const std::vector<GpgME::UserID> &uids)

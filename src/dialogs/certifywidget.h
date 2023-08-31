@@ -35,6 +35,10 @@ public:
     /* Get the key to certify */
     GpgME::Key certificate() const;
 
+    /* Sets the certificates to certify. Use for bulk certification. */
+    void setCertificates(const std::vector<GpgME::Key> &keys);
+    std::vector<GpgME::Key> certificates() const;
+
     /* Select specific user IDs. Default: all */
     void selectUserIDs(const std::vector<GpgME::UserID> &uids);
 

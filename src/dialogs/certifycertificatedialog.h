@@ -52,9 +52,6 @@ public:
 public Q_SLOTS:
     void accept() override;
 
-protected:
-    void keyPressEvent(QKeyEvent *) override;
-
 private:
     CertifyWidget *mCertWidget;
 };

@@ -28,7 +28,6 @@
 #include <QDialogButtonBox>
 #include <QKeyEvent>
 #include <QPushButton>
-#include <QToolTip>
 #include <QVBoxLayout>
 
 #include <gpg-error.h>
@@ -147,15 +146,4 @@ void CertifyCertificateDialog::accept()
     conf.writeEntry("PublishCheckState", mCertWidget->publishSelected());
 
     QDialog::accept();
-}
-
-void CertifyCertificateDialog::keyPressEvent(QKeyEvent *e)
-{
-    // if Escape is pressed while a tool tip is shown, then close the tool tip but not the dialog
-    if (e->matches(QKeySequence::Cancel) && QToolTip::isVisible()) {
-        QToolTip::hideText();
-        return;
-    }
-
-    QDialog::keyPressEvent(e);
 }

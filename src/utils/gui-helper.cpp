@@ -9,12 +9,15 @@
 
 #include <QDialog>
 #include <QDialogButtonBox>
+#include <QPointer>
 #include <QPushButton>
 #include <QWidget>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
+
+using namespace Kleo;
 
 /* This is a Hack to workaround the fact that Foregrounding
    a Window is so restricted that it AllowSetForegroundWindow
@@ -153,5 +156,23 @@ void Kleo::unsetAutoDefaultButtons(const QDialog *dialog)
     const auto pushButtons = dialog->findChildren<QPushButton *>();
     for (auto pushButton : pushButtons) {
         pushButton->setAutoDefault(false);
+    }
+}
+
+BulkStateChanger::BulkStateChanger() = default;
+
+void BulkStateChanger::addWidget(QWidget *widget)
+{
+    if (widget) {
+        mWidgets.push_back(widget);
+    }
+}
+
+void BulkStateChanger::setVisible(bool visible)
+{
+    for (auto &w : mWidgets) {
+        if (w) {
+            w->setVisible(visible);
+        }
     }
 }

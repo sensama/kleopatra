@@ -86,4 +86,16 @@ void unsetDefaultButtons(const QDialogButtonBox *buttonBox);
  */
 void unsetAutoDefaultButtons(const QDialog *dialog);
 
+class BulkStateChanger
+{
+public:
+    BulkStateChanger();
+
+    void addWidget(QWidget *widget);
+
+    void setVisible(bool visible);
+
+private:
+    std::vector<QPointer<QWidget>> mWidgets;
+};
 }

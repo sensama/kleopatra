@@ -479,7 +479,9 @@ public:
                 if (!err && c_remark) {
                     const QString candidate = QString::fromUtf8(c_remark);
                     if (candidate != remark) {
-                        qCDebug(KLEOPATRA_LOG) << "Different remarks on user IDs. Taking last.";
+                        if (!remark.isEmpty()) {
+                            qCDebug(KLEOPATRA_LOG) << "Different remarks on user IDs. Taking last.";
+                        }
                         remark = candidate;
                         uidsWithRemark.clear();
                     }

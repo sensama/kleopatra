@@ -445,10 +445,10 @@ public:
         mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
     }
 
-    void setUpUserIdList()
+    void setUpUserIdList(const std::vector<GpgME::UserID> &uids)
     {
         userIdListView->clear();
-        for (const auto &uid : mTarget.userIDs()) {
+        for (const auto &uid : uids) {
             if (uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
                 // Skip user IDs that cannot really be certified.
                 continue;
@@ -472,10 +472,11 @@ public:
         if (!remarkKey.isNull()) {
             std::vector<GpgME::UserID> uidsWithRemark;
             QString remark;
-            for (const auto &uid : mTarget.userIDs()) {
+            for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
+                const auto uid = getUserId(userIdListView->topLevelItem(i));
                 GpgME::Error err;
                 const char *c_remark = uid.remark(remarkKey, err);
-                if (c_remark) {
+                if (!err && c_remark) {
                     const QString candidate = QString::fromUtf8(c_remark);
                     if (candidate != remark) {
                         qCDebug(KLEOPATRA_LOG) << "Different remarks on user IDs. Taking last.";
@@ -506,12 +507,12 @@ public:
         }
     }
 
-    void setTarget(const GpgME::Key &key)
+    void setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
     {
         mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
                             Formatting::accessibleHexID(key.primaryFingerprint()));
         mTarget = key;
-        setUpUserIdList();
+        setUpUserIdList(uids.empty() ? mTarget.userIDs() : uids);
 
         auto keyFilter = std::make_shared<SecKeyFilter>();
         keyFilter->setExcludedKey(mTarget);
@@ -685,9 +686,9 @@ CertifyWidget::CertifyWidget(QWidget *parent)
 
 Kleo::CertifyWidget::~CertifyWidget() = default;
 
-void CertifyWidget::setTarget(const GpgME::Key &key)
+void CertifyWidget::setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
 {
-    d->setTarget(key);
+    d->setTarget(key, uids);
 }
 
 GpgME::Key CertifyWidget::target() const

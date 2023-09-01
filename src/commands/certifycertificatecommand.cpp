@@ -213,10 +213,7 @@ void CertifyCertificateCommand::doStart()
     if (!(d->target.keyListMode() & GpgME::SignatureNotations)) {
         d->target.update();
     }
-    d->dialog->setCertificateToCertify(d->target);
-    if (d->uids.size()) {
-        d->dialog->setSelectedUserIDs(d->uids);
-    }
+    d->dialog->setCertificateToCertify(d->target, d->uids);
     d->dialog->show();
 }
 

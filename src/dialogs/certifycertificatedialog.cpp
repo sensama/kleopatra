@@ -16,6 +16,9 @@
 
 #include "certifywidget.h"
 
+#include <utils/keys.h>
+
+#include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
@@ -75,10 +78,13 @@ CertifyCertificateDialog::~CertifyCertificateDialog()
     cfgGroup.sync();
 }
 
-void CertifyCertificateDialog::setCertificateToCertify(const Key &key)
+void CertifyCertificateDialog::setCertificateToCertify(const Key &key, const std::vector<GpgME::UserID> &uids)
 {
+    Q_ASSERT(Kleo::all_of(uids, [key](const auto &uid) {
+        return Kleo::userIDBelongsToKey(uid, key);
+    }));
     setWindowTitle(i18nc("@title:window arg is name, email of certificate holder", "Certify Certificate: %1", Formatting::prettyName(key)));
-    mCertWidget->setTarget(key);
+    mCertWidget->setTarget(key, uids);
 }
 
 bool CertifyCertificateDialog::exportableCertificationSelected() const

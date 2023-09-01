@@ -29,6 +29,8 @@ public:
     explicit CertifyCertificateDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~CertifyCertificateDialog() override;
 
+    void setCertificateToCertify(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids = {});
+
     bool exportableCertificationSelected() const;
 
     bool trustSignatureSelected() const;
@@ -42,8 +44,6 @@ public:
     GpgME::Key selectedSecretKey() const;
 
     bool sendToServer() const;
-
-    void setCertificateToCertify(const GpgME::Key &key);
 
     QString tags() const;
 

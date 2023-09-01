@@ -30,7 +30,7 @@ public:
     ~CertifyWidget() override;
 
     /* Set the key to certify */
-    void setTarget(const GpgME::Key &key);
+    void setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids);
 
     /* Get the key to certify */
     GpgME::Key target() const;

@@ -464,33 +464,41 @@ public:
 
     void updateTags()
     {
+        struct ItemAndRemark {
+            QTreeWidgetItem *item;
+            QString remark;
+        };
+
         if (mTagsLE->isModified()) {
             return;
         }
         GpgME::Key remarkKey = mSecKeySelect->currentKey();
 
         if (!remarkKey.isNull()) {
-            std::vector<GpgME::UserID> uidsWithRemark;
+            std::vector<ItemAndRemark> itemsAndRemarks;
+            // first choose the remark we want to prefill the Tags field with
             QString remark;
             for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
-                const auto uid = getUserId(userIdListView->topLevelItem(i));
+                const auto item = userIdListView->topLevelItem(i);
+                const auto uid = getUserId(item);
                 GpgME::Error err;
                 const char *c_remark = uid.remark(remarkKey, err);
-                if (!err && c_remark) {
-                    const QString candidate = QString::fromUtf8(c_remark);
-                    if (candidate != remark) {
-                        if (!remark.isEmpty()) {
-                            qCDebug(KLEOPATRA_LOG) << "Different remarks on user IDs. Taking last.";
-                        }
-                        remark = candidate;
-                        uidsWithRemark.clear();
+                const QString itemRemark = (!err && c_remark) ? QString::fromUtf8(c_remark) : QString{};
+                if (!itemRemark.isEmpty() && (itemRemark != remark)) {
+                    if (!remark.isEmpty()) {
+                        qCDebug(KLEOPATRA_LOG) << "Different remarks on user IDs. Taking last.";
                     }
-                    uidsWithRemark.push_back(uid);
+                    remark = itemRemark;
                 }
+                itemsAndRemarks.push_back({item, itemRemark});
             }
-            // Only select the user IDs with the correct remark
+            // then select the user IDs with the chosen remark; this prevents overwriting existing
+            // different remarks on the other user IDs (as long as the user doesn't select any of
+            // the unselected user IDs with a different remark)
             if (!remark.isEmpty()) {
-                selectUserIDs(uidsWithRemark);
+                for (const auto &[item, itemRemark] : itemsAndRemarks) {
+                    item->setCheckState(0, itemRemark == remark ? Qt::Checked : Qt::Unchecked);
+                }
             }
             mTagsLE->setText(remark);
         }

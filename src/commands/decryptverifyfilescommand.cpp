@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "decryptverifyfilescommand.h"
+#include "viewemailfilescommand.h"
 
 #include "command_p.h"
 #include "fileoperationspreferences.h"
@@ -19,6 +20,7 @@
 
 #include <utils/filedialog.h>
 
+#include <Libkleo/Classify>
 #include <Libkleo/Stl_Util>
 
 #include "kleopatra_debug.h"
@@ -164,6 +166,22 @@ void DecryptVerifyFilesCommand::doStart()
             d->finished();
             return;
         }
+
+        QStringList emailFiles;
+        for (const auto &file : std::as_const(d->files)) {
+            const unsigned int classification = classify(file);
+            if (classification & Class::MimeFile) {
+                emailFiles << file;
+            }
+        }
+
+        if (!emailFiles.isEmpty()) {
+            auto viewEmailCommand = new ViewEmailFilesCommand(emailFiles, nullptr);
+            viewEmailCommand->start();
+            d->finished();
+            return;
+        }
+
         d->mController->setFiles(d->files);
         d->mController->start();
 

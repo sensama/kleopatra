@@ -51,16 +51,25 @@ public:
 private:
     void slotControllerDone()
     {
-        finished();
+        if (emailFiles.isEmpty()) {
+            finished();
+        } else {
+            files.clear();
+        }
     }
     void slotControllerError(int, const QString &msg)
     {
         KMessageBox::error(parentWidgetOrView(), msg, i18n("Decrypt/Verify Failed"));
-        finished();
+        if (emailFiles.isEmpty()) {
+            finished();
+        } else {
+            files.clear();
+        }
     }
 
 private:
     QStringList files;
+    QStringList emailFiles;
     std::shared_ptr<const ExecutionContext> shared_qq;
     DecryptVerifyFilesController *mController;
 };
@@ -167,18 +176,27 @@ void DecryptVerifyFilesCommand::doStart()
             return;
         }
 
-        QStringList emailFiles;
         for (const auto &file : std::as_const(d->files)) {
             const unsigned int classification = classify(file);
             if (classification & Class::MimeFile) {
-                emailFiles << file;
+                d->emailFiles << file;
+                d->files.removeAll(file);
             }
         }
 
-        if (!emailFiles.isEmpty()) {
-            auto viewEmailCommand = new ViewEmailFilesCommand(emailFiles, nullptr);
+        if (!d->emailFiles.isEmpty()) {
+            const auto viewEmailCommand = new ViewEmailFilesCommand(d->emailFiles, nullptr);
+            connect(viewEmailCommand, &ViewEmailFilesCommand::finished, this, [this] {
+                if (d->files.isEmpty()) {
+                    d->finished();
+                } else {
+                    d->emailFiles.clear();
+                }
+            });
             viewEmailCommand->start();
-            d->finished();
+        }
+
+        if (d->files.isEmpty()) {
             return;
         }
 

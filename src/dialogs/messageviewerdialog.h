@@ -7,6 +7,8 @@
 
 #include <QDialog>
 
+#include <memory>
+
 class MessageViewerDialog : public QDialog
 {
     Q_OBJECT
@@ -14,4 +16,8 @@ class MessageViewerDialog : public QDialog
 public:
     MessageViewerDialog(const QString &fileName, QWidget *parent = nullptr);
     ~MessageViewerDialog() override;
+
+private:
+    class Private;
+    std::unique_ptr<Private> const d;
 };

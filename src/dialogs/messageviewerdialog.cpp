@@ -19,11 +19,13 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+#include <memory>
+
 namespace
 {
 
 /// Open first message from file
-KMime::Message::Ptr openFile(const QString &fileName)
+QVector<KMime::Message::Ptr> openFile(const QString &fileName)
 {
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForFile(fileName);
@@ -86,6 +88,9 @@ KMime::Message::Ptr openFile(const QString &fileName)
         // check for multiple messages in the file
         int endOfMessage = content.indexOf("\nFrom ", startOfMessage);
         while (endOfMessage != -1) {
+            if (content.indexOf("From ", startOfMessage) == startOfMessage) {
+                startOfMessage = content.indexOf('\n', startOfMessage) + 1;
+            }
             auto msg = new KMime::Message;
             msg->setContent(KMime::CRLFtoLF(content.mid(startOfMessage, endOfMessage - startOfMessage)));
             msg->parse();
@@ -96,10 +101,13 @@ KMime::Message::Ptr openFile(const QString &fileName)
             }
             KMime::Message::Ptr mMsg(msg);
             listMessages << mMsg;
-            startOfMessage = content.indexOf('\n', endOfMessage + 1);
+            startOfMessage = endOfMessage + 1;
             endOfMessage = content.indexOf("\nFrom ", startOfMessage);
         }
         if (endOfMessage == -1) {
+            if (content.indexOf("From ", startOfMessage) == startOfMessage) {
+                startOfMessage = content.indexOf('\n', startOfMessage) + 1;
+            }
             endOfMessage = content.length();
             auto msg = new KMime::Message;
             msg->setContent(KMime::CRLFtoLF(content.mid(startOfMessage, endOfMessage - startOfMessage)));
@@ -112,23 +120,48 @@ KMime::Message::Ptr openFile(const QString &fileName)
             KMime::Message::Ptr mMsg(msg);
             listMessages << mMsg;
         }
-        if (listMessages.count() > 0) {
-            message = listMessages[0];
-        }
+        return listMessages;
     }
 
-    return message;
+    return {message};
 }
+}
+
+class MessageViewerDialog::Private
+{
+public:
+    int currentIndex = 0;
+    QVector<KMime::Message::Ptr> messages;
+    MimeTreeParser::Widgets::MessageViewer *messageViewer = nullptr;
+    QPushButton *nextButton = nullptr;
+    QPushButton *previousButton = nullptr;
+
+    void setCurrentIndex(int currentIndex);
+};
+
+void MessageViewerDialog::Private::setCurrentIndex(int index)
+{
+    Q_ASSERT(index >= 0);
+    Q_ASSERT(index < messages.count());
+    Q_ASSERT(previousButton);
+    Q_ASSERT(nextButton);
+
+    currentIndex = index;
+    messageViewer->setMessage(messages[currentIndex]);
+
+    previousButton->setEnabled(currentIndex != 0);
+    nextButton->setEnabled(currentIndex != messages.count() - 1);
 }
 
 MessageViewerDialog::MessageViewerDialog(const QString &fileName, QWidget *parent)
     : QDialog(parent)
+    , d(std::make_unique<Private>())
 {
-    auto layout = new QVBoxLayout(this);
+    const auto layout = new QVBoxLayout(this);
 
-    auto message = openFile(fileName);
+    d->messages += openFile(fileName);
 
-    if (!message) {
+    if (d->messages.isEmpty()) {
         auto errorMessage = new KMessageWidget(this);
         errorMessage->setMessageType(KMessageWidget::Error);
         errorMessage->setText(i18nc("@info", "Unable to read file"));
@@ -136,9 +169,31 @@ MessageViewerDialog::MessageViewerDialog(const QString &fileName, QWidget *paren
         return;
     }
 
-    auto messageViewer = new MimeTreeParser::Widgets::MessageViewer(this);
-    messageViewer->setMessage(message);
-    layout->addWidget(messageViewer);
+    const bool multipleMessages = d->messages.length() > 1;
+    if (multipleMessages) {
+        auto hLayout = new QHBoxLayout();
+
+        d->previousButton = new QPushButton(QIcon::fromTheme(QStringLiteral("go-previous")), i18nc("@action:button Previous email", "Previous Message"), this);
+        d->previousButton->setEnabled(false);
+        connect(d->previousButton, &QPushButton::clicked, this, [this](int index) {
+            d->setCurrentIndex(d->currentIndex - 1);
+        });
+
+        d->nextButton = new QPushButton(QIcon::fromTheme(QStringLiteral("go-next")), i18nc("@action:button Next email", "Next Message"), this);
+        connect(d->nextButton, &QPushButton::clicked, this, [this](int index) {
+            d->setCurrentIndex(d->currentIndex + 1);
+        });
+
+        hLayout->addWidget(d->previousButton);
+        hLayout->addStretch();
+        hLayout->addWidget(d->nextButton);
+
+        layout->addLayout(hLayout);
+    }
+
+    d->messageViewer = new MimeTreeParser::Widgets::MessageViewer(this);
+    d->messageViewer->setMessage(d->messages[0]);
+    layout->addWidget(d->messageViewer);
 
     auto buttonBox = new QDialogButtonBox(this);
     auto closeButton = buttonBox->addButton(QDialogButtonBox::Close);

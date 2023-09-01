@@ -22,7 +22,7 @@ public:
     Private(ViewEmailFilesCommand *qq, KeyListController *c);
     ~Private() override;
 
-    QPointer<MessageViewerDialog> dialog;
+    QVector<MessageViewerDialog *> dialogs;
     QStringList files;
 
     void ensureDialogCreated();
@@ -37,15 +37,19 @@ ViewEmailFilesCommand::Private::~Private() = default;
 
 void ViewEmailFilesCommand::Private::ensureDialogCreated()
 {
-    auto dlg = new MessageViewerDialog(files[0]);
-    dlg->setAttribute(Qt::WA_DeleteOnClose);
-    applyWindowID(dlg);
-    connect(dlg, &MessageViewerDialog::finished, q_func(), [this] {
-        finished();
-    });
-    dlg->show();
-
-    dialog = dlg;
+    for (const auto &file : std::as_const(files)) {
+        auto dlg = new MessageViewerDialog(file);
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        applyWindowID(dlg);
+        connect(dlg, &MessageViewerDialog::finished, q_func(), [this, dlg] {
+            dialogs.removeAll(dlg);
+            if (dialogs.isEmpty()) {
+                finished();
+            }
+        });
+        dialogs << dlg;
+        dlg->show();
+    }
 }
 
 ViewEmailFilesCommand::Private *ViewEmailFilesCommand::d_func()
@@ -79,7 +83,7 @@ void ViewEmailFilesCommand::doStart()
 
 void ViewEmailFilesCommand::doCancel()
 {
-    if (d->dialog) {
-        d->dialog->close();
+    for (const auto dialog : std::as_const(d->dialogs)) {
+        dialog->close();
     }
 }

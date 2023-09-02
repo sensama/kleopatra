@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 00:47+0000\n"
-"PO-Revision-Date: 2023-08-26 07:37+0200\n"
+"POT-Creation-Date: 2023-09-02 00:48+0000\n"
+"PO-Revision-Date: 2023-08-31 20:35+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -296,7 +296,7 @@ msgstr "Certifiering inte möjlig"
 msgid "Create"
 msgstr "Skapa"
 
-#: src/commands/certifycertificatecommand.cpp:234
+#: src/commands/certifycertificatecommand.cpp:231
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
@@ -305,17 +305,17 @@ msgstr ""
 "<p>Ett fel uppstod vid försök att ändra certifiera<br/><br/><b>%1</b>:</p><p>"
 "\t%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:238
+#: src/commands/certifycertificatecommand.cpp:235
 #, kde-format
 msgid "Certification Error"
 msgstr "Certifieringsfel"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification successful."
 msgstr "Certifiering lyckades."
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "Certifiering lyckades"
@@ -6045,7 +6045,7 @@ msgid "User IDs:"
 msgstr "Användaridentifikationer:"
 
 #: src/dialogs/certificatedetailswidget.cpp:214
-#: src/dialogs/certifywidget.cpp:396
+#: src/dialogs/certifywidget.cpp:294
 #, kde-format
 msgid "User IDs"
 msgstr "Användaridentifikationer"
@@ -6123,7 +6123,7 @@ msgid "Change Validity"
 msgstr "Ändra giltighet"
 
 #: src/dialogs/certificatedetailswidget.cpp:299
-#: src/dialogs/certifywidget.cpp:364
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Fingeravtryck:"
@@ -6498,18 +6498,18 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "Val av certifikat"
 
-#: src/dialogs/certifycertificatedialog.cpp:53
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
 msgstr "Certifiera"
 
-#: src/dialogs/certifycertificatedialog.cpp:81
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Certifiera certifikat: %1"
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6521,18 +6521,18 @@ msgstr ""
 "med.<br><i>Observera: Bara fingeravtrycket identifierar klart nyckeln och "
 "dess ägare.</i>"
 
-#: src/dialogs/certifywidget.cpp:369
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid "Certify with:"
 msgstr "Certifiera med:"
 
-#: src/dialogs/certifywidget.cpp:381
+#: src/dialogs/certifywidget.cpp:279
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Ställ in ägarpålitlighet"
 
-#: src/dialogs/certifywidget.cpp:383
+#: src/dialogs/certifywidget.cpp:281
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6543,39 +6543,45 @@ msgstr ""
 "certifikatnyckeln till fullständigt pålitlig. Det är vad man oftast bör göra "
 "för sina egna nycklar."
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:301
+#, kde-format
+msgctxt "@title:column"
+msgid "User ID"
+msgstr "Användaridentifikation"
+
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Advanced"
 msgstr "Avancerat"
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Show advanced options"
 msgstr "Visa avancerade alternativ"
 
-#: src/dialogs/certifywidget.cpp:407
+#: src/dialogs/certifywidget.cpp:311
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certifiera så att alla kan se (kan exporteras)"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Publicera efteråt på en nyckelserver"
 
-#: src/dialogs/certifywidget.cpp:426
+#: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "Tags:"
 msgstr "Etiketter:"
 
-#: src/dialogs/certifywidget.cpp:430
+#: src/dialogs/certifywidget.cpp:334
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 "Du kan använda det här för att lägga till ytterligare information i en "
 "certifiering."
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:335
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6584,23 +6590,18 @@ msgstr ""
 "Etiketter som skapas av någon med fullständig certifieringspålitlighet visas "
 "i nyckellistan och kan sökas efter."
 
-#: src/dialogs/certifywidget.cpp:434
-#, kde-format
-msgid "Explain tags"
-msgstr "Förklara etiketter"
-
-#: src/dialogs/certifywidget.cpp:447
+#: src/dialogs/certifywidget.cpp:350
 #, kde-format
 msgid "Expiration:"
 msgstr "Utgångstid:"
 
-#: src/dialogs/certifywidget.cpp:454
+#: src/dialogs/certifywidget.cpp:357
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "Du kan använda det här för att ange ett utgångsdatum för en certifiering."
 
-#: src/dialogs/certifywidget.cpp:455
+#: src/dialogs/certifywidget.cpp:358
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6611,24 +6612,19 @@ msgstr ""
 "till en viss tidsperiod. När utgångsdatumet väl har passerats, är inte "
 "certifieringen längre giltig."
 
-#: src/dialogs/certifywidget.cpp:459
-#, kde-format
-msgid "Explain expiration"
-msgstr "Förklara utgångsdatum"
-
-#: src/dialogs/certifywidget.cpp:472
+#: src/dialogs/certifywidget.cpp:372
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Certifiera som en pålitlig introduktör"
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:373
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Du kan använda det här för att certifiera en pålitlig introduktör för en "
 "domän."
 
-#: src/dialogs/certifywidget.cpp:474
+#: src/dialogs/certifywidget.cpp:374
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6640,22 +6636,17 @@ msgstr ""
 "introduktör fungerar som en sorts intermediär certifikatutfärdare för en "
 "domän."
 
-#: src/dialogs/certifywidget.cpp:479
-#, kde-format
-msgid "Explain trusted introducer"
-msgstr "Förklara pålitlig introduktör"
-
-#: src/dialogs/certifywidget.cpp:489
+#: src/dialogs/certifywidget.cpp:385
 #, kde-format
 msgid "Domain:"
 msgstr "Domän:"
 
-#: src/dialogs/certifywidget.cpp:679
+#: src/dialogs/certifywidget.cpp:624
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Är det här din egen nyckel?"
 
-#: src/dialogs/certifywidget.cpp:694
+#: src/dialogs/certifywidget.cpp:639
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -6663,12 +6654,12 @@ msgstr ""
 "<p>Misslyckades ändra certifikatets pålitlighet för nyckeln <b>%1</b>:</p><p>"
 "%2</p>"
 
-#: src/dialogs/certifywidget.cpp:697
+#: src/dialogs/certifywidget.cpp:642
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Ändring av certifikatets pålitlighet misslyckades"
 
-#: src/dialogs/certifywidget.cpp:704
+#: src/dialogs/certifywidget.cpp:649
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Ägarpålitlighet inställd med lyckat resultat."
@@ -12148,6 +12139,15 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
+
+#~ msgid "Explain tags"
+#~ msgstr "Förklara etiketter"
+
+#~ msgid "Explain expiration"
+#~ msgstr "Förklara utgångsdatum"
+
+#~ msgid "Explain trusted introducer"
+#~ msgstr "Förklara pålitlig introduktör"
 
 #~ msgid "The certification must be valid at least until tomorrow."
 #~ msgstr "Certifieringen måste åtminstone vara giltig till imorgon."

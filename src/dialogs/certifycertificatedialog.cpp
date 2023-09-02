@@ -16,6 +16,9 @@
 
 #include "certifywidget.h"
 
+#include <utils/keys.h>
+
+#include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
@@ -28,7 +31,6 @@
 #include <QDialogButtonBox>
 #include <QKeyEvent>
 #include <QPushButton>
-#include <QToolTip>
 #include <QVBoxLayout>
 
 #include <gpg-error.h>
@@ -76,10 +78,13 @@ CertifyCertificateDialog::~CertifyCertificateDialog()
     cfgGroup.sync();
 }
 
-void CertifyCertificateDialog::setCertificateToCertify(const Key &key)
+void CertifyCertificateDialog::setCertificateToCertify(const Key &key, const std::vector<GpgME::UserID> &uids)
 {
+    Q_ASSERT(Kleo::all_of(uids, [key](const auto &uid) {
+        return Kleo::userIDBelongsToKey(uid, key);
+    }));
     setWindowTitle(i18nc("@title:window arg is name, email of certificate holder", "Certify Certificate: %1", Formatting::prettyName(key)));
-    mCertWidget->setTarget(key);
+    mCertWidget->setTarget(key, uids);
 }
 
 bool CertifyCertificateDialog::exportableCertificationSelected() const
@@ -147,17 +152,6 @@ void CertifyCertificateDialog::accept()
     conf.writeEntry("PublishCheckState", mCertWidget->publishSelected());
 
     QDialog::accept();
-}
-
-void CertifyCertificateDialog::keyPressEvent(QKeyEvent *e)
-{
-    // if Escape is pressed while a tool tip is shown, then close the tool tip but not the dialog
-    if (e->matches(QKeySequence::Cancel) && QToolTip::isVisible()) {
-        QToolTip::hideText();
-        return;
-    }
-
-    QDialog::keyPressEvent(e);
 }
 
 #include "moc_certifycertificatedialog.cpp"

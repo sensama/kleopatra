@@ -29,6 +29,8 @@ public:
     explicit CertifyCertificateDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~CertifyCertificateDialog() override;
 
+    void setCertificateToCertify(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids = {});
+
     bool exportableCertificationSelected() const;
 
     bool trustSignatureSelected() const;
@@ -43,17 +45,12 @@ public:
 
     bool sendToServer() const;
 
-    void setCertificateToCertify(const GpgME::Key &key);
-
     QString tags() const;
 
     QDate expirationDate() const;
 
 public Q_SLOTS:
     void accept() override;
-
-protected:
-    void keyPressEvent(QKeyEvent *) override;
 
 private:
     CertifyWidget *mCertWidget;

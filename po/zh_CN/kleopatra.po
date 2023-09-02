@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 00:47+0000\n"
+"POT-Creation-Date: 2023-09-02 00:48+0000\n"
 "PO-Revision-Date: 2023-08-27 03:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -289,24 +289,24 @@ msgstr "证书不可用"
 msgid "Create"
 msgstr "创建"
 
-#: src/commands/certifycertificatecommand.cpp:234
+#: src/commands/certifycertificatecommand.cpp:231
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
 "p>"
 msgstr "<p>尝试吊销 <br/><br/> <b>%1</b>：</p><p> 的证书时出错\t%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:238
+#: src/commands/certifycertificatecommand.cpp:235
 #, kde-format
 msgid "Certification Error"
 msgstr "认证错误"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification successful."
 msgstr "认证成功。"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "认证成功"
@@ -5804,7 +5804,7 @@ msgid "User IDs:"
 msgstr "用户 IDs："
 
 #: src/dialogs/certificatedetailswidget.cpp:214
-#: src/dialogs/certifywidget.cpp:396
+#: src/dialogs/certifywidget.cpp:294
 #, kde-format
 msgid "User IDs"
 msgstr "用户 ID"
@@ -5880,7 +5880,7 @@ msgid "Change Validity"
 msgstr "更改有效性"
 
 #: src/dialogs/certificatedetailswidget.cpp:299
-#: src/dialogs/certifywidget.cpp:364
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Fingerprint:"
 msgstr "指纹："
@@ -6249,18 +6249,18 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "证书选择"
 
-#: src/dialogs/certifycertificatedialog.cpp:53
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
 msgstr "认证"
 
-#: src/dialogs/certifycertificatedialog.cpp:81
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "认证证书：%1"
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6270,18 +6270,18 @@ msgstr ""
 "验证指纹，标记您想要验证的用户ID，并选择您想要用于验证用户ID的密钥。<br><i>注"
 "意：区分不同密钥及其所有者的唯一凭据是指纹。</i>"
 
-#: src/dialogs/certifywidget.cpp:369
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid "Certify with:"
 msgstr "认证方式："
 
-#: src/dialogs/certifywidget.cpp:381
+#: src/dialogs/certifywidget.cpp:279
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "设置信任等级为所有者"
 
-#: src/dialogs/certifywidget.cpp:383
+#: src/dialogs/certifywidget.cpp:281
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6289,37 +6289,44 @@ msgid ""
 "trust. This is what you usually want to do for your own keys."
 msgstr "点击将所选认证密钥的信任等级设为绝对信任，通常用于您自己的密钥。"
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:301
+#, fuzzy, kde-format
+#| msgid "User IDs"
+msgctxt "@title:column"
+msgid "User ID"
+msgstr "用户 ID"
+
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Advanced"
 msgstr "高级设置"
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Show advanced options"
 msgstr "显示高级选项"
 
-#: src/dialogs/certifywidget.cpp:407
+#: src/dialogs/certifywidget.cpp:311
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "公开验证(可导出)"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "之后发布于密钥服务器中"
 
-#: src/dialogs/certifywidget.cpp:426
+#: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "Tags:"
 msgstr "标签："
 
-#: src/dialogs/certifywidget.cpp:430
+#: src/dialogs/certifywidget.cpp:334
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "您可通过此项给证书添加额外信息。"
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:335
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6327,22 +6334,17 @@ msgid ""
 msgstr ""
 "任何具有完全认证信任级别的人所创建的标签都显示在密钥列表中，并可以被搜索到。"
 
-#: src/dialogs/certifywidget.cpp:434
-#, kde-format
-msgid "Explain tags"
-msgstr "解释标签"
-
-#: src/dialogs/certifywidget.cpp:447
+#: src/dialogs/certifywidget.cpp:350
 #, kde-format
 msgid "Expiration:"
 msgstr "过期时间："
 
-#: src/dialogs/certifywidget.cpp:454
+#: src/dialogs/certifywidget.cpp:357
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "您可通过此项给证书设定过期时间。"
 
-#: src/dialogs/certifywidget.cpp:455
+#: src/dialogs/certifywidget.cpp:358
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6352,22 +6354,17 @@ msgstr ""
 "您可通过设定过期时间，将证书的有效性限制在一段时间内。一旦过了到期时间，您的"
 "证书就不再有效。"
 
-#: src/dialogs/certifywidget.cpp:459
-#, kde-format
-msgid "Explain expiration"
-msgstr "解释过期原因"
-
-#: src/dialogs/certifywidget.cpp:472
+#: src/dialogs/certifywidget.cpp:372
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "认证为值得信赖的介绍人"
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:373
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "您可以使用此来验证域名是否拥有一个可信导入器。"
 
-#: src/dialogs/certifywidget.cpp:474
+#: src/dialogs/certifywidget.cpp:374
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6377,33 +6374,28 @@ msgstr ""
 "所有属于该域的电子邮件已经被一个可信的导入器集中认证，所以它们均被视为是已被"
 "签名的 。换言之，可信导入器可以被视作一个中间CA。"
 
-#: src/dialogs/certifywidget.cpp:479
-#, kde-format
-msgid "Explain trusted introducer"
-msgstr "解释被信任的导入器"
-
-#: src/dialogs/certifywidget.cpp:489
+#: src/dialogs/certifywidget.cpp:385
 #, kde-format
 msgid "Domain:"
 msgstr "域名："
 
-#: src/dialogs/certifywidget.cpp:679
+#: src/dialogs/certifywidget.cpp:624
 #, kde-format
 msgid "Is this your own key?"
 msgstr "这是您自己的密钥吗？"
 
-#: src/dialogs/certifywidget.cpp:694
+#: src/dialogs/certifywidget.cpp:639
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr "<p>更改密钥 <b>%1</b> 的信任等级失败：</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:697
+#: src/dialogs/certifywidget.cpp:642
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "证书信任等级更改失败"
 
-#: src/dialogs/certifywidget.cpp:704
+#: src/dialogs/certifywidget.cpp:649
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "所有者信任等级设置成功。"
@@ -11677,3 +11669,12 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgid "Explain tags"
+#~ msgstr "解释标签"
+
+#~ msgid "Explain expiration"
+#~ msgstr "解释过期原因"
+
+#~ msgid "Explain trusted introducer"
+#~ msgstr "解释被信任的导入器"

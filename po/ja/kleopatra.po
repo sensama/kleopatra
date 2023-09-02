@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 00:47+0000\n"
+"POT-Creation-Date: 2023-09-02 00:48+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -303,7 +303,7 @@ msgstr "保証できません"
 msgid "Create"
 msgstr "鍵を作成"
 
-#: src/commands/certifycertificatecommand.cpp:234
+#: src/commands/certifycertificatecommand.cpp:231
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
@@ -312,17 +312,17 @@ msgstr ""
 "<p>以下を保証しようとしてエラーが発生しました<br/><br/><b>%1</b>:</p><p>\t"
 "%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:238
+#: src/commands/certifycertificatecommand.cpp:235
 #, kde-format
 msgid "Certification Error"
 msgstr "保証失敗"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification successful."
 msgstr "証明書に署名しました。"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "保証が成功しました"
@@ -6021,7 +6021,7 @@ msgid "User IDs:"
 msgstr "ユーザ ID:"
 
 #: src/dialogs/certificatedetailswidget.cpp:214
-#: src/dialogs/certifywidget.cpp:396
+#: src/dialogs/certifywidget.cpp:294
 #, kde-format
 msgid "User IDs"
 msgstr "ユーザ ID"
@@ -6098,7 +6098,7 @@ msgid "Change Validity"
 msgstr "有効期間の変更"
 
 #: src/dialogs/certificatedetailswidget.cpp:299
-#: src/dialogs/certifywidget.cpp:364
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Fingerprint:"
 msgstr "フィンガープリント:"
@@ -6470,18 +6470,18 @@ msgid "Certificate Selection"
 msgstr "証明書の選択"
 
 # 証明書に署名
-#: src/dialogs/certifycertificatedialog.cpp:53
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
 msgstr "保証"
 
-#: src/dialogs/certifycertificatedialog.cpp:81
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "証明書を保証: %1"
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6493,18 +6493,18 @@ msgstr ""
 "リントだけです。</i>"
 
 # 証明書に署名
-#: src/dialogs/certifywidget.cpp:369
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid "Certify with:"
 msgstr "以下で保証:"
 
-#: src/dialogs/certifywidget.cpp:381
+#: src/dialogs/certifywidget.cpp:279
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "信頼レベルを設定..."
 
-#: src/dialogs/certifywidget.cpp:383
+#: src/dialogs/certifywidget.cpp:281
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6514,37 +6514,44 @@ msgstr ""
 "選択された保証鍵に究極の信頼の信用レベルを設定します。あなた自身の鍵に通常は"
 "設定するものです。"
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:301
+#, fuzzy, kde-format
+#| msgid "User IDs"
+msgctxt "@title:column"
+msgid "User ID"
+msgstr "ユーザ ID"
+
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Advanced"
 msgstr "高度"
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Show advanced options"
 msgstr "高度なオプションを表示"
 
-#: src/dialogs/certifywidget.cpp:407
+#: src/dialogs/certifywidget.cpp:311
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "みんなが見れるように保証する (エクスポータブル)"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "その後、鍵サーバへ公開する"
 
-#: src/dialogs/certifywidget.cpp:426
+#: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "Tags:"
 msgstr "タグ:"
 
-#: src/dialogs/certifywidget.cpp:430
+#: src/dialogs/certifywidget.cpp:334
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "保証に追加の情報を加えるのにこれが使えます。"
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:335
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6552,22 +6559,17 @@ msgid ""
 msgstr ""
 "完全な保証の信頼につけられたタグは鍵リストで見ることができ、検索できます。"
 
-#: src/dialogs/certifywidget.cpp:434
-#, kde-format
-msgid "Explain tags"
-msgstr "タグの説明"
-
-#: src/dialogs/certifywidget.cpp:447
+#: src/dialogs/certifywidget.cpp:350
 #, kde-format
 msgid "Expiration:"
 msgstr "失効:"
 
-#: src/dialogs/certifywidget.cpp:454
+#: src/dialogs/certifywidget.cpp:357
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "保証の失効の日を設定するのに使えます。"
 
-#: src/dialogs/certifywidget.cpp:455
+#: src/dialogs/certifywidget.cpp:358
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6577,22 +6579,17 @@ msgstr ""
 "失効の日を設定することにより、あなたの保証の有効性を特定の時間に制限すること"
 "ができます。失効日が過ぎた場合、あなたの保証は有効では無くなります。"
 
-#: src/dialogs/certifywidget.cpp:459
-#, kde-format
-msgid "Explain expiration"
-msgstr "失効を説明する"
-
-#: src/dialogs/certifywidget.cpp:472
+#: src/dialogs/certifywidget.cpp:372
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "信頼できる紹介者として保証する"
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:373
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "あるドメインに対して信頼できる紹介者を保証するためにこれが使えます。"
 
-#: src/dialogs/certifywidget.cpp:474
+#: src/dialogs/certifywidget.cpp:374
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6603,33 +6600,28 @@ msgstr ""
 "すべての証明書は保証されたこととなります。すなわち、信頼できる紹介者は、ある"
 "ドメインに関して、ある種の中間CA のように振る舞うことになります。"
 
-#: src/dialogs/certifywidget.cpp:479
-#, kde-format
-msgid "Explain trusted introducer"
-msgstr "信頼できる紹介者を説明する"
-
-#: src/dialogs/certifywidget.cpp:489
+#: src/dialogs/certifywidget.cpp:385
 #, kde-format
 msgid "Domain:"
 msgstr "ドメイン:"
 
-#: src/dialogs/certifywidget.cpp:679
+#: src/dialogs/certifywidget.cpp:624
 #, kde-format
 msgid "Is this your own key?"
 msgstr "これはあなた自身の鍵ですか?"
 
-#: src/dialogs/certifywidget.cpp:694
+#: src/dialogs/certifywidget.cpp:639
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr "<p>鍵 <b>%1</b> の保証の信頼を変更に失敗しました:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:697
+#: src/dialogs/certifywidget.cpp:642
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "保証の信頼の変更に失敗"
 
-#: src/dialogs/certifywidget.cpp:704
+#: src/dialogs/certifywidget.cpp:649
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "所有者信頼度 の設定に成功しました。"
@@ -12080,6 +12072,15 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#~ msgid "Explain tags"
+#~ msgstr "タグの説明"
+
+#~ msgid "Explain expiration"
+#~ msgstr "失効を説明する"
+
+#~ msgid "Explain trusted introducer"
+#~ msgstr "信頼できる紹介者を説明する"
 
 #~ msgid "The certification must be valid at least until tomorrow."
 #~ msgstr "保証が有効なのは少なくとも明日までです。"

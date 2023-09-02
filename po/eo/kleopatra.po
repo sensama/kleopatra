@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 00:47+0000\n"
-"PO-Revision-Date: 2023-08-26 18:11+0100\n"
+"POT-Creation-Date: 2023-09-02 00:48+0000\n"
+"PO-Revision-Date: 2023-08-31 05:57+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -296,24 +296,24 @@ msgstr "Atestado Ne Eblas"
 msgid "Create"
 msgstr "Krei"
 
-#: src/commands/certifycertificatecommand.cpp:234
+#: src/commands/certifycertificatecommand.cpp:231
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
 "p>"
 msgstr "<p>Okazis eraro dum provado atesti<br/><br/><b>%1</b>:</p><p>\t%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:238
+#: src/commands/certifycertificatecommand.cpp:235
 #, kde-format
 msgid "Certification Error"
 msgstr "Atestada Eraro"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification successful."
 msgstr "Atestado sukcesa."
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "Atestado Sukcesita"
@@ -6036,7 +6036,7 @@ msgid "User IDs:"
 msgstr "Uzantidentoj:"
 
 #: src/dialogs/certificatedetailswidget.cpp:214
-#: src/dialogs/certifywidget.cpp:396
+#: src/dialogs/certifywidget.cpp:294
 #, kde-format
 msgid "User IDs"
 msgstr "Uzantidentigiloj"
@@ -6113,7 +6113,7 @@ msgid "Change Validity"
 msgstr "Ŝanĝi Validecon"
 
 #: src/dialogs/certificatedetailswidget.cpp:299
-#: src/dialogs/certifywidget.cpp:364
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Fingrosigno:"
@@ -6487,18 +6487,18 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "Selektado de Atestilo"
 
-#: src/dialogs/certifycertificatedialog.cpp:53
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
 msgstr "Atesti"
 
-#: src/dialogs/certifycertificatedialog.cpp:81
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Atesti Atestilon: %1"
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6510,18 +6510,18 @@ msgstr ""
 "<br><i>Noto: Nur la fingrospuro klare identigas la ŝlosilon kaj ĝian "
 "posedanton.</i>"
 
-#: src/dialogs/certifywidget.cpp:369
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid "Certify with:"
 msgstr "Atesti kun:"
 
-#: src/dialogs/certifywidget.cpp:381
+#: src/dialogs/certifywidget.cpp:279
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Fido de Posedanto"
 
-#: src/dialogs/certifywidget.cpp:383
+#: src/dialogs/certifywidget.cpp:281
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6531,37 +6531,43 @@ msgstr ""
 "Klaku por agordi la fidan nivelon de la elektita atestadŝlosilo al finfina "
 "fido. Jen kion vi kutime volas fari por viaj propraj ŝlosiloj."
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:301
+#, kde-format
+msgctxt "@title:column"
+msgid "User ID"
+msgstr "Uzantidentigilo"
+
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Advanced"
-msgstr "Plie"
+msgstr "Altnivelaj"
 
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Show advanced options"
 msgstr "Montri altnivelajn opciojn"
 
-#: src/dialogs/certifywidget.cpp:407
+#: src/dialogs/certifywidget.cpp:311
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Atesti por ke ĉiuj vidu (eksportebla)"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Publiki sur ŝlosilservilo poste"
 
-#: src/dialogs/certifywidget.cpp:426
+#: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "Tags:"
 msgstr "Etikedoj:"
 
-#: src/dialogs/certifywidget.cpp:430
+#: src/dialogs/certifywidget.cpp:334
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Vi povas uzi ĉi tion por aldoni pliajn informojn al atestilo."
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:335
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6570,22 +6576,17 @@ msgstr ""
 "Etikedoj kreitaj de iu ajn kun plena atestado fido estas montritaj en la "
 "ŝlosillisto kaj povas esti serĉataj."
 
-#: src/dialogs/certifywidget.cpp:434
-#, kde-format
-msgid "Explain tags"
-msgstr "Klarigi etikedojn"
-
-#: src/dialogs/certifywidget.cpp:447
+#: src/dialogs/certifywidget.cpp:350
 #, kde-format
 msgid "Expiration:"
 msgstr "Eksvalidiĝo:"
 
-#: src/dialogs/certifywidget.cpp:454
+#: src/dialogs/certifywidget.cpp:357
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Vi povas uzi ĉi tion por agordi limdaton por atestilo."
 
-#: src/dialogs/certifywidget.cpp:455
+#: src/dialogs/certifywidget.cpp:358
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6595,22 +6596,17 @@ msgstr ""
 "Fiksante limdaton, vi povas limigi la validecon de via atestado al certa "
 "tempo. Post kiam la limdato pasis, via atesto ne plu validas."
 
-#: src/dialogs/certifywidget.cpp:459
-#, kde-format
-msgid "Explain expiration"
-msgstr "Klarigi eksvalidiĝon"
-
-#: src/dialogs/certifywidget.cpp:472
+#: src/dialogs/certifywidget.cpp:372
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Atesti kiel fidinda enkondukanto"
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:373
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "Vi povas uzi ĉi tion por atesti fidindan enkondukilon por domajno."
 
-#: src/dialogs/certifywidget.cpp:474
+#: src/dialogs/certifywidget.cpp:374
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6621,34 +6617,29 @@ msgstr ""
 "atestitaj de la fidinda enkondukanto, estas traktataj kiel atestitaj, t.e. "
 "fidinda enkondukanto agas kiel speco de meza CA por domajno."
 
-#: src/dialogs/certifywidget.cpp:479
-#, kde-format
-msgid "Explain trusted introducer"
-msgstr "Klarigi fidindan prezentiston"
-
-#: src/dialogs/certifywidget.cpp:489
+#: src/dialogs/certifywidget.cpp:385
 #, kde-format
 msgid "Domain:"
 msgstr "Domajno:"
 
-#: src/dialogs/certifywidget.cpp:679
+#: src/dialogs/certifywidget.cpp:624
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Ĉu ĉi tio estas via propra ŝlosilo?"
 
-#: src/dialogs/certifywidget.cpp:694
+#: src/dialogs/certifywidget.cpp:639
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
 "<p>Ŝanĝi la atestan fidon de la ŝlosilo <b>%1</b> malsukcesis:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:697
+#: src/dialogs/certifywidget.cpp:642
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Atestada Fida Ŝanĝo Malsukcesis"
 
-#: src/dialogs/certifywidget.cpp:704
+#: src/dialogs/certifywidget.cpp:649
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Fido de posedanto sukcese fiksita."

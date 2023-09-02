@@ -33,6 +33,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeySelectionCombo>
+#include <Libkleo/NavigatableTreeWidget>
 #include <Libkleo/Predicates>
 
 #include <QGpgME/ChangeOwnerTrustJob>
@@ -44,19 +45,19 @@
 #include <QIcon>
 #include <QLabel>
 #include <QLineEdit>
-#include <QListView>
 #include <QParallelAnimationGroup>
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QScrollArea>
-#include <QStandardItemModel>
 #include <QToolButton>
-#include <QToolTip>
 #include <QVBoxLayout>
 
 #include <gpgme++/key.h>
 
+Q_DECLARE_METATYPE(GpgME::UserID)
+
 using namespace Kleo;
+using namespace GpgME;
 
 static QDebug operator<<(QDebug s, const GpgME::UserID &userID)
 {
@@ -197,128 +198,24 @@ private:
     GpgME::Key mExcludedKey;
 };
 
-class UserIDItem : public QStandardItem
-{
-public:
-    explicit UserIDItem(const GpgME::UserID &uid)
-        : mUserId{uid}
-    {
-    }
-
-    GpgME::UserID userId()
-    {
-        return mUserId;
-    }
-
-private:
-    GpgME::UserID mUserId;
-};
-
-class UserIDModel : public QStandardItemModel
-{
-    Q_OBJECT
-public:
-    enum Role { UserID = Qt::UserRole };
-    explicit UserIDModel(QObject *parent = nullptr)
-        : QStandardItemModel(parent)
-    {
-    }
-
-    GpgME::Key certificateToCertify() const
-    {
-        return m_key;
-    }
-
-    void setKey(const GpgME::Key &key)
-    {
-        m_key = key;
-        clear();
-        const std::vector<GpgME::UserID> ids = key.userIDs();
-        int i = 0;
-        for (const auto &uid : key.userIDs()) {
-            if (uid.isRevoked() || uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
-                // Skip user IDs that cannot really be certified.
-                i++;
-                continue;
-            }
-            const auto item = new UserIDItem{uid};
-            item->setText(Formatting::prettyUserID(uid));
-            item->setCheckable(true);
-            item->setEditable(false);
-            item->setCheckState(Qt::Checked);
-            appendRow(item);
-            i++;
-        }
-    }
-
-    void setCheckedUserIDs(const std::vector<GpgME::UserID> &uids)
-    {
-        for (int i = 0, end = rowCount(); i != end; ++i) {
-            const auto uidItem = userIdItem(i);
-            const auto itemUserId = uidItem->userId();
-            const bool userIdIsInList = Kleo::any_of(uids, [itemUserId](const auto &uid) {
-                return Kleo::userIDsAreEqual(itemUserId, uid);
-            });
-            uidItem->setCheckState(userIdIsInList ? Qt::Checked : Qt::Unchecked);
-        }
-    }
-
-    std::vector<GpgME::UserID> checkedUserIDs() const
-    {
-        std::vector<GpgME::UserID> userIds;
-        userIds.reserve(rowCount());
-        for (int i = 0; i < rowCount(); ++i) {
-            const auto uidItem = userIdItem(i);
-            if (uidItem->checkState() == Qt::Checked) {
-                userIds.push_back(uidItem->userId());
-            }
-        }
-        qCDebug(KLEOPATRA_LOG) << "Checked user IDs:" << userIds;
-        return userIds;
-    }
-
-private:
-    UserIDItem *userIdItem(int row) const
-    {
-        return static_cast<UserIDItem *>(item(row));
-    }
-
-private:
-    GpgME::Key m_key;
-};
-
 auto checkBoxSize(const QCheckBox *checkBox)
 {
     QStyleOptionButton opt;
     return checkBox->style()->sizeFromContents(QStyle::CT_CheckBox, &opt, QSize(), checkBox);
 }
 
-auto createInfoButton(const QString &text, QWidget *parent)
-{
-    auto infoBtn = new QPushButton{parent};
-    infoBtn->setIcon(QIcon::fromTheme(QStringLiteral("help-contextual")));
-    infoBtn->setFlat(true);
-
-    QObject::connect(infoBtn, &QPushButton::clicked, infoBtn, [infoBtn, text]() {
-        const auto pos = infoBtn->mapToGlobal(QPoint()) + QPoint(infoBtn->width(), 0);
-        showToolTip(pos, text, infoBtn);
-    });
-
-    return infoBtn;
-}
-
-class ListView : public QListView
+class TreeWidget : public NavigatableTreeWidget
 {
     Q_OBJECT
 public:
-    using QListView::QListView;
+    using NavigatableTreeWidget::NavigatableTreeWidget;
 
 protected:
     void focusInEvent(QFocusEvent *event) override
     {
-        QListView::focusInEvent(event);
+        NavigatableTreeWidget::focusInEvent(event);
         // queue the invokation, so that it happens after the widget itself got focus
-        QMetaObject::invokeMethod(this, &ListView::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, &TreeWidget::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
     }
 
 private:
@@ -332,11 +229,12 @@ private:
         setCurrentIndex(current);
     }
 };
-
 }
 
 class CertifyWidget::Private
 {
+    enum Role { UserIdRole = Qt::UserRole };
+
 public:
     Private(CertifyWidget *qq)
         : q{qq}
@@ -392,9 +290,15 @@ public:
 
         mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
 
-        userIdListView = new ListView{q};
+        userIdListView = new TreeWidget{q};
         userIdListView->setAccessibleName(i18n("User IDs"));
-        userIdListView->setModel(&mUserIDModel);
+        userIdListView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        userIdListView->setSelectionMode(QAbstractItemView::SingleSelection);
+        userIdListView->setRootIsDecorated(false);
+        userIdListView->setUniformRowHeights(true);
+        userIdListView->setAllColumnsShowFocus(false);
+        userIdListView->setHeaderHidden(true);
+        userIdListView->setHeaderLabels({i18nc("@title:column", "User ID")});
         mainLay->addWidget(userIdListView, 1);
 
         // Setup the advanced area
@@ -427,15 +331,14 @@ public:
             mTagsLE = new QLineEdit{q};
             label->setBuddy(mTagsLE);
 
-            auto infoBtn = createInfoButton(i18n("You can use this to add additional info to a certification.") + QStringLiteral("<br/><br/>")
-                                                + i18n("Tags created by anyone with full certification trust "
-                                                       "are shown in the keylist and can be searched."),
-                                            q);
-            infoBtn->setAccessibleName(i18n("Explain tags"));
+            const auto tooltip = i18n("You can use this to add additional info to a certification.") + QStringLiteral("<br/><br/>")
+                + i18n("Tags created by anyone with full certification trust "
+                       "are shown in the keylist and can be searched.");
+            label->setToolTip(tooltip);
+            mTagsLE->setToolTip(tooltip);
 
             tagsLay->addWidget(label);
             tagsLay->addWidget(mTagsLE, 1);
-            tagsLay->addWidget(infoBtn);
 
             advLay->addLayout(tagsLay);
         }
@@ -451,37 +354,30 @@ public:
             mExpirationDateEdit->setDate(Kleo::defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
             mExpirationDateEdit->setEnabled(mExpirationCheckBox->isChecked());
 
-            auto infoBtn = createInfoButton(i18n("You can use this to set an expiration date for a certification.") + QStringLiteral("<br/><br/>")
-                                                + i18n("By setting an expiration date, you can limit the validity of "
-                                                       "your certification to a certain amount of time. Once the expiration "
-                                                       "date has passed, your certification is no longer valid."),
-                                            q);
-            infoBtn->setAccessibleName(i18n("Explain expiration"));
+            const auto tooltip = i18n("You can use this to set an expiration date for a certification.") + QStringLiteral("<br/><br/>")
+                + i18n("By setting an expiration date, you can limit the validity of "
+                       "your certification to a certain amount of time. Once the expiration "
+                       "date has passed, your certification is no longer valid.");
+            mExpirationCheckBox->setToolTip(tooltip);
+            mExpirationDateEdit->setToolTip(tooltip);
 
             layout->addWidget(mExpirationCheckBox);
             layout->addWidget(mExpirationDateEdit, 1);
-            layout->addWidget(infoBtn);
 
             advLay->addLayout(layout);
         }
 
         {
-            auto layout = new QHBoxLayout;
-
             mTrustSignatureCB = new QCheckBox{q};
             mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
-            auto infoBtn = createInfoButton(i18n("You can use this to certify a trusted introducer for a domain.") + QStringLiteral("<br/><br/>")
-                                                + i18n("All certificates with email addresses belonging to the domain "
-                                                       "that have been certified by the trusted introducer are treated "
-                                                       "as certified, i.e. a trusted introducer acts as a kind of "
-                                                       "intermediate CA for a domain."),
-                                            q);
-            infoBtn->setAccessibleName(i18n("Explain trusted introducer"));
+            const auto tooltip = i18n("You can use this to certify a trusted introducer for a domain.") + QStringLiteral("<br/><br/>")
+                + i18n("All certificates with email addresses belonging to the domain "
+                       "that have been certified by the trusted introducer are treated "
+                       "as certified, i.e. a trusted introducer acts as a kind of "
+                       "intermediate CA for a domain.");
+            mTrustSignatureCB->setToolTip(tooltip);
 
-            layout->addWidget(mTrustSignatureCB, 1);
-            layout->addWidget(infoBtn);
-
-            advLay->addLayout(layout);
+            advLay->addWidget(mTrustSignatureCB);
         }
         {
             auto layout = new QHBoxLayout;
@@ -501,7 +397,7 @@ public:
 
         expander->setContentLayout(advLay);
 
-        connect(&mUserIDModel, &QStandardItemModel::itemChanged, q, [this](QStandardItem *item) {
+        connect(userIdListView, &QTreeWidget::itemChanged, q, [this](auto item, auto) {
             onItemChanged(item);
         });
 
@@ -549,32 +445,60 @@ public:
         mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
     }
 
+    void setUpUserIdList(const std::vector<GpgME::UserID> &uids)
+    {
+        userIdListView->clear();
+        for (const auto &uid : uids) {
+            if (uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
+                // Skip user IDs that cannot really be certified.
+                continue;
+            }
+            auto item = new QTreeWidgetItem;
+            item->setData(0, UserIdRole, QVariant::fromValue(uid));
+            item->setData(0, Qt::DisplayRole, Kleo::Formatting::prettyUserID(uid));
+            item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+            item->setCheckState(0, Qt::Checked);
+            userIdListView->addTopLevelItem(item);
+        }
+    }
+
     void updateTags()
     {
+        struct ItemAndRemark {
+            QTreeWidgetItem *item;
+            QString remark;
+        };
+
         if (mTagsLE->isModified()) {
             return;
         }
         GpgME::Key remarkKey = mSecKeySelect->currentKey();
 
         if (!remarkKey.isNull()) {
-            std::vector<GpgME::UserID> uidsWithRemark;
+            std::vector<ItemAndRemark> itemsAndRemarks;
+            // first choose the remark we want to prefill the Tags field with
             QString remark;
-            for (const auto &uid : mTarget.userIDs()) {
+            for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
+                const auto item = userIdListView->topLevelItem(i);
+                const auto uid = getUserId(item);
                 GpgME::Error err;
                 const char *c_remark = uid.remark(remarkKey, err);
-                if (c_remark) {
-                    const QString candidate = QString::fromUtf8(c_remark);
-                    if (candidate != remark) {
+                const QString itemRemark = (!err && c_remark) ? QString::fromUtf8(c_remark) : QString{};
+                if (!itemRemark.isEmpty() && (itemRemark != remark)) {
+                    if (!remark.isEmpty()) {
                         qCDebug(KLEOPATRA_LOG) << "Different remarks on user IDs. Taking last.";
-                        remark = candidate;
-                        uidsWithRemark.clear();
                     }
-                    uidsWithRemark.push_back(uid);
+                    remark = itemRemark;
                 }
+                itemsAndRemarks.push_back({item, itemRemark});
             }
-            // Only select the user IDs with the correct remark
+            // then select the user IDs with the chosen remark; this prevents overwriting existing
+            // different remarks on the other user IDs (as long as the user doesn't select any of
+            // the unselected user IDs with a different remark)
             if (!remark.isEmpty()) {
-                selectUserIDs(uidsWithRemark);
+                for (const auto &[item, itemRemark] : itemsAndRemarks) {
+                    item->setCheckState(0, itemRemark == remark ? Qt::Checked : Qt::Unchecked);
+                }
             }
             mTagsLE->setText(remark);
         }
@@ -593,12 +517,12 @@ public:
         }
     }
 
-    void setTarget(const GpgME::Key &key)
+    void setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
     {
         mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
                             Formatting::accessibleHexID(key.primaryFingerprint()));
-        mUserIDModel.setKey(key);
         mTarget = key;
+        setUpUserIdList(uids.empty() ? mTarget.userIDs() : uids);
 
         auto keyFilter = std::make_shared<SecKeyFilter>();
         keyFilter->setExcludedKey(mTarget);
@@ -613,14 +537,35 @@ public:
         return mSecKeySelect->currentKey();
     }
 
+    GpgME::UserID getUserId(const QTreeWidgetItem *item) const
+    {
+        return item ? item->data(0, UserIdRole).value<UserID>() : UserID{};
+    }
+
     void selectUserIDs(const std::vector<GpgME::UserID> &uids)
     {
-        mUserIDModel.setCheckedUserIDs(uids);
+        for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
+            const auto uidItem = userIdListView->topLevelItem(i);
+            const auto itemUserId = getUserId(uidItem);
+            const bool userIdIsInList = Kleo::any_of(uids, [itemUserId](const auto &uid) {
+                return Kleo::userIDsAreEqual(itemUserId, uid);
+            });
+            uidItem->setCheckState(0, userIdIsInList ? Qt::Checked : Qt::Unchecked);
+        }
     }
 
     std::vector<GpgME::UserID> selectedUserIDs() const
     {
-        return mUserIDModel.checkedUserIDs();
+        std::vector<GpgME::UserID> userIds;
+        userIds.reserve(userIdListView->topLevelItemCount());
+        for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
+            const auto *const uidItem = userIdListView->topLevelItem(i);
+            if (uidItem->checkState(0) == Qt::Checked) {
+                userIds.push_back(getUserId(uidItem));
+            }
+        }
+        qCDebug(KLEOPATRA_LOG) << "Checked user IDs:" << userIds;
+        return userIds;
     }
 
     bool exportableSelected() const
@@ -707,7 +652,7 @@ public:
         j->start(secKey(), GpgME::Key::Ultimate);
     }
 
-    void onItemChanged(QStandardItem *item)
+    void onItemChanged(QTreeWidgetItem *item)
     {
         Q_EMIT q->changed();
 
@@ -717,7 +662,7 @@ public:
             QAccessible::State st;
             st.checked = true;
             QAccessibleStateChangeEvent e(userIdListView, st);
-            e.setChild(item->index().row());
+            e.setChild(userIdListView->indexOfTopLevelItem(item));
             QAccessible::updateAccessibility(&e);
         }
 #endif
@@ -728,7 +673,7 @@ public:
     std::unique_ptr<InfoField> mFprField;
     KeySelectionCombo *mSecKeySelect = nullptr;
     KMessageWidget *mMissingOwnerTrustInfo = nullptr;
-    ListView *userIdListView = nullptr;
+    NavigatableTreeWidget *userIdListView = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;
     QLineEdit *mTagsLE = nullptr;
@@ -740,7 +685,6 @@ public:
 
     LabelHelper labelHelper;
 
-    UserIDModel mUserIDModel;
     GpgME::Key mTarget;
 };
 
@@ -752,9 +696,9 @@ CertifyWidget::CertifyWidget(QWidget *parent)
 
 Kleo::CertifyWidget::~CertifyWidget() = default;
 
-void CertifyWidget::setTarget(const GpgME::Key &key)
+void CertifyWidget::setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
 {
-    d->setTarget(key);
+    d->setTarget(key, uids);
 }
 
 GpgME::Key CertifyWidget::target() const

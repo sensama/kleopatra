@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-08-31 23:45+0200\n"
+"PO-Revision-Date: 2023-09-01 23:51+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -143,7 +143,7 @@ msgstr "(c) 2010-%1 Kleopatra garatzaileak, g10 Code GmbH"
 #, kde-format
 msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
 msgid "Uses:"
-msgstr "Erabiltzen ditu:"
+msgstr "Erabilerak:"
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -152,26 +152,26 @@ msgid ""
 "<para>An error occurred while trying to add the user ID: <message>%1</"
 "message></para>"
 msgstr ""
-"<para>Errore bat gertatu da erabiltzaile IDa gehitzen saiatzean:<message>%1</"
+"<para>Errore bat gertatu da erabiltzaile-IDa gehitzen saiatzean:<message>%1</"
 "message></para>"
 
 #: src/commands/adduseridcommand.cpp:207
 #, kde-format
 msgctxt "@title:window"
 msgid "Add User ID Error"
-msgstr "Erabiltzaile ID gehitzeko errorea"
+msgstr "Erabiltzaile-IDa gehitzeko errorea"
 
 #: src/commands/adduseridcommand.cpp:212
 #, kde-format
 msgctxt "@info"
 msgid "User ID successfully added."
-msgstr "Erabiltzaile ID ondo gehitu da."
+msgstr "Erabiltzaile-IDa ondo gehitu da."
 
 #: src/commands/adduseridcommand.cpp:213
 #, kde-format
 msgctxt "@title:window"
 msgid "Add User ID Succeeded"
-msgstr "Gehitu erabiltzaile ID ondo egin da"
+msgstr "Erabiltzaile-ID gehitzea ondo egin da"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:127
 #: src/commands/certificatetopivcardcommand.cpp:120
@@ -183,7 +183,7 @@ msgstr "Gehitu erabiltzaile ID ondo egin da"
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:190
 #, kde-format
 msgid "Failed to find the PIV card with the serial number: %1"
-msgstr "Serie zenbakia duen PIV txartela aurkitzea huts egin du: %1"
+msgstr "Ondoko serie-zenbakia duen PIV txartela aurkitzea huts egin du: %1"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:154
 #, kde-format
@@ -202,6 +202,7 @@ msgstr ""
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
+"Barkatu! Ez da txartel-erreten horretan idazteko ziurtagiri egokirik aurkitu."
 
 #: src/commands/certificatetopivcardcommand.cpp:132
 #: src/view/pivcardwidget.cpp:271
@@ -217,6 +218,8 @@ msgid ""
 "<p>Please confirm that you want to write the following certificate to the %1 "
 "slot of card %2:</p><center>%3</center>"
 msgstr ""
+"<p>Mesedez, baieztatu ondoko ziurtagiria %2 txartelaren %1 erretenean idatzi "
+"nahi duzula:</p><center>%3</center>"
 
 #: src/commands/certificatetopivcardcommand.cpp:142
 #, kde-format
@@ -779,14 +782,13 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
-msgstr ""
+msgstr "Gorde eskaera"
 
 #: src/commands/createcsrforcardkeycommand.cpp:245
 #: src/newcertificatewizard/resultpage.cpp:243
-#, fuzzy, kde-format
-#| msgid "PKCS#12 Key Bundle (*.p12)"
+#, kde-format
 msgid "PKCS#10 Requests (*.p10)"
-msgstr "PKCS#12 gako bilduma (*.p12)"
+msgstr "PKCS#10 eskaerak (*.p10)"
 
 #: src/commands/createcsrforcardkeycommand.cpp:253
 #, fuzzy, kde-kuit-format
@@ -805,7 +807,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
-msgstr ""
+msgstr "Errorea eskaera gordetzean"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:111
 #, kde-format
@@ -820,13 +822,12 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Create OpenPGP Key"
-msgstr ""
+msgstr "Sortu OpenPGP gakoa"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:125
-#, fuzzy, kde-format
-#| msgid "New user IDs:"
+#, kde-format
 msgid "Enter User ID"
-msgstr "Erabiltzaile-ID berriak:"
+msgstr "Sartu erabiltzaile-ID"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:169
 #, fuzzy, kde-format
@@ -1286,11 +1287,10 @@ msgstr ""
 "%1"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:121
-#, fuzzy, kde-format
-#| msgid "CRL cache cleared successfully."
+#, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
-msgstr "CRL cache-a ongi garbitu da."
+msgstr "OpenPGP ziurtagiriak ondo esportatu dira."
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:74
 #, kde-kuit-format
@@ -1350,27 +1350,29 @@ msgid ""
 "application> to create a minimized and printable version of your secret key."
 "</para><para>Please make sure it is installed.</para>"
 msgstr ""
+"<para><application>Kleopatra</application>k <application>PaperKey</"
+"application> erabiltzen du zure gako sekretuaren bertsio minimizatu eta "
+"inprimagarri bat sortzeko.</para><para>Mesedez, ziurtatu instalatuta dagoela."
+"</para>"
 
 #: src/commands/exportpaperkeycommand.cpp:72
 #: src/commands/importpaperkeycommand.cpp:159
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
-msgstr ""
+msgstr "«PaperKey» exekutagarria aurkitzea huts egin du."
 
 #: src/commands/exportpaperkeycommand.cpp:93
-#, fuzzy, kde-format
-#| msgid "Export Secret Key..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
-msgstr "Esportatu gako sekretua..."
+msgstr "Inprimatu gako sekretua"
 
 #: src/commands/exportpaperkeycommand.cpp:110
-#, fuzzy, kde-format
-#| msgid "Export Secret Key..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Error printing secret key"
-msgstr "Esportatu gako sekretua..."
+msgstr "Errorea gako sekretua inprimatzean"
 
 #: src/commands/exportpaperkeycommand.cpp:116
 #, fuzzy, kde-kuit-format
@@ -1388,58 +1390,49 @@ msgstr ""
 
 #: src/commands/exportpaperkeycommand.cpp:125
 #: src/commands/exportsecretkeycommand_old.cpp:137
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "An error occurred when trying to clear the CRL cache. The output from "
-#| "DirMngr was:\n"
-#| "%1"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export the secret key.</para> "
 "<para>The output from <command>%1</command> was: <message>%2</message></para>"
 msgstr ""
-"Errore bat gertatu da CRL cache-a garbitzean. DirMngr-en irteera hau izan "
-"da:\n"
-"%1"
+"<para>Errore bat gertatu da gako sekretua esportatzen saiatzean.</para> "
+"<para><command>%1</command>(e)ren irteera izan da: <message>%2</message></"
+"para>"
 
 #: src/commands/exportsecretkeycommand.cpp:92
 #: src/commands/exportsecretkeycommand.cpp:94
 #: src/commands/exportsecretsubkeycommand.cpp:83
-#, fuzzy, kde-format
-#| msgid "Secret Key Export"
+#, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Files"
-msgstr "Esportatu gako sekretua"
+msgstr "Gako sekretuaren fitxategiak"
 
 #: src/commands/exportsecretkeycommand.cpp:97
-#, fuzzy, kde-format
-#| msgid "Certificate Deletion Failed"
+#, kde-format
 msgctxt "description of filename filter"
 msgid "All Files"
-msgstr "Ziurtagirien ezabapenak huts egin du"
+msgstr "Fitxategi guztiak"
 
 #: src/commands/exportsecretkeycommand.cpp:105
 #: src/commands/exportsecretkeycommand.cpp:278
 #: src/commands/exportsecretsubkeycommand.cpp:269
-#, fuzzy, kde-format
-#| msgid "Secret Key Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Backup"
-msgstr "Esportatu gako sekretua"
+msgstr "Gako sekretuaren babes-kopia"
 
 #: src/commands/exportsecretkeycommand.cpp:123
-#, fuzzy, kde-format
-#| msgid "Secret Key Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Backup Error"
-msgstr "Esportatu gako sekretua"
+msgstr "Gako sekretuaren babes-kopiaren errorea"
 
 #: src/commands/exportsecretkeycommand.cpp:232
-#, fuzzy, kde-format
-#| msgid "Export Secret Key..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Backing up secret key..."
-msgstr "Esportatu gako sekretua..."
+msgstr "Gako sekretuaren babes-kopia egiten..."
 
 #: src/commands/exportsecretkeycommand.cpp:255
 #, kde-format
@@ -1448,68 +1441,60 @@ msgid ""
 "The result of the backup is empty. Maybe you entered an empty or a wrong "
 "passphrase."
 msgstr ""
+"Babes-kopiaren emaitza hutsik dago. Agian pasaesaldi hutsa edo okerra sartu "
+"duzu."
 
 #: src/commands/exportsecretkeycommand.cpp:263
 #: src/commands/exportsecretsubkeycommand.cpp:248
-#, fuzzy, kde-kuit-format
-#| msgid "Could not generate certificate: %1"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Ezin izan du <filename>%1</filename> fitxategia irakurtzeko ireki."
 
 #: src/commands/exportsecretkeycommand.cpp:271
-#, fuzzy, kde-kuit-format
-#| msgid "Could not generate certificate: %1"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Writing key to file <filename>%1</filename> failed."
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Gakoa <filename>%1</filename> fitxategian idaztea huts egin du."
 
 #: src/commands/exportsecretkeycommand.cpp:277
-#, fuzzy, kde-format
-#| msgid "CRL cache cleared successfully."
+#, kde-format
 msgctxt "@info"
 msgid "The backup of the secret key was created successfully."
-msgstr "CRL cache-a ongi garbitu da."
+msgstr "Gako sekretuaren babes-kopia ondo sortu da."
 
 #: src/commands/exportsecretkeycommand.cpp:285
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificates:</"
-#| "p><p><b>%1</b></p></qt>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during the backup of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<qt><p>Errore bat gertatu da ziurtagiriak ezabatzean:</p><p><b>%1</b></p></"
-"qt>"
+"<para>Errore bat gertatu da gako sekretuaren babes-kopia egitean:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/exportsecretkeycommand_old.cpp:72
-#, fuzzy, kde-format
-#| msgid "Export Secret Key..."
+#, kde-format
 msgid "Backup Secret Key"
-msgstr "Esportatu gako sekretua..."
+msgstr "Gako sekretuaren babes-kopia"
 
 #: src/commands/exportsecretkeycommand_old.cpp:76
 #: src/commands/exportsecretkeycommand_old.cpp:77
-#, fuzzy, kde-format
-#| msgid "Secret Key Export"
+#, kde-format
 msgid "Secret Key Files"
-msgstr "Esportatu gako sekretua"
+msgstr "Gako sekretuaren fitxategiak"
 
 #: src/commands/exportsecretkeycommand_old.cpp:118
-#, fuzzy, kde-format
-#| msgid "Secret Key Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Export Error"
-msgstr "Esportatu gako sekretua"
+msgstr "Gako sekretua esportatzeko errorea"
 
 #: src/commands/exportsecretkeycommand_old.cpp:123
-#, fuzzy, kde-format
-#| msgid "Secret-Key Export Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Export Finished"
-msgstr "Gako-sekretuaren esportazioak huts egin du"
+msgstr "Gako sekretua esportatzea amaitu da"
 
 #: src/commands/exportsecretkeycommand_old.cpp:129
 #, fuzzy, kde-kuit-format
@@ -1526,89 +1511,80 @@ msgstr ""
 "da, espero ez zuen errore bat aurkitu duelako."
 
 #: src/commands/exportsecretkeycommand_old.cpp:147
-#, fuzzy, kde-format
-#| msgid "Secret keys imported:"
+#, kde-format
 msgctxt "@info"
 msgid "Secret key successfully exported."
-msgstr "Inportatutako giltza sekretuak:"
+msgstr "Gako sekretua ondo esportatu da."
 
 #: src/commands/exportsecretkeycommand_old.cpp:155
 #, kde-format
 msgctxt "@info"
 msgid "Possibly bad passphrase given."
-msgstr ""
+msgstr "Baliteke emandako pasaesaldia okerra izatea."
 
 #: src/commands/exportsecretkeycommand_old.cpp:164
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to write data."
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Datuak idaztea huts egin du."
 
 #: src/commands/exportsecretsubkeycommand.cpp:69
-#, fuzzy, kde-format
-#| msgid "New subkeys:"
+#, kde-format
 msgctxt "Generic filename for exported subkeys"
 msgid "subkeys"
-msgstr "Azpi-gako berriak:"
+msgstr "azpigakoak"
 
 #: src/commands/exportsecretsubkeycommand.cpp:80
-#, fuzzy, kde-format
-#| msgid "Export Secret Key..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Subkey"
 msgid_plural "Export Subkeys"
-msgstr[0] "Esportatu gako sekretua..."
-msgstr[1] "Esportatu gako sekretua..."
+msgstr[0] "Esportatu azpigakoa"
+msgstr[1] "Esportatu azpigakoak"
 
 #: src/commands/exportsecretsubkeycommand.cpp:217
-#, fuzzy, kde-format
-#| msgid "For &encrypting only"
+#, kde-format
 msgctxt "@info:status"
 msgid "Exporting subkeys..."
-msgstr "&Enkriptatzeko bakarrik"
+msgstr "Azpigakoak esportatzen..."
 
 #: src/commands/exportsecretsubkeycommand.cpp:240
 #, kde-format
 msgctxt "@info"
 msgid "The result of the export is empty."
-msgstr ""
+msgstr "Esportatzearen emaitza hutsik dago."
 
 #: src/commands/exportsecretsubkeycommand.cpp:257
-#, fuzzy, kde-kuit-format
-#| msgid "Could not generate certificate: %1"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
 msgid_plural "Writing subkeys to file <filename>%2</filename> failed."
-msgstr[0] "Ezin izan da ziurtagiria sortu: %1"
-msgstr[1] "Ezin izan da ziurtagiria sortu: %1"
+msgstr[0] "Azpigakoa <filename>%2</filename> fitxategian idaztea huts egin du."
+msgstr[1] ""
+"Azpigakoak <filename>%2</filename> fitxategian idaztea huts egin du."
 
 #: src/commands/exportsecretsubkeycommand.cpp:266
-#, fuzzy, kde-format
-#| msgid "CRL cache cleared successfully."
+#, kde-format
 msgctxt "@info"
 msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
-msgstr[0] "CRL cache-a ongi garbitu da."
-msgstr[1] "CRL cache-a ongi garbitu da."
+msgstr[0] "Azpigakoa ondo esportatu da."
+msgstr[1] "%1 azpigako ondo esportatu dira."
 
 #: src/commands/exportsecretsubkeycommand.cpp:276
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificates:</"
-#| "p><p><b>%1</b></p></qt>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
 "message></para>"
 msgstr ""
-"<qt><p>Errore bat gertatu da ziurtagiriak ezabatzean:</p><p><b>%1</b></p></"
-"qt>"
+"<para>Esportatu bitartean errore bat gertatu da:</para><para><message>%1</"
+"message></para>"
 
 #: src/commands/genrevokecommand.cpp:74
-#, fuzzy, kde-format
+#, kde-format
 msgid "This is a revocation certificate for the OpenPGP key:"
-msgstr " Ziur zaude ziurtagiri hau ezabatu nahi duzula?"
+msgstr "Hori OpenPGP gakoa indargabetzeko ziurtagiri bat da:"
 
 #: src/commands/genrevokecommand.cpp:77
 #, kde-format
@@ -1624,6 +1600,8 @@ msgid ""
 "Use it to revoke this key in case of a compromise or loss of\n"
 "the secret key."
 msgstr ""
+"Erabili, gako hori indargabetzeko, gako sekretua arriskuan\n"
+"jarri edo galtzen bada."
 
 #: src/commands/genrevokecommand.cpp:84
 #, kde-format
@@ -1632,6 +1610,9 @@ msgid ""
 "before the 5 dashes below.  Remove this colon with a text editor\n"
 "before importing and publishing this revocation certificate."
 msgstr ""
+"Fitxategia hori nahi gabe erabiltzea saihesteko, bi puntu (\":\") karaktere\n"
+"bat sartu da beheko 5 marren (\"-\") aurretik. Kendu bi puntu horiek testu \n"
+"editore bat erabiliz, indargabetzeko ziurtagiri hori inportatu aurretik."
 
 #: src/commands/genrevokecommand.cpp:94
 #, kde-format
@@ -1641,80 +1622,69 @@ msgid ""
 "import of the revocation<br>it is required to manually edit the "
 "certificate<br>before it can be imported."
 msgstr ""
+"Ziurtagiria ondo sortu da.<br><br>Oharra:<br>Indargabetzekoa ustekabean "
+"inportatzea saihesteko,<br>inportatu aurretik,<br>ziurtagiria eskuz "
+"editatzea beharrezkoa da."
 
 #: src/commands/genrevokecommand.cpp:98
-#, fuzzy, kde-format
-#| msgid "Exporting certificate..."
+#, kde-format
 msgid "Revocation certificate created"
-msgstr "Ziurtagiria esportatzen"
+msgstr "Indargabetze ziurtagiria sortu da"
 
 #: src/commands/genrevokecommand.cpp:107
-#, fuzzy, kde-format
-#| msgid "Delete Certificates"
+#, kde-format
 msgid "Generate revocation certificate"
-msgstr "Ezabatu ziurtagiriak"
+msgstr "Sortu indargabetze ziurtagiria"
 
 #: src/commands/genrevokecommand.cpp:109
-#, fuzzy, kde-format
-#| msgid "Exporting certificate..."
+#, kde-format
 msgid "Revocation Certificates "
-msgstr "Ziurtagiria esportatzen"
+msgstr "Indargabetze ziurtagiriak"
 
 #: src/commands/genrevokecommand.cpp:122
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+#, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
 msgstr ""
-"\"%1\" izeneko fitxategia existitzen da dagoeneko. Ziur zaude gainidatzi "
-"nahi duzula?"
+"<filename>%1</filename> fitxategia lehendik ere badago. Gainidatzi nahi duzu?"
 
 #: src/commands/genrevokecommand.cpp:123
-#, fuzzy, kde-format
-#| msgid "Overwrite File?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Overwrite File?"
-msgstr "Gainidatzi fitxategia?"
+msgstr "Fitxategia gainidatzi?"
 
 #: src/commands/genrevokecommand.cpp:182
-#, fuzzy, kde-format
-#| msgid ""
-#| "An error occurred while trying to refresh keys:\n"
-#| "%1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Error creating revocation certificate"
-msgstr ""
-"Errorea bat gertatu da gakoak freskatzean:\n"
-"%1"
+msgstr "Errorea indargabetzeko ziurtagiria sortzean"
 
 #: src/commands/gnupgprocesscommand.cpp:128
 #, kde-format
 msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
-msgstr ""
+msgstr "Azpiprozesuaren diagnostikoa"
 
 #: src/commands/gnupgprocesscommand.cpp:258
-#, fuzzy, kde-format
-#| msgid "Unable to start %1 process. Please check your installation."
+#, kde-format
 msgid "Unable to start process %1. Please check your installation."
-msgstr "Ezin izan da %1 prozesua abiatu. Egiaztatu zure instalazioa."
+msgstr "Ez da %1 prozesua abiatzeko gai. Mesedez, egiaztatu zure instalazioa."
 
 #: src/commands/gnupgprocesscommand.cpp:264
-#, fuzzy, kde-format
-#| msgid "Deleting keys..."
+#, kde-format
 msgid "Starting %1..."
-msgstr "Gakoak ezabatzen..."
+msgstr "%1 abiarazten..."
 
 #: src/commands/gnupgprocesscommand.cpp:287
 #, kde-format
 msgid "Process finished"
-msgstr ""
+msgstr "Prozesua amaitu egin da"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #, kde-format
 msgid "Clipboard contents do not look like a certificate."
-msgstr ""
+msgstr "Arbeleko edukiak ez du ziurtagiri itxurarik."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
@@ -1723,19 +1693,18 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp:990
 #, kde-format
 msgid "Certificate Import Failed"
-msgstr "Ziurtagiriarn inportazioak huts egin du"
+msgstr "Ziurtagiria inportatzea huts egin du"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not determine certificate type of clipboard contents."
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Ezin izan du arbeleko edukiaren ziurtagiri mota zehaztu."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
 #: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:767
 #, kde-format
 msgid "Clipboard"
-msgstr ""
+msgstr "Arbela"
 
 #: src/commands/importcertificatefromdatacommand.cpp:75
 #: src/view/padwidget.cpp:138 src/view/padwidget.cpp:333
@@ -1743,42 +1712,37 @@ msgstr ""
 #: src/view/padwidget.cpp:417
 #, kde-format
 msgid "Notepad"
-msgstr ""
+msgstr "Ohar-bloka"
 
 #: src/commands/importcertificatefromfilecommand.cpp:126
 #: src/commands/importcertificatescommand.cpp:193
-#, fuzzy, kde-format
-#| msgid "Import Certificates..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
-msgstr "Inportatu ziurtagiriak..."
+msgstr "Ziurtagiriak inportatzea"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#, fuzzy, kde-format
-#| msgid "Import Certificates..."
+#, kde-format
 msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
-msgstr[0] "Inportatu ziurtagiriak..."
-msgstr[1] "Inportatu ziurtagiriak..."
+msgstr[0] "Fitxategi 1eko fitxategiak inportatzen..."
+msgstr[1] "%1 fitxategietako ziurtagiriak inportatzen..."
 
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not open file %1 for reading: %2"
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Ezin izan du %1 fitxategia irakurtzeko ireki: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
 #: src/commands/importcertificatescommand.cpp:295 src/view/keytreeview.cpp:275
-#, fuzzy, kde-format
-#| msgid "&Certificates"
+#, kde-format
 msgid "Certificates"
-msgstr "&Ziurtagiriak"
+msgstr "Ziurtagiriak"
 
 #: src/commands/importcertificatefromfilecommand.cpp:158
-#, fuzzy, kde-format
-#| msgid "Certificate Deletion Failed"
+#, kde-format
 msgid "Any files"
-msgstr "Ziurtagirien ezabapenak huts egin du"
+msgstr "Edozein fitxategi"
 
 #: src/commands/importcertificatefromfilecommand.cpp:164
 #, kde-format
@@ -1786,57 +1750,51 @@ msgid "Select Certificate File"
 msgstr "Hautatu ziurtagiri fitxategia"
 
 #: src/commands/importcertificatefromkeyservercommand.cpp:65
-#, fuzzy, kde-format
-#| msgid "Stop Operation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Fetching Keys"
-msgstr "Gelditu eragiketa"
+msgstr "Gakoak ekartzea"
 
 #: src/commands/importcertificatefromkeyservercommand.cpp:66
-#, fuzzy, kde-format
-#| msgid "Exporting certificate..."
+#, kde-format
 msgid "Fetching 1 key... (this can take a while)"
 msgid_plural "Fetching %1 keys... (this can take a while)"
-msgstr[0] "Ziurtagiria esportatzen"
-msgstr[1] "Ziurtagiria esportatzen"
+msgstr[0] "Gako 1 ekartzen... (denbora pixka bat beharko du)"
+msgstr[1] "%1 gako ekartzen... (denbora pixka bat beharko du)"
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:86
 #, kde-format
 msgid "Sorry! No certificate to import from this card slot was found."
 msgstr ""
+"Barkatu! Ez da aurkitu txartel-erreten horretatik inportatzeko ziurtagiririk."
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:91
-#, fuzzy, kde-format
-#| msgid "&Certificates"
+#, kde-format
 msgid "Card Certificate"
-msgstr "&Ziurtagiriak"
+msgstr "Txartel ziurtagiria"
 
 #: src/commands/importcertificatescommand.cpp:194
-#, fuzzy, kde-format
-#| msgid "Exporting certificate..."
+#, kde-format
 msgid "Importing certificates... (this can take a while)"
-msgstr "Ziurtagiria esportatzen"
+msgstr "Ziurtagiria inportatzen... (denbora pixka bat beharko du)"
 
 #: src/commands/importcertificatescommand.cpp:250
-#, fuzzy, kde-format
-#| msgid "Import Certificates..."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
-msgstr "Inportatu ziurtagiriak..."
+msgstr "%1(e)tik inportatutako ziurtagiriak"
 
 #: src/commands/importcertificatescommand.cpp:254
-#, fuzzy, kde-format
-#| msgid "Import Certificates..."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
-msgstr "Inportatu ziurtagiriak..."
+msgstr "Sorburu horietatik inportatutako ziurtagiriak:<br/>%1"
 
 #: src/commands/importcertificatescommand.cpp:264
-#, fuzzy, kde-format
-#| msgid "Import Certificates..."
+#, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
-msgstr "Inportatu ziurtagiriak..."
+msgstr "Inportatutako ziurtagiriak"
 
 #: src/commands/importcertificatescommand.cpp:280
 #, kde-format
@@ -1849,26 +1807,25 @@ msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
 #: src/commands/importcertificatescommand.cpp:282
-#, fuzzy, kde-format
-#| msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
+#, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
-msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
+msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
 #: src/commands/importcertificatescommand.cpp:296
 #: src/commands/importcertificatescommand.cpp:350
 #, kde-format
 msgid "Total number processed:"
-msgstr "Prozesatutakoen guztizko kopurua:"
+msgstr "Prozesatutako kopuru osoa:"
 
 #: src/commands/importcertificatescommand.cpp:298
 #, kde-format
 msgid "Imported:"
-msgstr "Inportatuak"
+msgstr "Inportatutakoak:"
 
 #: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "New signatures:"
-msgstr "Sinadura berriak."
+msgstr "Sinadura berriak:"
 
 #: src/commands/importcertificatescommand.cpp:304
 #, kde-format
@@ -1876,10 +1833,9 @@ msgid "New user IDs:"
 msgstr "Erabiltzaile-ID berriak:"
 
 #: src/commands/importcertificatescommand.cpp:307
-#, fuzzy, kde-format
-#| msgid "Keys without user IDs:"
+#, kde-format
 msgid "Certificates without user IDs:"
-msgstr "Erabiltzaile-ID gabeko gakoak:"
+msgstr "Erabiltzaile-IDrik gabeko gakoak:"
 
 #: src/commands/importcertificatescommand.cpp:310
 #, kde-format
@@ -1889,46 +1845,42 @@ msgstr "Azpi-gako berriak:"
 #: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Newly revoked:"
-msgstr "Errebokatze berriak:"
+msgstr "Berriki indargabetuak:"
 
 #: src/commands/importcertificatescommand.cpp:316
 #, kde-format
 msgid "Not imported:"
-msgstr "Ez inportatuak:"
+msgstr "Inportatuak ez direnak:"
 
 #: src/commands/importcertificatescommand.cpp:319
 #, kde-format
 msgid "Unchanged:"
-msgstr "Aldatu gabeak:"
+msgstr "Aldatu gabe:"
 
 #: src/commands/importcertificatescommand.cpp:322
-#, fuzzy, kde-format
-#| msgid "Secret keys processed:"
+#, kde-format
 msgid "Secret keys processed:"
-msgstr "Prozesatutako giltza sekretuak:"
+msgstr "Prozesatutako gako sekretuak:"
 
 #: src/commands/importcertificatescommand.cpp:325
-#, fuzzy, kde-format
-#| msgid "Secret keys imported:"
+#, kde-format
 msgid "Secret keys imported:"
-msgstr "Inportatutako giltza sekretuak:"
+msgstr "Inportatutako gako sekretuak:"
 
 #: src/commands/importcertificatescommand.cpp:329
-#, fuzzy, kde-format
-#| msgid "Secret keys <em>not</em> imported:"
+#, kde-format
 msgid "Secret keys <em>not</em> imported:"
-msgstr "<em>Ez</em> inportatutako giltza sekretuak:"
+msgstr "Inportatu <em>Ez</em> diren gako sekretuak:"
 
 #: src/commands/importcertificatescommand.cpp:332
-#, fuzzy, kde-format
-#| msgid "Secret keys unchanged:"
+#, kde-format
 msgid "Secret keys unchanged:"
-msgstr "Aldatu gabeko giltza sekretuak:"
+msgstr "Gako sekretuak aldaketarik gabe:"
 
 #: src/commands/importcertificatescommand.cpp:335
-#, kde-format
+#, fuzzy, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
-msgstr ""
+msgstr "Zaharkitutako PGP-2 gakoak saihestuta:"
 
 #: src/commands/importcertificatescommand.cpp:349
 #, fuzzy, kde-format
@@ -7339,7 +7291,7 @@ msgstr ""
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
-msgstr ""
+msgstr "Saihestuta"
 
 #: src/dialogs/selftestdialog.cpp:96
 #, kde-format
@@ -9669,11 +9621,13 @@ msgctxt "@info"
 msgid ""
 "<para>Install <application>%1</application> version %2 or higher.</para>"
 msgstr ""
+"<para>Instalatu <application>%1</application> %2 bertsioa edo altuagoa.</"
+"para>"
 
 #: src/selftest/enginecheck.cpp:132
 #, kde-format
 msgid "unknown problem"
-msgstr ""
+msgstr "arazo ezezaguna"
 
 #: src/selftest/enginecheck.cpp:134
 #, kde-kuit-format
@@ -9703,18 +9657,18 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info %1: test name"
 msgid "<para>See \"%1\" above.</para>"
-msgstr ""
+msgstr "<para>Ikusi \"%1\" gorago.</para>"
 
 #: src/selftest/gpgagentcheck.cpp:36
 #, kde-format
 msgctxt "@title"
 msgid "Gpg-Agent Connectivity"
-msgstr ""
+msgstr "«Gpg-Agent» konektibotasuna"
 
 #: src/selftest/gpgagentcheck.cpp:47
 #, kde-format
 msgid "GpgME library too old"
-msgstr ""
+msgstr "«GpgME» liburutegia zaharregia da"
 
 #: src/selftest/gpgagentcheck.cpp:49
 #, kde-format
@@ -9735,7 +9689,7 @@ msgstr ""
 #: src/selftest/gpgagentcheck.cpp:66
 #, kde-format
 msgid "GpgME does not support gpg-agent"
-msgstr ""
+msgstr "«GpgME»k ez dauka «gpg-agent»earen euskarria"
 
 #: src/selftest/gpgagentcheck.cpp:68
 #, fuzzy, kde-kuit-format
@@ -9757,7 +9711,7 @@ msgstr ""
 #: src/selftest/gpgagentcheck.cpp:81
 #, kde-format
 msgid "unexpected error"
-msgstr ""
+msgstr "ustekabeko errorea"
 
 #: src/selftest/gpgagentcheck.cpp:83
 #, fuzzy, kde-kuit-format
@@ -9783,11 +9737,10 @@ msgid "%1 Configuration Check"
 msgstr "Kolore eta letra-tipoen konfigurazioa"
 
 #: src/selftest/gpgconfcheck.cpp:70
-#, fuzzy, kde-format
-#| msgid "Failed."
+#, kde-format
 msgctxt "self-test did not pass"
 msgid "Failed"
-msgstr "Errorea."
+msgstr "Huts egin du"
 
 #: src/selftest/gpgconfcheck.cpp:72
 #, kde-format
@@ -9801,12 +9754,12 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Config File 'libkleopatrarc'"
-msgstr ""
+msgstr "Konfiguratu 'libkleopatrarc' fitxategia"
 
 #: src/selftest/libkleopatrarccheck.cpp:49
 #, kde-format
 msgid "Errors found"
-msgstr ""
+msgstr "Erroreak aurkitu dira"
 
 #: src/selftest/libkleopatrarccheck.cpp:56
 #, kde-kuit-format
@@ -9815,17 +9768,19 @@ msgid ""
 "<para>Kleopatra detected the following errors in the libkleopatrarc "
 "configuration:</para>%1"
 msgstr ""
+"<para>«Kleopatra»k «libkleopatrarc» konfigurazioan ondoko erroreak antzeman "
+"ditu:</para>%1"
 
 #: src/selftest/registrycheck.cpp:35
 #, kde-format
 msgctxt "@title"
 msgid "Windows Registry"
-msgstr ""
+msgstr "«Windows»en erregistroa"
 
 #: src/selftest/registrycheck.cpp:49
 #, kde-format
 msgid "Obsolete registry entries found"
-msgstr ""
+msgstr "Zaharkitutako erregistro sarrerak aurkitu dira"
 
 #: src/selftest/registrycheck.cpp:53
 #, kde-kuit-format
@@ -9866,7 +9821,7 @@ msgstr ""
 #: src/selftest/uiservercheck.cpp:54
 #, kde-format
 msgid "not reachable"
-msgstr ""
+msgstr "ez irisgarria"
 
 #: src/selftest/uiservercheck.cpp:56
 #, kde-kuit-format
@@ -9886,7 +9841,7 @@ msgstr ""
 #: src/selftest/uiservercheck.cpp:63
 #, kde-format
 msgid "multiple instances"
-msgstr ""
+msgstr "instantzia anizkoitzak"
 
 #: src/selftest/uiservercheck.cpp:65
 #, kde-kuit-format
@@ -9895,6 +9850,8 @@ msgid ""
 "It seems another <application>Kleopatra</application> is running (with "
 "process-id %1)"
 msgstr ""
+"Antza denez beste <application>Kleopatra</application> bat ibiltzen ari da "
+"(%1 prozesu-IDarekin)"
 
 #: src/selftest/uiservercheck.cpp:68
 #, kde-kuit-format
@@ -9902,95 +9859,94 @@ msgctxt "@info"
 msgid ""
 "Quit any other running instances of <application>Kleopatra</application>."
 msgstr ""
+"Irten ibiltzen ari den <application>Kleopatra</application>ren beste "
+"instantzia orotatik."
 
 #: src/smartcard/openpgpcard.cpp:105
-#, fuzzy, kde-format
-#| msgid "New signatures:"
+#, kde-format
 msgid "Signature"
-msgstr "Sinadura berriak."
+msgstr "Sinadura"
 
 #: src/smartcard/openpgpcard.cpp:107
-#, fuzzy, kde-format
+#, kde-format
 msgid "Authentication"
-msgstr "Ziurtagiriaren informazioa"
+msgstr "Autentifikazioa"
 
 #: src/smartcard/openpgpcard.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
-msgstr ""
+msgstr "ECC (Brainpool P-256)"
 
 #: src/smartcard/openpgpcard.cpp:182
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
-msgstr ""
+msgstr "ECC (Brainpool P-384)"
 
 #: src/smartcard/openpgpcard.cpp:183
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
-msgstr ""
+msgstr "ECC (Brainpool P-512)"
 
 #: src/smartcard/openpgpcard.cpp:184 src/view/pgpcardwidget.cpp:428
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Curve25519)"
-msgstr ""
+msgstr "ECC (Curve25519)"
 
 #: src/smartcard/openpgpcard.cpp:185
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Curve448)"
-msgstr ""
+msgstr "ECC (Curve448)"
 
 #: src/smartcard/openpgpcard.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
-msgstr ""
+msgstr "ECC (NIST P-256)"
 
 #: src/smartcard/openpgpcard.cpp:187
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
-msgstr ""
+msgstr "ECC (NIST P-384)"
 
 #: src/smartcard/openpgpcard.cpp:188
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
-msgstr ""
+msgstr "ECC (NIST P-521)"
 
 #: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:417
-#, fuzzy, kde-format
-#| msgid "%1 bit"
-#| msgid_plural "%1 bits"
+#, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
-msgstr " bit %1"
+msgstr "RSA 2048"
 
 #: src/smartcard/openpgpcard.cpp:190 src/view/pgpcardwidget.cpp:418
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
-msgstr ""
+msgstr "RSA 3072"
 
 #: src/smartcard/openpgpcard.cpp:191 src/view/pgpcardwidget.cpp:422
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
-msgstr ""
+msgstr "RSA 4096"
 
 #: src/smartcard/pivcard.cpp:85
-#, fuzzy, kde-format
+#, kde-format
 msgid "PIV Authentication Key"
-msgstr "Ziurtagiriaren informazioa"
+msgstr "PIV autentifikazio gakoa"
 
 #: src/smartcard/pivcard.cpp:86
-#, fuzzy, kde-format
+#, kde-format
 msgid "Card Authentication Key"
-msgstr "Ziurtagiriaren informazioa"
+msgstr "Txartela autentifikazio gakoa"
 
 #: src/smartcard/pivcard.cpp:87
 #, fuzzy, kde-format
@@ -10732,23 +10688,23 @@ msgstr "Uneko hautapena"
 #: src/utils/input_p.h:55
 #, kde-format
 msgid "No input device"
-msgstr ""
+msgstr "Ez dago sarrerako gailurik"
 
 #: src/utils/log.cpp:140
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Log Error: Could not open log file \"%1\" for writing."
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr ""
+"Egunkari errorea: Ezin izan du \"%1\" egunkari fitxategia idazteko ireki."
 
 #: src/utils/output.cpp:289
 #, kde-format
 msgid "No output device"
-msgstr ""
+msgstr "Ez dago irteerako gailurik"
 
 #: src/utils/output.cpp:501
 #, kde-format
 msgid "Could not open FD %1 for writing"
-msgstr ""
+msgstr "Ezin izan du FD %1 irakurtzeko ireki"
 
 #: src/utils/output.cpp:527
 #, fuzzy, kde-format
@@ -10763,10 +10719,9 @@ msgid "File Already Exists"
 msgstr "Fitxategia badago lehendik ere"
 
 #: src/utils/output.cpp:654
-#, fuzzy, kde-format
-#| msgid "Overwrite File?"
+#, kde-format
 msgid "Overwriting declined"
-msgstr "Gainidatzi fitxategia?"
+msgstr "Gainidazteari uko egin zaio"
 
 #: src/utils/output.cpp:660
 #, kde-kuit-format
@@ -10783,13 +10738,13 @@ msgstr "Ezin izan du fitxategia \"%1\"(e)tik \"%2\"(e)ra berrizendatu"
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
-msgstr ""
+msgstr "Sarrera hona, %1 ..."
 
 #: src/utils/output.cpp:728
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
-msgstr ""
+msgstr "Sarrera hona, %1"
 
 #: src/utils/output.cpp:760
 #, kde-format
@@ -10870,24 +10825,26 @@ msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
 msgstr ""
+"Automatikoki gorde, aurrez dagoen fitxategi bat gainidatziko luketen "
+"fitxategi guztiak beste izen batekin."
 
 #: src/utils/overwritedialog.cpp:227
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip"
-msgstr ""
+msgstr "Jauzi"
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
-msgstr ""
+msgstr "Ez idatzi fitxategi hori, horren ordez, jauzi hurrengora."
 
 #: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
-msgstr ""
+msgstr "Jauzi denak"
 
 #: src/utils/overwritedialog.cpp:234
 #, kde-format
@@ -10922,6 +10879,8 @@ msgstr "Gainidatzi dena"
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
+"Gainidatzi existitzen den fitxategia eta dagoeneko existitzen den beste "
+"fitxategi oro."
 
 #: src/utils/path-helper.cpp:158
 #, kde-format

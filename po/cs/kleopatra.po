@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-06-29 11:02+0200\n"
+"PO-Revision-Date: 2023-08-10 14:45+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.04.2\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -375,13 +375,13 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr ""
+msgstr "Udělit sílu certifikace"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "Udělit sílu"
 
 #: src/commands/changeownertrustcommand.cpp:157
 #, kde-kuit-format
@@ -403,7 +403,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr ""
+msgstr "Odvolat sílu certifikace"
 
 #: src/commands/changeownertrustcommand.cpp:168
 #, kde-format
@@ -649,7 +649,7 @@ msgstr "Vyskytla se chyba: %1"
 #: src/commands/checksumcreatefilescommand.cpp:151
 #, kde-format
 msgid "Create Checksum Files Error"
-msgstr ""
+msgstr "Chyba při vytváření kontrolních souborů"
 
 #: src/commands/checksumcreatefilescommand.cpp:164
 #, kde-format
@@ -2159,7 +2159,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
-msgstr ""
+msgstr "Vytvořit zálohu a smazat klíč"
 
 #: src/commands/keytocardcommand.cpp:479
 #, kde-format
@@ -2673,7 +2673,7 @@ msgstr ""
 #: src/commands/revokecertificationcommand.cpp:84
 #, kde-format
 msgid "Revoke Certification"
-msgstr ""
+msgstr "Odvolat certifikaci"
 
 #: src/commands/revokecertificationcommand.cpp:89
 #, kde-format
@@ -2691,7 +2691,7 @@ msgstr[2] ""
 #: src/commands/revokecertificationcommand.cpp:98
 #, kde-format
 msgid "Revoke Certifications"
-msgstr ""
+msgstr "Odvolat certifikace"
 
 #: src/commands/revokecertificationcommand.cpp:202
 #, kde-kuit-format
@@ -2928,7 +2928,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
-msgstr ""
+msgstr "V nástrojových tipech u certifikátů zobrazovat následující informace:"
 
 #: src/conf/appearanceconfigwidget.cpp:367
 #, kde-format
@@ -3099,7 +3099,7 @@ msgstr "Ověřování S/MIME"
 #: src/conf/configuredialog.cpp:63
 #, kde-format
 msgid "Smart Cards"
-msgstr ""
+msgstr "Čipové karty"
 
 #: src/conf/configuredialog.cpp:69
 #, kde-format
@@ -3117,13 +3117,15 @@ msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
 msgstr ""
+"Vytvořit soubory šifrované pomocí OpenPGP s příponou \".pgp\" namísto \".gpg"
+"\""
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:62
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
-msgstr ""
+msgstr "Vytvořit podepsané nebo zašifrované soubory jako textové soubory."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:63
 #, kde-format
@@ -3141,18 +3143,20 @@ msgstr ""
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
+"Automaticky zahájit operaci založenou na detekci vstupu pro dešifrování/"
+"ověření."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgid "Automatically extract file archives after decryption"
-msgstr ""
+msgstr "Po dešifrování automaticky rozbalit soubory archivu "
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
-msgstr ""
+msgstr "Vytvořit dočasně dešifrované soubory ve složce šifrovaného souboru."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
@@ -3165,7 +3169,7 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
-msgstr ""
+msgstr "Použít pouze symetrické šifrování."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
@@ -3214,7 +3218,7 @@ msgstr "&Maximální počet položek v odpovědi:"
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
-msgstr ""
+msgstr "Při importu nových klíčů získat chybějící certifikační klíče"
 
 #: src/conf/dirservconfigpage.cpp:221
 #, kde-kuit-format
@@ -5066,7 +5070,7 @@ msgstr "Prokázat autentičnost (podepsat)"
 #: src/crypto/gui/signencryptwidget.cpp:167
 #, kde-format
 msgid "Sign as:"
-msgstr ""
+msgstr "Podepsat jako:"
 
 #: src/crypto/gui/signencryptwidget.cpp:197
 #, kde-format
@@ -5339,7 +5343,7 @@ msgstr "Šifrovat soubory"
 #: src/crypto/signencryptfilescontroller.cpp:132
 #, kde-format
 msgid "Archive and Sign/Encrypt Files"
-msgstr ""
+msgstr "Archivovat a podepsat/zašifrovat soubory"
 
 #: src/crypto/signencryptfilescontroller.cpp:134
 #, kde-format
@@ -5454,7 +5458,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Checksum Results"
-msgstr ""
+msgstr "Výsledky ověřování kontrolního součtu"
 
 #: src/crypto/verifychecksumscontroller.cpp:370
 #, kde-format
@@ -5623,19 +5627,19 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
-msgstr ""
+msgstr "Certifikovat uživatelská ID"
 
 #: src/dialogs/certificatedetailswidget.cpp:240
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Certifications"
-msgstr ""
+msgstr "Zobrazit certifikace"
 
 #: src/dialogs/certificatedetailswidget.cpp:243
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certifications"
-msgstr ""
+msgstr "Odvolat certifikace"
 
 #: src/dialogs/certificatedetailswidget.cpp:246
 #: src/dialogs/certificatedetailswidget.cpp:627
@@ -5647,7 +5651,7 @@ msgstr ""
 #: src/dialogs/certificatedetailswidget.cpp:280
 #, kde-format
 msgid "Trust level:"
-msgstr ""
+msgstr "Úroveň důvěryhodnosti:"
 
 #: src/dialogs/certificatedetailswidget.cpp:285
 #, kde-format
@@ -5780,7 +5784,7 @@ msgstr ""
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
-msgstr ""
+msgstr "neomezeně"
 
 #: src/dialogs/certificatedetailswidget.cpp:518
 #, kde-format
@@ -5796,7 +5800,7 @@ msgstr "Jméno"
 #: src/dialogs/certificatedetailswidget.cpp:518
 #, kde-format
 msgid "Trust Level"
-msgstr ""
+msgstr "Úroveň důvěryhodnosti"
 
 #: src/dialogs/certificatedetailswidget.cpp:518
 #, kde-format
@@ -5827,7 +5831,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
-msgstr ""
+msgstr "Certifikovat ID uživatele..."
 
 #: src/dialogs/certificatedetailswidget.cpp:835
 #, kde-format
@@ -5842,7 +5846,7 @@ msgstr[2] ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
-msgstr ""
+msgstr "Odvolat certifikace..."
 
 #: src/dialogs/certificatedetailswidget.cpp:845
 #, kde-format
@@ -6290,7 +6294,7 @@ msgstr[2] ""
 #: src/dialogs/deletecertificatesdialog.cpp:222 src/view/pgpcardwidget.cpp:403
 #, kde-format
 msgid "Secret Key Deletion"
-msgstr ""
+msgstr "Smazání tajného klíče"
 
 #: src/dialogs/editgroupdialog.cpp:83
 #, kde-format
@@ -6417,7 +6421,7 @@ msgstr ""
 #: src/dialogs/expirydialog.cpp:167
 #, kde-format
 msgid "Unlimited validity"
-msgstr ""
+msgstr "Neomezená platnost"
 
 #: src/dialogs/expirydialog.cpp:175
 #, kde-format
@@ -6645,7 +6649,7 @@ msgstr "Pokročilá nastavení..."
 #, kde-format
 msgctxt "title:window"
 msgid "Create OpenPGP Certificate"
-msgstr ""
+msgstr "Vytvořit certifikát OpenPGP"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:125
 #, kde-format
@@ -6935,7 +6939,7 @@ msgstr "Úložiště"
 #: src/dialogs/subkeyswidget.cpp:122 src/view/keylistcontroller.cpp:440
 #, kde-format
 msgid "Change End of Validity Period..."
-msgstr ""
+msgstr "Změnit konec platnosti..."
 
 #: src/dialogs/subkeyswidget.cpp:142
 #, kde-format
@@ -6955,7 +6959,7 @@ msgstr ""
 #: src/dialogs/subkeyswidget.cpp:177
 #, kde-format
 msgid "Export secret subkey"
-msgstr ""
+msgstr "Exportovat tajný podklíč"
 
 #: src/dialogs/subkeyswidget.cpp:245
 #, kde-format
@@ -6973,12 +6977,12 @@ msgstr "ne"
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
-msgstr ""
+msgstr "čipová karta %1"
 
 #: src/dialogs/subkeyswidget.cpp:250
 #, kde-format
 msgid "smart card"
-msgstr ""
+msgstr "čipová karta"
 
 #: src/dialogs/subkeyswidget.cpp:253
 #, kde-format
@@ -7104,7 +7108,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action"
 msgid "Revoke Certification"
-msgstr ""
+msgstr "Odvolat certifikaci"
 
 #: src/dialogs/weboftrustwidget.cpp:211
 #, kde-format
@@ -7444,7 +7448,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:75
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
-msgstr ""
+msgstr "Program, který se má použít při vytváření souborů s kontrolním součtem"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:81
@@ -7561,7 +7565,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:129
 #, kde-format
 msgid "Show smart cards configuration"
-msgstr ""
+msgstr "Zobrazit nastavení čipové karty"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:133
@@ -7886,7 +7890,7 @@ msgstr "Hledat certifikát na serveru klíčů"
 #: src/kleopatra_options.h:33
 #, kde-format
 msgid "Create or check a checksum file"
-msgstr ""
+msgstr "Vytvořit nebo zkontrolovat soubor s kontrolním součtem"
 
 #: src/kleopatra_options.h:37
 #, kde-format
@@ -7901,7 +7905,7 @@ msgstr ""
 #: src/kleopatra_options.h:38
 #, kde-format
 msgid "Create a new key pair or certificate signing request"
-msgstr ""
+msgstr "Vytvořit nový pár klíčů nebo požadavek o podpis certifikátu"
 
 #: src/kleopatra_options.h:39
 #, kde-format
@@ -8187,12 +8191,12 @@ msgstr ""
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
-msgstr ""
+msgstr "Čipové karty"
 
 #: src/mainwindow.cpp:546
 #, kde-format
 msgid "Show smartcard management"
-msgstr ""
+msgstr "Zobrazit správu čipových karet"
 
 #: src/mainwindow.cpp:550
 #, kde-format
@@ -8707,7 +8711,7 @@ msgstr "Vytvořit požadavek na odvolání..."
 #: src/newcertificatewizard/resultpage.cpp:128
 #, kde-format
 msgid "Create Signing Certificate With Same Parameters"
-msgstr ""
+msgstr "Vytvořit podepisující certifikát se stejnými parametry"
 
 #: src/newcertificatewizard/resultpage.cpp:131
 #, kde-format
@@ -8813,7 +8817,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Certification Request About To Be Deleted"
-msgstr ""
+msgstr "Požadavek o certifikaci jenž má být smazán"
 
 #: src/selftest/compliancecheck.cpp:34
 #, kde-format
@@ -9167,19 +9171,19 @@ msgstr "Ověření"
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
-msgstr ""
+msgstr "ECC (Brainpool P-256)"
 
 #: src/smartcard/openpgpcard.cpp:182
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
-msgstr ""
+msgstr "ECC (Brainpool P-384)"
 
 #: src/smartcard/openpgpcard.cpp:183
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
-msgstr ""
+msgstr "ECC (Brainpool P-512)"
 
 #: src/smartcard/openpgpcard.cpp:184 src/view/pgpcardwidget.cpp:428
 #, kde-format
@@ -9197,19 +9201,19 @@ msgstr "ECC (Curve448)"
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
-msgstr ""
+msgstr "ECC (NIST P-256)"
 
 #: src/smartcard/openpgpcard.cpp:187
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
-msgstr ""
+msgstr "ECC (NIST P-384)"
 
 #: src/smartcard/openpgpcard.cpp:188
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
-msgstr ""
+msgstr "ECC (NIST P-521)"
 
 #: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:417
 #, kde-format
@@ -9221,7 +9225,7 @@ msgstr "RSA 2048"
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
-msgstr ""
+msgstr "RSA 3072"
 
 #: src/smartcard/openpgpcard.cpp:191 src/view/pgpcardwidget.cpp:422
 #, kde-format
@@ -9257,33 +9261,33 @@ msgstr ""
 #: src/smartcard/pivcard.cpp:100
 #, kde-format
 msgid "ECDH (Curve P-256)"
-msgstr ""
+msgstr "ECDH (Curve P-256)"
 
 #: src/smartcard/pivcard.cpp:101
 #, kde-format
 msgid "ECDH (Curve P-384)"
-msgstr ""
+msgstr "ECDH (Curve P-384)"
 
 #: src/smartcard/pivcard.cpp:105 src/smartcard/pivcard.cpp:113
 #, kde-format
 msgid "RSA (2048 bits)"
-msgstr ""
+msgstr "RSA (2048 bits)"
 
 #: src/smartcard/pivcard.cpp:106 src/smartcard/pivcard.cpp:114
 #, kde-format
 msgid "ECDSA (Curve P-256)"
-msgstr ""
+msgstr "ECDSA (Curve P-256)"
 
 #: src/smartcard/pivcard.cpp:107
 #, kde-format
 msgid "ECDSA (Curve P-384)"
-msgstr ""
+msgstr "ECDSA (Curve P-384)"
 
 #: src/smartcard/utils.cpp:25
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "NetKey"
-msgstr ""
+msgstr "NetKey"
 
 #: src/smartcard/utils.cpp:27
 #, kde-format
@@ -9295,7 +9299,7 @@ msgstr "OpenPGP"
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "PIV"
-msgstr ""
+msgstr "PIV"
 
 #: src/systrayicon.cpp:131
 #, kde-format
@@ -10188,12 +10192,12 @@ msgstr ""
 #: src/view/keylistcontroller.cpp:354
 #, kde-format
 msgid "New OpenPGP Key Pair..."
-msgstr ""
+msgstr "Nový pár klíčů OpenPGP..."
 
 #: src/view/keylistcontroller.cpp:354
 #, kde-format
 msgid "Create a new OpenPGP certificate"
-msgstr ""
+msgstr "Vytvořit nový certifikát OpenPGP"
 
 #: src/view/keylistcontroller.cpp:358
 #, kde-format
@@ -10230,7 +10234,7 @@ msgstr ""
 #: src/view/keylistcontroller.cpp:372
 #, kde-format
 msgid "Backup Secret Keys..."
-msgstr ""
+msgstr "Zálohovat tajné klíče..."
 
 #: src/view/keylistcontroller.cpp:376
 #, kde-format
@@ -10265,7 +10269,7 @@ msgstr "Zašifrovat a/nebo podepsat soubory"
 #: src/view/keylistcontroller.cpp:396
 #, kde-format
 msgid "Sign/Encrypt Folder..."
-msgstr ""
+msgstr "Podepsat/zašifrovat složku..."
 
 #: src/view/keylistcontroller.cpp:396
 #, kde-format
@@ -10330,7 +10334,7 @@ msgstr ""
 #: src/view/keylistcontroller.cpp:436
 #, kde-format
 msgid "Revoke Certification..."
-msgstr ""
+msgstr "Odvolat certifikaci..."
 
 #: src/view/keylistcontroller.cpp:436
 #, kde-format
@@ -10341,7 +10345,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr ""
+msgstr "Změnit sílu certifikace..."
 
 #: src/view/keylistcontroller.cpp:445
 #, kde-format
@@ -10367,22 +10371,22 @@ msgstr "Obnovit certifikáty OpenPGP"
 #: src/view/keylistcontroller.cpp:468
 #, kde-format
 msgid "New S/MIME Certification Request..."
-msgstr ""
+msgstr "Nový požadavek o certifikaci S/MIME..."
 
 #: src/view/keylistcontroller.cpp:468
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
-msgstr ""
+msgstr "Vytvořit nový požadavek na podepsání certifikátu S/MIME (CSR)"
 
 #: src/view/keylistcontroller.cpp:475
 #, kde-format
 msgid "Trust Root Certificate"
-msgstr ""
+msgstr "Důvěřovat kořenovému certifikátu"
 
 #: src/view/keylistcontroller.cpp:479
 #, kde-format
 msgid "Distrust Root Certificate"
-msgstr ""
+msgstr "Nedůvěřovat kořenovému certifikátu"
 
 #: src/view/keylistcontroller.cpp:483
 #, kde-format
@@ -10666,7 +10670,7 @@ msgstr ""
 #: src/view/padwidget.cpp:83
 #, kde-format
 msgid "Sign / Encrypt Notepad"
-msgstr ""
+msgstr "Podepsat/zašifrovat Poznámkový blok"
 
 #: src/view/padwidget.cpp:84
 #, kde-format
@@ -10763,7 +10767,7 @@ msgstr "Probíhá import..."
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
-msgstr ""
+msgstr "Podepsat Poznámkový blok"
 
 #: src/view/padwidget.cpp:500
 #, kde-format
@@ -10775,7 +10779,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
-msgstr ""
+msgstr "Podepsat/zašifrovat Poznámkový blok"
 
 #: src/view/pgpcardwidget.cpp:187
 #, kde-format
@@ -11197,28 +11201,29 @@ msgstr "NetKey v3"
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
-msgstr ""
+msgstr "PIV (vyžaduje GnuPG 2.3 nebo novější)"
 
 #: src/view/smartcardwidget.cpp:56
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
-msgstr ""
+msgstr "CardOS 5 (různé aplikace)"
 
 #: src/view/smartcardwidget.cpp:58
 #, kde-format
 msgid "Please insert a compatible smartcard."
-msgstr ""
+msgstr "Prosím, vložte kompatibilní kartu."
 
 #: src/view/smartcardwidget.cpp:61
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
-msgstr ""
+msgstr "Kleopatra nyní podporuje následující typy karet:"
 
+# 55598 AttribValues/label
 #: src/view/smartcardwidget.cpp:119
 #, kde-format
 msgid "Smartcard Management"
-msgstr ""
+msgstr "Správa čipových karet"
 
 #: src/view/smartcardwidget.cpp:161
 #, kde-format

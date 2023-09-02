@@ -1,15 +1,15 @@
 # translation of kleopatra.po to Italian
+# SPDX-FileCopyrightText: 2021, 2022, 2023 Vincenzo Reale <smart2128vr@gmail.com>
 # Alessandro Pasotti <ale.pas@tiscalinet.it>, 2004, 2005.
 # Federico Zenith <federico.zenith@member.fsf.org>, 2004, 2010, 2011, 2012, 2013, 2014, 2015.
 # Luciano Montanaro <mikelima@cirulla.net>, 2007, 2008, 2010.
 # Luigi Toscano <luigi.toscano@tiscali.it>, 2016, 2017, 2018, 2019, 2020.
-# Vincenzo Reale <smart2128vr@gmail.com>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-31 00:47+0000\n"
-"PO-Revision-Date: 2023-08-09 09:20+0200\n"
+"POT-Creation-Date: 2023-09-02 00:48+0000\n"
+"PO-Revision-Date: 2023-08-31 17:06+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -303,7 +303,7 @@ msgstr "Certificazione impossibile"
 msgid "Create"
 msgstr "Crea"
 
-#: src/commands/certifycertificatecommand.cpp:234
+#: src/commands/certifycertificatecommand.cpp:231
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
@@ -312,17 +312,17 @@ msgstr ""
 "<p>Si è verificato un errore durante il tentativo di certificare<br/><br/><b>"
 "%1</b>:</p><p>\t%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:238
+#: src/commands/certifycertificatecommand.cpp:235
 #, kde-format
 msgid "Certification Error"
 msgstr "Errore di certificazione"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification successful."
 msgstr "Certificazione riuscita."
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "Certificazione avvenuta"
@@ -2750,6 +2750,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Aggiornamento del certificato da un server di chiavi, un server LDAP o "
+"Active Directory non riuscita:</para><para><message>%1</message></"
+"para><para>Aggiornamento del certificato tramite Web Key Directory non "
+"riuscito:</para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:360
 #: src/commands/refreshcertificatecommand.cpp:391
@@ -2763,24 +2767,21 @@ msgstr "Aggiornamento non riuscito"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Risultato dell'aggiornamento dal server delle chiavi, dal server LDAP o da "
+"Active Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:375
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>Salvataggio della richiesta non riuscito.</para><para><message>%1</"
-"message></para>"
+msgstr "<para>L'aggiornamento non è riuscito: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:373
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Risultato dell'aggiornamento tramite Web Key Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:388
 #, kde-kuit-format
@@ -3578,6 +3579,7 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Interroga le directory dei certificati dei fornitori per tutti gli ID utente"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3588,6 +3590,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"In modo predefinito, Kleopatra interroga solo le directory dei certificati "
+"dei fornitori (WKD) per gli ID utente originariamente recuperati da un WKD "
+"quando aggiorni un certificato OpenPGP. Se questa opzione è abilitata, "
+"Kleopatra interrogherà i WKD per tutti gli ID utente."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -6548,12 +6554,12 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "Selezione del certificato"
 
-#: src/dialogs/certifycertificatedialog.cpp:53
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
 msgstr "Certifica"
 
-#: src/dialogs/certifycertificatedialog.cpp:81
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
@@ -6594,8 +6600,7 @@ msgstr ""
 "vuoi fare per le tue chiavi."
 
 #: src/dialogs/certifywidget.cpp:301
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "ID utente"
@@ -6692,12 +6697,12 @@ msgstr ""
 msgid "Domain:"
 msgstr "Dominio:"
 
-#: src/dialogs/certifywidget.cpp:613
+#: src/dialogs/certifywidget.cpp:624
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Questa è la tua chiave?"
 
-#: src/dialogs/certifywidget.cpp:628
+#: src/dialogs/certifywidget.cpp:639
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -6705,12 +6710,12 @@ msgstr ""
 "<p>La modifica della fiducia per la chiave del certificato <b>%1</b> non è "
 "riuscita:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:631
+#: src/dialogs/certifywidget.cpp:642
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Modifica dell'attendibilità della certificazione non riuscita"
 
-#: src/dialogs/certifywidget.cpp:638
+#: src/dialogs/certifywidget.cpp:649
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Fiducia nel proprietario impostata correttamente."
@@ -7022,7 +7027,7 @@ msgstr "Importa"
 #, kde-format
 msgctxt "@info"
 msgid "Unable to read file"
-msgstr ""
+msgstr "Impossibile leggere il file"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8201,6 +8206,7 @@ msgstr ""
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Interroga le directory dei certificati dei fornitori per tutti gli ID utente"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8213,6 +8219,12 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"In modo predefinito, Kleopatra interroga solo le directory dei certificati "
+"dei fornitori(WKD)\n"
+"          per gli ID utente originariamente recuperati da un WKD quando "
+"aggiorni un certificato OpenPGP.\n"
+"          Se questa opzione è abilitata, Kleopatra interrogherà i WKD per "
+"tutti gli ID utente."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170

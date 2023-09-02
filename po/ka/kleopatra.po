@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-31 00:47+0000\n"
-"PO-Revision-Date: 2023-08-10 06:56+0200\n"
+"POT-Creation-Date: 2023-09-02 00:48+0000\n"
+"PO-Revision-Date: 2023-09-01 07:12+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -174,7 +174,7 @@ msgstr "მომხმარებლის ID-ის დამატება 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:196
 #, kde-format
 msgid "Failed to find the PIV card with the serial number: %1"
-msgstr ""
+msgstr "PIV ბარათის პოვნისა შეცდომა სერიული ნომრით: %1"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:154
 #, kde-format
@@ -187,6 +187,8 @@ msgstr "ბარათზე ავთენტიკაციის შეც�
 msgid ""
 "Please enter the PIV Card Application Administration Key in hex-encoded form."
 msgstr ""
+"შეიყვანეთ PIV ბარათის აპლიკაციის ადმინისტრაციის გასაღები თექვსმეტობითად-"
+"დაშიფრულ ფორმატში."
 
 #: src/commands/certificatetopivcardcommand.cpp:128
 #: src/commands/keytocardcommand.cpp:343
@@ -286,24 +288,24 @@ msgstr "სერტიფიცირება შეუძლებელი�
 msgid "Create"
 msgstr "შექმნა"
 
-#: src/commands/certifycertificatecommand.cpp:234
+#: src/commands/certifycertificatecommand.cpp:231
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
 "p>"
 msgstr "<p>შეცდომა <br/><br/><b>%1</b>-ის სერტიფიცირებისას:</p><p>\t%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:238
+#: src/commands/certifycertificatecommand.cpp:235
 #, kde-format
 msgid "Certification Error"
 msgstr "სერტიფიკაციის შეცდომა"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification successful."
 msgstr "სერტიფიკაცია წარმატებულია."
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:240
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "სერტიფიკაცია წარმატებულია"
@@ -815,7 +817,7 @@ msgstr "ფაილების გაშიფვრა/გადამოწ�
 #: src/commands/decryptverifyfilescommand.cpp:184
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
-msgstr ""
+msgstr "აირჩიეთ ერთი ან მეტი გასაშიფრი ან/და გადასამოწმებელი ფაილი"
 
 #: src/commands/deletecertificatescommand.cpp:80
 #, kde-format
@@ -2238,7 +2240,7 @@ msgstr ""
 #: src/commands/learncardkeyscommand.cpp:101
 #, kde-format
 msgid "Loading certificates... (this can take a while)"
-msgstr ""
+msgstr "სერტიფიკატების ჩატვირთვა... (ამას კარგა ხანი შეიძლება დასჭირდეს)"
 
 #: src/commands/learncardkeyscommand.cpp:101
 #, kde-format
@@ -6046,12 +6048,12 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "სერტიფიკატის არჩევანი"
 
-#: src/dialogs/certifycertificatedialog.cpp:53
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
 msgstr "სერტიფიკაცია"
 
-#: src/dialogs/certifycertificatedialog.cpp:81
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
@@ -6085,11 +6087,10 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:301
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:column"
 msgid "User ID"
-msgstr "მომხმარებლის ID-ები"
+msgstr "მომხმარებლის ID"
 
 #: src/dialogs/certifywidget.cpp:305
 #, kde-format
@@ -6169,23 +6170,23 @@ msgstr ""
 msgid "Domain:"
 msgstr "დომენი:"
 
-#: src/dialogs/certifywidget.cpp:613
+#: src/dialogs/certifywidget.cpp:624
 #, kde-format
 msgid "Is this your own key?"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:628
+#: src/dialogs/certifywidget.cpp:639
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:631
+#: src/dialogs/certifywidget.cpp:642
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:638
+#: src/dialogs/certifywidget.cpp:649
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr ""

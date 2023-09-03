@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-02 00:48+0000\n"
-"PO-Revision-Date: 2023-09-01 23:51+0200\n"
+"PO-Revision-Date: 2023-09-02 09:20+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -91,6 +91,8 @@ msgstr "Frank Osterfeld"
 #: src/aboutdata.cpp:44
 msgid "Resident gpgme/win wrangler, UI Server commands and dialogs"
 msgstr ""
+"«gpgme/win»aren unai egoiliarra, UI zerbitzariaren komandoak eta "
+"elkarrizketa-koadroak"
 
 #: src/aboutdata.cpp:45
 msgid "Karl-Heinz Zimmer"
@@ -189,13 +191,15 @@ msgstr "Ondoko serie-zenbakia duen PIV txartela aurkitzea huts egin du: %1"
 #, kde-format
 msgctxt "@info"
 msgid "Authenticating to the card failed: %1"
-msgstr ""
+msgstr "Txartelera autentifikazioak huts egin du: %1"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:174
 #, kde-format
 msgid ""
 "Please enter the PIV Card Application Administration Key in hex-encoded form."
 msgstr ""
+"Mesedez, sartu PIV Txartel aplikazioa administratzeko gakoa hamaseitarrean "
+"kodetutako forman."
 
 #: src/commands/certificatetopivcardcommand.cpp:128
 #: src/commands/keytocardcommand.cpp:343
@@ -910,109 +914,97 @@ msgid ""
 "The CMS backend does not support certificate deletion.\n"
 "Check your installation."
 msgstr ""
+"CMS bizkarraldekoak ez du onartzen ziurtagiriak ezabatzea.\n"
+"Egiaztatu zure instalazioa.s"
 
 #: src/commands/deletecertificatescommand.cpp:270
 #: src/commands/deletecertificatescommand.cpp:355
 #, kde-format
 msgid "Certificate Deletion Failed"
-msgstr "Ziurtagirien ezabapenak huts egin du"
+msgstr "Ziurtagiria ezabatzea huts egin du"
 
 #: src/commands/deletecertificatescommand.cpp:270
-#, fuzzy, kde-format
-#| msgid "Certificate Deletion Failed"
+#, kde-format
 msgid "Certificate Deletion Problem"
-msgstr "Ziurtagirien ezabapenak huts egin du"
+msgstr "Ziurtagiria ezabatzeko arazoa"
 
 #: src/commands/deletecertificatescommand.cpp:343
 #, kde-format
 msgid "OpenPGP backend: %1"
-msgstr ""
+msgstr "OpenPGP bizkarraldekoa: %1"
 
 #: src/commands/deletecertificatescommand.cpp:347
 #, kde-format
 msgid "CMS backend: %1"
-msgstr ""
+msgstr "CMS bizkarraldekoa: %1"
 
 #: src/commands/deletecertificatescommand.cpp:351
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificates:</"
-#| "p><p><b>%1</b></p></qt>"
+#, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
-"<qt><p>Errore bat gertatu da ziurtagiriak ezabatzean:</p><p><b>%1</b></p></"
-"qt>"
+"<qt><p>Errore bat gertatu da ziurtagiria ezabatzen saiatzean:</p><p><b>%1</"
+"b></p></qt>"
 
 #: src/commands/dumpcertificatecommand.cpp:73
 #: src/commands/dumpcrlcachecommand.cpp:104
 #, kde-format
 msgctxt "@action:button Update the log text widget"
 msgid "&Update"
-msgstr ""
+msgstr "Eg&uneratu"
 
 #: src/commands/dumpcertificatecommand.cpp:285
-#, fuzzy, kde-format
-#| msgid "Certificate Usage"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Dump"
-msgstr "Ziurtagiriaren erabilera"
+msgstr "Ziurtagiria iraultzea"
 
 #: src/commands/dumpcertificatecommand.cpp:314
 #: src/commands/dumpcrlcachecommand.cpp:323
-#, fuzzy, kde-format
-#| msgid "Unable to start %1 process. Please check your installation."
+#, kde-format
 msgid "Unable to start process gpgsm. Please check your installation."
-msgstr "Ezin izan da %1 prozesua abiatu. Egiaztatu zure instalazioa."
+msgstr "Ez da izan gpgsm prozesua abiatzeko gai. Egiaztatu zure instalazioa."
 
 #: src/commands/dumpcertificatecommand.cpp:316
 #: src/commands/dumpcertificatecommand.cpp:343
 #: src/commands/dumpcertificatecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Error"
+#, kde-format
 msgid "Dump Certificate Error"
-msgstr "Ziurtagiri kudeatzailearen errorea"
+msgstr "Ziurtagiri iraultzeko errorea"
 
 #: src/commands/dumpcertificatecommand.cpp:339
-#, fuzzy, kde-format
-#| msgid ""
-#| "The GpgSM process that tried to import the CRL file ended prematurely "
-#| "because of an unexpected error."
+#, kde-format
 msgid ""
 "The GpgSM process that tried to dump the certificate ended prematurely "
 "because of an unexpected error. Please check the output of gpgsm --dump-cert "
 "%1 for details."
 msgstr ""
-"CRL fitxategia inportatzen saiatu den GpgSM prozesua behar baina lehen irten "
-"da espero ez zuen errore bat aurkitu duelako."
+"Ziurtagiria iraultzen saiatu den «GpgSM» prozesua behar baino lehen bukatu "
+"da ustekabeko errore baten ondorioz. Mesedez, egiaztatu «gpgsm --dump-cert "
+"%1»(e)ren irteera xehetasunak lortzeko."
 
 #: src/commands/dumpcertificatecommand.cpp:346
-#, fuzzy, kde-format
-#| msgid ""
-#| "An error occurred when trying to import the CRL file. The output from "
-#| "GpgSM was:\n"
-#| "%1"
+#, kde-format
 msgid ""
 "An error occurred while trying to dump the certificate. The output from "
 "GpgSM was:\n"
 "%1"
 msgstr ""
-"Errore bat gertatu daCRL fitxategia inportatzean. GpgSM-ren irteera hau izan "
+"Errore bat gertatu ziurtagiria iraultzen saiatzean. «GpgSM»ren irteera izan "
 "da:\n"
 "%1"
 
 #: src/commands/dumpcrlcachecommand.cpp:122
-#, fuzzy, kde-format
-#| msgid "&Details"
+#, kde-format
 msgid "Show Entries"
-msgstr "&Xehetasunak"
+msgstr "Erakutsi sarrerak"
 
 #: src/commands/dumpcrlcachecommand.cpp:193
 #, kde-format
 msgctxt "Count of revocations in a CRL"
 msgid "Entries:"
-msgstr ""
+msgstr "Sarrerak:"
 
 #: src/commands/dumpcrlcachecommand.cpp:301
 #, fuzzy, kde-format

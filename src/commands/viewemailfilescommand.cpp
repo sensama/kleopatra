@@ -83,3 +83,5 @@ void ViewEmailFilesCommand::doCancel()
         d->dialog->close();
     }
 }
+
+#include "moc_viewemailfilescommand.cpp"

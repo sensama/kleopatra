@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-09-02 09:20+0200\n"
+"PO-Revision-Date: 2023-09-05 20:08+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -154,20 +154,20 @@ msgid ""
 "<para>An error occurred while trying to add the user ID: <message>%1</"
 "message></para>"
 msgstr ""
-"<para>Errore bat gertatu da erabiltzaile-IDa gehitzen saiatzean:<message>%1</"
+"<para>Errore bat gertatu da erabiltzaile-ID gehitzen saiatzean:<message>%1</"
 "message></para>"
 
 #: src/commands/adduseridcommand.cpp:207
 #, kde-format
 msgctxt "@title:window"
 msgid "Add User ID Error"
-msgstr "Erabiltzaile-IDa gehitzeko errorea"
+msgstr "Erabiltzaile-ID gehitzeko errorea"
 
 #: src/commands/adduseridcommand.cpp:212
 #, kde-format
 msgctxt "@info"
 msgid "User ID successfully added."
-msgstr "Erabiltzaile-IDa ondo gehitu da."
+msgstr "Erabiltzaile-ID ondo gehitu da."
 
 #: src/commands/adduseridcommand.cpp:213
 #, kde-format
@@ -191,7 +191,7 @@ msgstr "Ondoko serie-zenbakia duen PIV txartela aurkitzea huts egin du: %1"
 #, kde-format
 msgctxt "@info"
 msgid "Authenticating to the card failed: %1"
-msgstr "Txartelera autentifikazioak huts egin du: %1"
+msgstr "Txartelera egiaztatzea huts egin du: %1"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:175
 #, kde-format
@@ -292,7 +292,7 @@ msgstr ""
 #: src/commands/certifycertificatecommand.cpp:175
 #, kde-format
 msgid "Do you wish to create one now?"
-msgstr "Orain bat sortu nahi duzu?"
+msgstr "Orain, bat sortu nahi duzu?"
 
 #: src/commands/certifycertificatecommand.cpp:176
 #, kde-format
@@ -376,6 +376,10 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>'%1'(a)ri zure izenean ziurtagiriak %2 gisa markatzeko eskumena eman "
+"nahi diozu?</para><para><emphasis>Horrek esan nahi du ziurtagiri horren "
+"jabeak besteen hatz-markak behar bezala egiaztatu eta nortasunak baieztatzen "
+"dituela.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -386,19 +390,22 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>'%1'(a)ri zure izenean ziurtagiriak baliozko gisa markatzeko eskumena "
+"eman nahi diozu?</para><para><emphasis>Horrek esan nahi du ziurtagiri horren "
+"jabeak besteen hatz-markak behar bezala egiaztatu eta nortasunak baieztatzen "
+"dituela.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
-#| msgid "&Certificates"
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "&Ziurtagiriak"
+msgstr "Eman ziurtapen ahalmena"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr "Boterea eman"
+msgstr "Eman eskumena"
 
 #: src/commands/changeownertrustcommand.cpp:157
 #, kde-kuit-format
@@ -407,6 +414,9 @@ msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as %2 for "
 "you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
+"<para>'%1' ziurtagiriak zure izenean beste ziurtagiri batzuk %2 gisa "
+"ziurtatzeko eskumena du.</para><para>Eskumen hori indargabetu nahi duzu?</"
+"para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
 #, kde-kuit-format
@@ -415,18 +425,21 @@ msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as valid "
 "for you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
+"<para>'%1' ziurtagiriak zure izenean beste ziurtagiri batzuk baliozko gisa "
+"ziurtatzeko eskumena du.</para><para>Eskumen hori indargabetu nahi duzu?</"
+"para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
 #, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr "Indargabetu ziurtatzeko boterea"
+msgstr "Indargabetu ziurtatzeko eskumena"
 
 #: src/commands/changeownertrustcommand.cpp:168
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "Indargetu boterea"
+msgstr "Indargabetu eskumena"
 
 #: src/commands/changeownertrustcommand.cpp:238
 #, kde-kuit-format
@@ -439,48 +452,42 @@ msgstr ""
 "</para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:245
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificates:</"
-#| "p><p><b>%1</b></p></qt>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<qt><p>Errore bat gertatu da ziurtagiriak ezabatzean:</p><p><b>%1</b></p></"
-"qt>"
+"<para>'%1'(a)ri ziurtatzeko eskumena ematean errore bat gertatu da.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:252
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificates:</"
-#| "p><p><b>%1</b></p></qt>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<qt><p>Errore bat gertatu da ziurtagiriak ezabatzean:</p><p><b>%1</b></p></"
-"qt>"
+"<para>'%1'(a)ri ziurtatzeko eskumena indargabetzean errore bat gertatu da.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:268
 #, kde-format
 msgctxt "@info"
 msgid "Certificate '%1' was marked as your certificate."
-msgstr "'%1' ziurtagiria zure ziurtagiri gisa markatu da."
+msgstr "'%1' ziurtagiria zure ziurtagiri gisa markatuta dago."
 
 #: src/commands/changeownertrustcommand.cpp:271
 #, kde-format
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "Ziurtatze ahalmena eman zaio '%1'(e)ri."
+msgstr "'%1'(e)ri ziurtatzeko eskumena eman zaio."
 
 #: src/commands/changeownertrustcommand.cpp:274
 #, kde-format
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "'%1'(e)n ziurtatzeko ahalmena indargabetu da."
+msgstr "'%1'(e)n ziurtatzeko eskumena indargabetu da."
 
 #: src/commands/changepassphrasecommand.cpp:190
 #, kde-format
@@ -488,7 +495,7 @@ msgid ""
 "<p>An error occurred while trying to change the passphrase for <b>%1</b>:</"
 "p><p>%2</p>"
 msgstr ""
-"<p>Errore bat gertatu da <b>%1</b>(e)ren pasaesaldia aldatzen saiatzean:</"
+"<p>Errore bat gertatu da <b>%1</b>(a)ren pasaesaldia aldatzen saiatzean:</"
 "p><p>%2</p>"
 
 #: src/commands/changepassphrasecommand.cpp:194
@@ -518,19 +525,19 @@ msgstr "Serie zenbakia duen txartel-adimenduna aurkitzea huts egin du: %1"
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
-msgstr "PUKa aldatzea huts egin du: %1"
+msgstr "PUK aldatzea huts egin du: %1"
 
 #: src/commands/changepincommand.cpp:149
 #, kde-format
 msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
-msgstr "PINa desblokeatzea huts egin du: %1"
+msgstr "PIN desblokeatzea huts egin du: %1"
 
 #: src/commands/changepincommand.cpp:152
 #, kde-format
 msgctxt "@info"
 msgid "Changing the Admin PIN failed: %1"
-msgstr "Administratzailearen PINa aldatzea huts egin du: %1"
+msgstr "Administratzailearen PIN aldatzea huts egin du: %1"
 
 #: src/commands/changepincommand.cpp:155
 #, kde-format
@@ -542,49 +549,49 @@ msgstr "Berrezartzeko kodea aldatzea huts egin du: %1"
 #, kde-format
 msgctxt "@info"
 msgid "Setting the NKS PIN failed: %1"
-msgstr "NKS PINa ezartzea huts egin du: %1"
+msgstr "NKS PIN ezartzea huts egin du: %1"
 
 #: src/commands/changepincommand.cpp:161
 #, kde-format
 msgctxt "@info"
 msgid "Changing the NKS PIN failed: %1"
-msgstr "NKS PINa aldatzea huts egin du: %1"
+msgstr "NKS PIN aldatzea huts egin du: %1"
 
 #: src/commands/changepincommand.cpp:166
 #, kde-format
 msgctxt "@info"
 msgid "Setting the SigG PIN failed: %1"
-msgstr "SigG PINa ezartzea huts egin du: %1"
+msgstr "SigG PIN ezartzea huts egin du: %1"
 
 #: src/commands/changepincommand.cpp:168
 #, kde-format
 msgctxt "@info"
 msgid "Changing the SigG PIN failed: %1"
-msgstr "SigG PINa aldatzea huts egin du: %1"
+msgstr "SigG PIN aldatzea huts egin du: %1"
 
 #: src/commands/changepincommand.cpp:171
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PIN failed: %1"
-msgstr "PINa aldatzea huts egin du: %1"
+msgstr "PIN aldatzea huts egin du: %1"
 
 #: src/commands/changepincommand.cpp:178
 #, kde-format
 msgctxt "@info"
 msgid "PUK successfully changed."
-msgstr "PUKa ondo aldatu da."
+msgstr "PUK ondo aldatu da."
 
 #: src/commands/changepincommand.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
-msgstr "PINa desblokeatu eta berria ezarri da."
+msgstr "PIN desblokeatu eta berria ezartzea ondo egin da."
 
 #: src/commands/changepincommand.cpp:184
 #, kde-format
 msgctxt "@info"
 msgid "Admin PIN changed successfully."
-msgstr "Administratzaile PINa ondo aldatu da."
+msgstr "Administratzaile PIN ondo aldatu da."
 
 #: src/commands/changepincommand.cpp:187
 #, kde-format
@@ -596,31 +603,31 @@ msgstr "Berrezartzeko kodea ondo aldatu da."
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN set successfully."
-msgstr "NKS PINa ondo ezarri da."
+msgstr "NKS PIN ondo ezarri da."
 
 #: src/commands/changepincommand.cpp:193
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN changed successfully."
-msgstr "NKS PINa ondo aldatu da."
+msgstr "NKS PIN ondo aldatu da."
 
 #: src/commands/changepincommand.cpp:198
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN set successfully."
-msgstr "SigG PINa ondo ezarri da."
+msgstr "SigG PIN ondo ezarri da."
 
 #: src/commands/changepincommand.cpp:200
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN changed successfully."
-msgstr "Sig PINa ondo aldatu da."
+msgstr "Sig PIN ondo aldatu da."
 
 #: src/commands/changepincommand.cpp:203
 #, kde-format
 msgctxt "@info"
 msgid "PIN changed successfully."
-msgstr "PINa ondo aldatu da."
+msgstr "PIN ondo aldatu da."
 
 #: src/commands/changeroottrustcommand.cpp:76
 #, kde-format
@@ -654,7 +661,7 @@ msgstr "Ezin ditu %1 fitxategian baimen murriztaileak ezarri: %2"
 #: src/commands/changeroottrustcommand.cpp:359
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
-msgstr "%1 fitxategia bere azken helmugara eramatea, %2, huts egin du: %3"
+msgstr "%1 fitxategia bere azken helmugara, %2, eramatea huts egin du: %3"
 
 #: src/commands/changeroottrustcommand.cpp:370
 #, kde-format
@@ -704,45 +711,39 @@ msgstr "Hautatu egiaztapen-batura fitxategi bat edo gehiago"
 #, kde-format
 msgctxt "@title:window"
 msgid "Clear CRL Cache Error"
-msgstr "Garbitu CRL cachea errorea"
+msgstr "CRL cachea garbitzeko errorea"
 
 #: src/commands/clearcrlcachecommand.cpp:48
 #, kde-format
 msgctxt "@title:window"
 msgid "Clear CRL Cache Finished"
-msgstr "Garbitu CRL cachea amaitu da"
+msgstr "CRL cachea garbitzea amaitu da"
 
 #: src/commands/clearcrlcachecommand.cpp:53
-#, fuzzy, kde-format
-#| msgid ""
-#| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#| "because of an unexpected error."
+#, kde-format
 msgid ""
 "The DirMngr process that tried to clear the CRL cache ended prematurely "
 "because of an unexpected error. Please check the output of %1 for details."
 msgstr ""
-"CRL cache-a garbitzen saiatu den DirMngr prozesua behar baina lehen irten "
-"da, espero ez zuen errore bat aurkitu duelako."
+"CRL cachea garbitzen saiatu den «DirMngr» prozesua behar baina lehen amaitu "
+"da, espero ez zuen errore bat aurkitu duelako. Mesedez, egiaztatu %1(e)ren "
+"irteera xehetasunak jasotzeko."
 
 #: src/commands/clearcrlcachecommand.cpp:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "An error occurred when trying to clear the CRL cache. The output from "
-#| "DirMngr was:\n"
-#| "%1"
+#, kde-format
 msgid ""
 "An error occurred while trying to clear the CRL cache. The output from %1 "
 "was:\n"
 "%2"
 msgstr ""
-"Errore bat gertatu da CRL cache-a garbitzean. DirMngr-en irteera hau izan "
+"Errore bat gertatu da CRL cachea garbitzen saiatzean. %1(e)ren irteera izan "
 "da:\n"
-"%1"
+"%2"
 
 #: src/commands/clearcrlcachecommand.cpp:66
 #, kde-format
 msgid "CRL cache cleared successfully."
-msgstr "CRL cache-a ongi garbitu da."
+msgstr "CRL cachea ongi garbitu da."
 
 #: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:477
 #, kde-format
@@ -757,13 +758,14 @@ msgstr "Ziurtagiriaren xehetasunak"
 
 #: src/commands/createcsrforcardkeycommand.cpp:189
 #: src/commands/createcsrforcardkeycommand.cpp:204
-#, fuzzy, kde-format
-#| msgid "Import Certificates..."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Creating a CSR for the card key failed:\n"
 "%1"
-msgstr "Inportatu ziurtagiriak..."
+msgstr ""
+"Txarteleko gakorako CSR bat sortzea huts egin du:\n"
+"%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:208
 #: src/newcertificatewizard/resultpage.cpp:261
@@ -2051,10 +2053,9 @@ msgid ""
 msgstr ""
 
 #: src/commands/importcrlcommand.cpp:54
-#, fuzzy, kde-format
-#| msgid "Certificate Revocation List (*.crl *.arl *-crl.der *-arl.der)"
+#, kde-format
 msgid "Certificate Revocation Lists, DER encoded"
-msgstr "Ziurtagirien errebokatze zerrenda (*.crl *.arl *-crl.der *-arl.der)"
+msgstr "Ziurtagiriak indargabetzeko zerrendak, DER kodetuta"
 
 #: src/commands/importcrlcommand.cpp:55
 #, fuzzy, kde-format
@@ -3876,6 +3877,8 @@ msgid ""
 "If this option is checked, Certificate Revocation Lists are never used to "
 "validate S/MIME certificates."
 msgstr ""
+"Hori markatzen bada, ziurtagiriak indargabetzeko zerrendak (CRL) ez dira "
+"inoiz erabiliko S/MIME ziurtagiriak baliozkotzeko."
 
 #. i18n: ectx: property (text), widget (QCheckBox, neverConsultCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:144
@@ -11065,13 +11068,13 @@ msgstr "Indargabetu hautatutako ziurtagiriaren ziurtapena"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "Aldatu ziurtagiriaren ahalmena..."
+msgstr "Aldatu ziurtagiriaren eskumena..."
 
 #: src/view/keylistcontroller.cpp:445
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
-msgstr ""
+msgstr "Eman edo indargabetu hautatutako ziurtagiriaren ziurtatzeko eskumena"
 
 #: src/view/keylistcontroller.cpp:449
 #, kde-format

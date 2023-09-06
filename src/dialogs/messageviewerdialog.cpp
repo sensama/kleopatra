@@ -43,7 +43,22 @@ KMime::Message::Ptr openFile(const QString &fileName)
         return {};
     }
 
-    if (mime.inherits(QStringLiteral("application/pgp-encrypted")) || fileName.endsWith(QStringLiteral(".asc"))) {
+    if (mime.inherits(QStringLiteral("application/pkcs7-mime")) || fileName.endsWith(QStringLiteral("smime.p7m"))) {
+        auto contentType = message->contentType();
+        contentType->setMimeType("application/pkcs7-mime");
+        contentType->setParameter(QStringLiteral("smime-type"), QStringLiteral("enveloped-data"));
+
+        auto contentDisposition = new KMime::Headers::ContentDisposition;
+        contentDisposition->setDisposition(KMime::Headers::CDattachment);
+        contentDisposition->setFilename(QStringLiteral("smime.p7m"));
+
+        auto cte = message->contentTransferEncoding();
+        cte->setEncoding(KMime::Headers::CE7Bit);
+        cte->setDecoded(true);
+
+        message->setBody(content);
+        message->assemble();
+    } else if (mime.inherits(QStringLiteral("application/pgp-encrypted")) || fileName.endsWith(QStringLiteral(".asc"))) {
         auto contentType = message->contentType();
         contentType->setMimeType("multipart/encrypted");
         contentType->setBoundary(KMime::multiPartBoundary());

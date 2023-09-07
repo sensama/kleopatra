@@ -616,6 +616,9 @@ public:
             QString remark;
             for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
                 const auto item = userIdListView->topLevelItem(i);
+                if (item->isDisabled()) {
+                    continue;
+                }
                 const auto uid = getUserId(item);
                 GpgME::Error err;
                 const char *c_remark = uid.remark(remarkKey, err);

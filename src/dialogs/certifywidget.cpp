@@ -252,6 +252,7 @@ struct UserIDCheckState {
 
 class CertifyWidget::Private
 {
+public:
     enum Role { UserIdRole = Qt::UserRole };
     enum Mode {
         SingleCertification,
@@ -263,7 +264,6 @@ class CertifyWidget::Private
         TagsLoaded,
     };
 
-public:
     Private(CertifyWidget *qq)
         : q{qq}
     {
@@ -739,27 +739,16 @@ public:
         Q_EMIT q->changed();
     }
 
-    void setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
-    {
-        Q_ASSERT(!key.isNull());
-        setMode(SingleCertification);
-        mKeys = {key};
-        mUserIds = uids;
-        mTagsState = TagsMustBeChecked;
-        setUpWidget();
-    }
-
     GpgME::Key certificate() const
     {
         Q_ASSERT(mMode == SingleCertification);
         return !mKeys.empty() ? mKeys.front() : Key{};
     }
 
-    void setCertificates(const std::vector<GpgME::Key> &keys)
+    void setCertificates(const std::vector<GpgME::Key> &keys, const std::vector<GpgME::UserID> &uids)
     {
-        setMode(BulkCertification);
         mKeys = keys;
-        mUserIds.clear();
+        mUserIds = uids;
         mTagsState = TagsMustBeChecked;
         setUpWidget();
     }
@@ -947,7 +936,9 @@ Kleo::CertifyWidget::~CertifyWidget() = default;
 
 void CertifyWidget::setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
 {
-    d->setCertificate(key, uids);
+    Q_ASSERT(!key.isNull());
+    d->setMode(Private::SingleCertification);
+    d->setCertificates({key}, uids);
 }
 
 GpgME::Key CertifyWidget::certificate() const
@@ -957,7 +948,8 @@ GpgME::Key CertifyWidget::certificate() const
 
 void CertifyWidget::setCertificates(const std::vector<GpgME::Key> &keys)
 {
-    d->setCertificates(keys);
+    d->setMode(Private::BulkCertification);
+    d->setCertificates(keys, {});
 }
 
 std::vector<GpgME::Key> CertifyWidget::certificates() const

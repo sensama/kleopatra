@@ -650,21 +650,41 @@ public:
         }
     }
 
+    void setUpWidget()
+    {
+        if (mMode == SingleCertification) {
+            const auto key = certificate();
+            mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
+                                Formatting::accessibleHexID(key.primaryFingerprint()));
+            setUpUserIdList(mUserIds.empty() ? key.userIDs() : mUserIds);
+
+            auto keyFilter = std::make_shared<SecKeyFilter>();
+            keyFilter->setExcludedKey(key);
+            mSecKeySelect->setKeyFilter(keyFilter);
+
+            updateTrustSignatureDomain();
+        } else {
+            // check for certificates that cannot be certified
+            const auto haveBadCertificates = Kleo::any_of(mKeys, [](const auto &key) {
+                const auto &uid = key.userID(0);
+                return (key.protocol() != OpenPGP) || uid.isInvalid() || Kleo::isRevokedOrExpired(uid);
+            });
+            if (haveBadCertificates) {
+                mBadCertificatesInfo->animatedShow();
+            }
+
+            setUpUserIdList();
+        }
+        updateTags();
+    }
+
     void setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
     {
         Q_ASSERT(!key.isNull());
         setMode(SingleCertification);
         mKeys = {key};
-        mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
-                            Formatting::accessibleHexID(key.primaryFingerprint()));
-        setUpUserIdList(uids.empty() ? key.userIDs() : uids);
-
-        auto keyFilter = std::make_shared<SecKeyFilter>();
-        keyFilter->setExcludedKey(key);
-        mSecKeySelect->setKeyFilter(keyFilter);
-
-        updateTags();
-        updateTrustSignatureDomain();
+        mUserIds = uids;
+        setUpWidget();
     }
 
     GpgME::Key certificate() const
@@ -677,17 +697,8 @@ public:
     {
         setMode(BulkCertification);
         mKeys = keys;
-
-        // check for certificates that cannot be certified
-        const auto haveBadCertificates = Kleo::any_of(mKeys, [](const auto &key) {
-            const auto &uid = key.userID(0);
-            return (key.protocol() != OpenPGP) || uid.isInvalid() || Kleo::isRevokedOrExpired(uid);
-        });
-        if (haveBadCertificates) {
-            mBadCertificatesInfo->animatedShow();
-        }
-
-        setUpUserIdList();
+        mUserIds.clear();
+        setUpWidget();
     }
 
     std::vector<GpgME::Key> certificates() const
@@ -853,6 +864,7 @@ public:
 
     Mode mMode = SingleCertification;
     std::vector<GpgME::Key> mKeys;
+    std::vector<GpgME::UserID> mUserIds;
 
     GpgME::Key mCertificationKey;
     Qt::CheckState mCertificationKeyUserIDCheckState;

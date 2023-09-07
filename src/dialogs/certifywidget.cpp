@@ -257,6 +257,11 @@ class CertifyWidget::Private
         SingleCertification,
         BulkCertification,
     };
+    enum TagsState {
+        TagsMustBeChecked,
+        TagsLoading,
+        TagsLoaded,
+    };
 
 public:
     Private(CertifyWidget *qq)
@@ -597,7 +602,7 @@ public:
             QString remark;
         };
 
-        if (mMode != SingleCertification) {
+        if (mTagsState != TagsLoaded) {
             return;
         }
         if (mTagsLE->isModified()) {
@@ -650,8 +655,60 @@ public:
         }
     }
 
+    void loadAllTags()
+    {
+        const auto keyWithoutTags = std::find_if(mKeys.cbegin(), mKeys.cend(), [](const auto &key) {
+            return (key.protocol() == GpgME::OpenPGP) && !(key.keyListMode() & GpgME::SignatureNotations);
+        });
+        const auto indexOfKeyWithoutTags = std::distance(mKeys.cbegin(), keyWithoutTags);
+        if (indexOfKeyWithoutTags < signed(mKeys.size())) {
+            auto loadTags = [this, indexOfKeyWithoutTags]() {
+                Q_ASSERT(indexOfKeyWithoutTags < signed(mKeys.size()));
+                // call update() on the reference to the vector element because it swaps key with the updated key
+                mKeys[indexOfKeyWithoutTags].update();
+                loadAllTags();
+            };
+            QMetaObject::invokeMethod(q, loadTags, Qt::QueuedConnection);
+            return;
+        }
+        mTagsState = TagsLoaded;
+        QMetaObject::invokeMethod(
+            q,
+            [this]() {
+                setUpWidget();
+            },
+            Qt::QueuedConnection);
+    }
+
+    bool ensureTagsLoaded()
+    {
+        Q_ASSERT(mTagsState != TagsLoading);
+        if (mTagsState == TagsLoaded) {
+            return true;
+        }
+
+        const auto allTagsAreLoaded = Kleo::all_of(mKeys, [](const auto &key) {
+            return (key.protocol() != GpgME::OpenPGP) || (key.keyListMode() & GpgME::SignatureNotations);
+        });
+        if (allTagsAreLoaded) {
+            mTagsState = TagsLoaded;
+        } else {
+            mTagsState = TagsLoading;
+            QMetaObject::invokeMethod(
+                q,
+                [this]() {
+                    loadAllTags();
+                },
+                Qt::QueuedConnection);
+        }
+        return mTagsState == TagsLoaded;
+    }
+
     void setUpWidget()
     {
+        if (!ensureTagsLoaded()) {
+            return;
+        }
         if (mMode == SingleCertification) {
             const auto key = certificate();
             mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
@@ -676,6 +733,7 @@ public:
             setUpUserIdList();
         }
         updateTags();
+        Q_EMIT q->changed();
     }
 
     void setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids)
@@ -684,6 +742,7 @@ public:
         setMode(SingleCertification);
         mKeys = {key};
         mUserIds = uids;
+        mTagsState = TagsMustBeChecked;
         setUpWidget();
     }
 
@@ -698,6 +757,7 @@ public:
         setMode(BulkCertification);
         mKeys = keys;
         mUserIds.clear();
+        mTagsState = TagsMustBeChecked;
         setUpWidget();
     }
 
@@ -763,6 +823,9 @@ public:
         static const QRegularExpression domainNameRegExp{QStringLiteral(R"(^\s*((xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}\s*$)"),
                                                          QRegularExpression::CaseInsensitiveOption};
 
+        if (mTagsState != TagsLoaded) {
+            return false;
+        }
         // do not accept null keys
         if (mKeys.empty() || mSecKeySelect->currentKey().isNull()) {
             return false;
@@ -865,6 +928,7 @@ public:
     Mode mMode = SingleCertification;
     std::vector<GpgME::Key> mKeys;
     std::vector<GpgME::UserID> mUserIds;
+    TagsState mTagsState = TagsMustBeChecked;
 
     GpgME::Key mCertificationKey;
     Qt::CheckState mCertificationKeyUserIDCheckState;

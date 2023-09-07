@@ -210,9 +210,6 @@ void CertifyCertificateCommand::doStart()
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
 
-    if (!(d->target.keyListMode() & GpgME::SignatureNotations)) {
-        d->target.update();
-    }
     d->dialog->setCertificateToCertify(d->target, d->uids);
     d->dialog->show();
 }

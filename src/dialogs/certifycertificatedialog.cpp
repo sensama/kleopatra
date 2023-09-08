@@ -41,6 +41,7 @@ using namespace Kleo;
 CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f)
     : QDialog(p, f)
 {
+    setWindowTitle(i18nc("@title:window", "Certify Certificates"));
     setWindowFlags(windowFlags() & (~Qt::WindowContextHelpButtonHint));
 
     // Setup GUI
@@ -85,6 +86,16 @@ void CertifyCertificateDialog::setCertificateToCertify(const Key &key, const std
     }));
     setWindowTitle(i18nc("@title:window arg is name, email of certificate holder", "Certify Certificate: %1", Formatting::prettyName(key)));
     mCertWidget->setCertificate(key, uids);
+}
+
+void CertifyCertificateDialog::setCertificatesToCertify(const std::vector<GpgME::Key> &keys)
+{
+    mCertWidget->setCertificates(keys);
+}
+
+void CertifyCertificateDialog::setGroupName(const QString &name)
+{
+    setWindowTitle(i18nc("@title:window Certify Certificate Group <group name>", "Certify Certificate Group %1", name));
 }
 
 bool CertifyCertificateDialog::exportableCertificationSelected() const

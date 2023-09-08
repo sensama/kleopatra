@@ -36,8 +36,6 @@ public:
     bool trustSignatureSelected() const;
     QString trustSignatureDomain() const;
 
-    bool nonRevocableCertificationSelected() const;
-
     void setSelectedUserIDs(const std::vector<GpgME::UserID> &uids);
     std::vector<GpgME::UserID> selectedUserIDs() const;
 

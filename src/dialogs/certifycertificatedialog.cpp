@@ -102,11 +102,6 @@ QString CertifyCertificateDialog::trustSignatureDomain() const
     return mCertWidget->trustSignatureDomain();
 }
 
-bool CertifyCertificateDialog::nonRevocableCertificationSelected() const
-{
-    return false;
-}
-
 Key CertifyCertificateDialog::selectedSecretKey() const
 {
     return mCertWidget->secKey();

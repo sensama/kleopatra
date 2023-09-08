@@ -263,7 +263,6 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
     createJob();
     Q_ASSERT(job);
     job->setExportable(dialog->exportableCertificationSelected());
-    job->setNonRevocable(dialog->nonRevocableCertificationSelected());
     job->setUserIDsToSign(userIdIndexes);
     job->setSigningKey(dialog->selectedSecretKey());
     if (!dialog->tags().isEmpty()) {

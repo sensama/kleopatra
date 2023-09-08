@@ -10,12 +10,14 @@
 
 #include "groupsconfigwidget.h"
 
-#include "commands/exportgroupscommand.h"
-#include "dialogs/editgroupdialog.h"
+#include <commands/certifygroupcommand.h>
+#include <commands/exportgroupscommand.h>
+#include <dialogs/editgroupdialog.h>
 
 #include <Libkleo/Debug>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
@@ -122,6 +124,7 @@ class GroupsConfigWidget::Private
         QPushButton *newButton = nullptr;
         QPushButton *editButton = nullptr;
         QPushButton *deleteButton = nullptr;
+        QPushButton *certifyButton = nullptr;
         QPushButton *exportButton = nullptr;
     } ui;
     AbstractKeyListModel *groupsModel = nullptr;
@@ -187,6 +190,11 @@ public:
         ui.deleteButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.deleteButton);
 
+        ui.certifyButton = new QPushButton{i18nc("@action:button", "Certify"), q};
+        ui.certifyButton->setToolTip(i18nc("@info:tooltip", "Start the certification process for all certificates in the group."));
+        ui.certifyButton->setEnabled(false);
+        groupsButtonLayout->addWidget(ui.certifyButton);
+
         ui.exportButton = new QPushButton{i18nc("@action:button", "Export"), q};
         ui.exportButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.exportButton);
@@ -214,6 +222,9 @@ public:
         });
         connect(ui.deleteButton, &QPushButton::clicked, q, [this]() {
             deleteGroup();
+        });
+        connect(ui.certifyButton, &QPushButton::clicked, q, [this]() {
+            certifyGroup();
         });
         connect(ui.exportButton, &QPushButton::clicked, q, [this]() {
             exportGroup();
@@ -280,6 +291,9 @@ private:
         });
         ui.editButton->setEnabled(selectedGroups.size() == 1 && allSelectedGroupsAreEditable);
         ui.deleteButton->setEnabled(!selectedGroups.empty() && allSelectedGroupsAreEditable);
+        ui.certifyButton->setEnabled(selectedGroups.size() == 1 //
+                                     && !selectedGroups.front().keys().empty() //
+                                     && allKeysHaveProtocol(selectedGroups.front().keys(), GpgME::OpenPGP));
         ui.exportButton->setEnabled(selectedGroups.size() == 1);
     }
 
@@ -382,6 +396,20 @@ private:
         }
 
         Q_EMIT q->changed();
+    }
+
+    void certifyGroup()
+    {
+        const auto selectedGroups = getGroups(selectedRows());
+        if (selectedGroups.size() != 1) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << (selectedGroups.empty() ? "selection is empty" : "more than one group is selected");
+            return;
+        }
+
+        // execute export group command
+        auto cmd = new CertifyGroupCommand{selectedGroups.front()};
+        cmd->setParentWidget(q->window());
+        cmd->start();
     }
 
     void exportGroup()

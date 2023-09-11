@@ -205,14 +205,16 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificateCommand::Private::star
 #if QGPGME_SUPPORTS_WKD_REFRESH_JOB
 std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificateCommand::Private::startWKDRefreshJob()
 {
-    // check if key is eligible for WKD refresh, i.e. if any user ID has WKD as origin
-    const auto userIds = key.userIDs();
-    const auto eligibleForWKDRefresh = std::any_of(userIds.begin(), userIds.end(), [](const auto &userId) {
-        return !userId.isRevoked() && !userId.addrSpec().empty() && userId.origin() == Key::OriginWKD;
-    });
-    if (!eligibleForWKDRefresh) {
-        wkdRefreshResult = ImportResult{Error::fromCode(GPG_ERR_USER_1)};
-        return {};
+    if (!Settings{}.queryWKDsForAllUserIDs()) {
+        // check if key is eligible for WKD refresh, i.e. if any user ID has WKD as origin
+        const auto userIds = key.userIDs();
+        const auto eligibleForWKDRefresh = std::any_of(userIds.begin(), userIds.end(), [](const auto &userId) {
+            return !userId.isRevoked() && !userId.addrSpec().empty() && userId.origin() == Key::OriginWKD;
+        });
+        if (!eligibleForWKDRefresh) {
+            wkdRefreshResult = ImportResult{Error::fromCode(GPG_ERR_USER_1)};
+            return {};
+        }
     }
 
     std::unique_ptr<QGpgME::WKDRefreshJob> refreshJob{QGpgME::openpgp()->wkdRefreshJob()};

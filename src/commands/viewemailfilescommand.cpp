@@ -6,9 +6,10 @@
 #include "viewemailfilescommand.h"
 
 #include "command_p.h"
-#include "dialogs/messageviewerdialog.h"
+#include <MimeTreeParserWidgets/MessageViewerDialog>
 
 using namespace Kleo::Commands;
+using namespace MimeTreeParser::Widgets;
 
 class ViewEmailFilesCommand::Private : public Command::Private
 {
@@ -22,7 +23,7 @@ public:
     Private(ViewEmailFilesCommand *qq, KeyListController *c);
     ~Private() override;
 
-    QVector<MessageViewerDialog *> dialogs;
+    QVector<QPointer<MessageViewerDialog>> dialogs;
     QStringList files;
 
     void ensureDialogCreated();
@@ -38,7 +39,7 @@ ViewEmailFilesCommand::Private::~Private() = default;
 void ViewEmailFilesCommand::Private::ensureDialogCreated()
 {
     for (const auto &file : std::as_const(files)) {
-        auto dlg = new MessageViewerDialog(file);
+        const auto dlg = new MessageViewerDialog(file);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         applyWindowID(dlg);
         connect(dlg, &MessageViewerDialog::finished, q_func(), [this, dlg] {

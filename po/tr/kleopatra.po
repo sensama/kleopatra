@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-02 00:48+0000\n"
+"POT-Creation-Date: 2023-09-12 00:47+0000\n"
 "PO-Revision-Date: 2023-08-31 13:45+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -1253,18 +1253,38 @@ msgstr ""
 "bir hata nedeniyle erken sonlandı.</para><para>Lütfen daha fazla bilgi "
 "<icode>%1</icode> çıktısını denetleyin.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:114
+#: src/commands/exportopenpgpcertstoservercommand.cpp:116
+#: src/commands/importcertificatescommand.cpp:624
+#, kde-format
+msgid " "
+msgstr " "
+
+#: src/commands/exportopenpgpcertstoservercommand.cpp:117
 #, kde-kuit-format
+msgctxt ""
+"@info used for concatenating multiple lines of text with line breaks; most "
+"likely this shouldn't be translated"
+msgid "%1<nl />%2"
+msgstr ""
+
+#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while trying to export OpenPGP certificates.</"
+#| "para> <para>The output from <command>%1</command> was: <message>%2</"
+#| "message></para>"
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
-"<para>The output from <command>%1</command> was: <message>%2</message></para>"
+"<para>The output of <command>%1</command> was:<nl /><message>%2</message></"
+"para>"
 msgstr ""
 "<para>OpenPGP sertifikaları dışa aktarmaya çalışılırken bir hata oluştu.</"
 "para> <para><command>%1</command> komutunun çıktısı: <message>%2</message></"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#: src/commands/exportopenpgpcertstoservercommand.cpp:130
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -1978,11 +1998,6 @@ msgstr ""
 "<qt> <p>%1 sertifikasını almaya çalışırken bir hata oluştu: </p><p><b>%2</"
 "b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:624
-#, kde-format
-msgid " "
-msgstr " "
-
 #: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
@@ -2650,7 +2665,7 @@ msgid "The backend does not support updating individual certificates."
 msgstr "Arka uç, bireysel sertifikaların güncellenmesini desteklemiyor."
 
 #: src/commands/refreshcertificatecommand.cpp:173
-#: src/commands/refreshcertificatecommand.cpp:236
+#: src/commands/refreshcertificatecommand.cpp:238
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
@@ -2662,64 +2677,64 @@ msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Sertifikalar güncelleniyor..."
 
-#: src/commands/refreshcertificatecommand.cpp:256
+#: src/commands/refreshcertificatecommand.cpp:258
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "Anahtar değiştirilmemiş."
 
-#: src/commands/refreshcertificatecommand.cpp:260
+#: src/commands/refreshcertificatecommand.cpp:262
 #, kde-format
 msgid "The key has been revoked."
 msgstr "Bu anahtar yürürlükten kaldırılmış."
 
-#: src/commands/refreshcertificatecommand.cpp:263
+#: src/commands/refreshcertificatecommand.cpp:265
 #, kde-format
 msgid "The key has been updated."
 msgstr "Bu anahtar güncellenmiş."
 
-#: src/commands/refreshcertificatecommand.cpp:267
+#: src/commands/refreshcertificatecommand.cpp:269
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Yeni kullanıcı kimlikleri: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:270
+#: src/commands/refreshcertificatecommand.cpp:272
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Yeni alt anahtarlar: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:273
+#: src/commands/refreshcertificatecommand.cpp:275
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Yeni imzalar: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:283
+#: src/commands/refreshcertificatecommand.cpp:285
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "Ek olarak, 1 yeni anahtar alındı."
 msgstr[1] "Ek olarak, %1 yeni anahtar alındı."
 
-#: src/commands/refreshcertificatecommand.cpp:312
-#: src/commands/refreshcertificatecommand.cpp:346
-#: src/commands/refreshcertificatecommand.cpp:380
+#: src/commands/refreshcertificatecommand.cpp:314
+#: src/commands/refreshcertificatecommand.cpp:348
+#: src/commands/refreshcertificatecommand.cpp:382
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "Anahtar Güncellendi"
 
-#: src/commands/refreshcertificatecommand.cpp:335
+#: src/commands/refreshcertificatecommand.cpp:337
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "Sertifika güncellendi."
 
-#: src/commands/refreshcertificatecommand.cpp:335
+#: src/commands/refreshcertificatecommand.cpp:337
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Sertifika Güncellendi"
 
-#: src/commands/refreshcertificatecommand.cpp:354
+#: src/commands/refreshcertificatecommand.cpp:356
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2733,14 +2748,14 @@ msgstr ""
 "para><para>Sertifikayı Web Anahtar Dizini'nden güncelleme başarısız oldu:</"
 "para><para><message>%2</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:360
-#: src/commands/refreshcertificatecommand.cpp:391
+#: src/commands/refreshcertificatecommand.cpp:362
+#: src/commands/refreshcertificatecommand.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Güncelleme Başarısız"
 
-#: src/commands/refreshcertificatecommand.cpp:366
+#: src/commands/refreshcertificatecommand.cpp:368
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
@@ -2748,20 +2763,20 @@ msgstr ""
 "Anahtar sunucusundan, LDAP sunucusundan veya Active Directory'den güncelleme "
 "sonucu"
 
-#: src/commands/refreshcertificatecommand.cpp:368
-#: src/commands/refreshcertificatecommand.cpp:375
+#: src/commands/refreshcertificatecommand.cpp:370
+#: src/commands/refreshcertificatecommand.cpp:377
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
 msgstr "<para>Güncelleme başarısız oldu: <message>%1</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:373
+#: src/commands/refreshcertificatecommand.cpp:375
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr "Web Anahtar Dizini'nden güncelleme sonucu"
 
-#: src/commands/refreshcertificatecommand.cpp:388
+#: src/commands/refreshcertificatecommand.cpp:390
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

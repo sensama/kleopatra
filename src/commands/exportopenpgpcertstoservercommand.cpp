@@ -110,11 +110,19 @@ QString ExportOpenPGPCertsToServerCommand::crashExitMessage(const QStringList &a
 
 QString ExportOpenPGPCertsToServerCommand::errorExitMessage(const QStringList &args) const
 {
+    // ki18n(" ") as initializer because initializing with empty string leads to
+    // (I18N_EMPTY_MESSAGE)
+    const auto errorLines = errorString().split(QLatin1Char{'\n'});
+    const auto errorText = std::accumulate(errorLines.begin(), errorLines.end(), KLocalizedString{ki18n(" ")}, [](KLocalizedString temp, const auto &line) {
+        return kxi18nc("@info used for concatenating multiple lines of text with line breaks; most likely this shouldn't be translated", "%1<nl />%2")
+            .subs(temp)
+            .subs(line);
+    });
     return xi18nc("@info",
                   "<para>An error occurred while trying to export OpenPGP certificates.</para> "
-                  "<para>The output from <command>%1</command> was: <message>%2</message></para>",
+                  "<para>The output of <command>%1</command> was:<nl /><message>%2</message></para>",
                   args[0],
-                  errorString());
+                  errorText);
 }
 
 QString ExportOpenPGPCertsToServerCommand::successMessage(const QStringList &) const

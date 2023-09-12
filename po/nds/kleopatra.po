@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-02 00:48+0000\n"
+"POT-Creation-Date: 2023-09-12 00:47+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -1359,17 +1359,38 @@ msgstr ""
 "de Utgaav vun <icode>%1</icode> an, wenn Du de Enkelheiten weten wullt.</"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:114
+#: src/commands/exportopenpgpcertstoservercommand.cpp:116
+#: src/commands/importcertificatescommand.cpp:624
+#, fuzzy, kde-format
+#| msgid ", "
+msgid " "
+msgstr ", "
+
+#: src/commands/exportopenpgpcertstoservercommand.cpp:117
 #, kde-kuit-format
+msgctxt ""
+"@info used for concatenating multiple lines of text with line breaks; most "
+"likely this shouldn't be translated"
+msgid "%1<nl />%2"
+msgstr ""
+
+#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while trying to export OpenPGP certificates.</"
+#| "para> <para>The output from <command>%1</command> was: <message>%2</"
+#| "message></para>"
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
-"<para>The output from <command>%1</command> was: <message>%2</message></para>"
+"<para>The output of <command>%1</command> was:<nl /><message>%2</message></"
+"para>"
 msgstr ""
 "<para>Dat geev en Fehler bi't Exporteren vun OpenPGP-Zertifikaten.</para> "
 "<para>De Utgaav vun <command>%1</command> weer: <message>%2</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#: src/commands/exportopenpgpcertstoservercommand.cpp:130
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -2139,12 +2160,6 @@ msgstr ""
 "<qt><p>Bi't Importeren vun dat Zertifikaat %1 geev dat en Fehler:</p><p><b>"
 "%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:624
-#, fuzzy, kde-format
-#| msgid ", "
-msgid " "
-msgstr ", "
-
 #: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
@@ -2872,7 +2887,7 @@ msgid "The backend does not support updating individual certificates."
 msgstr ""
 
 #: src/commands/refreshcertificatecommand.cpp:173
-#: src/commands/refreshcertificatecommand.cpp:236
+#: src/commands/refreshcertificatecommand.cpp:238
 #, fuzzy, kde-format
 #| msgid "Export"
 msgctxt "@info:status"
@@ -2886,74 +2901,74 @@ msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Zertifikaat warrt importeert..."
 
-#: src/commands/refreshcertificatecommand.cpp:256
+#: src/commands/refreshcertificatecommand.cpp:258
 #, fuzzy, kde-format
 #| msgid "Secret keys unchanged:"
 msgid "The key hasn't changed."
 msgstr "Nich ännert Privaatslötels:"
 
-#: src/commands/refreshcertificatecommand.cpp:260
+#: src/commands/refreshcertificatecommand.cpp:262
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "OpenPGP certificates exported successfully."
 msgid "The key has been revoked."
 msgstr "OpenPGP-Zertifikaten mit Spood exporteert."
 
-#: src/commands/refreshcertificatecommand.cpp:263
+#: src/commands/refreshcertificatecommand.cpp:265
 #, fuzzy, kde-format
 #| msgid "Your key is being created."
 msgid "The key has been updated."
 msgstr "Dien Slötel warrt opstunns opstellt."
 
-#: src/commands/refreshcertificatecommand.cpp:267
+#: src/commands/refreshcertificatecommand.cpp:269
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgid "New user IDs: %1"
 msgstr "Nieg Bruker-IDs:"
 
-#: src/commands/refreshcertificatecommand.cpp:270
+#: src/commands/refreshcertificatecommand.cpp:272
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgid "New subkeys: %1"
 msgstr "Nieg Ünnerslötels:"
 
-#: src/commands/refreshcertificatecommand.cpp:273
+#: src/commands/refreshcertificatecommand.cpp:275
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New signatures: %1"
 msgstr "Nieg Ünnerschriften:"
 
-#: src/commands/refreshcertificatecommand.cpp:283
+#: src/commands/refreshcertificatecommand.cpp:285
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/commands/refreshcertificatecommand.cpp:312
-#: src/commands/refreshcertificatecommand.cpp:346
-#: src/commands/refreshcertificatecommand.cpp:380
+#: src/commands/refreshcertificatecommand.cpp:314
+#: src/commands/refreshcertificatecommand.cpp:348
+#: src/commands/refreshcertificatecommand.cpp:382
 #, fuzzy, kde-format
 #| msgid "&Update"
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "&Opfrischen"
 
-#: src/commands/refreshcertificatecommand.cpp:335
+#: src/commands/refreshcertificatecommand.cpp:337
 #, fuzzy, kde-format
 #| msgid "This certificate has expired."
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "Dit Zertifikaat is aflopen."
 
-#: src/commands/refreshcertificatecommand.cpp:335
+#: src/commands/refreshcertificatecommand.cpp:337
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Zertifikaatbruuk"
 
-#: src/commands/refreshcertificatecommand.cpp:354
+#: src/commands/refreshcertificatecommand.cpp:356
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2963,22 +2978,22 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:360
-#: src/commands/refreshcertificatecommand.cpp:391
+#: src/commands/refreshcertificatecommand.cpp:362
+#: src/commands/refreshcertificatecommand.cpp:393
 #, fuzzy, kde-format
 #| msgid "No Audit Log available"
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Keen Pröövlogbook verföögbor"
 
-#: src/commands/refreshcertificatecommand.cpp:366
+#: src/commands/refreshcertificatecommand.cpp:368
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:368
-#: src/commands/refreshcertificatecommand.cpp:375
+#: src/commands/refreshcertificatecommand.cpp:370
+#: src/commands/refreshcertificatecommand.cpp:377
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2990,13 +3005,13 @@ msgstr ""
 "<para>Dat geev en Fehler bi't Laden vun de Beglöven: <message>%1</message></"
 "para>"
 
-#: src/commands/refreshcertificatecommand.cpp:373
+#: src/commands/refreshcertificatecommand.cpp:375
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:388
+#: src/commands/refreshcertificatecommand.cpp:390
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""

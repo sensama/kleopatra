@@ -6,6 +6,7 @@
 #include "viewemailfilescommand.h"
 
 #include "command_p.h"
+
 #include <MimeTreeParserWidgets/MessageViewerDialog>
 
 using namespace Kleo::Commands;

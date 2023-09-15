@@ -49,22 +49,24 @@ public:
     void init();
 
 private:
-    void slotControllerDone()
+    void finishIfEverythingIsDone()
     {
-        if (emailFiles.isEmpty()) {
+        if (files.empty() && emailFiles.empty()) {
             finished();
-        } else {
-            files.clear();
         }
     }
+
+    void slotControllerDone()
+    {
+        files.clear();
+        finishIfEverythingIsDone();
+    }
+
     void slotControllerError(int, const QString &msg)
     {
         KMessageBox::error(parentWidgetOrView(), msg, i18n("Decrypt/Verify Failed"));
-        if (emailFiles.isEmpty()) {
-            finished();
-        } else {
-            files.clear();
-        }
+        files.clear();
+        finishIfEverythingIsDone();
     }
 
 private:
@@ -184,19 +186,16 @@ void DecryptVerifyFilesCommand::doStart()
             }
         }
 
-        if (!d->emailFiles.isEmpty()) {
+        if (!d->emailFiles.empty()) {
             const auto viewEmailCommand = new ViewEmailFilesCommand(d->emailFiles, nullptr);
             connect(viewEmailCommand, &ViewEmailFilesCommand::finished, this, [this] {
-                if (d->files.isEmpty()) {
-                    d->finished();
-                } else {
-                    d->emailFiles.clear();
-                }
+                d->emailFiles.clear();
+                d->finishIfEverythingIsDone();
             });
             viewEmailCommand->start();
         }
 
-        if (d->files.isEmpty()) {
+        if (d->files.empty()) {
             return;
         }
 

@@ -332,8 +332,6 @@ set(_kleopatra_SRCS
   dialogs/groupdetailsdialog.h
   dialogs/lookupcertificatesdialog.cpp
   dialogs/lookupcertificatesdialog.h
-  dialogs/messageviewerdialog.cpp
-  dialogs/messageviewerdialog.h
   dialogs/nameandemailwidget.cpp
   dialogs/nameandemailwidget.h
   dialogs/newopenpgpcertificatedetailsdialog.cpp

@@ -16,7 +16,6 @@
 #include "crypto/gui/resultlistwidget.h"
 #include "crypto/gui/resultpage.h"
 #include "crypto/taskcollection.h"
-#include "dialogs/messageviewerdialog.h"
 #include "utils/path-helper.h"
 
 #include <Libkleo/FileNameRequester>
@@ -35,10 +34,12 @@
 #include <KMessageBox>
 #include <KSharedConfig>
 #include <KWindowConfig>
+#include <MimeTreeParserWidgets/MessageViewerDialog>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
+using namespace MimeTreeParser::Widgets;
 
 DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll, QWidget *parent)
     : QDialog(parent)

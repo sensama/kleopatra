@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "decryptverifyfilescommand.h"
+#include "viewemailfilescommand.h"
 
 #include "command_p.h"
 #include "fileoperationspreferences.h"
@@ -19,6 +20,7 @@
 
 #include <utils/filedialog.h>
 
+#include <Libkleo/Classify>
 #include <Libkleo/Stl_Util>
 
 #include "kleopatra_debug.h"
@@ -47,18 +49,29 @@ public:
     void init();
 
 private:
+    void finishIfEverythingIsDone()
+    {
+        if (files.empty() && emailFiles.empty()) {
+            finished();
+        }
+    }
+
     void slotControllerDone()
     {
-        finished();
+        files.clear();
+        finishIfEverythingIsDone();
     }
+
     void slotControllerError(int, const QString &msg)
     {
         KMessageBox::error(parentWidgetOrView(), msg, i18n("Decrypt/Verify Failed"));
-        finished();
+        files.clear();
+        finishIfEverythingIsDone();
     }
 
 private:
     QStringList files;
+    QStringList emailFiles;
     std::shared_ptr<const ExecutionContext> shared_qq;
     DecryptVerifyFilesController *mController;
 };
@@ -164,6 +177,28 @@ void DecryptVerifyFilesCommand::doStart()
             d->finished();
             return;
         }
+
+        for (const auto &file : std::as_const(d->files)) {
+            const unsigned int classification = classify(file);
+            if (classification & Class::MimeFile) {
+                d->emailFiles << file;
+                d->files.removeAll(file);
+            }
+        }
+
+        if (!d->emailFiles.empty()) {
+            const auto viewEmailCommand = new ViewEmailFilesCommand(d->emailFiles, nullptr);
+            connect(viewEmailCommand, &ViewEmailFilesCommand::finished, this, [this] {
+                d->emailFiles.clear();
+                d->finishIfEverythingIsDone();
+            });
+            viewEmailCommand->start();
+        }
+
+        if (d->files.empty()) {
+            return;
+        }
+
         d->mController->setFiles(d->files);
         d->mController->start();
 

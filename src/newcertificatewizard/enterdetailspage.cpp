@@ -52,7 +52,9 @@ using namespace GpgME;
 
 static void set_tab_order(const QList<QWidget *> &wl)
 {
-    kdtools::for_each_adjacent_pair(wl.begin(), wl.end(), &QWidget::setTabOrder);
+    kdtools::for_each_adjacent_pair(wl.begin(), wl.end(), [](QWidget *w1, QWidget *w2) {
+        QWidget::setTabOrder(w1, w2);
+    });
 }
 
 static QString pgpLabel(const QString &attr)

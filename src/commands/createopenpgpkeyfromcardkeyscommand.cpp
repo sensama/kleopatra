@@ -130,7 +130,7 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::start()
 
     ensureDialogCreated();
 
-    dialog->setWindowTitle(i18n("Enter User ID"));
+    dialog->setWindowTitle(i18nc("@title:window", "Enter User ID"));
     dialog->setName(card->cardHolder());
 
     dialog->show();

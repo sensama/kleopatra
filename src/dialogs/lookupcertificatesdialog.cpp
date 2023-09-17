@@ -188,7 +188,7 @@ private:
 
         explicit Ui(LookupCertificatesDialog *q)
         {
-            q->setWindowTitle(i18n("Lookup on Server"));
+            q->setWindowTitle(i18nc("@title:window", "Lookup on Server"));
             setupUi(q);
 
             saveAsPB->hide(); // ### not yet implemented in LookupCertificatesCommand

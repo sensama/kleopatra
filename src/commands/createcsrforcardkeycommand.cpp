@@ -148,7 +148,7 @@ void CreateCSRForCardKeyCommand::Private::start()
 
     ensureDialogCreated();
 
-    dialog->setWindowTitle(i18n("Certificate Details"));
+    dialog->setWindowTitle(i18nc("@title:window", "Certificate Details"));
     if (!card->cardHolder().isEmpty()) {
         dialog->setName(card->cardHolder());
     }

@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-16 00:46+0000\n"
-"PO-Revision-Date: 2023-08-24 14:05+0200\n"
+"PO-Revision-Date: 2023-09-17 21:56+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.07.90\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1306,15 +1306,10 @@ msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
 "likely this shouldn't be translated"
 msgid "%1<nl />%2"
-msgstr ""
+msgstr "%1<nl/>%2"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:122
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to export OpenPGP certificates.</"
-#| "para> <para>The output from <command>%1</command> was: <message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
@@ -1322,8 +1317,8 @@ msgid ""
 "para>"
 msgstr ""
 "<para>Une erreur s'est produite lors de la tentative d'exportation des "
-"certificats OpenPGP.</para> <para>La commande <command>%1</command> a "
-"renvoyé : <message>%2</message></para>"
+"certificats « OpenPGP ».</para><para>La commande <command>%1</command> a "
+"renvoyé : <nl/><message>%2</message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:130
 #, kde-format
@@ -3666,6 +3661,8 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Interroger les dossiers de certificats des fournisseurs pour tous les "
+"identifiants utilisateur"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3676,6 +3673,11 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"Par défaut, Kleopatra interroge uniquement les répertoires de certificats "
+"des fournisseurs (WKD) pour les identifiants utilisateur ayant été "
+"initialement retrouvés à partir d’un WKD lors de la mise à jour d'un "
+"certificat « OpenPGP ». Si cette option est activée, alors, Kleopatra "
+"interrogera les WKD pour tous les identifiants utilisateur."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -6740,11 +6742,10 @@ msgstr ""
 "faire pour vos propres clés."
 
 #: src/dialogs/certifywidget.cpp:301
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:column"
 msgid "User ID"
-msgstr "Identifiants utilisateur"
+msgstr "Identifiant utilisateur"
 
 #: src/dialogs/certifywidget.cpp:305
 #, kde-format
@@ -8373,6 +8374,8 @@ msgstr ""
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Interroger les dossiers de certificats des fournisseurs pour tous les "
+"identifiants utilisateur"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8385,6 +8388,12 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"Par défaut, Kleopatra interroge uniquement les répertoires de certificats "
+"des fournisseurs (WKD)\n"
+"\tpour les identifiants utilisateur ayant été initialement retrouvés à "
+"partir d’un WKD lors de la mise à jour d'un certificat « OpenPGP ». \n"
+"\tSi cette option est activée, alors, Kleopatra interrogera les WKD pour "
+"tous les identifiants utilisateur."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-16 00:46+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -747,7 +747,9 @@ msgid "Success"
 msgstr "成功"
 
 #: src/commands/createcsrforcardkeycommand.cpp:151
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certificate Details"
+msgctxt "@title:window"
 msgid "Certificate Details"
 msgstr "証明書の詳細"
 
@@ -826,7 +828,9 @@ msgid "Create OpenPGP Key"
 msgstr "OpenPGP 鍵を作成"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Enter User ID"
+msgctxt "@title:window"
 msgid "Enter User ID"
 msgstr "ユーザ IDを入力"
 
@@ -3167,65 +3171,65 @@ msgstr "署名/暗号化するファイル(複数可)を選択"
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr "署名/暗号化するフォルダを選択"
 
-#: src/conf/appearanceconfigwidget.cpp:144
+#: src/conf/appearanceconfigwidget.cpp:136
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<名前なし>"
 
-#: src/conf/appearanceconfigwidget.cpp:316
+#: src/conf/appearanceconfigwidget.cpp:300
 #, kde-format
 msgid "This parameter has been locked down by the system administrator."
 msgstr "このパラメータはシステム管理者によってロックされています。"
 
-#: src/conf/appearanceconfigwidget.cpp:357
+#: src/conf/appearanceconfigwidget.cpp:341
 #, fuzzy, kde-format
 #| msgid "Do not check certificate policies"
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
 msgstr "証明書のポリシーをチェックしない"
 
-#: src/conf/appearanceconfigwidget.cpp:358
+#: src/conf/appearanceconfigwidget.cpp:342
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:364
+#: src/conf/appearanceconfigwidget.cpp:348
 #, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:367
+#: src/conf/appearanceconfigwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Show validity"
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "有効性を表示する"
 
-#: src/conf/appearanceconfigwidget.cpp:370
+#: src/conf/appearanceconfigwidget.cpp:354
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "証明書保持者の情報を表示する"
 
-#: src/conf/appearanceconfigwidget.cpp:373
+#: src/conf/appearanceconfigwidget.cpp:357
 #, fuzzy, kde-format
 #| msgid "Show technical details"
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "技術的詳細を表示"
 
-#: src/conf/appearanceconfigwidget.cpp:378
+#: src/conf/appearanceconfigwidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "Show certificate owner information"
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
 msgstr "証明書保持者の情報を表示する"
 
-#: src/conf/appearanceconfigwidget.cpp:385
+#: src/conf/appearanceconfigwidget.cpp:369
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Is '%1' your own certificate?"
@@ -3233,23 +3237,23 @@ msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
 msgstr "'%1' はあなた自身の証明書)ですか?"
 
-#: src/conf/appearanceconfigwidget.cpp:391
-#: src/conf/appearanceconfigwidget.cpp:405
+#: src/conf/appearanceconfigwidget.cpp:375
+#: src/conf/appearanceconfigwidget.cpp:389
 #, fuzzy, kde-format
 #| msgid "never"
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "無期限"
 
-#: src/conf/appearanceconfigwidget.cpp:392
-#: src/conf/appearanceconfigwidget.cpp:406
+#: src/conf/appearanceconfigwidget.cpp:376
+#: src/conf/appearanceconfigwidget.cpp:390
 #, kde-format
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
 msgstr[0] ""
 
-#: src/conf/appearanceconfigwidget.cpp:394
+#: src/conf/appearanceconfigwidget.cpp:378
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3257,14 +3261,14 @@ msgid ""
 "certificate is about to expire soon."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:399
+#: src/conf/appearanceconfigwidget.cpp:383
 #, fuzzy, kde-format
 #| msgid "Trust Root Certificate"
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
 msgstr "ルート証明書を信頼する"
 
-#: src/conf/appearanceconfigwidget.cpp:409
+#: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3272,7 +3276,7 @@ msgid ""
 "person's certificate is about to expire soon."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:419
+#: src/conf/appearanceconfigwidget.cpp:403
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create Key"
@@ -3280,76 +3284,76 @@ msgctxt "@title:tab"
 msgid "General"
 msgstr "鍵を作成"
 
-#: src/conf/appearanceconfigwidget.cpp:439
+#: src/conf/appearanceconfigwidget.cpp:423
 #, fuzzy, kde-format
 #| msgid "Set &Icon..."
 msgctxt "@action:button"
 msgid "Set Icon..."
 msgstr "アイコンを設定(&I)..."
 
-#: src/conf/appearanceconfigwidget.cpp:446
+#: src/conf/appearanceconfigwidget.cpp:430
 #, fuzzy, kde-format
 #| msgid "Set &Text Color..."
 msgctxt "@action:button"
 msgid "Set Text Color..."
 msgstr "テキスト色を設定(&T)..."
 
-#: src/conf/appearanceconfigwidget.cpp:453
+#: src/conf/appearanceconfigwidget.cpp:437
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgctxt "@action:button"
 msgid "Set Background Color..."
 msgstr "背景色を設定(&B)..."
 
-#: src/conf/appearanceconfigwidget.cpp:460
+#: src/conf/appearanceconfigwidget.cpp:444
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
 msgctxt "@action:button"
 msgid "Set Font..."
 msgstr "フォントを設定(&O)..."
 
-#: src/conf/appearanceconfigwidget.cpp:467
+#: src/conf/appearanceconfigwidget.cpp:451
 #, fuzzy, kde-format
 #| msgid "Italic"
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "イタリック"
 
-#: src/conf/appearanceconfigwidget.cpp:474
+#: src/conf/appearanceconfigwidget.cpp:458
 #, fuzzy, kde-format
 #| msgid "Bold"
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "ボールド"
 
-#: src/conf/appearanceconfigwidget.cpp:481
+#: src/conf/appearanceconfigwidget.cpp:465
 #, fuzzy, kde-format
 #| msgid "Strikeout"
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "取り消し線"
 
-#: src/conf/appearanceconfigwidget.cpp:490
+#: src/conf/appearanceconfigwidget.cpp:474
 #, fuzzy, kde-format
 #| msgid "Default Appearance"
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "標準の外観"
 
-#: src/conf/appearanceconfigwidget.cpp:498
+#: src/conf/appearanceconfigwidget.cpp:482
 #, fuzzy, kde-format
 #| msgid "Certificate Categories"
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "証明書カテゴリ"
 
-#: src/conf/appearanceconfigwidget.cpp:523
+#: src/conf/appearanceconfigwidget.cpp:507
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr "ハイコントラスト・モードが有効なので色のプレビューは禁止されています。"
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:532 src/kcfg/settings.kcfg:139
+#: src/conf/appearanceconfigwidget.cpp:516 src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN 属性の順番"
@@ -3472,17 +3476,17 @@ msgstr "チェックサムを作成する際に使うチェックサムプログ
 msgid "Archive command to use when archiving files:"
 msgstr "アーカイブファイルを作成する際に使うアーカイブコマンド"
 
-#: src/conf/dirservconfigpage.cpp:134
+#: src/conf/dirservconfigpage.cpp:126
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "OpenPGP 鍵サーバ:"
 
-#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
+#: src/conf/dirservconfigpage.cpp:137
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "X.509 ディレクトリサービス"
 
-#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:150
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3491,23 +3495,23 @@ msgstr ""
 "ディレクトリサービスの設定が、使っている gpgme ライブラリが古すぎるためできま"
 "せん。"
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:161
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "LDAP タイムアウト (分:秒) (&T):"
 
-#: src/conf/dirservconfigpage.cpp:201
+#: src/conf/dirservconfigpage.cpp:170
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "検索が返す最大アイテム数(&M):"
 
-#: src/conf/dirservconfigpage.cpp:214
+#: src/conf/dirservconfigpage.cpp:179
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr "新しい鍵をインポートする際に欠落している証明書鍵を取得する"
 
-#: src/conf/dirservconfigpage.cpp:216
+#: src/conf/dirservconfigpage.cpp:181
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3517,13 +3521,13 @@ msgstr ""
 "有効とすると、Kleopatra は、新しくインポートされた OpenPGP 鍵のユーザ ID を保"
 "証するために使われる鍵を自動的に取得することを試みます。"
 
-#: src/conf/dirservconfigpage.cpp:224
+#: src/conf/dirservconfigpage.cpp:189
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:226
+#: src/conf/dirservconfigpage.cpp:191
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3533,13 +3537,13 @@ msgid ""
 "WKDs for all user IDs."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
+#: src/conf/dirservconfigpage.cpp:432
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr ""
 "バックエンドのエラー: gpgconf は %1/%2 に対するエントリが分からないようです"
 
-#: src/conf/dirservconfigpage.cpp:481 src/conf/dirservconfigpage.cpp:488
+#: src/conf/dirservconfigpage.cpp:439
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr ""
@@ -3668,7 +3672,7 @@ msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "グループを編集"
 
-#: src/conf/kleopageconfigdialog.cpp:85
+#: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
@@ -3677,17 +3681,17 @@ msgstr ""
 "現在のモジュールの設定が変更されました\n"
 "変更を適用しますか、それとも捨てますか?"
 
-#: src/conf/kleopageconfigdialog.cpp:87
+#: src/conf/kleopageconfigdialog.cpp:86
 #, kde-format
 msgid "Apply Settings"
 msgstr "設定を適用"
 
-#: src/conf/smartcardconfigpage.cpp:81 src/conf/smartcardconfigpage.cpp:83
+#: src/conf/smartcardconfigpage.cpp:67
 #, kde-format
 msgid "Smart card reader to use:"
 msgstr "使用するスマートカード・リーダ:"
 
-#: src/conf/smartcardconfigpage.cpp:110
+#: src/conf/smartcardconfigpage.cpp:93
 #, kde-format
 msgid "Cannot be configured with Kleopatra"
 msgstr "Kleopatra では設定できません"
@@ -4153,7 +4157,7 @@ msgstr ""
 "作成されるべきファイルです。その両方を混ぜてはいけません。"
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:873
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:867
 #, kde-format
 msgid "Cancel"
 msgstr "キャンセル"
@@ -4277,7 +4281,7 @@ msgid "No usable inputs found"
 msgstr "使用できる入力が見つかりませんでした"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4416,40 +4420,40 @@ msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr "%1 &rarr; %2"
 
-#: src/crypto/decryptverifytask.cpp:442
+#: src/crypto/decryptverifytask.cpp:441
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "検証がキャンセルされました。"
 
-#: src/crypto/decryptverifytask.cpp:444
+#: src/crypto/decryptverifytask.cpp:443
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "検証に失敗しました: %1"
 
-#: src/crypto/decryptverifytask.cpp:450
+#: src/crypto/decryptverifytask.cpp:449
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr "署名が見つかりませんでした。"
 
-#: src/crypto/decryptverifytask.cpp:455
+#: src/crypto/decryptverifytask.cpp:454
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "無効な署名です (%1 件)。"
 
-#: src/crypto/decryptverifytask.cpp:461
+#: src/crypto/decryptverifytask.cpp:460
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "<b>%1 件の署名が検証できませんでした。</b>"
 
-#: src/crypto/decryptverifytask.cpp:467
+#: src/crypto/decryptverifytask.cpp:466
 #, kde-format
 msgid "<b>Valid signature by %1</b>"
 msgstr "<b>%1 による有効な署名です。</b>"
 
 # dummy markup
-#: src/crypto/decryptverifytask.cpp:469
+#: src/crypto/decryptverifytask.cpp:468
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
@@ -4458,19 +4462,19 @@ msgstr ""
 "<br/><b>【警告】</b> 送信者のメールアドレスが、署名に使用された %1 に保存され"
 "ていません。"
 
-#: src/crypto/decryptverifytask.cpp:470
+#: src/crypto/decryptverifytask.cpp:469
 #, kde-format
 msgid "certificate"
 msgstr "証明書"
 
-#: src/crypto/decryptverifytask.cpp:472
+#: src/crypto/decryptverifytask.cpp:471
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] "<b>有効な署名です (%1 件)。</b>"
 
 # dummy markup
-#: src/crypto/decryptverifytask.cpp:474
+#: src/crypto/decryptverifytask.cpp:473
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -4479,45 +4483,45 @@ msgstr ""
 "<br/><b>【警告】</b> 送信者のメールアドレスが、署名に使用された証明書に保存さ"
 "れていません。"
 
-#: src/crypto/decryptverifytask.cpp:486
+#: src/crypto/decryptverifytask.cpp:485
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>復号がキャンセルされました。</b>"
 
-#: src/crypto/decryptverifytask.cpp:488
+#: src/crypto/decryptverifytask.cpp:487
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "一貫性保護 (MDC)がありません。"
 
-#: src/crypto/decryptverifytask.cpp:488 src/crypto/decryptverifytask.cpp:490
-#: src/crypto/decryptverifytask.cpp:492
+#: src/crypto/decryptverifytask.cpp:487 src/crypto/decryptverifytask.cpp:489
+#: src/crypto/decryptverifytask.cpp:491
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>復号に失敗しました: %1 。</b>"
 
-#: src/crypto/decryptverifytask.cpp:494
+#: src/crypto/decryptverifytask.cpp:493
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>復号に成功しました。</b>"
 
-#: src/crypto/decryptverifytask.cpp:514 src/crypto/decryptverifytask.cpp:537
+#: src/crypto/decryptverifytask.cpp:513 src/crypto/decryptverifytask.cpp:536
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr "無効な署名です: %1"
 
-#: src/crypto/decryptverifytask.cpp:523
+#: src/crypto/decryptverifytask.cpp:522
 #, kde-format
 msgid "You can search the certificate on a keyserver or import it from a file."
 msgstr ""
 "鍵サーバで証明書を検索できますし、または、ファイルから証明書をインポートでき"
 "ます。"
 
-#: src/crypto/decryptverifytask.cpp:532
+#: src/crypto/decryptverifytask.cpp:531
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr "使われた鍵はあなたにもしくは信頼できる人によって保証されていません。"
 
-#: src/crypto/decryptverifytask.cpp:533
+#: src/crypto/decryptverifytask.cpp:532
 #, kde-format
 msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
@@ -4526,14 +4530,14 @@ msgstr ""
 "使われたこの証明書は信頼できる証明機関によって保証されていないか、証明機関が"
 "不明です。"
 
-#: src/crypto/decryptverifytask.cpp:556 src/crypto/decryptverifytask.cpp:610
+#: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:244 src/crypto/signencrypttask.cpp:261
 #: src/crypto/signencrypttask.cpp:846
 #, kde-format
 msgid "Input error: %1"
 msgstr "入力エラー: %1"
 
-#: src/crypto/decryptverifytask.cpp:567
+#: src/crypto/decryptverifytask.cpp:566
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
@@ -4541,31 +4545,31 @@ msgstr ""
 "<p>送信者のメールアドレス %1 は証明書に保存されていません。保存されているも"
 "の: %2</p>"
 
-#: src/crypto/decryptverifytask.cpp:569
+#: src/crypto/decryptverifytask.cpp:568
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:581
+#: src/crypto/decryptverifytask.cpp:580
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] "不明な受信者 %1 人。"
 
-#: src/crypto/decryptverifytask.cpp:584
+#: src/crypto/decryptverifytask.cpp:583
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "受信者:"
 
-#: src/crypto/decryptverifytask.cpp:594
+#: src/crypto/decryptverifytask.cpp:593
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "不明な受信者 %1 人"
 
-#: src/crypto/decryptverifytask.cpp:621
+#: src/crypto/decryptverifytask.cpp:620
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4573,7 +4577,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "復号は %1 です。"
 
-#: src/crypto/decryptverifytask.cpp:624
+#: src/crypto/decryptverifytask.cpp:623
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4581,12 +4585,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "復号は %1 では <b>ありません</b>。"
 
-#: src/crypto/decryptverifytask.cpp:635
+#: src/crypto/decryptverifytask.cpp:634
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "埋め込まれたファイル名: '%1'"
 
-#: src/crypto/decryptverifytask.cpp:642
+#: src/crypto/decryptverifytask.cpp:641
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -4595,7 +4599,7 @@ msgstr ""
 "<b>注意:</b> 署名がないので、だれがこのメッセージを暗号化したかは確とすること"
 "ができません。"
 
-#: src/crypto/decryptverifytask.cpp:647
+#: src/crypto/decryptverifytask.cpp:646
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4606,7 +4610,7 @@ msgstr ""
 "<b>ヒント:</b> 2003年以前にこのファイルが暗号化された場合、このファイルは正当"
 "であると考えられます。当時は広く一貫性保護が使われていなかったからです。"
 
-#: src/crypto/decryptverifytask.cpp:652
+#: src/crypto/decryptverifytask.cpp:651
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4618,31 +4622,31 @@ msgstr ""
 "ファイルが操作されていないと自信があるのであれば、復号を強制された際に再暗号"
 "化すべきです。"
 
-#: src/crypto/decryptverifytask.cpp:949
+#: src/crypto/decryptverifytask.cpp:948
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1288
-#: src/crypto/decryptverifytask.cpp:1384 src/crypto/decryptverifytask.cpp:1485
-#: src/crypto/decryptverifytask.cpp:1538 src/crypto/decryptverifytask.cpp:1676
-#: src/crypto/decryptverifytask.cpp:1758 src/crypto/decryptverifytask.cpp:1864
+#: src/crypto/decryptverifytask.cpp:1107 src/crypto/decryptverifytask.cpp:1287
+#: src/crypto/decryptverifytask.cpp:1383 src/crypto/decryptverifytask.cpp:1484
+#: src/crypto/decryptverifytask.cpp:1537 src/crypto/decryptverifytask.cpp:1675
+#: src/crypto/decryptverifytask.cpp:1757 src/crypto/decryptverifytask.cpp:1863
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "例外を検出: %1"
 
-#: src/crypto/decryptverifytask.cpp:1111 src/crypto/decryptverifytask.cpp:1290
-#: src/crypto/decryptverifytask.cpp:1387 src/crypto/decryptverifytask.cpp:1487
-#: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1678
-#: src/crypto/decryptverifytask.cpp:1760 src/crypto/decryptverifytask.cpp:1866
+#: src/crypto/decryptverifytask.cpp:1110 src/crypto/decryptverifytask.cpp:1289
+#: src/crypto/decryptverifytask.cpp:1386 src/crypto/decryptverifytask.cpp:1486
+#: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1677
+#: src/crypto/decryptverifytask.cpp:1759 src/crypto/decryptverifytask.cpp:1865
 #: src/uiserver/assuanserverconnection.cpp:1363
 #: src/uiserver/assuanserverconnection.cpp:1412
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "未知の例外を検出"
 
-#: src/crypto/decryptverifytask.cpp:1165
+#: src/crypto/decryptverifytask.cpp:1164
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4651,12 +4655,12 @@ msgstr ""
 "S/MIME か OpenPGP 署名/暗号 のどちらか決定できませんでした。暗号でも署名でも"
 "ないかもしれません?"
 
-#: src/crypto/decryptverifytask.cpp:1173 src/crypto/decryptverifytask.cpp:1448
+#: src/crypto/decryptverifytask.cpp:1172 src/crypto/decryptverifytask.cpp:1447
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "復号: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1440
+#: src/crypto/decryptverifytask.cpp:1439
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -4665,7 +4669,7 @@ msgstr ""
 "S/MIME か OpenPGP 署名/暗号 のどちらか決定できませんでした。まったくもって暗"
 "号でも署名でもないかもしれません?"
 
-#: src/crypto/decryptverifytask.cpp:1595 src/crypto/decryptverifytask.cpp:1802
+#: src/crypto/decryptverifytask.cpp:1594 src/crypto/decryptverifytask.cpp:1801
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4674,12 +4678,12 @@ msgstr ""
 "S/MIME か OpenPGP 署名のどちらか決定できませんでした。署名でないかもしれませ"
 "ん?"
 
-#: src/crypto/decryptverifytask.cpp:1603
+#: src/crypto/decryptverifytask.cpp:1602
 #, kde-format
 msgid "Verifying: %1..."
 msgstr "検証: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1819
+#: src/crypto/decryptverifytask.cpp:1818
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4687,12 +4691,12 @@ msgctxt ""
 msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename> を <filename>%2</filename> で検証中..."
 
-#: src/crypto/decryptverifytask.cpp:1823
+#: src/crypto/decryptverifytask.cpp:1822
 #, kde-format
 msgid "Verifying signature: %1..."
 msgstr "署名を検証: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1832
+#: src/crypto/decryptverifytask.cpp:1831
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -4756,7 +4760,7 @@ msgid "Multiple matching certificates or groups found"
 msgstr "複数のマッチする証明書かグループが見つかりました"
 
 #: src/crypto/gui/certificatelineedit.cpp:662 src/dialogs/expirydialog.cpp:216
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:1005
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -4790,52 +4794,52 @@ msgstr "..."
 msgid "&Output folder:"
 msgstr "出力フォルダ(&O):"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "ファイルを検証"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: すべての操作が完了しました。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "すべての操作が完了しました。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
-#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "操作 %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
 #, kde-format
 msgid "Please select an output folder."
 msgstr "出力フォルダを選択してください。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
 #, fuzzy, kde-format
 #| msgid "No output folder."
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "出力フォルダがありません。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4849,27 +4853,27 @@ msgstr ""
 "<para>ファイル <filename>%1</filename> を <filename>%2</filename> に移動でき"
 "ませんでした。</para><para><message>%3</message></para>"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "無効な出力フォルダです。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "ちがう出力フォルダを設定してください。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "無効な出力フォルダです。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5035,7 +5039,7 @@ msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "監査ログを表示"
 
-#: src/crypto/gui/resultlistwidget.cpp:162
+#: src/crypto/gui/resultlistwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgctxt "@action:button"
@@ -5949,7 +5953,7 @@ msgid "S/MIME Certificate"
 msgstr "S/MIME 証明書"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:79
+#: src/newcertificatewizard/enterdetailspage.cpp:81
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -5957,35 +5961,35 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:268
-#: src/newcertificatewizard/enterdetailspage.cpp:310
+#: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:125
-#: src/newcertificatewizard/enterdetailspage.cpp:133
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:127
+#: src/newcertificatewizard/enterdetailspage.cpp:135
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(required)"
 msgstr "(必須)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(optional)"
 msgstr "(オプション)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:481
+#: src/newcertificatewizard/enterdetailspage.cpp:483
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "必須の<interface>%1</interface>がありません。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:484
+#: src/newcertificatewizard/enterdetailspage.cpp:486
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5996,14 +6000,14 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:492
+#: src/newcertificatewizard/enterdetailspage.cpp:494
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface>が不完全です。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:495
+#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6014,14 +6018,14 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:502
+#: src/newcertificatewizard/enterdetailspage.cpp:504
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface>が無効です。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:505
+#: src/newcertificatewizard/enterdetailspage.cpp:507
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6231,7 +6235,7 @@ msgid "Email"
 msgstr "メール"
 
 #: src/dialogs/certificatedetailswidget.cpp:533
-#: src/newcertificatewizard/enterdetailspage.cpp:61
+#: src/newcertificatewizard/enterdetailspage.cpp:63
 #, kde-format
 msgid "Name"
 msgstr "名前"
@@ -6920,7 +6924,9 @@ msgid "Save As..."
 msgstr "名前を付けて保存..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup on Server"
+msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "サーバでルックアップ"
 
@@ -6997,13 +7003,13 @@ msgstr ""
 "あなたの組織に必要とされるフォーマットで、正しく、名前を入力してください。"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:84
-#: src/newcertificatewizard/enterdetailspage.cpp:140
+#: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
 msgstr "作成された鍵をパスフレーズで保護する。"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:86
-#: src/newcertificatewizard/enterdetailspage.cpp:141
+#: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -7013,7 +7019,7 @@ msgstr ""
 "を聞かれます。"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
-#: src/newcertificatewizard/enterdetailspage.cpp:177
+#: src/newcertificatewizard/enterdetailspage.cpp:179
 #, kde-format
 msgid "Advanced Settings..."
 msgstr "高度な設定..."
@@ -8531,7 +8537,7 @@ msgstr "Kleopatra エラー"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Kleopatra に接続する際にエラーがありました: %1"
 
-#: src/main.cpp:140
+#: src/main.cpp:129
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8547,13 +8553,13 @@ msgstr ""
 "機能しません。</para><para>管理者に助けを請い、この問題を解決してください。</"
 "para>"
 
-#: src/main.cpp:144
+#: src/main.cpp:133
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME が古すぎ"
 
-#: src/main.cpp:169
+#: src/main.cpp:158
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8568,23 +8574,23 @@ msgstr ""
 "管理するには、通常のユーザとして鍵を権利し、<filename>AppData\\Roaming"
 "\\gnupg</filename>ディレクトリを適切な許可で、コピーしてください。</para>"
 
-#: src/main.cpp:173
+#: src/main.cpp:162
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>本当に続行しますか?</para>"
 
-#: src/main.cpp:174
+#: src/main.cpp:163
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "管理者として実行"
 
-#: src/main.cpp:248
+#: src/main.cpp:231
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI サーバのエラー"
 
-#: src/main.cpp:252
+#: src/main.cpp:235
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8602,7 +8608,7 @@ msgstr ""
 "ストールするかサポートのために管理者に連絡ください。<br/>Kleopatra を使いつづ"
 "けることを試せますが、他の問題もあるでしょう。</qt>"
 
-#: src/main.cpp:282
+#: src/main.cpp:265
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "無効な引数: %1"
@@ -8650,18 +8656,18 @@ msgstr ""
 msgid "Error Starting KWatchGnuPG"
 msgstr "KWatchGnuPG の起動に失敗"
 
-#: src/mainwindow.cpp:528
+#: src/mainwindow.cpp:522
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG ログビューア"
 
-#: src/mainwindow.cpp:540
+#: src/mainwindow.cpp:534
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "バックグラウンド・プロセスを再起動"
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:535
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8669,23 +8675,23 @@ msgid ""
 "configuration."
 msgstr "バックグラウンド・プロセス再起動する。たとえば設定の変更後に。"
 
-#: src/mainwindow.cpp:553
+#: src/mainwindow.cpp:547
 #, kde-format
 msgid "Check for updates"
 msgstr "更新を確認"
 
-#: src/mainwindow.cpp:566
+#: src/mainwindow.cpp:560
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "証明書"
 
-#: src/mainwindow.cpp:567
+#: src/mainwindow.cpp:561
 #, kde-format
 msgid "Show certificate overview"
 msgstr "証明書の概要を表示"
 
-#: src/mainwindow.cpp:577
+#: src/mainwindow.cpp:571
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -8693,43 +8699,43 @@ msgctxt ""
 msgid "Notepad"
 msgstr "ノートパッド"
 
-#: src/mainwindow.cpp:578
+#: src/mainwindow.cpp:572
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr "テクストの暗号化/復号と署名/検証のためにパッドを表示"
 
-#: src/mainwindow.cpp:588
+#: src/mainwindow.cpp:582
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "スマートカード"
 
-#: src/mainwindow.cpp:589
+#: src/mainwindow.cpp:583
 #, kde-format
 msgid "Show smartcard management"
 msgstr "スマートカード管理を表示"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:594
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "セルフテストを実行"
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:605
 #, kde-format
 msgid "Configure Groups..."
 msgstr "グループを設定..."
 
-#: src/mainwindow.cpp:641
+#: src/mainwindow.cpp:635
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "クイック検索にフォーカスを設定"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:647
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4Win 大要"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:651
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -8737,13 +8743,13 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:666
+#: src/mainwindow.cpp:660
 #, fuzzy, kde-format
 #| msgid "Quickguide"
 msgid "&Quickguide"
 msgstr "クイックガイド"
 
-#: src/mainwindow.cpp:667
+#: src/mainwindow.cpp:661
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -8754,13 +8760,13 @@ msgctxt ""
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "handout_sign_encrypt_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:673
+#: src/mainwindow.cpp:667
 #, fuzzy, kde-format
 #| msgid "Password-based encryption"
 msgid "&Password-based encryption"
 msgstr "パスワードによる暗号化"
 
-#: src/mainwindow.cpp:674
+#: src/mainwindow.cpp:668
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -8771,13 +8777,13 @@ msgctxt ""
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "handout_symmetric_encryption_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:673
 #, fuzzy, kde-format
 #| msgid "Group configuration"
 msgid "&Group configuration"
 msgstr "グループ設定"
 
-#: src/mainwindow.cpp:680
+#: src/mainwindow.cpp:674
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -8788,12 +8794,12 @@ msgctxt ""
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:687
+#: src/mainwindow.cpp:681
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr ""
 
-#: src/mainwindow.cpp:688
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -8801,28 +8807,28 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:696
+#: src/mainwindow.cpp:690
 #, fuzzy, kde-format
 #| msgctxt "@option:check"
 #| msgid "Certification"
 msgid "&Certification Management"
 msgstr "保証"
 
-#: src/mainwindow.cpp:697
+#: src/mainwindow.cpp:691
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:703
+#: src/mainwindow.cpp:697
 #, fuzzy, kde-format
 #| msgctxt "@action show smartcard management view"
 #| msgid "Smartcards"
 msgid "&Smartcard setup"
 msgstr "スマートカード"
 
-#: src/mainwindow.cpp:704
+#: src/mainwindow.cpp:698
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -8833,37 +8839,37 @@ msgctxt ""
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_howto_en.pdf"
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:703
 #, fuzzy, kde-format
 #| msgid "GnuPG Manual"
 msgid "GnuPG Command&line"
 msgstr "GnuPG マニュアル"
 
-#: src/mainwindow.cpp:717
+#: src/mainwindow.cpp:711
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:718
+#: src/mainwindow.cpp:712
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:724
+#: src/mainwindow.cpp:718
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:725
+#: src/mainwindow.cpp:719
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:750
+#: src/mainwindow.cpp:744
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8872,222 +8878,222 @@ msgstr ""
 "まだバックグラウンドで進行中の操作があります。ウィンドウを閉じると、それらの"
 "操作も終了されます。よろしいですか?"
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:747
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "進行中のバックグラウンドタスク"
 
-#: src/mainwindow.cpp:857 src/view/keylistcontroller.cpp:451
+#: src/mainwindow.cpp:851 src/view/keylistcontroller.cpp:451
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "署名/暗号化..."
 
-#: src/mainwindow.cpp:858 src/utils/clipboardmenu.cpp:49
+#: src/mainwindow.cpp:852 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:442
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "復号/検証..."
 
-#: src/mainwindow.cpp:863
+#: src/mainwindow.cpp:857
 #, kde-format
 msgid "Import Certificates"
 msgstr "証明書をインポート"
 
-#: src/mainwindow.cpp:864
+#: src/mainwindow.cpp:858
 #, kde-format
 msgid "Import CRLs"
 msgstr "CRL をインポート"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:225
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "高度な設定"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
 msgstr "鍵マテリアル"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:245
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, kde-format
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:257
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:253
 #, kde-format
 msgctxt "@option:check"
 msgid "+ RSA"
 msgstr "+ RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:266
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:262
 #, kde-format
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:274
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:270
 #, kde-format
 msgctxt "@option:check"
 msgid "+ Elgamal"
 msgstr "+ Elgamal"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:271
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:289
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
 msgstr "この副鍵は暗号化のために必要です。"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:284
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:280
 #, kde-format
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr "ECDSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:292
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:288
 #, kde-format
 msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "証明書の用途"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "署名"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, kde-format
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "保証"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "暗号化"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:322
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, kde-format
 msgctxt "@option:check"
 msgid "Authentication"
 msgstr "認証"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "有効期間期限:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:343
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:339
 #, kde-format
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "技術的な詳細"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:357
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:353
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional User IDs"
 msgstr "追加のユーザ ID"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:365
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:361
 #, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "メールアドレス"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:373
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:369
 #, kde-format
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS 名"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:381
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:377
 #, kde-format
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:391
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:901
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:387
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:897
 #, kde-format
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "個人の詳細"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:418
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:414
 #, kde-format
 msgid "new email"
 msgstr "新しいメール"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:415
 #, kde-format
 msgid "new dns name"
 msgstr "新しい DNS 名"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:416
 #, kde-format
 msgid "new uri"
 msgstr "新しい uri"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:743
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:739
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (%1 ビット)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:744
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:740
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "%1 ビット"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:906
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:902
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Adding more than one user ID is not yet implemented."
 msgstr "1つより多くのユーザ ID を追加することはまだ実装されていません。"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:64
+#: src/newcertificatewizard/enterdetailspage.cpp:66
 #, kde-format
 msgid "EMail"
 msgstr "メールアドレス"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:105
+#: src/newcertificatewizard/enterdetailspage.cpp:107
 #, kde-format
 msgctxt "@title"
 msgid "Enter Details"
 msgstr "詳細を入力"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:123
+#: src/newcertificatewizard/enterdetailspage.cpp:125
 #, kde-format
 msgid "Real name:"
 msgstr "実名:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:131
+#: src/newcertificatewizard/enterdetailspage.cpp:133
 #, kde-format
 msgid "EMail address:"
 msgstr "メールアドレス:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:197
+#: src/newcertificatewizard/enterdetailspage.cpp:199
 #, kde-format
 msgid "Please enter your personal details below."
 msgstr "個人の詳細を以下で入力してください。"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:199
+#: src/newcertificatewizard/enterdetailspage.cpp:201
 #, kde-format
 msgid ""
 "Please enter your personal details below. If you want more control over the "
@@ -9096,7 +9102,7 @@ msgstr ""
 "以下に個人の詳細を入力してください。証明書のパラメータをより細かく指定する場"
 "合は「高度な設定」ボタンをクリックしてください。"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:219
+#: src/newcertificatewizard/enterdetailspage.cpp:221
 #, kde-format
 msgctxt "@action"
 msgid "Create"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-16 00:46+0000\n"
+"POT-Creation-Date: 2023-09-21 00:45+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -784,6 +784,7 @@ msgstr "Edu"
 
 #: src/commands/createcsrforcardkeycommand.cpp:151
 #, kde-format
+msgctxt "@title:window"
 msgid "Certificate Details"
 msgstr "Sertifikaadi üksikasjad"
 
@@ -868,6 +869,7 @@ msgstr "Uue OpenPGP võtmepaari loomine"
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
 #, fuzzy, kde-format
 #| msgid "Signed user IDs:"
+msgctxt "@title:window"
 msgid "Enter User ID"
 msgstr "Allkirjastatud kasutaja ID-d:"
 
@@ -3372,82 +3374,82 @@ msgstr "Failide valimine allkirjastamiseks ja/või krüptimiseks"
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr "Kataloogi valimine allkirjastamiseks ja/või krüptimiseks"
 
-#: src/conf/appearanceconfigwidget.cpp:144
+#: src/conf/appearanceconfigwidget.cpp:136
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<nimetu>"
 
-#: src/conf/appearanceconfigwidget.cpp:316
+#: src/conf/appearanceconfigwidget.cpp:300
 #, kde-format
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Süsteemi administraator on selle parameetri lukustanud."
 
-#: src/conf/appearanceconfigwidget.cpp:357
+#: src/conf/appearanceconfigwidget.cpp:341
 #, fuzzy, kde-format
 #| msgid "Could not create certificate: %1"
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
 msgstr "Sertifikaadi loomine nurjus: %1"
 
-#: src/conf/appearanceconfigwidget.cpp:358
+#: src/conf/appearanceconfigwidget.cpp:342
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:364
+#: src/conf/appearanceconfigwidget.cpp:348
 #, fuzzy, kde-format
 #| msgid "Show the following information in certificate list tooltips:"
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr "Järgmise teabe näitamine sertifikaadiloendi kohtspikrites:"
 
-#: src/conf/appearanceconfigwidget.cpp:367
+#: src/conf/appearanceconfigwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Show validity"
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Kehtivuse näitamine"
 
-#: src/conf/appearanceconfigwidget.cpp:370
+#: src/conf/appearanceconfigwidget.cpp:354
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Omaniku teabe näitamine"
 
-#: src/conf/appearanceconfigwidget.cpp:373
+#: src/conf/appearanceconfigwidget.cpp:357
 #, fuzzy, kde-format
 #| msgid "Show technical details"
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Tehniliste üksikasjade näitamine"
 
-#: src/conf/appearanceconfigwidget.cpp:378
+#: src/conf/appearanceconfigwidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "Show certificate owner information"
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
 msgstr "Sertifikaadiomaniku teabe näitamine"
 
-#: src/conf/appearanceconfigwidget.cpp:385
+#: src/conf/appearanceconfigwidget.cpp:369
 #, fuzzy, kde-format
 #| msgid "(unknown certificate)"
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
 msgstr "(tundmatu sertifikaat)"
 
-#: src/conf/appearanceconfigwidget.cpp:391
-#: src/conf/appearanceconfigwidget.cpp:405
+#: src/conf/appearanceconfigwidget.cpp:375
+#: src/conf/appearanceconfigwidget.cpp:389
 #, fuzzy, kde-format
 #| msgid "never"
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "mitte kunagi"
 
-#: src/conf/appearanceconfigwidget.cpp:392
-#: src/conf/appearanceconfigwidget.cpp:406
+#: src/conf/appearanceconfigwidget.cpp:376
+#: src/conf/appearanceconfigwidget.cpp:390
 #, kde-format
 msgctxt "@item:valuesuffix"
 msgid " day"
@@ -3455,7 +3457,7 @@ msgid_plural " days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/conf/appearanceconfigwidget.cpp:394
+#: src/conf/appearanceconfigwidget.cpp:378
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3463,14 +3465,14 @@ msgid ""
 "certificate is about to expire soon."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:399
+#: src/conf/appearanceconfigwidget.cpp:383
 #, fuzzy, kde-format
 #| msgid "Trust Root Certificate"
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
 msgstr "Usalda juursertifikaati"
 
-#: src/conf/appearanceconfigwidget.cpp:409
+#: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3478,83 +3480,83 @@ msgid ""
 "person's certificate is about to expire soon."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:419
+#: src/conf/appearanceconfigwidget.cpp:403
 #, fuzzy, kde-format
 #| msgid "General"
 msgctxt "@title:tab"
 msgid "General"
 msgstr "Üldine"
 
-#: src/conf/appearanceconfigwidget.cpp:439
+#: src/conf/appearanceconfigwidget.cpp:423
 #, fuzzy, kde-format
 #| msgid "Set &Icon..."
 msgctxt "@action:button"
 msgid "Set Icon..."
 msgstr "Määra &ikoon..."
 
-#: src/conf/appearanceconfigwidget.cpp:446
+#: src/conf/appearanceconfigwidget.cpp:430
 #, fuzzy, kde-format
 #| msgid "Set &Text Color..."
 msgctxt "@action:button"
 msgid "Set Text Color..."
 msgstr "Määra &teksti värv..."
 
-#: src/conf/appearanceconfigwidget.cpp:453
+#: src/conf/appearanceconfigwidget.cpp:437
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgctxt "@action:button"
 msgid "Set Background Color..."
 msgstr "Määra t&austa värv..."
 
-#: src/conf/appearanceconfigwidget.cpp:460
+#: src/conf/appearanceconfigwidget.cpp:444
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
 msgctxt "@action:button"
 msgid "Set Font..."
 msgstr "Määra f&ont..."
 
-#: src/conf/appearanceconfigwidget.cpp:467
+#: src/conf/appearanceconfigwidget.cpp:451
 #, fuzzy, kde-format
 #| msgid "Italic"
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Kaldkiri"
 
-#: src/conf/appearanceconfigwidget.cpp:474
+#: src/conf/appearanceconfigwidget.cpp:458
 #, fuzzy, kde-format
 #| msgid "Bold"
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Rasvane"
 
-#: src/conf/appearanceconfigwidget.cpp:481
+#: src/conf/appearanceconfigwidget.cpp:465
 #, fuzzy, kde-format
 #| msgid "Strikeout"
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Läbikriipsutatud"
 
-#: src/conf/appearanceconfigwidget.cpp:490
+#: src/conf/appearanceconfigwidget.cpp:474
 #, fuzzy, kde-format
 #| msgid "Default Appearance"
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "Vaikevälimus"
 
-#: src/conf/appearanceconfigwidget.cpp:498
+#: src/conf/appearanceconfigwidget.cpp:482
 #, fuzzy, kde-format
 #| msgid "Certificate Categories"
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Sertifikaadikategooriad"
 
-#: src/conf/appearanceconfigwidget.cpp:523
+#: src/conf/appearanceconfigwidget.cpp:507
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:532 src/kcfg/settings.kcfg:139
+#: src/conf/appearanceconfigwidget.cpp:516 src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN-atribuutide järjekord"
@@ -3682,43 +3684,43 @@ msgstr "Kontrollsummafailide loomisel kasutatav kontrollsummaprogramm:"
 msgid "Archive command to use when archiving files:"
 msgstr "Failide arhiveerimisel kasutatav arhiveerimiskäsk:"
 
-#: src/conf/dirservconfigpage.cpp:134
+#: src/conf/dirservconfigpage.cpp:126
 #, fuzzy, kde-format
 #| msgid "OpenPGP"
 msgid "OpenPGP keyserver:"
 msgstr "OpenPGP"
 
-#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
+#: src/conf/dirservconfigpage.cpp:137
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "No Directory Servers Configured"
 msgid "X.509 Directory Services"
 msgstr "Kataloogiservereid pole seadistatud"
 
-#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:150
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
 "libraries are too old."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:161
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "LDAP ae&gumine (minutid:sekundid):"
 
-#: src/conf/dirservconfigpage.cpp:201
+#: src/conf/dirservconfigpage.cpp:170
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "&Maks. päringuga tagastatavate elementide hulk:"
 
-#: src/conf/dirservconfigpage.cpp:214
+#: src/conf/dirservconfigpage.cpp:179
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:216
+#: src/conf/dirservconfigpage.cpp:181
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3726,13 +3728,13 @@ msgid ""
 "were used to certify the user IDs of newly imported OpenPGP keys."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:224
+#: src/conf/dirservconfigpage.cpp:189
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:226
+#: src/conf/dirservconfigpage.cpp:191
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3742,13 +3744,13 @@ msgid ""
 "WKDs for all user IDs."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
+#: src/conf/dirservconfigpage.cpp:432
 #, fuzzy, kde-format
 #| msgid "Backend error: gpgconf does not seem to know the entry for %1/%2/%3"
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "Taustaprogrammi viga: gpgconf ei paista tundvat %1/%2/%3 kirjet"
 
-#: src/conf/dirservconfigpage.cpp:481 src/conf/dirservconfigpage.cpp:488
+#: src/conf/dirservconfigpage.cpp:439
 #, fuzzy, kde-format
 #| msgid "Backend error: gpgconf has wrong type for %1/%2/%3: %4 %5"
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
@@ -3888,7 +3890,7 @@ msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr ""
 
-#: src/conf/kleopageconfigdialog.cpp:85
+#: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
@@ -3897,18 +3899,18 @@ msgstr ""
 "Aktiivse mooduli seadistusi on muudetud.\n"
 "Kas muudatused rakendada või tühistada?"
 
-#: src/conf/kleopageconfigdialog.cpp:87
+#: src/conf/kleopageconfigdialog.cpp:86
 #, kde-format
 msgid "Apply Settings"
 msgstr "Seadistuste rakendamine"
 
-#: src/conf/smartcardconfigpage.cpp:81 src/conf/smartcardconfigpage.cpp:83
+#: src/conf/smartcardconfigpage.cpp:67
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "Smart card reader to use:"
 msgstr "Kiipkaart"
 
-#: src/conf/smartcardconfigpage.cpp:110
+#: src/conf/smartcardconfigpage.cpp:93
 #, kde-format
 msgid "Cannot be configured with Kleopatra"
 msgstr ""
@@ -4385,7 +4387,7 @@ msgstr ""
 "aga need ei tohi segiläbi esineda."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:873
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:867
 #, kde-format
 msgid "Cancel"
 msgstr "Loobu"
@@ -4510,7 +4512,7 @@ msgid "No usable inputs found"
 msgstr "Kasutuskõlblikku sisendit ei leitud"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4659,41 +4661,41 @@ msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr "%1 &rarr; %2"
 
-#: src/crypto/decryptverifytask.cpp:442
+#: src/crypto/decryptverifytask.cpp:441
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "<b>Verifitseerimine katkestati.</b>"
 
-#: src/crypto/decryptverifytask.cpp:444
+#: src/crypto/decryptverifytask.cpp:443
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "<b>Verifitseerimine nurjus: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:450
+#: src/crypto/decryptverifytask.cpp:449
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr "<b>Allkirju ei leitud.</b>"
 
-#: src/crypto/decryptverifytask.cpp:455
+#: src/crypto/decryptverifytask.cpp:454
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>Vigane allkiri.</b>"
 msgstr[1] "<b>%1 vigast allkirja.</b>"
 
-#: src/crypto/decryptverifytask.cpp:461
+#: src/crypto/decryptverifytask.cpp:460
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "<b>Andmete kontroll nurjus.</b>"
 msgstr[1] "<b>%1 signatuuri kontrollimine .</b>"
 
-#: src/crypto/decryptverifytask.cpp:467
+#: src/crypto/decryptverifytask.cpp:466
 #, kde-format
 msgid "<b>Valid signature by %1</b>"
 msgstr "<b>%1 kehtiv allkiri</b>"
 
-#: src/crypto/decryptverifytask.cpp:469
+#: src/crypto/decryptverifytask.cpp:468
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
@@ -4702,19 +4704,19 @@ msgstr ""
 "<br/><b>Hoiatus:</b> saatja e-posti aadress ei ole salvestatud %1is, mida "
 "kasutatakse allkirjastamiseks."
 
-#: src/crypto/decryptverifytask.cpp:470
+#: src/crypto/decryptverifytask.cpp:469
 #, kde-format
 msgid "certificate"
 msgstr "sertifikaat"
 
-#: src/crypto/decryptverifytask.cpp:472
+#: src/crypto/decryptverifytask.cpp:471
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] "<b>Kehtiv allkiri.</b>"
 msgstr[1] "<b>%1 kehtivat allkirja.</b>"
 
-#: src/crypto/decryptverifytask.cpp:474
+#: src/crypto/decryptverifytask.cpp:473
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -4723,45 +4725,45 @@ msgstr ""
 "<br/><b>Hoiatus:</b> saatja e-posti aadress ei ole salvestatud "
 "sertifikaatides, mida kasutatakse allkirjastamiseks."
 
-#: src/crypto/decryptverifytask.cpp:486
+#: src/crypto/decryptverifytask.cpp:485
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>Lahtikrüptimine katkestati.</b>"
 
-#: src/crypto/decryptverifytask.cpp:488
+#: src/crypto/decryptverifytask.cpp:487
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Terviklikkuse kaitse (MDC) puudub."
 
-#: src/crypto/decryptverifytask.cpp:488 src/crypto/decryptverifytask.cpp:490
-#: src/crypto/decryptverifytask.cpp:492
+#: src/crypto/decryptverifytask.cpp:487 src/crypto/decryptverifytask.cpp:489
+#: src/crypto/decryptverifytask.cpp:491
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>Lahtikrüptimine nurjus: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:494
+#: src/crypto/decryptverifytask.cpp:493
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>Lahtikrüptimine õnnestus.</b>"
 
-#: src/crypto/decryptverifytask.cpp:514 src/crypto/decryptverifytask.cpp:537
+#: src/crypto/decryptverifytask.cpp:513 src/crypto/decryptverifytask.cpp:536
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr "Allkiri on kehtetu: %1"
 
-#: src/crypto/decryptverifytask.cpp:523
+#: src/crypto/decryptverifytask.cpp:522
 #, kde-format
 msgid "You can search the certificate on a keyserver or import it from a file."
 msgstr "Sertifikaati võib otsida võtmeserverist või importida failist."
 
-#: src/crypto/decryptverifytask.cpp:532
+#: src/crypto/decryptverifytask.cpp:531
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr ""
 "Kasutatavat võtit ei ole sertifitseerinud ei sina ise ega ükski "
 "usaldusväärne isik."
 
-#: src/crypto/decryptverifytask.cpp:533
+#: src/crypto/decryptverifytask.cpp:532
 #, kde-format
 msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
@@ -4770,48 +4772,48 @@ msgstr ""
 "Kasutatud sertifikaati ei ole sertifitseerinud ükski usaldusväärne "
 "sertifitseerimiskeskus või sertifitseerimiskeskus tundmatu."
 
-#: src/crypto/decryptverifytask.cpp:556 src/crypto/decryptverifytask.cpp:610
+#: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:244 src/crypto/signencrypttask.cpp:261
 #: src/crypto/signencrypttask.cpp:846
 #, kde-format
 msgid "Input error: %1"
 msgstr "Sisendi viga: %1"
 
-#: src/crypto/decryptverifytask.cpp:567
+#: src/crypto/decryptverifytask.cpp:566
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
 msgstr ""
 "<p>Saatja aadress %1 ei ole sertifikaadis salvestatud. Salvestatud: %2</p>"
 
-#: src/crypto/decryptverifytask.cpp:569
+#: src/crypto/decryptverifytask.cpp:568
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:581
+#: src/crypto/decryptverifytask.cpp:580
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] "Üks tundmatu saaja."
 msgstr[1] "%1 tundmatut saajat."
 
-#: src/crypto/decryptverifytask.cpp:584
+#: src/crypto/decryptverifytask.cpp:583
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "Saaja:"
 msgstr[1] "Saajad:"
 
-#: src/crypto/decryptverifytask.cpp:594
+#: src/crypto/decryptverifytask.cpp:593
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "Üks tundmatu saaja"
 msgstr[1] "%1 tundmatut saajat"
 
-#: src/crypto/decryptverifytask.cpp:621
+#: src/crypto/decryptverifytask.cpp:620
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "VS-NfD-conforming is a German standard for restricted documents for which "
@@ -4824,7 +4826,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "Lahtikrüptimine on VS-NfD ühilduv."
 
-#: src/crypto/decryptverifytask.cpp:624
+#: src/crypto/decryptverifytask.cpp:623
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "VS-NfD-conforming is a German standard for restricted documents for which "
@@ -4837,12 +4839,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "Lahtikrüptimine ei ole</b> VS-NfD ühilduv."
 
-#: src/crypto/decryptverifytask.cpp:635
+#: src/crypto/decryptverifytask.cpp:634
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Lõimitud faili nimi: '%1'"
 
-#: src/crypto/decryptverifytask.cpp:642
+#: src/crypto/decryptverifytask.cpp:641
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -4851,7 +4853,7 @@ msgstr ""
 "<b>Märkus:</b> sa ei saa olla kindel, kes on selle kirja krüptinud, sest sel "
 "pole allkirja."
 
-#: src/crypto/decryptverifytask.cpp:647
+#: src/crypto/decryptverifytask.cpp:646
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4862,7 +4864,7 @@ msgstr ""
 "<b>Vihje:</b> kui fail on krüptitud enne 2003. aastat, on usutav, et see on "
 "korras. Tol ajal nimelt terviklikkuse kaitset veel eriti ei tarvitatud."
 
-#: src/crypto/decryptverifytask.cpp:652
+#: src/crypto/decryptverifytask.cpp:651
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4874,31 +4876,31 @@ msgstr ""
 "Kui oled kindel, et failiga ei ole manipuleeritud, võiksid selle pärast "
 "jõuga lahtikrüptimist uuesti krüptida."
 
-#: src/crypto/decryptverifytask.cpp:949
+#: src/crypto/decryptverifytask.cpp:948
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1288
-#: src/crypto/decryptverifytask.cpp:1384 src/crypto/decryptverifytask.cpp:1485
-#: src/crypto/decryptverifytask.cpp:1538 src/crypto/decryptverifytask.cpp:1676
-#: src/crypto/decryptverifytask.cpp:1758 src/crypto/decryptverifytask.cpp:1864
+#: src/crypto/decryptverifytask.cpp:1107 src/crypto/decryptverifytask.cpp:1287
+#: src/crypto/decryptverifytask.cpp:1383 src/crypto/decryptverifytask.cpp:1484
+#: src/crypto/decryptverifytask.cpp:1537 src/crypto/decryptverifytask.cpp:1675
+#: src/crypto/decryptverifytask.cpp:1757 src/crypto/decryptverifytask.cpp:1863
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Ilmnes erind: %1"
 
-#: src/crypto/decryptverifytask.cpp:1111 src/crypto/decryptverifytask.cpp:1290
-#: src/crypto/decryptverifytask.cpp:1387 src/crypto/decryptverifytask.cpp:1487
-#: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1678
-#: src/crypto/decryptverifytask.cpp:1760 src/crypto/decryptverifytask.cpp:1866
+#: src/crypto/decryptverifytask.cpp:1110 src/crypto/decryptverifytask.cpp:1289
+#: src/crypto/decryptverifytask.cpp:1386 src/crypto/decryptverifytask.cpp:1486
+#: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1677
+#: src/crypto/decryptverifytask.cpp:1759 src/crypto/decryptverifytask.cpp:1865
 #: src/uiserver/assuanserverconnection.cpp:1363
 #: src/uiserver/assuanserverconnection.cpp:1412
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Ilmnes tundmatu erind"
 
-#: src/crypto/decryptverifytask.cpp:1165
+#: src/crypto/decryptverifytask.cpp:1164
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4907,12 +4909,12 @@ msgstr ""
 "Ei õnnestunud määrata, kas tegemist on S/MIME või OpenPGP allkirjaga/"
 "krüptogrammiga - võib-olla pole see ei krüptogramm ega allkiri?"
 
-#: src/crypto/decryptverifytask.cpp:1173 src/crypto/decryptverifytask.cpp:1448
+#: src/crypto/decryptverifytask.cpp:1172 src/crypto/decryptverifytask.cpp:1447
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Lahtikrüptimine: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1440
+#: src/crypto/decryptverifytask.cpp:1439
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -4921,7 +4923,7 @@ msgstr ""
 "Ei õnnestunud määrata, kas see on krüptitud S/MIME-ga või OpenPGP-ga - võib-"
 "olla pole see üldse krüptogramm?"
 
-#: src/crypto/decryptverifytask.cpp:1595 src/crypto/decryptverifytask.cpp:1802
+#: src/crypto/decryptverifytask.cpp:1594 src/crypto/decryptverifytask.cpp:1801
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4930,12 +4932,12 @@ msgstr ""
 "Ei õnnestunud määrata, kas tegemist on S/MIME või OpenPGP allkirjaga - võib-"
 "olla pole see üldse allkiri?"
 
-#: src/crypto/decryptverifytask.cpp:1603
+#: src/crypto/decryptverifytask.cpp:1602
 #, kde-format
 msgid "Verifying: %1..."
 msgstr "Verifitseerimine: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1819
+#: src/crypto/decryptverifytask.cpp:1818
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4944,12 +4946,12 @@ msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 "Verifitseerimine: <filename>%1</filename> failiga <filename>%2</filename> ..."
 
-#: src/crypto/decryptverifytask.cpp:1823
+#: src/crypto/decryptverifytask.cpp:1822
 #, kde-format
 msgid "Verifying signature: %1..."
 msgstr "Allkirja verifitseerimine: %1..i."
 
-#: src/crypto/decryptverifytask.cpp:1832
+#: src/crypto/decryptverifytask.cpp:1831
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -5018,7 +5020,7 @@ msgid "Multiple matching certificates or groups found"
 msgstr "(sobivaid sertifikaate ei leitud)"
 
 #: src/crypto/gui/certificatelineedit.cpp:662 src/dialogs/expirydialog.cpp:216
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:1005
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
@@ -5053,52 +5055,52 @@ msgstr "..."
 msgid "&Output folder:"
 msgstr "Väljundkatal&oog:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Failide verifitseerimine"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: kõik toimingud tehtud."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "Kõik toimingud tehtud."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
-#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Toiming %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Palun vali väljundkataloog."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
 #, fuzzy, kde-format
 #| msgid "No output folder."
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "Väljundkataloog puudub."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -5109,27 +5111,27 @@ msgstr ""
 "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</filename> "
 "nurjus."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "Vigane väljundkataloog."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Palun vali mõni muu väljundkataloog."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "Vigane väljundkataloog."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5296,7 +5298,7 @@ msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Näita auditi logi"
 
-#: src/crypto/gui/resultlistwidget.cpp:162
+#: src/crypto/gui/resultlistwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgctxt "@action:button"
@@ -6253,7 +6255,7 @@ msgid "S/MIME Certificate"
 msgstr "S/MIME sertifikaadid"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:79
+#: src/newcertificatewizard/enterdetailspage.cpp:81
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -6261,35 +6263,35 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:268
-#: src/newcertificatewizard/enterdetailspage.cpp:310
+#: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:125
-#: src/newcertificatewizard/enterdetailspage.cpp:133
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:127
+#: src/newcertificatewizard/enterdetailspage.cpp:135
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(required)"
 msgstr "(nõutav)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(optional)"
 msgstr "(pole kohustuslik)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:481
+#: src/newcertificatewizard/enterdetailspage.cpp:483
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> on nõutav, aga tühi."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:484
+#: src/newcertificatewizard/enterdetailspage.cpp:486
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6300,14 +6302,14 @@ msgstr ""
 "reegel: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:492
+#: src/newcertificatewizard/enterdetailspage.cpp:494
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> on ebatäielik."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:495
+#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6318,14 +6320,14 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:502
+#: src/newcertificatewizard/enterdetailspage.cpp:504
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> on vigane."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:505
+#: src/newcertificatewizard/enterdetailspage.cpp:507
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6566,7 +6568,7 @@ msgid "Email"
 msgstr "E-post:"
 
 #: src/dialogs/certificatedetailswidget.cpp:533
-#: src/newcertificatewizard/enterdetailspage.cpp:61
+#: src/newcertificatewizard/enterdetailspage.cpp:63
 #, kde-format
 msgid "Name"
 msgstr "Nimi"
@@ -7309,7 +7311,9 @@ msgid "Save As..."
 msgstr "Salvesta kui..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup on Server"
+msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "Otsing serveris"
 
@@ -7383,13 +7387,13 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:84
-#: src/newcertificatewizard/enterdetailspage.cpp:140
+#: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
 msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:86
-#: src/newcertificatewizard/enterdetailspage.cpp:141
+#: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -7397,7 +7401,7 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
-#: src/newcertificatewizard/enterdetailspage.cpp:177
+#: src/newcertificatewizard/enterdetailspage.cpp:179
 #, kde-format
 msgid "Advanced Settings..."
 msgstr "Muud seadistused..."
@@ -8932,7 +8936,7 @@ msgstr "Kleopatra tõrge"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Kleopatraga ühendumisel tekkis tõrge: %1"
 
-#: src/main.cpp:140
+#: src/main.cpp:129
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8947,13 +8951,13 @@ msgstr ""
 "para><para><application>Kleopatra</application> ei saa niimoodi töötada.</"
 "para><para>Palu oma süsteemiadministraatoril probleem lahendada.</para>"
 
-#: src/main.cpp:144
+#: src/main.cpp:133
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME on liiga vana"
 
-#: src/main.cpp:169
+#: src/main.cpp:158
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8964,23 +8968,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:173
+#: src/main.cpp:162
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:174
+#: src/main.cpp:163
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:248
+#: src/main.cpp:231
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI serveri viga"
 
-#: src/main.cpp:252
+#: src/main.cpp:235
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8994,7 +8998,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:282
+#: src/main.cpp:265
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Vigased argumendid: %1"
@@ -9046,18 +9050,18 @@ msgstr ""
 msgid "Error Starting KWatchGnuPG"
 msgstr "Viga KWatchGnuPG käivitamisel"
 
-#: src/mainwindow.cpp:528
+#: src/mainwindow.cpp:522
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG logi näitaja"
 
-#: src/mainwindow.cpp:540
+#: src/mainwindow.cpp:534
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:535
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9065,25 +9069,25 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:553
+#: src/mainwindow.cpp:547
 #, kde-format
 msgid "Check for updates"
 msgstr "Kontrolli uuendusi"
 
-#: src/mainwindow.cpp:566
+#: src/mainwindow.cpp:560
 #, fuzzy, kde-format
 #| msgid "Certificates"
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Sertifikaadid"
 
-#: src/mainwindow.cpp:567
+#: src/mainwindow.cpp:561
 #, fuzzy, kde-format
 #| msgid "Show certificate details"
 msgid "Show certificate overview"
 msgstr "Sertifikaadi üksikasjade näitamine"
 
-#: src/mainwindow.cpp:577
+#: src/mainwindow.cpp:571
 #, fuzzy, kde-format
 #| msgid "Notepad"
 msgctxt ""
@@ -9092,46 +9096,46 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Notepad"
 
-#: src/mainwindow.cpp:578
+#: src/mainwindow.cpp:572
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:588
+#: src/mainwindow.cpp:582
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Kiipkaart"
 
-#: src/mainwindow.cpp:589
+#: src/mainwindow.cpp:583
 #, fuzzy, kde-format
 #| msgid "Smartcard Management"
 msgid "Show smartcard management"
 msgstr "Kiipkaardi haldamine"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:594
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Soorita enesetest"
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:605
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgid "Configure Groups..."
 msgstr "%1 &seadistamine..."
 
-#: src/mainwindow.cpp:641
+#: src/mainwindow.cpp:635
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Fookus kiirotsingule"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:647
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win kompendium"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:651
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9139,50 +9143,50 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:666
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "&Quickguide"
 msgstr ""
 
-#: src/mainwindow.cpp:667
+#: src/mainwindow.cpp:661
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:673
+#: src/mainwindow.cpp:667
 #, fuzzy, kde-format
 #| msgid "Force decryption"
 msgid "&Password-based encryption"
 msgstr "Jõuga lahtikrüptimine"
 
-#: src/mainwindow.cpp:674
+#: src/mainwindow.cpp:668
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:673
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgid "&Group configuration"
 msgstr "Omaniku teabe näitamine"
 
-#: src/mainwindow.cpp:680
+#: src/mainwindow.cpp:674
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:687
+#: src/mainwindow.cpp:681
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr ""
 
-#: src/mainwindow.cpp:688
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9190,62 +9194,62 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:696
+#: src/mainwindow.cpp:690
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "&Certification Management"
 msgstr "Sertifitseerimine"
 
-#: src/mainwindow.cpp:697
+#: src/mainwindow.cpp:691
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:703
+#: src/mainwindow.cpp:697
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "&Smartcard setup"
 msgstr "Kiipkaart"
 
-#: src/mainwindow.cpp:704
+#: src/mainwindow.cpp:698
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:703
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:717
+#: src/mainwindow.cpp:711
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr ""
 
-#: src/mainwindow.cpp:718
+#: src/mainwindow.cpp:712
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:724
+#: src/mainwindow.cpp:718
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr ""
 
-#: src/mainwindow.cpp:725
+#: src/mainwindow.cpp:719
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:750
+#: src/mainwindow.cpp:744
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9254,197 +9258,197 @@ msgstr ""
 "Taustal tootavad ikka veel mõned ülesanded. Akna sulgemisel nende töö "
 "lõpetatakse. Kas jätkata?"
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:747
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Taustal töötavad ülesanded"
 
-#: src/mainwindow.cpp:857 src/view/keylistcontroller.cpp:451
+#: src/mainwindow.cpp:851 src/view/keylistcontroller.cpp:451
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Allkirjasta/krüpti..."
 
-#: src/mainwindow.cpp:858 src/utils/clipboardmenu.cpp:49
+#: src/mainwindow.cpp:852 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:442
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Krüpti lahti/verifitseeri..."
 
-#: src/mainwindow.cpp:863
+#: src/mainwindow.cpp:857
 #, kde-format
 msgid "Import Certificates"
 msgstr "Impordi sertifikaadid"
 
-#: src/mainwindow.cpp:864
+#: src/mainwindow.cpp:858
 #, kde-format
 msgid "Import CRLs"
 msgstr "Impordi CRL-id"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:225
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Muud seadistused"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
 #, fuzzy, kde-format
 #| msgid "Key Material"
 msgctxt "@title:group"
 msgid "Key Material"
 msgstr "Võtme olemus"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:245
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, fuzzy, kde-format
 #| msgid "RSA"
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:257
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:253
 #, fuzzy, kde-format
 #| msgid "+ RSA"
 msgctxt "@option:check"
 msgid "+ RSA"
 msgstr "+ RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:266
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:262
 #, fuzzy, kde-format
 #| msgid "DSA"
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:274
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:270
 #, fuzzy, kde-format
 #| msgid "+ Elgamal"
 msgctxt "@option:check"
 msgid "+ Elgamal"
 msgstr "+ Elgamal"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:271
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:289
 #, fuzzy, kde-format
 #| msgid "The private key is needed to decrypt or sign."
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
 msgstr "Privaatvõtit on tarvis lahtikrüptimiseks või allkirjastamiseks."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:284
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:280
 #, fuzzy, kde-format
 #| msgid "ECDSA"
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr "ECDSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:292
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:288
 #, fuzzy, kde-format
 #| msgid "+ ECDH"
 msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Sertifikaadi kasutamine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Allkirjastamine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "Sertifitseerimine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "Krüptimine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:322
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@option:check"
 msgid "Authentication"
 msgstr "Autentimine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "Kehtiv kuni:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:343
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:339
 #, fuzzy, kde-format
 #| msgid "Technical Details"
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "Tehnilised üksikasjad"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:357
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:353
 #, fuzzy, kde-format
 #| msgid "Additional User-IDs"
 msgctxt "@title:group"
 msgid "Additional User IDs"
 msgstr "Täiendavad kasutaja ID-d"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:365
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:361
 #, fuzzy, kde-format
 #| msgid "EMail Addresses"
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "E-posti aadressid"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:373
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:369
 #, fuzzy, kde-format
 #| msgid "DNS Names"
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS-i nimed"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:381
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:377
 #, fuzzy, kde-format
 #| msgid "URIs"
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI-d"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:391
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:901
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:387
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:897
 #, fuzzy, kde-format
 #| msgid "Personal Details"
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Isiklikud üksikasjad"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:418
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:414
 #, kde-format
 msgid "new email"
 msgstr "uus e-post"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:415
 #, kde-format
 msgid "new dns name"
 msgstr "uus DNS nimi"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:416
 #, kde-format
 msgid "new uri"
 msgstr "uus URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:743
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:739
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9452,7 +9456,7 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1-bitine)"
 msgstr[1] "%2 (%1-bitine)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:744
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:740
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
@@ -9460,7 +9464,7 @@ msgid_plural "%1 bits"
 msgstr[0] "1-bitine"
 msgstr[1] "%1-bitine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:906
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:902
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Adding more than one User ID is not yet implemented."
@@ -9468,34 +9472,34 @@ msgctxt "@info:tooltip"
 msgid "Adding more than one user ID is not yet implemented."
 msgstr "Rohkem kui ühe kasutaja ID lisamine ei ole veel võimalik."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:64
+#: src/newcertificatewizard/enterdetailspage.cpp:66
 #, kde-format
 msgid "EMail"
 msgstr "E-post"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:105
+#: src/newcertificatewizard/enterdetailspage.cpp:107
 #, kde-format
 msgctxt "@title"
 msgid "Enter Details"
 msgstr "Üksikasjad"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:123
+#: src/newcertificatewizard/enterdetailspage.cpp:125
 #, kde-format
 msgid "Real name:"
 msgstr "Tegelik nimi:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:131
+#: src/newcertificatewizard/enterdetailspage.cpp:133
 #, kde-format
 msgid "EMail address:"
 msgstr "E-posti aadress:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:197
+#: src/newcertificatewizard/enterdetailspage.cpp:199
 #, fuzzy, kde-format
 #| msgid "Please enter a name or email address..."
 msgid "Please enter your personal details below."
 msgstr "Palun kirjuta nimi või e-posti aadress..."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:199
+#: src/newcertificatewizard/enterdetailspage.cpp:201
 #, kde-format
 msgid ""
 "Please enter your personal details below. If you want more control over the "
@@ -9504,7 +9508,7 @@ msgstr ""
 "Palun sisesta allpool enda kohta käivad andmed. Kui soovid parameetreid "
 "täpsemalt määrata, klõpsa nupule Muud seadistused."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:219
+#: src/newcertificatewizard/enterdetailspage.cpp:221
 #, kde-format
 msgctxt "@action"
 msgid "Create"
@@ -12600,6 +12604,9 @@ msgid ""
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
 
+#~ msgid "Certificate Details"
+#~ msgstr "Sertifikaadi üksikasjad"
+
 #, fuzzy
 #~| msgid "Change Expiry Date..."
 #~ msgid "Explain expiration"
@@ -13167,10 +13174,6 @@ msgstr ""
 
 #~ msgid "Select the file to verify with \"%1\""
 #~ msgstr "Faili valimine verifitseerimiseks failiga \"%1\""
-
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Sertifikaadi üksikasjad"
 
 #~ msgid "Owner:"
 #~ msgstr "Omanik:"

@@ -176,18 +176,18 @@ public:
 
         auto groupsButtonLayout = new QVBoxLayout;
 
-        ui.newButton = new QPushButton(i18nc("@action::button", "New"), q);
+        ui.newButton = new QPushButton(i18nc("@action:button", "New"), q);
         groupsButtonLayout->addWidget(ui.newButton);
 
-        ui.editButton = new QPushButton(i18nc("@action::button", "Edit"), q);
+        ui.editButton = new QPushButton(i18nc("@action:button", "Edit"), q);
         ui.editButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.editButton);
 
-        ui.deleteButton = new QPushButton(i18nc("@action::button", "Delete"), q);
+        ui.deleteButton = new QPushButton(i18nc("@action:button", "Delete"), q);
         ui.deleteButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.deleteButton);
 
-        ui.exportButton = new QPushButton{i18nc("@action::button", "Export"), q};
+        ui.exportButton = new QPushButton{i18nc("@action:button", "Export"), q};
         ui.exportButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.exportButton);
 

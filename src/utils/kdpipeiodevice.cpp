@@ -851,7 +851,7 @@ void Reader::run()
             isReading = true;
             mutex.unlock();
             DWORD numRead;
-            const bool ok = ReadFile(handle, buffer + wptr, numBytes, &numRead, 0);
+            const bool ok = ReadFile(handle, buffer + wptr, numBytes, &numRead, nullptr);
             mutex.lock();
             isReading = false;
             if (ok) {
@@ -952,7 +952,7 @@ void Writer::run()
             DWORD numWritten;
             QDebug("%p (fd=%d): Writer::run: buffer before WriteFile (numBytes=%u): %s:", (void *)this, fd, numBytesInBuffer, buffer);
             QDebug("%p (fd=%d): Writer::run: Going into WriteFile", (void *)this, fd);
-            if (!WriteFile(handle, buffer + totalWritten, numBytesInBuffer - totalWritten, &numWritten, 0)) {
+            if (!WriteFile(handle, buffer + totalWritten, numBytesInBuffer - totalWritten, &numWritten, nullptr)) {
                 mutex.lock();
                 errorCode = static_cast<int>(GetLastError());
                 QDebug("%p: Writer::run: got error code: %d", (void *)this, errorCode);

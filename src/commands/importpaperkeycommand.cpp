@@ -177,7 +177,7 @@ void ImportPaperKeyCommand::doStart()
                                               * Anyway this works for now and for such an exotic feature its good enough for now.
                                               */
                                              ,
-                                             0,
+                                             nullptr,
                                              QFileDialog::DontUseNativeDialog
 #endif
     );

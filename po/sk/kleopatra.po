@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-12 00:47+0000\n"
+"POT-Creation-Date: 2023-09-22 00:45+0000\n"
 "PO-Revision-Date: 2020-09-08 18:56+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
@@ -739,7 +739,7 @@ msgstr "\"gpgconf --reload gpg-agent\" zlyhalo: %1"
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -930,17 +930,17 @@ msgstr "Schránka nevyzerá, že obsahuje podpis alebo zašifrovaný text."
 msgid "Decrypt/Verify Clipboard Error"
 msgstr "Chyba pri dešifrovaní/overovaní schránky"
 
-#: src/commands/decryptverifyfilescommand.cpp:56
+#: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
 msgid "Decrypt/Verify Failed"
 msgstr "Dešifrovanie/overenie zlyhalo"
 
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Chyba pri dešifrovaní/overovaní súborov"
 
-#: src/commands/decryptverifyfilescommand.cpp:184
+#: src/commands/decryptverifyfilescommand.cpp:219
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "Vybrať jeden alebo viac súborov dešifrovať a/alebo overiť"
@@ -3910,27 +3910,29 @@ msgstr "Zobraziť podrobnosti"
 #: src/conf/groupsconfigwidget.cpp:179
 #, fuzzy, kde-format
 #| msgid "New..."
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "New"
 msgstr "Nové..."
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:186
-#, fuzzy, kde-format
-#| msgid "Delete"
-msgctxt "@action::button"
+#: src/dialogs/deletecertificatesdialog.cpp:126
+#, kde-format
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Vymazať"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "Export"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Exportovať"
 
@@ -4562,7 +4564,7 @@ msgid "No usable inputs found"
 msgstr "Nenájdené použiteľné vstupy"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -5102,31 +5104,31 @@ msgstr "(Prosím, zvolte si najskôr medzi OpenPGP a S/MIME)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
 #: src/crypto/gui/decryptverifyfileswizard.cpp:220
 #, kde-format
 msgid "&Output folder:"
 msgstr "Výstupný priečin&ok"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Overiť súbory"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Všetky operácie dokončené."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "Všetky operácie dokončené."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -5134,26 +5136,26 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operácia %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Prosím, vyberte výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, fuzzy, kde-format
 #| msgid "No output folder."
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "Žiadny výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -5162,27 +5164,27 @@ msgid ""
 "para><para>Please select a different output folder.</para>"
 msgstr "Zlyhal presun <filename>%1</filename> do <filename>%2</filename>."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "Neplatný výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Prosím vyberte iný výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "Neplatný výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6566,13 +6568,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "Akt&ualizovať"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, fuzzy, kde-format
-#| msgid "Export"
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Exportovať"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, fuzzy, kde-format
 #| msgid "Change &passphrase"
@@ -7095,12 +7090,6 @@ msgstr ""
 "ďalšie certifikáty: Keď odstránite priečinok, odstránite tiež jeho obsah.</"
 "para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Vymazať"
-
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
 msgid ""
@@ -7368,7 +7357,8 @@ msgid "Save As..."
 msgstr "Uložiť ako..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup on Server"
 msgid "Lookup on Server"
 msgstr "Vyhľadávanie na serveri"
 
@@ -7376,12 +7366,6 @@ msgstr "Vyhľadávanie na serveri"
 #, kde-format
 msgid "Import"
 msgstr "Importovať"
-
-#: src/dialogs/messageviewerdialog.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Unable to read file"
-msgstr ""
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, fuzzy, kde-format
@@ -12016,12 +12000,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Držiteľ karty:"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr ""
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -12675,6 +12653,22 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\"."
 
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "Podrobnosti certifikátu"
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Vymazať"
+
+#, fuzzy
+#~| msgid "Export"
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Exportovať"
+
 #, fuzzy
 #~| msgid "Change Expiry Date..."
 #~ msgid "Explain expiration"
@@ -13244,10 +13238,6 @@ msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\
 
 #~ msgid "Select the file to verify with \"%1\""
 #~ msgstr "Vyberte súbor na overenie s \"%1\""
-
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Podrobnosti certifikátu"
 
 #~ msgid "Owner:"
 #~ msgstr "Vlastník:"

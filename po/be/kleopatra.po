@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-12 00:47+0000\n"
+"POT-Creation-Date: 2023-09-22 00:45+0000\n"
 "PO-Revision-Date: 2007-05-25 13:03+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -669,7 +669,7 @@ msgstr ""
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -738,9 +738,10 @@ msgid "Success"
 msgstr ""
 
 #: src/commands/createcsrforcardkeycommand.cpp:151
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Canceled."
 msgid "Certificate Details"
-msgstr ""
+msgstr "Скасавана."
 
 #: src/commands/createcsrforcardkeycommand.cpp:192
 #: src/commands/createcsrforcardkeycommand.cpp:207
@@ -811,9 +812,10 @@ msgid "Create OpenPGP Key"
 msgstr ""
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set &Background Color..."
 msgid "Enter User ID"
-msgstr ""
+msgstr "Змяніць колер &фона..."
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:179
 #, fuzzy, kde-format
@@ -839,18 +841,18 @@ msgstr ""
 msgid "Decrypt/Verify Clipboard Error"
 msgstr ""
 
-#: src/commands/decryptverifyfilescommand.cpp:56
+#: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Decrypt/Verify Failed"
 msgstr "&Падрабязнасці"
 
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr ""
 
-#: src/commands/decryptverifyfilescommand.cpp:184
+#: src/commands/decryptverifyfilescommand.cpp:219
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr ""
@@ -3550,27 +3552,30 @@ msgstr "&Падрабязнасці"
 
 #: src/conf/groupsconfigwidget.cpp:179
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "New"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, fuzzy, kde-format
 #| msgid "Delete"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Выдаліць"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "Canceled."
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Скасавана."
 
@@ -4147,7 +4152,7 @@ msgid "No usable inputs found"
 msgstr ""
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@title:window"
@@ -4660,32 +4665,32 @@ msgstr ""
 msgid "..."
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
 #: src/crypto/gui/decryptverifyfileswizard.cpp:220
 #, kde-format
 msgid "&Output folder:"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "&Падрабязнасці"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -4693,26 +4698,26 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, fuzzy, kde-format
 #| msgid "Overwrite File?"
 msgid "Please select an output folder."
 msgstr "Перазапісаць файл?"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4720,26 +4725,26 @@ msgid ""
 "para><para>Please select a different output folder.</para>"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgid "Overwrite File?"
 msgid "Please select a different output folder."
 msgstr "Перазапісаць файл?"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6076,13 +6081,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "&Абнавіць"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, fuzzy, kde-format
-#| msgid "Canceled."
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Скасавана."
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
@@ -6569,13 +6567,6 @@ msgid ""
 "contents, too.</para>"
 msgstr ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, fuzzy, kde-format
-#| msgid "Delete"
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Выдаліць"
-
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
 msgid ""
@@ -6838,12 +6829,6 @@ msgstr "Перазапісаць файл?"
 #: src/dialogs/lookupcertificatesdialog.cpp:201
 #, kde-format
 msgid "Import"
-msgstr ""
-
-#: src/dialogs/messageviewerdialog.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Unable to read file"
 msgstr ""
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
@@ -11255,12 +11240,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr ""
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -11891,6 +11870,18 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Выдаліць"
+
+#, fuzzy
+#~| msgid "Canceled."
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Скасавана."
+
+#, fuzzy
 #~| msgid "Overwrite File?"
 #~ msgid "Explain expiration"
 #~ msgstr "Перазапісаць файл?"
@@ -12074,12 +12065,6 @@ msgstr ""
 #~ msgctxt "Placeholder text"
 #~ msgid "Search..."
 #~ msgstr "Шукаць:"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Скасавана."
 
 #, fuzzy
 #~| msgid "Canceled."

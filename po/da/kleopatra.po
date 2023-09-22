@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-12 00:47+0000\n"
+"POT-Creation-Date: 2023-09-22 00:45+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -743,7 +743,7 @@ msgstr "\"gpgconf --reload gpg-agent\" mislykkedes: %1"
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -936,17 +936,17 @@ msgstr ""
 msgid "Decrypt/Verify Clipboard Error"
 msgstr "Dekryptér/verificér udklipsholderfejl"
 
-#: src/commands/decryptverifyfilescommand.cpp:56
+#: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
 msgid "Decrypt/Verify Failed"
 msgstr "Dekryptér/verificér mislykkedes"
 
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Fejl under dekryptering og verificering af filer"
 
-#: src/commands/decryptverifyfilescommand.cpp:184
+#: src/commands/decryptverifyfilescommand.cpp:219
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "Vælg en eller flere filer til dekryptering og/eller verificering"
@@ -3936,27 +3936,29 @@ msgstr "Vis detaljer"
 #: src/conf/groupsconfigwidget.cpp:179
 #, fuzzy, kde-format
 #| msgid "New..."
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "New"
 msgstr "Nyt..."
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:186
-#, fuzzy, kde-format
-#| msgid "Delete"
-msgctxt "@action::button"
+#: src/dialogs/deletecertificatesdialog.cpp:126
+#, kde-format
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Slet"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "Export"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Eksportér"
 
@@ -4595,7 +4597,7 @@ msgid "No usable inputs found"
 msgstr "Ingen brugbare input fundet"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
 msgctxt "@title:window"
@@ -5128,32 +5130,32 @@ msgstr "(vælg venligst mellem OpenPGP og S/MIME først)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
 #: src/crypto/gui/decryptverifyfileswizard.cpp:220
 #, kde-format
 msgid "&Output folder:"
 msgstr "&Outputmappe:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
 #, fuzzy, kde-format
 #| msgid "Verify Files"
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Verificér filer"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Alle handlinger færdiggjort."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "Alle handlinger færdiggjort."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -5161,26 +5163,26 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Handling %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Vælg venligst en outputmappe."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, fuzzy, kde-format
 #| msgid "No output folder."
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "Ingen outputmappe."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -5189,27 +5191,27 @@ msgid ""
 "para><para>Please select a different output folder.</para>"
 msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "Ugyldig outputmappe."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Vælg venligst en anden outputmappe."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "Ugyldig outputmappe."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6602,13 +6604,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "&Opdatér"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, fuzzy, kde-format
-#| msgid "Export"
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Eksportér"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, fuzzy, kde-format
 #| msgid "Change &passphrase"
@@ -7132,12 +7127,6 @@ msgstr ""
 "slettet. Tænk på CA-certifikater som mapper der indeholder andre "
 "certifikater. Når du sletter en mappe, sletter du også dens indhold.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Slet"
-
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
 msgid ""
@@ -7401,7 +7390,8 @@ msgid "Save As..."
 msgstr "Gem som..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup on Server"
 msgid "Lookup on Server"
 msgstr "Opslå på server"
 
@@ -7409,12 +7399,6 @@ msgstr "Opslå på server"
 #, kde-format
 msgid "Import"
 msgstr "Importér"
-
-#: src/dialogs/messageviewerdialog.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Unable to read file"
-msgstr ""
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, fuzzy, kde-format
@@ -12071,12 +12055,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Kortindehaver:"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr ""
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -12731,6 +12709,24 @@ msgstr ""
 "nøgleserver."
 
 #, fuzzy
+#~| msgid "Certificate Details"
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "Certifikatets detaljer"
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Slet"
+
+#, fuzzy
+#~| msgid "Export"
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Eksportér"
+
+#, fuzzy
 #~| msgid "Change Expiry Date..."
 #~ msgid "Explain expiration"
 #~ msgstr "Ændr udløbsdato..."
@@ -13316,12 +13312,6 @@ msgstr ""
 
 #~ msgid "Select the file to verify with \"%1\""
 #~ msgstr "Vælg filen som der skal verificeres med \"%1\""
-
-#, fuzzy
-#~| msgid "Certificate Details"
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Certifikatets detaljer"
 
 #~ msgid "Owner:"
 #~ msgstr "Ejer:"

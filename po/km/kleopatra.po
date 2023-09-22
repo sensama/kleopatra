@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-12 00:47+0000\n"
+"POT-Creation-Date: 2023-09-22 00:45+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -728,7 +728,7 @@ msgstr "\"gpgconf --reload gpg-agent\" បាន​បរាជ័យ​ ៖​ 
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -914,18 +914,18 @@ msgstr "ក្ដារ​តម្បៀត​ខ្ទាស់​មិន​
 msgid "Decrypt/Verify Clipboard Error"
 msgstr "កំហុស​ក្នុង​ការ​ឌិគ្រីប​/​បញ្ជាក់​ក្ដារ​តម្បៀត​ខ្ទាស់"
 
-#: src/commands/decryptverifyfilescommand.cpp:56
+#: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
 msgid "Decrypt/Verify Failed"
 msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់​ឯកសារ"
 
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "កំហុស​ក្នុងការ​ឌិគ្រីប​/បញ្ជាក់​ឯកសារ"
 
-#: src/commands/decryptverifyfilescommand.cpp:184
+#: src/commands/decryptverifyfilescommand.cpp:219
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "ជ្រើស​ឯកសារ​មួយ ឬ​ច្រើន​ដើម្បី​ឌិគ្រីប និង/​ឬ​បញ្ជាក់"
@@ -3871,27 +3871,29 @@ msgstr "បង្ហាញ​សេចក្ដី​លម្អិត"
 #: src/conf/groupsconfigwidget.cpp:179
 #, fuzzy, kde-format
 #| msgid "New..."
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "New"
 msgstr "ថ្មី..."
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:186
-#, fuzzy, kde-format
-#| msgid "Delete"
-msgctxt "@action::button"
+#: src/dialogs/deletecertificatesdialog.cpp:126
+#, kde-format
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "លុប"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "Export"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "នាំចេញ"
 
@@ -4557,7 +4559,7 @@ msgid "No usable inputs found"
 msgstr "រក​មិន​ឃើញ​ព័ត៌មាន​បញ្ចូល​ដែល​អាច​ប្រើ​បាន​ទេ"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
 msgctxt "@title:window"
@@ -5088,32 +5090,32 @@ msgstr "(សូម​ជ្រើស​រវាង OpenPGP និង​​ S/MI
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
 #: src/crypto/gui/decryptverifyfileswizard.cpp:220
 #, kde-format
 msgid "&Output folder:"
 msgstr "ថត​លទ្ធផល ៖"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់​ឯកសារ"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1 ៖ បាន​បញ្ចប់​ប្រតិបត្តិការ​ទាំងអស់ ។"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "បាន​បញ្ចប់​ប្រតិបត្តិការ​ទាំងអស់ ។"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -5121,28 +5123,28 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "ប្រតិបត្តិការ %1 ៖ %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1 ៖ %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Please select export options for %1:"
 msgid "Please select an output folder."
 msgstr "សូម​ជ្រើស​ជម្រើស​នាំចេញ​សម្រាប់ %1 ៖"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, fuzzy, kde-format
 #| msgid "&Output folder:"
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "ថត​លទ្ធផល ៖"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5156,29 +5158,29 @@ msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
 #, fuzzy, kde-format
 #| msgid "&Output folder:"
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "ថត​លទ្ធផល ៖"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Please select export options for %1:"
 msgid "Please select a different output folder."
 msgstr "សូម​ជ្រើស​ជម្រើស​នាំចេញ​សម្រាប់ %1 ៖"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgid "&Output folder:"
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "ថត​លទ្ធផល ៖"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6560,13 +6562,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "ធ្វើ​បច្ចុប្បន្នភាព"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, fuzzy, kde-format
-#| msgid "Export"
-msgctxt "@action:button"
-msgid "Export"
-msgstr "នាំចេញ"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
@@ -7088,12 +7083,6 @@ msgstr ""
 "ប្រសិន​បើ​អ្នក​លុប​វិញ្ញាបនបត្រ​ដែល​មាន​កូនចៅ កូនចៅ​ទាំង​នោះ​ក៏​នឹង​ត្រូវ​បាន​លុប​ដែរ ។ គិត​អំពី​​វិញ្ញាបនបត្រ CA ជា​"
 "ថត ដែល​មាន​វិញ្ញាបនបត្រ​ផ្សេងទៀត ៖ នៅ​ពេល​ដែល​អ្នក​លុប​ថត អ្នក​ក៏​លុប​មាតិកា​របស់​វា​ដែរ ។</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "លុប"
-
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
 msgid ""
@@ -7366,12 +7355,6 @@ msgstr "រកមើល​វិញ្ញាបនបត្រ​លើ​ម៉
 #, kde-format
 msgid "Import"
 msgstr "នាំចូល"
-
-#: src/dialogs/messageviewerdialog.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Unable to read file"
-msgstr ""
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, fuzzy, kde-format
@@ -12022,12 +12005,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr ""
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
@@ -12686,6 +12663,24 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "Certificate Details"
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "សេចក្ដី​លម្អិត​វិញ្ញាបនបត្រ"
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "លុប"
+
+#, fuzzy
+#~| msgid "Export"
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "នាំចេញ"
+
+#, fuzzy
 #~| msgid "Change Expiry Date..."
 #~ msgid "Explain expiration"
 #~ msgstr "ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់..."
@@ -13213,12 +13208,6 @@ msgstr ""
 #~ msgctxt "Placeholder text"
 #~ msgid "Search..."
 #~ msgstr "ស្វែងរក"
-
-#, fuzzy
-#~| msgid "Certificate Details"
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "សេចក្ដី​លម្អិត​វិញ្ញាបនបត្រ"
 
 #, fuzzy
 #~| msgid "Ownertrust"

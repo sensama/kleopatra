@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-12 00:47+0000\n"
-"PO-Revision-Date: 2023-08-24 14:05+0200\n"
+"POT-Creation-Date: 2023-09-22 00:45+0000\n"
+"PO-Revision-Date: 2023-09-17 21:56+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.07.90\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -694,7 +694,7 @@ msgstr "Échec de « gpgconf --reload gpg-agent » : %1"
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -854,7 +854,8 @@ msgid "Create OpenPGP Key"
 msgstr "Créer une clé « OpenPGP »"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Enter User ID"
 msgid "Enter User ID"
 msgstr "Saisir un identifiant d'utilisateur"
 
@@ -884,18 +885,18 @@ msgstr "Le presse-papiers ne semble contenir ni signature, ni texte chiffré."
 msgid "Decrypt/Verify Clipboard Error"
 msgstr "Erreur de déchiffrement / vérification du presse-papiers"
 
-#: src/commands/decryptverifyfilescommand.cpp:56
+#: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
 msgid "Decrypt/Verify Failed"
 msgstr "Erreur de déchiffrement / vérification"
 
 # unreviewed-context
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Erreur de déchiffrement / vérification des fichiers"
 
-#: src/commands/decryptverifyfilescommand.cpp:184
+#: src/commands/decryptverifyfilescommand.cpp:219
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "Sélectionner un ou plusieurs fichiers à déchiffrer et/ou à vérifier"
@@ -1306,15 +1307,10 @@ msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
 "likely this shouldn't be translated"
 msgid "%1<nl />%2"
-msgstr ""
+msgstr "%1<nl/>%2"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:122
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to export OpenPGP certificates.</"
-#| "para> <para>The output from <command>%1</command> was: <message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
@@ -1322,8 +1318,8 @@ msgid ""
 "para>"
 msgstr ""
 "<para>Une erreur s'est produite lors de la tentative d'exportation des "
-"certificats OpenPGP.</para> <para>La commande <command>%1</command> a "
-"renvoyé : <message>%2</message></para>"
+"certificats « OpenPGP ».</para><para>La commande <command>%1</command> a "
+"renvoyé : <nl/><message>%2</message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:130
 #, kde-format
@@ -3666,6 +3662,8 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Interroger les dossiers de certificats des fournisseurs pour tous les "
+"identifiants utilisateur"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3676,6 +3674,11 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"Par défaut, Kleopatra interroge uniquement les répertoires de certificats "
+"des fournisseurs (WKD) pour les identifiants utilisateur ayant été "
+"initialement retrouvés à partir d’un WKD lors de la mise à jour d'un "
+"certificat « OpenPGP ». Si cette option est activée, alors, Kleopatra "
+"interrogera les WKD pour tous les identifiants utilisateur."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -3774,26 +3777,31 @@ msgid "groups"
 msgstr "groupes"
 
 #: src/conf/groupsconfigwidget.cpp:179
-#, kde-format
-msgctxt "@action::button"
+#, fuzzy, kde-format
+#| msgctxt "@action::button"
+#| msgid "New"
+msgctxt "@action:button"
 msgid "New"
 msgstr "Nouveau"
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr "Modifier"
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Supprimer"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Exporter"
 
@@ -4439,7 +4447,7 @@ msgid "No usable inputs found"
 msgstr "Aucun objet à traiter utilisable trouvé"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4964,31 +4972,31 @@ msgstr "(veuillez tout d'abord choisir entre OpenPGP et S/MIME)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
 #: src/crypto/gui/decryptverifyfileswizard.cpp:220
 #, kde-format
 msgid "&Output folder:"
 msgstr "D&ossier de destination :"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Vérifier les fichiers"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1 : toutes les opération sont terminées."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "Toutes les opérations sont terminées."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -4996,25 +5004,25 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Opération %1 : %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1 : %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Veuillez sélectionner un dossier de destination."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "Aucun dossier de sortie."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5024,25 +5032,25 @@ msgstr ""
 "<para>Impossible de créer le dossier de sortie <filename>%1</filename>.</"
 "para> <para>Veuillez sélectionner un dossier de sortie différent.</para>"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "Dossier de sortie non utilisable."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Veuillez sélectionner un dossier de destination différent."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "Dossier de sortie non valable."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6395,12 +6403,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, kde-format
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Exporter"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
@@ -6740,11 +6742,10 @@ msgstr ""
 "faire pour vos propres clés."
 
 #: src/dialogs/certifywidget.cpp:301
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:column"
 msgid "User ID"
-msgstr "Identifiants utilisateur"
+msgstr "Identifiant utilisateur"
 
 #: src/dialogs/certifywidget.cpp:305
 #, kde-format
@@ -6900,12 +6901,6 @@ msgstr ""
 "les certificats CA comme des dossiers contenant d'autres certificats : la "
 "suppression d'un dossier occasionne également la disparition de son contenu."
 "</para>"
-
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Supprimer"
 
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
@@ -7166,7 +7161,8 @@ msgid "Save As..."
 msgstr "Enregistrer sous..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup on Server"
 msgid "Lookup on Server"
 msgstr "Rechercher sur le serveur"
 
@@ -7174,12 +7170,6 @@ msgstr "Rechercher sur le serveur"
 #, kde-format
 msgid "Import"
 msgstr "Importer"
-
-#: src/dialogs/messageviewerdialog.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Unable to read file"
-msgstr ""
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8379,6 +8369,8 @@ msgstr ""
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Interroger les dossiers de certificats des fournisseurs pour tous les "
+"identifiants utilisateur"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8391,6 +8383,12 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"Par défaut, Kleopatra interroge uniquement les répertoires de certificats "
+"des fournisseurs (WKD)\n"
+"\tpour les identifiants utilisateur ayant été initialement retrouvés à "
+"partir d’un WKD lors de la mise à jour d'un certificat « OpenPGP ». \n"
+"\tSi cette option est activée, alors, Kleopatra interrogera les WKD pour "
+"tous les identifiants utilisateur."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170
@@ -11824,12 +11822,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Possesseur de la carte :"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr "Modifier"
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -12467,6 +12459,25 @@ msgstr ""
 "d'un serveur de clés publiques, veuillez plutôt utiliser "
 "<interface>Rechercher sur le serveur</interface>."
 
+#, fuzzy
+#~| msgctxt "@title:window"
+#~| msgid "Certificate Details"
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "Détails du certificat"
+
+#~ msgctxt "@action::button"
+#~ msgid "Edit"
+#~ msgstr "Modifier"
+
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Supprimer"
+
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Exporter"
+
 #~ msgid "Explain tags"
 #~ msgstr "Expliquer les étiquettes"
 
@@ -13012,10 +13023,6 @@ msgstr ""
 
 #~ msgid "Select the file to verify with \"%1\""
 #~ msgstr "Sélectionner le fichier à vérifier avec « %1 »"
-
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Détails du certificat"
 
 #~ msgid "Owner:"
 #~ msgstr "Propriétaire :"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-12 00:47+0000\n"
+"POT-Creation-Date: 2023-09-22 00:45+0000\n"
 "PO-Revision-Date: 2022-02-26 11:47+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: Hindi <kde-l10n-hi@kde.org>\n"
@@ -702,7 +702,7 @@ msgstr ""
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -886,18 +886,18 @@ msgstr ""
 msgid "Decrypt/Verify Clipboard Error"
 msgstr "कुंजियाँ मिटाई जा रही हैं..."
 
-#: src/commands/decryptverifyfilescommand.cpp:56
+#: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Decrypt/Verify Failed"
 msgstr "कुंजियाँ मिटाई जा रही हैं..."
 
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr ""
 
-#: src/commands/decryptverifyfilescommand.cpp:184
+#: src/commands/decryptverifyfilescommand.cpp:219
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr ""
@@ -3739,27 +3739,30 @@ msgstr "विवरण (&D) "
 #: src/conf/groupsconfigwidget.cpp:179
 #, fuzzy, kde-format
 #| msgid "A.k.a."
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "New"
 msgstr "A.k.a."
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, fuzzy, kde-format
 #| msgid "Delete"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "मिटाएँ"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "सिर्फ एनक्रिप्टिंग के लिए (&e)"
 
@@ -4353,7 +4356,7 @@ msgid "No usable inputs found"
 msgstr ""
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@title:window"
@@ -4871,32 +4874,32 @@ msgstr ""
 msgid "..."
 msgstr "A.k.a."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
 #: src/crypto/gui/decryptverifyfileswizard.cpp:220
 #, kde-format
 msgid "&Output folder:"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "कुंजियाँ मिटाई जा रही हैं..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
 #: src/crypto/gui/resultpage.cpp:108
 #, fuzzy, kde-format
@@ -4905,27 +4908,27 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "ऑपरेशन रोकें"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, fuzzy, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1 (%2):"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, fuzzy, kde-format
 #| msgid "Do you really want to delete this certificate?"
 #| msgid_plural "Do you really want to delete these %1 certificates?"
 msgid "Please select an output folder."
 msgstr "क्या आप सचमुच इस प्रमाणपत्र को मिटाना चाहते हैं?"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -4936,27 +4939,27 @@ msgid ""
 "para><para>Please select a different output folder.</para>"
 msgstr "<qt><p>प्रमाणपत्र:</p><p><b>%1</b> को मिटाने के दौरान एक त्रुटि हुई</p></qt>"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgid "Do you really want to delete this certificate?"
 #| msgid_plural "Do you really want to delete these %1 certificates?"
 msgid "Please select a different output folder."
 msgstr "क्या आप सचमुच इस प्रमाणपत्र को मिटाना चाहते हैं?"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6314,13 +6317,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "अद्यतन (&U)"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, fuzzy, kde-format
-#| msgid "For &encrypting only"
-msgctxt "@action:button"
-msgid "Export"
-msgstr "सिर्फ एनक्रिप्टिंग के लिए (&e)"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
@@ -6804,13 +6800,6 @@ msgid ""
 "contents, too.</para>"
 msgstr ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, fuzzy, kde-format
-#| msgid "Delete"
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "मिटाएँ"
-
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
 msgid ""
@@ -7083,12 +7072,6 @@ msgstr "प्रमाणपत्र प्रबंधक त्रुटि"
 #| msgid "Imported:"
 msgid "Import"
 msgstr "आयातित:"
-
-#: src/dialogs/messageviewerdialog.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Unable to read file"
-msgstr ""
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, fuzzy, kde-format
@@ -11584,12 +11567,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr ""
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
@@ -12234,6 +12211,24 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "Certificate Details..."
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "प्रमाणपत्र विवरण..."
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "मिटाएँ"
+
+#, fuzzy
+#~| msgid "For &encrypting only"
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "सिर्फ एनक्रिप्टिंग के लिए (&e)"
+
+#, fuzzy
 #~| msgid "Unchanged:"
 #~ msgid "Explain expiration"
 #~ msgstr "अपरिवर्तित:"
@@ -12540,12 +12535,6 @@ msgstr ""
 #~ msgctxt "Placeholder text"
 #~ msgid "Search..."
 #~ msgstr "ढूंढें:"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "प्रमाणपत्र विवरण..."
 
 #, fuzzy
 #~| msgid "For &encrypting only"

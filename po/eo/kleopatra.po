@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-12 00:47+0000\n"
-"PO-Revision-Date: 2023-09-12 20:19+0100\n"
+"POT-Creation-Date: 2023-09-22 00:45+0000\n"
+"PO-Revision-Date: 2023-09-21 08:21+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -663,7 +663,7 @@ msgstr "\"gpgconf --reload gpg-agent\" malsukcesis: %1"
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -736,7 +736,9 @@ msgid "Success"
 msgstr "Sukceso"
 
 #: src/commands/createcsrforcardkeycommand.cpp:151
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Certificate Details"
 msgid "Certificate Details"
 msgstr "Detaloj pri Atestilo"
 
@@ -817,7 +819,9 @@ msgid "Create OpenPGP Key"
 msgstr "Krei OpenPGP-Ŝlosilon"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Enter User ID"
 msgid "Enter User ID"
 msgstr "Enigi Uzantan ID"
 
@@ -844,17 +848,17 @@ msgstr "La tondujo ŝajnas ne enhavi subskribon aŭ ĉifritan tekston."
 msgid "Decrypt/Verify Clipboard Error"
 msgstr "Eraro pri Malĉifri/Konfirmi Tondujon"
 
-#: src/commands/decryptverifyfilescommand.cpp:56
+#: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
 msgid "Decrypt/Verify Failed"
 msgstr "Malĉifri/Konfirmi Malsukcesis"
 
-#: src/commands/decryptverifyfilescommand.cpp:171
+#: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Malĉifri/Konfirmi Dosierajn Eraron"
 
-#: src/commands/decryptverifyfilescommand.cpp:184
+#: src/commands/decryptverifyfilescommand.cpp:219
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "Elekti Unu aŭ Pli da Dosieroj por Malĉifri kaj/aŭ Kontroli"
@@ -3632,26 +3636,31 @@ msgid "groups"
 msgstr "grupoj"
 
 #: src/conf/groupsconfigwidget.cpp:179
-#, kde-format
-msgctxt "@action::button"
+#, fuzzy, kde-format
+#| msgctxt "@action::button"
+#| msgid "New"
+msgctxt "@action:button"
 msgid "New"
 msgstr "Nova"
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr "Redakti"
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Forigi"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Eksporti"
 
@@ -4287,7 +4296,7 @@ msgid "No usable inputs found"
 msgstr "Neniuj uzeblaj enigaĵoj trovitaj"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4807,31 +4816,31 @@ msgstr "(bonvolu elekti inter OpenPGP kaj S/MIME unue)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
 #: src/crypto/gui/decryptverifyfileswizard.cpp:220
 #, kde-format
 msgid "&Output folder:"
 msgstr "&Eliga dosierujo:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:99
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Kontroli dosierojn"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Ĉiuj operacioj finiĝis."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:125
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "Ĉiuj operacioj finiĝis."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:210
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -4839,25 +4848,25 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operacio %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:149
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Bonvolu elekti eligdosierujon."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:201
 #, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "Neniu Eligdosierujo"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4867,25 +4876,25 @@ msgstr ""
 "<para>Malsukcesis krei eligdosierujon <filename>%1</filename>.</"
 "para><para>Bonvolu elektu malsaman eligdosierujon.</para>"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:215
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:227
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "Nevalida Eligdosierujo"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Bonvolu elekti alian eligdosierujon."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:220
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "Nevalida Eligdosierujo"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6200,12 +6209,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "Ĝisdatigi"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, kde-format
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Eksporti"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
@@ -6690,12 +6693,6 @@ msgstr ""
 "enhavantaj aliajn atestojn: Kiam vi forigas la dosierujon, vi ankaŭ forigas "
 "ĝian enhavon.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Forigi"
-
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
 msgid ""
@@ -6946,7 +6943,9 @@ msgid "Save As..."
 msgstr "Konservi kiel..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Lookup on Server"
 msgid "Lookup on Server"
 msgstr "Serĉi ĉe Servilo"
 
@@ -6954,12 +6953,6 @@ msgstr "Serĉi ĉe Servilo"
 #, kde-format
 msgid "Import"
 msgstr "Importi"
-
-#: src/dialogs/messageviewerdialog.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Unable to read file"
-msgstr "Malebla legi dosieron"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -11488,12 +11481,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Kartposedanto:"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr "Redakti"
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -12121,3 +12108,15 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
+
+#~ msgctxt "@action::button"
+#~ msgid "Edit"
+#~ msgstr "Redakti"
+
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Forigi"
+
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Eksporti"

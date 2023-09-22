@@ -42,4 +42,4 @@ endif()
 
 target_link_libraries(kleopatraclientcore LibAssuan::LibAssuan LibGpgError::LibGpgError Qt::Widgets KF6::I18n Gpgmepp)
 
-install(TARGETS kleopatraclientcore ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kleopatraclientcore ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)

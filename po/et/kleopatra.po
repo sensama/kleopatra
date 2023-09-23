@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-23 01:45+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -3848,27 +3848,29 @@ msgstr "Näita üksikasju"
 #: src/conf/groupsconfigwidget.cpp:179
 #, fuzzy, kde-format
 #| msgid "New..."
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "New"
 msgstr "Uus..."
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:186
-#, fuzzy, kde-format
-#| msgid "Delete"
-msgctxt "@action::button"
+#: src/dialogs/deletecertificatesdialog.cpp:126
+#, kde-format
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Kustuta"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "Export"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Eksport"
 
@@ -6517,13 +6519,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "&Uuenda"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, fuzzy, kde-format
-#| msgid "Export"
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Eksport"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, fuzzy, kde-format
 #| msgid "Change &passphrase"
@@ -7043,12 +7038,6 @@ msgstr ""
 "kui sa kustutad sertifikaadi, millel on järglasi, kustutatakse ka viimased. "
 "Käsitle SK sertifikaate kui katalooge, mis sisaldavad teisi sertifikaate. "
 "Kui kustutad kataloogi, kustutatakse ka selle sisu.</para>"
-
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Kustuta"
 
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
@@ -11945,12 +11934,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Kaardiomanik:"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr ""
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -12603,6 +12586,18 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Kustuta"
+
+#, fuzzy
+#~| msgid "Export"
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Eksport"
 
 #~ msgid "Certificate Details"
 #~ msgstr "Sertifikaadi üksikasjad"

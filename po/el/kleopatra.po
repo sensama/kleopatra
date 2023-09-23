@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-23 01:45+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -3718,26 +3718,31 @@ msgid "groups"
 msgstr "ομάδες"
 
 #: src/conf/groupsconfigwidget.cpp:179
-#, kde-format
-msgctxt "@action::button"
+#, fuzzy, kde-format
+#| msgctxt "@action::button"
+#| msgid "New"
+msgctxt "@action:button"
 msgid "New"
 msgstr "Νέο"
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr "Επεξεργασία"
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Διαγραφή"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Εξαγωγή"
 
@@ -6321,12 +6326,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "Ενημέρωση"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, kde-format
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Εξαγωγή"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
@@ -6823,12 +6822,6 @@ msgstr ""
 "διαγραφούν επίσης. Φανταστείτε τα πιστοποιητικά CA ως φακέλους που περιέχουν "
 "άλλα πιστοποιητικά: Όταν διαγράφεται ο φάκελος, διαγράφονται και τα "
 "περιεχόμενά του.</para>"
-
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Διαγραφή"
 
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
@@ -11689,12 +11682,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Κάτοχος κάρτας:"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr "Επεξεργασία"
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -12328,6 +12315,18 @@ msgstr ""
 "Εισαγωγή πιστοποιητικού από αρχείο.<nl/>Για να εισάγετε από ένα δημόσιο "
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
+
+#~ msgctxt "@action::button"
+#~ msgid "Edit"
+#~ msgstr "Επεξεργασία"
+
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Διαγραφή"
+
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Εξαγωγή"
 
 #~ msgid "Certificate Details"
 #~ msgstr "Λεπτομέρειες πιστοποιητικού"

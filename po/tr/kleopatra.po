@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-23 01:45+0000\n"
 "PO-Revision-Date: 2023-09-12 05:38+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -753,8 +753,7 @@ msgid "Success"
 msgstr "Başarılı"
 
 #: src/commands/createcsrforcardkeycommand.cpp:151
-#, fuzzy, kde-format
-#| msgid "Certificate Details"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Details"
 msgstr "Sertifika Ayrıntıları"
@@ -835,8 +834,7 @@ msgid "Create OpenPGP Key"
 msgstr "OpenPGP Anahtarı Oluştur"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, fuzzy, kde-format
-#| msgid "Enter User ID"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter User ID"
 msgstr "Kullanıcı Kimliği Gir"
@@ -3669,26 +3667,31 @@ msgid "groups"
 msgstr "gruplar"
 
 #: src/conf/groupsconfigwidget.cpp:179
-#, kde-format
-msgctxt "@action::button"
+#, fuzzy, kde-format
+#| msgctxt "@action::button"
+#| msgid "New"
+msgctxt "@action:button"
 msgid "New"
 msgstr "Yeni"
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr "Düzenle"
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Sil"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Dışa Aktar"
 
@@ -6225,12 +6228,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "Güncelle"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, kde-format
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Dışa Aktar"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
@@ -6724,12 +6721,6 @@ msgstr ""
 "dizinler olarak düşünün: Klasörü sildiğinizde içeriği de silmiş olursunuz.</"
 "para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Sil"
-
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
 msgid ""
@@ -6980,8 +6971,7 @@ msgid "Save As..."
 msgstr "Farklı Kaydet..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, fuzzy, kde-format
-#| msgid "Lookup on Server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "Sunucuda Ara"
@@ -11532,12 +11522,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Kart Sahibi:"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr "Düzenle"
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -12170,73 +12154,14 @@ msgstr ""
 "Bir dosyadan sertifika içe aktarın.<nl/>Genel bir anahtar sunucusundan içe "
 "aktarmak için, <interface>Sunucuda Ara</interface> seçeneğini kullanın."
 
-#~ msgctxt "@info"
-#~ msgid "Unable to read file"
-#~ msgstr "Dosya okunamıyor"
+#~ msgctxt "@action::button"
+#~ msgid "Edit"
+#~ msgstr "Düzenle"
 
-#~ msgid "Explain tags"
-#~ msgstr "Etiketleri açıkla"
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Sil"
 
-#~ msgid "Explain expiration"
-#~ msgstr "Süre dolumunu açıkla"
-
-#~ msgid "Explain trusted introducer"
-#~ msgstr "Güvenilen tanıştırıcıyı açıkla"
-
-#~ msgid "The certification must be valid at least until tomorrow."
-#~ msgstr "Sertifikasyon, en azından yarına dek geçerli olmalıdır."
-
-#~ msgid "The latest allowed certification date is %1."
-#~ msgstr "En son izin verilen sertifikasyon tarihi %1."
-
-#~ msgid "Valid for %1 day"
-#~ msgid_plural "Valid for %1 days"
-#~ msgstr[0] "%1 gün için geçerli"
-#~ msgstr[1] "%1 gün için geçerli"
-
-#~ msgid "Valid for %1 week"
-#~ msgid_plural "Valid for %1 weeks"
-#~ msgstr[0] "%1 hafta için geçerli"
-#~ msgstr[1] "%1 hafta için geçerli"
-
-#~ msgid "Valid for %1 month"
-#~ msgid_plural "Valid for %1 months"
-#~ msgstr[0] "%1 ay için geçerli"
-#~ msgstr[1] "%1 ay için geçerli"
-
-#~ msgid "Valid for %1 year"
-#~ msgid_plural "Valid for %1 years"
-#~ msgstr[0] "%1 yıl için geçerli"
-#~ msgstr[1] "%1 yıl için geçerli"
-
-#~ msgid "Valid for:"
-#~ msgstr "Şu kadar geçerli:"
-
-#~ msgid "Days"
-#~ msgstr "Gün"
-
-#~ msgid "Weeks"
-#~ msgstr "Hafta"
-
-#~ msgid "Months"
-#~ msgstr "Ay"
-
-#~ msgid "Years"
-#~ msgstr "Yıl"
-
-#~ msgctxt "... between today and <another date>."
-#~ msgid "The validity period must end between today and %1."
-#~ msgstr "Geçerlilik periyodu bugün ve %1 arasında bitmelidir."
-
-#~ msgid "The validity period must end after today."
-#~ msgstr "Geçerlilik periyodu bugünden sonra bitmelidir."
-
-#~ msgctxt "... after <a date>."
-#~ msgid "The validity period must end after %1."
-#~ msgstr "Geçerlilik periyodu %1 sonrası bitmelidir."
-
-#~ msgid "Failed to create output folder."
-#~ msgstr "Çıktı klasörü oluşturma başarısız oldu."
-
-#~ msgid "Tooltips"
-#~ msgstr "Araç İpuçları"
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Dışa Aktar"

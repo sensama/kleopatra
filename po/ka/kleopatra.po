@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
-"PO-Revision-Date: 2023-09-01 07:12+0200\n"
+"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"PO-Revision-Date: 2023-09-22 06:29+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -703,8 +703,7 @@ msgid "Success"
 msgstr "წარმატება"
 
 #: src/commands/createcsrforcardkeycommand.cpp:151
-#, fuzzy, kde-format
-#| msgid "Certificate Details"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Details"
 msgstr "სერტიფიკატის დეტალები"
@@ -779,8 +778,7 @@ msgid "Create OpenPGP Key"
 msgstr "OpenPGP გასაღების შექმნა"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, fuzzy, kde-format
-#| msgid "Enter User ID"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter User ID"
 msgstr "შეიყვანეთ მომხმარებლის ID"
@@ -3351,26 +3349,31 @@ msgid "groups"
 msgstr "ჯგუფები"
 
 #: src/conf/groupsconfigwidget.cpp:179
-#, kde-format
-msgctxt "@action::button"
+#, fuzzy, kde-format
+#| msgctxt "@action::button"
+#| msgid "New"
+msgctxt "@action:button"
 msgid "New"
 msgstr "ახალი"
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr "ჩასწორება"
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "წაშლა"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "გატანა"
 
@@ -5770,12 +5773,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "განახლება"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, kde-format
-msgctxt "@action:button"
-msgid "Export"
-msgstr "გატანა"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
@@ -6231,12 +6228,6 @@ msgid ""
 "contents, too.</para>"
 msgstr ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "წაშლა"
-
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
 msgid ""
@@ -6471,8 +6462,7 @@ msgid "Save As..."
 msgstr "შენახვა, როგორც..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, fuzzy, kde-format
-#| msgid "Lookup on Server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "სერვერზე მოძებნა"
@@ -10714,12 +10704,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "ბარათის მფლობელი:"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr "ჩასწორება"
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -11322,6 +11306,18 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgctxt "@action::button"
+#~ msgid "Edit"
+#~ msgstr "ჩასწორება"
+
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "წაშლა"
+
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "გატანა"
 
 #~ msgid "Explain tags"
 #~ msgstr "ჭდეების ახსნა"

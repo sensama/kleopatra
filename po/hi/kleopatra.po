@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-23 01:45+0000\n"
 "PO-Revision-Date: 2022-02-26 11:47+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: Hindi <kde-l10n-hi@kde.org>\n"
@@ -3741,27 +3741,30 @@ msgstr "विवरण (&D) "
 #: src/conf/groupsconfigwidget.cpp:179
 #, fuzzy, kde-format
 #| msgid "A.k.a."
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "New"
 msgstr "A.k.a."
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, fuzzy, kde-format
 #| msgid "Delete"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "मिटाएँ"
 
 #: src/conf/groupsconfigwidget.cpp:190
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "सिर्फ एनक्रिप्टिंग के लिए (&e)"
 
@@ -6316,13 +6319,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "अद्यतन (&U)"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, fuzzy, kde-format
-#| msgid "For &encrypting only"
-msgctxt "@action:button"
-msgid "Export"
-msgstr "सिर्फ एनक्रिप्टिंग के लिए (&e)"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
@@ -6805,13 +6801,6 @@ msgid ""
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
-
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, fuzzy, kde-format
-#| msgid "Delete"
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "मिटाएँ"
 
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
@@ -11581,12 +11570,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Edit"
-msgstr ""
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
@@ -12229,6 +12212,18 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "मिटाएँ"
+
+#, fuzzy
+#~| msgid "For &encrypting only"
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "सिर्फ एनक्रिप्टिंग के लिए (&e)"
 
 #, fuzzy
 #~| msgid "Certificate Details..."

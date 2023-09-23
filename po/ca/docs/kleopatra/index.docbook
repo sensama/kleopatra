@@ -2185,9 +2185,9 @@ list.</para>
 ></title>
 
         <para
->&kleopatra; us permet personalitzar l'aparença dels certificats en la vista de llista. Inclou mostrar una petita icona, però també podeu influir en els colors de primer pla i de fons (pel text), així com en el tipus de lletra. </para>
+>&kleopatra; us permet personalitzar l'aparença dels certificats en la vista de llista. Inclou mostrar una petita icona, però també podeu influir en els colors de primer pla i de fons (pel text), així com en la lletra. </para>
         <para
->A cada categoria de certificat en la llista se li assigna un conjunt de colors, una icona (opcional) i un tipus de lletra per a quan es mostrin els certificats que pertanyen a aquesta categoria. La llista de categories actua com a vista prèvia de les opcions. Les categories poden ser definides lliurement per l'administrador o l'usuari avançat, mireu <xref linkend="admin-key-filters"/> en <xref linkend="admin"/>. </para>
+>A cada categoria de certificat en la llista se li assigna un conjunt de colors, una icona (opcional) i una lletra per a quan es mostrin els certificats que pertanyen a aquesta categoria. La llista de categories actua com a vista prèvia de les opcions. Les categories poden ser definides lliurement per l'administrador o l'usuari avançat, mireu <xref linkend="admin-key-filters"/> en <xref linkend="admin"/>. </para>
         <para
 >Per establir o canviar la icona d'una categoria, seleccioneu-la en la llista i premeu el botó <guibutton
 >Estableix la icona...</guibutton
@@ -2205,37 +2205,37 @@ list.</para>
 >Estableix el color del text...</guilabel
 >. </para>
         <para
->Per a canviar el tipus de lletra, bàsicament necessiteu dues opcions: </para>
+>Per a canviar la lletra, bàsicament necessiteu dues opcions: </para>
         <orderedlist>
           <listitem>
             <para
->Modificar el tipus de lletra estàndard, usada en totes les vistes de llista del &kde;. </para>
+>Modificar la lletra estàndard, usada en totes les vistes de llista del &kde;. </para>
           </listitem>
           <listitem>
             <para
->Usar un tipus de lletra personalitzat. </para>
+>Usar una lletra personalitzada. </para>
           </listitem>
         </orderedlist>
         <para
->La primera opció necessita l'avantatge que el tipus de lletra segueixi l'estil que escolliu per a tot el &kde;, mentre que l'última us dona control complet sobre el tipus de lletra que s'usarà. La decisió és vostra. </para>
+>La primera opció necessita l'avantatge que la lletra segueixi l'estil que escolliu per a tot el &kde;, mentre que l'última us dona control complet sobre la lletra que s'usarà. La decisió és vostra. </para>
         <para
->Per utilitzar el tipus de lletra estàndard modificada, seleccioneu la categoria de la llista, i marqueu o desmarqueu els modificadors de tipus de lletra <guilabel
+>Per utilitzar la lletra estàndard modificada, seleccioneu la categoria de la llista, i marqueu o desmarqueu els modificadors de lletra <guilabel
 >Cursiva</guilabel
 >, <guilabel
 >Negreta</guilabel
 > i/o <guilabel
 >Ratllat</guilabel
->. Podeu veure immediatament l'efecte del tipus de lletra en la llista de categories. </para>
+>. Podeu veure immediatament l'efecte en la lletra a la llista de categories. </para>
         <para
->Per utilitzar un tipus de lletra a mida, premeu el botó <guilabel
->Estableix el tipus de lletra...</guilabel
->. Apareixerà el diàleg de selecció del tipus de lletra estàndard del &kde; i podreu seleccionar el nou tipus de lletra. </para>
+>Per utilitzar una lletra personalitzada, premeu el botó <guilabel
+>Estableix la lletra...</guilabel
+>. Apareixerà el diàleg de selecció de la lletra estàndard del &kde; i podreu seleccionar la lletra nova. </para>
         <note>
           <para
->Pot seguir utilitzant els modificadors de tipus de lletra per a canviar el tipus de lletra a mida, així com per modificar el tipus de lletra estàndard. </para>
+>Pot seguir utilitzant els modificadors de lletra per a canviar la lletra personalitzada, així com per modificar la lletra estàndard. </para>
         </note>
         <para
->Per a tornar al tipus de lletra estàndard, necessiteu prémer el botó <guilabel
+>Per a tornar a la lletra estàndard, necessiteu prémer el botó <guilabel
 >Aparença per defecte</guilabel
 >. </para>
 
@@ -3175,9 +3175,9 @@ C=AD
 >font</varname
 ></entry>
 	      <entry
->tipus de lletra</entry>
+>lletra</entry>
 	      <entry
->El tipus de lletra a mida a usar. El tipus de lletra serà escalat fins a la mida configurada per a les vistes de llista, i s'aplicaran els atributs de tipus de lletra (s'expliquen a sota). </entry>
+>La lletra personalitzada a usar. La lletra s'escalarà fins a la mida configurada per a les vistes de llista, i s'aplicaran els atributs de lletra (s'expliquen a sota). </entry>
 	    </row>
 	    <row>
 	      <entry
@@ -3191,7 +3191,7 @@ C=AD
 >true</literal
 > i <varname
 >font</varname
-> no està establert, usa el tipus de lletra per omissió de la vista de llista amb l'estil de tipus de lletra negreta afegit (si està disponible). S'ignora si també està present <varname
+> no està establert, usa la lletra predeterminada de la vista de llista amb l'estil de lletra negreta afegit (si està disponible). S'ignora si també està present <varname
 >font</varname
 >. </entry>
 	    </row>
@@ -3205,7 +3205,7 @@ C=AD
 	      <entry
 >Anàleg a <varname
 >font-bold</varname
->, però amb l'estil de tipus de lletra cursiva en comptes de negreta. </entry>
+>, però amb l'estil de lletra cursiva en comptes de negreta. </entry>
 	    </row>
 	    <row>
 	      <entry
@@ -3217,7 +3217,7 @@ C=AD
 	      <entry
 >Si és <literal
 >true</literal
->, dibuixa una línia per sobre del tipus de lletra. S'aplica encara que estigui establerta <varname
+>, dibuixa una línia per sobre de la lletra. S'aplica encara que estigui establerta <varname
 >font</varname
 >. </entry>
 	    </row>
@@ -3508,7 +3508,7 @@ C=AD
 >match-contexts</varname
 > limita l'aplicació del filtre. Hi ha definits dos contexts: el context <literal
 >appearance</literal
-> s'utilitza en la definició de color i les propietats de tipus de lletra per a les visualitzacions. El context <literal
+> s'utilitza en la definició de color i les propietats de lletra per a les visualitzacions. El context <literal
 >filtering</literal
 > s'utilitza per incloure (i excloure) de manera selectiva certificats de les visualitzacions. El context <literal
 >any</literal

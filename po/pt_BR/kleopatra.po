@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-21 00:45+0000\n"
+"POT-Creation-Date: 2023-09-23 01:45+0000\n"
 "PO-Revision-Date: 2023-07-05 18:09-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -3814,26 +3814,35 @@ msgid "groups"
 msgstr "Grupos"
 
 #: src/conf/groupsconfigwidget.cpp:179
-#, kde-format
-msgctxt "@action::button"
+#, fuzzy, kde-format
+#| msgctxt "@action::button"
+#| msgid "New"
+msgctxt "@action:button"
 msgid "New"
 msgstr "Novo"
 
-#: src/conf/groupsconfigwidget.cpp:182
-#, kde-format
-msgctxt "@action::button"
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/view/pgpcardwidget.cpp:208
+#, fuzzy, kde-format
+#| msgctxt "@action::button"
+#| msgid "Edit"
+msgctxt "@action:button"
 msgid "Edit"
 msgstr "Editar"
 
 #: src/conf/groupsconfigwidget.cpp:186
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
-msgctxt "@action::button"
+msgctxt "@action:button"
 msgid "Delete"
 msgstr "Excluir"
 
 #: src/conf/groupsconfigwidget.cpp:190
-#, kde-format
-msgctxt "@action::button"
+#: src/dialogs/certificatedetailswidget.cpp:362
+#, fuzzy, kde-format
+#| msgctxt "@action::button"
+#| msgid "Export"
+msgctxt "@action:button"
 msgid "Export"
 msgstr "Exportar"
 
@@ -6474,14 +6483,6 @@ msgctxt "@action:button"
 msgid "Update"
 msgstr "&Atualizar"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "Export"
-msgctxt "@action:button"
-msgid "Export"
-msgstr "Exportar"
-
 #: src/dialogs/certificatedetailswidget.cpp:365
 #, fuzzy, kde-format
 #| msgid "Change passphrase"
@@ -6991,12 +6992,6 @@ msgstr ""
 "serão excluídos. Pense em certificados AC como pastas contendo outros "
 "certificados: quando você exclui a pasta, você exclui o seu conteúdo também."
 "</para>"
-
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, kde-format
-msgctxt "@action:button"
-msgid "Delete"
-msgstr "Excluir"
 
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
@@ -11926,14 +11921,6 @@ msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Titular do cartão:"
 
-#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:208
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "Edit"
-msgctxt "@action:button"
-msgid "Edit"
-msgstr "Editar"
-
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Change"
@@ -12561,6 +12548,18 @@ msgid ""
 msgstr ""
 "Para importar de um servidor de chaves públicas, use \"Procurar no servidor"
 "\"."
+
+#~ msgctxt "@action::button"
+#~ msgid "Edit"
+#~ msgstr "Editar"
+
+#~ msgctxt "@action::button"
+#~ msgid "Delete"
+#~ msgstr "Excluir"
+
+#~ msgctxt "@action::button"
+#~ msgid "Export"
+#~ msgstr "Exportar"
 
 #~ msgid "Certificate Details"
 #~ msgstr "Detalhes do certificado"

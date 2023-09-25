@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1660694 $
+# Version: $Revision: 1660884 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-22 00:45+0000\n"
-"PO-Revision-Date: 2023-09-09 10:30+0200\n"
+"PO-Revision-Date: 2023-09-23 07:53+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -831,8 +831,7 @@ msgid "Create OpenPGP Key"
 msgstr "Utwórz klucz OpenPGP"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, fuzzy, kde-format
-#| msgid "Enter User ID"
+#, kde-format
 msgid "Enter User ID"
 msgstr "Wpisz ID użytkownika"
 
@@ -1266,15 +1265,10 @@ msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
 "likely this shouldn't be translated"
 msgid "%1<nl />%2"
-msgstr ""
+msgstr "%1<nl />%2"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:122
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to export OpenPGP certificates.</"
-#| "para> <para>The output from <command>%1</command> was: <message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
@@ -1282,7 +1276,8 @@ msgid ""
 "para>"
 msgstr ""
 "<para>Wystąpił błąd podczas próby eksportu certyfikatów OpenPGP.</para> "
-"<para>Wyjście <command>%1</command> to: <message>%2</message></para>"
+"<para>Wynik wykonania <command>%1</command> to:<nl /><message>%2</message></"
+"para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:130
 #, kde-format
@@ -2757,6 +2752,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Nie udało się uaktualnić certyfikatu z serwera kluczy, serwera LDAP "
+"lub Active Directory:</para><para><message>%1</message></para><para>Nie "
+"udało się uaktualnić certyfikatu z  Web Key Directory:</para><para><message>"
+"%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:362
 #: src/commands/refreshcertificatecommand.cpp:393
@@ -2770,23 +2769,20 @@ msgstr "Aktualizacja nieudana"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Wynik uaktualniania z serwera kluczy, serwera LDAP lub Active Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:370
 #: src/commands/refreshcertificatecommand.cpp:377
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>Nie udało się zapisać żądania.</para><para><message>%1</message></para>"
+msgstr "<para>Nie udało się uaktualnić: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:375
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Wynik uaktualniania z Web Key Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:390
 #, kde-kuit-format
@@ -3571,6 +3567,7 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Odpytaj katalogi certyfikatów o dostawców dla ID wszystkich użytkowników"
 
 #: src/conf/dirservconfigpage.cpp:226
 #, kde-kuit-format
@@ -3581,6 +3578,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"Domyślnie, Kleopatra odpytuje tylko katalogi certyfikatów dostawców (WKD) o "
+"ID użytkowników, którzy zostali pierwotnie pobrani z WKD, przy twoim "
+"uaktualnieniu certyfikatu OpenPGP. Po zaznaczeniu tego pola, Kleopatra "
+"odpyta WKD o ID wszystkich użytkowników."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -3674,9 +3675,7 @@ msgid "groups"
 msgstr "grupy"
 
 #: src/conf/groupsconfigwidget.cpp:179
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "New"
+#, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Nowy"
@@ -5101,11 +5100,10 @@ msgid "Show Audit Log"
 msgstr "Pokaż dziennik audytu"
 
 #: src/crypto/gui/resultlistwidget.cpp:162
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Email"
-msgstr "Pokaż szczegóły"
+msgstr "Pokaż e-mail"
 
 #: src/crypto/gui/resultpage.cpp:66
 #, kde-format
@@ -6584,8 +6582,7 @@ msgstr ""
 "najwyższe zaufanie. Zaleca się ustawienie tego dla własnych kluczy."
 
 #: src/dialogs/certifywidget.cpp:301
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "ID użytkownika"
@@ -7000,8 +6997,7 @@ msgid "Save As..."
 msgstr "Zapisz jako..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, fuzzy, kde-format
-#| msgid "Lookup on Server"
+#, kde-format
 msgid "Lookup on Server"
 msgstr "Wyszukaj na serwerze"
 
@@ -8162,6 +8158,7 @@ msgstr ""
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Odpytaj katalogi certyfikatów o dostawców dla ID wszystkich użytkowników"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8174,6 +8171,11 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"Domyślnie, Kleopatra odpytuje tylko katalogi certyfikatów dostawców (WKD)\n"
+"         o ID użytkowników, którzy zostali pierwotnie pobrani z WKD, przy "
+"twoim uaktualnieniu certyfikatu OpenPGP.\n"
+"         Po zaznaczeniu tego pola, Kleopatra odpyta WKD o ID wszystkich "
+"użytkowników."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170
@@ -10595,40 +10597,31 @@ msgid "OpenPGP-Sign..."
 msgstr "Podpisz OpenPGP..."
 
 #: src/utils/expiration.cpp:104
-#, fuzzy, kde-format
-#| msgid "The validity period cannot be changed."
+#, kde-format
 msgctxt "@info"
 msgid "The date cannot be changed."
-msgstr "Czasu ważności nie można zmienić."
+msgstr "Daty nie można zmienić."
 
 #: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "... between <a date> and <another date>."
-#| msgid "The validity period must end between %1 and %2."
+#, kde-format
 msgctxt "@info ... between <a date> and <another date>."
 msgid "Enter a date between %1 and %2."
-msgstr "Okres ważności musi być między %1 a %2."
+msgstr "Wpisz datę pomiędzy %1 a %2."
 
 #: src/utils/expiration.cpp:139
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "Two years from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Three years from now"
-msgstr "Dwa lata od dziś"
+msgstr "Trzy lata od dziś"
 
 #: src/utils/expiration.cpp:140
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "Two years from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Two years from now"
 msgstr "Dwa lata od dziś"
 
 #: src/utils/expiration.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "One year from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "One year from now"
 msgstr "Rok od dziś"

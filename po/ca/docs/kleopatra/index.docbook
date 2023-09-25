@@ -339,7 +339,7 @@ selected.</para-->
 > pot fer-ho automàticament), o des d'un fitxer. També haureu d'importar el vostre propi certificat després de rebre la resposta de la &ca; a la vostra petició de certificació.</para>
 
 <para
->Per cercar un certificat en un directori &ldap;, seleccioneu <menuchoice
+>Per a cercar un certificat en un directori &ldap;, seleccioneu <menuchoice
 ><guimenu
 >Fitxer</guimenu
 ><guimenuitem
@@ -400,7 +400,7 @@ not found in 4.2
 <para
 >Una vegada realitzat cada pas dintre de l'assistent, premeu <guibutton
 >Següent</guibutton
-> per anar cap al pas següent (o <guibutton
+> per a anar cap al pas següent (o <guibutton
 >Enrere</guibutton
 > per a tornar a veure els passos que ja heu completat). La creació d'una sol·licitud de certificat pot cancel·lar-se en qualsevol moment prement el botó <guibutton
 >Cancel·la</guibutton
@@ -488,13 +488,13 @@ not found in 4.2
 >Com revocar una clau</title>
 
 <para
->Un parell de claus que han expirat es poden tornar a un estat funcional, sempre que tingueu accés a la clau privada i a la frase de pas. Per tornar llegible una clau inusable necessitareu revocar-la. La revocació es porta a terme mitjançant l'afegit d'una signatura de revocació especial a la clau.</para>
+>Un parell de claus que han expirat es poden tornar a un estat funcional, sempre que tingueu accés a la clau privada i a la frase de pas. Per a tornar llegible una clau inusable necessitareu revocar-la. La revocació es porta a terme mitjançant l'afegit d'una signatura de revocació especial a la clau.</para>
 
 <para
 >Aquesta signatura de revocació s'emmagatzema en un fitxer a part. Aquest fitxer podrà ser importat més endavant al clauer i després afegit a la clau inusable. Si us plau, tingueu en compte que per a la importació d'aquesta signatura a la clau no és necessària la contrasenya. Per tant, hauríem d'emmagatzemar aquesta signatura de revocació en un lloc segur, en general diferent del parell de claus. És un bon consell utilitzar un lloc separat del vostre ordinador, o bé copiar-la a un dispositiu d'emmagatzematge extern com una memòria USB o imprimir-la.</para>
 
 <para
->El &kleopatra; no proporciona en cap moment una funció per crear una signatura de revocació, però es pot fer amb l'aplicació &kgpg; del &kde; escollint <menuchoice
+>El &kleopatra; no proporciona en cap moment una funció per a crear una signatura de revocació, però es pot fer amb l'aplicació &kgpg; del &kde; escollint <menuchoice
 ><guimenu
 >Claus</guimenu
 > <guimenuitem
@@ -692,7 +692,7 @@ as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
 >Aquesta funcionalitat només estarà disponible si s'han seleccionat un o més certificats. </para>
             <note>
               <para
->Això només exportarà les claus públiques, encara que la clau privada estigui disponible. Utilitzeu <xref linkend="file-export-secret-key"/> per exportar les claus privades a un fitxer. </para>
+>Això només exportarà les claus públiques, encara que la clau privada estigui disponible. Utilitzeu <xref linkend="file-export-secret-key"/> per a exportar les claus privades a un fitxer. </para>
             </note>
           </listitem>
         </varlistentry>
@@ -770,7 +770,7 @@ as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
               <para
 >Pot passar que una cerca en un servidor de certificats no doni cap resultat tot i que només li heu enviat el vostre certificat. Això és perquè la majoria d'adreces de servidor de claus públics utilitzen <acronym
 >DNS</acronym
-> amb «round-robin» per equilibrar la càrrega entre diverses màquines. Aquestes màquines se sincronitzen entre si, però en general, només cada 24 hores. </para>
+> amb «round-robin» per a equilibrar la càrrega entre diverses màquines. Aquestes màquines se sincronitzen entre si, però en general, només cada 24 hores. </para>
             </note>
           </listitem>
         </varlistentry>
@@ -996,7 +996,7 @@ Verify Checksum Files...
 
             <note>
               <para
->Actualment, mostrar jeràrquicament només s'implementa per certificats &smime;. Hi ha desacord entre els desenvolupadors sobre la forma correcta per mostrar jeràrquicament els certificats &openpgp; (bàsicament, «pare &equals; signador» o «pare &equals; signant»). </para>
+>Actualment, mostrar jeràrquicament només s'implementa per certificats &smime;. Hi ha desacord entre els desenvolupadors sobre la forma correcta per a mostrar jeràrquicament els certificats &openpgp; (bàsicament, «pare &equals; signador» o «pare &equals; signant»). </para>
             </note>
 
 </listitem>
@@ -1302,7 +1302,7 @@ uncommon).</para>
 >Permet canviar la data de venciment del certificat &openpgp;.</action>
             </para>
             <para
->Utilitzeu aquesta funcionalitat per allargar la vida útil dels certificats &openpgp; com una alternativa a crear-ne un de nou, o l'ús il·limitat d'aquest («mai caduca»). </para>
+>Utilitzeu aquesta funcionalitat per a allargar la vida útil dels certificats &openpgp; com una alternativa a crear-ne un de nou, o l'ús il·limitat d'aquest («mai caduca»). </para>
             <para
 >Aquesta funcionalitat només està disponible si s'ha seleccionat exactament només un certificat &openpgp;, i està disponible la clau secreta per a aquest. </para>
           </listitem>
@@ -1346,7 +1346,7 @@ uncommon).</para>
 >Permet afegir un nou ID d'usuari pel certificat d'&openpgp;.</action>
             </para>
             <para
->Utilitzeu aquesta opció per afegir noves identitats a un certificat ja existent com a alternativa a la creació d'un nou parell de claus. Una ID d'usuari d'&openpgp; té la forma següent: </para>
+>Utilitzeu aquesta opció per a afegir noves identitats a un certificat ja existent com a alternativa a la creació d'un nou parell de claus. Una ID d'usuari d'&openpgp; té la forma següent: </para>
             <programlisting
 ><replaceable
 >Nom_real</replaceable
@@ -1395,7 +1395,7 @@ uncommon).</para>
 >Elimina el(s) certificat(s) seleccionat(s)</action
 > de l'anell de claus local. </para>
             <para
->Utilitzeu aquesta funció per eliminar les claus no usades del vostre anell de claus local. De tota manera, com que els certificats són afegits normalment als correus electrònics signats, la verificació d'un correu electrònic pot provocar que la clau eliminada torni a l'anell de claus local. Per tant, probablement serà millor evitar aquesta funció sempre que sigui possible. Quan es perdi, useu la <link linkend="functions-search"
+>Utilitzeu aquesta funció per a eliminar les claus no usades del vostre anell de claus local. De tota manera, com que els certificats són afegits normalment als correus electrònics signats, la verificació d'un correu electrònic pot provocar que la clau eliminada torni a l'anell de claus local. Per tant, probablement serà millor evitar aquesta funció sempre que sigui possible. Quan es perdi, useu la <link linkend="functions-search"
 >barra de cerca</link
 > o la funció <xref linkend="view-hierarchical-key-list"/> per a tornar a tenir el control sobre la gran quantitat de certificats. </para>
             <warning>
@@ -1434,7 +1434,7 @@ uncommon).</para>
 >--dump-key&nbsp;<replaceable
 >clau</replaceable
 ></option
-> en el manual de &gpgsm; per obtenir detalls sobre la sortida. </para>
+> en el manual de &gpgsm; per a obtenir detalls sobre la sortida. </para>
           </listitem>
         </varlistentry>
 
@@ -1547,7 +1547,7 @@ varlistentry id="certificates-download">
 > Després de completar amb èxit l'ordre, l'anell de claus local reflectirà els últims canvis pel que fa a la validesa dels certificats &smime;. </para>
             <note>
               <para
->L'actualització de certificats &x509; o &openpgp; implica la descàrrega de tots els certificats i les &crl;, per comprovar si algun ha estat revocat en l'interval. </para>
+>L'actualització de certificats &x509; o &openpgp; implica la descàrrega de tots els certificats i les &crl;, per a comprovar si algun ha estat revocat en l'interval. </para>
               <para
 >Això pot provocar una congestió de la connexió de la xarxa (també la d'altres persones), i pot trigar fins a una hora en acabar, en funció de la vostra connexió de xarxa i el nombre de certificats a verificar. </para>
             </note>
@@ -1569,7 +1569,7 @@ varlistentry id="certificates-download">
 >Us permet importar manualment les &crl; des de fitxers.</action>
             </para>
             <para
->Normalment, les llistes de certificats revocats (les &crl;) es manegen de forma transparent pel dorsal, però de vegades pot ser útil per importar una &crl; manualment a la memòria cau de &crl; locals. </para>
+>Normalment, les llistes de certificats revocats (les &crl;) es manegen de forma transparent pel dorsal, però de vegades pot ser útil per a importar una &crl; manualment a la memòria cau de &crl; locals. </para>
             <note>
               <para
 >Perquè la importació de la &crl; funcioni, l'eina &dirmngr; haurà d'estar present en la cerca de la variable d'entorn <envar
@@ -2040,11 +2040,11 @@ updated.</para>
       <para
 >Podeu configurar tants servidors &smime; (&x509;) com vulgueu, però en qualsevol moment només es permet un servidor &openpgp;. L'&IGU; ho forçarà. </para>
       <para
->Per afegir un nou servidor, feu clic al botó <guibutton
+>Per a afegir un nou servidor, feu clic al botó <guibutton
 >Nou</guibutton
 >. Això duplica l'entrada seleccionada, si existeix, o s'insereix un servidor &openpgp; per omissió. A continuació, podeu establir la <xref linkend="configuration-directory-services-server-name"/>, la <xref linkend="configuration-directory-services-server-port"/>, la <xref linkend="configuration-directory-services-base-dn"/>, i l'habitual <xref linkend="configuration-directory-services-password"/> i <xref linkend="configuration-directory-services-user-name"/>, dos dels quals només són necessaris si el servidor requereix autenticació. </para>
       <para
->Per inserir directament una entrada per a certificats &x509;, useu <menuchoice
+>Per a inserir directament una entrada per a certificats &x509;, useu <menuchoice
 ><guimenu
 >Nou</guimenu
 ><guimenuitem
@@ -2058,7 +2058,7 @@ updated.</para>
 ></menuchoice
 > per a &openpgp;. </para>
       <para
->Per eliminar un servidor de cerca de la llista, seleccioneu-lo i després premeu el botó <guibutton
+>Per a eliminar un servidor de cerca de la llista, seleccioneu-lo i després premeu el botó <guibutton
 >Esborra</guibutton
 >. </para>
 <!-- not in 4.2
@@ -2105,7 +2105,7 @@ list.</para>
 >ID de clau</guilabel
 > <emphasis
 >sempre</emphasis
-> es mostra. Això és per assegurar que els consells per als diferents certificats, de fet, són diferents (això és especialment important si només s'ha seleccionat <xref linkend="tooltips-validity"/>). </para>
+> es mostra. Això és per a assegurar que els consells per als diferents certificats, de fet, són diferents (això és especialment important si només s'ha seleccionat <xref linkend="tooltips-validity"/>). </para>
         </note>
         <para
 >De forma independent podeu habilitar o inhabilitar la informació següent: </para>
@@ -2189,11 +2189,11 @@ list.</para>
         <para
 >A cada categoria de certificat en la llista se li assigna un conjunt de colors, una icona (opcional) i una lletra per a quan es mostrin els certificats que pertanyen a aquesta categoria. La llista de categories actua com a vista prèvia de les opcions. Les categories poden ser definides lliurement per l'administrador o l'usuari avançat, mireu <xref linkend="admin-key-filters"/> en <xref linkend="admin"/>. </para>
         <para
->Per establir o canviar la icona d'una categoria, seleccioneu-la en la llista i premeu el botó <guibutton
+>Per a establir o canviar la icona d'una categoria, seleccioneu-la en la llista i premeu el botó <guibutton
 >Estableix la icona...</guibutton
 >. Apareixerà el diàleg de selecció d'icones estàndard del &kde; i podreu seleccionar-ne una d'existent des de la col·lecció del &kde; o carregar-ne una de personalitzada. </para>
         <para
->Per eliminar una icona, necessiteu prémer el botó <guilabel
+>Per a eliminar una icona, necessiteu prémer el botó <guilabel
 >Aparença per defecte</guilabel
 >. </para>
         <para
@@ -2219,7 +2219,7 @@ list.</para>
         <para
 >La primera opció necessita l'avantatge que la lletra segueixi l'estil que escolliu per a tot el &kde;, mentre que l'última us dona control complet sobre la lletra que s'usarà. La decisió és vostra. </para>
         <para
->Per utilitzar la lletra estàndard modificada, seleccioneu la categoria de la llista, i marqueu o desmarqueu els modificadors de lletra <guilabel
+>Per a utilitzar la lletra estàndard modificada, seleccioneu la categoria de la llista, i marqueu o desmarqueu els modificadors de lletra <guilabel
 >Cursiva</guilabel
 >, <guilabel
 >Negreta</guilabel
@@ -2227,12 +2227,12 @@ list.</para>
 >Ratllat</guilabel
 >. Podeu veure immediatament l'efecte en la lletra a la llista de categories. </para>
         <para
->Per utilitzar una lletra personalitzada, premeu el botó <guilabel
+>Per a utilitzar una lletra personalitzada, premeu el botó <guilabel
 >Estableix la lletra...</guilabel
 >. Apareixerà el diàleg de selecció de la lletra estàndard del &kde; i podreu seleccionar la lletra nova. </para>
         <note>
           <para
->Pot seguir utilitzant els modificadors de lletra per a canviar la lletra personalitzada, així com per modificar la lletra estàndard. </para>
+>Pot seguir utilitzant els modificadors de lletra per a canviar la lletra personalitzada, així com per a modificar la lletra estàndard. </para>
         </note>
         <para
 >Per a tornar a la lletra estàndard, necessiteu prémer el botó <guilabel
@@ -2315,14 +2315,14 @@ list.</para>
 </informalexample>
 
 <para
->Per afegir un atribut a l'ordre de visualització de la llista, seleccioneu-lo en la llista <guilabel
+>Per a afegir un atribut a l'ordre de visualització de la llista, seleccioneu-lo en la llista <guilabel
 >Atributs disponibles</guilabel
 > i premeu el botó <guilabel
 >Afegeix a l'ordre actual dels atributs</guilabel
 >.</para>
 
 <para
->Per eliminar un atribut de l'ordre de visualització de la llista, seleccioneu-lo en la llista <guilabel
+>Per a eliminar un atribut de l'ordre de visualització de la llista, seleccioneu-lo en la llista <guilabel
 >Atributs disponibles</guilabel
 > i premeu el botó <guilabel
 >Eliminar de l'ordre actual dels atributs</guilabel
@@ -2382,7 +2382,7 @@ list.</para>
         <para
 >Utilitzeu <guilabel
 >Programa de suma de verificació a usar</guilabel
-> per triar quin dels programes de suma de verificació configurats s'ha d'utilitzar en crear fitxers de suma de verificació. </para>
+> per a triar quin dels programes de suma de verificació configurats s'ha d'utilitzar en crear fitxers de suma de verificació. </para>
         <para
 >Quan es comproven les sumes de verificació, el programa a utilitzar les troba automàticament, a partir dels noms dels fitxers de suma de verificació trobats. </para>
         <note>
@@ -2428,7 +2428,7 @@ list.</para>
                 <para
 >La validació es realitza implícitament cada vegada que els fitxers importants en <filename
 >~/.gnupg</filename
-> canviïn. Aquesta opció, igual que <xref linkend="certificates-refresh-openpgp"/> i <xref linkend="certificates-refresh-x509"/>, per tant només afecta els factors externs de validesa del certificat. </para>
+> canviïn. Aquesta opció, igual que <xref linkend="certificates-refresh-openpgp"/> i <xref linkend="certificates-refresh-x509"/>, per tant, només afecta els factors externs de validesa del certificat. </para>
               </note>
             </listitem>
           </varlistentry>
@@ -2466,7 +2466,7 @@ list.</para>
 >En triar aquest mètode, s'envia una sol·licitud al servidor de &ca; més o menys cada vegada que s'envia o es rep un missatge xifrat, el que teòricament permet a l'agència d'emissió de certificats realitzar un seguiment amb qui intercanvieu (&pex;) correus. </para>
               </warning>
               <para
->Per utilitzar aquest mètode, cal introduir l'&URL; de la resposta &ocsp; en <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+>Per a utilitzar aquest mètode, cal introduir l'&URL; de la resposta &ocsp; en <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
               <para
 >Vegeu <xref linkend="configuration-smime-validation-use-ocsp"/> per a un mètode més tradicional de comprovar la validació del certificat que no perdi informació sobre amb qui intercanvieu missatges. </para>
             </listitem>
@@ -2526,7 +2526,7 @@ list.</para>
               <para
 >Per omissió, &gpgsm; utilitza el fitxer <filename
 >~/.gnupg/policies.txt</filename
-> per comprovar si està permesa la política de certificats. Si seleccioneu aquesta opció, no es comprovaran les polítiques. </para>
+> per a comprovar si està permesa la política de certificats. Si seleccioneu aquesta opció, no es comprovaran les polítiques. </para>
             </listitem>
           </varlistentry>
           <varlistentry id="configuration-smime-validation-never-consult-crl">
@@ -2864,7 +2864,7 @@ list.</para>
         </tgroup>
       </table>
       <para
->Consulteu el manual de &gpgconf; per obtenir més informació sobre el que podeu configurar aquí, i com. </para>
+>Consulteu el manual de &gpgconf; per a obtenir més informació sobre el que podeu configurar aquí, i com. </para>
 
     </sect1>
 
@@ -2969,7 +2969,7 @@ C=AD
 >Els algorismes de clau pública</title>
 
           <para
->Per restringir l'algorisme de clau pública a usar, afegiu la clau de configuració <varname
+>Per a restringir l'algorisme de clau pública a usar, afegiu la clau de configuració <varname
 >PGPKeyType</varname
 > (i <varname
 >CMSKeyType</varname
@@ -3011,7 +3011,7 @@ C=AD
 >Mida de la clau pública</title>
 
           <para
->Per restringir la mida de les claus per a un algorisme públic, afegiu la clau de configuració <varname
+>Per a restringir la mida de les claus per a un algorisme públic, afegiu la clau de configuració <varname
 ><replaceable
 >&lt;ALG&gt;</replaceable
 >KeySizes</varname
@@ -3362,7 +3362,7 @@ C=AD
 	      <entry
 >booleà</entry>
 	      <entry
->la clau es pot utilitzar per fer firmes reconegudes (com es defineix en la Llei alemanya de firma digital). </entry>
+>la clau es pot utilitzar per a fer firmes reconegudes (com es defineix en la Llei alemanya de firma digital). </entry>
 	    </row>
 	    <row>
 	      <entry
@@ -3510,11 +3510,11 @@ C=AD
 >appearance</literal
 > s'utilitza en la definició de color i les propietats de lletra per a les visualitzacions. El context <literal
 >filtering</literal
-> s'utilitza per incloure (i excloure) de manera selectiva certificats de les visualitzacions. El context <literal
+> s'utilitza per a incloure (i excloure) de manera selectiva certificats de les visualitzacions. El context <literal
 >any</literal
 > es pot utilitzar per indicar tots els contexts definits actualment, i és el per omissió si <varname
 >match-contexts</varname
-> no s'ha indicat, o d'altra manera no produeix contexts. Això assegura que un filtre de clau no pot finalitzar «mort», &ead;, sense contexts per aplicar. </para>
+> no s'ha indicat, o d'altra manera no produeix contexts. Això assegura que un filtre de clau no pot finalitzar «mort», &ead;, sense contexts per a aplicar. </para>
 
       <para
 >El format de l'entrada és una llista de símbols, separats per caràcters no-paraula. Cadascun dels símbols és opcionalment precedit per un signe d'exclamació (<literal
@@ -3535,7 +3535,7 @@ C=AD
 >En general, els criteris no especificats (&ead;, l'entrada de configuració no està definida) no són comprovats. Si es dona un criteri, es comprova i aquest haurà de coincidir en tot amb el filtre perquè es faci coincidir, &ead;, els criteris són a la vegada AND. </para>
 
       <para
->Cada filtre té una «especificitat» implícita que s'utilitza per classificar tots els filtres que coincideixen. Els filtre més específic guanya sobre els menys específics. Si dos filtres tenen la mateixa especificitat, guanya el que està primer en el fitxer de configuració. L'especificitat d'un filtre és proporcional al nombre de criteris que conté. </para>
+>Cada filtre té una «especificitat» implícita que s'utilitza per a classificar tots els filtres que coincideixen. Els filtre més específic guanya sobre els menys específics. Si dos filtres tenen la mateixa especificitat, guanya el que està primer en el fitxer de configuració. L'especificitat d'un filtre és proporcional al nombre de criteris que conté. </para>
 
       <example>
 	<title
@@ -3631,7 +3631,7 @@ is-at-least-ownertrust=marginal
 ></term>
           <listitem>
             <para
->L'ordre real per arxivar fitxers. Podeu utilitzar qualsevol ordre, sempre que no es requereixi un intèrpret d'ordres per executar-la. El fitxer del programa se cerca amb la variable d'entorn <envar
+>L'ordre real per a arxivar fitxers. Podeu utilitzar qualsevol ordre, sempre que no es requereixi un intèrpret d'ordres per a executar-la. El fitxer del programa se cerca amb la variable d'entorn <envar
 >PATH</envar
 >, llevat que utilitzeu un camí de fitxer absolut. Les cometes estan suportades com si s'estigués usant un intèrpret d'ordres: <programlisting
 >pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
@@ -3688,7 +3688,7 @@ is-at-least-ownertrust=marginal
 >pack-command=tar cf -</programlisting
 > Exemple (zip): <programlisting
 >pack-command=zip -r - %f</programlisting
-> En aquest cas, els noms de fitxer es passen a la línia d'ordres, igual que ho faria quan s'utilitza un indicador d'ordres. &kleopatra; no utilitza un intèrpret d'ordres per executar l'ordre. Per tant, aquesta és una manera segura de passar els noms de fitxer, però podríeu trobar restriccions de longitud de línia d'ordres en algunes plataformes. Si és present un literal <literal
+> En aquest cas, els noms de fitxer es passen a la línia d'ordres, igual que ho faria quan s'utilitza un indicador d'ordres. &kleopatra; no utilitza un intèrpret d'ordres per a executar l'ordre. Per tant, aquesta és una manera segura de passar els noms de fitxer, però podríeu trobar restriccions de longitud de línia d'ordres en algunes plataformes. Si és present un literal <literal
 >%f</literal
 >, serà substituït pels noms de fitxer a arxiu. En cas contrari, els noms de fitxer s'afegeixen a la línia d'ordres. Així, l'anterior exemple zip en forma equivalent es pot escriure així: <programlisting
 >pack-command=zip -r -</programlisting>
@@ -3726,7 +3726,7 @@ is-at-least-ownertrust=marginal
             <para
 >Exemple (TAR de &GNU;): <programlisting
 >pack-command=0|gtar cf - -T- --null</programlisting
-> Aquest és el mateix que l'anterior, llevat que els octets NUL s'utilitzen per separar els noms de fitxer. Atès que els octets NUL estan prohibits en els noms de fitxer, aquesta és la forma més robusta de passar els noms de fitxer, però no ho admeten tots els arxivadors. </para>
+> Aquest és el mateix que l'anterior, llevat que els octets NUL s'utilitzen per a separar els noms de fitxer. Atès que els octets NUL estan prohibits en els noms de fitxer, aquesta és la forma més robusta de passar els noms de fitxer, però no ho admeten tots els arxivadors. </para>
         </listitem>
 
       </orderedlist>

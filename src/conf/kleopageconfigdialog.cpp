@@ -83,7 +83,7 @@ void KleoPageConfigDialog::slotCurrentPageChanged(KPageWidgetItem *current, KPag
         const int queryUser = KMessageBox::warningTwoActionsCancel(this,
                                                                    i18n("The settings of the current module have changed.\n"
                                                                         "Do you want to apply the changes or discard them?"),
-                                                                   i18n("Apply Settings"),
+                                                                   i18nc("@title:window", "Apply Settings"),
                                                                    KStandardGuiItem::apply(),
                                                                    KStandardGuiItem::discard(),
                                                                    KStandardGuiItem::cancel());

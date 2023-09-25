@@ -64,7 +64,7 @@ private:
 
     void slotControllerError(int, const QString &msg)
     {
-        KMessageBox::error(parentWidgetOrView(), msg, i18n("Decrypt/Verify Failed"));
+        KMessageBox::error(parentWidgetOrView(), msg, i18nc("@title:window", "Decrypt/Verify Failed"));
         files.clear();
         finishIfEverythingIsDone();
     }

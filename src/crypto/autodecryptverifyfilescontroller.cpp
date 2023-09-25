@@ -237,7 +237,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
                 const auto answer = KMessageBox::questionTwoActionsCancel(
                     m_dialog,
                     xi18n("Shall the file be saved with the original file name <filename>%1</filename>?", embeddedFileName),
-                    i18n("Use Original File Name?"),
+                    i18nc("@title:window", "Use Original File Name?"),
                     KGuiItem(xi18n("No, Save As <filename>%1</filename>", fi.fileName())),
                     KGuiItem(xi18n("Yes, Save As <filename>%1</filename>", embeddedFileName)));
                 if (answer == KMessageBox::Cancel) {

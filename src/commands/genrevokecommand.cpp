@@ -96,7 +96,7 @@ void GenRevokeCommand::postSuccessHook(QWidget *parentWidget)
                                    "Note:<br>To prevent accidental import of the revocation<br>"
                                    "it is required to manually edit the certificate<br>"
                                    "before it can be imported."),
-                             i18n("Revocation certificate created"));
+                             i18nc("@title:window", "Revocation certificate created"));
 }
 
 /* Well not much to do with GnuPGProcessCommand anymore I guess.. */

@@ -73,7 +73,7 @@ void NullPinWidget::doChangePin(const std::string &keyRef)
                                                                       "and later to repeat that PIN."))
                                                             .arg(i18n("It will <b>not be possible</b> to recover the "
                                                                       "card if the PIN has been entered wrongly more than 2 times.")),
-                                                  i18n("Set initial PIN"),
+                                                  i18nc("@title:window", "Set initial PIN"),
                                                   KStandardGuiItem::cont(),
                                                   KStandardGuiItem::cancel());
 

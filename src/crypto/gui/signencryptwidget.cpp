@@ -791,7 +791,10 @@ bool SignEncryptWidget::validate()
         }
     }
     if (!unresolvedRecipients.isEmpty()) {
-        KMessageBox::errorList(this, i18n("Could not find a key for the following recipients:"), unresolvedRecipients, i18n("Failed to find some keys"));
+        KMessageBox::errorList(this,
+                               i18n("Could not find a key for the following recipients:"),
+                               unresolvedRecipients,
+                               i18nc("@title:window", "Failed to find some keys"));
     }
     if (firstUnresolvedRecipient) {
         firstUnresolvedRecipient->setFocus();

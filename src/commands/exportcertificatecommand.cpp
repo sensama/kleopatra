@@ -225,7 +225,9 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
                                                                           : i18n("S/MIME Certificates") + QLatin1String(" (*.pem *.der)"));
 
     if (!fname.isEmpty() && protocol == GpgME::CMS && fileNames[GpgME::OpenPGP] == fname) {
-        KMessageBox::error(parentWidgetOrView(), i18n("You have to select different filenames for different protocols."), i18n("Export Error"));
+        KMessageBox::error(parentWidgetOrView(),
+                           i18n("You have to select different filenames for different protocols."),
+                           i18nc("@title:window", "Export Error"));
         return false;
     }
     const QFileInfo fi(fname);

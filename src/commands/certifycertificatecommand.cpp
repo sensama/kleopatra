@@ -172,7 +172,7 @@ void CertifyCertificateCommand::doStart()
             KMessageBox::questionTwoActions(d->parentWidgetOrView(),
                                             xi18nc("@info", "To certify other certificates, you first need to create an OpenPGP certificate for yourself.")
                                                 + QStringLiteral("<br><br>") + i18n("Do you wish to create one now?"),
-                                            i18n("Certification Not Possible"),
+                                            i18nc("@title:window", "Certification Not Possible"),
                                             KGuiItem(i18n("Create")),
                                             KStandardGuiItem::cancel());
         if (sel == KMessageBox::ButtonCode::PrimaryAction) {

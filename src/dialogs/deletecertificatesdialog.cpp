@@ -217,7 +217,7 @@ void DeleteCertificatesDialog::accept()
                                                                          "not be deleted.",
 
                                                                          secret),
-                                                 i18n("Secret Key Deletion"),
+                                                 i18nc("@title:window", "Secret Key Deletion"),
                                                  KStandardGuiItem::guiItem(KStandardGuiItem::Delete),
                                                  KStandardGuiItem::cancel(),
                                                  QString(),

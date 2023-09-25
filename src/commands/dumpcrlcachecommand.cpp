@@ -348,13 +348,13 @@ void DumpCrlCacheCommand::Private::slotProcessFinished(int code, QProcess::ExitS
                                i18n("The GpgSM process that tried to dump the CRL cache "
                                     "ended prematurely because of an unexpected error. "
                                     "Please check the output of gpgsm --call-dirmngr listcrls for details."),
-                               i18n("Dump CRL Cache Error"));
+                               i18nc("@title:window", "Dump CRL Cache Error"));
         else if (code)
             KMessageBox::error(dialog,
                                i18n("An error occurred while trying to dump the CRL cache. "
                                     "The output from GpgSM was:\n%1",
                                     errorString()),
-                               i18n("Dump CRL Cache Error"));
+                               i18nc("@title:window", "Dump CRL Cache Error"));
     }
 }
 

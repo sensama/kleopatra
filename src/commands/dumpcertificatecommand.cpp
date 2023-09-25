@@ -340,13 +340,13 @@ void DumpCertificateCommand::Private::slotProcessFinished(int code, QProcess::Ex
                                     "ended prematurely because of an unexpected error. "
                                     "Please check the output of gpgsm --dump-cert %1 for details.",
                                     QLatin1String(key().primaryFingerprint())),
-                               i18n("Dump Certificate Error"));
+                               i18nc("@title:window", "Dump Certificate Error"));
         else if (code)
             KMessageBox::error(dialog,
                                i18n("An error occurred while trying to dump the certificate. "
                                     "The output from GpgSM was:\n%1",
                                     errorString()),
-                               i18n("Dump Certificate Error"));
+                               i18nc("@title:window", "Dump Certificate Error"));
     }
     if (!useDialog) {
         slotDialogDestroyed();

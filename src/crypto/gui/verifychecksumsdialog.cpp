@@ -214,7 +214,7 @@ public:
 private:
     void slotErrorButtonClicked()
     {
-        KMessageBox::errorList(q, i18n("The following errors and warnings were recorded:"), errors, i18n("Checksum Verification Errors"));
+        KMessageBox::errorList(q, i18n("The following errors and warnings were recorded:"), errors, i18nc("@title:window", "Checksum Verification Errors"));
     }
 
 private:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2023-08-10 14:45+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -283,7 +283,9 @@ msgid "Do you wish to create one now?"
 msgstr "Přejete si jeden nyní vytvořit?"
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Not Possible"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Certifikace není možná"
 
@@ -707,8 +709,7 @@ msgid "Success"
 msgstr "Úspěch"
 
 #: src/commands/createcsrforcardkeycommand.cpp:151
-#, fuzzy, kde-format
-#| msgid "Certificate Details"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Details"
 msgstr "Podrobnosti certifikátu"
@@ -781,11 +782,10 @@ msgid "Create OpenPGP Key"
 msgstr "Vytvořit klíč OpenPGP"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, fuzzy, kde-format
-#| msgid "Enter User ID"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter User ID"
-msgstr "Zadat uživatelské ID"
+msgstr ""
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:179
 #, kde-format
@@ -811,7 +811,9 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr ""
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Failed"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Selhalo dešifrování/ověření"
 
@@ -915,8 +917,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr ""
@@ -928,6 +928,14 @@ msgid ""
 "because of an unexpected error. Please check the output of gpgsm --dump-cert "
 "%1 for details."
 msgstr ""
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Certification Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "Chyba certifikace"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -955,8 +963,6 @@ msgid "CRL Cache Dump"
 msgstr "Výpis mezipaměti CRL"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr ""
@@ -968,6 +974,14 @@ msgid ""
 "of an unexpected error. Please check the output of gpgsm --call-dirmngr "
 "listcrls for details."
 msgstr ""
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "Vypsat mezipaměť CRL"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1005,22 +1019,24 @@ msgstr "Certifikáty OpenPGP"
 msgid "S/MIME Certificates"
 msgstr "Certifikáty S/MIME"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
-#, kde-format
+#: src/commands/exportcertificatecommand.cpp:230
+#, fuzzy, kde-format
+#| msgid "Export Error"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Chyba exportu"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "Exportuji certifikáty..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1029,13 +1045,13 @@ msgstr ""
 "<qt> <p>Nastala chyba při pokusu o exportování certifikátu: </p><p><b>%1</"
 "b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "Export certifikátu selhal"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "Není možné zapisovat do souboru %1."
@@ -1486,7 +1502,9 @@ msgid ""
 msgstr ""
 
 #: src/commands/genrevokecommand.cpp:99
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation certificate created"
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Odvolávací certifikát byl vytvořen"
 
@@ -3379,9 +3397,7 @@ msgid "groups"
 msgstr "skupiny"
 
 #: src/conf/groupsconfigwidget.cpp:179
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "New"
+#, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Nový"
@@ -3435,7 +3451,9 @@ msgstr ""
 "Přejete si změny aplikovat, nebo zahodit?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply Settings"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Provést nastavení"
 
@@ -3783,6 +3801,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5217,13 +5236,15 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Nelze nalézt klíč pro následující příjemce:"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
-#, kde-format
+#: src/crypto/gui/signencryptwidget.cpp:797
+#, fuzzy, kde-format
+#| msgid "Failed to find some keys"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Vyhledání některých klíčů selhalo"
 
@@ -5335,9 +5356,11 @@ msgid "The following errors and warnings were recorded:"
 msgstr ""
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Error"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
-msgstr ""
+msgstr "Chyba certifikace"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:229
 #: src/crypto/gui/verifychecksumsdialog.cpp:254
@@ -6249,7 +6272,9 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:642
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Trust Change Failed"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Změna řetězce důvěry certifikací selhala"
 
@@ -6321,8 +6346,10 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:220
+#, fuzzy, kde-format
+#| msgid "Secret Key Deletion"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Smazání tajného klíče"
 
@@ -6529,11 +6556,10 @@ msgid "Save As..."
 msgstr "Uložit jako..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, fuzzy, kde-format
-#| msgid "Lookup on Server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
-msgstr "Vyhledat na serveru"
+msgstr ""
 
 #: src/dialogs/lookupcertificatesdialog.cpp:201
 #, kde-format
@@ -10561,7 +10587,9 @@ msgid ""
 msgstr ""
 
 #: src/view/nullpinwidget.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set initial PIN"
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Nastavit počáteční pin"
 
@@ -10930,6 +10958,11 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "Smazání tajného klíče"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format
@@ -11385,15 +11418,3 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-
-#~ msgctxt "@action::button"
-#~ msgid "Edit"
-#~ msgstr "Upravit"
-
-#~ msgctxt "@action::button"
-#~ msgid "Delete"
-#~ msgstr "Smazat"
-
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "Exportovat"

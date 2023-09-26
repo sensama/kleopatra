@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2007-09-09 17:32+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -305,6 +305,7 @@ msgstr ""
 #: src/commands/certifycertificatecommand.cpp:175
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "प्रमाणपत्र मेट्न असफल भयो"
 
@@ -916,6 +917,7 @@ msgstr "कुञ्जी मेट्दैछ..."
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "कुञ्जी मेट्दैछ..."
 
@@ -1026,8 +1028,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "%1 प्रक्रिया सुरु गर्न असमर्थ । कृपया तपाईँको स्थापना जाँच गर्नुहोस् ।"
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Dump Certificate Error"
@@ -1045,6 +1045,14 @@ msgid ""
 msgstr ""
 "अनपेक्षित त्रुटिका कारणले असामायीक रूपमा अन्त्य भएका CRL फाइल आयात गर्न प्रयास गर्ने "
 "GpgSM प्रक्रिया ।"
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "प्रमाणपत्र प्रबन्धक त्रुटि"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, fuzzy, kde-format
@@ -1080,8 +1088,6 @@ msgid "CRL Cache Dump"
 msgstr "CRL क्यास डम्प गर्नुहोस्:"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, fuzzy, kde-format
 #| msgid "Dump CRL Cache..."
 msgid "Dump CRL Cache Error"
@@ -1099,6 +1105,14 @@ msgid ""
 msgstr ""
 "अनपेक्षित त्रुटिका कारणले असामायीक रूपमा अन्त्य भएका CRL फाइल आयात गर्न प्रयास गर्ने "
 "GpgSM प्रक्रिया ।"
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache..."
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "CRL क्यास डम्प गर्नुहोस्..."
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, fuzzy, kde-format
@@ -1146,24 +1160,25 @@ msgstr "प्रमाणपत्र प्रबन्धक त्रुट�
 msgid "S/MIME Certificates"
 msgstr "ASCII सूरक्षित गरिएका प्रमाणपत्र समूह (*.pem)"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
 #| msgid "Import CRLs..."
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "CRLs आयात गर्नुहोस्..."
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Exporting certificates..."
 msgstr "प्रमाणपत्र निर्यात गर्दैछ..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1172,13 +1187,13 @@ msgstr ""
 "<qt><p>प्रमाणपत्र निर्यात गर्ने प्रयास गर्दा एउटा त्रुटि उत्पन्न भयो:</p><p><b>%1</b></"
 "p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "प्रमाणपत्र निर्यात असफल भयो"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not write to file %1."
@@ -1717,6 +1732,7 @@ msgstr ""
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "प्रमाणपत्र निर्यात गर्दैछ..."
 
@@ -3914,6 +3930,7 @@ msgstr ""
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
 #| msgid "Location"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "स्थान"
 
@@ -4256,6 +4273,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5793,17 +5811,18 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "वितरक प्रमाणपत्र फेला परेन ( %1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
 #| "%1"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr ""
 "gpgsm कार्यान्वयन गर्न असफल:\n"
@@ -5930,6 +5949,7 @@ msgstr ""
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "प्रमाणपत्र प्रबन्धक त्रुटि"
 
@@ -6921,6 +6941,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
 
@@ -6982,9 +7003,10 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
+#: src/dialogs/deletecertificatesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgid "Secret Key Export"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "गोप्य कुञ्जी निर्यात"
 
@@ -11516,6 +11538,7 @@ msgstr ""
 #: src/view/nullpinwidget.cpp:76
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "फन्ट सेट गर्नुहोस्..."
 
@@ -11919,6 +11942,12 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, fuzzy, kde-format
+#| msgid "Secret Key Export"
+msgid "Secret Key Deletion"
+msgstr "गोप्य कुञ्जी निर्यात"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

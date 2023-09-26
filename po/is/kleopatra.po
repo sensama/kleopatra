@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2009-11-18 11:22+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <kde-isl@molar.is>\n"
@@ -300,6 +300,7 @@ msgstr ""
 #: src/commands/certifycertificatecommand.cpp:175
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Upplýsingar um skírteini..."
 
@@ -892,6 +893,7 @@ msgstr "Eyði lyklum..."
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Eyði lyklum..."
 
@@ -1001,8 +1003,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "Gat ekki ræst %1 ferlið. Vinsamlegast athugaðu uppsetningu þína."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Dump Certificate Error"
@@ -1015,6 +1015,14 @@ msgid ""
 "because of an unexpected error. Please check the output of gpgsm --dump-cert "
 "%1 for details."
 msgstr ""
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "Villa í skírteinastjóra"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, fuzzy, kde-format
@@ -1047,8 +1055,6 @@ msgid "CRL Cache Dump"
 msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr ""
@@ -1060,6 +1066,14 @@ msgid ""
 "of an unexpected error. Please check the output of gpgsm --call-dirmngr "
 "listcrls for details."
 msgstr ""
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Kleopatra Error"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "Kleópatra villa"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1101,24 +1115,25 @@ msgstr "Villa í skírteinastjóra"
 msgid "S/MIME Certificates"
 msgstr "Flytja inn skírteini..."
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
 #| msgid "Imported:"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Flutt inn:"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Exporting certificates..."
 msgstr "Flyt út skírteini..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1126,13 +1141,13 @@ msgid ""
 msgstr ""
 "<qt><p>Villa kom upp við útflutning skírteinisins:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "Útflutningur skírteinis tókst ekki"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not write to file %1."
@@ -1641,6 +1656,7 @@ msgstr ""
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Flyt út skírteini..."
 
@@ -3731,6 +3747,7 @@ msgstr ""
 
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "&Stillingar"
 
@@ -4088,6 +4105,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5609,15 +5627,16 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Vista skírteini"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Gat ekki búið til skírteini: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Gat ekki búið til skírteini: %1"
 
@@ -5742,6 +5761,7 @@ msgstr ""
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Villa í skírteinastjóra"
 
@@ -6727,6 +6747,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Skírteinanotkun"
 
@@ -6788,9 +6809,10 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
+#: src/dialogs/deletecertificatesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgid "Certificate Export Failed"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Útflutningur skírteinis tókst ekki"
 
@@ -11230,6 +11252,7 @@ msgstr ""
 
 #: src/view/nullpinwidget.cpp:76
 #, kde-format
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr ""
 
@@ -11625,6 +11648,12 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, fuzzy, kde-format
+#| msgid "Certificate Export Failed"
+msgid "Secret Key Deletion"
+msgstr "Útflutningur skírteinis tókst ekki"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2007-10-14 15:53+0000\n"
 "Last-Translator: Youssef Chahibi <chahibi@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -291,6 +291,7 @@ msgstr ""
 
 #: src/commands/certifycertificatecommand.cpp:175
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "شهادة حذف فشل"
 
@@ -842,6 +843,7 @@ msgstr "جاري الحذف."
 
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "جاري الحذف."
 
@@ -943,8 +945,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "عاجز إلى تشغيل إجراء رجاء تفقّد تثبيت."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, fuzzy, kde-format
 msgid "Dump Certificate Error"
 msgstr "شهادة المدير خطأ"
@@ -956,6 +956,13 @@ msgid ""
 "because of an unexpected error. Please check the output of gpgsm --dump-cert "
 "%1 for details."
 msgstr "الـ إجراء إلى استيراد CRL ملفّ من خطأ."
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "شهادة المدير خطأ"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, fuzzy, kde-format
@@ -986,8 +993,6 @@ msgstr ""
 "مَخبأ تفريغ:"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, fuzzy, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "تفريغ CRL الذّاكرة المؤقّتة."
@@ -999,6 +1004,13 @@ msgid ""
 "of an unexpected error. Please check the output of gpgsm --call-dirmngr "
 "listcrls for details."
 msgstr "الـ إجراء إلى استيراد CRL ملفّ من خطأ."
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "تفريغ CRL الذّاكرة المؤقّتة."
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, fuzzy, kde-format
@@ -1036,35 +1048,36 @@ msgstr "شهادة المدير خطأ"
 msgid "S/MIME Certificates"
 msgstr "ASCII مدرّع شهادة الحزم"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "استيراد."
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, fuzzy, kde-format
 msgid "Exporting certificates..."
 msgstr "جاري التصدير شهادة."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, fuzzy, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr "<qt><p> أداة تعريف خطأ بينما إلى تصدير شهادة</p><p><b></b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, fuzzy, kde-format
 msgid "Certificate Export Failed"
 msgstr "شهادة صدِّر فشل"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, fuzzy, kde-format
 msgid "Could not write to file %1."
 msgstr "يمكن أن ليس توليد شهادة 1"
@@ -1570,6 +1583,7 @@ msgstr ""
 
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "جاري التصدير شهادة."
 
@@ -3581,6 +3595,7 @@ msgstr ""
 
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "الموقع"
 
@@ -3910,6 +3925,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5367,13 +5383,14 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "المُصدر شهادة ليس موجود"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "يمكن أن ليس توليد شهادة 1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "فشل إلى نفِّذ n 1"
 
@@ -5486,6 +5503,7 @@ msgstr ""
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "شهادة المدير خطأ"
 
@@ -6411,6 +6429,7 @@ msgstr "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</
 
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "شهادة نزّل فشل"
 
@@ -6479,8 +6498,9 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
+#: src/dialogs/deletecertificatesdialog.cpp:220
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "سر مفتاح صدِّر"
 
@@ -10756,6 +10776,7 @@ msgstr ""
 
 #: src/view/nullpinwidget.cpp:76
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "ضبط الخط."
 
@@ -11124,6 +11145,11 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, fuzzy, kde-format
+msgid "Secret Key Deletion"
+msgstr "سر مفتاح صدِّر"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

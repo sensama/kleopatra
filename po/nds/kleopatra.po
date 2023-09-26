@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -319,7 +319,9 @@ msgid "Do you wish to create one now?"
 msgstr ""
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Not Possible"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Beglöven nich mööglich"
 
@@ -939,6 +941,7 @@ msgstr "Fehler bi't Opslöteln/Pröven vun de Twischenaflaag"
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Dateien opslöteln/pröven"
 
@@ -1057,8 +1060,6 @@ msgstr ""
 "De Perzess \"gpgsm\" lett sik nich opropen. Prööv bitte Dien Installatschoon."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "Fehler bi de Zertifikaat-Utgaav"
@@ -1073,6 +1074,14 @@ msgstr ""
 "De Perzess \"GpgSM\", de dat Zertifikaat utgeven schull, hett sik vör Tiet "
 "utmaakt, dat geev en nich verwacht Fehler. Kiek bitte de Utgaav vun \"gpgsm "
 "--dump-cert %1\" an, wenn Du de Enkelheiten weten wullt."
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Dump Certificate Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "Fehler bi de Zertifikaat-Utgaav"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -1105,8 +1114,6 @@ msgid "CRL Cache Dump"
 msgstr "ZTL-Twischenspieker utgeven"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "Fehler bi't Utgeven vun den ZTL-Twischenspieker"
@@ -1121,6 +1128,14 @@ msgstr ""
 "De Perzess \"GpgSM\", de den ZTL-Twischenspieker utgeven schull, hett sik "
 "vör Tiet utmaakt, dat geev en nich verwacht Fehler. Kiek bitte de Utgaav vun "
 "\"gpgsm --call-dirmngr listcrls\" an, wenn Du de Enkelheiten weten wullt."
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache Error"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "Fehler bi't Utgeven vun den ZTL-Twischenspieker"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1163,23 +1178,24 @@ msgstr "OpenPGP-Zertifikaten"
 msgid "S/MIME Certificates"
 msgstr "S/MIME-Zertifikaten"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
 #| msgid "Import CRL Error"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Fehler bi ZTL-Import"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "Zertifikaten warrt exporteert..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1188,13 +1204,13 @@ msgstr ""
 "<qt><p>Bi't Exporteren vun dat Zertifikaat geev dat en Fehler:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "Zertifikaatexport fehlslaan"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "Datei \"%1\" lett sik nich schrieven."
@@ -1767,6 +1783,7 @@ msgstr ""
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
 #| msgid "Loading certificate cache..."
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Zertifikaat-Twischenspieker warrt laadt..."
 
@@ -4024,6 +4041,7 @@ msgstr ""
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
 #| msgid "Settings"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Instellen"
 
@@ -4420,6 +4438,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -6042,15 +6061,16 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Dit Zertifikaat wöör lokaal utmaakt."
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Tokoppeln na Socket nich mööglich: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "%1 lett sik nich utföhren: %2"
 
@@ -6166,7 +6186,9 @@ msgid "The following errors and warnings were recorded:"
 msgstr "Disse Fehlers un Wohrschoen wöörn sekert:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Checksum Verification Errors"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Fehlers bi de Pröövsumm-Prööv"
 
@@ -7176,6 +7198,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
 #| msgid "Owner Trust Change Succeeded"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Totroen ännert"
 
@@ -7265,8 +7288,10 @@ msgstr[1] ""
 "fröher al mit de Zertifikaten verslötelt hest. Dorüm do de man lever nich "
 "weg."
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:220
+#, fuzzy, kde-format
+#| msgid "Secret Key Deletion"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Privaatslötel wegdoon"
 
@@ -11956,6 +11981,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Set Initial Pin"
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Eerst PIN fastleggen"
 
@@ -12364,6 +12390,11 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "Privaatslötel wegdoon"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

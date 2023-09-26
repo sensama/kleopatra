@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2020-09-08 18:56+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
@@ -312,7 +312,9 @@ msgid "Do you wish to create one now?"
 msgstr "Chcete vytvoriť nový?"
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Not Possible"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Certifikácia nie je možná"
 
@@ -933,7 +935,9 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "Chyba pri dešifrovaní/overovaní schránky"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Failed"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Dešifrovanie/overenie zlyhalo"
 
@@ -1049,8 +1053,6 @@ msgstr ""
 "Nepodarilo sa spustiť proces gpgsm. Prosím, skontrolujte si vašu inštaláciu."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "Chyba výpisu certifikátu"
@@ -1065,6 +1067,14 @@ msgstr ""
 "Proces GpgSM, ktorý sa pokúsil o výpis certifikátu skončil predčasne kvôli "
 "neočakávanej chybe. Prosím, skontrolujte výstup z gpgsm --dump-cert %1 pre "
 "podrobnosti."
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Dump Certificate Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "Chyba výpisu certifikátu"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -1094,8 +1104,6 @@ msgid "CRL Cache Dump"
 msgstr "Výpis CRL cache"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "Chyba pri výpise vyrovnávacej pamäti CRL"
@@ -1110,6 +1118,14 @@ msgstr ""
 "Process GpgSM, ktorý sa pokúsil o výpis vyrovnávacej pamäti CRL skončil "
 "predčasne kvôli neočakávanej chybe. Prosím, skontrolujte výstup z gpgsm --"
 "call-dirmngr listcrl pre podrobnosti."
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache Error"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "Chyba pri výpise vyrovnávacej pamäti CRL"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1152,23 +1168,24 @@ msgstr "Certifikáty OpenPGP"
 msgid "S/MIME Certificates"
 msgstr "Certifikáty S/MIME"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
 #| msgid "Import CRL Error"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Chyba pri importe CRL"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "Exportovanie certifikátov..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1176,13 +1193,13 @@ msgid ""
 msgstr ""
 "<qt><p>Nastala chyba počas exportu certifikátu:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "Export certifikátu zlyhal"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "Nepodarilo sa zapisovať do súboru %1."
@@ -1734,7 +1751,9 @@ msgstr ""
 "ho možné impotovať."
 
 #: src/commands/genrevokecommand.cpp:99
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation certificate created"
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Odvolací certifikát vytvorený"
 
@@ -3966,7 +3985,9 @@ msgstr ""
 "Chcete zmeny použiť, alebo ich zahodiť?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply Settings"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Použiť nastavenie"
 
@@ -4348,6 +4369,7 @@ msgstr "Zlyhal presun <filename>%1</filename> do <filename>%2</filename>."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5915,15 +5937,16 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Tento certifikát bol zakázaný miestne."
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Nepodarilo sa pripojiť k soketu: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
 #| msgid "Failed to send recipient %1: %2"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Zlyhalo poslanie prijímateľa %1: %2"
 
@@ -6035,7 +6058,9 @@ msgid "The following errors and warnings were recorded:"
 msgstr "Boli zaznamenané nasledujúce chyby a varovania:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Checksum Verification Errors"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Chyby overenia kontrolného súčtu"
 
@@ -7043,6 +7068,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
 #| msgid "Certification Trust Change Succeeded"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Zmena dôveryhodnosti certifikátu úspešná"
 
@@ -7138,8 +7164,10 @@ msgstr[2] ""
 "materiál súkromného kľúča, ktorý je potrebný na dešifrovanie komunikácie z "
 "minulosti šifrovanej s certifikátom a preto by nemali byť vymazané."
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:220
+#, fuzzy, kde-format
+#| msgid "Secret Key Deletion"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Vymazanie tajného kľúča"
 
@@ -11754,7 +11782,9 @@ msgid ""
 msgstr "<b>Nebude možné</b> obnoviť kartu, ak sa PIN zadá zle viac ako 2 krát."
 
 #: src/view/nullpinwidget.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set initial PIN"
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Nastaviť počiatočný PIN"
 
@@ -12163,6 +12193,11 @@ msgid ""
 msgstr ""
 "Existujúce kľúče na tejto karte budú <b>vymazané</b> a nahradené novými "
 "kľúčmi."
+
+#: src/view/pgpcardwidget.cpp:402
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "Vymazanie tajného kľúča"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

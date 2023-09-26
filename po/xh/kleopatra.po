@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2002-10-29 15:17SAST\n"
 "Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -288,6 +288,7 @@ msgstr ""
 
 #: src/commands/certifycertificatecommand.cpp:175
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Ulwenziwo &Lwesiqinisekiso"
 
@@ -836,6 +837,7 @@ msgstr ""
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "&Details"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "&Iinkcukacha"
 
@@ -940,8 +942,6 @@ msgstr ""
 "Ayikwazi ukuqala uqhubekeko lwe dirmngr. Nceda khangela ufakelo lwakho."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Dump Certificate Error"
@@ -956,6 +956,14 @@ msgid ""
 msgstr ""
 "Uqhubekeko lwe Dirmngr ezame ukurhweba ngaphakathi ifayile ye CRL iphelile "
 "ngenxa yemposiso ibingalindelekanga. "
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "Imposiso Yomphathi Wesiqinisekiso"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, fuzzy, kde-format
@@ -987,8 +995,6 @@ msgid "CRL Cache Dump"
 msgstr "CRL cache yokulahlwa:"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, fuzzy, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "CRL Cache..."
@@ -1002,6 +1008,13 @@ msgid ""
 msgstr ""
 "Uqhubekeko lwe Dirmngr ezame ukurhweba ngaphakathi ifayile ye CRL iphelile "
 "ngenxa yemposiso ibingalindelekanga. "
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "CRL Cache..."
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, fuzzy, kde-format
@@ -1042,35 +1055,36 @@ msgstr "Imposiso Yomphathi Wesiqinisekiso"
 msgid "S/MIME Certificates"
 msgstr "Yandisa Isiqinisekiso"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "CRL..."
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, fuzzy, kde-format
 msgid "Exporting certificates..."
 msgstr "Yandisa Isiqinisekiso"
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, fuzzy, kde-format
 msgid "Certificate Export Failed"
 msgstr "Isiqinisekiso Sirhwetywe ngapahakathi"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, fuzzy, kde-format
 msgid "Could not write to file %1."
 msgstr "Ayikwazanga ukwenza isiqinisekiso"
@@ -1540,6 +1554,7 @@ msgstr ""
 
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Yandisa Isiqinisekiso"
 
@@ -3529,6 +3544,7 @@ msgstr ""
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
 #| msgid "Location"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Indawo ekuyo"
 
@@ -3862,6 +3878,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5304,13 +5321,14 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Inkcukacha Yesiqinisekiso"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ayikwazanga ukwenza isiqinisekiso"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Ayikwazanga ukwenza isiqinisekiso"
 
@@ -5426,6 +5444,7 @@ msgstr ""
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Imposiso Yomphathi Wesiqinisekiso"
 
@@ -6358,6 +6377,7 @@ msgstr ""
 
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Umphathi Wesiqinisekiso"
 
@@ -6418,8 +6438,9 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
+#: src/dialogs/deletecertificatesdialog.cpp:220
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Isizukulwana Sesiqinisekiso Esingekho embindini"
 
@@ -10724,9 +10745,11 @@ msgid ""
 msgstr ""
 
 #: src/view/nullpinwidget.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Initial query string"
+msgctxt "@title:window"
 msgid "Set initial PIN"
-msgstr ""
+msgstr "Umgca wokuqala wesivakalisi sombuzo  "
 
 #: src/view/openpgpkeycardwidget.cpp:53
 #, fuzzy, kde-format
@@ -11100,6 +11123,11 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, fuzzy, kde-format
+msgid "Secret Key Deletion"
+msgstr "Isizukulwana Sesiqinisekiso Esingekho embindini"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

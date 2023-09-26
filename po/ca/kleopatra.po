@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2023-09-23 15:30+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -296,7 +296,9 @@ msgid "Do you wish to create one now?"
 msgstr "Voleu crear-ne un de nou?"
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Not Possible"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "No és possible la certificació"
 
@@ -866,7 +868,9 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "Error en el desencriptatge/verificació del porta-retalls"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Failed"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Ha fallat el desencriptatge/verificació"
 
@@ -983,8 +987,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "No s'ha pogut iniciar el procés «gpgsm». Comproveu la instal·lació."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "Error en el bolcat del certificat"
@@ -999,6 +1001,14 @@ msgstr ""
 "El procés GpgSM que ha provat de bolcar el certificat ha acabat "
 "prematurament degut a un error inesperat. Comproveu la sortida de «gpgsm --"
 "dump-cert %1» per als detalls."
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Dump Certificate Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "Error en el bolcat del certificat"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -1029,8 +1039,6 @@ msgid "CRL Cache Dump"
 msgstr "Bolcat del cau de la CRL"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "Error en el bolcat del cau de la CRL"
@@ -1045,6 +1053,14 @@ msgstr ""
 "El procés GpgSM que ha provat de bolcar el cau de la CRL ha acabat "
 "prematurament degut a un error inesperat. Comproveu la sortida de «gpgsm --"
 "call-dirmngr listcrls» per als detalls."
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache Error"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "Error en el bolcat del cau de la CRL"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1085,22 +1101,24 @@ msgstr "Certificats OpenPGP"
 msgid "S/MIME Certificates"
 msgstr "Certificats S/MIME"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr "Heu de seleccionar diferents noms de fitxer per a protocols diferents."
 
-#: src/commands/exportcertificatecommand.cpp:228
-#, kde-format
+#: src/commands/exportcertificatecommand.cpp:230
+#, fuzzy, kde-format
+#| msgid "Export Error"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Error d'exportació"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "S'estan exportant els certificats..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1109,13 +1127,13 @@ msgstr ""
 "<qt><p>S'ha produït un error en provar d'exportar el certificat:</p><p><b>"
 "%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "L'exportació del certificat ha fallat"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "No s'ha pogut escriure al fitxer %1."
@@ -1633,7 +1651,9 @@ msgstr ""
 "certificat abans<br>que es pugui importar."
 
 #: src/commands/genrevokecommand.cpp:99
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation certificate created"
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "S'ha creat un certificat de revocació"
 
@@ -3752,7 +3772,9 @@ msgstr ""
 "Voleu aplicar els canvis o descartar-los?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply Settings"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Aplica la configuració"
 
@@ -4145,7 +4167,9 @@ msgstr ""
 "filename>?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use Original File Name?"
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Empra el nom de fitxer original?"
 
@@ -5661,13 +5685,15 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Aquest certificat no es pot emprar per a signatura."
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "No s'ha pogut trobar cap clau per als destinataris següents:"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
-#, kde-format
+#: src/crypto/gui/signencryptwidget.cpp:797
+#, fuzzy, kde-format
+#| msgid "Failed to find some keys"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Ha fallat en trobar algunes de les claus"
 
@@ -5779,7 +5805,9 @@ msgid "The following errors and warnings were recorded:"
 msgstr "S'han enregistrat els següents errors i avisos:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Checksum Verification Errors"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Errors en la comprovació de la suma de verificació"
 
@@ -6736,7 +6764,9 @@ msgstr ""
 "p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:642
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Trust Change Failed"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Ha fallat en canviar la confiança de la certificació"
 
@@ -6819,8 +6849,10 @@ msgstr[1] ""
 "de clau privada, el qual es necessita per a desencriptar comunicacions "
 "antigues encriptades amb els certificats i, per tant, no es poden suprimir."
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:220
+#, fuzzy, kde-format
+#| msgid "Secret Key Deletion"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Supressió de la clau secreta"
 
@@ -11414,7 +11446,9 @@ msgstr ""
 "incorrectament el PIN més de 2 vegades."
 
 #: src/view/nullpinwidget.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set initial PIN"
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Estableix el PIN inicial"
 
@@ -11798,6 +11832,11 @@ msgid ""
 msgstr ""
 "Les claus existents en aquesta targeta seran <b>suprimides</b> i "
 "substituïdes per les claus noves."
+
+#: src/view/pgpcardwidget.cpp:402
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "Supressió de la clau secreta"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

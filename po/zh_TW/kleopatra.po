@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2019-05-14 22:35+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -310,7 +310,9 @@ msgid "Do you wish to create one now?"
 msgstr ""
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Not Possible"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "無法確認憑證"
 
@@ -914,6 +916,7 @@ msgstr "解密/檢查剪貼簿錯誤"
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "解密/檢查檔案"
 
@@ -1028,8 +1031,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "無法開始 gpgsm 行程。請檢查您的安裝。"
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "憑證傾印錯誤"
@@ -1043,6 +1044,14 @@ msgid ""
 msgstr ""
 "GpgSM 行程在試著傾印憑證時發生非預期的錯誤，導致行程已不正常的結束。請用 "
 "gpgsm --dump-cert %1 並檢查其輸出。"
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Dump Certificate Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "憑證傾印錯誤"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -1074,8 +1083,6 @@ msgid "CRL Cache Dump"
 msgstr "傾印廢棄憑證清單"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "傾印廢棄憑證清單時發生錯誤"
@@ -1089,6 +1096,14 @@ msgid ""
 msgstr ""
 "GpgSM 行程在試著傾印廢棄憑證清單快取內容時發生非預期的錯誤，導致行程已不正常"
 "的結束。請用 gpgsm --call-dirmngr listcrls 並檢查其輸出。"
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache Error"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "傾印廢棄憑證清單時發生錯誤"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1130,36 +1145,37 @@ msgstr "OpenPGP 憑證"
 msgid "S/MIME Certificates"
 msgstr "S/MIME 憑證"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
 #| msgid "Import CRL Error"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "匯入廢棄憑證清單時發生錯誤"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "匯出憑證中..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr "<qt><p>匯出憑證時發生錯誤：</p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "匯出憑證失敗"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "無法寫入檔案 %1。"
@@ -1708,6 +1724,7 @@ msgstr ""
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
 #| msgid "Loading certificate cache..."
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "載入憑證快取中..."
 
@@ -3891,6 +3908,7 @@ msgstr ""
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
 #| msgid "Settings"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "設定"
 
@@ -4273,6 +4291,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5841,15 +5860,16 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "此憑證無法被確認。<b>錯誤：</b>%1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "無法結合 socket：%1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "執行 %1 時失敗：%2"
 
@@ -5965,7 +5985,9 @@ msgid "The following errors and warnings were recorded:"
 msgstr "以下的錯誤與警告將被紀錄："
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Checksum Verification Errors"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "簽章檢查錯誤"
 
@@ -6967,6 +6989,7 @@ msgstr "<p>試著改變 <b>%1</b> 的擁有者信任時發生錯誤：</p> <p>%2
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
 #| msgid "Owner Trust Change Succeeded"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "變更擁有者信任成功。"
 
@@ -7041,8 +7064,10 @@ msgstr[0] ""
 "所有要刪除的憑證都是您自己的，內容包括之前用於加密通訊內容的憑證，以及用於解"
 "密該通訊內容所使用的私密金鑰。所以不能刪除。"
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:220
+#, fuzzy, kde-format
+#| msgid "Secret Key Deletion"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "刪除私密金鑰"
 
@@ -11632,6 +11657,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Set Initial Pin"
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "設定初始 PIN 碼"
 
@@ -12043,6 +12069,11 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "刪除私密金鑰"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

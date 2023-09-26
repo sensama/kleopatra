@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2017-05-16 07:05-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: hebrew <kde-l10n-he@kde.org>\n"
@@ -289,6 +289,7 @@ msgstr ""
 
 #: src/commands/certifycertificatecommand.cpp:175
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "&יצירת תעודה"
 
@@ -831,6 +832,7 @@ msgstr ""
 
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "&פרטים"
 
@@ -934,8 +936,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "אין אפשרות להפעיל את התהליך dirmngr. בדוק את ההתקנה שלך."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, fuzzy, kde-format
 msgid "Dump Certificate Error"
 msgstr "שגיאה עם מנהל תעודות"
@@ -949,6 +949,13 @@ msgid ""
 msgstr ""
 "התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
 "הצפוי בשל שגיאה לא צפויה."
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "שגיאה עם מנהל תעודות"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, fuzzy, kde-format
@@ -978,8 +985,6 @@ msgid "CRL Cache Dump"
 msgstr "הטלת מטמון רשימת ביטול תעודות:"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, fuzzy, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "מטמון רשימת ביטול..."
@@ -993,6 +998,13 @@ msgid ""
 msgstr ""
 "התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
 "הצפוי בשל שגיאה לא צפויה."
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "מטמון רשימת ביטול..."
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, fuzzy, kde-format
@@ -1032,35 +1044,36 @@ msgstr "שגיאה עם מנהל תעודות"
 msgid "S/MIME Certificates"
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "רשימת ביטול..."
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, fuzzy, kde-format
 msgid "Exporting certificates..."
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, fuzzy, kde-format
 msgid "Certificate Export Failed"
 msgstr "התעודה יובאה"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, fuzzy, kde-format
 msgid "Could not write to file %1."
 msgstr "אין אפשרות ליצור את התעודה: %1"
@@ -1528,6 +1541,7 @@ msgstr ""
 
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "הארך תוקף תעודה"
 
@@ -3495,6 +3509,7 @@ msgstr ""
 
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "מיקום"
 
@@ -3828,6 +3843,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5252,13 +5268,14 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "מידע לגבי התעודה"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
@@ -5371,6 +5388,7 @@ msgstr ""
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "שגיאה עם מנהל תעודות"
 
@@ -6286,6 +6304,7 @@ msgstr ""
 
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "מנהל התעודות"
 
@@ -6346,8 +6365,9 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
+#: src/dialogs/deletecertificatesdialog.cpp:220
 #, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "יצירת תעודה בצורה מבוזרת"
 
@@ -10578,9 +10598,10 @@ msgid ""
 msgstr ""
 
 #: src/view/nullpinwidget.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@title:window"
 msgid "Set initial PIN"
-msgstr ""
+msgstr "מחרוזת שאילתה ראשונית"
 
 #: src/view/openpgpkeycardwidget.cpp:53
 #, fuzzy, kde-format
@@ -10947,6 +10968,11 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, fuzzy, kde-format
+msgid "Secret Key Deletion"
+msgstr "יצירת תעודה בצורה מבוזרת"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2007-04-19 20:33+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Frysk <kde-i18n-fry@kde.org>\n"
@@ -300,6 +300,7 @@ msgstr ""
 #: src/commands/certifycertificatecommand.cpp:175
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Wiskjen fan sertifikaten mislearre"
 
@@ -919,6 +920,7 @@ msgstr "Dwaande mei it wiskjen fan kaaien..."
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Dwaande mei it wiskjen fan kaaien..."
 
@@ -1030,8 +1032,6 @@ msgstr ""
 "Koe it proses %1 net starte. Graach efkes jo ynstallaasje kontrolearje."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Dump Certificate Error"
@@ -1049,6 +1049,14 @@ msgid ""
 msgstr ""
 "It proses GpgSM besocht de CRL-triem te ymportearjen, mar moast foartiids "
 "ôfbrekke fanwege in ûnferwachte fout."
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "Fout sertifikaatmanager"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, fuzzy, kde-format
@@ -1085,8 +1093,6 @@ msgid "CRL Cache Dump"
 msgstr "CRL-cache dump:"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, fuzzy, kde-format
 #| msgid "Dump CRL Cache..."
 msgid "Dump CRL Cache Error"
@@ -1104,6 +1110,14 @@ msgid ""
 msgstr ""
 "It proses GpgSM besocht de CRL-triem te ymportearjen, mar moast foartiids "
 "ôfbrekke fanwege in ûnferwachte fout."
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache..."
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "CRL-cache dumpe..."
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, fuzzy, kde-format
@@ -1152,24 +1166,25 @@ msgstr "Fout sertifikaatmanager"
 msgid "S/MIME Certificates"
 msgstr "ASCII Sertifikaatbondels (*.pem)"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
 #| msgid "Import CRLs..."
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "CRL's ymportearje..."
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Exporting certificates..."
 msgstr "Dwaande om sertifikaat te eksportearjen..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1178,13 +1193,13 @@ msgstr ""
 "<qt><p>Der die him in fout foar by it eksportearjen fan it sertifikaat:</"
 "p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "Sertifikaateksport mislearre"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not write to file %1."
@@ -1730,6 +1745,7 @@ msgstr ""
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Dwaande om sertifikaat te eksportearjen..."
 
@@ -3940,6 +3956,7 @@ msgstr ""
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
 #| msgid "Location"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Lokaasje"
 
@@ -4284,6 +4301,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5822,17 +5840,18 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Utjouwer fan sertifikaat net fûn (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Koe gjin sertifikaat oanmeitsje: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
 #| "%1"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr ""
 "Utfieren fan gpgsm mislearre:\n"
@@ -5959,6 +5978,7 @@ msgstr ""
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Fout sertifikaatmanager"
 
@@ -6951,6 +6971,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Downloaden sertifikaat mislearre"
 
@@ -7012,9 +7033,10 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
+#: src/dialogs/deletecertificatesdialog.cpp:220
 #, fuzzy, kde-format
 #| msgid "Secret Key Export"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Geheime kaai eksportearje"
 
@@ -11541,9 +11563,11 @@ msgid ""
 msgstr ""
 
 #: src/view/nullpinwidget.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Initial query string"
+msgctxt "@title:window"
 msgid "Set initial PIN"
-msgstr ""
+msgstr "Begjinterm sykopdracht"
 
 #: src/view/openpgpkeycardwidget.cpp:53
 #, fuzzy, kde-format
@@ -11945,6 +11969,12 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, fuzzy, kde-format
+#| msgid "Secret Key Export"
+msgid "Secret Key Deletion"
+msgstr "Geheime kaai eksportearje"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -316,7 +316,9 @@ msgid "Do you wish to create one now?"
 msgstr ""
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Not Possible"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "មិន​មាន​វិញ្ញាបនបត្រ"
 
@@ -920,6 +922,7 @@ msgstr "កំហុស​ក្នុង​ការ​ឌិគ្រីប​
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់​ឯកសារ"
 
@@ -1035,8 +1038,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "មិនអាច​ចាប់ផ្ដើម​ដំណើរការ gpgsm ។ សូម​ពិនិត្យ​មើល​ការ​ដំឡើង​របស់​អ្នក ។"
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "បោះចោល​កំហុស​វិញ្ញាបនបត្រ"
@@ -1050,6 +1051,14 @@ msgid ""
 msgstr ""
 "ដំណើរការ GpgSM ដែល​ព្យាយាម​បោះបង់​ឃ្លាំង​សម្ងាត់ CRL ចោល គឺ​បាន​បញ្ចប់​មុន​ពេល ព្រោះ​មាន​កំហុស​ដោយ​មិន​"
 "រំពឹងទុក ។ ចំពោះ​ព័ត៌មាន​លម្អិត សូម​ពិនិត្យមើល​លទ្ធផល gpgsm --dump-cert %1 ។"
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Dump Certificate Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "បោះចោល​កំហុស​វិញ្ញាបនបត្រ"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -1081,8 +1090,6 @@ msgid "CRL Cache Dump"
 msgstr "ការ​បោះបង់​ឃ្លាំង​សម្ងាត់ CRL ចោល"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "កំហុស​នៃ​ការ​បោះបង់​ឃ្លាំង​សម្ងាត់ CRL ចោល"
@@ -1096,6 +1103,14 @@ msgid ""
 msgstr ""
 "ដំណើរការ GpgSM ដែល​ព្យាយាម​បោះបង់​ឃ្លាំង​សម្ងាត់ CRL ចោល គឺ​បាន​បញ្ចប់មុន​ពេល ព្រោះ​មាន​កំហុស​ដោយ​មិន​"
 "រំពឹងទុក ។ ចំពោះ​ព័ត៌មាន​លម្អិត សូម​ពិនិត្យមើល​លទ្ធផល gpgsm --call-dirmngr listcrls ។"
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache Error"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "កំហុស​នៃ​ការ​បោះបង់​ឃ្លាំង​សម្ងាត់ CRL ចោល"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1137,23 +1152,24 @@ msgstr "វិញ្ញាបនបត្រ OpenPGP"
 msgid "S/MIME Certificates"
 msgstr "វិញ្ញាបនបត្រ S/MIME"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:230
 #, fuzzy, kde-format
 #| msgid "Import CRL Error"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "កំហុស​នាំចូល CRL"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "កំពុង​នាំចេញ​វិញ្ញាបនបត្រ​..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1161,13 +1177,13 @@ msgid ""
 msgstr ""
 "<qt><p>កំហុស​បាន​កើតឡើង ខណៈ​ដែល​កំពុង​ព្យាយាម​នាំចេញ​វិញ្ញាបនបត្រ ៖</p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "ការ​នាំចេញ​វិញ្ញាបនបត្រ​បានបរាជ័យ"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "មិនអាច​សរសេរ​ទៅ​ឯកសារ %1 បានទេ ។"
@@ -1721,6 +1737,7 @@ msgstr ""
 #: src/commands/genrevokecommand.cpp:99
 #, fuzzy, kde-format
 #| msgid "Loading certificate cache..."
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "កំពុង​ឃ្លាំង​សម្ងាត់​វិញ្ញាបនបត្រ​..."
 
@@ -3928,6 +3945,7 @@ msgstr ""
 #: src/conf/kleopageconfigdialog.cpp:86
 #, fuzzy, kde-format
 #| msgid "Settings"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "ការ​កំណត់"
 
@@ -4319,6 +4337,7 @@ msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
@@ -5904,15 +5923,16 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "វិញ្ញាបនបត្រ​នេះ ត្រូវបាន​បិទ​ជា​មូលដ្ឋាន ។"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "មិនអាច​ចង​រន្ធ ៖ %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:797
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 ៖ %2"
 
@@ -6032,7 +6052,9 @@ msgid "The following errors and warnings were recorded:"
 msgstr "ការព្រមាន និង​កំហុស​ដូច​ខាងក្រោម​ត្រូវ​បាន​កត់ត្រា​ ៖"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Checksum Verification Errors"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "កំហុស​ការផ្ទៀងផ្ទាត់​ឆេកសាំ​"
 
@@ -7039,6 +7061,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:642
 #, fuzzy, kde-format
 #| msgid "Owner Trust Change Succeeded"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "បាន​ជោគជ័យ​ក្នុង​កា​រ​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​ម្ចាស់"
 
@@ -7114,8 +7137,10 @@ msgstr[0] ""
 "វិញ្ញាបនបត្រ​ដែល​ត្រូវ​លុប​ទាំងអស់ គឺ​ជា​កម្មសិទ្ធិ​របស់​អ្នក ។ ពួកវា​មាន​សោ​ឯកជន ដែល​ត្រូវការ​ដើម្បី​"
 "ឌិគ្រីបទំនាក់ទំនង​ពី​មុន ដែលបាន​អ៊ិនគ្រីប​ទៅ​ជា​វិញ្ញាបនបត្រ ដូច្នេះ​ហើយ មិនអាច​លុបវា​បានទេ ។"
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:220
+#, fuzzy, kde-format
+#| msgid "Secret Key Deletion"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "ការ​លុប​សោ​សម្ងាត់​​"
 
@@ -11759,6 +11784,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Set Initial Pin"
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "កំណត់​ Pin ដំបូង​​"
 
@@ -12170,6 +12196,11 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+
+#: src/view/pgpcardwidget.cpp:402
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "ការ​លុប​សោ​សម្ងាត់​​"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

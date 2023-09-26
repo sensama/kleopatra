@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2023-08-06 23:11+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -278,7 +278,9 @@ msgid "Do you wish to create one now?"
 msgstr "지금 생성하시겠습니까?"
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Not Possible"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "자격 증명 불가능"
 
@@ -851,7 +853,9 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "클립보드 복호화/검증 오류"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Failed"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "복호화/검증 실패"
 
@@ -966,8 +970,6 @@ msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "gpgsm 프로세스를 시작할 수 없습니다. 설치 상태를 확인하십시오."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "인증서 덤프 오류"
@@ -981,6 +983,14 @@ msgid ""
 msgstr ""
 "예상하지 못한 오류로 인증서를 덤프하려고 했던 GpgSM 프로세스가 비정상 종료되"
 "었습니다. 자세한 사항은 gpgsm --dump-cert %1의 출력을 참조하십시오."
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Dump Certificate Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "인증서 덤프 오류"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -1010,8 +1020,6 @@ msgid "CRL Cache Dump"
 msgstr "CRL 캐시 덤프"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "CRL 캐시 덤프 오류"
@@ -1026,6 +1034,14 @@ msgstr ""
 "예상하지 못한 오류로 CRL 캐시를 덤프하려고 했던 GpgSM 프로세스가 비정상 종료"
 "되었습니다. 자세한 사항은 gpgsm --call-dirmngr listcrls의 출력을 참조하십시"
 "오."
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache Error"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "CRL 캐시 덤프 오류"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1065,22 +1081,24 @@ msgstr "OpenPGP 인증서"
 msgid "S/MIME Certificates"
 msgstr "S/MIME 인증서"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr "프로토콜별로 다른 파일 이름을 지정해야 합니다."
 
-#: src/commands/exportcertificatecommand.cpp:228
-#, kde-format
+#: src/commands/exportcertificatecommand.cpp:230
+#, fuzzy, kde-format
+#| msgid "Export Error"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "내보내기 오류"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "인증서 내보내는 중..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1088,13 +1106,13 @@ msgid ""
 msgstr ""
 "<qt><p>인증서를 내보내는 중 오류가 발생했습니다:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "인증서 내보내기 실패"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "파일 %1에 쓸 수 없습니다."
@@ -1600,7 +1618,9 @@ msgstr ""
 "다."
 
 #: src/commands/genrevokecommand.cpp:99
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation certificate created"
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "철회 인증서 생성됨"
 
@@ -3695,7 +3715,9 @@ msgstr ""
 "변경 사항을 적용하거나 무시하시겠습니까?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply Settings"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "설정 적용"
 
@@ -4072,7 +4094,9 @@ msgstr ""
 "파일을 원래 파일 이름인 <filename>%1</filename>(으)로 저장하시겠습니까?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use Original File Name?"
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "원래 파일 이름을 사용하시겠습니까?"
 
@@ -5569,13 +5593,15 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "발급자 인증서를 로컬에서 찾을 수 없습니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "다음 받는 사람의 키를 찾을 수 없음:"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
-#, kde-format
+#: src/crypto/gui/signencryptwidget.cpp:797
+#, fuzzy, kde-format
+#| msgid "Failed to find some keys"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "일부 키를 찾을 수 없음"
 
@@ -5687,7 +5713,9 @@ msgid "The following errors and warnings were recorded:"
 msgstr "다음 오류와 경고가 발생했습니다:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Checksum Verification Errors"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "체크섬 검증 오류"
 
@@ -6630,7 +6658,9 @@ msgstr ""
 "<p>키 <b>%1</b>의 자격 증명 신뢰도를 변경하는 중 오류 발생:</p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:642
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Trust Change Failed"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "자격 증명 신뢰 변경 실패"
 
@@ -6704,8 +6734,10 @@ msgstr[0] ""
 "료를 복호화할 때 필요한 비밀 키가 포함되어 있습니다. 삭제하지 않기를 추천합니"
 "다."
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:220
+#, fuzzy, kde-format
+#| msgid "Secret Key Deletion"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "비밀 키 삭제"
 
@@ -11191,7 +11223,9 @@ msgid ""
 msgstr "PIN을 두 번 이상 잘못 입력했다면 카드를 <b>복구할 수 없습니다</b>."
 
 #: src/view/nullpinwidget.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set initial PIN"
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "초기 PIN 설정"
 
@@ -11578,6 +11612,11 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr "카드의 기존 키는 <b>삭제되었고</b> 새 키로 대체되었습니다."
+
+#: src/view/pgpcardwidget.cpp:402
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "비밀 키 삭제"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-23 01:45+0000\n"
+"POT-Creation-Date: 2023-09-26 01:46+0000\n"
 "PO-Revision-Date: 2023-09-17 21:56+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
@@ -311,7 +311,9 @@ msgid "Do you wish to create one now?"
 msgstr "Comment voulez-vous en créer un maintenant ?"
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Not Possible"
+msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Certification impossible"
 
@@ -888,7 +890,9 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "Erreur de déchiffrement / vérification du presse-papiers"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Failed"
+msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Erreur de déchiffrement / vérification"
 
@@ -1013,8 +1017,6 @@ msgstr ""
 "installation."
 
 #: src/commands/dumpcertificatecommand.cpp:316
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "Erreur de copie (dump) du certificat"
@@ -1030,6 +1032,14 @@ msgstr ""
 "terminé prématurément en raison d'une erreur inattendue. Veuillez vérifier "
 "ce que la commande gpgsm --dump-cert %1 a renvoyé pour plus de "
 "renseignements."
+
+#: src/commands/dumpcertificatecommand.cpp:343
+#: src/commands/dumpcertificatecommand.cpp:349
+#, fuzzy, kde-format
+#| msgid "Dump Certificate Error"
+msgctxt "@title:window"
+msgid "Dump Certificate Error"
+msgstr "Erreur de copie (dump) du certificat"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -1060,8 +1070,6 @@ msgid "CRL Cache Dump"
 msgstr "Copie (dump) du cache des LRC"
 
 #: src/commands/dumpcrlcachecommand.cpp:325
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "Erreur de copie (dump) du cache des LRC"
@@ -1077,6 +1085,14 @@ msgstr ""
 "terminé prématurément en raison d'une erreur inattendue. Veuillez vérifier "
 "ce que la commande gpgsm --call-dirmngr listcrls a renvoyé pour plus de "
 "renseignements."
+
+#: src/commands/dumpcrlcachecommand.cpp:351
+#: src/commands/dumpcrlcachecommand.cpp:357
+#, fuzzy, kde-format
+#| msgid "Dump CRL Cache Error"
+msgctxt "@title:window"
+msgid "Dump CRL Cache Error"
+msgstr "Erreur de copie (dump) du cache des LRC"
 
 # unreviewed-context
 #: src/commands/dumpcrlcachecommand.cpp:354
@@ -1118,24 +1134,26 @@ msgstr "Certificats OpenPGP"
 msgid "S/MIME Certificates"
 msgstr "Certificats S/MIME"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:229
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 "Vous devez sélectionner des noms différents de fichiers pour les différents "
 "protocoles."
 
-#: src/commands/exportcertificatecommand.cpp:228
-#, kde-format
+#: src/commands/exportcertificatecommand.cpp:230
+#, fuzzy, kde-format
+#| msgid "Export Error"
+msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Erreur d'exportation"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "Exportation des certificats..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:292
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1144,13 +1162,13 @@ msgstr ""
 "<qt><p>Une erreur s'est produite lors de la tentative d'exportation du "
 "certificat :</p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:296
+#: src/commands/exportcertificatecommand.cpp:342
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "Échec de l'exportation du certificat"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "Impossible d'écrire dans le fichier %1"
@@ -1671,7 +1689,9 @@ msgstr ""
 "certificat<br>avant qu'il puisse être importé."
 
 #: src/commands/genrevokecommand.cpp:99
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation certificate created"
+msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Certificat de révocation créé"
 
@@ -3835,7 +3855,9 @@ msgstr ""
 "Voulez-vous appliquer les modifications ou les abandonner ?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Apply Settings"
+msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Applique les paramètres"
 
@@ -4226,7 +4248,9 @@ msgstr ""
 "%1</filename> ?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use Original File Name?"
+msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Utiliser le nom original du fichier ?"
 
@@ -5771,13 +5795,15 @@ msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Ce certificat ne peut être utilisé pour la signature."
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:795
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Impossible de trouver une clé pour les destinataires suivants :"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
-#, kde-format
+#: src/crypto/gui/signencryptwidget.cpp:797
+#, fuzzy, kde-format
+#| msgid "Failed to find some keys"
+msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Impossible de trouver certaines clés"
 
@@ -5889,7 +5915,9 @@ msgid "The following errors and warnings were recorded:"
 msgstr "Les erreurs et avertissements suivants ont été enregistrés :"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Checksum Verification Errors"
+msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Erreurs de vérification de la somme de contrôle"
 
@@ -6857,7 +6885,9 @@ msgstr ""
 "clé <b>%1</b> :</p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:642
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Trust Change Failed"
+msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Impossible de changer le niveau de confiance de la certification"
 
@@ -6944,8 +6974,10 @@ msgstr[1] ""
 "par le passé avec ces certificats. En conséquence, ils ne peuvent pas être "
 "supprimés."
 
-#: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:220
+#, fuzzy, kde-format
+#| msgid "Secret Key Deletion"
+msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Suppression de clé privée"
 
@@ -11590,7 +11622,9 @@ msgstr ""
 "saisi avec des erreurs plus de 2 fois."
 
 #: src/view/nullpinwidget.cpp:76
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Set initial PIN"
+msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Définir le code PIN initial"
 
@@ -11981,6 +12015,11 @@ msgid ""
 msgstr ""
 "Les clés existantes sur cette carte seront <b>supprimées</b> et remplacées "
 "par les nouvelles clés."
+
+#: src/view/pgpcardwidget.cpp:402
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "Suppression de clé privée"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format

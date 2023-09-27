@@ -107,6 +107,18 @@ public:
             KMessageBox::information(parentWidgetOrView(), text, caption, dontShowAgainName, options);
         }
     }
+    void informationList(const QString &text,
+                         const QStringList &strlist,
+                         const QString &title = {},
+                         const QString &dontShowAgainName = {},
+                         KMessageBox::Options options = KMessageBox::Notify) const
+    {
+        if (parentWId_) {
+            KMessageBox::informationListWId(parentWId_, text, strlist, title, dontShowAgainName, options);
+        } else {
+            KMessageBox::informationList(parentWidgetOrView(), text, strlist, title, dontShowAgainName, options);
+        }
+    }
 
     void applyWindowID(QWidget *w) const
     {

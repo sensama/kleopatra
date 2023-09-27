@@ -212,14 +212,6 @@ void CertifyGroupCommand::Private::slotResult(const Error &err)
         finished();
         return;
     }
-    if (err) {
-        // for now we only deal with primary user IDs
-        Q_ASSERT(jobData.userIds.size() == 1);
-        const Key key = jobData.userIds.front().parent();
-        const QString message = i18nc("@info", "<p>Certifying the certificate <b>%1</b> failed.</p>", Formatting::formatForComboBox(key))
-            + xi18nc("@info", "<para>Error: <message>%1</message></para>", Formatting::errorAsString(err));
-        error(message);
-    }
 
     if (!userIdsToCertify.empty()) {
         job.clear();
@@ -231,13 +223,24 @@ void CertifyGroupCommand::Private::slotResult(const Error &err)
     wrapUp();
 }
 
-static QString resultSummary(int successCount, int totalCount)
+static QString resultSummary(const std::vector<CertificationResultData> &results)
 {
+    Q_ASSERT(!results.empty());
+
+    const int totalCount = results.size();
+    const int successCount = Kleo::count_if(results, [](const auto &result) {
+        return !result.error;
+    });
+
     if (successCount == totalCount) {
         return i18nc("@info", "All certificates were certified successfully.");
     }
     if (successCount == 0) {
-        return i18nc("@info", "The certification of all certificates failed.");
+        // we assume that all attempted certifications failed for the same reason
+        return xi18nc("@info",
+                      "<para>The certification of all certificates failed.</para>"
+                      "<para>Error: <message>%1</message></para>",
+                      Formatting::errorAsString(results.front().error));
     }
     return i18ncp("@info", //
                   "1 of %2 certificates was certified successfully.",
@@ -249,18 +252,32 @@ static QString resultSummary(int successCount, int totalCount)
 void CertifyGroupCommand::Private::wrapUp()
 {
     Q_ASSERT(userIdsToCertify.empty());
+    Q_ASSERT(!results.empty());
 
     const int successCount = Kleo::count_if(results, [](const auto &result) {
         return !result.error;
     });
     const bool sendToServer = (successCount > 0) && certificationOptions.exportable && certificationOptions.sendToServer;
 
-    QString message = QLatin1String{"<p>"} + resultSummary(successCount, results.size()) + QLatin1String{"</p>"};
+    QString message = QLatin1String{"<p>"} + resultSummary(results) + QLatin1String{"</p>"};
     if (sendToServer) {
         message += i18nc("@info", "<p>Next the certified certificates will be uploaded to the configured certificate directory.</p>");
     }
+    const auto failedUserIdsInfo = std::accumulate(results.cbegin(), results.cend(), QStringList{}, [](auto failedUserIds, const auto &result) {
+        if (result.error) {
+            failedUserIds.push_back(i18nc("A user ID (an error description)",
+                                          "%1 (%2)",
+                                          Formatting::formatForComboBox(result.userIds.front().parent()),
+                                          Formatting::errorAsString(result.error)));
+        }
+        return failedUserIds;
+    });
+
     if (successCount > 0) {
-        information(message, i18nc("@title:window", "Certification Completed"));
+        if (failedUserIdsInfo.size() > 0) {
+            message += i18nc("@info", "<p>Certifying the following certificates failed:</p>");
+        }
+        informationList(message, failedUserIdsInfo, i18nc("@title:window", "Certification Completed"));
     } else {
         error(message);
     }

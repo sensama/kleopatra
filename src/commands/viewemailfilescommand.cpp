@@ -85,7 +85,7 @@ void ViewEmailFilesCommand::doStart()
 
 void ViewEmailFilesCommand::doCancel()
 {
-    for (const auto dialog : std::as_const(d->dialogs)) {
+    for (const auto &dialog : std::as_const(d->dialogs)) {
         dialog->close();
     }
 }

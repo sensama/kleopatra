@@ -253,15 +253,27 @@ void CertifyGroupCommand::Private::wrapUp()
     const int successCount = Kleo::count_if(results, [](const auto &result) {
         return !result.error;
     });
-    if (successCount == 0) {
-        // there's no point in sending anything to the server
-        certificationOptions.sendToServer = false;
+    const bool sendToServer = (successCount > 0) && certificationOptions.exportable && certificationOptions.sendToServer;
+
+    QString message = QLatin1String{"<p>"} + resultSummary(successCount, results.size()) + QLatin1String{"</p>"};
+    if (sendToServer) {
+        message += i18nc("@info", "<p>Next the certified certificates will be uploaded to the configured certificate directory.</p>");
     }
-    const QString message = QLatin1String{"<p>"} + resultSummary(successCount, results.size()) + QLatin1String{"</p>"};
     if (successCount > 0) {
         information(message, i18nc("@title:window", "Certification Completed"));
     } else {
         error(message);
+    }
+
+    if (sendToServer) {
+        const auto certificatesToSendToServer = std::accumulate(results.cbegin(), results.cend(), std::vector<Key>{}, [](auto keys, const auto &result) {
+            if (!result.error) {
+                keys.push_back(result.userIds.front().parent());
+            }
+            return keys;
+        });
+        const auto cmd = new ExportOpenPGPCertsToServerCommand(certificatesToSendToServer);
+        cmd->start();
     }
 
     if (!certificationOptions.tags.isEmpty()) {

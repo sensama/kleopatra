@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-26 01:46+0000\n"
-"PO-Revision-Date: 2023-09-23 12:22+0200\n"
+"PO-Revision-Date: 2023-09-27 00:41+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -305,8 +305,7 @@ msgid "Do you wish to create one now?"
 msgstr "¿Quiere crear uno ahora?"
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, fuzzy, kde-format
-#| msgid "Certification Not Possible"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "La certificación no es posible"
@@ -874,11 +873,10 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "Error al descifrar o verificar el portapapeles"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
-msgstr "Descifrar o verificar ha fallado"
+msgstr "No se ha podido descifrar o verificar"
 
 #: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
@@ -1004,13 +1002,12 @@ msgid ""
 "%1 for details."
 msgstr ""
 "El proceso GpgSM que intentaba volcar el certificado terminó de forma "
-"prematura debido a un error inesperado. Por favor, compruebe la salida de "
-"gpgsm --dump-cert %1 para más detalles."
+"prematura debido a un error inesperado. Compruebe la salida de gpgsm --dump-"
+"cert %1 para más detalles."
 
 #: src/commands/dumpcertificatecommand.cpp:343
 #: src/commands/dumpcertificatecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump Certificate Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
 msgstr "Error de volcado del certificado"
@@ -1055,13 +1052,12 @@ msgid ""
 "listcrls for details."
 msgstr ""
 "El proceso GpgSM que intentaba volcar la caché CRL terminó de forma "
-"prematura debido a un error inesperado. Por favor, compruebe la salida de "
-"gpgsm --call-dirmngr listcrls para más detalles."
+"prematura debido a un error inesperado. Compruebe la salida de gpgsm --call-"
+"dirmngr listcrls para más detalles."
 
 #: src/commands/dumpcrlcachecommand.cpp:351
 #: src/commands/dumpcrlcachecommand.cpp:357
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Error al volcar la caché CRL"
@@ -1111,11 +1107,10 @@ msgid "You have to select different filenames for different protocols."
 msgstr "Debe seleccionar diferentes archivos para diferentes protocolos."
 
 #: src/commands/exportcertificatecommand.cpp:230
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
-msgstr "Error al exportar"
+msgstr "Error de exportación"
 
 #: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
@@ -1283,8 +1278,8 @@ msgid ""
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
 "<para>El proceso GPG que intentaba exportar certificados OpenPGP terminó "
-"prematuramente debido a un error inesperado.</para><para>Por favor, "
-"compruebe la salida de <icode>%1</icode> para más detalles.</para>"
+"prematuramente debido a un error inesperado.</para><para>Compruebe la salida "
+"de <icode>%1</icode> para más detalles.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:116
 #: src/commands/importcertificatescommand.cpp:624
@@ -1383,7 +1378,7 @@ msgid ""
 msgstr ""
 "<para><application>Kleopatra</application> usa <application>PaperKey</"
 "application> para crear una versión minimizada e imprimible de su clave "
-"secreta.</para><para>Por favor, asegúrese de que está instalado.</para>"
+"secreta.</para><para>Asegúrese de que está instalado.</para>"
 
 #: src/commands/exportpaperkeycommand.cpp:77
 #: src/commands/importpaperkeycommand.cpp:156
@@ -1413,8 +1408,8 @@ msgid ""
 "<icode>%1</icode> for details.</para>"
 msgstr ""
 "<para>El proceso GPG que intentaba exportar la clave secreta ha terminado "
-"prematuramente debido a un error inesperado.</para><para>Por favor, "
-"compruebe el resultado de <icode>%1</icode> para más detalles.</para>"
+"prematuramente debido a un error inesperado.</para><para>Compruebe el "
+"resultado de <icode>%1</icode> para más detalles.</para>"
 
 #: src/commands/exportpaperkeycommand.cpp:130
 #: src/commands/exportsecretkeycommand_old.cpp:141
@@ -1534,8 +1529,8 @@ msgid ""
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
 "<para>El proceso GPG o GpgSM que intentaba exportar la clave secreta ha "
-"terminado prematuramente debido a un error inesperado.</para><para>Por "
-"favor, compruebe el resultado de <icode>%1</icode> para más detalles.</para>"
+"terminado prematuramente debido a un error inesperado.</para><para>Compruebe "
+"el resultado de <icode>%1</icode> para más detalles.</para>"
 
 #: src/commands/exportsecretkeycommand_old.cpp:152
 #, kde-format
@@ -1661,8 +1656,7 @@ msgstr ""
 "certificado<br>antes de importarlo."
 
 #: src/commands/genrevokecommand.cpp:99
-#, fuzzy, kde-format
-#| msgid "Revocation certificate created"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Certificado de revocación creado"
@@ -1939,7 +1933,7 @@ msgstr "Grupos actualizados:"
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
-"Nada importado (esto no debería suceder, por favor informe este fallo)."
+"No se ha importado nada (esto no debería suceder; informe de este fallo)."
 
 #: src/commands/importcertificatescommand.cpp:346
 #, kde-format
@@ -2116,8 +2110,8 @@ msgid ""
 "dirmngr loadcrl <filename> for details."
 msgstr ""
 "El proceso GpgSM que intentaba importar el archivo CRL terminó de forma "
-"prematura debido a un error inesperado. Por favor, compruebe la salida de "
-"gpgsm --call-dirmngr loadcrl <filename> para más detalles."
+"prematura debido a un error inesperado. Compruebe la salida de gpgsm --call-"
+"dirmngr loadcrl <filename> para más detalles."
 
 #: src/commands/importcrlcommand.cpp:203 src/commands/importcrlcommand.cpp:208
 #, kde-format
@@ -2173,8 +2167,8 @@ msgid ""
 "installed.</para>"
 msgstr ""
 "<para><application>Kleopatra</application> usa <application>PaperKey</"
-"application> para importar la copia de respaldo del texto.</para><para>Por "
-"favor, asegúrese de que está instalado.</para>"
+"application> para importar la copia de respaldo del texto.</"
+"para><para>Asegúrese de que está instalado.</para>"
 
 #: src/commands/importpaperkeycommand.cpp:161
 #, kde-format
@@ -2201,8 +2195,8 @@ msgid ""
 "<icode>%1</icode> for details.</para>"
 msgstr ""
 "<para>El proceso GPG que intentaba restaurar la clave secreta finalizó "
-"prematuramente debido a un error inesperado.</para><para>Por favor, "
-"compruebe el resultado de <icode>%1</icode> para más detalles.</para>"
+"prematuramente debido a un error inesperado.</para><para>Compruebe el "
+"resultado de <icode>%1</icode> para más detalles.</para>"
 
 #: src/commands/importpaperkeycommand.cpp:211
 #, kde-kuit-format
@@ -2491,8 +2485,8 @@ msgid ""
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
 "<para>El proceso GPG o GpgSM que intentaba aprender la tarjeta inteligente "
-"finalizó prematuramente debido a un error inesperado.</para><para>Por favor, "
-"compruebe el resultado de <icode>%1</icode> para más detalles.</para>"
+"finalizó prematuramente debido a un error inesperado.</para><para>Compruebe "
+"el resultado de <icode>%1</icode> para más detalles.</para>"
 
 #: src/commands/learncardkeyscommand.cpp:101
 #, kde-format
@@ -2974,8 +2968,8 @@ msgid ""
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
 "<para>El proceso GpgSM que trató de actualizar los certificados X.509 "
-"terminó prematuramente debido a un error inesperado.</para><para>Por favor, "
-"compruebe la salida de <icode>%1</icode> para más detalles. </para>"
+"terminó prematuramente debido a un error inesperado.</para><para>Compruebe "
+"la salida de <icode>%1</icode> para más detalles. </para>"
 
 #: src/commands/refreshx509certscommand.cpp:88
 #, kde-kuit-format
@@ -3786,11 +3780,10 @@ msgstr ""
 "¿Quiere aplicar los cambios o deshacerlos?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, fuzzy, kde-format
-#| msgid "Apply Settings"
+#, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
-msgstr "Aplicar preferencias"
+msgstr "Aplicar las preferencias"
 
 #: src/conf/smartcardconfigpage.cpp:67
 #, kde-format
@@ -4144,8 +4137,8 @@ msgid ""
 msgstr ""
 "Ha fallado la búsqueda de datos cifrados o firmados en uno o más archivos."
 "<nl/>Puede seleccionar manualmente lo que hacer con los archivos ahora.<nl/> "
-"Si la clave contiene datos firmados o cifrados, por favor, informe del fallo "
-"(consulte Ayuda -> Informar de fallos)."
+"Si la clave contiene datos firmados o cifrados, informe del fallo (consulte "
+"Ayuda -> Informar de fallos)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
@@ -4175,11 +4168,10 @@ msgstr ""
 "¿Se debe guardar el archivo con su nombre original <filename>%1</filename>?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
-#, fuzzy, kde-format
-#| msgid "Use Original File Name?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
-msgstr "¿Usar el nombre original del archivo?"
+msgstr "¿Usar el nombre de archivo original?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
@@ -4462,8 +4454,8 @@ msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
 msgstr ""
-"La firma es válida, pero la confianza en la validez del certificado es solo "
-"marginal."
+"La firma es válida, pero la confianza en la validez del certificado es "
+"mínima."
 
 #: src/crypto/decryptverifytask.cpp:223
 #, kde-format
@@ -4860,7 +4852,7 @@ msgstr "Cifrado correctamente."
 #: src/crypto/gui/certificatelineedit.cpp:269
 #, kde-format
 msgid "Please enter a name or email address..."
-msgstr "Por favor, introduzca un nombre o dirección de correo..."
+msgstr "Introduzca un nombre o una dirección de correo..."
 
 #: src/crypto/gui/certificatelineedit.cpp:284
 #: src/crypto/gui/certificatelineedit.cpp:285
@@ -4900,12 +4892,12 @@ msgstr "(no se han encontrado certificados que coincidan)"
 #: src/crypto/gui/certificateselectionline.cpp:41
 #, kde-format
 msgid "Please select a certificate"
-msgstr "Por favor, seleccione un certificado"
+msgstr "Seleccione un certificado"
 
 #: src/crypto/gui/certificateselectionline.cpp:202
 #, kde-format
 msgid "(please choose between OpenPGP and S/MIME first)"
-msgstr "(por favor elija primero entre OpenPGP y S/MIME)"
+msgstr "(elija primero entre OpenPGP y S/MIME)"
 
 #: src/crypto/gui/certificateselectionline.cpp:210
 #: src/crypto/gui/resolverecipientspage.cpp:185
@@ -4955,7 +4947,7 @@ msgstr "%1: %2"
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:200
 #, kde-format
 msgid "Please select an output folder."
-msgstr "Por favor, seleccione una carpeta de salida."
+msgstr "Seleccione una carpeta de salida."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:200
 #, kde-format
@@ -4983,7 +4975,7 @@ msgstr "La carpeta de salida no se puede usar"
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:219
 #, kde-format
 msgid "Please select a different output folder."
-msgstr "Por favor, seleccione una carpeta de salida distinta."
+msgstr "Seleccione una carpeta de salida distinta."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:219
 #, kde-format
@@ -5205,13 +5197,12 @@ msgstr "Firmar texto"
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:71
 #, kde-format
 msgid "Please select an encryption certificate for recipient \"%1\""
-msgstr ""
-"Por favor, seleccione un certificado de cifrado para el destinatario «%1»"
+msgstr "Seleccione un certificado de cifrado para el destinatario «%1»"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:81
 #, kde-format
 msgid "Please select a signing certificate for sender \"%1\""
-msgstr "Por favor, seleccione un certificado de firma para el remitente «%1»"
+msgstr "Seleccione un certificado de firma para el remitente «%1»"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:92
 #, kde-format
@@ -5222,7 +5213,7 @@ msgid ""
 msgstr ""
 "Kleopatra no puede determinar sin ambigüedad la coincidencia de certificados "
 "para todos los destinatarios/remitentes del mensaje.\n"
-"Por favor, seleccione los certificados correctos para cada destinatario:"
+"Seleccione los certificados correctos para cada destinatario:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:96
 #, kde-format
@@ -5233,7 +5224,7 @@ msgid ""
 msgstr ""
 "Kleopatra no puede determinar sin ambigüedad la coincidencia de certificados "
 "para el remitente del mensaje.\n"
-"Por favor, seleccione los certificados correctos para el remitente:"
+"Seleccione los certificados correctos para el remitente:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:100
 #, kde-format
@@ -5244,7 +5235,7 @@ msgid ""
 msgstr ""
 "Kleopatra no puede determinar sin ambigüedad la coincidencia de certificados "
 "para todos los destinatarios del mensaje.\n"
-"Por favor, seleccione los certificados correctos para cada destinatario:"
+"Seleccione los certificados correctos para cada destinatario:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:108
 #, kde-format
@@ -5252,16 +5243,15 @@ msgid ""
 "Please verify that correct certificates have been selected for each "
 "recipient:"
 msgstr ""
-"Por favor, compruebe que se han seleccionado los certificados correctos para "
-"cada destinatario:"
+"Compruebe que se han seleccionado los certificados correctos para cada "
+"destinatario:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:109
 #, kde-format
 msgid ""
 "Please verify that the correct certificate has been selected for the sender:"
 msgstr ""
-"Por favor, compruebe que se ha seleccionado el certificado correcto para el "
-"remitente:"
+"Compruebe que se ha seleccionado el certificado correcto para el remitente:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:356
 #, kde-format
@@ -5347,7 +5337,7 @@ msgstr "Salida"
 #: src/crypto/gui/signencryptfileswizard.cpp:164
 #, kde-format
 msgid "Please select an action."
-msgstr "Por favor, seleccione una acción."
+msgstr "Seleccione una acción."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:167
 #, kde-format
@@ -5695,8 +5685,7 @@ msgid "Could not find a key for the following recipients:"
 msgstr "No se ha podido encontrar una clave para los siguientes destinatarios:"
 
 #: src/crypto/gui/signencryptwidget.cpp:797
-#, fuzzy, kde-format
-#| msgid "Failed to find some keys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "No se han encontrado algunas claves"
@@ -5809,8 +5798,7 @@ msgid "The following errors and warnings were recorded:"
 msgstr "Se han registrado los siguientes errores y avisos:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, fuzzy, kde-format
-#| msgid "Checksum Verification Errors"
+#, kde-format
 msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Errores en la suma de verificación"
@@ -6524,12 +6512,12 @@ msgstr "El certificado del emisor no se ha podido encontrar localmente."
 #: src/dialogs/certificateselectiondialog.cpp:134
 #, kde-format
 msgid "Please select one or more of the following certificates:"
-msgstr "Por favor, seleccione uno o más de los siguientes certificados:"
+msgstr "Seleccione uno o más de los siguientes certificados:"
 
 #: src/dialogs/certificateselectiondialog.cpp:135
 #, kde-format
 msgid "Please select one of the following certificates:"
-msgstr "Por favor, seleccione uno de los siguientes certificados:"
+msgstr "Seleccione uno de los siguientes certificados:"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
 #: src/view/smartcardwidget.cpp:67
@@ -6768,11 +6756,10 @@ msgstr ""
 "b>:</p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:642
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
-msgstr "Fallo en cambio de confianza de certificación"
+msgstr "Ha fallado el cambio de confianza de la certificación"
 
 #: src/dialogs/certifywidget.cpp:649
 #, kde-format
@@ -6854,8 +6841,7 @@ msgstr[1] ""
 "anteriores a lo certificados, por lo que no deberían ser borrados."
 
 #: src/dialogs/deletecertificatesdialog.cpp:220
-#, fuzzy, kde-format
-#| msgid "Secret Key Deletion"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Borrado de clave secreta"
@@ -8752,9 +8738,8 @@ msgstr ""
 "<para>La versión de la biblioteca <application>GpgME</application> que está "
 "ejecutando es más vieja que la que se utilizó en la compilación "
 "<application>GpgME++</application> </para><para><application>Kleopatra</"
-"application> no funcionará con esta configuración.</para><para> Por favor, "
-"consulte a su administrador para que le ayude a resolver este problema.</"
-"para>"
+"application> no funcionará con esta configuración.</para><para>Consulte a su "
+"administrador para que le ayude a resolver este problema.</para>"
 
 #: src/main.cpp:133
 #, kde-format
@@ -9286,8 +9271,8 @@ msgid ""
 "Please enter your personal details below. If you want more control over the "
 "parameters, click on the Advanced Settings button."
 msgstr ""
-"Por favor, introduzca sus detalles personales debajo. Si desea más control "
-"sobre los parámetros, pulse el botón «Configuración avanzada»."
+"Introduzca sus detalles personales debajo. Si desea más control sobre los "
+"parámetros, pulse el botón «Configuración avanzada»."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:221
 #, kde-format
@@ -9461,7 +9446,7 @@ msgstr ""
 #: src/newcertificatewizard/resultpage.cpp:271
 #, kde-format
 msgid "Please process this certificate."
-msgstr "Por favor, procese este certificado."
+msgstr "Procese este certificado."
 
 #: src/newcertificatewizard/resultpage.cpp:272
 #, kde-format
@@ -9471,8 +9456,8 @@ msgid ""
 "\n"
 "Thanks,\n"
 msgstr ""
-"Por favor, procese este certificado e informe al remitente acerca de la "
-"ubicación donde obtener el certificado resultante.\n"
+"Procese este certificado e informe al remitente sobre la ubicación donde "
+"obtener el certificado resultante.\n"
 "\n"
 "Gracias,\n"
 
@@ -9511,7 +9496,7 @@ msgstr "Mi nueva clave pública OpenPGP"
 #: src/newcertificatewizard/resultpage.cpp:310
 #, kde-format
 msgid "Please find attached my new public OpenPGP key."
-msgstr "Por favor, encuentre como adjunto mi nueva clave pública OpenPGP."
+msgstr "Encuentre como adjunto mi nueva clave pública OpenPGP."
 
 #: src/newcertificatewizard/resultpage.cpp:314
 #, kde-kuit-format
@@ -9536,8 +9521,8 @@ msgid ""
 "This operation will delete the certification request. Please make sure that "
 "you have sent or saved it before proceeding."
 msgstr ""
-"Esta operación borrará la petición de certificación. Por favor, asegúrese de "
-"haberla enviado o guardado antes de continuar."
+"Esta operación borrará la petición de certificación. Asegúrese de haberla "
+"enviado o guardado antes de continuar."
 
 #: src/newcertificatewizard/resultpage.cpp:365
 #, kde-format
@@ -9657,8 +9642,8 @@ msgid ""
 "<para>Please check the output of <command>%1 --version</command> manually.</"
 "para>"
 msgstr ""
-"<para>Por favor, compruebe la salida de <command>%1 --version</command> "
-"manualmente.</para>"
+"<para>Compruebe la salida de <command>%1 --version</command> manualmente.</"
+"para>"
 
 #: src/selftest/enginecheck.cpp:115
 #, kde-format
@@ -10630,8 +10615,8 @@ msgid ""
 "Could not pass socket to Qt: %1. This should not happen, please report this "
 "bug."
 msgstr ""
-"No se ha podido pasar el conector a Qt: %1. Esto no debería suceder, por "
-"favor informe este fallo."
+"No se ha podido pasar el conector a Qt: %1. Esto no debería suceder. Informe "
+"de este fallo."
 
 #: src/utils/accessibility.cpp:94
 #, kde-format
@@ -11432,11 +11417,10 @@ msgstr ""
 "más de dos veces."
 
 #: src/view/nullpinwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Set initial PIN"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set initial PIN"
-msgstr "Establecer PIN inicial"
+msgstr "Definir el PIN inicial"
 
 #: src/view/openpgpkeycardwidget.cpp:53
 #, kde-format
@@ -12107,7 +12091,7 @@ msgstr "CardOS 5 (diversas aplicaciones)"
 #: src/view/smartcardwidget.cpp:58
 #, kde-format
 msgid "Please insert a compatible smartcard."
-msgstr "Por favor, inserte una tarjeta inteligente compatible."
+msgstr "Inserte una tarjeta inteligente compatible."
 
 #: src/view/smartcardwidget.cpp:60
 #, kde-format

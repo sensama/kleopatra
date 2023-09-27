@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-26 01:46+0000\n"
-"PO-Revision-Date: 2023-09-23 09:40+0200\n"
+"PO-Revision-Date: 2023-09-26 09:45+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.3.2\n"
 
@@ -298,8 +298,7 @@ msgid "Do you wish to create one now?"
 msgstr "Ali ga želite zdaj ustvariti?"
 
 #: src/commands/certifycertificatecommand.cpp:175
-#, fuzzy, kde-format
-#| msgid "Certification Not Possible"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Potrjevanje ni mogoče"
@@ -864,8 +863,7 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "Napaka dešifriranja/preverjanja odložišča"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Dešifriranje/preverjanje je spodletelo"
@@ -998,11 +996,10 @@ msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:343
 #: src/commands/dumpcertificatecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump Certificate Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
-msgstr "Napaka odloženega izpisa potrdila"
+msgstr "Izpis napake potrdila"
 
 #: src/commands/dumpcertificatecommand.cpp:346
 #, kde-format
@@ -1050,12 +1047,10 @@ msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:351
 #: src/commands/dumpcrlcachecommand.cpp:357
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
-msgstr ""
-"Napaka odloženega izpisa predpomnilnika seznama preklicanih potrdil (CRL)"
+msgstr "Izpis napake predpomnilnika seznama preklicanih potrdil (CRL)"
 
 #: src/commands/dumpcrlcachecommand.cpp:354
 #, kde-format
@@ -1102,8 +1097,7 @@ msgid "You have to select different filenames for different protocols."
 msgstr "Izbrati morate različna imena datotek za različne protokole."
 
 #: src/commands/exportcertificatecommand.cpp:230
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Napaka izvoza"
@@ -1646,8 +1640,7 @@ msgstr ""
 "mogoče uvoziti."
 
 #: src/commands/genrevokecommand.cpp:99
-#, fuzzy, kde-format
-#| msgid "Revocation certificate created"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Ustvarjeno potrdilo za preklic"
@@ -3764,8 +3757,7 @@ msgstr ""
 "Ali želite spremembe uveljaviti ali zavreči?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, fuzzy, kde-format
-#| msgid "Apply Settings"
+#, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Uveljavi nastavitve"
@@ -4153,8 +4145,7 @@ msgid ""
 msgstr "Naj bo datoteka shranjena z izvornim imenom <filename>%1</filename>?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
-#, fuzzy, kde-format
-#| msgid "Use Original File Name?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Naj uporabim izvorno ime datoteke?"
@@ -5668,8 +5659,7 @@ msgid "Could not find a key for the following recipients:"
 msgstr "Ni bilo mogoče najti ključa za naslednje prejemnike:"
 
 #: src/crypto/gui/signencryptwidget.cpp:797
-#, fuzzy, kde-format
-#| msgid "Failed to find some keys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Ni bilo mogoče najti nekaterih ključev"
@@ -5782,8 +5772,7 @@ msgid "The following errors and warnings were recorded:"
 msgstr "Zabeležene so bile naslednje napake in opozorila:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, fuzzy, kde-format
-#| msgid "Checksum Verification Errors"
+#, kde-format
 msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Napake preverjanja nadzornih vsot"
@@ -6738,8 +6727,7 @@ msgid ""
 msgstr "<p>Sprememba zaupanja v ključ za <b>%1</b> ni uspela:</p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:642
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Sprememba zaupanja v potrdilo ni uspela"
@@ -6840,8 +6828,7 @@ msgstr[3] ""
 "potrdila, in jih zato ni dobro izbrisati."
 
 #: src/dialogs/deletecertificatesdialog.cpp:220
-#, fuzzy, kde-format
-#| msgid "Secret Key Deletion"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Brisanje tajnega ključa"
@@ -11359,8 +11346,7 @@ msgstr ""
 "kot 2-krat."
 
 #: src/view/nullpinwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Set initial PIN"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Nastavi začetni PIN"

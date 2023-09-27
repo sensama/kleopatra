@@ -210,6 +210,12 @@ GnuPGProcessCommand::GnuPGProcessCommand(const GpgME::Key &key)
     d->init();
 }
 
+GnuPGProcessCommand::GnuPGProcessCommand(const std::vector<GpgME::Key> &keys)
+    : Command(keys, new Private(this, nullptr))
+{
+    d->init();
+}
+
 void GnuPGProcessCommand::Private::init()
 {
 #if QT_DEPRECATED_SINCE(5, 13)

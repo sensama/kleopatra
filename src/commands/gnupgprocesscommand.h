@@ -24,9 +24,10 @@ class GnuPGProcessCommand : public Command
 {
     Q_OBJECT
 protected:
-    explicit GnuPGProcessCommand(QAbstractItemView *view, KeyListController *parent);
+    GnuPGProcessCommand(QAbstractItemView *view, KeyListController *parent);
     explicit GnuPGProcessCommand(KeyListController *parent);
     explicit GnuPGProcessCommand(const GpgME::Key &key);
+    explicit GnuPGProcessCommand(const std::vector<GpgME::Key> &keys);
     ~GnuPGProcessCommand() override;
 
 public:

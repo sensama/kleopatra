@@ -39,6 +39,11 @@ ExportOpenPGPCertsToServerCommand::ExportOpenPGPCertsToServerCommand(const Key &
 {
 }
 
+ExportOpenPGPCertsToServerCommand::ExportOpenPGPCertsToServerCommand(const std::vector<Key> &keys)
+    : GnuPGProcessCommand(keys)
+{
+}
+
 ExportOpenPGPCertsToServerCommand::~ExportOpenPGPCertsToServerCommand() = default;
 
 bool ExportOpenPGPCertsToServerCommand::preStartHook(QWidget *parent) const

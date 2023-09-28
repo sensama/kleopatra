@@ -463,26 +463,61 @@ public:
         });
         connect(mTrustSignatureDomainLE, &QLineEdit::textChanged, q, &CertifyWidget::changed);
 
-        loadConfig();
+        loadConfig(true);
     }
 
     ~Private() = default;
 
-    void loadConfig()
+    void loadConfig(bool loadAll = false)
     {
-        const Settings settings;
-        mExpirationCheckBox->setChecked(settings.certificationValidityInDays() > 0);
-        if (settings.certificationValidityInDays() > 0) {
-            const QDate expirationDate = QDate::currentDate().addDays(settings.certificationValidityInDays());
-            mExpirationDateEdit->setDate(expirationDate > mExpirationDateEdit->maximumDate() //
-                                             ? mExpirationDateEdit->maximumDate() //
-                                             : expirationDate);
+        const KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
+
+        if (loadAll) {
+            const Settings settings;
+            mExpirationCheckBox->setChecked(settings.certificationValidityInDays() > 0);
+            if (settings.certificationValidityInDays() > 0) {
+                const QDate expirationDate = QDate::currentDate().addDays(settings.certificationValidityInDays());
+                mExpirationDateEdit->setDate(expirationDate > mExpirationDateEdit->maximumDate() //
+                                                 ? mExpirationDateEdit->maximumDate() //
+                                                 : expirationDate);
+            }
+
+            mSecKeySelect->setDefaultKey(conf.readEntry("LastKey", QString()));
         }
 
-        const KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
-        mSecKeySelect->setDefaultKey(conf.readEntry("LastKey", QString()));
-        mExportCB->setChecked(conf.readEntry("ExportCheckState", false));
-        mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
+        switch (mMode) {
+        case SingleCertification: {
+            mExportCB->setChecked(conf.readEntry("ExportCheckState", false));
+            mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
+            break;
+        }
+        case BulkCertification: {
+            mExportCB->setChecked(conf.readEntry("BulkExportCheckState", true));
+            mPublishCB->setChecked(conf.readEntry("BulkPublishCheckState", false));
+            break;
+        }
+        }
+    }
+
+    void saveConfig()
+    {
+        KConfigGroup conf{KSharedConfig::openConfig(), "CertifySettings"};
+        if (!secKey().isNull()) {
+            conf.writeEntry("LastKey", secKey().primaryFingerprint());
+        }
+        switch (mMode) {
+        case SingleCertification: {
+            conf.writeEntry("ExportCheckState", mExportCB->isChecked());
+            conf.writeEntry("PublishCheckState", mPublishCB->isChecked());
+            break;
+        }
+        case BulkCertification: {
+            conf.writeEntry("BulkExportCheckState", mExportCB->isChecked());
+            conf.writeEntry("BulkPublishCheckState", mPublishCB->isChecked());
+            break;
+        }
+        }
+        conf.sync();
     }
 
     void setMode(Mode mode)
@@ -501,6 +536,7 @@ public:
             break;
         }
         }
+        loadConfig();
     }
 
     void setUpUserIdList(const std::vector<GpgME::UserID> &uids = {})
@@ -1006,6 +1042,11 @@ QDate CertifyWidget::expirationDate() const
 bool CertifyWidget::isValid() const
 {
     return d->isValid();
+}
+
+void CertifyWidget::saveState() const
+{
+    d->saveConfig();
 }
 
 #include "certifywidget.moc"

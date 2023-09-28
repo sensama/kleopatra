@@ -149,13 +149,7 @@ void CertifyCertificateDialog::accept()
         return;
     }
 
-    KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
-    const auto lastKey = mCertWidget->secKey();
-    if (!lastKey.isNull()) {
-        conf.writeEntry("LastKey", lastKey.primaryFingerprint());
-    }
-    conf.writeEntry("ExportCheckState", mCertWidget->exportableSelected());
-    conf.writeEntry("PublishCheckState", mCertWidget->publishSelected());
+    mCertWidget->saveState();
 
     QDialog::accept();
 }

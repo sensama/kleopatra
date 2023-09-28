@@ -68,6 +68,8 @@ public:
 
     bool isValid() const;
 
+    void saveState() const;
+
 Q_SIGNALS:
     void changed() const;
 

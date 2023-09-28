@@ -90,6 +90,8 @@ set(_kleopatra_SRCS
   commands/certificatetopivcardcommand.h
   commands/certifycertificatecommand.cpp
   commands/certifycertificatecommand.h
+  commands/certifygroupcommand.cpp
+  commands/certifygroupcommand.h
   commands/changeexpirycommand.cpp
   commands/changeexpirycommand.h
   commands/changeownertrustcommand.cpp

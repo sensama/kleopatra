@@ -41,6 +41,7 @@ using namespace Kleo;
 CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f)
     : QDialog(p, f)
 {
+    setWindowTitle(i18nc("@title:window", "Certify Certificates"));
     setWindowFlags(windowFlags() & (~Qt::WindowContextHelpButtonHint));
 
     // Setup GUI
@@ -84,7 +85,17 @@ void CertifyCertificateDialog::setCertificateToCertify(const Key &key, const std
         return Kleo::userIDBelongsToKey(uid, key);
     }));
     setWindowTitle(i18nc("@title:window arg is name, email of certificate holder", "Certify Certificate: %1", Formatting::prettyName(key)));
-    mCertWidget->setTarget(key, uids);
+    mCertWidget->setCertificate(key, uids);
+}
+
+void CertifyCertificateDialog::setCertificatesToCertify(const std::vector<GpgME::Key> &keys)
+{
+    mCertWidget->setCertificates(keys);
+}
+
+void CertifyCertificateDialog::setGroupName(const QString &name)
+{
+    setWindowTitle(i18nc("@title:window Certify Certificate Group <group name>", "Certify Certificate Group %1", name));
 }
 
 bool CertifyCertificateDialog::exportableCertificationSelected() const
@@ -100,11 +111,6 @@ bool CertifyCertificateDialog::trustSignatureSelected() const
 QString CertifyCertificateDialog::trustSignatureDomain() const
 {
     return mCertWidget->trustSignatureDomain();
-}
-
-bool CertifyCertificateDialog::nonRevocableCertificationSelected() const
-{
-    return false;
 }
 
 Key CertifyCertificateDialog::selectedSecretKey() const
@@ -143,13 +149,7 @@ void CertifyCertificateDialog::accept()
         return;
     }
 
-    KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
-    const auto lastKey = mCertWidget->secKey();
-    if (!lastKey.isNull()) {
-        conf.writeEntry("LastKey", lastKey.primaryFingerprint());
-    }
-    conf.writeEntry("ExportCheckState", mCertWidget->exportableSelected());
-    conf.writeEntry("PublishCheckState", mCertWidget->publishSelected());
+    mCertWidget->saveState();
 
     QDialog::accept();
 }

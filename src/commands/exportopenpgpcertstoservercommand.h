@@ -20,9 +20,10 @@ class ExportOpenPGPCertsToServerCommand : public GnuPGProcessCommand
 {
     Q_OBJECT
 public:
-    explicit ExportOpenPGPCertsToServerCommand(QAbstractItemView *view, KeyListController *parent);
+    ExportOpenPGPCertsToServerCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ExportOpenPGPCertsToServerCommand(KeyListController *parent);
     explicit ExportOpenPGPCertsToServerCommand(const GpgME::Key &key);
+    explicit ExportOpenPGPCertsToServerCommand(const std::vector<GpgME::Key> &keys);
 
     ~ExportOpenPGPCertsToServerCommand() override;
 

@@ -30,10 +30,14 @@ public:
     ~CertifyWidget() override;
 
     /* Set the key to certify */
-    void setTarget(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids);
+    void setCertificate(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids);
 
     /* Get the key to certify */
-    GpgME::Key target() const;
+    GpgME::Key certificate() const;
+
+    /* Sets the certificates to certify. Use for bulk certification. */
+    void setCertificates(const std::vector<GpgME::Key> &keys);
+    std::vector<GpgME::Key> certificates() const;
 
     /* Select specific user IDs. Default: all */
     void selectUserIDs(const std::vector<GpgME::UserID> &uids);
@@ -63,6 +67,8 @@ public:
     QDate expirationDate() const;
 
     bool isValid() const;
+
+    void saveState() const;
 
 Q_SIGNALS:
     void changed() const;

@@ -29,14 +29,19 @@ public:
     explicit CertifyCertificateDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~CertifyCertificateDialog() override;
 
+    /** Sets the certificate to certify for certifying user IDs of a single certificate. */
     void setCertificateToCertify(const GpgME::Key &key, const std::vector<GpgME::UserID> &uids = {});
+
+    /** Sets the certificates to certify for bulk certification. */
+    void setCertificatesToCertify(const std::vector<GpgME::Key> &keys);
+
+    /** Set the optional group name when certifying the certificates of a certificate group. */
+    void setGroupName(const QString &name);
 
     bool exportableCertificationSelected() const;
 
     bool trustSignatureSelected() const;
     QString trustSignatureDomain() const;
-
-    bool nonRevocableCertificationSelected() const;
 
     void setSelectedUserIDs(const std::vector<GpgME::UserID> &uids);
     std::vector<GpgME::UserID> selectedUserIDs() const;
@@ -53,7 +58,7 @@ public Q_SLOTS:
     void accept() override;
 
 private:
-    CertifyWidget *mCertWidget;
+    CertifyWidget *mCertWidget = nullptr;
 };
 
 }

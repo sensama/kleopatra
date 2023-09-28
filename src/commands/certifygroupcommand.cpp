@@ -25,6 +25,7 @@
 #include <QGpgME/SignKeyJob>
 
 #include <QDate>
+#include <QProgressDialog>
 
 #include <gpgme++/key.h>
 
@@ -57,6 +58,7 @@ public:
 private:
     void showDialog();
     void certifyCertificates();
+    void setUpProgressDialog(int numberOfKeysToCertify);
     void startNextCertification();
     void createJob();
     void slotResult(const Error &err);
@@ -66,6 +68,7 @@ private:
     KeyGroup group;
     std::vector<Key> certificates;
     QPointer<CertifyCertificateDialog> dialog;
+    QPointer<QProgressDialog> progressDialog;
     std::vector<UserID> userIdsToCertify;
     struct {
         Key certificationKey;
@@ -154,7 +157,27 @@ void CertifyGroupCommand::Private::certifyCertificates()
     certificationOptions.exportable = dialog->exportableCertificationSelected();
     certificationOptions.sendToServer = dialog->sendToServer();
 
+    setUpProgressDialog(userIdsToCertify.size());
     startNextCertification();
+}
+
+void CertifyGroupCommand::Private::setUpProgressDialog(int numberOfKeysToCertify)
+{
+    if (progressDialog) {
+        return;
+    }
+    progressDialog = new QProgressDialog{parentWidgetOrView()};
+    progressDialog->setAttribute(Qt::WA_DeleteOnClose);
+    progressDialog->setModal(true);
+    progressDialog->setWindowTitle(i18nc("@title:window", "Certify Certificates"));
+    progressDialog->setLabelText(i18nc("@info:progress", "Certifying certificates ..."));
+    progressDialog->setMinimumDuration(1000);
+    progressDialog->setMaximum(numberOfKeysToCertify);
+    progressDialog->setValue(0);
+    connect(progressDialog, &QProgressDialog::canceled, q, &Command::cancel);
+    connect(q, &Command::finished, progressDialog, [this]() {
+        progressDialog->accept();
+    });
 }
 
 void CertifyGroupCommand::Private::startNextCertification()
@@ -207,6 +230,7 @@ void CertifyGroupCommand::Private::slotResult(const Error &err)
         jobData.userIds,
         err,
     });
+    progressDialog->setValue(results.size());
 
     if (err.isCanceled()) {
         finished();

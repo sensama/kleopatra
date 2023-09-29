@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 01:46+0000\n"
+"POT-Creation-Date: 2023-09-29 01:39+0000\n"
 "PO-Revision-Date: 2020-09-08 18:56+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
@@ -325,7 +325,7 @@ msgstr "Certifikácia nie je možná"
 msgid "Create"
 msgstr "Vytvoriť"
 
-#: src/commands/certifycertificatecommand.cpp:231
+#: src/commands/certifycertificatecommand.cpp:228
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the expiry date for <b>%1</b>:"
@@ -337,22 +337,111 @@ msgstr ""
 "<p>Nastala chyba pri pokuse o zmenu dátumu vypršania pre <b>%1</b>:</p><p>"
 "%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:235
+#: src/commands/certifycertificatecommand.cpp:232
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "Certification Error"
 msgstr "Certifikácia"
 
-#: src/commands/certifycertificatecommand.cpp:240
+#: src/commands/certifycertificatecommand.cpp:237
 #, fuzzy, kde-format
 #| msgid "Certification successful."
 msgid "Certification successful."
 msgstr "Certifikácia úspešná."
 
-#: src/commands/certifycertificatecommand.cpp:240
+#: src/commands/certifycertificatecommand.cpp:237
 #, fuzzy, kde-format
 #| msgid "Certification canceled."
 msgid "Certification Succeeded"
+msgstr "Certifikácia zrušená."
+
+#: src/commands/certifygroupcommand.cpp:117
+#, kde-format
+msgctxt "@title:window"
+msgid "Group Cannot Be Certified"
+msgstr ""
+
+#: src/commands/certifygroupcommand.cpp:118
+#, kde-format
+msgctxt "@info"
+msgid "This group contains S/MIME certificates which cannot be certified."
+msgstr ""
+
+#: src/commands/certifygroupcommand.cpp:172
+#: src/dialogs/certifycertificatedialog.cpp:44
+#, fuzzy, kde-format
+#| msgid "Certify Certificate..."
+msgctxt "@title:window"
+msgid "Certify Certificates"
+msgstr "Certifikovať certifikát..."
+
+#: src/commands/certifygroupcommand.cpp:173
+#, fuzzy, kde-format
+#| msgid "Certify Certificate..."
+msgctxt "@info:progress"
+msgid "Certifying certificates ..."
+msgstr "Certifikovať certifikát..."
+
+#: src/commands/certifygroupcommand.cpp:260
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "X.509 certificates refreshed successfully."
+msgctxt "@info"
+msgid "All certificates were certified successfully."
+msgstr "Certifikáty X.509 úspešne obnovené"
+
+#: src/commands/certifygroupcommand.cpp:265
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The certification of all certificates failed.</para><para>Error: "
+"<message>%1</message></para>"
+msgstr ""
+"<qt><p>Nastala chyba počas načítavania certifikácií:</p><p><b>%1</b></p></qt>"
+
+#: src/commands/certifygroupcommand.cpp:270
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "OpenPGP certificates exported successfully."
+msgctxt "@info"
+msgid "1 of %2 certificates was certified successfully."
+msgid_plural "%1 of %2 certificates were certified successfully."
+msgstr[0] "Certifikáty OpenPGP úspešne exportované."
+msgstr[1] "Certifikáty OpenPGP úspešne exportované."
+msgstr[2] "Certifikáty OpenPGP úspešne exportované."
+
+#: src/commands/certifygroupcommand.cpp:288
+#, kde-format
+msgctxt "@info"
+msgid ""
+"<p>Next the certified certificates will be uploaded to the configured "
+"certificate directory.</p>"
+msgstr ""
+
+#: src/commands/certifygroupcommand.cpp:293
+#, fuzzy, kde-format
+#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
+#| msgid "%1 (%2)"
+msgctxt "A user ID (an error description)"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: src/commands/certifygroupcommand.cpp:302
+#, fuzzy, kde-format
+#| msgid "Exporting certificates..."
+msgctxt "@info"
+msgid "<p>Certifying the following certificates failed:</p>"
+msgstr "Exportovanie certifikátov..."
+
+#: src/commands/certifygroupcommand.cpp:304
+#, fuzzy, kde-format
+#| msgid "Certification canceled."
+msgctxt "@title:window"
+msgid "Certification Completed"
 msgstr "Certifikácia zrušená."
 
 #: src/commands/changeexpirycommand.cpp:237
@@ -1286,7 +1375,7 @@ msgid ""
 msgstr ""
 "<qt><p>Nastala chyba počas načítavania certifikácií:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:49
+#: src/commands/exportopenpgpcertstoservercommand.cpp:54
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1306,8 +1395,8 @@ msgstr ""
 "para><para>Chcete pokračovať s <resource>keys.gnupg.net</resource> ako "
 "serverom pre export?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:56
-#: src/commands/exportopenpgpcertstoservercommand.cpp:70
+#: src/commands/exportopenpgpcertstoservercommand.cpp:61
+#: src/commands/exportopenpgpcertstoservercommand.cpp:75
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
@@ -1317,7 +1406,7 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export"
 msgstr "Export certifikátu OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:65
+#: src/commands/exportopenpgpcertstoservercommand.cpp:70
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1333,19 +1422,19 @@ msgstr ""
 "certifikát zrušenia, takže môžete neskôr v prípade potreby zrušiť certifikát."
 "</para><para>Ste si istí, že chcete pokračovať?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:94
+#: src/commands/exportopenpgpcertstoservercommand.cpp:99
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Chyba pri exporte certifikátu OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:99
+#: src/commands/exportopenpgpcertstoservercommand.cpp:104
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "Export certifikátu OpenPGP ukončený"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:105
+#: src/commands/exportopenpgpcertstoservercommand.cpp:110
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1357,7 +1446,7 @@ msgstr ""
 "predčasne kvôli neočakávanej chybe.</para><para>Prosím, skontrolujte výstup "
 "z <icode>%1</icode> pre podrobnosti.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:116
+#: src/commands/exportopenpgpcertstoservercommand.cpp:121
 #: src/commands/importcertificatescommand.cpp:624
 #, fuzzy, kde-format
 #| msgctxt "separator for a list of e-mail addresses"
@@ -1365,7 +1454,7 @@ msgstr ""
 msgid " "
 msgstr ", "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:117
+#: src/commands/exportopenpgpcertstoservercommand.cpp:122
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1373,7 +1462,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#: src/commands/exportopenpgpcertstoservercommand.cpp:127
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1389,7 +1478,7 @@ msgstr ""
 "<para>Nastala chyba pri pokuse o export certifikátov OpenPGP.</para> "
 "<para>Výstup z <command>%1</command> bol: <message>%2</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:130
+#: src/commands/exportopenpgpcertstoservercommand.cpp:135
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -1795,18 +1884,18 @@ msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
 msgstr "Podproces diagnostiky"
 
-#: src/commands/gnupgprocesscommand.cpp:268
+#: src/commands/gnupgprocesscommand.cpp:274
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
 msgstr ""
 "Nepodarilo sa spustiť proces %1. Prosím, skontrolujte si vašu inštaláciu."
 
-#: src/commands/gnupgprocesscommand.cpp:275
+#: src/commands/gnupgprocesscommand.cpp:281
 #, kde-format
 msgid "Starting %1..."
 msgstr "Štartovanie %1..."
 
-#: src/commands/gnupgprocesscommand.cpp:298
+#: src/commands/gnupgprocesscommand.cpp:304
 #, kde-format
 msgid "Process finished"
 msgstr "Proces ukončený"
@@ -2102,6 +2191,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr "Importovali ste nový vertifikát (verejný kľúč)"
 
 #: src/commands/importcertificatescommand.cpp:417
+#: src/conf/groupsconfigwidget.cpp:193
 #, fuzzy, kde-format
 #| msgid "Certify"
 msgctxt "@action:button"
@@ -3892,7 +3982,7 @@ msgctxt "@title::window"
 msgid "Save changes?"
 msgstr "Uložiť ako"
 
-#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:101
+#: src/conf/groupsconfigwidget.cpp:147 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
 #, fuzzy, kde-format
 #| msgid "&Search:"
@@ -3900,20 +3990,20 @@ msgctxt "@label"
 msgid "Search:"
 msgstr "&Hľadať:"
 
-#: src/conf/groupsconfigwidget.cpp:145 src/conf/groupsconfigwidget.cpp:151
+#: src/conf/groupsconfigwidget.cpp:148 src/conf/groupsconfigwidget.cpp:154
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Nové podpisy:"
 
-#: src/conf/groupsconfigwidget.cpp:146 src/conf/groupsconfigwidget.cpp:152
+#: src/conf/groupsconfigwidget.cpp:149 src/conf/groupsconfigwidget.cpp:155
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:110
+#: src/conf/groupsconfigwidget.cpp:156 src/dialogs/editgroupdialog.cpp:110
 #: src/dialogs/editgroupdialog.cpp:168
 #, fuzzy, kde-format
 #| msgid "Signed user IDs:"
@@ -3921,35 +4011,42 @@ msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "Podpísané ID používateľov:"
 
-#: src/conf/groupsconfigwidget.cpp:170
+#: src/conf/groupsconfigwidget.cpp:173
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "Zobraziť podrobnosti"
 
-#: src/conf/groupsconfigwidget.cpp:179
+#: src/conf/groupsconfigwidget.cpp:182
 #, fuzzy, kde-format
 #| msgid "New..."
 msgctxt "@action:button"
 msgid "New"
 msgstr "Nové..."
 
-#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:190
+#: src/conf/groupsconfigwidget.cpp:185 src/view/pgpcardwidget.cpp:190
 #: src/view/pgpcardwidget.cpp:208
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:186
+#: src/conf/groupsconfigwidget.cpp:189
 #: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
 msgstr "Vymazať"
 
-#: src/conf/groupsconfigwidget.cpp:190
+#: src/conf/groupsconfigwidget.cpp:194
+#, fuzzy, kde-format
+#| msgid "With certificate:"
+msgctxt "@info:tooltip"
+msgid "Start the certification process for all certificates in the group."
+msgstr "S certifikátom:"
+
+#: src/conf/groupsconfigwidget.cpp:198
 #: src/dialogs/certificatedetailswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "Export"
@@ -3957,19 +4054,19 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "Exportovať"
 
-#: src/conf/groupsconfigwidget.cpp:309
+#: src/conf/groupsconfigwidget.cpp:323
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:312
+#: src/conf/groupsconfigwidget.cpp:326
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:349
+#: src/conf/groupsconfigwidget.cpp:363
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
@@ -6421,7 +6518,7 @@ msgid "User IDs:"
 msgstr "ID používateľov"
 
 #: src/dialogs/certificatedetailswidget.cpp:214
-#: src/dialogs/certifywidget.cpp:294
+#: src/dialogs/certifywidget.cpp:330
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgid "User IDs"
@@ -6508,7 +6605,7 @@ msgid "Change Validity"
 msgstr "Platnosť"
 
 #: src/dialogs/certificatedetailswidget.cpp:299
-#: src/dialogs/certifywidget.cpp:262
+#: src/dialogs/certifywidget.cpp:290
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Odtlačok:"
@@ -6921,18 +7018,26 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "Výber certifikátu"
 
-#: src/dialogs/certifycertificatedialog.cpp:55
+#: src/dialogs/certifycertificatedialog.cpp:56
 #, kde-format
 msgid "Certify"
 msgstr "Certifikovať"
 
-#: src/dialogs/certifycertificatedialog.cpp:86
+#: src/dialogs/certifycertificatedialog.cpp:87
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Certifikovať certifikát: %1"
 
-#: src/dialogs/certifywidget.cpp:245
+#: src/dialogs/certifycertificatedialog.cpp:98
+#, fuzzy, kde-format
+#| msgctxt "@title:window arg is name, email of certificate holder"
+#| msgid "Certify Certificate: %1"
+msgctxt "@title:window Certify Certificate Group <group name>"
+msgid "Certify Certificate Group %1"
+msgstr "Certifikovať certifikát: %1"
+
+#: src/dialogs/certifywidget.cpp:273
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6940,19 +7045,19 @@ msgid ""
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:267
+#: src/dialogs/certifywidget.cpp:295
 #, fuzzy, kde-format
 #| msgid "Certify"
 msgid "Certify with:"
 msgstr "Certifikovať"
 
-#: src/dialogs/certifywidget.cpp:279
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:281
+#: src/dialogs/certifywidget.cpp:309
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6960,65 +7065,76 @@ msgid ""
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:301
+#: src/dialogs/certifywidget.cpp:324
+#, fuzzy, kde-format
+#| msgid ""
+#| "In order to mark the certificate as valid (green) it needs to be "
+#| "certified."
+msgctxt "@info"
+msgid "One or more certificates cannot be certified."
+msgstr ""
+"Na označenie certifikátu ako platného (zeleného) je potrebné ho certifikovať."
+
+#: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
+#: src/dialogs/certifywidget.cpp:563
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "ID používateľov"
 
-#: src/dialogs/certifywidget.cpp:305
+#: src/dialogs/certifywidget.cpp:341
 #, kde-format
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: src/dialogs/certifywidget.cpp:305
+#: src/dialogs/certifywidget.cpp:341
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgid "Show advanced options"
 msgstr "Pokročilé nastavenia"
 
-#: src/dialogs/certifywidget.cpp:311
+#: src/dialogs/certifywidget.cpp:347
 #, fuzzy, kde-format
 #| msgid "Certify for everyone to see"
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certifikovať pre každého viditeľného"
 
-#: src/dialogs/certifywidget.cpp:318
+#: src/dialogs/certifywidget.cpp:354
 #, fuzzy, kde-format
 #| msgid "Publish on Server..."
 msgid "Publish on keyserver afterwards"
 msgstr "Publikovať na serveri..."
 
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:366
 #, kde-format
 msgid "Tags:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:334
+#: src/dialogs/certifywidget.cpp:370
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:335
+#: src/dialogs/certifywidget.cpp:371
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:350
+#: src/dialogs/certifywidget.cpp:386
 #, fuzzy, kde-format
 #| msgid "Option:"
 msgid "Expiration:"
 msgstr "Voľba:"
 
-#: src/dialogs/certifywidget.cpp:357
+#: src/dialogs/certifywidget.cpp:393
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:358
+#: src/dialogs/certifywidget.cpp:394
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7026,17 +7142,17 @@ msgid ""
 "passed, your certification is no longer valid."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:372
+#: src/dialogs/certifywidget.cpp:409
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:373
+#: src/dialogs/certifywidget.cpp:410
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:374
+#: src/dialogs/certifywidget.cpp:411
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7044,17 +7160,50 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:385
+#: src/dialogs/certifywidget.cpp:422
 #, kde-format
 msgid "Domain:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:624
+#: src/dialogs/certifywidget.cpp:531
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Verify the fingerprints, mark the user IDs you want to certify, and select "
+"the certificate you want to certify the user IDs with.<br><i>Note: Only the "
+"fingerprints clearly identify the certificate and its owner.</i>"
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:563
+#, fuzzy, kde-format
+#| msgid "Fingerprint:"
+msgctxt "@title:column"
+msgid "Fingerprint"
+msgstr "Odtlačok:"
+
+#: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info:tooltip"
+msgid "S/MIME certificates cannot be certified."
+msgstr "Tento certifikát bol zakázaný miestne."
+
+#: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
+#, fuzzy, kde-format
+#| msgid ""
+#| "In order to mark the certificate as valid (green) it needs to be "
+#| "certified."
+msgctxt "@info:tooltip"
+msgid "Expired or revoked certificates cannot be certified."
+msgstr ""
+"Na označenie certifikátu ako platného (zeleného) je potrebné ho certifikovať."
+
+#: src/dialogs/certifywidget.cpp:890
 #, kde-format
 msgid "Is this your own key?"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:639
+#: src/dialogs/certifywidget.cpp:905
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the certification trust for "
@@ -7065,14 +7214,14 @@ msgstr ""
 "<p>Nastala chyba pri pokuse o zmenu dôveryhodnosti certifikátu pre <b>%1</b>:"
 "</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:642
+#: src/dialogs/certifywidget.cpp:908
 #, fuzzy, kde-format
 #| msgid "Certification Trust Change Succeeded"
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Zmena dôveryhodnosti certifikátu úspešná"
 
-#: src/dialogs/certifywidget.cpp:649
+#: src/dialogs/certifywidget.cpp:915
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -14033,9 +14182,6 @@ msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\
 
 #~ msgid "Sign/Encrypt Files..."
 #~ msgstr "Podpísať/Zašifrovať súbory..."
-
-#~ msgid "Certify Certificate..."
-#~ msgstr "Certifikovať certifikát..."
 
 #~ msgid "Dump Certificate"
 #~ msgstr "Vypísať certifikát"

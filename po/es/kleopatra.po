@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-29 01:39+0000\n"
-"PO-Revision-Date: 2023-09-27 00:41+0200\n"
+"PO-Revision-Date: 2023-09-29 19:22+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -343,60 +343,50 @@ msgstr "Certificación correcta"
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "No se puede certificar el grupo"
 
 #: src/commands/certifygroupcommand.cpp:118
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
-msgstr ""
+msgstr "Este grupo contiene certificados S/MIME que no se pueden certificar."
 
 #: src/commands/certifygroupcommand.cpp:172
 #: src/dialogs/certifycertificatedialog.cpp:44
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "Certificar certificado: %1"
+msgstr "Certificar certificados"
 
 #: src/commands/certifygroupcommand.cpp:173
-#, fuzzy, kde-format
-#| msgid "Exporting certificates..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "Exportando certificados..."
+msgstr "Certificando certificados..."
 
 #: src/commands/certifygroupcommand.cpp:260
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "Certificados X.509 actualizados correctamente."
+msgstr "Todos los certificados se han certificado correctamente."
 
 #: src/commands/certifygroupcommand.cpp:265
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>La creación de un nuevo certificado OpenPGP ha fallado.</"
+"<para>La certificación de todos los certificados ha fallado.</"
 "para><para>Error: <message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "OpenPGP certificates exported successfully."
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "Certificados OpenPGP exportados correctamente."
-msgstr[1] "Certificados OpenPGP exportados correctamente."
+msgstr[0] "1 de %2 certificados se ha certificado correctamente."
+msgstr[1] "%1 de %2 certificados se han certificado correctamente."
 
 #: src/commands/certifygroupcommand.cpp:288
 #, kde-format
@@ -405,29 +395,26 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
+"<p>A continuación, los certificados que haya certificado se enviarán al "
+"directorio de certificados que haya configurado.</p>"
 
 #: src/commands/certifygroupcommand.cpp:293
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:302
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "La exportación del certificado ha fallado: %1"
+msgstr "<p>La certificación de los siguientes certificados ha fallado:</p>"
 
 #: src/commands/certifygroupcommand.cpp:304
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr "Certificación correcta"
+msgstr "Certificación terminada"
 
 #: src/commands/changeexpirycommand.cpp:237
 #, kde-format
@@ -3837,12 +3824,11 @@ msgid "Delete"
 msgstr "Borrar"
 
 #: src/conf/groupsconfigwidget.cpp:194
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Write the key pair of a certificate to the card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr "Escribir el par de claves de un certificado en la tarjeta"
+msgstr ""
+"Iniciar el proceso de certificación para todos los certificados del grupo."
 
 #: src/conf/groupsconfigwidget.cpp:198
 #: src/dialogs/certificatedetailswidget.cpp:362
@@ -6713,12 +6699,10 @@ msgid "Certify Certificate: %1"
 msgstr "Certificar certificado: %1"
 
 #: src/dialogs/certifycertificatedialog.cpp:98
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "Certificar certificado: %1"
+msgstr "Certificar el grupo de certificados %1"
 
 #: src/dialogs/certifywidget.cpp:273
 #, kde-format
@@ -6755,12 +6739,10 @@ msgstr ""
 "propias claves."
 
 #: src/dialogs/certifywidget.cpp:324
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr ""
-"Para marcar el certificado como válido se necesita que esté certificado."
+msgstr "Uno o más certificados no se pueden certificar."
 
 #: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
 #: src/dialogs/certifywidget.cpp:563
@@ -6859,44 +6841,35 @@ msgid "Domain:"
 msgstr "Dominio:"
 
 #: src/dialogs/certifywidget.cpp:531
-#, fuzzy, kde-format
-#| msgid ""
-#| "Verify the fingerprint, mark the user IDs you want to certify, and select "
-#| "the key you want to certify the user IDs with.<br><i>Note: Only the "
-#| "fingerprint clearly identifies the key and its owner.</i>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Verify the fingerprints, mark the user IDs you want to certify, and select "
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
-"Compruebe la huella digital, marque las ID de usuario que quiera certificar "
-"y seleccione la clave con la que quiera certificar las ID de usuario."
-"<br><i>Nota: Solo la huella digital identifica claramente a la clave y a su "
-"propietario.</i>"
+"Compruebe las huellas digitales, marque las ID de usuario que quiera "
+"certificar y seleccione el certificado con el que quiera certificar las ID "
+"de usuario.<br><i>Nota: Solo las huellas digitales identifican claramente al "
+"certificado y a su propietario.</i>"
 
 #: src/dialogs/certifywidget.cpp:563
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "Huella digital:"
+msgstr "Huella digital"
 
 #: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for signing."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "Este certificado no se puede usar para firmar."
+msgstr "Los certificados S/MIME no se pueden certificar."
 
 #: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr ""
-"Para marcar el certificado como válido se necesita que esté certificado."
+msgstr "Los certificados caducados o revocados no se pueden certificar."
 
 #: src/dialogs/certifywidget.cpp:890
 #, kde-format

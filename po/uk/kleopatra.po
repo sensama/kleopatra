@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-29 01:39+0000\n"
-"PO-Revision-Date: 2023-09-26 18:45+0300\n"
+"PO-Revision-Date: 2023-09-29 09:06+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -336,62 +336,53 @@ msgstr "Успіх сертифікації"
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "Не може бути сертифіковано"
 
 #: src/commands/certifygroupcommand.cpp:118
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
 msgstr ""
+"У цій групі містяться сертифікати S/MIME, які не може бути сертифіковано."
 
 #: src/commands/certifygroupcommand.cpp:172
 #: src/dialogs/certifycertificatedialog.cpp:44
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "Сертифікат для посвідчення: %1"
+msgstr "Посвідчення сертифікатів"
 
 #: src/commands/certifygroupcommand.cpp:173
-#, fuzzy, kde-format
-#| msgid "Exporting certificates..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "Експорт сертифікатів…"
+msgstr "Посвідчуємо сертифікати…"
 
 #: src/commands/certifygroupcommand.cpp:260
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "Сертифікати X.509 успішно освіжено."
+msgstr "Усі сертифікати успішно посвідчено."
 
 #: src/commands/certifygroupcommand.cpp:265
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Не вдалося створити сертифікат OpenPGP.</para><para>Помилка: <message>"
-"%1</message></para>"
+"<para>Не вдалося виконати посвідчення усіх сертифікатів.</"
+"para><para>Помилка: <message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "OpenPGP certificates exported successfully."
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "Сертифікати OpenPGP було успішно експортовано."
-msgstr[1] "Сертифікати OpenPGP було успішно експортовано."
-msgstr[2] "Сертифікати OpenPGP було успішно експортовано."
-msgstr[3] "Сертифікати OpenPGP було успішно експортовано."
+msgstr[0] "%1 з %2 сертифікатів успішно посвідчено."
+msgstr[1] "%1 з %2 сертифікатів успішно посвідчено."
+msgstr[2] "%1 з %2 сертифікатів успішно посвідчено."
+msgstr[3] "%1 з %2 сертифікатів успішно посвідчено."
 
 #: src/commands/certifygroupcommand.cpp:288
 #, kde-format
@@ -400,29 +391,26 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
+"<p>Далі посвідчені сертифікати буде вивантажено до налаштованого каталогу "
+"сертифікатів.</p>"
 
 #: src/commands/certifygroupcommand.cpp:293
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:302
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "Не вдалося експортувати сертифікат: %1"
+msgstr "<p>Не вдалося посвідчити такі сертифікати:</p>"
 
 #: src/commands/certifygroupcommand.cpp:304
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr "Успіх сертифікації"
+msgstr "Посвідчення завершено"
 
 #: src/commands/changeexpirycommand.cpp:237
 #, kde-format
@@ -3851,12 +3839,10 @@ msgid "Delete"
 msgstr "Вилучити"
 
 #: src/conf/groupsconfigwidget.cpp:194
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Write the key pair of a certificate to the card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr "Записати парку ключів сертифіката на картку"
+msgstr "Почати процедуру посвідчення для усіх сертифікатів у групі."
 
 #: src/conf/groupsconfigwidget.cpp:198
 #: src/dialogs/certificatedetailswidget.cpp:362
@@ -6751,12 +6737,10 @@ msgid "Certify Certificate: %1"
 msgstr "Сертифікат для посвідчення: %1"
 
 #: src/dialogs/certifycertificatedialog.cpp:98
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "Сертифікат для посвідчення: %1"
+msgstr "Посвідчення групи сертифікатів %1"
 
 #: src/dialogs/certifywidget.cpp:273
 #, kde-format
@@ -6792,11 +6776,10 @@ msgstr ""
 "сертифікації. Це саме те, що слід робити для ваших власних ключів."
 
 #: src/dialogs/certifywidget.cpp:324
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr "Для того, щоб сертифікат вважався чинним, його слід посвідчити."
+msgstr "Один або декілька сертифікатів не може бути посвідчено."
 
 #: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
 #: src/dialogs/certifywidget.cpp:563
@@ -6897,43 +6880,37 @@ msgid "Domain:"
 msgstr "Домен:"
 
 #: src/dialogs/certifywidget.cpp:531
-#, fuzzy, kde-format
-#| msgid ""
-#| "Verify the fingerprint, mark the user IDs you want to certify, and select "
-#| "the key you want to certify the user IDs with.<br><i>Note: Only the "
-#| "fingerprint clearly identifies the key and its owner.</i>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Verify the fingerprints, mark the user IDs you want to certify, and select "
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
-"Перевірте відбиток, позначте ідентифікатори користувачів, які ви хочете "
-"сертифікувати, і виберіть ключ, яким ви хочете сертифікувати ідентифікатори "
-"користувачів.<br><i>Зауваження: ключ та його власника явним чином "
-"ідентифікує лише відбиток.</i>"
+"Перевірте відбитки, позначте ідентифікатори користувачів, які ви хочете "
+"сертифікувати, і виберіть сертифікат, яким ви хочете посвідчити "
+"ідентифікатори користувачів.<br><i>Зауваження: сертифікат та його власника "
+"явним чином ідентифікують лише відбитки.</i>"
 
 #: src/dialogs/certifywidget.cpp:563
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "Відбиток:"
+msgstr "Відбиток"
 
 #: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for signing."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "Цим сертифікатом не можна скористатися для підписування."
+msgstr "Сертифікати S/MIME не може бути посвідчено."
 
 #: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr "Для того, щоб сертифікат вважався чинним, його слід посвідчити."
+msgstr ""
+"Сертифікати, строк дії яких вичерпано, та відкликані сертифікати не може "
+"бути посвідчено."
 
 #: src/dialogs/certifywidget.cpp:890
 #, kde-format

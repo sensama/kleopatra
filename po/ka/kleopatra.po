@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-29 01:39+0000\n"
-"PO-Revision-Date: 2023-09-28 13:51+0200\n"
+"PO-Revision-Date: 2023-09-29 10:10+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -325,59 +325,51 @@ msgstr "სერტიფიკაცია წარმატებული�
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "ჯგუფის სერტიფიცირება შეუძლებელია"
 
 #: src/commands/certifygroupcommand.cpp:118
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
 msgstr ""
+"ეს ჯგუფი შეიცავს S/MIME სერტიფიკატებს, რომლების სერტიფიცირებაც შეუძლებელია."
 
 #: src/commands/certifygroupcommand.cpp:172
 #: src/dialogs/certifycertificatedialog.cpp:44
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "სერტიფიკაცია სერტიფიკატისთვის: %1"
+msgstr "სერტიფიკატების სერტიფიკაცია"
 
 #: src/commands/certifygroupcommand.cpp:173
-#, fuzzy, kde-format
-#| msgid "Exporting certificates..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "სერტიფიკატების გატანა..."
+msgstr "სერტიფიკატების სერტიფიცირება..."
 
 #: src/commands/certifygroupcommand.cpp:260
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "X.509 სერტიფიკატები წარმატებით განახლდა."
+msgstr "ყველა სერტიფიკატის სერტიფიცირება წარმატებულად დასრულდა."
 
 #: src/commands/certifygroupcommand.cpp:265
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>მოთხოვნის შენახვა ჩავარდა.</para><para><message>%1</message></para>"
+"<para>ჩავარდა ყველა სერტიფიკატის სერტიფიკაცია.</para><para>შეცდომა: <message>"
+"%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "OpenPGP certificates exported successfully."
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "OpenPGP სერთიფიკატები გატანა წარმატებით დასრულდა.."
-msgstr[1] "OpenPGP სერთიფიკატები გატანა წარმატებით დასრულდა.."
+msgstr[0] "1/%2 სერტიფიკატის სერტიფიცირება წარმატებულად დასრულდა."
+msgstr[1] "%1/%2 სერტიფიკატის სერტიფიცირება წარმატებულად დასრულდა."
 
 #: src/commands/certifygroupcommand.cpp:288
 #, kde-format
@@ -388,27 +380,22 @@ msgid ""
 msgstr ""
 
 #: src/commands/certifygroupcommand.cpp:293
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:302
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "სერტიფიკატის გატანის შეცდომა: %1"
+msgstr "<p>ჩავარდა შემდეგი სერტიფიკატების სერტიფიცირება:</p>"
 
 #: src/commands/certifygroupcommand.cpp:304
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr "სერტიფიკაცია წარმატებულია"
+msgstr "სერტიფიკაცია დასრულდა"
 
 #: src/commands/changeexpirycommand.cpp:237
 #, kde-format
@@ -2032,7 +2019,7 @@ msgstr ""
 #: src/commands/importcrlcommand.cpp:55
 #, kde-format
 msgid "Certificate Revocation Lists, DER encoded"
-msgstr ""
+msgstr "DER-ით კოდირებული სერტიფიკატის გაუქმების სიები"
 
 #: src/commands/importcrlcommand.cpp:56
 #, kde-format
@@ -2042,7 +2029,7 @@ msgstr "აირჩიეთ შემოსატანი CRL ფაილი
 #: src/commands/importcrlcommand.cpp:180
 #, kde-format
 msgid "Unable to start process dirmngr. Please check your installation."
-msgstr ""
+msgstr "შეცდომა dirmngr-ის გაშვებისას. შეამოწმეთ თქვენი ფაილები."
 
 #: src/commands/importcrlcommand.cpp:182
 #, kde-format
@@ -3027,6 +3014,8 @@ msgstr "PIV ბარათის აპლიკაციის ადმინ
 msgctxt "@info"
 msgid "PIV Card Application Administration Key set successfully."
 msgstr ""
+"PIV ბარათის აპლიკაციის ადმინისტრირების გასაღების დაყენება წარმატებით "
+"დასრულდა."
 
 #: src/commands/setprimaryuseridcommand.cpp:91
 #, kde-format
@@ -3081,7 +3070,7 @@ msgstr "<უსახელო>"
 #: src/conf/appearanceconfigwidget.cpp:300
 #, kde-format
 msgid "This parameter has been locked down by the system administrator."
-msgstr ""
+msgstr "ეს პარამეტრი დაბლოკილია თქვენი სისტემური ადმინისტრატორის მიერ."
 
 #: src/conf/appearanceconfigwidget.cpp:341
 #, kde-format
@@ -3348,7 +3337,7 @@ msgstr "დააყენეთ ეს პარამეტრი, რათ�
 #: src/conf/cryptooperationsconfigwidget.cpp:84
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
-msgstr ""
+msgstr "საკონტროლო ჯამების გამოთვლისას გამოყენებული პროგრამა:"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:89
 #, kde-format
@@ -3952,7 +3941,7 @@ msgstr ""
 #: src/crypto/autodecryptverifyfilescontroller.cpp:405
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
+msgstr "აირჩიეთ გადასამოწმებელი ფაილი ხელმოწერით <filename>%1</filename>"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format
@@ -4072,7 +4061,7 @@ msgstr "საჭიროა სულ ცოტა, ერთი შეყვ�
 #: src/crypto/decryptverifyemailcontroller.cpp:254
 #, kde-format
 msgid "Informative sender/signed data count mismatch"
-msgstr ""
+msgstr "საინფორმაციო გამგზავნის/ხელმოწერილი მონაცემების რაოდენობა არ ემთხვევა"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:259
 #, kde-format
@@ -4083,6 +4072,8 @@ msgstr "ხელმოწერის/ხელმოწერილი მო�
 #, kde-format
 msgid "Signed data can only be given for detached signature verification"
 msgstr ""
+"ხელმოწერილი მონაცემები მხოლოდ მოხსნილ ხელმოწერის გადამოწმებას შეგიძლიათ, "
+"გადასცეთ"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:267
 #, kde-format
@@ -4092,7 +4083,7 @@ msgstr "შეტანა/გამოტანის რაოდენობ�
 #: src/crypto/decryptverifyemailcontroller.cpp:269
 #, kde-format
 msgid "Cannot use output and signed data simultaneously"
-msgstr ""
+msgstr "გამოტანას და ხელმოწერილ მონაცემებს, ერთდროულად, ვერ გამოიყენებთ"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:276
 #, kde-format
@@ -4804,7 +4795,7 @@ msgstr "მიმღები (%1)"
 #: src/crypto/gui/resolverecipientspage.cpp:601
 #, kde-format
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
-msgstr ""
+msgstr "<qt><p>GnuPG-ის პარამეტრებში წინასწარ-აღწერილი მიმღებები:</p>%1</qt>"
 
 #: src/crypto/gui/resolverecipientspage.cpp:611
 #, kde-format
@@ -6247,12 +6238,10 @@ msgid "Certify Certificate: %1"
 msgstr "სერტიფიკაცია სერტიფიკატისთვის: %1"
 
 #: src/dialogs/certifycertificatedialog.cpp:98
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "სერტიფიკაცია სერტიფიკატისთვის: %1"
+msgstr "სერტიფიკატების ჯგუფის სერტიფიკაცია: %1"
 
 #: src/dialogs/certifywidget.cpp:273
 #, kde-format
@@ -6282,12 +6271,10 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:324
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr ""
-"იმისთვის, რომ სერტიფიკატი სწორად გამოაცხადოთ, საჭიროა მისი სერტიფიცირება."
+msgstr "ერთი ან მეტი სერტიფიკატის სერტიფიცირება შეუძებელია."
 
 #: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
 #: src/dialogs/certifywidget.cpp:563
@@ -6354,7 +6341,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:409
 #, kde-format
 msgid "Certify as trusted introducer"
-msgstr ""
+msgstr "სერტიფიკაცია სანდო წარმომდგენად"
 
 #: src/dialogs/certifywidget.cpp:410
 #, kde-format
@@ -6384,27 +6371,22 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:563
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "ანაბეჭდი:"
+msgstr "თითის ანაბეჭდი"
 
 #: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for signing."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "ამ სერტიფიკატის ხელმოსაწერად გამოყენება შეუძლებელია."
+msgstr "S/MIME სერტიფიკატების სერტიფიცირება შეუძლებელია."
 
 #: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr ""
-"იმისთვის, რომ სერტიფიკატი სწორად გამოაცხადოთ, საჭიროა მისი სერტიფიცირება."
+msgstr "გაუქმებული ან ვადაამოწურული სერტიფიკატების სერტიფიცირება შეუძლებელია."
 
 #: src/dialogs/certifywidget.cpp:890
 #, kde-format
@@ -6957,7 +6939,7 @@ msgstr "PIN კოდის დაყენება გაუქმდა."
 #, kde-kuit-format
 msgctxt "@info"
 msgid "There was an error setting the PIN: <message>%1</message>."
-msgstr ""
+msgstr "შეცდომა PIN-კოდის დაყენებისას: <message>%1</message>."
 
 #: src/dialogs/setinitialpindialog.cpp:81
 #, kde-format
@@ -7002,7 +6984,7 @@ msgstr ""
 #: src/dialogs/setinitialpindialog.ui:81
 #, kde-format
 msgid "(optional) Set Initial PIN (SigG)"
-msgstr ""
+msgstr "(არასავალდებულო) საწყისი PIN-კოდის (SigG) დაყენება"
 
 #: src/dialogs/subkeyswidget.cpp:88
 #, kde-format

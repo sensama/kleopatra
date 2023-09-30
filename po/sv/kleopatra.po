@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-29 00:43+0000\n"
-"PO-Revision-Date: 2023-09-22 18:53+0200\n"
+"PO-Revision-Date: 2023-09-29 22:19+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -324,59 +324,50 @@ msgstr "Certifiering lyckades"
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "Grupp kan inte certifieras"
 
 #: src/commands/certifygroupcommand.cpp:118
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
-msgstr ""
+msgstr "Gruppen innehåller S/MIME-certifikat som inte kan certifieras."
 
 #: src/commands/certifygroupcommand.cpp:172
 #: src/dialogs/certifycertificatedialog.cpp:44
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "Certifiera certifikat..."
+msgstr "Certifiera certifikat"
 
 #: src/commands/certifygroupcommand.cpp:173
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "Certifiera certifikat..."
+msgstr "Certifierar certifikat ..."
 
 #: src/commands/certifygroupcommand.cpp:260
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "X.509-certifikat uppdaterade med lyckat resultat."
+msgstr "Alla certifikat certifierades med lyckat resultat."
 
 #: src/commands/certifygroupcommand.cpp:265
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Misslyckades skapa ett nytt OpenPGP-certifikat.</para><para>Fel: "
+"<para>Certifiering av alla certifikat misslyckades.</para><para>Fel: "
 "<message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "OpenPGP certificates exported successfully."
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "OpenPGP-certifikat exporterades med lyckat resultat."
-msgstr[1] "OpenPGP-certifikat exporterades med lyckat resultat."
+msgstr[0] "%1 av %2 certifikat certifierades med lyckat resultat."
+msgstr[1] "%1 av %2 certifikat certifierades med lyckat resultat."
 
 #: src/commands/certifygroupcommand.cpp:288
 #, kde-format
@@ -385,29 +376,26 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
+"<p>Därefter kommer de certifierade certifikaten laddas upp till den "
+"inställda certifikatkatalogen.</p>"
 
 #: src/commands/certifygroupcommand.cpp:293
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:302
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "Export av certifikatet misslyckades: %1"
+msgstr "<p>Certifiering av följande certifikat misslyckades:</p>"
 
 #: src/commands/certifygroupcommand.cpp:304
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr "Certifiering lyckades"
+msgstr "Certifiering klar"
 
 #: src/commands/changeexpirycommand.cpp:237
 #, kde-format
@@ -3756,12 +3744,10 @@ msgid "Delete"
 msgstr "Ta bort"
 
 #: src/conf/groupsconfigwidget.cpp:194
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Write the key pair of a certificate to the card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr "Skriv ett certifikats nyckelpar till kortet"
+msgstr "Starta certifieringsprocessen för alla certifikat i gruppen."
 
 #: src/conf/groupsconfigwidget.cpp:198
 #: src/dialogs/certificatedetailswidget.cpp:362
@@ -6615,12 +6601,10 @@ msgid "Certify Certificate: %1"
 msgstr "Certifiera certifikat: %1"
 
 #: src/dialogs/certifycertificatedialog.cpp:98
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "Certifiera certifikat: %1"
+msgstr "Certifiera certifikatgrupp %1"
 
 #: src/dialogs/certifywidget.cpp:273
 #, kde-format
@@ -6657,11 +6641,10 @@ msgstr ""
 "för sina egna nycklar."
 
 #: src/dialogs/certifywidget.cpp:324
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr "För att markera certifikatet som giltigt måste det certifieras."
+msgstr "Ett eller flera certifikat kan inte certifieras."
 
 #: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
 #: src/dialogs/certifywidget.cpp:563
@@ -6763,11 +6746,7 @@ msgid "Domain:"
 msgstr "Domän:"
 
 #: src/dialogs/certifywidget.cpp:531
-#, fuzzy, kde-format
-#| msgid ""
-#| "Verify the fingerprint, mark the user IDs you want to certify, and select "
-#| "the key you want to certify the user IDs with.<br><i>Note: Only the "
-#| "fingerprint clearly identifies the key and its owner.</i>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Verify the fingerprints, mark the user IDs you want to certify, and select "
@@ -6776,30 +6755,26 @@ msgid ""
 msgstr ""
 "Verifiera fingeravtrycket, markera användaridentifikationerna som ska "
 "certifieras, och välj nyckel som användaridentifikationerna ska certifieras "
-"med.<br><i>Observera: Bara fingeravtrycket identifierar klart nyckeln och "
-"dess ägare.</i>"
+"med.<br><i>Observera: Bara fingeravtrycken identifierar nyckeln och dess "
+"ägare tydligt och klart.</i>"
 
 #: src/dialogs/certifywidget.cpp:563
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "Fingeravtryck:"
+msgstr "Fingeravtryck"
 
 #: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for signing."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "Certifikatet kan inte användas för signering."
+msgstr "S/MIME-certifikat kan inte certifieras."
 
 #: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr "För att markera certifikatet som giltigt måste det certifieras."
+msgstr "Utgångna eller återkallade certifikat kan inte certifieras."
 
 #: src/dialogs/certifywidget.cpp:890
 #, kde-format

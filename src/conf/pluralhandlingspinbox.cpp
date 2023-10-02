@@ -14,7 +14,7 @@ public:
     PluralHandlingSpinBoxPrivate(QSpinBox *q)
         : q(q)
     {
-        QObject::connect(q, qOverload<int>(&QSpinBox::valueChanged), q, [this](int value) {
+        QObject::connect(q, &QSpinBox::valueChanged, q, [this](int value) {
             updateSuffix(value);
         });
     }

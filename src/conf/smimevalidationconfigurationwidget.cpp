@@ -47,11 +47,7 @@ public:
 #endif
         auto changedSignal = &SMimeValidationConfigurationWidget::changed;
         connect(ui.intervalRefreshCB, &QCheckBox::toggled, q, changedSignal);
-#if QT_DEPRECATED_SINCE(5, 14)
-        connect(ui.intervalRefreshSB, qOverload<int>(&QSpinBox::valueChanged), q, changedSignal);
-#else
         connect(ui.intervalRefreshSB, &QSpinBox::valueChanged, q, changedSignal);
-#endif
         connect(ui.OCSPCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.OCSPResponderURL, &QLineEdit::textChanged, q, changedSignal);
 

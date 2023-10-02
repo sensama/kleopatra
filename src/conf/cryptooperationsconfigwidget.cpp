@@ -101,7 +101,7 @@ void CryptoOperationsConfigWidget::setupGui()
         connect(cb, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     }
     for (auto combo : findChildren<QComboBox *>()) {
-        connect(combo, qOverload<int>(&QComboBox::currentIndexChanged), this, &CryptoOperationsConfigWidget::changed);
+        connect(combo, &QComboBox::currentIndexChanged, this, &CryptoOperationsConfigWidget::changed);
     }
 }
 

@@ -165,7 +165,7 @@ SearchBar::Private::Private(SearchBar *qq)
     KDAB_SET_OBJECT_NAME(certifyButton);
 
     connect(lineEdit, &QLineEdit::textChanged, q, &SearchBar::stringFilterChanged);
-    connect(combo, qOverload<int>(&QComboBox::currentIndexChanged), q, [this](int index) {
+    connect(combo, &QComboBox::currentIndexChanged, q, [this](int index) {
         slotKeyFilterChanged(index);
     });
     connect(certifyButton, &QPushButton::clicked, q, [this]() {

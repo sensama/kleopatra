@@ -81,19 +81,12 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
                                << "stderr:" << QString::fromLocal8Bit(proc->readAllStandardError());
     });
 
-#if QT_DEPRECATED_SINCE(5, 13)
-    connect(proc,
-            qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
-#else
-    connect(proc,
-            &QProcess::finished,
-#endif
-            [parent, progress, proc](int exitCode, QProcess::ExitStatus exitStatus) {
-                qCDebug(KLEOPATRA_LOG) << "Update force exited with status:" << exitStatus << "code:" << exitCode;
-                delete progress;
-                proc->deleteLater();
-                UpdateNotification::checkUpdate(parent, exitStatus == QProcess::NormalExit);
-            });
+    connect(proc, &QProcess::finished, [parent, progress, proc](int exitCode, QProcess::ExitStatus exitStatus) {
+        qCDebug(KLEOPATRA_LOG) << "Update force exited with status:" << exitStatus << "code:" << exitCode;
+        delete progress;
+        proc->deleteLater();
+        UpdateNotification::checkUpdate(parent, exitStatus == QProcess::NormalExit);
+    });
 
     qCDebug(KLEOPATRA_LOG) << "Starting:" << proc->program() << "args" << proc->arguments();
 

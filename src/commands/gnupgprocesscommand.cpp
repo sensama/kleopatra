@@ -218,17 +218,9 @@ GnuPGProcessCommand::GnuPGProcessCommand(const std::vector<GpgME::Key> &keys)
 
 void GnuPGProcessCommand::Private::init()
 {
-#if QT_DEPRECATED_SINCE(5, 13)
-    connect(&process,
-            qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
-#else
-    connect(&process,
-            &QProcess::finished,
-#endif
-            q,
-            [this](int exitCode, QProcess::ExitStatus status) {
-                slotProcessFinished(exitCode, status);
-            });
+    connect(&process, &QProcess::finished, q, [this](int exitCode, QProcess::ExitStatus status) {
+        slotProcessFinished(exitCode, status);
+    });
     q->m_procReadyReadStdErrConnection = connect(&process, &QProcess::readyReadStandardError, q, [this]() {
         slotProcessReadyReadStandardError();
     });

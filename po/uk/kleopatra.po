@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-29 01:39+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-09-29 09:06+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1046,26 +1046,26 @@ msgctxt "@action:button Update the log text widget"
 msgid "&Update"
 msgstr "&Оновити"
 
-#: src/commands/dumpcertificatecommand.cpp:285
+#: src/commands/dumpcertificatecommand.cpp:277
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Dump"
 msgstr "Дамп сертифіката"
 
-#: src/commands/dumpcertificatecommand.cpp:314
-#: src/commands/dumpcrlcachecommand.cpp:323
+#: src/commands/dumpcertificatecommand.cpp:306
+#: src/commands/dumpcrlcachecommand.cpp:315
 #, kde-format
 msgid "Unable to start process gpgsm. Please check your installation."
 msgstr ""
 "Неможливо запустити процес gpgsm. Будь ласка, перевірте, чи встановлено "
 "відповідну програму."
 
-#: src/commands/dumpcertificatecommand.cpp:316
+#: src/commands/dumpcertificatecommand.cpp:308
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "Помилка під час скидання сертифіката"
 
-#: src/commands/dumpcertificatecommand.cpp:339
+#: src/commands/dumpcertificatecommand.cpp:331
 #, kde-format
 msgid ""
 "The GpgSM process that tried to dump the certificate ended prematurely "
@@ -1076,14 +1076,14 @@ msgstr ""
 "передчасно через невідому помилку. Будь ласка, прочитайте інформацію, яку "
 "виводить команда gpgsm --dump-cert %1, щоб дізнатися більше."
 
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
+#: src/commands/dumpcertificatecommand.cpp:335
+#: src/commands/dumpcertificatecommand.cpp:341
 #, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
 msgstr "Помилка під час скидання сертифіката"
 
-#: src/commands/dumpcertificatecommand.cpp:346
+#: src/commands/dumpcertificatecommand.cpp:338
 #, kde-format
 msgid ""
 "An error occurred while trying to dump the certificate. The output from "
@@ -1104,18 +1104,18 @@ msgctxt "Count of revocations in a CRL"
 msgid "Entries:"
 msgstr "Записи:"
 
-#: src/commands/dumpcrlcachecommand.cpp:301
+#: src/commands/dumpcrlcachecommand.cpp:293
 #, kde-format
 msgctxt "@title:window"
 msgid "CRL Cache Dump"
 msgstr "Скидання кешу CRL"
 
-#: src/commands/dumpcrlcachecommand.cpp:325
+#: src/commands/dumpcrlcachecommand.cpp:317
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "Помилка під час скидання кешу CRL"
 
-#: src/commands/dumpcrlcachecommand.cpp:348
+#: src/commands/dumpcrlcachecommand.cpp:340
 #, kde-format
 msgid ""
 "The GpgSM process that tried to dump the CRL cache ended prematurely because "
@@ -1126,14 +1126,14 @@ msgstr ""
 "роботу через невідому помилку. Будь ласка, прочитайте інформацію, яку "
 "виводить команда gpgsm --call-dirmngr listcrls, щоб дізнатися більше."
 
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
+#: src/commands/dumpcrlcachecommand.cpp:343
+#: src/commands/dumpcrlcachecommand.cpp:349
 #, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Помилка під час скидання кешу CRL"
 
-#: src/commands/dumpcrlcachecommand.cpp:354
+#: src/commands/dumpcrlcachecommand.cpp:346
 #, kde-format
 msgid ""
 "An error occurred while trying to dump the CRL cache. The output from GpgSM "
@@ -1438,7 +1438,7 @@ msgstr ""
 "<para>Під час створення повідомлення для оприлюднення ключа сталася помилка:"
 "</para><message>%1</message>"
 
-#: src/commands/exportpaperkeycommand.cpp:73
+#: src/commands/exportpaperkeycommand.cpp:65
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1451,26 +1451,26 @@ msgstr ""
 "для друку версії вашого закритого ключа.</para><para>Будь ласка, "
 "переконайтеся що відповідну програму встановлено.</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:77
+#: src/commands/exportpaperkeycommand.cpp:69
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "Не вдалося знайти виконуваний файл PaperKey."
 
-#: src/commands/exportpaperkeycommand.cpp:98
+#: src/commands/exportpaperkeycommand.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "Друк закритого ключа"
 
-#: src/commands/exportpaperkeycommand.cpp:115
+#: src/commands/exportpaperkeycommand.cpp:107
 #, kde-format
 msgctxt "@title:window"
 msgid "Error printing secret key"
 msgstr "Помилка під час спроби надрукувати закритий ключ"
 
-#: src/commands/exportpaperkeycommand.cpp:121
+#: src/commands/exportpaperkeycommand.cpp:113
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1483,7 +1483,7 @@ msgstr ""
 "інформацію, яку виводить команда <icode>%1</icode>, щоб дізнатися більше.</"
 "para>"
 
-#: src/commands/exportpaperkeycommand.cpp:130
+#: src/commands/exportpaperkeycommand.cpp:122
 #: src/commands/exportsecretkeycommand_old.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
@@ -1769,18 +1769,18 @@ msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
 msgstr "Діагностика підпроцесу"
 
-#: src/commands/gnupgprocesscommand.cpp:274
+#: src/commands/gnupgprocesscommand.cpp:266
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
 msgstr ""
 "Неможливо запустити процес %1. Будь ласка, перевірте встановлені компоненти."
 
-#: src/commands/gnupgprocesscommand.cpp:281
+#: src/commands/gnupgprocesscommand.cpp:273
 #, kde-format
 msgid "Starting %1..."
 msgstr "Запуск %1…"
 
-#: src/commands/gnupgprocesscommand.cpp:304
+#: src/commands/gnupgprocesscommand.cpp:296
 #, kde-format
 msgid "Process finished"
 msgstr "Процес завершив роботу"
@@ -2168,19 +2168,19 @@ msgstr "Списки скасування сертифікатів у кодув
 msgid "Select CRL File to Import"
 msgstr "Виберіть файл CRL для імпорту"
 
-#: src/commands/importcrlcommand.cpp:180
+#: src/commands/importcrlcommand.cpp:172
 #, kde-format
 msgid "Unable to start process dirmngr. Please check your installation."
 msgstr ""
 "Не вдалося запустити процес dirmngr. Будь ласка, перевірте, чи встановлено "
 "відповідні програми."
 
-#: src/commands/importcrlcommand.cpp:182
+#: src/commands/importcrlcommand.cpp:174
 #, kde-format
 msgid "Clear CRL Cache Error"
 msgstr "Помилка під час спорожнення кешу CRL"
 
-#: src/commands/importcrlcommand.cpp:200
+#: src/commands/importcrlcommand.cpp:192
 #, kde-format
 msgid ""
 "The GpgSM process that tried to import the CRL file ended prematurely "
@@ -2191,12 +2191,12 @@ msgstr ""
 "через невідому помилку. Будь ласка, прочитайте інформацію, яку виводить "
 "команда gpgsm --call-dirmngr loadcrl <назва_файла>, щоб дізнатися більше."
 
-#: src/commands/importcrlcommand.cpp:203 src/commands/importcrlcommand.cpp:208
+#: src/commands/importcrlcommand.cpp:195 src/commands/importcrlcommand.cpp:200
 #, kde-format
 msgid "Import CRL Error"
 msgstr "Помилка під час імпорту CRL"
 
-#: src/commands/importcrlcommand.cpp:205
+#: src/commands/importcrlcommand.cpp:197
 #, kde-format
 msgid ""
 "An error occurred while trying to import the CRL file. The output from gpgsm "
@@ -2206,12 +2206,12 @@ msgstr ""
 "При спробі імпортування файла CRL сталася помилка. Вивід з gpgsm:\n"
 "%1"
 
-#: src/commands/importcrlcommand.cpp:210
+#: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "CRL file imported successfully."
 msgstr "Успішно імпортовано файл CRL."
 
-#: src/commands/importcrlcommand.cpp:210
+#: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "Import CRL Finished"
 msgstr "Імпорт CRL завершено"
@@ -3894,19 +3894,19 @@ msgstr "Зчитувачі смарткарток:"
 msgid "Cannot be configured with Kleopatra"
 msgstr "Не може бути налаштовано за допомогою Kleopatra"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:128
+#: src/conf/smimevalidationconfigurationwidget.cpp:124
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr "Для цього параметра потрібна версія dirmngr >= 0.9.0"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:282
+#: src/conf/smimevalidationconfigurationwidget.cpp:278
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "без проксі"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:284
+#: src/conf/smimevalidationconfigurationwidget.cpp:280
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(Поточний параметр системи: %1)"
@@ -7744,25 +7744,25 @@ msgstr "Ланцюжок довіри"
 msgid "Searching for updates..."
 msgstr "Шукаємо оновлення…"
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:148
 #, kde-format
 msgctxt "@info"
 msgid "No update found in the available version database."
 msgstr "Оновлень у доступній версії бази даних не виявлено."
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:148
 #, kde-format
 msgctxt "@title"
 msgid "Up to date"
 msgstr "Не потребує оновлення"
 
-#: src/dialogs/updatenotification.cpp:180
+#: src/dialogs/updatenotification.cpp:173
 #, kde-format
 msgctxt "%1 is the version number"
 msgid "Version %1 is available."
 msgstr "Доступна версія %1."
 
-#: src/dialogs/updatenotification.cpp:181
+#: src/dialogs/updatenotification.cpp:174
 #, kde-format
 msgctxt "Link to NEWS style changelog"
 msgid ""
@@ -7772,18 +7772,18 @@ msgstr ""
 "Зверніться до <a href=\"https://www.gpg4win.org/change-history.html\">цієї "
 "сторінки</a>, щоб дізнатися більше про нові можливості."
 
-#: src/dialogs/updatenotification.cpp:185
+#: src/dialogs/updatenotification.cpp:178
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Available"
 msgstr "Доступне оновлення"
 
-#: src/dialogs/updatenotification.cpp:190
+#: src/dialogs/updatenotification.cpp:183
 #, kde-format
 msgid "Show this notification for future updates."
 msgstr "Показувати це сповіщення для майбутніх оновлень."
 
-#: src/dialogs/updatenotification.cpp:197
+#: src/dialogs/updatenotification.cpp:190
 #, kde-format
 msgid "&Get update"
 msgstr "&Отримати оновлення"

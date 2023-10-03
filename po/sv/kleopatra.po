@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-29 01:39+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-09-12 21:35+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -1044,24 +1044,24 @@ msgctxt "@action:button Update the log text widget"
 msgid "&Update"
 msgstr "&Uppdatera"
 
-#: src/commands/dumpcertificatecommand.cpp:285
+#: src/commands/dumpcertificatecommand.cpp:277
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Dump"
 msgstr "Hämta innehåll i certifikat"
 
-#: src/commands/dumpcertificatecommand.cpp:314
-#: src/commands/dumpcrlcachecommand.cpp:323
+#: src/commands/dumpcertificatecommand.cpp:306
+#: src/commands/dumpcrlcachecommand.cpp:315
 #, kde-format
 msgid "Unable to start process gpgsm. Please check your installation."
 msgstr "Kunde inte starta processen GpgSM. Kontrollera installationen."
 
-#: src/commands/dumpcertificatecommand.cpp:316
+#: src/commands/dumpcertificatecommand.cpp:308
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "Fel vid hämtning av certifikatets innehåll"
 
-#: src/commands/dumpcertificatecommand.cpp:339
+#: src/commands/dumpcertificatecommand.cpp:331
 #, kde-format
 msgid ""
 "The GpgSM process that tried to dump the certificate ended prematurely "
@@ -1072,15 +1072,15 @@ msgstr ""
 "förtid på grund av ett oväntat fel. Kontrollera utmatningen från gpgsm --"
 "dump-cert %1 för detaljinformation."
 
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
+#: src/commands/dumpcertificatecommand.cpp:335
+#: src/commands/dumpcertificatecommand.cpp:341
 #, fuzzy, kde-format
 #| msgid "Dump Certificate Error"
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
 msgstr "Fel vid hämtning av certifikatets innehåll"
 
-#: src/commands/dumpcertificatecommand.cpp:346
+#: src/commands/dumpcertificatecommand.cpp:338
 #, kde-format
 msgid ""
 "An error occurred while trying to dump the certificate. The output from "
@@ -1102,18 +1102,18 @@ msgctxt "Count of revocations in a CRL"
 msgid "Entries:"
 msgstr "Poster:"
 
-#: src/commands/dumpcrlcachecommand.cpp:301
+#: src/commands/dumpcrlcachecommand.cpp:293
 #, kde-format
 msgctxt "@title:window"
 msgid "CRL Cache Dump"
 msgstr "CRL-cacheinnehåll"
 
-#: src/commands/dumpcrlcachecommand.cpp:325
+#: src/commands/dumpcrlcachecommand.cpp:317
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "Fel vid hämtning av innehåll i CRL-cache"
 
-#: src/commands/dumpcrlcachecommand.cpp:348
+#: src/commands/dumpcrlcachecommand.cpp:340
 #, kde-format
 msgid ""
 "The GpgSM process that tried to dump the CRL cache ended prematurely because "
@@ -1124,15 +1124,15 @@ msgstr ""
 "på grund av ett oväntat fel. Kontrollera utmatningen från gpgsm --call-"
 "dirmngr listcrls för detaljinformation."
 
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
+#: src/commands/dumpcrlcachecommand.cpp:343
+#: src/commands/dumpcrlcachecommand.cpp:349
 #, fuzzy, kde-format
 #| msgid "Dump CRL Cache Error"
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Fel vid hämtning av innehåll i CRL-cache"
 
-#: src/commands/dumpcrlcachecommand.cpp:354
+#: src/commands/dumpcrlcachecommand.cpp:346
 #, kde-format
 msgid ""
 "An error occurred while trying to dump the CRL cache. The output from GpgSM "
@@ -1430,7 +1430,7 @@ msgstr ""
 "<para>Ett fel uppstod när brevet för att publicera nyckeln skulle skapas:</"
 "para><message>%1</message>"
 
-#: src/commands/exportpaperkeycommand.cpp:73
+#: src/commands/exportpaperkeycommand.cpp:65
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1442,26 +1442,26 @@ msgstr ""
 "application> för att skapa en minimerad och utskrivbar version av din "
 "hemliga nyckel.</para><para>Försäkra dig om att det är installerat.</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:77
+#: src/commands/exportpaperkeycommand.cpp:69
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "Kunde inte hitta den körbara filen PaperKey."
 
-#: src/commands/exportpaperkeycommand.cpp:98
+#: src/commands/exportpaperkeycommand.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "Skriv ut hemlig nyckel"
 
-#: src/commands/exportpaperkeycommand.cpp:115
+#: src/commands/exportpaperkeycommand.cpp:107
 #, kde-format
 msgctxt "@title:window"
 msgid "Error printing secret key"
 msgstr "Fel vid utskrift av hemlig nyckel"
 
-#: src/commands/exportpaperkeycommand.cpp:121
+#: src/commands/exportpaperkeycommand.cpp:113
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1473,7 +1473,7 @@ msgstr ""
 "förtid på grund av ett oväntat fel.</para><para>Kontrollera utmatningen från "
 "<icode>%1</icode> för detaljinformation.</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:130
+#: src/commands/exportpaperkeycommand.cpp:122
 #: src/commands/exportsecretkeycommand_old.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
@@ -1753,17 +1753,17 @@ msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
 msgstr "Diagnostik av delprocess"
 
-#: src/commands/gnupgprocesscommand.cpp:274
+#: src/commands/gnupgprocesscommand.cpp:266
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
 msgstr "Kunde inte starta processen %1. Kontrollera installationen."
 
-#: src/commands/gnupgprocesscommand.cpp:281
+#: src/commands/gnupgprocesscommand.cpp:273
 #, kde-format
 msgid "Starting %1..."
 msgstr "Startar %1..."
 
-#: src/commands/gnupgprocesscommand.cpp:304
+#: src/commands/gnupgprocesscommand.cpp:296
 #, kde-format
 msgid "Process finished"
 msgstr "Processen avslutades"
@@ -2143,17 +2143,17 @@ msgstr "Certifikatåterkallelselistor, DER-kodade"
 msgid "Select CRL File to Import"
 msgstr "Välj CRL-fil att importera"
 
-#: src/commands/importcrlcommand.cpp:180
+#: src/commands/importcrlcommand.cpp:172
 #, kde-format
 msgid "Unable to start process dirmngr. Please check your installation."
 msgstr "Kunde inte starta processen DirMngr. Kontrollera installationen."
 
-#: src/commands/importcrlcommand.cpp:182
+#: src/commands/importcrlcommand.cpp:174
 #, kde-format
 msgid "Clear CRL Cache Error"
 msgstr "Fel vid rensning av CRL-cache"
 
-#: src/commands/importcrlcommand.cpp:200
+#: src/commands/importcrlcommand.cpp:192
 #, kde-format
 msgid ""
 "The GpgSM process that tried to import the CRL file ended prematurely "
@@ -2164,12 +2164,12 @@ msgstr ""
 "grund av ett oväntat fel. Kontrollera utmatningen från gpgsm --call-dirmngr "
 "loadcrl <filnamn> för detaljinformation."
 
-#: src/commands/importcrlcommand.cpp:203 src/commands/importcrlcommand.cpp:208
+#: src/commands/importcrlcommand.cpp:195 src/commands/importcrlcommand.cpp:200
 #, kde-format
 msgid "Import CRL Error"
 msgstr "Fel vid import av CRL"
 
-#: src/commands/importcrlcommand.cpp:205
+#: src/commands/importcrlcommand.cpp:197
 #, kde-format
 msgid ""
 "An error occurred while trying to import the CRL file. The output from gpgsm "
@@ -2180,12 +2180,12 @@ msgstr ""
 "är:\n"
 "%1"
 
-#: src/commands/importcrlcommand.cpp:210
+#: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "CRL file imported successfully."
 msgstr "CRL-filen importerades med lyckat resultat."
 
-#: src/commands/importcrlcommand.cpp:210
+#: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "Import CRL Finished"
 msgstr "Import av CRL klar"
@@ -3839,19 +3839,19 @@ msgstr "Smartkortsläsare att använda:"
 msgid "Cannot be configured with Kleopatra"
 msgstr "Kan inte ställas in med Kleopatra"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:128
+#: src/conf/smimevalidationconfigurationwidget.cpp:124
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr "Det här alternativet kräver dirmngr 0.9.0 eller senare"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:282
+#: src/conf/smimevalidationconfigurationwidget.cpp:278
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "ingen proxy"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:284
+#: src/conf/smimevalidationconfigurationwidget.cpp:280
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(Nuvarande systeminställning: %1)"
@@ -7641,25 +7641,25 @@ msgstr "Pålitlighetskedja"
 msgid "Searching for updates..."
 msgstr "Söker efter uppdateringar..."
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:148
 #, kde-format
 msgctxt "@info"
 msgid "No update found in the available version database."
 msgstr "Ingen uppdatering hittades i den tillgängliga versionsdatabasen."
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:148
 #, kde-format
 msgctxt "@title"
 msgid "Up to date"
 msgstr "Aktuell"
 
-#: src/dialogs/updatenotification.cpp:180
+#: src/dialogs/updatenotification.cpp:173
 #, kde-format
 msgctxt "%1 is the version number"
 msgid "Version %1 is available."
 msgstr "Version %1 är tillgänglig."
 
-#: src/dialogs/updatenotification.cpp:181
+#: src/dialogs/updatenotification.cpp:174
 #, kde-format
 msgctxt "Link to NEWS style changelog"
 msgid ""
@@ -7669,18 +7669,18 @@ msgstr ""
 "Se <a href=\"https://www.gpg4win.org/change-history.html\">nya funktioner</"
 "a>."
 
-#: src/dialogs/updatenotification.cpp:185
+#: src/dialogs/updatenotification.cpp:178
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Available"
 msgstr "Uppdatering tillgänglig"
 
-#: src/dialogs/updatenotification.cpp:190
+#: src/dialogs/updatenotification.cpp:183
 #, kde-format
 msgid "Show this notification for future updates."
 msgstr "Visa underrättelsen vid framtida uppdateringar."
 
-#: src/dialogs/updatenotification.cpp:197
+#: src/dialogs/updatenotification.cpp:190
 #, kde-format
 msgid "&Get update"
 msgstr "&Hämta uppdatering"

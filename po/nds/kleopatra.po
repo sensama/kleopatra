@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-29 01:39+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -1134,26 +1134,26 @@ msgctxt "@action:button Update the log text widget"
 msgid "&Update"
 msgstr "&Opfrischen"
 
-#: src/commands/dumpcertificatecommand.cpp:285
+#: src/commands/dumpcertificatecommand.cpp:277
 #, fuzzy, kde-format
 #| msgid "Certificate Dump"
 msgctxt "@title:window"
 msgid "Certificate Dump"
 msgstr "Zertifikaat-Utgaav"
 
-#: src/commands/dumpcertificatecommand.cpp:314
-#: src/commands/dumpcrlcachecommand.cpp:323
+#: src/commands/dumpcertificatecommand.cpp:306
+#: src/commands/dumpcrlcachecommand.cpp:315
 #, kde-format
 msgid "Unable to start process gpgsm. Please check your installation."
 msgstr ""
 "De Perzess \"gpgsm\" lett sik nich opropen. Prööv bitte Dien Installatschoon."
 
-#: src/commands/dumpcertificatecommand.cpp:316
+#: src/commands/dumpcertificatecommand.cpp:308
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "Fehler bi de Zertifikaat-Utgaav"
 
-#: src/commands/dumpcertificatecommand.cpp:339
+#: src/commands/dumpcertificatecommand.cpp:331
 #, kde-format
 msgid ""
 "The GpgSM process that tried to dump the certificate ended prematurely "
@@ -1164,15 +1164,15 @@ msgstr ""
 "utmaakt, dat geev en nich verwacht Fehler. Kiek bitte de Utgaav vun \"gpgsm "
 "--dump-cert %1\" an, wenn Du de Enkelheiten weten wullt."
 
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
+#: src/commands/dumpcertificatecommand.cpp:335
+#: src/commands/dumpcertificatecommand.cpp:341
 #, fuzzy, kde-format
 #| msgid "Dump Certificate Error"
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
 msgstr "Fehler bi de Zertifikaat-Utgaav"
 
-#: src/commands/dumpcertificatecommand.cpp:346
+#: src/commands/dumpcertificatecommand.cpp:338
 #, kde-format
 msgid ""
 "An error occurred while trying to dump the certificate. The output from "
@@ -1195,19 +1195,19 @@ msgctxt "Count of revocations in a CRL"
 msgid "Entries:"
 msgstr ""
 
-#: src/commands/dumpcrlcachecommand.cpp:301
+#: src/commands/dumpcrlcachecommand.cpp:293
 #, fuzzy, kde-format
 #| msgid "CRL Cache Dump"
 msgctxt "@title:window"
 msgid "CRL Cache Dump"
 msgstr "ZTL-Twischenspieker utgeven"
 
-#: src/commands/dumpcrlcachecommand.cpp:325
+#: src/commands/dumpcrlcachecommand.cpp:317
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "Fehler bi't Utgeven vun den ZTL-Twischenspieker"
 
-#: src/commands/dumpcrlcachecommand.cpp:348
+#: src/commands/dumpcrlcachecommand.cpp:340
 #, kde-format
 msgid ""
 "The GpgSM process that tried to dump the CRL cache ended prematurely because "
@@ -1218,15 +1218,15 @@ msgstr ""
 "vör Tiet utmaakt, dat geev en nich verwacht Fehler. Kiek bitte de Utgaav vun "
 "\"gpgsm --call-dirmngr listcrls\" an, wenn Du de Enkelheiten weten wullt."
 
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
+#: src/commands/dumpcrlcachecommand.cpp:343
+#: src/commands/dumpcrlcachecommand.cpp:349
 #, fuzzy, kde-format
 #| msgid "Dump CRL Cache Error"
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Fehler bi't Utgeven vun den ZTL-Twischenspieker"
 
-#: src/commands/dumpcrlcachecommand.cpp:354
+#: src/commands/dumpcrlcachecommand.cpp:346
 #, kde-format
 msgid ""
 "An error occurred while trying to dump the CRL cache. The output from GpgSM "
@@ -1555,7 +1555,7 @@ msgstr ""
 "<para>Dat geev en Fehler bi't Laden vun de Beglöven: <message>%1</message></"
 "para>"
 
-#: src/commands/exportpaperkeycommand.cpp:73
+#: src/commands/exportpaperkeycommand.cpp:65
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1564,7 +1564,7 @@ msgid ""
 "</para><para>Please make sure it is installed.</para>"
 msgstr ""
 
-#: src/commands/exportpaperkeycommand.cpp:77
+#: src/commands/exportpaperkeycommand.cpp:69
 #: src/commands/importpaperkeycommand.cpp:156
 #, fuzzy, kde-format
 #| msgid "Could not find gpgconf executable"
@@ -1572,21 +1572,21 @@ msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "Utföhrbore Programm \"gpgconf\" lett sik nich finnen."
 
-#: src/commands/exportpaperkeycommand.cpp:98
+#: src/commands/exportpaperkeycommand.cpp:90
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "Privaatslötels exporteren..."
 
-#: src/commands/exportpaperkeycommand.cpp:115
+#: src/commands/exportpaperkeycommand.cpp:107
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgctxt "@title:window"
 msgid "Error printing secret key"
 msgstr "Privaatslötel warrt exporteert..."
 
-#: src/commands/exportpaperkeycommand.cpp:121
+#: src/commands/exportpaperkeycommand.cpp:113
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1604,7 +1604,7 @@ msgstr ""
 "para><para>Kiek Di bitte de Utgaav vun <icode>%1</icode> an, wenn Du de "
 "Enkelheiten weten wullt.</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:130
+#: src/commands/exportpaperkeycommand.cpp:122
 #: src/commands/exportsecretkeycommand_old.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
@@ -1920,18 +1920,18 @@ msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
 msgstr "Ünnerperzess-Diagnoos"
 
-#: src/commands/gnupgprocesscommand.cpp:274
+#: src/commands/gnupgprocesscommand.cpp:266
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
 msgstr ""
 "De Perzess \"%1\" lett sik nich starten. Prööv bitte Dien Installatschoon."
 
-#: src/commands/gnupgprocesscommand.cpp:281
+#: src/commands/gnupgprocesscommand.cpp:273
 #, kde-format
 msgid "Starting %1..."
 msgstr "%1 warrt start..."
 
-#: src/commands/gnupgprocesscommand.cpp:304
+#: src/commands/gnupgprocesscommand.cpp:296
 #, kde-format
 msgid "Process finished"
 msgstr "Perzess afslaten"
@@ -2329,19 +2329,19 @@ msgstr ""
 msgid "Select CRL File to Import"
 msgstr "Torüchrooplist utsöken, de Du importeren wullt"
 
-#: src/commands/importcrlcommand.cpp:180
+#: src/commands/importcrlcommand.cpp:172
 #, kde-format
 msgid "Unable to start process dirmngr. Please check your installation."
 msgstr ""
 "De Perzess \"dirmngr\" lett sik nich starten. Prööv bitte Dien "
 "Installatschoon."
 
-#: src/commands/importcrlcommand.cpp:182
+#: src/commands/importcrlcommand.cpp:174
 #, kde-format
 msgid "Clear CRL Cache Error"
 msgstr "Fehler bi't Leddigmaken vun den ZTL-Twischenspieker"
 
-#: src/commands/importcrlcommand.cpp:200
+#: src/commands/importcrlcommand.cpp:192
 #, kde-format
 msgid ""
 "The GpgSM process that tried to import the CRL file ended prematurely "
@@ -2353,12 +2353,12 @@ msgstr ""
 "„gpgsm --call-dirmngr loadcrl <Dateinaam>“ an, wenn Du Enkelheiten weten "
 "wullt."
 
-#: src/commands/importcrlcommand.cpp:203 src/commands/importcrlcommand.cpp:208
+#: src/commands/importcrlcommand.cpp:195 src/commands/importcrlcommand.cpp:200
 #, kde-format
 msgid "Import CRL Error"
 msgstr "Fehler bi ZTL-Import"
 
-#: src/commands/importcrlcommand.cpp:205
+#: src/commands/importcrlcommand.cpp:197
 #, kde-format
 msgid ""
 "An error occurred while trying to import the CRL file. The output from gpgsm "
@@ -2369,12 +2369,12 @@ msgstr ""
 "weer:\n"
 "%1"
 
-#: src/commands/importcrlcommand.cpp:210
+#: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "CRL file imported successfully."
 msgstr "Torüchrooplist-Datei importeert."
 
-#: src/commands/importcrlcommand.cpp:210
+#: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "Import CRL Finished"
 msgstr "ZTL-Import afslaten"
@@ -4153,19 +4153,19 @@ msgstr "SmartKoort"
 msgid "Cannot be configured with Kleopatra"
 msgstr ""
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:128
+#: src/conf/smimevalidationconfigurationwidget.cpp:124
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr "Disse Optschoon bruukt \"dirmngr\" >= 0.9.0"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:282
+#: src/conf/smimevalidationconfigurationwidget.cpp:278
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "Keen Proxy"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:284
+#: src/conf/smimevalidationconfigurationwidget.cpp:280
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(Aktuell Systeeminstellen: %1)"
@@ -8203,26 +8203,26 @@ msgstr "Keed"
 msgid "Searching for updates..."
 msgstr ""
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:148
 #, kde-format
 msgctxt "@info"
 msgid "No update found in the available version database."
 msgstr ""
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:148
 #, fuzzy, kde-format
 #| msgid "&Update"
 msgctxt "@title"
 msgid "Up to date"
 msgstr "&Opfrischen"
 
-#: src/dialogs/updatenotification.cpp:180
+#: src/dialogs/updatenotification.cpp:173
 #, kde-format
 msgctxt "%1 is the version number"
 msgid "Version %1 is available."
 msgstr ""
 
-#: src/dialogs/updatenotification.cpp:181
+#: src/dialogs/updatenotification.cpp:174
 #, kde-format
 msgctxt "Link to NEWS style changelog"
 msgid ""
@@ -8230,19 +8230,19 @@ msgid ""
 "features</a>."
 msgstr ""
 
-#: src/dialogs/updatenotification.cpp:185
+#: src/dialogs/updatenotification.cpp:178
 #, fuzzy, kde-format
 #| msgid "No Audit Log available"
 msgctxt "@title:window"
 msgid "Update Available"
 msgstr "Keen Pröövlogbook verföögbor"
 
-#: src/dialogs/updatenotification.cpp:190
+#: src/dialogs/updatenotification.cpp:183
 #, kde-format
 msgid "Show this notification for future updates."
 msgstr ""
 
-#: src/dialogs/updatenotification.cpp:197
+#: src/dialogs/updatenotification.cpp:190
 #, fuzzy, kde-format
 #| msgid "&Update"
 msgid "&Get update"

@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1661394 $
+# Version: $Revision: 1661543 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-29 01:39+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-09-30 10:57+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1044,26 +1044,26 @@ msgctxt "@action:button Update the log text widget"
 msgid "&Update"
 msgstr "&Uaktualnij"
 
-#: src/commands/dumpcertificatecommand.cpp:285
+#: src/commands/dumpcertificatecommand.cpp:277
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Dump"
 msgstr "Dane certyfikatu"
 
-#: src/commands/dumpcertificatecommand.cpp:314
-#: src/commands/dumpcrlcachecommand.cpp:323
+#: src/commands/dumpcertificatecommand.cpp:306
+#: src/commands/dumpcrlcachecommand.cpp:315
 #, kde-format
 msgid "Unable to start process gpgsm. Please check your installation."
 msgstr ""
 "Nie można uruchomić programu gpgsm. Sprawdź, czy jest on poprawnie "
 "zainstalowany."
 
-#: src/commands/dumpcertificatecommand.cpp:316
+#: src/commands/dumpcertificatecommand.cpp:308
 #, kde-format
 msgid "Dump Certificate Error"
 msgstr "Błąd wyświetlania danych certyfikatu"
 
-#: src/commands/dumpcertificatecommand.cpp:339
+#: src/commands/dumpcertificatecommand.cpp:331
 #, kde-format
 msgid ""
 "The GpgSM process that tried to dump the certificate ended prematurely "
@@ -1074,14 +1074,14 @@ msgstr ""
 "wyświetlenia danych certyfikatu. Więcej informacji można znaleźć w wyniku "
 "gpgsm --dump-cert %1."
 
-#: src/commands/dumpcertificatecommand.cpp:343
-#: src/commands/dumpcertificatecommand.cpp:349
+#: src/commands/dumpcertificatecommand.cpp:335
+#: src/commands/dumpcertificatecommand.cpp:341
 #, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
 msgstr "Błąd wyświetlania danych certyfikatu"
 
-#: src/commands/dumpcertificatecommand.cpp:346
+#: src/commands/dumpcertificatecommand.cpp:338
 #, kde-format
 msgid ""
 "An error occurred while trying to dump the certificate. The output from "
@@ -1103,18 +1103,18 @@ msgctxt "Count of revocations in a CRL"
 msgid "Entries:"
 msgstr "Wpisy:"
 
-#: src/commands/dumpcrlcachecommand.cpp:301
+#: src/commands/dumpcrlcachecommand.cpp:293
 #, kde-format
 msgctxt "@title:window"
 msgid "CRL Cache Dump"
 msgstr "Dane pamięci podręcznej CRL"
 
-#: src/commands/dumpcrlcachecommand.cpp:325
+#: src/commands/dumpcrlcachecommand.cpp:317
 #, kde-format
 msgid "Dump CRL Cache Error"
 msgstr "Błąd wyświetlania danych pamięci podręcznej CRL"
 
-#: src/commands/dumpcrlcachecommand.cpp:348
+#: src/commands/dumpcrlcachecommand.cpp:340
 #, kde-format
 msgid ""
 "The GpgSM process that tried to dump the CRL cache ended prematurely because "
@@ -1125,14 +1125,14 @@ msgstr ""
 "danych pamięci podręcznej listy CRL. Więcej informacji można znaleźć w "
 "wyniku gpgsm --call-dirmngr listcrls."
 
-#: src/commands/dumpcrlcachecommand.cpp:351
-#: src/commands/dumpcrlcachecommand.cpp:357
+#: src/commands/dumpcrlcachecommand.cpp:343
+#: src/commands/dumpcrlcachecommand.cpp:349
 #, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Błąd wyświetlania danych pamięci podręcznej CRL"
 
-#: src/commands/dumpcrlcachecommand.cpp:354
+#: src/commands/dumpcrlcachecommand.cpp:346
 #, kde-format
 msgid ""
 "An error occurred while trying to dump the CRL cache. The output from GpgSM "
@@ -1431,7 +1431,7 @@ msgstr ""
 "<para>Wystąpił błąd podczas tworzenia wiadomości do opublikowania klucza:</"
 "para><para><message>%1</message></para>"
 
-#: src/commands/exportpaperkeycommand.cpp:73
+#: src/commands/exportpaperkeycommand.cpp:65
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1444,26 +1444,26 @@ msgstr ""
 "twojego klucza poufnego.</para><para>Upewnij się, że masz ten program na "
 "swoim komputerze.</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:77
+#: src/commands/exportpaperkeycommand.cpp:69
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "Nie można znaleźć pliku wykonywalnego PaperKey."
 
-#: src/commands/exportpaperkeycommand.cpp:98
+#: src/commands/exportpaperkeycommand.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "Wydrukuj klucz poufny"
 
-#: src/commands/exportpaperkeycommand.cpp:115
+#: src/commands/exportpaperkeycommand.cpp:107
 #, kde-format
 msgctxt "@title:window"
 msgid "Error printing secret key"
 msgstr "Błąd wydruku klucza poufnego"
 
-#: src/commands/exportpaperkeycommand.cpp:121
+#: src/commands/exportpaperkeycommand.cpp:113
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1475,7 +1475,7 @@ msgstr ""
 "przedwcześnie z powodu nieoczekiwanego błędu. </para><para>Sprawdź wyjście "
 "<icode>%1</icode> po więcej szczegółów.</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:130
+#: src/commands/exportpaperkeycommand.cpp:122
 #: src/commands/exportsecretkeycommand_old.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
@@ -1758,17 +1758,17 @@ msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
 msgstr "Diagnostyka pod-procesu"
 
-#: src/commands/gnupgprocesscommand.cpp:274
+#: src/commands/gnupgprocesscommand.cpp:266
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
 msgstr "Nie można uruchomić programu %1. Sprawdź swoją instalację."
 
-#: src/commands/gnupgprocesscommand.cpp:281
+#: src/commands/gnupgprocesscommand.cpp:273
 #, kde-format
 msgid "Starting %1..."
 msgstr "Uruchamianie %1..."
 
-#: src/commands/gnupgprocesscommand.cpp:304
+#: src/commands/gnupgprocesscommand.cpp:296
 #, kde-format
 msgid "Process finished"
 msgstr "Proces ukończył"
@@ -2155,19 +2155,19 @@ msgstr "Lista certyfikatu odwołania, zakodowana DER"
 msgid "Select CRL File to Import"
 msgstr "Wybierz plik z listą unieważnionych certyfikatów"
 
-#: src/commands/importcrlcommand.cpp:180
+#: src/commands/importcrlcommand.cpp:172
 #, kde-format
 msgid "Unable to start process dirmngr. Please check your installation."
 msgstr ""
 "Nie można uruchomić programu dirmngr. Sprawdź, czy jest poprawnie "
 "zainstalowany."
 
-#: src/commands/importcrlcommand.cpp:182
+#: src/commands/importcrlcommand.cpp:174
 #, kde-format
 msgid "Clear CRL Cache Error"
 msgstr "Błąd czyszczenia pamięci podręcznej CRL-i"
 
-#: src/commands/importcrlcommand.cpp:200
+#: src/commands/importcrlcommand.cpp:192
 #, kde-format
 msgid ""
 "The GpgSM process that tried to import the CRL file ended prematurely "
@@ -2178,12 +2178,12 @@ msgstr ""
 "pliku listy CRL. Więcej informacji można znaleźć w wyniku gpgsm --call-"
 "dirmngr loadcrl <filename>."
 
-#: src/commands/importcrlcommand.cpp:203 src/commands/importcrlcommand.cpp:208
+#: src/commands/importcrlcommand.cpp:195 src/commands/importcrlcommand.cpp:200
 #, kde-format
 msgid "Import CRL Error"
 msgstr "Błąd importowania listy CRL"
 
-#: src/commands/importcrlcommand.cpp:205
+#: src/commands/importcrlcommand.cpp:197
 #, kde-format
 msgid ""
 "An error occurred while trying to import the CRL file. The output from gpgsm "
@@ -2194,12 +2194,12 @@ msgstr ""
 "gpgsm:\n"
 "%1"
 
-#: src/commands/importcrlcommand.cpp:210
+#: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "CRL file imported successfully."
 msgstr "Plik listy CRL został pomyślnie zaimportowany."
 
-#: src/commands/importcrlcommand.cpp:210
+#: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "Import CRL Finished"
 msgstr "Import listy CRL zakończony"
@@ -3845,19 +3845,19 @@ msgstr "Używany czytniki kart inteligentnych:"
 msgid "Cannot be configured with Kleopatra"
 msgstr "Nie można ustawić w Kleopatrze"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:128
+#: src/conf/smimevalidationconfigurationwidget.cpp:124
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr "Ta opcja wymaga dirmngr >= 0.9.0"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:282
+#: src/conf/smimevalidationconfigurationwidget.cpp:278
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "brak pośrednika"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:284
+#: src/conf/smimevalidationconfigurationwidget.cpp:280
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(Bieżące ustawienie systemowe: %1)"
@@ -7639,25 +7639,25 @@ msgstr "Łańcuch zaufania"
 msgid "Searching for updates..."
 msgstr "Szukanie uaktualnień..."
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:148
 #, kde-format
 msgctxt "@info"
 msgid "No update found in the available version database."
 msgstr "Nie znaleziono uaktualnienia w dostępnej wersji bazy danych."
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:148
 #, kde-format
 msgctxt "@title"
 msgid "Up to date"
 msgstr "Aktualne"
 
-#: src/dialogs/updatenotification.cpp:180
+#: src/dialogs/updatenotification.cpp:173
 #, kde-format
 msgctxt "%1 is the version number"
 msgid "Version %1 is available."
 msgstr "Dostępna wersja %1."
 
-#: src/dialogs/updatenotification.cpp:181
+#: src/dialogs/updatenotification.cpp:174
 #, kde-format
 msgctxt "Link to NEWS style changelog"
 msgid ""
@@ -7667,18 +7667,18 @@ msgstr ""
 "Dowiedz się o <a href=\"https://www.gpg4win.org/change-history.html\">nowych "
 "możliwościach</a>."
 
-#: src/dialogs/updatenotification.cpp:185
+#: src/dialogs/updatenotification.cpp:178
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Available"
 msgstr "Dostępne uaktualnienie"
 
-#: src/dialogs/updatenotification.cpp:190
+#: src/dialogs/updatenotification.cpp:183
 #, kde-format
 msgid "Show this notification for future updates."
 msgstr "Pokaż to powiadomienie dla przyszłych uaktualnień."
 
-#: src/dialogs/updatenotification.cpp:197
+#: src/dialogs/updatenotification.cpp:190
 #, kde-format
 msgid "&Get update"
 msgstr "&Pobierz uaktualnienie"

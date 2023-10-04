@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2023-09-30 11:03+0200\n"
+"PO-Revision-Date: 2023-10-03 10:15+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: \n"
 "Language: bg\n"
@@ -333,13 +333,14 @@ msgstr "Сертифицирането е успешно"
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "Групата не може да се сертифицира"
 
 #: src/commands/certifygroupcommand.cpp:118
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
 msgstr ""
+"Тази група съдържа S/MIME сертификати, които не могат да се сертифицират."
 
 #: src/commands/certifygroupcommand.cpp:172
 #: src/dialogs/certifycertificatedialog.cpp:44
@@ -385,29 +386,26 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
+"<p>След това сертифицираните сертификати ще бъдат качени в директорията на "
+"конфигурирания сертификат.</p>"
 
 #: src/commands/certifygroupcommand.cpp:293
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:302
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "Неуспешно експортиране на сертификат: %1"
+msgstr "<p>Неуспешно сертифициране на следните сертификати:</p>"
 
 #: src/commands/certifygroupcommand.cpp:304
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr "Сертифицирането е успешно"
+msgstr "Сертифицирането завърши"
 
 #: src/commands/changeexpirycommand.cpp:237
 #, kde-format
@@ -941,8 +939,7 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "Дешифриране/Проверка на грешка в клипборда"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Дешифрирането/потвърждаването е неуспешно"
@@ -1076,8 +1073,7 @@ msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:335
 #: src/commands/dumpcertificatecommand.cpp:341
-#, fuzzy, kde-format
-#| msgid "Dump Certificate Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
 msgstr "Грешка при изхвърляне на сертификат"
@@ -1128,8 +1124,7 @@ msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:343
 #: src/commands/dumpcrlcachecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Грешка в кеша на CRL"
@@ -1179,8 +1174,7 @@ msgid "You have to select different filenames for different protocols."
 msgstr "Трябва да изберете различни имена на файлове за различни протоколи."
 
 #: src/commands/exportcertificatecommand.cpp:230
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Грешка при експортирането"
@@ -1720,8 +1714,7 @@ msgstr ""
 "редактиране на сертификата <br> преди да може да бъде импортиран."
 
 #: src/commands/genrevokecommand.cpp:99
-#, fuzzy, kde-format
-#| msgid "Revocation certificate created"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Създаден е сертификат за отмяна"
@@ -3809,12 +3802,11 @@ msgid "Delete"
 msgstr "Изтриване"
 
 #: src/conf/groupsconfigwidget.cpp:194
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Write the key pair of a certificate to the card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr "Записване на двойката ключове на сертификат в картата"
+msgstr ""
+"Стартиране на процеса на сертифициране за всички сертификати в групата."
 
 #: src/conf/groupsconfigwidget.cpp:198
 #: src/dialogs/certificatedetailswidget.cpp:362
@@ -3851,8 +3843,7 @@ msgstr ""
 "Искате ли да приложите промените или да ги отхвърлите?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, fuzzy, kde-format
-#| msgid "Apply Settings"
+#, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Прилагане на настройките"
@@ -4240,8 +4231,7 @@ msgid ""
 msgstr "Да се запази ли файлът с оригиналното име <filename>%1</filename>?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
-#, fuzzy, kde-format
-#| msgid "Use Original File Name?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Да се използва ли оригиналното име на файла?"
@@ -5758,8 +5748,7 @@ msgid "Could not find a key for the following recipients:"
 msgstr "Не можа да се намери ключ за следните получатели:"
 
 #: src/crypto/gui/signencryptwidget.cpp:797
-#, fuzzy, kde-format
-#| msgid "Failed to find some keys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Неуспех при намирането на някои от ключовете"
@@ -5872,8 +5861,7 @@ msgid "The following errors and warnings were recorded:"
 msgstr "Записани са следните грешки и предупреждения:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, fuzzy, kde-format
-#| msgid "Checksum Verification Errors"
+#, kde-format
 msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Грешки при проверка на контролната сума"
@@ -6690,12 +6678,10 @@ msgid "Certify Certificate: %1"
 msgstr "Сертифициране на сертификат: %1"
 
 #: src/dialogs/certifycertificatedialog.cpp:98
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "Сертифициране на сертификат: %1"
+msgstr "Сертифициране на група сертификати: %1"
 
 #: src/dialogs/certifywidget.cpp:273
 #, kde-format
@@ -6731,12 +6717,10 @@ msgstr ""
 "крайно доверие. Обикновено това се прави за собствените си ключове."
 
 #: src/dialogs/certifywidget.cpp:324
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr ""
-"За да маркирате сертификата като валиден, той трябва да бъде сертифициран."
+msgstr "Един или повече сертификати не могат да бъдат сертифицирани."
 
 #: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
 #: src/dialogs/certifywidget.cpp:563
@@ -6837,11 +6821,7 @@ msgid "Domain:"
 msgstr "Домейн:"
 
 #: src/dialogs/certifywidget.cpp:531
-#, fuzzy, kde-format
-#| msgid ""
-#| "Verify the fingerprint, mark the user IDs you want to certify, and select "
-#| "the key you want to certify the user IDs with.<br><i>Note: Only the "
-#| "fingerprint clearly identifies the key and its owner.</i>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Verify the fingerprints, mark the user IDs you want to certify, and select "
@@ -6854,27 +6834,22 @@ msgstr ""
 "пръстовият отпечатък ясно идентифицира ключа и неговия собственик.</i>"
 
 #: src/dialogs/certifywidget.cpp:563
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "Отпечатък:"
 
 #: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for signing."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "Този сертификат не може да се използва за подписване."
+msgstr "S/MIME сертификати не могат да се сертифицират."
 
 #: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr ""
-"За да маркирате сертификата като валиден, той трябва да бъде сертифициран."
+msgstr "Изтекли или отменени сертификати не могат да бъдат сертифицирани."
 
 #: src/dialogs/certifywidget.cpp:890
 #, kde-format
@@ -6890,8 +6865,7 @@ msgstr ""
 "p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:908
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Промяна на удостоверението за надеждност на ключа е неуспешно"
@@ -6976,8 +6950,7 @@ msgstr[1] ""
 "кодирана в сертификат и следователно не трябва да се изтрива."
 
 #: src/dialogs/deletecertificatesdialog.cpp:220
-#, fuzzy, kde-format
-#| msgid "Secret Key Deletion"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Изтриване на секретен ключ"
@@ -11544,8 +11517,7 @@ msgstr ""
 "въведено погрешно повече от 2 пъти."
 
 #: src/view/nullpinwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Set initial PIN"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Задаване на първоначален ПИН"

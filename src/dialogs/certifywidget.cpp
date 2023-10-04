@@ -599,6 +599,9 @@ public:
         if (mMode == SingleCertification) {
             return;
         }
+        if (userIdListView->topLevelItemCount() == 0) {
+            return;
+        }
 
         // restore check state of primary user ID of previous certification key
         if (!mCertificationKey.isNull()) {
@@ -773,6 +776,7 @@ public:
             setUpUserIdList();
         }
         updateTags();
+        updateSelectedUserIds();
         Q_EMIT q->changed();
     }
 

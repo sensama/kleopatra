@@ -24,14 +24,20 @@ public:
     Private(ViewEmailFilesCommand *qq, KeyListController *c);
     ~Private() override;
 
+    void init();
+
     QVector<QPointer<MessageViewerDialog>> dialogs;
     QStringList files;
+    std::shared_ptr<const ExecutionContext> shared_qq;
+    std::unique_ptr<ExecutionContextUser> mController;
 
     void ensureDialogCreated();
 };
 
 ViewEmailFilesCommand::Private::Private(ViewEmailFilesCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
+    , shared_qq(qq, [](ViewEmailFilesCommand *) {})
+    , mController(std::make_unique<ExecutionContextUser>())
 {
 }
 
@@ -63,6 +69,11 @@ const ViewEmailFilesCommand::Private *ViewEmailFilesCommand::d_func() const
     return static_cast<const Private *>(d.get());
 }
 
+void ViewEmailFilesCommand::Private::init()
+{
+    mController->setExecutionContext(shared_qq);
+}
+
 #define d d_func()
 #define q q_func()
 
@@ -74,6 +85,7 @@ ViewEmailFilesCommand::ViewEmailFilesCommand(const QStringList &files, KeyListCo
     setWarnWhenRunningAtShutdown(false);
 
     d->files = files;
+    d->init();
 }
 
 ViewEmailFilesCommand::~ViewEmailFilesCommand() = default;

@@ -39,9 +39,9 @@ public:
 
     void setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols);
     void setSelectedCertificates(const CertificatePair &certificates);
-    Q_REQUIRED_RESULT CertificatePair selectedCertificates() const;
+    [[nodiscard]] CertificatePair selectedCertificates() const;
 
-    Q_REQUIRED_RESULT bool rememberAsDefault() const;
+    [[nodiscard]] bool rememberAsDefault() const;
 
 private:
     SigningCertificateSelectionWidget *const widget;

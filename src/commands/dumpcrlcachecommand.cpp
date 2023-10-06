@@ -71,7 +71,7 @@ public:
         mWithRevocations = value;
     }
 
-    Q_REQUIRED_RESULT bool withRevocations()
+    [[nodiscard]] bool withRevocations()
     {
         return mWithRevocations;
     }

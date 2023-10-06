@@ -74,11 +74,11 @@ public:
     {
     }
 
-    Q_REQUIRED_RESULT QString initialText() const
+    [[nodiscard]] QString initialText() const
     {
         return m_initialText;
     }
-    Q_REQUIRED_RESULT QIcon initialIcon() const
+    [[nodiscard]] QIcon initialIcon() const
     {
         return m_initialIcon;
     }

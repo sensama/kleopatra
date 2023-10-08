@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-05 01:40+0000\n"
-"PO-Revision-Date: 2023-10-06 16:07+0200\n"
+"PO-Revision-Date: 2023-10-07 23:22+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -794,6 +794,9 @@ msgid ""
 "The DirMngr process that tried to clear the CRL cache ended prematurely "
 "because of an unexpected error. Please check the output of %1 for details."
 msgstr ""
+"DirMngr-ის პროცესი, რომელმაც სცადა, CRL კეში გაესუფთავებინა, "
+"გაუთვალისწინებელი შეცდომის გამო ნაადრევად დასრულდა. დეტალებისთვის შეამოწმეთ "
+"%1-ის გამოტანილი ინფორმაცია."
 
 #: src/commands/clearcrlcachecommand.cpp:61
 #, kde-format
@@ -888,6 +891,9 @@ msgid ""
 "card:</p><p>%1</p><p>Do you still want to create an OpenPGP key for the card "
 "keys?</p>"
 msgstr ""
+"<p>ამ ბარათზე ხელმოწერის გასაღების შესაბამისი OpenPGP-ის გასაღები უკვე "
+"არსებობს:</p><p>%1</p><p>მაინც გნებავთ ბარათის გასაღებებისთვის OpenPGP "
+"გასაღების შექმნა?</p>"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:120
 #, kde-format
@@ -1052,6 +1058,9 @@ msgid ""
 "because of an unexpected error. Please check the output of gpgsm --dump-cert "
 "%1 for details."
 msgstr ""
+"GpgSM პროცესი, რომელმაც სერტიფიკატის დამპი სცადა, მოულოდნელი შეცდომის გამო "
+"ნაადრევად დასრულდა. დეტალებისთვის შეამოწმეთ ბრძანების gpgsm --dump-cert %1 "
+"ბრძანების გამოტანილი ინფორმაცია."
 
 #: src/commands/dumpcertificatecommand.cpp:335
 #: src/commands/dumpcertificatecommand.cpp:341
@@ -1099,6 +1108,9 @@ msgid ""
 "of an unexpected error. Please check the output of gpgsm --call-dirmngr "
 "listcrls for details."
 msgstr ""
+"GpgSM პროცესი, რომელმაც CRL კეშის დამპი სცადა, მოულოდნელი შეცდომის გამო "
+"ნაადრევად დასრულდა. დეტალებისთვის შეამოწმეთ ბრძანების gpgsm --call-dirmngr "
+"listcrls ბრძანების გამოტანილი ინფორმაცია."
 
 #: src/commands/dumpcrlcachecommand.cpp:343
 #: src/commands/dumpcrlcachecommand.cpp:349
@@ -1324,6 +1336,9 @@ msgid ""
 "<para>The output of <command>%1</command> was:<nl /><message>%2</message></"
 "para>"
 msgstr ""
+"<para>შეცდომა OpenPGP-ის სერტიფიკატების გატანის მცდელობისას.</para> "
+"<para>ბრძანებამ <command>%1</command> გამოიტანა:<nl /><message>%2</message></"
+"para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:135
 #, kde-format
@@ -1362,6 +1377,8 @@ msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
 "<para>The output from GnuPG WKS client was: <message>%1</message></para>"
 msgstr ""
+"<para>შეცდომა OpenPGP-ის სერტიფიკატების გატანისას.</para> <para>GnuPG WKS "
+"კლიენტმა გამოიტანა: <message>%1</message></para>"
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:151
 #, kde-kuit-format
@@ -1381,6 +1398,9 @@ msgid ""
 "application> to create a minimized and printable version of your secret key."
 "</para><para>Please make sure it is installed.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> თქვენ საიდუმლო გასაღების "
+"შემცირებული და დაბეჭდვადი ვერსიის შესაქმენლად <application>PaperKey</"
+"application>-ს იყენებს.</para><para>დარწმუნდით, რომ ის დაყენებულია.</para>"
 
 #: src/commands/exportpaperkeycommand.cpp:69
 #: src/commands/importpaperkeycommand.cpp:156
@@ -1418,6 +1438,8 @@ msgid ""
 "<para>An error occurred while trying to export the secret key.</para> "
 "<para>The output from <command>%1</command> was: <message>%2</message></para>"
 msgstr ""
+"<para>შეცდომა საიდუმლო გასაღების გატანის მცდელობისას.</para> <para>ბრძანებამ "
+"<command>%1</command> გამოიტანა:</para><para><message>%2</message></para>"
 
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
@@ -1489,6 +1511,8 @@ msgid ""
 "<para>An error occurred during the backup of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
+"<para>შეცდომა მარქაფისას საიდუმლო გასაღებისთვის:</para><para><message>%1</"
+"message></para>"
 
 #: src/commands/exportsecretkeycommand_old.cpp:76
 #, kde-format
@@ -1619,6 +1643,9 @@ msgid ""
 "before the 5 dashes below.  Remove this colon with a text editor\n"
 "before importing and publishing this revocation certificate."
 msgstr ""
+"ამ ფაილის შემთხვევით გამოყენების თავიდან ასაცილებლად ქვემოთ 5 გამოტოვების\n"
+"შემდეგ ორიწერტილი ჩავსვით.  ამ გაუქმების სერტიფიკატის შემოტანამდე და\n"
+"გამოცემამდე მოაცილეთ ეს ორიწერტილი ტექსტური რედაქტორით."
 
 #: src/commands/genrevokecommand.cpp:95
 #, kde-format
@@ -3010,6 +3037,8 @@ msgid ""
 "<para>An error occurred while trying to revoke the user ID<nl/><emphasis>%1</"
 "emphasis>.</para><para><message>%2</message></para>"
 msgstr ""
+"<para>შეცდომა მომხმარებლის გაუქმებისას, ID-ით<nl/><emphasis>%1</emphasis>.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/revokeuseridcommand.cpp:140
 #, kde-kuit-format
@@ -3018,6 +3047,8 @@ msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been revoked "
 "successfully.</para>"
 msgstr ""
+"<para>მომხმარებლის ID<nl/><emphasis>%1</emphasis><nl/>წარმატებით გაუქმდა.</"
+"para>"
 
 #: src/commands/revokeuseridcommand.cpp:141
 #, kde-format
@@ -3096,6 +3127,9 @@ msgid ""
 "emphasis><nl/>as the primary user ID.</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>შეცდომა მომხმარებლის ID-ის<nl/><emphasis>%1</emphasis><nl/>, როგორც "
+"ძირითადი მომხმარებლის ID-ის დაყენებისას.</para><para><message>%2</message></"
+"para>"
 
 #: src/commands/setprimaryuseridcommand.cpp:148
 #, kde-kuit-format
@@ -3104,6 +3138,8 @@ msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
 msgstr ""
+"<para>მომხმარებლის ID<nl/><emphasis>%1</emphasis><nl/>წარმატებით მოინიშნა, "
+"როგორც ძირითადი მომხმარებლის ID.</para>"
 
 #: src/commands/signclipboardcommand.cpp:150
 #: src/commands/signclipboardcommand.cpp:162
@@ -3208,6 +3244,8 @@ msgid ""
 "Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"აირჩიეთ დღეების რაოდენობა, რომლითაც ადრე გნებავთ, თქვენი სერტიფიკატების "
+"ვადის ამოწურვის შესახებ გაგაფრთხილებთ."
 
 #: src/conf/appearanceconfigwidget.cpp:383
 #, kde-format
@@ -3222,6 +3260,8 @@ msgid ""
 "Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"აირჩიეთ დღეების რაოდენობა, რომლითაც ადრე გნებავთ, სხვა პიროვნების "
+"სერტიფიკატების ვადის ამოწურვის შესახებ გაგაფრთხილებთ."
 
 #: src/conf/appearanceconfigwidget.cpp:403
 #, kde-format
@@ -3360,6 +3400,9 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
+"დააყენეთ ეს პარამეტრი დაშიფრული ან ხელმოწერილი ფაილების base64-ში "
+"კოდირებისთვის. ამ ხერხით, მისი რედაქტორით გახსნა და ელფოსტის ტანში გაგზავნაა "
+"შესაძლებელი. ეს ფაილის ზომას 1/3-ით გაზრდის."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:67
@@ -3754,6 +3797,8 @@ msgid ""
 "certificate policy is allowed. If this option is selected, policies are not "
 "checked."
 msgstr ""
+"ნაგულისხმევად GnuPG სერტიფიკატის პოლიტიკის დაშვებულობის შესამოწმებლად ფაილს "
+"~/.gnupg/policies.txt-ს ყენებს. თუ ეს თოლია დასმულია, პოლიტიკა არ შემოწმდება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:134
@@ -3802,6 +3847,8 @@ msgid ""
 "If this option is checked, missing issuer certificates are fetched when "
 "necessary (this applies to both validation methods, CRLs and OCSP)."
 msgstr ""
+"თუ ეს პარამეტრი ჩართულია, ნაკლული გამომცემლის სერტიფიკატები გამოითხოვება, "
+"როცა ეს საჭიროა (ეხება ორივე CRL და OCSP გადამოწმების მეთოდებს)."
 
 #. i18n: ectx: property (text), widget (QCheckBox, fetchMissingCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:164
@@ -4363,6 +4410,8 @@ msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
 "for signing."
 msgstr ""
+"<br/><b>გაფრთხილება:</b> გამგზავნის ელფოსტის მისამართი %1-ში, ხელმოწერისთვის "
+"დამახსოვრებული არაა."
 
 #: src/crypto/decryptverifytask.cpp:469
 #, kde-format
@@ -4382,6 +4431,8 @@ msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
 "certificates used for signing."
 msgstr ""
+"<br/><b>გაფრთხილება:</b> გამგზავნის ელფოსტის მისამართი ხელმოწერისთვის "
+"გამოყენებულ სერტიფიკატებში დამახსოვრებული არაა."
 
 #: src/crypto/decryptverifytask.cpp:485
 #, kde-format
@@ -4428,6 +4479,8 @@ msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
 "or the Certificate Authority is unknown."
 msgstr ""
+"გამოყენებული სერტიფიკატი არაა სერტიფიცირებული სანდო სერტიფიკატის ავტორიტეტის "
+"მიერ ან სერტიფიკატის ავტორიტეტი უცნობია."
 
 #: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:244 src/crypto/signencrypttask.cpp:261
@@ -4441,6 +4494,8 @@ msgstr "შეყვანის შეცდომა: %1"
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
 msgstr ""
+"<p>გამგზავნის მისამართი %1 სერტიფიკატში დამახსოვრებული არაა. "
+"დამახსოვრებულია: %2</p>"
 
 #: src/crypto/decryptverifytask.cpp:568
 #, kde-format
@@ -4496,6 +4551,8 @@ msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
 msgstr ""
+"<b>შენშვნა:</b> თქვენ ვერ იქნებით დარწმუნებული ვინ დაშიფრა ეს შეტყობინება, "
+"რადგან ის ხელმოწერილი არაა."
 
 #: src/crypto/decryptverifytask.cpp:646
 #, kde-format
@@ -6510,6 +6567,7 @@ msgstr "ეს თქვენი საკუთარი გასაღებ
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
+"<p>სერტიფიკაციის ნდობს შეცვლა გასაღებისთვის <b>%1</b> ჩავარდა:</p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:912
 #, kde-format
@@ -6834,6 +6892,8 @@ msgid ""
 "The name must be in the format required by your organization and it must not "
 "include <, >, and @."
 msgstr ""
+"სახელის ფორმატი თქვენი ორგანიზაციის მიერ მოთხოვნილ ფორმატში უნდა ჯდებოდა და "
+"არ უნდა შეიცავდეს მეტობის, ნაკლებობისა და ელფოსტის ნიშნებს."
 
 #: src/dialogs/nameandemailwidget.cpp:102
 #, kde-format
@@ -7365,6 +7425,8 @@ msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
 msgstr ""
+"გაუქმების სერტიფიკატს ვერ გააუქმებთ. (მაგრამ, შეგიძლიათ შესაბამისი "
+"მომხმარებლის ID-ის თავიდან სერტიფიკატია)"
 
 #: src/dialogs/weboftrustwidget.cpp:218
 #, kde-format
@@ -7382,6 +7444,8 @@ msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
 msgstr ""
+"ამ სერტიფიკაციის გაუქმება არ შეგიძლიათ, რადგან აუცილებელი საიდუმლო გასაღები "
+"ხელმისაწვდომი არაა."
 
 #: src/dialogs/weboftrustwidget.cpp:232
 #, kde-format
@@ -7389,6 +7453,8 @@ msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
 "the certifications for details."
 msgstr ""
+"ამ მომხმარებლის ID-სთვის სერტიფიკაციას ვერ გააუქმებთ. დეტალებისთვის მონიშნეთ "
+"სერტიფიკაცია."
 
 #: src/dialogs/weboftrustwidget.cpp:338
 #, kde-kuit-format
@@ -7485,6 +7551,9 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
+"დააყენეთ ეს პარამეტრი დაშიფრული ან ხელმოწერილი ფაილების base64-ში "
+"კოდირებისთვის. ამ ხერხით, მისი რედაქტორით გახსნა და ელფოსტის ტანში გაგზავნაა "
+"შესაძლებელი. ეს ფაილის ზომას 1/3-ით გაზრდის."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
@@ -7513,6 +7582,7 @@ msgid ""
 "This text will be used as placeholder text for the common name (CN) field of "
 "S/MIME certificates."
 msgstr ""
+"ეს ტექსტი S/MIME სერტიფიკატების ზოგადი სახელის (CN) ველის ადგილმჭერი იქნება."
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:14
@@ -7543,6 +7613,8 @@ msgid ""
 "This text will be used as placeholder text for the email address field of "
 "OpenPGP and S/MIME certificates."
 msgstr ""
+"ეს ტექსტი OpenPGP და S/MIME სერტიფიკატების ელფოსტის მისამართის ველის "
+"ადგილმჭერი იქნება."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -7573,6 +7645,7 @@ msgid ""
 "This text will be used as placeholder text for the name field of OpenPGP "
 "certificates."
 msgstr ""
+"ეს ტექსტი OpenPGP სერტიფიკატის სახელის ველის ადგილმჭერად იქნება გამოყენებული."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36

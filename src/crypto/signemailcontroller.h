@@ -57,7 +57,6 @@ public:
     // const char * protocolAsString() const;
 
     void startResolveSigners();
-    void startResolveSigners(const std::vector<KMime::Types::Mailbox> &signers);
 
     void setDetachedSignature(bool detached);
 

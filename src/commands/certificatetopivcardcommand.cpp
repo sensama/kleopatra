@@ -20,6 +20,7 @@
 
 #include "utils/writecertassuantransaction.h"
 
+#include <Libkleo/Compat>
 #include <Libkleo/Dn>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -100,10 +101,10 @@ static Key getCertificateToWriteToPIVCard(const std::string &cardSlot, const std
         if (certificate.isNull() || certificate.protocol() != GpgME::CMS) {
             return Key();
         }
-        if ((cardSlot == PIVCard::pivAuthenticationKeyRef() && certificate.canSign())
-            || (cardSlot == PIVCard::cardAuthenticationKeyRef() && certificate.canSign())
-            || (cardSlot == PIVCard::digitalSignatureKeyRef() && certificate.canSign())
-            || (cardSlot == PIVCard::keyManagementKeyRef() && certificate.canEncrypt())) {
+        if ((cardSlot == PIVCard::pivAuthenticationKeyRef() && Kleo::keyHasSign(certificate))
+            || (cardSlot == PIVCard::cardAuthenticationKeyRef() && Kleo::keyHasSign(certificate))
+            || (cardSlot == PIVCard::digitalSignatureKeyRef() && Kleo::keyHasSign(certificate))
+            || (cardSlot == PIVCard::keyManagementKeyRef() && Kleo::keyHasEncrypt(certificate))) {
             return certificate;
         }
     }

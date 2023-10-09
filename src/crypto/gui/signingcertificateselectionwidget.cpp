@@ -15,6 +15,7 @@
 
 #include "utils/keys.h"
 
+#include <Libkleo/Compat>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Stl_Util>
@@ -110,7 +111,7 @@ std::vector<GpgME::Key> SigningCertificateSelectionWidget::Private::candidates(G
     }));
 #if GPGMEPP_KEY_CANSIGN_IS_FIXED
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) {
-        return !key.canSign();
+        return !Kleo::keyHasSign(key);
     });
 #else
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) {

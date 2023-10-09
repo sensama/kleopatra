@@ -15,13 +15,14 @@
 
 #include "conf/groupsconfigdialog.h"
 
-#include <Libkleo/Algorithm>
 #include <view/keytreeview.h>
 #include <view/searchbar.h>
 #include <view/tabwidget.h>
 
 #include "utils/tags.h"
 
+#include <Libkleo/Algorithm>
+#include <Libkleo/Compat>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
 #include <Libkleo/KeyListModel>
@@ -443,7 +444,7 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
     case SignOnly:
 #if GPGMEPP_KEY_CANSIGN_IS_FIXED
         end = std::remove_if(keys.begin(), end, [](const Key &key) {
-            return !key.canSign();
+            return !Kleo::keyHasSign(key);
         });
 #else
         end = std::remove_if(keys.begin(), end, [](const Key &key) {
@@ -453,7 +454,7 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
         break;
     case EncryptOnly:
         end = std::remove_if(keys.begin(), end, [](const Key &key) {
-            return !key.canEncrypt();
+            return !Kleo::keyHasEncrypt(key);
         });
         break;
     default:

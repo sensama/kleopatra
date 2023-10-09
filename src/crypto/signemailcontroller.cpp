@@ -122,20 +122,9 @@ Protocol SignEMailController::protocol() const
 
 void SignEMailController::startResolveSigners()
 {
-    startResolveSigners(std::vector<Mailbox>());
-}
-
-void SignEMailController::startResolveSigners(const std::vector<Mailbox> &signers)
-{
-    const std::vector<std::vector<Key>> keys = CertificateResolver::resolveSigners(signers, d->protocol);
-
-    if (!signers.empty()) {
-        kleo_assert(keys.size() == static_cast<size_t>(signers.size()));
-    }
-
     d->ensureWizardCreated();
 
-    d->wizard->setSignersAndCandidates(signers, keys);
+    d->wizard->setSignersAndCandidates({}, {});
 
     d->ensureWizardVisible();
 }

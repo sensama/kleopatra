@@ -14,6 +14,7 @@
 #include <settings.h>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Compat>
 #include <Libkleo/KeyCache>
 
 #include <QDate>
@@ -67,7 +68,7 @@ bool Kleo::isRevokedOrExpired(const GpgME::UserID &userId)
 
 bool Kleo::canCreateCertifications(const GpgME::Key &key)
 {
-    return key.canCertify() && canBeUsedForSecretKeyOperations(key);
+    return Kleo::keyHasCertify(key) && canBeUsedForSecretKeyOperations(key);
 }
 
 bool Kleo::canBeCertified(const GpgME::Key &key)

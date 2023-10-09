@@ -16,8 +16,6 @@
 
 #include <KSharedConfig>
 
-#include <vector>
-
 class KConfig;
 
 namespace GpgME
@@ -77,16 +75,5 @@ private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
 };
-
-class CertificateResolver
-{
-public:
-    static std::vector<std::vector<GpgME::Key>> resolveRecipients(const std::vector<KMime::Types::Mailbox> &recipients, GpgME::Protocol proto);
-    static std::vector<GpgME::Key> resolveRecipient(const KMime::Types::Mailbox &recipient, GpgME::Protocol proto);
-
-    static std::vector<std::vector<GpgME::Key>> resolveSigners(const std::vector<KMime::Types::Mailbox> &signers, GpgME::Protocol proto);
-    static std::vector<GpgME::Key> resolveSigner(const KMime::Types::Mailbox &signer, GpgME::Protocol proto);
-};
-
 }
 }

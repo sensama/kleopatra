@@ -569,22 +569,6 @@ void ResolveRecipientsPage::Private::addRecipient()
     Q_EMIT q->completeChanged();
 }
 
-namespace
-{
-
-std::vector<Key> makeSuggestions(const std::shared_ptr<RecipientPreferences> &prefs, const Mailbox &mb, GpgME::Protocol prot)
-{
-    std::vector<Key> suggestions;
-    const Key remembered = prefs ? prefs->preferredCertificate(mb, prot) : Key();
-    if (!remembered.isNull()) {
-        suggestions.push_back(remembered);
-    } else {
-        suggestions = CertificateResolver::resolveRecipient(mb, prot);
-    }
-    return suggestions;
-}
-}
-
 static QString listKeysForInfo(const std::vector<Key> &keys)
 {
     QStringList list;
@@ -599,35 +583,6 @@ void ResolveRecipientsPage::setAdditionalRecipientsInfo(const std::vector<Key> &
         return;
     }
     d->m_additionalRecipientsLabel->setText(i18n("<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>", listKeysForInfo(recipients)));
-}
-
-void ResolveRecipientsPage::setRecipients(const std::vector<Mailbox> &recipients, const std::vector<Mailbox> &encryptToSelfRecipients)
-{
-    uint cmsCount = 0;
-    uint pgpCount = 0;
-    uint senders = 0;
-    for (const Mailbox &mb : encryptToSelfRecipients) {
-        const QString id = QLatin1String("sender-") + QString::number(++senders);
-        d->m_listWidget->addEntry(id, i18n("Sender"), mb);
-        const std::vector<Key> pgp = makeSuggestions(d->m_recipientPreferences, mb, OpenPGP);
-        const std::vector<Key> cms = makeSuggestions(d->m_recipientPreferences, mb, CMS);
-        pgpCount += !pgp.empty();
-        cmsCount += !cms.empty();
-        d->m_listWidget->setCertificates(id, pgp, cms);
-    }
-    for (const Mailbox &i : recipients) {
-        // TODO:
-        const QString address = i.prettyAddress();
-        d->addRecipient(i);
-        const std::vector<Key> pgp = makeSuggestions(d->m_recipientPreferences, i, OpenPGP);
-        const std::vector<Key> cms = makeSuggestions(d->m_recipientPreferences, i, CMS);
-        pgpCount += pgp.empty() ? 0 : 1;
-        cmsCount += cms.empty() ? 0 : 1;
-        d->m_listWidget->setCertificates(address, pgp, cms);
-    }
-    if (d->m_presetProtocol == UnknownProtocol && !d->m_multipleProtocolsAllowed) {
-        (cmsCount > pgpCount ? d->m_cmsRB : d->m_pgpRB)->click();
-    }
 }
 
 std::vector<Key> ResolveRecipientsPage::resolvedCertificates() const

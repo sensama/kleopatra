@@ -62,7 +62,6 @@ public:
     GpgME::Protocol protocol();
 
     void startResolveRecipients();
-    void startResolveRecipients(const std::vector<KMime::Types::Mailbox> &recipients, const std::vector<KMime::Types::Mailbox> &senders);
 
     void setInputAndOutput(const std::shared_ptr<Kleo::Input> &input, const std::shared_ptr<Kleo::Output> &output);
     void setInputsAndOutputs(const std::vector<std::shared_ptr<Kleo::Input>> &inputs, const std::vector<std::shared_ptr<Kleo::Output>> &outputs);

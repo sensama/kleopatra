@@ -21,6 +21,7 @@
 #include "utils/tags.h"
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Compat>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 
@@ -163,7 +164,7 @@ void CertifyCertificateCommand::doStart()
     auto findAnyGoodKey = []() {
         const std::vector<Key> secKeys = KeyCache::instance()->secretKeys();
         return std::any_of(secKeys.cbegin(), secKeys.cend(), [](const Key &secKey) {
-            return secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked() && !secKey.isExpired() && !secKey.isInvalid();
+            return Kleo::keyHasCertify(secKey) && secKey.protocol() == OpenPGP && !secKey.isRevoked() && !secKey.isExpired() && !secKey.isInvalid();
         });
     };
 

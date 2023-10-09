@@ -14,7 +14,6 @@
 
 #include "signencryptfilescontroller.h"
 
-#include "certificateresolver.h"
 #include "signencrypttask.h"
 
 #include "crypto/gui/signencryptfileswizard.h"
@@ -46,7 +45,6 @@
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace GpgME;
-using namespace KMime::Types;
 
 class SignEncryptFilesController::Private
 {

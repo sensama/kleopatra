@@ -32,63 +32,6 @@ using namespace GpgME;
 using namespace KMime::Types;
 using namespace KMime::HeaderParsing;
 
-std::vector<std::vector<Key>> CertificateResolver::resolveRecipients(const std::vector<Mailbox> &recipients, Protocol proto)
-{
-    std::vector<std::vector<Key>> result;
-    std::transform(recipients.begin(), recipients.end(), std::back_inserter(result), [proto](const Mailbox &recipient) {
-        return resolveRecipient(recipient, proto);
-    });
-    return result;
-}
-
-std::vector<Key> CertificateResolver::resolveRecipient(const Mailbox &recipient, Protocol proto)
-{
-    std::vector<Key> result = KeyCache::instance()->findByEMailAddress(recipient.address().constData());
-    auto end = std::remove_if(result.begin(), result.end(), [](const Key &key) {
-        return key.canEncrypt();
-    });
-
-    if (proto != UnknownProtocol)
-        end = std::remove_if(result.begin(), end, [proto](const Key &key) {
-            return key.protocol() != proto;
-        });
-
-    result.erase(end, result.end());
-    return result;
-}
-
-std::vector<std::vector<Key>> CertificateResolver::resolveSigners(const std::vector<Mailbox> &signers, Protocol proto)
-{
-    std::vector<std::vector<Key>> result;
-    std::transform(signers.begin(), signers.end(), std::back_inserter(result), [proto](const Mailbox &signer) {
-        return resolveSigner(signer, proto);
-    });
-    return result;
-}
-
-std::vector<Key> CertificateResolver::resolveSigner(const Mailbox &signer, Protocol proto)
-{
-    std::vector<Key> result = KeyCache::instance()->findByEMailAddress(signer.address().constData());
-    auto end = std::remove_if(result.begin(), result.end(), [](const Key &key) {
-        return key.hasSecret();
-    });
-    end = std::remove_if(result.begin(),
-                         end,
-#if GPGMEPP_KEY_CANSIGN_IS_FIXED
-                         [](const Key &key) {
-                             return key.canSign();
-                         });
-#else
-                         [](const Key &key) { return key.canReallySign(); });
-#endif
-    if (proto != UnknownProtocol)
-        end = std::remove_if(result.begin(), end, [proto](const Key &key) {
-            return key.protocol() != proto;
-        });
-    result.erase(end, result.end());
-    return result;
-}
-
 class KConfigBasedRecipientPreferences::Private
 {
     friend class ::Kleo::Crypto::KConfigBasedRecipientPreferences;

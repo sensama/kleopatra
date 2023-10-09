@@ -125,7 +125,6 @@ const char *EncryptEMailController::protocolAsString()
 void EncryptEMailController::startResolveRecipients()
 {
     d->ensureWizardCreated();
-    d->wizard->setRecipients({}, {});
     d->ensureWizardVisible();
 }
 

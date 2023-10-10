@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-05 01:40+0000\n"
+"POT-Creation-Date: 2023-10-10 01:47+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -182,8 +182,8 @@ msgid "Add User ID Succeeded"
 msgstr "Kasutaja ID lisamine õnnestus"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:128
-#: src/commands/certificatetopivcardcommand.cpp:121
-#: src/commands/certificatetopivcardcommand.cpp:179
+#: src/commands/certificatetopivcardcommand.cpp:122
+#: src/commands/certificatetopivcardcommand.cpp:180
 #: src/commands/importcertificatefrompivcardcommand.cpp:77
 #: src/commands/keytocardcommand.cpp:365
 #: src/commands/pivgeneratecardkeycommand.cpp:124
@@ -207,20 +207,20 @@ msgid ""
 "Please enter the PIV Card Application Administration Key in hex-encoded form."
 msgstr ""
 
-#: src/commands/certificatetopivcardcommand.cpp:128
+#: src/commands/certificatetopivcardcommand.cpp:129
 #: src/commands/keytocardcommand.cpp:343
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
 
-#: src/commands/certificatetopivcardcommand.cpp:134
+#: src/commands/certificatetopivcardcommand.cpp:135
 #: src/view/pivcardwidget.cpp:284
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
 msgstr ""
 
-#: src/commands/certificatetopivcardcommand.cpp:139
+#: src/commands/certificatetopivcardcommand.cpp:140
 #, kde-format
 msgctxt "@info %1 name of card slot, %2 serial number of card"
 msgid ""
@@ -228,50 +228,50 @@ msgid ""
 "slot of card %2:</p><center>%3</center>"
 msgstr ""
 
-#: src/commands/certificatetopivcardcommand.cpp:145
+#: src/commands/certificatetopivcardcommand.cpp:146
 #, kde-format
 msgctxt "@action:button"
 msgid "Write certificate"
 msgstr "Kirjuta sertifikaat"
 
-#: src/commands/certificatetopivcardcommand.cpp:149
+#: src/commands/certificatetopivcardcommand.cpp:150
 #, kde-format
 msgctxt "@title:window"
 msgid "Write certificate to card"
 msgstr "Sertifikaadi kaardile kirjutamine"
 
-#: src/commands/certificatetopivcardcommand.cpp:171
+#: src/commands/certificatetopivcardcommand.cpp:172
 #, kde-format
 msgctxt "@info"
 msgid "Exporting the certificate failed: %1"
 msgstr "Sertifikaadi eksportimine nurjus: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:248
+#: src/commands/certificatetopivcardcommand.cpp:249
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
 msgstr "Sertifikaadi kaardile kirjutamine nurjus: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:250
+#: src/commands/certificatetopivcardcommand.cpp:251
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card succeeded."
 msgstr "Sertifikaat edukalt kaardile kirjutatud."
 
-#: src/commands/certifycertificatecommand.cpp:154
+#: src/commands/certifycertificatecommand.cpp:155
 #, fuzzy, kde-format
 #| msgid "Newly revoked:"
 msgctxt "@title:window"
 msgid "Key is Revoked"
 msgstr "Hiljuti tühistatud:"
 
-#: src/commands/certifycertificatecommand.cpp:154
+#: src/commands/certifycertificatecommand.cpp:155
 #, kde-format
 msgctxt "@title:window"
 msgid "Key is Expired"
 msgstr ""
 
-#: src/commands/certifycertificatecommand.cpp:156
+#: src/commands/certifycertificatecommand.cpp:157
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "OpenPGP certificates exported successfully."
@@ -279,14 +279,14 @@ msgctxt "@info"
 msgid "This key has been revoked. You cannot certify it."
 msgstr "OpenPGP sertifikaadid on edukalt eksporditud."
 
-#: src/commands/certifycertificatecommand.cpp:157
+#: src/commands/certifycertificatecommand.cpp:158
 #, fuzzy, kde-format
 #| msgid "The private key is needed to decrypt or sign."
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
 msgstr "Privaatvõtit on tarvis lahtikrüptimiseks või allkirjastamiseks."
 
-#: src/commands/certifycertificatecommand.cpp:173
+#: src/commands/certifycertificatecommand.cpp:174
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -296,43 +296,43 @@ msgstr ""
 "Teiste sertifikaatide sertifitseerimiseks tuleb kõigepealt luua enda OpenPGP "
 "sertifikaat."
 
-#: src/commands/certifycertificatecommand.cpp:174
+#: src/commands/certifycertificatecommand.cpp:175
 #, kde-format
 msgid "Do you wish to create one now?"
 msgstr "Kas luua see kohe?"
 
-#: src/commands/certifycertificatecommand.cpp:175
+#: src/commands/certifycertificatecommand.cpp:176
 #, fuzzy, kde-format
 #| msgid "Certification Not Possible"
 msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Sertifitseerimine ei ole võimalik"
 
-#: src/commands/certifycertificatecommand.cpp:176
+#: src/commands/certifycertificatecommand.cpp:177
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create"
 msgid "Create"
 msgstr "Loo"
 
-#: src/commands/certifycertificatecommand.cpp:228
+#: src/commands/certifycertificatecommand.cpp:229
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
 "p>"
 msgstr "<p><b>%1</b><br/><br/>sertifitseerimisel tekkis tõrge:</p><p>\t%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:232
+#: src/commands/certifycertificatecommand.cpp:233
 #, kde-format
 msgid "Certification Error"
 msgstr "Sertifitseerimise tõrge"
 
-#: src/commands/certifycertificatecommand.cpp:237
+#: src/commands/certifycertificatecommand.cpp:238
 #, kde-format
 msgid "Certification successful."
 msgstr "Sertifitseerimine läks edukalt."
 
-#: src/commands/certifycertificatecommand.cpp:237
+#: src/commands/certifycertificatecommand.cpp:238
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "Sertifitseerimine õnnestus"
@@ -1882,7 +1882,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Lõikepuhvri sisu sertifikaadi tüübi tuvastamine nurjus."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:111
-#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:780
 #, kde-format
 msgid "Clipboard"
 msgstr "Lõikepuhver"
@@ -5086,10 +5086,10 @@ msgid "Call to EncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 "EncryptEMailController::protocolAsString() väljakutse on mitmetähenduslik."
 
-#: src/crypto/encryptemailcontroller.cpp:139
+#: src/crypto/encryptemailcontroller.cpp:133
 #: src/crypto/newsignencryptemailcontroller.cpp:241
-#: src/crypto/signemailcontroller.cpp:161
-#: src/crypto/signencryptfilescontroller.cpp:363
+#: src/crypto/signemailcontroller.cpp:150
+#: src/crypto/signencryptfilescontroller.cpp:361
 #, kde-format
 msgid "User cancel"
 msgstr "Kasutaja katkestamine"
@@ -5381,15 +5381,10 @@ msgctxt "%1 == number"
 msgid "Recipient (%1)"
 msgstr "Saaja (%1)"
 
-#: src/crypto/gui/resolverecipientspage.cpp:601
+#: src/crypto/gui/resolverecipientspage.cpp:585
 #, kde-format
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG seadistustega määratud saajad:</p>%1</qt>"
-
-#: src/crypto/gui/resolverecipientspage.cpp:611
-#, kde-format
-msgid "Sender"
-msgstr "Saatja"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, kde-format
@@ -6166,43 +6161,43 @@ msgstr "Allkirjastamine nurjus: %1"
 msgid "Signing succeeded."
 msgstr "Allkirjastamine õnnestus."
 
-#: src/crypto/signencryptfilescontroller.cpp:117
+#: src/crypto/signencryptfilescontroller.cpp:115
 #, kde-format
 msgid "Archive and Sign Files"
 msgstr "Arhiveeri ja allkirjasta failid"
 
-#: src/crypto/signencryptfilescontroller.cpp:119
+#: src/crypto/signencryptfilescontroller.cpp:117
 #, kde-format
 msgid "Sign Files"
 msgstr "Failide allkirjastamine"
 
-#: src/crypto/signencryptfilescontroller.cpp:125
+#: src/crypto/signencryptfilescontroller.cpp:123
 #, kde-format
 msgid "Archive and Encrypt Files"
 msgstr "Arhiveeri ja krüpti failid"
 
-#: src/crypto/signencryptfilescontroller.cpp:127
+#: src/crypto/signencryptfilescontroller.cpp:125
 #, kde-format
 msgid "Encrypt Files"
 msgstr "Failide krüptimine"
 
-#: src/crypto/signencryptfilescontroller.cpp:132
+#: src/crypto/signencryptfilescontroller.cpp:130
 #, kde-format
 msgid "Archive and Sign/Encrypt Files"
 msgstr "Arhiveeri ning allkirjasta ja krüpti failid"
 
-#: src/crypto/signencryptfilescontroller.cpp:134
+#: src/crypto/signencryptfilescontroller.cpp:132
 #, kde-format
 msgid "Sign/Encrypt Files"
 msgstr "Failide allkirjastamine/krüptimine"
 
-#: src/crypto/signencryptfilescontroller.cpp:271
+#: src/crypto/signencryptfilescontroller.cpp:269
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "arhiiv"
 
-#: src/crypto/signencryptfilescontroller.cpp:680
+#: src/crypto/signencryptfilescontroller.cpp:678
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6211,7 +6206,7 @@ msgstr ""
 "Ilmnes ootamatu erind SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared puhul: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:682
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6859,52 +6854,52 @@ msgstr "Palun kirjuta nimi või e-posti aadress..."
 msgid "The issuer certificate could not be found locally."
 msgstr "See sertifikaat on kohalikult keelatud."
 
-#: src/dialogs/certificateselectiondialog.cpp:134
+#: src/dialogs/certificateselectiondialog.cpp:135
 #, kde-format
 msgid "Please select one or more of the following certificates:"
 msgstr "Palun vali vähemalt üks järgmistest sertifikaatidest:"
 
-#: src/dialogs/certificateselectiondialog.cpp:135
+#: src/dialogs/certificateselectiondialog.cpp:136
 #, kde-format
 msgid "Please select one of the following certificates:"
 msgstr "Palun vali üks järgmistest sertifikaatidest:"
 
-#: src/dialogs/certificateselectiondialog.cpp:167
+#: src/dialogs/certificateselectiondialog.cpp:168
 #: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgid "Reload"
 msgstr "Laadi uuesti"
 
-#: src/dialogs/certificateselectiondialog.cpp:168
+#: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Refresh certificate list"
 msgstr "Värskenda sertifikaadiloendit"
 
-#: src/dialogs/certificateselectiondialog.cpp:169
+#: src/dialogs/certificateselectiondialog.cpp:170
 #: src/view/keylistcontroller.cpp:433 src/view/welcomewidget.cpp:144
 #, kde-format
 msgid "Import..."
 msgstr "Impordi ..."
 
-#: src/dialogs/certificateselectiondialog.cpp:170
+#: src/dialogs/certificateselectiondialog.cpp:171
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import certificate from file"
 msgstr "Sertifikaadi import failist"
 
-#: src/dialogs/certificateselectiondialog.cpp:171
+#: src/dialogs/certificateselectiondialog.cpp:172
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgid "Import certificate"
 msgstr "Impordi sertifikaadid"
 
-#: src/dialogs/certificateselectiondialog.cpp:172
+#: src/dialogs/certificateselectiondialog.cpp:173
 #, kde-format
 msgid "Lookup..."
 msgstr "Otsi..."
 
-#: src/dialogs/certificateselectiondialog.cpp:173
+#: src/dialogs/certificateselectiondialog.cpp:174
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Lookup certificates on server"
@@ -6912,52 +6907,52 @@ msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
 msgstr "Sertifikaadi otsing serveris"
 
-#: src/dialogs/certificateselectiondialog.cpp:174
+#: src/dialogs/certificateselectiondialog.cpp:175
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Lookup certificates on server"
 msgid "Look up certificate"
 msgstr "Sertifikaadi otsing serveris"
 
-#: src/dialogs/certificateselectiondialog.cpp:175
+#: src/dialogs/certificateselectiondialog.cpp:176
 #, kde-format
 msgid "New..."
 msgstr "Uus..."
 
-#: src/dialogs/certificateselectiondialog.cpp:176
+#: src/dialogs/certificateselectiondialog.cpp:177
 #, fuzzy, kde-format
 #| msgid "OpenPGP Certificates"
 msgctxt "@info:tooltip"
 msgid "Create a new OpenPGP certificate"
 msgstr "OpenPGP sertifikaadid"
 
-#: src/dialogs/certificateselectiondialog.cpp:177
+#: src/dialogs/certificateselectiondialog.cpp:178
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Create a new certificate"
 msgid "Create certificate"
 msgstr "Uue sertifikaadi loomine"
 
-#: src/dialogs/certificateselectiondialog.cpp:178
+#: src/dialogs/certificateselectiondialog.cpp:179
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgid "Groups..."
 msgstr "Näita üksikasju"
 
-#: src/dialogs/certificateselectiondialog.cpp:179
+#: src/dialogs/certificateselectiondialog.cpp:180
 #, fuzzy, kde-format
 #| msgid "Change Certification Trust..."
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
 msgstr "Muuda sertifikaadi usaldusväärsust..."
 
-#: src/dialogs/certificateselectiondialog.cpp:180
+#: src/dialogs/certificateselectiondialog.cpp:181
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgid "Manage groups"
 msgstr "Näita üksikasju"
 
-#: src/dialogs/certificateselectiondialog.cpp:229
+#: src/dialogs/certificateselectiondialog.cpp:230
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Selection"
@@ -9434,7 +9429,7 @@ msgstr "Taustal töötavad ülesanded"
 msgid "Sign/Encrypt..."
 msgstr "Allkirjasta/krüpti..."
 
-#: src/mainwindow.cpp:852 src/utils/clipboardmenu.cpp:49
+#: src/mainwindow.cpp:852 src/utils/clipboardmenu.cpp:50
 #: src/view/keylistcontroller.cpp:442
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -11100,22 +11095,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Ilmnes tundmatu erind rühmas %1"
 
-#: src/utils/clipboardmenu.cpp:42
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Certificate Import"
 msgstr "Sertifikaadi import"
 
-#: src/utils/clipboardmenu.cpp:43
+#: src/utils/clipboardmenu.cpp:44
 #, kde-format
 msgid "Encrypt..."
 msgstr "Krüpti..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:47
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME allkiri..."
 
-#: src/utils/clipboardmenu.cpp:48
+#: src/utils/clipboardmenu.cpp:49
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP allkiri..."
@@ -12770,6 +12765,9 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
+
+#~ msgid "Sender"
+#~ msgstr "Saatja"
 
 #, fuzzy
 #~| msgid "Delete"

@@ -59,7 +59,7 @@ static std::string hexencode(const std::string &in)
                 result += ch;
                 break;
             }
-            Q_FALLTHROUGH();
+            [[fallthrough]];
         // else fall through
         case ' ':
             result += '+';

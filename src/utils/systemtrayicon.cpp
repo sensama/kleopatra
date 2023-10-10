@@ -161,7 +161,7 @@ bool SystemTrayIcon::eventFilter(QObject *o, QEvent *e)
         case QEvent::Close:
             doMainWindowClosed(static_cast<QWidget *>(o));
             // fall through:
-            Q_FALLTHROUGH();
+            [[fallthrough]];
         case QEvent::Show:
         case QEvent::DeferredDelete:
             QMetaObject::invokeMethod(this, "slotEnableDisableActions", Qt::QueuedConnection);
@@ -172,7 +172,7 @@ bool SystemTrayIcon::eventFilter(QObject *o, QEvent *e)
         case QEvent::Close:
             doAttentionWindowClosed(static_cast<QWidget *>(o));
             // fall through:
-            Q_FALLTHROUGH();
+            [[fallthrough]];
         case QEvent::Show:
         case QEvent::DeferredDelete:
             QMetaObject::invokeMethod(this, "slotEnableDisableActions", Qt::QueuedConnection);

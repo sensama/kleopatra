@@ -19,7 +19,6 @@
 #include "certifycertificatecommand.h"
 #include "kleopatra_debug.h"
 #include <settings.h>
-#include <utils/keys.h>
 #include <utils/memory-helpers.h>
 
 #include <Libkleo/Algorithm>

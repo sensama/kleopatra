@@ -15,7 +15,7 @@
 #include "signingcertificateselectiondialog.h"
 
 #include "crypto/certificateresolver.h"
-#include "utils/keys.h"
+#include "utils/certificatepair.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>

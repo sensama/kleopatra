@@ -15,7 +15,6 @@
 #include <utils/accessibility.h>
 #include <utils/expiration.h>
 #include <utils/gui-helper.h>
-#include <utils/keys.h>
 
 #include <settings.h>
 
@@ -33,6 +32,7 @@
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/KeySelectionCombo>
 #include <Libkleo/NavigatableTreeWidget>
 #include <Libkleo/Predicates>

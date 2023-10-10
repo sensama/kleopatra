@@ -17,13 +17,13 @@
 
 #include "dialogs/certifycertificatedialog.h"
 #include "exportopenpgpcertstoservercommand.h"
-#include "utils/keys.h"
 #include "utils/tags.h"
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compat>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/SignKeyJob>

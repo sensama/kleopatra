@@ -22,12 +22,12 @@
 #include "commands/importpaperkeycommand.h"
 #include "commands/keytocardcommand.h"
 #include "exportdialog.h"
-#include "utils/keys.h"
 
 #include <kleopatra_debug.h>
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/NavigatableTreeWidget>
 
 #include <KConfigGroup>

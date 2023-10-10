@@ -16,10 +16,9 @@
 
 #include "certifywidget.h"
 
-#include <utils/keys.h>
-
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/Stl_Util>
 
 #include <KConfigGroup>

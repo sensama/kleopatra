@@ -13,7 +13,7 @@
 
 #include "ui_signingcertificateselectionwidget.h"
 
-#include "utils/keys.h"
+#include "utils/certificatepair.h"
 
 #include <Libkleo/Compat>
 #include <Libkleo/Formatting>

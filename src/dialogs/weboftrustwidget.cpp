@@ -11,11 +11,11 @@
 
 #include "commands/certifycertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
-#include "utils/keys.h"
 #include "utils/tags.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/NavigatableTreeView>
 #include <Libkleo/UserIDListModel>
 

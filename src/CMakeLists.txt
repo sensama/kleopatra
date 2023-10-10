@@ -413,6 +413,7 @@ set(_kleopatra_SRCS
   utils/applicationstate.h
   utils/archivedefinition.cpp
   utils/archivedefinition.h
+  utils/certificatepair.h
   utils/clipboardmenu.cpp
   utils/clipboardmenu.h
   utils/debug-helpers.cpp
@@ -439,8 +440,6 @@ set(_kleopatra_SRCS
   utils/kdpipeiodevice.h
   utils/keyparameters.cpp
   utils/keyparameters.h
-  utils/keys.cpp
-  utils/keys.h
   utils/kuniqueservice.cpp
   utils/kuniqueservice.h
   utils/log.cpp

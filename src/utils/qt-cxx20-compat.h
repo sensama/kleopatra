@@ -22,7 +22,7 @@ inline int operator|(Qt::Modifier modifier, Qt::Key key)
 #endif
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 5, 0)
-static QDebug operator<<(QDebug s, const std::string &string)
+inline QDebug operator<<(QDebug s, const std::string &string)
 {
     return s << QString::fromStdString(string);
 }

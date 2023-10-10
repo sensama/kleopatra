@@ -17,11 +17,11 @@
 #include "exportopenpgpcertstoservercommand.h"
 
 #include <kleopatra_debug.h>
-#include <utils/keys.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 
 #include <KGuiItem>
 #include <KLocalizedString>

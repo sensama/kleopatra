@@ -36,7 +36,6 @@
 #include "commands/revokeuseridcommand.h"
 #include "commands/setprimaryuseridcommand.h"
 #include "utils/accessibility.h"
-#include "utils/keys.h"
 #include "utils/tags.h"
 #include "view/infofield.h"
 

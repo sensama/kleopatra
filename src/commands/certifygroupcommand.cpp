@@ -13,7 +13,6 @@
 
 #include <commands/exportopenpgpcertstoservercommand.h>
 #include <dialogs/certifycertificatedialog.h>
-#include <utils/keys.h>
 #include <utils/tags.h>
 
 #include <Libkleo/Algorithm>

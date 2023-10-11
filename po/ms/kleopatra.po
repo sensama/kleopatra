@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-10 00:43+0000\n"
+"POT-Creation-Date: 2023-10-11 00:44+0000\n"
 "PO-Revision-Date: 2008-11-24 22:51+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -336,41 +336,41 @@ msgstr "Cache CRL berjaya dikosongkan."
 msgid "Certification Succeeded"
 msgstr "Muat Turun Sijil Gagal"
 
-#: src/commands/certifygroupcommand.cpp:117
+#: src/commands/certifygroupcommand.cpp:116
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:118
+#: src/commands/certifygroupcommand.cpp:117
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:172
-#: src/dialogs/certifycertificatedialog.cpp:44
+#: src/commands/certifygroupcommand.cpp:171
+#: src/dialogs/certifycertificatedialog.cpp:43
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@title:window"
 msgid "Certify Certificates"
 msgstr "Simpan Sijil"
 
-#: src/commands/certifygroupcommand.cpp:173
+#: src/commands/certifygroupcommand.cpp:172
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
 msgstr "Simpan Sijil"
 
-#: src/commands/certifygroupcommand.cpp:260
+#: src/commands/certifygroupcommand.cpp:259
 #, fuzzy, kde-format
 #| msgid "CRL cache cleared successfully."
 msgctxt "@info"
 msgid "All certificates were certified successfully."
 msgstr "Cache CRL berjaya dikosongkan."
 
-#: src/commands/certifygroupcommand.cpp:265
+#: src/commands/certifygroupcommand.cpp:264
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -382,7 +382,7 @@ msgid ""
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/certifygroupcommand.cpp:270
+#: src/commands/certifygroupcommand.cpp:269
 #, fuzzy, kde-format
 #| msgid "CRL cache cleared successfully."
 msgctxt "@info"
@@ -391,7 +391,7 @@ msgid_plural "%1 of %2 certificates were certified successfully."
 msgstr[0] "Cache CRL berjaya dikosongkan."
 msgstr[1] "Cache CRL berjaya dikosongkan."
 
-#: src/commands/certifygroupcommand.cpp:288
+#: src/commands/certifygroupcommand.cpp:287
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -399,7 +399,7 @@ msgid ""
 "certificate directory.</p>"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:293
+#: src/commands/certifygroupcommand.cpp:292
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2):"
@@ -407,14 +407,14 @@ msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2):"
 
-#: src/commands/certifygroupcommand.cpp:302
+#: src/commands/certifygroupcommand.cpp:301
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
 msgstr "Mengeksport sijil..."
 
-#: src/commands/certifygroupcommand.cpp:304
+#: src/commands/certifygroupcommand.cpp:303
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@title:window"
@@ -446,7 +446,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Menghapuskan sijil PBP"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:642
+#: src/commands/importcertificatescommand.cpp:641
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@title:window"
@@ -1400,7 +1400,7 @@ msgstr ""
 "kerana ralat yang tak dijangka."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:121
-#: src/commands/importcertificatescommand.cpp:624
+#: src/commands/importcertificatescommand.cpp:623
 #, kde-format
 msgid " "
 msgstr ""
@@ -1853,8 +1853,8 @@ msgstr ""
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:889
-#: src/commands/importcertificatescommand.cpp:956
+#: src/commands/importcertificatescommand.cpp:888
+#: src/commands/importcertificatescommand.cpp:955
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Gagal Import Sijil"
@@ -1885,7 +1885,7 @@ msgid "Notepad"
 msgstr ""
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:190
+#: src/commands/importcertificatescommand.cpp:189
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@title:window"
@@ -1907,7 +1907,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Tidak dapat menjana sijil: %1"
 
 #: src/commands/importcertificatefromfilecommand.cpp:156
-#: src/commands/importcertificatescommand.cpp:286 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:285 src/view/keytreeview.cpp:276
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "Certificates"
@@ -1950,200 +1950,200 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "&Sijil"
 
-#: src/commands/importcertificatescommand.cpp:191
+#: src/commands/importcertificatescommand.cpp:190
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Importing certificates... (this can take a while)"
 msgstr "Mengeksport sijil..."
 
-#: src/commands/importcertificatescommand.cpp:246
+#: src/commands/importcertificatescommand.cpp:245
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Import Sijil..."
 
-#: src/commands/importcertificatescommand.cpp:248
+#: src/commands/importcertificatescommand.cpp:247
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Import Sijil..."
 
-#: src/commands/importcertificatescommand.cpp:258
+#: src/commands/importcertificatescommand.cpp:257
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Import Sijil..."
 
-#: src/commands/importcertificatescommand.cpp:271
+#: src/commands/importcertificatescommand.cpp:270
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:272
+#: src/commands/importcertificatescommand.cpp:271
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:272
 #, fuzzy, kde-format
 #| msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:287
-#: src/commands/importcertificatescommand.cpp:327
+#: src/commands/importcertificatescommand.cpp:286
+#: src/commands/importcertificatescommand.cpp:326
 #, kde-format
 msgid "Total number processed:"
 msgstr "Jumlah bilangan yang telah diproses:"
 
-#: src/commands/importcertificatescommand.cpp:288
+#: src/commands/importcertificatescommand.cpp:287
 #, kde-format
 msgid "Imported:"
 msgstr "Diimport:"
 
-#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:289
 #, kde-format
 msgid "New signatures:"
 msgstr "Tandatangan baru:"
 
-#: src/commands/importcertificatescommand.cpp:292
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "New user IDs:"
 msgstr "ID pengguna baru:"
 
-#: src/commands/importcertificatescommand.cpp:294
+#: src/commands/importcertificatescommand.cpp:293
 #, fuzzy, kde-format
 #| msgid "Keys without user IDs:"
 msgid "Certificates without user IDs:"
 msgstr "Kekunci yang tidak mempunyai ID pengguna:"
 
-#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "New subkeys:"
 msgstr "Subkekunci baru:"
 
-#: src/commands/importcertificatescommand.cpp:298
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Baru dibatalkan:"
 
-#: src/commands/importcertificatescommand.cpp:300
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "Not imported:"
 msgstr "Tidak diimport:"
 
-#: src/commands/importcertificatescommand.cpp:302
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "Unchanged:"
 msgstr "Tidak diubah:"
 
-#: src/commands/importcertificatescommand.cpp:304
+#: src/commands/importcertificatescommand.cpp:303
 #, fuzzy, kde-format
 #| msgid "Secret keys processed:"
 msgid "Secret keys processed:"
 msgstr "Kekunci rahsia telah diproses:"
 
-#: src/commands/importcertificatescommand.cpp:306
+#: src/commands/importcertificatescommand.cpp:305
 #, fuzzy, kde-format
 #| msgid "Secret keys imported:"
 msgid "Secret keys imported:"
 msgstr "Kekunci rahsia telah diimport:"
 
-#: src/commands/importcertificatescommand.cpp:310
+#: src/commands/importcertificatescommand.cpp:309
 #, fuzzy, kde-format
 #| msgid "Secret keys <em>not</em> imported:"
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Kekunci rahsia <em>tidak</em> diimport:"
 
-#: src/commands/importcertificatescommand.cpp:312
+#: src/commands/importcertificatescommand.cpp:311
 #, fuzzy, kde-format
 #| msgid "Secret keys unchanged:"
 msgid "Secret keys unchanged:"
 msgstr "Kekunci rahsia tidak diubah:"
 
-#: src/commands/importcertificatescommand.cpp:314
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:325
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgid "Certificate Groups"
 msgstr "Penggunaan Sijil"
 
-#: src/commands/importcertificatescommand.cpp:328
+#: src/commands/importcertificatescommand.cpp:327
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New groups:"
 msgstr "Tandatangan baru:"
 
-#: src/commands/importcertificatescommand.cpp:329
+#: src/commands/importcertificatescommand.cpp:328
 #, kde-format
 msgid "Updated groups:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:346
+#: src/commands/importcertificatescommand.cpp:345
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:347
+#: src/commands/importcertificatescommand.cpp:346
 #, kde-format
 msgid "Detailed results of import:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:405
+#: src/commands/importcertificatescommand.cpp:404
 #, kde-format
 msgid "A phone call to the person."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:406
+#: src/commands/importcertificatescommand.cpp:405
 #, kde-format
 msgid "Using a business card."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:407
+#: src/commands/importcertificatescommand.cpp:406
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:411
+#: src/commands/importcertificatescommand.cpp:410
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "&Sijil"
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:411
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:412
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:415
+#: src/commands/importcertificatescommand.cpp:414
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:416
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:417
+#: src/commands/importcertificatescommand.cpp:416
 #: src/conf/groupsconfigwidget.cpp:193
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
@@ -2151,31 +2151,31 @@ msgctxt "@action:button"
 msgid "Certify"
 msgstr "Penggunaan Sijil"
 
-#: src/commands/importcertificatescommand.cpp:470
+#: src/commands/importcertificatescommand.cpp:469
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:474
+#: src/commands/importcertificatescommand.cpp:473
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:476
+#: src/commands/importcertificatescommand.cpp:475
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Muat Turun Sijil Gagal"
 
-#: src/commands/importcertificatescommand.cpp:496
+#: src/commands/importcertificatescommand.cpp:495
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Hasil Import Sijil"
 
-#: src/commands/importcertificatescommand.cpp:505
+#: src/commands/importcertificatescommand.cpp:504
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to import the certificate %1:</"
@@ -2187,7 +2187,7 @@ msgstr ""
 "<qt><p>Ralat berlaku semasa cuba mengimport sijil %1:</p><p><b>%2</b></p></"
 "qt>"
 
-#: src/commands/importcertificatescommand.cpp:510
+#: src/commands/importcertificatescommand.cpp:509
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2196,13 +2196,13 @@ msgstr ""
 "<qt><p>Ralat berlaku semasa cuba mengimport sijil %1:</p><p><b>%2</b></p></"
 "qt>"
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:625
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:630
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2211,19 +2211,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:643
+#: src/commands/importcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:644
+#: src/commands/importcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:853
+#: src/commands/importcertificatescommand.cpp:852
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2231,8 +2231,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Mengeksport sijil..."
 msgstr[1] "Mengeksport sijil..."
 
-#: src/commands/importcertificatescommand.cpp:888
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:887
+#: src/commands/importcertificatescommand.cpp:954
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3187,7 +3187,7 @@ msgstr ""
 
 #: src/commands/revokecertificationcommand.cpp:83
 #: src/commands/revokecertificationcommand.cpp:97
-#: src/dialogs/certificatedetailswidget.cpp:644
+#: src/dialogs/certificatedetailswidget.cpp:643
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -3945,7 +3945,7 @@ msgid "Start the certification process for all certificates in the group."
 msgstr "&Sijil"
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/certificatedetailswidget.cpp:362
+#: src/dialogs/certificatedetailswidget.cpp:361
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@action:button"
@@ -6251,7 +6251,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2):"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:268
+#: src/dialogs/certificatedetailswidget.cpp:267
 #: src/newcertificatewizard/enterdetailspage.cpp:310
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
@@ -6322,198 +6322,198 @@ msgid ""
 "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:209
+#: src/dialogs/certificatedetailswidget.cpp:208
 #, fuzzy, kde-format
 #| msgid "A.k.a."
 msgid "User IDs:"
 msgstr "A.k.a."
 
-#: src/dialogs/certificatedetailswidget.cpp:214
+#: src/dialogs/certificatedetailswidget.cpp:213
 #: src/dialogs/certifywidget.cpp:330
 #, fuzzy, kde-format
 #| msgid "A.k.a."
 msgid "User IDs"
 msgstr "A.k.a."
 
-#: src/dialogs/certificatedetailswidget.cpp:229
+#: src/dialogs/certificatedetailswidget.cpp:228
 #, fuzzy, kde-format
 #| msgid "A.k.a."
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "A.k.a."
 
-#: src/dialogs/certificatedetailswidget.cpp:232
+#: src/dialogs/certificatedetailswidget.cpp:231
 #, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:233
+#: src/dialogs/certificatedetailswidget.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:236
+#: src/dialogs/certificatedetailswidget.cpp:235
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "ID pengguna baru:"
 
-#: src/dialogs/certificatedetailswidget.cpp:239
+#: src/dialogs/certificatedetailswidget.cpp:238
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@action:button"
 msgid "Show Certifications"
 msgstr "&Sijil"
 
-#: src/dialogs/certificatedetailswidget.cpp:242
+#: src/dialogs/certificatedetailswidget.cpp:241
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "&Sijil"
 
-#: src/dialogs/certificatedetailswidget.cpp:245
-#: src/dialogs/certificatedetailswidget.cpp:640
+#: src/dialogs/certificatedetailswidget.cpp:244
+#: src/dialogs/certificatedetailswidget.cpp:639
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr "ID pengguna baru:"
 
-#: src/dialogs/certificatedetailswidget.cpp:279
+#: src/dialogs/certificatedetailswidget.cpp:278
 #, kde-format
 msgid "Trust level:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:284
+#: src/dialogs/certificatedetailswidget.cpp:283
 #, fuzzy, kde-format
 #| msgid "Valid"
 msgid "Valid from:"
 msgstr "Sah"
 
-#: src/dialogs/certificatedetailswidget.cpp:289 src/dialogs/expirydialog.cpp:98
+#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:98
 #, fuzzy, kde-format
 #| msgid "Validate"
 msgid "Valid until:"
 msgstr "Sahkan"
 
-#: src/dialogs/certificatedetailswidget.cpp:292
+#: src/dialogs/certificatedetailswidget.cpp:291
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:293
+#: src/dialogs/certificatedetailswidget.cpp:292
 #, fuzzy, kde-format
 #| msgid "Valid"
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "Sah"
 
-#: src/dialogs/certificatedetailswidget.cpp:299
+#: src/dialogs/certificatedetailswidget.cpp:298
 #: src/dialogs/certifywidget.cpp:290
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgid "Fingerprint:"
 msgstr "Cap jari"
 
-#: src/dialogs/certificatedetailswidget.cpp:303
+#: src/dialogs/certificatedetailswidget.cpp:302
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "Tidak dapat menjana sijil: %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:304
+#: src/dialogs/certificatedetailswidget.cpp:303
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "Cap jari"
 
-#: src/dialogs/certificatedetailswidget.cpp:311
+#: src/dialogs/certificatedetailswidget.cpp:310
 #, fuzzy, kde-format
 #| msgid "Issuer"
 msgid "Issuer:"
 msgstr "Pengeluar"
 
-#: src/dialogs/certificatedetailswidget.cpp:314
+#: src/dialogs/certificatedetailswidget.cpp:313
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "Tidak dapat menjana sijil: %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:315
+#: src/dialogs/certificatedetailswidget.cpp:314
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Gagal Menghapuskan Sijil"
 
-#: src/dialogs/certificatedetailswidget.cpp:321
+#: src/dialogs/certificatedetailswidget.cpp:320
 #, kde-format
 msgid "Compliance:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:326
+#: src/dialogs/certificatedetailswidget.cpp:325
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:328
+#: src/dialogs/certificatedetailswidget.cpp:327
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
 msgid "See certifications for details."
 msgstr "Perincian  Sijil..."
 
-#: src/dialogs/certificatedetailswidget.cpp:334
+#: src/dialogs/certificatedetailswidget.cpp:333
 #, kde-format
 msgid "Related addresses:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:339
+#: src/dialogs/certificatedetailswidget.cpp:338
 #, kde-format
 msgid "Related addresses"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:350
+#: src/dialogs/certificatedetailswidget.cpp:349
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@action:button"
 msgid "More Details..."
 msgstr "&Perincian"
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:352
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@action:button"
 msgid "Trust Chain Details"
 msgstr "&Perincian"
 
-#: src/dialogs/certificatedetailswidget.cpp:356
+#: src/dialogs/certificatedetailswidget.cpp:355
 #, kde-format
 msgctxt "@action:button"
 msgid "Update"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:365
+#: src/dialogs/certificatedetailswidget.cpp:364
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Passphrase"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:368
+#: src/dialogs/certificatedetailswidget.cpp:367
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgctxt "@action:button"
 msgid "Generate Revocation Certificate"
 msgstr "Hapuskan Sijil"
 
-#: src/dialogs/certificatedetailswidget.cpp:370
+#: src/dialogs/certificatedetailswidget.cpp:369
 #, kde-format
 msgid ""
 "A revocation certificate is a file that serves as a \"kill switch\" to "
@@ -6521,34 +6521,34 @@ msgid ""
 "to retract such a revocation certificate once it has been published."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:510
+#: src/dialogs/certificatedetailswidget.cpp:509
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Email"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #: src/newcertificatewizard/enterdetailspage.cpp:61
 #, kde-format
 msgid "Name"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Trust Level"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Tags"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:551
+#: src/dialogs/certificatedetailswidget.cpp:550
 #, fuzzy, kde-format
 #| msgctxt "EMAIL OF TRANSLATORS"
 #| msgid "Your emails"
@@ -6556,7 +6556,7 @@ msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "opensource@mimos.my"
 
-#: src/dialogs/certificatedetailswidget.cpp:638
+#: src/dialogs/certificatedetailswidget.cpp:637
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6568,20 +6568,20 @@ msgid ""
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
-#: src/dialogs/certificatedetailswidget.cpp:828
+#: src/dialogs/certificatedetailswidget.cpp:827
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:838
+#: src/dialogs/certificatedetailswidget.cpp:837
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "ID pengguna baru:"
 
-#: src/dialogs/certificatedetailswidget.cpp:839
+#: src/dialogs/certificatedetailswidget.cpp:838
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:inmenu"
@@ -6590,14 +6590,14 @@ msgid_plural "Certify User IDs..."
 msgstr[0] "ID pengguna baru:"
 msgstr[1] "ID pengguna baru:"
 
-#: src/dialogs/certificatedetailswidget.cpp:846
+#: src/dialogs/certificatedetailswidget.cpp:845
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "Simpan Sijil"
 
-#: src/dialogs/certificatedetailswidget.cpp:847
+#: src/dialogs/certificatedetailswidget.cpp:846
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@action:inmenu"
@@ -6606,105 +6606,105 @@ msgid_plural "Revoke Certifications..."
 msgstr[0] "Simpan Sijil"
 msgstr[1] "Simpan Sijil"
 
-#: src/dialogs/certificatedetailswidget.cpp:856
+#: src/dialogs/certificatedetailswidget.cpp:855
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "Ralat Pengurus Sijil"
 
-#: src/dialogs/certificatedetailswidget.cpp:871
+#: src/dialogs/certificatedetailswidget.cpp:870
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "ID pengguna baru:"
 
-#: src/dialogs/certificatedetailswidget.cpp:917
+#: src/dialogs/certificatedetailswidget.cpp:916
 #, kde-format
 msgid "never"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:918
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Signing"
 msgstr "Dibatalkan."
 
+#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:923
+#, kde-format
+msgid "First message"
+msgstr ""
+
 #: src/dialogs/certificatedetailswidget.cpp:920
 #: src/dialogs/certificatedetailswidget.cpp:924
 #, kde-format
-msgid "First message"
+msgid "Last message"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:921
 #: src/dialogs/certificatedetailswidget.cpp:925
 #, kde-format
-msgid "Last message"
-msgstr ""
-
-#: src/dialogs/certificatedetailswidget.cpp:922
-#: src/dialogs/certificatedetailswidget.cpp:926
-#, kde-format
 msgid "Message count"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:923
+#: src/dialogs/certificatedetailswidget.cpp:922
 #: src/smartcard/openpgpcard.cpp:101
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "Encryption"
 msgstr "Untuk &penyulitan sahaja"
 
-#: src/dialogs/certificatedetailswidget.cpp:958
+#: src/dialogs/certificatedetailswidget.cpp:957
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "Updating..."
 msgstr "Untuk &penyulitan sahaja"
 
-#: src/dialogs/certificatedetailswidget.cpp:998
+#: src/dialogs/certificatedetailswidget.cpp:997
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1015
+#: src/dialogs/certificatedetailswidget.cpp:1014
 #, kde-format
 msgid "Common Name"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1016
+#: src/dialogs/certificatedetailswidget.cpp:1015
 #, fuzzy, kde-format
 msgid "Organization"
 msgstr "Maklumat Sijil"
 
-#: src/dialogs/certificatedetailswidget.cpp:1017
+#: src/dialogs/certificatedetailswidget.cpp:1016
 #, kde-format
 msgid "Street"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1018
+#: src/dialogs/certificatedetailswidget.cpp:1017
 #, kde-format
 msgid "City"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1019
+#: src/dialogs/certificatedetailswidget.cpp:1018
 #, kde-format
 msgid "State"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1020
+#: src/dialogs/certificatedetailswidget.cpp:1019
 #, kde-format
 msgid "Country"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1048
+#: src/dialogs/certificatedetailswidget.cpp:1047
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1057
+#: src/dialogs/certificatedetailswidget.cpp:1056
 #, fuzzy, kde-format
 #| msgid "Issuer certificate not found ( %1)"
 msgid "The issuer certificate could not be found locally."
@@ -6816,20 +6816,20 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "Gagal Menghapuskan Sijil"
 
-#: src/dialogs/certifycertificatedialog.cpp:56
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgid "Certify"
 msgstr "Penggunaan Sijil"
 
-#: src/dialogs/certifycertificatedialog.cpp:87
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Menghapuskan sijil PBP"
 
-#: src/dialogs/certifycertificatedialog.cpp:98
+#: src/dialogs/certifycertificatedialog.cpp:97
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@title:window Certify Certificate Group <group name>"

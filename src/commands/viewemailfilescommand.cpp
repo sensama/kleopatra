@@ -50,6 +50,8 @@ void ViewEmailFilesCommand::Private::ensureDialogCreated()
         });
         dialogs << dlg;
         dlg->show();
+        dlg->raise();
+        dlg->activateWindow();
     }
 }
 

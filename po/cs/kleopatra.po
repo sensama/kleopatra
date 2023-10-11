@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-10 01:47+0000\n"
+"POT-Creation-Date: 2023-10-11 02:07+0000\n"
 "PO-Revision-Date: 2023-08-10 14:45+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -283,11 +283,10 @@ msgid "Do you wish to create one now?"
 msgstr "Přejete si jeden nyní vytvořit?"
 
 #: src/commands/certifycertificatecommand.cpp:176
-#, fuzzy, kde-format
-#| msgid "Certification Not Possible"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Not Possible"
-msgstr "Certifikace není možná"
+msgstr ""
 
 #: src/commands/certifycertificatecommand.cpp:177
 #, kde-format
@@ -316,68 +315,55 @@ msgstr "Certifikace byla úspěšná."
 msgid "Certification Succeeded"
 msgstr "Certifikace byla úspěšná"
 
-#: src/commands/certifygroupcommand.cpp:117
+#: src/commands/certifygroupcommand.cpp:116
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:118
+#: src/commands/certifygroupcommand.cpp:117
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:172
-#: src/dialogs/certifycertificatedialog.cpp:44
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#: src/commands/certifygroupcommand.cpp:171
+#: src/dialogs/certifycertificatedialog.cpp:43
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "Certifikovat certifikát: %1"
+msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:173
-#, fuzzy, kde-format
-#| msgid "Exporting certificates..."
+#: src/commands/certifygroupcommand.cpp:172
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "Exportuji certifikáty..."
+msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:260
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#: src/commands/certifygroupcommand.cpp:259
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "Certifikáty X.509 byly úspěšně obnoveny."
+msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:265
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-#| "para><para><message>%3</message></para>"
+#: src/commands/certifygroupcommand.cpp:264
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Selhalo přesunutí  <filename>%1</filename> do <filename>%2</filename>."
-"</para><para><message>%3</message></para>"
 
-#: src/commands/certifygroupcommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#: src/commands/certifygroupcommand.cpp:269
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "Certifikáty X.509 byly úspěšně obnoveny."
-msgstr[1] "Certifikáty X.509 byly úspěšně obnoveny."
-msgstr[2] "Certifikáty X.509 byly úspěšně obnoveny."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
-#: src/commands/certifygroupcommand.cpp:288
+#: src/commands/certifygroupcommand.cpp:287
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -385,28 +371,23 @@ msgid ""
 "certificate directory.</p>"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:293
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#: src/commands/certifygroupcommand.cpp:292
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
-msgstr "%1 (%2)"
+msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:302
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#: src/commands/certifygroupcommand.cpp:301
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "Exportování certifikátu selhalo: %1"
+msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:304
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#: src/commands/certifygroupcommand.cpp:303
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr "Certifikace byla úspěšná"
+msgstr ""
 
 #: src/commands/changeexpirycommand.cpp:237
 #, kde-format
@@ -427,7 +408,7 @@ msgid "Is '%1' your own certificate?"
 msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:642
+#: src/commands/importcertificatescommand.cpp:641
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -903,11 +884,10 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr ""
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
-msgstr "Selhalo dešifrování/ověření"
+msgstr ""
 
 #: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
@@ -1023,11 +1003,10 @@ msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:335
 #: src/commands/dumpcertificatecommand.cpp:341
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
-msgstr "Chyba certifikace"
+msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:338
 #, kde-format
@@ -1069,11 +1048,10 @@ msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:343
 #: src/commands/dumpcrlcachecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
-msgstr "Vypsat mezipaměť CRL"
+msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:346
 #, kde-format
@@ -1117,11 +1095,10 @@ msgid "You have to select different filenames for different protocols."
 msgstr ""
 
 #: src/commands/exportcertificatecommand.cpp:230
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
-msgstr "Chyba exportu"
+msgstr ""
 
 #: src/commands/exportcertificatecommand.cpp:280
 #, kde-format
@@ -1272,7 +1249,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:121
-#: src/commands/importcertificatescommand.cpp:624
+#: src/commands/importcertificatescommand.cpp:623
 #, kde-format
 msgid " "
 msgstr " "
@@ -1594,11 +1571,10 @@ msgid ""
 msgstr ""
 
 #: src/commands/genrevokecommand.cpp:99
-#, fuzzy, kde-format
-#| msgid "Revocation certificate created"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation certificate created"
-msgstr "Odvolávací certifikát byl vytvořen"
+msgstr ""
 
 #: src/commands/genrevokecommand.cpp:108
 #, kde-format
@@ -1652,8 +1628,8 @@ msgstr "Proces dokončen"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:889
-#: src/commands/importcertificatescommand.cpp:956
+#: src/commands/importcertificatescommand.cpp:888
+#: src/commands/importcertificatescommand.cpp:955
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Import certifikátu selhal"
@@ -1683,7 +1659,7 @@ msgid "Notepad"
 msgstr "Poznámka"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:190
+#: src/commands/importcertificatescommand.cpp:189
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1703,7 +1679,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Nelze otevřít soubor %1 pro čtení: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:156
-#: src/commands/importcertificatescommand.cpp:286 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:285 src/view/keytreeview.cpp:276
 #, kde-format
 msgid "Certificates"
 msgstr "Certifikáty"
@@ -1742,217 +1718,217 @@ msgstr ""
 msgid "Card Certificate"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:191
+#: src/commands/importcertificatescommand.cpp:190
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Importuji certifikáty... (to může nějakou dobu trvat)"
 
-#: src/commands/importcertificatescommand.cpp:246
+#: src/commands/importcertificatescommand.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:248
+#: src/commands/importcertificatescommand.cpp:247
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:258
+#: src/commands/importcertificatescommand.cpp:257
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Importované certifikáty"
 
-#: src/commands/importcertificatescommand.cpp:271
+#: src/commands/importcertificatescommand.cpp:270
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:272
+#: src/commands/importcertificatescommand.cpp:271
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:272
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:287
-#: src/commands/importcertificatescommand.cpp:327
+#: src/commands/importcertificatescommand.cpp:286
+#: src/commands/importcertificatescommand.cpp:326
 #, kde-format
 msgid "Total number processed:"
 msgstr "Celkem zpracováno:"
 
-#: src/commands/importcertificatescommand.cpp:288
+#: src/commands/importcertificatescommand.cpp:287
 #, kde-format
 msgid "Imported:"
 msgstr "Importováno:"
 
-#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:289
 #, kde-format
 msgid "New signatures:"
 msgstr "Nové podpisy:"
 
-#: src/commands/importcertificatescommand.cpp:292
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "New user IDs:"
 msgstr "Nové ID uživatelů:"
 
-#: src/commands/importcertificatescommand.cpp:294
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Certifikáty bez UID:"
 
-#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "New subkeys:"
 msgstr "Nové podklíče:"
 
-#: src/commands/importcertificatescommand.cpp:298
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Nově odvolané:"
 
-#: src/commands/importcertificatescommand.cpp:300
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "Not imported:"
 msgstr "Neimportováno:"
 
-#: src/commands/importcertificatescommand.cpp:302
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "Unchanged:"
 msgstr "Nezměněno:"
 
-#: src/commands/importcertificatescommand.cpp:304
+#: src/commands/importcertificatescommand.cpp:303
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Zpracované tajné klíče:"
 
-#: src/commands/importcertificatescommand.cpp:306
+#: src/commands/importcertificatescommand.cpp:305
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Importované tajné klíče:"
 
-#: src/commands/importcertificatescommand.cpp:310
+#: src/commands/importcertificatescommand.cpp:309
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Neimportované tajné klíče:"
 
-#: src/commands/importcertificatescommand.cpp:312
+#: src/commands/importcertificatescommand.cpp:311
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Nezměněné tajné klíče:"
 
-#: src/commands/importcertificatescommand.cpp:314
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Skupiny certifikátů"
 
-#: src/commands/importcertificatescommand.cpp:328
+#: src/commands/importcertificatescommand.cpp:327
 #, kde-format
 msgid "New groups:"
 msgstr "Nové skupiny:"
 
-#: src/commands/importcertificatescommand.cpp:329
+#: src/commands/importcertificatescommand.cpp:328
 #, kde-format
 msgid "Updated groups:"
 msgstr "Aktualizované skupiny:"
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:346
+#: src/commands/importcertificatescommand.cpp:345
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Podrobné výsledky importu %1:"
 
-#: src/commands/importcertificatescommand.cpp:347
+#: src/commands/importcertificatescommand.cpp:346
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Podrobné výsledky importu:"
 
-#: src/commands/importcertificatescommand.cpp:405
+#: src/commands/importcertificatescommand.cpp:404
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Telefonický rozhovor s osobou."
 
-#: src/commands/importcertificatescommand.cpp:406
+#: src/commands/importcertificatescommand.cpp:405
 #, kde-format
 msgid "Using a business card."
 msgstr "Pomocí vizitky."
 
-#: src/commands/importcertificatescommand.cpp:407
+#: src/commands/importcertificatescommand.cpp:406
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:411
+#: src/commands/importcertificatescommand.cpp:410
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:411
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:412
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Nějaké návrhy jak toto provézt:"
 
-#: src/commands/importcertificatescommand.cpp:415
+#: src/commands/importcertificatescommand.cpp:414
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Přejete si nyní začít tento proces?"
 
-#: src/commands/importcertificatescommand.cpp:416
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Importovali jste nový certifikát (veřejný klíč)"
 
-#: src/commands/importcertificatescommand.cpp:417
+#: src/commands/importcertificatescommand.cpp:416
 #: src/conf/groupsconfigwidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Certifikovat"
 
-#: src/commands/importcertificatescommand.cpp:470
+#: src/commands/importcertificatescommand.cpp:469
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:474
+#: src/commands/importcertificatescommand.cpp:473
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:476
+#: src/commands/importcertificatescommand.cpp:475
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:496
+#: src/commands/importcertificatescommand.cpp:495
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Výsledek importu certifikátu"
 
-#: src/commands/importcertificatescommand.cpp:505
+#: src/commands/importcertificatescommand.cpp:504
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -1961,7 +1937,7 @@ msgstr ""
 "<qt> <p>Nastala chyba při při pokusu importovat certifikát:</p><p><b>%1</b></"
 "p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:510
+#: src/commands/importcertificatescommand.cpp:509
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -1970,13 +1946,13 @@ msgstr ""
 "<qt> <p>Nastala chyba při při pokusu importovat certifikát %1:</p><p><b>%2</"
 "b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:625
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:630
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1985,19 +1961,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:643
+#: src/commands/importcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:644
+#: src/commands/importcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:853
+#: src/commands/importcertificatescommand.cpp:852
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2005,8 +1981,8 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/commands/importcertificatescommand.cpp:888
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:887
+#: src/commands/importcertificatescommand.cpp:954
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2820,7 +2796,7 @@ msgstr ""
 
 #: src/commands/revokecertificationcommand.cpp:83
 #: src/commands/revokecertificationcommand.cpp:97
-#: src/dialogs/certificatedetailswidget.cpp:644
+#: src/dialogs/certificatedetailswidget.cpp:643
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -3516,7 +3492,7 @@ msgid "Start the certification process for all certificates in the group."
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/certificatedetailswidget.cpp:362
+#: src/dialogs/certificatedetailswidget.cpp:361
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
@@ -3550,8 +3526,7 @@ msgstr ""
 "Přejete si změny aplikovat, nebo zahodit?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, fuzzy, kde-format
-#| msgid "Apply Settings"
+#, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Provést nastavení"
@@ -5336,11 +5311,10 @@ msgid "Could not find a key for the following recipients:"
 msgstr "Nelze nalézt klíč pro následující příjemce:"
 
 #: src/crypto/gui/signencryptwidget.cpp:797
-#, fuzzy, kde-format
-#| msgid "Failed to find some keys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
-msgstr "Vyhledání některých klíčů selhalo"
+msgstr ""
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format
@@ -5450,11 +5424,10 @@ msgid "The following errors and warnings were recorded:"
 msgstr ""
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Checksum Verification Errors"
-msgstr "Chyba certifikace"
+msgstr ""
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:229
 #: src/crypto/gui/verifychecksumsdialog.cpp:254
@@ -5717,7 +5690,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:268
+#: src/dialogs/certificatedetailswidget.cpp:267
 #: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -5785,178 +5758,178 @@ msgid ""
 "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:209
+#: src/dialogs/certificatedetailswidget.cpp:208
 #, kde-format
 msgid "User IDs:"
 msgstr "ID uživatele:"
 
-#: src/dialogs/certificatedetailswidget.cpp:214
+#: src/dialogs/certificatedetailswidget.cpp:213
 #: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "User IDs"
 msgstr "ID uživatele"
 
-#: src/dialogs/certificatedetailswidget.cpp:229
+#: src/dialogs/certificatedetailswidget.cpp:228
 #, kde-format
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "Přidat uživatelské ID"
 
-#: src/dialogs/certificatedetailswidget.cpp:232
+#: src/dialogs/certificatedetailswidget.cpp:231
 #, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr "Nastavit jako primární"
 
-#: src/dialogs/certificatedetailswidget.cpp:233
+#: src/dialogs/certificatedetailswidget.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:236
+#: src/dialogs/certificatedetailswidget.cpp:235
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "Certifikovat uživatelská ID"
 
-#: src/dialogs/certificatedetailswidget.cpp:239
+#: src/dialogs/certificatedetailswidget.cpp:238
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Certifications"
 msgstr "Zobrazit certifikace"
 
-#: src/dialogs/certificatedetailswidget.cpp:242
+#: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "Odvolat certifikace"
 
-#: src/dialogs/certificatedetailswidget.cpp:245
-#: src/dialogs/certificatedetailswidget.cpp:640
+#: src/dialogs/certificatedetailswidget.cpp:244
+#: src/dialogs/certificatedetailswidget.cpp:639
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:279
+#: src/dialogs/certificatedetailswidget.cpp:278
 #, kde-format
 msgid "Trust level:"
 msgstr "Úroveň důvěryhodnosti:"
 
-#: src/dialogs/certificatedetailswidget.cpp:284
+#: src/dialogs/certificatedetailswidget.cpp:283
 #, kde-format
 msgid "Valid from:"
 msgstr "Platný od:"
 
-#: src/dialogs/certificatedetailswidget.cpp:289 src/dialogs/expirydialog.cpp:98
+#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:98
 #, kde-format
 msgid "Valid until:"
 msgstr "Platný do:"
 
-#: src/dialogs/certificatedetailswidget.cpp:292
+#: src/dialogs/certificatedetailswidget.cpp:291
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:293
+#: src/dialogs/certificatedetailswidget.cpp:292
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:299
+#: src/dialogs/certificatedetailswidget.cpp:298
 #: src/dialogs/certifywidget.cpp:290
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Otisk:"
 
-#: src/dialogs/certificatedetailswidget.cpp:303
+#: src/dialogs/certificatedetailswidget.cpp:302
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:304
+#: src/dialogs/certificatedetailswidget.cpp:303
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:311
+#: src/dialogs/certificatedetailswidget.cpp:310
 #, kde-format
 msgid "Issuer:"
 msgstr "Vydavatel:"
 
-#: src/dialogs/certificatedetailswidget.cpp:314
+#: src/dialogs/certificatedetailswidget.cpp:313
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:315
+#: src/dialogs/certificatedetailswidget.cpp:314
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Zobrazit certifikát"
 
-#: src/dialogs/certificatedetailswidget.cpp:321
+#: src/dialogs/certificatedetailswidget.cpp:320
 #, kde-format
 msgid "Compliance:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:326
+#: src/dialogs/certificatedetailswidget.cpp:325
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:328
+#: src/dialogs/certificatedetailswidget.cpp:327
 #, kde-format
 msgid "See certifications for details."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:334
+#: src/dialogs/certificatedetailswidget.cpp:333
 #, kde-format
 msgid "Related addresses:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:339
+#: src/dialogs/certificatedetailswidget.cpp:338
 #, kde-format
 msgid "Related addresses"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:350
+#: src/dialogs/certificatedetailswidget.cpp:349
 #, kde-format
 msgctxt "@action:button"
 msgid "More Details..."
 msgstr "Podrobněji..."
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:352
 #, kde-format
 msgctxt "@action:button"
 msgid "Trust Chain Details"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:356
+#: src/dialogs/certificatedetailswidget.cpp:355
 #, kde-format
 msgctxt "@action:button"
 msgid "Update"
 msgstr "Aktualizovat"
 
-#: src/dialogs/certificatedetailswidget.cpp:365
+#: src/dialogs/certificatedetailswidget.cpp:364
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Passphrase"
 msgstr "Změnit heslo"
 
-#: src/dialogs/certificatedetailswidget.cpp:368
+#: src/dialogs/certificatedetailswidget.cpp:367
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate Revocation Certificate"
 msgstr "Vytvořit odvolávací certifikát"
 
-#: src/dialogs/certificatedetailswidget.cpp:370
+#: src/dialogs/certificatedetailswidget.cpp:369
 #, kde-format
 msgid ""
 "A revocation certificate is a file that serves as a \"kill switch\" to "
@@ -5964,40 +5937,40 @@ msgid ""
 "to retract such a revocation certificate once it has been published."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:510
+#: src/dialogs/certificatedetailswidget.cpp:509
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "neomezeně"
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Email"
 msgstr "E-mail"
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #: src/newcertificatewizard/enterdetailspage.cpp:63
 #, kde-format
 msgid "Name"
 msgstr "Jméno"
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Trust Level"
 msgstr "Úroveň důvěryhodnosti"
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Tags"
 msgstr "Značky"
 
-#: src/dialogs/certificatedetailswidget.cpp:551
+#: src/dialogs/certificatedetailswidget.cpp:550
 #, kde-format
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "žádný e-mail"
 
-#: src/dialogs/certificatedetailswidget.cpp:638
+#: src/dialogs/certificatedetailswidget.cpp:637
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6005,19 +5978,19 @@ msgid ""
 "</para>"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:828
+#: src/dialogs/certificatedetailswidget.cpp:827
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:838
+#: src/dialogs/certificatedetailswidget.cpp:837
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "Certifikovat ID uživatele..."
 
-#: src/dialogs/certificatedetailswidget.cpp:839
+#: src/dialogs/certificatedetailswidget.cpp:838
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
@@ -6026,13 +5999,13 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/dialogs/certificatedetailswidget.cpp:846
+#: src/dialogs/certificatedetailswidget.cpp:845
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "Odvolat certifikace..."
 
-#: src/dialogs/certificatedetailswidget.cpp:847
+#: src/dialogs/certificatedetailswidget.cpp:846
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
@@ -6041,100 +6014,100 @@ msgstr[0] "Odvolat certifikaci..."
 msgstr[1] "Odvolat certifikace..."
 msgstr[2] "Odvolat certifikace..."
 
-#: src/dialogs/certificatedetailswidget.cpp:856
+#: src/dialogs/certificatedetailswidget.cpp:855
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:871
+#: src/dialogs/certificatedetailswidget.cpp:870
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:917
+#: src/dialogs/certificatedetailswidget.cpp:916
 #, kde-format
 msgid "never"
 msgstr "nikdy"
 
-#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:918
 #, kde-format
 msgid "Signing"
 msgstr "Podepisování"
 
+#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:923
+#, kde-format
+msgid "First message"
+msgstr ""
+
 #: src/dialogs/certificatedetailswidget.cpp:920
 #: src/dialogs/certificatedetailswidget.cpp:924
 #, kde-format
-msgid "First message"
+msgid "Last message"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:921
 #: src/dialogs/certificatedetailswidget.cpp:925
 #, kde-format
-msgid "Last message"
-msgstr ""
-
-#: src/dialogs/certificatedetailswidget.cpp:922
-#: src/dialogs/certificatedetailswidget.cpp:926
-#, kde-format
 msgid "Message count"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:923
+#: src/dialogs/certificatedetailswidget.cpp:922
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Encryption"
 msgstr "Šifrování"
 
-#: src/dialogs/certificatedetailswidget.cpp:958
+#: src/dialogs/certificatedetailswidget.cpp:957
 #, kde-format
 msgid "Updating..."
 msgstr "Aktualizuji..."
 
-#: src/dialogs/certificatedetailswidget.cpp:998
+#: src/dialogs/certificatedetailswidget.cpp:997
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1015
+#: src/dialogs/certificatedetailswidget.cpp:1014
 #, kde-format
 msgid "Common Name"
 msgstr "Běžný název"
 
-#: src/dialogs/certificatedetailswidget.cpp:1016
+#: src/dialogs/certificatedetailswidget.cpp:1015
 #, kde-format
 msgid "Organization"
 msgstr "Organizace"
 
-#: src/dialogs/certificatedetailswidget.cpp:1017
+#: src/dialogs/certificatedetailswidget.cpp:1016
 #, kde-format
 msgid "Street"
 msgstr "Ulice"
 
-#: src/dialogs/certificatedetailswidget.cpp:1018
+#: src/dialogs/certificatedetailswidget.cpp:1017
 #, kde-format
 msgid "City"
 msgstr "Město"
 
-#: src/dialogs/certificatedetailswidget.cpp:1019
+#: src/dialogs/certificatedetailswidget.cpp:1018
 #, kde-format
 msgid "State"
 msgstr "Stav"
 
-#: src/dialogs/certificatedetailswidget.cpp:1020
+#: src/dialogs/certificatedetailswidget.cpp:1019
 #, kde-format
 msgid "Country"
 msgstr "Země"
 
-#: src/dialogs/certificatedetailswidget.cpp:1048
+#: src/dialogs/certificatedetailswidget.cpp:1047
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1057
+#: src/dialogs/certificatedetailswidget.cpp:1056
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr ""
@@ -6232,24 +6205,22 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "Výběr certifikátu"
 
-#: src/dialogs/certifycertificatedialog.cpp:56
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
 msgstr "Certifikovat"
 
-#: src/dialogs/certifycertificatedialog.cpp:87
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Certifikovat certifikát: %1"
 
-#: src/dialogs/certifycertificatedialog.cpp:98
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#: src/dialogs/certifycertificatedialog.cpp:97
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "Certifikovat certifikát: %1"
+msgstr ""
 
 #: src/dialogs/certifywidget.cpp:273
 #, kde-format
@@ -6379,18 +6350,16 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:563
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "Otisk:"
+msgstr ""
 
 #: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
-#, fuzzy, kde-format
-#| msgid "S/MIME Certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "Certifikáty S/MIME"
+msgstr ""
 
 #: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
 #, kde-format
@@ -6410,11 +6379,10 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:912
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
-msgstr "Změna řetězce důvěry certifikací selhala"
+msgstr ""
 
 #: src/dialogs/certifywidget.cpp:919
 #, kde-format
@@ -6485,11 +6453,10 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:220
-#, fuzzy, kde-format
-#| msgid "Secret Key Deletion"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
-msgstr "Smazání tajného klíče"
+msgstr ""
 
 #: src/dialogs/editgroupdialog.cpp:83
 #, kde-format
@@ -10725,11 +10692,10 @@ msgid ""
 msgstr ""
 
 #: src/view/nullpinwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Set initial PIN"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set initial PIN"
-msgstr "Nastavit počáteční pin"
+msgstr ""
 
 #: src/view/openpgpkeycardwidget.cpp:53
 #, kde-format
@@ -11556,6 +11522,3 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-
-#~ msgid "Sender"
-#~ msgstr "Odesílatel"

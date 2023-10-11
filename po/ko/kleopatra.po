@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-10 01:47+0000\n"
+"POT-Creation-Date: 2023-10-11 02:07+0000\n"
 "PO-Revision-Date: 2023-08-06 23:11+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -311,20 +311,20 @@ msgstr "자격 증명에 성공했습니다."
 msgid "Certification Succeeded"
 msgstr "자격 증명 성공"
 
-#: src/commands/certifygroupcommand.cpp:117
+#: src/commands/certifygroupcommand.cpp:116
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:118
+#: src/commands/certifygroupcommand.cpp:117
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:172
-#: src/dialogs/certifycertificatedialog.cpp:44
+#: src/commands/certifygroupcommand.cpp:171
+#: src/dialogs/certifycertificatedialog.cpp:43
 #, fuzzy, kde-format
 #| msgctxt "@title:window arg is name, email of certificate holder"
 #| msgid "Certify Certificate: %1"
@@ -332,14 +332,14 @@ msgctxt "@title:window"
 msgid "Certify Certificates"
 msgstr "인증서 인증: %1"
 
-#: src/commands/certifygroupcommand.cpp:173
+#: src/commands/certifygroupcommand.cpp:172
 #, fuzzy, kde-format
 #| msgid "Exporting certificates..."
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
 msgstr "인증서 내보내는 중..."
 
-#: src/commands/certifygroupcommand.cpp:260
+#: src/commands/certifygroupcommand.cpp:259
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "X.509 certificates refreshed successfully."
@@ -347,7 +347,7 @@ msgctxt "@info"
 msgid "All certificates were certified successfully."
 msgstr "X.509 인증서를 새로 고쳤습니다."
 
-#: src/commands/certifygroupcommand.cpp:265
+#: src/commands/certifygroupcommand.cpp:264
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<para>The creation of a new OpenPGP certificate failed.</"
@@ -360,7 +360,7 @@ msgstr ""
 "<para>새 OpenPGP 인증서 생성에 실패했습니다.</para><para>오류: <message>%1</"
 "message></para>"
 
-#: src/commands/certifygroupcommand.cpp:270
+#: src/commands/certifygroupcommand.cpp:269
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "OpenPGP certificates exported successfully."
@@ -369,7 +369,7 @@ msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
 msgstr[0] "OpenPGP 인증서를 내보냈습니다."
 
-#: src/commands/certifygroupcommand.cpp:288
+#: src/commands/certifygroupcommand.cpp:287
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -377,7 +377,7 @@ msgid ""
 "certificate directory.</p>"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:293
+#: src/commands/certifygroupcommand.cpp:292
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2)"
@@ -385,7 +385,7 @@ msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1(%2)"
 
-#: src/commands/certifygroupcommand.cpp:302
+#: src/commands/certifygroupcommand.cpp:301
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Exporting the certificate failed: %1"
@@ -393,7 +393,7 @@ msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
 msgstr "인증서를 내보낼 수 없음: %1"
 
-#: src/commands/certifygroupcommand.cpp:304
+#: src/commands/certifygroupcommand.cpp:303
 #, fuzzy, kde-format
 #| msgid "Certification Succeeded"
 msgctxt "@title:window"
@@ -420,7 +420,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "'%1'이(가) 사용자의 인증서입니까?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:642
+#: src/commands/importcertificatescommand.cpp:641
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1342,7 +1342,7 @@ msgstr ""
 "조하십시오.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:121
-#: src/commands/importcertificatescommand.cpp:624
+#: src/commands/importcertificatescommand.cpp:623
 #, fuzzy, kde-format
 #| msgctxt "separator for a list of e-mail addresses"
 #| msgid ", "
@@ -1765,8 +1765,8 @@ msgstr "프로세스 완료됨"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:889
-#: src/commands/importcertificatescommand.cpp:956
+#: src/commands/importcertificatescommand.cpp:888
+#: src/commands/importcertificatescommand.cpp:955
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "인증서 가져오기 실패"
@@ -1796,7 +1796,7 @@ msgid "Notepad"
 msgstr "메모장"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:190
+#: src/commands/importcertificatescommand.cpp:189
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1814,7 +1814,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "'%1' 파일에서 읽으려고 열 수 없음: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:156
-#: src/commands/importcertificatescommand.cpp:286 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:285 src/view/keytreeview.cpp:276
 #, kde-format
 msgid "Certificates"
 msgstr "인증서"
@@ -1851,161 +1851,161 @@ msgstr "죄송합니다! 이 카드 슬롯에서 가져올 수 있는 인증서�
 msgid "Card Certificate"
 msgstr "카드 인증서"
 
-#: src/commands/importcertificatescommand.cpp:191
+#: src/commands/importcertificatescommand.cpp:190
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "인증서 가져오는 중...(시간이 걸릴 수 있습니다)"
 
-#: src/commands/importcertificatescommand.cpp:246
+#: src/commands/importcertificatescommand.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "%1에서 인증서 가져옴"
 
-#: src/commands/importcertificatescommand.cpp:248
+#: src/commands/importcertificatescommand.cpp:247
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "다음 원본에서 인증서를 가져옴:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:258
+#: src/commands/importcertificatescommand.cpp:257
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "가져온 인증서"
 
-#: src/commands/importcertificatescommand.cpp:271
+#: src/commands/importcertificatescommand.cpp:270
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:272
+#: src/commands/importcertificatescommand.cpp:271
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:272
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:287
-#: src/commands/importcertificatescommand.cpp:327
+#: src/commands/importcertificatescommand.cpp:286
+#: src/commands/importcertificatescommand.cpp:326
 #, kde-format
 msgid "Total number processed:"
 msgstr "총 처리 개수:"
 
-#: src/commands/importcertificatescommand.cpp:288
+#: src/commands/importcertificatescommand.cpp:287
 #, kde-format
 msgid "Imported:"
 msgstr "가져옴:"
 
-#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:289
 #, kde-format
 msgid "New signatures:"
 msgstr "새 서명:"
 
-#: src/commands/importcertificatescommand.cpp:292
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "New user IDs:"
 msgstr "새 사용자 ID:"
 
-#: src/commands/importcertificatescommand.cpp:294
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "사용자 ID가 없는 인증서:"
 
-#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "New subkeys:"
 msgstr "새 하위 키:"
 
-#: src/commands/importcertificatescommand.cpp:298
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "Newly revoked:"
 msgstr "새로 철회됨:"
 
-#: src/commands/importcertificatescommand.cpp:300
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "Not imported:"
 msgstr "가져오지 않음:"
 
-#: src/commands/importcertificatescommand.cpp:302
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "Unchanged:"
 msgstr "변경되지 않음:"
 
-#: src/commands/importcertificatescommand.cpp:304
+#: src/commands/importcertificatescommand.cpp:303
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "처리된 비밀 키:"
 
-#: src/commands/importcertificatescommand.cpp:306
+#: src/commands/importcertificatescommand.cpp:305
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "가져온 비밀 키:"
 
-#: src/commands/importcertificatescommand.cpp:310
+#: src/commands/importcertificatescommand.cpp:309
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "가져오지 <em>않은</em> 비밀 키:"
 
-#: src/commands/importcertificatescommand.cpp:312
+#: src/commands/importcertificatescommand.cpp:311
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "변경되지 않은 비밀 키:"
 
-#: src/commands/importcertificatescommand.cpp:314
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "건너뛴 용도 폐기된 PGP-2 키:"
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "Certificate Groups"
 msgstr "인증서 그룹"
 
-#: src/commands/importcertificatescommand.cpp:328
+#: src/commands/importcertificatescommand.cpp:327
 #, kde-format
 msgid "New groups:"
 msgstr "새 그룹:"
 
-#: src/commands/importcertificatescommand.cpp:329
+#: src/commands/importcertificatescommand.cpp:328
 #, kde-format
 msgid "Updated groups:"
 msgstr "업데이트된 그룹:"
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr "가져오지 않음(일어나면 안 됨, 버그를 보고해 주십시오)."
 
-#: src/commands/importcertificatescommand.cpp:346
+#: src/commands/importcertificatescommand.cpp:345
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "%1 가져오기 자세한 결과:"
 
-#: src/commands/importcertificatescommand.cpp:347
+#: src/commands/importcertificatescommand.cpp:346
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "가져오기 자세한 결과:"
 
-#: src/commands/importcertificatescommand.cpp:405
+#: src/commands/importcertificatescommand.cpp:404
 #, kde-format
 msgid "A phone call to the person."
 msgstr "상대방과 통화하십시오."
 
-#: src/commands/importcertificatescommand.cpp:406
+#: src/commands/importcertificatescommand.cpp:405
 #, kde-format
 msgid "Using a business card."
 msgstr "명함을 확인하십시오."
 
-#: src/commands/importcertificatescommand.cpp:407
+#: src/commands/importcertificatescommand.cpp:406
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "신뢰 가능한 웹사이트에서 확인하십시오."
 
-#: src/commands/importcertificatescommand.cpp:411
+#: src/commands/importcertificatescommand.cpp:410
 #, fuzzy, kde-format
 #| msgid ""
 #| "In order to mark the certificate as valid (green) it needs to be "
@@ -2013,59 +2013,59 @@ msgstr "신뢰 가능한 웹사이트에서 확인하십시오."
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "인증서를 유효한 것(녹색)으로 표시하려면 인증해야 합니다."
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:411
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "인증 과정에서 인증서 지문을 확인해야 합니다."
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:412
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "제안하는 방법:"
 
-#: src/commands/importcertificatescommand.cpp:415
+#: src/commands/importcertificatescommand.cpp:414
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "이 과정을 지금 시작하시겠습니까?"
 
-#: src/commands/importcertificatescommand.cpp:416
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "새 인증서(공개 키)를 가져옴"
 
-#: src/commands/importcertificatescommand.cpp:417
+#: src/commands/importcertificatescommand.cpp:416
 #: src/conf/groupsconfigwidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "인증"
 
-#: src/commands/importcertificatescommand.cpp:470
+#: src/commands/importcertificatescommand.cpp:469
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:474
+#: src/commands/importcertificatescommand.cpp:473
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:476
+#: src/commands/importcertificatescommand.cpp:475
 #, fuzzy, kde-format
 #| msgid "Operation canceled."
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "작업이 취소되었습니다."
 
-#: src/commands/importcertificatescommand.cpp:496
+#: src/commands/importcertificatescommand.cpp:495
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "인증서 가져오기 결과"
 
-#: src/commands/importcertificatescommand.cpp:505
+#: src/commands/importcertificatescommand.cpp:504
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2073,7 +2073,7 @@ msgid ""
 msgstr ""
 "<qt><p>인증서를 가져오는 중 오류가 발생했습니다:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:510
+#: src/commands/importcertificatescommand.cpp:509
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2081,13 +2081,13 @@ msgid ""
 msgstr ""
 "<qt><p>%1 인증서를 가져오는 중 오류가 발생했습니다:</p><p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:625
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:630
+#: src/commands/importcertificatescommand.cpp:629
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2104,26 +2104,26 @@ msgstr ""
 "><numid>%1</numid></para><para>키의 사용자 ID는 다음과 같습니다:<list>%2</"
 "list></para>이 키가 사용자의 키입니까?(신뢰 수준을 완전히 신뢰함으로 설정)"
 
-#: src/commands/importcertificatescommand.cpp:643
+#: src/commands/importcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:644
+#: src/commands/importcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:853
+#: src/commands/importcertificatescommand.cpp:852
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "서명자 키 %1개 가져오는 중...(시간이 걸릴 수 있습니다)"
 
-#: src/commands/importcertificatescommand.cpp:888
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:887
+#: src/commands/importcertificatescommand.cpp:954
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3042,7 +3042,7 @@ msgstr "<para>다음 키를 철회하려고 합니다:<nl/>%1</para>"
 
 #: src/commands/revokecertificationcommand.cpp:83
 #: src/commands/revokecertificationcommand.cpp:97
-#: src/dialogs/certificatedetailswidget.cpp:644
+#: src/dialogs/certificatedetailswidget.cpp:643
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -3779,7 +3779,7 @@ msgid "Start the certification process for all certificates in the group."
 msgstr "인증서의 키 쌍을 카드에 기록"
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/certificatedetailswidget.cpp:362
+#: src/dialogs/certificatedetailswidget.cpp:361
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
@@ -6083,7 +6083,7 @@ msgid "%1 (%2)"
 msgstr "%1(%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:268
+#: src/dialogs/certificatedetailswidget.cpp:267
 #: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6157,24 +6157,24 @@ msgstr ""
 "<interface>%1</interface>이(가) 잘못되었습니다.<nl/>로컬 관리자 규칙: <icode>"
 "%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:209
+#: src/dialogs/certificatedetailswidget.cpp:208
 #, kde-format
 msgid "User IDs:"
 msgstr "사용자 ID:"
 
-#: src/dialogs/certificatedetailswidget.cpp:214
+#: src/dialogs/certificatedetailswidget.cpp:213
 #: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "User IDs"
 msgstr "사용자 ID"
 
-#: src/dialogs/certificatedetailswidget.cpp:229
+#: src/dialogs/certificatedetailswidget.cpp:228
 #, kde-format
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "사용자 ID 추가"
 
-#: src/dialogs/certificatedetailswidget.cpp:232
+#: src/dialogs/certificatedetailswidget.cpp:231
 #, fuzzy, kde-format
 #| msgctxt "@title:column"
 #| msgid "Primary"
@@ -6182,155 +6182,155 @@ msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr "주"
 
-#: src/dialogs/certificatedetailswidget.cpp:233
+#: src/dialogs/certificatedetailswidget.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:236
+#: src/dialogs/certificatedetailswidget.cpp:235
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "사용자 ID 인증"
 
-#: src/dialogs/certificatedetailswidget.cpp:239
+#: src/dialogs/certificatedetailswidget.cpp:238
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Certifications"
 msgstr "인증 표시"
 
-#: src/dialogs/certificatedetailswidget.cpp:242
+#: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "인증 철회"
 
-#: src/dialogs/certificatedetailswidget.cpp:245
-#: src/dialogs/certificatedetailswidget.cpp:640
+#: src/dialogs/certificatedetailswidget.cpp:244
+#: src/dialogs/certificatedetailswidget.cpp:639
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr "사용자 ID 철회"
 
-#: src/dialogs/certificatedetailswidget.cpp:279
+#: src/dialogs/certificatedetailswidget.cpp:278
 #, kde-format
 msgid "Trust level:"
 msgstr "신뢰 단계:"
 
-#: src/dialogs/certificatedetailswidget.cpp:284
+#: src/dialogs/certificatedetailswidget.cpp:283
 #, kde-format
 msgid "Valid from:"
 msgstr "유효 기간 시작:"
 
-#: src/dialogs/certificatedetailswidget.cpp:289 src/dialogs/expirydialog.cpp:98
+#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:98
 #, kde-format
 msgid "Valid until:"
 msgstr "유효 기간 끝:"
 
-#: src/dialogs/certificatedetailswidget.cpp:292
+#: src/dialogs/certificatedetailswidget.cpp:291
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "유효 기간 종료 시점 변경"
 
-#: src/dialogs/certificatedetailswidget.cpp:293
+#: src/dialogs/certificatedetailswidget.cpp:292
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "유효 기간 변경"
 
-#: src/dialogs/certificatedetailswidget.cpp:299
+#: src/dialogs/certificatedetailswidget.cpp:298
 #: src/dialogs/certifywidget.cpp:290
 #, kde-format
 msgid "Fingerprint:"
 msgstr "지문:"
 
-#: src/dialogs/certificatedetailswidget.cpp:303
+#: src/dialogs/certificatedetailswidget.cpp:302
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "클립보드에 지문 복사"
 
-#: src/dialogs/certificatedetailswidget.cpp:304
+#: src/dialogs/certificatedetailswidget.cpp:303
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "지문 복사"
 
-#: src/dialogs/certificatedetailswidget.cpp:311
+#: src/dialogs/certificatedetailswidget.cpp:310
 #, kde-format
 msgid "Issuer:"
 msgstr "발급자:"
 
-#: src/dialogs/certificatedetailswidget.cpp:314
+#: src/dialogs/certificatedetailswidget.cpp:313
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "발급자 인증서 표시"
 
-#: src/dialogs/certificatedetailswidget.cpp:315
+#: src/dialogs/certificatedetailswidget.cpp:314
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "인증서 표시"
 
-#: src/dialogs/certificatedetailswidget.cpp:321
+#: src/dialogs/certificatedetailswidget.cpp:320
 #, kde-format
 msgid "Compliance:"
 msgstr "준수 사항:"
 
-#: src/dialogs/certificatedetailswidget.cpp:326
+#: src/dialogs/certificatedetailswidget.cpp:325
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "신뢰할 수 있는 도입자:"
 
-#: src/dialogs/certificatedetailswidget.cpp:328
+#: src/dialogs/certificatedetailswidget.cpp:327
 #, kde-format
 msgid "See certifications for details."
 msgstr "자세한 사항은 인증 정보를 참조하십시오."
 
-#: src/dialogs/certificatedetailswidget.cpp:334
+#: src/dialogs/certificatedetailswidget.cpp:333
 #, kde-format
 msgid "Related addresses:"
 msgstr "관계된 주소:"
 
-#: src/dialogs/certificatedetailswidget.cpp:339
+#: src/dialogs/certificatedetailswidget.cpp:338
 #, kde-format
 msgid "Related addresses"
 msgstr "관계된 주소"
 
-#: src/dialogs/certificatedetailswidget.cpp:350
+#: src/dialogs/certificatedetailswidget.cpp:349
 #, kde-format
 msgctxt "@action:button"
 msgid "More Details..."
 msgstr "자세한 정보..."
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:352
 #, kde-format
 msgctxt "@action:button"
 msgid "Trust Chain Details"
 msgstr "서명 체인 자세한 정보"
 
-#: src/dialogs/certificatedetailswidget.cpp:356
+#: src/dialogs/certificatedetailswidget.cpp:355
 #, kde-format
 msgctxt "@action:button"
 msgid "Update"
 msgstr "업데이트"
 
-#: src/dialogs/certificatedetailswidget.cpp:365
+#: src/dialogs/certificatedetailswidget.cpp:364
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Passphrase"
 msgstr "암구호 변경"
 
-#: src/dialogs/certificatedetailswidget.cpp:368
+#: src/dialogs/certificatedetailswidget.cpp:367
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate Revocation Certificate"
 msgstr "철회 인증서 생성"
 
-#: src/dialogs/certificatedetailswidget.cpp:370
+#: src/dialogs/certificatedetailswidget.cpp:369
 #, kde-format
 msgid ""
 "A revocation certificate is a file that serves as a \"kill switch\" to "
@@ -6341,40 +6341,40 @@ msgstr ""
 "럼 작동하는 파일입니다. 한 번 철회 인증서를 공개한 뒤에는 철회 인증서를 더 이"
 "상 철회할 수 없습니다."
 
-#: src/dialogs/certificatedetailswidget.cpp:510
+#: src/dialogs/certificatedetailswidget.cpp:509
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "무제한"
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Email"
 msgstr "이메일"
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #: src/newcertificatewizard/enterdetailspage.cpp:63
 #, kde-format
 msgid "Name"
 msgstr "이름"
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Trust Level"
 msgstr "신뢰 단계"
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Tags"
 msgstr "태그"
 
-#: src/dialogs/certificatedetailswidget.cpp:551
+#: src/dialogs/certificatedetailswidget.cpp:550
 #, kde-format
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "이메일 없음"
 
-#: src/dialogs/certificatedetailswidget.cpp:638
+#: src/dialogs/certificatedetailswidget.cpp:637
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6383,132 +6383,132 @@ msgid ""
 msgstr ""
 "<para>사용자 ID <message>%1</message>을(를)<nl/>철회하시겠습니까?</para>"
 
-#: src/dialogs/certificatedetailswidget.cpp:828
+#: src/dialogs/certificatedetailswidget.cpp:827
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:838
+#: src/dialogs/certificatedetailswidget.cpp:837
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "사용자 ID 인증..."
 
-#: src/dialogs/certificatedetailswidget.cpp:839
+#: src/dialogs/certificatedetailswidget.cpp:838
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
 msgstr[0] "사용자 ID 인증..."
 
-#: src/dialogs/certificatedetailswidget.cpp:846
+#: src/dialogs/certificatedetailswidget.cpp:845
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "인증 철회..."
 
-#: src/dialogs/certificatedetailswidget.cpp:847
+#: src/dialogs/certificatedetailswidget.cpp:846
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
 msgid_plural "Revoke Certifications..."
 msgstr[0] "인증 철회..."
 
-#: src/dialogs/certificatedetailswidget.cpp:856
+#: src/dialogs/certificatedetailswidget.cpp:855
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "메일 공급자에 게시..."
 
-#: src/dialogs/certificatedetailswidget.cpp:871
+#: src/dialogs/certificatedetailswidget.cpp:870
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "사용자 ID 철회"
 
-#: src/dialogs/certificatedetailswidget.cpp:917
+#: src/dialogs/certificatedetailswidget.cpp:916
 #, kde-format
 msgid "never"
 msgstr "안 함"
 
-#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:918
 #, kde-format
 msgid "Signing"
 msgstr "서명"
 
-#: src/dialogs/certificatedetailswidget.cpp:920
-#: src/dialogs/certificatedetailswidget.cpp:924
+#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:923
 #, kde-format
 msgid "First message"
 msgstr "첫 메시지"
 
-#: src/dialogs/certificatedetailswidget.cpp:921
-#: src/dialogs/certificatedetailswidget.cpp:925
+#: src/dialogs/certificatedetailswidget.cpp:920
+#: src/dialogs/certificatedetailswidget.cpp:924
 #, kde-format
 msgid "Last message"
 msgstr "마지막 메시지"
 
-#: src/dialogs/certificatedetailswidget.cpp:922
-#: src/dialogs/certificatedetailswidget.cpp:926
+#: src/dialogs/certificatedetailswidget.cpp:921
+#: src/dialogs/certificatedetailswidget.cpp:925
 #, kde-format
 msgid "Message count"
 msgstr "메시지 개수"
 
-#: src/dialogs/certificatedetailswidget.cpp:923
+#: src/dialogs/certificatedetailswidget.cpp:922
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Encryption"
 msgstr "암호화"
 
-#: src/dialogs/certificatedetailswidget.cpp:958
+#: src/dialogs/certificatedetailswidget.cpp:957
 #, kde-format
 msgid "Updating..."
 msgstr "업데이트 중..."
 
-#: src/dialogs/certificatedetailswidget.cpp:998
+#: src/dialogs/certificatedetailswidget.cpp:997
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "외부 원본에서 키를 업데이트합니다."
 
-#: src/dialogs/certificatedetailswidget.cpp:1015
+#: src/dialogs/certificatedetailswidget.cpp:1014
 #, kde-format
 msgid "Common Name"
 msgstr "일반 이름"
 
-#: src/dialogs/certificatedetailswidget.cpp:1016
+#: src/dialogs/certificatedetailswidget.cpp:1015
 #, kde-format
 msgid "Organization"
 msgstr "조직"
 
-#: src/dialogs/certificatedetailswidget.cpp:1017
+#: src/dialogs/certificatedetailswidget.cpp:1016
 #, kde-format
 msgid "Street"
 msgstr "도로명"
 
-#: src/dialogs/certificatedetailswidget.cpp:1018
+#: src/dialogs/certificatedetailswidget.cpp:1017
 #, kde-format
 msgid "City"
 msgstr "도시"
 
-#: src/dialogs/certificatedetailswidget.cpp:1019
+#: src/dialogs/certificatedetailswidget.cpp:1018
 #, kde-format
 msgid "State"
 msgstr "도/광역시"
 
-#: src/dialogs/certificatedetailswidget.cpp:1020
+#: src/dialogs/certificatedetailswidget.cpp:1019
 #, kde-format
 msgid "Country"
 msgstr "국가"
 
-#: src/dialogs/certificatedetailswidget.cpp:1048
+#: src/dialogs/certificatedetailswidget.cpp:1047
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr "CRL을 업데이트하고 인증서에 대한 완전한 유효성 검사를 실행합니다."
 
-#: src/dialogs/certificatedetailswidget.cpp:1057
+#: src/dialogs/certificatedetailswidget.cpp:1056
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "발급자 인증서를 로컬에서 찾을 수 없습니다."
@@ -6606,18 +6606,18 @@ msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "인증서 선택"
 
-#: src/dialogs/certifycertificatedialog.cpp:56
+#: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
 msgstr "인증"
 
-#: src/dialogs/certifycertificatedialog.cpp:87
+#: src/dialogs/certifycertificatedialog.cpp:86
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "인증서 인증: %1"
 
-#: src/dialogs/certifycertificatedialog.cpp:98
+#: src/dialogs/certifycertificatedialog.cpp:97
 #, fuzzy, kde-format
 #| msgctxt "@title:window arg is name, email of certificate holder"
 #| msgid "Certify Certificate: %1"

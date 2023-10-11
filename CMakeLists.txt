@@ -209,8 +209,8 @@ if(NOT kleopatra_release)
     endif()
 endif()
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kleopatra.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/version-kleopatra.h)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kleopatra.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kleopatra.h.in ${CMAKE_CURRENT_BINARY_DIR}/version-kleopatra.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.in ${CMAKE_CURRENT_BINARY_DIR}/config-kleopatra.h)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}

@@ -42,7 +42,6 @@ void ViewEmailFilesCommand::Private::ensureDialogCreated()
     for (const auto &file : std::as_const(files)) {
         const auto dlg = new MessageViewerDialog(file);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
-        applyWindowID(dlg);
         connect(dlg, &MessageViewerDialog::finished, q_func(), [this, dlg] {
             dialogs.removeAll(dlg);
             if (dialogs.isEmpty()) {
@@ -51,6 +50,8 @@ void ViewEmailFilesCommand::Private::ensureDialogCreated()
         });
         dialogs << dlg;
         dlg->show();
+        dlg->raise();
+        dlg->activateWindow();
     }
 }
 

@@ -20,10 +20,10 @@
 #include "kleopatraapplication.h"
 
 #include "utils/keyparameters.h"
-#include "utils/keyusage.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyUsage>
 
 #include <KConfigGroup>
 #include <KLocalizedString>

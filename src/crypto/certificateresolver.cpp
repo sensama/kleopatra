@@ -60,6 +60,7 @@ KConfigBasedRecipientPreferences::Private::Private(const KSharedConfigPtr &confi
     , m_parsed(false)
     , m_dirty(false)
 {
+    Q_UNUSED(q);
     Q_ASSERT(m_config);
 }
 
@@ -168,6 +169,7 @@ KConfigBasedSigningPreferences::Private::Private(const KSharedConfigPtr &config,
     , m_parsed(false)
     , m_dirty(false)
 {
+    Q_UNUSED(q);
     Q_ASSERT(m_config);
 }
 

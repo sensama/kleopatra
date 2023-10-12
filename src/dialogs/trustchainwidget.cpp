@@ -24,6 +24,7 @@ public:
     Private(TrustChainWidget *qq)
         : q(qq)
     {
+        Q_UNUSED(q);
     }
 
     GpgME::Key key;

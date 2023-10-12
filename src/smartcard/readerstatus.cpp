@@ -57,23 +57,6 @@ static ReaderStatus *self = nullptr;
 #define xtoi_1(p) (*(p) <= '9' ? (*(p) - '0') : *(p) <= 'F' ? (*(p) - 'A' + 10) : (*(p) - 'a' + 10))
 #define xtoi_2(p) ((xtoi_1(p) * 16) + xtoi_1((p) + 1))
 
-static const char *flags[] = {
-    "NOCARD",
-    "PRESENT",
-    "ACTIVE",
-    "USABLE",
-};
-static_assert(sizeof flags / sizeof *flags == Card::_NumScdStates, "");
-
-static const char *prettyFlags[] = {
-    "NoCard",
-    "CardPresent",
-    "CardActive",
-    "CardUsable",
-    "CardError",
-};
-static_assert(sizeof prettyFlags / sizeof *prettyFlags == Card::NumStates, "");
-
 Q_DECLARE_METATYPE(GpgME::Error)
 
 namespace

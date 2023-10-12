@@ -107,11 +107,6 @@ static inline gpg_error_t assuan_process_done_msg(assuan_context_t ctx, gpg_erro
     return assuan_process_done(ctx, assuan_set_error(ctx, err, err_msg));
 }
 
-static inline gpg_error_t assuan_process_done_msg(assuan_context_t ctx, gpg_error_t err, const std::string &err_msg)
-{
-    return assuan_process_done_msg(ctx, err, err_msg.c_str());
-}
-
 static inline gpg_error_t assuan_process_done_msg(assuan_context_t ctx, gpg_error_t err, const QString &err_msg)
 {
     return assuan_process_done_msg(ctx, err, err_msg.toUtf8().constData());

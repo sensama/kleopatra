@@ -21,7 +21,7 @@ class QMap;
 
 namespace Kleo
 {
-class CertificatePair;
+struct CertificatePair;
 
 namespace Crypto
 {

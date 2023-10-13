@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-11 02:07+0000\n"
-"PO-Revision-Date: 2023-10-10 14:05+0200\n"
+"PO-Revision-Date: 2023-10-12 13:26+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -5396,6 +5396,13 @@ msgid ""
 "Kleopatra.</para><para>Future versions of Kleopatra are expected to also "
 "support detached signatures in this case.</para>"
 msgstr ""
+"<para>დაარქივება მხოლოდ-ხელმოწერასთან ერთად, ამჟამად, მოითხოვს რაღაცას, რაც "
+"ცნობილია მღვრიე ხელმოწერების სახით - მოხსნილებისგან განსხვავებით, ისინი "
+"ხელმოწერაში დამატებით ინფორმაციას ინახავენ.</para><para>ეს ფორმატი, მთლად, "
+"ჩვეულებრივი არაა. ალბათ, უმჯობესია, ფაილები ცალკე დააარქივოთ და შემდეგ "
+"მოაწეროთ ხელი, Klepatra-ის გამოყენებით.</para><para>Kleopatra-ის მომავალ "
+"ვერსიებს, ალბათ, ამ შემთხვევაში, მოხსნილი ხელმოწერების მხარდაჭერაც ექნება.</"
+"para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:280
 #, kde-format
@@ -5412,6 +5419,10 @@ msgid ""
 "once encrypted.</para><para>Do you want to continue, or cancel to change the "
 "recipient selection?</para>"
 msgstr ""
+"<para>მიმღებები, რომლებისთვისაც შიფრავთ, თქვენ არ შეგიცავთ.</para><para>ეს "
+"ნიშნავს, რომ მას შემდეგ, რაც მონაცემებს დაშიფრავთ, მისი გაშიფვრა აღარ "
+"შეგეძლებათ.</para><para>გააგრძელებთ, გააუქმებთ, თუ შეცვლით მიმღებების "
+"არჩევანს?</para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:302
 #, kde-format
@@ -5619,6 +5630,10 @@ msgid ""
 "key. Using a password is <b>less secure</b> then public key cryptography. "
 "Even if you pick a very strong password."
 msgstr ""
+"მიმღებების გასაღებების გარდა, თქვენი მონაცემები, პაროლითაც შეგიძლიათ, "
+"დაშიფროთ. ყველას, ვისაც ეს პაროლი აქვს, შეუძლია, გასაღების ქონის გარეშეც "
+"წაიკითხოს ის. პაროლის გამოყენება, საჯარო გასაღების გამოყენებაზე <b>ნაკლებად "
+"დაცულია</b>."
 
 #: src/crypto/gui/signencryptwidget.cpp:359
 #, kde-format
@@ -6599,6 +6614,10 @@ msgid ""
 "the key you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
+"გადაამოწმეთ ანაბეჭდი და მონიშნეთ მომხმარებლის ID-ები, რომლებიც "
+"სერტიფიცირებაც გნებავთ, შემდეგ კი აირჩიეთ გასაღები.<br><i>დაიმახსოვრეთ: "
+"გასაღების და მისი მფლობელის აშკარა იდენტიფიკაცია მხოლოდ ანაბეჭდითაა "
+"შესაძლებელი.</i>"
 
 #: src/dialogs/certifywidget.cpp:295
 #, kde-format
@@ -6618,6 +6637,8 @@ msgid ""
 "Click to set the trust level of the selected certification key to ultimate "
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
+"დააწკაპუნეთ მონიშნული სერტიფიცირების ნდობის დონის უპირობო ნდობაზე "
+"დასაყენებლად. ეს, ჩვეულებრივ, ისაა, რასაც თქვენს გასაღებებს უშვრებით."
 
 #: src/dialogs/certifywidget.cpp:324
 #, kde-format
@@ -6723,6 +6744,10 @@ msgid ""
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
+"გადაამოწმეთ ანაბეჭდები, მონიშნეთ მომხმარებლის ID-ები, რომლის სერტიფიცირებაც "
+"გნებავთ და აირჩიეთ გასაღები, რომლითაც გნებავთ ამ მომხმარებლის ID-ების "
+"სერტიფიცირება.<br><i>დაიმახსოვრეთ: სერტიფიკატის და მისი მფლობელის აშკარა "
+"იდენტიფიკაცია მხოლოდ ანაბეჭდით შეიძლება.</i>"
 
 #: src/dialogs/certifywidget.cpp:563
 #, kde-format
@@ -7129,6 +7154,8 @@ msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
 "for the passphrase during key generation."
 msgstr ""
+"ამ საიდუმლო გასაღებს აღუდგენელი აკვანძო ფრაზით დაშიფრავს. ამ ფრაზას "
+"გასაღების გენერაცისას გკითხავთ."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
 #: src/newcertificatewizard/enterdetailspage.cpp:179
@@ -7303,6 +7330,8 @@ msgid ""
 "No NullPin found. <warning>If this PIN was not set by you personally, the "
 "card might have been tampered with.</warning>"
 msgstr ""
+"NullPin აღმოჩენილი არაა.<warning>თუ ეს PIN-კოდი თქვენს მიერ არ დაყენებულა, "
+"შეიძლება, ბარათს ვინმე უჩხიკინებდა.</warning>"
 
 #: src/dialogs/setinitialpindialog.cpp:76
 #, kde-format
@@ -7741,6 +7770,8 @@ msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
 "archive with this command."
 msgstr ""
+"ერთზე მეტი ფაილის ან საქაღალდის დაშიფვრისას Kleopatra მათ დაშიფრულ არქივს ამ "
+"ბრძანებით შექმნის."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
@@ -7886,6 +7917,12 @@ msgid ""
 "(possibly clamped to the allowed minimum or maximum validity period) by "
 "default."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რამდენი დღე იქნება ახალი OpenPGP გასაღები "
+"ნაგულისხმევად ვარგისი, ან, სხვა სიტყვებით, რამდენ დღეში ამოიწურება ამ "
+"გასაღების ვადა. დააყენეთ 0 უვადო გასაღებისთვის. თუ ეს პარამეტრი დაყენებული "
+"არაა ან მნიშვნელობა უარყოფითია, OpenPGP-ის გასაღებები სამი წელი იქნება "
+"ვარგისი (შეიძლება, ოდნავ წაკვეთილი, რათა მინიმალურ ან მაქსიმალურ "
+"ვარგისიანობის შუალედში ჩაჯდეს), ნაგულისხმევად."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -7908,6 +7945,9 @@ msgid ""
 "or, in other words, after how many days the new key will expire at the "
 "earliest."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რამდენი დღე მაინც იქნება ახალი OpenPGP გასაღები "
+"ვარგისი, ან, სხვა სიტყვებით, რამდენ დღეში, მინიმუმ, ამოიწურება ამ გასაღების "
+"ვადა."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
@@ -7931,6 +7971,10 @@ msgid ""
 "If this setting is not set or if it is set to a negative value, then "
 "unlimited validity is allowed."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რამდენი დღე იქნება ახალი OpenPGP გასაღები ვარგისი, "
+"მაქსიმუმ, სხვა სიტყვებით, რამდენ დღეში, მაქსიმუმ, ამოიწურება ამ გასაღების "
+"ვადა. თუ ეს პარამეტრი დაყენებული არა ან მნიშვნელობა უარყოფითია, ვარგისიანობა "
+"უვადო იქნება."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
@@ -8161,6 +8205,11 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"ნაგულისხმევად, Kleopatra მომწოდებლის სერტიფიკატის კატალოგებს (WKD) , მხოლოდ, "
+"იმ მომხმარებლის ID-ებისთვის\n"
+"          ეკითხება, რომლებიც, თავიდან, WKD-დან OpenPGP სერტიფიკატის "
+"განახლებისას იქნა მიღებული. თუ ეს პარამეტრი ჩართულია, \n"
+"          Kleopatra WKD-ებს ყველა მომხმარებლის ID-ებისთვის გამოითხოვს."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170
@@ -8204,6 +8253,7 @@ msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
 "keyserver."
 msgstr ""
+"მორგებულ გასაღებების სერვერზე ამ სმარტ-ბარათის კუთვნილი სერტიფიკატების ძებნა."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
 #: src/kcfg/settings.kcfg:189
@@ -8653,6 +8703,11 @@ msgid ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 msgstr ""
+"<qt>Windows Explorer-ისთვის Kleopatra-ის მოდულის ინიცციალიზაცია შეუძლებელია."
+"<br/>შეცდომა: <b>%1</b><br/>როგორც ჩანს, პროგრამის ფაილები დაზიანებულია. "
+"სცადეთ, ის თავიდან დააყენოთ, ან, მხარდაჭერისთვის, სისტემურ ადმინისტრატორს "
+"დაუკავშირდით.<br/>შეგიძლიათ, სცადოთ, გააგრძელოთ Kleopatra-ის გამოყენება, "
+"მაგრამ, ალბათ, სხვა პრობლემებსაც შეეჩეხებით.</qt>"
 
 #: src/main.cpp:265
 #, kde-format
@@ -9563,6 +9618,9 @@ msgid ""
 "Either the GpgME library itself is too old, or the GpgME++ library was "
 "compiled against an older GpgME that did not support connecting to gpg-agent."
 msgstr ""
+"ან თვითონ GpgME-ის ბიბლიოთეკაა ძალიან ძველი, ან ბიბლიოთეკა GpgME++ აგებული "
+"იყო ძველი GpgME-ით, რომელსაც gpg-agent-თან მიერთების მხარდაჭერა ჯერ არ "
+"ჰქონდა."
 
 #: src/selftest/gpgagentcheck.cpp:51
 #, kde-kuit-format
@@ -9720,6 +9778,8 @@ msgid ""
 "It seems another <application>Kleopatra</application> is running (with "
 "process-id %1)"
 msgstr ""
+"როგორც ჩანს, გაშვებულია <application>Kleopatra</application>-ის სხვა ასლიც "
+"(პროცესის id %1)"
 
 #: src/selftest/uiservercheck.cpp:61
 #, kde-kuit-format
@@ -11601,6 +11661,8 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+"ამ ბარათზე არსებული გასაღებები <b>წაიშლება</b> და ახალი გასაღებებით "
+"ჩანაცვლდება."
 
 #: src/view/pgpcardwidget.cpp:402
 #, kde-format
@@ -11845,6 +11907,9 @@ msgid ""
 "certificates.<br/><br/>Certification is required to make sure that the "
 "certificates actually belong to the identity they claim to belong to."
 msgstr ""
+"ზოგიერთი სერტიფიკატი ჯერ სერტიფიცირებული არაა. დააწკაპუნეთ აქ, ამ "
+"სერტიფიკატების სანახავად.<br/><br/>სერტიფიკაცია აუცილებელია, რომ დარწმუნდეთ, "
+"რომ ის ნამდვილად ეკუთვნის იმ იდენტიფიკატორს, რომელსაც იძახის."
 
 #: src/view/searchbar.cpp:197
 #, kde-format
@@ -12012,6 +12077,8 @@ msgid ""
 "Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
 "\">GnuPG</a>."
 msgstr ""
+"Kleopatra წინაბოლოა კრიპტოგრაფიის პროგრამისთვის <a href=\"https://gnupg.org"
+"\">GnuPG</a>."
 
 #: src/view/welcomewidget.cpp:125
 #, kde-format
@@ -12019,6 +12086,8 @@ msgid ""
 "For most actions you need either a public key (certificate) or your own "
 "private key."
 msgstr ""
+"ქმედებების უმრავლესობისთვის ან საჯარო გასაღები (სერტიფიკატი) გჭირდებათ, ან "
+"თქვენი პირადი გასაღები."
 
 #: src/view/welcomewidget.cpp:127
 #, kde-format
@@ -12031,6 +12100,8 @@ msgid ""
 "The public key can be used by others to verify your identity or encrypt to "
 "you."
 msgstr ""
+"საჯარო გასაღები, შეიძლება, გამოყენებული იქნას სხვების მიერ, რომ გადაამოწმონ "
+"თქვენი იდენტიფიკატორი, ან თქვენთვის დაშიფრონ."
 
 #: src/view/welcomewidget.cpp:131
 #, kde-format

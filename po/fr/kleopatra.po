@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-11 00:44+0000\n"
+"POT-Creation-Date: 2023-10-13 00:43+0000\n"
 "PO-Revision-Date: 2023-10-07 16:07+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
@@ -4418,13 +4418,13 @@ msgid "Create Checksum Progress"
 msgstr "État de la création des sommes de contrôle"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Erreur lors de l'exécution de « %1 » : %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4441,13 +4441,13 @@ msgid "No checksum programs defined."
 msgstr "Aucun programme de vérification des sommes de contrôle défini."
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:510
+#: src/crypto/verifychecksumscontroller.cpp:508
 #, kde-format
 msgid "Scanning directories..."
 msgstr "Analyse des dossiers..."
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:527
+#: src/crypto/verifychecksumscontroller.cpp:525
 #, kde-format
 msgid "Calculating total size..."
 msgstr "Calcul de la taille totale..."
@@ -4458,7 +4458,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "Calcul de la somme de contrôle (%2) dans %1"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:554
+#: src/crypto/verifychecksumscontroller.cpp:552
 #, kde-format
 msgid "Done."
 msgstr "Effectué."
@@ -4907,8 +4907,8 @@ msgstr "Exception appelée : %1"
 #: src/crypto/decryptverifytask.cpp:1387 src/crypto/decryptverifytask.cpp:1487
 #: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1678
 #: src/crypto/decryptverifytask.cpp:1760 src/crypto/decryptverifytask.cpp:1866
-#: src/uiserver/assuanserverconnection.cpp:1363
-#: src/uiserver/assuanserverconnection.cpp:1412
+#: src/uiserver/assuanserverconnection.cpp:1358
+#: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Réception d'une exception inconnue"
@@ -6168,18 +6168,18 @@ msgstr "Création en cours d'une archive signée..."
 msgid "Unknown exception in Task::start()"
 msgstr "Exception inconnue dans Task::start()"
 
-#: src/crypto/verifychecksumscontroller.cpp:184
+#: src/crypto/verifychecksumscontroller.cpp:182
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Checksum Results"
 msgstr "Vérifier les résultats des sommes de contrôle"
 
-#: src/crypto/verifychecksumscontroller.cpp:361
+#: src/crypto/verifychecksumscontroller.cpp:359
 #, kde-format
 msgid "Cannot find checksums file for file %1"
 msgstr "Impossible de trouver le fichier de la somme de contrôle pour « %1 »"
 
-#: src/crypto/verifychecksumscontroller.cpp:543
+#: src/crypto/verifychecksumscontroller.cpp:541
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "Vérification des sommes de contrôle (%2) dans %1"
@@ -7770,12 +7770,12 @@ msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Renseignements sur les sous-clés"
 
-#: src/dialogs/trustchainwidget.cpp:63
+#: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
 msgid "Issuer Certificate Not Found (%1)"
 msgstr "Impossible de trouver le certificat émetteur (%1)"
 
-#: src/dialogs/trustchainwidget.cpp:83
+#: src/dialogs/trustchainwidget.cpp:84
 #, kde-format
 msgctxt "@title:window"
 msgid "Trust Chain"
@@ -10388,130 +10388,130 @@ msgctxt "@action:inmenu"
 msgid "Learn NetKey v3 Card Certificates"
 msgstr "Apprendre des certificats de carte « NetKey v3 »"
 
-#: src/uiserver/assuanserverconnection.cpp:160
+#: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
 msgid "No option name given"
 msgstr "Aucun nom d'option fourni"
 
-#: src/uiserver/assuanserverconnection.cpp:333
+#: src/uiserver/assuanserverconnection.cpp:328
 #, kde-format
 msgid "Parse error"
 msgstr "Erreur d'analyse"
 
-#: src/uiserver/assuanserverconnection.cpp:342
+#: src/uiserver/assuanserverconnection.cpp:337
 #, kde-format
 msgid "Parse error: numeric session id too large"
 msgstr "Erreur d'analyse : l'identifiant numérique de session est trop grand"
 
-#: src/uiserver/assuanserverconnection.cpp:359
+#: src/uiserver/assuanserverconnection.cpp:354
 #, kde-format
 msgid "CAPABILITIES does not take arguments"
 msgstr "CAPABILITIES n'accepte pas d'arguments"
 
-#: src/uiserver/assuanserverconnection.cpp:393
+#: src/uiserver/assuanserverconnection.cpp:388
 #, kde-format
 msgid "Unknown value for WHAT"
 msgstr "Valeur inconnue pour WHAT"
 
-#: src/uiserver/assuanserverconnection.cpp:405
+#: src/uiserver/assuanserverconnection.cpp:400
 #, kde-format
 msgid "START_KEYMANAGER does not take arguments"
 msgstr "START_KEYMANAGER n'accepte pas d'arguments"
 
-#: src/uiserver/assuanserverconnection.cpp:420
+#: src/uiserver/assuanserverconnection.cpp:415
 #, kde-format
 msgid "START_CONFDIALOG does not take arguments"
 msgstr "START_CONFDIALOG n'accepte pas d'arguments"
 
-#: src/uiserver/assuanserverconnection.cpp:478
+#: src/uiserver/assuanserverconnection.cpp:473
 #, kde-format
 msgid "Message #%1"
 msgstr "Message #%1"
 
-#: src/uiserver/assuanserverconnection.cpp:489
+#: src/uiserver/assuanserverconnection.cpp:484
 #, kde-format
 msgid "Empty file path"
 msgstr "Emplacement de fichier vide"
 
-#: src/uiserver/assuanserverconnection.cpp:493
-#: src/uiserver/assuanserverconnection.cpp:556
+#: src/uiserver/assuanserverconnection.cpp:488
+#: src/uiserver/assuanserverconnection.cpp:551
 #, kde-format
 msgid "Only absolute file paths are allowed"
 msgstr "Seuls les emplacements absolus de fichiers sont autorisés"
 
-#: src/uiserver/assuanserverconnection.cpp:496
+#: src/uiserver/assuanserverconnection.cpp:491
 #, kde-format
 msgid "Only files are allowed in INPUT/OUTPUT FILE"
 msgstr "Seuls des fichiers sont autorisés dans « INPUT / OUTPUT FILE »"
 
-#: src/uiserver/assuanserverconnection.cpp:573
+#: src/uiserver/assuanserverconnection.cpp:568
 #, kde-format
 msgid "unknown exception caught"
 msgstr "réception d'une exception inconnue"
 
-#: src/uiserver/assuanserverconnection.cpp:634
+#: src/uiserver/assuanserverconnection.cpp:629
 #, kde-format
 msgid "Cannot mix --info with non-info SENDER or RECIPIENT"
 msgstr "Impossible de combiner --info avec RECIPIENT ou SENDER sans info"
 
-#: src/uiserver/assuanserverconnection.cpp:637
+#: src/uiserver/assuanserverconnection.cpp:632
 #, kde-format
 msgid "Argument is not a valid RFC-2822 mailbox"
 msgstr "L'argument n'est pas une boîte aux lettres RFC-2822 valable"
 
-#: src/uiserver/assuanserverconnection.cpp:641
+#: src/uiserver/assuanserverconnection.cpp:636
 #, kde-format
 msgid "Garbage after valid RFC-2822 mailbox detected"
 msgstr ""
 "Mémoire inutilisable après détection d'une boîte aux lettres RFC-2822 valable"
 
-#: src/uiserver/assuanserverconnection.cpp:1007
+#: src/uiserver/assuanserverconnection.cpp:1002
 #, kde-format
 msgid "Caught unexpected exception: %1"
 msgstr "Réception d'une exception inattendue : %1"
 
-#: src/uiserver/assuanserverconnection.cpp:1012
+#: src/uiserver/assuanserverconnection.cpp:1007
 #, kde-format
 msgid "Caught unknown exception - please report this error to the developers."
 msgstr ""
 "Réception d'une exception inconnue - veuillez la reporter aux développeurs."
 
-#: src/uiserver/assuanserverconnection.cpp:1170
+#: src/uiserver/assuanserverconnection.cpp:1165
 #, kde-format
 msgid "Cannot send \"%1\" status"
 msgstr "Impossible d'envoyer l'état « %1 »"
 
-#: src/uiserver/assuanserverconnection.cpp:1180
+#: src/uiserver/assuanserverconnection.cpp:1175
 #, kde-format
 msgid "Cannot send data"
 msgstr "Impossible d'envoyer les données"
 
-#: src/uiserver/assuanserverconnection.cpp:1184
+#: src/uiserver/assuanserverconnection.cpp:1179
 #, kde-format
 msgid "Cannot flush data"
 msgstr "Impossible de purger les données"
 
-#: src/uiserver/assuanserverconnection.cpp:1433
+#: src/uiserver/assuanserverconnection.cpp:1428
 #, kde-format
 msgid "Required --mode option missing"
 msgstr "L'option requise --mode est manquante"
 
-#: src/uiserver/assuanserverconnection.cpp:1443
+#: src/uiserver/assuanserverconnection.cpp:1438
 #, kde-format
 msgid "invalid mode: \"%1\""
 msgstr "mode non valable : « %1 »"
 
-#: src/uiserver/assuanserverconnection.cpp:1465
+#: src/uiserver/assuanserverconnection.cpp:1460
 #, kde-format
 msgid "Required --protocol option missing"
 msgstr "L'option requise --protocol est manquante"
 
-#: src/uiserver/assuanserverconnection.cpp:1470
+#: src/uiserver/assuanserverconnection.cpp:1465
 #, kde-format
 msgid "--protocol is not allowed here"
 msgstr "--protocol n'est pas autorisé ici"
 
-#: src/uiserver/assuanserverconnection.cpp:1480
+#: src/uiserver/assuanserverconnection.cpp:1475
 #, kde-format
 msgid "invalid protocol \"%1\""
 msgstr "protocole « %1 » non valable"
@@ -11090,7 +11090,7 @@ msgstr "Sélection actuelle"
 msgid "No input device"
 msgstr "Aucun périphérique d'entrée"
 
-#: src/utils/log.cpp:148
+#: src/utils/log.cpp:149
 #, kde-format
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr ""

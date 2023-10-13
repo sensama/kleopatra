@@ -102,7 +102,7 @@ protected:
 
 private:
     int fd;
-    Qt::HANDLE handle;
+    [[maybe_unused]] Qt::HANDLE handle;
 
 public:
     QMutex mutex;
@@ -181,7 +181,7 @@ protected:
 
 private:
     int fd;
-    Qt::HANDLE handle;
+    [[maybe_unused]] Qt::HANDLE handle;
 
 public:
     QMutex mutex;

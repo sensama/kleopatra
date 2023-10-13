@@ -9,7 +9,8 @@
 */
 
 #include "utils/keyparameters.h"
-#include "utils/keyusage.h"
+
+#include <Libkleo/KeyUsage>
 
 #include <QDate>
 #include <QTest>

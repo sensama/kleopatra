@@ -18,12 +18,12 @@
 #include "newcertificatewizard/advancedsettingsdialog_p.h"
 #include "newcertificatewizard/keyalgo_p.h"
 #include "utils/keyparameters.h"
-#include "utils/keyusage.h"
 #include "utils/scrollarea.h"
 
 #include <settings.h>
 
 #include <Libkleo/Compat>
+#include <Libkleo/KeyUsage>
 
 #include <KConfigGroup>
 #include <KLocalizedString>

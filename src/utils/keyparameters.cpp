@@ -12,7 +12,7 @@
 
 #include "keyparameters.h"
 
-#include "keyusage.h"
+#include <Libkleo/KeyUsage>
 
 #include <QDate>
 #include <QUrl>

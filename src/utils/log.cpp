@@ -35,6 +35,7 @@ public:
         , m_ioLoggingEnabled(false)
         , m_logFile(nullptr)
     {
+        Q_UNUSED(q);
     }
     ~Private();
     bool m_ioLoggingEnabled;

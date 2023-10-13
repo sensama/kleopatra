@@ -35,5 +35,5 @@ ecm_add_test(
     ${CMAKE_SOURCE_DIR}/src/utils/keyparameters.cpp
     ${logging_category_srcs}
     TEST_NAME keyparameterstest
-    LINK_LIBRARIES Gpgmepp Qt::Test
+    LINK_LIBRARIES KPim${KF_MAJOR_VERSION}::Libkleo Gpgmepp Qt::Test
 )

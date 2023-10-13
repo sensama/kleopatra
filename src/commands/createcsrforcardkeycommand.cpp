@@ -23,9 +23,9 @@
 
 #include "utils/filedialog.h"
 #include "utils/keyparameters.h"
-#include "utils/keyusage.h"
 
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyUsage>
 
 #include <KLocalizedString>
 

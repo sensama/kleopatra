@@ -45,8 +45,6 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
-static const QLatin1String CHECKSUM_DEFINITION_ID_ENTRY("checksum-definition-id");
-
 #if 0
 static QStringList fs_sort(QStringList l)
 {

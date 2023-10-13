@@ -582,7 +582,10 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
     kleo_assert(input);
 
     if (encrypt || symmetric) {
-        Context::EncryptionFlags flags = Context::AlwaysTrust;
+        Context::EncryptionFlags flags;
+        if (proto == GpgME::OpenPGP) {
+            flags = static_cast<Context::EncryptionFlags>(flags | Context::AlwaysTrust);
+        }
         if (symmetric) {
             flags = static_cast<Context::EncryptionFlags>(flags | Context::Symmetric);
             qCDebug(KLEOPATRA_LOG) << "Adding symmetric flag";
@@ -707,7 +710,10 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
     qCDebug(KLEOPATRA_LOG) << "relative paths:" << relativePaths;
 
     if (encrypt || symmetric) {
-        Context::EncryptionFlags flags = Context::AlwaysTrust;
+        Context::EncryptionFlags flags;
+        if (proto == GpgME::OpenPGP) {
+            flags = static_cast<Context::EncryptionFlags>(flags | Context::AlwaysTrust);
+        }
         if (symmetric) {
             flags = static_cast<Context::EncryptionFlags>(flags | Context::Symmetric);
             qCDebug(KLEOPATRA_LOG) << "Adding symmetric flag";

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-11 02:07+0000\n"
+"POT-Creation-Date: 2023-10-14 01:49+0000\n"
 "PO-Revision-Date: 2023-10-10 14:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -4105,13 +4105,13 @@ msgid "Create Checksum Progress"
 msgstr "创建校验和进程"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "运行 %1 时出错：%2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4128,13 +4128,13 @@ msgid "No checksum programs defined."
 msgstr "未定义校验和程序。"
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:510
+#: src/crypto/verifychecksumscontroller.cpp:508
 #, kde-format
 msgid "Scanning directories..."
 msgstr "正在扫描目录..."
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:527
+#: src/crypto/verifychecksumscontroller.cpp:525
 #, kde-format
 msgid "Calculating total size..."
 msgstr "正在计算总大小..."
@@ -4145,7 +4145,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "正在计算 %1 校验和 (%2)"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:554
+#: src/crypto/verifychecksumscontroller.cpp:552
 #, kde-format
 msgid "Done."
 msgstr "完成。"
@@ -4453,7 +4453,7 @@ msgstr "无法认证此证书，因为它已被同一份证书认证过了。"
 
 #: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:244 src/crypto/signencrypttask.cpp:261
-#: src/crypto/signencrypttask.cpp:846
+#: src/crypto/signencrypttask.cpp:852
 #, kde-format
 msgid "Input error: %1"
 msgstr "输入错误：%1"
@@ -4555,8 +4555,8 @@ msgstr "捕捉到异常：%1"
 #: src/crypto/decryptverifytask.cpp:1386 src/crypto/decryptverifytask.cpp:1486
 #: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1677
 #: src/crypto/decryptverifytask.cpp:1759 src/crypto/decryptverifytask.cpp:1865
-#: src/uiserver/assuanserverconnection.cpp:1363
-#: src/uiserver/assuanserverconnection.cpp:1412
+#: src/uiserver/assuanserverconnection.cpp:1358
+#: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "捕捉到未知异常"
@@ -5727,7 +5727,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:702 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:705 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5736,19 +5736,19 @@ msgstr ""
 "找不到这些文件的常见基础目录：\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:716
+#: src/crypto/signencrypttask.cpp:722
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "正在创建签名和加密的压缩文件..."
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:742
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "正在创建加密的压缩文件..."
 
-#: src/crypto/signencrypttask.cpp:756
+#: src/crypto/signencrypttask.cpp:762
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -5759,18 +5759,18 @@ msgstr "正在创建签名的压缩文件..."
 msgid "Unknown exception in Task::start()"
 msgstr "Task::start() 抛出未知异常"
 
-#: src/crypto/verifychecksumscontroller.cpp:184
+#: src/crypto/verifychecksumscontroller.cpp:182
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Checksum Results"
 msgstr "验证校验和结果"
 
-#: src/crypto/verifychecksumscontroller.cpp:361
+#: src/crypto/verifychecksumscontroller.cpp:359
 #, kde-format
 msgid "Cannot find checksums file for file %1"
 msgstr "找不到文件 %1 的校验和文件"
 
-#: src/crypto/verifychecksumscontroller.cpp:543
+#: src/crypto/verifychecksumscontroller.cpp:541
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "验证 %1 中的校验和 (%2)"
@@ -7274,12 +7274,12 @@ msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "子密钥详情"
 
-#: src/dialogs/trustchainwidget.cpp:63
+#: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
 msgid "Issuer Certificate Not Found (%1)"
 msgstr "找不到颁发者证书(%1)"
 
-#: src/dialogs/trustchainwidget.cpp:83
+#: src/dialogs/trustchainwidget.cpp:84
 #, kde-format
 msgctxt "@title:window"
 msgid "Trust Chain"
@@ -9700,128 +9700,128 @@ msgctxt "@action:inmenu"
 msgid "Learn NetKey v3 Card Certificates"
 msgstr "识别 NetKey v3 智能卡证书"
 
-#: src/uiserver/assuanserverconnection.cpp:160
+#: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
 msgid "No option name given"
 msgstr "未给出选项名"
 
-#: src/uiserver/assuanserverconnection.cpp:333
+#: src/uiserver/assuanserverconnection.cpp:328
 #, kde-format
 msgid "Parse error"
 msgstr "解析出错"
 
-#: src/uiserver/assuanserverconnection.cpp:342
+#: src/uiserver/assuanserverconnection.cpp:337
 #, kde-format
 msgid "Parse error: numeric session id too large"
 msgstr "解析错误：会话 ID 过长"
 
-#: src/uiserver/assuanserverconnection.cpp:359
+#: src/uiserver/assuanserverconnection.cpp:354
 #, kde-format
 msgid "CAPABILITIES does not take arguments"
 msgstr "CAPABILITIES 命令不接受参数"
 
-#: src/uiserver/assuanserverconnection.cpp:393
+#: src/uiserver/assuanserverconnection.cpp:388
 #, kde-format
 msgid "Unknown value for WHAT"
 msgstr "WHAT 的值未知"
 
-#: src/uiserver/assuanserverconnection.cpp:405
+#: src/uiserver/assuanserverconnection.cpp:400
 #, kde-format
 msgid "START_KEYMANAGER does not take arguments"
 msgstr "START_KEYMANAGER 命令不接受参数"
 
-#: src/uiserver/assuanserverconnection.cpp:420
+#: src/uiserver/assuanserverconnection.cpp:415
 #, kde-format
 msgid "START_CONFDIALOG does not take arguments"
 msgstr "START_CONFDIALOG 命令不接受参数"
 
-#: src/uiserver/assuanserverconnection.cpp:478
+#: src/uiserver/assuanserverconnection.cpp:473
 #, kde-format
 msgid "Message #%1"
 msgstr "信件 #%1"
 
-#: src/uiserver/assuanserverconnection.cpp:489
+#: src/uiserver/assuanserverconnection.cpp:484
 #, kde-format
 msgid "Empty file path"
 msgstr "空文件路径"
 
-#: src/uiserver/assuanserverconnection.cpp:493
-#: src/uiserver/assuanserverconnection.cpp:556
+#: src/uiserver/assuanserverconnection.cpp:488
+#: src/uiserver/assuanserverconnection.cpp:551
 #, kde-format
 msgid "Only absolute file paths are allowed"
 msgstr "只允许绝对的文件路径"
 
-#: src/uiserver/assuanserverconnection.cpp:496
+#: src/uiserver/assuanserverconnection.cpp:491
 #, kde-format
 msgid "Only files are allowed in INPUT/OUTPUT FILE"
 msgstr "INPUT/OUTPUT FILE 参数只接受文件"
 
-#: src/uiserver/assuanserverconnection.cpp:573
+#: src/uiserver/assuanserverconnection.cpp:568
 #, kde-format
 msgid "unknown exception caught"
 msgstr "捕捉到未知异常"
 
-#: src/uiserver/assuanserverconnection.cpp:634
+#: src/uiserver/assuanserverconnection.cpp:629
 #, kde-format
 msgid "Cannot mix --info with non-info SENDER or RECIPIENT"
 msgstr "无法将 --info 选项和无信息的 SENDER 或 RECIPIENT 参数结合使用"
 
-#: src/uiserver/assuanserverconnection.cpp:637
+#: src/uiserver/assuanserverconnection.cpp:632
 #, kde-format
 msgid "Argument is not a valid RFC-2822 mailbox"
 msgstr "参数不是一个有效的 RFC-2822 邮件箱"
 
-#: src/uiserver/assuanserverconnection.cpp:641
+#: src/uiserver/assuanserverconnection.cpp:636
 #, kde-format
 msgid "Garbage after valid RFC-2822 mailbox detected"
 msgstr "在有效的 RFC-2822 邮件箱中检测到垃圾数据"
 
-#: src/uiserver/assuanserverconnection.cpp:1007
+#: src/uiserver/assuanserverconnection.cpp:1002
 #, kde-format
 msgid "Caught unexpected exception: %1"
 msgstr "捕捉到未知异常：%1"
 
-#: src/uiserver/assuanserverconnection.cpp:1012
+#: src/uiserver/assuanserverconnection.cpp:1007
 #, kde-format
 msgid "Caught unknown exception - please report this error to the developers."
 msgstr "捕捉到未知异常 - 请向开发者报告此错误。"
 
-#: src/uiserver/assuanserverconnection.cpp:1170
+#: src/uiserver/assuanserverconnection.cpp:1165
 #, kde-format
 msgid "Cannot send \"%1\" status"
 msgstr "无法发送“%1”状态"
 
-#: src/uiserver/assuanserverconnection.cpp:1180
+#: src/uiserver/assuanserverconnection.cpp:1175
 #, kde-format
 msgid "Cannot send data"
 msgstr "无法发送数据"
 
-#: src/uiserver/assuanserverconnection.cpp:1184
+#: src/uiserver/assuanserverconnection.cpp:1179
 #, kde-format
 msgid "Cannot flush data"
 msgstr "无法刷新数据"
 
-#: src/uiserver/assuanserverconnection.cpp:1433
+#: src/uiserver/assuanserverconnection.cpp:1428
 #, kde-format
 msgid "Required --mode option missing"
 msgstr "丢失所需的 --mode 选项"
 
-#: src/uiserver/assuanserverconnection.cpp:1443
+#: src/uiserver/assuanserverconnection.cpp:1438
 #, kde-format
 msgid "invalid mode: \"%1\""
 msgstr "无效的模式：“%1”"
 
-#: src/uiserver/assuanserverconnection.cpp:1465
+#: src/uiserver/assuanserverconnection.cpp:1460
 #, kde-format
 msgid "Required --protocol option missing"
 msgstr "丢失所需的 --protocol 选项"
 
-#: src/uiserver/assuanserverconnection.cpp:1470
+#: src/uiserver/assuanserverconnection.cpp:1465
 #, kde-format
 msgid "--protocol is not allowed here"
 msgstr "不能在此使用 --protocol 选项"
 
-#: src/uiserver/assuanserverconnection.cpp:1480
+#: src/uiserver/assuanserverconnection.cpp:1475
 #, kde-format
 msgid "invalid protocol \"%1\""
 msgstr "无效的协议“%1”"
@@ -10364,7 +10364,7 @@ msgstr "当前选择内容"
 msgid "No input device"
 msgstr "没有输入设备"
 
-#: src/utils/log.cpp:148
+#: src/utils/log.cpp:149
 #, kde-format
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr "日志错误：无法打开日志文件“%1”进行写入。"

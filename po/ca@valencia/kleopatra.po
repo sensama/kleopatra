@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-11 02:07+0000\n"
+"POT-Creation-Date: 2023-10-14 01:49+0000\n"
 "PO-Revision-Date: 2023-09-30 18:02+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -4216,7 +4216,7 @@ msgid ""
 "manually select what to do with the files now.<nl/>If they contain signed or "
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
-"No s'ha pogut trobar les dades encriptades o signades en un o més fitxers."
+"No s'han pogut trobar les dades encriptades o signades en un o més fitxers."
 "<nl/>Ara podeu seleccionar manualment què fer amb els fitxers.<nl/>Si "
 "contenen dades encriptades o signades, informeu d'algun error (vegeu «Ajuda -"
 "> Informeu d'un error»)."
@@ -4362,13 +4362,13 @@ msgid "Create Checksum Progress"
 msgstr "Progrés en la creació de la suma de verificació"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "S'ha produït un error en executar %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4385,13 +4385,13 @@ msgid "No checksum programs defined."
 msgstr "No s'ha definit cap programa de suma de verificació."
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:510
+#: src/crypto/verifychecksumscontroller.cpp:508
 #, kde-format
 msgid "Scanning directories..."
 msgstr "S'estan explorant els directoris..."
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:527
+#: src/crypto/verifychecksumscontroller.cpp:525
 #, kde-format
 msgid "Calculating total size..."
 msgstr "S'està calculant la mida total..."
@@ -4402,7 +4402,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "S'està verificant la suma (%2) a %1"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:554
+#: src/crypto/verifychecksumscontroller.cpp:552
 #, kde-format
 msgid "Done."
 msgstr "Fet."
@@ -4732,7 +4732,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:244 src/crypto/signencrypttask.cpp:261
-#: src/crypto/signencrypttask.cpp:846
+#: src/crypto/signencrypttask.cpp:852
 #, kde-format
 msgid "Input error: %1"
 msgstr "S'ha produït un error d'entrada: %1"
@@ -4844,8 +4844,8 @@ msgstr "S'ha detectat una excepció: %1"
 #: src/crypto/decryptverifytask.cpp:1386 src/crypto/decryptverifytask.cpp:1486
 #: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1677
 #: src/crypto/decryptverifytask.cpp:1759 src/crypto/decryptverifytask.cpp:1865
-#: src/uiserver/assuanserverconnection.cpp:1363
-#: src/uiserver/assuanserverconnection.cpp:1412
+#: src/uiserver/assuanserverconnection.cpp:1358
+#: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "S'ha detectat una excepció desconeguda"
@@ -6047,7 +6047,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1,..."
 
-#: src/crypto/signencrypttask.cpp:702 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:705 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6056,19 +6056,19 @@ msgstr ""
 "No s'ha pogut trobar el directori base comú per a estos fitxers:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:716
+#: src/crypto/signencrypttask.cpp:722
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "S'està creant un arxiu signat i encriptat..."
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:742
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "S'està creant un arxiu encriptat..."
 
-#: src/crypto/signencrypttask.cpp:756
+#: src/crypto/signencrypttask.cpp:762
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -6079,18 +6079,18 @@ msgstr "S'està creant un arxiu signat..."
 msgid "Unknown exception in Task::start()"
 msgstr "Excepció desconeguda a Task::start()"
 
-#: src/crypto/verifychecksumscontroller.cpp:184
+#: src/crypto/verifychecksumscontroller.cpp:182
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Checksum Results"
 msgstr "Resultats en la comprovació de la suma de verificació"
 
-#: src/crypto/verifychecksumscontroller.cpp:361
+#: src/crypto/verifychecksumscontroller.cpp:359
 #, kde-format
 msgid "Cannot find checksums file for file %1"
 msgstr "No s'ha pogut trobar el fitxer de suma de verificació per al fitxer %1"
 
-#: src/crypto/verifychecksumscontroller.cpp:543
+#: src/crypto/verifychecksumscontroller.cpp:541
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "S'està verificant la suma de verificació (%2) en %1"
@@ -7668,12 +7668,12 @@ msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Detalls de les subclaus"
 
-#: src/dialogs/trustchainwidget.cpp:63
+#: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
 msgid "Issuer Certificate Not Found (%1)"
 msgstr "No s'ha trobat l'emissor del certificat (%1)"
 
-#: src/dialogs/trustchainwidget.cpp:83
+#: src/dialogs/trustchainwidget.cpp:84
 #, kde-format
 msgctxt "@title:window"
 msgid "Trust Chain"
@@ -8414,7 +8414,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:178
 #, kde-format
 msgid "URL schemes to block"
-msgstr "Esquemes d'URL a bloquejar"
+msgstr "Esquemes d'URL que s'han de bloquejar"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:180
@@ -10241,132 +10241,132 @@ msgctxt "@action:inmenu"
 msgid "Learn NetKey v3 Card Certificates"
 msgstr "Aprén els certificats de la targeta NetKey v3"
 
-#: src/uiserver/assuanserverconnection.cpp:160
+#: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
 msgid "No option name given"
 msgstr "No s'ha indicat cap nom d'opció"
 
-#: src/uiserver/assuanserverconnection.cpp:333
+#: src/uiserver/assuanserverconnection.cpp:328
 #, kde-format
 msgid "Parse error"
 msgstr "S'ha produït un error d'anàlisi"
 
-#: src/uiserver/assuanserverconnection.cpp:342
+#: src/uiserver/assuanserverconnection.cpp:337
 #, kde-format
 msgid "Parse error: numeric session id too large"
 msgstr ""
 "S'ha produït un error d'anàlisi: l'ID numèric de la sessió és massa gran"
 
-#: src/uiserver/assuanserverconnection.cpp:359
+#: src/uiserver/assuanserverconnection.cpp:354
 #, kde-format
 msgid "CAPABILITIES does not take arguments"
 msgstr "CAPABILITIES no porta arguments"
 
-#: src/uiserver/assuanserverconnection.cpp:393
+#: src/uiserver/assuanserverconnection.cpp:388
 #, kde-format
 msgid "Unknown value for WHAT"
 msgstr "Valor desconegut per a WHAT"
 
-#: src/uiserver/assuanserverconnection.cpp:405
+#: src/uiserver/assuanserverconnection.cpp:400
 #, kde-format
 msgid "START_KEYMANAGER does not take arguments"
 msgstr "START_KEYMANAGER no porta arguments"
 
-#: src/uiserver/assuanserverconnection.cpp:420
+#: src/uiserver/assuanserverconnection.cpp:415
 #, kde-format
 msgid "START_CONFDIALOG does not take arguments"
 msgstr "START_CONFDIALOG no porta arguments"
 
-#: src/uiserver/assuanserverconnection.cpp:478
+#: src/uiserver/assuanserverconnection.cpp:473
 #, kde-format
 msgid "Message #%1"
 msgstr "Missatge núm. %1"
 
-#: src/uiserver/assuanserverconnection.cpp:489
+#: src/uiserver/assuanserverconnection.cpp:484
 #, kde-format
 msgid "Empty file path"
 msgstr "Camí de fitxer buit"
 
-#: src/uiserver/assuanserverconnection.cpp:493
-#: src/uiserver/assuanserverconnection.cpp:556
+#: src/uiserver/assuanserverconnection.cpp:488
+#: src/uiserver/assuanserverconnection.cpp:551
 #, kde-format
 msgid "Only absolute file paths are allowed"
 msgstr "Només es permeten camins de fitxer absoluts"
 
-#: src/uiserver/assuanserverconnection.cpp:496
+#: src/uiserver/assuanserverconnection.cpp:491
 #, kde-format
 msgid "Only files are allowed in INPUT/OUTPUT FILE"
 msgstr "Només es permeten fitxers en INPUT/OUTPUT FILE"
 
-#: src/uiserver/assuanserverconnection.cpp:573
+#: src/uiserver/assuanserverconnection.cpp:568
 #, kde-format
 msgid "unknown exception caught"
 msgstr "s'ha detectat una excepció desconeguda"
 
 # skip-rule: ff-recipient
-#: src/uiserver/assuanserverconnection.cpp:634
+#: src/uiserver/assuanserverconnection.cpp:629
 #, kde-format
 msgid "Cannot mix --info with non-info SENDER or RECIPIENT"
 msgstr "No es pot barrejar --info amb SENDER o RECIPIENT sense informació"
 
-#: src/uiserver/assuanserverconnection.cpp:637
+#: src/uiserver/assuanserverconnection.cpp:632
 #, kde-format
 msgid "Argument is not a valid RFC-2822 mailbox"
 msgstr "L'argument no és una bústia de correu RFC-2822 vàlida"
 
-#: src/uiserver/assuanserverconnection.cpp:641
+#: src/uiserver/assuanserverconnection.cpp:636
 #, kde-format
 msgid "Garbage after valid RFC-2822 mailbox detected"
 msgstr "S'ha detectat brutícia després d'una bústia de correu RFC-2822 vàlida"
 
-#: src/uiserver/assuanserverconnection.cpp:1007
+#: src/uiserver/assuanserverconnection.cpp:1002
 #, kde-format
 msgid "Caught unexpected exception: %1"
 msgstr "S'ha detectat una excepció inesperada: %1"
 
-#: src/uiserver/assuanserverconnection.cpp:1012
+#: src/uiserver/assuanserverconnection.cpp:1007
 #, kde-format
 msgid "Caught unknown exception - please report this error to the developers."
 msgstr ""
 "S'ha detectat una excepció desconeguda. Informeu de l'error als "
 "desenvolupadors."
 
-#: src/uiserver/assuanserverconnection.cpp:1170
+#: src/uiserver/assuanserverconnection.cpp:1165
 #, kde-format
 msgid "Cannot send \"%1\" status"
 msgstr "No s'ha pogut enviar l'estat «%1»"
 
-#: src/uiserver/assuanserverconnection.cpp:1180
+#: src/uiserver/assuanserverconnection.cpp:1175
 #, kde-format
 msgid "Cannot send data"
 msgstr "No s'han pogut enviar les dades"
 
-#: src/uiserver/assuanserverconnection.cpp:1184
+#: src/uiserver/assuanserverconnection.cpp:1179
 #, kde-format
 msgid "Cannot flush data"
 msgstr "No s'han pogut buidar les dades"
 
-#: src/uiserver/assuanserverconnection.cpp:1433
+#: src/uiserver/assuanserverconnection.cpp:1428
 #, kde-format
 msgid "Required --mode option missing"
 msgstr "No s'ha trobat l'opció requerida --mode"
 
-#: src/uiserver/assuanserverconnection.cpp:1443
+#: src/uiserver/assuanserverconnection.cpp:1438
 #, kde-format
 msgid "invalid mode: \"%1\""
 msgstr "Mode no vàlid: «%1»"
 
-#: src/uiserver/assuanserverconnection.cpp:1465
+#: src/uiserver/assuanserverconnection.cpp:1460
 #, kde-format
 msgid "Required --protocol option missing"
 msgstr "No s'ha trobat l'opció requerida --protocol"
 
-#: src/uiserver/assuanserverconnection.cpp:1470
+#: src/uiserver/assuanserverconnection.cpp:1465
 #, kde-format
 msgid "--protocol is not allowed here"
 msgstr "Ací no es permet --protocol"
 
-#: src/uiserver/assuanserverconnection.cpp:1480
+#: src/uiserver/assuanserverconnection.cpp:1475
 #, kde-format
 msgid "invalid protocol \"%1\""
 msgstr "Protocol no vàlid: «%1»"
@@ -10949,7 +10949,7 @@ msgstr "Selecció actual"
 msgid "No input device"
 msgstr "Cap dispositiu d'entrada"
 
-#: src/utils/log.cpp:148
+#: src/utils/log.cpp:149
 #, kde-format
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr ""
@@ -11099,7 +11099,7 @@ msgstr "Omet"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
-msgstr "No escrigues este fitxer, en lloc d'açò salta al següent."
+msgstr "No escrigues este fitxer, en lloc d'açò salta fins al següent."
 
 #: src/utils/overwritedialog.cpp:232
 #, kde-format
@@ -12317,7 +12317,7 @@ msgstr "Tanca esta pestanya"
 #: src/view/tabwidget.cpp:885
 #, kde-format
 msgid "Move Tab Left"
-msgstr "Mou la pestanya a l'esquerra"
+msgstr "Mou la pestanya cap a l'esquerra"
 
 #: src/view/tabwidget.cpp:886
 #, kde-format
@@ -12327,7 +12327,7 @@ msgstr "Mou esta pestanya a l'esquerra"
 #: src/view/tabwidget.cpp:898
 #, kde-format
 msgid "Move Tab Right"
-msgstr "Mou la pestanya a la dreta"
+msgstr "Mou la pestanya cap a la dreta"
 
 #: src/view/tabwidget.cpp:899
 #, kde-format
@@ -12433,6 +12433,3 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
-
-#~ msgid "Sender"
-#~ msgstr "Remitent"

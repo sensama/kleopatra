@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-11 02:07+0000\n"
+"POT-Creation-Date: 2023-10-14 01:49+0000\n"
 "PO-Revision-Date: 2023-10-03 10:15+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: \n"
@@ -4342,13 +4342,13 @@ msgid "Create Checksum Progress"
 msgstr "Създаване на напредък на контролната сума"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Грешка при изпълнение на %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4365,13 +4365,13 @@ msgid "No checksum programs defined."
 msgstr "Няма дефинирани програми за контролна сума."
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:510
+#: src/crypto/verifychecksumscontroller.cpp:508
 #, kde-format
 msgid "Scanning directories..."
 msgstr "Сканиране на директории..."
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:527
+#: src/crypto/verifychecksumscontroller.cpp:525
 #, kde-format
 msgid "Calculating total size..."
 msgstr "Изчисляване на общия размер..."
@@ -4382,7 +4382,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "Контролно сумиране (%2) в %1"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:554
+#: src/crypto/verifychecksumscontroller.cpp:552
 #, kde-format
 msgid "Done."
 msgstr "Готово."
@@ -4706,7 +4706,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:244 src/crypto/signencrypttask.cpp:261
-#: src/crypto/signencrypttask.cpp:846
+#: src/crypto/signencrypttask.cpp:852
 #, kde-format
 msgid "Input error: %1"
 msgstr "Грешка при въвеждане: %1"
@@ -4817,8 +4817,8 @@ msgstr "Уловено изключение: %1"
 #: src/crypto/decryptverifytask.cpp:1386 src/crypto/decryptverifytask.cpp:1486
 #: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1677
 #: src/crypto/decryptverifytask.cpp:1759 src/crypto/decryptverifytask.cpp:1865
-#: src/uiserver/assuanserverconnection.cpp:1363
-#: src/uiserver/assuanserverconnection.cpp:1412
+#: src/uiserver/assuanserverconnection.cpp:1358
+#: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Уловено неизвестно изключение"
@@ -6023,7 +6023,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:702 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:705 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6032,19 +6032,19 @@ msgstr ""
 "Не мога да намеря обща основна директория за тези файлове: \n"
 " %1"
 
-#: src/crypto/signencrypttask.cpp:716
+#: src/crypto/signencrypttask.cpp:722
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Създаване на подписан и шифриран архив ..."
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:742
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Създаване на шифриран архив ..."
 
-#: src/crypto/signencrypttask.cpp:756
+#: src/crypto/signencrypttask.cpp:762
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -6055,18 +6055,18 @@ msgstr "Създаване на подписан архив ..."
 msgid "Unknown exception in Task::start()"
 msgstr "Неизвестно изключение в Task :: start ()"
 
-#: src/crypto/verifychecksumscontroller.cpp:184
+#: src/crypto/verifychecksumscontroller.cpp:182
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Checksum Results"
 msgstr "Проверка на резултатите от контролната сума"
 
-#: src/crypto/verifychecksumscontroller.cpp:361
+#: src/crypto/verifychecksumscontroller.cpp:359
 #, kde-format
 msgid "Cannot find checksums file for file %1"
 msgstr "Не мога да намеря файл с контролни суми за файл %1"
 
-#: src/crypto/verifychecksumscontroller.cpp:543
+#: src/crypto/verifychecksumscontroller.cpp:541
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "Проверка на контролни суми (%2) в %1"
@@ -7635,12 +7635,12 @@ msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Подробности за подключове"
 
-#: src/dialogs/trustchainwidget.cpp:63
+#: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
 msgid "Issuer Certificate Not Found (%1)"
 msgstr "Сертификатът на издателя не е намерен (%1)"
 
-#: src/dialogs/trustchainwidget.cpp:83
+#: src/dialogs/trustchainwidget.cpp:84
 #, kde-format
 msgctxt "@title:window"
 msgid "Trust Chain"
@@ -10206,132 +10206,132 @@ msgctxt "@action:inmenu"
 msgid "Learn NetKey v3 Card Certificates"
 msgstr "Научете сертификати за карти на NetKey v3"
 
-#: src/uiserver/assuanserverconnection.cpp:160
+#: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
 msgid "No option name given"
 msgstr "Не е дадено име на опция"
 
-#: src/uiserver/assuanserverconnection.cpp:333
+#: src/uiserver/assuanserverconnection.cpp:328
 #, kde-format
 msgid "Parse error"
 msgstr "Грешка при анализирането"
 
-#: src/uiserver/assuanserverconnection.cpp:342
+#: src/uiserver/assuanserverconnection.cpp:337
 #, kde-format
 msgid "Parse error: numeric session id too large"
 msgstr ""
 "Грешка при синтактичния анализ: числовият идентификатор на сесията е твърде "
 "голям"
 
-#: src/uiserver/assuanserverconnection.cpp:359
+#: src/uiserver/assuanserverconnection.cpp:354
 #, kde-format
 msgid "CAPABILITIES does not take arguments"
 msgstr "CAPABILITIES не взема аргументи"
 
-#: src/uiserver/assuanserverconnection.cpp:393
+#: src/uiserver/assuanserverconnection.cpp:388
 #, kde-format
 msgid "Unknown value for WHAT"
 msgstr "Неизвестна стойност за WHAT"
 
-#: src/uiserver/assuanserverconnection.cpp:405
+#: src/uiserver/assuanserverconnection.cpp:400
 #, kde-format
 msgid "START_KEYMANAGER does not take arguments"
 msgstr "START_KEYMANAGER не приема аргументи"
 
-#: src/uiserver/assuanserverconnection.cpp:420
+#: src/uiserver/assuanserverconnection.cpp:415
 #, kde-format
 msgid "START_CONFDIALOG does not take arguments"
 msgstr "START_CONFDIALOG не приема аргументи"
 
-#: src/uiserver/assuanserverconnection.cpp:478
+#: src/uiserver/assuanserverconnection.cpp:473
 #, kde-format
 msgid "Message #%1"
 msgstr "Съобщение # %1"
 
-#: src/uiserver/assuanserverconnection.cpp:489
+#: src/uiserver/assuanserverconnection.cpp:484
 #, kde-format
 msgid "Empty file path"
 msgstr "Празен път на файла"
 
-#: src/uiserver/assuanserverconnection.cpp:493
-#: src/uiserver/assuanserverconnection.cpp:556
+#: src/uiserver/assuanserverconnection.cpp:488
+#: src/uiserver/assuanserverconnection.cpp:551
 #, kde-format
 msgid "Only absolute file paths are allowed"
 msgstr "Разрешени са само абсолютни файлови пътища"
 
-#: src/uiserver/assuanserverconnection.cpp:496
+#: src/uiserver/assuanserverconnection.cpp:491
 #, kde-format
 msgid "Only files are allowed in INPUT/OUTPUT FILE"
 msgstr "Във INPUT/OUTPUT FILE са разрешени само файлове"
 
-#: src/uiserver/assuanserverconnection.cpp:573
+#: src/uiserver/assuanserverconnection.cpp:568
 #, kde-format
 msgid "unknown exception caught"
 msgstr "уловено неизвестно изключение"
 
-#: src/uiserver/assuanserverconnection.cpp:634
+#: src/uiserver/assuanserverconnection.cpp:629
 #, kde-format
 msgid "Cannot mix --info with non-info SENDER or RECIPIENT"
 msgstr "Не може да се смесва - инфо с неинфо ИЗПРАЩАТЕЛ или ПОЛУЧАТЕЛ"
 
-#: src/uiserver/assuanserverconnection.cpp:637
+#: src/uiserver/assuanserverconnection.cpp:632
 #, kde-format
 msgid "Argument is not a valid RFC-2822 mailbox"
 msgstr "Аргументът не е валидна пощенска кутия RFC-2822"
 
-#: src/uiserver/assuanserverconnection.cpp:641
+#: src/uiserver/assuanserverconnection.cpp:636
 #, kde-format
 msgid "Garbage after valid RFC-2822 mailbox detected"
 msgstr "Боклук след откриване на валидна пощенска кутия RFC-2822"
 
-#: src/uiserver/assuanserverconnection.cpp:1007
+#: src/uiserver/assuanserverconnection.cpp:1002
 #, kde-format
 msgid "Caught unexpected exception: %1"
 msgstr "Уловено неочаквано изключение: %1"
 
-#: src/uiserver/assuanserverconnection.cpp:1012
+#: src/uiserver/assuanserverconnection.cpp:1007
 #, kde-format
 msgid "Caught unknown exception - please report this error to the developers."
 msgstr ""
 "Уловено неизвестно изключение - моля, докладвайте за тази грешка на "
 "разработчиците."
 
-#: src/uiserver/assuanserverconnection.cpp:1170
+#: src/uiserver/assuanserverconnection.cpp:1165
 #, kde-format
 msgid "Cannot send \"%1\" status"
 msgstr "Не може да се изпрати статус \"%1"
 
-#: src/uiserver/assuanserverconnection.cpp:1180
+#: src/uiserver/assuanserverconnection.cpp:1175
 #, kde-format
 msgid "Cannot send data"
 msgstr "Не мога да изпратя данни"
 
-#: src/uiserver/assuanserverconnection.cpp:1184
+#: src/uiserver/assuanserverconnection.cpp:1179
 #, kde-format
 msgid "Cannot flush data"
 msgstr "Не може да се изтрият данни"
 
-#: src/uiserver/assuanserverconnection.cpp:1433
+#: src/uiserver/assuanserverconnection.cpp:1428
 #, kde-format
 msgid "Required --mode option missing"
 msgstr "Липсва задължителна опция - режим"
 
-#: src/uiserver/assuanserverconnection.cpp:1443
+#: src/uiserver/assuanserverconnection.cpp:1438
 #, kde-format
 msgid "invalid mode: \"%1\""
 msgstr "невалиден режим: \"%1\""
 
-#: src/uiserver/assuanserverconnection.cpp:1465
+#: src/uiserver/assuanserverconnection.cpp:1460
 #, kde-format
 msgid "Required --protocol option missing"
 msgstr "Необходима опция - протокол липсва"
 
-#: src/uiserver/assuanserverconnection.cpp:1470
+#: src/uiserver/assuanserverconnection.cpp:1465
 #, kde-format
 msgid "--protocol is not allowed here"
 msgstr "--протоколът не е разрешен тук"
 
-#: src/uiserver/assuanserverconnection.cpp:1480
+#: src/uiserver/assuanserverconnection.cpp:1475
 #, kde-format
 msgid "invalid protocol \"%1\""
 msgstr "невалиден протокол \"%1\""
@@ -10901,7 +10901,7 @@ msgstr "Текуща селекция"
 msgid "No input device"
 msgstr "Няма входно устройство"
 
-#: src/utils/log.cpp:148
+#: src/utils/log.cpp:149
 #, kde-format
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr ""

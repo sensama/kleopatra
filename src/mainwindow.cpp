@@ -684,7 +684,8 @@ void MainWindow::Private::setupActions()
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                       i18n("&Mail encryption in Outlook"),
                       i18nc("Only available in German and English. Leave to English for other languages. Only shown on Windows.", "gpgol_outlook_addin_en.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"));
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      coll);
     coll->addAction(QStringLiteral("help_doc_gpgol"), gpgol);
 #endif
 

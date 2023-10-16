@@ -11,7 +11,7 @@
 #include "userinfo.h"
 
 // Needed for global defines
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #ifdef Q_OS_WIN
 #include "userinfo_win_p.h"

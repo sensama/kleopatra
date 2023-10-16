@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 class QString;
 #include <QStringList>

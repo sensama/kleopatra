@@ -12,7 +12,7 @@
 #include "command.h"
 #include "command_p.h"
 
-#include <QtGlobal> // Q_OS_WIN
+#include <QtSystemDetection> // Q_OS_WIN
 
 #ifdef Q_OS_WIN // HACK: AllowSetForegroundWindow needs _WIN32_WINDOWS >= 0x0490 set
 #ifndef _WIN32_WINDOWS

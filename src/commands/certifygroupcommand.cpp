@@ -233,17 +233,25 @@ void CertifyGroupCommand::Private::slotResult(const Error &err)
 
     if (err.isCanceled()) {
         finished();
-        return;
-    }
-
-    if (!userIdsToCertify.empty()) {
+    } else if (err && (results.size() == 1) //
+               && ((err.sourceID() == GPG_ERR_SOURCE_PINENTRY) //
+                   || (err.code() == GPG_ERR_BAD_PASSPHRASE))) {
+        // abort the certification process on certain errors during the first
+        // certification, e.g. bad passphrase or pinentry timeout, where it's
+        // better to restart the whole process instead of continuing with the
+        // next certificate
+        error(xi18nc("@info",
+                     "<para>The certification of the certificates failed.</para>"
+                     "<para>Error: <message>%1</message></para>",
+                     Formatting::errorAsString(results.front().error)));
+        finished();
+    } else if (!userIdsToCertify.empty()) {
         job.clear();
         jobData.userIds.clear();
         startNextCertification();
-        return;
+    } else {
+        wrapUp();
     }
-
-    wrapUp();
 }
 
 static QString resultSummary(const std::vector<CertificationResultData> &results)

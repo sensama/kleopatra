@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-10-15 16:19+0200\n"
+"PO-Revision-Date: 2023-10-16 23:22+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.2\n"
+"X-Generator: Lokalize 23.08.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -6419,22 +6419,20 @@ msgid "Import certificate"
 msgstr "Inportatu ziurtagiria"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, fuzzy, kde-format
+#, kde-format
 msgid "Lookup..."
-msgstr "Bilatu: %1"
+msgstr "Bilatu..."
 
 #: src/dialogs/certificateselectiondialog.cpp:171
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Error"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
-msgstr "Ziurtagiri kudeatzailearen errorea"
+msgstr "Bilatu ziurtagiria zerbitzarian"
 
 #: src/dialogs/certificateselectiondialog.cpp:172
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Error"
+#, kde-format
 msgid "Look up certificate"
-msgstr "Ziurtagiri kudeatzailearen errorea"
+msgstr "Bilatu ziurtagiria"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, kde-format
@@ -6635,32 +6633,27 @@ msgid "Is this your own key?"
 msgstr "Hori zure gako propioa da?"
 
 #: src/dialogs/certifywidget.cpp:715
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificates:</"
-#| "p><p><b>%1</b></p></qt>"
+#, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
-"<qt><p>Errore bat gertatu da ziurtagiriak ezabatzean:</p><p><b>%1</b></p></"
-"qt>"
+"<p><b>%1</b> gakoaren ziurtapen konfiantza aldatzea huts egin du:</p><p>%2</"
+"p>"
 
 #: src/dialogs/certifywidget.cpp:718
-#, fuzzy, kde-format
-#| msgid "Certificate Download Failed"
+#, kde-format
 msgid "Certification Trust Change Failed"
-msgstr "Ziurtagiriaren deskargak huts egin du"
+msgstr "Ziurtapenaren konfiantza aldatzea huts egin du"
 
 #: src/dialogs/certifywidget.cpp:725
-#, fuzzy, kde-format
-#| msgid "Certificate Download Failed"
+#, kde-format
 msgid "Owner trust set successfully."
-msgstr "Ziurtagiriaren deskargak huts egin du"
+msgstr "Jabearen konfiantza ondo ezarri da."
 
 #: src/dialogs/deletecertificatesdialog.cpp:92
 #, kde-format
 msgid "These are the certificates you have selected for deletion:"
-msgstr ""
+msgstr "Horiek dira ezabatzeko hautatu dituzun ziurtagiriak:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:94
 #, kde-format
@@ -6668,6 +6661,8 @@ msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
 "select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr ""
+"Ziurtagiri horiek ezabatuko dira, haiek esplizituki hautatu <b>ez</b> "
+"zenituen arren (<a href=\"whatsthis://\">Zergatik?</a>):"
 
 #: src/dialogs/deletecertificatesdialog.cpp:115
 #, kde-kuit-format
@@ -6743,6 +6738,8 @@ msgstr "Bilatu gako erabilgarriak"
 msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr ""
+"Bilatu gako erabilgarrien zerrenda, bilaketa terminoarekin bat datozen "
+"gakoetarako."
 
 #: src/dialogs/editgroupdialog.cpp:121
 #, kde-format
@@ -6788,6 +6785,7 @@ msgstr "Bilatu talde-gakoak"
 msgctxt "@info:tooltip"
 msgid "Search the list of group keys for keys matching the search term."
 msgstr ""
+"Bilatu talde-gakoen zerrenda, bilaketa terminoarekin bat datozen gakoetarako."
 
 #: src/dialogs/editgroupdialog.cpp:178
 #, kde-format
@@ -6873,7 +6871,7 @@ msgstr "urte"
 #: src/dialogs/expirydialog.cpp:221
 #, kde-format
 msgid "Also update the validity period of the subkeys"
-msgstr ""
+msgstr "Eguneratu, halaber, azpi-gakoen baliotasun aldia"
 
 #: src/dialogs/expirydialog.cpp:277
 #, fuzzy, kde-format
@@ -6886,31 +6884,29 @@ msgstr "Balioduna noiz arte"
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
-msgstr ""
+msgstr "Aldatu baliotasun aldea"
 
 #: src/dialogs/exportdialog.cpp:65
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "Exporting ..."
-msgstr "Esportatzen"
+msgstr "&Enkriptatzeko bakarrik"
 
 #: src/dialogs/exportdialog.cpp:123
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "%1 is error message"
 msgid "Failed to export: '%1'"
-msgstr "Huts egin du esportatzea"
+msgstr "Ezin izan da ziurtagiria sortu: %1"
 
 #: src/dialogs/exportdialog.cpp:186
-#, fuzzy, kde-format
-#| msgid "For &encrypting only"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export"
 msgstr "Esportatu"
 
 #: src/dialogs/gencardkeydialog.cpp:50
-#, fuzzy, kde-format
-#| msgid "Serial Number"
+#, kde-format
 msgid "Name:"
 msgstr "Izena:"
 
@@ -6921,26 +6917,24 @@ msgid "EMail:"
 msgstr "Helbide elektronikoa:"
 
 #: src/dialogs/gencardkeydialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Valid"
+#, kde-format
 msgid "Invalid EMail"
-msgstr "Baliozkoa"
+msgstr "E-posta baliogabea"
 
 #: src/dialogs/gencardkeydialog.cpp:71
-#, fuzzy, kde-format
+#, kde-format
 msgid "Algorithm:"
 msgstr "Algoritmoa:"
 
 #: src/dialogs/gencardkeydialog.cpp:78
 #, kde-format
 msgid "Backup encryption key"
-msgstr ""
+msgstr "Egin zifratzeko gakoaren babeskopia"
 
 #: src/dialogs/gencardkeydialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Select CRL File"
+#, kde-format
 msgid "Backup the encryption key in a file."
-msgstr "Hautatu CRL fitxategia"
+msgstr "Egin fitxategi batean dagoen zifratzeko gakoaren babeskopia."
 
 #: src/dialogs/gencardkeydialog.cpp:80
 #, kde-format
@@ -6948,18 +6942,18 @@ msgid ""
 "You will be asked for a passphrase to protect that file during key "
 "generation."
 msgstr ""
+"Gakoa sortzerakoan fitxategi hori babesteko pasaesaldi bat eskatuko zaizu."
 
 #: src/dialogs/groupdetailsdialog.cpp:128
-#, fuzzy, kde-format
-#| msgid "&Details"
+#, kde-format
 msgctxt "@title:window"
 msgid "Group Details"
-msgstr "&Xehetasunak"
+msgstr "Talde-xehetasunak"
 
 #: src/dialogs/groupdetailsdialog.cpp:141
 #, kde-format
 msgid "Note: This group is defined in the configuration files of gpg."
-msgstr ""
+msgstr "Oharra: Talde hori «gpg» konfiguratzeko fitxategietan definituta dago."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:118
 #, fuzzy, kde-format
@@ -6968,8 +6962,7 @@ msgid "Find:"
 msgstr "Bilatu:"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:140
-#, fuzzy, kde-format
-#| msgid "Select CRL File"
+#, kde-format
 msgid "Select All"
 msgstr "Hautatu guztia"
 
@@ -6986,7 +6979,7 @@ msgid "Details..."
 msgstr "Xehetasunak..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
-#, fuzzy, kde-format
+#, kde-format
 msgid "Save As..."
 msgstr "Gorde honela..."
 
@@ -7002,34 +6995,31 @@ msgid "Import"
 msgstr "Inportatu"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:163
-#, fuzzy, kde-format
-#| msgid "Serial Number"
+#, kde-format
 msgctxt "@label"
 msgid "Name"
 msgstr "Izena"
 
 #: src/dialogs/nameandemailwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "Serial Number"
+#, kde-format
 msgid "Enter a name."
-msgstr "Serie-zenbakia"
+msgstr "Sartu izen bat."
 
 #: src/dialogs/nameandemailwidget.cpp:75 src/dialogs/nameandemailwidget.cpp:217
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label"
 msgid "Email address"
 msgstr "E-posta helbidea"
 
 #: src/dialogs/nameandemailwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "&Details"
+#, kde-format
 msgid "Enter an email address."
-msgstr "&Xehetasunak"
+msgstr "Sartu e-posta helbide bat"
 
 #: src/dialogs/nameandemailwidget.cpp:94
 #, kde-format
 msgid "The name must not include <, >, and @."
-msgstr ""
+msgstr "Izenak ez du izan behar,  <, >, eta @."
 
 #: src/dialogs/nameandemailwidget.cpp:96
 #, kde-format
@@ -7037,6 +7027,8 @@ msgctxt "text for screen readers"
 msgid ""
 "The name must not include less-than sign, greater-than sign, and at sign."
 msgstr ""
+"Izenak ez du izan behar txikiagoa-baina ikurra, handiagoa-baina ikurra, eta "
+"abildua ikurra."
 
 #: src/dialogs/nameandemailwidget.cpp:100
 #, kde-format
@@ -7044,6 +7036,8 @@ msgid ""
 "The name must be in the format required by your organization and it must not "
 "include <, >, and @."
 msgstr ""
+"Izena, zure erakundeak eskatutako formatuan egon behar da, eta ez ditu izan "
+"behar <, >, and @."
 
 #: src/dialogs/nameandemailwidget.cpp:103
 #, kde-format
@@ -7052,23 +7046,28 @@ msgid ""
 "The name must be in the format required by your organization and it must not "
 "include less-than sign, greater-than sign, and at sign."
 msgstr ""
+"Izena, zure erakundeak eskatutako formatuan egon behar da, eta ez ditu izan "
+"behar txikiagoa-baina ikurra, handiagoa-baina ikurra, eta abildua ikurra.."
 
 #: src/dialogs/nameandemailwidget.cpp:113
 #, kde-format
 msgid "Enter an email address in the correct format, like name@example.com."
 msgstr ""
+"Sartu e-posta helbide bat formatu egokian, izena@adibidea.com esaterako."
 
 #: src/dialogs/nameandemailwidget.cpp:117
 #, kde-format
 msgid ""
 "Enter an email address in the correct format required by your organization."
 msgstr ""
+"Sartu e-posta helbide bat zure erakundeak eskatutako formatu egokian, "
+"izena@adibidea.com esaterako."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:84
 #: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
-msgstr ""
+msgstr "Babestu sortutako gakoa pasaesaldi batekin."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:86
 #: src/newcertificatewizard/enterdetailspage.cpp:143
@@ -7080,26 +7079,25 @@ msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
 #: src/newcertificatewizard/enterdetailspage.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid "Advanced Settings..."
-msgstr "Ezarpen aurreratuak"
+msgstr "Ezarpen aurreratuak..."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Error"
+#, kde-format
 msgctxt "title:window"
 msgid "Create OpenPGP Certificate"
-msgstr "Ziurtagiri kudeatzailearen errorea"
+msgstr "Sortu OpenPGP ziurtagiria"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:125
 #, kde-format
 msgid "Enter a name and an email address to use for the certificate."
-msgstr ""
+msgstr "Sartu ziurtagiriarekin erabiltzeko izena eta e-posta helbidea."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:126
 #, kde-format
 msgid "Enter a name and/or an email address to use for the certificate."
-msgstr ""
+msgstr "Sartu, ziurtagiriarekin erabiltzeko izena eta/edo e-posta helbidea."
 
 #: src/dialogs/revokekeydialog.cpp:92
 #, fuzzy, kde-format
@@ -7109,16 +7107,16 @@ msgid "Revoke Key"
 msgstr "Gakoa indargabetu..."
 
 #: src/dialogs/revokekeydialog.cpp:100
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:group"
 msgid "Reason for revocation"
-msgstr "Indargabetzeko arrazoia:"
+msgstr "Indargabetzeko arrazoia"
 
 #: src/dialogs/revokekeydialog.cpp:102
 #, kde-format
 msgctxt "@option:radio"
 msgid "No reason specified"
-msgstr ""
+msgstr "Ez da arrazoirik zehaztu"
 
 #: src/dialogs/revokekeydialog.cpp:104
 #, fuzzy, kde-format
@@ -7133,17 +7131,16 @@ msgid "Key is superseded"
 msgstr "Gakoa ordeztu egin da"
 
 #: src/dialogs/revokekeydialog.cpp:108
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:radio"
 msgid "Key is no longer used"
-msgstr "Gakoa ez da gehiago erabiliko"
+msgstr "Gakoa ez da aurrerantzean erabiliko"
 
 #: src/dialogs/revokekeydialog.cpp:123
-#, fuzzy, kde-format
-#| msgid "Description"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Description (optional):"
-msgstr "Deskribapena"
+msgstr "Deskribapena (aukerakoa):"
 
 #: src/dialogs/revokekeydialog.cpp:145
 #, fuzzy, kde-format
@@ -7155,12 +7152,12 @@ msgstr "Gakoa indargabetu..."
 #: src/dialogs/revokekeydialog.cpp:197
 #, kde-format
 msgid "Error: The description must not contain empty lines."
-msgstr ""
+msgstr "Errorea: Deskribapenak ez du lerro hutsik izan behar."
 
 #: src/dialogs/revokekeydialog.cpp:277
 #, kde-kuit-format
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
-msgstr ""
+msgstr "<para>Ondoko gakoa indargabetzear zaude:<nl/>%1</para>"
 
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
@@ -7170,22 +7167,22 @@ msgstr "Saihestuta"
 #: src/dialogs/selftestdialog.cpp:96
 #, kde-format
 msgid "Passed"
-msgstr ""
+msgstr "Igarotan"
 
 #: src/dialogs/selftestdialog.cpp:117
 #, kde-format
 msgid "Test Name"
-msgstr ""
+msgstr "Probaren izena"
 
 #: src/dialogs/selftestdialog.cpp:118
-#, fuzzy, kde-format
+#, kde-format
 msgid "Result"
 msgstr "Emaitza"
 
 #: src/dialogs/selftestdialog.cpp:299
 #, kde-format
 msgid "(select test first)"
-msgstr ""
+msgstr "(aukeratu proba lehenik)"
 
 #: src/dialogs/selftestdialog.cpp:370
 #, kde-kuit-format
@@ -7202,8 +7199,7 @@ msgid "test results"
 msgstr "Egiaztatzearen emaitzak"
 
 #: src/dialogs/selftestdialog.cpp:401
-#, fuzzy, kde-format
-#| msgid "&Details"
+#, kde-format
 msgctxt "@title:group"
 msgid "Details"
 msgstr "Xehetasunak"
@@ -7212,29 +7208,28 @@ msgstr "Xehetasunak"
 #, kde-format
 msgctxt "@title:group"
 msgid "Proposed Corrective Action"
-msgstr ""
+msgstr "Proposatutako ekintza zuzentzaileak"
 
 #: src/dialogs/selftestdialog.cpp:450
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Do It"
 msgstr "Egin"
 
 #: src/dialogs/selftestdialog.cpp:462
-#, fuzzy, kde-format
-#| msgid "&Details"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show all test results"
-msgstr "&Xehetasunak"
+msgstr "Erakutsi testu-emaitza guztiak"
 
 #: src/dialogs/selftestdialog.cpp:466
 #, kde-format
 msgctxt "@option:check"
 msgid "Run these tests at startup"
-msgstr ""
+msgstr "Exekutatu proba horiek abiatzean"
 
 #: src/dialogs/selftestdialog.cpp:472
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Continue"
 msgstr "Jarraitu"
@@ -7243,7 +7238,7 @@ msgstr "Jarraitu"
 #, kde-format
 msgctxt "@action:button"
 msgid "Rerun Tests"
-msgstr ""
+msgstr "Probak berriz exekutatzea"
 
 #: src/dialogs/selftestdialog.cpp:483
 #, kde-format
@@ -7263,7 +7258,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Canceled setting PIN."
-msgstr ""
+msgstr "PIN ezartzea bertan behera."
 
 #: src/dialogs/setinitialpindialog.cpp:79
 #, fuzzy, kde-kuit-format
@@ -7277,11 +7272,10 @@ msgstr ""
 "qt>"
 
 #: src/dialogs/setinitialpindialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Certificate Download Failed"
+#, kde-format
 msgctxt "@info"
 msgid "PIN set successfully."
-msgstr "Ziurtagiriaren deskargak huts egin du"
+msgstr "PINa ondo ezarri da."
 
 #. i18n: ectx: property (text), widget (QLabel, mainLB)
 #: src/dialogs/setinitialpindialog.ui:13
@@ -7300,13 +7294,13 @@ msgstr ""
 #: src/dialogs/setinitialpindialog.ui:27
 #, kde-format
 msgid "Step 1: Set the initial PIN for the first certificate (\"NKS\"):"
-msgstr ""
+msgstr "1. urratsa: Ezarri lehen ziurtagirirako hasierako PIN (\"NKS\"):"
 
 #. i18n: ectx: property (text), widget (QPushButton, nksPB)
 #: src/dialogs/setinitialpindialog.ui:34
 #, kde-format
 msgid "Set Initial PIN (NKS)"
-msgstr ""
+msgstr "Ezarri hasierako PIN (NKS)"
 
 #. i18n: ectx: property (text), widget (QLabel, sigGLB)
 #: src/dialogs/setinitialpindialog.ui:71
@@ -7323,18 +7317,16 @@ msgid "(optional) Set Initial PIN (SigG)"
 msgstr ""
 
 #: src/dialogs/subkeyswidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "New subkeys:"
+#, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
-msgstr "Azpi-gako berriak:"
+msgstr "Azpi-gakoak:"
 
 #: src/dialogs/subkeyswidget.cpp:90
-#, fuzzy, kde-format
-#| msgid "New subkeys:"
+#, kde-format
 msgctxt "@label"
 msgid "Subkeys"
-msgstr "Azpi-gako berriak:"
+msgstr "Azpi-gakoak"
 
 #: src/dialogs/subkeyswidget.cpp:93
 #, fuzzy, kde-format
@@ -7343,7 +7335,7 @@ msgid "ID"
 msgstr "IDa"
 
 #: src/dialogs/subkeyswidget.cpp:94
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Mota"
@@ -7363,61 +7355,59 @@ msgid "Valid Until"
 msgstr "Balioduna noiz arte"
 
 #: src/dialogs/subkeyswidget.cpp:97
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Egoera"
 
 #: src/dialogs/subkeyswidget.cpp:98
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:column"
 msgid "Strength"
-msgstr "Sendotasuna:"
+msgstr "Sendotasuna"
 
 #: src/dialogs/subkeyswidget.cpp:99
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Erabilera"
 
 #: src/dialogs/subkeyswidget.cpp:100
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Nagusia"
 
 #: src/dialogs/subkeyswidget.cpp:101
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:column"
 msgid "Storage"
-msgstr "Memoria"
+msgstr "Biltegiratzea"
 
 #: src/dialogs/subkeyswidget.cpp:122 src/view/keylistcontroller.cpp:440
 #, kde-format
 msgid "Change End of Validity Period..."
-msgstr ""
+msgstr "Aldatu baliotasun ardiaren bukaera..."
 
 #: src/dialogs/subkeyswidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Export Secret Key..."
+#, kde-format
 msgid "Export OpenSSH key"
-msgstr "Esportatu gako sekretua..."
+msgstr "Esportatu Open SSH gakoa"
 
 #: src/dialogs/subkeyswidget.cpp:150
 #, kde-format
 msgid "Restore printed backup"
-msgstr ""
+msgstr "Leheneratu inprimatutako babes-kopia"
 
 #: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgid "Transfer to smartcard"
-msgstr ""
+msgstr "Transferentzia txartela-adimendunera"
 
 #: src/dialogs/subkeyswidget.cpp:177
-#, fuzzy, kde-format
-#| msgid "Delete Certificates"
+#, kde-format
 msgid "Export secret subkey"
-msgstr "Ezabatu ziurtagiriak"
+msgstr "Esportatu azpi-gako sekretua"
 
 #: src/dialogs/subkeyswidget.cpp:245
 #, fuzzy, kde-format
@@ -7432,41 +7422,38 @@ msgid "no"
 msgstr "ez"
 
 #: src/dialogs/subkeyswidget.cpp:248
-#, fuzzy, kde-format
-#| msgid "Select CRL File"
+#, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
-msgstr "Hautatu CRL fitxategia"
+msgstr "%1 txartel-adimenduna"
 
 #: src/dialogs/subkeyswidget.cpp:250
-#, fuzzy, kde-format
-#| msgid "Select CRL File"
+#, kde-format
 msgid "smart card"
-msgstr "Hautatu CRL fitxategia"
+msgstr " txartel-adimenduna"
 
 #: src/dialogs/subkeyswidget.cpp:253
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
-msgstr "lineaz kanpo"
+msgstr "lerroz kanpo"
 
 #: src/dialogs/subkeyswidget.cpp:255
-#, fuzzy, kde-format
+#, kde-format
 msgid "on this computer"
-msgstr "Ordenagailu honetan"
+msgstr "ordenagailu honetan"
 
 #: src/dialogs/subkeyswidget.cpp:257
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "ezezaguna"
 
 #: src/dialogs/subkeyswidget.cpp:282
-#, fuzzy, kde-format
-#| msgid "New subkeys:"
+#, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
-msgstr "Azpi-gako berriak:"
+msgstr "Azpi-gakoen xehetasuna"
 
 #: src/dialogs/trustchainwidget.cpp:63
 #, fuzzy, kde-format
@@ -7475,16 +7462,15 @@ msgid "Issuer Certificate Not Found (%1)"
 msgstr "Jaulkitzailearen ziurtagiria ez da aurkitu (%1)"
 
 #: src/dialogs/trustchainwidget.cpp:86
-#, fuzzy, kde-format
-#| msgid "&Chain"
+#, kde-format
 msgctxt "@title:window"
 msgid "Trust Chain"
-msgstr "&Katea"
+msgstr "Konfiantza katea"
 
 #: src/dialogs/updatenotification.cpp:74
 #, kde-format
 msgid "Searching for updates..."
-msgstr ""
+msgstr "Eguneraketa bilatzen..."
 
 #: src/dialogs/updatenotification.cpp:164
 #, kde-format
@@ -7493,7 +7479,7 @@ msgid "No update found in the available version database."
 msgstr ""
 
 #: src/dialogs/updatenotification.cpp:165
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title"
 msgid "Up to date"
 msgstr "Eguneratua"
@@ -7502,7 +7488,7 @@ msgstr "Eguneratua"
 #, kde-format
 msgctxt "%1 is the version number"
 msgid "Version %1 is available."
-msgstr ""
+msgstr "%1 bertsioa erabilgarri dago."
 
 #: src/dialogs/updatenotification.cpp:195
 #, kde-format
@@ -7511,36 +7497,36 @@ msgid ""
 "See the <a href=\"https://www.gpg4win.org/change-history.html\">new "
 "features</a>."
 msgstr ""
+"Ikusi <a href=\"https://www.gpg4win.org/change-history.html\">ezaugarri-"
+"berriak</a>."
 
 #: src/dialogs/updatenotification.cpp:199
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Available"
-msgstr "Eguneraketa eskuragarri"
+msgstr "Eguneratzea erabilgarri dago."
 
 #: src/dialogs/updatenotification.cpp:204
 #, kde-format
 msgid "Show this notification for future updates."
-msgstr ""
+msgstr "Erakutsi jakinarazpen hori etorkizuneko eguneratzeetarako."
 
 #: src/dialogs/updatenotification.cpp:211
 #, kde-format
 msgid "&Get update"
-msgstr ""
+msgstr "&Lortu eguneratzea"
 
 #: src/dialogs/weboftrustdialog.cpp:62
-#, fuzzy, kde-format
-#| msgid "&Certificates"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certifications"
-msgstr "&Ziurtagiriak"
+msgstr "Ziurtapenak"
 
 #: src/dialogs/weboftrustdialog.cpp:77
-#, fuzzy, kde-format
-#| msgid "Stop Operation"
+#, kde-format
 msgctxt "@action:button"
 msgid "Fetch Missing Keys"
-msgstr "Gelditu eragiketa"
+msgstr "Ekarri falta diren gakoak"
 
 #: src/dialogs/weboftrustdialog.cpp:79
 #, kde-format
@@ -7551,28 +7537,24 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/weboftrustwidget.cpp:60
-#, fuzzy, kde-format
-#| msgid "&Certificates"
+#, kde-format
 msgid "User IDs and certifications"
-msgstr "&Ziurtagiriak"
+msgstr "Erabiltzaile IDak eta ziurtapenak"
 
 #: src/dialogs/weboftrustwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Certificate Details..."
+#, kde-format
 msgctxt "@action"
 msgid "Show Certificate Details"
-msgstr "Ziurtagiriaren xehetasunak..."
+msgstr "Erakutsi ziurtagiriaren xehetasunak"
 
 #: src/dialogs/weboftrustwidget.cpp:77
-#, fuzzy, kde-format
-#| msgid "&Certificates"
+#, kde-format
 msgctxt "@action"
 msgid "Add Certification"
-msgstr "&Ziurtagiriak"
+msgstr "Gehitu ziurtapenak"
 
 #: src/dialogs/weboftrustwidget.cpp:83
-#, fuzzy, kde-format
-#| msgid "&Certificates"
+#, kde-format
 msgctxt "@action"
 msgid "Revoke Certification"
 msgstr "Indargabetu ziurtapena"
@@ -7596,11 +7578,13 @@ msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
 msgstr ""
+"Ezin duzu indargabetzeko ziurtagiri hori indargabetu. (Baina dagokion "
+"erabiltzaile ID birziurta dezakezu)"
 
 #: src/dialogs/weboftrustwidget.cpp:220
 #, kde-format
 msgid "You cannot revoke this expired certification."
-msgstr ""
+msgstr "Ezin duzu iraungitako ziurtagiri hori indargabetu."
 
 #: src/dialogs/weboftrustwidget.cpp:223
 #, kde-format
@@ -8528,7 +8512,7 @@ msgstr "Ezin izan da ziurtagiria sortu: %1"
 #: src/libkleopatraclient/core/command.cpp:666
 #, fuzzy, kde-format
 msgid "Command (%1) failed: %2"
-msgstr "Komandoak huts egin du: %1"
+msgstr "\"%1\" komandoak huts egin du."
 
 #: src/libkleopatraclient/gui/certificaterequester.cpp:95
 #, fuzzy, kde-format
@@ -8605,9 +8589,9 @@ msgid ""
 msgstr ""
 
 #: src/main.cpp:281
-#, kde-format
+#, fuzzy, kde-format
 msgid "Invalid arguments: %1"
-msgstr ""
+msgstr "Argumentu baliogabeak"
 
 #: src/mainwindow.cpp:101
 #, fuzzy, kde-kuit-format
@@ -8656,7 +8640,7 @@ msgstr "Konfiguratu &GpgME-ren euskarria"
 #, fuzzy, kde-format
 #| msgid "GnuPG Log Viewer..."
 msgid "GnuPG Log Viewer"
-msgstr "GnuPG egunkari ikustailea"
+msgstr "GnuPG egunkari ikustailea..."
 
 #: src/mainwindow.cpp:524
 #, kde-format
@@ -8691,12 +8675,12 @@ msgid "Show certificate overview"
 msgstr "Ziurtagiriaren xehetasunak..."
 
 #: src/mainwindow.cpp:541
-#, kde-format
+#, fuzzy, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
 "verifying text"
 msgid "Notepad"
-msgstr ""
+msgstr "Ohar-bloka"
 
 #: src/mainwindow.cpp:542
 #, kde-format
@@ -8726,9 +8710,9 @@ msgid "Configure Groups..."
 msgstr "Konfiguratu taldeak"
 
 #: src/mainwindow.cpp:579
-#, kde-format
+#, fuzzy, kde-format
 msgid "Set Focus to Quick Search"
-msgstr ""
+msgstr "Eman fokua bilaketa bizkorrari"
 
 #: src/mainwindow.cpp:590
 #, kde-format
@@ -8863,7 +8847,7 @@ msgstr ""
 #: src/mainwindow.cpp:789 src/view/keylistcontroller.cpp:392
 #, fuzzy, kde-format
 msgid "Sign/Encrypt..."
-msgstr "Sinatu / Zifratu"
+msgstr "Sinatu eta &zifratu"
 
 #: src/mainwindow.cpp:790 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
@@ -8908,7 +8892,7 @@ msgstr "RSA"
 #, fuzzy, kde-format
 msgctxt "@option:check"
 msgid "+ RSA"
-msgstr "RSA"
+msgstr "RSA 2048"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:266
 #, fuzzy, kde-format
@@ -9000,7 +8984,7 @@ msgstr "Aliasa"
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
-msgstr "Helbide elektronikoak:"
+msgstr "E-posta helbideak"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:373
 #, fuzzy, kde-format
@@ -9024,9 +9008,9 @@ msgid "Personal Details"
 msgstr "Zure dau pertsonalak"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:433
-#, kde-format
+#, fuzzy, kde-format
 msgid "new email"
-msgstr ""
+msgstr "E-posta berria..."
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:434
 #, kde-format
@@ -9073,8 +9057,8 @@ msgstr ""
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
-msgstr[0] "40 bit"
-msgstr[1] "%1 bit"
+msgstr[0] "%1 (%2):"
+msgstr[1] "%1 (%2):"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:800
 #, fuzzy, kde-format
@@ -9170,7 +9154,7 @@ msgstr "CRL cache-a ongi garbitu da."
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Add Entry"
-msgstr "Gehitu sarrera..."
+msgstr "Gehitu sarrera"
 
 #: src/newcertificatewizard/listwidget.cpp:178
 #, fuzzy, kde-format
@@ -9897,7 +9881,7 @@ msgstr "Ziurtagiri kudeatzailearen errorea"
 #, fuzzy, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
-msgstr "Konfiguratu..."
+msgstr "Konfiguratu"
 
 #: src/systrayicon.cpp:135
 #, fuzzy, kde-kuit-format
@@ -9947,7 +9931,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Kleopatra Error"
 msgid "Parse error"
-msgstr "Errorea prozesatzean"
+msgstr "Kleopatra-ren errorea"
 
 #: src/uiserver/assuanserverconnection.cpp:338
 #, kde-format
@@ -10460,30 +10444,30 @@ msgid "Error in archive definition %1: %2"
 msgstr ""
 
 #: src/utils/archivedefinition.cpp:135
-#, kde-format
+#, fuzzy, kde-format
 msgid "Cannot use both %f and | in '%1'"
-msgstr ""
+msgstr "Ezin dira %f eta | biak '%1'(e)an erabili"
 
 #: src/utils/archivedefinition.cpp:147
-#, kde-format
+#, fuzzy, kde-format
 msgid "Quoting error in '%1' entry"
-msgstr ""
+msgstr "Aipu errorea '%1' sarreran"
 
 #: src/utils/archivedefinition.cpp:150
-#, kde-format
+#, fuzzy, kde-format
 msgid "'%1' too complex (would need shell)"
-msgstr ""
+msgstr "'%1' korapilotsuegia (oskola beharko luke)"
 
 #: src/utils/archivedefinition.cpp:154 src/utils/archivedefinition.cpp:204
 #: src/utils/archivedefinition.cpp:218 src/utils/archivedefinition.cpp:230
-#, kde-format
+#, fuzzy, kde-format
 msgid "'%1' entry is empty/missing"
-msgstr ""
+msgstr "'%1' sarrera hutsik dago/falta da"
 
 #: src/utils/archivedefinition.cpp:163
-#, kde-format
+#, fuzzy, kde-format
 msgid "'%1' empty or not found"
-msgstr ""
+msgstr "'%1' hutsik dago edo ez da aurkitu"
 
 #: src/utils/archivedefinition.cpp:264 src/utils/archivedefinition.cpp:275
 #, kde-format
@@ -10542,9 +10526,9 @@ msgid "Could not start %1 process: %2"
 msgstr "Ezin izan da ziurtagiria sortu: %1"
 
 #: src/utils/input.cpp:349
-#, kde-format
+#, fuzzy, kde-format
 msgid "Failed to write input to %1 process: %2"
-msgstr ""
+msgstr "Ezin izan da ziurtagiria sortu: %1"
 
 #: src/utils/input.cpp:362
 #, kde-format
@@ -11009,14 +10993,14 @@ msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Sortu S/MIME ziurtagiria sinatzeko eskaera berri bat (CSR)"
 
 #: src/view/keylistcontroller.cpp:475
-#, kde-format
+#, fuzzy, kde-format
 msgid "Trust Root Certificate"
-msgstr ""
+msgstr "Inportatu ziurtagiriak..."
 
 #: src/view/keylistcontroller.cpp:479
-#, kde-format
+#, fuzzy, kde-format
 msgid "Distrust Root Certificate"
-msgstr ""
+msgstr "Inportatu ziurtagiriak..."
 
 #: src/view/keylistcontroller.cpp:483
 #, kde-format

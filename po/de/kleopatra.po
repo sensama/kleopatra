@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-14 00:44+0000\n"
+"POT-Creation-Date: 2023-10-17 00:43+0000\n"
 "PO-Revision-Date: 2023-09-08 17:19+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -366,7 +366,20 @@ msgctxt "@info:progress"
 msgid "Certifying certificates ..."
 msgstr "Zertifikat beglaubigen ..."
 
-#: src/commands/certifygroupcommand.cpp:259
+#: src/commands/certifygroupcommand.cpp:244
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>The creation of a new OpenPGP certificate failed.</"
+#| "para><para>Error: <message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The certification of the certificates failed.</para><para>Error: "
+"<message>%1</message></para>"
+msgstr ""
+"<para>Die Erstellung eines neuen OpenPGP-Zertifikats ist fehlgeschlagen.</"
+"para><para>Fehler: <message>%1</message></para>"
+
+#: src/commands/certifygroupcommand.cpp:267
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "X.509 certificates refreshed successfully."
@@ -374,7 +387,7 @@ msgctxt "@info"
 msgid "All certificates were certified successfully."
 msgstr "X.509-Zertifikate erfolgreich aktualisiert."
 
-#: src/commands/certifygroupcommand.cpp:264
+#: src/commands/certifygroupcommand.cpp:272
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<para>The creation of a new OpenPGP certificate failed.</"
@@ -387,7 +400,7 @@ msgstr ""
 "<para>Die Erstellung eines neuen OpenPGP-Zertifikats ist fehlgeschlagen.</"
 "para><para>Fehler: <message>%1</message></para>"
 
-#: src/commands/certifygroupcommand.cpp:269
+#: src/commands/certifygroupcommand.cpp:277
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "OpenPGP certificates exported successfully."
@@ -397,7 +410,7 @@ msgid_plural "%1 of %2 certificates were certified successfully."
 msgstr[0] "OpenPGP-Zertifikate erfolgreich exportiert."
 msgstr[1] "OpenPGP-Zertifikate erfolgreich exportiert."
 
-#: src/commands/certifygroupcommand.cpp:287
+#: src/commands/certifygroupcommand.cpp:295
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -405,7 +418,7 @@ msgid ""
 "certificate directory.</p>"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:292
+#: src/commands/certifygroupcommand.cpp:300
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2)"
@@ -413,7 +426,7 @@ msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: src/commands/certifygroupcommand.cpp:301
+#: src/commands/certifygroupcommand.cpp:309
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Exporting the certificate failed: %1"
@@ -421,7 +434,7 @@ msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
 msgstr "Das Exportieren ist fehlgeschlagen: %1"
 
-#: src/commands/certifygroupcommand.cpp:303
+#: src/commands/certifygroupcommand.cpp:311
 #, fuzzy, kde-format
 #| msgid "Certification Succeeded"
 msgctxt "@title:window"

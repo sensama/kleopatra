@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-14 00:44+0000\n"
+"POT-Creation-Date: 2023-10-17 00:43+0000\n"
 "PO-Revision-Date: 2017-05-16 07:05-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: hebrew <kde-l10n-he@kde.org>\n"
@@ -346,13 +346,23 @@ msgctxt "@info:progress"
 msgid "Certifying certificates ..."
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/certifygroupcommand.cpp:259
+#: src/commands/certifygroupcommand.cpp:244
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The certification of the certificates failed.</para><para>Error: "
+"<message>%1</message></para>"
+msgstr ""
+"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
+"היה: "
+
+#: src/commands/certifygroupcommand.cpp:267
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
 msgstr "קובץ רשימת ביטול התעודות יובא בהצלחה."
 
-#: src/commands/certifygroupcommand.cpp:264
+#: src/commands/certifygroupcommand.cpp:272
 #, fuzzy, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -362,7 +372,7 @@ msgstr ""
 "אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
 "היה: "
 
-#: src/commands/certifygroupcommand.cpp:269
+#: src/commands/certifygroupcommand.cpp:277
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
@@ -370,7 +380,7 @@ msgid_plural "%1 of %2 certificates were certified successfully."
 msgstr[0] "קובץ רשימת ביטול התעודות יובא בהצלחה."
 msgstr[1] "קובץ רשימת ביטול התעודות יובא בהצלחה."
 
-#: src/commands/certifygroupcommand.cpp:287
+#: src/commands/certifygroupcommand.cpp:295
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -378,19 +388,19 @@ msgid ""
 "certificate directory.</p>"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:292
+#: src/commands/certifygroupcommand.cpp:300
 #, fuzzy, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2):"
 
-#: src/commands/certifygroupcommand.cpp:301
+#: src/commands/certifygroupcommand.cpp:309
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/certifygroupcommand.cpp:303
+#: src/commands/certifygroupcommand.cpp:311
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"

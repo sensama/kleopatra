@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-17 01:39+0000\n"
+"POT-Creation-Date: 2023-10-18 01:42+0000\n"
 "PO-Revision-Date: 2023-10-10 07:12+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -344,13 +344,27 @@ msgctxt "@info:progress"
 msgid "Certifying certificates ..."
 msgstr "Atestante atestilojn..."
 
-#: src/commands/certifygroupcommand.cpp:259
+#: src/commands/certifygroupcommand.cpp:244
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification of all certificates failed.</para><para>Error: "
+#| "<message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The certification of the certificates failed.</para><para>Error: "
+"<message>%1</message></para>"
+msgstr ""
+"<para>La atestado de ĉiuj atestiloj malsukcesis.</para><para>Eraro: <message>"
+"%1</message></para>"
+
+#: src/commands/certifygroupcommand.cpp:267
 #, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
 msgstr "Ĉiuj atestiloj estis atestitaj sukcese."
 
-#: src/commands/certifygroupcommand.cpp:264
+#: src/commands/certifygroupcommand.cpp:272
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -360,7 +374,7 @@ msgstr ""
 "<para>La atestado de ĉiuj atestiloj malsukcesis.</para><para>Eraro: <message>"
 "%1</message></para>"
 
-#: src/commands/certifygroupcommand.cpp:269
+#: src/commands/certifygroupcommand.cpp:277
 #, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
@@ -368,7 +382,7 @@ msgid_plural "%1 of %2 certificates were certified successfully."
 msgstr[0] "1 el %2 atestiloj estis sukcese atestitaj."
 msgstr[1] "%1 el %2 atestiloj estis sukcese atestitaj."
 
-#: src/commands/certifygroupcommand.cpp:287
+#: src/commands/certifygroupcommand.cpp:295
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -378,19 +392,19 @@ msgstr ""
 "<p>Sekvonte, la atestitaj atestiloj estos alŝutitaj al la agordita "
 "atestildosierujo</p>."
 
-#: src/commands/certifygroupcommand.cpp:292
+#: src/commands/certifygroupcommand.cpp:300
 #, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: src/commands/certifygroupcommand.cpp:301
+#: src/commands/certifygroupcommand.cpp:309
 #, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
 msgstr "<p>Atestado de la sekvaj atestiloj malsukcesis:</p>"
 
-#: src/commands/certifygroupcommand.cpp:303
+#: src/commands/certifygroupcommand.cpp:311
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"

@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-17 01:39+0000\n"
+"POT-Creation-Date: 2023-10-18 01:42+0000\n"
 "PO-Revision-Date: 2023-10-07 16:07+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
@@ -371,13 +371,27 @@ msgctxt "@info:progress"
 msgid "Certifying certificates ..."
 msgstr "Certification en cours des certificats..."
 
-#: src/commands/certifygroupcommand.cpp:259
+#: src/commands/certifygroupcommand.cpp:244
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification of all certificates failed.</para><para>Error: "
+#| "<message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The certification of the certificates failed.</para><para>Error: "
+"<message>%1</message></para>"
+msgstr ""
+"<para>La certification de tous les certificats a échoué. </"
+"para><para>Erreur : <message>%1</message></para>"
+
+#: src/commands/certifygroupcommand.cpp:267
 #, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
 msgstr "Tous les certificats ont été certifiés succès."
 
-#: src/commands/certifygroupcommand.cpp:264
+#: src/commands/certifygroupcommand.cpp:272
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -387,7 +401,7 @@ msgstr ""
 "<para>La certification de tous les certificats a échoué. </"
 "para><para>Erreur : <message>%1</message></para>"
 
-#: src/commands/certifygroupcommand.cpp:269
+#: src/commands/certifygroupcommand.cpp:277
 #, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
@@ -395,7 +409,7 @@ msgid_plural "%1 of %2 certificates were certified successfully."
 msgstr[0] "Un des %2 certificats a été certifié avec succès."
 msgstr[1] "%1 des %2 certificats ont été certifiés avec succès."
 
-#: src/commands/certifygroupcommand.cpp:287
+#: src/commands/certifygroupcommand.cpp:295
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -405,19 +419,19 @@ msgstr ""
 "<p>Les certificats certifiés sont ensuite téléchargés dans le dossiers des "
 "certificats configurés. </p>"
 
-#: src/commands/certifygroupcommand.cpp:292
+#: src/commands/certifygroupcommand.cpp:300
 #, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: src/commands/certifygroupcommand.cpp:301
+#: src/commands/certifygroupcommand.cpp:309
 #, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
 msgstr "<p>La certification des certificats suivants a échoué :</p>"
 
-#: src/commands/certifygroupcommand.cpp:303
+#: src/commands/certifygroupcommand.cpp:311
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"

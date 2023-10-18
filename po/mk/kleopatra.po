@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-17 01:39+0000\n"
+"POT-Creation-Date: 2023-10-18 01:42+0000\n"
 "PO-Revision-Date: 2009-01-08 13:02+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -366,14 +366,27 @@ msgctxt "@info:progress"
 msgid "Certifying certificates ..."
 msgstr "Зачувај сертификат"
 
-#: src/commands/certifygroupcommand.cpp:259
+#: src/commands/certifygroupcommand.cpp:244
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info"
+msgid ""
+"<para>The certification of the certificates failed.</para><para>Error: "
+"<message>%1</message></para>"
+msgstr ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
+
+#: src/commands/certifygroupcommand.cpp:267
 #, fuzzy, kde-format
 #| msgid "CRL cache cleared successfully."
 msgctxt "@info"
 msgid "All certificates were certified successfully."
 msgstr "CRL-кешот се исчисти успешно"
 
-#: src/commands/certifygroupcommand.cpp:264
+#: src/commands/certifygroupcommand.cpp:272
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -386,7 +399,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/commands/certifygroupcommand.cpp:269
+#: src/commands/certifygroupcommand.cpp:277
 #, fuzzy, kde-format
 #| msgid "CRL cache cleared successfully."
 msgctxt "@info"
@@ -396,7 +409,7 @@ msgstr[0] "CRL-кешот се исчисти успешно"
 msgstr[1] "CRL-кешот се исчисти успешно"
 msgstr[2] "CRL-кешот се исчисти успешно"
 
-#: src/commands/certifygroupcommand.cpp:287
+#: src/commands/certifygroupcommand.cpp:295
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -404,7 +417,7 @@ msgid ""
 "certificate directory.</p>"
 msgstr ""
 
-#: src/commands/certifygroupcommand.cpp:292
+#: src/commands/certifygroupcommand.cpp:300
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2):"
@@ -412,14 +425,14 @@ msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2):"
 
-#: src/commands/certifygroupcommand.cpp:301
+#: src/commands/certifygroupcommand.cpp:309
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
 msgstr "Извезување на сертификат..."
 
-#: src/commands/certifygroupcommand.cpp:303
+#: src/commands/certifygroupcommand.cpp:311
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@title:window"

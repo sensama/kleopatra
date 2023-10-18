@@ -94,6 +94,7 @@ public:
 
     void start();
 
+    bool confirmExport();
     bool exportGroups();
     bool startExportJob(GpgME::Protocol protocol, const std::vector<Key> &keys);
 
@@ -132,6 +133,11 @@ ExportGroupsCommand::Private::~Private() = default;
 void ExportGroupsCommand::Private::start()
 {
     if (groups.empty()) {
+        finished();
+        return;
+    }
+
+    if (!confirmExport()) {
         finished();
         return;
     }
@@ -175,6 +181,46 @@ void ExportGroupsCommand::Private::start()
             finishedIfLastJob(nullptr);
         }
     }
+}
+
+bool ExportGroupsCommand::Private::confirmExport()
+{
+    auto notFullyCertifiedGroups = std::accumulate(groups.cbegin(), groups.cend(), QStringList{}, [](auto groupNames, const auto &group) {
+        const bool allOpenPGPKeysAreCertifiedByUser = Kleo::all_of(group.keys(), [](const Key &key) {
+            // we only check the primary user ID of OpenPGP keys because currently group certification only certifies the primary user ID
+            return key.protocol() != GpgME::OpenPGP || Kleo::userIDIsCertifiedByUser(key.userID(0));
+        });
+        if (!allOpenPGPKeysAreCertifiedByUser) {
+            groupNames.push_back(group.name());
+        }
+        return groupNames;
+    });
+    if (!notFullyCertifiedGroups.empty()) {
+        if (groups.size() == 1) {
+            const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
+                                                                xi18nc("@info",
+                                                                       "<para>You haven't certified all OpenPGP certificates in this group.</para>"
+                                                                       "<para>Do you want to continue the export?</para>"),
+                                                                i18nc("@title:window", "Confirm Group Export"),
+                                                                KGuiItem{i18nc("@action:button", "Export Group")},
+                                                                KStandardGuiItem::cancel());
+            return answer == KMessageBox::PrimaryAction;
+        } else {
+            std::sort(notFullyCertifiedGroups.begin(), notFullyCertifiedGroups.end());
+            const auto answer =
+                KMessageBox::questionTwoActionsList(parentWidgetOrView(),
+                                                    xi18nc("@info",
+                                                           "<para>You haven't certified all OpenPGP certificates in the groups listed below.</para>"
+                                                           "<para>Do you want to continue the export?</para>"),
+                                                    notFullyCertifiedGroups,
+                                                    i18nc("@title:window", "Confirm Group Export"),
+                                                    KGuiItem{i18nc("@action:button", "Export Groups")},
+                                                    KStandardGuiItem::cancel());
+            return answer == KMessageBox::PrimaryAction;
+        }
+    }
+
+    return true;
 }
 
 bool ExportGroupsCommand::Private::exportGroups()

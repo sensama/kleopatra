@@ -219,8 +219,10 @@ include_directories(
 
 if (WIN32)
 # On Windows, we need to use stuff deprecated since Qt 5.11, e.g. from QDesktopWidget
+add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 ecm_set_disabled_deprecation_versions(QT 5.10.0  KF 5.240.0)
 else ()
+add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
 ecm_set_disabled_deprecation_versions(QT 6.5  KF 5.240.0)
 endif ()
 

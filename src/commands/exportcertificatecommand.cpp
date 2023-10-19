@@ -176,7 +176,7 @@ bool ExportCertificateCommand::Private::confirmExport(const std::vector<Key> &pg
     });
     if (!notCertifiedKeys.empty()) {
         if (pgpKeys.size() == 1) {
-            const auto answer = KMessageBox::questionTwoActions( //
+            const auto answer = KMessageBox::warningContinueCancel( //
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>You haven't certified all valid user IDs of this certificate "
@@ -184,11 +184,12 @@ bool ExportCertificateCommand::Private::confirmExport(const std::vector<Key> &pg
                        "<para>Do you want to continue the export?</para>"),
                 i18nc("@title:window", "Confirm Certificate Export"),
                 KGuiItem{i18nc("@action:button", "Export Certificate")},
-                KStandardGuiItem::cancel());
-            return answer == KMessageBox::PrimaryAction;
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-export-of-uncertified-keys"));
+            return answer == KMessageBox::Continue;
         } else {
             std::sort(notCertifiedKeys.begin(), notCertifiedKeys.end());
-            const auto answer = KMessageBox::questionTwoActionsList( //
+            const auto answer = KMessageBox::warningContinueCancelList( //
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>You haven't certified all valid user IDs of the certificates listed below "
@@ -197,8 +198,9 @@ bool ExportCertificateCommand::Private::confirmExport(const std::vector<Key> &pg
                 notCertifiedKeys,
                 i18nc("@title:window", "Confirm Certificate Export"),
                 KGuiItem{i18nc("@action:button", "Export Certificates")},
-                KStandardGuiItem::cancel());
-            return answer == KMessageBox::PrimaryAction;
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-export-of-uncertified-keys"));
+            return answer == KMessageBox::Continue;
         }
     }
 

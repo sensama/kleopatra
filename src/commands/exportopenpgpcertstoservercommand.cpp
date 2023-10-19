@@ -62,7 +62,7 @@ static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget
     });
     if (!notCertifiedKeys.empty()) {
         if (pgpKeys.size() == 1) {
-            const auto answer = KMessageBox::questionTwoActions( //
+            const auto answer = KMessageBox::warningContinueCancel( //
                 parentWidget,
                 xi18nc("@info",
                        "<para>You haven't certified all valid user IDs of this certificate "
@@ -70,11 +70,12 @@ static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget
                        "<para>Do you want to continue the export?</para>"),
                 i18nc("@title:window", "Confirm Certificate Export"),
                 KGuiItem{i18nc("@action:button", "Export Certificate")},
-                KStandardGuiItem::cancel());
-            return answer == KMessageBox::PrimaryAction;
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-upload-of-uncertified-keys"));
+            return answer == KMessageBox::Continue;
         } else {
             std::sort(notCertifiedKeys.begin(), notCertifiedKeys.end());
-            const auto answer = KMessageBox::questionTwoActionsList( //
+            const auto answer = KMessageBox::warningContinueCancelList( //
                 parentWidget,
                 xi18nc("@info",
                        "<para>You haven't certified all valid user IDs of the certificates listed below "
@@ -83,8 +84,9 @@ static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget
                 notCertifiedKeys,
                 i18nc("@title:window", "Confirm Certificate Export"),
                 KGuiItem{i18nc("@action:button", "Export Certificates")},
-                KStandardGuiItem::cancel());
-            return answer == KMessageBox::PrimaryAction;
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-upload-of-uncertified-keys"));
+            return answer == KMessageBox::Continue;
         }
     }
 

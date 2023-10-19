@@ -192,7 +192,7 @@ bool ExportGroupsCommand::Private::confirmExport()
     });
     if (!notFullyCertifiedGroups.empty()) {
         if (groups.size() == 1) {
-            const auto answer = KMessageBox::questionTwoActions( //
+            const auto answer = KMessageBox::warningContinueCancel( //
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>You haven't certified all OpenPGP certificates in this group "
@@ -200,11 +200,12 @@ bool ExportGroupsCommand::Private::confirmExport()
                        "<para>Do you want to continue the export?</para>"),
                 i18nc("@title:window", "Confirm Group Export"),
                 KGuiItem{i18nc("@action:button", "Export Group")},
-                KStandardGuiItem::cancel());
-            return answer == KMessageBox::PrimaryAction;
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-export-of-uncertified-groups"));
+            return answer == KMessageBox::Continue;
         } else {
             std::sort(notFullyCertifiedGroups.begin(), notFullyCertifiedGroups.end());
-            const auto answer = KMessageBox::questionTwoActionsList( //
+            const auto answer = KMessageBox::warningContinueCancelList( //
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>You haven't certified all OpenPGP certificates in the groups listed below "
@@ -213,8 +214,9 @@ bool ExportGroupsCommand::Private::confirmExport()
                 notFullyCertifiedGroups,
                 i18nc("@title:window", "Confirm Group Export"),
                 KGuiItem{i18nc("@action:button", "Export Groups")},
-                KStandardGuiItem::cancel());
-            return answer == KMessageBox::PrimaryAction;
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-export-of-uncertified-groups"));
+            return answer == KMessageBox::Continue;
         }
     }
 

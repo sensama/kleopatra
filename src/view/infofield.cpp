@@ -121,7 +121,7 @@ void InfoField::setToolTip(const QString &toolTip)
 void InfoField::setVisible(bool visible)
 {
     mLabel->setVisible(visible);
-    mIcon->setVisible(visible && !mIcon->pixmap(Qt::ReturnByValue).isNull());
+    mIcon->setVisible(visible && !mIcon->pixmap().isNull());
     mValue->setVisible(visible);
     mButton->setVisible(visible && mAction);
 }

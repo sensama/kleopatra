@@ -182,7 +182,7 @@ void DragQueen::mouseMoveEvent(QMouseEvent *e)
         && (e->buttons() & Qt::LeftButton) //
         && (m_dragStartPosition - e->pos()).manhattanLength() > QApplication::startDragDistance()) {
         auto drag = new QDrag(this);
-        const QPixmap pix = pixmap(Qt::ReturnByValue);
+        const QPixmap pix = pixmap();
         if (!pix.isNull()) {
             drag->setPixmap(pix);
             drag->setHotSpot(calculate_hot_spot(e->pos(), pix.size(), this));

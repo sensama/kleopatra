@@ -180,7 +180,8 @@ bool ExportCertificateCommand::Private::confirmExport(const std::vector<Key> &pg
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>You haven't certified all valid user IDs of this certificate "
-                       "with an exportable certification.</para>"
+                       "with an exportable certification. People relying on your certifications "
+                       "may not be able to verify the certificate.</para>"
                        "<para>Do you want to continue the export?</para>"),
                 i18nc("@title:window", "Confirm Certificate Export"),
                 KGuiItem{i18nc("@action:button", "Export Certificate")},
@@ -193,7 +194,8 @@ bool ExportCertificateCommand::Private::confirmExport(const std::vector<Key> &pg
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>You haven't certified all valid user IDs of the certificates listed below "
-                       "with exportable certifications.</para>"
+                       "with exportable certifications. People relying on your certifications "
+                       "may not be able to verify the certificates.</para>"
                        "<para>Do you want to continue the export?</para>"),
                 notCertifiedKeys,
                 i18nc("@title:window", "Confirm Certificate Export"),

@@ -196,7 +196,8 @@ bool ExportGroupsCommand::Private::confirmExport()
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>You haven't certified all OpenPGP certificates in this group "
-                       "with an exportable certification.</para>"
+                       "with an exportable certification. People relying on your certifications "
+                       "may not be able to verify the certificates.</para>"
                        "<para>Do you want to continue the export?</para>"),
                 i18nc("@title:window", "Confirm Group Export"),
                 KGuiItem{i18nc("@action:button", "Export Group")},
@@ -209,7 +210,8 @@ bool ExportGroupsCommand::Private::confirmExport()
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>You haven't certified all OpenPGP certificates in the groups listed below "
-                       "with exportable certifications.</para>"
+                       "with exportable certifications. People relying on your certifications "
+                       "may not be able to verify the certificates.</para>"
                        "<para>Do you want to continue the export?</para>"),
                 notFullyCertifiedGroups,
                 i18nc("@title:window", "Confirm Group Export"),

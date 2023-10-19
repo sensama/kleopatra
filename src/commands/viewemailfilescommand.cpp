@@ -24,7 +24,7 @@ public:
     Private(ViewEmailFilesCommand *qq, KeyListController *c);
     ~Private() override;
 
-    QVector<QPointer<MessageViewerDialog>> dialogs;
+    QList<QPointer<MessageViewerDialog>> dialogs;
     QStringList files;
 
     void ensureDialogCreated();

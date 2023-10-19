@@ -18,6 +18,7 @@
 #include <utils/applicationstate.h>
 #include <utils/filedialog.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyHelpers>
@@ -57,6 +58,7 @@ public:
     void exportResult(const GpgME::Error &, const QByteArray &);
     void showError(const GpgME::Error &error);
 
+    bool confirmExport(const std::vector<Key> &pgpKeys);
     bool requestFileNames(GpgME::Protocol prot);
     void finishedIfLastJob();
 
@@ -140,6 +142,12 @@ void ExportCertificateCommand::doStart()
     }
 
     const auto keys = Kleo::partitionKeysByProtocol(d->keys());
+
+    if (!keys.openpgp.empty() && !d->confirmExport(keys.openpgp)) {
+        d->canceled();
+        return;
+    }
+
     const bool haveBoth = !keys.cms.empty() && !keys.openpgp.empty();
     const GpgME::Protocol prot = haveBoth ? UnknownProtocol : (!keys.cms.empty() ? CMS : OpenPGP);
     if (!d->requestFileNames(prot)) {
@@ -153,6 +161,48 @@ void ExportCertificateCommand::doStart()
     if (!keys.cms.empty()) {
         d->startExportJob(GpgME::CMS, keys.cms);
     }
+}
+
+bool ExportCertificateCommand::Private::confirmExport(const std::vector<Key> &pgpKeys)
+{
+    auto notCertifiedKeys = std::accumulate(pgpKeys.cbegin(), pgpKeys.cend(), QStringList{}, [](auto keyNames, const auto &key) {
+        const bool allValidUserIDsAreCertifiedByUser = Kleo::all_of(key.userIDs(), [](const UserID &userId) {
+            return userId.isBad() || Kleo::userIDIsCertifiedByUser(userId);
+        });
+        if (!allValidUserIDsAreCertifiedByUser) {
+            keyNames.push_back(Formatting::formatForComboBox(key));
+        }
+        return keyNames;
+    });
+    if (!notCertifiedKeys.empty()) {
+        if (pgpKeys.size() == 1) {
+            const auto answer = KMessageBox::questionTwoActions( //
+                parentWidgetOrView(),
+                xi18nc("@info",
+                       "<para>You haven't certified all valid user IDs of this certificate "
+                       "with an exportable certification.</para>"
+                       "<para>Do you want to continue the export?</para>"),
+                i18nc("@title:window", "Confirm Certificate Export"),
+                KGuiItem{i18nc("@action:button", "Export Certificate")},
+                KStandardGuiItem::cancel());
+            return answer == KMessageBox::PrimaryAction;
+        } else {
+            std::sort(notCertifiedKeys.begin(), notCertifiedKeys.end());
+            const auto answer = KMessageBox::questionTwoActionsList( //
+                parentWidgetOrView(),
+                xi18nc("@info",
+                       "<para>You haven't certified all valid user IDs of the certificates listed below "
+                       "with exportable certifications.</para>"
+                       "<para>Do you want to continue the export?</para>"),
+                notCertifiedKeys,
+                i18nc("@title:window", "Confirm Certificate Export"),
+                KGuiItem{i18nc("@action:button", "Export Certificates")},
+                KStandardGuiItem::cancel());
+            return answer == KMessageBox::PrimaryAction;
+        }
+    }
+
+    return true;
 }
 
 bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protocol)

@@ -229,6 +229,10 @@ public:
         keyCache->addFileSystemWatcher(watcher);
         keyCache->setGroupConfig(groupConfig);
         keyCache->setGroupsEnabled(Settings().groupsEnabled());
+        // always enable remarks (aka tags); in particular, this triggers a
+        // relisting of the keys with signatures and signature notations
+        // after the initial (fast) key listing
+        keyCache->enableRemarks(true);
     }
 
     void setUpFilterManager()

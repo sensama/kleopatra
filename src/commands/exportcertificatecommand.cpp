@@ -135,6 +135,7 @@ QString ExportCertificateCommand::x509FileName() const
 void ExportCertificateCommand::doStart()
 {
     if (d->keys().empty()) {
+        d->finished();
         return;
     }
 
@@ -142,15 +143,15 @@ void ExportCertificateCommand::doStart()
     const bool haveBoth = !keys.cms.empty() && !keys.openpgp.empty();
     const GpgME::Protocol prot = haveBoth ? UnknownProtocol : (!keys.cms.empty() ? CMS : OpenPGP);
     if (!d->requestFileNames(prot)) {
-        Q_EMIT canceled();
-        d->finished();
-    } else {
-        if (!keys.openpgp.empty()) {
-            d->startExportJob(GpgME::OpenPGP, keys.openpgp);
-        }
-        if (!keys.cms.empty()) {
-            d->startExportJob(GpgME::CMS, keys.cms);
-        }
+        d->canceled();
+        return;
+    }
+
+    if (!keys.openpgp.empty()) {
+        d->startExportJob(GpgME::OpenPGP, keys.openpgp);
+    }
+    if (!keys.cms.empty()) {
+        d->startExportJob(GpgME::CMS, keys.cms);
     }
 }
 

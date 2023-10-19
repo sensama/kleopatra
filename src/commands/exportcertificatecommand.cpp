@@ -20,6 +20,7 @@
 
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyHelpers>
 
 #include <QGpgME/ExportJob>
 #include <QGpgME/Protocol>
@@ -133,29 +134,22 @@ QString ExportCertificateCommand::x509FileName() const
 
 void ExportCertificateCommand::doStart()
 {
-    std::vector<Key> keys = d->keys();
-    if (keys.empty()) {
+    if (d->keys().empty()) {
         return;
     }
 
-    const auto firstCms = std::partition(keys.begin(), keys.end(), [](const GpgME::Key &key) {
-        return key.protocol() != GpgME::CMS;
-    });
-    std::vector<Key> openpgp, cms;
-    std::copy(keys.begin(), firstCms, std::back_inserter(openpgp));
-    std::copy(firstCms, keys.end(), std::back_inserter(cms));
-    Q_ASSERT(!openpgp.empty() || !cms.empty());
-    const bool haveBoth = !cms.empty() && !openpgp.empty();
-    const GpgME::Protocol prot = haveBoth ? UnknownProtocol : (!cms.empty() ? CMS : OpenPGP);
+    const auto keys = Kleo::partitionKeysByProtocol(d->keys());
+    const bool haveBoth = !keys.cms.empty() && !keys.openpgp.empty();
+    const GpgME::Protocol prot = haveBoth ? UnknownProtocol : (!keys.cms.empty() ? CMS : OpenPGP);
     if (!d->requestFileNames(prot)) {
         Q_EMIT canceled();
         d->finished();
     } else {
-        if (!openpgp.empty()) {
-            d->startExportJob(GpgME::OpenPGP, openpgp);
+        if (!keys.openpgp.empty()) {
+            d->startExportJob(GpgME::OpenPGP, keys.openpgp);
         }
-        if (!cms.empty()) {
-            d->startExportJob(GpgME::CMS, cms);
+        if (!keys.cms.empty()) {
+            d->startExportJob(GpgME::CMS, keys.cms);
         }
     }
 }

@@ -153,12 +153,7 @@ void ExportGroupsCommand::Private::start()
         allKeys.insert(std::begin(keys), std::end(keys));
         return allKeys;
     });
-
-    std::vector<Key> openpgpKeys;
-    std::vector<Key> cmsKeys;
-    std::partition_copy(std::begin(groupKeys), std::end(groupKeys), std::back_inserter(openpgpKeys), std::back_inserter(cmsKeys), [](const GpgME::Key &key) {
-        return key.protocol() == GpgME::OpenPGP;
-    });
+    const auto keys = Kleo::partitionKeysByProtocol(groupKeys);
 
     // remove/overwrite existing file
     if (QFile::exists(filename) && !QFile::remove(filename)) {
@@ -170,14 +165,14 @@ void ExportGroupsCommand::Private::start()
         finished();
         return;
     }
-    if (!openpgpKeys.empty()) {
-        if (!startExportJob(GpgME::OpenPGP, openpgpKeys)) {
+    if (!keys.openpgp.empty()) {
+        if (!startExportJob(GpgME::OpenPGP, keys.openpgp)) {
             finished();
             return;
         }
     }
-    if (!cmsKeys.empty()) {
-        if (!startExportJob(GpgME::CMS, cmsKeys)) {
+    if (!keys.cms.empty()) {
+        if (!startExportJob(GpgME::CMS, keys.cms)) {
             finishedIfLastJob(nullptr);
         }
     }

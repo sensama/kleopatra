@@ -138,7 +138,7 @@ void ExportGroupsCommand::Private::start()
     }
 
     if (!confirmExport()) {
-        finished();
+        canceled();
         return;
     }
 

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-17 00:43+0000\n"
+"POT-Creation-Date: 2023-10-19 00:43+0000\n"
 "PO-Revision-Date: 2023-07-24 21:39+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1232,11 +1232,11 @@ msgctxt "filename filter like Certificate Groups (*.foo)"
 msgid "Certificate Groups (*%1)"
 msgstr "Varmenneryhmät (*%1)"
 
-#: src/commands/exportgroupscommand.cpp:159
-#: src/commands/exportgroupscommand.cpp:184
-#: src/commands/exportgroupscommand.cpp:231
-#: src/commands/exportgroupscommand.cpp:238
-#: src/commands/exportgroupscommand.cpp:249
+#: src/commands/exportgroupscommand.cpp:165
+#: src/commands/exportgroupscommand.cpp:230
+#: src/commands/exportgroupscommand.cpp:277
+#: src/commands/exportgroupscommand.cpp:284
+#: src/commands/exportgroupscommand.cpp:295
 #: src/commands/exportsecretsubkeycommand.cpp:235
 #: src/commands/exportsecretsubkeycommand.cpp:242
 #: src/commands/exportsecretsubkeycommand.cpp:254
@@ -1246,33 +1246,85 @@ msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Vienti epäonnistui"
 
-#: src/commands/exportgroupscommand.cpp:159
+#: src/commands/exportgroupscommand.cpp:165
 #, kde-kuit-format
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Ei voitu korvata tiedostoa <filename>%1</filename>."
 
-#: src/commands/exportgroupscommand.cpp:184
+#: src/commands/exportgroupscommand.cpp:202
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+#| msgid ""
+#| "<para>The certificate '%1' is empowered to mark other certificates as %2 "
+#| "for you.</para><para>Do you want to revoke this power?</para>"
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all OpenPGP certificates in this group.</"
+"para><para>Do you want to continue the export?</para>"
+msgstr ""
+"<para>Varmenteelle ”%1” on annettu oikeus merkintä muiden varmenteiden "
+"yhteensopivuudeksi %2 puolestasi.</para><para>Haluatko perua tämän oikeuden?"
+"</para>"
+
+#: src/commands/exportgroupscommand.cpp:204
+#: src/commands/exportgroupscommand.cpp:216
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Configure Groups"
+msgctxt "@title:window"
+msgid "Confirm Group Export"
+msgstr "Ryhmäasetukset"
+
+#: src/commands/exportgroupscommand.cpp:205
+#, fuzzy, kde-format
+#| msgid "Export Error"
+msgctxt "@action:button"
+msgid "Export Group"
+msgstr "Vientivirhe"
+
+#: src/commands/exportgroupscommand.cpp:213
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info %1: a certificate"
+#| msgid ""
+#| "<para>The certificate '%1' is empowered to mark other certificates as "
+#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all OpenPGP certificates in the groups listed "
+"below.</para><para>Do you want to continue the export?</para>"
+msgstr ""
+"<para>Varmenteelle ”%1” on annettu oikeus merkintä muita varmenteita "
+"kelvollisiksi puolestasi.</para><para>Haluatko perua tämän oikeuden?</para>"
+
+#: src/commands/exportgroupscommand.cpp:217
+#, fuzzy, kde-format
+#| msgid "Export Error"
+msgctxt "@action:button"
+msgid "Export Groups"
+msgstr "Vientivirhe"
+
+#: src/commands/exportgroupscommand.cpp:230
 #, kde-kuit-format
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr "Ryhmien kirjoittaminen tiedostoon <filename>%1</filename> epäonnistui."
 
-#: src/commands/exportgroupscommand.cpp:213
+#: src/commands/exportgroupscommand.cpp:259
 #, kde-format
 msgid "Exporting certificate groups..."
 msgstr "Viedään varmenneryhmiä…"
 
-#: src/commands/exportgroupscommand.cpp:231
+#: src/commands/exportgroupscommand.cpp:277
 #, kde-kuit-format
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "Tiedostoa <filename>%1</filename> ei voi avata kirjoitettavaksi."
 
-#: src/commands/exportgroupscommand.cpp:238
+#: src/commands/exportgroupscommand.cpp:284
 #, kde-kuit-format
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr ""
 "Varmenteiden kirjoittaminen tiedostoon <filename>%1</filename> epäonnistui."
 
-#: src/commands/exportgroupscommand.cpp:246
+#: src/commands/exportgroupscommand.cpp:292
 #, kde-kuit-format
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
@@ -2647,7 +2699,7 @@ msgid "No Directory Servers Configured"
 msgstr "Ei määritettyjä hakemistopalvelimia"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:475
+#: src/kleopatraapplication.cpp:479
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Sinulla ei ole oikeutta luoda S/MIME-varmenteen allekirjoituspyyntöjä."
@@ -8608,47 +8660,47 @@ msgstr "Käsiteltävä(t) tiedosto(t)"
 msgid "String or Fingerprint for query and search"
 msgstr "Etsittävä merkkijono tai sormenjälki"
 
-#: src/kleopatraapplication.cpp:371
+#: src/kleopatraapplication.cpp:375
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Komennon suoritus epäonnistui"
 
-#: src/kleopatraapplication.cpp:413
+#: src/kleopatraapplication.cpp:417
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Monitulkintainen käytänne: --openpgp ja --cms"
 
-#: src/kleopatraapplication.cpp:447
+#: src/kleopatraapplication.cpp:451
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search-parametrin hakujonoa ei annettu"
 
-#: src/kleopatraapplication.cpp:458
+#: src/kleopatraapplication.cpp:462
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query-parametrille ei annettu sormenjälkeä"
 
-#: src/kleopatraapplication.cpp:519
+#: src/kleopatraapplication.cpp:523
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Monitulkintaiset komennot: ”%1” ja ”%2”"
 
-#: src/kleopatraapplication.cpp:526
+#: src/kleopatraapplication.cpp:530
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "”%1”-komennolle ei annettu tiedostoparametreja"
 
-#: src/kleopatraapplication.cpp:540
+#: src/kleopatraapplication.cpp:544
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Ei voida lukea: ”%1”"
 
-#: src/kleopatraapplication.cpp:819
+#: src/kleopatraapplication.cpp:823
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Ulkoisen linkin avaaminen on ylläpidollisesti kielletty."
 
-#: src/kleopatraapplication.cpp:819
+#: src/kleopatraapplication.cpp:823
 #, kde-format
 msgid "Prohibited"
 msgstr "Kielletty"

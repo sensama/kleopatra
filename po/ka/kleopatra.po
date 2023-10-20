@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-19 00:43+0000\n"
-"PO-Revision-Date: 2023-10-08 05:50+0200\n"
+"POT-Creation-Date: 2023-10-20 00:43+0000\n"
+"PO-Revision-Date: 2023-10-19 05:49+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -122,6 +122,9 @@ msgid ""
 "Klarälvdalens Datakonsult AB\n"
 "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
 msgstr ""
+"(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
+"Klarälvdalens Datakonsult AB\n"
+"(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
 
 #: src/aboutdata.cpp:63
 #, kde-format
@@ -344,11 +347,7 @@ msgid "Certifying certificates ..."
 msgstr "სერტიფიკატების სერტიფიცირება..."
 
 #: src/commands/certifygroupcommand.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification of all certificates failed.</para><para>Error: "
-#| "<message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
@@ -1132,44 +1131,111 @@ msgstr ""
 msgid "Encrypt Clipboard Error"
 msgstr "ბუფერის დაშიფვრის შეცდომა"
 
-#: src/commands/exportcertificatecommand.cpp:216
+#: src/commands/exportcertificatecommand.cpp:182
+#: src/commands/exportopenpgpcertstoservercommand.cpp:68
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
+#| "below.</para><para>Do you want to continue the export?</para>"
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all valid user IDs of this certificate with an "
+"exportable certification. People relying on your certifications may not be "
+"able to verify the certificate.</para><para>Do you want to continue the "
+"export?</para>"
+msgstr ""
+"<para>ქვემო სიაში არსებულ ჯგუფებში არსებული ყველა OpenPGP სერტიფიკატი "
+"სერტიფიცირებული არაა.</para><para>გნებავთ გატანის გაგრძელება?</para>"
+
+#: src/commands/exportcertificatecommand.cpp:186
+#: src/commands/exportcertificatecommand.cpp:201
+#: src/commands/exportopenpgpcertstoservercommand.cpp:72
+#: src/commands/exportopenpgpcertstoservercommand.cpp:87
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "OpenPGP Certificate Export"
+msgctxt "@title:window"
+msgid "Confirm Certificate Export"
+msgstr "OpenPGP სერტიფიკაის გატანა"
+
+#: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:111
+#: src/commands/exportopenpgpcertstoservercommand.cpp:129
+#, fuzzy, kde-format
+#| msgctxt "1 is protocol"
+#| msgid "Export %1 Certificates"
+msgctxt "@action:button"
+msgid "Export Certificate"
+msgid_plural "Export Certificates"
+msgstr[0] "%1 სერტიფიკატის გატანა"
+msgstr[1] "%1 სერტიფიკატის გატანა"
+
+#: src/commands/exportcertificatecommand.cpp:196
+#: src/commands/exportopenpgpcertstoservercommand.cpp:82
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
+#| "below.</para><para>Do you want to continue the export?</para>"
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all valid user IDs of the certificates listed "
+"below with exportable certifications. People relying on your certifications "
+"may not be able to verify the certificates.</para><para>Do you want to "
+"continue the export?</para>"
+msgstr ""
+"<para>ქვემო სიაში არსებულ ჯგუფებში არსებული ყველა OpenPGP სერტიფიკატი "
+"სერტიფიცირებული არაა.</para><para>გნებავთ გატანის გაგრძელება?</para>"
+
+#: src/commands/exportcertificatecommand.cpp:202
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
+#, fuzzy, kde-format
+#| msgctxt "1 is protocol"
+#| msgid "Export %1 Certificates"
+msgctxt "@action:button"
+msgid "Export Certificates"
+msgstr "%1 სერტიფიკატის გატანა"
+
+#: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates"
 msgstr "სერტიფიკატები"
 
-#: src/commands/exportcertificatecommand.cpp:221
+#: src/commands/exportcertificatecommand.cpp:270
 #, kde-format
 msgctxt "1 is protocol"
 msgid "Export %1 Certificates"
 msgstr "%1 სერტიფიკატის გატანა"
 
-#: src/commands/exportcertificatecommand.cpp:224
+#: src/commands/exportcertificatecommand.cpp:273
 #, kde-format
 msgid "OpenPGP Certificates"
 msgstr "OpenPGP -ის სერტიფიკატები"
 
-#: src/commands/exportcertificatecommand.cpp:225
+#: src/commands/exportcertificatecommand.cpp:274
 #, kde-format
 msgid "S/MIME Certificates"
 msgstr "S/MIME სერტიფიკატები"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:277
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr "სხვადასხვა პროტოკოლებისთვის სხვადასხვა ფაილის სახელები უნდა აირჩიოთ."
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:277
 #, kde-format
 msgid "Export Error"
 msgstr "გატანის შეცდომა"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:327
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "სერტიფიკატების გატანა..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:339
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1177,13 +1243,13 @@ msgid ""
 msgstr ""
 "<qt><p>შეცდომა სერტიფიკატის გატანის მცდელობისას:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:343
+#: src/commands/exportcertificatecommand.cpp:389
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "სერტიფიკატების გატანის შეცდომა"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:388
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "ფაილ %1-ში ჩაწერის შეცდომა."
@@ -1208,11 +1274,11 @@ msgctxt "filename filter like Certificate Groups (*.foo)"
 msgid "Certificate Groups (*%1)"
 msgstr "სერტიფიკატის ჯგუფები (*%1)"
 
-#: src/commands/exportgroupscommand.cpp:165
-#: src/commands/exportgroupscommand.cpp:230
-#: src/commands/exportgroupscommand.cpp:277
-#: src/commands/exportgroupscommand.cpp:284
-#: src/commands/exportgroupscommand.cpp:295
+#: src/commands/exportgroupscommand.cpp:160
+#: src/commands/exportgroupscommand.cpp:232
+#: src/commands/exportgroupscommand.cpp:279
+#: src/commands/exportgroupscommand.cpp:286
+#: src/commands/exportgroupscommand.cpp:297
 #: src/commands/exportsecretsubkeycommand.cpp:235
 #: src/commands/exportsecretsubkeycommand.cpp:242
 #: src/commands/exportsecretsubkeycommand.cpp:254
@@ -1222,90 +1288,90 @@ msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "გატანის შეცდომა"
 
-#: src/commands/exportgroupscommand.cpp:165
+#: src/commands/exportgroupscommand.cpp:160
 #, kde-kuit-format
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "არსებული ფაილის <filename>%1</filename> თავზე გადაწერის შეცდომა."
 
-#: src/commands/exportgroupscommand.cpp:202
+#: src/commands/exportgroupscommand.cpp:198
 #, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+#| msgctxt "@info"
 #| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as %2 "
-#| "for you.</para><para>Do you want to revoke this power?</para>"
+#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
+#| "below.</para><para>Do you want to continue the export?</para>"
 msgctxt "@info"
 msgid ""
-"<para>You haven't certified all OpenPGP certificates in this group.</"
-"para><para>Do you want to continue the export?</para>"
+"<para>You haven't certified all OpenPGP certificates in this group with an "
+"exportable certification. People relying on your certifications may not be "
+"able to verify the certificates.</para><para>Do you want to continue the "
+"export?</para>"
 msgstr ""
-"<para>სერტიფიკატს '%1' აქვს მინიჭებული უფლება, თქვენთვის სხვა სერტიფიკატები, "
-"როგორც '%2', მონიშნოს.</para><para>გნებავთ, გააუქმოთ ეს პრივილეგია?</para>"
+"<para>ქვემო სიაში არსებულ ჯგუფებში არსებული ყველა OpenPGP სერტიფიკატი "
+"სერტიფიცირებული არაა.</para><para>გნებავთ გატანის გაგრძელება?</para>"
 
-#: src/commands/exportgroupscommand.cpp:204
-#: src/commands/exportgroupscommand.cpp:216
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#: src/commands/exportgroupscommand.cpp:202
+#: src/commands/exportgroupscommand.cpp:217
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "ჯგუფების მორგება"
+msgstr "ჯგუფის გატანის დადასტურება"
 
-#: src/commands/exportgroupscommand.cpp:205
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#: src/commands/exportgroupscommand.cpp:203
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "გატანის შეცდომა"
+msgstr "ჯგუფის გატანა"
 
-#: src/commands/exportgroupscommand.cpp:213
+#: src/commands/exportgroupscommand.cpp:212
 #, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
+#| msgctxt "@info"
 #| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
+#| "below.</para><para>Do you want to continue the export?</para>"
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
-"below.</para><para>Do you want to continue the export?</para>"
+"below with exportable certifications. People relying on your certifications "
+"may not be able to verify the certificates.</para><para>Do you want to "
+"continue the export?</para>"
 msgstr ""
-"<para>სერტიფიკატს '%1' აქვს მინიჭებული უფლება, თქვენთვის სხვა სერტიფიკატები, "
-"როგორც ვარგისი, მონიშნოს.</para><para>გნებავთ, გააუქმოთ ეს პრივილეგია?</para>"
+"<para>ქვემო სიაში არსებულ ჯგუფებში არსებული ყველა OpenPGP სერტიფიკატი "
+"სერტიფიცირებული არაა.</para><para>გნებავთ გატანის გაგრძელება?</para>"
 
-#: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#: src/commands/exportgroupscommand.cpp:218
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr "გატანის შეცდომა"
+msgstr "ჯგუფების გატანა"
 
-#: src/commands/exportgroupscommand.cpp:230
+#: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr "ჯგუფების ფაილში <filename>%1</filename> ჩაწერა ჩავარდა."
 
-#: src/commands/exportgroupscommand.cpp:259
+#: src/commands/exportgroupscommand.cpp:261
 #, kde-format
 msgid "Exporting certificate groups..."
 msgstr "სერტიფიკატის ჯგუფების გატანა..."
 
-#: src/commands/exportgroupscommand.cpp:277
+#: src/commands/exportgroupscommand.cpp:279
 #, kde-kuit-format
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "ფაილის <filename>%1</filename> ჩასაწერად გახსნის შეცდომა."
 
-#: src/commands/exportgroupscommand.cpp:284
+#: src/commands/exportgroupscommand.cpp:286
 #, kde-kuit-format
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr "სერტიფიკატების ფაილში <filename>%1</filename> ჩაწერა ჩავარდა."
 
-#: src/commands/exportgroupscommand.cpp:292
+#: src/commands/exportgroupscommand.cpp:294
 #, kde-kuit-format
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
 "message></para>"
 msgstr "<para>შეცდომა გატანისას:</para><para><message>%1</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:54
+#: src/commands/exportopenpgpcertstoservercommand.cpp:103
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1317,9 +1383,16 @@ msgid ""
 "you want to continue with <resource>keys.gnupg.net</resource> as the server "
 "to export to?</para>"
 msgstr ""
+"<para>OpenPGP-ის კატალოგის სერვისები მორგებული არაა.</para><para>იმის გამო, "
+"რომ არც-ერთი არ მიგითითებიათ, <application>Kleopatra</application> "
+"გამოიყენებს <resource>keys.gnupg.net</resource> როგორც სერვერს, რომელზეც "
+"გატანა მოხდება.</para><para>OpenPGP-ის კატალოგის სერვერების "
+"მითითება<application>Kleopatra</application>-ის მორგების ფანჯარაში შეგიძლიათ."
+"</para><para>გნებავთ, გააგრძელოთ <resource>keys.gnupg.net</resource>-ის "
+"გასატან სერვერად გამოყენება?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:61
-#: src/commands/exportopenpgpcertstoservercommand.cpp:75
+#: src/commands/exportopenpgpcertstoservercommand.cpp:110
+#: src/commands/exportopenpgpcertstoservercommand.cpp:128
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
@@ -1329,7 +1402,7 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export"
 msgstr "OpenPGP სერტიფიკაის გატანა"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:70
+#: src/commands/exportopenpgpcertstoservercommand.cpp:123
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1339,20 +1412,25 @@ msgid ""
 "have created a revocation certificate so you can revoke the certificate if "
 "needed later.</para><para>Are you sure you want to continue?</para>"
 msgstr ""
+"<para>როცა OpenPGP-ის სერტიფიკატები გატანილია საჯარო კატალოგის სერვერზე, "
+"მათი თავიდან წაშლა თითქმის შეუძლებელია.</para><para>სერტიფიკატის საჯარო "
+"კატალოგის სერვერზე გატანამდე დარწმუნდით, რომ შექმენით გაუქმების სერტიფიკატი, "
+"რომლითაც, თუ დაგჭირდათ, მოგვიანებით ამ სერტიფიკატის გაუქმებას შეძლებთ.</"
+"para><para>დარწმუნებული ბრძანდებით, რომ გნებავთ, გააგრძელოთ?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:99
+#: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "OpenPGP სერტიფიკაის გატანის შეცდომა"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:104
+#: src/commands/exportopenpgpcertstoservercommand.cpp:157
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "OpenPGP სერტიფიკაის გატანა დასრულდა"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:110
+#: src/commands/exportopenpgpcertstoservercommand.cpp:163
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1360,14 +1438,17 @@ msgid ""
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
+"<para>GPG-ის პროცესმა სცადა, გაეტანა OpenPGP-ის სერტიფიკატები, ნაადრევად "
+"დასრულდა, მოულოდნელი შეცდომის გამო.</para><para>ხელით გადაამოწმეთ გამოტანილი "
+"ინფორმაცია ხელით გაშვებული ბრძანებისთვის <icode>%1</icode>.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:121
+#: src/commands/exportopenpgpcertstoservercommand.cpp:174
 #: src/commands/importcertificatescommand.cpp:623
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#: src/commands/exportopenpgpcertstoservercommand.cpp:175
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1375,7 +1456,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr "%1<nl />%2"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:127
+#: src/commands/exportopenpgpcertstoservercommand.cpp:180
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1387,7 +1468,7 @@ msgstr ""
 "<para>ბრძანებამ <command>%1</command> გამოიტანა:<nl /><message>%2</message></"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:135
+#: src/commands/exportopenpgpcertstoservercommand.cpp:188
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -1416,6 +1497,14 @@ msgid ""
 "removal of a published key.</para><para>Are you sure you want to continue?</"
 "para>"
 msgstr ""
+"<para>WKS-ის მხარდაჭერა ყველა ელფოსტის მომწოდებელს არ აქვს, ასე რომ, ყველა "
+"გასაღები, რომელსაც ამნაირად გაიტანთ, შეიძლება, ცალ-ცალკე ჩავარდეს.</"
+"para><para>თუ გაიტანთ, დადასტურების ელფოსტა გაიგზავნება <email>%1</email>-"
+"სთან, რომელიც უნდა დადასტურდეს ელფოსტის პროგრამით, რათა გატანის პროცესი "
+"დასრულდეს.</para><para><application>KMail</application>-ს შეუძლია დაამუშაოს "
+"ეს ელფოსტები, მაგრამ ყველა სხვას - არა.</para><para>როცა გაიტანთ, სტანდარტი "
+"(ჯერ) გატანილ გასაღების ავტომატური წაშლის უფლებას არ გვაძლევს.</"
+"para><para>გნებავთ, გააგრძელოთ?</para>"
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:121
 #, kde-kuit-format
@@ -1476,6 +1565,9 @@ msgid ""
 "because of an unexpected error.</para><para>Please check the output of "
 "<icode>%1</icode> for details.</para>"
 msgstr ""
+"<para>GPG-ის პროცესმა სცადა, გაეტანა საიდუმლო გასაღები, ნაადრევად დასრულდა, "
+"მოულოდნელი შეცდომის გამო.</para><para>ხელით გადაამოწმეთ გამოტანილი "
+"ინფორმაცია ხელით გაშვებული ბრძანებისთვის <icode>%1</icode>.</para>"
 
 #: src/commands/exportpaperkeycommand.cpp:130
 #: src/commands/exportsecretkeycommand_old.cpp:141
@@ -1592,6 +1684,9 @@ msgid ""
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
+"<para>GPG ან GpgSM პროცესმა, რომელმაც სცადა, გაეტანა საიდუმლო გასაღები, "
+"ნაადრევად დასრულდა, მოულოდნელი შეცდომის გამო.</para><para>ხელით გადაამოწმეთ "
+"გამოტანილი ინფორმაცია ხელით გაშვებული ბრძანებისთვის <icode>%1</icode>.</para>"
 
 #: src/commands/exportsecretkeycommand_old.cpp:152
 #, kde-format
@@ -1673,6 +1768,9 @@ msgid ""
 "declare that a key shall not anymore be used.  It is not possible\n"
 "to retract such a revocation certificate once it has been published."
 msgstr ""
+"გაუქმების სერტიფიკატი \"მკვლელი ჩასართავის\" მსგავსი რამაა, რათა საჯაროდ\n"
+"განაცხადოთ, რომ ამ გასაღების გამოყენება აღარ უნდა მოხდეს.   ასეთი გაუქმების\n"
+"სერტიფიკატის გამოცემა შეუქცევადია."
 
 #: src/commands/genrevokecommand.cpp:81
 #, kde-format
@@ -1702,6 +1800,9 @@ msgid ""
 "import of the revocation<br>it is required to manually edit the "
 "certificate<br>before it can be imported."
 msgstr ""
+"სერტიფიკატი წარმატებით შეიქმნა.<br><br>შენიშვნა:<br>გაუქმების შემთხვევით "
+"შემოტანის თავიდან ასაცილებლად, <br>აუცილებელია, ხელით ჩაასწოროთ სერტიფიკატი "
+"მანამდე, სანამ<br>მას შემოიტანთ."
 
 #: src/commands/genrevokecommand.cpp:99
 #, kde-format
@@ -2092,6 +2193,9 @@ msgid ""
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 msgstr ""
+"<para>შემოიტანეთ სერტიფიკატი ანაბეჭდით</para><para><numid>%1</numid></"
+"para><para>და მომხმარებლის ID-ებით<list>%2</list></para><para>ეს თქვენი "
+"საკუთარი სერტიფიკატია?</para>"
 
 #: src/commands/importcertificatescommand.cpp:642
 #, kde-format
@@ -2234,6 +2338,9 @@ msgid ""
 "because of an unexpected error.</para><para>Please check the output of "
 "<icode>%1</icode> for details.</para>"
 msgstr ""
+"<para>GPG-ის პროცესის მცდელობა, აღედგინა საიდუმლო გასაღები, ნაადრევად "
+"დასრულდა, მოულოდნელი შეცდომის გამო.</para><para>ხელით გადაამოწმეთ გამოტანილი "
+"ინფორმაცია ხელით გაშვებული ბრძანებისთვის <icode>%1</icode>.</para>"
 
 #: src/commands/importpaperkeycommand.cpp:211
 #, kde-kuit-format
@@ -2338,6 +2445,9 @@ msgid ""
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
+"<p>ბარათი <em>%1</em> ამ სლოტში გასაღებს უკვე შეიცავს. გაგრძელება ამ "
+"გასაღებს <b>თავზე გადააწერს</b>.</p><p>თუ მარქაფი არ გაქვთ, გასაღების "
+"დაკარგვა შეუქცევადია.</p>"
 
 #: src/commands/keytocardcommand.cpp:286
 #, kde-format
@@ -2402,6 +2512,8 @@ msgid ""
 "<para>The key has been copied to the card.</para><para>Do you want to delete "
 "the copy of the key stored on this computer?</para>"
 msgstr ""
+"<para>გასაღები წარმატებით დაკოპირდა ბარათზე.</para><para>გნებავთ ამ "
+"გასაღების კომპიუტერში შენახული ასლი წავშალო?</para>"
 
 #: src/commands/keytocardcommand.cpp:486
 #, kde-format
@@ -2509,6 +2621,10 @@ msgid ""
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
+"<para> GPG ან GpgSM პროცესი, რომელმაც სცადა, სმარტ-ბარათი ესწავლა, "
+"დაუსრულებლად, მოულოდნელი შეცდომის გამო დასრულდა.</para><para>დეტალებისთვის "
+"შეამოწმეთ გამოტანილი ინფორმაცია ხელით გაშვებული პროცესისთვის<icode>%1</"
+"icode>.</para>"
 
 #: src/commands/learncardkeyscommand.cpp:101
 #, kde-format
@@ -2530,6 +2646,10 @@ msgid ""
 "configure a different X.509 directory service in the configuration dialog.</"
 "para>"
 msgstr ""
+"<para>X.509 კატალოგის სერვისებიდან ერთ-ერთმა სერტიფიკატები ანაბეჭდის გარეშე "
+"დააბრუნა. ეს სერტიფიკატები გამოტოვებულია, რადგან სერტიფიკატის უნიკალურ "
+"იდენტიფიკატორად მისი გასაღებები გამოიყენება.</para><para>შეიძლება, მორგების "
+"ფანჯარაში სხვა X.509 კატალოგის სერვისის მითითება გჭირდებათ.</para>"
 
 #: src/commands/lookupcertificatescommand.cpp:455
 #, kde-kuit-format
@@ -2540,6 +2660,10 @@ msgid ""
 "identifiers for certificates.</para><para>You may want to configure a "
 "different OpenPGP keyserver in the configuration dialog.</para>"
 msgstr ""
+"<para>OpenPGP-ის გასაღებების სერვერმა სერტიფიკატები ანაბეჭდების გარეშე "
+"დააბრუნა. ეს სერტიფიკატები გამოტოვებულია, რადგან სერტიფიკატების უნიკალურ "
+"იდენტიფიკატორად მათი ანაბეჭდები გამოიყენება.</para><para>შეიძლება, მორგების "
+"ფანჯარაში სხვა OpenPGP-ის გასაღების სერვერის მითითება გჭირდებათ.</para>"
 
 #: src/commands/lookupcertificatescommand.cpp:461
 #, kde-format
@@ -2582,6 +2706,10 @@ msgid ""
 "dialog, but if one of the configured servers is the limiting factor, you "
 "have to refine your search.</para>"
 msgstr ""
+"<para>მოთხოვნის შედეგი წაიკვეთა.</para><para>გადაცილებულია დამთხვევების "
+"ლოკალური ან დაშორებული ზღვარი.</para><para>შეგიძლიათ, ლოკალური ზღვარი "
+"მორგების ფანჯარაში გაზარდოთ, მაგრამ ზღვარს ერთ-ერთი მორგებული სერვერი "
+"აწესებს, ძებნის არეალის შევიწროვება მოგიწევთ.</para>"
 
 #: src/commands/lookupcertificatescommand.cpp:586
 #, kde-format
@@ -2598,6 +2726,10 @@ msgid ""
 "can configure directory servers here: <interface>Settings->Configure "
 "Kleopatra</interface>.</para>"
 msgstr ""
+"<para>კატალოგის სერვისები მორგებული არ გაქვთ.</para><para>იმისათვის, რომ "
+"კატალოგში მოძებნით, საჭიროა, ერთი კატალოგის სერვერი მაინც მიუთითოთ.</"
+"para><para>კატალოგის სერვისების მორგება შეგიძლიათ აქ: <interface>მორგება-"
+">Kleopatra-ის მორგება</interface>.</para>"
 
 #: src/commands/lookupcertificatescommand.cpp:602
 #, kde-format
@@ -2649,6 +2781,8 @@ msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
+"<para>ახალი OpenPGP სერტიფიკატის შექმნა ჩავარდა.</para><para>შეცდომა: "
+"<message>%1</message></para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:213
 #, kde-kuit-format
@@ -2657,6 +2791,8 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
+"<para>ახალი OpenPGP სერტიფიკატი წარმატებით შეიქმნა, მაგრამ ბრელოკში ვერ "
+"ვიპოვე.</para><para>ახალი სერტიფიკატის ანაბეჭდი:<nl/>%1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:220
 #: src/crypto/newsignencryptemailcontroller.cpp:382
@@ -2689,6 +2825,9 @@ msgid ""
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
+"<p>ეს ბარათი ამ სლოტში გასაღებს უკვე შეიცავს.გაგრძელება <b>თავზე გადააწერს</"
+"b> ამ გასაღებს.</p><p>თუ მარქაფი არ გაქვთ, არსებული გასაღების დაკარგვა "
+"შეუქცევადი იქნება.</p>"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:182
 #: src/commands/pivgeneratecardkeycommand.cpp:134
@@ -2787,6 +2926,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>სერტიფიკატის განახლება გასაღებების სერვერიდან, LDAP სერვერიდან ან "
+"Active Directory-დან ჩავარდა:</para><para><message>%1</message></"
+"para><para>სერტიფიკატის ვებ-გასაღებების კატალოგიდან განახლება ჩავარდა:</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:362
 #: src/commands/refreshcertificatecommand.cpp:393
@@ -2839,6 +2982,14 @@ msgid ""
 "want to continue with <resource>keys.gnupg.net</resource> as fallback server?"
 "</para>"
 msgstr ""
+"<para>OpenPGP-ის კატალოგის სერვისი მორგებული არაა.</para><para>თუ ყველა "
+"სერტიფიკატს არ აქვს მათი სასურველი სახელი (რამდენიმეს არ აქვს), მეორე "
+"სერვერიც უნდა მიუთითოთ, საიდანაც გამოვითხოვთ.</para><para>რადგან არც ერთ "
+"მითითებული არაა, <application>Kleopatra</application> <resource>keys.gnupg."
+"net</resource>-ს გამოიყენებს, გადასართავად.</para><para>OpenPGP-ის კატალოგის "
+"სერვერები, შეგიძლიათ, Kleopatra-ის მორგების ფანჯარაში მიუთითოთ.</"
+"para><para>გნებავთ, გავაგრძელო <resource>keys.gnupg.net</resource>-ის "
+"გამოყენება?</para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:52
 #: src/commands/refreshopenpgpcertscommand.cpp:67
@@ -2858,6 +3009,12 @@ msgid ""
 "complete, depending on your network connection, and the number of "
 "certificates to check.</para> <para>Are you sure you want to continue?</para>"
 msgstr ""
+"<para>OpenPGP-ის სერტიფიკატების განახლება ყველა სერტიფიკატის თავიდან "
+"გადმოწერას შეიცავს, შესამოწმებლად, ამასობაში, რომელიმე ხომ არ გაუქმდა.</"
+"para><para>ამან როგორც თქვენზე, ისე სხვების ქსელურ მიერთებაზე, საკმაოდ, დიდი "
+"კვალი შეიძლება, დატოვოს და საათზე მეტი დასჭირდეს ქსელური მიერთების სიჩქარეზე "
+"და შესამოწმებელი სერტიფიკატების რაოდენობაზე დამოკიდებულებით.</"
+"para><para>დარწმუნებული ბრძანდებით, რომ გნებავთ, გააგრძელოთ?</para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:87
 #, kde-format
@@ -2879,6 +3036,9 @@ msgid ""
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
+"<para>GPG-ის პროცესმა სცადა, განეახლებინა OpenPGP-ის სერტიფიკატები, "
+"ნაადრევად დასრულდა, მოულოდნელი შეცდომის გამო.</para><para>ხელით გადაამოწმეთ "
+"გამოტანილი ინფორმაცია ხელით გაშვებული ბრძანებისთვის <icode>%1</icode>.</para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:107
 #, kde-kuit-format
@@ -2887,6 +3047,8 @@ msgid ""
 "<para>An error occurred while trying to refresh OpenPGP certificates.</para> "
 "<para>The output from <command>%1</command> was: <bcode>%2</bcode></para>"
 msgstr ""
+"<para>შეცდომა OpenPGP-ის სერტიფიკატების განახლების მცდელობისას.</para> "
+"<para>ბრძანებამ <command>%1</command> გამოიტანა: <bcode>%2</bcode></para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:115
 #, kde-format
@@ -2905,6 +3067,12 @@ msgid ""
 "your network connection, and the number of certificates to check.</para> "
 "<para>Are you sure you want to continue?</para>"
 msgstr ""
+"<para>X.509 სერტიფიკატების განახლება შეიცავს CRL-ების გადმოწერას ყველა "
+"სერტიფიკატისთვის მაშინაც კი, თუ ისინი ისედაც ვარგისია.</para><para>ამან "
+"როგორც თქვენზე, ისე სხვების ქსელურ მიერთებაზე, საკმაოდ, დიდი კვალი შეიძლება, "
+"დატოვოს და საათზე მეტი დასჭირდეს ქსელური მიერთების სიჩქარეზე და "
+"შესამოწმებელი სერტიფიკატების რაოდენობაზე დამოკიდებულებით.</"
+"para><para>დარწმუნებული ბრძანდებით, რომ გნებავთ, გააგრძელოთ?</para>"
 
 #: src/commands/refreshx509certscommand.cpp:48
 #, kde-format
@@ -2932,6 +3100,9 @@ msgid ""
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
+"<para>GpgSM-ის პროცესმა სცადა, განეახლებინა OpenPGP-ის სერტიფიკატები, "
+"ნაადრევად დასრულდა, მოულოდნელი შეცდომის გამო.</para><para>ხელით გადაამოწმეთ "
+"გამოტანილი ინფორმაცია ხელით გაშვებული ბრძანებისთვის <icode>%1</icode>.</para>"
 
 #: src/commands/refreshx509certscommand.cpp:88
 #, kde-kuit-format
@@ -2941,6 +3112,8 @@ msgid ""
 "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
 "para>"
 msgstr ""
+"<para>შეცდომა X.509-ის სერტიფიკატების განახლების მცდელობისას.</para> "
+"<para>ბრძანებამ <command>%1</command> გამოიტანა: <bcode>%2</bcode></para>"
 
 #: src/commands/refreshx509certscommand.cpp:96
 #, kde-format
@@ -2955,6 +3128,8 @@ msgid ""
 "<para>You are about to revoke the certification of user ID<nl/>%1<nl/>made "
 "with the key<nl/>%2.</para>"
 msgstr ""
+"<para>აპირებთ, გააუქმოთ სერტიფიკაცია მომხმარებლის ID-სთვის<nl/>%1<nl/"
+">რომელიც მოხდა გასაღებით<nl/>%2.</para>"
 
 #: src/commands/revokecertificationcommand.cpp:83
 #: src/commands/revokecertificationcommand.cpp:97
@@ -2996,7 +3171,11 @@ msgid_plural ""
 "<para>%1 certifications have been revoked successfully.</para><para>Do you "
 "want to publish the revocations?</para>"
 msgstr[0] ""
+"<para>სერტიფიკაცია წარმატებით გაუქმდა.</para><para>გნებავთ, გამოაქვეყნოთ "
+"გაუქმება?</para>"
 msgstr[1] ""
+"<para>%1 სერტიფიკაცია წარმატებით გაუქმდა.</para><para>გნებავთ, გამოაქვეყნოთ "
+"გაუქმება?</para>"
 
 #: src/commands/revokecertificationcommand.cpp:208
 #, kde-format
@@ -3019,6 +3198,8 @@ msgid ""
 "<para>The revocation of the certification of user ID<nl/>%1<nl/>made with "
 "key<nl/>%2<nl/>failed:</para><para><message>%3</message></para>"
 msgstr ""
+"<para>სერტიფიკაციის გაუქმება მომხმარებლის ID-სთვის<nl/>%1<nl/>რომელიც მოხდა "
+"გასაღებით<nl/>%2<nl/>ჩავარდა:</para><para><message>%3</message></para>"
 
 #: src/commands/revokecertificationcommand.cpp:332
 #, kde-format
@@ -3564,6 +3745,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"ნაგულისხმევად, Kleopatra მომწოდებლის სერტიფიკატის კატალოგებს (WKD) , მხოლოდ, "
+"იმ მომხმარებლის ID-ებისთვის ეკითხება, რომლებიც, თავიდან, WKD-დან OpenPGP "
+"სერტიფიკატის განახლებისას იქნა მიღებული. თუ ეს პარამეტრი ჩართულია, Kleopatra "
+"WKD-ებს ყველა მომხმარებლის ID-ებისთვის გამოითხოვს."
 
 #: src/conf/dirservconfigpage.cpp:468 src/conf/dirservconfigpage.cpp:472
 #, kde-format
@@ -3597,7 +3782,7 @@ msgstr "დახმარება"
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_group-feature_gnupg_en.pdf"
-msgstr ""
+msgstr "handout_group-feature_gnupg_en.pdf"
 
 #: src/conf/groupsconfigpage.cpp:81
 #, kde-format
@@ -3616,6 +3801,8 @@ msgid ""
 "<para>The certificates or the certificate groups have been updated in the "
 "background.</para><para>Do you want to save your changes?</para>"
 msgstr ""
+"<para>სერტიფიკატები ან სერტიფიკატის ჯგუფები ფონურად განახლდა.</"
+"para><para>გნებავთ, შეინახოთ თქვენი ცვლილებები?</para>"
 
 #: src/conf/groupsconfigpage.cpp:89
 #, kde-format
@@ -3760,6 +3947,10 @@ msgid ""
 "implicitly whenever significant files in ~/.gnupg change. This option "
 "therefore only affects external factors of certificate validity."
 msgstr ""
+"ეს პარამეტრი სერტიფიკატების ვარგისიანობის განმეორებად შემოწმებას ჩართავს. "
+"ასევე, შეგიძლიათ, აირჩიოთ შემოწმების ინტერვალი (საათებში). დაიმახსოვრეთ, რომ "
+"გადამოწმება აშკარად ხდება, როცა ~/.gnupg-ში მნიშვნელოვანი ფაილები იცვლება. "
+"ანუ, ეს პარამეტრი სერტიფიკატების ვარგისიანობის, მხოლოდ, გარე ფაქტორებს ეხება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, intervalRefreshCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:21
@@ -3787,6 +3978,8 @@ msgid ""
 "the Online Certificates Status Protocol (OCSP). Fill in the URL of the OCSP "
 "responder below."
 msgstr ""
+"თუ ეს თოლია დასმულია, S/MIME სერტიფიკატები ონლაინ-სერტიფიკატების სტატუსის "
+"პროტოკოლით (OCSP) გადამოწმდება. შეავსეთ ქვემოთ OCSP მოპასუხის ბმული."
 
 #. i18n: ectx: property (text), widget (QCheckBox, OCSPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:71
@@ -3813,6 +4006,8 @@ msgid ""
 "Enter here the address of the server for online validation of certificates "
 "(OCSP responder). The URL is usually starting with http://."
 msgstr ""
+"შეიყვანეთ აქ სერტიფიკატის ონლაინ-გადამოწმების მისამართი (OCSP მოპასუხე). "
+"ბმული ჩვეულებრივ იწყება პრეფიქსით http://."
 
 #. i18n: ectx: property (text), widget (QLabel, OCSPResponderSignatureLabel)
 #: src/conf/smimevalidationconfigurationwidget.ui:104
@@ -3842,6 +4037,8 @@ msgid ""
 "certificate policy is allowed. If this option is selected, policies are not "
 "checked."
 msgstr ""
+"ნაგულისხმევად GnuPG სერტიფიკატის პოლიტიკის დაშვებულობის შესამოწმებლად ფაილს "
+"~/.gnupg/policies.txt-ს ყენებს. თუ ეს თოლია დასმულია, პოლიტიკა არ შემოწმდება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:134
@@ -3876,6 +4073,12 @@ msgid ""
 "allowing trusted root certificates into your certificate store will "
 "undermine the security of the system."
 msgstr ""
+"თუ ეს პარამეტრი, ჩართულია, მაშინ, როცა ძირითადი CA სერტიფიკატის შემოტანა "
+"მიმდინარეობს, გკითხავთ, დაადასტუროთ მისი ანაბეჭდ და მდგომარეობა და არის თუ "
+"არა ეს ძირითადი სერტიფიკატი სანდო. მანამდე, სანამ ამ სერტიფიკატით "
+"სერტიფიცირებული სერტიფიკატები სანდო გახდება, სანდოდ ძირითადი სერტიფიკატი "
+"უნდა გამოაცხადოთ. მაგრამ საეჭვო სერტიფიკატების სანდოდ გამოძახებამ, შეიძლება, "
+"თქვენი სისტემა უფრო მოწყვლადი გახადოს."
 
 #. i18n: ectx: property (text), widget (QCheckBox, allowMarkTrustedCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:154
@@ -3927,6 +4130,12 @@ msgid ""
 "used.  With this option, all entries using the HTTP scheme are ignored when "
 "looking for a suitable DP."
 msgstr ""
+"როცა ეძებთ CRL-ის მდებარეობას, დასატესტი სერტიფიკატი, ჩვეულებრივ, შეიცავს "
+"ელემენტს, რომელიც ცნობილია, როგორც \"CRL განაწილების წერტილის\" (DP) "
+"ელემენტები. ისინი აღწერენ ბმულს, რომელიც შეიცავს აღწერას, როგორ ვიქონიოთ "
+"წვდომა ბმულთან. გამოიყენება პირველი აღმოჩენილი DP.  ამ პარამეტრით ყველა "
+"ელემენტი, რომელიც HTTP სქემას იყენებს, გამოტოვებულია, როცა შესაბამის DP-ს "
+"ვეძებ."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreHTTPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:191
@@ -3966,6 +4175,10 @@ msgid ""
 "requests relating to S/MIME.</p><p>The syntax is host:port, for instance "
 "myproxy.nowhere.com:3128.</p>"
 msgstr ""
+"<p>თუ სისტემური პროქსი დაყეენბული არაა, ან გჭირდებათ, GpgSM-ისთვის სხვა "
+"პროქსი გამოიყენოთ, მისი მისამართი, აქ შეგიძლიათ, შეიყვანოთ.</p><p>ის S/MIME-"
+"სთან დაკავშირებული ყველა HTTP მოთხოვნისთვის იქნება გამოყენებული.</"
+"p><p>სინტაქსია ჰოსტი:პორტი. მაგ: chemiproqsi.kompania.ge:3128.</p>"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabLDAP)
 #: src/conf/smimevalidationconfigurationwidget.ui:246
@@ -3995,6 +4208,12 @@ msgid ""
 "used.  With this option, all entries using the LDAP scheme are ignored when "
 "looking for a suitable DP."
 msgstr ""
+"როცა ეძებთ CRL-ის მდებარეობას, დასატესტი სერტიფიკატი, ჩვეულებრივ, შეიცავს "
+"ელემენტს, რომელიც ცნობილია, როგორც \"CRL განაწილების წერტილის\" (DP) "
+"ელემენტები. ისინი აღწერენ ბმულს, რომელიც შეიცავს აღწერას, როგორ ვიქონიოთ "
+"წვდომა ბმულთან. გამოიყენება პირველი აღმოჩენილი DP.  ამ პარამეტრით ყველა "
+"ელემენტი, რომელიც LDAP სქემას იყენებს, გამოტოვებულია, როცა შესაბამის DP-ს "
+"ვეძებ."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreLDAPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:265
@@ -4020,6 +4239,13 @@ msgid ""
 "The syntax is \"HOST\" or \"HOST:PORT\". If PORT is omitted, port 389 "
 "(standard LDAP port) is used."
 msgstr ""
+"LDAP სერვერის აქ შეყვანა გამოიწვევს იმას, რომ ყველა LDAP მოთხოვნა ჯერ ამ "
+"სერვერთან მივა. უფრო ზუსტად, ეს პარამეტრი გადაფარავს ყველა მითითებულ ჰოსტს "
+"და პორტს LDAP-ის ბმულში და ასევე გამოიყენება, თუ ბმულიდან ჰოსტი და პორტი "
+"გამოტოვეთ. სხვა LDAP სერვერები გამოყენებული, მხოლოდ, მაშინ იქნება, თუ "
+"\"პროქსისთან\" მიერთება ჩავარდება.\n"
+"სინტაქსია \"ჰოსტი\" ან \"ჰოსტი:პორტი\". თუ პორტი გამოტოვებულია, გამოიყენება "
+"პორტი 389 (სტანდარტული LDAP)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
@@ -4028,6 +4254,10 @@ msgid ""
 "manually select what to do with the files now.<nl/>If they contain signed or "
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
+"ერთ ან მეტ ფაილში დაშიფრული ან ხელმოწერილი მონაცემების აღმოჩენა ვერ მოხერხდა."
+"<nl/>შეგიძლიათ, ხელით მიუთითოთ, იმ ფაილებს რა ვუყო.<nl/>თუ ისინი შეიცავდნენ "
+"ხელმოწერილ ან დაშიფრულ მონაცემებს, მოგვწერეთ ამ შეცდომის შესახებ (იხილეთ "
+"დახმარება->შეცდომის ანგარიში)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
@@ -4144,6 +4374,9 @@ msgid ""
 "Create Checksums: input files must be either all checksum files or all files "
 "to be checksummed, not a mixture of both."
 msgstr ""
+"საკონტროლო ჯამების შექმნა: შეყვანილი ფაილები ან ყველა საკონტროლო ჯამის "
+"შემცველი ფაილი უნდა იყოს, ან ფაილები, რომლის საკონტროლო ჯამების გამოთვლაც "
+"გნებავთ, მაგრამ არა შერეული."
 
 #: src/crypto/createchecksumscontroller.cpp:289
 #: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:873
@@ -4339,6 +4572,7 @@ msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
 msgstr ""
+"ხელმოწერა ვარგისია, მაგრამ ნდობა სერტიფიკატის ვარგისიანობაში შეზღუდულია."
 
 #: src/crypto/decryptverifytask.cpp:223
 #, kde-format
@@ -4650,6 +4884,8 @@ msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 msgstr ""
+"ვერ გავარკვიე, ეს S/MIME ხელმოწერა/დაშიფრული ტექსტია, თუ OpenPGP - თუ ის არც "
+"ხელმოწერაა და არც შიფრი?"
 
 #: src/crypto/decryptverifytask.cpp:1173 src/crypto/decryptverifytask.cpp:1448
 #, kde-format
@@ -4662,6 +4898,7 @@ msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr ""
+"ვერ დავადგინე, ეს S/MIME-თია დაშიფრული, თუ OpenPGP-ით. თუ საერთოდ შიფრი არაა?"
 
 #: src/crypto/decryptverifytask.cpp:1595 src/crypto/decryptverifytask.cpp:1802
 #, kde-format
@@ -4669,6 +4906,7 @@ msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr ""
+"ვერ დავადგინე, ეს S/MIME ხელმოწერაა, თუ OpenPGP. თუ საერთოდ ხელმოწერა არაა?"
 
 #: src/crypto/decryptverifytask.cpp:1603
 #, kde-format
@@ -4879,6 +5117,8 @@ msgid ""
 "Here you can check and, if needed, override the operations Kleopatra "
 "detected for the input given."
 msgstr ""
+"აქ შეგიძლიათ შეამოწმოთ და თუ საჭიროა, გადაფაროთ ოპერაციები, რომლებიც "
+"Kleopatra-მა შეყვანილი მონაცემებისთვის დაადგინა."
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
 #, kde-format
@@ -4972,6 +5212,8 @@ msgid ""
 "<b>Warning:</b> None of the selected certificates seem to be your own. You "
 "will not be able to decrypt the encrypted data again."
 msgstr ""
+"<b>გაფრთხილება:</b>მონიშნული სერტიფიკატებიდან თქვენ არცერთი გეკუთვნით. "
+"დაშიფრულ მონაცემებს კიდევ ერთხელ ვეღარ გაშიფრავთ."
 
 #: src/crypto/gui/resolverecipientspage.cpp:560
 #, kde-format
@@ -5075,6 +5317,9 @@ msgid ""
 "recipients/senders of the message.\n"
 "Please select the correct certificates for each recipient:"
 msgstr ""
+"Kleopatra-ს არ შეუძლია შეტყობინების ყველა მიმღები/გამგზავნის სერტიფიკატის "
+"შესაბამისობის დადგენა.\n"
+"აირჩიეთ სწორი სერტიფიკატი თითოეული მიმღებისთვის:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:96
 #, kde-format
@@ -5083,6 +5328,9 @@ msgid ""
 "sender of the message.\n"
 "Please select the correct certificates for the sender:"
 msgstr ""
+"Kleopatra-ს არ შეუძლია შეტყობინების ყველა გამგზავნის სერტიფიკატის "
+"შესაბამისობის დადგენა.\n"
+"აირჩიეთ სწორი სერტიფიკატი თითოეული გამგზავნისთვის:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:100
 #, kde-format
@@ -5091,6 +5339,9 @@ msgid ""
 "recipients of the message.\n"
 "Please select the correct certificates for each recipient:"
 msgstr ""
+"Kleopatra-ს არ შეუძლია შეტყობინების ყველა მიმღების სერტიფიკატის "
+"შესაბამისობის დადგენა.\n"
+"აირჩიეთ სწორი სერტიფიკატი თითოეული მიმღებისთვის:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:108
 #, kde-format
@@ -5255,6 +5506,13 @@ msgid ""
 "Kleopatra.</para><para>Future versions of Kleopatra are expected to also "
 "support detached signatures in this case.</para>"
 msgstr ""
+"<para>დაარქივება მხოლოდ-ხელმოწერასთან ერთად, ამჟამად, მოითხოვს რაღაცას, რაც "
+"ცნობილია მღვრიე ხელმოწერების სახით - მოხსნილებისგან განსხვავებით, ისინი "
+"ხელმოწერაში დამატებით ინფორმაციას ინახავენ.</para><para>ეს ფორმატი, მთლად, "
+"ჩვეულებრივი არაა. ალბათ, უმჯობესია, ფაილები ცალკე დააარქივოთ და შემდეგ "
+"მოაწეროთ ხელი, Klepatra-ის გამოყენებით.</para><para>Kleopatra-ის მომავალ "
+"ვერსიებს, ალბათ, ამ შემთხვევაში, მოხსნილი ხელმოწერების მხარდაჭერაც ექნება.</"
+"para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:280
 #, kde-format
@@ -5271,6 +5529,10 @@ msgid ""
 "once encrypted.</para><para>Do you want to continue, or cancel to change the "
 "recipient selection?</para>"
 msgstr ""
+"<para>მიმღებები, რომლებისთვისაც შიფრავთ, თქვენ არ შეგიცავთ.</para><para>ეს "
+"ნიშნავს, რომ მას შემდეგ, რაც მონაცემებს დაშიფრავთ, მისი გაშიფვრა აღარ "
+"შეგეძლებათ.</para><para>გააგრძელებთ, გააუქმებთ, თუ შეცვლით მიმღებების "
+"არჩევანს?</para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:302
 #, kde-format
@@ -5478,6 +5740,10 @@ msgid ""
 "key. Using a password is <b>less secure</b> then public key cryptography. "
 "Even if you pick a very strong password."
 msgstr ""
+"მიმღებების გასაღებების გარდა, თქვენი მონაცემები, პაროლითაც შეგიძლიათ, "
+"დაშიფროთ. ყველას, ვისაც ეს პაროლი აქვს, შეუძლია, გასაღების ქონის გარეშეც "
+"წაიკითხოს ის. პაროლის გამოყენება, საჯარო გასაღების გამოყენებაზე <b>ნაკლებად "
+"დაცულია</b>."
 
 #: src/crypto/gui/signencryptwidget.cpp:359
 #, kde-format
@@ -5883,6 +6149,8 @@ msgid ""
 "<div>This is how the new user ID will be stored in the certificate:</"
 "div><center><strong>%1</strong></center>"
 msgstr ""
+"<div>ახალი მომხმარებლის ID სერტიფიკატში ასე იქნება დამახსოვრებული:</"
+"div><center><strong>%1</strong></center>"
 
 #: src/dialogs/certificatedetailsdialog.cpp:63
 #, kde-format
@@ -6158,6 +6426,9 @@ msgid ""
 "publicly declare that a key shall not anymore be used.  It is not possible "
 "to retract such a revocation certificate once it has been published."
 msgstr ""
+"გაუქმების სერტიფიკატი \"მკვლელი ჩასართავის\" მსგავსი რამაა, რათა საჯაროდ "
+"განაცხადოთ, რომ ამ გასაღების გამოყენება აღარ უნდა მოხდეს.   ასეთი გაუქმების "
+"სერტიფიკატის გამოცემა შეუქცევადია."
 
 #: src/dialogs/certificatedetailswidget.cpp:509
 #, kde-format
@@ -6219,8 +6490,8 @@ msgstr "მომხმარებლის ID-ების სერტიფ�
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "მომხმარებლის ID-ების სერტიფიკაცია..."
+msgstr[1] "მომხმარებლის ID-ების სერტიფიკაცია..."
 
 #: src/dialogs/certificatedetailswidget.cpp:845
 #, kde-format
@@ -6451,6 +6722,10 @@ msgid ""
 "the key you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
+"გადაამოწმეთ ანაბეჭდი და მონიშნეთ მომხმარებლის ID-ები, რომლებიც "
+"სერტიფიცირებაც გნებავთ, შემდეგ კი აირჩიეთ გასაღები.<br><i>დაიმახსოვრეთ: "
+"გასაღების და მისი მფლობელის აშკარა იდენტიფიკაცია მხოლოდ ანაბეჭდითაა "
+"შესაძლებელი.</i>"
 
 #: src/dialogs/certifywidget.cpp:295
 #, kde-format
@@ -6470,6 +6745,8 @@ msgid ""
 "Click to set the trust level of the selected certification key to ultimate "
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
+"დააწკაპუნეთ მონიშნული სერტიფიცირების ნდობის დონის უპირობო ნდობაზე "
+"დასაყენებლად. ეს, ჩვეულებრივ, ისაა, რასაც თქვენს გასაღებებს უშვრებით."
 
 #: src/dialogs/certifywidget.cpp:324
 #, kde-format
@@ -6522,6 +6799,8 @@ msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
+"ჭდეები, რომლებიც შექმნეს მათ, ვისაც სრული სერტიფიკაციის ნდობა აქვთ, "
+"ნაჩვენებია ამ გასაღებების სიაში და შეგიძლიათ, მოძებნოთ."
 
 #: src/dialogs/certifywidget.cpp:386
 #, kde-format
@@ -6540,6 +6819,8 @@ msgid ""
 "certification to a certain amount of time. Once the expiration date has "
 "passed, your certification is no longer valid."
 msgstr ""
+"ამოწურვის ვადის დაყენებით, შეგიძლიათ თქვენი სერტიფიკატის ვარგისიანობის ვადა "
+"შეზღუდოთ. როცა ვადა ამოიწურება, სერტიფიკატი ვარგისი აღარ იქნება."
 
 #: src/dialogs/certifywidget.cpp:409
 #, kde-format
@@ -6559,6 +6840,9 @@ msgid ""
 "certified by the trusted introducer are treated as certified, i.e. a trusted "
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
+"ყველა სერტიფიკატი, რომლის ელფოსტის მისამართიც ეკუთვნის დომენს, რომელიც "
+"სანდრო წარმომდგენის სერტიფიცირებულია, როგორც სანდო, მიღებულია, როგორც "
+"სერტიფიცირებული, ანუ, სანდო წარმომდგენი დომენისთვის შუალედური CA-ის მსგავსია."
 
 #: src/dialogs/certifywidget.cpp:422
 #, kde-format
@@ -6573,6 +6857,10 @@ msgid ""
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
+"გადაამოწმეთ ანაბეჭდები, მონიშნეთ მომხმარებლის ID-ები, რომლის სერტიფიცირებაც "
+"გნებავთ და აირჩიეთ გასაღები, რომლითაც გნებავთ ამ მომხმარებლის ID-ების "
+"სერტიფიცირება.<br><i>დაიმახსოვრეთ: სერტიფიკატის და მისი მფლობელის აშკარა "
+"იდენტიფიკაცია მხოლოდ ანაბეჭდით შეიძლება.</i>"
 
 #: src/dialogs/certifywidget.cpp:563
 #, kde-format
@@ -6625,6 +6913,8 @@ msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
 "select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr ""
+"ეს სერტიფიკატები წაიშლება იმის მიუხედავად, რომ ისინი <b>არ მოგინიშნავთ</b> "
+"(<a href=\"whatisthis://\">რატომ?</a>):"
 
 #: src/dialogs/deletecertificatesdialog.cpp:114
 #, kde-kuit-format
@@ -6639,6 +6929,13 @@ msgid ""
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
+"<title>რატომ გნებავთ, წაშალოთ მეტი სერტიფიკატი, ვიდრე მე მოვნიშნე?</"
+"title><para>როცა შლით CA სერტიფიკატებს (ორივე, ძირითად და შუალედურ CA-ებს), "
+"სერტიფიკატები, რომლებიც მათ გამოსცეს, ასევე წაიშლება.</para><para>ამის "
+"დანახვა <application>Kleopatra</application>-ის იერარქიული ხედის რეჟიმში "
+"შეგიძლიათ: ამ რეჟიმში, თუ წაშლით სერტიფიკატს, რომელსაც შვილები გააჩნია, ეს "
+"შვილებიც წაიშლება. CA სერტიფიკატები რაღაც საქაღალდეების მსგავსია: როცა შლით "
+"საქაღალდეს, მისი შემცველობაც იშლება.</para>"
 
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
@@ -6651,7 +6948,13 @@ msgid_plural ""
 "material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+"სერტიფიკატი, რომელიც თვითონ წაიშლება. ის შეიცავს პირადი გასაღების მასალას, "
+"რომელიც საჭიროა, წარსული დაშიფრული ურთიერთობის გასაშიფრად და ამიტომ, არ უნდა "
+"წაიშალოს."
 msgstr[1] ""
+"ყველა ის სერტიფიკატი, რომელიც თვითონ წაიშლება. ისინი შეიცავენ პირადი "
+"გასაღების მასალას, რომელიც საჭიროა, წარსული დაშიფრული ურთიერთობის გასაშიფრად "
+"და ამიტომ, არ უნდა წაიშალოს."
 
 #: src/dialogs/deletecertificatesdialog.cpp:205
 #, kde-format
@@ -6664,7 +6967,13 @@ msgid_plural ""
 "key material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+"ერთ-ერთი სერტიფიკატი თვითონ წაიშლება. ის შეიცავს პირადი გასაღების მასალას, "
+"რომელიც საჭიროა, წარსული დაშიფრული ურთიერთობის გასაშიფრად და ამიტომ, არ უნდა "
+"წაიშალოს."
 msgstr[1] ""
+"ზოგიერთი სერტიფიკატი თვითონ წაიშლება. ისინი შეიცავენ პირადი გასაღების "
+"მასალას, რომელიც საჭიროა, წარსული დაშიფრული ურთიერთობის გასაშიფრად და "
+"ამიტომ, არ უნდა წაიშალოს."
 
 #: src/dialogs/deletecertificatesdialog.cpp:220 src/view/pgpcardwidget.cpp:402
 #, kde-format
@@ -6924,6 +7233,8 @@ msgid ""
 "The name must be in the format required by your organization and it must not "
 "include <, >, and @."
 msgstr ""
+"სახელის ფორმატი თქვენი ორგანიზაციის მიერ მოთხოვნილ ფორმატში უნდა ჯდებოდა და "
+"არ უნდა შეიცავდეს მეტობის, ნაკლებობისა და ელფოსტის ნიშნებს."
 
 #: src/dialogs/nameandemailwidget.cpp:102
 #, kde-format
@@ -6960,6 +7271,8 @@ msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
 "for the passphrase during key generation."
 msgstr ""
+"ამ საიდუმლო გასაღებს აღუდგენელი აკვანძო ფრაზით დაშიფრავს. ამ ფრაზას "
+"გასაღების გენერაცისას გკითხავთ."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
 #: src/newcertificatewizard/enterdetailspage.cpp:177
@@ -7073,6 +7386,9 @@ msgid ""
 "test for details.</para><para>Note that all but the first failure might be "
 "due to prior tests failing.</para>"
 msgstr ""
+"<para>ეს Kleopatra-ის თვითტესტის შედეგია. დეტალებისთვის დააწკაპუნეთ ტესტზე.</"
+"para><para>დაიმახსოვრეთ, რომ ყველა, პირველის გარდა, შეიძლება ჩავარდეს, "
+"რადგან მისი წინა ტესტი ჩავარდა.</para>"
 
 #: src/dialogs/selftestdialog.cpp:387
 #, kde-format
@@ -7134,6 +7450,8 @@ msgid ""
 "No NullPin found. <warning>If this PIN was not set by you personally, the "
 "card might have been tampered with.</warning>"
 msgstr ""
+"NullPin აღმოჩენილი არაა.<warning>თუ ეს PIN-კოდი თქვენს მიერ არ დაყენებულა, "
+"შეიძლება, ბარათს ვინმე უჩხიკინებდა.</warning>"
 
 #: src/dialogs/setinitialpindialog.cpp:76
 #, kde-format
@@ -7165,6 +7483,13 @@ msgid ""
 "</ol>\n"
 "You need to set initial PINs before you can use them.</p>"
 msgstr ""
+"<p>ამ სმარტ-ბარათზე ადგილი ორი სერტიფიკატისთვისაა:\n"
+"<ol>\n"
+"<li>ნორმალური სერტიფიკატი</li>\n"
+"<li>სპეციალური სერტიფიკატი <em>კვალიფიცირებული ხელმოწერების</em> "
+"შესაქმნელად, გერმანული Signaturgesetz-ის მიხედვით</li>\n"
+"</ol>\n"
+"მათ გამოყენებამდე საწყისი PIN-კოდი უნდა დააყენოთ.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, nksLB)
 #: src/dialogs/setinitialpindialog.ui:27
@@ -7443,6 +7768,8 @@ msgid ""
 "You cannot revoke this certification because it wasn't made with one of your "
 "keys (or the required secret key is missing)."
 msgstr ""
+"ამ სერტიფიცირების გაუქმება არ შეგიძლიათ, რადგან ის თქვენი გასაღებით არ "
+"შექმნილა (ან საჭირო საიდუმლო გასაღები ვერ ვიპოვე)."
 
 #: src/dialogs/weboftrustwidget.cpp:212
 #, kde-format
@@ -7516,6 +7843,9 @@ msgid ""
 "clients which do not support inline display of D/V results, such as MS "
 "Outlook."
 msgstr ""
+"გაშიფვრის/გადამოწმების შედეგის მხტუნარას დამახსოვრებული ზომა და მდებარეობა "
+"გამოიყენება კლიენტების მიერ, რომლებსაც გ/გ შედეგების ხაზშივე ჩვენება არ "
+"შეუძლიათ. მაგ: MS Outlook."
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:10
@@ -7542,6 +7872,8 @@ msgid ""
 "input files but instead automatically starts the operations it detects as "
 "applicable to the input."
 msgstr ""
+"თუ ამ პარამეტრს დააყენებთ, Kleopatra აღარ გკითხავთ, რა ვუყო შეყვანილ "
+"ფაილებს. ის, შეყვანაზე დამოკიდებულებით, შესაბამის ოპერაციას გაუშვებს."
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:20
@@ -7572,6 +7904,8 @@ msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
 "archive with this command."
 msgstr ""
+"ერთზე მეტი ფაილის ან საქაღალდის დაშიფვრისას Kleopatra მათ დაშიფრულ არქივს ამ "
+"ბრძანებით შექმნის."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
@@ -7629,6 +7963,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"თუ ჩართულია, S/MIME სერტიფიკატის საერთო სახელი(CN) ველი წინასწარ შეივსება "
+"სისტემიდან აღებული ინფორმაციით.\n"
+"        მაგ: სამუშაო მაგიდის ელფოსტის პარამეტრებიდან, ან, Windows-ზე, Active "
+"Directory-დან."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
@@ -7661,6 +7999,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"თუ ჩართულია, OpenPGP და S/MIME სერტიფიკატის ელფოსტის ველი წინასწარ შეივსება "
+"სისტემიდან აღებული ინფორმაციით.\n"
+"        მაგ: სამუშაო მაგიდის ელფოსტის პარამეტრებიდან, ან, Windows-ზე, Active "
+"Directory-დან."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
@@ -7692,6 +8034,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"თუ ჩართულია, OpenPGP სერტიფიკატის სახელის ველი წინასწარ შეივსება სისტემიდან "
+"აღებული ინფორმაციით.\n"
+"        მაგ: სამუშაო მაგიდის ელფოსტის პარამეტრებიდან, ან, Windows-ზე, Active "
+"Directory-დან."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:42
@@ -7717,6 +8063,12 @@ msgid ""
 "(possibly clamped to the allowed minimum or maximum validity period) by "
 "default."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რამდენი დღე იქნება ახალი OpenPGP გასაღები "
+"ნაგულისხმევად ვარგისი, ან, სხვა სიტყვებით, რამდენ დღეში ამოიწურება ამ "
+"გასაღების ვადა. დააყენეთ 0 უვადო გასაღებისთვის. თუ ეს პარამეტრი დაყენებული "
+"არაა ან მნიშვნელობა უარყოფითია, OpenPGP-ის გასაღებები სამი წელი იქნება "
+"ვარგისი (შეიძლება, ოდნავ წაკვეთილი, რათა მინიმალურ ან მაქსიმალურ "
+"ვარგისიანობის შუალედში ჩაჯდეს), ნაგულისხმევად."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -7739,6 +8091,9 @@ msgid ""
 "or, in other words, after how many days the new key will expire at the "
 "earliest."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რამდენი დღე მაინც იქნება ახალი OpenPGP გასაღები "
+"ვარგისი, ან, სხვა სიტყვებით, რამდენ დღეში, მინიმუმ, ამოიწურება ამ გასაღების "
+"ვადა."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
@@ -7762,6 +8117,10 @@ msgid ""
 "If this setting is not set or if it is set to a negative value, then "
 "unlimited validity is allowed."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რამდენი დღე იქნება ახალი OpenPGP გასაღები ვარგისი, "
+"მაქსიმუმ, სხვა სიტყვებით, რამდენ დღეში, მაქსიმუმ, ამოიწურება ამ გასაღების "
+"ვადა. თუ ეს პარამეტრი დაყენებული არა ან მნიშვნელობა უარყოფითია, ვარგისიანობა "
+"უვადო იქნება."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
@@ -7798,6 +8157,9 @@ msgid ""
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რამდენი დღე იქნება სერტიფიკაცია ვარგისი "
+"ნაგულისხმევად, ან, სხვა სიტყვებით, რამდენ ხანში ამოიწურება ახალი "
+"სერტიფიკაციის ვადა. სერტიფიკაციების უვადო ვარგისიანობისთვის დააყენეთ 0."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75
@@ -7895,6 +8257,8 @@ msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
 "signatures with S/MIME certificates."
 msgstr ""
+"თუ ცრუა, Kleopatra არ შემოგთავაზებთ ფუნქციონალს ხელმოწერების S/MIME "
+"სერტიფიკატებით შექმნისთვის."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:113
@@ -7971,6 +8335,11 @@ msgid ""
 "keys. This is\n"
 "         useful in combination with trusted introducers."
 msgstr ""
+"თუ ჩართულია, Kleopatra ავტომატურად ეცდება, გამოითხოვოს გასაღებები, რომლებიც "
+"ახლახან \n"
+"     შემოტანილი OpenPGP-ის მომხმარებლის ID-ების სერტიფიცირებისთვის იყო "
+"გამოყენებული. \n"
+"     ეს სასარგებლოა სანდო წარმომდგენლებთან ერთად."
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:161
@@ -7990,6 +8359,11 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"ნაგულისხმევად, Kleopatra მომწოდებლის სერტიფიკატის კატალოგებს (WKD) , მხოლოდ, "
+"იმ მომხმარებლის ID-ებისთვის\n"
+"          ეკითხება, რომლებიც, თავიდან, WKD-დან OpenPGP სერტიფიკატის "
+"განახლებისას იქნა მიღებული. თუ ეს პარამეტრი ჩართულია, \n"
+"          Kleopatra WKD-ებს ყველა მომხმარებლის ID-ებისთვის გამოითხოვს."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170
@@ -8004,6 +8378,8 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
+"თუ ჩართულია, Klepatra, სადმე, გაჩვენებთ გაფრთხილებებს, როცა გამოიყენებთ\n"
+"        სერტიფიკატებს, რომლის ვადაც მალე ამოიწურება."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:178
@@ -8019,6 +8395,8 @@ msgid ""
 "         This can be used to prevent the application from opening external "
 "applications for certain URLs."
 msgstr ""
+"ეს URL-ის სქემების სიაა, რომლებიც აპლიკაციამ უნდა დაბლოკოს.\n"
+"     ეს, ზოგიერთი URL-ების გახსნის თავიდან ასაცილებლად შეგიძლიათ, გამოიყენოთ."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
 #: src/kcfg/settings.kcfg:186
@@ -8033,6 +8411,7 @@ msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
 "keyserver."
 msgstr ""
+"მორგებულ გასაღებების სერვერზე ამ სმარტ-ბარათის კუთვნილი სერტიფიკატების ძებნა."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
 #: src/kcfg/settings.kcfg:189
@@ -8043,6 +8422,9 @@ msgid ""
 "        of the keyserver protocol. Default behavior is to only do this for "
 "LDAP keyservers."
 msgstr ""
+"მოძებნის გასაღებების სერვერზე, სმარტ-ბარათის გასაღების პროტოკოლის და "
+"გასაღებების სერვერის პროტოკოლის მიუხედავად.\n"
+"         ნაგულისხმევად ეს, მხოლოდ, LDAP გასაღებების სერვერზე ხდება."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:193
@@ -8055,6 +8437,7 @@ msgstr "S/MIME სერტიფიკატების ჩატვირთ�
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
+"S/MIME სერტიფიკატების ავტომატური ჩატვირთვა PKCS#15 (CardOS) სმარტ-ბარათებიდან"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:195
@@ -8064,6 +8447,9 @@ msgid ""
 "inserted with unknown certificates. This can take a while and blocks the "
 "smartcard while the command is running."
 msgstr ""
+"თუ ჩართულია, როცა შეაერთებთ PKCS#15 სმარტ-ბარათს, რომელზეც უცნობი "
+"სერტიფიკატებია, Kleopatra 'gpgsm --learn'-ს გამოიძახებს. ამას, შეიძლება, "
+"დიდი დრო დასჭირდეს და სანამ ის გაშვებულია, ბლოკავს სმარტ-ბარათს."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
 #: src/kcfg/settings.kcfg:201
@@ -8102,6 +8488,9 @@ msgid ""
 "If a key is specified, then only tags made with this key are considered. "
 "Otherwise, tags made with any fully trusted key are considered."
 msgstr ""
+"თუ გასაღები მითითებულია, ვითვალისწინებთ მხოლოდ იმ ჭდეებს, რომლებიც ამ "
+"გასაღებით შეიქმნა. სხვა შემთხვევაში გათვალისწინებულია ჭდეები, რომლებიც "
+"სრულად სანდო გასაღებებითაა შექმნილი."
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:9
@@ -8116,6 +8505,8 @@ msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
 "certificate is expired or revoked."
 msgstr ""
+"სერტიფიკატებისთვის მინიშნებაში ისეთი ვარგისიანობის ინფორმაციის ჩვენება, "
+"როგორიცაა, არის თუ არა სერტიფიკატი ვადაგასული ან გაუქმებული."
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:14
@@ -8130,12 +8521,14 @@ msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
 "subject and issuers."
 msgstr ""
+"სერტიფიკატებისთვის მინიშნებაში დამატებითი ინფორმაციის, როგორიცაა "
+"მომხმარებლის ID, სათაურის და პრობლემების ჩვენება."
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:19
 #, kde-format
 msgid "Show certificate details"
-msgstr ""
+msgstr "სერტიფიკატის დეტალების ჩვენება"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:20
@@ -8144,6 +8537,8 @@ msgid ""
 "Show more certificate details, such as fingerprint, key length and "
 "expiration dates"
 msgstr ""
+"სერტიფიკატის მეტი დეტალების, როგორიცაა ანაბეჭდი, გასაღების სიგრძე და ვადის "
+"თარიღების ჩვენება"
 
 #. i18n: ectx: Menu (file)
 #: src/kleopatra.rc:5 src/kwatchgnupg/kwatchgnupgui.rc:4
@@ -8367,6 +8762,8 @@ msgstr "არასწორი სოკეტის სახელი!"
 msgid ""
 "Could not allocate resources to connect to Kleopatra UI server at %1: %2"
 msgstr ""
+"რესურსების გამოყოფა შეუძლებელია Kleopatra-ის ინტერფეისის სერვერთან "
+"მისაერთებლად, მისამართზე: %1: %2"
 
 #: src/libkleopatraclient/core/command.cpp:592
 #, kde-format
@@ -8428,6 +8825,11 @@ msgid ""
 "application> will not function in this setting.</para><para>Please ask your "
 "administrator for help in resolving this issue.</para>"
 msgstr ""
+"<para><application>GpgME</application>ბიბლიოთეკის ვერსია, რომელიც გაქვთ, "
+"უფრო ძველია, ვიდრე ის, რომელზეც <application>GpgME++</application> "
+"ბიბლიოთეკა იყო აგებული.</para><para><application>Kleopatra</application> ასე "
+"არ იმუშავებს.</para><para>სთხოვეთ თქვენს სისტემურ ადმინისტრატორს, დაგეხმაროთ "
+"ან პრობლემის მოგვარებაში.</para>"
 
 #: src/main.cpp:144
 #, kde-format
@@ -8445,6 +8847,11 @@ msgid ""
 "<filename>AppData\\Roaming\\gnupg</filename> directory with proper "
 "permissions.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> ვერ გაეშვება ადმინისტრატორით "
+"GnuPG-ის საწყის საქაღალდეზე წვდომების დაზიანების გარეშე.</para><para>სხვა "
+"მომხმარებლების გასაღებების სამართავად, მართეთ ისინი, როგორც ნორმალური "
+"მომხმარებლები და დააკოპირეთ <filename>AppData\\Roaming\\gnupg</filename> "
+"საქაღალდე სწორი წვდომებით.</para>"
 
 #: src/main.cpp:173
 #, kde-kuit-format
@@ -8475,6 +8882,11 @@ msgid ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 msgstr ""
+"<qt>Windows Explorer-ისთვის Kleopatra-ის მოდულის ინიცციალიზაცია შეუძლებელია."
+"<br/>შეცდომა: <b>%1</b><br/>როგორც ჩანს, პროგრამის ფაილები დაზიანებულია. "
+"სცადეთ, ის თავიდან დააყენოთ, ან, მხარდაჭერისთვის, სისტემურ ადმინისტრატორს "
+"დაუკავშირდით.<br/>შეგიძლიათ, სცადოთ, გააგრძელოთ Kleopatra-ის გამოყენება, "
+"მაგრამ, ალბათ, სხვა პრობლემებსაც შეეჩეხებით.</qt>"
 
 #: src/main.cpp:282
 #, kde-format
@@ -8500,6 +8912,9 @@ msgid ""
 "<nl/>You may instead want to close this window without exiting <application>"
 "%1</application>."
 msgstr ""
+"<application>%1</application>, შეიძლება, სხვა აპლიკაციების მიერ, სერვისის "
+"სახით იყოს გამოყენებული.<nl/>შეიძლება, ფანჯარა უბრალოდ დახუროთ, <application>"
+"%1</application>-დან გასვლის გარეშე."
 
 #: src/mainwindow.cpp:206
 #, kde-format
@@ -8513,6 +8928,8 @@ msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr ""
+"GnuPG-ის ჟურნალის გამხსნელის (kwatchgnupg) გაშვება შეუძლებელია. შეამოწმეთ "
+"თქვენი ფაილები."
 
 #: src/mainwindow.cpp:284
 #, kde-format
@@ -8565,7 +8982,7 @@ msgstr "Notepad"
 #: src/mainwindow.cpp:578
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
-msgstr ""
+msgstr "ტექსტის დაშიფვრა/გაშიფვრის და ხელმოწერა/გადამოწმების ბლოკნოტის ჩვენება"
 
 #: src/mainwindow.cpp:588
 #, kde-format
@@ -8640,7 +9057,7 @@ msgstr "&ჯგუფის მორგება"
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
-msgstr ""
+msgstr "groupfeature_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:687
 #, kde-format
@@ -8653,7 +9070,7 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
 "Only shown on Windows."
 msgid "gpgol_outlook_addin_en.pdf"
-msgstr ""
+msgstr "gpgol_outlook_addin_en.pdf"
 
 #: src/mainwindow.cpp:696
 #, kde-format
@@ -8665,7 +9082,7 @@ msgstr "&სერტიფიკაციის მართვა"
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
-msgstr ""
+msgstr "certification_management_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:703
 #, kde-format
@@ -8714,6 +9131,8 @@ msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
 msgstr ""
+"ფონური ოპერაციები ჯერ კიდევ გაშვებულია. ისინი გაჩერდება, თუ ფანჯარას "
+"დახურავთ. გავაგრძელო?"
 
 #: src/mainwindow.cpp:753
 #, kde-format
@@ -8938,6 +9357,8 @@ msgid ""
 "Please enter your personal details below. If you want more control over the "
 "parameters, click on the Advanced Settings button."
 msgstr ""
+"შეიყვანეთ ქვემოთ თქვენი პირადი დეტალები. თუ გნებავთ, პარამეტრებზე მეტი "
+"კონტროლი გქონდეთ, დააწკაპუნეთ დამატებითი პარამეტრების ღილაკზე."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:219
 #, kde-format
@@ -9120,6 +9541,10 @@ msgid ""
 "\n"
 "Thanks,\n"
 msgstr ""
+"დაამუშავეთ ეს სერტიფიკატი და შეატყობინეთ გამომგზავნს შედეგად მიღებული "
+"სერტიფიკატი საიდან გამოწეროს.\n"
+"\n"
+"მადლობა,\n"
 
 #: src/newcertificatewizard/resultpage.cpp:276
 #, kde-kuit-format
@@ -9133,6 +9558,13 @@ msgid ""
 "para><para>If that does not work, either, save the request to a file, and "
 "then attach that.</para>"
 msgstr ""
+"<para><application>Kleopatra</application>-მა ელფოსტის გაგზავნა ნაგულისხმევი "
+"ელფოსტის კლიენტით სცადა.</para><para>ზოგიერთი ელფოსტის კლიენტი ცნობილია, რომ "
+"ამ ხერხით მიმაგრებულ ფაილებს არ იღებს.</para><para>თუ თქვენს ელფოსტის "
+"კლიენტს მიმაგრებული ფაილების მხარდაჭერა არ აქვს, გადაათრიეთ "
+"<application>Kleopatra</application>-ის ხატულა და დააგდეთ ის თქენი ელფოსტის "
+"კლიენტის კომპოზიტორის ფანჯარაზე.</para><para>თუ ამან არ იმუშავა, შეინახეთ "
+"მოთხოვნა ფაილში და შემდეგ მიამაგრეთ.</para>"
 
 #: src/newcertificatewizard/resultpage.cpp:281
 #: src/newcertificatewizard/resultpage.cpp:318
@@ -9161,6 +9593,11 @@ msgid ""
 "have an attachment, then attach the file <filename>%1</filename> manually.</"
 "para>"
 msgstr ""
+"<para><application>Kleopatra</application>-მა ელფოსტის გაგზავნა ნაგულისხმევი "
+"ელფოსტის კლიენტით სცადა.</para><para>ზოგიერთი ელფოსტის კლიენტი ცნობილია, რომ "
+"ამ ხერხით მიმაგრებულ ფაილებს არ იღებს.</para><para>თუ თქვენს ელფოსტის "
+"კლიენტს მიმაგრებული ფაილების მხარდაჭერა არ აქვს, ხელით მიამაგრეთ ფაილი "
+"<filename>%1</filename>.</para>"
 
 #: src/newcertificatewizard/resultpage.cpp:363
 #, kde-format
@@ -9169,6 +9606,8 @@ msgid ""
 "This operation will delete the certification request. Please make sure that "
 "you have sent or saved it before proceeding."
 msgstr ""
+"ეს ოპერაცია სერტიფიკატის მოთხოვნას წაშლის. დარწმუნდით, რომ შეინახეთ ან "
+"გააგზავნეთ ის."
 
 #: src/newcertificatewizard/resultpage.cpp:365
 #, kde-format
@@ -9182,7 +9621,7 @@ msgctxt ""
 "@title %1 is a placeholder for the name of a compliance mode. E.g. NATO "
 "RESTRICTED compliant or VS-NfD compliant"
 msgid "%1?"
-msgstr ""
+msgstr "%1?"
 
 #: src/selftest/compliancecheck.cpp:45
 #, kde-kuit-format
@@ -9201,6 +9640,8 @@ msgid ""
 "<para>The <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para><application>GnuPG</application> სისტემა, რომელსაც "
+"<application>Kleopatra</application> იყენებს, %1 არაა.</para>"
 
 #: src/selftest/compliancecheck.cpp:60
 #, kde-kuit-format
@@ -9251,6 +9692,8 @@ msgid ""
 "<para>It seems that the <icode>gpgme</icode> library was compiled without "
 "support for this backend.</para>"
 msgstr ""
+"<para>როგორც ჩანს, ბიბლიოთეკა <icode>gpgme</icode> ამ უკანაბოლოს მხარდაჭერის "
+"გარეშე ააგეს.</para>"
 
 #: src/selftest/enginecheck.cpp:103
 #, kde-kuit-format
@@ -9259,6 +9702,8 @@ msgid ""
 "<para>Replace the <icode>gpgme</icode> library with a version compiled with "
 "<application>%1</application> support.</para>"
 msgstr ""
+"<para>ჩაანაცვლეთ ბიბლიოთეკა <icode>gpgme</icode> ვერსიით, რომელიც "
+"<application>%1</application>-ის მხარდაჭერითაა აგებული.</para>"
 
 #: src/selftest/enginecheck.cpp:110
 #, kde-format
@@ -9278,6 +9723,8 @@ msgid ""
 "<para>Please check the output of <command>%1 --version</command> manually.</"
 "para>"
 msgstr ""
+"<para>გაუშვით ხელით ბრძანება <command>%1 --version</command> და მისი "
+"გამოტანილი ინფორმაცია ხელით შეამოწმეთ.</para>"
 
 #: src/selftest/enginecheck.cpp:115
 #, kde-format
@@ -9291,6 +9738,8 @@ msgid ""
 "<para>Backend <command>%1</command> is installed in version %2, but at least "
 "version %3 is required.</para>"
 msgstr ""
+"<para>უკანაბოლოს <command>%1</command> დაყენებული ვერსიაა %2, მაგრამ "
+"აუცილებელია მინიმუმ v%3.</para>"
 
 #: src/selftest/enginecheck.cpp:123 src/selftest/enginecheck.cpp:179
 #, kde-kuit-format
@@ -9313,6 +9762,8 @@ msgid ""
 "<para>Make sure <application>%1</application> is installed and in "
 "<envar>PATH</envar>.</para>"
 msgstr ""
+"<para>დარწმუნდით, რომ <application>%1</application> დაყენებული და "
+"<envar>PATH</envar>-შია.</para>"
 
 #: src/selftest/enginecheck.cpp:172
 #, kde-kuit-format
@@ -9321,6 +9772,8 @@ msgid ""
 "<para><application>%1</application> v%2.%3.%4 is required for this test, but "
 "only %5 is installed.</para>"
 msgstr ""
+"<para><application>%1</application> v%2.%3.%4 აუცილებელია ამ ტესტისთვი, "
+"დაყენებული კი, მხოლოდ v%5.</para>"
 
 #: src/selftest/enginecheck.cpp:185
 #, kde-kuit-format
@@ -9329,6 +9782,8 @@ msgid ""
 "<para><application>%1</application> is required for this test, but does not "
 "seem available.</para><para>See tests further up for more information.</para>"
 msgstr ""
+"<para><application>%1</application> აუცილებელია ამ ტესტისთვის, მაგრამ, "
+"ხელმისაწვდომი არაა.</para><para>მეტი ინფორმაცია იხილეთ ზემოთ.</para>"
 
 #: src/selftest/enginecheck.cpp:188
 #, kde-kuit-format
@@ -9354,6 +9809,9 @@ msgid ""
 "Either the GpgME library itself is too old, or the GpgME++ library was "
 "compiled against an older GpgME that did not support connecting to gpg-agent."
 msgstr ""
+"ან თვითონ GpgME-ის ბიბლიოთეკაა ძალიან ძველი, ან ბიბლიოთეკა GpgME++ აგებული "
+"იყო ძველი GpgME-ით, რომელსაც gpg-agent-თან მიერთების მხარდაჭერა ჯერ არ "
+"ჰქონდა."
 
 #: src/selftest/gpgagentcheck.cpp:51
 #, kde-kuit-format
@@ -9362,6 +9820,8 @@ msgid ""
 "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure that "
 "gpgme++ was compiled against it."
 msgstr ""
+"განახლდით <application>gpgme</application> 1.2.0 ან უფრო მაღალზე და "
+"დარწმუნდით, რომ gpgme++ ამ ვერსიას იყენებს."
 
 #: src/selftest/gpgagentcheck.cpp:63
 #, kde-format
@@ -9377,6 +9837,10 @@ msgid ""
 "installation.</para><para>The error returned was: <message>%1</message>.</"
 "para>"
 msgstr ""
+"<para>ბიბლიოთეკა <application>GpgME</application> საკმარისად ახალია, რომ "
+"<application>gpg-agent</application>-ის მხარდაჭერა ჰქონდეს, მაგრამ, როგორც "
+"ჩანს ის აგების დროს ჩართული არ იყო.</para><para>დაბრუნებული შეცდომაა: "
+"<message>%1</message>.</para>"
 
 #: src/selftest/gpgagentcheck.cpp:77
 #, kde-format
@@ -9391,6 +9855,9 @@ msgid ""
 "its version.</para><para>The error returned was: <message>%1</message>.</"
 "para>"
 msgstr ""
+"<para>მოულოდნელი შეცდომა <application>gpg-agent</application>-სთვის მისი "
+"ვერსიის კითხვისას.</para><para>დაბრუნდა შეცდომა: <message>%1</message>.</"
+"para>"
 
 #: src/selftest/gpgconfcheck.cpp:37
 #, kde-format
@@ -9411,6 +9878,9 @@ msgid ""
 "  %1\n"
 "You might want to execute \"gpgconf %3\" on the command line.\n"
 msgstr ""
+"შეცდომა GnuPG-ის კონფიგურაციის თვითშემოწმებისას %2-სთვის:\n"
+"   %1\n"
+"შეიძლება, გნებავთ, ბრძანების სტრიქონში გაუშვათ ბრძანება \"gpgconf %3\".\n"
 
 #: src/selftest/libkleopatrarccheck.cpp:32
 #, kde-format
@@ -9430,6 +9900,8 @@ msgid ""
 "<para>Kleopatra detected the following errors in the libkleopatrarc "
 "configuration:</para>%1"
 msgstr ""
+"<para>Kleopatra-მა აღმოაჩინა შემდეგი შეცდომები libkleopatrarc-ის "
+"კონფიგურაციაში:</para>%1"
 
 #: src/selftest/registrycheck.cpp:34
 #, kde-format
@@ -9496,6 +9968,9 @@ msgid ""
 "connections to <resource>localhost</resource> or <resource>127.0.0.1</"
 "resource>).</para>"
 msgstr ""
+"<para>შეამოწმეთ, თქვენი ბრანდმაუერი ლოკალურ მიერთბებს ხომ არ ბლოკავს. "
+"(დაუშვით მიერთება <resource>localhost</resource>-მდე ან <resource>127.0.0.1</"
+"resource>-მდე).</para>"
 
 #: src/selftest/uiservercheck.cpp:59
 #, kde-format
@@ -9509,6 +9984,8 @@ msgid ""
 "It seems another <application>Kleopatra</application> is running (with "
 "process-id %1)"
 msgstr ""
+"როგორც ჩანს, გაშვებულია <application>Kleopatra</application>-ის სხვა ასლიც "
+"(პროცესის id %1)"
 
 #: src/selftest/uiservercheck.cpp:61
 #, kde-kuit-format
@@ -9769,7 +10246,7 @@ msgstr "INPUT/OUTPUT FILE-ში მხოლოდ ფაილებია დ
 #: src/uiserver/assuanserverconnection.cpp:568
 #, kde-format
 msgid "unknown exception caught"
-msgstr ""
+msgstr "ჩაჭერილია უცნობი გამონაკლისი"
 
 #: src/uiserver/assuanserverconnection.cpp:629
 #, kde-format
@@ -9862,7 +10339,7 @@ msgstr "მითითებული ფაილები არსებო�
 #: src/uiserver/decryptverifycommandemailbase.cpp:147
 #, kde-format
 msgid "At least one INPUT needs to be provided"
-msgstr ""
+msgstr "საჭიროა სულ ცოტა, ერთი შეყვანის მითითება"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:152
 #, kde-format
@@ -10163,6 +10640,8 @@ msgid ""
 "%1 is a filemanager mode command, connection seems to be in email mode (%2 "
 "present)"
 msgstr ""
+"%1 ფაილის მმართველის რეჟიმის ბრძანებაა, მიერთება კი, როგორც ჩანს, ელფოსტის "
+"რეჟიმშია (არსებობს %2)"
 
 #: src/uiserver/uiserver.cpp:235
 #, kde-format
@@ -10170,12 +10649,16 @@ msgid ""
 "Could not determine the GnuPG home directory. Consider setting the GNUPGHOME "
 "environment variable."
 msgstr ""
+"შეცდომა GnuPG-ის საწყისი საქაღალდის დადგენისას. დააყენეთ გარემოს ცვლადი "
+"GNUPGHOME."
 
 #: src/uiserver/uiserver.cpp:249
 #, kde-format
 msgid ""
 "Cannot determine the GnuPG home directory: %1 exists but is not a directory."
 msgstr ""
+"GnuPG-ის საწყისი საქაღალდის დადგენა შეუძლებელია: %1 არსებობს, მაგრამ "
+"საქაღალდე არაა."
 
 #: src/uiserver/uiserver.cpp:257
 #, kde-format
@@ -10185,7 +10668,7 @@ msgstr "GnuPG-ის საწყისი საქაღალდის %1 შ
 #: src/uiserver/uiserver.cpp:270
 #, kde-format
 msgid "Detected another running gnupg UI server listening at %1."
-msgstr ""
+msgstr "აღმოჩენილია კიდევ ერთი gnupg UI სერვერი, რომელიც უსმენს მისამართზე %1."
 
 #: src/uiserver/uiserver_unix.cpp:39 src/uiserver/uiserver_win.cpp:39
 #, kde-format
@@ -10267,6 +10750,8 @@ msgstr "'%1' ჩანაწერი ცარიელია ან არ ა
 #, kde-format
 msgid "cannot use argument passing on standard input for unpack-command"
 msgstr ""
+"გაშლის ბრძანებისთვის სტანდარტულ შეტანაზე გადაცემული არგუმენტის გამოყენება "
+"შეუძლებელია"
 
 #: src/utils/archivedefinition.cpp:469
 #, kde-format
@@ -10331,7 +10816,7 @@ msgstr "FD %1-ის წასაკითხად გახსნა შეუ
 #: src/utils/input.cpp:247 src/utils/input.cpp:261
 #, kde-format
 msgid "Could not open file \"%1\" for reading"
-msgstr ""
+msgstr "ფაილის (\"%1\") წასაკითხად გახსნის შეცდომა"
 
 #: src/utils/input.cpp:259
 #, kde-format
@@ -10341,7 +10826,7 @@ msgstr "ფაილი \"%1\" უკვე ღიაა, მაგრამ ა
 #: src/utils/input.cpp:326 src/utils/output.cpp:725
 #, kde-format
 msgid "Command not specified"
-msgstr ""
+msgstr "ბრძანება მითითებული არაა"
 
 #: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
 #, kde-format
@@ -10633,7 +11118,7 @@ msgstr "გატანა..."
 #: src/view/keylistcontroller.cpp:378
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
-msgstr ""
+msgstr "მონიშნული სერტიფიკატის (საჯარო გასაღების) ფაილში გატანა"
 
 #: src/view/keylistcontroller.cpp:386
 #, kde-format
@@ -10644,11 +11129,12 @@ msgstr "სერვერზე გამოცემა..."
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr ""
+"მონიშნული სერტიფიკატის (საჯარო გასაღების) საჯარო გასაღებების სერვერზე გატანა"
 
 #: src/view/keylistcontroller.cpp:396
 #, kde-format
 msgid "Publish at Mail Provider..."
-msgstr ""
+msgstr "ელფოსტის მომწოდებელზე გამოცემა..."
 
 #: src/view/keylistcontroller.cpp:397
 #, kde-format
@@ -10656,6 +11142,8 @@ msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
+"მონიშნული სერტიფიკატის (საჯარო გასაღების) ელფოსტის მომწოდებლის ვებ-გასაღების "
+"კატალოგზე გამოქვეყნება, თუ შემოთავაზებას მივიღებთ"
 
 #: src/view/keylistcontroller.cpp:406
 #, kde-format
@@ -10675,12 +11163,12 @@ msgstr "სერვერზე მოძებნა..."
 #: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Search for certificates online using a public keyserver"
-msgstr ""
+msgstr "სერტიფიკატების ძებნა საჯარო გასაღებების სერვერით"
 
 #: src/view/keylistcontroller.cpp:434
 #, kde-format
 msgid "Import a certificate from a file"
-msgstr ""
+msgstr "სერტიფიკატის შემოტანა ფაილიდან"
 
 #: src/view/keylistcontroller.cpp:443
 #, kde-format
@@ -10847,7 +11335,7 @@ msgstr "სვეტების ნახვა"
 #: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:611
 #, kde-format
 msgid "Hierarchical list of certificates"
-msgstr ""
+msgstr "სერტიფიკატების იერარქიული სია"
 
 #: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:611
 #, kde-format
@@ -10945,6 +11433,8 @@ msgstr "აირჩიეთ გასაღები"
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
 msgstr ""
+"აირჩიეთ გასაღები, რომლისთვისაც გნებავთ, სერტიფიკატის ხელმოწერის მოთხოვნა "
+"შექმნათ:"
 
 #: src/view/netkeywidget.cpp:325
 #, kde-format
@@ -10952,6 +11442,8 @@ msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
 "the smartcard."
 msgstr ""
+"უკაცრავად! სმარტ-ბარათზე სერტიფიკატის ხელმოწერის მოთხოვნისთვის შესაფერისი "
+"გასაღებები აღმოჩენილი არააა."
 
 #: src/view/nullpinwidget.cpp:35
 #, kde-format
@@ -10975,7 +11467,7 @@ msgstr "NKS PIN-ის დაყენება"
 #: src/view/nullpinwidget.cpp:70
 #, kde-format
 msgid "Setting a PIN is required but <b>can't be reverted</b>."
-msgstr ""
+msgstr "PIN-კოდის დაყენება აუცილებელი, მაგრამ <b>შეუქცევადია</b>."
 
 #: src/view/nullpinwidget.cpp:72
 #, kde-format
@@ -10983,6 +11475,7 @@ msgid ""
 "If you proceed you will be asked to enter a new PIN and later to repeat that "
 "PIN."
 msgstr ""
+"თუ გააგრძელებთ, გთხოვთ, ახალი PIN-კოდი შეიყვანოთ, შემდეგ კი გაიმეოროთ ის."
 
 #: src/view/nullpinwidget.cpp:74
 #, kde-format
@@ -10990,6 +11483,8 @@ msgid ""
 "It will <b>not be possible</b> to recover the card if the PIN has been "
 "entered wrongly more than 2 times."
 msgstr ""
+"თუ PIN-კოდს არასწორად 2-ზე მეტჯერ შეიყვანთ, ბარათის აღდგენა <b>შეუძლებელი</"
+"b> იქნება."
 
 #: src/view/nullpinwidget.cpp:76
 #, kde-format
@@ -11289,6 +11784,7 @@ msgstr "განულების კოდის შეცვლა"
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgstr ""
+"სმარტ-ბარათის განბლოკვის და ახალი PIN-კოდის დასაყენებელი PIN-კოდის შეცვლა."
 
 #: src/view/pgpcardwidget.cpp:275
 #, kde-format
@@ -11372,6 +11868,8 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+"ამ ბარათზე არსებული გასაღებები <b>წაიშლება</b> და ახალი გასაღებებით "
+"ჩანაცვლდება."
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format
@@ -11611,6 +12109,9 @@ msgid ""
 "certificates.<br/><br/>Certification is required to make sure that the "
 "certificates actually belong to the identity they claim to belong to."
 msgstr ""
+"ზოგიერთი სერტიფიკატი ჯერ სერტიფიცირებული არაა. დააწკაპუნეთ აქ, ამ "
+"სერტიფიკატების სანახავად.<br/><br/>სერტიფიკაცია აუცილებელია, რომ დარწმუნდეთ, "
+"რომ ის ნამდვილად ეკუთვნის იმ იდენტიფიკატორს, რომელსაც იძახის."
 
 #: src/view/searchbar.cpp:197
 #, kde-format
@@ -11778,6 +12279,8 @@ msgid ""
 "Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
 "\">GnuPG</a>."
 msgstr ""
+"Kleopatra წინაბოლოა კრიპტოგრაფიის პროგრამისთვის <a href=\"https://gnupg.org"
+"\">GnuPG</a>."
 
 #: src/view/welcomewidget.cpp:125
 #, kde-format
@@ -11785,6 +12288,8 @@ msgid ""
 "For most actions you need either a public key (certificate) or your own "
 "private key."
 msgstr ""
+"ქმედებების უმრავლესობისთვის ან საჯარო გასაღები (სერტიფიკატი) გჭირდებათ, ან "
+"თქვენი პირადი გასაღები."
 
 #: src/view/welcomewidget.cpp:127
 #, kde-format
@@ -11797,6 +12302,8 @@ msgid ""
 "The public key can be used by others to verify your identity or encrypt to "
 "you."
 msgstr ""
+"საჯარო გასაღები, შეიძლება, გამოყენებული იქნას სხვების მიერ, რომ გადაამოწმონ "
+"თქვენი იდენტიფიკატორი, ან თქვენთვის დაშიფრონ."
 
 #: src/view/welcomewidget.cpp:131
 #, kde-format
@@ -11838,6 +12345,18 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+#~| msgid ""
+#~| "<para>The certificate '%1' is empowered to mark other certificates as %2 "
+#~| "for you.</para><para>Do you want to revoke this power?</para>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>You haven't certified all OpenPGP certificates in this group.</"
+#~ "para><para>Do you want to continue the export?</para>"
+#~ msgstr ""
+#~ "<para>ამ ჯგუფში არსებული ყველა OpenPGP სერტიფიკატი სერტიფიცირებული არაა.</"
+#~ "para><para>გნებავთ გატანის გაგრძელება?</para>"
 
 #~ msgid "Sender"
 #~ msgstr "გამომგზავნი"

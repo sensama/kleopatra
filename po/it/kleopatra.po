@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-19 00:43+0000\n"
+"POT-Creation-Date: 2023-10-20 00:43+0000\n"
 "PO-Revision-Date: 2023-09-29 15:19+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -1149,44 +1149,111 @@ msgstr ""
 msgid "Encrypt Clipboard Error"
 msgstr "Errore durante la cifratura degli appunti di sistema"
 
-#: src/commands/exportcertificatecommand.cpp:216
+#: src/commands/exportcertificatecommand.cpp:182
+#: src/commands/exportopenpgpcertstoservercommand.cpp:68
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info %1: a certificate"
+#| msgid ""
+#| "<para>The certificate '%1' is empowered to mark other certificates as "
+#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all valid user IDs of this certificate with an "
+"exportable certification. People relying on your certifications may not be "
+"able to verify the certificate.</para><para>Do you want to continue the "
+"export?</para>"
+msgstr ""
+"<para>Il certificato «%1» ha il potere di contrassegnare altri certificati "
+"come validi per te.</para><para>Vuoi revocare questo potere?</para>"
+
+#: src/commands/exportcertificatecommand.cpp:186
+#: src/commands/exportcertificatecommand.cpp:201
+#: src/commands/exportopenpgpcertstoservercommand.cpp:72
+#: src/commands/exportopenpgpcertstoservercommand.cpp:87
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "OpenPGP Certificate Export"
+msgctxt "@title:window"
+msgid "Confirm Certificate Export"
+msgstr "Esportazione certificato OpenPGP"
+
+#: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:111
+#: src/commands/exportopenpgpcertstoservercommand.cpp:129
+#, fuzzy, kde-format
+#| msgctxt "1 is protocol"
+#| msgid "Export %1 Certificates"
+msgctxt "@action:button"
+msgid "Export Certificate"
+msgid_plural "Export Certificates"
+msgstr[0] "Esporta %1 certificati"
+msgstr[1] "Esporta %1 certificati"
+
+#: src/commands/exportcertificatecommand.cpp:196
+#: src/commands/exportopenpgpcertstoservercommand.cpp:82
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info %1: a certificate"
+#| msgid ""
+#| "<para>The certificate '%1' is empowered to mark other certificates as "
+#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all valid user IDs of the certificates listed "
+"below with exportable certifications. People relying on your certifications "
+"may not be able to verify the certificates.</para><para>Do you want to "
+"continue the export?</para>"
+msgstr ""
+"<para>Il certificato «%1» ha il potere di contrassegnare altri certificati "
+"come validi per te.</para><para>Vuoi revocare questo potere?</para>"
+
+#: src/commands/exportcertificatecommand.cpp:202
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
+#, fuzzy, kde-format
+#| msgctxt "1 is protocol"
+#| msgid "Export %1 Certificates"
+msgctxt "@action:button"
+msgid "Export Certificates"
+msgstr "Esporta %1 certificati"
+
+#: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates"
 msgstr "certificati"
 
-#: src/commands/exportcertificatecommand.cpp:221
+#: src/commands/exportcertificatecommand.cpp:270
 #, kde-format
 msgctxt "1 is protocol"
 msgid "Export %1 Certificates"
 msgstr "Esporta %1 certificati"
 
-#: src/commands/exportcertificatecommand.cpp:224
+#: src/commands/exportcertificatecommand.cpp:273
 #, kde-format
 msgid "OpenPGP Certificates"
 msgstr "Certificati OpenPGP"
 
-#: src/commands/exportcertificatecommand.cpp:225
+#: src/commands/exportcertificatecommand.cpp:274
 #, kde-format
 msgid "S/MIME Certificates"
 msgstr "Certificati S/MIME"
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:277
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr "Devi selezionare nomi di file diversi per protocolli diversi."
 
-#: src/commands/exportcertificatecommand.cpp:228
+#: src/commands/exportcertificatecommand.cpp:277
 #, kde-format
 msgid "Export Error"
 msgstr "Errore di esportazione"
 
-#: src/commands/exportcertificatecommand.cpp:278
+#: src/commands/exportcertificatecommand.cpp:327
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "Esportazione certificati..."
 
-#: src/commands/exportcertificatecommand.cpp:290
+#: src/commands/exportcertificatecommand.cpp:339
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1195,13 +1262,13 @@ msgstr ""
 "<qt><p>Si è verificato un errore cercando di esportare il certificato:</"
 "p><p><b>%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:294
-#: src/commands/exportcertificatecommand.cpp:340
+#: src/commands/exportcertificatecommand.cpp:343
+#: src/commands/exportcertificatecommand.cpp:389
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "Esportazione certificato non riuscita"
 
-#: src/commands/exportcertificatecommand.cpp:339
+#: src/commands/exportcertificatecommand.cpp:388
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "Impossibile scrivere sul file: %1."
@@ -1226,11 +1293,11 @@ msgctxt "filename filter like Certificate Groups (*.foo)"
 msgid "Certificate Groups (*%1)"
 msgstr "Gruppi di certificati (*%1)"
 
-#: src/commands/exportgroupscommand.cpp:165
-#: src/commands/exportgroupscommand.cpp:230
-#: src/commands/exportgroupscommand.cpp:277
-#: src/commands/exportgroupscommand.cpp:284
-#: src/commands/exportgroupscommand.cpp:295
+#: src/commands/exportgroupscommand.cpp:160
+#: src/commands/exportgroupscommand.cpp:232
+#: src/commands/exportgroupscommand.cpp:279
+#: src/commands/exportgroupscommand.cpp:286
+#: src/commands/exportgroupscommand.cpp:297
 #: src/commands/exportsecretsubkeycommand.cpp:235
 #: src/commands/exportsecretsubkeycommand.cpp:242
 #: src/commands/exportsecretsubkeycommand.cpp:254
@@ -1240,27 +1307,29 @@ msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Esportazione non riuscita"
 
-#: src/commands/exportgroupscommand.cpp:165
+#: src/commands/exportgroupscommand.cpp:160
 #, kde-kuit-format
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Impossibile sovrascrivere <filename>%1</filename>."
 
-#: src/commands/exportgroupscommand.cpp:202
+#: src/commands/exportgroupscommand.cpp:198
 #, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+#| msgctxt "@info %1: a certificate"
 #| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as %2 "
-#| "for you.</para><para>Do you want to revoke this power?</para>"
+#| "<para>The certificate '%1' is empowered to mark other certificates as "
+#| "valid for you.</para><para>Do you want to revoke this power?</para>"
 msgctxt "@info"
 msgid ""
-"<para>You haven't certified all OpenPGP certificates in this group.</"
-"para><para>Do you want to continue the export?</para>"
+"<para>You haven't certified all OpenPGP certificates in this group with an "
+"exportable certification. People relying on your certifications may not be "
+"able to verify the certificates.</para><para>Do you want to continue the "
+"export?</para>"
 msgstr ""
-"<para>Il certificato «%1» è autorizzato a contrassegnare altri certificati "
-"come %2 per te.</para><para>Vuoi revocare questo potere?</para>"
+"<para>Il certificato «%1» ha il potere di contrassegnare altri certificati "
+"come validi per te.</para><para>Vuoi revocare questo potere?</para>"
 
-#: src/commands/exportgroupscommand.cpp:204
-#: src/commands/exportgroupscommand.cpp:216
+#: src/commands/exportgroupscommand.cpp:202
+#: src/commands/exportgroupscommand.cpp:217
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Configure Groups"
@@ -1268,14 +1337,14 @@ msgctxt "@title:window"
 msgid "Confirm Group Export"
 msgstr "Configura gruppi"
 
-#: src/commands/exportgroupscommand.cpp:205
+#: src/commands/exportgroupscommand.cpp:203
 #, fuzzy, kde-format
 #| msgid "Export Error"
 msgctxt "@action:button"
 msgid "Export Group"
 msgstr "Errore di esportazione"
 
-#: src/commands/exportgroupscommand.cpp:213
+#: src/commands/exportgroupscommand.cpp:212
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info %1: a certificate"
 #| msgid ""
@@ -1284,40 +1353,42 @@ msgstr "Errore di esportazione"
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
-"below.</para><para>Do you want to continue the export?</para>"
+"below with exportable certifications. People relying on your certifications "
+"may not be able to verify the certificates.</para><para>Do you want to "
+"continue the export?</para>"
 msgstr ""
 "<para>Il certificato «%1» ha il potere di contrassegnare altri certificati "
 "come validi per te.</para><para>Vuoi revocare questo potere?</para>"
 
-#: src/commands/exportgroupscommand.cpp:217
+#: src/commands/exportgroupscommand.cpp:218
 #, fuzzy, kde-format
 #| msgid "Export Error"
 msgctxt "@action:button"
 msgid "Export Groups"
 msgstr "Errore di esportazione"
 
-#: src/commands/exportgroupscommand.cpp:230
+#: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr "Scrittura dei gruppi nel file <filename>%1</filename> non riuscita."
 
-#: src/commands/exportgroupscommand.cpp:259
+#: src/commands/exportgroupscommand.cpp:261
 #, kde-format
 msgid "Exporting certificate groups..."
 msgstr "Esportazione dei gruppi di certificati..."
 
-#: src/commands/exportgroupscommand.cpp:277
+#: src/commands/exportgroupscommand.cpp:279
 #, kde-kuit-format
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "Impossibile aprire il file <filename>%1</filename> in scrittura."
 
-#: src/commands/exportgroupscommand.cpp:284
+#: src/commands/exportgroupscommand.cpp:286
 #, kde-kuit-format
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr ""
 "Scrittura dei certificati nel file <filename>%1</filename> non riuscita."
 
-#: src/commands/exportgroupscommand.cpp:292
+#: src/commands/exportgroupscommand.cpp:294
 #, kde-kuit-format
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
@@ -1326,7 +1397,7 @@ msgstr ""
 "<para>Si è verificato un errore durante l'esportazione:</para><para><message>"
 "%1</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:54
+#: src/commands/exportopenpgpcertstoservercommand.cpp:103
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1346,8 +1417,8 @@ msgstr ""
 "para><para>vuoi continuare ad usare <resource>keys.gnupg.net</resource> come "
 "server di esportazione?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:61
-#: src/commands/exportopenpgpcertstoservercommand.cpp:75
+#: src/commands/exportopenpgpcertstoservercommand.cpp:110
+#: src/commands/exportopenpgpcertstoservercommand.cpp:128
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
@@ -1357,7 +1428,7 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export"
 msgstr "Esportazione certificato OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:70
+#: src/commands/exportopenpgpcertstoservercommand.cpp:123
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1373,19 +1444,19 @@ msgstr ""
 "certificato di revoca in modo da poter revocare il certificato in caso di "
 "necessità.</para><para>Vuoi davvero continuare?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:99
+#: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Errore di esportazione del certificato OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:104
+#: src/commands/exportopenpgpcertstoservercommand.cpp:157
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "Esportazione del certificato OpenPGP completata"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:110
+#: src/commands/exportopenpgpcertstoservercommand.cpp:163
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1397,13 +1468,13 @@ msgstr ""
 "terminato prematuramente a causa di un errore inaspettato.</"
 "para><para>Controlla il risultato di <icode>%1</icode> per i dettagli.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:121
+#: src/commands/exportopenpgpcertstoservercommand.cpp:174
 #: src/commands/importcertificatescommand.cpp:623
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#: src/commands/exportopenpgpcertstoservercommand.cpp:175
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1411,7 +1482,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr "%1<nl />%2"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:127
+#: src/commands/exportopenpgpcertstoservercommand.cpp:180
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1424,7 +1495,7 @@ msgstr ""
 "stato:<nl />\n"
 "<message>%2</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:135
+#: src/commands/exportopenpgpcertstoservercommand.cpp:188
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -12440,6 +12511,20 @@ msgid ""
 msgstr ""
 "Importa il certificato da un file.<nl/>Per importare da un server delle "
 "chiavi pubblico usa invece <interface>Cerca sul server</interface>."
+
+#, fuzzy
+#~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+#~| msgid ""
+#~| "<para>The certificate '%1' is empowered to mark other certificates as %2 "
+#~| "for you.</para><para>Do you want to revoke this power?</para>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>You haven't certified all OpenPGP certificates in this group.</"
+#~ "para><para>Do you want to continue the export?</para>"
+#~ msgstr ""
+#~ "<para>Il certificato «%1» è autorizzato a contrassegnare altri "
+#~ "certificati come %2 per te.</para><para>Vuoi revocare questo potere?</"
+#~ "para>"
 
 #~ msgid "Sender"
 #~ msgstr "Mittente"

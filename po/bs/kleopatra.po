@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-18 01:42+0000\n"
+"POT-Creation-Date: 2023-10-20 01:38+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -1344,11 +1344,11 @@ msgctxt "filename filter like Certificate Groups (*.foo)"
 msgid "Certificate Groups (*%1)"
 msgstr "Izdvajanje certifikata"
 
-#: src/commands/exportgroupscommand.cpp:159
-#: src/commands/exportgroupscommand.cpp:184
-#: src/commands/exportgroupscommand.cpp:231
-#: src/commands/exportgroupscommand.cpp:238
-#: src/commands/exportgroupscommand.cpp:249
+#: src/commands/exportgroupscommand.cpp:165
+#: src/commands/exportgroupscommand.cpp:230
+#: src/commands/exportgroupscommand.cpp:277
+#: src/commands/exportgroupscommand.cpp:284
+#: src/commands/exportgroupscommand.cpp:295
 #: src/commands/exportsecretsubkeycommand.cpp:235
 #: src/commands/exportsecretsubkeycommand.cpp:242
 #: src/commands/exportsecretsubkeycommand.cpp:254
@@ -1359,13 +1359,51 @@ msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Izvoženje certifikata nije uspelo"
 
-#: src/commands/exportgroupscommand.cpp:159
+#: src/commands/exportgroupscommand.cpp:165
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Nije u mogućnosti da otvori datoteku \"%1\" za čitanje"
 
-#: src/commands/exportgroupscommand.cpp:184
+#: src/commands/exportgroupscommand.cpp:202
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all OpenPGP certificates in this group.</"
+"para><para>Do you want to continue the export?</para>"
+msgstr ""
+
+#: src/commands/exportgroupscommand.cpp:204
+#: src/commands/exportgroupscommand.cpp:216
+#, fuzzy, kde-format
+#| msgid "Configure"
+msgctxt "@title:window"
+msgid "Confirm Group Export"
+msgstr "Podesi"
+
+#: src/commands/exportgroupscommand.cpp:205
+#, fuzzy, kde-format
+#| msgid "Import CRL Error"
+msgctxt "@action:button"
+msgid "Export Group"
+msgstr "Greška uvoza CRL"
+
+#: src/commands/exportgroupscommand.cpp:213
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all OpenPGP certificates in the groups listed "
+"below.</para><para>Do you want to continue the export?</para>"
+msgstr ""
+
+#: src/commands/exportgroupscommand.cpp:217
+#, fuzzy, kde-format
+#| msgid "Import CRL Error"
+msgctxt "@action:button"
+msgid "Export Groups"
+msgstr "Greška uvoza CRL"
+
+#: src/commands/exportgroupscommand.cpp:230
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1376,19 +1414,19 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/commands/exportgroupscommand.cpp:213
+#: src/commands/exportgroupscommand.cpp:259
 #, fuzzy, kde-format
 #| msgid "Exporting certificates..."
 msgid "Exporting certificate groups..."
 msgstr "Izvoz certifikata..."
 
-#: src/commands/exportgroupscommand.cpp:231
+#: src/commands/exportgroupscommand.cpp:277
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "Nije u mogućnosti da otvori datoteku \"%1\" za čitanje"
 
-#: src/commands/exportgroupscommand.cpp:238
+#: src/commands/exportgroupscommand.cpp:284
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1399,7 +1437,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/commands/exportgroupscommand.cpp:246
+#: src/commands/exportgroupscommand.cpp:292
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2900,7 +2938,7 @@ msgid "No Directory Servers Configured"
 msgstr "Nema konfigurisanih servera direktorija"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:475
+#: src/kleopatraapplication.cpp:479
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -9181,49 +9219,49 @@ msgstr "Obraditi datoteku(e)"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:371
+#: src/kleopatraapplication.cpp:375
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to execute command"
 msgstr "Neuspjelo izvršavanje %1: %2"
 
-#: src/kleopatraapplication.cpp:413
+#: src/kleopatraapplication.cpp:417
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:447
+#: src/kleopatraapplication.cpp:451
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:458
+#: src/kleopatraapplication.cpp:462
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:519
+#: src/kleopatraapplication.cpp:523
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:526
+#: src/kleopatraapplication.cpp:530
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:540
+#: src/kleopatraapplication.cpp:544
 #, fuzzy, kde-format
 #| msgid "Cannot send \"%1\" status"
 msgid "Cannot read \"%1\""
 msgstr "Nemoguće poslati \"%1\" status"
 
-#: src/kleopatraapplication.cpp:819
+#: src/kleopatraapplication.cpp:823
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:819
+#: src/kleopatraapplication.cpp:823
 #, kde-format
 msgid "Prohibited"
 msgstr ""

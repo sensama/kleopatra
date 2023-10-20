@@ -13,7 +13,10 @@
 
 #include "command_p.h"
 
+#include <Libkleo/Algorithm>
+#include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
+#include <Libkleo/KeyHelpers>
 
 #include <gpgme++/key.h>
 
@@ -46,9 +49,55 @@ ExportOpenPGPCertsToServerCommand::ExportOpenPGPCertsToServerCommand(const std::
 
 ExportOpenPGPCertsToServerCommand::~ExportOpenPGPCertsToServerCommand() = default;
 
+static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget)
+{
+    auto notCertifiedKeys = std::accumulate(pgpKeys.cbegin(), pgpKeys.cend(), QStringList{}, [](auto keyNames, const auto &key) {
+        const bool allValidUserIDsAreCertifiedByUser = Kleo::all_of(key.userIDs(), [](const UserID &userId) {
+            return userId.isBad() || Kleo::userIDIsCertifiedByUser(userId);
+        });
+        if (!allValidUserIDsAreCertifiedByUser) {
+            keyNames.push_back(Formatting::formatForComboBox(key));
+        }
+        return keyNames;
+    });
+    if (!notCertifiedKeys.empty()) {
+        if (pgpKeys.size() == 1) {
+            const auto answer = KMessageBox::warningContinueCancel( //
+                parentWidget,
+                xi18nc("@info",
+                       "<para>You haven't certified all valid user IDs of this certificate "
+                       "with an exportable certification. People relying on your certifications "
+                       "may not be able to verify the certificate.</para>"
+                       "<para>Do you want to continue the export?</para>"),
+                i18nc("@title:window", "Confirm Certificate Export"),
+                KGuiItem{i18nc("@action:button", "Export Certificate")},
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-upload-of-uncertified-keys"));
+            return answer == KMessageBox::Continue;
+        } else {
+            std::sort(notCertifiedKeys.begin(), notCertifiedKeys.end());
+            const auto answer = KMessageBox::warningContinueCancelList( //
+                parentWidget,
+                xi18nc("@info",
+                       "<para>You haven't certified all valid user IDs of the certificates listed below "
+                       "with exportable certifications. People relying on your certifications "
+                       "may not be able to verify the certificates.</para>"
+                       "<para>Do you want to continue the export?</para>"),
+                notCertifiedKeys,
+                i18nc("@title:window", "Confirm Certificate Export"),
+                KGuiItem{i18nc("@action:button", "Export Certificates")},
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-upload-of-uncertified-keys"));
+            return answer == KMessageBox::Continue;
+        }
+    }
+
+    return true;
+}
+
 bool ExportOpenPGPCertsToServerCommand::preStartHook(QWidget *parent) const
 {
-    if (!haveKeyserverConfigured())
+    if (!haveKeyserverConfigured()) {
         if (KMessageBox::warningContinueCancel(parent,
                                                xi18nc("@info",
                                                       "<para>No OpenPGP directory services have been configured.</para>"
@@ -59,12 +108,16 @@ bool ExportOpenPGPCertsToServerCommand::preStartHook(QWidget *parent) const
                                                       "<para>Do you want to continue with <resource>keys.gnupg.net</resource> "
                                                       "as the server to export to?</para>"),
                                                i18nc("@title:window", "OpenPGP Certificate Export"),
-                                               KStandardGuiItem::cont(),
+                                               KGuiItem{i18ncp("@action:button", "Export Certificate", "Export Certificates", d->keys().size())},
                                                KStandardGuiItem::cancel(),
                                                QStringLiteral("warn-export-openpgp-missing-keyserver"))
             != KMessageBox::Continue) {
             return false;
         }
+    }
+    if (!confirmExport(d->keys(), parent)) {
+        return false;
+    }
     return KMessageBox::warningContinueCancel(parent,
                                               xi18nc("@info",
                                                      "<para>When OpenPGP certificates have been exported to a public directory server, "
@@ -73,7 +126,7 @@ bool ExportOpenPGPCertsToServerCommand::preStartHook(QWidget *parent) const
                                                      "have created a revocation certificate so you can revoke the certificate if needed later.</para>"
                                                      "<para>Are you sure you want to continue?</para>"),
                                               i18nc("@title:window", "OpenPGP Certificate Export"),
-                                              KStandardGuiItem::cont(),
+                                              KGuiItem{i18ncp("@action:button", "Export Certificate", "Export Certificates", d->keys().size())},
                                               KStandardGuiItem::cancel(),
                                               QStringLiteral("warn-export-openpgp-nonrevocable"))
         == KMessageBox::Continue;

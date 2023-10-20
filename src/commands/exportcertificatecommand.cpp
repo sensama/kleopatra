@@ -18,8 +18,10 @@
 #include <utils/applicationstate.h>
 #include <utils/filedialog.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyHelpers>
 
 #include <QGpgME/ExportJob>
 #include <QGpgME/Protocol>
@@ -56,6 +58,7 @@ public:
     void exportResult(const GpgME::Error &, const QByteArray &);
     void showError(const GpgME::Error &error);
 
+    bool confirmExport(const std::vector<Key> &pgpKeys);
     bool requestFileNames(GpgME::Protocol prot);
     void finishedIfLastJob();
 
@@ -133,31 +136,77 @@ QString ExportCertificateCommand::x509FileName() const
 
 void ExportCertificateCommand::doStart()
 {
-    std::vector<Key> keys = d->keys();
-    if (keys.empty()) {
+    if (d->keys().empty()) {
+        d->finished();
         return;
     }
 
-    const auto firstCms = std::partition(keys.begin(), keys.end(), [](const GpgME::Key &key) {
-        return key.protocol() != GpgME::CMS;
-    });
-    std::vector<Key> openpgp, cms;
-    std::copy(keys.begin(), firstCms, std::back_inserter(openpgp));
-    std::copy(firstCms, keys.end(), std::back_inserter(cms));
-    Q_ASSERT(!openpgp.empty() || !cms.empty());
-    const bool haveBoth = !cms.empty() && !openpgp.empty();
-    const GpgME::Protocol prot = haveBoth ? UnknownProtocol : (!cms.empty() ? CMS : OpenPGP);
+    const auto keys = Kleo::partitionKeysByProtocol(d->keys());
+
+    if (!keys.openpgp.empty() && !d->confirmExport(keys.openpgp)) {
+        d->canceled();
+        return;
+    }
+
+    const bool haveBoth = !keys.cms.empty() && !keys.openpgp.empty();
+    const GpgME::Protocol prot = haveBoth ? UnknownProtocol : (!keys.cms.empty() ? CMS : OpenPGP);
     if (!d->requestFileNames(prot)) {
-        Q_EMIT canceled();
-        d->finished();
-    } else {
-        if (!openpgp.empty()) {
-            d->startExportJob(GpgME::OpenPGP, openpgp);
+        d->canceled();
+        return;
+    }
+
+    if (!keys.openpgp.empty()) {
+        d->startExportJob(GpgME::OpenPGP, keys.openpgp);
+    }
+    if (!keys.cms.empty()) {
+        d->startExportJob(GpgME::CMS, keys.cms);
+    }
+}
+
+bool ExportCertificateCommand::Private::confirmExport(const std::vector<Key> &pgpKeys)
+{
+    auto notCertifiedKeys = std::accumulate(pgpKeys.cbegin(), pgpKeys.cend(), QStringList{}, [](auto keyNames, const auto &key) {
+        const bool allValidUserIDsAreCertifiedByUser = Kleo::all_of(key.userIDs(), [](const UserID &userId) {
+            return userId.isBad() || Kleo::userIDIsCertifiedByUser(userId);
+        });
+        if (!allValidUserIDsAreCertifiedByUser) {
+            keyNames.push_back(Formatting::formatForComboBox(key));
         }
-        if (!cms.empty()) {
-            d->startExportJob(GpgME::CMS, cms);
+        return keyNames;
+    });
+    if (!notCertifiedKeys.empty()) {
+        if (pgpKeys.size() == 1) {
+            const auto answer = KMessageBox::warningContinueCancel( //
+                parentWidgetOrView(),
+                xi18nc("@info",
+                       "<para>You haven't certified all valid user IDs of this certificate "
+                       "with an exportable certification. People relying on your certifications "
+                       "may not be able to verify the certificate.</para>"
+                       "<para>Do you want to continue the export?</para>"),
+                i18nc("@title:window", "Confirm Certificate Export"),
+                KGuiItem{i18nc("@action:button", "Export Certificate")},
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-export-of-uncertified-keys"));
+            return answer == KMessageBox::Continue;
+        } else {
+            std::sort(notCertifiedKeys.begin(), notCertifiedKeys.end());
+            const auto answer = KMessageBox::warningContinueCancelList( //
+                parentWidgetOrView(),
+                xi18nc("@info",
+                       "<para>You haven't certified all valid user IDs of the certificates listed below "
+                       "with exportable certifications. People relying on your certifications "
+                       "may not be able to verify the certificates.</para>"
+                       "<para>Do you want to continue the export?</para>"),
+                notCertifiedKeys,
+                i18nc("@title:window", "Confirm Certificate Export"),
+                KGuiItem{i18nc("@action:button", "Export Certificates")},
+                KStandardGuiItem::cancel(),
+                QStringLiteral("confirm-export-of-uncertified-keys"));
+            return answer == KMessageBox::Continue;
         }
     }
+
+    return true;
 }
 
 bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protocol)

@@ -5,20 +5,20 @@
 # Sebastià Pla i Sanz <sps@sastia.com>, 2004, 2006.
 # Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 # Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009, 2010, 2011.
-# Antoni Bella Pérez <antonibella5@yahoo.com>, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-20 00:43+0000\n"
-"PO-Revision-Date: 2023-10-19 11:48+0200\n"
-"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"PO-Revision-Date: 2023-10-20 13:29+0200\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -1150,11 +1150,7 @@ msgstr "S'ha produït un error en encriptar el porta-retalls"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1162,40 +1158,34 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>No heu certificat tots els certificats OpenPGP dels grups llistats "
-"davall.</para><para>Voleu continuar l'exportació?</para>"
+"<para>No heu certificat tots els ID d'usuari vàlids d'este certificat amb "
+"una certificació exportable. És possible que les persones que confien en les "
+"vostres certificacions no puguen verificar el certificat.</para><para>Voleu "
+"continuar l'exportació?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "Exporteu el certificat OpenPGP"
+msgstr "Confirmació de l'exportació de certificats"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Exporta els certificats %1"
-msgstr[1] "Exporta els certificats %1"
+msgstr[0] "Exporta el certificat"
+msgstr[1] "Exporta els certificats"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1203,17 +1193,17 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>No heu certificat tots els certificats OpenPGP dels grups llistats "
-"davall.</para><para>Voleu continuar l'exportació?</para>"
+"<para>No heu certificat tots els ID d'usuari vàlids dels certificats "
+"llistats davall amb certificacions exportables. És possible que les persones "
+"que confien en les vostres certificacions no puguen verificar el certificat."
+"</para><para>Voleu continuar l'exportació?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificates"
-msgstr "Exporta els certificats %1"
+msgstr "Exporta els certificats"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1312,11 +1302,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "No s'ha pogut sobreescriure <filename>%1</filename> existent."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1324,8 +1310,10 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>No heu certificat tots els certificats OpenPGP dels grups llistats "
-"davall.</para><para>Voleu continuar l'exportació?</para>"
+"<para>No heu certificat tots els certificats OpenPGP d'este grup amb una "
+"certificació exportable. És possible que les persones que confien en les "
+"vostres certificacions no puguen verificar el certificat.</para><para>Voleu "
+"continuar l'exportació?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
@@ -1341,11 +1329,7 @@ msgid "Export Group"
 msgstr "Exporta un grup"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1354,7 +1338,9 @@ msgid ""
 "continue the export?</para>"
 msgstr ""
 "<para>No heu certificat tots els certificats OpenPGP dels grups llistats "
-"davall.</para><para>Voleu continuar l'exportació?</para>"
+"davall amb una certificació exportable. És possible que les persones que "
+"confien en les vostres certificacions no puguen verificar el certificat.</"
+"para><para>Voleu continuar l'exportació?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
@@ -12532,11 +12518,3 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>You haven't certified all OpenPGP certificates in this group.</"
-#~ "para><para>Do you want to continue the export?</para>"
-#~ msgstr ""
-#~ "<para>No heu certificat tots els certificats OpenPGP d'este grup.</"
-#~ "para><para>Voleu continuar l'exportació?</para>"

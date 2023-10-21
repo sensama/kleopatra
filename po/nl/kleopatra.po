@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-20 00:43+0000\n"
-"PO-Revision-Date: 2023-10-19 10:54+0200\n"
+"PO-Revision-Date: 2023-10-20 10:29+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -1151,11 +1151,7 @@ msgstr "Fout bij versleutelen klembord"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1163,40 +1159,34 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>U hebt niet alle OpenPGP certificaten in de onderstaande lijst groepen "
-"gecertificeerd.</para><para>Wilt u doorgaan met exporteren?</para>"
+"<para>U hebt niet alle geldige gebruiker-ID's van dit certificaat met een te "
+"exporteren certificatie gecertificeerd. Mensen die afhankelijk zijn van uw "
+"certificeren kunnen mogelijk niet in staat zijn het certificaat te "
+"verifiëren.</para><para>Wilt u doorgaan met exporteren?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "Export van openPGP certificaat"
+msgstr "Certificaat exporteren bevestigen"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "%1 certificaten exporteren"
-msgstr[1] "%1 certificaten exporteren"
+msgstr[0] "Certificaat exporteren"
+msgstr[1] "Certificaten exporteren"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1204,17 +1194,18 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>U hebt niet alle OpenPGP certificaten in de onderstaande lijst groepen "
-"gecertificeerd.</para><para>Wilt u doorgaan met exporteren?</para>"
+"<para>U hebt niet alle geldige gebruiker-ID's van het certificaat in de "
+"onderstaande lijst met te exporteren certificering gecertificeerd. Mensen "
+"die afhankelijk zijn van uw certificeren kunnen mogelijk niet in staat zijn "
+"de certificaten te verifiëren. </para><para>Wilt u doorgaan met exporteren?</"
+"para>"
 
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificates"
-msgstr "%1 certificaten exporteren"
+msgstr "Certificaten exporteren"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1314,11 +1305,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Overschrijven van bestaande <filename>%1</filename> lukt niet."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1326,8 +1313,10 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>U hebt niet alle OpenPGP certificaten in de onderstaande lijst groepen "
-"gecertificeerd.</para><para>Wilt u doorgaan met exporteren?</para>"
+"<para>U hebt niet alle OpenPGP certificaten in deze groep met een te "
+"exporteren certificaat gecertificeerd. Mensen die afhankelijk zijn van uw "
+"certificeren kunnen mogelijk niet in staat zijn het certificaat te "
+"verifiëren.</para><para>Wilt u doorgaan met exporteren?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
@@ -1343,11 +1332,7 @@ msgid "Export Group"
 msgstr "Groep exporteren"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1356,7 +1341,9 @@ msgid ""
 "continue the export?</para>"
 msgstr ""
 "<para>U hebt niet alle OpenPGP certificaten in de onderstaande lijst groepen "
-"gecertificeerd.</para><para>Wilt u doorgaan met exporteren?</para>"
+"met te exporteren certificaten gecertificeerd. Mensen die afhankelijk zijn "
+"van uw certificeren kunnen mogelijk niet in staat zijn de certificaten te "
+"verifiëren.</para><para>Wilt u doorgaan met exporteren?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format

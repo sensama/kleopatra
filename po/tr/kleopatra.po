@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-20 00:43+0000\n"
-"PO-Revision-Date: 2023-10-19 06:06+0300\n"
+"PO-Revision-Date: 2023-10-20 10:59+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1146,11 +1146,7 @@ msgstr "Pano Şifreleme Hatası"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1158,41 +1154,34 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Aşağıda listelenen gruplardaki tüm OpenPGP sertifikalarını "
-"sertifikalandırmadınız.</para><para>Dışa aktarmayı sürdürmek istiyor musunuz?"
-"</para>"
+"<para>Bu sertifikanın tüm geçerli kullanıcı kimliklerini dışa aktarılabilir "
+"bir sertifikayla sertifikalamadınız. Sertifikalarınıza güvenen kişiler "
+"sertifikayı doğrulayamayabilir.</para><para>Dışa aktarmayı sürdürmek istiyor "
+"musunuz?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "OpenPGP Sertifikası Dışa Aktar"
+msgstr "Sertifika Dışa Aktarmayı Onayla"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "%1 Sertifikayı Dışa Aktar"
-msgstr[1] "%1 Sertifikayı Dışa Aktar"
+msgstr[0] "Sertifikayı Dışa Aktar"
+msgstr[1] "Sertifikaları Dışa Aktar"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1200,18 +1189,17 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Aşağıda listelenen gruplardaki tüm OpenPGP sertifikalarını "
-"sertifikalandırmadınız.</para><para>Dışa aktarmayı sürdürmek istiyor musunuz?"
-"</para>"
+"<para>Aşağıda listelenen sertifikaların tüm geçerli kullanıcı kimliklerini "
+"dışa aktarılabilir bir sertifikayla sertifikalamadınız. Sertifikalarınıza "
+"güvenen kişiler sertifikayı doğrulayamayabilir.</para><para>Dışa aktarmayı "
+"sürdürmek istiyor musunuz?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificates"
-msgstr "%1 Sertifikayı Dışa Aktar"
+msgstr "Sertifikaları Dışa Aktar"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1310,11 +1298,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Var olan <filename>%1</filename> dosyasının üzerine yazılamıyor."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1322,9 +1306,10 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Aşağıda listelenen gruplardaki tüm OpenPGP sertifikalarını "
-"sertifikalandırmadınız.</para><para>Dışa aktarmayı sürdürmek istiyor musunuz?"
-"</para>"
+"<para>Bu gruptaki tüm OpenPGP sertifikalarını dışa aktarılabilir bir "
+"sertifikayla sertifikalamadınız. Sertifikalarınıza güvenen kişiler "
+"sertifikayı doğrulayamayabilir.</para><para>Dışa aktarmayı sürdürmek istiyor "
+"musunuz?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
@@ -1340,11 +1325,7 @@ msgid "Export Group"
 msgstr "Grubu Dışa Aktar"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1352,9 +1333,10 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Aşağıda listelenen gruplardaki tüm OpenPGP sertifikalarını "
-"sertifikalandırmadınız.</para><para>Dışa aktarmayı sürdürmek istiyor musunuz?"
-"</para>"
+"<para>Aşağıda listelenen gruplardaki tüm OpenPGP sertifikalarını dışa "
+"aktarılabilir bir sertifikayla sertifikalamadınız. Sertifikalarınıza güvenen "
+"kişiler sertifikayı doğrulayamayabilir.</para><para>Dışa aktarmayı sürdürmek "
+"istiyor musunuz?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
@@ -12405,18 +12387,3 @@ msgid ""
 msgstr ""
 "Bir dosyadan sertifika içe aktarın.<nl/>Genel bir anahtar sunucusundan içe "
 "aktarmak için, <interface>Sunucuda Ara</interface> seçeneğini kullanın."
-
-#~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
-#~| msgid ""
-#~| "<para>The certificate '%1' is empowered to mark other certificates as %2 "
-#~| "for you.</para><para>Do you want to revoke this power?</para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>You haven't certified all OpenPGP certificates in this group.</"
-#~ "para><para>Do you want to continue the export?</para>"
-#~ msgstr ""
-#~ "<para>Bu gruptaki tüm OpenPGP sertifikalarını sertifikalandırmadınız.</"
-#~ "para><para>Dışa aktarmayı sürdürmek istiyor musunuz?</para>"
-
-#~ msgid "Sender"
-#~ msgstr "Gönderen"

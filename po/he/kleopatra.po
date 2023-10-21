@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-20 01:38+0000\n"
+"POT-Creation-Date: 2023-10-21 01:39+0000\n"
 "PO-Revision-Date: 2017-05-16 07:05-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: hebrew <kde-l10n-he@kde.org>\n"
@@ -24,7 +24,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 3.9.6\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -380,6 +381,8 @@ msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
 msgstr[0] "קובץ רשימת ביטול התעודות יובא בהצלחה."
 msgstr[1] "קובץ רשימת ביטול התעודות יובא בהצלחה."
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/certifygroupcommand.cpp:295
 #, kde-format
@@ -1107,58 +1110,109 @@ msgstr ""
 msgid "Encrypt Clipboard Error"
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:216
+#: src/commands/exportcertificatecommand.cpp:182
+#: src/commands/exportopenpgpcertstoservercommand.cpp:68
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all valid user IDs of this certificate with an "
+"exportable certification. People relying on your certifications may not be "
+"able to verify the certificate.</para><para>Do you want to continue the "
+"export?</para>"
+msgstr ""
+
+#: src/commands/exportcertificatecommand.cpp:186
+#: src/commands/exportcertificatecommand.cpp:201
+#: src/commands/exportopenpgpcertstoservercommand.cpp:72
+#: src/commands/exportopenpgpcertstoservercommand.cpp:87
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Confirm Certificate Export"
+msgstr "שגיאה עם מנהל תעודות"
+
+#: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:111
+#: src/commands/exportopenpgpcertstoservercommand.cpp:129
+#, fuzzy, kde-format
+msgctxt "@action:button"
+msgid "Export Certificate"
+msgid_plural "Export Certificates"
+msgstr[0] "תעודה..."
+msgstr[1] "תעודה..."
+msgstr[2] "תעודה..."
+msgstr[3] "תעודה..."
+
+#: src/commands/exportcertificatecommand.cpp:196
+#: src/commands/exportopenpgpcertstoservercommand.cpp:82
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all valid user IDs of the certificates listed "
+"below with exportable certifications. People relying on your certifications "
+"may not be able to verify the certificates.</para><para>Do you want to "
+"continue the export?</para>"
+msgstr ""
+
+#: src/commands/exportcertificatecommand.cpp:202
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
+#, fuzzy, kde-format
+msgctxt "@action:button"
+msgid "Export Certificates"
+msgstr "תעודה..."
+
+#: src/commands/exportcertificatecommand.cpp:265
 #, fuzzy, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates"
 msgstr "תעודות"
 
-#: src/commands/exportcertificatecommand.cpp:221
+#: src/commands/exportcertificatecommand.cpp:270
 #, fuzzy, kde-format
 msgctxt "1 is protocol"
 msgid "Export %1 Certificates"
 msgstr "תעודה..."
 
-#: src/commands/exportcertificatecommand.cpp:224
+#: src/commands/exportcertificatecommand.cpp:273
 #, fuzzy, kde-format
 msgid "OpenPGP Certificates"
 msgstr "שגיאה עם מנהל תעודות"
 
-#: src/commands/exportcertificatecommand.cpp:225
+#: src/commands/exportcertificatecommand.cpp:274
 #, fuzzy, kde-format
 msgid "S/MIME Certificates"
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/exportcertificatecommand.cpp:229
+#: src/commands/exportcertificatecommand.cpp:278
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:230
+#: src/commands/exportcertificatecommand.cpp:279
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
 msgstr "רשימת ביטול..."
 
-#: src/commands/exportcertificatecommand.cpp:280
+#: src/commands/exportcertificatecommand.cpp:329
 #, fuzzy, kde-format
 msgid "Exporting certificates..."
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/exportcertificatecommand.cpp:292
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:296
-#: src/commands/exportcertificatecommand.cpp:342
+#: src/commands/exportcertificatecommand.cpp:345
+#: src/commands/exportcertificatecommand.cpp:391
 #, fuzzy, kde-format
 msgid "Certificate Export Failed"
 msgstr "התעודה יובאה"
 
-#: src/commands/exportcertificatecommand.cpp:341
+#: src/commands/exportcertificatecommand.cpp:390
 #, fuzzy, kde-format
 msgid "Could not write to file %1."
 msgstr "אין אפשרות ליצור את התעודה: %1"
@@ -1176,6 +1230,8 @@ msgid "Export Certificate Group"
 msgid_plural "Export Certificate Groups"
 msgstr[0] "תעודה..."
 msgstr[1] "תעודה..."
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/exportgroupscommand.cpp:69
 #, fuzzy, kde-format
@@ -1183,11 +1239,11 @@ msgctxt "filename filter like Certificate Groups (*.foo)"
 msgid "Certificate Groups (*%1)"
 msgstr "תעודות"
 
-#: src/commands/exportgroupscommand.cpp:165
-#: src/commands/exportgroupscommand.cpp:230
-#: src/commands/exportgroupscommand.cpp:277
-#: src/commands/exportgroupscommand.cpp:284
-#: src/commands/exportgroupscommand.cpp:295
+#: src/commands/exportgroupscommand.cpp:160
+#: src/commands/exportgroupscommand.cpp:232
+#: src/commands/exportgroupscommand.cpp:279
+#: src/commands/exportgroupscommand.cpp:286
+#: src/commands/exportgroupscommand.cpp:297
 #: src/commands/exportsecretsubkeycommand.cpp:235
 #: src/commands/exportsecretsubkeycommand.cpp:242
 #: src/commands/exportsecretsubkeycommand.cpp:254
@@ -1197,67 +1253,71 @@ msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "התעודה יובאה"
 
-#: src/commands/exportgroupscommand.cpp:165
+#: src/commands/exportgroupscommand.cpp:160
 #, fuzzy, kde-kuit-format
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
-#: src/commands/exportgroupscommand.cpp:202
+#: src/commands/exportgroupscommand.cpp:198
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You haven't certified all OpenPGP certificates in this group.</"
-"para><para>Do you want to continue the export?</para>"
+"<para>You haven't certified all OpenPGP certificates in this group with an "
+"exportable certification. People relying on your certifications may not be "
+"able to verify the certificates.</para><para>Do you want to continue the "
+"export?</para>"
 msgstr ""
 
-#: src/commands/exportgroupscommand.cpp:204
-#: src/commands/exportgroupscommand.cpp:216
+#: src/commands/exportgroupscommand.cpp:202
+#: src/commands/exportgroupscommand.cpp:217
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
 msgstr ""
 
-#: src/commands/exportgroupscommand.cpp:205
+#: src/commands/exportgroupscommand.cpp:203
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
 msgstr "רשימת ביטול..."
 
-#: src/commands/exportgroupscommand.cpp:213
+#: src/commands/exportgroupscommand.cpp:212
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
-"below.</para><para>Do you want to continue the export?</para>"
+"below with exportable certifications. People relying on your certifications "
+"may not be able to verify the certificates.</para><para>Do you want to "
+"continue the export?</para>"
 msgstr ""
 
-#: src/commands/exportgroupscommand.cpp:217
+#: src/commands/exportgroupscommand.cpp:218
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
 msgstr "רשימת ביטול..."
 
-#: src/commands/exportgroupscommand.cpp:230
+#: src/commands/exportgroupscommand.cpp:232
 #, fuzzy, kde-kuit-format
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
-#: src/commands/exportgroupscommand.cpp:259
+#: src/commands/exportgroupscommand.cpp:261
 #, fuzzy, kde-format
 msgid "Exporting certificate groups..."
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/exportgroupscommand.cpp:277
+#: src/commands/exportgroupscommand.cpp:279
 #, fuzzy, kde-kuit-format
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
-#: src/commands/exportgroupscommand.cpp:284
+#: src/commands/exportgroupscommand.cpp:286
 #, fuzzy, kde-kuit-format
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
-#: src/commands/exportgroupscommand.cpp:292
+#: src/commands/exportgroupscommand.cpp:294
 #, fuzzy, kde-kuit-format
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
@@ -1266,7 +1326,7 @@ msgstr ""
 "אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
 "היה: "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:54
+#: src/commands/exportopenpgpcertstoservercommand.cpp:103
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1279,8 +1339,8 @@ msgid ""
 "to export to?</para>"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:61
-#: src/commands/exportopenpgpcertstoservercommand.cpp:75
+#: src/commands/exportopenpgpcertstoservercommand.cpp:110
+#: src/commands/exportopenpgpcertstoservercommand.cpp:128
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
@@ -1290,7 +1350,7 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export"
 msgstr "שגיאה עם מנהל תעודות"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:70
+#: src/commands/exportopenpgpcertstoservercommand.cpp:123
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1301,19 +1361,19 @@ msgid ""
 "needed later.</para><para>Are you sure you want to continue?</para>"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:99
+#: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "שגיאה עם מנהל תעודות"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:104
+#: src/commands/exportopenpgpcertstoservercommand.cpp:157
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "&יצירת תעודה"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:110
+#: src/commands/exportopenpgpcertstoservercommand.cpp:163
 #, fuzzy, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1324,13 +1384,13 @@ msgstr ""
 "התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
 "הצפוי בשל שגיאה לא צפויה."
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:121
+#: src/commands/exportopenpgpcertstoservercommand.cpp:174
 #: src/commands/importcertificatescommand.cpp:623
 #, kde-format
 msgid " "
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#: src/commands/exportopenpgpcertstoservercommand.cpp:175
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1338,7 +1398,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:127
+#: src/commands/exportopenpgpcertstoservercommand.cpp:180
 #, fuzzy, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1349,7 +1409,7 @@ msgstr ""
 "אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
 "היה: "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:135
+#: src/commands/exportopenpgpcertstoservercommand.cpp:188
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -1583,6 +1643,8 @@ msgid "Export Subkey"
 msgid_plural "Export Subkeys"
 msgstr[0] "הארך תוקף תעודה"
 msgstr[1] "הארך תוקף תעודה"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/exportsecretsubkeycommand.cpp:212
 #, fuzzy, kde-format
@@ -1603,6 +1665,8 @@ msgid "Writing subkey to file <filename>%2</filename> failed."
 msgid_plural "Writing subkeys to file <filename>%2</filename> failed."
 msgstr[0] "אין אפשרות ליצור את התעודה: %1"
 msgstr[1] "אין אפשרות ליצור את התעודה: %1"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/exportsecretsubkeycommand.cpp:259
 #, fuzzy, kde-format
@@ -1611,6 +1675,8 @@ msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "קובץ רשימת ביטול התעודות יובא בהצלחה."
 msgstr[1] "קובץ רשימת ביטול התעודות יובא בהצלחה."
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/exportsecretsubkeycommand.cpp:267
 #, fuzzy, kde-kuit-format
@@ -1762,6 +1828,8 @@ msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "הארך תוקף תעודה"
 msgstr[1] "הארך תוקף תעודה"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/importcertificatefromfilecommand.cpp:135
 #, fuzzy, kde-format
@@ -1796,6 +1864,8 @@ msgid "Fetching 1 key... (this can take a while)"
 msgid_plural "Fetching %1 keys... (this can take a while)"
 msgstr[0] "הארך תוקף תעודה"
 msgstr[1] "הארך תוקף תעודה"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:84
 #, kde-format
@@ -2066,6 +2136,8 @@ msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "הארך תוקף תעודה"
 msgstr[1] "הארך תוקף תעודה"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/importcertificatescommand.cpp:887
 #: src/commands/importcertificatescommand.cpp:954
@@ -2499,6 +2571,8 @@ msgid "One certificate without name and email address was ignored."
 msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/lookupcertificatescommand.cpp:534
 #: src/commands/lookupcertificatescommand.cpp:537
@@ -2697,6 +2771,8 @@ msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/refreshcertificatecommand.cpp:314
 #: src/commands/refreshcertificatecommand.cpp:348
@@ -2930,6 +3006,8 @@ msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/revokecertificationcommand.cpp:98
 #, fuzzy, kde-format
@@ -2947,6 +3025,8 @@ msgid_plural ""
 "want to publish the revocations?</para>"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/revokecertificationcommand.cpp:208
 #, fuzzy, kde-format
@@ -2955,6 +3035,8 @@ msgid "Publish Revocation"
 msgid_plural "Publish Revocations"
 msgstr[0] "שגיאה עם מנהל תעודות"
 msgstr[1] "שגיאה עם מנהל תעודות"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/revokecertificationcommand.cpp:212
 #, kde-format
@@ -2983,6 +3065,8 @@ msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
 msgstr[0] "&צור תעודה"
 msgstr[1] "&צור תעודה"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/commands/revokecertificationcommand.cpp:340
 #, fuzzy, kde-format
@@ -3223,6 +3307,8 @@ msgid " day"
 msgid_plural " days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/conf/appearanceconfigwidget.cpp:378
 #, kde-format
@@ -4339,6 +4425,8 @@ msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/crypto/decryptverifytask.cpp:460
 #, kde-format
@@ -4346,6 +4434,8 @@ msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/crypto/decryptverifytask.cpp:466
 #, kde-format
@@ -4370,6 +4460,8 @@ msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/crypto/decryptverifytask.cpp:473
 #, kde-format
@@ -4446,6 +4538,8 @@ msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/crypto/decryptverifytask.cpp:583
 #, fuzzy, kde-format
@@ -4453,6 +4547,8 @@ msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "תיאור"
 msgstr[1] "תיאור"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/crypto/decryptverifytask.cpp:593
 #, kde-format
@@ -4460,6 +4556,8 @@ msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/crypto/decryptverifytask.cpp:620
 #, fuzzy, kde-format
@@ -5377,6 +5475,8 @@ msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "&צור תעודה"
 msgstr[1] "&צור תעודה"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/crypto/gui/signencryptwidget.cpp:597
 #, fuzzy, kde-format
@@ -5526,6 +5626,8 @@ msgid "One error occurred"
 msgid_plural "%1 errors occurred"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:252
 #, kde-format
@@ -6083,6 +6185,8 @@ msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
 msgstr[0] "תעודות"
 msgstr[1] "תעודות"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/dialogs/certificatedetailswidget.cpp:845
 #, fuzzy, kde-format
@@ -6097,6 +6201,8 @@ msgid "Revoke Certification..."
 msgid_plural "Revoke Certifications..."
 msgstr[0] "תעודות"
 msgstr[1] "תעודות"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/dialogs/certificatedetailswidget.cpp:855
 #, fuzzy, kde-format
@@ -6513,6 +6619,8 @@ msgid_plural ""
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:205
 #, kde-format
@@ -6526,6 +6634,8 @@ msgid_plural ""
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:220
 #, fuzzy, kde-format
@@ -8712,6 +8822,8 @@ msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%1 (%2):"
 msgstr[1] "%1 (%2):"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:740
 #, fuzzy, kde-format
@@ -8720,6 +8832,8 @@ msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "סיבית %1"
 msgstr[1] "סיבית %1"
+msgstr[2] ""
+msgstr[3] ""
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:902
 #, kde-format

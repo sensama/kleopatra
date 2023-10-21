@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-20 01:38+0000\n"
+"POT-Creation-Date: 2023-10-21 01:39+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -1259,48 +1259,102 @@ msgstr ""
 msgid "Encrypt Clipboard Error"
 msgstr "Greška u šifriranju međuspremnikue"
 
-#: src/commands/exportcertificatecommand.cpp:216
+#: src/commands/exportcertificatecommand.cpp:182
+#: src/commands/exportopenpgpcertstoservercommand.cpp:68
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all valid user IDs of this certificate with an "
+"exportable certification. People relying on your certifications may not be "
+"able to verify the certificate.</para><para>Do you want to continue the "
+"export?</para>"
+msgstr ""
+
+#: src/commands/exportcertificatecommand.cpp:186
+#: src/commands/exportcertificatecommand.cpp:201
+#: src/commands/exportopenpgpcertstoservercommand.cpp:72
+#: src/commands/exportopenpgpcertstoservercommand.cpp:87
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "OpenPGP Certificate Export"
+msgctxt "@title:window"
+msgid "Confirm Certificate Export"
+msgstr "OpenPGP izvoz certifikata"
+
+#: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:111
+#: src/commands/exportopenpgpcertstoservercommand.cpp:129
+#, fuzzy, kde-format
+#| msgid "Export Certificates"
+msgctxt "@action:button"
+msgid "Export Certificate"
+msgid_plural "Export Certificates"
+msgstr[0] "Izvoz certifikata"
+msgstr[1] "Izvoz certifikata"
+msgstr[2] "Izvoz certifikata"
+
+#: src/commands/exportcertificatecommand.cpp:196
+#: src/commands/exportopenpgpcertstoservercommand.cpp:82
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>You haven't certified all valid user IDs of the certificates listed "
+"below with exportable certifications. People relying on your certifications "
+"may not be able to verify the certificates.</para><para>Do you want to "
+"continue the export?</para>"
+msgstr ""
+
+#: src/commands/exportcertificatecommand.cpp:202
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
+#, fuzzy, kde-format
+#| msgid "Export Certificates"
+msgctxt "@action:button"
+msgid "Export Certificates"
+msgstr "Izvoz certifikata"
+
+#: src/commands/exportcertificatecommand.cpp:265
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgctxt "A generic filename for exported certificates"
 msgid "certificates"
 msgstr "certifikat"
 
-#: src/commands/exportcertificatecommand.cpp:221
+#: src/commands/exportcertificatecommand.cpp:270
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgctxt "1 is protocol"
 msgid "Export %1 Certificates"
 msgstr "Izvoz certifikata"
 
-#: src/commands/exportcertificatecommand.cpp:224
+#: src/commands/exportcertificatecommand.cpp:273
 #, kde-format
 msgid "OpenPGP Certificates"
 msgstr "OpenPGP certifikati"
 
-#: src/commands/exportcertificatecommand.cpp:225
+#: src/commands/exportcertificatecommand.cpp:274
 #, kde-format
 msgid "S/MIME Certificates"
 msgstr "S/MIME certifikati"
 
-#: src/commands/exportcertificatecommand.cpp:229
+#: src/commands/exportcertificatecommand.cpp:278
 #, kde-format
 msgid "You have to select different filenames for different protocols."
 msgstr ""
 
-#: src/commands/exportcertificatecommand.cpp:230
+#: src/commands/exportcertificatecommand.cpp:279
 #, fuzzy, kde-format
 #| msgid "Import CRL Error"
 msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Greška uvoza CRL"
 
-#: src/commands/exportcertificatecommand.cpp:280
+#: src/commands/exportcertificatecommand.cpp:329
 #, kde-format
 msgid "Exporting certificates..."
 msgstr "Izvoz certifikata..."
 
-#: src/commands/exportcertificatecommand.cpp:292
+#: src/commands/exportcertificatecommand.cpp:341
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -1309,13 +1363,13 @@ msgstr ""
 "<qt><p>Došlo je do greške prilikom pokušaja izvoženja certifikata:</p><p><b>"
 "%1</b></p></qt>"
 
-#: src/commands/exportcertificatecommand.cpp:296
-#: src/commands/exportcertificatecommand.cpp:342
+#: src/commands/exportcertificatecommand.cpp:345
+#: src/commands/exportcertificatecommand.cpp:391
 #, kde-format
 msgid "Certificate Export Failed"
 msgstr "Izvoženje certifikata nije uspelo"
 
-#: src/commands/exportcertificatecommand.cpp:341
+#: src/commands/exportcertificatecommand.cpp:390
 #, kde-format
 msgid "Could not write to file %1."
 msgstr "Ne mogu pisati u datoteku %1."
@@ -1344,11 +1398,11 @@ msgctxt "filename filter like Certificate Groups (*.foo)"
 msgid "Certificate Groups (*%1)"
 msgstr "Izdvajanje certifikata"
 
-#: src/commands/exportgroupscommand.cpp:165
-#: src/commands/exportgroupscommand.cpp:230
-#: src/commands/exportgroupscommand.cpp:277
-#: src/commands/exportgroupscommand.cpp:284
-#: src/commands/exportgroupscommand.cpp:295
+#: src/commands/exportgroupscommand.cpp:160
+#: src/commands/exportgroupscommand.cpp:232
+#: src/commands/exportgroupscommand.cpp:279
+#: src/commands/exportgroupscommand.cpp:286
+#: src/commands/exportgroupscommand.cpp:297
 #: src/commands/exportsecretsubkeycommand.cpp:235
 #: src/commands/exportsecretsubkeycommand.cpp:242
 #: src/commands/exportsecretsubkeycommand.cpp:254
@@ -1359,51 +1413,55 @@ msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Izvoženje certifikata nije uspelo"
 
-#: src/commands/exportgroupscommand.cpp:165
+#: src/commands/exportgroupscommand.cpp:160
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Nije u mogućnosti da otvori datoteku \"%1\" za čitanje"
 
-#: src/commands/exportgroupscommand.cpp:202
+#: src/commands/exportgroupscommand.cpp:198
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You haven't certified all OpenPGP certificates in this group.</"
-"para><para>Do you want to continue the export?</para>"
+"<para>You haven't certified all OpenPGP certificates in this group with an "
+"exportable certification. People relying on your certifications may not be "
+"able to verify the certificates.</para><para>Do you want to continue the "
+"export?</para>"
 msgstr ""
 
-#: src/commands/exportgroupscommand.cpp:204
-#: src/commands/exportgroupscommand.cpp:216
+#: src/commands/exportgroupscommand.cpp:202
+#: src/commands/exportgroupscommand.cpp:217
 #, fuzzy, kde-format
 #| msgid "Configure"
 msgctxt "@title:window"
 msgid "Confirm Group Export"
 msgstr "Podesi"
 
-#: src/commands/exportgroupscommand.cpp:205
+#: src/commands/exportgroupscommand.cpp:203
 #, fuzzy, kde-format
 #| msgid "Import CRL Error"
 msgctxt "@action:button"
 msgid "Export Group"
 msgstr "Greška uvoza CRL"
 
-#: src/commands/exportgroupscommand.cpp:213
+#: src/commands/exportgroupscommand.cpp:212
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
-"below.</para><para>Do you want to continue the export?</para>"
+"below with exportable certifications. People relying on your certifications "
+"may not be able to verify the certificates.</para><para>Do you want to "
+"continue the export?</para>"
 msgstr ""
 
-#: src/commands/exportgroupscommand.cpp:217
+#: src/commands/exportgroupscommand.cpp:218
 #, fuzzy, kde-format
 #| msgid "Import CRL Error"
 msgctxt "@action:button"
 msgid "Export Groups"
 msgstr "Greška uvoza CRL"
 
-#: src/commands/exportgroupscommand.cpp:230
+#: src/commands/exportgroupscommand.cpp:232
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1414,19 +1472,19 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/commands/exportgroupscommand.cpp:259
+#: src/commands/exportgroupscommand.cpp:261
 #, fuzzy, kde-format
 #| msgid "Exporting certificates..."
 msgid "Exporting certificate groups..."
 msgstr "Izvoz certifikata..."
 
-#: src/commands/exportgroupscommand.cpp:277
+#: src/commands/exportgroupscommand.cpp:279
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "Nije u mogućnosti da otvori datoteku \"%1\" za čitanje"
 
-#: src/commands/exportgroupscommand.cpp:284
+#: src/commands/exportgroupscommand.cpp:286
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1437,7 +1495,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/commands/exportgroupscommand.cpp:292
+#: src/commands/exportgroupscommand.cpp:294
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1450,7 +1508,7 @@ msgstr ""
 "<para>Greška se desila pri učitavanju certifikata: <message>%1</message></"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:54
+#: src/commands/exportopenpgpcertstoservercommand.cpp:103
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1469,8 +1527,8 @@ msgstr ""
 "application> konfiguraciomom dijalogu.</para><para>Želite li nastaviti sa "
 "<resource>keys.gnupg.net</resource> kao serverom na koji se izvozi?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:61
-#: src/commands/exportopenpgpcertstoservercommand.cpp:75
+#: src/commands/exportopenpgpcertstoservercommand.cpp:110
+#: src/commands/exportopenpgpcertstoservercommand.cpp:128
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
@@ -1480,7 +1538,7 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export"
 msgstr "OpenPGP izvoz certifikata"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:70
+#: src/commands/exportopenpgpcertstoservercommand.cpp:123
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1496,19 +1554,19 @@ msgstr ""
 "opoziv certifikata, tako da može da opozovete certifikat, ako je potrebno "
 "kasnije </para> <para> Jeste li sigurni da želite da nastavite.?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:99
+#: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Greška izvoza OpenPGP certifikata"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:104
+#: src/commands/exportopenpgpcertstoservercommand.cpp:157
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "Izvoz OpenPGP certifikata završen"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:110
+#: src/commands/exportopenpgpcertstoservercommand.cpp:163
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1520,7 +1578,7 @@ msgstr ""
 "prerano zbog neočekivane greške.</para><para>Molim provjerite izlaz <icode>"
 "%1</icode> za detalje.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:121
+#: src/commands/exportopenpgpcertstoservercommand.cpp:174
 #: src/commands/importcertificatescommand.cpp:623
 #, fuzzy, kde-format
 #| msgctxt "separator for a list of e-mail addresses"
@@ -1528,7 +1586,7 @@ msgstr ""
 msgid " "
 msgstr ", "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:122
+#: src/commands/exportopenpgpcertstoservercommand.cpp:175
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1536,7 +1594,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:127
+#: src/commands/exportopenpgpcertstoservercommand.cpp:180
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1552,7 +1610,7 @@ msgstr ""
 "<para>Desila se greška pri pokušaju izvoza OpenPGP certifikata.</para> "
 "<para>Izlaz iz<command>%1</command> je bio: <message>%2</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:135
+#: src/commands/exportopenpgpcertstoservercommand.cpp:188
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."

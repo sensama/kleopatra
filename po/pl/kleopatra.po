@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1662738 $
+# Version: $Revision: 1662887 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-20 00:43+0000\n"
-"PO-Revision-Date: 2023-09-30 10:57+0200\n"
+"PO-Revision-Date: 2023-10-21 11:42+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -356,18 +356,14 @@ msgid "Certifying certificates ..."
 msgstr "Certyfikowanie certyfikatów..."
 
 #: src/commands/certifygroupcommand.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification of all certificates failed.</para><para>Error: "
-#| "<message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Nie udało się scertyfikować ani jednego certyfikatu.</para><para>Błąd: "
-"<message>%1</message></para>"
+"<para>Nie udało się scertyfikować certyfikatów.</para><para>Błąd: <message>"
+"%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:267
 #, kde-format
@@ -1151,11 +1147,7 @@ msgstr "Błąd szyfrowania schowka"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1163,41 +1155,35 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Certyfikat '%1' jest uprawniony do tego, aby oznaczać inne certyfikaty "
-"jako ważne w twoim imieniu.</para><para>Czy wycofać to upoważnienie?</para>"
+"<para>Nie scertyfikowałeś wszystkich poprawnych ID użytkowników tego "
+"certyfikatu przy użyciu certyfikacji dających się wyeksportować. Ludzie "
+"polegający na twoich certyfikacjach mogą nie być w stanie sprawdzać "
+"certyfikatów.</para><para>Czy kontynuować eksportowanie?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "Eksport certyfikatu OpenPGP"
+msgstr "Potwierdź eksportowanie certyfikatu"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Wyeksportuj certyfikaty %1"
-msgstr[1] "Wyeksportuj certyfikaty %1"
-msgstr[2] "Wyeksportuj certyfikaty %1"
+msgstr[0] "Wyeksportuj certyfikat"
+msgstr[1] "Wyeksportuj certyfikaty"
+msgstr[2] "Wyeksportuj certyfikaty"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1205,17 +1191,17 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Certyfikat '%1' jest uprawniony do tego, aby oznaczać inne certyfikaty "
-"jako ważne w twoim imieniu.</para><para>Czy wycofać to upoważnienie?</para>"
+"<para>Nie scertyfikowałeś wszystkich poprawnych ID użytkowników w grupach "
+"wymienionych poniżej przy użyciu certyfikacji dających się wyeksportować. "
+"Ludzie polegający na twoich certyfikacjach mogą nie być w stanie sprawdzać "
+"certyfikatów.</para><para>Czy kontynuować eksportowanie?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificates"
-msgstr "Wyeksportuj certyfikaty %1"
+msgstr "Eksportuj certyfikaty"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1315,11 +1301,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Nie udało się zastąpić istniejącego <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1327,31 +1309,27 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Certyfikat '%1' jest uprawniony do tego, aby oznaczać inne certyfikaty "
-"jako ważne w twoim imieniu.</para><para>Czy wycofać to upoważnienie?</para>"
+"<para>Nie scertyfikowałeś wszystkich certyfikatów OpenPGP w grupach przy "
+"użyciu certyfikacji dających się wyeksportować Ludzie polegający na twoich "
+"certyfikacjach mogą nie być w stanie sprawdzać certyfikatów.</para><para>Czy "
+"kontynuować eksportowanie?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "Ustawienia grup"
+msgstr "Potwierdź eksportowanie grupy"
 
 #: src/commands/exportgroupscommand.cpp:203
 #, fuzzy, kde-format
 #| msgid "Export Error"
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "Błąd eksportowania"
+msgstr "Eksportuj grupę"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1359,15 +1337,16 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Certyfikat '%1' jest uprawniony do tego, aby oznaczać inne certyfikaty "
-"jako ważne w twoim imieniu.</para><para>Czy wycofać to upoważnienie?</para>"
+"<para>Nie scertyfikowałeś wszystkich certyfikatów OpenPGP w grupach "
+"wymienionych poniżej przy użyciu certyfikacji dających się wyeksportować. "
+"Ludzie polegający na twoich certyfikacjach mogą nie być w stanie sprawdzać "
+"certyfikatów.</para><para>Czy kontynuować eksportowanie?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr "Błąd eksportowania"
+msgstr "Wyeksportuj grupy"
 
 #: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format

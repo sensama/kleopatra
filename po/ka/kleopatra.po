@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-21 01:39+0000\n"
-"PO-Revision-Date: 2023-10-19 06:10+0200\n"
+"PO-Revision-Date: 2023-10-21 07:20+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1147,11 +1147,7 @@ msgstr "ბუფერის დაშიფვრის შეცდომა"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1159,40 +1155,33 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>სერტიფიკატს '%1' აქვს მინიჭებული უფლება, თქვენთვის სხვა სერტიფიკატები, "
-"როგორც ვარგისი, მონიშნოს.</para><para>გნებავთ, გააუქმოთ ეს პრივილეგია?</para>"
+"<para>თქვენ არ გაგიკეთებიათ ამ სერტიფიკატის ყველა სწორი მომხმარებლის ID-ების "
+"სერტიფიცირება გატანის უფლებით. ხალხი, რომელიც თქვენს სერტიფიცირებებს ენდობა, "
+"სერტიფიკატს ვერ გადაამოწმებს.</para><para>გნებავთ, გააგრძელოთ გატანა?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "OpenPGP სერტიფიკაის გატანა"
+msgstr "სერტიფიკატის გატანის დადასტურება"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "%1 სერტიფიკატის გატანა"
-msgstr[1] "%1 სერტიფიკატის გატანა"
+msgstr[0] "სერტიფიკატის გატანა"
+msgstr[1] "სერტიფიკატების გატანა"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1200,17 +1189,17 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>სერტიფიკატს '%1' აქვს მინიჭებული უფლება, თქვენთვის სხვა სერტიფიკატები, "
-"როგორც ვარგისი, მონიშნოს.</para><para>გნებავთ, გააუქმოთ ეს პრივილეგია?</para>"
+"<para>თქვენ არ გაგიკეთებიათ ჩამოთვლილი სერტიფიკატების ყველა სწორი "
+"მომხმარებლის ID-ების სერტიფიცირება გატანის უფლებით. ხალხი, რომელიც თქვენს "
+"სერტიფიცირებებს ენდობა, სერტიფიკატს ვერ გადაამოწმებს.</para><para>გნებავთ, "
+"გააგრძელოთ გატანა?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificates"
-msgstr "%1 სერტიფიკატის გატანა"
+msgstr "სერტიფიკატების გატანა"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1309,11 +1298,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "არსებული ფაილის <filename>%1</filename> თავზე გადაწერის შეცდომა."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1321,32 +1306,25 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>სერტიფიკატს '%1' აქვს მინიჭებული უფლება, თქვენთვის სხვა სერტიფიკატები, "
-"როგორც ვარგისი, მონიშნოს.</para><para>გნებავთ, გააუქმოთ ეს პრივილეგია?</para>"
+"<para>თქვენ არ გაგიკეთებიათ ამ ჯგუფის ყველა OpenPGP სერტიფიკატების "
+"სერტიფიცირება გატანის უფლებით. ხალხი, რომელიც თქვენს სერტიფიცირებებს ენდობა, "
+"სერტიფიკატს ვერ გადაამოწმებს.</para><para>გნებავთ, გააგრძელოთ გატანა?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "ჯგუფების მორგება"
+msgstr "ჯგუფის გატანის დადასტურება"
 
 #: src/commands/exportgroupscommand.cpp:203
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "გატანის შეცდომა"
+msgstr "ჯგუფის გატანა"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1354,16 +1332,15 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>სერტიფიკატს '%1' აქვს მინიჭებული უფლება, თქვენთვის სხვა სერტიფიკატები, "
-"როგორც ვარგისი, მონიშნოს.</para><para>გნებავთ, გააუქმოთ ეს პრივილეგია?</para>"
+"<para>თქვენ არ გაგიკეთებიათ ჩამოთვლილი ჯგუფების ყველა OpenPGP სერტიფიკატების "
+"სერტიფიცირება გატანის უფლებით. ხალხი, რომელიც თქვენს სერტიფიცირებებს ენდობა, "
+"სერტიფიკატს ვერ გადაამოწმებს.</para><para>გნებავთ, გააგრძელოთ გატანა?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr "გატანის შეცდომა"
+msgstr "ჯგუფების გატანა"
 
 #: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-21 01:39+0000\n"
-"PO-Revision-Date: 2023-10-20 19:22+0100\n"
+"PO-Revision-Date: 2023-10-21 07:44+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -1142,11 +1142,7 @@ msgstr "Eraro de Ĉifri Tondujo"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1154,40 +1150,33 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en la grupoj listigitaj sube.</"
-"para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
+"<para>Vi ne atestis ĉiujn uzant-identigilojn de ĉi atestilo per eksportebla "
+"atestado. Homoj fidantaj je viaj atestadoj eble ne povos kontroli la "
+"atestilon.</para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "Eksporto de Atestilo OpenPGP"
+msgstr "Konfirmi Eksporton de Atestilo"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Eksporti %1 Atestojn"
-msgstr[1] "Eksporti %1 Atestojn"
+msgstr[0] "Eksporti Ateston"
+msgstr[1] "Eksporti Atestojn"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1195,17 +1184,17 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en la grupoj listigitaj sube.</"
-"para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
+"<para>Vi ne atestis ĉiujn uzant-identigilojn de la atestiloj listigitaj sube "
+"kun eksporteblaj atestadoj.</para><para>Homoj fidantaj je viaj atestadoj "
+"eble ne povos kontroli la atestilojn.</para><para>Ĉu vi volas daŭrigi la "
+"eksporton?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificates"
-msgstr "Eksporti %1 Atestojn"
+msgstr "Eksporti Atestilojn"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1305,11 +1294,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Ne povas anstataŭigi ekzistantan <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1317,8 +1302,9 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en la grupoj listigitaj sube.</"
-"para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
+"<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en ĉi tiu grupo per eksportebla "
+"atestado. Homoj fidantaj je viaj atestadoj eble ne povos kontroli la "
+"atestilojn.</para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
@@ -1334,11 +1320,7 @@ msgid "Export Group"
 msgstr "Eksporti Grupon"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1346,8 +1328,9 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en la grupoj listigitaj sube.</"
-"para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
+"<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en la grupoj listigitaj sube "
+"per eksporteblaj atestadoj. Homoj fidantaj je viaj atestadoj eble ne povos "
+"kontroli la atestilojn.</para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
@@ -12380,11 +12363,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>You haven't certified all OpenPGP certificates in this group.</"
-#~ "para><para>Do you want to continue the export?</para>"
-#~ msgstr ""
-#~ "<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en ĉi grupo.</para><para>Ĉu "
-#~ "vi volas daŭrigi la eksporton?</para>"

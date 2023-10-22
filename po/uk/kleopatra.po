@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-21 01:39+0000\n"
-"PO-Revision-Date: 2023-10-20 08:46+0300\n"
+"PO-Revision-Date: 2023-10-21 21:28+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -1161,11 +1161,7 @@ msgstr "Помилка під час шифрування буфера"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1173,42 +1169,36 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Вами не засвідчено усі сертифікати OpenPGP у групах з наведеного нижче "
-"списку.</para><para>Хочете продовжити експортування?</para>"
+"<para>Вами не засвідчено усіх коректних ідентифікаторів користувача цього "
+"сертифіката із придатною до експортування сертифікацією. Ті, хто "
+"покладається на вашу сертифікацію, можливо, не зможуть перевірити сертифікат."
+"</para><para>Хочете продовжити процедуру експортування?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "Експорт сертифіката OpenPGP"
+msgstr "Підтвердження експортування сертифіката"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Експортувати сертифікати %1"
-msgstr[1] "Експортувати сертифікати %1"
-msgstr[2] "Експортувати сертифікати %1"
-msgstr[3] "Експортувати сертифікати %1"
+msgstr[0] "Експортувати сертифікати"
+msgstr[1] "Експортувати сертифікати"
+msgstr[2] "Експортувати сертифікати"
+msgstr[3] "Експортувати сертифікат"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1216,17 +1206,18 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Вами не засвідчено усі сертифікати OpenPGP у групах з наведеного нижче "
-"списку.</para><para>Хочете продовжити експортування?</para>"
+"<para>Вами не засвідчено усі коректні ідентифікатори користувачів "
+"сертифікатів з наведеного нижче списку із придатною до експортування "
+"сертифікацією. Ті, хто покладається на вашу сертифікацію, можливо, не "
+"зможуть перевірити сертифікати.</para><para>Хочете продовжити експортування?"
+"</para>"
 
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificates"
-msgstr "Експортувати сертифікати %1"
+msgstr "Експортувати сертифікат"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1328,11 +1319,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Не вдалося перезаписати наявний <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1340,8 +1327,10 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Вами не засвідчено усі сертифікати OpenPGP у групах з наведеного нижче "
-"списку.</para><para>Хочете продовжити експортування?</para>"
+"<para>Вами не засвідчено усі сертифікати OpenPGP у цій групі з придатною до "
+"експортування сертифікацією. Ті, хто покладається на вашу сертифікацію, "
+"можливо, не зможуть перевірити сертифікати.</para><para>Хочете продовжити "
+"експортування?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
@@ -1357,11 +1346,7 @@ msgid "Export Group"
 msgstr "Експортувати групу"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1370,7 +1355,8 @@ msgid ""
 "continue the export?</para>"
 msgstr ""
 "<para>Вами не засвідчено усі сертифікати OpenPGP у групах з наведеного нижче "
-"списку.</para><para>Хочете продовжити експортування?</para>"
+"списку. Ті, хто покладається на вашу сертифікацію, можливо, не зможуть "
+"перевірити сертифікати.</para><para>Хочете продовжити експортування?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format

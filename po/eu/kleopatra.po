@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-21 01:39+0000\n"
-"PO-Revision-Date: 2023-10-17 20:14+0200\n"
+"PO-Revision-Date: 2023-10-22 22:29+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -355,18 +355,14 @@ msgid "Certifying certificates ..."
 msgstr "Ziurtagiriak ziurtatzen..."
 
 #: src/commands/certifygroupcommand.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification of all certificates failed.</para><para>Error: "
-#| "<message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Ziurtagiri guztien ziurtapenak huts egin du.</para><para>Errorea: "
-"<message>%1</message></para>"
+"<para>Ziurtagirien ziurtapenak huts egin du.</para><para>Errorea: <message>"
+"%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:267
 #, kde-format
@@ -1165,11 +1161,7 @@ msgstr "Arbela zifratzeko errorea"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1177,41 +1169,34 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>'%1' ziurtagiriak zure izenean beste ziurtagiri batzuk baliozko gisa "
-"ziurtatzeko eskumena du.</para><para>Eskumen hori indargabetu nahi duzu?</"
-"para>"
+"<para>Ez dituzu ziurtagiri horretako erabiltzaile ID baliodun guztiak "
+"ziurtapen esportagarri batekin ziurtatu. Baliteke zure ziurtapenen beharra "
+"dutenek, ziurtagiria egiaztatzerik ez izatea.</para><para>Esportatzen "
+"jarraitu nahi duzu?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "OpenPGP ziurtagiria esportatzea"
+msgstr "Baieztatu ziurtagiria esportatzea"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Esportatu %1 ziurtagiriak"
-msgstr[1] "Esportatu %1 ziurtagiriak"
+msgstr[0] "Esportatu ziurtagiria"
+msgstr[1] "Esportatu ziurtagiriak"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1219,18 +1204,17 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>'%1' ziurtagiriak zure izenean beste ziurtagiri batzuk baliozko gisa "
-"ziurtatzeko eskumena du.</para><para>Eskumen hori indargabetu nahi duzu?</"
-"para>"
+"<para>Ez dituzu behean zerrendatutako ziurtagirietako erabiltzaile ID "
+"baliodun guztiak ziurtapen esportagarri batekin ziurtatu. Baliteke zure "
+"ziurtapenen beharra dutenek, ziurtagiria egiaztatzerik ez izatea.</"
+"para><para>Esportatzen jarraitu nahi duzu?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificates"
-msgstr "Esportatu %1 ziurtagiriak"
+msgstr "Esportatu ziurtagiriak"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1330,11 +1314,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Ezin da gainidatzi lehendik dagoen <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1342,33 +1322,26 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>'%1' ziurtagiriak zure izenean beste ziurtagiri batzuk baliozko gisa "
-"ziurtatzeko eskumena du.</para><para>Eskumen hori indargabetu nahi duzu?</"
-"para>"
+"<para>Ez dituzu talde horretako OpenPGP ziurtagiri guztiak ziurtapen "
+"esportagarri batekin ziurtatu. Baliteke zure ziurtapenen beharra dutenek, "
+"ziurtagiriak egiaztatzerik ez izatea.</para><para>Esportatzen jarraitu nahi "
+"duzu?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "Konfiguratu taldeak"
+msgstr "Baieztatu taldea esportatzea"
 
 #: src/commands/exportgroupscommand.cpp:203
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "Esportatze errorea"
+msgstr "Esportatu taldea"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1376,17 +1349,16 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>'%1' ziurtagiriak zure izenean beste ziurtagiri batzuk baliozko gisa "
-"ziurtatzeko eskumena du.</para><para>Eskumen hori indargabetu nahi duzu?</"
-"para>"
+"<para>Ez dituzu behean zerrendatutako taldeetako OpenPGP ziurtagiri guztiak "
+"ziurtapen esportagarri batekin ziurtatu. Baliteke zure ziurtapenen beharra "
+"dutenek, ziurtagiriak egiaztatzerik ez izatea.</para><para>Esportatzen "
+"jarraitu nahi duzu?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr "Esportatze errorea"
+msgstr "Esportatu taldeak"
 
 #: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format
@@ -3817,10 +3789,11 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
-"Era lehenetsian, Kleopatrak, OpenPGP ziurtagiri bat eguneratzen duzunean, "
+"Era lehenetsian, Kleopatrak, hornitzaileen ziurtagiri direktorioak (WKD) "
+"itauntzen ditu bakarrik OpenPGP ziurtagiri bat eguneratzen duzunean, "
 "jatorrian hornitzaileen ziurtagiri direktorio (WKD) batetik eskuratu ziren "
-"erabiltzaile IDen bila bakarrik itauntzen ditu WKDak. Aukera hori gaituta "
-"badago, Kleopatrak WKDak erabiltzaile ID guztien bila itaunduko ditu."
+"erabiltzaile IDetarako. Aukera hori gaituta badago, Kleopatrak WKDak "
+"erabiltzaile ID guztien bila itaunduko ditu."
 
 #: src/conf/dirservconfigpage.cpp:432
 #, kde-format
@@ -5598,6 +5571,13 @@ msgid ""
 "Kleopatra.</para><para>Future versions of Kleopatra are expected to also "
 "support detached signatures in this case.</para>"
 msgstr ""
+"<para>Artxibatzea eta sinatu-bakarrik konbinatuta erabiltzea, egun, sinadura "
+"opaku gisa ezagutzen direnak behar ditu - bereizitakoek ez bezala, horiek "
+"edukia sinaduran txertatzen dute.</para><para>Formatu hori nahiko ezohikoa "
+"da. Baliteke fitxategiak bereizita artxibatu, eta gero, artxiboa "
+"Kleopatrarekin, fitxategi bakar gisa, sinatu nahi izatea.</"
+"para><para>Kleopatraren etorkizuneko bertsioek, kasu horretan, sinadura "
+"bereiziak ere onartzea espero da.</para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:280
 #, kde-format
@@ -6462,7 +6442,7 @@ msgstr "Etorkortasuna:"
 #: src/dialogs/certificatedetailswidget.cpp:325
 #, kde-format
 msgid "Trusted introducer for:"
-msgstr ""
+msgstr "Honetarako konfiantzazko aurkezlea:"
 
 #: src/dialogs/certificatedetailswidget.cpp:327
 #, kde-format
@@ -6836,6 +6816,8 @@ msgid ""
 "Click to set the trust level of the selected certification key to ultimate "
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
+"Egin klik, ziurtapen gakoaren konfiantza maila muturrekora ezartzeko. Hori "
+"da zure gako propioetarako normalean egin nahi duzuna."
 
 #: src/dialogs/certifywidget.cpp:324
 #, kde-format
@@ -6886,6 +6868,8 @@ msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
+"Ziurtapenerako konfiantza osoa duen edonork sortutako etiketakgako-zerrendan "
+"erakutsi eta bila daitezke."
 
 #: src/dialogs/certifywidget.cpp:386
 #, kde-format
@@ -6926,6 +6910,9 @@ msgid ""
 "certified by the trusted introducer are treated as certified, i.e. a trusted "
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
+"Konfiantzadun aurkezleak ziurtatu dituen, domeinuari dagozkion e-posta "
+"helbideak dituzten ziurtagiri guztiak ziurtatu gisa hartuko dira, adib. "
+"konfiantzadun aurkezle batek domeinurako tarteko CA antzeko gisa jokatzen du."
 
 #: src/dialogs/certifywidget.cpp:422
 #, kde-format
@@ -6940,6 +6927,10 @@ msgid ""
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
+"Egiaztatu hatz-markak, markatu ziurtatu nahi dituzun erabiltzaile IDak, eta "
+"aukeratu erabiltzaile IDak ziurtatzeko erabili nahi duzun ziurtagiria."
+"<br><i>Oharra: Hatz-markak bakarrik identifikatzen dituzte argi eta garbi "
+"ziurtagiria eta haren jabea.</i>"
 
 #: src/dialogs/certifywidget.cpp:563
 #, kde-format
@@ -7010,6 +7001,14 @@ msgid ""
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
+"<title>Zergati ezabatu nahi dituzu nik hautatutakoak baino ziurtagiri "
+"gehiago?</title><para>CA ziurtagiriak ezabatzen dituzunean (bai erro CAk eta "
+"tarteko CAk), haiek jaulkitako ziurtagiriak ere ezabatuko dira.</"
+"para><para>Hori ondo ikus daiteke <application>Kleopatra</application>ren "
+"ikuspegi modu hierarkikoan: Modu horretan, haurrak dituen ziurtagiri bat "
+"ezabatzen baduzu, haur horiek ere ezabatuko dira. Pentsatu CA ziurtagirietan "
+"beste ziurtagiriak dituzten karpetak bailiran: Karpeta ezabatzen duzunean, "
+"haren edukia ere ezabatzen duzu.</para>"
 
 #: src/dialogs/deletecertificatesdialog.cpp:191
 #, kde-format
@@ -7022,7 +7021,13 @@ msgid_plural ""
 "material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+"Ezabatu beharreko ziurtagiria zure jabetzakoa da. Gako pribatuko materiala "
+"du, ziurtagirirako zifratutako iraganeko komunikazioak deszifratzeko "
+"beharrezkoa, eta beraz ez litzateke ezabatu behar."
 msgstr[1] ""
+"Ezabatu beharreko ziurtagiri denak zure jabetzakoak dira. Gako pribatuko "
+"materiala dute, ziurtagirietarako zifratutako iraganeko komunikazioak "
+"deszifratzeko beharrezkoak, eta beraz ez lirateke ezabatu behar."
 
 #: src/dialogs/deletecertificatesdialog.cpp:205
 #, kde-format
@@ -7035,7 +7040,14 @@ msgid_plural ""
 "key material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+"Ezabatu beharreko ziurtagirietako bat zure jabetzakoa da. Gako pribatuko "
+"materiala du, ziurtagirirako zifratutako iraganeko komunikazioak "
+"deszifratzeko beharrezkoa, eta beraz ez litzateke ezabatu behar."
 msgstr[1] ""
+"Ezabatu beharreko ziurtagirietako batzuk zure jabetzakoak dira. Gako "
+"pribatuko materiala dute, ziurtagirietarako zifratutako iraganeko "
+"komunikazioak deszifratzeko beharrezkoak, eta beraz ez lirateke ezabatu "
+"behar."
 
 #: src/dialogs/deletecertificatesdialog.cpp:220
 #, kde-format
@@ -7914,6 +7926,9 @@ msgid ""
 "clients which do not support inline display of D/V results, such as MS "
 "Outlook."
 msgstr ""
+"Deszifratze/Egiaztatze emaitza, leiho gainerakorrerako oroitutako neurri eta "
+"kokalekua, lerro barruko D/E emaitzak azaltzea onartzen ez duten bezeroek "
+"erabilia, MS Outlook esaterako."
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:10
@@ -7938,6 +7953,9 @@ msgid ""
 "input files but instead automatically starts the operations it detects as "
 "applicable to the input."
 msgstr ""
+"Aukera hori gaituta, Kleopatrak ez dizu berriz galdetuko sarrerako "
+"fitxategiekin zer egin nahi duzun, horren ordez, sarrerakoari aplikagarriak "
+"zaizkiola antzematen dituen eragiketak automatikoki hasiko ditu."
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:20
@@ -8029,6 +8047,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Egia bada, S/MIME ziurtagirien izen arrunta (CN) eremua aurrez beteko da "
+"sisteman bildutako informazioarekin,\n"
+"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
+"Direktorio Aktibotik."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
@@ -8061,6 +8083,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Egia bada, OpenPGP eta S/MIME ziurtagirien e-posta helbidea eremua aurrez "
+"beteko da sisteman bildutako informazioarekin,\n"
+"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
+"Direktorio Aktibotik."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
@@ -8093,6 +8119,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Egia bada, OpenPGP ziurtagiriaren izena eremua aurrez beteko da sisteman "
+"bildutako informazioarekin,\n"
+"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
+"Direktorio Aktibotik."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:42
@@ -8118,6 +8148,12 @@ msgid ""
 "(possibly clamped to the allowed minimum or maximum validity period) by "
 "default."
 msgstr ""
+"Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
+"egunez balio duen, edo, beste hitz batzuekin, zenbat egun igaro ondoren "
+"iraungiko den. Ezarri hori 0 gisa baliotasun mugagaberako. Ezarpen hori "
+"ezarrita ez badago edo balio negatibo batekin ezarrita badago, OpenPGP "
+"gakoak hiru urterako baliodunak izango dira era lehenetsian (litekeena, "
+"baimendutako gutxieneko eta gehieneko baliotasun aldira lotua)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8140,6 +8176,9 @@ msgid ""
 "or, in other words, after how many days the new key will expire at the "
 "earliest."
 msgstr ""
+"Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
+"egunez balio duen, edo, beste hitz batzuekin, goizen, zenbat egun igaro "
+"ondoren iraungiko den."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
@@ -8163,6 +8202,10 @@ msgid ""
 "If this setting is not set or if it is set to a negative value, then "
 "unlimited validity is allowed."
 msgstr ""
+"Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
+"egunez balio duen, edo, beste hitz batzuekin, beranduen, zenbat egun igaro "
+"ondoren iraungiko den. Ezarpen hori ezarrita ez badago edo balio negatibo "
+"batekin ezarrita badago, baliotasun mugagabea baimenduta dago."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
@@ -8199,6 +8242,9 @@ msgid ""
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
+"Ezarpen horrek zehazten du gako batek era lehenetsian zenbat egunez balio "
+"duen, edo, beste hitz batzuekin, zenbat egun igaro ondoren iraungiko den. "
+"Ezarri hori 0 baliora ziurtagirien baliotasun mugagaberako."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75
@@ -8376,12 +8422,17 @@ msgid ""
 "keys. This is\n"
 "         useful in combination with trusted introducers."
 msgstr ""
+"Gaituz gero, Kleopatra, gakoak automatikoki berreskuratzen saiatuko da,\n"
+"         berriki inportatutako OpenPGP gakoen erabiltzaileen IDak "
+"ziurtatzeko erabili ziren gakoak.\n"
+"         Baliagarria da konfiantzazko aurkezleekin konbinatuta."
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:161
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Itaundu hornitzaileen ziurtagiri-direktorioak erabiltzaile ID guztietarako"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8394,6 +8445,13 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"Era lehenetsian, Kleopatrak, hornitzaileen ziurtagiri direktorioak (WKD) "
+"itauntzen ditu bakarrik\n"
+"         OpenPGP ziurtagiri bat eguneratzen duzunean, jatorrian "
+"hornitzaileen ziurtagiri direktorio (WKD) batetik eskuratu ziren "
+"erabiltzaile IDetarako.\n"
+"         Aukera hori gaituta badago, Kleopatrak WKDak erabiltzaile ID "
+"guztien bila itaunduko ditu."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170

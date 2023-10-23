@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-10-17 20:29+0200\n"
+"PO-Revision-Date: 2023-10-22 22:29+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -5280,6 +5280,13 @@ msgid ""
 "Kleopatra.</para><para>Future versions of Kleopatra are expected to also "
 "support detached signatures in this case.</para>"
 msgstr ""
+"<para>Artxibatzea eta sinatu-bakarrik konbinatuta erabiltzea, egun, sinadura "
+"opaku gisa ezagutzen direnak behar ditu - bereizitakoek ez bezala, horiek "
+"edukia sinaduran txertatzen dute.</para><para>Formatu hori nahiko ezohikoa "
+"da. Baliteke fitxategiak bereizita artxibatu, eta gero, artxiboa "
+"Kleopatrarekin, fitxategi bakar gisa, sinatu nahi izatea.</"
+"para><para>Kleopatraren etorkizuneko bertsioek, kasu horretan, sinadura "
+"bereiziak ere onartzea espero da.</para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:287
 #, kde-format
@@ -6143,7 +6150,7 @@ msgstr "Etorkortasuna:"
 #: src/dialogs/certificatedetailswidget.cpp:327
 #, kde-format
 msgid "Trusted introducer for:"
-msgstr ""
+msgstr "Honetarako konfiantzazko aurkezlea:"
 
 #: src/dialogs/certificatedetailswidget.cpp:329
 #, kde-format
@@ -6517,6 +6524,8 @@ msgid ""
 "Click to set the trust level of the selected certification key to ultimate "
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
+"Egin klik, ziurtapen gakoaren konfiantza maila muturrekora ezartzeko. Hori "
+"da zure gako propioetarako normalean egin nahi duzuna."
 
 #: src/dialogs/certifywidget.cpp:408
 #, kde-format
@@ -6554,11 +6563,13 @@ msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
+"Ziurtapenerako konfiantza osoa duen edonork sortutako etiketakgako-zerrendan "
+"erakutsi eta bila daitezke."
 
 #: src/dialogs/certifywidget.cpp:442
 #, kde-format
 msgid "Explain tags"
-msgstr ""
+msgstr "Etiketak azaldu"
 
 #: src/dialogs/certifywidget.cpp:455
 #, kde-format
@@ -6571,10 +6582,9 @@ msgid "The certification must be valid at least until tomorrow."
 msgstr "Ziurtagiria gutxienez bihar arte balioduna izan behar da."
 
 #: src/dialogs/certifywidget.cpp:464
-#, fuzzy, kde-format
-#| msgid "Deleting CA Certificates"
+#, kde-format
 msgid "The latest allowed certification date is %1."
-msgstr "CA ziurtagiriak ezabatzen"
+msgstr "Baimendutako ziurtapen data berantiarrena %1 da."
 
 #: src/dialogs/certifywidget.cpp:467
 #, kde-format
@@ -6605,10 +6615,9 @@ msgstr ""
 "ez du balioko."
 
 #: src/dialogs/certifywidget.cpp:479
-#, fuzzy, kde-format
-#| msgid "Unchanged:"
+#, kde-format
 msgid "Explain expiration"
-msgstr "Aldatu gabeak:"
+msgstr "Azaldu iraungipena"
 
 #: src/dialogs/certifywidget.cpp:492
 #, kde-format
@@ -6628,11 +6637,14 @@ msgid ""
 "certified by the trusted introducer are treated as certified, i.e. a trusted "
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
+"Konfiantzadun aurkezleak ziurtatu dituen, domeinuari dagozkion e-posta "
+"helbideak dituzten ziurtagiri guztiak ziurtatu gisa hartuko dira, adib. "
+"konfiantzadun aurkezle batek domeinurako tarteko CA antzeko gisa jokatzen du."
 
 #: src/dialogs/certifywidget.cpp:500
 #, kde-format
 msgid "Explain trusted introducer"
-msgstr ""
+msgstr "Azaldu konfiantzadun aurkezlea"
 
 #: src/dialogs/certifywidget.cpp:510
 #, kde-format
@@ -6689,6 +6701,14 @@ msgid ""
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
+"<title>Zergati ezabatu nahi dituzu nik hautatutakoak baino ziurtagiri "
+"gehiago?</title><para>CA ziurtagiriak ezabatzen dituzunean (bai erro CAk eta "
+"tarteko CAk), haiek jaulkitako ziurtagiriak ere ezabatuko dira.</"
+"para><para>Hori ondo ikus daiteke <application>Kleopatra</application>ren "
+"ikuspegi modu hierarkikoan: Modu horretan, haurrak dituen ziurtagiri bat "
+"ezabatzen baduzu, haur horiek ere ezabatuko dira. Pentsatu CA ziurtagirietan "
+"beste ziurtagiriak dituzten karpetak bailiran: Karpeta ezabatzen duzunean, "
+"haren edukia ere ezabatzen duzu.</para>"
 
 #: src/dialogs/deletecertificatesdialog.cpp:127
 #, kde-format
@@ -6707,7 +6727,13 @@ msgid_plural ""
 "material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+"Ezabatu beharreko ziurtagiria zure jabetzakoa da. Gako pribatuko materiala "
+"du, ziurtagirirako zifratutako iraganeko komunikazioak deszifratzeko "
+"beharrezkoa, eta beraz ez litzateke ezabatu behar."
 msgstr[1] ""
+"Ezabatu beharreko ziurtagiri denak zure jabetzakoak dira. Gako pribatuko "
+"materiala dute, ziurtagirietarako zifratutako iraganeko komunikazioak "
+"deszifratzeko beharrezkoak, eta beraz ez lirateke ezabatu behar."
 
 #: src/dialogs/deletecertificatesdialog.cpp:207
 #, kde-format
@@ -6720,7 +6746,14 @@ msgid_plural ""
 "key material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+"Ezabatu beharreko ziurtagirietako bat zure jabetzakoa da. Gako pribatuko "
+"materiala du, ziurtagirirako zifratutako iraganeko komunikazioak "
+"deszifratzeko beharrezkoa, eta beraz ez litzateke ezabatu behar."
 msgstr[1] ""
+"Ezabatu beharreko ziurtagirietako batzuk zure jabetzakoak dira. Gako "
+"pribatuko materiala dute, ziurtagirietarako zifratutako iraganeko "
+"komunikazioak deszifratzeko beharrezkoak, eta beraz ez lirateke ezabatu "
+"behar."
 
 #: src/dialogs/deletecertificatesdialog.cpp:222 src/view/pgpcardwidget.cpp:403
 #, kde-format
@@ -6814,15 +6847,15 @@ msgstr "Editatu taldea"
 #, kde-format
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Balioduna egun %1erako"
+msgstr[1] "Balioduna %1 egunerako"
 
 #: src/dialogs/expirydialog.cpp:72
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Balioduna aste %1erako"
+msgstr[1] "Balioduna %1 asterako"
 
 #: src/dialogs/expirydialog.cpp:74
 #, kde-format
@@ -6835,8 +6868,8 @@ msgstr[1] "Balioduna %1 hilabeterako"
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Balioduna urte %1erako"
+msgstr[1] "Balioduna %1 urterako"
 
 #: src/dialogs/expirydialog.cpp:162
 #, kde-format
@@ -6854,10 +6887,9 @@ msgid "Unlimited validity"
 msgstr "Baliotasun mugagabea"
 
 #: src/dialogs/expirydialog.cpp:175
-#, fuzzy, kde-format
-#| msgid "Valid"
+#, kde-format
 msgid "Valid for:"
-msgstr "Baliozkoa"
+msgstr "Balioduna hainbestean:"
 
 #: src/dialogs/expirydialog.cpp:188
 #, kde-format
@@ -7651,6 +7683,9 @@ msgid ""
 "clients which do not support inline display of D/V results, such as MS "
 "Outlook."
 msgstr ""
+"Deszifratze/Egiaztatze emaitza, leiho gainerakorrerako oroitutako neurri eta "
+"kokalekua, lerro barruko D/E emaitzak azaltzea onartzen ez duten bezeroek "
+"erabilia, MS Outlook esaterako."
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:10
@@ -7675,6 +7710,9 @@ msgid ""
 "input files but instead automatically starts the operations it detects as "
 "applicable to the input."
 msgstr ""
+"Aukera hori gaituta, Kleopatrak ez dizu berriz galdetuko sarrerako "
+"fitxategiekin zer egin nahi duzun, horren ordez, sarrerakoari aplikagarriak "
+"zaizkiola antzematen dituen eragiketak automatikoki hasiko ditu."
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:20
@@ -7766,6 +7804,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Egia bada, S/MIME ziurtagirien izen arrunta (CN) eremua aurrez beteko da "
+"sisteman bildutako informazioarekin,\n"
+"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
+"Direktorio Aktibotik."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
@@ -7798,6 +7840,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Egia bada, OpenPGP eta S/MIME ziurtagirien e-posta helbidea eremua aurrez "
+"beteko da sisteman bildutako informazioarekin,\n"
+"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
+"Direktorio Aktibotik."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
@@ -7830,6 +7876,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Egia bada, OpenPGP ziurtagiriaren izena eremua aurrez beteko da sisteman "
+"bildutako informazioarekin,\n"
+"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
+"Direktorio Aktibotik."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:42
@@ -7855,6 +7905,12 @@ msgid ""
 "(possibly clamped to the allowed minimum or maximum validity period) by "
 "default."
 msgstr ""
+"Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
+"egunez balio duen, edo, beste hitz batzuekin, zenbat egun igaro ondoren "
+"iraungiko den. Ezarri hori 0 gisa baliotasun mugagaberako. Ezarpen hori "
+"ezarrita ez badago edo balio negatibo batekin ezarrita badago, OpenPGP "
+"gakoak hiru urterako baliodunak izango dira era lehenetsian (litekeena, "
+"baimendutako gutxieneko eta gehieneko baliotasun aldira lotua)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -7877,6 +7933,9 @@ msgid ""
 "or, in other words, after how many days the new key will expire at the "
 "earliest."
 msgstr ""
+"Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
+"egunez balio duen, edo, beste hitz batzuekin, goizen, zenbat egun igaro "
+"ondoren iraungiko den."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
@@ -7900,6 +7959,10 @@ msgid ""
 "If this setting is not set or if it is set to a negative value, then "
 "unlimited validity is allowed."
 msgstr ""
+"Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
+"egunez balio duen, edo, beste hitz batzuekin, beranduen, zenbat egun igaro "
+"ondoren iraungiko den. Ezarpen hori ezarrita ez badago edo balio negatibo "
+"batekin ezarrita badago, baliotasun mugagabea baimenduta dago."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
@@ -7936,6 +7999,9 @@ msgid ""
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
+"Ezarpen horrek zehazten du gako batek era lehenetsian zenbat egunez balio "
+"duen, edo, beste hitz batzuekin, zenbat egun igaro ondoren iraungiko den. "
+"Ezarri hori 0 baliora ziurtagirien baliotasun mugagaberako."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75
@@ -8113,6 +8179,10 @@ msgid ""
 "keys. This is\n"
 "         useful in combination with trusted introducers."
 msgstr ""
+"Gaituz gero, Kleopatra, gakoak automatikoki berreskuratzen saiatuko da,\n"
+"         berriki inportatutako OpenPGP gakoen erabiltzaileen IDak "
+"ziurtatzeko erabili ziren gakoak.\n"
+"         Baliagarria da konfiantzazko aurkezleekin konbinatuta."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:163

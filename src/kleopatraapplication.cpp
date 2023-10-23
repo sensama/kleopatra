@@ -324,13 +324,6 @@ void KleopatraApplication::init()
     d->setUpSysTrayIcon();
     d->setUpFilterManager();
     d->setupLogging();
-#ifdef Q_OS_WIN
-    // Under Linux the Theme is set outside. On Windows we have to do
-    // it ourself.
-    if (SystemInfo::isDarkModeActive()) {
-        QIcon::setThemeName(QStringLiteral("breeze-dark"));
-    }
-#endif
 #ifndef QT_NO_SYSTEMTRAYICON
     d->sysTray->show();
 #endif

@@ -102,6 +102,11 @@ int main(int argc, char **argv)
 {
     startupTimer.start();
 
+#ifdef  Q_OS_WIN
+    // note: requires https://invent.kde.org/frameworks/kiconthemes/-/merge_requests/109
+    qputenv("QT_QPA_PLATFORM", "windows:darkmode=2");
+#endif
+
     // Qt::AA_EnableHighDpiScaling must be set before QGuiApplication is constructed.
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);

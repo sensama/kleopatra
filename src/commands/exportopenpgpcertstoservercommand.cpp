@@ -70,7 +70,7 @@ static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget
                        "may not be able to verify the certificate.</para>"
                        "<para>Do you want to continue the export?</para>"),
                 i18nc("@title:window", "Confirm Certificate Export"),
-                KGuiItem{i18nc("@action:button", "Export Certificate")},
+                KGuiItem{i18ncp("@action:button", "Export Certificate", "Export Certificates", 1)},
                 KStandardGuiItem::cancel(),
                 QStringLiteral("confirm-upload-of-uncertified-keys"));
             return answer == KMessageBox::Continue;
@@ -85,7 +85,7 @@ static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget
                        "<para>Do you want to continue the export?</para>"),
                 notCertifiedKeys,
                 i18nc("@title:window", "Confirm Certificate Export"),
-                KGuiItem{i18nc("@action:button", "Export Certificates")},
+                KGuiItem{i18ncp("@action:button", "Export Certificate", "Export Certificates", pgpKeys.size())},
                 KStandardGuiItem::cancel(),
                 QStringLiteral("confirm-upload-of-uncertified-keys"));
             return answer == KMessageBox::Continue;

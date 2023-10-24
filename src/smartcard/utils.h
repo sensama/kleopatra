@@ -8,7 +8,9 @@
 */
 #pragma once
 
+#include <memory>
 #include <string>
+#include <vector>
 
 class QString;
 
@@ -16,8 +18,21 @@ namespace Kleo
 {
 namespace SmartCard
 {
+struct AlgorithmInfo;
+class OpenPGPCard;
 
 QString displayAppName(const std::string &appName);
+
+/**
+ * Returns the subset of algorithms \p supportedAlgorithms that are compliant.
+ */
+std::vector<AlgorithmInfo> getAllowedAlgorithms(const std::vector<AlgorithmInfo> &supportedAlgorithms);
+
+/**
+ * Returns the ID of the algorithm in the list \p candidates that is preferred
+ * over the other candidates.
+ */
+std::string getPreferredAlgorithm(const std::vector<AlgorithmInfo> &candidates);
 
 } // namespace Smartcard
 } // namespace Kleopatra

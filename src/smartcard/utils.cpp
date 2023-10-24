@@ -9,9 +9,16 @@
 
 #include "utils.h"
 
+#include "algorithminfo.h"
 #include "netkeycard.h"
 #include "openpgpcard.h"
 #include "pivcard.h"
+
+#include <kleopatra_debug.h>
+
+#include <Libkleo/Algorithm>
+#include <Libkleo/Compliance>
+#include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
 
@@ -29,5 +36,33 @@ QString Kleo::SmartCard::displayAppName(const std::string &appName)
         return i18nc("proper name of a type of smartcard", "PIV");
     } else {
         return QString::fromStdString(appName);
+    }
+}
+
+std::vector<AlgorithmInfo> Kleo::SmartCard::getAllowedAlgorithms(const std::vector<AlgorithmInfo> &supportedAlgorithms)
+{
+    std::vector<AlgorithmInfo> result;
+    result.reserve(supportedAlgorithms.size());
+    Kleo::copy_if(supportedAlgorithms, std::back_inserter(result), [](const auto &algoInfo) {
+        return DeVSCompliance::algorithmIsCompliant(algoInfo.id);
+    });
+    return result;
+}
+
+std::string Kleo::SmartCard::getPreferredAlgorithm(const std::vector<AlgorithmInfo> &allowedAlgorithms)
+{
+    const auto isAllowedAlgorithm = [&allowedAlgorithms](const std::string &algoId) {
+        return Kleo::any_of(allowedAlgorithms, [&algoId](const auto &algoInfo) {
+            return algoInfo.id == algoId;
+        });
+    };
+
+    const auto &preferredAlgos = Kleo::preferredAlgorithms();
+    const auto defaultAlgoIt = Kleo::find_if(preferredAlgos, isAllowedAlgorithm);
+    if (defaultAlgoIt != preferredAlgos.end()) {
+        return *defaultAlgoIt;
+    } else {
+        qCWarning(KLEOPATRA_LOG) << __func__ << "- No preferred algorithm is allowed. Using first allowed algorithm as default.";
+        return !allowedAlgorithms.empty() ? allowedAlgorithms.front().id : std::string{};
     }
 }

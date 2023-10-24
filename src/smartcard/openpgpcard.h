@@ -67,9 +67,10 @@ public:
     std::vector<AlgorithmInfo> supportedAlgorithms() const;
 
     /**
-     * Returns the ID of the default algorithm for this smart card.
+     * Returns true, if the algorithm with ID \p algorithm is supported by this
+     * smart card. Otherwise, returns false.
      */
-    std::string defaultAlgorithm() const;
+    bool isSupportedAlgorithm(const std::string &algorithm) const;
 
 private:
     std::vector<std::string> mAlgorithms;

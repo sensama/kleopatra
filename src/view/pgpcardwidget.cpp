@@ -24,6 +24,7 @@
 #include "smartcard/algorithminfo.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
+#include "smartcard/utils.h"
 
 #include "dialogs/gencardkeydialog.h"
 
@@ -412,7 +413,12 @@ void PGPCardWidget::genkeyRequested()
 
     auto dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
 #if GPGMEPP_SUPPORTS_SET_CURVE
-    dlg->setSupportedAlgorithms(pgpCard->supportedAlgorithms(), pgpCard->defaultAlgorithm());
+    const auto allowedAlgos = getAllowedAlgorithms(pgpCard->supportedAlgorithms());
+    if (allowedAlgos.empty()) {
+        KMessageBox::error(this, i18nc("@info", "You cannot generate keys on this smart card because it doesn't support any of the compliant algorithms."));
+        return;
+    }
+    dlg->setSupportedAlgorithms(allowedAlgos, getPreferredAlgorithm(allowedAlgos));
 #else
     std::vector<AlgorithmInfo> algos = {
         {"rsa2048", i18nc("@info", "RSA 2048")},

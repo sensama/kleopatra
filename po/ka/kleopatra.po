@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-20 00:43+0000\n"
-"PO-Revision-Date: 2023-10-19 05:49+0200\n"
+"POT-Creation-Date: 2023-10-24 00:43+0000\n"
+"PO-Revision-Date: 2023-10-23 06:03+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1133,11 +1133,7 @@ msgstr "ბუფერის დაშიფვრის შეცდომა"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1145,40 +1141,35 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>ქვემო სიაში არსებულ ჯგუფებში არსებული ყველა OpenPGP სერტიფიკატი "
-"სერტიფიცირებული არაა.</para><para>გნებავთ გატანის გაგრძელება?</para>"
+"<para>თქვენ არ გაგიკეთებიათ ამ სერტიფიკატის ყველა სწორი მომხმარებლის ID-ების "
+"სერტიფიცირება გატანის უფლებით. ხალხი, რომელიც თქვენს სერტიფიცირებებს ენდობა, "
+"სერტიფიკატს ვერ გადაამოწმებს.</para><para>გნებავთ, გააგრძელოთ გატანა?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "OpenPGP სერტიფიკაის გატანა"
+msgstr "დაადასტურეთ სერტიფიკატის წაშლა"
 
 #: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "%1 სერტიფიკატის გატანა"
-msgstr[1] "%1 სერტიფიკატის გატანა"
+msgstr[0] "სერტიფიკატის გატანა"
+msgstr[1] "სერტიფიკატის გატანა"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1186,17 +1177,10 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>ქვემო სიაში არსებულ ჯგუფებში არსებული ყველა OpenPGP სერტიფიკატი "
-"სერტიფიცირებული არაა.</para><para>გნებავთ გატანის გაგრძელება?</para>"
-
-#: src/commands/exportcertificatecommand.cpp:202
-#: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
-msgctxt "@action:button"
-msgid "Export Certificates"
-msgstr "%1 სერტიფიკატის გატანა"
+"<para>თქვენ არ გაგიკეთებიათ ჩამოთვლილი სერტიფიკატების ყველა სწორი "
+"მომხმარებლის ID-ების სერტიფიცირება გატანის უფლებით. ხალხი, რომელიც თქვენს "
+"სერტიფიცირებებს ენდობა, სერტიფიკატს ვერ გადაამოწმებს.</para><para>გნებავთ, "
+"გააგრძელოთ გატანა?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1294,11 +1278,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "არსებული ფაილის <filename>%1</filename> თავზე გადაწერის შეცდომა."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1306,8 +1286,9 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>ქვემო სიაში არსებულ ჯგუფებში არსებული ყველა OpenPGP სერტიფიკატი "
-"სერტიფიცირებული არაა.</para><para>გნებავთ გატანის გაგრძელება?</para>"
+"<para>თქვენ არ გაგიკეთებიათ ამ ჯგუფის ყველა OpenPGP სერტიფიკატების "
+"სერტიფიცირება გატანის უფლებით. ხალხი, რომელიც თქვენს სერტიფიცირებებს ენდობა, "
+"სერტიფიკატს ვერ გადაამოწმებს.</para><para>გნებავთ, გააგრძელოთ გატანა?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
@@ -1323,11 +1304,7 @@ msgid "Export Group"
 msgstr "ჯგუფის გატანა"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You haven't certified all OpenPGP certificates in the groups listed "
-#| "below.</para><para>Do you want to continue the export?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1335,8 +1312,9 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>ქვემო სიაში არსებულ ჯგუფებში არსებული ყველა OpenPGP სერტიფიკატი "
-"სერტიფიცირებული არაა.</para><para>გნებავთ გატანის გაგრძელება?</para>"
+"<para>თქვენ არ გაგიკეთებიათ ჩამოთვლილი ჯგუფების ყველა OpenPGP სერტიფიკატების "
+"სერტიფიცირება გატანის უფლებით. ხალხი, რომელიც თქვენს სერტიფიცირებებს ენდობა, "
+"სერტიფიკატს ვერ გადაამოწმებს.</para><para>გნებავთ, გააგრძელოთ გატანა?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
@@ -5303,7 +5281,7 @@ msgstr "ტექსტის ხელმოწერა"
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:71
 #, kde-format
 msgid "Please select an encryption certificate for recipient \"%1\""
-msgstr ""
+msgstr "აირჩიეთ დაშიფვრის სერტიფიკატი მიმღებისთვის \"%1\""
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:81
 #, kde-format
@@ -9924,6 +9902,12 @@ msgid ""
 "<application>EnigMail</application>.</para><para>Keeping the entry might "
 "lead to an old GnuPG backend being used.</para>"
 msgstr ""
+"<para>Kleopatra-მა აღმოაჩინა მოძველებული რეესტრის გასაღები (<resource>%1\\"
+"%2</resource>), რომელიც ან <application>Gpg4win</application>-ის ძველმა "
+"ვერსიამ დაამატა, ან ისეთმა აპლიკაციებმა, როგორიცაა <application>WinPT</"
+"application> ან <application>EnigMail</application>.</para><para>ამ "
+"გასაღების გამოტოვებამ, შეიძლება, ძველი GnuPG უკანაბოლოს გამოყენება "
+"გამოიწვიოს.</para>"
 
 #: src/selftest/registrycheck.cpp:56
 #, kde-kuit-format
@@ -12345,6 +12329,10 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgctxt "@action:button"
+#~ msgid "Export Certificates"
+#~ msgstr "სერტიფიკატების გატანა"
 
 #~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 #~| msgid ""

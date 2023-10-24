@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-20 00:43+0000\n"
+"POT-Creation-Date: 2023-10-24 00:43+0000\n"
 "PO-Revision-Date: 2023-10-20 13:29+0200\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -1173,7 +1173,9 @@ msgid "Confirm Certificate Export"
 msgstr "Confirmació de l'exportació de certificats"
 
 #: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
 #, kde-format
@@ -1197,13 +1199,6 @@ msgstr ""
 "llistats a sota amb certificacions exportables. És possible que les persones "
 "que confien en les vostres certificacions no puguin verificar el certificat."
 "</para><para>Voleu continuar l'exportació?</para>"
-
-#: src/commands/exportcertificatecommand.cpp:202
-#: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, kde-format
-msgctxt "@action:button"
-msgid "Export Certificates"
-msgstr "Exporta els certificats"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -12510,6 +12505,10 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
+
+#~ msgctxt "@action:button"
+#~ msgid "Export Certificates"
+#~ msgstr "Exporta els certificats"
 
 #~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 #~| msgid ""

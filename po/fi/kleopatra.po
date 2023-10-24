@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-20 00:43+0000\n"
+"POT-Creation-Date: 2023-10-24 00:43+0000\n"
 "PO-Revision-Date: 2023-07-24 21:39+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1185,7 +1185,9 @@ msgid "Confirm Certificate Export"
 msgstr "OpenPGP-varmenteen vienti"
 
 #: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
 #, fuzzy, kde-format
@@ -1213,15 +1215,6 @@ msgid ""
 msgstr ""
 "<para>Varmenteelle ”%1” on annettu oikeus merkintä muita varmenteita "
 "kelvollisiksi puolestasi.</para><para>Haluatko perua tämän oikeuden?</para>"
-
-#: src/commands/exportcertificatecommand.cpp:202
-#: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
-msgctxt "@action:button"
-msgid "Export Certificates"
-msgstr "Vie %1 varmennetta"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -12385,6 +12378,13 @@ msgid ""
 msgstr ""
 "Tuo varmenne tiedostosta.<nl/>Tuodaksesi julkisesta avainpalvelimesta käytä "
 "tämän sijaan toimintoa<interface>Etsi palvelimesta</interface>."
+
+#, fuzzy
+#~| msgctxt "1 is protocol"
+#~| msgid "Export %1 Certificates"
+#~ msgctxt "@action:button"
+#~ msgid "Export Certificates"
+#~ msgstr "Vie %1 varmennetta"
 
 #, fuzzy
 #~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"

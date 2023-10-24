@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-20 00:43+0000\n"
+"POT-Creation-Date: 2023-10-24 00:43+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -1198,7 +1198,9 @@ msgid "Confirm Certificate Export"
 msgstr "Εξαγωγή πιστοποιητικού OpenPGP"
 
 #: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
 #, fuzzy, kde-format
@@ -1227,15 +1229,6 @@ msgstr ""
 "<para>Έχει παραχωρηθεί στο πιστοποιητικό '%1' η δυνατότητα να σημειώνει άλλα "
 "πιστοποιητικά ως έγκυρα για εσάς.</para><para>Θέλετε να ανακαλέσετε αυτή τη "
 "δυνατότητα;</para>"
-
-#: src/commands/exportcertificatecommand.cpp:202
-#: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
-msgctxt "@action:button"
-msgid "Export Certificates"
-msgstr "Εξαγωγή %1 πιστοποιητικών"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -12601,6 +12594,13 @@ msgstr ""
 "Εισαγωγή πιστοποιητικού από αρχείο.<nl/>Για να εισάγετε από ένα δημόσιο "
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
+
+#, fuzzy
+#~| msgctxt "1 is protocol"
+#~| msgid "Export %1 Certificates"
+#~ msgctxt "@action:button"
+#~ msgid "Export Certificates"
+#~ msgstr "Εξαγωγή %1 πιστοποιητικών"
 
 #, fuzzy
 #~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"

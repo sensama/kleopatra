@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-20 00:43+0000\n"
+"POT-Creation-Date: 2023-10-24 00:43+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1180,7 +1180,9 @@ msgid "Confirm Certificate Export"
 msgstr "OpenPGP 証明書のエクスポート"
 
 #: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
 #, fuzzy, kde-format
@@ -1207,15 +1209,6 @@ msgid ""
 msgstr ""
 "<para>証明書 '%1' は、他の証明書を有効だとしてあなたのためにマークする力を持"
 "ちました。</para><para>この力を取り消しますか?</para>"
-
-#: src/commands/exportcertificatecommand.cpp:202
-#: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
-msgctxt "@action:button"
-msgid "Export Certificates"
-msgstr "証明書 %1 件をエクスポート"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -12346,6 +12339,13 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#, fuzzy
+#~| msgctxt "1 is protocol"
+#~| msgid "Export %1 Certificates"
+#~ msgctxt "@action:button"
+#~ msgid "Export Certificates"
+#~ msgstr "証明書 %1 件をエクスポート"
 
 #, fuzzy
 #~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-21 01:39+0000\n"
+"POT-Creation-Date: 2023-10-25 01:50+0000\n"
 "PO-Revision-Date: 2023-10-21 18:46+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -1188,7 +1188,9 @@ msgid "Confirm Certificate Export"
 msgstr "Certificaat exporteren bevestigen"
 
 #: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
 #, kde-format
@@ -1213,13 +1215,6 @@ msgstr ""
 "die afhankelijk zijn van uw certificeren kunnen mogelijk niet in staat zijn "
 "de certificaten te verifiëren. </para><para>Wilt u doorgaan met exporteren?</"
 "para>"
-
-#: src/commands/exportcertificatecommand.cpp:202
-#: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, kde-format
-msgctxt "@action:button"
-msgid "Export Certificates"
-msgstr "Certificaten exporteren"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -12531,6 +12526,10 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgctxt "@action:button"
+#~ msgid "Export Certificates"
+#~ msgstr "Certificaten exporteren"
 
 #~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 #~| msgid ""

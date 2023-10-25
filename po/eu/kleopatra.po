@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-21 01:39+0000\n"
-"PO-Revision-Date: 2023-10-22 22:29+0200\n"
+"POT-Creation-Date: 2023-10-25 01:50+0000\n"
+"PO-Revision-Date: 2023-10-24 23:35+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -1184,7 +1184,9 @@ msgid "Confirm Certificate Export"
 msgstr "Baieztatu ziurtagiria esportatzea"
 
 #: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
 #, kde-format
@@ -1208,13 +1210,6 @@ msgstr ""
 "baliodun guztiak ziurtapen esportagarri batekin ziurtatu. Baliteke zure "
 "ziurtapenen beharra dutenek, ziurtagiria egiaztatzerik ez izatea.</"
 "para><para>Esportatzen jarraitu nahi duzu?</para>"
-
-#: src/commands/exportcertificatecommand.cpp:202
-#: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, kde-format
-msgctxt "@action:button"
-msgid "Export Certificates"
-msgstr "Esportatu ziurtagiriak"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -8466,6 +8461,8 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
+"Gaituta badago, Kleopatrak lekuren batean jakinarazpenak erakutsiko ditu\n"
+"        laster iraungiko diren ziurtagiriak erabiltzen dituzunean."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:178
@@ -8481,22 +8478,26 @@ msgid ""
 "         This can be used to prevent the application from opening external "
 "applications for certain URLs."
 msgstr ""
+"Hori, aplikazioak oztopatu beharko lituzkeen URL-antolaeren zerrenda bat "
+"da.\n"
+"         Aplikazioak URL jakin batzuk irekitzeko kanpoko aplikazioak "
+"irekitzea saihesteko erabil daiteke."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
 #: src/kcfg/settings.kcfg:186
-#, fuzzy, kde-format
-#| msgid "Certificate Download Failed"
+#, kde-format
 msgid "Always search smartcard certificates on keyserver"
-msgstr "Ziurtagiriaren deskargak huts egin du"
+msgstr "Bilatu beti txartel-adimenduneko ziurtagiriak gako-zerbitzarian"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
 #: src/kcfg/settings.kcfg:187
-#, fuzzy, kde-format
-#| msgid "Certificate Download Failed"
+#, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
 "keyserver."
-msgstr "Ziurtagiriaren deskargak huts egin du"
+msgstr ""
+"Konfiguratuta dagoen gako-zerbitzarian txartel-adimenduneko gakoei dagozkien "
+"ziurtagiriak bilatzen ditu."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
 #: src/kcfg/settings.kcfg:189
@@ -8528,6 +8529,9 @@ msgid ""
 "inserted with unknown certificates. This can take a while and blocks the "
 "smartcard while the command is running."
 msgstr ""
+"Egia bada, Kleopatrak «gpgsm --learn» deituko du ziurtagiri ezezagunak "
+"dituen PKCS#15 txartel-adimendun bat sartzen bada. Horrek denbora har "
+"dezake, eta komandoa ibili bitartean txartel-adimenduna oztopa dezake."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
 #: src/kcfg/settings.kcfg:201
@@ -8566,6 +8570,9 @@ msgid ""
 "If a key is specified, then only tags made with this key are considered. "
 "Otherwise, tags made with any fully trusted key are considered."
 msgstr ""
+"Gako bat zehazten bada, gako horrekin etiketak bakarrik hartuko dira "
+"kontuan. Bestela, konfiantza osoa duen edozein gakorekin egindako etiketak "
+"kontuan hartuko dira."
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:9
@@ -8900,6 +8907,11 @@ msgid ""
 "application> will not function in this setting.</para><para>Please ask your "
 "administrator for help in resolving this issue.</para>"
 msgstr ""
+"<para>Ibiltzen ari zaren <application>GpgME</application> liburutegiaren "
+"bertsioa, <application>GpgME++</application> eraikitzeko erabilitako "
+"liburutegia baino zaharragoa da.</para><para><application>Kleopatra</"
+"application> ez da ibiliko ezarpen horretan.</para><para>Mesedez, laguntza "
+"eskatu zure administratzaileari auzi hori konpontzeko.</para>"
 
 #: src/main.cpp:133
 #, kde-format
@@ -8972,6 +8984,9 @@ msgid ""
 "<nl/>You may instead want to close this window without exiting <application>"
 "%1</application>."
 msgstr ""
+"Beste aplikazio batzuek <application>%1</application> zerbitzu gisa erabil "
+"dezakete.<nl/>Horren ordez, baliteke <application>%1</application>(e)tik "
+"irten gabe leiho hori itxi nahi izatea."
 
 #: src/mainwindow.cpp:206
 #, kde-format
@@ -8980,15 +8995,13 @@ msgid "Really Quit?"
 msgstr "Benetan irten?"
 
 #: src/mainwindow.cpp:282
-#, fuzzy, kde-format
-#| msgid ""
-#| "Could not start GnuPG LogViewer (kwatchgnupg). Please check your "
-#| "installation!"
+#, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr ""
-"Ezin da GnuPG LogViewer abiatu (kwatchgnupg). Egiaztatu zure instalazioa!"
+"Ezin izan du GnuPG egunkari erakuslea abiatu (kwatchgnupg). Mesedez, "
+"egiaztatu zure instalazioa."
 
 #: src/mainwindow.cpp:284
 #, kde-format
@@ -9605,6 +9618,10 @@ msgid ""
 "\n"
 "Thanks,\n"
 msgstr ""
+"Mesedez, prozesatu ziurtagiri hori eta jakinarazi bidaltzaileari emaitza "
+"ziurtagiria eskuratzeko kokalekua.\n"
+"\n"
+"Eskerrik asko,\n"
 
 #: src/newcertificatewizard/resultpage.cpp:276
 #, kde-kuit-format
@@ -9621,22 +9638,20 @@ msgstr ""
 
 #: src/newcertificatewizard/resultpage.cpp:281
 #: src/newcertificatewizard/resultpage.cpp:318
-#, fuzzy, kde-format
-#| msgid "Canceled."
+#, kde-format
 msgctxt "@title"
 msgid "Sending Mail"
-msgstr "Ezeztatua."
+msgstr "Posta bidaltzea"
 
 #: src/newcertificatewizard/resultpage.cpp:309
-#, fuzzy, kde-format
-#| msgid "&Certificates"
+#, kde-format
 msgid "My new public OpenPGP key"
-msgstr "&Ziurtagiriak"
+msgstr "Nire OpenPGP gako publiko berria"
 
 #: src/newcertificatewizard/resultpage.cpp:310
 #, kde-format
 msgid "Please find attached my new public OpenPGP key."
-msgstr ""
+msgstr "Mesedez, nire OpenPGP gako publikoa atxikita aurkituko duzu."
 
 #: src/newcertificatewizard/resultpage.cpp:314
 #, kde-kuit-format
@@ -9656,23 +9671,22 @@ msgid ""
 "This operation will delete the certification request. Please make sure that "
 "you have sent or saved it before proceeding."
 msgstr ""
+"Eragiketa horrek ziurtapen eskaera ezabatuko du. Mesedez, jarraitu aurretik "
+"ziurtatu bidali edo gorde duzula."
 
 #: src/newcertificatewizard/resultpage.cpp:365
-#, fuzzy, kde-format
-#| msgid "Your Certificate Request is Ready to Be Sent"
+#, kde-format
 msgctxt "@title"
 msgid "Certification Request About To Be Deleted"
-msgstr "Zure ziurtagiri eskaera bidaltzeko prest dago"
+msgstr "Ezabatzear dagoen ziurtapen eskaera"
 
 #: src/selftest/compliancecheck.cpp:34
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2):"
+#, kde-format
 msgctxt ""
 "@title %1 is a placeholder for the name of a compliance mode. E.g. NATO "
 "RESTRICTED compliant or VS-NfD compliant"
 msgid "%1?"
-msgstr "%1 (%2):"
+msgstr "%1?"
 
 #: src/selftest/compliancecheck.cpp:45
 #, kde-kuit-format
@@ -9681,6 +9695,8 @@ msgctxt ""
 "RESTRICTED compliant or VS-NfD compliant"
 msgid "<para><application>GnuPG</application> is not configured for %1.</para>"
 msgstr ""
+"<para><application>GnuPG</application> ez dago %1(e)rako konfiguratuta.</"
+"para>"
 
 #: src/selftest/compliancecheck.cpp:57
 #, kde-kuit-format
@@ -9691,6 +9707,8 @@ msgid ""
 "<para>The <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para><application>Kleopatra</application>k erabilitako <application>GnuPG</"
+"application> sistema ez da %1.</para>"
 
 #: src/selftest/compliancecheck.cpp:60
 #, kde-kuit-format
@@ -9701,24 +9719,26 @@ msgid ""
 "<para>Install a version of <application>GnuPG</application> that is %1.</"
 "para>"
 msgstr ""
+"<para>Instalatu %1 den <application>GnuPG</application>ren bertsio bat.</"
+"para>"
 
 #: src/selftest/enginecheck.cpp:46
 #, kde-format
 msgctxt "@title"
 msgid "GPG (OpenPGP Backend) installation"
-msgstr ""
+msgstr "GPG (OpenPGP bizkarraldekoa) instalatzea"
 
 #: src/selftest/enginecheck.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "GpgSM (S/MIME Backend) installation"
-msgstr ""
+msgstr "GpgSM (S/MIME bizkarraldekoa) instalatzea"
 
 #: src/selftest/enginecheck.cpp:50
 #, kde-format
 msgctxt "@title"
 msgid "GpgConf (Configuration) installation"
-msgstr ""
+msgstr "GpgConf (konfigurazioa) instalatzea"
 
 #: src/selftest/enginecheck.cpp:94
 #, kde-kuit-format
@@ -9727,12 +9747,13 @@ msgid ""
 "<para>A problem was detected with the <application>%1</application> backend."
 "</para>"
 msgstr ""
+"<para><application>%1</application> bizkarraldekoarekin arazo bat antzeman "
+"da.</para>"
 
 #: src/selftest/enginecheck.cpp:98
-#, fuzzy, kde-format
-#| msgid "Not imported:"
+#, kde-format
 msgid "not supported"
-msgstr "Euskarririk gabe"
+msgstr "ez du euskarririk"
 
 #: src/selftest/enginecheck.cpp:100
 #, kde-kuit-format
@@ -9741,6 +9762,8 @@ msgid ""
 "<para>It seems that the <icode>gpgme</icode> library was compiled without "
 "support for this backend.</para>"
 msgstr ""
+"<para>Ematen du <icode>gpgme</icode> liburutegia bizkarraldeko horretarako "
+"euskarririk gabe eraiki zela.</para>"
 
 #: src/selftest/enginecheck.cpp:103
 #, kde-kuit-format
@@ -9749,17 +9772,21 @@ msgid ""
 "<para>Replace the <icode>gpgme</icode> library with a version compiled with "
 "<application>%1</application> support.</para>"
 msgstr ""
+"<para>Ordezkatu <icode>gpgme</icode> liburutegia <application>%1</"
+"application>(e)rako euskarria duen bertsio batekin.</para>"
 
 #: src/selftest/enginecheck.cpp:110
 #, kde-format
 msgid "not properly installed"
-msgstr ""
+msgstr "ez dago behar bezala instalatuta"
 
 #: src/selftest/enginecheck.cpp:111
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Backend <command>%1</command> is not installed properly.</para>"
 msgstr ""
+"<para><command>%1</command> bizkarraldekoa ez dago behar bezala instalatuta."
+"</para>"
 
 #: src/selftest/enginecheck.cpp:113
 #, kde-kuit-format
@@ -9768,11 +9795,13 @@ msgid ""
 "<para>Please check the output of <command>%1 --version</command> manually.</"
 "para>"
 msgstr ""
+"<para>Mesedez, aztertu <command>%1 --version</command>en irteera eskuz.</"
+"para>"
 
 #: src/selftest/enginecheck.cpp:115
 #, kde-format
 msgid "too old"
-msgstr ""
+msgstr "zaharregia"
 
 #: src/selftest/enginecheck.cpp:117
 #, kde-kuit-format
@@ -9781,6 +9810,8 @@ msgid ""
 "<para>Backend <command>%1</command> is installed in version %2, but at least "
 "version %3 is required.</para>"
 msgstr ""
+"<para><command>%1</command> bizkarraldekoaren %2 bertsioa instalatuta dago, "
+"baina gutxienez %3 bertsioa behar da.</para>"
 
 #: src/selftest/enginecheck.cpp:123 src/selftest/enginecheck.cpp:179
 #, kde-kuit-format
@@ -9803,6 +9834,8 @@ msgid ""
 "<para>Make sure <application>%1</application> is installed and in "
 "<envar>PATH</envar>.</para>"
 msgstr ""
+"<para>Ziurtatu <application>%1</application> instalatuta eta <envar>PATH</"
+"envar>(e)an dagoela.</para>"
 
 #: src/selftest/enginecheck.cpp:172
 #, kde-kuit-format
@@ -9811,6 +9844,8 @@ msgid ""
 "<para><application>%1</application> v%2.%3.%4 is required for this test, but "
 "only %5 is installed.</para>"
 msgstr ""
+"<para><application>%1</application> v%2.%3.%4 behar da proba horretarako, "
+"baina %5 bakarrik instalatuta dago.</para>"
 
 #: src/selftest/enginecheck.cpp:185
 #, kde-kuit-format
@@ -9819,6 +9854,9 @@ msgid ""
 "<para><application>%1</application> is required for this test, but does not "
 "seem available.</para><para>See tests further up for more information.</para>"
 msgstr ""
+"<para><application>%1</application> behar da proba horretarako, baina ez "
+"dirudi erabilgarri dagoenik.</para><para>Ikusi probak gorago informazio "
+"gehiagorako.</para>"
 
 #: src/selftest/enginecheck.cpp:188
 #, kde-kuit-format
@@ -9844,6 +9882,9 @@ msgid ""
 "Either the GpgME library itself is too old, or the GpgME++ library was "
 "compiled against an older GpgME that did not support connecting to gpg-agent."
 msgstr ""
+"«GpgME» liburutegia bera zaharregia da, edo «GpgME++» liburutegia «gpg-"
+"agent»ekin konektatzeko euskarririk ez duen «GpgME» zaharrago batekin "
+"konpilatu zen."
 
 #: src/selftest/gpgagentcheck.cpp:51
 #, kde-kuit-format
@@ -9852,6 +9893,8 @@ msgid ""
 "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure that "
 "gpgme++ was compiled against it."
 msgstr ""
+"Bertsio-berritu <application>gpgme</application> 1.2.0 edo handiagora,eta "
+"ziurtatu «gpgme++» harekin konpilatu zela."
 
 #: src/selftest/gpgagentcheck.cpp:63
 #, kde-format
@@ -9859,11 +9902,7 @@ msgid "GpgME does not support gpg-agent"
 msgstr "«GpgME»k ez dauka «gpg-agent»earen euskarria"
 
 #: src/selftest/gpgagentcheck.cpp:65
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "An error occurred when trying to clear the CRL cache. The output from "
-#| "DirMngr was:\n"
-#| "%1"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The <application>GpgME</application> library is new enough to support "
@@ -9871,9 +9910,10 @@ msgid ""
 "installation.</para><para>The error returned was: <message>%1</message>.</"
 "para>"
 msgstr ""
-"Errore bat gertatu da CRL cache-a garbitzean. DirMngr-en irteera hau izan "
-"da:\n"
-"%1"
+"<para><application>GpgME</application> liburutegia <application>gpg-agent</"
+"application>en euskarria izateko bezain berria da, baina ez dirudi "
+"instalazio honetan hala egiten duenik.</para><para>Itzulitako errorea: "
+"<message>%1</message>.</para>"
 
 #: src/selftest/gpgagentcheck.cpp:77
 #, kde-format
@@ -9881,27 +9921,22 @@ msgid "unexpected error"
 msgstr "ustekabeko errorea"
 
 #: src/selftest/gpgagentcheck.cpp:79
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "An error occurred when trying to clear the CRL cache. The output from "
-#| "DirMngr was:\n"
-#| "%1"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Unexpected error while asking <application>gpg-agent</application> for "
 "its version.</para><para>The error returned was: <message>%1</message>.</"
 "para>"
 msgstr ""
-"Errore bat gertatu da CRL cache-a garbitzean. DirMngr-en irteera hau izan "
-"da:\n"
-"%1"
+"<para>Ustekabeko errorea <application>gpg-agent</application>eri bere "
+"bertsioa galdetzean.</para><para>Itzulitako errorea: <message>%1</message>.</"
+"para>"
 
 #: src/selftest/gpgconfcheck.cpp:37
-#, fuzzy, kde-format
-#| msgid "Color & Font Configuration"
+#, kde-format
 msgctxt "@title"
 msgid "%1 Configuration Check"
-msgstr "Kolore eta letra-tipoen konfigurazioa"
+msgstr "%1(e)ren konpilazio azterketa"
 
 #: src/selftest/gpgconfcheck.cpp:69
 #, kde-format
@@ -9964,26 +9999,25 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Delete registry key <resource>%1\\%2</resource>.</para>"
-msgstr ""
+msgstr "<para>Ezabatu erregistroko <resource>%1\\%2</resource> gakoa.</para>"
 
 #: src/selftest/registrycheck.cpp:76
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not delete the registry key <resource>%1\\%2</resource>"
-msgstr ""
+msgstr "Ezin izan du erregistroko <resource>%1\\%2</resource> gakoa ezabatu"
 
 #: src/selftest/registrycheck.cpp:77
-#, fuzzy, kde-format
-#| msgid "Deleting keys..."
+#, kde-format
 msgctxt "@title"
 msgid "Error Deleting Registry Key"
-msgstr "Gakoak ezabatzen..."
+msgstr "Erregistroko gakoa ezabatzeko errorea"
 
 #: src/selftest/uiservercheck.cpp:34
 #, kde-format
 msgctxt "@title"
 msgid "UiServer Connectivity"
-msgstr ""
+msgstr "EI zerbitzariaren konektagarritasuna"
 
 #: src/selftest/uiservercheck.cpp:52
 #, kde-format
@@ -9994,7 +10028,7 @@ msgstr "ez irisgarria"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not connect to UiServer: <message>%1</message>"
-msgstr ""
+msgstr "Ezin izan du EI zerbitzarira konektatu: <message>%1</message>"
 
 #: src/selftest/uiservercheck.cpp:55
 #, kde-kuit-format
@@ -10004,6 +10038,9 @@ msgid ""
 "connections to <resource>localhost</resource> or <resource>127.0.0.1</"
 "resource>).</para>"
 msgstr ""
+"<para>Egiaztatu zure suhesia ez dagoela konexio lokalak oztopatzeko ezarrita "
+"(baimendu konexioak honakoetara, <resource>localhost</resource> edo "
+"<resource>127.0.0.1</resource>).</para>"
 
 #: src/selftest/uiservercheck.cpp:59
 #, kde-format
@@ -10116,57 +10153,53 @@ msgid "Card Authentication Key"
 msgstr "Txartela autentifikazio gakoa"
 
 #: src/smartcard/pivcard.cpp:87
-#, fuzzy, kde-format
-#| msgid "New signatures:"
+#, kde-format
 msgid "Digital Signature Key"
-msgstr "Sinadura berriak."
+msgstr "Sinadura digitalerako gakoa"
 
 #: src/smartcard/pivcard.cpp:88
-#, fuzzy, kde-format
-#| msgid "Stop Operation"
+#, kde-format
 msgid "Key Management Key"
-msgstr "Gelditu eragiketa"
+msgstr "Gako kudeaketarako gakoa"
 
 #: src/smartcard/pivcard.cpp:99
 #, kde-format
 msgid "RSA key transport (2048 bits)"
-msgstr ""
+msgstr "RSA gako garraioa (2048 bit)"
 
 #: src/smartcard/pivcard.cpp:100
 #, kde-format
 msgid "ECDH (Curve P-256)"
-msgstr ""
+msgstr "ECDH (Kurba P-256)"
 
 #: src/smartcard/pivcard.cpp:101
 #, kde-format
 msgid "ECDH (Curve P-384)"
-msgstr ""
+msgstr "ECDH (Kurba P-384)"
 
 #: src/smartcard/pivcard.cpp:105 src/smartcard/pivcard.cpp:113
-#, fuzzy, kde-format
-#| msgid "%1 bit"
-#| msgid_plural "%1 bits"
+#, kde-format
 msgid "RSA (2048 bits)"
-msgstr " bit %1"
+msgstr "RSA (2048 bit)"
 
 #: src/smartcard/pivcard.cpp:106 src/smartcard/pivcard.cpp:114
 #, kde-format
 msgid "ECDSA (Curve P-256)"
-msgstr ""
+msgstr "ECDSA (Kurba P-256)"
 
 #: src/smartcard/pivcard.cpp:107
 #, kde-format
 msgid "ECDSA (Curve P-384)"
-msgstr ""
+msgstr "ECDSA (Kurba P-384)"
 
 #: src/smartcard/utils.cpp:25
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "NetKey"
-msgstr ""
+msgstr "NetKey"
 
 #: src/smartcard/utils.cpp:27
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "OpenPGP"
 msgstr "OpenPGP"
@@ -10175,111 +10208,106 @@ msgstr "OpenPGP"
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "PIV"
-msgstr ""
+msgstr "PIV"
 
 #: src/systrayicon.cpp:127
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Error"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
-msgstr "Ziurtagiri kudeatzailearen errorea"
+msgstr "&Ireki ziurtagiri kudeatzailea..."
 
 #: src/systrayicon.cpp:129
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
-msgstr "Konfiguratu"
+msgstr "&Konfiguratu <application>%1</application>..."
 
 #: src/systrayicon.cpp:132
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
-msgstr "Honi buruz"
+msgstr "&Honi buruz <application>%1</application>..."
 
 #: src/systrayicon.cpp:135
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
-msgstr "Itzali"
+msgstr "It&zali <application>%1</application>"
 
 #: src/systrayicon.cpp:138
-#, fuzzy, kde-format
-#| msgid "Select CRL File"
+#, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
-msgstr "Hautatu CRL fitxategia"
+msgstr "Txartel-adimenduna"
 
 #: src/systrayicon.cpp:139
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
-msgstr ""
+msgstr "Eguneratu txartelaren egoera"
 
 #: src/systrayicon.cpp:140
-#, fuzzy, kde-format
-#| msgid "Set F&ont..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
-msgstr "Ezari letra-tipoa..."
+msgstr "Ezari NetKey v3-ren hasierako PIN..."
 
 #: src/systrayicon.cpp:141
-#, fuzzy, kde-format
-#| msgid "Save Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Learn NetKey v3 Card Certificates"
-msgstr "Gorde ziurtagiria"
+msgstr "Ikasi NetKey v3 txarteleko ziurtagiriak"
 
 #: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
 msgid "No option name given"
-msgstr ""
+msgstr "Ez da eman aukera-izenik"
 
 #: src/uiserver/assuanserverconnection.cpp:328
-#, fuzzy, kde-format
-#| msgid "Kleopatra Error"
+#, kde-format
 msgid "Parse error"
-msgstr "Kleopatra-ren errorea"
+msgstr "Azterketa sintaktikoaren errorea"
 
 #: src/uiserver/assuanserverconnection.cpp:337
 #, kde-format
 msgid "Parse error: numeric session id too large"
-msgstr ""
+msgstr "Azterketa sintaktikoaren errorea: zenbakizko saio ID luzeegia"
 
 #: src/uiserver/assuanserverconnection.cpp:354
 #, kde-format
 msgid "CAPABILITIES does not take arguments"
-msgstr ""
+msgstr "«CAPABILITIES»ek ez du argumenturik hartzen"
 
 #: src/uiserver/assuanserverconnection.cpp:388
 #, kde-format
 msgid "Unknown value for WHAT"
-msgstr ""
+msgstr "«WHAT»eren balio ezezaguna"
 
 #: src/uiserver/assuanserverconnection.cpp:400
 #, kde-format
 msgid "START_KEYMANAGER does not take arguments"
-msgstr ""
+msgstr "«START_KEYMANAGER»ek ez du argumenturik hartzen"
 
 #: src/uiserver/assuanserverconnection.cpp:415
 #, kde-format
 msgid "START_CONFDIALOG does not take arguments"
-msgstr ""
+msgstr "«START_CONFDIALOG»ek ez du argumenturik hartzen"
 
 #: src/uiserver/assuanserverconnection.cpp:473
-#, fuzzy, kde-format
+#, kde-format
 msgid "Message #%1"
-msgstr "Mezua"
+msgstr "Mezu zk.%1"
 
 #: src/uiserver/assuanserverconnection.cpp:484
 #, kde-format
 msgid "Empty file path"
-msgstr ""
+msgstr "Bide-izena hutsik"
 
 #: src/uiserver/assuanserverconnection.cpp:488
 #: src/uiserver/assuanserverconnection.cpp:551
 #, kde-format
 msgid "Only absolute file paths are allowed"
-msgstr ""
+msgstr "Bide-izen absolutuak bakarrik onartzen dira"
 
 #: src/uiserver/assuanserverconnection.cpp:491
 #, kde-format
@@ -10289,7 +10317,7 @@ msgstr ""
 #: src/uiserver/assuanserverconnection.cpp:568
 #, kde-format
 msgid "unknown exception caught"
-msgstr ""
+msgstr "salbuespen ezezaguna harrapatu da"
 
 #: src/uiserver/assuanserverconnection.cpp:629
 #, kde-format
@@ -10299,17 +10327,17 @@ msgstr ""
 #: src/uiserver/assuanserverconnection.cpp:632
 #, kde-format
 msgid "Argument is not a valid RFC-2822 mailbox"
-msgstr ""
+msgstr "Argumentua ez da RFC-2822 posta-kutxa balioduna"
 
 #: src/uiserver/assuanserverconnection.cpp:636
 #, kde-format
 msgid "Garbage after valid RFC-2822 mailbox detected"
-msgstr ""
+msgstr "Zabarra antzeman da RFC-2822 posta-kutxa baliodunaren ondoren"
 
 #: src/uiserver/assuanserverconnection.cpp:1002
 #, kde-format
 msgid "Caught unexpected exception: %1"
-msgstr ""
+msgstr "Ustekabeko salbuespena harrapatu da: %1"
 
 #: src/uiserver/assuanserverconnection.cpp:1007
 #, kde-format
@@ -10321,42 +10349,42 @@ msgstr ""
 #: src/uiserver/assuanserverconnection.cpp:1165
 #, kde-format
 msgid "Cannot send \"%1\" status"
-msgstr ""
+msgstr "Ezin du bidali \"%1\" egoera"
 
 #: src/uiserver/assuanserverconnection.cpp:1175
 #, kde-format
 msgid "Cannot send data"
-msgstr ""
+msgstr "Ezin ditu datuak bidali"
 
 #: src/uiserver/assuanserverconnection.cpp:1179
 #, kde-format
 msgid "Cannot flush data"
-msgstr ""
+msgstr "Ezin ditu datuak hustu"
 
 #: src/uiserver/assuanserverconnection.cpp:1428
 #, kde-format
 msgid "Required --mode option missing"
-msgstr ""
+msgstr "Beharrezko «--mode» aukera falta da"
 
 #: src/uiserver/assuanserverconnection.cpp:1438
 #, kde-format
 msgid "invalid mode: \"%1\""
-msgstr ""
+msgstr "modu baliogabea: \"%1\""
 
 #: src/uiserver/assuanserverconnection.cpp:1460
 #, kde-format
 msgid "Required --protocol option missing"
-msgstr ""
+msgstr "Beharrezko «--protocol» aukera falta da"
 
 #: src/uiserver/assuanserverconnection.cpp:1465
 #, kde-format
 msgid "--protocol is not allowed here"
-msgstr ""
+msgstr "«--protocol» ez da hemen onartzen"
 
 #: src/uiserver/assuanserverconnection.cpp:1475
-#, fuzzy, kde-format
+#, kde-format
 msgid "invalid protocol \"%1\""
-msgstr "Protokolo baliogabea"
+msgstr "\"%1\" protokolo baliogabea"
 
 #: src/uiserver/createchecksumscommand.cpp:56
 #: src/uiserver/decryptverifycommandfilesbase.cpp:152
@@ -10364,27 +10392,27 @@ msgstr "Protokolo baliogabea"
 #: src/uiserver/verifychecksumscommand.cpp:58
 #, kde-format
 msgid "At least one FILE must be present"
-msgstr ""
+msgstr "Gutxienez FILE bat egon behar da"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:125
 #, kde-format
 msgid "Cannot use non-info SENDER"
-msgstr ""
+msgstr "Ezin da erabili informazio gabeko SENDER"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:128
 #, kde-format
 msgid "Cannot use non-info RECIPIENT"
-msgstr ""
+msgstr "Ezin da erabili informazio gabeko RECIPIENT"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:143
 #, kde-format
 msgid "FILES present"
-msgstr ""
+msgstr "FILES dago"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:147
 #, kde-format
 msgid "At least one INPUT needs to be provided"
-msgstr ""
+msgstr "Gutxienez INPUT bat eman behar da"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:152
 #, kde-format
@@ -10415,37 +10443,37 @@ msgstr ""
 #: src/uiserver/decryptverifycommandemailbase.cpp:175
 #, kde-format
 msgid "No backend support for OpenPGP"
-msgstr ""
+msgstr "Ez dago «OpenPGP»rako bizkarraldekoaren euskarririk"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:176
 #, kde-format
 msgid "No backend support for S/MIME"
-msgstr ""
+msgstr "Ez dago «S/MIME»rako bizkarraldekoaren euskarririk"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "Cannot use SENDER"
-msgstr ""
+msgstr "Ezin da SENDER erabili"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "Cannot use RECIPIENT"
-msgstr ""
+msgstr "Ezin da RECIPIENT erabili"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #, kde-format
 msgid "INPUT present"
-msgstr ""
+msgstr "INPUT dago"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:145
 #, kde-format
 msgid "MESSAGE present"
-msgstr ""
+msgstr "MESSAGE dago"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:148
 #, kde-format
 msgid "OUTPUT present"
-msgstr ""
+msgstr "OUTPUT dago"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:154
 #, kde-format
@@ -10481,12 +10509,12 @@ msgstr ""
 #: src/uiserver/encryptcommand.cpp:75 src/uiserver/signcommand.cpp:76
 #, kde-format
 msgid "At least one INPUT must be present"
-msgstr ""
+msgstr "Gutxienez INPUT bat egon behar da"
 
 #: src/uiserver/encryptcommand.cpp:78
 #, kde-format
 msgid "At least one OUTPUT must be present"
-msgstr ""
+msgstr "Gutxienez OUTPUT bat egon behar da"
 
 #: src/uiserver/encryptcommand.cpp:84
 #, kde-format
@@ -10580,7 +10608,7 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp:73
 #, kde-format
 msgid "No SENDER given"
-msgstr ""
+msgstr "Ez da SENDER batere eman"
 
 #: src/uiserver/prepsigncommand.cpp:80 src/uiserver/signcommand.cpp:88
 #, kde-format
@@ -10638,7 +10666,7 @@ msgstr ""
 #: src/uiserver/signcommand.cpp:82
 #, kde-format
 msgid "MESSAGE command is not allowed before SIGN"
-msgstr ""
+msgstr "MESSAGE komandoa ez da onartzen SIGN aurretik"
 
 #: src/uiserver/signcommand.cpp:99
 #, kde-format
@@ -10698,16 +10726,14 @@ msgid "Detected another running gnupg UI server listening at %1."
 msgstr ""
 
 #: src/uiserver/uiserver_unix.cpp:39 src/uiserver/uiserver_win.cpp:39
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not create socket: %1"
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Ezin izan du hargunea sortu: %1"
 
 #: src/uiserver/uiserver_unix.cpp:49 src/uiserver/uiserver_win.cpp:49
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not bind to socket: %1"
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Ezin izan da hargunera lotu: %1"
 
 #: src/uiserver/uiserver_unix.cpp:54 src/uiserver/uiserver_win.cpp:53
 #, fuzzy, kde-format
@@ -11332,7 +11358,7 @@ msgstr "Sortu S/MIME ziurtagiria sinatzeko eskaera berri bat (CSR)"
 #: src/view/keylistcontroller.cpp:622
 #, kde-format
 msgid "Trust Root Certificate"
-msgstr ""
+msgstr "Erro ziurtagiriarekiko konfiantza izan"
 
 #: src/view/keylistcontroller.cpp:631
 #, kde-format
@@ -11559,13 +11585,13 @@ msgstr "<em>Gakorik ez</em>"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a key for this card slot"
-msgstr ""
+msgstr "Sortu txartel-erreten horretarako gako bat"
 
 #: src/view/openpgpkeycardwidget.cpp:187
 #, kde-format
 msgctxt "@info"
 msgid "<em>Public key not found locally</em>"
-msgstr ""
+msgstr "<em>Gako publikoa ez da lokalki aurkitu</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:208
 #, kde-format
@@ -11584,6 +11610,7 @@ msgstr "Birsortu gakoa"
 msgctxt "@info:tooltip"
 msgid "Generate a new key for this card slot replacing the existing key"
 msgstr ""
+"Sortu txartel erreten horretarako gako berri bat, dagoen gakoa ordezkatuz"
 
 #: src/view/openpgpkeycardwidget.cpp:242
 #, kde-format
@@ -11870,13 +11897,15 @@ msgstr "Gorde zifratzeko gakoaren babes-kopia"
 #: src/view/pgpcardwidget.cpp:375
 #, kde-format
 msgid "Backup Key"
-msgstr ""
+msgstr "Babeskopia gakoa"
 
 #: src/view/pgpcardwidget.cpp:377
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr ""
+"Babeskopia mugitzea huts egin du. Babeskopia gakoa oraindik hemen gordeta "
+"dago: %1"
 
 #: src/view/pgpcardwidget.cpp:383
 #, kde-format
@@ -11897,17 +11926,18 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
+"Txartel honetan dauden gakoak <b>ezabatu</b> egingo dira eta gako berriekin "
+"ordezkatuko dira."
 
 #: src/view/pgpcardwidget.cpp:402
-#, fuzzy, kde-format
-#| msgid "Secret Key Export"
+#, kde-format
 msgid "Secret Key Deletion"
-msgstr "Esportatu gako sekretua"
+msgstr "Gako sekretua ezabatzea"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format
 msgid "Change cardholder"
-msgstr ""
+msgstr "Aldatu txartelaren titularra"
 
 #: src/view/pgpcardwidget.cpp:446
 #, kde-format
@@ -12066,7 +12096,7 @@ msgstr "PIV v%1 txartela"
 #, kde-format
 msgctxt "@info"
 msgid "<em>slot empty</em>"
-msgstr ""
+msgstr "<em>erretena hutsik</em>"
 
 #: src/view/pivcardwidget.cpp:274
 #, kde-format
@@ -12370,6 +12400,10 @@ msgid ""
 msgstr ""
 "Inportatu ziurtagiria fitxategi batetik.<nl/>Gako-zerbitzari publiko batetik "
 "inportatzeko, berriz, erabili <interface>Bilatu zerbitzarian</interface>."
+
+#~ msgctxt "@action:button"
+#~ msgid "Export Certificates"
+#~ msgstr "Esportatu ziurtagiriak"
 
 #, fuzzy
 #~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"

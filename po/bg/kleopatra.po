@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-21 01:39+0000\n"
+"POT-Creation-Date: 2023-10-25 01:50+0000\n"
 "PO-Revision-Date: 2023-10-03 10:15+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: \n"
@@ -1189,7 +1189,9 @@ msgid "Confirm Certificate Export"
 msgstr "OpenPGP сертификат за експортиране"
 
 #: src/commands/exportcertificatecommand.cpp:187
+#: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
+#: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
 #, fuzzy, kde-format
@@ -1217,15 +1219,6 @@ msgid ""
 msgstr ""
 "<para>Сертификат '%1' е упълномощен да маркира други сертификати като "
 "валидни за вас.</para><para>Искате ли да отмените това правомощие?</para>"
-
-#: src/commands/exportcertificatecommand.cpp:202
-#: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
-msgctxt "@action:button"
-msgid "Export Certificates"
-msgstr "Експортиране на сертификати %1"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -12519,6 +12512,13 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#, fuzzy
+#~| msgctxt "1 is protocol"
+#~| msgid "Export %1 Certificates"
+#~ msgctxt "@action:button"
+#~ msgid "Export Certificates"
+#~ msgstr "Експортиране на сертификати %1"
 
 #, fuzzy
 #~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"

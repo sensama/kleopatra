@@ -118,7 +118,7 @@ int main(int argc, char **argv)
 
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
 
-    KLocalizedString::setApplicationDomain("kleopatra");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kleopatra"));
 
     // Initialize GpgME
     {

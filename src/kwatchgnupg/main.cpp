@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     QApplication app(argc, argv);
     KCrash::initialize();
 
-    KLocalizedString::setApplicationDomain("kwatchgnupg");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kwatchgnupg"));
     AboutData aboutData;
 
     KAboutData::setApplicationData(aboutData);

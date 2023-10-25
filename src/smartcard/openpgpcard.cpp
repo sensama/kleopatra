@@ -27,6 +27,7 @@
 #include <utils/qt-cxx20-compat.h>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
 
@@ -132,35 +133,20 @@ std::string OpenPGPCard::getAlgorithmName(const std::string &algorithm, const st
 
 void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorithms)
 {
-    static const std::vector<std::string> allowedAlgorithms = {
-        "brainpoolP256r1",
-        "brainpoolP384r1",
-        "brainpoolP512r1",
-        "curve25519",
-        "curve448",
-        "nistp256",
-        "nistp384",
-        "nistp521",
-        "rsa2048",
-        "rsa3072",
-        "rsa4096",
-    };
-    // Curve secp256k1 is explicitly ignored
-    static const std::vector<std::string> ignoredAlgorithms = {
-        "secp256k1",
-    };
+    const auto &availableAlgos = Kleo::availableAlgorithms();
+    const auto &ignoredAlgos = Kleo::ignoredAlgorithms();
     mAlgorithms.clear();
-    std::copy_if(algorithms.begin(), algorithms.end(), std::back_inserter(mAlgorithms), [](const auto &algo) {
-        return Kleo::contains(allowedAlgorithms, algo);
+    Kleo::copy_if(algorithms, std::back_inserter(mAlgorithms), [&availableAlgos](const auto &algo) {
+        return Kleo::contains(availableAlgos, algo);
     });
     if (mAlgorithms.size() < algorithms.size()) {
         std::vector<std::string> unsupportedAlgos;
-        std::copy_if(algorithms.begin(), algorithms.end(), std::back_inserter(unsupportedAlgos), [](const auto &algo) {
-            return !Kleo::contains(ignoredAlgorithms, algo) && !Kleo::contains(allowedAlgorithms, algo);
+        Kleo::copy_if(algorithms, std::back_inserter(unsupportedAlgos), [&availableAlgos, &ignoredAlgos](const auto &algo) {
+            return !Kleo::contains(ignoredAlgos, algo) && !Kleo::contains(availableAlgos, algo);
         });
         if (unsupportedAlgos.size() > 0) {
-            qWarning(KLEOPATRA_LOG).nospace() << "OpenPGPCard::" << __func__ << " Unsupported algorithms: " << unsupportedAlgos
-                                              << " (supported: " << allowedAlgorithms << ")";
+            qCWarning(KLEOPATRA_LOG).nospace() << "OpenPGPCard::" << __func__ << " Unsupported algorithms: " << unsupportedAlgos
+                                               << " (supported: " << availableAlgos << ")";
         }
     }
 }

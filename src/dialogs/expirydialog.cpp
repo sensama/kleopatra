@@ -112,11 +112,7 @@ private:
 
             {
                 updateSubkeysCheckBox = new QCheckBox{i18n("Also update the validity period of the subkeys"), qq};
-#if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
                 updateSubkeysCheckBox->setVisible(mode == Mode::UpdateCertificateWithSubkeys);
-#else
-                updateSubkeysCheckBox->setVisible(false);
-#endif
                 vboxLayout->addWidget(updateSubkeysCheckBox);
             }
 

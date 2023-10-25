@@ -173,7 +173,6 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 
-#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     ++row;
     mFetchMissingSignerKeysCB = new QCheckBox{q->widget()};
     mFetchMissingSignerKeysCB->setText(i18nc("@option:check", "Retrieve missing certification keys when importing new keys"));
@@ -182,7 +181,6 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
                                                  "that were used to certify the user IDs of newly imported OpenPGP keys."));
     connect(mFetchMissingSignerKeysCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::markAsChanged);
     glay->addWidget(mFetchMissingSignerKeysCB, row, 0, 1, 3);
-#endif
 
     ++row;
     mQueryWKDsForAllUserIDsCB = new QCheckBox{q->widget()};
@@ -254,12 +252,9 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
 
         mOpenPGPKeyserverEdit.widget()->setText(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isSet() ? mOpenPGPServiceEntry->stringValue() : QString());
         mOpenPGPKeyserverEdit.setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
-#if QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE
         if (newEntry && !newEntry->defaultValue().isNull()) {
             mOpenPGPKeyserverEdit.widget()->setPlaceholderText(newEntry->defaultValue().toString());
-        } else
-#endif
-        {
+        } else {
             if (GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.16") {
                 mOpenPGPKeyserverEdit.widget()->setPlaceholderText(QStringLiteral("hkp://keys.gnupg.net"));
             } else {
@@ -300,10 +295,8 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
     }
     mMaxItems.setEnabled(mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly());
 
-#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     mFetchMissingSignerKeysCB->setChecked(settings.retrieveSignerKeysAfterImport());
     mFetchMissingSignerKeysCB->setEnabled(!settings.isImmutable(QStringLiteral("RetrieveSignerKeysAfterImport")));
-#endif
     mQueryWKDsForAllUserIDsCB->setChecked(settings.queryWKDsForAllUserIDs());
     mQueryWKDsForAllUserIDsCB->setEnabled(!settings.isImmutable(QStringLiteral("QueryWKDsForAllUserIDs")));
 }
@@ -386,9 +379,7 @@ void DirectoryServicesConfigurationPage::Private::save()
     mConfig->sync(true);
 
     Settings settings;
-#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     settings.setRetrieveSignerKeysAfterImport(mFetchMissingSignerKeysCB->isChecked());
-#endif
     settings.setQueryWKDsForAllUserIDs(mQueryWKDsForAllUserIDsCB->isChecked());
     settings.save();
 }

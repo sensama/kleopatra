@@ -40,9 +40,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
 #include <QGpgME/DecryptVerifyArchiveJob>
-#endif
 
 #include <QDir>
 #include <QFile>
@@ -324,11 +322,7 @@ QList<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFi
 
 static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
 {
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
     return (protocol == GpgME::OpenPGP) && QGpgME::DecryptVerifyArchiveJob::isSupported();
-#else
-    return false;
-#endif
 }
 
 std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)

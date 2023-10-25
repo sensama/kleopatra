@@ -24,6 +24,7 @@
 #include "smartcard/algorithminfo.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
+#include "smartcard/utils.h"
 
 #include "dialogs/gencardkeydialog.h"
 
@@ -92,7 +93,6 @@ protected:
         // minus 1 of GpgGenCardKeyInteractor::Curve
         static const std::vector<std::string> curves = {
             "curve25519",
-#if GPGMEPP_SUPPORTS_SET_CURVE
             "curve448",
             "nistp256",
             "nistp384",
@@ -101,7 +101,6 @@ protected:
             "brainpoolP384r1",
             "brainpoolP512r1",
             "secp256k1", // keep it, even if we don't support it in Kleopatra
-#endif
         };
 
         auto ei = std::make_unique<GpgME::GpgGenCardKeyInteractor>(mSerial);
@@ -112,9 +111,7 @@ protected:
             ei->setAlgo(GpgME::GpgGenCardKeyInteractor::ECC);
             const auto curveIt = std::find(curves.cbegin(), curves.cend(), mParams.algorithm);
             if (curveIt != curves.end()) {
-#if GPGMEPP_SUPPORTS_SET_CURVE
                 ei->setCurve(static_cast<GpgME::GpgGenCardKeyInteractor::Curve>(curveIt - curves.cbegin() + 1));
-#endif
             } else {
                 qCWarning(KLEOPATRA_LOG) << this << __func__ << "Invalid curve name:" << mParams.algorithm;
                 mErr = GpgME::Error::fromCode(GPG_ERR_INV_VALUE);
@@ -411,25 +408,12 @@ void PGPCardWidget::genkeyRequested()
     }
 
     auto dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
-#if GPGMEPP_SUPPORTS_SET_CURVE
-    dlg->setSupportedAlgorithms(pgpCard->supportedAlgorithms(), pgpCard->defaultAlgorithm());
-#else
-    std::vector<AlgorithmInfo> algos = {
-        {"rsa2048", i18nc("@info", "RSA 2048")},
-        {"rsa3072", i18nc("@info", "RSA 3072")},
-    };
-    // There is probably a better way to check for capabilities
-    if (mIs21) {
-        algos.push_back({"rsa4096", i18nc("@info", "RSA 4096")});
+    const auto allowedAlgos = getAllowedAlgorithms(pgpCard->supportedAlgorithms());
+    if (allowedAlgos.empty()) {
+        KMessageBox::error(this, i18nc("@info", "You cannot generate keys on this smart card because it doesn't support any of the compliant algorithms."));
+        return;
     }
-    const auto supportedAlgos = pgpCard->supportedAlgorithms();
-    if (std::any_of(supportedAlgos.begin(), supportedAlgos.end(), [](const auto &algo) {
-            return algo.id == "curve25519";
-        })) {
-        algos.push_back({"curve25519", i18nc("@info", "ECC (Curve25519)")});
-    }
-    dlg->setSupportedAlgorithms(algos, "rsa2048");
-#endif
+    dlg->setSupportedAlgorithms(allowedAlgos, getPreferredAlgorithm(allowedAlgos));
     connect(dlg, &QDialog::accepted, this, [this, dlg]() {
         doGenKey(dlg);
         dlg->deleteLater();

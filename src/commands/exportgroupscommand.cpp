@@ -245,13 +245,7 @@ bool ExportGroupsCommand::Private::startExportJob(GpgME::Protocol protocol, cons
     connect(job, &ExportJob::result, q, [this, job](const GpgME::Error &err, const QByteArray &keyData) {
         onExportJobResult(job, err, keyData);
     });
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(job, &QGpgME::Job::jobProgress, q, &Command::progress);
-#else
-    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
-        Q_EMIT q->progress(current, total);
-    });
-#endif
 
     const GpgME::Error err = job->start(Kleo::getFingerprints(keys));
     if (err) {

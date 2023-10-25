@@ -353,9 +353,6 @@ private:
                 buttonRow->addWidget(trustChainDetailsBtn);
 
                 refreshBtn = new QPushButton{i18nc("@action:button", "Update"), parent};
-#if !QGPGME_SUPPORTS_KEY_REFRESH
-                refreshBtn->setVisible(false);
-#endif
                 buttonRow->addWidget(refreshBtn);
 
                 exportBtn = new QPushButton(i18nc("@action:button", "Export"), parent);
@@ -456,11 +453,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     // update visibility of UI elements
     ui.userIDs->setVisible(isOpenPGP);
     ui.addUserIDBtn->setVisible(isOwnKey);
-#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     ui.setPrimaryUserIDBtn->setVisible(isOwnKey);
-#else
-    ui.setPrimaryUserIDBtn->setVisible(false);
-#endif
     // ui.certifyBtn->setVisible(true); // always visible (for OpenPGP keys)
     // ui.webOfTrustBtn->setVisible(true); // always visible (for OpenPGP keys)
     ui.revokeCertificationsBtn->setVisible(Kleo::Commands::RevokeCertificationCommand::isSupported());
@@ -813,15 +806,12 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
 {
     const auto userIDs = selectedUserIDs(ui.userIDTable);
     const auto singleUserID = (userIDs.size() == 1) ? userIDs.front() : GpgME::UserID{};
-#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     const bool isPrimaryUserID = !singleUserID.isNull() && (ui.userIDTable->selectedItems().front() == ui.userIDTable->topLevelItem(0));
-#endif
     const bool canSignUserIDs = userHasCertificationKey();
     const auto isLocalKey = !isRemoteKey(key);
     const auto keyCanBeCertified = Kleo::canBeCertified(key);
 
     auto menu = new QMenu(q);
-#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     if (key.hasSecret()) {
         auto action =
             menu->addAction(QIcon::fromTheme(QStringLiteral("favorite")), i18nc("@action:inmenu", "Flag as Primary User ID"), q, [this, singleUserID]() {
@@ -832,7 +822,6 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
                            && !Kleo::isRevokedOrExpired(singleUserID) //
                            && canBeUsedForSecretKeyOperations(key));
     }
-#endif
     {
         const auto actionText = userIDs.empty() ? i18nc("@action:inmenu", "Certify User IDs...")
                                                 : i18ncp("@action:inmenu", "Certify User ID...", "Certify User IDs...", userIDs.size());

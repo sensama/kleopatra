@@ -140,8 +140,6 @@ set(_kleopatra_SRCS
   commands/exportpaperkeycommand.h
   commands/exportsecretkeycommand.cpp
   commands/exportsecretkeycommand.h
-  commands/exportsecretkeycommand_old.cpp
-  commands/exportsecretkeycommand_old.h
   commands/exportsecretsubkeycommand.cpp
   commands/exportsecretsubkeycommand.h
   commands/genrevokecommand.cpp

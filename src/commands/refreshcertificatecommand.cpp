@@ -20,10 +20,8 @@
 #include <KMessageBox>
 
 #include <QGpgME/Protocol>
-#if QGPGME_SUPPORTS_KEY_REFRESH
 #include <QGpgME/ReceiveKeysJob>
 #include <QGpgME/RefreshKeysJob>
-#endif
 #if QGPGME_SUPPORTS_WKD_REFRESH_JOB
 #include <QGpgME/WKDRefreshJob>
 #endif
@@ -50,10 +48,8 @@ public:
     void start();
     void cancel();
 
-#if QGPGME_SUPPORTS_KEY_REFRESH
     std::unique_ptr<QGpgME::ReceiveKeysJob> startReceiveKeysJob();
     std::unique_ptr<QGpgME::RefreshKeysJob> startSMIMEJob();
-#endif
 #if QGPGME_SUPPORTS_WKD_REFRESH_JOB
     std::unique_ptr<QGpgME::WKDRefreshJob> startWKDRefreshJob();
 #endif
@@ -65,9 +61,7 @@ public:
 
 private:
     Key key;
-#if QGPGME_SUPPORTS_KEY_REFRESH
     QPointer<QGpgME::Job> job;
-#endif
     ImportResult receiveKeysResult;
     ImportResult wkdRefreshResult;
 };
@@ -116,7 +110,6 @@ void RefreshCertificateCommand::Private::start()
         return;
     }
 
-#if QGPGME_SUPPORTS_KEY_REFRESH
     std::unique_ptr<QGpgME::Job> refreshJob;
     switch (key.protocol()) {
     case GpgME::OpenPGP:
@@ -132,23 +125,16 @@ void RefreshCertificateCommand::Private::start()
         return;
     }
     job = refreshJob.release();
-#else
-    error(i18n("The backend does not support updating individual certificates."));
-    finished();
-#endif
 }
 
 void RefreshCertificateCommand::Private::cancel()
 {
-#if QGPGME_SUPPORTS_KEY_REFRESH
     if (job) {
         job->slotCancel();
     }
     job.clear();
-#endif
 }
 
-#if QGPGME_SUPPORTS_KEY_REFRESH
 std::unique_ptr<QGpgME::ReceiveKeysJob> RefreshCertificateCommand::Private::startReceiveKeysJob()
 {
     std::unique_ptr<QGpgME::ReceiveKeysJob> refreshJob{QGpgME::openpgp()->receiveKeysJob()};
@@ -157,13 +143,7 @@ std::unique_ptr<QGpgME::ReceiveKeysJob> RefreshCertificateCommand::Private::star
     connect(refreshJob.get(), &QGpgME::ReceiveKeysJob::result, q, [this](const GpgME::ImportResult &result) {
         onReceiveKeysJobResult(result);
     });
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(refreshJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
-#else
-    connect(refreshJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
-        Q_EMIT q->progress(current, total);
-    });
-#endif
 
     const GpgME::Error err = refreshJob->start({QString::fromLatin1(key.primaryFingerprint())});
     if (err) {
@@ -183,13 +163,7 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificateCommand::Private::star
     connect(refreshJob.get(), &QGpgME::RefreshKeysJob::result, q, [this](const GpgME::Error &err) {
         onSMIMEJobResult(err);
     });
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(refreshJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
-#else
-    connect(refreshJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
-        Q_EMIT q->progress(current, total);
-    });
-#endif
 
     const GpgME::Error err = refreshJob->start({key});
     if (err) {
@@ -200,7 +174,6 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificateCommand::Private::star
 
     return refreshJob;
 }
-#endif
 
 #if QGPGME_SUPPORTS_WKD_REFRESH_JOB
 std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificateCommand::Private::startWKDRefreshJob()

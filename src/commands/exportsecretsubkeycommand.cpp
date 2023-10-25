@@ -15,9 +15,7 @@
 
 #include "fileoperationspreferences.h"
 #include <utils/applicationstate.h>
-#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
-#include "utils/filedialog.h"
-#endif
+#include <utils/filedialog.h>
 
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
@@ -41,7 +39,6 @@ using namespace GpgME;
 namespace
 {
 
-#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
 QString openPGPCertificateFileExtension()
 {
     return outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt());
@@ -102,8 +99,6 @@ QStringList getSubkeyFingerprints(const SubkeyContainer &subkeys)
 
     return fingerprints;
 }
-#endif
-
 }
 
 class ExportSecretSubkeyCommand::Private : public Command::Private
@@ -153,7 +148,6 @@ ExportSecretSubkeyCommand::Private::~Private() = default;
 
 void ExportSecretSubkeyCommand::Private::start()
 {
-#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
     if (subkeys.empty()) {
         finished();
         return;
@@ -171,11 +165,6 @@ void ExportSecretSubkeyCommand::Private::start()
         return;
     }
     job = exportJob.release();
-#else
-    Q_ASSERT(!"This command is not supported by the backend it was compiled against");
-    finished();
-    return;
-#endif
 }
 
 void ExportSecretSubkeyCommand::Private::cancel()
@@ -188,7 +177,6 @@ void ExportSecretSubkeyCommand::Private::cancel()
 
 std::unique_ptr<QGpgME::ExportJob> ExportSecretSubkeyCommand::Private::startExportJob(const std::vector<Subkey> &subkeys)
 {
-#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
     const bool armor = filename.endsWith(u".asc", Qt::CaseInsensitive);
     std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->secretSubkeyExportJob(armor)};
     Q_ASSERT(exportJob);
@@ -196,13 +184,7 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretSubkeyCommand::Private::startExpo
     connect(exportJob.get(), &QGpgME::ExportJob::result, q, [this](const GpgME::Error &err, const QByteArray &keyData) {
         onExportJobResult(err, keyData);
     });
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(exportJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
-#else
-    connect(exportJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
-        Q_EMIT q->progress(current, total);
-    });
-#endif
 
     const GpgME::Error err = exportJob->start(getSubkeyFingerprints(subkeys));
     if (err) {
@@ -212,10 +194,6 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretSubkeyCommand::Private::startExpo
     Q_EMIT q->info(i18nc("@info:status", "Exporting subkeys..."));
 
     return exportJob;
-#else
-    Q_UNUSED(subkeys)
-    return {};
-#endif
 }
 
 void ExportSecretSubkeyCommand::Private::onExportJobResult(const Error &err, const QByteArray &keyData)

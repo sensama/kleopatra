@@ -18,9 +18,7 @@
 
 #include <KLocalizedString>
 
-#if QGPGME_SUPPORTS_KEY_REVOCATION
 #include <QGpgME/RevokeKeyJob>
-#endif
 
 #include "kleopatra_debug.h"
 #include <QGpgME/Protocol>
@@ -48,18 +46,14 @@ private:
     void onDialogAccepted();
     void onDialogRejected();
 
-#if QGPGME_SUPPORTS_KEY_REVOCATION
     std::unique_ptr<QGpgME::RevokeKeyJob> startJob();
-#endif
     void onJobResult(const Error &err);
     void showError(const Error &err);
 
 private:
     Key key;
     QPointer<RevokeKeyDialog> dialog;
-#if QGPGME_SUPPORTS_KEY_REVOCATION
     QPointer<QGpgME::RevokeKeyJob> job;
-#endif
 };
 
 RevokeKeyCommand::Private *RevokeKeyCommand::d_func()
@@ -121,12 +115,10 @@ void RevokeKeyCommand::Private::start()
 
 void RevokeKeyCommand::Private::cancel()
 {
-#if QGPGME_SUPPORTS_KEY_REVOCATION
     if (job) {
         job->slotCancel();
     }
     job.clear();
-#endif
 }
 
 void RevokeKeyCommand::Private::ensureDialogCreated()
@@ -149,14 +141,12 @@ void RevokeKeyCommand::Private::ensureDialogCreated()
 
 void RevokeKeyCommand::Private::onDialogAccepted()
 {
-#if QGPGME_SUPPORTS_KEY_REVOCATION
     auto revokeJob = startJob();
     if (!revokeJob) {
         finished();
         return;
     }
     job = revokeJob.release();
-#endif
 }
 
 void RevokeKeyCommand::Private::onDialogRejected()
@@ -184,7 +174,6 @@ auto descriptionToLines(const QString &description)
 }
 }
 
-#if QGPGME_SUPPORTS_KEY_REVOCATION
 std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
 {
     std::unique_ptr<QGpgME::RevokeKeyJob> revokeJob{QGpgME::openpgp()->revokeKeyJob()};
@@ -193,13 +182,7 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
     connect(revokeJob.get(), &QGpgME::RevokeKeyJob::result, q, [this](const GpgME::Error &err) {
         onJobResult(err);
     });
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(revokeJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
-#else
-    connect(revokeJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
-        Q_EMIT q->progress(current, total);
-    });
-#endif
 
     const auto description = descriptionToLines(dialog->description());
     const GpgME::Error err = revokeJob->start(key, dialog->reason(), description);
@@ -211,7 +194,6 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
 
     return revokeJob;
 }
-#endif
 
 void RevokeKeyCommand::Private::onJobResult(const Error &err)
 {

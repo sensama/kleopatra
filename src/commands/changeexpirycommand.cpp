@@ -38,7 +38,6 @@ using namespace QGpgME;
 
 namespace
 {
-#if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
 bool subkeyHasSameExpirationAsPrimaryKey(const Subkey &subkey)
 {
     // we allow for a difference in expiration of up to 10 seconds
@@ -67,7 +66,6 @@ bool allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(const Key &key)
         return subkey.isRevoked() || subkeyHasSameExpirationAsPrimaryKey(subkey);
     });
 }
-#endif
 }
 
 class ChangeExpiryCommand::Private : public Command::Private
@@ -139,7 +137,6 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
             subkeysToUpdate.push_back(subkey);
         }
     } else {
-#if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
         // change expiration of the (primary) key and, optionally, of some subkeys
         job->setOptions(ChangeExpiryJob::UpdatePrimaryKey);
         if (dialog->updateExpirationOfAllSubkeys() && key.numSubkeys() > 1) {
@@ -156,9 +153,6 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
                     && (!subkey.isExpired() || subkeyHasSameExpirationAsPrimaryKey(subkey));
             });
         }
-#else
-        // nothing to do
-#endif
     }
 
     if (const Error err = job->start(key, expiry, subkeysToUpdate)) {
@@ -217,13 +211,7 @@ void ChangeExpiryCommand::Private::createJob()
         return;
     }
 
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
-#else
-    connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
-        Q_EMIT q->progress(current, total);
-    });
-#endif
     connect(j, &ChangeExpiryJob::result, q, [this](const auto &err) {
         slotResult(err);
     });
@@ -300,11 +288,9 @@ void ChangeExpiryCommand::doStart()
     d->dialog->setDateOfExpiry((subkey.neverExpires() //
                                     ? QDate{} //
                                     : defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration)));
-#if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
     if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {
         d->dialog->setUpdateExpirationOfAllSubkeys(allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(d->key));
     }
-#endif
 
     d->dialog->show();
 }

@@ -25,11 +25,6 @@
 #ifdef MAILAKONADI_ENABLED
 #include "commands/exportopenpgpcerttoprovidercommand.h"
 #endif // MAILAKONADI_ENABLED
-#if QGPGME_SUPPORTS_SECRET_KEY_EXPORT
-#include "commands/exportsecretkeycommand.h"
-#else
-#include "commands/exportsecretkeycommand_old.h"
-#endif
 #include "commands/adduseridcommand.h"
 #include "commands/certifycertificatecommand.h"
 #include "commands/changeexpirycommand.h"
@@ -45,6 +40,7 @@
 #include "commands/dumpcertificatecommand.h"
 #include "commands/dumpcrlcachecommand.h"
 #include "commands/exportpaperkeycommand.h"
+#include "commands/exportsecretkeycommand.h"
 #include "commands/importcertificatefromfilecommand.h"
 #include "commands/importcrlcommand.h"
 #include "commands/lookupcertificatescommand.h"
@@ -83,9 +79,6 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
-#if !QGPGME_SUPPORTS_SECRET_KEY_EXPORT
-using Kleo::Commands::Compat::ExportSecretKeyCommand;
-#endif
 
 class KeyListController::Private
 {
@@ -514,8 +507,7 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             QString(),
         },
-    // Certificate menu
-#if QGPGME_SUPPORTS_KEY_REVOCATION
+        // Certificate menu
         {
             "certificates_revoke",
             i18n("Revoke Certificate..."),
@@ -525,7 +517,6 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             {},
         },
-#endif
         {
             "certificates_delete",
             i18n("Delete"),
@@ -738,9 +729,7 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<ChangePassphraseCommand>(coll->action(QStringLiteral("certificates_change_passphrase")));
     registerActionForCommand<AddUserIDCommand>(coll->action(QStringLiteral("certificates_add_userid")));
     //---
-#if QGPGME_SUPPORTS_KEY_REVOCATION
     registerActionForCommand<RevokeKeyCommand>(coll->action(QStringLiteral("certificates_revoke")));
-#endif
     registerActionForCommand<DeleteCertificatesCommand>(coll->action(QStringLiteral("certificates_delete")));
     //---
     registerActionForCommand<DumpCertificateCommand>(coll->action(QStringLiteral("certificates_dump_certificate")));

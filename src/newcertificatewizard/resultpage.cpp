@@ -17,11 +17,7 @@
 
 #include "commands/exportcertificatecommand.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
-#if QGPGME_SUPPORTS_SECRET_KEY_EXPORT
 #include "commands/exportsecretkeycommand.h"
-#else
-#include "commands/exportsecretkeycommand_old.h"
-#endif
 #include "utils/dragqueen.h"
 #include "utils/email.h"
 #include "utils/filedialog.h"
@@ -49,9 +45,6 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::NewCertificateUi;
 using namespace GpgME;
-#if !QGPGME_SUPPORTS_SECRET_KEY_EXPORT
-using Kleo::Commands::Compat::ExportSecretKeyCommand;
-#endif
 
 struct ResultPage::UI {
     QTextBrowser *resultTB = nullptr;

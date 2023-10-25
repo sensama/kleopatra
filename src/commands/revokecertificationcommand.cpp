@@ -250,13 +250,7 @@ QGpgME::QuickJob *RevokeCertificationCommand::Private::createJob()
 {
     const auto j = QGpgME::openpgp()->quickJob();
     if (j) {
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
         connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
-#else
-        connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
-            Q_EMIT q->progress(current, total);
-        });
-#endif
         connect(j, &QGpgME::QuickJob::result, q, [this](const GpgME::Error &error) {
             slotResult(error);
         });

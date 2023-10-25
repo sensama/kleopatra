@@ -16,6 +16,7 @@
 #include "smartcard/algorithminfo.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
+#include "smartcard/utils.h"
 
 #include "dialogs/gencardkeydialog.h"
 
@@ -198,7 +199,13 @@ void OpenPGPGenerateCardKeyCommand::doStart()
 
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
-    d->dialog->setSupportedAlgorithms(pgpCard->supportedAlgorithms(), "rsa2048");
+    const auto allowedAlgos = getAllowedAlgorithms(pgpCard->supportedAlgorithms());
+    if (allowedAlgos.empty()) {
+        d->error(i18nc("@info", "You cannot generate a key on this smart card because it doesn't support any of the compliant algorithms."));
+        d->finished();
+        return;
+    }
+    d->dialog->setSupportedAlgorithms(allowedAlgos, getPreferredAlgorithm(allowedAlgos));
     d->dialog->show();
 }
 

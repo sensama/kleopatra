@@ -200,7 +200,6 @@ void ExportSecretKeyCommand::Private::cancel()
 
 std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJob(const Key &key)
 {
-#if QGPGME_SUPPORTS_SECRET_KEY_EXPORT
     const bool armor = key.protocol() == GpgME::OpenPGP && filename.endsWith(u".asc", Qt::CaseInsensitive);
     const QGpgME::Protocol *const backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     Q_ASSERT(backend);
@@ -214,13 +213,7 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJ
     connect(exportJob.get(), &QGpgME::ExportJob::result, q, [this](const GpgME::Error &err, const QByteArray &keyData) {
         onExportJobResult(err, keyData);
     });
-#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
     connect(exportJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
-#else
-    connect(exportJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
-        Q_EMIT q->progress(current, total);
-    });
-#endif
 
     const GpgME::Error err = exportJob->start({QLatin1String{key.primaryFingerprint()}});
     if (err) {
@@ -230,10 +223,6 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJ
     Q_EMIT q->info(i18nc("@info:status", "Backing up secret key..."));
 
     return exportJob;
-#else
-    Q_UNUSED(key)
-    return {};
-#endif
 }
 
 void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const QByteArray &keyData)

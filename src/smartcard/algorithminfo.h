@@ -8,9 +8,9 @@
 */
 #pragma once
 
-#include <string>
+#include <QString>
 
-class QString;
+#include <string>
 
 namespace Kleo
 {

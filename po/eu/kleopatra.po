@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-10-24 23:39+0200\n"
+"PO-Revision-Date: 2023-10-25 22:30+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -8244,6 +8244,10 @@ msgid ""
 "        of the keyserver protocol. Default behavior is to only do this for "
 "LDAP keyservers."
 msgstr ""
+"Gako-zerbitzarietan bilatzen du, txartel-adimenduneko gakoaren protokoloa "
+"edozein dela,\n"
+"        gako-zerbitzariko protokoloa edozein dela. Jokabide lehenetsia, hori "
+"LDAP zerbitzariekin bakarrik egitea da."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:186
@@ -8426,7 +8430,7 @@ msgstr "Erabili CMS (X.509, S/MIME) ondoko eragiketetarako"
 #: src/kleopatra_options.h:22
 #, kde-format
 msgid "Location of the socket the ui server is listening on"
-msgstr ""
+msgstr "EI-zerbitzaria entzuten ari den hargunearen kokalekua"
 
 #: src/kleopatra_options.h:23
 #, kde-format
@@ -8665,6 +8669,11 @@ msgid ""
 "<filename>AppData\\Roaming\\gnupg</filename> directory with proper "
 "permissions.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> ezin da exekutatu "
+"administratzaile gisa GnuPG datuen karpetako fitxategi-baimenak hautsi gabe."
+"</para><para>Beste erabiltzaile batzuen gakoak kudeatzeko, egin ezazu "
+"erabiltzaile arrunt gisa eta kopiatu <filename>AppData\\Roaming\\gnupg</"
+"filename> direktorioa baimen egokiekin.</para>"
 
 #: src/main.cpp:173
 #, kde-kuit-format
@@ -8695,6 +8704,11 @@ msgid ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 msgstr ""
+"<qt>Ezin izan da Kleopatraren «Windows Explorer»rerako modulua ezin izan du "
+"hasieratu.<br/>Itzuli duen errorea: <b>%1</b><br/>Horrek esan nahi du, zure "
+"instalazioarekin arazo bat dagoela. Saiatu berrinstalatzen edo jar zaitez "
+"zure administratzailearekin harremanean euskarria jasotzeko.<br/>Kleopatra "
+"erabiltzen jarrai dezakezu, baina beste arazo batzuk egon daitezke.</qt>"
 
 #: src/main.cpp:281
 #, kde-format
@@ -9117,19 +9131,19 @@ msgstr "URL berria"
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:487
 #, kde-format
 msgid "The validity period cannot be changed."
-msgstr ""
+msgstr "Balio-aldia ezin da aldatu."
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:489
 #, kde-format
 msgctxt "... between today and <another date>."
 msgid "The validity period must end between today and %1."
-msgstr ""
+msgstr "Balio-epea, gaur eta %1 artean egon behar da."
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:492
 #, kde-format
 msgctxt "... between <a date> and <another date>."
 msgid "The validity period must end between %1 and %2."
-msgstr ""
+msgstr "Baliotasun aldia %1 eta %2 bitartean egon behar da."
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:497
 #, kde-format
@@ -9399,6 +9413,13 @@ msgid ""
 "para><para>If that does not work, either, save the request to a file, and "
 "then attach that.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> zure posta bezero lehenetsiaren "
+"bidez posta bat bidaltzen saiatu da.</para><para>Ezaguna da, posta bezero "
+"batzuk horrela deitzean, ez dutela eranskinik onartzen.</para><para>Zure "
+"posta bezeroak eranskinik ez badu, arrastatu <application>Kleopatra</"
+"application> ikonoa eta jaregin zure posta bezeroaren mezuak konposatzeko "
+"leihoan.</para><para>Hori ere ez badabil, gorde eskaria fitxategi batean, "
+"eta ondoren hura erantsi.</para>"
 
 #: src/newcertificatewizard/resultpage.cpp:283
 #: src/newcertificatewizard/resultpage.cpp:319
@@ -9427,6 +9448,11 @@ msgid ""
 "have an attachment, then attach the file <filename>%1</filename> manually.</"
 "para>"
 msgstr ""
+"<para><application>Kleopatra</application> zure posta bezero lehenetsiaren "
+"bidez posta bat bidaltzen saiatu da.</para><para>Ezaguna da, posta bezero "
+"batzuk horrela deitzean, ez dutela eranskinik onartzen.</para><para>Zure "
+"posta bezeroak eranskinik ez badu, erantsi <filename>%1</filename> "
+"fitxategia eskuz.</para>"
 
 #: src/newcertificatewizard/resultpage.cpp:366
 #, kde-format
@@ -9715,6 +9741,10 @@ msgid ""
 "  %1\n"
 "You might want to execute \"gpgconf %3\" on the command line.\n"
 msgstr ""
+"Errore bat egon da GnuPG konfigurazioaren auto-azterketa %2(e)rako "
+"exekutatzean:\n"
+"  %1\n"
+"Agian, komando-lerroan \"gpgconf %3\" exekutatu nahiko duzu.\n"
 
 #: src/selftest/libkleopatrarccheck.cpp:33
 #, kde-format
@@ -9758,6 +9788,11 @@ msgid ""
 "<application>EnigMail</application>.</para><para>Keeping the entry might "
 "lead to an old GnuPG backend being used.</para>"
 msgstr ""
+"<para>Kleopatrak erregistroko gako zaharkitu bat antzeman du (<resource>%1\\"
+"%2</resource>), aurreko <application>Gpg4win</application> bertsio batek edo "
+"<application>WinPT</application> edo <application>EnigMail</application> "
+"gisako aplikazioek gehitua.</para><para>Sarrera mantentzeak eraman dezake "
+"GnuPG bizkarraldeko zaharra erabiltzera.</para>"
 
 #: src/selftest/registrycheck.cpp:59
 #, kde-kuit-format
@@ -10076,7 +10111,7 @@ msgstr "Bide-izen absolutuak bakarrik onartzen dira"
 #: src/uiserver/assuanserverconnection.cpp:496
 #, kde-format
 msgid "Only files are allowed in INPUT/OUTPUT FILE"
-msgstr ""
+msgstr "Fitxategiak bakarrik baimentzen dira INPUT/OUTPUT FILE(e)n"
 
 #: src/uiserver/assuanserverconnection.cpp:576
 #, kde-format
@@ -10202,7 +10237,7 @@ msgstr "INPUT/OUTPUT zenbaketaren desfasea"
 #: src/uiserver/decryptverifycommandemailbase.cpp:172
 #, kde-format
 msgid "Cannot use OUTPUT and MESSAGE simultaneously"
-msgstr ""
+msgstr "Ezin ditu OUTPUT eta MESSAGE aldi berean erabili"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:180
 #, kde-format
@@ -10242,7 +10277,7 @@ msgstr "OUTPUT dago"
 #: src/uiserver/decryptverifycommandfilesbase.cpp:158
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
-msgstr ""
+msgstr "DECRYPT/VERIFY_FILES(e)ek ezin ditu sarrera gisa direktorioak erabili."
 
 #: src/uiserver/echocommand.cpp:132 src/uiserver/signcommand.cpp:207
 #, kde-format
@@ -10283,27 +10318,29 @@ msgstr "Gutxienez OUTPUT bat egon behar da"
 #: src/uiserver/encryptcommand.cpp:89
 #, kde-format
 msgid "MESSAGE command is not allowed before ENCRYPT"
-msgstr ""
+msgstr "MESSAGE komandoa ez dago baimenduta ENCRYPT aurretik"
 
 #: src/uiserver/encryptcommand.cpp:98
 #, kde-format
 msgid "Protocol given conflicts with protocol determined by PREP_ENCRYPT"
 msgstr ""
+"Emandako protokoloak gatazka du PREP_ENCRYPT bidez zehaztutako "
+"protokoloarekin"
 
 #: src/uiserver/encryptcommand.cpp:102
 #, kde-format
 msgid "New recipients added after PREP_ENCRYPT command"
-msgstr ""
+msgstr "Hartzaile berriak gehitu dira PREP_ENCRYPT komandoaren ondoren"
 
 #: src/uiserver/encryptcommand.cpp:105
 #, kde-format
 msgid "New senders added after PREP_ENCRYPT command"
-msgstr ""
+msgstr "Bidaltzaile berriak gehitu dira PREP_ENCRYPT komandoaren ondoren"
 
 #: src/uiserver/encryptcommand.cpp:111 src/uiserver/prepencryptcommand.cpp:71
 #, kde-format
 msgid "No recipients given, or only with --info"
-msgstr ""
+msgstr "Ez da hartzailerik eman, edo bakarrik «--info» aukerarekin"
 
 #: src/uiserver/encryptcommand.cpp:184
 #, kde-format
@@ -10311,7 +10348,7 @@ msgid ""
 "Caught unexpected exception in EncryptCommand::Private::"
 "slotRecipientsResolved: %1"
 msgstr ""
-"Ustegabeko salbuespen bat harrapatu da «EncryptCommand::Private::"
+"Ustekabeko salbuespen bat harrapatu da «EncryptCommand::Private::"
 "slotRecipientsResolved»(e)n: %1"
 
 #: src/uiserver/encryptcommand.cpp:188
@@ -10435,7 +10472,7 @@ msgstr "MESSAGE komandoa ez da onartzen SIGN aurretik"
 #: src/uiserver/signcommand.cpp:107
 #, kde-format
 msgid "No senders given, or only with --info"
-msgstr ""
+msgstr "Ez da bidaltzailerik eman, edo bakarrik «--info» aukerarekin"
 
 #: src/uiserver/signcommand.cpp:184
 #, kde-format
@@ -10477,6 +10514,8 @@ msgstr ""
 msgid ""
 "Cannot determine the GnuPG home directory: %1 exists but is not a directory."
 msgstr ""
+"Ezin da zehaztu «GnuPG»ren etxeko direktorioa: %1 badago baina ez da "
+"direktorioa."
 
 #: src/uiserver/uiserver.cpp:260
 #, kde-format
@@ -10505,10 +10544,9 @@ msgid "Could not get socket nonce: %1"
 msgstr "Ezin izan da ziurtagiria sortu: %1"
 
 #: src/uiserver/uiserver_unix.cpp:59 src/uiserver/uiserver_win.cpp:58
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not listen to socket: %1"
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Ezin izan zaie harguneei entzun: %1"
 
 #: src/uiserver/uiserver_unix.cpp:63 src/uiserver/uiserver_win.cpp:62
 #, kde-format
@@ -10518,21 +10556,20 @@ msgid ""
 msgstr ""
 
 #: src/utils/accessibility.cpp:93
-#, fuzzy, kde-format
-#| msgid "Description"
+#, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "
 "form field, has an error"
 msgid "invalid entry"
-msgstr "Deskribapena"
+msgstr "sarrera baliogabea"
 
 #: src/utils/accessibility.cpp:100
-#, fuzzy, kde-format
+#, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "
 "form field must be filled out"
 msgid "required"
-msgstr "(beharrezkoa)"
+msgstr "beharrezkoa"
 
 #: src/utils/archivedefinition.cpp:85
 #, kde-format
@@ -10540,28 +10577,28 @@ msgid "Error in archive definition %1: %2"
 msgstr ""
 
 #: src/utils/archivedefinition.cpp:135
-#, fuzzy, kde-format
+#, kde-format
 msgid "Cannot use both %f and | in '%1'"
-msgstr "Ezin dira %f eta | biak '%1'(e)an erabili"
+msgstr "Ezin dira %f eta |, biak '%1'(e)an erabili"
 
 #: src/utils/archivedefinition.cpp:147
-#, fuzzy, kde-format
+#, kde-format
 msgid "Quoting error in '%1' entry"
 msgstr "Aipu errorea '%1' sarreran"
 
 #: src/utils/archivedefinition.cpp:150
-#, fuzzy, kde-format
+#, kde-format
 msgid "'%1' too complex (would need shell)"
 msgstr "'%1' korapilotsuegia (oskola beharko luke)"
 
 #: src/utils/archivedefinition.cpp:154 src/utils/archivedefinition.cpp:204
 #: src/utils/archivedefinition.cpp:218 src/utils/archivedefinition.cpp:230
-#, fuzzy, kde-format
+#, kde-format
 msgid "'%1' entry is empty/missing"
 msgstr "'%1' sarrera hutsik dago/falta da"
 
 #: src/utils/archivedefinition.cpp:163
-#, fuzzy, kde-format
+#, kde-format
 msgid "'%1' empty or not found"
 msgstr "'%1' hutsik dago edo ez da aurkitu"
 
@@ -10616,10 +10653,9 @@ msgid "Command not specified"
 msgstr "Komandoa ez da zehaztu"
 
 #: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:715
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not start %1 process: %2"
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Ezin izan du %1 prozesua abiatu: %2"
 
 #: src/utils/input.cpp:349
 #, fuzzy, kde-format
@@ -10650,12 +10686,12 @@ msgstr ""
 #: src/utils/input.cpp:424
 #, kde-format
 msgid "Could not open clipboard for reading"
-msgstr ""
+msgstr "Ezin izan du arbela irakurtzeko ireki"
 
 #: src/utils/input.cpp:436
 #, kde-format
 msgid "Clipboard contents"
-msgstr "Arbeleko edukia"
+msgstr "Arbelaren edukia"
 
 #: src/utils/input.cpp:438
 #, kde-format
@@ -10689,10 +10725,9 @@ msgid "Could not open FD %1 for writing"
 msgstr "Ezin izan du FD %1 irakurtzeko ireki"
 
 #: src/utils/output.cpp:527
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not create temporary file for output \"%1\""
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "Ezin izan du irteerarako aldi baterako fitxategia sortu: %1"
 
 #: src/utils/output.cpp:560
 #, kde-format
@@ -11270,6 +11305,8 @@ msgid ""
 "If you proceed you will be asked to enter a new PIN and later to repeat that "
 "PIN."
 msgstr ""
+"Aurrera jarraitzen baduzu, PIN berri bat sartzea eta ondoren errepikatzea "
+"eskatuko zaizu."
 
 #: src/view/nullpinwidget.cpp:73
 #, kde-format

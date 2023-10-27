@@ -325,9 +325,15 @@ void KleopatraApplication::init()
     d->setUpSysTrayIcon();
     d->setUpFilterManager();
     d->setupLogging();
-    // We just need it to autmatically modify the colors of
-    // the QApplication depending on the mode.
+#ifdef Q_OS_WIN
+    if (!SystemInfo::isHighContrastModeActive()) {
+        /* In high contrast mode we do not want our own colors */
+        new KColorSchemeManager(this);
+    }
+#else
     new KColorSchemeManager(this);
+#endif
+
 #ifndef QT_NO_SYSTEMTRAYICON
     d->sysTray->show();
 #endif

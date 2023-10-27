@@ -52,6 +52,7 @@
 #include "dialogs/updatenotification.h"
 
 #include "kleopatra_debug.h"
+#include <KColorSchemeManager>
 #include <KIconLoader>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -324,6 +325,9 @@ void KleopatraApplication::init()
     d->setUpSysTrayIcon();
     d->setUpFilterManager();
     d->setupLogging();
+    // We just need it to autmatically modify the colors of
+    // the QApplication depending on the mode.
+    new KColorSchemeManager(this);
 #ifndef QT_NO_SYSTEMTRAYICON
     d->sysTray->show();
 #endif

@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-26 00:43+0000\n"
-"PO-Revision-Date: 2023-10-25 22:30+0200\n"
+"PO-Revision-Date: 2023-10-26 19:24+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -2810,6 +2810,8 @@ msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Ezin duzu txartel-adimendun horretan gakorik sortu, ez baitu onartzen "
+"algoritmo manakor bat ere."
 
 #: src/commands/refreshcertificatecommand.cpp:153
 #: src/commands/refreshcertificatecommand.cpp:211
@@ -10276,7 +10278,7 @@ msgstr "salbuespen ezezaguna harrapatu da"
 #: src/uiserver/assuanserverconnection.cpp:629
 #, kde-format
 msgid "Cannot mix --info with non-info SENDER or RECIPIENT"
-msgstr ""
+msgstr "Ezin da nahastu «--info» SENDER edo RECIPIENT informazio gabeekin"
 
 #: src/uiserver/assuanserverconnection.cpp:632
 #, kde-format
@@ -10381,7 +10383,7 @@ msgstr "INPUT/MESSAGE zenbaketaren desfasea"
 #: src/uiserver/decryptverifycommandemailbase.cpp:159
 #, kde-format
 msgid "MESSAGE can only be given for detached signature verification"
-msgstr ""
+msgstr "MESSAGE, bereizitako sinaduren egiaztapenerako baino ezin da eman"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:165
 #: src/uiserver/encryptcommand.cpp:81 src/uiserver/signcommand.cpp:79
@@ -10454,11 +10456,13 @@ msgstr ""
 msgid ""
 "ENCRYPT is an email mode command, connection seems to be in filemanager mode"
 msgstr ""
+"ENCRYPT e-posta modu komando bat da, konexioa fitxategi-kudeatzaile moduan "
+"dagoela ematen du"
 
 #: src/uiserver/encryptcommand.cpp:72
 #, kde-format
 msgid "SENDER may not be given prior to ENCRYPT, except with --info"
-msgstr ""
+msgstr "SENDER ezin da eman ENCRYPT aurretik, «--info» erabiltzen denean salbu"
 
 #: src/uiserver/encryptcommand.cpp:75 src/uiserver/signcommand.cpp:76
 #, kde-format
@@ -10517,7 +10521,7 @@ msgstr ""
 #: src/uiserver/prepencryptcommand.cpp:63
 #, kde-format
 msgid "INPUT/OUTPUT/MESSAGE may only be given after PREP_ENCRYPT"
-msgstr ""
+msgstr "INPUT/OUTPUT/MESSAGE bakarrik PREP_ENCRYPT ondoren eman daiteke"
 
 #: src/uiserver/prepencryptcommand.cpp:66
 #, kde-format
@@ -10525,11 +10529,15 @@ msgid ""
 "PREP_ENCRYPT is an email mode command, connection seems to be in filemanager "
 "mode"
 msgstr ""
+"PREP_ENCRYPT e-posta modu komando bat da, konexioa fitxateg-kudeatzaile "
+"moduan dagoela ematen du"
 
 #: src/uiserver/prepencryptcommand.cpp:69
 #, kde-format
 msgid "SENDER may not be given prior to PREP_ENCRYPT, except with --info"
 msgstr ""
+"SENDER ezin da eman PREP_ENCRYPT baino lehen, «--info» erabiltzen denean "
+"salbu"
 
 #: src/uiserver/prepencryptcommand.cpp:121
 #, kde-format
@@ -10552,7 +10560,7 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp:67
 #, kde-format
 msgid "INPUT/OUTPUT/MESSAGE may only be given after PREP_SIGN"
-msgstr ""
+msgstr "INPUT/OUTPUT/MESSAGE bakarrik PREP_SIGN ondoren eman daiteke"
 
 #: src/uiserver/prepsigncommand.cpp:70
 #, kde-format
@@ -10560,6 +10568,8 @@ msgid ""
 "PREP_SIGN is an email mode command, connection seems to be in filemanager "
 "mode"
 msgstr ""
+"PREP_SIGN e-posta modu komando bat da, konexioa fitxategi-kudeatzaile moduan "
+"dagoela ematen du"
 
 #: src/uiserver/prepsigncommand.cpp:73
 #, kde-format
@@ -10572,6 +10582,8 @@ msgid ""
 "Protocol given conflicts with protocol determined by PREP_ENCRYPT in this "
 "session"
 msgstr ""
+"Emandako protokoloak gatazka du saio honetan PREP_ENCRYPT bidez zehaztutako "
+"protokoloarekin"
 
 #: src/uiserver/prepsigncommand.cpp:151
 #, kde-format
@@ -10613,11 +10625,13 @@ msgstr ""
 msgid ""
 "SIGN is an email mode command, connection seems to be in filemanager mode"
 msgstr ""
+"SIGN e-posta modu komando bat da, konexioa fitxategi-kudeatzaile moduan "
+"dagoela ematen du"
 
 #: src/uiserver/signcommand.cpp:73
 #, kde-format
 msgid "RECIPIENT may not be given prior to SIGN, except with --info"
-msgstr ""
+msgstr "RECIPIENT ezin da eman SIGN aurretik, «--info» erabiltzen denean salbu"
 
 #: src/uiserver/signcommand.cpp:82
 #, kde-format
@@ -10656,6 +10670,8 @@ msgid ""
 "%1 is a filemanager mode command, connection seems to be in email mode (%2 "
 "present)"
 msgstr ""
+"%1 fitxategi-kudeatzaile modu komando bat da, konexioa e-posta moduan "
+"dagoela ematen du (%2 presente)"
 
 #: src/uiserver/uiserver.cpp:235
 #, kde-format
@@ -10663,6 +10679,8 @@ msgid ""
 "Could not determine the GnuPG home directory. Consider setting the GNUPGHOME "
 "environment variable."
 msgstr ""
+"Ezin da zehaztu «GnuPG»ren etxeko direktorioa. Kontuan izan GNUPGHOME "
+"ingurune aldagaia ezartzeko aukera."
 
 #: src/uiserver/uiserver.cpp:249
 #, kde-format
@@ -10681,6 +10699,7 @@ msgstr "Ezin izan du «GnuPG»ren %1 etxeko karpeta sortu: %2"
 #, kde-format
 msgid "Detected another running gnupg UI server listening at %1."
 msgstr ""
+"Martxan dagoen beste GnuPG EI zerbitzari bat %1(e)an entzuten antzeman da."
 
 #: src/uiserver/uiserver_unix.cpp:39 src/uiserver/uiserver_win.cpp:39
 #, kde-format
@@ -10693,10 +10712,9 @@ msgid "Could not bind to socket: %1"
 msgstr "Ezin izan da hargunera lotu: %1"
 
 #: src/uiserver/uiserver_unix.cpp:54 src/uiserver/uiserver_win.cpp:53
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not get socket nonce: %1"
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr ""
 
 #: src/uiserver/uiserver_unix.cpp:59 src/uiserver/uiserver_win.cpp:58
 #, kde-format
@@ -10709,6 +10727,8 @@ msgid ""
 "Could not pass socket to Qt: %1. This should not happen, please report this "
 "bug."
 msgstr ""
+"Ezin izan dio hargunea «Qt»ri pasatu: %1. Hori ez litzateke gertatu behar, "
+"mesedez eman akats honen berri."
 
 #: src/utils/accessibility.cpp:94
 #, kde-format
@@ -10729,7 +10749,7 @@ msgstr "beharrezkoa"
 #: src/utils/archivedefinition.cpp:86
 #, kde-format
 msgid "Error in archive definition %1: %2"
-msgstr ""
+msgstr "Errorea artxiboaren %1 definizioan: %2"
 
 #: src/utils/archivedefinition.cpp:147
 #, kde-format
@@ -10843,9 +10863,9 @@ msgid "Could not start %1 process: %2"
 msgstr "Ezin izan du %1 prozesua abiatu: %2"
 
 #: src/utils/input.cpp:342
-#, fuzzy, kde-format
+#, kde-format
 msgid "Failed to write input to %1 process: %2"
-msgstr "Ezin izan da ziurtagiria sortu: %1"
+msgstr "%1 prozesuan sarrera idaztea huts egin du: %2"
 
 #: src/utils/input.cpp:355
 #, kde-format
@@ -11309,14 +11329,14 @@ msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Sortu S/MIME ziurtagiria sinatzeko eskaera berri bat (CSR)"
 
 #: src/view/keylistcontroller.cpp:613
-#, fuzzy, kde-format
+#, kde-format
 msgid "Trust Root Certificate"
-msgstr "Inportatu ziurtagiriak..."
+msgstr "Konfiantza erro ziurtagirian"
 
 #: src/view/keylistcontroller.cpp:622
-#, fuzzy, kde-format
+#, kde-format
 msgid "Distrust Root Certificate"
-msgstr "Inportatu ziurtagiriak..."
+msgstr "Konfiantza kendu erro ziurtagirian"
 
 #: src/view/keylistcontroller.cpp:631
 #, kde-format
@@ -11499,6 +11519,8 @@ msgid ""
 "It will <b>not be possible</b> to recover the card if the PIN has been "
 "entered wrongly more than 2 times."
 msgstr ""
+"<b>Ezingo da</b> txartela berreskuratu PINa 2tan baino gehiagotan gaizki "
+"sartu bada."
 
 #: src/view/nullpinwidget.cpp:76
 #, kde-format
@@ -11890,6 +11912,8 @@ msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Ezin duzu txartel-adimendun horretan gakorik sortu, ez baitu onartzen "
+"algoritmo manakor bat ere."
 
 #: src/view/pgpcardwidget.cpp:430
 #, kde-format
@@ -12123,6 +12147,9 @@ msgid ""
 "certificates.<br/><br/>Certification is required to make sure that the "
 "certificates actually belong to the identity they claim to belong to."
 msgstr ""
+"Ziurtagiri batzuk oraindik ziurtatu gabe daude. Egin klik hemen, ziurtagiri "
+"horien zerrenda bat ikusteko.<br/><br/>Ziurtapena beharrezkoa da "
+"ziurtagiriak benetan adierazten duten nortasunari dagozkiola ziurtatzeko."
 
 #: src/view/searchbar.cpp:197
 #, kde-format

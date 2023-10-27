@@ -360,6 +360,9 @@ public:
 
         mExportCB = new QCheckBox{q};
         mExportCB->setText(i18n("Certify for everyone to see (exportable)"));
+        mExportCB->setToolTip(xi18nc("@info:tooltip",
+                                     "Check this option, if you want to share your certifications with others. "
+                                     "If you just want to mark certificates as certified for yourself, then you can uncheck it."));
         advLay->addWidget(mExportCB);
 
         {
@@ -367,6 +370,9 @@ public:
 
             mPublishCB = new QCheckBox{q};
             mPublishCB->setText(i18n("Publish on keyserver afterwards"));
+            mPublishCB->setToolTip(xi18nc("@info:tooltip",
+                                          "Check this option, if you want to upload your certifications to a certificate "
+                                          "directory after successful certification."));
             mPublishCB->setEnabled(mExportCB->isChecked());
 
             layout->addSpacing(checkBoxSize(mExportCB).width());

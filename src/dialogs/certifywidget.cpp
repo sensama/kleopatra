@@ -76,6 +76,8 @@ class AnimatedExpander : public QWidget
 public:
     explicit AnimatedExpander(const QString &title, const QString &accessibleTitle = {}, QWidget *parent = nullptr);
     void setContentLayout(QLayout *contentLayout);
+    bool isExpanded() const;
+    void setExpanded(bool expanded);
 
 private:
     QGridLayout mainLayout;
@@ -131,7 +133,7 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
     mainLayout.addWidget(&headerLine, row++, 2, 1, 1);
     mainLayout.addWidget(&contentArea, row, 0, 1, 3);
     setLayout(&mainLayout);
-    QObject::connect(&toggleButton, &QToolButton::clicked, [this](const bool checked) {
+    QObject::connect(&toggleButton, &QToolButton::toggled, [this](const bool checked) {
         if (checked) {
             // update the size of the content area
             const auto collapsedHeight = sizeHint().height() - contentArea.maximumHeight();
@@ -165,6 +167,16 @@ void AnimatedExpander::setContentLayout(QLayout *contentLayout)
 {
     delete contentArea.layout();
     contentArea.setLayout(contentLayout);
+}
+
+bool AnimatedExpander::isExpanded() const
+{
+    return toggleButton.isChecked();
+}
+
+void AnimatedExpander::setExpanded(bool expanded)
+{
+    toggleButton.setChecked(expanded);
 }
 
 class SecKeyFilter : public DefaultKeyFilter
@@ -338,8 +350,8 @@ public:
         mainLay->addWidget(userIdListView, 1);
 
         // Setup the advanced area
-        auto expander = new AnimatedExpander{i18n("Advanced"), i18n("Show advanced options"), q};
-        mainLay->addWidget(expander);
+        mAdvancedOptionsExpander = new AnimatedExpander{i18n("Advanced"), i18n("Show advanced options"), q};
+        mainLay->addWidget(mAdvancedOptionsExpander);
 
         auto advLay = new QVBoxLayout;
 
@@ -434,7 +446,7 @@ public:
             advLay->addLayout(layout);
         }
 
-        expander->setContentLayout(advLay);
+        mAdvancedOptionsExpander->setContentLayout(advLay);
 
         connect(userIdListView, &QTreeWidget::itemChanged, q, [this](auto item, auto) {
             onItemChanged(item);
@@ -489,11 +501,13 @@ public:
         case SingleCertification: {
             mExportCB->setChecked(conf.readEntry("ExportCheckState", false));
             mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
+            mAdvancedOptionsExpander->setExpanded(conf.readEntry("AdvancedOptionsExpanded", false));
             break;
         }
         case BulkCertification: {
             mExportCB->setChecked(conf.readEntry("BulkExportCheckState", true));
             mPublishCB->setChecked(conf.readEntry("BulkPublishCheckState", false));
+            mAdvancedOptionsExpander->setExpanded(conf.readEntry("BulkAdvancedOptionsExpanded", true));
             break;
         }
         }
@@ -509,11 +523,13 @@ public:
         case SingleCertification: {
             conf.writeEntry("ExportCheckState", mExportCB->isChecked());
             conf.writeEntry("PublishCheckState", mPublishCB->isChecked());
+            conf.writeEntry("AdvancedOptionsExpanded", mAdvancedOptionsExpander->isExpanded());
             break;
         }
         case BulkCertification: {
             conf.writeEntry("BulkExportCheckState", mExportCB->isChecked());
             conf.writeEntry("BulkPublishCheckState", mPublishCB->isChecked());
+            conf.writeEntry("BulkAdvancedOptionsExpanded", mAdvancedOptionsExpander->isExpanded());
             break;
         }
         }
@@ -946,6 +962,7 @@ public:
     KMessageWidget *mMissingOwnerTrustInfo = nullptr;
     KMessageWidget *mBadCertificatesInfo = nullptr;
     NavigatableTreeWidget *userIdListView = nullptr;
+    AnimatedExpander *mAdvancedOptionsExpander = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;
     QLineEdit *mTagsLE = nullptr;

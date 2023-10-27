@@ -76,14 +76,17 @@ class AnimatedExpander : public QWidget
 public:
     explicit AnimatedExpander(const QString &title, const QString &accessibleTitle = {}, QWidget *parent = nullptr);
     void setContentLayout(QLayout *contentLayout);
+    bool isExpanded() const;
+    void setExpanded(bool expanded);
 
 private:
+    static const int animationDuration = 300;
+
     QGridLayout mainLayout;
     QToolButton toggleButton;
     QFrame headerLine;
     QParallelAnimationGroup toggleAnimation;
     QWidget contentArea;
-    int animationDuration{300};
 };
 
 AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessibleTitle, QWidget *parent)
@@ -131,24 +134,26 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
     mainLayout.addWidget(&headerLine, row++, 2, 1, 1);
     mainLayout.addWidget(&contentArea, row, 0, 1, 3);
     setLayout(&mainLayout);
-    QObject::connect(&toggleButton, &QToolButton::clicked, [this](const bool checked) {
+    QObject::connect(&toggleButton, &QToolButton::toggled, [this](const bool checked) {
         if (checked) {
-            // update the size of the content area
-            const auto collapsedHeight = sizeHint().height() - contentArea.maximumHeight();
-            auto contentHeight = contentArea.layout()->sizeHint().height();
-            for (int i = 0; i < toggleAnimation.animationCount() - 1; ++i) {
-                auto expanderAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(i));
-                expanderAnimation->setDuration(animationDuration);
-                expanderAnimation->setStartValue(collapsedHeight);
-                expanderAnimation->setEndValue(collapsedHeight + contentHeight);
-            }
-            auto contentAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(toggleAnimation.animationCount() - 1));
-            contentAnimation->setDuration(animationDuration);
-            contentAnimation->setStartValue(0);
-            contentAnimation->setEndValue(contentHeight);
             // make the content visible when expanding starts
             contentArea.setVisible(true);
         }
+        // use instant animation if widget isn't visible (e.g. before widget is shown)
+        const int duration = isVisible() ? animationDuration : 0;
+        // update the size of the content area
+        const auto collapsedHeight = sizeHint().height() - contentArea.maximumHeight();
+        const auto contentHeight = contentArea.layout()->sizeHint().height();
+        for (int i = 0; i < toggleAnimation.animationCount() - 1; ++i) {
+            auto expanderAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(i));
+            expanderAnimation->setDuration(duration);
+            expanderAnimation->setStartValue(collapsedHeight);
+            expanderAnimation->setEndValue(collapsedHeight + contentHeight);
+        }
+        auto contentAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(toggleAnimation.animationCount() - 1));
+        contentAnimation->setDuration(duration);
+        contentAnimation->setStartValue(0);
+        contentAnimation->setEndValue(contentHeight);
         toggleButton.setArrowType(checked ? Qt::ArrowType::DownArrow : Qt::ArrowType::RightArrow);
         toggleAnimation.setDirection(checked ? QAbstractAnimation::Forward : QAbstractAnimation::Backward);
         toggleAnimation.start();
@@ -165,6 +170,16 @@ void AnimatedExpander::setContentLayout(QLayout *contentLayout)
 {
     delete contentArea.layout();
     contentArea.setLayout(contentLayout);
+}
+
+bool AnimatedExpander::isExpanded() const
+{
+    return toggleButton.isChecked();
+}
+
+void AnimatedExpander::setExpanded(bool expanded)
+{
+    toggleButton.setChecked(expanded);
 }
 
 class SecKeyFilter : public DefaultKeyFilter
@@ -338,13 +353,16 @@ public:
         mainLay->addWidget(userIdListView, 1);
 
         // Setup the advanced area
-        auto expander = new AnimatedExpander{i18n("Advanced"), i18n("Show advanced options"), q};
-        mainLay->addWidget(expander);
+        mAdvancedOptionsExpander = new AnimatedExpander{i18n("Advanced"), i18n("Show advanced options"), q};
+        mainLay->addWidget(mAdvancedOptionsExpander);
 
         auto advLay = new QVBoxLayout;
 
         mExportCB = new QCheckBox{q};
         mExportCB->setText(i18n("Certify for everyone to see (exportable)"));
+        mExportCB->setToolTip(xi18nc("@info:tooltip",
+                                     "Check this option, if you want to share your certifications with others. "
+                                     "If you just want to mark certificates as certified for yourself, then you can uncheck it."));
         advLay->addWidget(mExportCB);
 
         {
@@ -352,6 +370,9 @@ public:
 
             mPublishCB = new QCheckBox{q};
             mPublishCB->setText(i18n("Publish on keyserver afterwards"));
+            mPublishCB->setToolTip(xi18nc("@info:tooltip",
+                                          "Check this option, if you want to upload your certifications to a certificate "
+                                          "directory after successful certification."));
             mPublishCB->setEnabled(mExportCB->isChecked());
 
             layout->addSpacing(checkBoxSize(mExportCB).width());
@@ -434,7 +455,7 @@ public:
             advLay->addLayout(layout);
         }
 
-        expander->setContentLayout(advLay);
+        mAdvancedOptionsExpander->setContentLayout(advLay);
 
         connect(userIdListView, &QTreeWidget::itemChanged, q, [this](auto item, auto) {
             onItemChanged(item);
@@ -489,11 +510,13 @@ public:
         case SingleCertification: {
             mExportCB->setChecked(conf.readEntry("ExportCheckState", false));
             mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
+            mAdvancedOptionsExpander->setExpanded(conf.readEntry("AdvancedOptionsExpanded", false));
             break;
         }
         case BulkCertification: {
             mExportCB->setChecked(conf.readEntry("BulkExportCheckState", true));
             mPublishCB->setChecked(conf.readEntry("BulkPublishCheckState", false));
+            mAdvancedOptionsExpander->setExpanded(conf.readEntry("BulkAdvancedOptionsExpanded", true));
             break;
         }
         }
@@ -509,11 +532,13 @@ public:
         case SingleCertification: {
             conf.writeEntry("ExportCheckState", mExportCB->isChecked());
             conf.writeEntry("PublishCheckState", mPublishCB->isChecked());
+            conf.writeEntry("AdvancedOptionsExpanded", mAdvancedOptionsExpander->isExpanded());
             break;
         }
         case BulkCertification: {
             conf.writeEntry("BulkExportCheckState", mExportCB->isChecked());
             conf.writeEntry("BulkPublishCheckState", mPublishCB->isChecked());
+            conf.writeEntry("BulkAdvancedOptionsExpanded", mAdvancedOptionsExpander->isExpanded());
             break;
         }
         }
@@ -946,6 +971,7 @@ public:
     KMessageWidget *mMissingOwnerTrustInfo = nullptr;
     KMessageWidget *mBadCertificatesInfo = nullptr;
     NavigatableTreeWidget *userIdListView = nullptr;
+    AnimatedExpander *mAdvancedOptionsExpander = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;
     QLineEdit *mTagsLE = nullptr;

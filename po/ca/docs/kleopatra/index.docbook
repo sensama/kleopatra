@@ -266,16 +266,10 @@
 <para
 >Cada línia en la llista de claus es correspon amb un certificat, que s'identifica per l'anomenat <guilabel
 >Assumpte &dn;</guilabel
->. &dn; és l'acrònim de <quote
->Nom distintiu</quote
->, un identificador jeràrquic, quelcom com un camí cap al sistema de fitxers amb una sintaxi poc usual, se suposa que és un identificador global únic per a un certificat en qüestió.</para>
+>. &dn; és l'acrònim de «Nom distintiu», un identificador jeràrquic, quelcom com un camí cap al sistema de fitxers amb una sintaxi poc usual, se suposa que és un identificador global únic per a un certificat en qüestió.</para>
 
 <para
->Perquè siguin vàlides, i per tant usables, les claus (públiques) han d'estar signades per una &ca; (Autoritat certificadora). Aquestes signatures s'anomenen certificats, però normalment els termes <quote
->certificat</quote
-> i <quote
->clau (pública)</quote
-> s'utilitzen indistintament, i en aquest manual no en farem distincions, a excepció de quan s'indiqui de manera explícita.</para>
+>Perquè siguin vàlides, i per tant usables, les claus (públiques) han d'estar signades per una &ca; (Autoritat certificadora). Aquestes signatures s'anomenen certificats, però normalment els termes «certificat» i «clau (pública)» s'utilitzen indistintament, i en aquest manual no en farem distincions, a excepció de quan s'indiqui de manera explícita.</para>
 
 <para
 >Les &ca; poden estar signades per altres &ca; per a ser vàlides. Per descomptat, ha d'existir algun límit, així que la &ca; de nivell superior (&ca; arrel) signa la seva clau amb ella mateixa (això s'anomena signar a si mateix). Als certificats arrel se'ls ha d'assignar manualment una validesa (sovint anomenada confiança), &pex;, després de comparar l'empremta dactilar amb la del lloc web de la &ca;. Normalment, sol fer-ho l'administrador del sistema o el venedor d'un producte que empri certificats, però també pot fer-ho qualsevol usuari amb la interfície de línia d'ordres de &gpgsm;.</para>
@@ -582,11 +576,7 @@ as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
 > i permet enviar la part pública a una autoritat certificadora (&ca;) perquè la signi. El certificat resultant és el que us han de tornar o desar-lo en un servidor &ldap; perquè el descarregueu al vostre anell de claus local, perquè pugueu usar-lo per a signar i desencriptar correus.</para>
 
 <para
->Aquest mode d'operació s'anomena <quote
->generació de claus descentralitzada</quote
->, donat que totes les claus es creen localment. El &kleopatra; (i &gpgsm;) no admeten directament la <quote
->generació de claus centralitzada</quote
->, però podeu importar recopilacions de claus públiques/privades que rebeu des de la &ca; en format PCKS#12 mitjançant <xref linkend="file-import-certificates"/>.</para>
+>Aquest mode d'operació s'anomena «generació de claus descentralitzada», donat que totes les claus es creen localment. El &kleopatra; (i &gpgsm;) no admeten directament la «generació de claus centralitzada», però podeu importar recopilacions de claus públiques/privades que rebeu des de la &ca; en format PCKS#12 mitjançant <xref linkend="file-import-certificates"/>.</para>
 </listitem>
 </varlistentry>
 
@@ -2361,9 +2351,7 @@ list.</para>
 ></title>
 
         <para
->Aquí es poden configurar alguns aspectes de les operacions de correu electrònic del &uiserver; de &kleopatra;. En l'actualitat, només es pot configurar si voleu utilitzar o no el <quote
->mode ràpid</quote
-> per a signar i encriptar missatges de correu electrònic, individualment. </para>
+>Aquí es poden configurar alguns aspectes de les operacions de correu electrònic del &uiserver; de &kleopatra;. En l'actualitat, només es pot configurar si voleu utilitzar o no el «mode ràpid» per a signar i encriptar missatges de correu electrònic, individualment. </para>
         <para
 >Quan s'habilita el «mode ràpid» no es mostra cap diàleg en signar (encriptar) els correus electrònics, a menys que hi hagi un conflicte que necessiti una resolució manual. </para>
 
@@ -2595,9 +2583,7 @@ list.</para>
 ></term>
             <listitem>
               <para
->Quan se cerca la ubicació d'un &crl;, el certificat a provar en general conté el que es coneix com a entrades <quote
->&crl; Punt de distribució</quote
-> (<acronym
+>Quan se cerca la ubicació d'un &crl;, el certificat a provar en general conté el que es coneix com a entrades «&crl; Punt de distribució» (<acronym
 >DP</acronym
 >), que són &URL; que descriuen la manera d'accedir a la &crl;. S'utilitza la primera entrada <acronym
 >DP</acronym
@@ -2670,9 +2656,7 @@ list.</para>
 ></term>
             <listitem>
               <para
->Quan se cerca la ubicació d'un &crl;, el certificat a provar en general conté el que es coneix com a entrades <quote
->&crl; Punt de distribució</quote
-> (<acronym
+>Quan se cerca la ubicació d'un &crl;, el certificat a provar en general conté el que es coneix com a entrades «&crl; Punt de distribució» (<acronym
 >DP</acronym
 >), que són &URL; que descriuen la manera d'accedir a la &crl;. S'utilitza la primera entrada <acronym
 >DP</acronym

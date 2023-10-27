@@ -80,12 +80,13 @@ public:
     void setExpanded(bool expanded);
 
 private:
+    static const int animationDuration = 300;
+
     QGridLayout mainLayout;
     QToolButton toggleButton;
     QFrame headerLine;
     QParallelAnimationGroup toggleAnimation;
     QWidget contentArea;
-    int animationDuration{300};
 };
 
 AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessibleTitle, QWidget *parent)
@@ -135,22 +136,24 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
     setLayout(&mainLayout);
     QObject::connect(&toggleButton, &QToolButton::toggled, [this](const bool checked) {
         if (checked) {
-            // update the size of the content area
-            const auto collapsedHeight = sizeHint().height() - contentArea.maximumHeight();
-            auto contentHeight = contentArea.layout()->sizeHint().height();
-            for (int i = 0; i < toggleAnimation.animationCount() - 1; ++i) {
-                auto expanderAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(i));
-                expanderAnimation->setDuration(animationDuration);
-                expanderAnimation->setStartValue(collapsedHeight);
-                expanderAnimation->setEndValue(collapsedHeight + contentHeight);
-            }
-            auto contentAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(toggleAnimation.animationCount() - 1));
-            contentAnimation->setDuration(animationDuration);
-            contentAnimation->setStartValue(0);
-            contentAnimation->setEndValue(contentHeight);
             // make the content visible when expanding starts
             contentArea.setVisible(true);
         }
+        // use instant animation if widget isn't visible (e.g. before widget is shown)
+        const int duration = isVisible() ? animationDuration : 0;
+        // update the size of the content area
+        const auto collapsedHeight = sizeHint().height() - contentArea.maximumHeight();
+        const auto contentHeight = contentArea.layout()->sizeHint().height();
+        for (int i = 0; i < toggleAnimation.animationCount() - 1; ++i) {
+            auto expanderAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(i));
+            expanderAnimation->setDuration(duration);
+            expanderAnimation->setStartValue(collapsedHeight);
+            expanderAnimation->setEndValue(collapsedHeight + contentHeight);
+        }
+        auto contentAnimation = static_cast<QPropertyAnimation *>(toggleAnimation.animationAt(toggleAnimation.animationCount() - 1));
+        contentAnimation->setDuration(duration);
+        contentAnimation->setStartValue(0);
+        contentAnimation->setEndValue(contentHeight);
         toggleButton.setArrowType(checked ? Qt::ArrowType::DownArrow : Qt::ArrowType::RightArrow);
         toggleAnimation.setDirection(checked ? QAbstractAnimation::Forward : QAbstractAnimation::Backward);
         toggleAnimation.start();

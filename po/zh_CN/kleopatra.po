@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-26 00:43+0000\n"
+"POT-Creation-Date: 2023-10-28 00:45+0000\n"
 "PO-Revision-Date: 2023-10-21 13:54\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2553,7 +2553,7 @@ msgid "No Directory Servers Configured"
 msgstr "未配置目录服务器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:479
+#: src/kleopatraapplication.cpp:482
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您无权创建 S/MIME 证书签名请求。"
@@ -5923,7 +5923,7 @@ msgid "User IDs:"
 msgstr "用户 IDs："
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:345
 #, kde-format
 msgid "User IDs"
 msgstr "用户 ID"
@@ -5999,7 +5999,7 @@ msgid "Change Validity"
 msgstr "更改有效性"
 
 #: src/dialogs/certificatedetailswidget.cpp:298
-#: src/dialogs/certifywidget.cpp:290
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Fingerprint:"
 msgstr "指纹："
@@ -6379,7 +6379,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:273
+#: src/dialogs/certifywidget.cpp:288
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6389,18 +6389,18 @@ msgstr ""
 "验证指纹，标记您想要验证的用户ID，并选择您想要用于验证用户ID的密钥。<br><i>注"
 "意：区分不同密钥及其所有者的唯一凭据是指纹。</i>"
 
-#: src/dialogs/certifywidget.cpp:295
+#: src/dialogs/certifywidget.cpp:310
 #, kde-format
 msgid "Certify with:"
 msgstr "认证方式："
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:322
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "设置信任等级为所有者"
 
-#: src/dialogs/certifywidget.cpp:309
+#: src/dialogs/certifywidget.cpp:324
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6408,50 +6408,67 @@ msgid ""
 "trust. This is what you usually want to do for your own keys."
 msgstr "点击将所选认证密钥的信任等级设为绝对信任，通常用于您自己的密钥。"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:339
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
-#: src/dialogs/certifywidget.cpp:563
+#: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
+#: src/dialogs/certifywidget.cpp:588
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:341
+#: src/dialogs/certifywidget.cpp:356
 #, kde-format
 msgid "Advanced"
 msgstr "高级设置"
 
-#: src/dialogs/certifywidget.cpp:341
+#: src/dialogs/certifywidget.cpp:356
 #, kde-format
 msgid "Show advanced options"
 msgstr "显示高级选项"
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:362
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "公开验证(可导出)"
 
-#: src/dialogs/certifywidget.cpp:354
+#: src/dialogs/certifywidget.cpp:364
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this option, if you want to share your certifications with others. If "
+"you just want to mark certificates as certified for yourself, then you can "
+"uncheck it."
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:372
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "之后发布于密钥服务器中"
 
-#: src/dialogs/certifywidget.cpp:366
+#: src/dialogs/certifywidget.cpp:374
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this option, if you want to upload your certifications to a "
+"certificate directory after successful certification."
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:387
 #, kde-format
 msgid "Tags:"
 msgstr "标签："
 
-#: src/dialogs/certifywidget.cpp:370
+#: src/dialogs/certifywidget.cpp:391
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "您可通过此项给证书添加额外信息。"
 
-#: src/dialogs/certifywidget.cpp:371
+#: src/dialogs/certifywidget.cpp:392
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6459,17 +6476,17 @@ msgid ""
 msgstr ""
 "任何具有完全认证信任级别的人所创建的标签都显示在密钥列表中，并可以被搜索到。"
 
-#: src/dialogs/certifywidget.cpp:386
+#: src/dialogs/certifywidget.cpp:407
 #, kde-format
 msgid "Expiration:"
 msgstr "过期时间："
 
-#: src/dialogs/certifywidget.cpp:393
+#: src/dialogs/certifywidget.cpp:414
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "您可通过此项给证书设定过期时间。"
 
-#: src/dialogs/certifywidget.cpp:394
+#: src/dialogs/certifywidget.cpp:415
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6479,17 +6496,17 @@ msgstr ""
 "您可通过设定过期时间，将证书的有效性限制在一段时间内。一旦过了到期时间，您的"
 "证书就不再有效。"
 
-#: src/dialogs/certifywidget.cpp:409
+#: src/dialogs/certifywidget.cpp:430
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "认证为值得信赖的介绍人"
 
-#: src/dialogs/certifywidget.cpp:410
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "您可以使用此来验证域名是否拥有一个可信导入器。"
 
-#: src/dialogs/certifywidget.cpp:411
+#: src/dialogs/certifywidget.cpp:432
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6499,12 +6516,12 @@ msgstr ""
 "所有属于该域的电子邮件已经被一个可信的导入器集中认证，所以它们均被视为是已被"
 "签名的 。换言之，可信导入器可以被视作一个中间CA。"
 
-#: src/dialogs/certifywidget.cpp:422
+#: src/dialogs/certifywidget.cpp:443
 #, kde-format
 msgid "Domain:"
 msgstr "域名："
 
-#: src/dialogs/certifywidget.cpp:531
+#: src/dialogs/certifywidget.cpp:556
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6513,41 +6530,41 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:563
+#: src/dialogs/certifywidget.cpp:588
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
+#: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
+#: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:894
+#: src/dialogs/certifywidget.cpp:919
 #, kde-format
 msgid "Is this your own key?"
 msgstr "这是您自己的密钥吗？"
 
-#: src/dialogs/certifywidget.cpp:909
+#: src/dialogs/certifywidget.cpp:934
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr "<p>更改密钥 <b>%1</b> 的信任等级失败：</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:912
+#: src/dialogs/certifywidget.cpp:937
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "证书信任等级更改失败"
 
-#: src/dialogs/certifywidget.cpp:919
+#: src/dialogs/certifywidget.cpp:944
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "所有者信任等级设置成功。"
@@ -8262,47 +8279,47 @@ msgstr "待处理的文件"
 msgid "String or Fingerprint for query and search"
 msgstr "用于查询和搜索的字符串或指纹"
 
-#: src/kleopatraapplication.cpp:375
+#: src/kleopatraapplication.cpp:378
 #, kde-format
 msgid "Failed to execute command"
 msgstr "执行命令失败"
 
-#: src/kleopatraapplication.cpp:417
+#: src/kleopatraapplication.cpp:420
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "模糊协议：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:451
+#: src/kleopatraapplication.cpp:454
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "没有为 --search 指定搜索字符串"
 
-#: src/kleopatraapplication.cpp:462
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "没有为 --query 指定指纹参数"
 
-#: src/kleopatraapplication.cpp:523
+#: src/kleopatraapplication.cpp:526
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "模糊命令 %1 和 %2"
 
-#: src/kleopatraapplication.cpp:530
+#: src/kleopatraapplication.cpp:533
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "没有为 %1 命令指定文件"
 
-#: src/kleopatraapplication.cpp:544
+#: src/kleopatraapplication.cpp:547
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "无法读取“%1”"
 
-#: src/kleopatraapplication.cpp:823
+#: src/kleopatraapplication.cpp:826
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "在行政上禁止打开外部链接。"
 
-#: src/kleopatraapplication.cpp:823
+#: src/kleopatraapplication.cpp:826
 #, kde-format
 msgid "Prohibited"
 msgstr "已封禁"
@@ -8373,7 +8390,7 @@ msgstr "Kleopatra 错误"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "连接 Kleopatra 时出错：%1"
 
-#: src/main.cpp:140
+#: src/main.cpp:145
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8388,13 +8405,13 @@ msgstr ""
 "para><para><application>Kleopatra</application> 将无法在此设置中运行。</"
 "para><para>请咨询您的管理员来帮助解决这个问题。</para>"
 
-#: src/main.cpp:144
+#: src/main.cpp:149
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME 版本太旧"
 
-#: src/main.cpp:169
+#: src/main.cpp:174
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8409,23 +8426,23 @@ msgstr ""
 "户身份管理，并以适当的权限复制 <filename>AppData\\Roaming\\gnupg</filename> "
 "目录。</para>"
 
-#: src/main.cpp:173
+#: src/main.cpp:178
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>您确定要继续吗？</para>"
 
-#: src/main.cpp:174
+#: src/main.cpp:179
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "作为管理员运行"
 
-#: src/main.cpp:248
+#: src/main.cpp:253
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG 界面服务器错误"
 
-#: src/main.cpp:252
+#: src/main.cpp:257
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8442,7 +8459,7 @@ msgstr ""
 "b><br/>这可能意味着您的安装有问题。 尝试重新安装或联系您的管理员以获得支持。"
 "<br/>您可以尝试继续使用 Kleopatra，但可能还有其他问题。</qt>"
 
-#: src/main.cpp:282
+#: src/main.cpp:287
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "无效的参数：%1"

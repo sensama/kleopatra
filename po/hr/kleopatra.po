@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-26 00:43+0000\n"
+"POT-Creation-Date: 2023-10-28 00:45+0000\n"
 "PO-Revision-Date: 2004-04-20 13:24+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -2509,7 +2509,7 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:479
+#: src/kleopatraapplication.cpp:482
 #, fuzzy, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "&Napravi certifikat"
@@ -5874,7 +5874,7 @@ msgid "User IDs:"
 msgstr "Neuspješno Preuzimanje Certifikata"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:345
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid "User IDs"
@@ -5956,7 +5956,7 @@ msgid "Change Validity"
 msgstr "Ispravno"
 
 #: src/dialogs/certificatedetailswidget.cpp:298
-#: src/dialogs/certifywidget.cpp:290
+#: src/dialogs/certifywidget.cpp:305
 #, fuzzy, kde-format
 msgid "Fingerprint:"
 msgstr "Otisak"
@@ -6350,7 +6350,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Uklonite certifikat"
 
-#: src/dialogs/certifywidget.cpp:273
+#: src/dialogs/certifywidget.cpp:288
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6358,18 +6358,18 @@ msgid ""
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:295
+#: src/dialogs/certifywidget.cpp:310
 #, fuzzy, kde-format
 msgid "Certify with:"
 msgstr "&Potvrde"
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:322
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:309
+#: src/dialogs/certifywidget.cpp:324
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6377,70 +6377,87 @@ msgid ""
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:339
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "&Potvrde"
 
-#: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
-#: src/dialogs/certifywidget.cpp:563
+#: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
+#: src/dialogs/certifywidget.cpp:588
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Neuspješno Preuzimanje Certifikata"
 
-#: src/dialogs/certifywidget.cpp:341
+#: src/dialogs/certifywidget.cpp:356
 #, kde-format
 msgid "Advanced"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:341
+#: src/dialogs/certifywidget.cpp:356
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Show advanced options"
 msgstr "Poništeno."
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:362
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:354
+#: src/dialogs/certifywidget.cpp:364
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this option, if you want to share your certifications with others. If "
+"you just want to mark certificates as certified for yourself, then you can "
+"uncheck it."
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:372
 #, fuzzy, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Greška uraditelja certifikata"
 
-#: src/dialogs/certifywidget.cpp:366
+#: src/dialogs/certifywidget.cpp:374
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this option, if you want to upload your certifications to a "
+"certificate directory after successful certification."
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:387
 #, kde-format
 msgid "Tags:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:370
+#: src/dialogs/certifywidget.cpp:391
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:371
+#: src/dialogs/certifywidget.cpp:392
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:386
+#: src/dialogs/certifywidget.cpp:407
 #, kde-format
 msgid "Expiration:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:393
+#: src/dialogs/certifywidget.cpp:414
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:394
+#: src/dialogs/certifywidget.cpp:415
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6448,17 +6465,17 @@ msgid ""
 "passed, your certification is no longer valid."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:409
+#: src/dialogs/certifywidget.cpp:430
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:410
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:411
+#: src/dialogs/certifywidget.cpp:432
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6466,12 +6483,12 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:422
+#: src/dialogs/certifywidget.cpp:443
 #, kde-format
 msgid "Domain:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:531
+#: src/dialogs/certifywidget.cpp:556
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6480,43 +6497,43 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:563
+#: src/dialogs/certifywidget.cpp:588
 #, fuzzy, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "Otisak"
 
-#: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
+#: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "Uklonite certifikat"
 
-#: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
+#: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "&Potvrde"
 
-#: src/dialogs/certifywidget.cpp:894
+#: src/dialogs/certifywidget.cpp:919
 #, kde-format
 msgid "Is this your own key?"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:909
+#: src/dialogs/certifywidget.cpp:934
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:912
+#: src/dialogs/certifywidget.cpp:937
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid "Certification Trust Change Failed"
 msgstr "Neuspješno Preuzimanje Certifikata"
 
-#: src/dialogs/certifywidget.cpp:919
+#: src/dialogs/certifywidget.cpp:944
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid "Owner trust set successfully."
@@ -8211,47 +8228,47 @@ msgstr ""
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:375
+#: src/kleopatraapplication.cpp:378
 #, kde-format
 msgid "Failed to execute command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:417
+#: src/kleopatraapplication.cpp:420
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:451
+#: src/kleopatraapplication.cpp:454
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:462
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:523
+#: src/kleopatraapplication.cpp:526
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:530
+#: src/kleopatraapplication.cpp:533
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:544
+#: src/kleopatraapplication.cpp:547
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:823
+#: src/kleopatraapplication.cpp:826
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:823
+#: src/kleopatraapplication.cpp:826
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -8322,7 +8339,7 @@ msgstr "Pogreška uvoza"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:140
+#: src/main.cpp:145
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8333,13 +8350,13 @@ msgid ""
 "administrator for help in resolving this issue.</para>"
 msgstr ""
 
-#: src/main.cpp:144
+#: src/main.cpp:149
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr ""
 
-#: src/main.cpp:169
+#: src/main.cpp:174
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8350,23 +8367,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:173
+#: src/main.cpp:178
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:174
+#: src/main.cpp:179
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:248
+#: src/main.cpp:253
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr ""
 
-#: src/main.cpp:252
+#: src/main.cpp:257
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8380,7 +8397,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:282
+#: src/main.cpp:287
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-26 00:43+0000\n"
+"POT-Creation-Date: 2023-10-28 00:45+0000\n"
 "PO-Revision-Date: 2023-10-20 07:06+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -2661,7 +2661,7 @@ msgid "No Directory Servers Configured"
 msgstr "Neniuj Dosierujoj Agordis"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:479
+#: src/kleopatraapplication.cpp:482
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Vi ne rajtas krei S/MIME-atestilajn petojn."
@@ -6175,7 +6175,7 @@ msgid "User IDs:"
 msgstr "Uzantidentoj:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:345
 #, kde-format
 msgid "User IDs"
 msgstr "Uzantidentigiloj"
@@ -6252,7 +6252,7 @@ msgid "Change Validity"
 msgstr "Ŝanĝi Validecon"
 
 #: src/dialogs/certificatedetailswidget.cpp:298
-#: src/dialogs/certifywidget.cpp:290
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Fingrosigno:"
@@ -6637,7 +6637,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Atesti Atestilan Grupon %1"
 
-#: src/dialogs/certifywidget.cpp:273
+#: src/dialogs/certifywidget.cpp:288
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6649,18 +6649,18 @@ msgstr ""
 "<br><i>Noto: Nur la fingrospuro klare identigas la ŝlosilon kaj ĝian "
 "posedanton.</i>"
 
-#: src/dialogs/certifywidget.cpp:295
+#: src/dialogs/certifywidget.cpp:310
 #, kde-format
 msgid "Certify with:"
 msgstr "Atesti kun:"
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:322
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Fido de Posedanto"
 
-#: src/dialogs/certifywidget.cpp:309
+#: src/dialogs/certifywidget.cpp:324
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6670,50 +6670,67 @@ msgstr ""
 "Klaku por agordi la fidan nivelon de la elektita atestadŝlosilo al finfina "
 "fido. Jen kion vi kutime volas fari por viaj propraj ŝlosiloj."
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:339
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "Unu aŭ pliaj atestiloj ne povas esti atestitaj."
 
-#: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
-#: src/dialogs/certifywidget.cpp:563
+#: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
+#: src/dialogs/certifywidget.cpp:588
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Uzantidentigilo"
 
-#: src/dialogs/certifywidget.cpp:341
+#: src/dialogs/certifywidget.cpp:356
 #, kde-format
 msgid "Advanced"
 msgstr "Altnivelaj"
 
-#: src/dialogs/certifywidget.cpp:341
+#: src/dialogs/certifywidget.cpp:356
 #, kde-format
 msgid "Show advanced options"
 msgstr "Montri altnivelajn opciojn"
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:362
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Atesti por ke ĉiuj vidu (eksportebla)"
 
-#: src/dialogs/certifywidget.cpp:354
+#: src/dialogs/certifywidget.cpp:364
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this option, if you want to share your certifications with others. If "
+"you just want to mark certificates as certified for yourself, then you can "
+"uncheck it."
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:372
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Publiki sur ŝlosilservilo poste"
 
-#: src/dialogs/certifywidget.cpp:366
+#: src/dialogs/certifywidget.cpp:374
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this option, if you want to upload your certifications to a "
+"certificate directory after successful certification."
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:387
 #, kde-format
 msgid "Tags:"
 msgstr "Etikedoj:"
 
-#: src/dialogs/certifywidget.cpp:370
+#: src/dialogs/certifywidget.cpp:391
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Vi povas uzi ĉi tion por aldoni pliajn informojn al atestilo."
 
-#: src/dialogs/certifywidget.cpp:371
+#: src/dialogs/certifywidget.cpp:392
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6722,17 +6739,17 @@ msgstr ""
 "Etikedoj kreitaj de iu ajn kun plena atestado fido estas montritaj en la "
 "ŝlosillisto kaj povas esti serĉataj."
 
-#: src/dialogs/certifywidget.cpp:386
+#: src/dialogs/certifywidget.cpp:407
 #, kde-format
 msgid "Expiration:"
 msgstr "Eksvalidiĝo:"
 
-#: src/dialogs/certifywidget.cpp:393
+#: src/dialogs/certifywidget.cpp:414
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Vi povas uzi ĉi tion por agordi limdaton por atestilo."
 
-#: src/dialogs/certifywidget.cpp:394
+#: src/dialogs/certifywidget.cpp:415
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6742,17 +6759,17 @@ msgstr ""
 "Fiksante limdaton, vi povas limigi la validecon de via atestado al certa "
 "tempo. Post kiam la limdato pasis, via atesto ne plu validas."
 
-#: src/dialogs/certifywidget.cpp:409
+#: src/dialogs/certifywidget.cpp:430
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Atesti kiel fidinda enkondukanto"
 
-#: src/dialogs/certifywidget.cpp:410
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "Vi povas uzi ĉi tion por atesti fidindan enkondukilon por domajno."
 
-#: src/dialogs/certifywidget.cpp:411
+#: src/dialogs/certifywidget.cpp:432
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6763,12 +6780,12 @@ msgstr ""
 "atestitaj de la fidinda enkondukanto, estas traktataj kiel atestitaj, t.e. "
 "fidinda enkondukanto agas kiel speco de meza CA por domajno."
 
-#: src/dialogs/certifywidget.cpp:422
+#: src/dialogs/certifywidget.cpp:443
 #, kde-format
 msgid "Domain:"
 msgstr "Domajno:"
 
-#: src/dialogs/certifywidget.cpp:531
+#: src/dialogs/certifywidget.cpp:556
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6781,42 +6798,42 @@ msgstr ""
 "<br><i>Rimarku: Nur la fingrospuroj klare identigas la atestilon kaj ĝian "
 "posedanton.</i>"
 
-#: src/dialogs/certifywidget.cpp:563
+#: src/dialogs/certifywidget.cpp:588
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "Fingrospuro"
 
-#: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
+#: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "S/MIME-atestiloj ne povas esti atestitaj."
 
-#: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
+#: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "Eksvalidiĝintaj aŭ revokitaj atestiloj ne povas esti atestitaj."
 
-#: src/dialogs/certifywidget.cpp:894
+#: src/dialogs/certifywidget.cpp:919
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Ĉu ĉi tio estas via propra ŝlosilo?"
 
-#: src/dialogs/certifywidget.cpp:909
+#: src/dialogs/certifywidget.cpp:934
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
 "<p>Ŝanĝi la atestan fidon de la ŝlosilo <b>%1</b> malsukcesis:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:912
+#: src/dialogs/certifywidget.cpp:937
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Atestada Fida Ŝanĝo Malsukcesis"
 
-#: src/dialogs/certifywidget.cpp:919
+#: src/dialogs/certifywidget.cpp:944
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Fido de posedanto sukcese fiksita."
@@ -8624,47 +8641,47 @@ msgstr "Dosiero(j) prilaborenda(j)."
 msgid "String or Fingerprint for query and search"
 msgstr "Ĉeno aŭ fingrospuro por konsulto kaj serĉo"
 
-#: src/kleopatraapplication.cpp:375
+#: src/kleopatraapplication.cpp:378
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Malsukcesis ekzekuti komandon"
 
-#: src/kleopatraapplication.cpp:417
+#: src/kleopatraapplication.cpp:420
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Ambigua protokolo: --openpgp kaj --cms"
 
-#: src/kleopatraapplication.cpp:451
+#: src/kleopatraapplication.cpp:454
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Neniu serĉĉeno specifita por --search"
 
-#: src/kleopatraapplication.cpp:462
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Neniu fingrospura argumento specifita por --query"
 
-#: src/kleopatraapplication.cpp:523
+#: src/kleopatraapplication.cpp:526
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Ambiguaj komandoj \"%1\" kaj \"%2\""
 
-#: src/kleopatraapplication.cpp:530
+#: src/kleopatraapplication.cpp:533
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Neniuj dosieroj specifitaj por \"%1\" komando"
 
-#: src/kleopatraapplication.cpp:544
+#: src/kleopatraapplication.cpp:547
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Ne povas legi \"%1\""
 
-#: src/kleopatraapplication.cpp:823
+#: src/kleopatraapplication.cpp:826
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Malfermi eksteran ligilon estas administre malpermesita."
 
-#: src/kleopatraapplication.cpp:823
+#: src/kleopatraapplication.cpp:826
 #, kde-format
 msgid "Prohibited"
 msgstr "Malpermesita"
@@ -8736,7 +8753,7 @@ msgstr "Kleopatra Eraro"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Okazis eraro dum la konekto al Kleopatra: %1"
 
-#: src/main.cpp:140
+#: src/main.cpp:145
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8752,13 +8769,13 @@ msgstr ""
 "Kleopatra</application> ne funkcios en ĉi tiu agordo.</para><para>Bonvolu "
 "peti vian administranton pri helpo por solvi ĉi tiun problemon.</para>"
 
-#: src/main.cpp:144
+#: src/main.cpp:149
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME Tro Malnova"
 
-#: src/main.cpp:169
+#: src/main.cpp:174
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8774,23 +8791,23 @@ msgstr ""
 "ilin kiel normala uzanto kaj kopii la <filename>AppData\\Roaming\\gnupg</"
 "filename> dosierujo kun taŭgaj permesoj.</para>"
 
-#: src/main.cpp:173
+#: src/main.cpp:178
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Ĉu vi certas, ke vi volas daŭrigi?</para>"
 
-#: src/main.cpp:174
+#: src/main.cpp:179
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Kurante kiel Administranto"
 
-#: src/main.cpp:248
+#: src/main.cpp:253
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI-Servilo-Eraro"
 
-#: src/main.cpp:252
+#: src/main.cpp:257
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8809,7 +8826,7 @@ msgstr ""
 "por subteno.<br/>Vi povas provi daŭrigi uzi Kleopatra sed eble estos aliaj "
 "problemoj.</qt>"
 
-#: src/main.cpp:282
+#: src/main.cpp:287
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Nevalidaj argumentoj: %1"

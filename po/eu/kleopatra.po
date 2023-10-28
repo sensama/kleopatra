@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-26 01:45+0000\n"
-"PO-Revision-Date: 2023-10-26 19:17+0200\n"
+"POT-Creation-Date: 2023-10-28 01:45+0000\n"
+"PO-Revision-Date: 2023-10-27 06:43+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -6262,7 +6262,7 @@ msgid "User IDs:"
 msgstr "Erabiltzaile IDak:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:345
 #, kde-format
 msgid "User IDs"
 msgstr "Erabiltzaile IDak"
@@ -6340,7 +6340,7 @@ msgid "Change Validity"
 msgstr "Aldatu baliotasuna"
 
 #: src/dialogs/certificatedetailswidget.cpp:298
-#: src/dialogs/certifywidget.cpp:290
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Hatz-marka:"
@@ -6727,7 +6727,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Ziurtatu %1 ziurtagiri-taldea"
 
-#: src/dialogs/certifywidget.cpp:273
+#: src/dialogs/certifywidget.cpp:288
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6738,18 +6738,18 @@ msgstr ""
 "aukeratu haiek ziurtatzeko erabili nahi duzun gakoa.<br><i>Oharra: hatz-"
 "markak bakarrik identifikatzen ditu argi eta garbi gakoa eta haren jabea.</i>"
 
-#: src/dialogs/certifywidget.cpp:295
+#: src/dialogs/certifywidget.cpp:310
 #, kde-format
 msgid "Certify with:"
 msgstr "Ziurtatu honekin:"
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:322
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Ezarri jabearekiko konfiantza"
 
-#: src/dialogs/certifywidget.cpp:309
+#: src/dialogs/certifywidget.cpp:324
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6759,50 +6759,67 @@ msgstr ""
 "Egin klik, ziurtapen gakoaren konfiantza maila muturrekora ezartzeko. Hori "
 "da zure gako propioetarako normalean egin nahi duzuna."
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:339
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "Ziurtagiri bat edo gehiago ezin dira ziurtatu."
 
-#: src/dialogs/certifywidget.cpp:337 src/dialogs/certifywidget.cpp:549
-#: src/dialogs/certifywidget.cpp:563
+#: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
+#: src/dialogs/certifywidget.cpp:588
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Erabiltzaile ID"
 
-#: src/dialogs/certifywidget.cpp:341
+#: src/dialogs/certifywidget.cpp:356
 #, kde-format
 msgid "Advanced"
 msgstr "Aurreratua"
 
-#: src/dialogs/certifywidget.cpp:341
+#: src/dialogs/certifywidget.cpp:356
 #, kde-format
 msgid "Show advanced options"
 msgstr "Erakutsi aukera aurreratuak"
 
-#: src/dialogs/certifywidget.cpp:347
+#: src/dialogs/certifywidget.cpp:362
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Ziurtatu denek ikus dezaten (esportagarria)"
 
-#: src/dialogs/certifywidget.cpp:354
+#: src/dialogs/certifywidget.cpp:364
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this option, if you want to share your certifications with others. If "
+"you just want to mark certificates as certified for yourself, then you can "
+"uncheck it."
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:372
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Ondoren argitaratu gako-zerbitzarian "
 
-#: src/dialogs/certifywidget.cpp:366
+#: src/dialogs/certifywidget.cpp:374
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this option, if you want to upload your certifications to a "
+"certificate directory after successful certification."
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:387
 #, kde-format
 msgid "Tags:"
 msgstr "Etiketak:"
 
-#: src/dialogs/certifywidget.cpp:370
+#: src/dialogs/certifywidget.cpp:391
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Hau, ziurtagiri bati informazio gehigarria gehitzeko erabil dezakezu."
 
-#: src/dialogs/certifywidget.cpp:371
+#: src/dialogs/certifywidget.cpp:392
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6811,17 +6828,17 @@ msgstr ""
 "Ziurtapenerako konfiantza osoa duen edonork sortutako etiketakgako-zerrendan "
 "erakutsi eta bila daitezke."
 
-#: src/dialogs/certifywidget.cpp:386
+#: src/dialogs/certifywidget.cpp:407
 #, kde-format
 msgid "Expiration:"
 msgstr "Iraungitzea:"
 
-#: src/dialogs/certifywidget.cpp:393
+#: src/dialogs/certifywidget.cpp:414
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Hau, ziurtagiri baten iraungitze-data ezartzeko erabil dezakezu."
 
-#: src/dialogs/certifywidget.cpp:394
+#: src/dialogs/certifywidget.cpp:415
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6832,18 +6849,18 @@ msgstr ""
 "jakin batera muga dezakezu. Behin iraungitze data igarota, zure ziurtapenak "
 "ez du balioko."
 
-#: src/dialogs/certifywidget.cpp:409
+#: src/dialogs/certifywidget.cpp:430
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Ziurtatu konfiantzazko aurkezle gisa"
 
-#: src/dialogs/certifywidget.cpp:410
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Hau erabil dezakezu domeinu baterako konfiantzazko aurkezle bat ziurtatzeko."
 
-#: src/dialogs/certifywidget.cpp:411
+#: src/dialogs/certifywidget.cpp:432
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6854,12 +6871,12 @@ msgstr ""
 "helbideak dituzten ziurtagiri guztiak ziurtatu gisa hartuko dira, adib. "
 "konfiantzadun aurkezle batek domeinurako tarteko CA antzeko gisa jokatzen du."
 
-#: src/dialogs/certifywidget.cpp:422
+#: src/dialogs/certifywidget.cpp:443
 #, kde-format
 msgid "Domain:"
 msgstr "Domeinua:"
 
-#: src/dialogs/certifywidget.cpp:531
+#: src/dialogs/certifywidget.cpp:556
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6872,30 +6889,30 @@ msgstr ""
 "<br><i>Oharra: Hatz-markak bakarrik identifikatzen dituzte argi eta garbi "
 "ziurtagiria eta haren jabea.</i>"
 
-#: src/dialogs/certifywidget.cpp:563
+#: src/dialogs/certifywidget.cpp:588
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "Hatz-marka"
 
-#: src/dialogs/certifywidget.cpp:579 src/dialogs/certifywidget.cpp:580
+#: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "S/MIME ziurtagiriak ezin dira ziurtatu."
 
-#: src/dialogs/certifywidget.cpp:582 src/dialogs/certifywidget.cpp:583
+#: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "Iraungitako edo indargabetutako ziurtagiriak ezin dira ziurtatu."
 
-#: src/dialogs/certifywidget.cpp:894
+#: src/dialogs/certifywidget.cpp:919
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Hori zure gako propioa da?"
 
-#: src/dialogs/certifywidget.cpp:909
+#: src/dialogs/certifywidget.cpp:934
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -6903,13 +6920,13 @@ msgstr ""
 "<p><b>%1</b> gakoaren ziurtapen konfiantza aldatzea huts egin du:</p><p>%2</"
 "p>"
 
-#: src/dialogs/certifywidget.cpp:912
+#: src/dialogs/certifywidget.cpp:937
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Ziurtapenaren konfiantza aldatzea huts egin du"
 
-#: src/dialogs/certifywidget.cpp:919
+#: src/dialogs/certifywidget.cpp:944
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Jabearen konfiantza ondo ezarri da."
@@ -10736,10 +10753,9 @@ msgid "Could not bind to socket: %1"
 msgstr "Ezin izan da hargunera lotu: %1"
 
 #: src/uiserver/uiserver_unix.cpp:54 src/uiserver/uiserver_win.cpp:53
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
+#, kde-format
 msgid "Could not get socket nonce: %1"
-msgstr "Ezin izan da hargunearen «nonce» lortu: %1"
+msgstr "Ezin izan da hargunearen «hapax» lortu: %1"
 
 #: src/uiserver/uiserver_unix.cpp:59 src/uiserver/uiserver_win.cpp:58
 #, kde-format
@@ -10806,6 +10822,8 @@ msgstr "'%1' hutsik edo ez da aurkitu"
 #, kde-format
 msgid "cannot use argument passing on standard input for unpack-command"
 msgstr ""
+"ezin da erabili sarrera estandarreko argumentu pasatzea despaketatzeko "
+"komandorako"
 
 #: src/utils/archivedefinition.cpp:469
 #, kde-format
@@ -10926,7 +10944,7 @@ msgstr "Arbelaren edukia"
 #: src/utils/input.cpp:429
 #, kde-format
 msgid "FindBuffer contents"
-msgstr ""
+msgstr "«FindBuffer»ren edukia"
 
 #: src/utils/input.cpp:431
 #, kde-format
@@ -11499,11 +11517,13 @@ msgstr ""
 "eskaera:"
 
 #: src/view/netkeywidget.cpp:325
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
 "the smartcard."
-msgstr "Barkatu! "
+msgstr ""
+"Barkatu! Txartel-adimendunean ez da aurkitu ziurtagiriak sinatzeko eskaera "
+"bat sortzeko gako aproposik."
 
 #: src/view/nullpinwidget.cpp:35
 #, kde-format
@@ -12027,6 +12047,8 @@ msgid ""
 "Change the PIV Card Application PIN that activates the PIV Card and enables "
 "private key operations using the stored keys."
 msgstr ""
+"Aldatu PIV txarteleko aplikazioaren PIN, PIV txartela aktibatzen duena eta "
+"gordetako gakoak erabiliz gako pribatuko eragiketak gaitzen dituena."
 
 #: src/view/pivcardwidget.cpp:154
 #, kde-format
@@ -12038,7 +12060,7 @@ msgstr "Aldatu PUKa"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
-msgstr ""
+msgstr "Aldatu, PIN berrezartzea gaitzen duen gakoa desblokeatzeko PIN."
 
 #: src/view/pivcardwidget.cpp:162
 #, kde-format
@@ -12055,6 +12077,10 @@ msgid ""
 "by the administrator (resp. Kleopatra) to authenticate the PIV Card "
 "Application."
 msgstr ""
+"Aldatu PIV txarteleko aplikazioa administratzeko gakoa, PIV txarteleko "
+"aplikazioak PIV txartel aplikazioko administratzailea egiaztatzeko eta "
+"administratzaileak (zehazkiago «Kleopatra»k) PIV txarteleko aplikazioa "
+"egiaztatzeko erabilia."
 
 #: src/view/pivcardwidget.cpp:189 src/view/pivcardwidget.cpp:273
 #, kde-format

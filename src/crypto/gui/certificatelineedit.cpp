@@ -198,7 +198,7 @@ public:
         Default = MoveToEnd,
     };
 
-    explicit Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyFilter *filter);
+    explicit Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyUsage::Flags usage, KeyFilter *filter);
 
     QString text() const;
 
@@ -254,9 +254,10 @@ private:
     QAction *const mStatusAction;
     QAction *const mShowDetailsAction;
     QPointer<QGpgME::Job> mLocateJob;
+    Formatting::IconProvider mIconProvider;
 };
 
-CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyFilter *filter)
+CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyUsage::Flags usage, KeyFilter *filter)
     : q{qq}
     , ui{qq}
     , mFilterModel{new KeyListSortFilterProxyModel{qq}}
@@ -265,6 +266,7 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     , mFilter{std::shared_ptr<KeyFilter>{filter}}
     , mStatusAction{new QAction{qq}}
     , mShowDetailsAction{new QAction{qq}}
+    , mIconProvider{usage}
 {
     ui.lineEdit.setPlaceholderText(i18n("Please enter a name or email address..."));
     ui.lineEdit.setClearButtonEnabled(true);
@@ -423,9 +425,9 @@ void CertificateLineEdit::Private::showContextMenu(const QPoint &pos)
     }
 }
 
-CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model, KeyFilter *filter, QWidget *parent)
+CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model, KeyUsage::Flags usage, KeyFilter *filter, QWidget *parent)
     : QWidget{parent}
-    , d{new Private{this, model, filter}}
+    , d{new Private{this, model, usage, filter}}
 {
     /* Take ownership of the model to prevent double deletion when the
      * filter models are deleted */
@@ -604,9 +606,9 @@ QIcon CertificateLineEdit::Private::statusIcon() const
         return QIcon::fromTheme(QStringLiteral("emblem-unavailable"));
     case Status::Success:
         if (!mKey.isNull()) {
-            return Formatting::iconForUid(mKey.userID(0));
+            return mIconProvider.icon(mKey);
         } else if (!mGroup.isNull()) {
-            return Formatting::validityIcon(mGroup);
+            return mIconProvider.icon(mGroup);
         } else {
             qDebug(KLEOPATRA_LOG) << __func__ << "Success, but neither key nor group.";
             return {};

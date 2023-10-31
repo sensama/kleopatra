@@ -10,6 +10,8 @@
 */
 #pragma once
 
+#include <Libkleo/KeyUsage>
+
 #include <QWidget>
 
 #include <memory>
@@ -41,11 +43,20 @@ public:
      * If parent is not NULL the model is not taken
      * over but the parent argument used as the parent of the model.
      *
-     * @param model: The keylistmodel to use.
-     * @param parent: The usual widget parent.
-     * @param filter: The filters to use. See certificateselectiondialog.
+     * @param model  The keylistmodel to use.
+     * @param usage  the desired usage of the certificate
+     * @param filter The filters to use. See certificateselectiondialog.
+     * @param parent The usual widget parent.
+     *
+     * \a usage is used to mark certificates that cannot be used for the desired
+     * usage with an appropriate icon. This is useful in combination with a suitable
+     * key filter.
+     * For example, the key filter could filter out any certificates without
+     * encryption subkeys and the usage flags would mark certificates with expired
+     * encryption subkeys as unusable, so that the users see that there is a
+     * certificate, but that it cannot be used.
      */
-    explicit CertificateLineEdit(AbstractKeyListModel *model, KeyFilter *filter = nullptr, QWidget *parent = nullptr);
+    explicit CertificateLineEdit(AbstractKeyListModel *model, KeyUsage::Flags usage = KeyUsage::None, KeyFilter *filter = nullptr, QWidget *parent = nullptr);
 
     ~CertificateLineEdit() override;
 

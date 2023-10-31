@@ -454,7 +454,11 @@ process(const SumFile &sumFile, bool *fatal, const QStringList &env, const std::
                 remainder += line; // no colon -> probably filename with a newline
                 continue;
             }
+#ifdef Q_OS_WIN
+            const QString file = QString::fromUtf8(remainder + line.left(colonIdx));
+#else
             const QString file = QFile::decodeName(remainder + line.left(colonIdx));
+#endif
             remainder.clear();
             const VerifyChecksumsDialog::Status result = string2status(line.mid(colonIdx + 1).trimmed());
             status(sumFile.dir.absoluteFilePath(file), result);

@@ -97,6 +97,11 @@ static void fillKeyCache(Kleo::UiServer *server)
 int main(int argc, char **argv)
 {
     startupTimer.start();
+#ifdef Q_OS_WIN
+    // note: requires https://invent.kde.org/frameworks/kiconthemes/-/merge_requests/109
+    qputenv("QT_QPA_PLATFORM", "windows:darkmode=2");
+#endif
+
     KleopatraApplication app(argc, argv);
     // Set OrganizationDomain early as this is used to generate the service
     // name that will be registered on the bus.

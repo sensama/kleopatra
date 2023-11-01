@@ -355,7 +355,7 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
 
     const auto index = after ? mRecpLayout->indexOf(after) + 2 : mRecpLayout->count();
 
-    const RecipientWidgets recipient{new CertificateLineEdit{mModel, new EncryptCertificateFilter{mCurrentProto}, q}, new KMessageWidget{q}};
+    const RecipientWidgets recipient{new CertificateLineEdit{mModel, KeyUsage::Encrypt, new EncryptCertificateFilter{mCurrentProto}, q}, new KMessageWidget{q}};
     recipient.edit->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
     recipient.edit->setEnabled(mEncOtherChk->isChecked());
     recipient.expiryMessage->setVisible(false);

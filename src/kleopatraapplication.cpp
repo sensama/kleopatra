@@ -52,6 +52,7 @@
 #include "dialogs/updatenotification.h"
 
 #include "kleopatra_debug.h"
+#include <KColorSchemeManager>
 #include <KIconLoader>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -325,12 +326,14 @@ void KleopatraApplication::init()
     d->setUpFilterManager();
     d->setupLogging();
 #ifdef Q_OS_WIN
-    // Under Linux the Theme is set outside. On Windows we have to do
-    // it ourself.
-    if (SystemInfo::isDarkModeActive()) {
-        QIcon::setThemeName(QStringLiteral("breeze-dark"));
+    if (!SystemInfo::isHighContrastModeActive()) {
+        /* In high contrast mode we do not want our own colors */
+        new KColorSchemeManager(this);
     }
+#else
+    new KColorSchemeManager(this);
 #endif
+
 #ifndef QT_NO_SYSTEMTRAYICON
     d->sysTray->show();
 #endif

@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-10-24 22:03+0200\n"
+"PO-Revision-Date: 2023-10-30 15:13+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1319,7 +1319,7 @@ msgid ""
 "WKS upload not possible.</para>"
 msgstr ""
 "<para><email>%1</email> ne possède aucun transport utilisable pour l'envoi "
-"d'une clé disponible. Le téléchargement « WKS » est impossible.</para>."
+"d'une clé disponible. Le téléchargement « WKS » est impossible.</para>"
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:84
 #, kde-kuit-format
@@ -3832,9 +3832,9 @@ msgid ""
 "the Online Certificates Status Protocol (OCSP). Fill in the URL of the OCSP "
 "responder below."
 msgstr ""
-"Si cette option est sélectionnée, les certificats S/MIME sont validés en "
-"ligne en utilisant le protocole OCSP (Online Certificate Status Protocol). "
-"Indiquez l'URL du serveur OCSP ci-dessous."
+"Si cette option est sélectionnée, les certificats « S / MIME » sont validés "
+"en ligne en utilisant le protocole « OCSP » (Online Certificate Status "
+"Protocol). Indiquez l'URL du serveur « OCSP » ci-dessous."
 
 #. i18n: ectx: property (text), widget (QCheckBox, OCSPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:71
@@ -4008,9 +4008,9 @@ msgid ""
 "(which comes from the environment variable http_proxy) will be used for any "
 "HTTP request."
 msgstr ""
-"Si cette option est sélectionnée, le serveur mandataire HTTP affiché à "
+"Si cette option est sélectionnée, le serveur mandataire « HTTP » affiché à "
 "droite (correspondant à la variable d'environnement « HTTP_PROXY ») sera "
-"utilisé pour toute requête HTTP."
+"utilisé pour toute requête « HTTP »."
 
 #. i18n: ectx: property (text), widget (QRadioButton, honorHTTPProxyRB)
 #: src/conf/smimevalidationconfigurationwidget.ui:201
@@ -4196,7 +4196,7 @@ msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
-"Le fichier <filename>%1</filename> contient des certificates et ne peut être "
+"Le fichier <filename>%1</filename> contient des certificats et ne peut être "
 "déchiffré ou vérifié."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:407
@@ -8963,13 +8963,13 @@ msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr ""
-"Impossible de démarrer l'afficheur de journaux « GnuPG » (Kwatchgnupg). "
+"Impossible de démarrer l'afficheur de journaux « GnuPG » (KWatchgnupg). "
 "Veuillez vérifier votre installation."
 
 #: src/mainwindow.cpp:283
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
-msgstr "Erreur lors du lancement de Kwatchgnupg"
+msgstr "Erreur lors du lancement de KWatchgnupg"
 
 #: src/mainwindow.cpp:519
 #, kde-format
@@ -9052,7 +9052,7 @@ msgstr "Placer le focus sur la recherche rapide"
 #: src/mainwindow.cpp:590
 #, kde-format
 msgid "Gpg4win Compendium"
-msgstr "Collection Gpg4win"
+msgstr "Collection « gpg4win »"
 
 #: src/mainwindow.cpp:594
 #, kde-format
@@ -10008,7 +10008,7 @@ msgid ""
 "lead to an old GnuPG backend being used.</para>"
 msgstr ""
 "<para>Kleopatra a détecté une clé du registre obsolète (<resource>%1\\%2</"
-"resource>), ajoutée soit par une ancienne version de <application>Gpg4win</"
+"resource>), ajoutée soit par une ancienne version de <application>gpg4win</"
 "application> ou une application telle que <application>WinPT</application> "
 "ou <application>EnigMail</application>.</para><para>La conservation ce cette "
 "entrée risque d'entraîner l'utilisation d'un ancien moteur de traitement "
@@ -10523,7 +10523,7 @@ msgstr ""
 msgid ""
 "ENCRYPT is an email mode command, connection seems to be in filemanager mode"
 msgstr ""
-"ENCRYPT est une commande en mode « Courrier électronique ». La connexion "
+"« ENCRYPT » est une commande en mode « Courrier électronique ». La connexion "
 "semble être en mode « Gestionnaire de fichiers »."
 
 #: src/uiserver/encryptcommand.cpp:73
@@ -10544,7 +10544,8 @@ msgstr "Au moins un champ OUTPUT doit être présent"
 #: src/uiserver/encryptcommand.cpp:89
 #, kde-format
 msgid "MESSAGE command is not allowed before ENCRYPT"
-msgstr "La commande MESSAGE n'est pas autorisée avant ENCRYPT"
+msgstr ""
+"La commande « MESSAGE » n'est pas autorisée avant la commande « ENCRYPT »"
 
 #: src/uiserver/encryptcommand.cpp:98
 #, kde-format
@@ -11530,7 +11531,7 @@ msgctxt ""
 "NullPIN is a word that is used all over in the netkey documentation and "
 "should be understandable by Netkey cardholders"
 msgid "The NullPIN is still active on this card."
-msgstr "Le NullPIN est toujours actif sur cette carte."
+msgstr "L'option « NullPIN » est toujours active sur cette carte."
 
 #: src/view/nullpinwidget.cpp:35
 #, kde-format

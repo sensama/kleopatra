@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-28 00:45+0000\n"
-"PO-Revision-Date: 2023-10-27 09:44+0200\n"
+"POT-Creation-Date: 2023-11-01 00:43+0000\n"
+"PO-Revision-Date: 2023-10-30 15:13+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1525,7 +1525,7 @@ msgid ""
 "WKS upload not possible.</para>"
 msgstr ""
 "<para><email>%1</email> ne possède aucun transport utilisable pour l'envoi "
-"d'une clé disponible. Le téléchargement « WKS » est impossible.</para>."
+"d'une clé disponible. Le téléchargement « WKS » est impossible.</para>"
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:85
 #, kde-kuit-format
@@ -1891,9 +1891,9 @@ msgid "Clipboard"
 msgstr "Presse-papiers"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:138 src/view/padwidget.cpp:329
-#: src/view/padwidget.cpp:330 src/view/padwidget.cpp:408
-#: src/view/padwidget.cpp:409
+#: src/view/padwidget.cpp:140 src/view/padwidget.cpp:331
+#: src/view/padwidget.cpp:332 src/view/padwidget.cpp:410
+#: src/view/padwidget.cpp:411
 #, kde-format
 msgid "Notepad"
 msgstr "Bloc-notes"
@@ -4049,9 +4049,9 @@ msgid ""
 "the Online Certificates Status Protocol (OCSP). Fill in the URL of the OCSP "
 "responder below."
 msgstr ""
-"Si cette option est sélectionnée, les certificats S/MIME sont validés en "
-"ligne en utilisant le protocole OCSP (Online Certificate Status Protocol). "
-"Indiquez l'URL du serveur OCSP ci-dessous."
+"Si cette option est sélectionnée, les certificats « S / MIME » sont validés "
+"en ligne en utilisant le protocole « OCSP » (Online Certificate Status "
+"Protocol). Indiquez l'URL du serveur « OCSP » ci-dessous."
 
 #. i18n: ectx: property (text), widget (QCheckBox, OCSPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:71
@@ -4225,9 +4225,9 @@ msgid ""
 "(which comes from the environment variable http_proxy) will be used for any "
 "HTTP request."
 msgstr ""
-"Si cette option est sélectionnée, le serveur mandataire HTTP affiché à "
+"Si cette option est sélectionnée, le serveur mandataire « HTTP » affiché à "
 "droite (correspondant à la variable d'environnement « HTTP_PROXY ») sera "
-"utilisé pour toute requête HTTP."
+"utilisé pour toute requête « HTTP »."
 
 #. i18n: ectx: property (text), widget (QRadioButton, honorHTTPProxyRB)
 #: src/conf/smimevalidationconfigurationwidget.ui:201
@@ -4413,7 +4413,7 @@ msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
-"Le fichier <filename>%1</filename> contient des certificates et ne peut être "
+"Le fichier <filename>%1</filename> contient des certificats et ne peut être "
 "déchiffré ou vérifié."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:399
@@ -5055,34 +5055,34 @@ msgstr "Échec du chiffrement : %1"
 msgid "Encryption succeeded."
 msgstr "Succès du chiffrement."
 
-#: src/crypto/gui/certificatelineedit.cpp:269
+#: src/crypto/gui/certificatelineedit.cpp:271
 #, kde-format
 msgid "Please enter a name or email address..."
 msgstr "Veuillez saisir un nom ou une adresse de courriel…"
 
-#: src/crypto/gui/certificatelineedit.cpp:284
-#: src/crypto/gui/certificatelineedit.cpp:285
+#: src/crypto/gui/certificatelineedit.cpp:286
+#: src/crypto/gui/certificatelineedit.cpp:287
 #, kde-format
 msgid "Show certificate list"
 msgstr "Afficher la liste des certificats"
 
-#: src/crypto/gui/certificatelineedit.cpp:304
+#: src/crypto/gui/certificatelineedit.cpp:306
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Afficher les détails"
 
-#: src/crypto/gui/certificatelineedit.cpp:590
+#: src/crypto/gui/certificatelineedit.cpp:592
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "Aucun certificat ou groupe correspondant n'a été trouvé."
 
-#: src/crypto/gui/certificatelineedit.cpp:592
+#: src/crypto/gui/certificatelineedit.cpp:594
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "Plusieurs certificats ou groupes correspondants ont été trouvés."
 
-#: src/crypto/gui/certificatelineedit.cpp:662 src/dialogs/expirydialog.cpp:212
+#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:212
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:1005
 #: src/view/formtextinput.cpp:120
 #, kde-format
@@ -5289,14 +5289,14 @@ msgstr "Ajouter un destinataire..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:408
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
+#: src/view/padwidget.cpp:174
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:412
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
+#: src/view/padwidget.cpp:175
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -6917,6 +6917,9 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
+"Sélectionnez cette option si vous souhaitez partager vos certifications avec "
+"d’autres. Si vous voulez simplement marquer les certificats comme certifiés "
+"pour vous-même, alors vous pouvez la dé-sélectionner."
 
 #: src/dialogs/certifywidget.cpp:372
 #, kde-format
@@ -6930,6 +6933,8 @@ msgid ""
 "Check this option, if you want to upload your certifications to a "
 "certificate directory after successful certification."
 msgstr ""
+"Sélectionnez cette option si vous souhaitez envoyer vos certifications vers "
+"un dossier de certificats après certification réussie."
 
 #: src/dialogs/certifywidget.cpp:387
 #, kde-format
@@ -9174,13 +9179,13 @@ msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr ""
-"Impossible de démarrer l'afficheur de journaux « GnuPG » (Kwatchgnupg). "
+"Impossible de démarrer l'afficheur de journaux « GnuPG » (KWatchgnupg). "
 "Veuillez vérifier votre installation."
 
 #: src/mainwindow.cpp:284
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
-msgstr "Erreur lors du lancement de Kwatchgnupg"
+msgstr "Erreur lors du lancement de KWatchgnupg"
 
 #: src/mainwindow.cpp:528
 #, kde-format
@@ -9263,7 +9268,7 @@ msgstr "Placer le focus sur la recherche rapide"
 #: src/mainwindow.cpp:653
 #, kde-format
 msgid "Gpg4win Compendium"
-msgstr "Collection Gpg4win"
+msgstr "Collection « gpg4win »"
 
 #: src/mainwindow.cpp:657
 #, kde-format
@@ -10191,7 +10196,7 @@ msgid ""
 "lead to an old GnuPG backend being used.</para>"
 msgstr ""
 "<para>Kleopatra a détecté une clé du registre obsolète (<resource>%1\\%2</"
-"resource>), ajoutée soit par une ancienne version de <application>Gpg4win</"
+"resource>), ajoutée soit par une ancienne version de <application>gpg4win</"
 "application> ou une application telle que <application>WinPT</application> "
 "ou <application>EnigMail</application>.</para><para>La conservation ce cette "
 "entrée risque d'entraîner l'utilisation d'un ancien moteur de traitement "
@@ -10706,7 +10711,7 @@ msgstr ""
 msgid ""
 "ENCRYPT is an email mode command, connection seems to be in filemanager mode"
 msgstr ""
-"ENCRYPT est une commande en mode « Courrier électronique ». La connexion "
+"« ENCRYPT » est une commande en mode « Courrier électronique ». La connexion "
 "semble être en mode « Gestionnaire de fichiers »."
 
 #: src/uiserver/encryptcommand.cpp:72
@@ -10727,7 +10732,8 @@ msgstr "Au moins un champ OUTPUT doit être présent"
 #: src/uiserver/encryptcommand.cpp:84
 #, kde-format
 msgid "MESSAGE command is not allowed before ENCRYPT"
-msgstr "La commande MESSAGE n'est pas autorisée avant ENCRYPT"
+msgstr ""
+"La commande « MESSAGE » n'est pas autorisée avant la commande « ENCRYPT »"
 
 #: src/uiserver/encryptcommand.cpp:91
 #, kde-format
@@ -11743,7 +11749,7 @@ msgctxt ""
 "NullPIN is a word that is used all over in the netkey documentation and "
 "should be understandable by Netkey cardholders"
 msgid "The NullPIN is still active on this card."
-msgstr "Le NullPIN est toujours actif sur cette carte."
+msgstr "L'option « NullPIN » est toujours active sur cette carte."
 
 #: src/view/nullpinwidget.cpp:36
 #, kde-format
@@ -11886,32 +11892,32 @@ msgid "%1 PKCS#15 card"
 msgstr "Carte %1 PKCS#15"
 
 # unreviewed-context
-#: src/view/padwidget.cpp:83
+#: src/view/padwidget.cpp:85
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "Signer / chiffrer le bloc-notes"
 
-#: src/view/padwidget.cpp:84
+#: src/view/padwidget.cpp:86
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "Déchiffrer / vérifier le bloc-notes"
 
-#: src/view/padwidget.cpp:85
+#: src/view/padwidget.cpp:87
 #, kde-format
 msgid "Import Notepad"
 msgstr "Importer le bloc-notes"
 
-#: src/view/padwidget.cpp:86
+#: src/view/padwidget.cpp:88
 #, kde-format
 msgid "Revert"
 msgstr "Annuler"
 
-#: src/view/padwidget.cpp:114
+#: src/view/padwidget.cpp:116
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "Il est impossible d'effectuer une signature ou un chiffrement."
 
-#: src/view/padwidget.cpp:116
+#: src/view/padwidget.cpp:118
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11926,34 +11932,34 @@ msgstr ""
 "<application>GnuPG</application> utilisé par<application>Kleopatra</"
 "application> n'est pas %1.</para>"
 
-#: src/view/padwidget.cpp:150
+#: src/view/padwidget.cpp:152
 #, kde-format
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>Protocole :</h3>"
 
-#: src/view/padwidget.cpp:155
+#: src/view/padwidget.cpp:157
 #, kde-format
 msgid "Recipients"
 msgstr "Destinataires"
 
-#: src/view/padwidget.cpp:157
+#: src/view/padwidget.cpp:159
 #, kde-format
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Saisissez un message à chiffrer ou à déchiffrer..."
 
-#: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
+#: src/view/padwidget.cpp:312 src/view/padwidget.cpp:350
 #, kde-format
 msgctxt "@title"
 msgid "Error in crypto action"
 msgstr "Erreur dans l'action de chiffrement"
 
 # unreviewed-context
-#: src/view/padwidget.cpp:328
+#: src/view/padwidget.cpp:330
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "Déchiffrer / vérifier"
 
-#: src/view/padwidget.cpp:388
+#: src/view/padwidget.cpp:390
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11968,44 +11974,44 @@ msgstr ""
 "<application>GnuPG</application> utilisé par<application>Kleopatra</"
 "application> n'est pas %1.</para>"
 
-#: src/view/padwidget.cpp:398
+#: src/view/padwidget.cpp:400
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Signature en cours du bloc-notes..."
 
-#: src/view/padwidget.cpp:401
+#: src/view/padwidget.cpp:403
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Chiffrement en cours du bloc-notes..."
 
-#: src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:406
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Signature et chiffrement en cours du bloc-notes..."
 
-#: src/view/padwidget.cpp:449
+#: src/view/padwidget.cpp:451
 #, kde-format
 msgid "Importing..."
 msgstr "Importation en cours..."
 
-#: src/view/padwidget.cpp:488
+#: src/view/padwidget.cpp:490
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Signature en cours du bloc-notes..."
 
 # unreviewed-context
-#: src/view/padwidget.cpp:491
+#: src/view/padwidget.cpp:493
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Chiffrement en cours du bloc-notes"
 
 # unreviewed-context
-#: src/view/padwidget.cpp:495
+#: src/view/padwidget.cpp:497
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"

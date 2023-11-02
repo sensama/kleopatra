@@ -501,6 +501,11 @@ public:
                 mCryptBtn->setEnabled(false);
             }
         }
+        if (mSigEncWidget->currentOp() & SignEncryptWidget::Sign) {
+            if (!Kleo::canBeUsedForSigning(mSigEncWidget->signKey())) {
+                mCryptBtn->setEnabled(false);
+            }
+        }
 
         if (DeVSCompliance::isActive()) {
             const bool de_vs = DeVSCompliance::isCompliant() && mSigEncWidget->isDeVsAndValid();

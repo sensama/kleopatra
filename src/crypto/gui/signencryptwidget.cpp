@@ -207,7 +207,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mEncSelfChk = new QCheckBox{i18n("Encrypt for me:"), this};
         d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
-        d->mSelfSelect = new KeySelectionCombo{this};
+        d->mSelfSelect = new KeySelectionCombo{KeyUsage::Encrypt, this};
         d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
         d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
         d->mEncryptToSelfKeyExpiryMessage->setVisible(false);

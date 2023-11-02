@@ -172,7 +172,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mSigChk->setEnabled(haveSecretKeys);
         d->mSigChk->setChecked(haveSecretKeys);
 
-        d->mSigSelect = new KeySelectionCombo{this};
+        d->mSigSelect = new KeySelectionCombo{KeyUsage::Sign, this};
         d->mSigSelect->setEnabled(d->mSigChk->isChecked());
 
         d->mSignKeyExpiryMessage = new KMessageWidget{this};

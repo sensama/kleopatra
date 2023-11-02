@@ -12,12 +12,10 @@
 
 #include <settings.h>
 
-#include <Libkleo/Algorithm>
 #include <Libkleo/Classify>
 #include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
-#include <Libkleo/KeyHelpers>
 #include <Libkleo/KleoException>
 #include <Libkleo/SystemInfo>
 
@@ -496,10 +494,8 @@ public:
         default:
             mCryptBtn->setText(i18nc("@action:button", "Sign / Encrypt Notepad"));
         };
-        if (mSigEncWidget->currentOp() & SignEncryptWidget::Encrypt) {
-            if (!Kleo::all_of(mSigEncWidget->recipients(), Kleo::canBeUsedForEncryption)) {
-                mCryptBtn->setEnabled(false);
-            }
+        if (!mSigEncWidget->isComplete()) {
+            mCryptBtn->setEnabled(false);
         }
 
         if (DeVSCompliance::isActive()) {

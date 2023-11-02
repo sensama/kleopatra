@@ -27,12 +27,14 @@
 #include <QScrollBar>
 #include <QVBoxLayout>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/ExpiryChecker>
 #include <Libkleo/ExpiryCheckerConfig>
 #include <Libkleo/ExpiryCheckerSettings>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeySelectionCombo>
@@ -172,7 +174,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mSigChk->setEnabled(haveSecretKeys);
         d->mSigChk->setChecked(haveSecretKeys);
 
-        d->mSigSelect = new KeySelectionCombo{this};
+        d->mSigSelect = new KeySelectionCombo{KeyUsage::Sign, this};
         d->mSigSelect->setEnabled(d->mSigChk->isChecked());
 
         d->mSignKeyExpiryMessage = new KMessageWidget{this};
@@ -207,7 +209,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mEncSelfChk = new QCheckBox{i18n("Encrypt for me:"), this};
         d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
-        d->mSelfSelect = new KeySelectionCombo{this};
+        d->mSelfSelect = new KeySelectionCombo{KeyUsage::Encrypt, this};
         d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
         d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
         d->mEncryptToSelfKeyExpiryMessage->setVisible(false);
@@ -770,12 +772,44 @@ void Kleo::SignEncryptWidget::Private::onProtocolChanged()
     }
 }
 
+static bool recipientIsOkay(const CertificateLineEdit *edit)
+{
+    if (!edit->isEnabled() || edit->isEmpty()) {
+        return true;
+    }
+    if (!edit->hasAcceptableInput()) {
+        return false;
+    }
+    if (const auto key = edit->key(); !key.isNull()) {
+        return Kleo::canBeUsedForEncryption(key);
+    }
+    if (const auto group = edit->group(); !group.isNull()) {
+        return Kleo::all_of(group.keys(), Kleo::canBeUsedForEncryption);
+    }
+    // we should never reach this point
+    return false;
+}
+
 bool SignEncryptWidget::isComplete() const
 {
-    return currentOp() != NoOperation //
-        && std::all_of(std::cbegin(d->mRecpWidgets), std::cend(d->mRecpWidgets), [](const auto &r) {
-               return !r.edit->isEnabled() || r.edit->hasAcceptableInput();
-           });
+    if (currentOp() == NoOperation) {
+        return false;
+    }
+    if ((currentOp() & SignEncryptWidget::Sign) && !Kleo::canBeUsedForSigning(signKey())) {
+        return false;
+    }
+    if (currentOp() & SignEncryptWidget::Encrypt) {
+        if (!selfKey().isNull() && !Kleo::canBeUsedForEncryption(selfKey())) {
+            return false;
+        }
+        const bool allOtherRecipientsAreOkay = Kleo::all_of(d->mRecpWidgets, [](const auto &r) {
+            return recipientIsOkay(r.edit);
+        });
+        if (!allOtherRecipientsAreOkay) {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool SignEncryptWidget::validate()

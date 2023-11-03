@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-01 00:43+0000\n"
+"POT-Creation-Date: 2023-11-03 00:43+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -1914,9 +1914,9 @@ msgid "Clipboard"
 msgstr "Lõikepuhver"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:140 src/view/padwidget.cpp:331
-#: src/view/padwidget.cpp:332 src/view/padwidget.cpp:410
-#: src/view/padwidget.cpp:411
+#: src/view/padwidget.cpp:138 src/view/padwidget.cpp:329
+#: src/view/padwidget.cpp:330 src/view/padwidget.cpp:408
+#: src/view/padwidget.cpp:409
 #, kde-format
 msgid "Notepad"
 msgstr "Notepad"
@@ -5364,14 +5364,14 @@ msgstr "Lisa saaja..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:408
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:174
+#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:412
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:175
+#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5892,43 +5892,43 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Siin näeb krüptotoimingute olekut ja edenemist."
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, fuzzy, kde-format
 #| msgid "Prove authenticity (sign)"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Autentsuse tõendamine (allkiri)"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "Allkirjastaja:"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:203
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Krüptimine"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:209
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Krüptimine endale:"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:223
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Krüptimine teistele:"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:258
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "Krüptimine parooliga. Andmeid saavad lugeda kõik, kellega parooli jagad."
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:260
 #, fuzzy, kde-format
 #| msgctxt "Tooltip information for symetric encryption"
 #| msgid ""
@@ -5948,28 +5948,28 @@ msgstr ""
 "<b>vähem turvaline</b> kui avalikku krüptovõtit isegi siis, kui valid välja "
 "väga tugeva parooli."
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Saaja"
 
-#: src/crypto/gui/signencryptwidget.cpp:587
+#: src/crypto/gui/signencryptwidget.cpp:589
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Allkirjastamise sertifikaat on aegunud"
 
-#: src/crypto/gui/signencryptwidget.cpp:590
+#: src/crypto/gui/signencryptwidget.cpp:592
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "sertifikaat on aegunud"
 
-#: src/crypto/gui/signencryptwidget.cpp:592
+#: src/crypto/gui/signencryptwidget.cpp:594
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -5978,28 +5978,28 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "See sertifikaat on sinu võtmehoidjas uus."
 msgstr[1] "See sertifikaat on sinu võtmehoidjas uus."
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:599
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "See sertifikaat on kohalikult keelatud."
 
-#: src/crypto/gui/signencryptwidget.cpp:599
+#: src/crypto/gui/signencryptwidget.cpp:601
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "See sertifikaat on kohalikult keelatud."
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:828
 #, fuzzy, kde-format
 #| msgctxt "%1 is user input that could not be found"
 #| msgid "Could not find a key for '%1'"
 msgid "Could not find a key for the following recipients:"
 msgstr "'%1' võtit ei leitud"
 
-#: src/crypto/gui/signencryptwidget.cpp:794
+#: src/crypto/gui/signencryptwidget.cpp:828
 #, fuzzy, kde-format
 #| msgid "Failed to find recipient"
 msgid "Failed to find some keys"
@@ -11995,34 +11995,34 @@ msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
 msgstr ""
 
-#: src/view/padwidget.cpp:85
+#: src/view/padwidget.cpp:83
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "Notepadi allkirjastamine/krüptimine"
 
-#: src/view/padwidget.cpp:86
+#: src/view/padwidget.cpp:84
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "Notepadi lahtikrüptimine/verifitseerimine"
 
-#: src/view/padwidget.cpp:87
+#: src/view/padwidget.cpp:85
 #, fuzzy, kde-format
 #| msgid "Imported:"
 msgid "Import Notepad"
 msgstr "Imporditud:"
 
-#: src/view/padwidget.cpp:88
+#: src/view/padwidget.cpp:86
 #, kde-format
 msgid "Revert"
 msgstr "Võta tagasi"
 
-#: src/view/padwidget.cpp:116
+#: src/view/padwidget.cpp:114
 #, fuzzy, kde-format
 #| msgid "Signing and encryption succeeded."
 msgid "Signing and encryption is not possible."
 msgstr "Allkirjastamine ja krüptimine õnnestus."
 
-#: src/view/padwidget.cpp:118
+#: src/view/padwidget.cpp:116
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -12041,33 +12041,33 @@ msgstr ""
 "importimiseks programmi <application>PaperKey</application>. </"
 "para><para>Palun kontrolli, kas see on paigaldatud.</para>"
 
-#: src/view/padwidget.cpp:152
+#: src/view/padwidget.cpp:150
 #, kde-format
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>Protokoll:</h3>"
 
-#: src/view/padwidget.cpp:157
+#: src/view/padwidget.cpp:155
 #, kde-format
 msgid "Recipients"
 msgstr "Saajad"
 
-#: src/view/padwidget.cpp:159
+#: src/view/padwidget.cpp:157
 #, kde-format
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Kiri, mida krüptida või lahti krüptida ..."
 
-#: src/view/padwidget.cpp:312 src/view/padwidget.cpp:350
+#: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format
 msgctxt "@title"
 msgid "Error in crypto action"
 msgstr "Tõrge krüptotoimingu sooritamisel"
 
-#: src/view/padwidget.cpp:330
+#: src/view/padwidget.cpp:328
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "Krüpti lahti/verifitseeri"
 
-#: src/view/padwidget.cpp:390
+#: src/view/padwidget.cpp:388
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12078,47 +12078,47 @@ msgid ""
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
 
-#: src/view/padwidget.cpp:400
+#: src/view/padwidget.cpp:398
 #, fuzzy, kde-format
 #| msgid "Signing canceled."
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Allkirjastamine katkestati."
 
-#: src/view/padwidget.cpp:403
+#: src/view/padwidget.cpp:401
 #, fuzzy, kde-format
 #| msgid "Encryption canceled."
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Krüptimine katkestati."
 
-#: src/view/padwidget.cpp:406
+#: src/view/padwidget.cpp:404
 #, fuzzy, kde-format
 #| msgid "Signing and encryption succeeded."
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Allkirjastamine ja krüptimine õnnestus."
 
-#: src/view/padwidget.cpp:451
+#: src/view/padwidget.cpp:449
 #, kde-format
 msgid "Importing..."
 msgstr "Import ..."
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:488
 #, fuzzy, kde-format
 #| msgid "Notepad"
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Notepad"
 
-#: src/view/padwidget.cpp:493
+#: src/view/padwidget.cpp:491
 #, fuzzy, kde-format
 #| msgid "Sign / Encrypt Notepad"
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Notepadi allkirjastamine/krüptimine"
 
-#: src/view/padwidget.cpp:497
+#: src/view/padwidget.cpp:495
 #, fuzzy, kde-format
 #| msgid "Sign / Encrypt Notepad"
 msgctxt "@action:button"

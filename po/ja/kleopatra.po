@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-02 01:39+0000\n"
+"POT-Creation-Date: 2023-11-03 01:40+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1876,9 +1876,9 @@ msgid "Clipboard"
 msgstr "クリップボード"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:140 src/view/padwidget.cpp:331
-#: src/view/padwidget.cpp:332 src/view/padwidget.cpp:410
-#: src/view/padwidget.cpp:411
+#: src/view/padwidget.cpp:138 src/view/padwidget.cpp:329
+#: src/view/padwidget.cpp:330 src/view/padwidget.cpp:408
+#: src/view/padwidget.cpp:409
 #, kde-format
 msgid "Notepad"
 msgstr "ノートパッド"
@@ -5166,14 +5166,14 @@ msgstr "受信者を追加..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:408
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:174
+#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:412
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:175
+#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5667,41 +5667,41 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "ここに crypto 操作のステータスと進捗が表示されます。"
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "真偽を証明 (署名)"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "署名 (名義で):"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:203
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "暗号化"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:209
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "自分自身のために暗号化:"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:223
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "他の方のために暗号化:"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:258
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "パスワードで暗号化 (パスワードを共有したすべての人がデータを読み取れます)"
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:260
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5715,27 +5715,27 @@ msgstr ""
 "スワードを使うことは公開鍵暗号<b>よりセキュアでない</b>とされます。とても強い"
 "パスワードを選んだとしてもです。"
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "受信者の鍵"
 
-#: src/crypto/gui/signencryptwidget.cpp:587
+#: src/crypto/gui/signencryptwidget.cpp:589
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:590
+#: src/crypto/gui/signencryptwidget.cpp:592
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:592
+#: src/crypto/gui/signencryptwidget.cpp:594
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
@@ -5743,26 +5743,26 @@ msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:599
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "発行者証明書が見つかりません (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:599
+#: src/crypto/gui/signencryptwidget.cpp:601
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "発行者証明書が見つかりません (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:795
+#: src/crypto/gui/signencryptwidget.cpp:829
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "以下の受信者の鍵を見つけられませんでした:"
 
-#: src/crypto/gui/signencryptwidget.cpp:797
+#: src/crypto/gui/signencryptwidget.cpp:831
 #, fuzzy, kde-format
 #| msgid "Failed to find some keys"
 msgctxt "@title:window"
@@ -11588,32 +11588,32 @@ msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
 msgstr "%1 PKCS#15 カード"
 
-#: src/view/padwidget.cpp:85
+#: src/view/padwidget.cpp:83
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "ノートパッドの 署名 / 暗号化"
 
-#: src/view/padwidget.cpp:86
+#: src/view/padwidget.cpp:84
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "ノートパッドの 復号 / 検証"
 
-#: src/view/padwidget.cpp:87
+#: src/view/padwidget.cpp:85
 #, kde-format
 msgid "Import Notepad"
 msgstr "ノートパッドのインポート"
 
-#: src/view/padwidget.cpp:88
+#: src/view/padwidget.cpp:86
 #, kde-format
 msgid "Revert"
 msgstr "元に戻す"
 
-#: src/view/padwidget.cpp:116
+#: src/view/padwidget.cpp:114
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "署名と暗号化は不可能です。"
 
-#: src/view/padwidget.cpp:118
+#: src/view/padwidget.cpp:116
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11627,33 +11627,33 @@ msgstr ""
 "ん。<application>Kleopatra</application>が使う<application>GnuPG</"
 "application>システムが %1 でないためです。</para>"
 
-#: src/view/padwidget.cpp:152
+#: src/view/padwidget.cpp:150
 #, kde-format
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>プロトコル:</h3>"
 
-#: src/view/padwidget.cpp:157
+#: src/view/padwidget.cpp:155
 #, kde-format
 msgid "Recipients"
 msgstr "受信者"
 
-#: src/view/padwidget.cpp:159
+#: src/view/padwidget.cpp:157
 #, kde-format
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "暗号化するか復号するメッセージを入力してください..."
 
-#: src/view/padwidget.cpp:312 src/view/padwidget.cpp:350
+#: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format
 msgctxt "@title"
 msgid "Error in crypto action"
 msgstr "Crypto 動作のエラー"
 
-#: src/view/padwidget.cpp:330
+#: src/view/padwidget.cpp:328
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "復号 / 検証"
 
-#: src/view/padwidget.cpp:390
+#: src/view/padwidget.cpp:388
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11667,42 +11667,42 @@ msgstr ""
 "めに使えません。<application>Kleopatra</application>が使う"
 "<application>GnuPG</application>システムが %1 でないためです。</para>"
 
-#: src/view/padwidget.cpp:400
+#: src/view/padwidget.cpp:398
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "ノートパッドに署名..."
 
-#: src/view/padwidget.cpp:403
+#: src/view/padwidget.cpp:401
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "ノートパッドを暗号化..."
 
-#: src/view/padwidget.cpp:406
+#: src/view/padwidget.cpp:404
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "ノートパッドの署名と暗号化..."
 
-#: src/view/padwidget.cpp:451
+#: src/view/padwidget.cpp:449
 #, kde-format
 msgid "Importing..."
 msgstr "インポート..."
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:488
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "ノートパッドに署名"
 
-#: src/view/padwidget.cpp:493
+#: src/view/padwidget.cpp:491
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "ノートパッドの暗号化"
 
-#: src/view/padwidget.cpp:497
+#: src/view/padwidget.cpp:495
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"

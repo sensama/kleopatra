@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-02 01:39+0000\n"
+"POT-Creation-Date: 2023-11-03 01:40+0000\n"
 "PO-Revision-Date: 2023-10-21 13:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1755,9 +1755,9 @@ msgid "Clipboard"
 msgstr "剪贴板"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:140 src/view/padwidget.cpp:331
-#: src/view/padwidget.cpp:332 src/view/padwidget.cpp:410
-#: src/view/padwidget.cpp:411
+#: src/view/padwidget.cpp:138 src/view/padwidget.cpp:329
+#: src/view/padwidget.cpp:330 src/view/padwidget.cpp:408
+#: src/view/padwidget.cpp:409
 #, kde-format
 msgid "Notepad"
 msgstr "记事本"
@@ -4911,14 +4911,14 @@ msgstr "添加收件人..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:408
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:174
+#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:412
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:175
+#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5399,40 +5399,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "在此显示的是加密操作的状态和进度。"
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "证明真实性 (签名)"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "签名身份："
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:203
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "加密"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:209
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "为我加密："
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:223
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "为他人加密："
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:258
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "使用密码加密。任何知道密码的人都可以读取数据。"
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:260
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5445,49 +5445,49 @@ msgstr ""
 "何密钥的情况下读取数据。 即使您选择了一个非常强大的密码，使用密码的安全性也"
 "<b>不如</b>公钥加密系统。"
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "接收者密钥"
 
-#: src/crypto/gui/signencryptwidget.cpp:587
+#: src/crypto/gui/signencryptwidget.cpp:589
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "证书已过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:590
+#: src/crypto/gui/signencryptwidget.cpp:592
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "该证书于今天过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:592
+#: src/crypto/gui/signencryptwidget.cpp:594
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "该证书在 %1 天后过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:599
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "此证书不能用于加密。"
 
-#: src/crypto/gui/signencryptwidget.cpp:599
+#: src/crypto/gui/signencryptwidget.cpp:601
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "此证书不能用于签名。"
 
-#: src/crypto/gui/signencryptwidget.cpp:795
+#: src/crypto/gui/signencryptwidget.cpp:829
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "找不到以下收件人的密钥："
 
-#: src/crypto/gui/signencryptwidget.cpp:797
+#: src/crypto/gui/signencryptwidget.cpp:831
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
@@ -11111,32 +11111,32 @@ msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
 msgstr "%1 PKCS#15 卡"
 
-#: src/view/padwidget.cpp:85
+#: src/view/padwidget.cpp:83
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "签名/加密记事本内容"
 
-#: src/view/padwidget.cpp:86
+#: src/view/padwidget.cpp:84
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "解密/验证记事本内容"
 
-#: src/view/padwidget.cpp:87
+#: src/view/padwidget.cpp:85
 #, kde-format
 msgid "Import Notepad"
 msgstr "导入记事本"
 
-#: src/view/padwidget.cpp:88
+#: src/view/padwidget.cpp:86
 #, kde-format
 msgid "Revert"
 msgstr "还原"
 
-#: src/view/padwidget.cpp:116
+#: src/view/padwidget.cpp:114
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "无法签名和加密。"
 
-#: src/view/padwidget.cpp:118
+#: src/view/padwidget.cpp:116
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11150,33 +11150,33 @@ msgstr ""
 "<application>Kleopatra</application> 使用的 <application>GnuPG</application> "
 "系统不是 %1。</para>"
 
-#: src/view/padwidget.cpp:152
+#: src/view/padwidget.cpp:150
 #, kde-format
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>协议：</h3>"
 
-#: src/view/padwidget.cpp:157
+#: src/view/padwidget.cpp:155
 #, kde-format
 msgid "Recipients"
 msgstr "收件人"
 
-#: src/view/padwidget.cpp:159
+#: src/view/padwidget.cpp:157
 #, kde-format
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "输入欲加密或解密的消息..."
 
-#: src/view/padwidget.cpp:312 src/view/padwidget.cpp:350
+#: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format
 msgctxt "@title"
 msgid "Error in crypto action"
 msgstr "加密操作中发生错误"
 
-#: src/view/padwidget.cpp:330
+#: src/view/padwidget.cpp:328
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "解密/校验"
 
-#: src/view/padwidget.cpp:390
+#: src/view/padwidget.cpp:388
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11190,42 +11190,42 @@ msgstr ""
 "<application>Kleopatra</application> 使用的 <application>GnuPG</application> "
 "系统不是 %1。</para>"
 
-#: src/view/padwidget.cpp:400
+#: src/view/padwidget.cpp:398
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "正在签名记事本..."
 
-#: src/view/padwidget.cpp:403
+#: src/view/padwidget.cpp:401
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "正在加密记事本..."
 
-#: src/view/padwidget.cpp:406
+#: src/view/padwidget.cpp:404
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "正在签名并加密记事本..."
 
-#: src/view/padwidget.cpp:451
+#: src/view/padwidget.cpp:449
 #, kde-format
 msgid "Importing..."
 msgstr "正在导入..."
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:488
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "签名记事本"
 
-#: src/view/padwidget.cpp:493
+#: src/view/padwidget.cpp:491
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "加密记事本"
 
-#: src/view/padwidget.cpp:497
+#: src/view/padwidget.cpp:495
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"

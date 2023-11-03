@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-02 01:39+0000\n"
+"POT-Creation-Date: 2023-11-03 01:40+0000\n"
 "PO-Revision-Date: 2023-10-28 10:26+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -1823,9 +1823,9 @@ msgid "Clipboard"
 msgstr "Tondujo"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:140 src/view/padwidget.cpp:331
-#: src/view/padwidget.cpp:332 src/view/padwidget.cpp:410
-#: src/view/padwidget.cpp:411
+#: src/view/padwidget.cpp:138 src/view/padwidget.cpp:329
+#: src/view/padwidget.cpp:330 src/view/padwidget.cpp:408
+#: src/view/padwidget.cpp:409
 #, kde-format
 msgid "Notepad"
 msgstr "Notepad"
@@ -5139,14 +5139,14 @@ msgstr "Aldoni Ricevanton..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:408
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:174
+#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:412
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:175
+#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5641,34 +5641,34 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Statuso kaj progreso de la kriptaj operacioj estas montritaj ĉi tie."
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Pruvi aŭtentecon (subskribi)"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "Subskribi kiel:"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:203
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Ĉifradi"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:209
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Ĉifri por mi:"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:223
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Ĉifri por aliaj:"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:258
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5676,7 +5676,7 @@ msgstr ""
 "Ĉifri per pasvorto. Ĉiu, kun kiu vi dividas la pasvorton, povas legi la "
 "datumojn."
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:260
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5690,25 +5690,25 @@ msgstr ""
 "ŝlosilo. Uzado de pasvorto estas <b>malpli sekura</b> ol publika ŝlosila "
 "kriptografio. Eĉ se vi elektas tre fortan pasvorton."
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ricevŝlosilo"
 
-#: src/crypto/gui/signencryptwidget.cpp:587
+#: src/crypto/gui/signencryptwidget.cpp:589
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Ĉi tiu atestilo estas eksvalidigita."
 
-#: src/crypto/gui/signencryptwidget.cpp:590
+#: src/crypto/gui/signencryptwidget.cpp:592
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Ĉi tiu atestilo eksvalidiĝas hodiaŭ."
 
-#: src/crypto/gui/signencryptwidget.cpp:592
+#: src/crypto/gui/signencryptwidget.cpp:594
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5716,24 +5716,24 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Ĉi tiu atestilo eksvalidiĝas morgaŭ."
 msgstr[1] "Ĉi tiu atestilo eksvalidiĝas port %1 tagoj."
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:599
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Ĉi tiu atestilo ne povas esti uzata por ĉifrado."
 
-#: src/crypto/gui/signencryptwidget.cpp:599
+#: src/crypto/gui/signencryptwidget.cpp:601
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Ĉi tiu atestilo ne povas esti uzata por subskribo."
 
-#: src/crypto/gui/signencryptwidget.cpp:795
+#: src/crypto/gui/signencryptwidget.cpp:829
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ne eblis trovi ŝlosilon por la sekvaj ricevantoj:"
 
-#: src/crypto/gui/signencryptwidget.cpp:797
+#: src/crypto/gui/signencryptwidget.cpp:831
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
@@ -11566,32 +11566,32 @@ msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
 msgstr "Karto %1 PKCS#15"
 
-#: src/view/padwidget.cpp:85
+#: src/view/padwidget.cpp:83
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "Subskribi / Ĉifri Notepad"
 
-#: src/view/padwidget.cpp:86
+#: src/view/padwidget.cpp:84
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "Malĉifri / Kontroli Notepad"
 
-#: src/view/padwidget.cpp:87
+#: src/view/padwidget.cpp:85
 #, kde-format
 msgid "Import Notepad"
 msgstr "Importi Notepad"
 
-#: src/view/padwidget.cpp:88
+#: src/view/padwidget.cpp:86
 #, kde-format
 msgid "Revert"
 msgstr "Reiri"
 
-#: src/view/padwidget.cpp:116
+#: src/view/padwidget.cpp:114
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "Subskribo kaj ĉifrado ne eblas."
 
-#: src/view/padwidget.cpp:118
+#: src/view/padwidget.cpp:116
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11605,33 +11605,33 @@ msgstr ""
 "ĉifrado ĉar la <application>GnuPG</application> sistemo uzata de "
 "<application>Kleopatra</application> ne estas %1.</para>"
 
-#: src/view/padwidget.cpp:152
+#: src/view/padwidget.cpp:150
 #, kde-format
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>Protokolo:</h3>"
 
-#: src/view/padwidget.cpp:157
+#: src/view/padwidget.cpp:155
 #, kde-format
 msgid "Recipients"
 msgstr "Ricevantoj"
 
-#: src/view/padwidget.cpp:159
+#: src/view/padwidget.cpp:157
 #, kde-format
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Enigi mesaĝon por ĉifri aŭ malĉifri..."
 
-#: src/view/padwidget.cpp:312 src/view/padwidget.cpp:350
+#: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format
 msgctxt "@title"
 msgid "Error in crypto action"
 msgstr "Eraro en kripta ago"
 
-#: src/view/padwidget.cpp:330
+#: src/view/padwidget.cpp:328
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "Malĉifri/Konfirmi"
 
-#: src/view/padwidget.cpp:390
+#: src/view/padwidget.cpp:388
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11645,42 +11645,42 @@ msgstr ""
 "subskribo aŭ ĉifrado ĉar la <application>GnuPG</application> sistemo uzata "
 "de <application>Kleopatra</application> ne estas %1.</para>"
 
-#: src/view/padwidget.cpp:400
+#: src/view/padwidget.cpp:398
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Subskribante notblokon..."
 
-#: src/view/padwidget.cpp:403
+#: src/view/padwidget.cpp:401
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Ĉifrante notblokon..."
 
-#: src/view/padwidget.cpp:406
+#: src/view/padwidget.cpp:404
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Subskribante kaj ĉifrado de notbloko..."
 
-#: src/view/padwidget.cpp:451
+#: src/view/padwidget.cpp:449
 #, kde-format
 msgid "Importing..."
 msgstr "Importado..."
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:488
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Subskribi Notepad"
 
-#: src/view/padwidget.cpp:493
+#: src/view/padwidget.cpp:491
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Ĉifri Notepad"
 
-#: src/view/padwidget.cpp:497
+#: src/view/padwidget.cpp:495
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"

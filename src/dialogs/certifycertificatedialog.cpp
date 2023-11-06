@@ -64,7 +64,7 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
         okButton->setEnabled(mCertWidget->isValid());
     });
 
-    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CertifyDialog");
+    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), QLatin1String("CertifyDialog"));
     const auto size = cfgGroup.readEntry("Size", QSize{640, 480});
     if (size.isValid()) {
         resize(size);
@@ -73,7 +73,7 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
 
 CertifyCertificateDialog::~CertifyCertificateDialog()
 {
-    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CertifyDialog");
+    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), QLatin1String("CertifyDialog"));
     cfgGroup.writeEntry("Size", size());
     cfgGroup.sync();
 }

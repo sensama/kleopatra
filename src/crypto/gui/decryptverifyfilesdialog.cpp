@@ -237,7 +237,7 @@ void DecryptVerifyFilesDialog::readConfig()
     windowHandle()->resize(640, 480);
 
     // restore size from config file
-    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "DecryptVerifyFilesDialog");
+    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), QLatin1String("DecryptVerifyFilesDialog"));
     KWindowConfig::restoreWindowSize(windowHandle(), cfgGroup);
 
     // NOTICE: QWindow::setGeometry() does NOT impact the backing QWidget geometry even if the platform
@@ -248,7 +248,7 @@ void DecryptVerifyFilesDialog::readConfig()
 
 void DecryptVerifyFilesDialog::writeConfig()
 {
-    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "DecryptVerifyFilesDialog");
+    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), QLatin1String("DecryptVerifyFilesDialog"));
     KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
     cfgGroup.sync();
 }

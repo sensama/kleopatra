@@ -231,7 +231,7 @@ void KeyCreationPage::slotResult(const GpgME::KeyGenerationResult &result, const
     setField(QStringLiteral("fingerprint"), result.fingerprint() ? QString::fromLatin1(result.fingerprint()) : QString());
     job = nullptr;
     Q_EMIT completeChanged();
-    const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
+    const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard"));
     if (config.readEntry("SkipResultPage", false)) {
         if (result.fingerprint()) {
             KleopatraApplication::instance()->slotActivateRequested(QStringList() << QStringLiteral("kleopatra") << QStringLiteral("--query")

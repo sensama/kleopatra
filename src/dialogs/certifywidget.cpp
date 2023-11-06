@@ -491,7 +491,7 @@ public:
 
     void loadConfig(bool loadAll = false)
     {
-        const KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
+        const KConfigGroup conf(KSharedConfig::openConfig(), QLatin1String("CertifySettings"));
 
         if (loadAll) {
             const Settings settings;
@@ -524,7 +524,7 @@ public:
 
     void saveConfig()
     {
-        KConfigGroup conf{KSharedConfig::openConfig(), "CertifySettings"};
+        KConfigGroup conf{KSharedConfig::openConfig(), QLatin1String("CertifySettings")};
         if (!secKey().isNull()) {
             conf.writeEntry("LastKey", secKey().primaryFingerprint());
         }

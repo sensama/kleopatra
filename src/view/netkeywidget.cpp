@@ -180,13 +180,13 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     vLay->addLayout(actionLayout);
     vLay->addStretch(1);
 
-    const KConfigGroup configGroup(KSharedConfig::openConfig(), "NetKeyCardView");
+    const KConfigGroup configGroup(KSharedConfig::openConfig(), QLatin1String("NetKeyCardView"));
     mTreeView->restoreLayout(configGroup);
 }
 
 NetKeyWidget::~NetKeyWidget()
 {
-    KConfigGroup configGroup(KSharedConfig::openConfig(), "NetKeyCardView");
+    KConfigGroup configGroup(KSharedConfig::openConfig(), QLatin1String("NetKeyCardView"));
     mTreeView->saveLayout(configGroup);
 }
 

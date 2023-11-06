@@ -109,7 +109,7 @@ public:
 
     void readConfig()
     {
-        KConfigGroup dialog(KSharedConfig::openStateConfig(), "ResultDialog");
+        KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("ResultDialog"));
         const QSize size = dialog.readEntry("Size", QSize(600, 400));
         if (size.isValid()) {
             resize(size);
@@ -117,7 +117,7 @@ public:
     }
     void writeConfig()
     {
-        KConfigGroup dialog(KSharedConfig::openStateConfig(), "ResultDialog");
+        KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("ResultDialog"));
         dialog.writeEntry("Size", size());
         dialog.sync();
     }

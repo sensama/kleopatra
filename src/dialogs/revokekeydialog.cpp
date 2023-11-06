@@ -156,14 +156,14 @@ public:
 private:
     void saveGeometry()
     {
-        KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "RevokeKeyDialog");
+        KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), QLatin1String("RevokeKeyDialog"));
         cfgGroup.writeEntry("Size", q->size());
         cfgGroup.sync();
     }
 
     void restoreGeometry(const QSize &defaultSize = {})
     {
-        KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "RevokeKeyDialog");
+        KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), QLatin1String("RevokeKeyDialog"));
         const QSize size = cfgGroup.readEntry("Size", defaultSize);
         if (size.isValid()) {
             q->resize(size);

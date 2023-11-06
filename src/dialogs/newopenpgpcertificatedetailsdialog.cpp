@@ -116,7 +116,7 @@ public:
     {
         q->setWindowTitle(i18nc("title:window", "Create OpenPGP Certificate"));
 
-        const KConfigGroup config{KSharedConfig::openConfig(), "CertificateCreationWizard"};
+        const KConfigGroup config{KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard")};
         const auto attrOrder = config.readEntry("OpenPGPAttributeOrder", QStringList{});
         const auto nameIsRequired = attrOrder.contains(QLatin1String{"NAME!"}, Qt::CaseInsensitive);
         const auto emailIsRequired = attrOrder.contains(QLatin1String{"EMAIL!"}, Qt::CaseInsensitive);

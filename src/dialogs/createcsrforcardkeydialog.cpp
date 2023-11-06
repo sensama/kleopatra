@@ -69,14 +69,14 @@ public:
 private:
     void saveGeometry()
     {
-        KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CreateCSRForCardKeyDialog");
+        KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), QLatin1String("CreateCSRForCardKeyDialog"));
         cfgGroup.writeEntry("Size", q->size());
         cfgGroup.sync();
     }
 
     void restoreGeometry(const QSize &defaultSize)
     {
-        KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CreateCSRForCardKeyDialog");
+        KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), QLatin1String("CreateCSRForCardKeyDialog"));
         const QSize size = cfgGroup.readEntry("Size", defaultSize);
         if (size.isValid()) {
             q->resize(size);

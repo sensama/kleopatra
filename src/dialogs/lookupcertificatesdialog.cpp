@@ -234,9 +234,9 @@ LookupCertificatesDialog::Private::~Private()
 
 void LookupCertificatesDialog::Private::readConfig()
 {
-    KConfigGroup configGroup(KSharedConfig::openStateConfig(), "LookupCertificatesDialog");
+    KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1String("LookupCertificatesDialog"));
 
-    KConfigGroup resultKeysConfig = configGroup.group("ResultKeysView");
+    KConfigGroup resultKeysConfig = configGroup.group(QLatin1String("ResultKeysView"));
     ui.resultTV->restoreLayout(resultKeysConfig);
 
     const QSize size = configGroup.readEntry("Size", QSize(600, 400));
@@ -247,10 +247,10 @@ void LookupCertificatesDialog::Private::readConfig()
 
 void LookupCertificatesDialog::Private::writeConfig()
 {
-    KConfigGroup configGroup(KSharedConfig::openStateConfig(), "LookupCertificatesDialog");
+    KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1String("LookupCertificatesDialog"));
     configGroup.writeEntry("Size", q->size());
 
-    KConfigGroup resultKeysConfig = configGroup.group("ResultKeysView");
+    KConfigGroup resultKeysConfig = configGroup.group(QLatin1String("ResultKeysView"));
     ui.resultTV->saveLayout(resultKeysConfig);
 
     configGroup.sync();

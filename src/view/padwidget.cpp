@@ -174,7 +174,7 @@ public:
             grp->addButton(mPGPRB);
             grp->addButton(mCMSRB);
 
-            KConfigGroup config(KSharedConfig::openConfig(), "Notepad");
+            KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("Notepad"));
             if (config.readEntry("wasCMS", false)) {
                 mCMSRB->setChecked(true);
                 mSigEncWidget->setProtocol(GpgME::CMS);
@@ -301,7 +301,7 @@ public:
                 mCMSRB->setChecked(true);
             }
 
-            KConfigGroup config(KSharedConfig::openConfig(), "Notepad");
+            KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("Notepad"));
             config.writeEntry("wasCMS", proto == GpgME::CMS);
         }
 

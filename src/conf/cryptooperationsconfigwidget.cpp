@@ -23,6 +23,7 @@
 
 #include <Libkleo/ChecksumDefinition>
 #include <Libkleo/KeyFilterManager>
+#include <libkleo/classifyconfig.h>
 
 #include <KConfig>
 #include <KConfigGroup>
@@ -64,6 +65,7 @@ void CryptoOperationsConfigWidget::setupGui()
                                     "Set this option to encode encrypted or signed files as base64 encoded text. "
                                     "So that they can be opened with an editor or sent in a mail body. "
                                     "This will increase file size by one third."));
+    mTreatP7mEmailCB = new QCheckBox(i18nc("@option:check", "Treat .p7m files without extensions as Mails."));
     mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
     mAutoExtractArchivesCB = new QCheckBox(i18n("Automatically extract file archives after decryption"));
     mTmpDirCB = new QCheckBox(i18n("Create temporary decrypted files in the folder of the encrypted file."));
@@ -72,6 +74,7 @@ void CryptoOperationsConfigWidget::setupGui()
     mSymmetricOnlyCB->setToolTip(i18nc("@info", "Set this option to disable public key encryption."));
 
     fileGrpLay->addWidget(mPGPFileExtCB);
+    fileGrpLay->addWidget(mTreatP7mEmailCB);
     fileGrpLay->addWidget(mAutoDecryptVerifyCB);
     fileGrpLay->addWidget(mAutoExtractArchivesCB);
     fileGrpLay->addWidget(mASCIIArmorCB);
@@ -120,13 +123,18 @@ void CryptoOperationsConfigWidget::defaults()
     filePrefs.setSymmetricEncryptionOnly(filePrefs.findItem(QStringLiteral("SymmetricEncryptionOnly"))->getDefault().toBool());
     filePrefs.setArchiveCommand(filePrefs.findItem(QStringLiteral("ArchiveCommand"))->getDefault().toString());
 
+    ClassifyConfig classifyConfig;
+    classifyConfig.setP7mWithoutExtensionAreEmail(classifyConfig.defaultP7mWithoutExtensionAreEmailValue());
+
     Settings settings;
     settings.setChecksumDefinitionId(settings.findItem(QStringLiteral("ChecksumDefinitionId"))->getDefault().toString());
 
-    load(filePrefs, settings);
+    load(filePrefs, settings, classifyConfig);
 }
 
-void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &filePrefs, const Kleo::Settings &settings)
+void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &filePrefs,
+                                        const Kleo::Settings &settings,
+                                        const Kleo::ClassifyConfig &classifyConfig)
 {
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
     mPGPFileExtCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("UsePGPFileExt")));
@@ -140,6 +148,7 @@ void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &f
     mTmpDirCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("DontUseTmpDir")));
     mSymmetricOnlyCB->setChecked(filePrefs.symmetricEncryptionOnly());
     mSymmetricOnlyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("SymmetricEncryptionOnly")));
+    mTreatP7mEmailCB->setEnabled(!classifyConfig.isP7mWithoutExtensionAreEmailImmutable());
 
     const auto defaultChecksumDefinitionId = settings.checksumDefinitionId();
     {
@@ -186,7 +195,7 @@ void CryptoOperationsConfigWidget::load()
         }
     }
 
-    load(FileOperationsPreferences{}, Settings{});
+    load(FileOperationsPreferences{}, Settings{}, ClassifyConfig{});
 }
 
 void CryptoOperationsConfigWidget::save()
@@ -213,4 +222,8 @@ void CryptoOperationsConfigWidget::save()
         filePrefs.setArchiveCommand(id);
     }
     filePrefs.save();
+
+    ClassifyConfig classifyConfig;
+    classifyConfig.setP7mWithoutExtensionAreEmail(mTreatP7mEmailCB->isChecked());
+    classifyConfig.save();
 }

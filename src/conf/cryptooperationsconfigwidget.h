@@ -24,6 +24,7 @@ namespace Kleo
 {
 class FileOperationsPreferences;
 class Settings;
+class ClassifyConfig;
 
 namespace Config
 {
@@ -46,10 +47,11 @@ Q_SIGNALS:
 private:
     void setupGui();
 
-    void load(const Kleo::FileOperationsPreferences &filePrefs, const Kleo::Settings &settings);
+    void load(const Kleo::FileOperationsPreferences &filePrefs, const Kleo::Settings &settings, const Kleo::ClassifyConfig &classifyConfig);
 
 private:
     QCheckBox *mPGPFileExtCB = nullptr;
+    QCheckBox *mTreatP7mEmailCB = nullptr;
     QCheckBox *mAutoDecryptVerifyCB = nullptr;
     QCheckBox *mAutoExtractArchivesCB = nullptr;
     QCheckBox *mASCIIArmorCB = nullptr;

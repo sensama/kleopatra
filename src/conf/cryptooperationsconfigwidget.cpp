@@ -65,7 +65,7 @@ void CryptoOperationsConfigWidget::setupGui()
                                     "Set this option to encode encrypted or signed files as base64 encoded text. "
                                     "So that they can be opened with an editor or sent in a mail body. "
                                     "This will increase file size by one third."));
-    mTreatP7mEmailCB = new QCheckBox(i18nc("@option:check", "Treat .p7m files without extensions as Mails."));
+    mTreatP7mEmailCB = new QCheckBox(i18nc("@option:check", "Treat .p7m files without extensions as mails."));
     mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
     mAutoExtractArchivesCB = new QCheckBox(i18n("Automatically extract file archives after decryption"));
     mTmpDirCB = new QCheckBox(i18n("Create temporary decrypted files in the folder of the encrypted file."));

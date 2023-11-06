@@ -248,13 +248,13 @@ public:
 private:
     void saveLayout()
     {
-        KConfigGroup configGroup(KSharedConfig::openConfig(), QLatin1String("EditGroupDialog"));
+        KConfigGroup configGroup(KSharedConfig::openConfig(), QStringLiteral("EditGroupDialog"));
         configGroup.writeEntry("Size", q->size());
 
-        KConfigGroup availableKeysConfig = configGroup.group(QLatin1String("AvailableKeysView"));
+        KConfigGroup availableKeysConfig = configGroup.group(QStringLiteral("AvailableKeysView"));
         ui.availableKeysList->saveLayout(availableKeysConfig);
 
-        KConfigGroup groupKeysConfig = configGroup.group(QLatin1String("GroupKeysView"));
+        KConfigGroup groupKeysConfig = configGroup.group(QStringLiteral("GroupKeysView"));
         ui.groupKeysList->saveLayout(groupKeysConfig);
 
         configGroup.sync();
@@ -262,12 +262,12 @@ private:
 
     void restoreLayout(const QSize &defaultSize)
     {
-        const KConfigGroup configGroup(KSharedConfig::openConfig(), QLatin1String("EditGroupDialog"));
+        const KConfigGroup configGroup(KSharedConfig::openConfig(), QStringLiteral("EditGroupDialog"));
 
-        const KConfigGroup availableKeysConfig = configGroup.group(QLatin1String("AvailableKeysView"));
+        const KConfigGroup availableKeysConfig = configGroup.group(QStringLiteral("AvailableKeysView"));
         ui.availableKeysList->restoreLayout(availableKeysConfig);
 
-        const KConfigGroup groupKeysConfig = configGroup.group(QLatin1String("GroupKeysView"));
+        const KConfigGroup groupKeysConfig = configGroup.group(QStringLiteral("GroupKeysView"));
         ui.groupKeysList->restoreLayout(groupKeysConfig);
 
         const QSize size = configGroup.readEntry("Size", defaultSize);

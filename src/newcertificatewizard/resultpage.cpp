@@ -259,7 +259,7 @@ void ResultPage::slotSendRequestByEMail()
     if (pgp()) {
         return;
     }
-    const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard"));
+    const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
     invokeMailer(config.readEntry("CAEmailAddress"), // to
                  i18n("Please process this certificate."), // subject
                  i18n("Please process this certificate and inform the sender about the location to fetch the resulting certificate.\n\nThanks,\n"), // body

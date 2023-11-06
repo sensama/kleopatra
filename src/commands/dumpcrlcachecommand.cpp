@@ -79,7 +79,7 @@ public:
 private:
     void readConfig()
     {
-        KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("DumpCrlCacheDialog"));
+        KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("DumpCrlCacheDialog"));
         const QSize size = dialog.readEntry("Size", QSize(600, 400));
         if (size.isValid()) {
             resize(size);
@@ -88,7 +88,7 @@ private:
 
     void writeConfig()
     {
-        KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("DumpCrlCacheDialog"));
+        KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("DumpCrlCacheDialog"));
         dialog.writeEntry("Size", size());
         dialog.sync();
     }

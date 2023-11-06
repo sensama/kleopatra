@@ -288,7 +288,7 @@ SubKeysDialog::~SubKeysDialog()
 
 void SubKeysDialog::readConfig()
 {
-    KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("SubKeysDialog"));
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("SubKeysDialog"));
     const QSize size = dialog.readEntry("Size", QSize(820, 280));
     if (size.isValid()) {
         resize(size);
@@ -297,7 +297,7 @@ void SubKeysDialog::readConfig()
 
 void SubKeysDialog::writeConfig()
 {
-    KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("SubKeysDialog"));
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("SubKeysDialog"));
     dialog.writeEntry("Size", size());
     dialog.sync();
 }

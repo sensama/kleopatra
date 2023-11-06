@@ -103,7 +103,7 @@ private:
 
     bool runAtStartUp() const
     {
-        const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("Self-Test"));
+        const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("Self-Test"));
 
         if (config.readEntry("run-at-startup", false)) {
             qCDebug(KLEOPATRA_LOG) << "Selftest forced";
@@ -128,7 +128,7 @@ private:
 
     void setRunAtStartUp(bool on)
     {
-        KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("Self-Test"));
+        KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("Self-Test"));
         config.writeEntry("run-at-startup", on);
     }
 
@@ -162,7 +162,7 @@ private:
                 return test->failed();
             })) {
             finished();
-            KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("Self-Test"));
+            KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("Self-Test"));
             config.writeEntry("last-selftest-version", CURRENT_SELFTEST_VERSION);
             return;
         }

@@ -210,7 +210,7 @@ public:
     ~Private()
     {
         // remember current attribute values as presets for next certificate
-        KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard"));
+        KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
         for (const Line &line : ui.lines) {
             const QString attr = attributeFromKey(line.attr);
             const QString value = line.edit->text().trimmed();
@@ -229,7 +229,7 @@ public:
             QStringLiteral("O"),
             QStringLiteral("C"),
         };
-        const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard"));
+        const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
 
         const QStringList attrOrder = config.readEntry("DNAttributeOrder", defaultAttributeOrder);
 

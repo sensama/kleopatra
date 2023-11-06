@@ -172,7 +172,7 @@ ExportDialog::ExportDialog(QWidget *parent)
     : QDialog(parent)
     , mWidget(new ExportWidget(this))
 {
-    KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("ExportDialog"));
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("ExportDialog"));
     const auto size = dialog.readEntry("Size", QSize(600, 800));
     if (size.isValid()) {
         resize(size);
@@ -190,7 +190,7 @@ ExportDialog::ExportDialog(QWidget *parent)
 
 ExportDialog::~ExportDialog()
 {
-    KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("ExportDialog"));
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("ExportDialog"));
     dialog.writeEntry("Size", size());
     dialog.sync();
 }

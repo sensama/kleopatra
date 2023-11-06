@@ -236,7 +236,7 @@ CertificateSelectionDialog::CertificateSelectionDialog(QWidget *parent)
 {
     const KSharedConfig::Ptr config = KSharedConfig::openConfig(QStringLiteral("kleopatracertificateselectiondialogrc"));
     d->ui.tabWidget.loadViews(config.data());
-    const KConfigGroup geometry(config, QLatin1String("Geometry"));
+    const KConfigGroup geometry(config, QStringLiteral("Geometry"));
     resize(geometry.readEntry("size", size()));
     d->slotKeysMayHaveChanged();
 }
@@ -395,7 +395,7 @@ void CertificateSelectionDialog::hideEvent(QHideEvent *e)
 {
     KSharedConfig::Ptr config = KSharedConfig::openConfig(QStringLiteral("kleopatracertificateselectiondialogrc"));
     d->ui.tabWidget.saveViews(config.data());
-    KConfigGroup geometry(config, QLatin1String("Geometry"));
+    KConfigGroup geometry(config, QStringLiteral("Geometry"));
     geometry.writeEntry("size", size());
     QDialog::hideEvent(e);
 }

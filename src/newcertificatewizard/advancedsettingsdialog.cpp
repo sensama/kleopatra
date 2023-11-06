@@ -747,7 +747,7 @@ static void fill_combobox(QComboBox &cb, const QList<int> &sizes, const QStringL
 
 void AdvancedSettingsDialog::fillKeySizeComboBoxen()
 {
-    const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard"));
+    const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
 
     QList<int> rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << 2048 << -3072 << 4096);
     if (DeVSCompliance::isActive()) {
@@ -841,7 +841,7 @@ void AdvancedSettingsDialog::loadDefaultKeyType()
         return;
     }
 
-    const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard"));
+    const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
 
     const QString entry = protocol == CMS ? QLatin1String(CMS_KEY_TYPE_ENTRY) : QLatin1String(PGP_KEY_TYPE_ENTRY);
     const QString keyType = config.readEntry(entry).trimmed().toUpper();

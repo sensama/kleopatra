@@ -234,7 +234,7 @@ public:
     {
         mUseOutputDirChk->setVisible(archive);
         if (archive) {
-            const KConfigGroup archCfg(KSharedConfig::openConfig(), QLatin1String("SignEncryptFilesWizard"));
+            const KConfigGroup archCfg(KSharedConfig::openConfig(), QStringLiteral("SignEncryptFilesWizard"));
             mUseOutputDirChk->setChecked(archCfg.readEntry("LastUseOutputDir", false));
         } else {
             mUseOutputDirChk->setChecked(false);
@@ -264,7 +264,7 @@ public:
         }
         mWidget->saveOwnKeys();
         if (mUseOutputDirChk->isVisible()) {
-            KConfigGroup archCfg(KSharedConfig::openConfig(), QLatin1String("SignEncryptFilesWizard"));
+            KConfigGroup archCfg(KSharedConfig::openConfig(), QStringLiteral("SignEncryptFilesWizard"));
             archCfg.writeEntry("LastUseOutputDir", mUseOutputDir);
         }
 
@@ -676,7 +676,7 @@ void SignEncryptFilesWizard::readConfig()
     windowHandle()->resize(640, 480);
 
     // restore size from config file
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), QLatin1String("SignEncryptFilesWizard"));
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), QStringLiteral("SignEncryptFilesWizard"));
     KWindowConfig::restoreWindowSize(windowHandle(), cfgGroup);
 
     // NOTICE: QWindow::setGeometry() does NOT impact the backing QWidget geometry even if the platform
@@ -687,7 +687,7 @@ void SignEncryptFilesWizard::readConfig()
 
 void SignEncryptFilesWizard::writeConfig()
 {
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), QLatin1String("SignEncryptFilesWizard"));
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), QStringLiteral("SignEncryptFilesWizard"));
     KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
     cfgGroup.sync();
 }

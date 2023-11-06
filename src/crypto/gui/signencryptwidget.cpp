@@ -703,7 +703,7 @@ bool SignEncryptWidget::encryptSymmetric() const
 
 void SignEncryptWidget::loadKeys()
 {
-    KConfigGroup keys(KSharedConfig::openConfig(), QLatin1String("SignEncryptKeys"));
+    KConfigGroup keys(KSharedConfig::openConfig(), QStringLiteral("SignEncryptKeys"));
     auto cache = KeyCache::instance();
     d->mSigSelect->setDefaultKey(keys.readEntry("SigningKey", QString()));
     d->mSelfSelect->setDefaultKey(keys.readEntry("EncryptKey", QString()));
@@ -711,7 +711,7 @@ void SignEncryptWidget::loadKeys()
 
 void SignEncryptWidget::saveOwnKeys() const
 {
-    KConfigGroup keys(KSharedConfig::openConfig(), QLatin1String("SignEncryptKeys"));
+    KConfigGroup keys(KSharedConfig::openConfig(), QStringLiteral("SignEncryptKeys"));
     auto sigKey = d->mSigSelect->currentKey();
     auto encKey = d->mSelfSelect->currentKey();
     if (!sigKey.isNull()) {

@@ -178,7 +178,7 @@ void KConfigBasedSigningPreferences::Private::ensurePrefsParsed() const
     if (m_parsed) {
         return;
     }
-    const KConfigGroup group(m_config, QLatin1String("SigningPreferences"));
+    const KConfigGroup group(m_config, QStringLiteral("SigningPreferences"));
     pgpSigningCertificate = group.readEntry("pgpSigningCertificate", QByteArray());
     cmsSigningCertificate = group.readEntry("cmsSigningCertificate", QByteArray());
     m_parsed = true;
@@ -189,7 +189,7 @@ void KConfigBasedSigningPreferences::Private::writePrefs()
     if (!m_dirty) {
         return;
     }
-    KConfigGroup group(m_config, QLatin1String("SigningPreferences"));
+    KConfigGroup group(m_config, QStringLiteral("SigningPreferences"));
     group.writeEntry("pgpSigningCertificate", pgpSigningCertificate);
     group.writeEntry("cmsSigningCertificate", cmsSigningCertificate);
     m_config->sync();

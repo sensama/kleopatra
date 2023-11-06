@@ -163,7 +163,7 @@ public:
         mGenerateBtn->setToolTip(generateBtnDescription.toString());
         mGenerateBtn->setAccessibleDescription(generateBtnDescription.toString(Kuit::PlainText));
 
-        KConfigGroup restrictions(KSharedConfig::openConfig(), QLatin1String("KDE Action Restrictions"));
+        KConfigGroup restrictions(KSharedConfig::openConfig(), QStringLiteral("KDE Action Restrictions"));
         mGenerateBtn->setEnabled(restrictions.readEntry("action/file_new_certificate", true));
 
         mImportBtn = new ToolButton{q};

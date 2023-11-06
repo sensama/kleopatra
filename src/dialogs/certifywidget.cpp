@@ -491,7 +491,7 @@ public:
 
     void loadConfig(bool loadAll = false)
     {
-        const KConfigGroup conf(KSharedConfig::openConfig(), QLatin1String("CertifySettings"));
+        const KConfigGroup conf(KSharedConfig::openConfig(), QStringLiteral("CertifySettings"));
 
         if (loadAll) {
             const Settings settings;

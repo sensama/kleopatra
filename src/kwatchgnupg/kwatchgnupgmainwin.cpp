@@ -119,7 +119,7 @@ void KWatchGnuPGMainWindow::startWatcher()
     mWatcher->clearProgram();
 
     {
-        const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("WatchGnuPG"));
+        const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("WatchGnuPG"));
         *mWatcher << config.readEntry("Executable", WATCHGNUPGBINARY);
         *mWatcher << QStringLiteral("--force");
         *mWatcher << config.readEntry("Socket", WATCHGNUPGSOCKET);
@@ -147,7 +147,7 @@ void KWatchGnuPGMainWindow::setGnuPGConfig()
     if (!cconfig) {
         return;
     }
-    KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("WatchGnuPG"));
+    KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("WatchGnuPG"));
     const QStringList comps = cconfig->componentList();
     for (QStringList::const_iterator it = comps.constBegin(); it != comps.constEnd(); ++it) {
         const QGpgME::CryptoConfigComponent *const comp = cconfig->component(*it);
@@ -250,7 +250,7 @@ void KWatchGnuPGMainWindow::slotConfigure()
 
 void KWatchGnuPGMainWindow::slotReadConfig()
 {
-    const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("LogWindow"));
+    const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("LogWindow"));
     const int maxLogLen = config.readEntry("MaxLogLen", 10000);
     mCentralWidget->document()->setMaximumBlockCount(maxLogLen < 1 ? -1 : maxLogLen);
     setGnuPGConfig();

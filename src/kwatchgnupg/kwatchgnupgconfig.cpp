@@ -158,12 +158,12 @@ void KWatchGnuPGConfig::slotSetHistorySizeUnlimited()
 
 void KWatchGnuPGConfig::loadConfig()
 {
-    const KConfigGroup watchGnuPG(KSharedConfig::openConfig(), QLatin1String("WatchGnuPG"));
+    const KConfigGroup watchGnuPG(KSharedConfig::openConfig(), QStringLiteral("WatchGnuPG"));
     mExeED->setFileName(watchGnuPG.readEntry("Executable", WATCHGNUPGBINARY));
     mSocketED->setFileName(watchGnuPG.readEntry("Socket", WATCHGNUPGSOCKET));
     mLogLevelCB->setCurrentIndex(log_level_to_int(watchGnuPG.readEntry("LogLevel", "basic")));
 
-    const KConfigGroup logWindow(KSharedConfig::openConfig(), QLatin1String("LogWindow"));
+    const KConfigGroup logWindow(KSharedConfig::openConfig(), QStringLiteral("LogWindow"));
     mLoglenSB->setValue(logWindow.readEntry("MaxLogLen", 10000));
     mWordWrapCB->setChecked(logWindow.readEntry("WordWrap", false));
 
@@ -172,12 +172,12 @@ void KWatchGnuPGConfig::loadConfig()
 
 void KWatchGnuPGConfig::saveConfig()
 {
-    KConfigGroup watchGnuPG(KSharedConfig::openConfig(), QLatin1String("WatchGnuPG"));
+    KConfigGroup watchGnuPG(KSharedConfig::openConfig(), QStringLiteral("WatchGnuPG"));
     watchGnuPG.writeEntry("Executable", mExeED->fileName());
     watchGnuPG.writeEntry("Socket", mSocketED->fileName());
     watchGnuPG.writeEntry("LogLevel", log_levels[mLogLevelCB->currentIndex()]);
 
-    KConfigGroup logWindow(KSharedConfig::openConfig(), QLatin1String("LogWindow"));
+    KConfigGroup logWindow(KSharedConfig::openConfig(), QStringLiteral("LogWindow"));
     logWindow.writeEntry("MaxLogLen", mLoglenSB->value());
     logWindow.writeEntry("WordWrap", mWordWrapCB->isChecked());
 

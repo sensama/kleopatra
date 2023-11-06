@@ -68,14 +68,14 @@ public:
 private:
     void saveLayout()
     {
-        KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1String("GroupsConfigDialog"));
+        KConfigGroup configGroup(KSharedConfig::openStateConfig(), QStringLiteral("GroupsConfigDialog"));
         configGroup.writeEntry("Size", q->size());
         configGroup.sync();
     }
 
     void restoreLayout(const QSize &defaultSize = QSize())
     {
-        const KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1String("GroupsConfigDialog"));
+        const KConfigGroup configGroup(KSharedConfig::openStateConfig(), QStringLiteral("GroupsConfigDialog"));
         const QSize size = configGroup.readEntry("Size", defaultSize);
         if (size.isValid()) {
             q->resize(size);

@@ -54,7 +54,7 @@ void addActionButton(QDialogButtonBox *buttonBox, QAction *action)
 WebOfTrustDialog::WebOfTrustDialog(QWidget *parent)
     : QDialog(parent)
 {
-    KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("WebOfTrustDialog"));
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("WebOfTrustDialog"));
     const QSize size = dialog.readEntry("Size", QSize(900, 400));
     if (size.isValid()) {
         resize(size);
@@ -94,7 +94,7 @@ GpgME::Key WebOfTrustDialog::key() const
 
 WebOfTrustDialog::~WebOfTrustDialog()
 {
-    KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("WebOfTrustDialog"));
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("WebOfTrustDialog"));
     dialog.writeEntry("Size", size());
     dialog.sync();
 }

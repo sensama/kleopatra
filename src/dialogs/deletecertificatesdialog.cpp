@@ -61,7 +61,7 @@ public:
 
     void readConfig()
     {
-        KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("DeleteCertificatesDialog"));
+        KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("DeleteCertificatesDialog"));
         ui.selectedKTV.restoreLayout(dialog);
         ui.unselectedKTV.restoreLayout(dialog);
         const QSize size = dialog.readEntry("Size", QSize(600, 400));
@@ -72,7 +72,7 @@ public:
 
     void writeConfig()
     {
-        KConfigGroup dialog(KSharedConfig::openStateConfig(), QLatin1String("DeleteCertificatesDialog"));
+        KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("DeleteCertificatesDialog"));
         ui.selectedKTV.saveLayout(dialog);
         dialog.writeEntry("Size", q->size());
         dialog.sync();

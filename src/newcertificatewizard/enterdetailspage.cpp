@@ -231,7 +231,7 @@ EnterDetailsPage::EnterDetailsPage(QWidget *p)
         ui->withPassCB->setEnabled(false);
         ui->withPassCB->setChecked(true);
     } else {
-        const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard"));
+        const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
         ui->withPassCB->setChecked(config.readEntry("WithPassphrase", false));
         ui->withPassCB->setEnabled(!config.isEntryImmutable("WithPassphrase"));
     }
@@ -345,7 +345,7 @@ void EnterDetailsPage::updateForm()
     clearForm();
 
     const auto settings = Kleo::Settings{};
-    const KConfigGroup config(KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard"));
+    const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
 
     QStringList attrOrder = config.readEntry(pgp() ? "OpenPGPAttributeOrder" : "DNAttributeOrder", QStringList());
     if (attrOrder.empty()) {

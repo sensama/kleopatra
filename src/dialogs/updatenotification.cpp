@@ -96,7 +96,7 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
 void UpdateNotification::checkUpdate(QWidget *parent, bool force)
 {
 #ifdef Q_OS_WIN
-    KConfigGroup updatecfg(KSharedConfig::openConfig(), QLatin1String("UpdateNotification"));
+    KConfigGroup updatecfg(KSharedConfig::openConfig(), QStringLiteral("UpdateNotification"));
 
     if (updatecfg.readEntry("NeverShow", false) && !force) {
         return;
@@ -183,7 +183,7 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version)
     const auto chk = new QCheckBox(i18n("Show this notification for future updates."));
     lay->addWidget(chk, 1, 0, 1, -1);
 
-    KConfigGroup updatecfg(KSharedConfig::openConfig(), QLatin1String("UpdateNotification"));
+    KConfigGroup updatecfg(KSharedConfig::openConfig(), QStringLiteral("UpdateNotification"));
     chk->setChecked(!updatecfg.readEntry("NeverShow", false));
 
     const auto bb = new QDialogButtonBox();
@@ -194,13 +194,13 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version)
     lay->addWidget(bb, 2, 0, 1, -1);
     connect(bb, &QDialogButtonBox::accepted, this, [this, chk]() {
         QDesktopServices::openUrl(QUrl(QStringLiteral("https://www.gpg4win.org/download.html")));
-        KConfigGroup updatecfg(KSharedConfig::openConfig(), QLatin1String("UpdateNotification"));
+        KConfigGroup updatecfg(KSharedConfig::openConfig(), QStringLiteral("UpdateNotification"));
         updatecfg.writeEntry("NeverShow", !chk->isChecked());
         gpgconf_set_update_check(chk->isChecked());
         QDialog::accept();
     });
     connect(bb, &QDialogButtonBox::rejected, this, [this, chk]() {
-        KConfigGroup updatecfg(KSharedConfig::openConfig(), QLatin1String("UpdateNotification"));
+        KConfigGroup updatecfg(KSharedConfig::openConfig(), QStringLiteral("UpdateNotification"));
         updatecfg.writeEntry("NeverShow", !chk->isChecked());
         gpgconf_set_update_check(chk->isChecked());
         QDialog::reject();

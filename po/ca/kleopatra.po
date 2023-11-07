@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:35+0000\n"
-"PO-Revision-Date: 2023-10-28 17:05+0200\n"
+"POT-Creation-Date: 2023-11-07 01:21+0000\n"
+"PO-Revision-Date: 2023-11-06 16:15+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -3577,12 +3577,12 @@ msgstr "Targetes intel·ligents"
 msgid "GnuPG System"
 msgstr "Sistema GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:59
+#: src/conf/cryptooperationsconfigwidget.cpp:60
 #, kde-format
 msgid "File Operations"
 msgstr "Operacions amb fitxers"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:61
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3592,13 +3592,13 @@ msgstr ""
 "«.gpg»"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:62
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Crea fitxers signats o encriptats com a fitxers de text."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:64
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3611,8 +3611,14 @@ msgstr ""
 "enviar-se al cos d'un correu electrònic. Això incrementarà la mida del "
 "fitxer en un terç."
 
+#: src/conf/cryptooperationsconfigwidget.cpp:68
+#, kde-format
+msgctxt "@option:check"
+msgid "Treat .p7m files without extensions as mails."
+msgstr ""
+
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3621,20 +3627,20 @@ msgstr ""
 "Inicia automàticament l'operació a partir de la detecció de l'entrada per a "
 "desencriptar/verificar."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Extreu automàticament els arxius de fitxers després del desencriptatge"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
 "Crea fitxers desencriptats temporals a la carpeta del fitxer encriptat."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3642,27 +3648,27 @@ msgstr ""
 "Establir aquesta opció per a evitar l'ús del directori temporal dels usuaris."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:73
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Usa només l'encriptatge simètric."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:72
+#: src/conf/cryptooperationsconfigwidget.cpp:74
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 "Establir aquesta opció per a desactivar l'encriptatge amb la clau pública."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:87
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Programa de suma de verificació a usar en crear els fitxers de suma de "
 "verificació:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:92
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Ordre d'arxivat a usar quan s'arxivin fitxers:"
@@ -4084,8 +4090,8 @@ msgid ""
 "necessary (this applies to both validation methods, CRLs and OCSP)."
 msgstr ""
 "Si es marca aquesta opció, els certificats de l'emissor que falten "
-"s'obtindran quan sigui necessari (això aplica als dos mètodes de validació, "
-"CRL i OCSP)."
+"s'obtindran quan sigui necessari (això s'aplica als dos mètodes de "
+"validació, CRL i OCSP)."
 
 #. i18n: ectx: property (text), widget (QCheckBox, fetchMissingCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:164
@@ -4391,13 +4397,13 @@ msgid "Create Checksum Progress"
 msgstr "Progrés en la creació de la suma de verificació"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Error en executar %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4414,13 +4420,13 @@ msgid "No checksum programs defined."
 msgstr "No s'ha definit cap programa de suma de verificació."
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:508
+#: src/crypto/verifychecksumscontroller.cpp:512
 #, kde-format
 msgid "Scanning directories..."
 msgstr "S'estan explorant els directoris..."
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:525
+#: src/crypto/verifychecksumscontroller.cpp:529
 #, kde-format
 msgid "Calculating total size..."
 msgstr "S'està calculant la mida total..."
@@ -4431,7 +4437,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "S'està verificant la suma (%2) a %1"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:552
+#: src/crypto/verifychecksumscontroller.cpp:556
 #, kde-format
 msgid "Done."
 msgstr "Fet."
@@ -6118,7 +6124,7 @@ msgstr "Resultats en la comprovació de la suma de verificació"
 msgid "Cannot find checksums file for file %1"
 msgstr "No s'ha pogut trobar el fitxer de suma de verificació per al fitxer %1"
 
-#: src/crypto/verifychecksumscontroller.cpp:541
+#: src/crypto/verifychecksumscontroller.cpp:545
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "S'està verificant la suma de verificació (%2) en %1"

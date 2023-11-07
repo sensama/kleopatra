@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:35+0000\n"
-"PO-Revision-Date: 2023-07-24 21:39+0300\n"
+"POT-Creation-Date: 2023-11-07 01:21+0000\n"
+"PO-Revision-Date: 2023-09-26 13:13+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -1476,24 +1476,18 @@ msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
 "likely this shouldn't be translated"
 msgid "%1<nl />%2"
-msgstr ""
+msgstr "%1<nl />%2"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:180
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to export OpenPGP certificates.</"
-#| "para> <para>The output from <command>%1</command> was: <message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
 "<para>The output of <command>%1</command> was:<nl /><message>%2</message></"
 "para>"
 msgstr ""
-"<para>Sattui virhe yritettäessä viedä OpenPGP-varmenteita.</para> "
-"<para>Komennon <command>%1</command> tuloste oli: <message>%2</message></"
-"para>"
+"<para>OpenPGP-varmenteita vietäessä sattui virhe.</para> <para>Komennon "
+"<command>%1</command> tuloste oli:<nl /><message>%2</message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:188
 #, kde-format
@@ -2889,6 +2883,7 @@ msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Varmenne päivitetty"
 
+# ”Web Key Directory” > WKD vain sen takia, että kyse on joka tapauksessa suomalaisen käyttäjän kannalta kryptisestä jonosta, joista kumpikin antaa guuglattaessa yhtä hyvät hakutulokset.
 #: src/commands/refreshcertificatecommand.cpp:329
 #, kde-kuit-format
 msgctxt "@info"
@@ -2898,6 +2893,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Varmenteen päivittäminen avain- tai LDAP-palvelimesta tai Active "
+"Directorysta epäonnistui:</para><para><message>%1</message></"
+"para><para>Varmenteen päivittäminen WKD:lla epäonnistui:</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:335
 #: src/commands/refreshcertificatecommand.cpp:366
@@ -2911,24 +2910,20 @@ msgstr "Päivitys epäonnistui"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Avain- tai LDAP-palvelimesta tai Active Directorysta päivittämisen tulos"
 
 #: src/commands/refreshcertificatecommand.cpp:343
 #: src/commands/refreshcertificatecommand.cpp:350
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>Pyynnön tallentaminen epäonnistui.</para><para><message>%1</message></"
-"para>"
+msgstr "<para>Päivittäminen epäonnistui: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:348
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "WKD:sta päivittämisen tulos"
 
 #: src/commands/refreshcertificatecommand.cpp:363
 #, kde-kuit-format
@@ -3559,12 +3554,12 @@ msgstr "Älykortit"
 msgid "GnuPG System"
 msgstr "GnuPG-järjestelmä"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:59
+#: src/conf/cryptooperationsconfigwidget.cpp:60
 #, kde-format
 msgid "File Operations"
 msgstr "Tiedostotoiminnot"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:61
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3572,13 +3567,13 @@ msgid ""
 msgstr "Käytä OpenPGP-salattujen tiedostojen päätteenä ”.pgp” eikä ”.gpg”"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:62
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Luo allekirjoitetut tai salatut tiedostot tekstitiedostoina"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:64
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3590,8 +3585,14 @@ msgstr ""
 "Base64-koodattuina, jotta ne voi avata muokkaimeen tai lähettää viestin "
 "rungossa. Tämä kasvattaa tiedoston kokoa kolmanneksen."
 
+#: src/conf/cryptooperationsconfigwidget.cpp:68
+#, kde-format
+msgctxt "@option:check"
+msgid "Treat .p7m files without extensions as mails."
+msgstr ""
+
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3600,43 +3601,43 @@ msgstr ""
 "Käynnistä toiminto automaattisesti, kun salauksen purku tai todennus on "
 "tunnistettu."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Pura arkistot salauksen avaamisen jälkeen automaattisesti"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Luo puretut väliaikaistiedostot salatun tiedoston kansioon."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "Aseta tämä välttääksesi käyttämästä käyttäjien väliaikaiskansiota."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:73
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Käytä vain symmetristä salausta."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:72
+#: src/conf/cryptooperationsconfigwidget.cpp:74
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Poista julkisen avaimen salaus käytöstä tällä valinnalla."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:87
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "Tarkistussummatiedostoja luotaessa käytettävä ohjelma:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:92
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Tiedostoja arkistoitaessa käytettävä komento:"
@@ -3690,7 +3691,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
-msgstr ""
+msgstr "Kysele tarjoajien varmennehakemistoista kaikki käyttäjätunnisteet"
 
 #: src/conf/dirservconfigpage.cpp:224
 #, kde-kuit-format
@@ -3701,6 +3702,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"Oletuksena Kleopatra kyselee OpenPGP-varmennetta päivitettäessä tarjoajien "
+"(WKD) varmennehakemistoista vain sieltä alun perin noudetut "
+"käyttäjätunnisteet. Jos tämä valinta on käytössä, WKD:istä kysellään kaikki "
+"käyttäjätunnisteet."
 
 #: src/conf/dirservconfigpage.cpp:459 src/conf/dirservconfigpage.cpp:463
 #, kde-format
@@ -3795,9 +3800,7 @@ msgid "groups"
 msgstr "ryhmät"
 
 #: src/conf/groupsconfigwidget.cpp:182
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "New"
+#, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Uusi"
@@ -4354,13 +4357,13 @@ msgid "Create Checksum Progress"
 msgstr "Tarkistussummien luonnin eteneminen"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Virhe suoritettaessa ohjelmaa %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4377,13 +4380,13 @@ msgid "No checksum programs defined."
 msgstr "Tarkistussummaohjelmia ei ole määritetty."
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:508
+#: src/crypto/verifychecksumscontroller.cpp:512
 #, kde-format
 msgid "Scanning directories..."
 msgstr "Tutkitaan kansioita…"
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:525
+#: src/crypto/verifychecksumscontroller.cpp:529
 #, kde-format
 msgid "Calculating total size..."
 msgstr "Lasketaan yhteiskokoa…"
@@ -4395,7 +4398,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "Lasketaan kohteen %1 tarkistussummaa (%2)"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:552
+#: src/crypto/verifychecksumscontroller.cpp:556
 #, kde-format
 msgid "Done."
 msgstr "Valmis."
@@ -5235,11 +5238,10 @@ msgid "Show Audit Log"
 msgstr "Näytä loki"
 
 #: src/crypto/gui/resultlistwidget.cpp:162
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Email"
-msgstr "Näytä yksityiskohdat"
+msgstr "Näytä sähköposti"
 
 #: src/crypto/gui/resultpage.cpp:66
 #, kde-format
@@ -6083,7 +6085,7 @@ msgstr "Tarkista tarkistussumman tulokset"
 msgid "Cannot find checksums file for file %1"
 msgstr "Tiedoston %1 tarkistussummatiedostoa ei löydy"
 
-#: src/crypto/verifychecksumscontroller.cpp:541
+#: src/crypto/verifychecksumscontroller.cpp:545
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "Todennetaan tarkistussummia (%2) kohteesta %1"
@@ -6730,11 +6732,10 @@ msgstr "Varmenne on varmennettava, jotta sen voi merkitä kelvolliseksi."
 
 #: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
 #: src/dialogs/certifywidget.cpp:588
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:column"
 msgid "User ID"
-msgstr "Käyttäjätunnisteet"
+msgstr "Käyttäjätunniste"
 
 #: src/dialogs/certifywidget.cpp:356
 #, kde-format
@@ -8333,7 +8334,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:161
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
-msgstr ""
+msgstr "Kysele tarjoajien varmennehakemistoista kaikki käyttäjätunnisteet"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:164
@@ -8346,6 +8347,12 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"Oletuksena Kleopatra kyselee OpenPGP-varmennetta päivitettäessä tarjoajien "
+"(WKD)\n"
+"         varmennehakemistoista vain sieltä alun perin noudetut "
+"käyttäjätunnisteet.\n"
+"         Jos tämä asetus on valittu, WKD:ista kysellään kaikki "
+"käyttäjätunnisteet."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:170
@@ -10767,40 +10774,31 @@ msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-allekirjoita…"
 
 #: src/utils/expiration.cpp:104
-#, fuzzy, kde-format
-#| msgid "The validity period cannot be changed."
+#, kde-format
 msgctxt "@info"
 msgid "The date cannot be changed."
-msgstr "Kelvollisuusaikaa ei voi muuttaa."
+msgstr "Päivämäärää ei voi muuttaa."
 
 #: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "... between <a date> and <another date>."
-#| msgid "The validity period must end between %1 and %2."
+#, kde-format
 msgctxt "@info ... between <a date> and <another date>."
 msgid "Enter a date between %1 and %2."
-msgstr "Kelvollisuusajan on päätyttävä välillä %1–%2."
+msgstr "Anna aika väliltä %1–%2."
 
 #: src/utils/expiration.cpp:139
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "Two years from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Three years from now"
-msgstr "Kaksi vuotta tästä"
+msgstr "Kolme vuotta tästä"
 
 #: src/utils/expiration.cpp:140
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "Two years from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Two years from now"
 msgstr "Kaksi vuotta tästä"
 
 #: src/utils/expiration.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "One year from now"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "One year from now"
 msgstr "Vuosi tästä"

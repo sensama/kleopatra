@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:35+0000\n"
+"POT-Creation-Date: 2023-11-07 01:21+0000\n"
 "PO-Revision-Date: 2023-10-28 09:47+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -3578,12 +3578,12 @@ msgstr "Pametne kartice"
 msgid "GnuPG System"
 msgstr "Sistem GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:59
+#: src/conf/cryptooperationsconfigwidget.cpp:60
 #, kde-format
 msgid "File Operations"
 msgstr "Dejanja datotek"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:61
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3592,13 +3592,13 @@ msgstr ""
 "Datotekam šifriranim z OpenPGP dodaj pripono ».pgp« namesto pripone ».gpg«"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:62
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Ustvari podpisane ali šifrirane datoteke kot besedilne datoteke."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:64
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3610,8 +3610,14 @@ msgstr ""
 "besedilo kodirano z base64. Tako bodo lahko odprte v urejevalniku in poslane "
 "v telesu sporočila. To poveča velikost datoteke za tretjino."
 
+#: src/conf/cryptooperationsconfigwidget.cpp:68
+#, kde-format
+msgctxt "@option:check"
+msgid "Treat .p7m files without extensions as mails."
+msgstr ""
+
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3619,19 +3625,19 @@ msgid ""
 msgstr ""
 "Samodejno zaženi dejavnost šifriranja/preverjanja glede na zaznavanje vhoda."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Samodejno izvleci arhive datotek po dešifriranju"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Ustvari začasne dešifrirane datoteke v mapi šifriranih datotek."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3639,26 +3645,26 @@ msgstr ""
 "Nastavite to možnost, da se izognete uporabi začasnega imenika uporabnikov."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:73
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Uporabljaj samo simetrično šifriranje."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:72
+#: src/conf/cryptooperationsconfigwidget.cpp:74
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Nastavite to možnost, da onemogočite šifriranje z javnim ključem."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:87
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Program za nadzorne vsote, ki bo uporabljen ob ustvarjanju datotek z "
 "nadzornimi vsotami:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:92
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Ukaz za arhiviranje, ki se uporablja pri arhiviranju datotek:"
@@ -4378,13 +4384,13 @@ msgid "Create Checksum Progress"
 msgstr "Napredek ustvarjanja nadzornih vsot"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Napaka med izvajanjem %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4401,13 +4407,13 @@ msgid "No checksum programs defined."
 msgstr "Določen ni noben program za izračun nadzorne vsote."
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:508
+#: src/crypto/verifychecksumscontroller.cpp:512
 #, kde-format
 msgid "Scanning directories..."
 msgstr "Preiskovanje map ..."
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:525
+#: src/crypto/verifychecksumscontroller.cpp:529
 #, kde-format
 msgid "Calculating total size..."
 msgstr "Izračunavanje skupne velikosti ..."
@@ -4418,7 +4424,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "Ustvarjanje nadzornih vsot (%2) v %1"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:552
+#: src/crypto/verifychecksumscontroller.cpp:556
 #, kde-format
 msgid "Done."
 msgstr "Končano."
@@ -6098,7 +6104,7 @@ msgstr "Preveri nadzorne vsote"
 msgid "Cannot find checksums file for file %1"
 msgstr "Datoteke z nadzorno vsoto za datoteko %1 ni mogoče najti"
 
-#: src/crypto/verifychecksumscontroller.cpp:541
+#: src/crypto/verifychecksumscontroller.cpp:545
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "Preverjanje nadzornih vsot (%2) v %1"

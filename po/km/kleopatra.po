@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:35+0000\n"
+"POT-Creation-Date: 2023-11-07 01:21+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -3751,12 +3751,12 @@ msgstr "​SmartCard"
 msgid "GnuPG System"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:59
+#: src/conf/cryptooperationsconfigwidget.cpp:60
 #, kde-format
 msgid "File Operations"
 msgstr "ប្រតិបត្តិ​ឯកសារ​"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:61
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3764,14 +3764,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:62
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgid "Create signed or encrypted files as text files."
 msgstr "ចុះ​ហត្ថលេខា​ និង​​/​ឬ​ ​ឯកសារ​អ៊ិនគ្រីប​"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:64
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3780,53 +3780,59 @@ msgid ""
 "increase file size by one third."
 msgstr ""
 
+#: src/conf/cryptooperationsconfigwidget.cpp:68
+#, kde-format
+msgctxt "@option:check"
+msgid "Treat .p7m files without extensions as mails."
+msgstr ""
+
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr ""
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "ចុះ​ហត្ថលេខា​ និង​​/​ឬ​ ​ឯកសារ​អ៊ិនគ្រីប​"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:73
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:72
+#: src/conf/cryptooperationsconfigwidget.cpp:74
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:87
 #, fuzzy, kde-format
 #| msgid "Checksum program to use:"
 msgid "Checksum program to use when creating checksum files:"
 msgstr "កម្មវិធី​ឆេកសាំ​​ត្រូវ​ប្រើ​ ៖"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:92
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr ""
@@ -4581,13 +4587,13 @@ msgid "Create Checksum Progress"
 msgstr "បង្កើត​វឌ្ឍនភាព​របស់​ឆេកសាំ​"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "កំហុស​ខណៈ​ពេល​កំពុង​ដំណើរការ​​ %1 ៖ %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4604,13 +4610,13 @@ msgid "No checksum programs defined."
 msgstr "គ្មាន​កម្មវិធី​របស់​ឆេកសាំ​ត្រូវ​បាន​កំណត់​ឡើយ​ ។​"
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:508
+#: src/crypto/verifychecksumscontroller.cpp:512
 #, kde-format
 msgid "Scanning directories..."
 msgstr "កំពុង​វិភាគ​រក​ថត​​..."
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:525
+#: src/crypto/verifychecksumscontroller.cpp:529
 #, kde-format
 msgid "Calculating total size..."
 msgstr "កំពុង​គណនា​ទំហំ​សរុប​​..."
@@ -4621,7 +4627,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "ការ​ឆេកសាំង (%2) ក្នុង​​ %1"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:552
+#: src/crypto/verifychecksumscontroller.cpp:556
 #, kde-format
 msgid "Done."
 msgstr "ធ្វើ​រួច​ ។"
@@ -6365,7 +6371,7 @@ msgstr "ផ្ទៀងផ្ទាត់​លទ្ធផល​របស់​
 msgid "Cannot find checksums file for file %1"
 msgstr "មិន​អាច​ស្វែងរក​ឯកសារ​របស់​ឆេកសាំ សម្រាប់​ឯកសារ​​ %1 ឡើយ​"
 
-#: src/crypto/verifychecksumscontroller.cpp:541
+#: src/crypto/verifychecksumscontroller.cpp:545
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "ការផ្ទៀងផ្ទាត់ឆេកសាំង​​ (%2) ក្នុង​ %1"

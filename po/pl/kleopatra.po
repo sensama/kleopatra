@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1664120 $
+# Version: $Revision: 1664232 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:35+0000\n"
+"POT-Creation-Date: 2023-11-07 01:21+0000\n"
 "PO-Revision-Date: 2023-10-28 09:26+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -3565,12 +3565,12 @@ msgstr "Karty inteligentne"
 msgid "GnuPG System"
 msgstr "System GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:59
+#: src/conf/cryptooperationsconfigwidget.cpp:60
 #, kde-format
 msgid "File Operations"
 msgstr "Działania na plikach"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:61
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3579,13 +3579,13 @@ msgstr ""
 "Twórz pliki zaszyfrowane OpenPGP o rozszerzeniu \".pgp\" zamiast \".gpg\""
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:62
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Utwórz podpisane lub zaszyfrowane pliki jako pliki tekstowe."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:64
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3597,8 +3597,14 @@ msgstr ""
 "zakodowany base64. Dzięki temu będzie je można otworzyć w edytorze lub "
 "wysłać w treści waidomości. Zwiększy to rozmiar pliku o jedną trzecią."
 
+#: src/conf/cryptooperationsconfigwidget.cpp:68
+#, kde-format
+msgctxt "@option:check"
+msgid "Treat .p7m files without extensions as mails."
+msgstr ""
+
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3607,19 +3613,19 @@ msgstr ""
 "Samoczynnie rozpoczynaj działanie na podstawie wykrywania danych wejściowych "
 "dla odszyfrowywania/sprawdzania."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Sam wypakuj archiwa po ich odszyfrowaniu"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Utwórz tymczasowo odszyfrowane pliki w katalogu zaszyfrowanego pliku."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3627,24 +3633,24 @@ msgstr ""
 "Ustaw tę opcję, aby uniknąć używania tymczasowego katalogu użytkowników."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:73
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Stosuj tylko szyfrowanie symetryczne."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:72
+#: src/conf/cryptooperationsconfigwidget.cpp:74
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Zaznacz to pole, aby wyłączyć szyfrowanie klucza publicznego."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:87
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "Program do tworzenia sum sprawdzających:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:92
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Polecenie archiwizacji używane do archiwizowania plików:"
@@ -4364,13 +4370,13 @@ msgid "Create Checksum Progress"
 msgstr "Postęp tworzenia sumy sprawdzającej"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:470 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Błąd podczas uruchamiania %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
 #: src/utils/output.cpp:756
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4387,13 +4393,13 @@ msgid "No checksum programs defined."
 msgstr "Nie określono programów sum sprawdzających."
 
 #: src/crypto/createchecksumscontroller.cpp:536
-#: src/crypto/verifychecksumscontroller.cpp:508
+#: src/crypto/verifychecksumscontroller.cpp:512
 #, kde-format
 msgid "Scanning directories..."
 msgstr "Przeszukiwanie katalogów..."
 
 #: src/crypto/createchecksumscontroller.cpp:551
-#: src/crypto/verifychecksumscontroller.cpp:525
+#: src/crypto/verifychecksumscontroller.cpp:529
 #, kde-format
 msgid "Calculating total size..."
 msgstr "Obliczanie całkowitego rozmiaru..."
@@ -4404,7 +4410,7 @@ msgid "Checksumming (%2) in %1"
 msgstr "Tworzenie sumy sprawdzającej (%2) w %1"
 
 #: src/crypto/createchecksumscontroller.cpp:578
-#: src/crypto/verifychecksumscontroller.cpp:552
+#: src/crypto/verifychecksumscontroller.cpp:556
 #, kde-format
 msgid "Done."
 msgstr "Zrobione."
@@ -6083,7 +6089,7 @@ msgstr "Sprawdź wyniki sumy sprawdzającej"
 msgid "Cannot find checksums file for file %1"
 msgstr "Nie można znaleźć pliku sumy sprawdzającej dla pliku %1"
 
-#: src/crypto/verifychecksumscontroller.cpp:541
+#: src/crypto/verifychecksumscontroller.cpp:545
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
 msgstr "Sprawdzanie sum sprawdzających (%2) w %1"

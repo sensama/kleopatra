@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-07 02:43+0000\n"
-"PO-Revision-Date: 2023-09-08 17:19+0200\n"
+"PO-Revision-Date: 2023-11-07 10:01+0100\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -306,11 +306,10 @@ msgid "Do you wish to create one now?"
 msgstr "Möchten Sie jetzt eines erstellen?"
 
 #: src/commands/certifycertificatecommand.cpp:176
-#, fuzzy, kde-format
-#| msgid "Certification Not Possible"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Not Possible"
-msgstr "Beglaubigen nicht möglich"
+msgstr "Beglaubigung nicht möglich"
 
 #: src/commands/certifycertificatecommand.cpp:177
 #, kde-format
@@ -345,61 +344,52 @@ msgstr "Beglaubigung abgeschlossen"
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "Gruppe kann nicht beglaubigt werden"
 
 #: src/commands/certifygroupcommand.cpp:117
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
 msgstr ""
+"Diese Gruppe enthält S/MIME Zertifikate, die nicht beglaubigt werden können."
 
 #: src/commands/certifygroupcommand.cpp:171
 #: src/dialogs/certifycertificatedialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "Zertifikat beglaubigen ..."
+msgstr "Zertifikate beglaubigen"
 
 #: src/commands/certifygroupcommand.cpp:172
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "Zertifikat beglaubigen ..."
+msgstr "Zertifikate werden beglaubigt ..."
 
 #: src/commands/certifygroupcommand.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Die Erstellung eines neuen OpenPGP-Zertifikats ist fehlgeschlagen.</"
+"<para>Die Beglaubigung der Zertifikate ist fehlgeschlagen.</"
 "para><para>Fehler: <message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:267
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "X.509-Zertifikate erfolgreich aktualisiert."
+msgstr "Alle Zertifikate wurden erfolgreich beglaubigt."
 
 #: src/commands/certifygroupcommand.cpp:272
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Die Erstellung eines neuen OpenPGP-Zertifikats ist fehlgeschlagen.</"
+"<para>Die Beglaubigung aller Zertifikate ist fehlgeschlagen.</"
 "para><para>Fehler: <message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:277
@@ -419,26 +409,23 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
+"<p>Als nächstes werden die beglaubigten Zertifikate zum eingestellten "
+"Keyserver hochgeladen.</p>"
 
 #: src/commands/certifygroupcommand.cpp:300
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:309
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "Das Exportieren ist fehlgeschlagen: %1"
+msgstr "<p>Die Beglaubigung der folgenden Zertifikate ist fehlgeschlagen:</p>"
 
 #: src/commands/certifygroupcommand.cpp:311
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "Beglaubigung abgeschlossen"
@@ -952,8 +939,7 @@ msgid "Create OpenPGP Key"
 msgstr "OpenPGP-Schlüssel erstellen"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, fuzzy, kde-format
-#| msgid "Enter User ID"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter User ID"
 msgstr "Benutzerkennung eingeben"
@@ -984,8 +970,7 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "Fehler beim Entschlüsseln/Überprüfen der Zwischenablage"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Entschlüsselung/Überprüfung fehlgeschlagen"
@@ -1127,11 +1112,10 @@ msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:335
 #: src/commands/dumpcertificatecommand.cpp:341
-#, fuzzy, kde-format
-#| msgid "Dump Certificate Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
-msgstr "Fehler beim Ausgeben des Zertifikates"
+msgstr "Fehler beim Abruf der Zertifikatsdetails"
 
 #: src/commands/dumpcertificatecommand.cpp:338
 #, kde-format
@@ -1140,8 +1124,8 @@ msgid ""
 "GpgSM was:\n"
 "%1"
 msgstr ""
-"Beim Ausgeben des Zertifikats ist ein Fehler aufgetreten. Die Ausgabe von "
-"GpgSM lautet:\n"
+"Beim Abrufen der Zertifikatsdetails ist ein Fehler aufgetreten. Die Ausgabe "
+"von GpgSM lautet:\n"
 "%1"
 
 #: src/commands/dumpcrlcachecommand.cpp:122
@@ -1179,8 +1163,7 @@ msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:343
 #: src/commands/dumpcrlcachecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Fehler beim Ausgeben der lokalen Sperrlisten-Zwischenspeichers"
@@ -1204,11 +1187,7 @@ msgstr "Fehler beim Verschlüsseln der Zwischenablage"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1216,19 +1195,20 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Das Zertifikat '%1' is befugt, für Sie andere Zertifikate als gültig "
-"zu kennzeichnen.</para><para>Möchten Sie die Befugnis widerrufen?</para>"
+"<para>Sie haben nicht alle gültigen Nutzerkennungen dieses Zertifikates "
+"exportierbar beglaubigt. Personen, die sich auf Ihre Beglaubigungen "
+"verlassen, sind möglicherweise nicht in der Lage, das Zertifikat zu "
+"verifizieren.</para><para>Wollen Sie dennoch mit dem Export fortfahren?</"
+"para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "OpenPGP-Zertifikat-Export"
+msgstr "Bestätigung Zertifikat-Export"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportcertificatecommand.cpp:202
@@ -1236,22 +1216,16 @@ msgstr "OpenPGP-Zertifikat-Export"
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "%1 Zertifikate exportieren"
-msgstr[1] "%1 Zertifikate exportieren"
+msgstr[0] "Zertifikat exportieren"
+msgstr[1] "Zertifikate exportieren"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1259,8 +1233,11 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Das Zertifikat '%1' is befugt, für Sie andere Zertifikate als gültig "
-"zu kennzeichnen.</para><para>Möchten Sie die Befugnis widerrufen?</para>"
+"<para>Sie haben nicht alle gültigen Nutzerkennungen der unten aufgelisteten "
+"Zertifikate exportierbar beglaubigt. Personen, die sich auf Ihre "
+"Beglaubigungen verlassen, sind möglicherweise nicht in der Lage, das "
+"Zertifikat zu verifizieren.</para><para>Wollen Sie dennoch mit dem Export "
+"fortfahren?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1291,8 +1268,7 @@ msgstr ""
 "Sie müssen unterschiedliche Dateinamen für verschiedene Protokolle auswählen."
 
 #: src/commands/exportcertificatecommand.cpp:279
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Exportfehler"
@@ -1363,11 +1339,7 @@ msgstr ""
 "Existierende Datei <filename>%1</filename> kann nicht überschrieben werden."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1375,31 +1347,26 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Das Zertifikat '%1' is befugt, für Sie andere Zertifikate als gültig "
-"zu kennzeichnen.</para><para>Möchten Sie die Befugnis widerrufen?</para>"
+"<para>Sie haben nicht alle OpenPGP Zertifikate in dieser Gruppe exportierbar "
+"beglaubigt. Personen, die sich auf Ihre Beglaubigungen verlassen, sind "
+"möglicherweise nicht in der Lage, die Zertifikate zu verifizieren.</"
+"para><para>Wollen Sie dennoch mit dem Export fortfahren?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "Gruppen einrichten"
+msgstr "Bestätigung Gruppen-Export"
 
 #: src/commands/exportgroupscommand.cpp:203
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "Exportfehler"
+msgstr "Gruppe exportieren"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1407,15 +1374,17 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Das Zertifikat '%1' is befugt, für Sie andere Zertifikate als gültig "
-"zu kennzeichnen.</para><para>Möchten Sie die Befugnis widerrufen?</para>"
+"<para>Sie haben nicht alle OpenPGP Zertifikate in den unten aufgelisteten "
+"Gruppen exportierbar beglaubigt. Personen, die sich auf Ihre Beglaubigungen "
+"verlassen, sind möglicherweise nicht in der Lage, die Zertifikate zu "
+"verifizieren.</para><para>Wollen Sie dennoch mit dem Export fortfahren?</"
+"para>"
 
 #: src/commands/exportgroupscommand.cpp:218
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr "Exportfehler"
+msgstr "Gruppen exportieren"
 
 #: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format
@@ -1531,15 +1500,10 @@ msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
 "likely this shouldn't be translated"
 msgid "%1<nl />%2"
-msgstr ""
+msgstr "%1<nl />%2"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:180
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to export OpenPGP certificates.</"
-#| "para> <para>The output from <command>%1</command> was: <message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
@@ -1846,21 +1810,20 @@ msgstr ""
 "vor dem Import zu editieren."
 
 #: src/commands/genrevokecommand.cpp:99
-#, fuzzy, kde-format
-#| msgid "Revocation certificate created"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation certificate created"
-msgstr "Sperrzertifikat erstellt"
+msgstr "Widerrufszertifikat erstellt"
 
 #: src/commands/genrevokecommand.cpp:108
 #, kde-format
 msgid "Generate revocation certificate"
-msgstr "Sperrzertifikat erstellen"
+msgstr "Widerrufszertifikat erstellen"
 
 #: src/commands/genrevokecommand.cpp:110
 #, kde-format
 msgid "Revocation Certificates "
-msgstr "Sperrzertifikate"
+msgstr "Widerrufszertifikate "
 
 #: src/commands/genrevokecommand.cpp:123
 #, kde-kuit-format
@@ -1880,7 +1843,7 @@ msgstr "Datei überschreiben?"
 #, kde-format
 msgctxt "@title:window"
 msgid "Error creating revocation certificate"
-msgstr "Beim Erstellen des Sperrzertifikats ist ein Fehler aufgetreten"
+msgstr "Beim Erstellen des Widerrufszertifikats ist ein Fehler aufgetreten"
 
 #: src/commands/gnupgprocesscommand.cpp:129
 #, kde-format
@@ -2919,6 +2882,8 @@ msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Sie können keinen Schlüssel auf dieser Smartcard erzeugen, da sie keinen der "
+"konformen Algorithmen unterstützt."
 
 #: src/commands/refreshcertificatecommand.cpp:153
 #: src/commands/refreshcertificatecommand.cpp:211
@@ -3935,9 +3900,7 @@ msgid "groups"
 msgstr "Gruppen"
 
 #: src/conf/groupsconfigwidget.cpp:182
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "New"
+#, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Neu"
@@ -3957,12 +3920,10 @@ msgid "Delete"
 msgstr "Löschen"
 
 #: src/conf/groupsconfigwidget.cpp:194
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Write the key pair of a certificate to the card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr "Das Schlüsselpaar eines Zertifikats auf die Smartcard übertragen"
+msgstr "Beginne den Beglaubigungsprozess für alle Zertifikate der Gruppe."
 
 #: src/conf/groupsconfigwidget.cpp:198
 #: src/dialogs/certificatedetailswidget.cpp:358
@@ -3999,8 +3960,7 @@ msgstr ""
 "Möchten Sie die Änderungen anwenden oder verwerfen?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, fuzzy, kde-format
-#| msgid "Apply Settings"
+#, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Einstellungen anwenden"
@@ -4396,8 +4356,7 @@ msgstr ""
 "abgespeichert werden?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:238
-#, fuzzy, kde-format
-#| msgid "Use Original File Name?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Ursprünglichen Dateinamen verwenden?"
@@ -5937,11 +5896,10 @@ msgid "Could not find a key for the following recipients:"
 msgstr "Für folgende Empfänger kann kein Schlüssel gefunden werden:"
 
 #: src/crypto/gui/signencryptwidget.cpp:831
-#, fuzzy, kde-format
-#| msgid "Failed to find some keys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
-msgstr "Schlüssel wurden nicht gefunden"
+msgstr "Einige Schlüssel wurden nicht gefunden"
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format
@@ -6051,8 +6009,7 @@ msgid "The following errors and warnings were recorded:"
 msgstr "Die folgenden Fehler und Warnungen sind aufgetreten:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, fuzzy, kde-format
-#| msgid "Checksum Verification Errors"
+#, kde-format
 msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Fehler beim Prüfen der Prüfsumme"
@@ -6868,12 +6825,10 @@ msgid "Certify Certificate: %1"
 msgstr "Zertifikat beglaubigen: %1"
 
 #: src/dialogs/certifycertificatedialog.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "Zertifikat beglaubigen: %1"
+msgstr "Beglaubigung Zertifikatsgruppe %1"
 
 #: src/dialogs/certifywidget.cpp:288
 #, kde-format
@@ -6910,11 +6865,10 @@ msgstr ""
 "Sie normalerweise für Ihre eigenen Schlüssel tun."
 
 #: src/dialogs/certifywidget.cpp:339
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr "Um ein Zertifikat als gültig zu markieren muss es beglaubigt werden."
+msgstr "Ein oder mehrere Zertifikate können nicht beglaubigt werden."
 
 #: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
 #: src/dialogs/certifywidget.cpp:588
@@ -6946,6 +6900,9 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
+"Aktivieren Sie diese Option, wenn Sie Ihre Beglaubigungen mit anderen teilen "
+"möchten. Wenn Sie Zertifikate nur für sich selbst beglaubigen möchten, "
+"können Sie diese Option deaktivieren."
 
 #: src/dialogs/certifywidget.cpp:372
 #, kde-format
@@ -6959,6 +6916,8 @@ msgid ""
 "Check this option, if you want to upload your certifications to a "
 "certificate directory after successful certification."
 msgstr ""
+"Aktivieren Sie diese Option, wenn Sie von Ihnen beglaubigte Zertifikate nach "
+"erfolgreicher Beglaubigung auf einen Schlüsselserver hochladen möchten."
 
 #: src/dialogs/certifywidget.cpp:387
 #, kde-format
@@ -7034,43 +6993,36 @@ msgid "Domain:"
 msgstr "Domain:"
 
 #: src/dialogs/certifywidget.cpp:556
-#, fuzzy, kde-format
-#| msgid ""
-#| "Verify the fingerprint, mark the user IDs you want to certify, and select "
-#| "the key you want to certify the user IDs with.<br><i>Note: Only the "
-#| "fingerprint clearly identifies the key and its owner.</i>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Verify the fingerprints, mark the user IDs you want to certify, and select "
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
-"Überprüfen Sie den Fingerabdruck, markieren Sie die Benutzerkennungen, die "
-"Sie zertifizieren möchten, und wählen Sie den Schlüssel, mit dem Sie sie "
-"zertifizieren möchten.<br><i>Hinweis: Nur der Fingerabdruck identifiziert "
-"den Schlüssel und seinen Besitzer eindeutig.</i>"
+"Überprüfen Sie die Fingerabdrücke, markieren Sie die Benutzerkennungen, die "
+"Sie beglaubigen möchten, und wählen Sie den Schlüssel, mit dem Sie sie "
+"zertifizieren möchten.<br><i>Hinweis: Nur die Fingerabdrücke identifizieren "
+"Zertifikate und ihre Besitzer eindeutig.</i>"
 
 #: src/dialogs/certifywidget.cpp:588
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "Fingerabdruck:"
+msgstr "Fingerabdruck"
 
 #: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for signing."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "Dieses Zertifikat kann nicht zum Signieren verwendet werden."
+msgstr "S/MIME Zertifikate können nicht beglaubigt werden."
 
 #: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr "Um ein Zertifikat als gültig zu markieren muss es beglaubigt werden."
+msgstr ""
+"Abgelaufene oder widerrufene Zertifikate können nicht beglaubigt werden."
 
 #: src/dialogs/certifywidget.cpp:919
 #, kde-format
@@ -7086,8 +7038,7 @@ msgstr ""
 "fehlgeschlagen:</p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:937
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Fehler beim Ändern des Beglaubigungsvertrauens"
@@ -7177,8 +7128,7 @@ msgstr[1] ""
 "Daher sollten Sie diese Zertifikate nicht löschen."
 
 #: src/dialogs/deletecertificatesdialog.cpp:220
-#, fuzzy, kde-format
-#| msgid "Secret Key Deletion"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Geheimen Schlüssel löschen"
@@ -7393,11 +7343,10 @@ msgid "Save As..."
 msgstr "Speichern unter ..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:191
-#, fuzzy, kde-format
-#| msgid "Lookup on Server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
-msgstr "Auf Server suchen ..."
+msgstr "Auf Server suchen"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:201
 #, kde-format
@@ -11768,8 +11717,7 @@ msgstr ""
 "zweimal falsch eingegeben wurde."
 
 #: src/view/nullpinwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Set initial PIN"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Initiale PIN setzen"
@@ -12171,6 +12119,8 @@ msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Sie können auf dieser Smartcard keine Schlüssel erzeugen, da sie keinen der "
+"konformen Algorithmen unterstützt."
 
 #: src/view/pgpcardwidget.cpp:430
 #, kde-format

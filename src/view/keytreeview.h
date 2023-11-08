@@ -153,6 +153,8 @@ private:
     std::shared_ptr<KeyFilter> m_keyFilter;
 
     QStringList m_expandedKeys;
+    std::vector<GpgME::Key> m_selectedKeys;
+    GpgME::Key m_currentKey;
 
     std::vector<QMetaObject::Connection> m_connections;
 

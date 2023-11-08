@@ -741,11 +741,23 @@ void KeyTreeView::resizeColumns()
 
 void KeyTreeView::saveStateBeforeModelChange()
 {
+    m_currentKey = keyListModel(*m_view)->key(m_view->currentIndex());
+    m_selectedKeys = selectedKeys();
 }
 
 void KeyTreeView::restoreStateAfterModelChange()
 {
     restoreExpandState();
+
+    selectKeys(m_selectedKeys);
+    if (!m_currentKey.isNull()) {
+        const QModelIndex currentIndex = keyListModel(*m_view)->index(m_currentKey);
+        if (currentIndex.isValid()) {
+            m_view->selectionModel()->setCurrentIndex(currentIndex, QItemSelectionModel::NoUpdate);
+            m_view->scrollTo(currentIndex);
+        }
+    }
+
     setUpTagKeys();
     if (!m_onceResized) {
         m_onceResized = true;

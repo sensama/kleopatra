@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-10-16 06:29+0200\n"
+"PO-Revision-Date: 2023-11-08 06:10+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -122,6 +122,9 @@ msgid ""
 "Klarälvdalens Datakonsult AB\n"
 "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
 msgstr ""
+"(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
+"Klarälvdalens Datakonsult AB\n"
+"(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
 
 #: src/aboutdata.cpp:73
 #, kde-format
@@ -1240,6 +1243,9 @@ msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
 "<para>The output from <command>%1</command> was: <message>%2</message></para>"
 msgstr ""
+"<para>შეცდომა OpenPGP-ის სერტიფიკატების გატანის მცდელობისას.</para> "
+"<para>ბრძანებამ <command>%1</command> გამოიტანა:<nl /><message>%2</message></"
+"para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:121
 #, kde-format
@@ -3747,6 +3753,8 @@ msgid ""
 "certificate policy is allowed. If this option is selected, policies are not "
 "checked."
 msgstr ""
+"ნაგულისხმევად GnuPG სერტიფიკატის პოლიტიკის დაშვებულობის შესამოწმებლად ფაილს "
+"~/.gnupg/policies.txt-ს ყენებს. თუ ეს თოლია დასმულია, პოლიტიკა არ შემოწმდება."
 
 #. i18n: ectx: property (text), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:134
@@ -3947,6 +3955,13 @@ msgid ""
 "The syntax is \"HOST\" or \"HOST:PORT\". If PORT is omitted, port 389 "
 "(standard LDAP port) is used."
 msgstr ""
+"LDAP სერვერის აქ შეყვანა გამოიწვევს იმას, რომ ყველა LDAP მოთხოვნა ჯერ ამ "
+"სერვერთან მივა. უფრო ზუსტად, ეს პარამეტრი გადაფარავს ყველა მითითებულ ჰოსტს "
+"და პორტს LDAP-ის ბმულში და ასევე გამოიყენება, თუ ბმულიდან ჰოსტი და პორტი "
+"გამოტოვეთ. სხვა LDAP სერვერები გამოყენებული, მხოლოდ, მაშინ იქნება, თუ "
+"\"პროქსისთან\" მიერთება ჩავარდება.\n"
+"სინტაქსია \"ჰოსტი\" ან \"ჰოსტი:პორტი\". თუ პორტი გამოტოვებულია, გამოიყენება "
+"პორტი 389 (სტანდარტული LDAP)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:149
 #, kde-kuit-format
@@ -5001,7 +5016,7 @@ msgstr "ტექსტის ხელმოწერა"
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:72
 #, kde-format
 msgid "Please select an encryption certificate for recipient \"%1\""
-msgstr ""
+msgstr "აირჩიეთ დაშიფვრის სერტიფიკატი მიმღებისთვის \"%1\""
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:83
 #, kde-format
@@ -6195,8 +6210,8 @@ msgstr "მომხმარებლის ID-ების სერტიფ�
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "მომხმარებლის ID-ების სერტიფიკაცია..."
+msgstr[1] "მომხმარებლის ID-ების სერტიფიკაცია..."
 
 #: src/dialogs/certificatedetailswidget.cpp:844
 #, kde-format
@@ -6501,12 +6516,12 @@ msgstr "ვადა:"
 #: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgid "The certification must be valid at least until tomorrow."
-msgstr ""
+msgstr "სერტიფიკაცია ხვალამდე მაინც უნდა იყოს გამოსადეგი."
 
 #: src/dialogs/certifywidget.cpp:464
 #, kde-format
 msgid "The latest allowed certification date is %1."
-msgstr ""
+msgstr "უგვიანესი დაშვებული სერტიფიკაციის თარიღია %1."
 
 #: src/dialogs/certifywidget.cpp:467
 #, kde-format
@@ -6565,7 +6580,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:500
 #, kde-format
 msgid "Explain trusted introducer"
-msgstr ""
+msgstr "სანდო წარმომდგენის ახსნა"
 
 #: src/dialogs/certifywidget.cpp:510
 #, kde-format
@@ -6805,7 +6820,7 @@ msgstr "შეუზღუდავი სისწორე"
 #: src/dialogs/expirydialog.cpp:175
 #, kde-format
 msgid "Valid for:"
-msgstr ""
+msgstr "გამოსადეგია:"
 
 #: src/dialogs/expirydialog.cpp:188
 #, kde-format
@@ -9039,13 +9054,13 @@ msgstr "ვარგისობის პერიოდს ვერ შეც
 #, kde-format
 msgctxt "... between today and <another date>."
 msgid "The validity period must end between today and %1."
-msgstr ""
+msgstr "ვარგისიანობის პერიოდი დღევანდელსა და %1-ს შორის უნდა სრულდებოდეს."
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:492
 #, kde-format
 msgctxt "... between <a date> and <another date>."
 msgid "The validity period must end between %1 and %2."
-msgstr ""
+msgstr "ვარგისიანობის პერიოდი %1-სა და %2-ს შორის უნდა სრულდებოდეს."
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:497
 #, kde-format
@@ -9376,7 +9391,7 @@ msgctxt ""
 "@title %1 is a placeholder for the name of a compliance mode. E.g. NATO "
 "RESTRICTED compliant or VS-NfD compliant"
 msgid "%1?"
-msgstr ""
+msgstr "%1?"
 
 #: src/selftest/compliancecheck.cpp:45
 #, kde-kuit-format
@@ -9679,6 +9694,12 @@ msgid ""
 "<application>EnigMail</application>.</para><para>Keeping the entry might "
 "lead to an old GnuPG backend being used.</para>"
 msgstr ""
+"<para>Kleopatra-მა აღმოაჩინა მოძველებული რეესტრის გასაღები (<resource>%1\\"
+"%2</resource>), რომელიც ან <application>Gpg4win</application>-ის ძველმა "
+"ვერსიამ დაამატა, ან ისეთმა აპლიკაციებმა, როგორიცაა <application>WinPT</"
+"application> ან <application>EnigMail</application>.</para><para>ამ "
+"გასაღების გამოტოვებამ, შეიძლება, ძველი GnuPG უკანაბოლოს გამოყენება "
+"გამოიწვიოს.</para>"
 
 #: src/selftest/registrycheck.cpp:59
 #, kde-kuit-format

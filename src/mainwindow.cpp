@@ -413,7 +413,9 @@ MainWindow::Private::Private(MainWindow *qq)
     KDAB_SET_OBJECT_NAME(controller);
 
     AbstractKeyListModel *flatModel = AbstractKeyListModel::createFlatKeyListModel(q);
+    flatModel->useKeyCache(true, KeyList::AllKeys);
     AbstractKeyListModel *hierarchicalModel = AbstractKeyListModel::createHierarchicalKeyListModel(q);
+    hierarchicalModel->useKeyCache(true, KeyList::AllKeys);
 
     KDAB_SET_OBJECT_NAME(flatModel);
     KDAB_SET_OBJECT_NAME(hierarchicalModel);

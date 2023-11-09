@@ -15,6 +15,8 @@
 #include <Libkleo/GnuPG>
 
 #include <QLocale>
+#include <QThread>
+#include <QCoreApplication>
 
 #include <KLazyLocalizedString>
 #include <KLocalizedString>
@@ -101,12 +103,22 @@ AboutData::AboutData()
 #endif
     }
 
-    const auto backendVersions = Kleo::backendVersionInfo();
-    if (!backendVersions.empty()) {
-        setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
-                     + QLatin1String{"<ul><li>"} //
-                     + backendVersions.join(QLatin1String{"</li><li>"}) //
-                     + QLatin1String{"</li></ul>"} //
-                     + otherText());
-    }
+    // Extend the about data with the used GnuPG Version since this can
+    // make a big difference with regards to the available features.
+    auto thread = QThread::create([]() {
+        const auto backendVersions = Kleo::backendVersionInfo();
+        if (!backendVersions.empty()) {
+            QMetaObject::invokeMethod(qApp, [backendVersions]() {
+                auto about = KAboutData::applicationData();
+                about.setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
+                                   + QLatin1String{"<ul><li>"} //
+                                   + backendVersions.join(QLatin1String{"</li><li>"}) //
+                                   + QLatin1String{"</li></ul>"} //
+                                   + about.otherText());
+                KAboutData::setApplicationData(about);
+            });
+        }
+    });
+    QObject::connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    thread->start();
 }

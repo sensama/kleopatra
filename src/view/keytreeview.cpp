@@ -353,19 +353,8 @@ void KeyTreeView::init()
         }
     });
 
-    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this]() {
-        /* We use a single shot timer here to ensure that the keysMayHaveChanged
-         * handlers are all handled before we restore the expand state so that
-         * the model is already populated. */
-        QTimer::singleShot(0, [this]() {
-            restoreExpandState();
-            setUpTagKeys();
-            if (!m_onceResized) {
-                m_onceResized = true;
-                resizeColumns();
-            }
-        });
-    });
+    updateModelConnections(nullptr, model());
+
     resizeColumns();
     if (m_group.isValid()) {
         restoreLayout(m_group);
@@ -507,16 +496,41 @@ static QAbstractProxyModel *find_last_proxy(QAbstractProxyModel *pm)
     return pm;
 }
 
+void KeyTreeView::updateModelConnections(AbstractKeyListModel *oldModel, AbstractKeyListModel *newModel)
+{
+    if (oldModel == newModel) {
+        return;
+    }
+    if (oldModel) {
+        disconnect(oldModel, &QAbstractItemModel::modelAboutToBeReset, this, &KeyTreeView::saveStateBeforeModelChange);
+        disconnect(oldModel, &QAbstractItemModel::modelReset, this, &KeyTreeView::restoreStateAfterModelChange);
+        disconnect(oldModel, &QAbstractItemModel::rowsAboutToBeInserted, this, &KeyTreeView::saveStateBeforeModelChange);
+        disconnect(oldModel, &QAbstractItemModel::rowsInserted, this, &KeyTreeView::restoreStateAfterModelChange);
+        disconnect(oldModel, &QAbstractItemModel::rowsAboutToBeRemoved, this, &KeyTreeView::saveStateBeforeModelChange);
+        disconnect(oldModel, &QAbstractItemModel::rowsRemoved, this, &KeyTreeView::restoreStateAfterModelChange);
+    }
+    if (newModel) {
+        connect(newModel, &QAbstractItemModel::modelAboutToBeReset, this, &KeyTreeView::saveStateBeforeModelChange);
+        connect(newModel, &QAbstractItemModel::modelReset, this, &KeyTreeView::restoreStateAfterModelChange);
+        connect(newModel, &QAbstractItemModel::rowsAboutToBeInserted, this, &KeyTreeView::saveStateBeforeModelChange);
+        connect(newModel, &QAbstractItemModel::rowsInserted, this, &KeyTreeView::restoreStateAfterModelChange);
+        connect(newModel, &QAbstractItemModel::rowsAboutToBeRemoved, this, &KeyTreeView::saveStateBeforeModelChange);
+        connect(newModel, &QAbstractItemModel::rowsRemoved, this, &KeyTreeView::restoreStateAfterModelChange);
+    }
+}
+
 void KeyTreeView::setFlatModel(AbstractKeyListModel *model)
 {
     if (model == m_flatModel) {
         return;
     }
+    auto oldModel = m_flatModel;
     m_flatModel = model;
     if (!m_isHierarchical)
     // TODO: this fails when called after setHierarchicalView( false )...
     {
         find_last_proxy(m_proxy)->setSourceModel(model);
+        updateModelConnections(oldModel, model);
     }
 }
 
@@ -525,9 +539,11 @@ void KeyTreeView::setHierarchicalModel(AbstractKeyListModel *model)
     if (model == m_hierarchicalModel) {
         return;
     }
+    auto oldModel = m_hierarchicalModel;
     m_hierarchicalModel = model;
     if (m_isHierarchical) {
         find_last_proxy(m_proxy)->setSourceModel(model);
+        updateModelConnections(oldModel, model);
         m_view->expandAll();
         for (int column = 0; column < m_view->header()->count(); ++column) {
             m_view->header()->resizeSection(column, qMax(m_view->header()->sectionSize(column), m_view->header()->sectionSizeHint(column)));
@@ -595,8 +611,10 @@ void KeyTreeView::setHierarchicalView(bool on)
     const std::vector<Key> selectedKeys = this->selectedKeys();
     const Key currentKey = keyListModel(*m_view)->key(m_view->currentIndex());
 
+    auto oldModel = model();
     m_isHierarchical = on;
     find_last_proxy(m_proxy)->setSourceModel(model());
+    updateModelConnections(oldModel, model());
     if (on) {
         m_view->expandAll();
     }
@@ -718,6 +736,32 @@ void KeyTreeView::resizeColumns()
 
     for (int i = 2; i < m_view->model()->columnCount(); ++i) {
         m_view->resizeColumnToContents(i);
+    }
+}
+
+void KeyTreeView::saveStateBeforeModelChange()
+{
+    m_currentKey = keyListModel(*m_view)->key(m_view->currentIndex());
+    m_selectedKeys = selectedKeys();
+}
+
+void KeyTreeView::restoreStateAfterModelChange()
+{
+    restoreExpandState();
+
+    selectKeys(m_selectedKeys);
+    if (!m_currentKey.isNull()) {
+        const QModelIndex currentIndex = keyListModel(*m_view)->index(m_currentKey);
+        if (currentIndex.isValid()) {
+            m_view->selectionModel()->setCurrentIndex(currentIndex, QItemSelectionModel::NoUpdate);
+            m_view->scrollTo(currentIndex);
+        }
+    }
+
+    setUpTagKeys();
+    if (!m_onceResized) {
+        m_onceResized = true;
+        resizeColumns();
     }
 }
 

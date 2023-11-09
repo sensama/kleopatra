@@ -134,6 +134,9 @@ private:
     void addKeysImpl(const std::vector<GpgME::Key> &, bool);
     void restoreExpandState();
     void setUpTagKeys();
+    void updateModelConnections(AbstractKeyListModel *oldModel, AbstractKeyListModel *newModel);
+    void saveStateBeforeModelChange();
+    void restoreStateAfterModelChange();
 
 private:
     std::vector<GpgME::Key> m_keys;
@@ -150,6 +153,8 @@ private:
     std::shared_ptr<KeyFilter> m_keyFilter;
 
     QStringList m_expandedKeys;
+    std::vector<GpgME::Key> m_selectedKeys;
+    GpgME::Key m_currentKey;
 
     std::vector<QMetaObject::Connection> m_connections;
 

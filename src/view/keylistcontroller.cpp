@@ -124,8 +124,6 @@ public:
     void slotSelectionChanged(const QItemSelection &old, const QItemSelection &new_);
     void slotContextMenu(const QPoint &pos);
     void slotCommandFinished();
-    void slotAddKey(const Key &key);
-    void slotAboutToRemoveKey(const Key &key);
     void slotActionTriggered(QAction *action);
     void slotCurrentViewChanged(QAbstractItemView *view)
     {
@@ -169,12 +167,6 @@ KeyListController::Private::Private(KeyListController *qq)
     , flatModel()
     , hierarchicalModel()
 {
-    connect(KeyCache::instance().get(), &KeyCache::added, q, [this](const GpgME::Key &key) {
-        slotAddKey(key);
-    });
-    connect(KeyCache::instance().get(), &KeyCache::aboutToRemove, q, [this](const GpgME::Key &key) {
-        slotAboutToRemoveKey(key);
-    });
 }
 
 KeyListController::Private::~Private()
@@ -189,28 +181,6 @@ KeyListController::KeyListController(QObject *p)
 
 KeyListController::~KeyListController()
 {
-}
-
-void KeyListController::Private::slotAddKey(const Key &key)
-{
-    // ### make model act on keycache directly...
-    if (flatModel) {
-        flatModel->addKey(key);
-    }
-    if (hierarchicalModel) {
-        hierarchicalModel->addKey(key);
-    }
-}
-
-void KeyListController::Private::slotAboutToRemoveKey(const Key &key)
-{
-    // ### make model act on keycache directly...
-    if (flatModel) {
-        flatModel->removeKey(key);
-    }
-    if (hierarchicalModel) {
-        hierarchicalModel->removeKey(key);
-    }
 }
 
 void KeyListController::addView(QAbstractItemView *view)
@@ -248,10 +218,6 @@ void KeyListController::setFlatModel(AbstractKeyListModel *model)
     d->flatModel = model;
 
     if (model) {
-        model->clear();
-        if (KeyCache::instance()->initialized()) {
-            model->addKeys(KeyCache::instance()->keys());
-        }
         model->setToolTipOptions(d->toolTipOptions());
     }
 }
@@ -265,10 +231,6 @@ void KeyListController::setHierarchicalModel(AbstractKeyListModel *model)
     d->hierarchicalModel = model;
 
     if (model) {
-        model->clear();
-        if (KeyCache::instance()->initialized()) {
-            model->addKeys(KeyCache::instance()->keys());
-        }
         model->setToolTipOptions(d->toolTipOptions());
     }
 }

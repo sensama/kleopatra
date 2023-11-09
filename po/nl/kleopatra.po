@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-07 01:21+0000\n"
+"POT-Creation-Date: 2023-11-09 00:42+0000\n"
 "PO-Revision-Date: 2023-11-07 10:32+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -4383,7 +4383,7 @@ msgstr ""
 "moet worden, geen mengsel van beiden."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:873
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:875
 #, kde-format
 msgid "Cancel"
 msgstr "Annuleren"
@@ -6661,7 +6661,7 @@ msgid "Refresh certificate list"
 msgstr "Certificaatlijst verversen"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#: src/view/keylistcontroller.cpp:426 src/view/welcomewidget.cpp:144
+#: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:144
 #, kde-format
 msgid "Import..."
 msgstr "Importeren..."
@@ -7662,7 +7662,7 @@ msgctxt "@title:column"
 msgid "Storage"
 msgstr "Opslag"
 
-#: src/dialogs/subkeyswidget.cpp:123 src/view/keylistcontroller.cpp:549
+#: src/dialogs/subkeyswidget.cpp:123 src/view/keylistcontroller.cpp:511
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Het eind van de geldigheidsperiode wijzigen..."
@@ -9036,18 +9036,18 @@ msgstr "Kon de GnuPG-logweergave niet starten. Controleer uw installatie."
 msgid "Error Starting KWatchGnuPG"
 msgstr "Fout bij starten van KWatchGnuPG"
 
-#: src/mainwindow.cpp:528
+#: src/mainwindow.cpp:530
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG-logweergave"
 
-#: src/mainwindow.cpp:540
+#: src/mainwindow.cpp:542
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Achtergrondproces herstarten"
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:543
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9057,23 +9057,23 @@ msgstr ""
 "Het achtergrondproces herstarten, bijv. na het maken van wijzigingen in de "
 "configuratie."
 
-#: src/mainwindow.cpp:553
+#: src/mainwindow.cpp:555
 #, kde-format
 msgid "Check for updates"
 msgstr "Controleren op bijwerken"
 
-#: src/mainwindow.cpp:566
+#: src/mainwindow.cpp:568
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certificaten"
 
-#: src/mainwindow.cpp:567
+#: src/mainwindow.cpp:569
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Overzicht van certificaten tonen"
 
-#: src/mainwindow.cpp:577
+#: src/mainwindow.cpp:579
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9081,44 +9081,44 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Tekstgebied"
 
-#: src/mainwindow.cpp:578
+#: src/mainwindow.cpp:580
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Pad voor versleutelen/ontcijferen en ondertekenen/verifiëren van tekst tonen"
 
-#: src/mainwindow.cpp:588
+#: src/mainwindow.cpp:590
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Smartcards"
 
-#: src/mainwindow.cpp:589
+#: src/mainwindow.cpp:591
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Beheer van smartcards tonen"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:602
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Zelftest uitvoeren"
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:613
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Groepen configureren..."
 
-#: src/mainwindow.cpp:641
+#: src/mainwindow.cpp:643
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Focus op snelzoeken instellen"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:655
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win-compendium"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:659
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9126,48 +9126,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:666
+#: src/mainwindow.cpp:668
 #, kde-format
 msgid "&Quickguide"
 msgstr "&Snelgids"
 
-#: src/mainwindow.cpp:667
+#: src/mainwindow.cpp:669
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:673
+#: src/mainwindow.cpp:675
 #, kde-format
 msgid "&Password-based encryption"
 msgstr "Op &wachtwoord gebaseerde versleuteling"
 
-#: src/mainwindow.cpp:674
+#: src/mainwindow.cpp:676
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:681
 #, kde-format
 msgid "&Group configuration"
 msgstr "&Groepsconfiguratie"
 
-#: src/mainwindow.cpp:680
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:687
+#: src/mainwindow.cpp:689
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr "E-&mail versleuteld in Outlook"
 
-#: src/mainwindow.cpp:688
+#: src/mainwindow.cpp:690
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9175,60 +9175,60 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:696
+#: src/mainwindow.cpp:698
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Certificatenbeheer"
 
-#: src/mainwindow.cpp:697
+#: src/mainwindow.cpp:699
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:703
+#: src/mainwindow.cpp:705
 #, kde-format
 msgid "&Smartcard setup"
 msgstr "Opzet van &smartcards"
 
-#: src/mainwindow.cpp:704
+#: src/mainwindow.cpp:706
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:711
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG-opdrachtregel"
 
-#: src/mainwindow.cpp:717
+#: src/mainwindow.cpp:719
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:718
+#: src/mainwindow.cpp:720
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:724
+#: src/mainwindow.cpp:726
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:725
+#: src/mainwindow.cpp:727
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:750
+#: src/mainwindow.cpp:752
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9237,28 +9237,28 @@ msgstr ""
 "Er zijn nog enkele achtergrondacties actief. Deze worden door het sluiten "
 "van het venster gestopt. Doorgaan?"
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:755
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Actieve achtergrondtaken"
 
-#: src/mainwindow.cpp:857 src/view/keylistcontroller.cpp:444
+#: src/mainwindow.cpp:859 src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Ondertekenen/versleutelen..."
 
-#: src/mainwindow.cpp:858 src/utils/clipboardmenu.cpp:50
-#: src/view/keylistcontroller.cpp:435
+#: src/mainwindow.cpp:860 src/utils/clipboardmenu.cpp:50
+#: src/view/keylistcontroller.cpp:397
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Ontcijferen/verifiëren..."
 
-#: src/mainwindow.cpp:863
+#: src/mainwindow.cpp:865
 #, kde-format
 msgid "Import Certificates"
 msgstr "Certificaten importeren"
 
-#: src/mainwindow.cpp:864
+#: src/mainwindow.cpp:866
 #, kde-format
 msgid "Import CRLs"
 msgstr "CRL's importeren"
@@ -11211,45 +11211,45 @@ msgstr "%1 (vereist)"
 msgid "Loading certificate cache..."
 msgstr "Certificaatbuffer laden..."
 
-#: src/view/keylistcontroller.cpp:361
+#: src/view/keylistcontroller.cpp:323
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "Nieuw OpenPGP-sleutelpaar..."
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:324
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Een nieuw OpenPGP-certificaat aanmaken"
 
-#: src/view/keylistcontroller.cpp:370
+#: src/view/keylistcontroller.cpp:332
 #, kde-format
 msgid "Export..."
 msgstr "Exporteren..."
 
-#: src/view/keylistcontroller.cpp:371
+#: src/view/keylistcontroller.cpp:333
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 "Het geselecteerde certificaat (publieke sleutel) naar een bestand exporteren"
 
-#: src/view/keylistcontroller.cpp:379
+#: src/view/keylistcontroller.cpp:341
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Op server publiceren..."
 
-#: src/view/keylistcontroller.cpp:380
+#: src/view/keylistcontroller.cpp:342
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr ""
 "Het geselecteerde certificaat (publieke sleutel) op een publieke "
 "sleutelserver publiceren"
 
-#: src/view/keylistcontroller.cpp:389
+#: src/view/keylistcontroller.cpp:351
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Publiceren bij e-mailleverancier..."
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:352
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11258,123 +11258,123 @@ msgstr ""
 "Het geselecteerde certificaat (publieke sleutel) publiceren bij de Web Key "
 "Directory van de e-mailleverancier, indien aangeboden"
 
-#: src/view/keylistcontroller.cpp:399
+#: src/view/keylistcontroller.cpp:361
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Geheime reservesleutels opslaan..."
 
-#: src/view/keylistcontroller.cpp:408
+#: src/view/keylistcontroller.cpp:370
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Geheime sleutel afdrukken..."
 
-#: src/view/keylistcontroller.cpp:417
+#: src/view/keylistcontroller.cpp:379
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Op server opzoeken..."
 
-#: src/view/keylistcontroller.cpp:418
+#: src/view/keylistcontroller.cpp:380
 #, kde-format
 msgid "Search for certificates online using a public keyserver"
 msgstr "Online zoeken naar certificaten met een publieke sleutelserver"
 
-#: src/view/keylistcontroller.cpp:427
+#: src/view/keylistcontroller.cpp:389
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Een certificaat importeren uit een bestand"
 
-#: src/view/keylistcontroller.cpp:436
+#: src/view/keylistcontroller.cpp:398
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Bestanden ontcijferen en/of verifiëren"
 
-#: src/view/keylistcontroller.cpp:445
+#: src/view/keylistcontroller.cpp:407
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Bestanden versleutelen en/of ondertekenen"
 
-#: src/view/keylistcontroller.cpp:453
+#: src/view/keylistcontroller.cpp:415
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Map ondertekenen/versleutelen..."
 
-#: src/view/keylistcontroller.cpp:454
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Mappen versleutelen en/of ondertekenen"
 
-#: src/view/keylistcontroller.cpp:462
+#: src/view/keylistcontroller.cpp:424
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Controlesom-bestanden aanmaken..."
 
-#: src/view/keylistcontroller.cpp:471
+#: src/view/keylistcontroller.cpp:433
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Controlesom-bestanden verifiëren..."
 
-#: src/view/keylistcontroller.cpp:481
+#: src/view/keylistcontroller.cpp:443
 #, kde-format
 msgid "Redisplay"
 msgstr "Opnieuw laten zien"
 
-#: src/view/keylistcontroller.cpp:490
+#: src/view/keylistcontroller.cpp:452
 #, kde-format
 msgid "Stop Operation"
 msgstr "Operatie stoppen"
 
-#: src/view/keylistcontroller.cpp:503
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Details"
 msgstr "Details"
 
-#: src/view/keylistcontroller.cpp:513
+#: src/view/keylistcontroller.cpp:475
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Certificaat herroepen..."
 
-#: src/view/keylistcontroller.cpp:514
+#: src/view/keylistcontroller.cpp:476
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Het geselecteerde OpenPGP-certificaat herroepen"
 
-#: src/view/keylistcontroller.cpp:522
+#: src/view/keylistcontroller.cpp:484
 #, kde-format
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: src/view/keylistcontroller.cpp:523
+#: src/view/keylistcontroller.cpp:485
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Geselecteerde certificaten verwijderen"
 
-#: src/view/keylistcontroller.cpp:531
+#: src/view/keylistcontroller.cpp:493
 #, kde-format
 msgid "Certify..."
 msgstr "Certificeer..."
 
-#: src/view/keylistcontroller.cpp:532
+#: src/view/keylistcontroller.cpp:494
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "De geldigheid van het geselecteerde certificaat bevestigen."
 
-#: src/view/keylistcontroller.cpp:540
+#: src/view/keylistcontroller.cpp:502
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Certificaat herroepen..."
 
-#: src/view/keylistcontroller.cpp:541
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "De certificate van het geselecteerde certificaat herroepen."
 
-#: src/view/keylistcontroller.cpp:558
+#: src/view/keylistcontroller.cpp:520
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Recht van certificeren wijzigen..."
 
-#: src/view/keylistcontroller.cpp:559
+#: src/view/keylistcontroller.cpp:521
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
@@ -11382,64 +11382,64 @@ msgstr ""
 "Het recht van certificeren van het geselecteerde certificaat toekennen of "
 "intrekken."
 
-#: src/view/keylistcontroller.cpp:567
+#: src/view/keylistcontroller.cpp:529
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Wachtwoord wijzigen..."
 
-#: src/view/keylistcontroller.cpp:576
+#: src/view/keylistcontroller.cpp:538
 #, kde-format
 msgid "Add User ID..."
 msgstr "Gebruiker-id toevoegen..."
 
-#: src/view/keylistcontroller.cpp:586
+#: src/view/keylistcontroller.cpp:548
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP-certificaten verversen"
 
-#: src/view/keylistcontroller.cpp:601
+#: src/view/keylistcontroller.cpp:563
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Nieuw verzoek voor S/MIME-certificatie..."
 
-#: src/view/keylistcontroller.cpp:602
+#: src/view/keylistcontroller.cpp:564
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr ""
 "Een nieuw verzoek voor ondertekening van een S/MIME certificaat aanmaken "
 "(CSR)"
 
-#: src/view/keylistcontroller.cpp:613
+#: src/view/keylistcontroller.cpp:575
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Hoofdcertificaat vertrouwen"
 
-#: src/view/keylistcontroller.cpp:622
+#: src/view/keylistcontroller.cpp:584
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Hoofdcertificaat niet vertrouwen"
 
-#: src/view/keylistcontroller.cpp:631
+#: src/view/keylistcontroller.cpp:593
 #, kde-format
 msgid "Technical Details"
 msgstr "Technische details"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:603
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME-certificaten vernieuwen"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:612
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "CRL-cache legen"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:621
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "CRL-cache dumpen"
 
-#: src/view/keylistcontroller.cpp:668
+#: src/view/keylistcontroller.cpp:630
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "CRL van bestand importeren..."
@@ -11449,12 +11449,12 @@ msgstr "CRL van bestand importeren..."
 msgid "View Columns"
 msgstr "Kolommen tonen"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:611
+#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Hiërarchische lijst met certificaten"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:611
+#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
 #, kde-format
 msgid "List of certificates"
 msgstr "Lijst met certificaten"

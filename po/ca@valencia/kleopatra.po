@@ -1,24 +1,24 @@
 # Translation of kleopatra.po to Catalan (Valencian)
 # Copyright (C) 2004-2023 This_file_is_part_of_KDE
 #
+# SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Antoni Bella Pérez <antonibella5@yahoo.com>
 # Albert Astals Cid <aacid@kde.org>, 2004, 2005.
 # Sebastià Pla i Sanz <sps@sastia.com>, 2004, 2006.
 # Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009, 2010, 2011.
-# SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Antoni Bella Pérez <antonibella5@yahoo.com>
 # Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-07 02:43+0000\n"
-"PO-Revision-Date: 2023-10-28 17:19+0200\n"
+"PO-Revision-Date: 2023-11-07 17:55+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -465,7 +465,7 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
-"<para>Voleu concedir a «%1» el dret de marcar els certificats com a %2 per a "
+"<para>Voleu concedir a «%1» el dret de marcar els certificats com a %2 per "
 "tu?</para><para><emphasis>Açò significa que el propietari d'este certificat "
 "comprova correctament les empremtes dactilars i confirma les identitats "
 "d'altres.</emphasis></para>"
@@ -480,7 +480,7 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 "<para>Voleu concedir a «%1» el dret de marcar els certificats com a vàlids "
-"per a tu?</para><para><emphasis>Açò significa que el propietari d'este "
+"per tu?</para><para><emphasis>Açò significa que el propietari d'este "
 "certificat comprova correctament les empremtes dactilars i confirma les "
 "identitats d'altres.</emphasis></para>"
 
@@ -504,7 +504,7 @@ msgid ""
 "you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
 "<para>El certificat «%1» està facultat per a marcar altres certificats com a "
-"%2 per a tu.</para><para>Voleu revocar este dret?</para>"
+"%2 per tu.</para><para>Voleu revocar este dret?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
 #, kde-kuit-format
@@ -514,7 +514,7 @@ msgid ""
 "for you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
 "<para>El certificat «%1» està facultat per a marcar altres certificats com a "
-"vàlids per a tu.</para><para>Voleu revocar este dret?</para>"
+"vàlids per tu.</para><para>Voleu revocar este dret?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
 #, kde-format
@@ -3633,7 +3633,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
-msgstr ""
+msgstr "Tracta els fitxers «.p7m» sense extensió com a correus."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:69
@@ -3734,7 +3734,7 @@ msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys that "
 "were used to certify the user IDs of newly imported OpenPGP keys."
 msgstr ""
-"Si està activada, Kleopatra intentarà recuperar automàticament les claus que "
+"Si se selecciona, Kleopatra intentarà recuperar automàticament les claus que "
 "s'han utilitzat per a certificar els ID d'usuari de les claus OpenPGP "
 "importades de nou."
 
@@ -3758,7 +3758,7 @@ msgstr ""
 "De manera predeterminada, Kleopatra només consulta els directoris de "
 "certificats dels proveïdors (WKD) per als identificadors d'usuari que es van "
 "recuperar originalment d'un WKD quan actualitzeu un certificat OpenPGP. Si "
-"esta opció està activada, Kleopatra consultarà els WKD per a tots els ID "
+"se selecciona esta opció, Kleopatra consultarà els WKD per a tots els ID "
 "d'usuari."
 
 #: src/conf/dirservconfigpage.cpp:423
@@ -4056,8 +4056,8 @@ msgid ""
 "checked."
 msgstr ""
 "De manera predeterminada, GnuPG utilitza el fitxer ~/.gnupg/policies.txt per "
-"a comprovar si s'admet la política d'un certificat. Si esta opció està "
-"seleccionada, no es comprovaran les polítiques."
+"a comprovar si s'admet la política d'un certificat. Si se selecciona esta "
+"opció, no es comprovaran les polítiques."
 
 #. i18n: ectx: property (text), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:134
@@ -4072,8 +4072,8 @@ msgid ""
 "If this option is checked, Certificate Revocation Lists are never used to "
 "validate S/MIME certificates."
 msgstr ""
-"Si esta opció està marcada, no s'empraran mai les llistes de revocació de "
-"certificats per a validar els certificats S/MIME."
+"Si se selecciona, no s'empraran mai les llistes de revocació de certificats "
+"per a validar els certificats S/MIME."
 
 #. i18n: ectx: property (text), widget (QCheckBox, neverConsultCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:144
@@ -4092,8 +4092,8 @@ msgid ""
 "allowing trusted root certificates into your certificate store will "
 "undermine the security of the system."
 msgstr ""
-"Si es marca esta opció mentre s'importa un certificat de la CA arrel, se us "
-"demanarà que confirmeu la seua empremta digital i el seu estat, si "
+"Si se selecciona esta opció mentre s'importa un certificat de la CA arrel, "
+"se us demanarà que confirmeu la seua empremta digital i el seu estat, si "
 "considereu que podeu confiar en este certificat arrel. Cal que els "
 "certificats arrels siguen de confiança abans que els certificats que ell "
 "certifica esdevinguen de confiança. Però acceptar la confiança dels "
@@ -4113,8 +4113,9 @@ msgid ""
 "If this option is checked, missing issuer certificates are fetched when "
 "necessary (this applies to both validation methods, CRLs and OCSP)."
 msgstr ""
-"Si es marca esta opció, els certificats de l'emissor que falten s'obtindran "
-"quan siga necessari (açò aplica als dos mètodes de validació, CRL i OCSP)."
+"Si se selecciona esta opció, els certificats de l'emissor que falten "
+"s'obtindran quan siga necessari (açò aplica als dos mètodes de validació, "
+"CRL i OCSP)."
 
 #. i18n: ectx: property (text), widget (QCheckBox, fetchMissingCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:164
@@ -4171,9 +4172,9 @@ msgid ""
 "(which comes from the environment variable http_proxy) will be used for any "
 "HTTP request."
 msgstr ""
-"Si esta opció està seleccionada, el valor de l'intermediari HTTP que es "
-"mostra a la dreta (i que prové de la variable d'entorn http_proxy) serà "
-"l'emprada per a qualsevol sol·licitud HTTP."
+"Si se selecciona esta opció, el valor de l'intermediari HTTP que es mostra a "
+"la dreta (i que prové de la variable d'entorn http_proxy) serà l'emprada per "
+"a qualsevol sol·licitud HTTP."
 
 #. i18n: ectx: property (text), widget (QRadioButton, honorHTTPProxyRB)
 #: src/conf/smimevalidationconfigurationwidget.ui:201
@@ -6830,9 +6831,9 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
-"Activeu esta opció si voleu compartir les vostres certificacions amb altres. "
-"Si només voleu marcar els certificats com a certificats per a tu, llavors "
-"podeu desactivar-la."
+"Seleccioneu esta opció si voleu compartir les vostres certificacions amb "
+"altres. Si només voleu marcar els certificats com a certificats per a tu, "
+"llavors podeu desactivar-la."
 
 #: src/dialogs/certifywidget.cpp:372
 #, kde-format
@@ -6846,8 +6847,8 @@ msgid ""
 "Check this option, if you want to upload your certifications to a "
 "certificate directory after successful certification."
 msgstr ""
-"Activeu esta opció si voleu pujar les vostres certificacions a un directori "
-"de certificats després d'una certificació correcta."
+"Seleccioneu esta opció si voleu pujar les vostres certificacions a un "
+"directori de certificats després d'una certificació correcta."
 
 #: src/dialogs/certifywidget.cpp:387
 #, kde-format
@@ -7984,7 +7985,7 @@ msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
 "after decryption."
 msgstr ""
-"Quan està activada esta opció, Kleopatra extraurà automàticament els arxius "
+"Quan se selecciona esta opció, Kleopatra extraurà automàticament els arxius "
 "de fitxers després de la desencriptació."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
@@ -8444,7 +8445,7 @@ msgid ""
 "keys. This is\n"
 "         useful in combination with trusted introducers."
 msgstr ""
-"Si està activada, Kleopatra intentarà recuperar automàticament les claus\n"
+"Si se selecciona, Kleopatra intentarà recuperar automàticament les claus\n"
 "         que s'han utilitzat per a certificar els ID d'usuari de les claus "
 "OpenPGP importades de nou.\n"
 "         Açò és útil en combinació amb els presentadors de confiança."
@@ -8472,7 +8473,7 @@ msgstr ""
 "certificats dels proveïdors (WKD)\n"
 "         per als identificadors d'usuari que es van recuperar originalment "
 "d'un WKD quan actualitzeu un certificat OpenPGP.\n"
-"         Si esta opció està activada, Kleopatra consultarà els WKD per a "
+"         Si se selecciona esta opció, Kleopatra consultarà els WKD per a "
 "tots els ID d'usuari."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
@@ -8488,7 +8489,7 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
-"Si està activada, Kleopatra mostrarà notificacions en diversos llocs quan "
+"Si se selecciona, Kleopatra mostrarà notificacions en diversos llocs quan "
 "s'utilitzen\n"
 "        certificats que estan a punt de véncer prompte."
 

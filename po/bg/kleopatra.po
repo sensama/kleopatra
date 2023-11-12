@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-11 01:43+0000\n"
-"PO-Revision-Date: 2023-10-03 10:15+0200\n"
+"PO-Revision-Date: 2023-11-11 16:48+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: \n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -356,11 +356,7 @@ msgid "Certifying certificates ..."
 msgstr "Сертифициране на сертификат..."
 
 #: src/commands/certifygroupcommand.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification of all certificates failed.</para><para>Error: "
-#| "<message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
@@ -1162,11 +1158,7 @@ msgstr "Грешка при шифроване на клипборда"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1174,19 +1166,19 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Сертификат '%1' е упълномощен да маркира други сертификати като "
-"валидни за вас.</para><para>Искате ли да отмените това правомощие?</para>"
+"<para>Не сте сертифицирали всички валидни потребителски индентификатори  на "
+"този сертификат с експортируеми сертификати Хора, които разчитат на вашите "
+"сертификати може да не са в състояние да проверят сертификатитеИскате ли да "
+"да продължите експортирането?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "OpenPGP сертификат за експортиране"
+msgstr "Потвърждаване на експортирането на сертификатите"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportcertificatecommand.cpp:202
@@ -1194,22 +1186,16 @@ msgstr "OpenPGP сертификат за експортиране"
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Експортиране на сертификати %1"
-msgstr[1] "Експортиране на сертификати %1"
+msgstr[0] "Експортиране на сертификат"
+msgstr[1] "Експортиране на сертификати"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1217,8 +1203,10 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Сертификат '%1' е упълномощен да маркира други сертификати като "
-"валидни за вас.</para><para>Искате ли да отмените това правомощие?</para>"
+"<para>Не сте сертифицирали всички валидни потребителски индентификатори  на "
+"сертификатите изброени по-долу с експортируеми сертификати. Хора, които "
+"разчитат на вашите сертификати може да не са в състояние да проверят "
+"сертификатите.</para><para>Искате ли да да продължите експортирането?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1317,11 +1305,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Не може да се презапише съществуващ <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1329,32 +1313,26 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Сертификат '%1' е упълномощен да маркира други сертификати като "
-"валидни за вас.</para><para>Искате ли да отмените това правомощие?</para>"
+"<para>Не сте сертифицирали всички OpenPGP сертификати в тази група с "
+"експортируеми сертификати Хора, които разчитат на вашите сертификати може да "
+"не са в състояние да проверят сертификатите.</para><para>Искате ли да да "
+"продължите експортирането?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "Конфигуриране на групи"
+msgstr "Потвърждение на експортирането на група"
 
 #: src/commands/exportgroupscommand.cpp:203
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "Грешка при експортирането"
+msgstr "Експортиране на група"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1362,16 +1340,16 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Сертификат '%1' е упълномощен да маркира други сертификати като "
-"валидни за вас.</para><para>Искате ли да отмените това правомощие?</para>"
+"<para>Не сте сертифицирали всички OpenPGP сертификати в изброените по-долу "
+"групи с експортируеми сертификати. Хора, които разчитат на вашите "
+"сертификати може да не са в състояние да проверят сертификатите.</"
+"para><para>Искате ли да да продължите експортирането?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr "Грешка при експортирането"
+msgstr "Експортиране на групи "
 
 #: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format
@@ -2848,6 +2826,8 @@ msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Не можете да генерирате ключ на тази смарт карта, защото тя не поддържа "
+"никой от съвместимите алгоритми."
 
 #: src/commands/refreshcertificatecommand.cpp:153
 #: src/commands/refreshcertificatecommand.cpp:211
@@ -3642,7 +3622,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
-msgstr ""
+msgstr "Обработване на .p7m файловете без разширения като е-поща."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:69
@@ -6827,6 +6807,9 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
+"Отбележете тази опция, ако искате да споделите сертификатите си с други "
+"хора. Ако искате само да маркирате сертификатите като сертифицирани за себе "
+"си, можете да премахнете отметката."
 
 #: src/dialogs/certifywidget.cpp:372
 #, kde-format
@@ -6840,6 +6823,8 @@ msgid ""
 "Check this option, if you want to upload your certifications to a "
 "certificate directory after successful certification."
 msgstr ""
+"Отбележете тази опция, ако искате да качите сертификатите си в директория за "
+"сертификати след успешно сертифициране."
 
 #: src/dialogs/certifywidget.cpp:387
 #, kde-format
@@ -12007,6 +11992,8 @@ msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Не можете да генерирате ключове на тази смарт карта, защото тя не поддържа "
+"никой от съвместимите алгоритми."
 
 #: src/view/pgpcardwidget.cpp:430
 #, kde-format

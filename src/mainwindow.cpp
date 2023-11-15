@@ -712,18 +712,16 @@ void MainWindow::Private::setupActions()
     coll->addAction(QStringLiteral("help_doc_gnupg"), man_gnupg);
 
     /* The secops */
-    const auto vsa10573 =
-        new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
-                      i18n("SecOps VSA-10573"),
-                      i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10573-ENG_secops-20220207.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto vsa10573 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
+                                        i18n("SecOps VSA-10573"),
+                                        i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10573-ENG_secops.pdf"),
+                                        QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_vsa10573"), vsa10573);
 
-    const auto vsa10584 =
-        new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
-                      i18n("SecOps VSA-10584"),
-                      i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10584-ENG_secops-20220207.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto vsa10584 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
+                                        i18n("SecOps VSA-10584"),
+                                        i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10584-ENG_secops.pdf"),
+                                        QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_vsa10584"), vsa10584);
 
     q->setStandardToolBarMenuEnabled(true);

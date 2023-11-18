@@ -18,7 +18,7 @@
 #include <utils/cached.h>
 #include <utils/kleo_assert.h>
 
-#include <KMime/HeaderParsing>
+#include <KMime/Types>
 
 #include <gpgme++/key.h>
 

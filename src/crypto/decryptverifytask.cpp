@@ -34,7 +34,7 @@
 #include <utils/kleo_assert.h>
 #include <utils/output.h>
 
-#include <KMime/HeaderParsing>
+#include <KMime/Types>
 
 #include <gpgme++/context.h>
 #include <gpgme++/decryptionresult.h>

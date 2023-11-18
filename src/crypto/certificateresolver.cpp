@@ -30,7 +30,6 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace GpgME;
 using namespace KMime::Types;
-using namespace KMime::HeaderParsing;
 
 class KConfigBasedRecipientPreferences::Private
 {

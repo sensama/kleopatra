@@ -32,7 +32,7 @@
 
 #include <gpgme++/key.h>
 
-#include <KMime/HeaderParsing>
+#include <KMime/Types>
 
 #include <KLocalizedString>
 

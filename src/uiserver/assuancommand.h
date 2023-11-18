@@ -17,7 +17,7 @@
 
 #include <gpg-error.h>
 
-#include <KMime/HeaderParsing>
+#include <KMime/Types>
 
 #include <qwindowdefs.h> // for WId
 

@@ -28,7 +28,7 @@
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
 
-#include <KMime/HeaderParsing>
+#include <KMime/Types>
 
 #include <KLocalizedString>
 

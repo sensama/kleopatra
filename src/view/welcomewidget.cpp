@@ -13,8 +13,7 @@
 
 #include "htmllabel.h"
 
-#include <Libkleo/GnuPG>
-#include <version-kleopatra.h>
+#include <KAboutData>
 
 #include <QAction>
 #include <QHBoxLayout>
@@ -113,13 +112,7 @@ public:
         auto vLay = new QVBoxLayout(q);
         auto hLay = new QHBoxLayout;
 
-        const QString welcome = i18nc("%1 is version",
-                                      "Welcome to Kleopatra %1",
-#ifdef Q_OS_WIN
-                                      Kleo::gpg4winVersion());
-#else
-                                      QStringLiteral(KLEOPATRA_VERSION_STRING));
-#endif
+        const QString welcome = i18nc("%1 is version", "Welcome to Kleopatra %1", KAboutData::applicationData().version());
         const QString introduction = i18n("Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org\">GnuPG</a>.");
 
         const QString keyExplanation = i18n("For most actions you need either a public key (certificate) or your own private key.");

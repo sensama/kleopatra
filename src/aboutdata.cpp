@@ -12,14 +12,28 @@
 
 #include "aboutdata.h"
 
+#include "kleopatraapplication.h"
+
 #include <Libkleo/GnuPG>
 
-#include <QLocale>
+#include <QSettings>
+#include <QTextCodec>
 #include <QThread>
-#include <QCoreApplication>
 
 #include <KLazyLocalizedString>
 #include <KLocalizedString>
+
+#include "kleopatra_debug.h"
+
+/* Path to GnuPGs signing keys relative to the GnuPG installation */
+#ifndef GNUPG_DISTSIGKEY_RELPATH
+#define GNUPG_DISTSIGKEY_RELPATH "/../share/gnupg/distsigkey.gpg"
+#endif
+/* Path to a VERSION file relative to QCoreApplication::applicationDirPath */
+#ifndef VERSION_RELPATH
+#define VERSION_RELPATH "/../VERSION"
+#endif
+
 static const char kleopatra_version[] = KLEOPATRA_VERSION_STRING;
 
 struct about_data {
@@ -48,16 +62,74 @@ static const about_data credits[] = {
     {kli18n("Laurent Montel"), kli18n("Qt5 port, general code maintenance"), "montel@kde.org", nullptr},
 };
 
+void updateAboutDataFromSettings(const QSettings *settings)
+{
+    if (!settings) {
+        return;
+    }
+    auto about = KAboutData::applicationData();
+    about.setDisplayName(settings->value(QStringLiteral("displayName"), about.displayName()).toString());
+    about.setProductName(settings->value(QStringLiteral("productName"), about.productName()).toByteArray());
+    about.setComponentName(settings->value(QStringLiteral("componentName"), about.componentName()).toString());
+    about.setShortDescription(settings->value(QStringLiteral("shortDescription"), about.shortDescription()).toString());
+    about.setHomepage(settings->value(QStringLiteral("homepage"), about.homepage()).toString());
+    about.setBugAddress(settings->value(QStringLiteral("bugAddress"), about.bugAddress()).toByteArray());
+    about.setVersion(settings->value(QStringLiteral("version"), about.version()).toByteArray());
+    about.setOtherText(settings->value(QStringLiteral("otherText"), about.otherText()).toString());
+    about.setCopyrightStatement(settings->value(QStringLiteral("copyrightStatement"), about.copyrightStatement()).toString());
+    about.setDesktopFileName(settings->value(QStringLiteral("desktopFileName"), about.desktopFileName()).toString());
+    KAboutData::setApplicationData(about);
+}
+
+// Extend the about data with the used GnuPG Version since this can
+// make a big difference with regards to the available features.
+static void loadBackendVersions()
+{
+    STARTUP_TIMING << "Checking backend versions";
+    const auto backendVersions = Kleo::backendVersionInfo();
+    STARTUP_TIMING << "backend versions checked";
+    if (!backendVersions.empty()) {
+        auto about = KAboutData::applicationData();
+        about.setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
+                           + QLatin1String{"<ul><li>"} //
+                           + backendVersions.join(QLatin1String{"</li><li>"}) //
+                           + QLatin1String{"</li></ul>"} //
+                           + about.otherText());
+        KAboutData::setApplicationData(about);
+    }
+}
+
+// This code is mostly for Gpg4win and GnuPG VS-Desktop so that they
+// can put in their own about data information.
+static void loadCustomAboutData()
+{
+    auto thread = QThread::create([]() {
+        const QStringList searchPaths = {Kleo::gnupgInstallPath()};
+        const QString versionFile = QCoreApplication::applicationDirPath() + QStringLiteral(VERSION_RELPATH);
+        const QString distSigKeys = Kleo::gnupgInstallPath() + QStringLiteral(GNUPG_DISTSIGKEY_RELPATH);
+        STARTUP_TIMING << "Starting version info check";
+        bool valid = Kleo::gpgvVerify(versionFile, QString(), distSigKeys, searchPaths);
+        STARTUP_TIMING << "Version info checked";
+        QMetaObject::invokeMethod(qApp, [versionFile, valid]() {
+            if (valid) {
+                qCDebug(KLEOPATRA_LOG) << "Found valid VERSION file. Updating about data.";
+                auto settings = std::make_shared<QSettings>(versionFile, QSettings::IniFormat);
+                settings->setIniCodec(QTextCodec::codecForName("UTF-8"));
+                settings->beginGroup(QStringLiteral("Kleopatra"));
+                updateAboutDataFromSettings(settings.get());
+                KleopatraApplication::instance()->setDistributionSettings(settings);
+            }
+            loadBackendVersions();
+        });
+    });
+    thread->start();
+}
+
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kleopatra"),
-                 (Kleo::brandingWindowTitle().isEmpty() ? i18n("Kleopatra") : Kleo::brandingWindowTitle()),
-#ifdef Q_OS_WIN
-                 Kleo::gpg4winVersion(),
-                 Kleo::gpg4winDescription(),
-#else
+                 i18n("Kleopatra"),
                  QLatin1String(kleopatra_version),
                  i18n("Certificate Manager and Unified Crypto GUI"),
-#endif
                  KAboutLicense::GPL,
                  i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0Dalheimer, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB\n"
                       "(c) 2004, 2007, 2008, 2009 Marc\u00A0Mutz, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB") //
@@ -66,9 +138,6 @@ AboutData::AboutData()
                      + QLatin1Char('\n') //
                      + i18n("(c) 2010-%1 The Kleopatra developers, g10 Code GmbH", QStringLiteral("2023")))
 {
-#ifdef Q_OS_WIN
-    setOtherText(Kleo::gpg4winLongDescription());
-#endif
     using ::authors;
     using ::credits;
     for (unsigned int i = 0; i < sizeof authors / sizeof *authors; ++i) {
@@ -84,41 +153,5 @@ AboutData::AboutData()
                   QLatin1String(credits[i].web));
     }
 
-    /* For Linux it is possible that kleo is shipped as part
-     * of a Gpg4win based Appimage with according about data. */
-    if (Kleo::gpg4winSignedversion()) {
-        setVersion(Kleo::gpg4winVersion().toUtf8());
-        setShortDescription(Kleo::gpg4winDescription());
-        setOtherText(Kleo::gpg4winLongDescription());
-
-        /* Bug reporting page is only available in german and english */
-        if (QLocale().uiLanguages().first().startsWith(QStringLiteral("de"))) {
-            setBugAddress("https://gnupg.com/vsd/report.de.html");
-        } else {
-            setBugAddress("https://gnupg.com/vsd/report.html");
-        }
-    } else {
-#ifdef Q_OS_WIN
-        setBugAddress("https://dev.gnupg.org/u/rgpg4win");
-#endif
-    }
-
-    // Extend the about data with the used GnuPG Version since this can
-    // make a big difference with regards to the available features.
-    auto thread = QThread::create([]() {
-        const auto backendVersions = Kleo::backendVersionInfo();
-        if (!backendVersions.empty()) {
-            QMetaObject::invokeMethod(qApp, [backendVersions]() {
-                auto about = KAboutData::applicationData();
-                about.setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
-                                   + QLatin1String{"<ul><li>"} //
-                                   + backendVersions.join(QLatin1String{"</li><li>"}) //
-                                   + QLatin1String{"</li></ul>"} //
-                                   + about.otherText());
-                KAboutData::setApplicationData(about);
-            });
-        }
-    });
-    QObject::connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    thread->start();
+    loadCustomAboutData();
 }

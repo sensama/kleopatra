@@ -457,7 +457,6 @@ MainWindow::Private::Private(MainWindow *qq)
         });
     }
 
-<<<<<<< HEAD
     const auto title = Kleo::brandingWindowTitle();
     if (!title.isEmpty()) {
         QApplication::setApplicationDisplayName(title);

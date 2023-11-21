@@ -457,28 +457,6 @@ MainWindow::Private::Private(MainWindow *qq)
         });
     }
 
-    const auto title = Kleo::brandingWindowTitle();
-    if (!title.isEmpty()) {
-        QApplication::setApplicationDisplayName(title);
-    }
-
-    const auto icon = Kleo::brandingIcon();
-    if (!icon.isEmpty()) {
-        const auto dir = QDir(Kleo::gpg4winInstallPath() + QStringLiteral("/../share/kleopatra/pics"));
-        qCDebug(KLEOPATRA_LOG) << "Loading branding icon:" << dir.absoluteFilePath(icon);
-        QPixmap brandingIcon(dir.absoluteFilePath(icon));
-        if (!brandingIcon.isNull()) {
-            auto w = new QWidget;
-            auto hl = new QHBoxLayout;
-            auto lbl = new QLabel;
-            w->setLayout(hl);
-            hl->addWidget(lbl);
-            lbl->setPixmap(brandingIcon);
-            toolbar->addSeparator();
-            toolbar->addWidget(w);
-        }
-    }
-
     // Disable whats this as the vast majority of things does not have whats this
     // set in Kleopatra.
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)

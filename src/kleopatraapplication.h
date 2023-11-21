@@ -26,6 +26,7 @@ extern QElapsedTimer startupTimer;
 
 class MainWindow;
 class SysTrayIcon;
+class QSettings;
 
 class KleopatraApplication : public QApplication
 {
@@ -77,6 +78,10 @@ public:
     void toggleMainWindowVisibility();
     void restoreMainWindow();
     void openConfigDialogWithForeignParent(WId parentWId);
+
+    /* Add optional signed settings for specialized distributions */
+    void setDistributionSettings(const std::shared_ptr<QSettings> &settings);
+    std::shared_ptr<QSettings> distributionSettings() const;
 
 public Q_SLOTS:
     void openOrRaiseMainWindow();

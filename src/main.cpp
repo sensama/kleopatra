@@ -143,9 +143,6 @@ int main(int argc, char **argv)
 
     AboutData aboutData;
     KAboutData::setApplicationData(aboutData);
-    /* This is more expensive as it sounds as it might run a verification
-     * on a signed Version file and initializes the whole GpgME::Engine. */
-    STARTUP_TIMING << "Versions checked";
 
     if (Kleo::userIsElevated()) {
         /* This is a safeguard against bugreports that something fails because

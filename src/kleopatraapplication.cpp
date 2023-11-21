@@ -66,6 +66,7 @@
 #include <QGraphicsEffect>
 #endif
 #include <QPointer>
+#include <QSettings>
 #include <QStyleOption>
 #include <QStylePainter>
 
@@ -216,6 +217,7 @@ public:
     std::shared_ptr<KeyCache> keyCache;
     std::shared_ptr<Log> log;
     std::shared_ptr<FileSystemWatcher> watcher;
+    std::shared_ptr<QSettings> distroSettings;
 
 public:
     void setupKeyCache()
@@ -829,6 +831,16 @@ void KleopatraApplication::blockUrl(const QUrl &url)
 void KleopatraApplication::startGpgAgent()
 {
     Kleo::launchGpgAgent();
+}
+
+void KleopatraApplication::setDistributionSettings(const std::shared_ptr<QSettings> &settings)
+{
+    d->distroSettings = settings;
+}
+
+std::shared_ptr<QSettings> KleopatraApplication::distributionSettings() const
+{
+    return d->distroSettings;
 }
 
 #include "kleopatraapplication.moc"

@@ -55,3 +55,5 @@ target_link_libraries(kwatchgnupg
 install(TARGETS kwatchgnupg ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES images/kwatchgnupg.png images/kwatchgnupg2.png DESTINATION ${KDE_INSTALL_DATADIR}/kwatchgnupg/pics)
+install(FILES images/kwatchgnupg.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/22x22/apps)
+install(FILES org.kde.kwatchgnupg.desktop DESTINATION ${KDE_INSTALL_APPDIR})

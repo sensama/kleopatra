@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-11 01:43+0000\n"
+"POT-Creation-Date: 2023-11-22 01:35+0000\n"
 "PO-Revision-Date: 2023-11-08 11:43+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
@@ -44,99 +44,105 @@ msgstr ""
 "vpinon@kde.org,jcornavi@kde-france.org,nicolas.ternisien@gmail.com, bruno."
 "patri@gmail.com,renard@kde.org,sdepiets@gmail.com, xavier.besnard@neuf.fr"
 
-#: src/aboutdata.cpp:33
+#: src/aboutdata.cpp:48
 msgid "Andre Heinecke"
 msgstr "Andre Heinecke"
 
-#: src/aboutdata.cpp:33
+#: src/aboutdata.cpp:48
 msgid "Current Maintainer"
 msgstr "Mainteneur actuel"
 
-#: src/aboutdata.cpp:34
+#: src/aboutdata.cpp:49
 msgid "Marc Mutz"
 msgstr "Marc Mutz"
 
-#: src/aboutdata.cpp:34 src/aboutdata.cpp:35
+#: src/aboutdata.cpp:49 src/aboutdata.cpp:50
 msgid "Former Maintainer"
 msgstr "Mainteneur précédent"
 
-#: src/aboutdata.cpp:35
+#: src/aboutdata.cpp:50
 msgid "Steffen Hansen"
 msgstr "Steffen Hansen"
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:51
 msgid "Matthias Kalle Dalheimer"
 msgstr "Matthias Kalle Dalheimer"
 
-#: src/aboutdata.cpp:36
+#: src/aboutdata.cpp:51
 msgid "Original Author"
 msgstr "Auteur originel"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:55
 msgid "David Faure"
 msgstr "David Faure"
 
-#: src/aboutdata.cpp:40
+#: src/aboutdata.cpp:55
 msgid "Backend configuration framework, KIO integration"
 msgstr ""
 "Infrastructure de configuration du moteur de traitement, intégration de KIO"
 
-#: src/aboutdata.cpp:41
+#: src/aboutdata.cpp:56
 msgid "Michel Boyer de la Giroday"
 msgstr "Michel Boyer de la Giroday"
 
-#: src/aboutdata.cpp:42
+#: src/aboutdata.cpp:57
 msgid "Key-state dependent colors and fonts in the certificates list"
 msgstr ""
 "Couleurs et polices dépendant de l'état des clés dans la liste des "
 "certificats"
 
-#: src/aboutdata.cpp:45
+#: src/aboutdata.cpp:60
 msgid "Thomas Moenicke"
 msgstr "Thomas Moenicke"
 
-#: src/aboutdata.cpp:45
+#: src/aboutdata.cpp:60
 msgid "Artwork"
 msgstr "Graphisme"
 
-#: src/aboutdata.cpp:46
+#: src/aboutdata.cpp:61
 msgid "Frank Osterfeld"
 msgstr "Frank Osterfeld"
 
-#: src/aboutdata.cpp:46
+#: src/aboutdata.cpp:61
 msgid "Resident gpgme/win wrangler, UI Server commands and dialogs"
 msgstr ""
 "Application résidente de négociation gpgme/win, commandes et fenêtres du "
 "serveur d'interfaces"
 
-#: src/aboutdata.cpp:47
+#: src/aboutdata.cpp:62
 msgid "Karl-Heinz Zimmer"
 msgstr "Karl-Heinz Zimmer"
 
-#: src/aboutdata.cpp:47
+#: src/aboutdata.cpp:62
 msgid "DN display ordering support, infrastructure"
 msgstr "Prise en charge de la commande d'affichage des « ND », infrastructure"
 
-#: src/aboutdata.cpp:48
+#: src/aboutdata.cpp:63
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: src/aboutdata.cpp:48
+#: src/aboutdata.cpp:63
 msgid "Qt5 port, general code maintenance"
 msgstr "Port vers Qt5, maintenance de code générale"
 
-#: src/aboutdata.cpp:53
+#: src/aboutdata.cpp:94
+#, kde-format
+msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
+msgid "Uses:"
+msgstr "Utilise :"
+
+#: src/aboutdata.cpp:130
 #, kde-format
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp:59
+#: src/aboutdata.cpp:132
 #, kde-format
 msgid "Certificate Manager and Unified Crypto GUI"
 msgstr ""
 "Gestionnaire de certificats et interface graphique de cryptographie unifiée"
 
-#: src/aboutdata.cpp:62
+#: src/aboutdata.cpp:134
 #, kde-format
 msgid ""
 "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
@@ -147,21 +153,15 @@ msgstr ""
 "AB\n"
 "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
 
-#: src/aboutdata.cpp:65
+#: src/aboutdata.cpp:137
 #, kde-format
 msgid "(c) 2016-2018 Intevation GmbH"
 msgstr "(c) 2016 - 2018 Intevation GmbH"
 
-#: src/aboutdata.cpp:67
+#: src/aboutdata.cpp:139
 #, kde-format
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010 - %1 Les développeurs de Kleopatra, g10 Code GmbH"
-
-#: src/aboutdata.cpp:113
-#, kde-format
-msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
-msgid "Uses:"
-msgstr "Utilise :"
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -2780,7 +2780,7 @@ msgid "No Directory Servers Configured"
 msgstr "Aucun serveur d'annuaire configuré"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:482
+#: src/kleopatraapplication.cpp:484
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -4481,7 +4481,7 @@ msgstr ""
 "et non pas un mélange des deux."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:879
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:857
 #, kde-format
 msgid "Cancel"
 msgstr "Annuler"
@@ -6787,7 +6787,7 @@ msgid "Refresh certificate list"
 msgstr "Rafraîchir la liste des certificats"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:144
+#: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Importer…"
@@ -8974,48 +8974,48 @@ msgstr ""
 "Aucune chaîne ou empreinte numérique spécifiée en argument de « query » et "
 "« search »"
 
-#: src/kleopatraapplication.cpp:378
+#: src/kleopatraapplication.cpp:380
 #, kde-format
 msgid "Failed to execute command"
 msgstr "L'exécution de la commande a échoué"
 
-#: src/kleopatraapplication.cpp:420
+#: src/kleopatraapplication.cpp:422
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Protocole ambigu : --openpgp et --cms"
 
-#: src/kleopatraapplication.cpp:454
+#: src/kleopatraapplication.cpp:456
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Aucune chaîne de recherche définie pour --search"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Aucune empreinte numérique spécifiée en argument de --query"
 
-#: src/kleopatraapplication.cpp:526
+#: src/kleopatraapplication.cpp:528
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Commandes ambiguës « %1 » et « %2 »"
 
-#: src/kleopatraapplication.cpp:533
+#: src/kleopatraapplication.cpp:535
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Aucun fichier spécifié pour la commande « %1 »"
 
-#: src/kleopatraapplication.cpp:547
+#: src/kleopatraapplication.cpp:549
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Impossible de lire « %1 »"
 
-#: src/kleopatraapplication.cpp:826
+#: src/kleopatraapplication.cpp:828
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 "L'ouverture d'un lien externe est interdit pour des raisons administratives."
 
-#: src/kleopatraapplication.cpp:826
+#: src/kleopatraapplication.cpp:828
 #, kde-format
 msgid "Prohibited"
 msgstr "Interdit"
@@ -9114,7 +9114,7 @@ msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME est trop ancien"
 
-#: src/main.cpp:163
+#: src/main.cpp:160
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9131,23 +9131,23 @@ msgstr ""
 "et les copier dans le dossier <filename>AppData\\Roaming\\gnupg</filename> "
 "avec les permissions appropriées.</para>"
 
-#: src/main.cpp:167
+#: src/main.cpp:164
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Voulez-vous vraiment continuer ?</para>"
 
-#: src/main.cpp:168
+#: src/main.cpp:165
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "En cours d'exécution comme superutilisateur"
 
-#: src/main.cpp:236
+#: src/main.cpp:233
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Erreur du serveur d'interfaces GPG"
 
-#: src/main.cpp:240
+#: src/main.cpp:237
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9167,7 +9167,7 @@ msgstr ""
 "<br/>Vous pouvez essayer de continuer à utiliser Kleopatra, mais il pourrait "
 "y avoir d'autres problèmes. </qt>"
 
-#: src/main.cpp:270
+#: src/main.cpp:267
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Arguments non valables : %1"
@@ -9216,18 +9216,18 @@ msgstr ""
 msgid "Error Starting KWatchGnuPG"
 msgstr "Erreur lors du lancement de KWatchgnupg"
 
-#: src/mainwindow.cpp:524
+#: src/mainwindow.cpp:502
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Afficheur de journaux GnuPG"
 
-#: src/mainwindow.cpp:536
+#: src/mainwindow.cpp:514
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Relancer les processus en arrière plan"
 
-#: src/mainwindow.cpp:537
+#: src/mainwindow.cpp:515
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9237,23 +9237,23 @@ msgstr ""
 "Relancer les processus en arrière plan, par exemple, après avoir effectuée "
 "des modifications de configuration."
 
-#: src/mainwindow.cpp:549
+#: src/mainwindow.cpp:527
 #, kde-format
 msgid "Check for updates"
 msgstr "Vérifier les mises à jour"
 
-#: src/mainwindow.cpp:562
+#: src/mainwindow.cpp:540
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certificats"
 
-#: src/mainwindow.cpp:563
+#: src/mainwindow.cpp:541
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Afficher les détails du certificat"
 
-#: src/mainwindow.cpp:573
+#: src/mainwindow.cpp:551
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9261,45 +9261,45 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Bloc-notes"
 
-#: src/mainwindow.cpp:574
+#: src/mainwindow.cpp:552
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Afficher le tampon pour le chiffrement / déchiffrement et la signature / "
 "vérification du texte."
 
-#: src/mainwindow.cpp:584
+#: src/mainwindow.cpp:562
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "SmartCards"
 
-#: src/mainwindow.cpp:585
+#: src/mainwindow.cpp:563
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Afficher le gestionnaire de « smartcard »"
 
-#: src/mainwindow.cpp:596
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Effectuer un contrôle automatique"
 
-#: src/mainwindow.cpp:607
+#: src/mainwindow.cpp:585
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Configurer les groupes..."
 
-#: src/mainwindow.cpp:637
+#: src/mainwindow.cpp:615
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Placer le focus sur la recherche rapide"
 
-#: src/mainwindow.cpp:649
+#: src/mainwindow.cpp:627
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Collection « gpg4win »"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:631
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9307,48 +9307,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:663
+#: src/mainwindow.cpp:641
 #, kde-format
 msgid "&Quickguide"
 msgstr "&Guide rapide"
 
-#: src/mainwindow.cpp:664
+#: src/mainwindow.cpp:642
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:671
+#: src/mainwindow.cpp:649
 #, kde-format
 msgid "&Password-based encryption"
 msgstr "Chiffrement à partir d'un mot de &passe"
 
-#: src/mainwindow.cpp:672
+#: src/mainwindow.cpp:650
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:678
+#: src/mainwindow.cpp:656
 #, kde-format
 msgid "&Group configuration"
 msgstr "Configuration du &groupe"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:657
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:687
+#: src/mainwindow.cpp:665
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr "Chiffrement des courriels dans Outlook"
 
-#: src/mainwindow.cpp:688
+#: src/mainwindow.cpp:666
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9356,60 +9356,60 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:697
+#: src/mainwindow.cpp:675
 #, kde-format
 msgid "&Certification Management"
 msgstr "Gestion des &certifications."
 
-#: src/mainwindow.cpp:698
+#: src/mainwindow.cpp:676
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:705
+#: src/mainwindow.cpp:683
 #, kde-format
 msgid "&Smartcard setup"
 msgstr "Configuration de cartes de mémoire"
 
-#: src/mainwindow.cpp:706
+#: src/mainwindow.cpp:684
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:712
+#: src/mainwindow.cpp:690
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Ligne de commandes pour GnuPG"
 
-#: src/mainwindow.cpp:721
+#: src/mainwindow.cpp:699
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:700
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:729
+#: src/mainwindow.cpp:707
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:730
+#: src/mainwindow.cpp:708
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:734
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9418,30 +9418,30 @@ msgstr ""
 "Il reste des opérations en cours en arrière-plan. Elle seront terminées si "
 "vous fermez la fenêtre. Continuer ?"
 
-#: src/mainwindow.cpp:759
+#: src/mainwindow.cpp:737
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tâches d'arrière-plan en cours"
 
 # unreviewed-context
-#: src/mainwindow.cpp:863 src/view/keylistcontroller.cpp:406
+#: src/mainwindow.cpp:841 src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Signer / chiffrer..."
 
 # unreviewed-context
-#: src/mainwindow.cpp:864 src/utils/clipboardmenu.cpp:50
+#: src/mainwindow.cpp:842 src/utils/clipboardmenu.cpp:50
 #: src/view/keylistcontroller.cpp:397
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Déchiffrer / vérifier..."
 
-#: src/mainwindow.cpp:869
+#: src/mainwindow.cpp:847
 #, kde-format
 msgid "Import Certificates"
 msgstr "Importer des certificats"
 
-#: src/mainwindow.cpp:870
+#: src/mainwindow.cpp:848
 #, kde-format
 msgid "Import CRLs"
 msgstr "Importer des LRC"
@@ -12624,13 +12624,13 @@ msgstr "Tout réduire"
 msgid "All Certificates"
 msgstr "Tous les certificats"
 
-#: src/view/welcomewidget.cpp:117
+#: src/view/welcomewidget.cpp:115
 #, kde-format
 msgctxt "%1 is version"
 msgid "Welcome to Kleopatra %1"
 msgstr "Bienvenue dans Kleopatra %1"
 
-#: src/view/welcomewidget.cpp:123
+#: src/view/welcomewidget.cpp:116
 #, kde-format
 msgid ""
 "Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
@@ -12639,7 +12639,7 @@ msgstr ""
 "Kleopatra est une interface pour le logiciel de chiffrement <a href="
 "\"https://gnupg.org\">GnuPG</a>."
 
-#: src/view/welcomewidget.cpp:125
+#: src/view/welcomewidget.cpp:118
 #, kde-format
 msgid ""
 "For most actions you need either a public key (certificate) or your own "
@@ -12648,12 +12648,12 @@ msgstr ""
 "Pour la plupart des actions vous avez besoin d'une clé publique (certificat) "
 "ou de votre propre clé privée."
 
-#: src/view/welcomewidget.cpp:127
+#: src/view/welcomewidget.cpp:120
 #, kde-format
 msgid "The private key is needed to decrypt or sign."
 msgstr "La clé privée est nécessaire pour déchiffrer ou signer."
 
-#: src/view/welcomewidget.cpp:128
+#: src/view/welcomewidget.cpp:121
 #, kde-format
 msgid ""
 "The public key can be used by others to verify your identity or encrypt to "
@@ -12662,7 +12662,7 @@ msgstr ""
 "La clé publique peut être utilisée par les autres pour vérifier votre "
 "identité ou chiffrer des messages pour vous."
 
-#: src/view/welcomewidget.cpp:131
+#: src/view/welcomewidget.cpp:124
 #, kde-format
 msgctxt ""
 "More info about public key cryptography, please link to your local version "
@@ -12670,18 +12670,18 @@ msgctxt ""
 msgid "https://en.wikipedia.org/wiki/Public-key_cryptography"
 msgstr "https://fr.wikipedia.org/wiki/Cryptographie_asymétrique"
 
-#: src/view/welcomewidget.cpp:132
+#: src/view/welcomewidget.cpp:125
 #, kde-format
 msgctxt "%1 is link a wiki article"
 msgid "You can learn more about this on <a href=\"%1\">Wikipedia</a>."
 msgstr "Vous pouvez en apprendre plus sur <a href=\"%1\">Wikipedia</a>."
 
-#: src/view/welcomewidget.cpp:140
+#: src/view/welcomewidget.cpp:133
 #, kde-format
 msgid "New Key Pair..."
 msgstr "Nouvelle paire de clés…"
 
-#: src/view/welcomewidget.cpp:159
+#: src/view/welcomewidget.cpp:152
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -12694,7 +12694,7 @@ msgstr ""
 "certification « S / MIME »</interface> dans le menu <interface>Fichier</"
 "interface>."
 
-#: src/view/welcomewidget.cpp:174
+#: src/view/welcomewidget.cpp:167
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

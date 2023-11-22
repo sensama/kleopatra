@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "aboutdata.h"
+#include "kleopatraapplication.h"
 #include "mainwindow.h"
 #include "settings.h"
 
@@ -70,6 +71,7 @@
 #include <QMimeData>
 #include <QPixmap>
 #include <QProcess>
+#include <QSettings>
 #include <QStackedWidget>
 #include <QStatusBar>
 #include <QTimer>
@@ -239,8 +241,18 @@ public:
 
     void updateStatusBar()
     {
+        auto statusBar = std::make_unique<QStatusBar>();
+        auto settings = KleopatraApplication::instance()->distributionSettings();
+        bool showStatusbar = false;
+        if (settings) {
+            const QString statusline = settings->value(QStringLiteral("statusline"), {}).toString();
+            if (!statusline.isEmpty()) {
+                auto customStatusLbl = new QLabel(statusline);
+                statusBar->insertWidget(0, customStatusLbl);
+                showStatusbar = true;
+            }
+        }
         if (DeVSCompliance::isActive()) {
-            auto statusBar = std::make_unique<QStatusBar>();
             auto statusLbl = std::make_unique<QLabel>(DeVSCompliance::name());
             if (!SystemInfo::isHighContrastModeActive()) {
                 const auto color = KColorScheme(QPalette::Active, KColorScheme::View)
@@ -252,6 +264,10 @@ public:
                 statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").arg(color.name()).arg(background.name()));
             }
             statusBar->insertPermanentWidget(0, statusLbl.release());
+            showStatusbar = true;
+        }
+
+        if (showStatusbar) {
             q->setStatusBar(statusBar.release()); // QMainWindow takes ownership
         } else {
             q->setStatusBar(nullptr);

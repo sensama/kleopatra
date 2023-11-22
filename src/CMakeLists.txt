@@ -600,7 +600,6 @@ target_link_libraries(kleopatra_bin
   ${_kleopatra_platform_libs}
 )
 
-target_link_libraries(kleopatra_bin Qt6::Core5Compat)
 target_link_libraries(kleopatra_bin QGpgmeQt6)
 
 install(TARGETS kleopatra_bin ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

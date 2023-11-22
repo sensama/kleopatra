@@ -18,7 +18,6 @@
 
 #include <QCoreApplication>
 #include <QSettings>
-#include <QTextCodec>
 #include <QThread>
 
 #include <KLazyLocalizedString>

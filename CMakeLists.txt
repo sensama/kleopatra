@@ -134,8 +134,6 @@ if (${QGPGME_NAME}_VERSION VERSION_GREATER_EQUAL "1.23.0")
     set(QGPGME_SUPPORTS_WKD_REFRESH_JOB 1)
 endif()
 
-find_package(Qt6Core5Compat)
-
 find_package(KPim6Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KPim6Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
 find_package(KPim6IdentityManagementCore ${KIDENTITYMANAGEMENT_VERSION} CONFIG)

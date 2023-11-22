@@ -29,7 +29,7 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QString>
-#include <QTextCodec>
+#include <QStringDecoder>
 #include <QWidget>
 
 #include <KSharedConfig>
@@ -140,9 +140,10 @@ void ImportCertificateFromFileCommand::doStart()
         // check for UTF-16- (or UTF-32- or UTF-8-with-BOM-)encoded text file;
         // binary certificate files don't start with a BOM, so that it's safe
         // to assume that data starting with a BOM is UTF-encoded text
-        if (const auto codec = QTextCodec::codecForUtfText(data, nullptr)) {
-            qCDebug(KLEOPATRA_LOG) << this << __func__ << "Decoding" << codec->name() << "encoded data";
-            data = codec->toUnicode(data).toUtf8();
+        if (const auto encoding = QStringDecoder::encodingForData(data)) {
+            QStringDecoder codec(*encoding);
+            qCDebug(KLEOPATRA_LOG) << this << __func__ << "Decoding" << codec.name() << "encoded data";
+            data = QString(codec.decode(data)).toUtf8();
         }
         d->startImport(GpgME::OpenPGP, data, fn);
         d->startImport(GpgME::CMS, data, fn);

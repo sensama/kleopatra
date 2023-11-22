@@ -58,6 +58,7 @@ class KeyParameters::Private
     KeyUsage subkeyUsage;
 
     QString name;
+    QString comment;
     QString dn;
     std::vector<QString> emailAdresses;
     std::vector<QString> domainNames;
@@ -214,6 +215,16 @@ QString KeyParameters::name() const
     return d->name;
 }
 
+void KeyParameters::setComment(const QString &comment)
+{
+    d->comment = comment;
+}
+
+QString KeyParameters::comment() const
+{
+    return d->comment;
+}
+
 void KeyParameters::setDN(const QString &dn)
 {
     d->dn = dn;
@@ -346,6 +357,9 @@ QString KeyParameters::toString() const
 
     if (!d->name.isEmpty()) {
         keyParameters.push_back(serialize("Name-Real", d->name));
+    }
+    if (!d->comment.isEmpty()) {
+        keyParameters.push_back(serialize("Name-Comment", d->comment));
     }
     if (!d->dn.isEmpty()) {
         keyParameters.push_back(serialize("Name-DN", d->dn));

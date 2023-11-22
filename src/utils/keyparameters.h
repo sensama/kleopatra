@@ -67,6 +67,8 @@ public:
 
     void setName(const QString &name);
     QString name() const;
+    void setComment(const QString &comment);
+    QString comment() const;
     void setDN(const QString &dn);
     QString dn() const;
     void setEmail(const QString &email);

@@ -85,44 +85,44 @@ void updateAboutDataFromSettings(const QSettings *settings)
 // make a big difference with regards to the available features.
 static void loadBackendVersions()
 {
-    STARTUP_TIMING << "Checking backend versions";
-    const auto backendVersions = Kleo::backendVersionInfo();
-    STARTUP_TIMING << "backend versions checked";
-    if (!backendVersions.empty()) {
-        auto about = KAboutData::applicationData();
-        about.setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
-                           + QLatin1String{"<ul><li>"} //
-                           + backendVersions.join(QLatin1String{"</li><li>"}) //
-                           + QLatin1String{"</li></ul>"} //
-                           + about.otherText());
-        KAboutData::setApplicationData(about);
-    }
+    auto thread = QThread::create([]() {
+        STARTUP_TIMING << "Checking backend versions";
+        const auto backendVersions = Kleo::backendVersionInfo();
+        STARTUP_TIMING << "backend versions checked";
+        if (!backendVersions.empty()) {
+            QMetaObject::invokeMethod(qApp, [backendVersions]() {
+                auto about = KAboutData::applicationData();
+                about.setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
+                                   + QLatin1String{"<ul><li>"} //
+                                   + backendVersions.join(QLatin1String{"</li><li>"}) //
+                                   + QLatin1String{"</li></ul>"} //
+                                   + about.otherText());
+                KAboutData::setApplicationData(about);
+            });
+        }
+    });
+    thread->start();
 }
 
 // This code is mostly for Gpg4win and GnuPG VS-Desktop so that they
 // can put in their own about data information.
 static void loadCustomAboutData()
 {
-    auto thread = QThread::create([]() {
-        const QStringList searchPaths = {Kleo::gnupgInstallPath()};
-        const QString versionFile = QCoreApplication::applicationDirPath() + QStringLiteral(VERSION_RELPATH);
-        const QString distSigKeys = Kleo::gnupgInstallPath() + QStringLiteral(GNUPG_DISTSIGKEY_RELPATH);
-        STARTUP_TIMING << "Starting version info check";
-        bool valid = Kleo::gpgvVerify(versionFile, QString(), distSigKeys, searchPaths);
-        STARTUP_TIMING << "Version info checked";
-        QMetaObject::invokeMethod(qApp, [versionFile, valid]() {
-            if (valid) {
-                qCDebug(KLEOPATRA_LOG) << "Found valid VERSION file. Updating about data.";
-                auto settings = std::make_shared<QSettings>(versionFile, QSettings::IniFormat);
-                settings->setIniCodec(QTextCodec::codecForName("UTF-8"));
-                settings->beginGroup(QStringLiteral("Kleopatra"));
-                updateAboutDataFromSettings(settings.get());
-                KleopatraApplication::instance()->setDistributionSettings(settings);
-            }
-            loadBackendVersions();
-        });
-    });
-    thread->start();
+    const QStringList searchPaths = {Kleo::gnupgInstallPath()};
+    const QString versionFile = QCoreApplication::applicationDirPath() + QStringLiteral(VERSION_RELPATH);
+    const QString distSigKeys = Kleo::gnupgInstallPath() + QStringLiteral(GNUPG_DISTSIGKEY_RELPATH);
+    STARTUP_TIMING << "Starting version info check";
+    bool valid = Kleo::gpgvVerify(versionFile, QString(), distSigKeys, searchPaths);
+    STARTUP_TIMING << "Version info checked";
+    if (valid) {
+        qCDebug(KLEOPATRA_LOG) << "Found valid VERSION file. Updating about data.";
+        auto settings = std::make_shared<QSettings>(versionFile, QSettings::IniFormat);
+        settings->setIniCodec(QTextCodec::codecForName("UTF-8"));
+        settings->beginGroup(QStringLiteral("Kleopatra"));
+        updateAboutDataFromSettings(settings.get());
+        KleopatraApplication::instance()->setDistributionSettings(settings);
+    }
+    loadBackendVersions();
 }
 
 AboutData::AboutData()

@@ -235,10 +235,11 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
     }
 
+    const auto keys = card->keys();
     mLearnKeysBtn->setEnabled(true);
     mLearnKeysBtn->setVisible(card->canLearnKeys());
-    mTreeView->setVisible(!card->canLearnKeys());
-    mLearnKeysLabel->setVisible(card->canLearnKeys());
+    mTreeView->setVisible(!keys.empty());
+    mLearnKeysLabel->setVisible(keys.empty());
 
     const auto errMsg = card->errorMsg();
     if (!errMsg.isEmpty()) {
@@ -248,7 +249,6 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mErrorLabel->setVisible(false);
     }
 
-    const auto keys = card->keys();
     mTreeView->setKeys(keys);
 
     if (mKeyForCardKeysButton) {

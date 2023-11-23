@@ -86,10 +86,11 @@ void NetKeyCard::setKeyPairInfo(const std::vector<KeyPairInfo> &infos)
     mKeys.clear();
     for (const auto &info : infos) {
         const auto key = lookup_key(klc.get(), info.grip);
-        mKeys.push_back(key);
-    }
-    if (mKeys.empty()) {
-        setCanLearnKeys(true);
+        if (key.isNull()) {
+            setCanLearnKeys(true);
+        } else {
+            mKeys.push_back(key);
+        }
     }
 }
 

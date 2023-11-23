@@ -16,6 +16,7 @@
 #include "command_p.h"
 
 #include "dialogs/newopenpgpcertificatedetailsdialog.h"
+#include "kleopatraapplication.h"
 #include "utils/emptypassphraseprovider.h"
 #include "utils/keyparameters.h"
 #include "utils/userinfo.h"
@@ -34,6 +35,7 @@
 #include <QGpgME/Protocol>
 
 #include <QProgressDialog>
+#include <QSettings>
 
 #include <gpgme++/context.h>
 #include <gpgme++/keygenerationresult.h>
@@ -137,6 +139,12 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
         ctx->setPassphraseProvider(&emptyPassphraseProvider);
         ctx->setPinentryMode(Context::PinentryLoopback);
     }
+
+    auto settings = KleopatraApplication::instance()->distributionSettings();
+    if (settings) {
+        keyParameters.setComment(settings->value(QStringLiteral("uidcomment"), {}).toString());
+    }
+
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
         QMetaObject::invokeMethod(
             q,

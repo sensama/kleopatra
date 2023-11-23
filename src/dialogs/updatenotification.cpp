@@ -26,8 +26,10 @@
 #include <QProcess>
 #include <QProgressDialog>
 #include <QPushButton>
+#include <QRegularExpression>
 #include <QUrl>
 
+#include <KAboutData>
 #include <KConfigGroup>
 #include <KIconLoader>
 #include <KLocalizedString>
@@ -93,6 +95,19 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
     proc->start();
 }
 
+/* Extract the actual version number (conforming to the semanticversioning spec)
+ * from the Version strings which might be used for Gpg4win / GnuPG VS-Desktop
+ * which are optionally prefixed with some text followed by a dash
+ * e.g. "Gpg4win-3.1.15-beta15"; see https://dev.gnupg.org/T5663 */
+static const QByteArray extractVersionNumber(const QString &versionString)
+{
+    static const QRegularExpression catchSemVerRegExp{QLatin1String{R"(-([0-9]+(?:\.[0-9]+)*(?:-[.0-9A-Za-z-]+)?(?:\+[.0-9a-zA-Z-]+)?)$)"}};
+
+    const auto match = catchSemVerRegExp.match(versionString);
+    const auto current = match.hasMatch() ? match.captured(1) : versionString;
+    return current.toUtf8();
+}
+
 void UpdateNotification::checkUpdate(QWidget *parent, bool force)
 {
 #ifdef Q_OS_WIN
@@ -112,7 +127,6 @@ void UpdateNotification::checkUpdate(QWidget *parent, bool force)
         updatecfg.writeEntry("AllowVersionCheckSetOnce", true);
     }
 
-    const auto current = gpg4winVersionNumber();
     GpgME::Error err;
     const auto lastshown = updatecfg.readEntry("LastShown", QDateTime());
 
@@ -121,7 +135,9 @@ void UpdateNotification::checkUpdate(QWidget *parent, bool force)
         return;
     }
 
-    const auto results = GpgME::SwdbResult::query("gpg4win", current.toUtf8().constData(), &err);
+    const auto current = extractVersionNumber(KAboutData::applicationData().version());
+
+    const auto results = GpgME::SwdbResult::query("gpg4win", current.constData(), &err);
     if (err) {
         qCDebug(KLEOPATRA_LOG) << "update check failed: " << Formatting::errorAsString(err);
         return;

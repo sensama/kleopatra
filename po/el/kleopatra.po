@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-22 00:43+0000\n"
+"POT-Creation-Date: 2023-11-23 00:42+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -113,7 +113,7 @@ msgstr "Laurent Mantel"
 msgid "Qt5 port, general code maintenance"
 msgstr "Μεταφορά στο Qt5, γενική συντήρηση κώδικα"
 
-#: src/aboutdata.cpp:93
+#: src/aboutdata.cpp:95
 #, kde-format
 msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
 msgid "Uses:"
@@ -2768,20 +2768,20 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
 "Δεν σας επιτρέπεται η δημιουργία αιτημάτων υπογραφής S/MIME πιστοποιητικών."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:149
+#: src/commands/newopenpgpcertificatecommand.cpp:157
 #: src/newcertificatewizard/keycreationpage.cpp:97
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Αδυναμία έναρξης της δημιουργίας ζεύγους κλειδιών: %1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:159
+#: src/commands/newopenpgpcertificatecommand.cpp:167
 #: src/newcertificatewizard/keycreationpage.cpp:51
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Δημιουργία ζεύγους κλειδιών..."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:160
+#: src/commands/newopenpgpcertificatecommand.cpp:168
 #: src/newcertificatewizard/keycreationpage.cpp:55
 #, kde-format
 msgid ""
@@ -2791,7 +2791,7 @@ msgstr ""
 "Η διαδικασία δημιουργίας ενός κλειδιού απαιτεί μεγάλες ποσότητες τυχαίων "
 "αριθμών. Αυτό μπορεί να διαρκέσει αρκετά λεπτά..."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:193
+#: src/commands/newopenpgpcertificatecommand.cpp:201
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
@@ -2800,7 +2800,7 @@ msgstr ""
 "<para>Ένα νέο πιστοποιητικό OpenPGP δημιουργήθηκε επιτυχώς.</para><para>Το "
 "δακτυλικό αποτύπωμα του νέου πιστοποιητικού: %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:207
+#: src/commands/newopenpgpcertificatecommand.cpp:215
 #, kde-kuit-format
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
@@ -2809,7 +2809,7 @@ msgstr ""
 "<para>Η δημιουργία ενός νέου πιστοποιητικού OpenPGP απέτυχε.</"
 "para><para>Σφάλμα: <message>%1</message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:213
+#: src/commands/newopenpgpcertificatecommand.cpp:221
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
@@ -2820,7 +2820,7 @@ msgstr ""
 "στην κλειδοθήκη.</para><para>Το δακτυλικό αποτύπωμα του νέου πιστοποιητικού:"
 "<nl/>%1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:220
+#: src/commands/newopenpgpcertificatecommand.cpp:228
 #: src/crypto/newsignencryptemailcontroller.cpp:382
 #: src/crypto/newsignencryptemailcontroller.cpp:384
 #, kde-format
@@ -4434,7 +4434,7 @@ msgstr ""
 "αρχεία, όχι ένα μίγμα και των δύο."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:851
+#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:867
 #, kde-format
 msgid "Cancel"
 msgstr "Ακύρωση"
@@ -7815,30 +7815,30 @@ msgctxt "@title:window"
 msgid "Trust Chain"
 msgstr "Έμπιστη ακολουθία"
 
-#: src/dialogs/updatenotification.cpp:74
+#: src/dialogs/updatenotification.cpp:76
 #, kde-format
 msgid "Searching for updates..."
 msgstr "Αναζήτηση για ενημερώσεις..."
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:171
 #, kde-format
 msgctxt "@info"
 msgid "No update found in the available version database."
 msgstr "Δεν βρέθηκαν ενημερώσεις στη διαθέσιμη βάση δεδομένων εκδόσεων."
 
-#: src/dialogs/updatenotification.cpp:155
+#: src/dialogs/updatenotification.cpp:171
 #, kde-format
 msgctxt "@title"
 msgid "Up to date"
 msgstr "Ενημερωμένο"
 
-#: src/dialogs/updatenotification.cpp:180
+#: src/dialogs/updatenotification.cpp:196
 #, kde-format
 msgctxt "%1 is the version number"
 msgid "Version %1 is available."
 msgstr "Η έκδοση %1 είναι διαθέσιμη."
 
-#: src/dialogs/updatenotification.cpp:181
+#: src/dialogs/updatenotification.cpp:197
 #, kde-format
 msgctxt "Link to NEWS style changelog"
 msgid ""
@@ -7848,18 +7848,18 @@ msgstr ""
 "Δείτε τα <a href=\"https://www.gpg4win.org/change-history.html\">νέα "
 "χαρακτηριστικά</a>."
 
-#: src/dialogs/updatenotification.cpp:185
+#: src/dialogs/updatenotification.cpp:201
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Available"
 msgstr "Ενημέρωση διαθέσιμη"
 
-#: src/dialogs/updatenotification.cpp:190
+#: src/dialogs/updatenotification.cpp:206
 #, kde-format
 msgid "Show this notification for future updates."
 msgstr "Να εμφανίζεται αυτή η ειδοποίηση για μελλοντικές ενημερώσεις."
 
-#: src/dialogs/updatenotification.cpp:197
+#: src/dialogs/updatenotification.cpp:213
 #, kde-format
 msgid "&Get update"
 msgstr "Α&νάκτηση ενημερώσεων"
@@ -9058,19 +9058,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "Μη έγκυρα ορίσματα: %1"
 
-#: src/mainwindow.cpp:102
+#: src/mainwindow.cpp:104
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "&Έξοδος <application>%1</application>"
 
-#: src/mainwindow.cpp:109
+#: src/mainwindow.cpp:111
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Κλείσιμο &μόνο του παραθύρου"
 
-#: src/mainwindow.cpp:203
+#: src/mainwindow.cpp:205
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9081,13 +9081,13 @@ msgstr ""
 "εφαρμογές ως υπηρεσία.<nl/>Ίσως επιθυμείτε το κλείσιμο του παραθύρου αυτού "
 "χωρίς έξοδο από το <application>%1</application>."
 
-#: src/mainwindow.cpp:206
+#: src/mainwindow.cpp:208
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Πραγματικά έξοδος;"
 
-#: src/mainwindow.cpp:282
+#: src/mainwindow.cpp:298
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9096,23 +9096,23 @@ msgstr ""
 "Αδυναμία εκκίνησης του προβολέα καταγραφής GnuPG (kwatchgnupg). Παρακαλώ "
 "ελέγξτε την εγκατάστασή σας."
 
-#: src/mainwindow.cpp:284
+#: src/mainwindow.cpp:300
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Σφάλμα εκκίνησης του KWatchGnuPG"
 
-#: src/mainwindow.cpp:508
+#: src/mainwindow.cpp:524
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Προβολέας καταγραφής GnuPG"
 
-#: src/mainwindow.cpp:520
+#: src/mainwindow.cpp:536
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Επανεκκίνηση διεργασιών παρασκηνίου"
 
-#: src/mainwindow.cpp:521
+#: src/mainwindow.cpp:537
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9121,23 +9121,23 @@ msgid ""
 msgstr ""
 "Επανεκκινεί τις διεργασίες παρασκηνίου, π.χ. μετά από αλλαγές στις ρυθμίσεις."
 
-#: src/mainwindow.cpp:533
+#: src/mainwindow.cpp:549
 #, kde-format
 msgid "Check for updates"
 msgstr "Έλεγχος για ενημερώσεις"
 
-#: src/mainwindow.cpp:546
+#: src/mainwindow.cpp:562
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Πιστοποιητικά"
 
-#: src/mainwindow.cpp:547
+#: src/mainwindow.cpp:563
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Εμφάνιση επισκόπησης πιστοποιητικού"
 
-#: src/mainwindow.cpp:557
+#: src/mainwindow.cpp:573
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9145,45 +9145,45 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Σημειωματάριο"
 
-#: src/mainwindow.cpp:558
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Να εμφανίζεται το σημειωματάριο για (απο)κρυπτογράφηση και υπογραφή/"
 "επικύρωση κειμένου"
 
-#: src/mainwindow.cpp:568
+#: src/mainwindow.cpp:584
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Έξυπνες κάρτες"
 
-#: src/mainwindow.cpp:569
+#: src/mainwindow.cpp:585
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Εμφάνιση διαχείρισης έξυπνων καρτών"
 
-#: src/mainwindow.cpp:580
+#: src/mainwindow.cpp:596
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Εκτέλεση αυτοελέγχου"
 
-#: src/mainwindow.cpp:591
+#: src/mainwindow.cpp:607
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Διαμόρφωση ομάδων..."
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Ρύθμιση εστίασης σε γρήγορη αναζήτηση"
 
-#: src/mainwindow.cpp:633
+#: src/mainwindow.cpp:649
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win σύνοψη"
 
-#: src/mainwindow.cpp:637
+#: src/mainwindow.cpp:653
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9191,48 +9191,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:662
 #, kde-format
 msgid "&Quickguide"
 msgstr "&Γρήγορος οδηγός"
 
-#: src/mainwindow.cpp:647
+#: src/mainwindow.cpp:663
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:669
 #, kde-format
 msgid "&Password-based encryption"
 msgstr "Κρυπτογράφηση με βάση κωδικό"
 
-#: src/mainwindow.cpp:654
+#: src/mainwindow.cpp:670
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:659
+#: src/mainwindow.cpp:675
 #, kde-format
 msgid "&Group configuration"
 msgstr "Ρύθμιση &ομάδας"
 
-#: src/mainwindow.cpp:660
+#: src/mainwindow.cpp:676
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:667
+#: src/mainwindow.cpp:683
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr "Κρυπτογράφηση Α&λληλογραφίας στο Outlook"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:684
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9240,41 +9240,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:676
+#: src/mainwindow.cpp:692
 #, kde-format
 msgid "&Certification Management"
 msgstr "Διαχείριση πιστοποίησης"
 
-#: src/mainwindow.cpp:677
+#: src/mainwindow.cpp:693
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:683
+#: src/mainwindow.cpp:699
 #, kde-format
 msgid "&Smartcard setup"
 msgstr "Ρύθμιση &έξυπνων καρτών"
 
-#: src/mainwindow.cpp:684
+#: src/mainwindow.cpp:700
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:689
+#: src/mainwindow.cpp:705
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Γραμμή εντο&λής GnuPG"
 
-#: src/mainwindow.cpp:696
+#: src/mainwindow.cpp:712
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:697
+#: src/mainwindow.cpp:713
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -9285,12 +9285,12 @@ msgctxt ""
 msgid "BSI-VSA-10573-ENG_secops.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:702
+#: src/mainwindow.cpp:718
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:703
+#: src/mainwindow.cpp:719
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -9301,7 +9301,7 @@ msgctxt ""
 msgid "BSI-VSA-10584-ENG_secops.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:728
+#: src/mainwindow.cpp:744
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9310,28 +9310,28 @@ msgstr ""
 "Υπάρχουν ακόμη κάποιες διεργασίες παρασκηνίου σε εξέλιξη. Αυτές θα "
 "τερματιστούν κατά το κλείσιμο του παραθύρου. Θα συνεχίσετε;"
 
-#: src/mainwindow.cpp:731
+#: src/mainwindow.cpp:747
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Διεργασίες παρασκηνίου σε εξέλιξη"
 
-#: src/mainwindow.cpp:835 src/view/keylistcontroller.cpp:406
+#: src/mainwindow.cpp:851 src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Υπογραφή/κρυπτογράφηση..."
 
-#: src/mainwindow.cpp:836 src/utils/clipboardmenu.cpp:50
+#: src/mainwindow.cpp:852 src/utils/clipboardmenu.cpp:50
 #: src/view/keylistcontroller.cpp:397
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Αποκρυπτογράφηση/επαλήθευση..."
 
-#: src/mainwindow.cpp:841
+#: src/mainwindow.cpp:857
 #, kde-format
 msgid "Import Certificates"
 msgstr "Εισαγωγή πιστοποιητικών"
 
-#: src/mainwindow.cpp:842
+#: src/mainwindow.cpp:858
 #, kde-format
 msgid "Import CRLs"
 msgstr "Εισαγωγή CRL"

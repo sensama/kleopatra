@@ -118,7 +118,6 @@ static void loadCustomAboutData()
     if (valid) {
         qCDebug(KLEOPATRA_LOG) << "Found valid VERSION file. Updating about data.";
         auto settings = std::make_shared<QSettings>(versionFile, QSettings::IniFormat);
-        settings->setIniCodec(QTextCodec::codecForName("UTF-8"));
         settings->beginGroup(QStringLiteral("Kleopatra"));
         updateAboutDataFromSettings(settings.get());
         KleopatraApplication::instance()->setDistributionSettings(settings);

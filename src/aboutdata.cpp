@@ -62,23 +62,21 @@ static const about_data credits[] = {
     {kli18n("Laurent Montel"), kli18n("Qt5 port, general code maintenance"), "montel@kde.org", nullptr},
 };
 
-void updateAboutDataFromSettings(const QSettings *settings)
+static void updateAboutDataFromSettings(KAboutData *about, const QSettings *settings)
 {
-    if (!settings) {
+    if (!about || !settings) {
         return;
     }
-    auto about = KAboutData::applicationData();
-    about.setDisplayName(settings->value(QStringLiteral("displayName"), about.displayName()).toString());
-    about.setProductName(settings->value(QStringLiteral("productName"), about.productName()).toByteArray());
-    about.setComponentName(settings->value(QStringLiteral("componentName"), about.componentName()).toString());
-    about.setShortDescription(settings->value(QStringLiteral("shortDescription"), about.shortDescription()).toString());
-    about.setHomepage(settings->value(QStringLiteral("homepage"), about.homepage()).toString());
-    about.setBugAddress(settings->value(QStringLiteral("bugAddress"), about.bugAddress()).toByteArray());
-    about.setVersion(settings->value(QStringLiteral("version"), about.version()).toByteArray());
-    about.setOtherText(settings->value(QStringLiteral("otherText"), about.otherText()).toString());
-    about.setCopyrightStatement(settings->value(QStringLiteral("copyrightStatement"), about.copyrightStatement()).toString());
-    about.setDesktopFileName(settings->value(QStringLiteral("desktopFileName"), about.desktopFileName()).toString());
-    KAboutData::setApplicationData(about);
+    about->setDisplayName(settings->value(QStringLiteral("displayName"), about->displayName()).toString());
+    about->setProductName(settings->value(QStringLiteral("productName"), about->productName()).toByteArray());
+    about->setComponentName(settings->value(QStringLiteral("componentName"), about->componentName()).toString());
+    about->setShortDescription(settings->value(QStringLiteral("shortDescription"), about->shortDescription()).toString());
+    about->setHomepage(settings->value(QStringLiteral("homepage"), about->homepage()).toString());
+    about->setBugAddress(settings->value(QStringLiteral("bugAddress"), about->bugAddress()).toByteArray());
+    about->setVersion(settings->value(QStringLiteral("version"), about->version()).toByteArray());
+    about->setOtherText(settings->value(QStringLiteral("otherText"), about->otherText()).toString());
+    about->setCopyrightStatement(settings->value(QStringLiteral("copyrightStatement"), about->copyrightStatement()).toString());
+    about->setDesktopFileName(settings->value(QStringLiteral("desktopFileName"), about->desktopFileName()).toString());
 }
 
 // Extend the about data with the used GnuPG Version since this can
@@ -106,7 +104,7 @@ static void loadBackendVersions()
 
 // This code is mostly for Gpg4win and GnuPG VS-Desktop so that they
 // can put in their own about data information.
-static void loadCustomAboutData()
+static void loadCustomAboutData(KAboutData *about)
 {
     const QStringList searchPaths = {Kleo::gnupgInstallPath()};
     const QString versionFile = QCoreApplication::applicationDirPath() + QStringLiteral(VERSION_RELPATH);
@@ -119,7 +117,7 @@ static void loadCustomAboutData()
         auto settings = std::make_shared<QSettings>(versionFile, QSettings::IniFormat);
         settings->setIniCodec(QTextCodec::codecForName("UTF-8"));
         settings->beginGroup(QStringLiteral("Kleopatra"));
-        updateAboutDataFromSettings(settings.get());
+        updateAboutDataFromSettings(about, settings.get());
         KleopatraApplication::instance()->setDistributionSettings(settings);
     }
     loadBackendVersions();
@@ -153,5 +151,5 @@ AboutData::AboutData()
                   QLatin1String(credits[i].web));
     }
 
-    loadCustomAboutData();
+    loadCustomAboutData(this);
 }

@@ -44,7 +44,7 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
     mBaseWidget->setEnabled(false);
     reposition();
 
-    connect(&mTimer, &QTimer::timeout, [this]() {
+    connect(&mTimer, &QTimer::timeout, this, [this]() {
         // To avoid an infinite show if we miss the keyListingDone signal
         // (Race potential) we use a watchdog timer, too to actively poll
         // the keycache every second. See bug #381910

@@ -262,11 +262,11 @@ public:
             ui.lines.push_back(line);
 
             if (attr != QLatin1String("EMAIL")) {
-                connect(le, &QLineEdit::textChanged, [this]() {
+                connect(le, &QLineEdit::textChanged, le, [this]() {
                     updateDN();
                 });
             }
-            connect(le, &QLineEdit::textChanged, [this]() {
+            connect(le, &QLineEdit::textChanged, le, [this]() {
                 checkRequirements();
             });
         }

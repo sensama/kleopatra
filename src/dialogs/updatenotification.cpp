@@ -77,13 +77,13 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
     progress->setMinimumDuration(0);
     progress->show();
 
-    connect(progress, &QProgressDialog::canceled, [proc]() {
+    connect(progress, &QProgressDialog::canceled, proc, [proc]() {
         proc->kill();
         qCDebug(KLEOPATRA_LOG) << "Update force canceled. Output:" << QString::fromLocal8Bit(proc->readAllStandardOutput())
                                << "stderr:" << QString::fromLocal8Bit(proc->readAllStandardError());
     });
 
-    connect(proc, &QProcess::finished, [parent, progress, proc](int exitCode, QProcess::ExitStatus exitStatus) {
+    connect(proc, &QProcess::finished, progress, [parent, progress, proc](int exitCode, QProcess::ExitStatus exitStatus) {
         qCDebug(KLEOPATRA_LOG) << "Update force exited with status:" << exitStatus << "code:" << exitCode;
         delete progress;
         proc->deleteLater();

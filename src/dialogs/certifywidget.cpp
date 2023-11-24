@@ -134,7 +134,7 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
     mainLayout.addWidget(&headerLine, row++, 2, 1, 1);
     mainLayout.addWidget(&contentArea, row, 0, 1, 3);
     setLayout(&mainLayout);
-    QObject::connect(&toggleButton, &QToolButton::toggled, [this](const bool checked) {
+    connect(&toggleButton, &QToolButton::toggled, this, [this](const bool checked) {
         if (checked) {
             // make the content visible when expanding starts
             contentArea.setVisible(true);
@@ -158,7 +158,7 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
         toggleAnimation.setDirection(checked ? QAbstractAnimation::Forward : QAbstractAnimation::Backward);
         toggleAnimation.start();
     });
-    connect(&toggleAnimation, &QAbstractAnimation::finished, [this]() {
+    connect(&toggleAnimation, &QAbstractAnimation::finished, this, [this]() {
         // hide the content area when it is fully collapsed
         if (!toggleButton.isChecked()) {
             contentArea.setVisible(false);
@@ -461,11 +461,11 @@ public:
             onItemChanged(item);
         });
 
-        connect(mExportCB, &QCheckBox::toggled, [this](bool on) {
+        connect(mExportCB, &QCheckBox::toggled, q, [this](bool on) {
             mPublishCB->setEnabled(on);
         });
 
-        connect(mSecKeySelect, &KeySelectionCombo::currentKeyChanged, [this](const GpgME::Key &) {
+        connect(mSecKeySelect, &KeySelectionCombo::currentKeyChanged, q, [this](const GpgME::Key &) {
             updateSelectedUserIds();
             updateTags();
             checkOwnerTrust();

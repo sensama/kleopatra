@@ -241,7 +241,7 @@ void KWatchGnuPGMainWindow::slotConfigure()
 {
     if (!mConfig) {
         mConfig = new KWatchGnuPGConfig(this);
-        mConfig->setObjectName(QStringLiteral("config dialog"));
+        mConfig->setObjectName(QLatin1StringView("config dialog"));
         connect(mConfig, &KWatchGnuPGConfig::reconfigure, this, &KWatchGnuPGMainWindow::slotReadConfig);
     }
     mConfig->loadConfig();

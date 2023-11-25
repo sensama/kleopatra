@@ -175,7 +175,7 @@ OverwriteDialog::OverwriteDialog(QWidget *parent, const QString &title, const QS
     : QDialog{parent}
     , d{new Private{fileName, this}}
 {
-    setObjectName(QStringLiteral("Kleo::OverwriteDialog"));
+    setObjectName(QLatin1StringView("Kleo::OverwriteDialog"));
 
     setWindowTitle(title);
 

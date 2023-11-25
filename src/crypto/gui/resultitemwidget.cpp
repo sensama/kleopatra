@@ -252,7 +252,7 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
               .arg(txtColor.name());
     auto topLayout = new QVBoxLayout(this);
     auto frame = new QFrame;
-    frame->setObjectName(QStringLiteral("resultFrame"));
+    frame->setObjectName(QLatin1StringView("resultFrame"));
     frame->setStyleSheet(styleSheet);
     topLayout->addWidget(frame);
     auto layout = new QHBoxLayout(frame);

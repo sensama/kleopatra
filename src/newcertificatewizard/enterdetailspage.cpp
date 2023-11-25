@@ -192,7 +192,7 @@ EnterDetailsPage::EnterDetailsPage(QWidget *p)
     , ui{new UI{this}}
     , dialog{new AdvancedSettingsDialog{this}}
 {
-    setObjectName(QStringLiteral("Kleo__NewCertificateUi__EnterDetailsPage"));
+    setObjectName(QLatin1StringView("Kleo__NewCertificateUi__EnterDetailsPage"));
 
     Settings settings;
     if (settings.hideAdvanced()) {

@@ -30,10 +30,10 @@ InfoField::InfoField(const QString &label, QWidget *parent)
     , mValue{new QLabel{parent}}
     , mButton{new QPushButton{parent}}
 {
-    mLabel->setObjectName(QStringLiteral("InfoField.label"));
-    mIcon->setObjectName(QStringLiteral("InfoField.icon"));
-    mValue->setObjectName(QStringLiteral("InfoField.value"));
-    mButton->setObjectName(QStringLiteral("InfoField.button"));
+    mLabel->setObjectName(QLatin1StringView("InfoField.label"));
+    mIcon->setObjectName(QLatin1StringView("InfoField.icon"));
+    mValue->setObjectName(QLatin1StringView("InfoField.value"));
+    mButton->setObjectName(QLatin1StringView("InfoField.button"));
 
     mLabel->setBuddy(mValue);
     mLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);

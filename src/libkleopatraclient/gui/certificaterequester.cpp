@@ -95,9 +95,9 @@ private:
             , button(i18n("Change..."), qq)
             , hlay(qq)
         {
-            lineEdit.setObjectName(QStringLiteral("lineEdit"));
-            button.setObjectName(QStringLiteral("button"));
-            hlay.setObjectName(QStringLiteral("hlay"));
+            lineEdit.setObjectName(QLatin1StringView("lineEdit"));
+            button.setObjectName(QLatin1StringView("button"));
+            hlay.setObjectName(QLatin1StringView("hlay"));
 
             hlay.addWidget(&lineEdit, 1);
             hlay.addWidget(&button);

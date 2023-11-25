@@ -22,7 +22,7 @@ KWatchGnuPGTray::KWatchGnuPGTray(KWatchGnuPGMainWindow *mainwin)
 {
     qCDebug(KWATCHGNUPG_LOG) << "KWatchGnuPGTray::KWatchGnuPGTray";
 
-    setObjectName(QStringLiteral("KWatchGnuPG Tray Window"));
+    setObjectName(QLatin1StringView("KWatchGnuPG Tray Window"));
     KIconLoader::global()->addAppDir(QStringLiteral("kwatchgnupg"));
 
     mNormalPix.addPixmap(KIconLoader::global()->loadIcon(QStringLiteral("kwatchgnupg"), KIconLoader::Panel));

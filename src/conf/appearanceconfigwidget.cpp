@@ -510,7 +510,7 @@ public:
         if (Kleo::Settings{}.cmsEnabled()) {
             auto w = new QWidget;
             dnOrderWidget = new DNAttributeOrderConfigWidget{w};
-            dnOrderWidget->setObjectName(QStringLiteral("dnOrderWidget"));
+            dnOrderWidget->setObjectName(QLatin1StringView("dnOrderWidget"));
             (new QVBoxLayout(w))->addWidget(dnOrderWidget);
 
             tabWidget->addTab(w, i18n("DN-Attribute Order"));

@@ -58,7 +58,7 @@ else()
   add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_1)
 endif()
 
-if(KPim6IdentityManagement_FOUND AND KPim6MailTransport_FOUND AND KPim6AkonadiMime_FOUND)
+if(KPim6IdentityManagementCore_FOUND AND KPim6MailTransport_FOUND AND KPim6AkonadiMime_FOUND)
   set(_kleopatra_mail_libs
       KPim6::IdentityManagementCore # Export OpenPGP keys using WKS
       KPim6::MailTransport

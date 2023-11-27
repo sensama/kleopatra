@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    gui/certificaterequester.h
+    gui/certificaterequester.cpp
 
     This file is part of KleopatraClient, the Kleopatra interface library
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB

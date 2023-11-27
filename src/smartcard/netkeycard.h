@@ -37,6 +37,8 @@ private:
     void processCardInfo() override;
     void setKeyPairInfo(const std::vector<KeyPairInfo> &infos);
 
+    bool operator==(const Card &other) const override;
+
 private:
     std::vector<GpgME::Key> mKeys;
 };

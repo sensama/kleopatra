@@ -12,7 +12,9 @@
 
 #include "kleopatra_debug.h"
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
+#include <Libkleo/Predicates>
 
 #include <gpgme++/context.h>
 #include <gpgme++/error.h>
@@ -122,4 +124,32 @@ bool NetKeyCard::hasSigGNullPin() const
 std::vector<GpgME::Key> NetKeyCard::keys() const
 {
     return mKeys;
+}
+
+bool NetKeyCard::operator==(const Card &other) const
+{
+    static const _detail::ByFingerprint<std::equal_to> keysHaveSameFingerprint;
+
+    if (!Card::operator==(other)) {
+        qCDebug(KLEOPATRA_LOG) << "NetKeyCard" << __func__ << "Card don't match";
+        return false;
+    }
+
+    const auto otherNetKeyCard = dynamic_cast<const NetKeyCard *>(&other);
+    if (!otherNetKeyCard) {
+        qCWarning(KLEOPATRA_LOG) << "Failed to cast other card to NetKeyCard";
+        return false;
+    }
+    if (mKeys.size() != otherNetKeyCard->mKeys.size()) {
+        qCDebug(KLEOPATRA_LOG) << "NetKeyCard" << __func__ << "Number of keys doesn't match";
+        return false;
+    }
+    const auto otherHasKey = [otherNetKeyCard](const GpgME::Key &key) {
+        return Kleo::any_of(otherNetKeyCard->mKeys, [key](const GpgME::Key &otherKey) {
+            return keysHaveSameFingerprint(key, otherKey);
+        });
+    };
+    const bool result = Kleo::all_of(mKeys, otherHasKey);
+    qCDebug(KLEOPATRA_LOG) << "NetKeyCard" << __func__ << "Keys match?" << result;
+    return result;
 }

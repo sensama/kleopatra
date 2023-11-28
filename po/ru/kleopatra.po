@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-04-30 15:26+0300\n"
-"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"PO-Revision-Date: 2023-11-27 12:56+0300\n"
+"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
+"Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.08.3\n"
+"X-Generator: Lokalize 23.04.3\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -3185,67 +3185,58 @@ msgid "This parameter has been locked down by the system administrator."
 msgstr "Доступ к этому параметру закрыт администратором системы."
 
 #: src/conf/appearanceconfigwidget.cpp:357
-#, fuzzy, kde-format
-#| msgid "Show not certified certificates"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
-msgstr "Показать незаверенные сертификаты"
+msgstr "Показать метки, связанные с сертификатами"
 
 #: src/conf/appearanceconfigwidget.cpp:358
-#, fuzzy, kde-format
-#| msgid "Enable display and usage of tags attached to keys."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
 msgstr ""
-"Включить отображение и возможность использования меток, входящих в ключи."
+"Включить отображение и возможность использования меток, связанных с "
+"сертификатами."
 
 #: src/conf/appearanceconfigwidget.cpp:364
-#, fuzzy, kde-format
-#| msgid "Show the following information in certificate list tooltips:"
+#, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr "Показывать во всплывающих подсказках следующую информацию:"
 
 #: src/conf/appearanceconfigwidget.cpp:367
-#, fuzzy, kde-format
-#| msgid "Show validity"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Показывать действительность"
 
 #: src/conf/appearanceconfigwidget.cpp:370
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Показывать сведения о владельце"
 
 #: src/conf/appearanceconfigwidget.cpp:373
-#, fuzzy, kde-format
-#| msgid "Show technical details"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Показывать технические подробности"
 
 #: src/conf/appearanceconfigwidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Show certificate owner information"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr "Показывать информацию о владельце сертификата"
+msgstr "Показывать сведения о предстоящем истечении срока действия сертификата"
 
 #: src/conf/appearanceconfigwidget.cpp:385
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Is '%1' your own certificate?"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr "%1 — это ваш сертификат?"
+msgstr "Пороговое значение для собственных сертификатов:"
 
 #: src/conf/appearanceconfigwidget.cpp:391
 #: src/conf/appearanceconfigwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "никогда"
@@ -3256,10 +3247,10 @@ msgstr "никогда"
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] " день"
+msgstr[1] " дня"
+msgstr[2] " дней"
+msgstr[3] "день"
 
 #: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
@@ -3268,13 +3259,14 @@ msgid ""
 "Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"Количество дней для заблаговременного предупреждения о том, что срок "
+"действия вашего собственного сертификата скоро истечёт."
 
 #: src/conf/appearanceconfigwidget.cpp:398
-#, fuzzy, kde-format
-#| msgid "Trust Root Certificate"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr "Добавить корневой сертификат в доверенные"
+msgstr "Пороговое значение для других сертификатов:"
 
 #: src/conf/appearanceconfigwidget.cpp:406
 #, kde-format
@@ -3283,74 +3275,65 @@ msgid ""
 "Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"Количество дней для заблаговременного предупреждения о том, что срок "
+"действия сертификата другого пользователя скоро истечёт."
 
 #: src/conf/appearanceconfigwidget.cpp:416
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Generate"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
-msgstr "Создать"
+msgstr "Общие"
 
 #: src/conf/appearanceconfigwidget.cpp:436
-#, fuzzy, kde-format
-#| msgid "Set &Icon..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Icon..."
-msgstr "&Значок…"
+msgstr "Значок…"
 
 #: src/conf/appearanceconfigwidget.cpp:443
-#, fuzzy, kde-format
-#| msgid "Set &Text Color..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Text Color..."
-msgstr "Цвет &текста…"
+msgstr "Цвет текста…"
 
 #: src/conf/appearanceconfigwidget.cpp:450
-#, fuzzy, kde-format
-#| msgid "Set &Background Color..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Background Color..."
-msgstr "Цвет &фона…"
+msgstr "Цвет фона…"
 
 #: src/conf/appearanceconfigwidget.cpp:457
-#, fuzzy, kde-format
-#| msgid "Set F&ont..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Font..."
-msgstr "&Шрифт…"
+msgstr "Шрифт…"
 
 #: src/conf/appearanceconfigwidget.cpp:464
-#, fuzzy, kde-format
-#| msgid "Italic"
+#, kde-format
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Курсив"
 
 #: src/conf/appearanceconfigwidget.cpp:471
-#, fuzzy, kde-format
-#| msgid "Bold"
+#, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Полужирный"
 
 #: src/conf/appearanceconfigwidget.cpp:478
-#, fuzzy, kde-format
-#| msgid "Strikeout"
+#, kde-format
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Зачёркнутый"
 
 #: src/conf/appearanceconfigwidget.cpp:487
-#, fuzzy, kde-format
-#| msgid "Default Appearance"
+#, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "Внешний вид по умолчанию"
 
 #: src/conf/appearanceconfigwidget.cpp:495
-#, fuzzy, kde-format
-#| msgid "Certificate Categories"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Категории сертификатов"
@@ -4048,24 +4031,24 @@ msgstr ""
 "«Помощь» -> «Сообщить об ошибке»."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:214
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para><para><message>%3</message></para>"
 msgstr ""
-"Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
+"<para>Не удалось переместить <filename>%1</filename> в <filename>%2</"
+"filename>.</para><para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:222
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para>"
 msgstr ""
-"Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
+"<para>Не удалось переместить <filename>%1</filename> в <filename>%2</"
+"filename>.</para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-kuit-format
@@ -4821,7 +4804,7 @@ msgstr "…"
 #: src/crypto/gui/decryptverifyfileswizard.cpp:210
 #, kde-format
 msgid "&Output folder:"
-msgstr "&Папка для вывода:"
+msgstr "&Папка для сохранения результатов:"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, kde-format
@@ -4862,29 +4845,28 @@ msgid "Please select an output folder."
 msgstr "Выберите папку для сохранения результатов."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:194
-#, fuzzy, kde-format
-#| msgid "No output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
-msgstr "Отсутствует папка для сохранения результатов."
+msgstr "Нет папки для сохранения результатов"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:203
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to create output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
-"Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
+"<para>Не удалось создать папку для сохранения результатов <filename>%1</"
+"filename>.</para><para>Выберите другую папку для сохранения результатов.</"
+"para>"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:204
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:213
-#, fuzzy, kde-format
-#| msgid "Invalid output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
-msgstr "Неверная папка для сохранения результатов."
+msgstr "Непригодная папка для сохранения результатов"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, kde-format
@@ -4892,11 +4874,10 @@ msgid "Please select a different output folder."
 msgstr "Выберите другую папку для сохранения результатов."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:210
-#, fuzzy, kde-format
-#| msgid "Invalid output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
-msgstr "Неверная папка для сохранения результатов."
+msgstr "Неверная папка для сохранения результатов"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:212
 #, kde-kuit-format
@@ -4905,6 +4886,9 @@ msgid ""
 "<para>Cannot write in the output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
+"<para>Не удалось выполнить запись в папку для сохранения результатов "
+"<filename>%1</filename>.</para><para>Выберите другую папку для сохранения "
+"результатов.</para>"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
@@ -5557,43 +5541,38 @@ msgid "recipient key"
 msgstr "ключ получателя"
 
 #: src/crypto/gui/signencryptwidget.cpp:590
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
-msgstr "Сертификат, использованный для создания подписи, просрочен"
+msgstr "Этот сертификат просрочен."
 
 #: src/crypto/gui/signencryptwidget.cpp:593
-#, fuzzy, kde-format
-#| msgid "certificate expired"
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
-msgstr "сертификат просрочен"
+msgstr "Срок действия этого сертификата истекает сегодня."
 
 #: src/crypto/gui/signencryptwidget.cpp:595
-#, fuzzy, kde-format
-#| msgid "This certificate is new to your keystore."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
-msgstr[0] "Этот сертификат новый для данного хранилища ключей."
-msgstr[1] "Этот сертификат новый для данного хранилища ключей."
-msgstr[2] "Этот сертификат новый для данного хранилища ключей."
-msgstr[3] "Этот сертификат новый для данного хранилища ключей."
+msgstr[0] "Срок действия этого сертификата истекает через %1 день."
+msgstr[1] "Срок действия этого сертификата истекает через %1 дня."
+msgstr[2] "Срок действия этого сертификата истекает через %1 дней."
+msgstr[3] "Срок действия этого сертификата истекает завтра."
 
 #: src/crypto/gui/signencryptwidget.cpp:600
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
-msgstr "Не удалось найти локальный экземпляр сертификата центра выдачи."
+msgstr "Этот сертификат нельзя использовать для шифрования."
 
 #: src/crypto/gui/signencryptwidget.cpp:602
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
-msgstr "Не удалось найти локальный экземпляр сертификата центра выдачи."
+msgstr "Этот сертификат нельзя использовать для создания подписи."
 
 #: src/crypto/gui/signencryptwidget.cpp:801
 #, kde-format
@@ -5889,28 +5868,22 @@ msgstr ""
 "%1"
 
 #: src/crypto/signencrypttask.cpp:695
-#, fuzzy, kde-format
-#| msgctxt "Lineedit accessible name"
-#| msgid "OpenPGP signed and encrypted file"
+#, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
-msgstr "Подписанный и зашифрованный OpenPGP файл"
+msgstr "Создание подписанного и зашифрованного архива…"
 
 #: src/crypto/signencrypttask.cpp:715
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Creating Key Pair..."
+#, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
-msgstr "Создание пары ключей"
+msgstr "Создание зашифрованного архива..."
 
 #: src/crypto/signencrypttask.cpp:735
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Creating Key Pair..."
+#, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
-msgstr "Создание пары ключей"
+msgstr "Создание подписанного архива…"
 
 #: src/crypto/task.cpp:159
 #, kde-format
@@ -7971,14 +7944,7 @@ msgstr "Указывает период действия новых ключей
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for two "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
 "or, in other words, after how many days the key will expire. Set this to 0 "
@@ -7991,7 +7957,7 @@ msgstr ""
 "Иными словами, он указывает, сколько дней ключ будет действующим. Если "
 "установить значение 0, период действия ключа будет неограниченным. Если для "
 "этого параметра не указано значение или указано отрицательное значение, "
-"новые ключи OpenPGP по умолчанию будут действительны в течение двух лет "
+"новые ключи OpenPGP по умолчанию будут действительны в течение трёх лет "
 "(возможно ограничение минимальным и максимальным периодом действия)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -8062,33 +8028,28 @@ msgstr ""
 
 #. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
-#, fuzzy, kde-format
-#| msgid "Default certificate"
+#, kde-format
 msgid "Default certification validity"
-msgstr "Сертификат по умолчанию"
+msgstr "Стандартный период действия сертификата"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
 #: src/kcfg/settings.kcfg:68
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid "Specifies the default validity of certifications in days."
-msgstr "Указывает период действия новых ключей OpenPGP в днях (по умолчанию)."
+msgstr "Указывает период действия сертификатов в днях (по умолчанию)."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
 #: src/kcfg/settings.kcfg:69
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at least, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "earliest."
+#, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
-"Этот параметр определяет минимальный период действия нового ключа OpenPGP в "
-"днях. Иными словами, он указывает минимальное количество дней, после "
-"которого истечёт срок действия нового ключа."
+"Этот параметр определяет период действия сертификата в днях. Иными словами, "
+"он указывает количество дней, после которого истечёт срок действия нового "
+"сертификата. Чтобы не ограничивать срок действия сертификата, укажите для "
+"этого параметра значение «0»."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75
@@ -8279,10 +8240,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:163
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgid "Notify about upcoming certificate expiration"
-msgstr "(не найдены соответствующие сертификаты)"
+msgstr "Уведомлять о предстоящем истечении срока действия сертификатов"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:165
@@ -8291,6 +8251,9 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
+"Если этот параметр включён, Kleopatra будет показывать уведомления при "
+"использовании\n"
+"        сертификатов, срок действия которых скоро истечёт."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:171
@@ -8389,7 +8352,7 @@ msgstr "Использовать метки"
 #, kde-format
 msgid "Enable display and usage of tags attached to keys."
 msgstr ""
-"Включить отображение и возможность использования меток, входящих в ключи."
+"Включить отображение и возможность использования меток, связанных с ключами."
 
 #. i18n: ectx: label, entry (TagKey), group (RemarkSettings)
 #: src/kcfg/tagspreferences.kcfg:14
@@ -8503,7 +8466,7 @@ msgstr "&Справка"
 #: src/kleopatra.rc:98
 #, kde-format
 msgid "&More documentation"
-msgstr ""
+msgstr "&Дополнительная документация"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/kleopatra.rc:113 src/kwatchgnupg/kwatchgnupgui.rc:13
@@ -8948,60 +8911,45 @@ msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
 #: src/mainwindow.cpp:601
-#, fuzzy, kde-format
-#| msgid "Quickguide"
+#, kde-format
 msgid "&Quickguide"
-msgstr "Краткое руководство"
+msgstr "&Краткое руководство"
 
 #: src/mainwindow.cpp:603
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_sign_encrypt_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
-msgstr "handout_sign_encrypt_gnupg_en.pdf"
+msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:607
-#, fuzzy, kde-format
-#| msgid "Password-based encryption"
+#, kde-format
 msgid "&Password-based encryption"
-msgstr "Шифрование на основе пароля"
+msgstr "&Шифрование на основе пароля"
 
 #: src/mainwindow.cpp:609
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_symmetric_encryption_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
-msgstr "handout_symmetric_encryption_gnupg_en.pdf"
+msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:613
-#, fuzzy, kde-format
-#| msgid "Group configuration"
+#, kde-format
 msgid "&Group configuration"
-msgstr "Настройка группы"
+msgstr "&Настройка группы"
 
 #: src/mainwindow.cpp:615
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_group-feature_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
-msgstr "handout_group-feature_gnupg_en.pdf"
+msgstr "groupfeature_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:620
 #, kde-format
 msgid "&Mail encryption in Outlook"
-msgstr ""
+msgstr "&Шифрование почты в Outlook"
 
 #: src/mainwindow.cpp:622
 #, kde-format
@@ -9009,44 +8957,36 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
 "Only shown on Windows."
 msgid "gpgol_outlook_addin_en.pdf"
-msgstr ""
+msgstr "gpgol_outlook_addin_en.pdf"
 
 #: src/mainwindow.cpp:628
-#, fuzzy, kde-format
-#| msgid "Certification key:"
+#, kde-format
 msgid "&Certification Management"
-msgstr "Ключ подписи сертификата:"
+msgstr "&Управление сертификатами"
 
 #: src/mainwindow.cpp:630
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
-msgstr ""
+msgstr "certification_management_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:634
-#, fuzzy, kde-format
-#| msgctxt "@action show smartcard management view"
-#| msgid "Smartcards"
+#, kde-format
 msgid "&Smartcard setup"
-msgstr "Смарт-карты"
+msgstr "&Настройка смарт-карт"
 
 #: src/mainwindow.cpp:636
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "smartcard_howto_de.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
-msgstr "smartcard_howto_de.pdf"
+msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:640
-#, fuzzy, kde-format
-#| msgid "GnuPG Manual"
+#, kde-format
 msgid "GnuPG Command&line"
-msgstr "Руководство по GnuPG"
+msgstr "Командная &строка GnuPG"
 
 #: src/mainwindow.cpp:646
 #, kde-format
@@ -12120,13 +12060,13 @@ msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
 "smartcard"
 msgid "%1 - %2 - %3"
-msgstr "%1 - %2 - %3"
+msgstr "%1 — %2 — %3"
 
 #: src/view/smartcardwidget.cpp:164
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
-msgstr "%1 - %2"
+msgstr "%1 — %2"
 
 #: src/view/tabwidget.cpp:614
 #, kde-format

@@ -11,6 +11,8 @@
 
 #include "refreshopenpgpcertscommand.h"
 
+#include "command_p.h"
+
 #include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
@@ -37,25 +39,12 @@ RefreshOpenPGPCertsCommand::~RefreshOpenPGPCertsCommand()
 
 bool RefreshOpenPGPCertsCommand::preStartHook(QWidget *parent) const
 {
-    if (!haveKeyserverConfigured())
-        if (KMessageBox::warningContinueCancel(parent,
-                                               xi18nc("@info",
-                                                      "<para>No OpenPGP directory services have been configured.</para>"
-                                                      "<para>If not all of the certificates carry the name of their preferred "
-                                                      "certificate server (few do), a fallback server is needed to fetch from.</para>"
-                                                      "<para>Since none is configured, <application>Kleopatra</application> will use "
-                                                      "<resource>keys.gnupg.net</resource> as the fallback.</para>"
-                                                      "<para>You can configure OpenPGP directory servers in Kleopatra's "
-                                                      "configuration dialog.</para>"
-                                                      "<para>Do you want to continue with <resource>keys.gnupg.net</resource> "
-                                                      "as fallback server?</para>"),
-                                               i18nc("@title:window", "OpenPGP Certificate Refresh"),
-                                               KStandardGuiItem::cont(),
-                                               KStandardGuiItem::cancel(),
-                                               QStringLiteral("warn-refresh-openpgp-missing-keyserver"))
-            != KMessageBox::Continue) {
-            return false;
-        }
+    if (!haveKeyserverConfigured()) {
+        d->error(i18nc("@info",
+                       "Refreshing the OpenPGP certificates is not possible because "
+                       "the usage of key servers has been disabled explicitly."));
+        return false;
+    }
     return KMessageBox::warningContinueCancel(parent,
                                               xi18nc("@info",
                                                      "<para>Refreshing OpenPGP certificates implies downloading all certificates anew, "
@@ -75,9 +64,6 @@ QStringList RefreshOpenPGPCertsCommand::arguments() const
 {
     QStringList result;
     result << gpgPath();
-    if (!haveKeyserverConfigured()) {
-        result << QStringLiteral("--keyserver") << QStringLiteral("keys.gnupg.net");
-    }
     result << QStringLiteral("--refresh-keys");
     return result;
 }

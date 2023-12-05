@@ -98,22 +98,13 @@ static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget
 bool ExportOpenPGPCertsToServerCommand::preStartHook(QWidget *parent) const
 {
     if (!haveKeyserverConfigured()) {
-        if (KMessageBox::warningContinueCancel(parent,
-                                               xi18nc("@info",
-                                                      "<para>No OpenPGP directory services have been configured.</para>"
-                                                      "<para>Since none is configured, <application>Kleopatra</application> will use "
-                                                      "<resource>keys.gnupg.net</resource> as the server to export to.</para>"
-                                                      "<para>You can configure OpenPGP directory servers in <application>Kleopatra</application>'s "
-                                                      "configuration dialog.</para>"
-                                                      "<para>Do you want to continue with <resource>keys.gnupg.net</resource> "
-                                                      "as the server to export to?</para>"),
-                                               i18nc("@title:window", "OpenPGP Certificate Export"),
-                                               KGuiItem{i18ncp("@action:button", "Export Certificate", "Export Certificates", d->keys().size())},
-                                               KStandardGuiItem::cancel(),
-                                               QStringLiteral("warn-export-openpgp-missing-keyserver"))
-            != KMessageBox::Continue) {
-            return false;
-        }
+        d->error(i18ncp("@info",
+                        "Exporting the certificate to a key server is not possible "
+                        "because the usage of key servers has been disabled explicitly.",
+                        "Exporting the certificates to a key server is not possible "
+                        "because the usage of key servers has been disabled explicitly.",
+                        d->keys().size()));
+        return false;
     }
     if (!confirmExport(d->keys(), parent)) {
         return false;
@@ -136,9 +127,6 @@ QStringList ExportOpenPGPCertsToServerCommand::arguments() const
 {
     QStringList result;
     result << gpgPath();
-    if (!haveKeyserverConfigured()) {
-        result << QStringLiteral("--keyserver") << QStringLiteral("keys.gnupg.net");
-    }
     result << QStringLiteral("--send-keys");
     const auto keys = d->keys();
     for (const Key &key : keys) {

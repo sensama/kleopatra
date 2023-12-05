@@ -400,6 +400,8 @@ void DirectoryServicesConfigurationPage::Private::save()
         const auto keyserver = mOpenPGPKeyserverEdit.widget()->text().trimmed();
         if (keyserver.isEmpty()) {
             mOpenPGPServiceEntry->resetToDefault();
+        } else if (keyserver == QLatin1String{"none"}) {
+            mOpenPGPServiceEntry->setStringValue(keyserver);
         } else {
             const auto keyserverUrl = keyserver.contains(QLatin1String{"://"}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
             mOpenPGPServiceEntry->setStringValue(keyserverUrl);

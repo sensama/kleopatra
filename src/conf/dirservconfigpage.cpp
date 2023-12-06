@@ -20,6 +20,7 @@
 
 #include <Libkleo/Compat>
 #include <Libkleo/DirectoryServicesWidget>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyserverConfig>
 
 #include <QGpgME/CryptoConfig>
@@ -132,6 +133,14 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         mOpenPGPKeyserverEdit.createWidgets(q->widget());
 #endif
         mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
+        if (engineIsVersion(2, 4, 4) //
+            || (engineIsVersion(2, 2, 42) && !engineIsVersion(2, 3, 0))) {
+            mOpenPGPKeyserverEdit.widget()->setToolTip( //
+                xi18nc("@info:tooltip",
+                       "Enter the address of the keyserver to use when searching for OpenPGP certificates and "
+                       "when uploading OpenPGP certificates. If you do not enter an address then an internal "
+                       "default will be used. To disable the use of an OpenPGP keyserver enter the special value <emphasis>none</emphasis>."));
+        }
         l->addWidget(mOpenPGPKeyserverEdit.label());
         l->addWidget(mOpenPGPKeyserverEdit.widget());
 

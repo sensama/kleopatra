@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 00:42+0000\n"
+"POT-Creation-Date: 2023-12-06 00:43+0000\n"
 "PO-Revision-Date: 2023-11-18 22:19+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -1156,8 +1156,7 @@ msgstr "Bekräfta certifikatexport"
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#: src/commands/exportopenpgpcertstoservercommand.cpp:111
-#: src/commands/exportopenpgpcertstoservercommand.cpp:129
+#: src/commands/exportopenpgpcertstoservercommand.cpp:120
 #, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
@@ -1351,37 +1350,19 @@ msgid ""
 msgstr ""
 "<para>Ett fel uppstod vid export:</para><para><message>%1</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:103
-#, kde-kuit-format
+#: src/commands/exportopenpgpcertstoservercommand.cpp:102
+#, kde-format
 msgctxt "@info"
 msgid ""
-"<para>No OpenPGP directory services have been configured.</para><para>Since "
-"none is configured, <application>Kleopatra</application> will use "
-"<resource>keys.gnupg.net</resource> as the server to export to.</"
-"para><para>You can configure OpenPGP directory servers in "
-"<application>Kleopatra</application>'s configuration dialog.</para><para>Do "
-"you want to continue with <resource>keys.gnupg.net</resource> as the server "
-"to export to?</para>"
-msgstr ""
-"<para>Någon katalogtjänst för OpenPGP har inte ställts in.</"
-"para><para>Eftersom ingen är inställd, använder <application>Kleopatra</"
-"application> <resource>keys.gnupg.net</resource> som server att exportera "
-"till.</para><para>Du kan ställa in katalogtjänster för OpenPGP i Kleopatras "
-"inställningsdialogruta.</para><para>Vill du fortsätta med <resource>keys."
-"gnupg.net</resource> som server att exportera till?</para>"
+"Exporting the certificate to a key server is not possible because the usage "
+"of key servers has been disabled explicitly."
+msgid_plural ""
+"Exporting the certificates to a key server is not possible because the usage "
+"of key servers has been disabled explicitly."
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:110
-#: src/commands/exportopenpgpcertstoservercommand.cpp:128
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export"
-msgstr "Export av OpenPGP-certifikat"
-
-#: src/commands/exportopenpgpcertstoservercommand.cpp:123
+#: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1397,19 +1378,29 @@ msgstr ""
 "skapat ett återkallelsecertifikat så att du kan återkalla certifikatet om "
 "det senare behövs.</para><para>Är du säker på att du vill fortsätta?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:152
+#: src/commands/exportopenpgpcertstoservercommand.cpp:119
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
+#, kde-format
+msgctxt "@title:window"
+msgid "OpenPGP Certificate Export"
+msgstr "Export av OpenPGP-certifikat"
+
+#: src/commands/exportopenpgpcertstoservercommand.cpp:140
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Fel vid export av OpenPGP-certifikat"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:157
+#: src/commands/exportopenpgpcertstoservercommand.cpp:145
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "Export av OpenPGP-certifikat klar"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:163
+#: src/commands/exportopenpgpcertstoservercommand.cpp:151
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1421,13 +1412,13 @@ msgstr ""
 "förtid på grund av ett oväntat fel.</para><para>Kontrollera utmatningen från "
 "<icode>%1</icode> för detaljinformation.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:174
+#: src/commands/exportopenpgpcertstoservercommand.cpp:162
 #: src/commands/importcertificatescommand.cpp:621
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:175
+#: src/commands/exportopenpgpcertstoservercommand.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1435,7 +1426,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr "%1<nl />%2"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:180
+#: src/commands/exportopenpgpcertstoservercommand.cpp:168
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1447,7 +1438,7 @@ msgstr ""
 "<para>Utmaningen från <command>%1</command> är:<nl /><message>%2</message></"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:188
+#: src/commands/exportopenpgpcertstoservercommand.cpp:176
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -2905,36 +2896,15 @@ msgstr ""
 "<para>Ett fel uppstod vid uppdatering av certifikatet:</para><para><message>"
 "%1</message></para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:43
-#, kde-kuit-format
+#: src/commands/refreshopenpgpcertscommand.cpp:44
+#, kde-format
 msgctxt "@info"
 msgid ""
-"<para>No OpenPGP directory services have been configured.</para><para>If not "
-"all of the certificates carry the name of their preferred certificate server "
-"(few do), a fallback server is needed to fetch from.</para><para>Since none "
-"is configured, <application>Kleopatra</application> will use <resource>keys."
-"gnupg.net</resource> as the fallback.</para><para>You can configure OpenPGP "
-"directory servers in Kleopatra's configuration dialog.</para><para>Do you "
-"want to continue with <resource>keys.gnupg.net</resource> as fallback server?"
-"</para>"
+"Refreshing the OpenPGP certificates is not possible because the usage of key "
+"servers has been disabled explicitly."
 msgstr ""
-"<para>Någon katalogtjänst för OpenPGP har inte ställts in.</para><para>Om "
-"inte alla certifikat bär namnet på certifikatservern de föredrar (ett fåtal "
-"gör det), krävs en reservserver att hämta från.</para><para>Eftersom ingen "
-"är inställd, använder <application>Kleopatra</application> <resource>keys."
-"gnupg.net</resource> som reserv.</para><para>Du kan ställa in "
-"katalogtjänster för OpenPGP i Kleopatras inställningsdialogruta.</"
-"para><para>Vill du fortsätta med <resource>keys.gnupg.net</resource> som "
-"reservserver?</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:52
-#: src/commands/refreshopenpgpcertscommand.cpp:67
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Refresh"
-msgstr "OpenPGP-certifikatuppdatering"
-
-#: src/commands/refreshopenpgpcertscommand.cpp:61
+#: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2952,19 +2922,25 @@ msgstr ""
 "beroende på nätverksanslutning och antal certifikat att kontrollera.</"
 "para><para>Är du säker på att du vill fortsätta?</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:87
+#: src/commands/refreshopenpgpcertscommand.cpp:56
+#, kde-format
+msgctxt "@title:window"
+msgid "OpenPGP Certificate Refresh"
+msgstr "OpenPGP-certifikatuppdatering"
+
+#: src/commands/refreshopenpgpcertscommand.cpp:73
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Error"
 msgstr "Fel vid uppdatering av OpenPGP-certifikat"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:92
+#: src/commands/refreshopenpgpcertscommand.cpp:78
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Finished"
 msgstr "Uppdatering av OpenPGP-certifikat klar"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:98
+#: src/commands/refreshopenpgpcertscommand.cpp:84
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2976,7 +2952,7 @@ msgstr ""
 "förtid på grund av ett oväntat fel.</para><para>Kontrollera utmatningen från "
 "<icode>%1</icode> för detaljinformation.</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:107
+#: src/commands/refreshopenpgpcertscommand.cpp:93
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2987,7 +2963,7 @@ msgstr ""
 "para><para>Utmatningen från <command>%1</command> är: <bcode>%2</bcode></"
 "para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:115
+#: src/commands/refreshopenpgpcertscommand.cpp:101
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates refreshed successfully."
@@ -3692,12 +3668,12 @@ msgstr ""
 "uppdatering av ett OpenPGP-certifikat. Om alternativet är aktiverat, frågar "
 "Kleopatra WNK:er för alla användaridentifikationer."
 
-#: src/conf/dirservconfigpage.cpp:459 src/conf/dirservconfigpage.cpp:463
+#: src/conf/dirservconfigpage.cpp:461 src/conf/dirservconfigpage.cpp:465
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "Gränssnittsfel: gpgconf verkar inte känna till posten för %1/%2"
 
-#: src/conf/dirservconfigpage.cpp:472 src/conf/dirservconfigpage.cpp:479
+#: src/conf/dirservconfigpage.cpp:474 src/conf/dirservconfigpage.cpp:481
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Gränssnittsfel: gpgconf har fel typ för %1/%2: %3 %4"
@@ -12342,6 +12318,43 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>No OpenPGP directory services have been configured.</"
+#~ "para><para>Since none is configured, <application>Kleopatra</application> "
+#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
+#~ "para><para>You can configure OpenPGP directory servers in "
+#~ "<application>Kleopatra</application>'s configuration dialog.</"
+#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
+#~ "resource> as the server to export to?</para>"
+#~ msgstr ""
+#~ "<para>Någon katalogtjänst för OpenPGP har inte ställts in.</"
+#~ "para><para>Eftersom ingen är inställd, använder <application>Kleopatra</"
+#~ "application> <resource>keys.gnupg.net</resource> som server att exportera "
+#~ "till.</para><para>Du kan ställa in katalogtjänster för OpenPGP i "
+#~ "Kleopatras inställningsdialogruta.</para><para>Vill du fortsätta med "
+#~ "<resource>keys.gnupg.net</resource> som server att exportera till?</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
+#~ "not all of the certificates carry the name of their preferred certificate "
+#~ "server (few do), a fallback server is needed to fetch from.</"
+#~ "para><para>Since none is configured, <application>Kleopatra</application> "
+#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
+#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
+#~ "configuration dialog.</para><para>Do you want to continue with "
+#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
+#~ msgstr ""
+#~ "<para>Någon katalogtjänst för OpenPGP har inte ställts in.</para><para>Om "
+#~ "inte alla certifikat bär namnet på certifikatservern de föredrar (ett "
+#~ "fåtal gör det), krävs en reservserver att hämta från.</"
+#~ "para><para>Eftersom ingen är inställd, använder <application>Kleopatra</"
+#~ "application> <resource>keys.gnupg.net</resource> som reserv.</"
+#~ "para><para>Du kan ställa in katalogtjänster för OpenPGP i Kleopatras "
+#~ "inställningsdialogruta.</para><para>Vill du fortsätta med <resource>keys."
+#~ "gnupg.net</resource> som reservserver?</para>"
 
 #~ msgid "Backup Secret Key"
 #~ msgstr "Säkerhetskopiera hemlig nyckel"

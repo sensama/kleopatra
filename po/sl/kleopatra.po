@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 00:42+0000\n"
+"POT-Creation-Date: 2023-12-06 00:43+0000\n"
 "PO-Revision-Date: 2023-11-16 13:46+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -1171,8 +1171,7 @@ msgstr "Potrdite izvoz potrdila"
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#: src/commands/exportopenpgpcertstoservercommand.cpp:111
-#: src/commands/exportopenpgpcertstoservercommand.cpp:129
+#: src/commands/exportopenpgpcertstoservercommand.cpp:120
 #, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
@@ -1369,37 +1368,21 @@ msgstr ""
 "<para>Med izvozom je prišlo do napake: </para><para><message>%1</message></"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:103
-#, kde-kuit-format
+#: src/commands/exportopenpgpcertstoservercommand.cpp:102
+#, kde-format
 msgctxt "@info"
 msgid ""
-"<para>No OpenPGP directory services have been configured.</para><para>Since "
-"none is configured, <application>Kleopatra</application> will use "
-"<resource>keys.gnupg.net</resource> as the server to export to.</"
-"para><para>You can configure OpenPGP directory servers in "
-"<application>Kleopatra</application>'s configuration dialog.</para><para>Do "
-"you want to continue with <resource>keys.gnupg.net</resource> as the server "
-"to export to?</para>"
-msgstr ""
-"<para>Nastavljene ni nobene imeniške storitve OpenPGP.</para><para>Ker ni "
-"nastavljena, bo program <application>Kleopatra</application> za izvažanje "
-"uporabil strežnik <resource>keys.gnupg.net</resource>.</para><para>Imeniške "
-"strežnike OpenPGP lahko nastavite v nastavitvah programa "
-"<application>Kleopatra</application>.</para><para>Ali želite nadaljevati s "
-"<resource>keys.gnupg.net</resource> kot strežnikom za izvoz?</para>"
+"Exporting the certificate to a key server is not possible because the usage "
+"of key servers has been disabled explicitly."
+msgid_plural ""
+"Exporting the certificates to a key server is not possible because the usage "
+"of key servers has been disabled explicitly."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:110
-#: src/commands/exportopenpgpcertstoservercommand.cpp:128
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export"
-msgstr "Izvažanje potrdil OpenPGP"
-
-#: src/commands/exportopenpgpcertstoservercommand.cpp:123
+#: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1415,19 +1398,29 @@ msgstr ""
 "lahko kasneje po potrebi potrdilo prekličete.</para><para>Ali res želite "
 "nadaljevati?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:152
+#: src/commands/exportopenpgpcertstoservercommand.cpp:119
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
+#, kde-format
+msgctxt "@title:window"
+msgid "OpenPGP Certificate Export"
+msgstr "Izvažanje potrdil OpenPGP"
+
+#: src/commands/exportopenpgpcertstoservercommand.cpp:140
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Napaka izvažanja potrdil OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:157
+#: src/commands/exportopenpgpcertstoservercommand.cpp:145
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "Izvoz potrdil OpenPGP zaključen"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:163
+#: src/commands/exportopenpgpcertstoservercommand.cpp:151
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1439,13 +1432,13 @@ msgstr ""
 "prehitro končalo zaradi nepričakovane napake.</para><para>Za podrobnosti "
 "preverite izhod ukaza <icode>%1</icode>.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:174
+#: src/commands/exportopenpgpcertstoservercommand.cpp:162
 #: src/commands/importcertificatescommand.cpp:621
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:175
+#: src/commands/exportopenpgpcertstoservercommand.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1453,7 +1446,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr "%1<nl />%2"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:180
+#: src/commands/exportopenpgpcertstoservercommand.cpp:168
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1465,7 +1458,7 @@ msgstr ""
 "para><para>Izhod ukaza <command>%1</command> je bil: <message>%2</message></"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:188
+#: src/commands/exportopenpgpcertstoservercommand.cpp:176
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -2936,36 +2929,15 @@ msgstr ""
 "<para>Med osveževanjem potrdila je prišlo do napake: </para><para><message>"
 "%1</message></para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:43
-#, kde-kuit-format
+#: src/commands/refreshopenpgpcertscommand.cpp:44
+#, kde-format
 msgctxt "@info"
 msgid ""
-"<para>No OpenPGP directory services have been configured.</para><para>If not "
-"all of the certificates carry the name of their preferred certificate server "
-"(few do), a fallback server is needed to fetch from.</para><para>Since none "
-"is configured, <application>Kleopatra</application> will use <resource>keys."
-"gnupg.net</resource> as the fallback.</para><para>You can configure OpenPGP "
-"directory servers in Kleopatra's configuration dialog.</para><para>Do you "
-"want to continue with <resource>keys.gnupg.net</resource> as fallback server?"
-"</para>"
+"Refreshing the OpenPGP certificates is not possible because the usage of key "
+"servers has been disabled explicitly."
 msgstr ""
-"<para>Nobene imeniške storitve OpenPGP ni bilo nastavljene.</para><para>Če "
-"vsa potrdila ne vsebujejo imen prednostnih strežnikov za potrdila (le redka "
-"to vsebujejo), je nujen vsaj zasilen strežnik.</para><para>Ker ni nastavljen "
-"noben, bo program <application>Kleopatra</application> uporabil zasilni "
-"strežnik <resource>keys.gnupg.net</resource>.</para><para>Imeniške strežnike "
-"OpenPGP lahko nastavite v nastavitvah programa Kleopatra.</para><para>Ali "
-"želite nadaljevati s <resource>keys.gnupg.net</resource> kot zasilnim "
-"strežnikom?</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:52
-#: src/commands/refreshopenpgpcertscommand.cpp:67
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Refresh"
-msgstr "Osveževanje potrdil OpenPGP"
-
-#: src/commands/refreshopenpgpcertscommand.cpp:61
+#: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2983,19 +2955,25 @@ msgstr ""
 "potrdil, ki jih je potrebno preveriti.</para><para>Ali res želite "
 "nadaljevati?</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:87
+#: src/commands/refreshopenpgpcertscommand.cpp:56
+#, kde-format
+msgctxt "@title:window"
+msgid "OpenPGP Certificate Refresh"
+msgstr "Osveževanje potrdil OpenPGP"
+
+#: src/commands/refreshopenpgpcertscommand.cpp:73
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Error"
 msgstr "Napaka osveževanja potrdil OpenPGP"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:92
+#: src/commands/refreshopenpgpcertscommand.cpp:78
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Finished"
 msgstr "Osvežitev potrdil OpenPGP zaključena"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:98
+#: src/commands/refreshopenpgpcertscommand.cpp:84
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3007,7 +2985,7 @@ msgstr ""
 "prehitro končalo zaradi nepričakovane napake.</para><para>Za podrobnosti "
 "preverite izhod ukaza <icode>%1</icode>.</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:107
+#: src/commands/refreshopenpgpcertscommand.cpp:93
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3018,7 +2996,7 @@ msgstr ""
 "para><para>Izhod iz <command>%1</command> je bil: <message>%2</message></"
 "para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:115
+#: src/commands/refreshopenpgpcertscommand.cpp:101
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates refreshed successfully."
@@ -3735,12 +3713,12 @@ msgstr ""
 "posodobite potrdilo OpenPGP. Če je ta možnost omogočena, bo Kleopatra "
 "poizvedovala po WKD za vse določilnike uporabnikov."
 
-#: src/conf/dirservconfigpage.cpp:459 src/conf/dirservconfigpage.cpp:463
+#: src/conf/dirservconfigpage.cpp:461 src/conf/dirservconfigpage.cpp:465
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "Napaka zaledja: gpgconf verjetno ne pozna vnosa za %1/%2"
 
-#: src/conf/dirservconfigpage.cpp:472 src/conf/dirservconfigpage.cpp:479
+#: src/conf/dirservconfigpage.cpp:474 src/conf/dirservconfigpage.cpp:481
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Napaka zaledja: gpgconf ima napačno vrsto za %1/%2: %3 %4"
@@ -12397,6 +12375,44 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>No OpenPGP directory services have been configured.</"
+#~ "para><para>Since none is configured, <application>Kleopatra</application> "
+#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
+#~ "para><para>You can configure OpenPGP directory servers in "
+#~ "<application>Kleopatra</application>'s configuration dialog.</"
+#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
+#~ "resource> as the server to export to?</para>"
+#~ msgstr ""
+#~ "<para>Nastavljene ni nobene imeniške storitve OpenPGP.</para><para>Ker ni "
+#~ "nastavljena, bo program <application>Kleopatra</application> za izvažanje "
+#~ "uporabil strežnik <resource>keys.gnupg.net</resource>.</"
+#~ "para><para>Imeniške strežnike OpenPGP lahko nastavite v nastavitvah "
+#~ "programa <application>Kleopatra</application>.</para><para>Ali želite "
+#~ "nadaljevati s <resource>keys.gnupg.net</resource> kot strežnikom za izvoz?"
+#~ "</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
+#~ "not all of the certificates carry the name of their preferred certificate "
+#~ "server (few do), a fallback server is needed to fetch from.</"
+#~ "para><para>Since none is configured, <application>Kleopatra</application> "
+#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
+#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
+#~ "configuration dialog.</para><para>Do you want to continue with "
+#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
+#~ msgstr ""
+#~ "<para>Nobene imeniške storitve OpenPGP ni bilo nastavljene.</"
+#~ "para><para>Če vsa potrdila ne vsebujejo imen prednostnih strežnikov za "
+#~ "potrdila (le redka to vsebujejo), je nujen vsaj zasilen strežnik.</"
+#~ "para><para>Ker ni nastavljen noben, bo program <application>Kleopatra</"
+#~ "application> uporabil zasilni strežnik <resource>keys.gnupg.net</"
+#~ "resource>.</para><para>Imeniške strežnike OpenPGP lahko nastavite v "
+#~ "nastavitvah programa Kleopatra.</para><para>Ali želite nadaljevati s "
+#~ "<resource>keys.gnupg.net</resource> kot zasilnim strežnikom?</para>"
 
 #~ msgid "Backup Secret Key"
 #~ msgstr "Varnostna kopija zasebnega ključa"

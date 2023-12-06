@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 00:42+0000\n"
+"POT-Creation-Date: 2023-12-06 00:43+0000\n"
 "PO-Revision-Date: 2023-11-18 21:33+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -1158,8 +1158,7 @@ msgstr "დაადასტურეთ სერტიფიკატის �
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#: src/commands/exportopenpgpcertstoservercommand.cpp:111
-#: src/commands/exportopenpgpcertstoservercommand.cpp:129
+#: src/commands/exportopenpgpcertstoservercommand.cpp:120
 #, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
@@ -1349,38 +1348,19 @@ msgid ""
 "message></para>"
 msgstr "<para>შეცდომა გატანისას:</para><para><message>%1</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:103
-#, kde-kuit-format
+#: src/commands/exportopenpgpcertstoservercommand.cpp:102
+#, kde-format
 msgctxt "@info"
 msgid ""
-"<para>No OpenPGP directory services have been configured.</para><para>Since "
-"none is configured, <application>Kleopatra</application> will use "
-"<resource>keys.gnupg.net</resource> as the server to export to.</"
-"para><para>You can configure OpenPGP directory servers in "
-"<application>Kleopatra</application>'s configuration dialog.</para><para>Do "
-"you want to continue with <resource>keys.gnupg.net</resource> as the server "
-"to export to?</para>"
-msgstr ""
-"<para>OpenPGP-ის კატალოგის სერვისები მორგებული არაა.</para><para>იმის გამო, "
-"რომ არც-ერთი არ მიგითითებიათ, <application>Kleopatra</application> "
-"გამოიყენებს <resource>keys.gnupg.net</resource> როგორც სერვერს, რომელზეც "
-"გატანა მოხდება.</para><para>OpenPGP-ის კატალოგის სერვერების "
-"მითითება<application>Kleopatra</application>-ის მორგების ფანჯარაში შეგიძლიათ."
-"</para><para>გნებავთ, გააგრძელოთ <resource>keys.gnupg.net</resource>-ის "
-"გასატან სერვერად გამოყენება?</para>"
+"Exporting the certificate to a key server is not possible because the usage "
+"of key servers has been disabled explicitly."
+msgid_plural ""
+"Exporting the certificates to a key server is not possible because the usage "
+"of key servers has been disabled explicitly."
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:110
-#: src/commands/exportopenpgpcertstoservercommand.cpp:128
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export"
-msgstr "OpenPGP სერტიფიკაის გატანა"
-
-#: src/commands/exportopenpgpcertstoservercommand.cpp:123
+#: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1396,19 +1376,29 @@ msgstr ""
 "რომლითაც, თუ დაგჭირდათ, მოგვიანებით ამ სერტიფიკატის გაუქმებას შეძლებთ.</"
 "para><para>დარწმუნებული ბრძანდებით, რომ გნებავთ, გააგრძელოთ?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:152
+#: src/commands/exportopenpgpcertstoservercommand.cpp:119
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
+#, kde-format
+msgctxt "@title:window"
+msgid "OpenPGP Certificate Export"
+msgstr "OpenPGP სერტიფიკაის გატანა"
+
+#: src/commands/exportopenpgpcertstoservercommand.cpp:140
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "OpenPGP სერტიფიკაის გატანის შეცდომა"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:157
+#: src/commands/exportopenpgpcertstoservercommand.cpp:145
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "OpenPGP სერტიფიკაის გატანა დასრულდა"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:163
+#: src/commands/exportopenpgpcertstoservercommand.cpp:151
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1420,13 +1410,13 @@ msgstr ""
 "დასრულდა, მოულოდნელი შეცდომის გამო.</para><para>ხელით გადაამოწმეთ გამოტანილი "
 "ინფორმაცია ხელით გაშვებული ბრძანებისთვის <icode>%1</icode>.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:174
+#: src/commands/exportopenpgpcertstoservercommand.cpp:162
 #: src/commands/importcertificatescommand.cpp:621
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:175
+#: src/commands/exportopenpgpcertstoservercommand.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1434,7 +1424,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr "%1<nl />%2"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:180
+#: src/commands/exportopenpgpcertstoservercommand.cpp:168
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1446,7 +1436,7 @@ msgstr ""
 "<para>ბრძანებამ <command>%1</command> გამოიტანა:<nl /><message>%2</message></"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:188
+#: src/commands/exportopenpgpcertstoservercommand.cpp:176
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -2897,36 +2887,15 @@ msgstr ""
 "<para>შეცდომა სერტიფიკატის განახლებისას:</para><para><message>%1</message></"
 "para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:43
-#, kde-kuit-format
+#: src/commands/refreshopenpgpcertscommand.cpp:44
+#, kde-format
 msgctxt "@info"
 msgid ""
-"<para>No OpenPGP directory services have been configured.</para><para>If not "
-"all of the certificates carry the name of their preferred certificate server "
-"(few do), a fallback server is needed to fetch from.</para><para>Since none "
-"is configured, <application>Kleopatra</application> will use <resource>keys."
-"gnupg.net</resource> as the fallback.</para><para>You can configure OpenPGP "
-"directory servers in Kleopatra's configuration dialog.</para><para>Do you "
-"want to continue with <resource>keys.gnupg.net</resource> as fallback server?"
-"</para>"
+"Refreshing the OpenPGP certificates is not possible because the usage of key "
+"servers has been disabled explicitly."
 msgstr ""
-"<para>OpenPGP-ის კატალოგის სერვისი მორგებული არაა.</para><para>თუ ყველა "
-"სერტიფიკატს არ აქვს მათი სასურველი სახელი (რამდენიმეს არ აქვს), მეორე "
-"სერვერიც უნდა მიუთითოთ, საიდანაც გამოვითხოვთ.</para><para>რადგან არც ერთ "
-"მითითებული არაა, <application>Kleopatra</application> <resource>keys.gnupg."
-"net</resource>-ს გამოიყენებს, გადასართავად.</para><para>OpenPGP-ის კატალოგის "
-"სერვერები, შეგიძლიათ, Kleopatra-ის მორგების ფანჯარაში მიუთითოთ.</"
-"para><para>გნებავთ, გავაგრძელო <resource>keys.gnupg.net</resource>-ის "
-"გამოყენება?</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:52
-#: src/commands/refreshopenpgpcertscommand.cpp:67
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Refresh"
-msgstr "OpenPGP სერტიფიკატის განახლება"
-
-#: src/commands/refreshopenpgpcertscommand.cpp:61
+#: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2944,19 +2913,25 @@ msgstr ""
 "და შესამოწმებელი სერტიფიკატების რაოდენობაზე დამოკიდებულებით.</"
 "para><para>დარწმუნებული ბრძანდებით, რომ გნებავთ, გააგრძელოთ?</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:87
+#: src/commands/refreshopenpgpcertscommand.cpp:56
+#, kde-format
+msgctxt "@title:window"
+msgid "OpenPGP Certificate Refresh"
+msgstr "OpenPGP სერტიფიკატის განახლება"
+
+#: src/commands/refreshopenpgpcertscommand.cpp:73
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Error"
 msgstr "OpenPGP სერტიფიკატის განახლების შეცდომა"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:92
+#: src/commands/refreshopenpgpcertscommand.cpp:78
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Finished"
 msgstr "OpenPGP სერტიფიკატის განახლება დასრულებულია"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:98
+#: src/commands/refreshopenpgpcertscommand.cpp:84
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2968,7 +2943,7 @@ msgstr ""
 "ნაადრევად დასრულდა, მოულოდნელი შეცდომის გამო.</para><para>ხელით გადაამოწმეთ "
 "გამოტანილი ინფორმაცია ხელით გაშვებული ბრძანებისთვის <icode>%1</icode>.</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:107
+#: src/commands/refreshopenpgpcertscommand.cpp:93
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2978,7 +2953,7 @@ msgstr ""
 "<para>შეცდომა OpenPGP-ის სერტიფიკატების განახლების მცდელობისას.</para> "
 "<para>ბრძანებამ <command>%1</command> გამოიტანა: <bcode>%2</bcode></para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:115
+#: src/commands/refreshopenpgpcertscommand.cpp:101
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates refreshed successfully."
@@ -3678,13 +3653,13 @@ msgstr ""
 "სერტიფიკატის განახლებისას იქნა მიღებული. თუ ეს პარამეტრი ჩართულია, Kleopatra "
 "WKD-ებს ყველა მომხმარებლის ID-ებისთვის გამოითხოვს."
 
-#: src/conf/dirservconfigpage.cpp:459 src/conf/dirservconfigpage.cpp:463
+#: src/conf/dirservconfigpage.cpp:461 src/conf/dirservconfigpage.cpp:465
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr ""
 "უკანაბოლოს შეცდომა: როგორც ჩანს, gpgconf-მა არ იცის, %1/%2-ის ჩანაწერი სადაა"
 
-#: src/conf/dirservconfigpage.cpp:472 src/conf/dirservconfigpage.cpp:479
+#: src/conf/dirservconfigpage.cpp:474 src/conf/dirservconfigpage.cpp:481
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "უკანაბოლოს შეცდომა: gpgconf-ის არასწორი ტიპი %1/%2-სთვის: %3 %4"
@@ -12311,6 +12286,44 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>No OpenPGP directory services have been configured.</"
+#~ "para><para>Since none is configured, <application>Kleopatra</application> "
+#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
+#~ "para><para>You can configure OpenPGP directory servers in "
+#~ "<application>Kleopatra</application>'s configuration dialog.</"
+#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
+#~ "resource> as the server to export to?</para>"
+#~ msgstr ""
+#~ "<para>OpenPGP-ის კატალოგის სერვისები მორგებული არაა.</para><para>იმის "
+#~ "გამო, რომ არც-ერთი არ მიგითითებიათ, <application>Kleopatra</application> "
+#~ "გამოიყენებს <resource>keys.gnupg.net</resource> როგორც სერვერს, რომელზეც "
+#~ "გატანა მოხდება.</para><para>OpenPGP-ის კატალოგის სერვერების "
+#~ "მითითება<application>Kleopatra</application>-ის მორგების ფანჯარაში "
+#~ "შეგიძლიათ.</para><para>გნებავთ, გააგრძელოთ <resource>keys.gnupg.net</"
+#~ "resource>-ის გასატან სერვერად გამოყენება?</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
+#~ "not all of the certificates carry the name of their preferred certificate "
+#~ "server (few do), a fallback server is needed to fetch from.</"
+#~ "para><para>Since none is configured, <application>Kleopatra</application> "
+#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
+#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
+#~ "configuration dialog.</para><para>Do you want to continue with "
+#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
+#~ msgstr ""
+#~ "<para>OpenPGP-ის კატალოგის სერვისი მორგებული არაა.</para><para>თუ ყველა "
+#~ "სერტიფიკატს არ აქვს მათი სასურველი სახელი (რამდენიმეს არ აქვს), მეორე "
+#~ "სერვერიც უნდა მიუთითოთ, საიდანაც გამოვითხოვთ.</para><para>რადგან არც ერთ "
+#~ "მითითებული არაა, <application>Kleopatra</application> <resource>keys."
+#~ "gnupg.net</resource>-ს გამოიყენებს, გადასართავად.</para><para>OpenPGP-ის "
+#~ "კატალოგის სერვერები, შეგიძლიათ, Kleopatra-ის მორგების ფანჯარაში მიუთითოთ."
+#~ "</para><para>გნებავთ, გავაგრძელო <resource>keys.gnupg.net</resource>-ის "
+#~ "გამოყენება?</para>"
 
 #~ msgid "Backup Secret Key"
 #~ msgstr "გააკეთეთ საიდუმლო გასაღების მარქაფი"

@@ -303,6 +303,13 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
 
 void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, const QString &str)
 {
+    if ((proto == GpgME::OpenPGP) && !haveKeyserverConfigured()) {
+        // avoid starting an OpenPGP key server lookup if key server usage has been disabled;
+        // for S/MIME we start the job regardless of configured directory servers to account for
+        // dirmngr knowing better than our check for directory servers
+        return;
+    }
+
     KeyListJob *const klj = createKeyListJob(proto);
     if (!klj) {
         return;

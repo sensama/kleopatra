@@ -569,10 +569,9 @@ void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyLi
 
 bool LookupCertificatesCommand::Private::checkConfig() const
 {
-    const bool haveOrDontNeedOpenPGPServer = haveKeyserverConfigured() || (protocol == GpgME::CMS);
-    const bool haveOrDontNeedCMSServer = haveX509DirectoryServerConfigured() || (protocol == GpgME::OpenPGP);
-    const bool ok = haveOrDontNeedOpenPGPServer || haveOrDontNeedCMSServer;
-    if (!ok)
+    // unless CMS-only lookup is requested we always try a lookup via WKD
+    const bool ok = (protocol != GpgME::CMS) || haveX509DirectoryServerConfigured();
+    if (!ok) {
         information(xi18nc("@info",
                            "<para>You do not have any directory servers configured.</para>"
                            "<para>You need to configure at least one directory server to "
@@ -580,6 +579,7 @@ bool LookupCertificatesCommand::Private::checkConfig() const
                            "<para>You can configure directory servers here: "
                            "<interface>Settings->Configure Kleopatra</interface>.</para>"),
                     i18nc("@title", "No Directory Servers Configured"));
+    }
     return ok;
 }
 

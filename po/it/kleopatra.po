@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-06 00:43+0000\n"
+"POT-Creation-Date: 2023-12-07 00:42+0000\n"
 "PO-Revision-Date: 2023-11-17 11:35+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -3651,17 +3651,27 @@ msgstr ""
 msgid "Archive command to use when archiving files:"
 msgstr "Comando di archiviazione da usare quando vengono archiviati i file:"
 
-#: src/conf/dirservconfigpage.cpp:134
+#: src/conf/dirservconfigpage.cpp:135
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "Server delle chiavi OpenPGP:"
 
-#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
+#: src/conf/dirservconfigpage.cpp:140
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Enter the address of the keyserver to use when searching for OpenPGP "
+"certificates and when uploading OpenPGP certificates. If you do not enter an "
+"address then an internal default will be used. To disable the use of an "
+"OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "Servizi di directory X.509"
 
-#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:176 src/conf/dirservconfigpage.cpp:180
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3670,17 +3680,17 @@ msgstr ""
 "La configurazione dei servizi di directory non è possibile perché le "
 "librerie gpgme utilizzate sono troppo datate."
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:197
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "Scaden&za LDAP (minuti:secondi):"
 
-#: src/conf/dirservconfigpage.cpp:201
+#: src/conf/dirservconfigpage.cpp:210
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "Numero &massimo di voci restituite dalla ricerca:"
 
-#: src/conf/dirservconfigpage.cpp:213
+#: src/conf/dirservconfigpage.cpp:222
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
@@ -3688,7 +3698,7 @@ msgstr ""
 "Recupera le chiavi di certificazione mancanti durante l'importazione di "
 "nuove chiavi"
 
-#: src/conf/dirservconfigpage.cpp:215
+#: src/conf/dirservconfigpage.cpp:224
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3699,14 +3709,14 @@ msgstr ""
 "utilizzate per certificare gli ID utente delle chiavi OpenPGP appena "
 "importate."
 
-#: src/conf/dirservconfigpage.cpp:222
+#: src/conf/dirservconfigpage.cpp:231
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 "Interroga le directory dei certificati dei fornitori per tutti gli ID utente"
 
-#: src/conf/dirservconfigpage.cpp:224
+#: src/conf/dirservconfigpage.cpp:233
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3720,12 +3730,12 @@ msgstr ""
 "quando aggiorni un certificato OpenPGP. Se questa opzione è abilitata, "
 "Kleopatra interrogherà i WKD per tutti gli ID utente."
 
-#: src/conf/dirservconfigpage.cpp:461 src/conf/dirservconfigpage.cpp:465
+#: src/conf/dirservconfigpage.cpp:470 src/conf/dirservconfigpage.cpp:474
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "Errore del motore: gpgconf sembra non conoscere le voci per %1/%2"
 
-#: src/conf/dirservconfigpage.cpp:474 src/conf/dirservconfigpage.cpp:481
+#: src/conf/dirservconfigpage.cpp:483 src/conf/dirservconfigpage.cpp:490
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Errore del motore: gpgconf ha il tipo errato per %1/%2: %3 %4"

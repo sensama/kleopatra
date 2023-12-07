@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-06 00:43+0000\n"
+"POT-Creation-Date: 2023-12-07 00:42+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -3702,17 +3702,27 @@ msgstr ""
 msgid "Archive command to use when archiving files:"
 msgstr "Εντολή για την τοποθέτηση αρχείων στην αρχειοθήκη:"
 
-#: src/conf/dirservconfigpage.cpp:134
+#: src/conf/dirservconfigpage.cpp:135
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "OpenPGP εξυπηρετητής:"
 
-#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
+#: src/conf/dirservconfigpage.cpp:140
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Enter the address of the keyserver to use when searching for OpenPGP "
+"certificates and when uploading OpenPGP certificates. If you do not enter an "
+"address then an internal default will be used. To disable the use of an "
+"OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "X.509 υπηρεσίες καταλόγου"
 
-#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:176 src/conf/dirservconfigpage.cpp:180
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3721,24 +3731,24 @@ msgstr ""
 "Η διαμόρφωση των υπηρεσιών καταλόγου δεν είναι εφικτή επειδή οι βιβλιοθήκες "
 "gpgme που χρησιμοποιούνται είναι πολύ παλιές."
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:197
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "Χρονικό ό&ριο LDAP (λεπτά:δευτερόλεπτα):"
 
-#: src/conf/dirservconfigpage.cpp:201
+#: src/conf/dirservconfigpage.cpp:210
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "&Μέγιστος αριθμός αντικειμένων που επιστρέφονται από ερώτημα:"
 
-#: src/conf/dirservconfigpage.cpp:213
+#: src/conf/dirservconfigpage.cpp:222
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr ""
 "Ανάκτηση κλειδιών πιστοποίησης που λείπουν κατά την εισαγωγή νέων κλειδιών"
 
-#: src/conf/dirservconfigpage.cpp:215
+#: src/conf/dirservconfigpage.cpp:224
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3749,13 +3759,13 @@ msgstr ""
 "κλειδιά που χρησιμοποιήθηκαν για να πιστοποιήσουν τα αναγνωριστικά χρηστών "
 "των νεοεισαχθέντων κλειδιών OpenPGP."
 
-#: src/conf/dirservconfigpage.cpp:222
+#: src/conf/dirservconfigpage.cpp:231
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:224
+#: src/conf/dirservconfigpage.cpp:233
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3765,13 +3775,13 @@ msgid ""
 "WKDs for all user IDs."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:461 src/conf/dirservconfigpage.cpp:465
+#: src/conf/dirservconfigpage.cpp:470 src/conf/dirservconfigpage.cpp:474
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr ""
 "Σφάλμα συστήματος υποστήριξης: Το gpgconf δε γνωρίζει καταχώρηση για το %1/%2"
 
-#: src/conf/dirservconfigpage.cpp:474 src/conf/dirservconfigpage.cpp:481
+#: src/conf/dirservconfigpage.cpp:483 src/conf/dirservconfigpage.cpp:490
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr ""

@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-06 00:43+0000\n"
+"POT-Creation-Date: 2023-12-07 00:42+0000\n"
 "PO-Revision-Date: 2023-11-17 10:17+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
@@ -3724,17 +3724,27 @@ msgstr ""
 msgid "Archive command to use when archiving files:"
 msgstr "Commande d'archivage à utiliser lors de l'archivage des fichiers :"
 
-#: src/conf/dirservconfigpage.cpp:134
+#: src/conf/dirservconfigpage.cpp:135
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "Serveur de clés « OpenPGP » :"
 
-#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
+#: src/conf/dirservconfigpage.cpp:140
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Enter the address of the keyserver to use when searching for OpenPGP "
+"certificates and when uploading OpenPGP certificates. If you do not enter an "
+"address then an internal default will be used. To disable the use of an "
+"OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "Services d'annuaire « X.509 »"
 
-#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:176 src/conf/dirservconfigpage.cpp:180
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3743,17 +3753,17 @@ msgstr ""
 "La configuration des services d'annuaire est impossible car les "
 "bibliothèques « gpgme » utilisées sont trop anciennes."
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:197
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "&Délai maximal LDAP (minutes:secondes) :"
 
-#: src/conf/dirservconfigpage.cpp:201
+#: src/conf/dirservconfigpage.cpp:210
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "Nombre &maximal d'éléments retournés par requête :"
 
-#: src/conf/dirservconfigpage.cpp:213
+#: src/conf/dirservconfigpage.cpp:222
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
@@ -3761,7 +3771,7 @@ msgstr ""
 "Rechercher les clés de certification manquantes lors de l'importation de "
 "nouvelles clés"
 
-#: src/conf/dirservconfigpage.cpp:215
+#: src/conf/dirservconfigpage.cpp:224
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3772,7 +3782,7 @@ msgstr ""
 "retrouver les clés ayant été utilisées pour certifier les identifiants de "
 "l'utilisateur pour les clés « OpenPGP » nouvellement importées."
 
-#: src/conf/dirservconfigpage.cpp:222
+#: src/conf/dirservconfigpage.cpp:231
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
@@ -3780,7 +3790,7 @@ msgstr ""
 "Interroger les dossiers de certificats des fournisseurs pour tous les "
 "identifiants utilisateur"
 
-#: src/conf/dirservconfigpage.cpp:224
+#: src/conf/dirservconfigpage.cpp:233
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3795,14 +3805,14 @@ msgstr ""
 "« OpenPGP ». Si cette option est activée, alors, Kleopatra interrogera les "
 "WKD pour tous les identifiants utilisateur."
 
-#: src/conf/dirservconfigpage.cpp:461 src/conf/dirservconfigpage.cpp:465
+#: src/conf/dirservconfigpage.cpp:470 src/conf/dirservconfigpage.cpp:474
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr ""
 "Erreur du moteur de traitement : gpgconf ne semble pas connaître l'entrée "
 "pour %1 / %2"
 
-#: src/conf/dirservconfigpage.cpp:474 src/conf/dirservconfigpage.cpp:481
+#: src/conf/dirservconfigpage.cpp:483 src/conf/dirservconfigpage.cpp:490
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr ""

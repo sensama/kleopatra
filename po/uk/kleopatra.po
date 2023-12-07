@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-06 00:43+0000\n"
-"PO-Revision-Date: 2023-11-16 08:06+0200\n"
+"POT-Creation-Date: 2023-12-07 00:42+0000\n"
+"PO-Revision-Date: 2023-12-06 13:47+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -1382,9 +1382,17 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Експортування сертифікатів на сервер ключів є неможливим, оскільки "
+"використання серверів ключів було явним чином вимкнено."
 msgstr[1] ""
+"Експортування сертифікатів на сервер ключів є неможливим, оскільки "
+"використання серверів ключів було явним чином вимкнено."
 msgstr[2] ""
+"Експортування сертифікатів на сервер ключів є неможливим, оскільки "
+"використання серверів ключів було явним чином вимкнено."
 msgstr[3] ""
+"Експортування сертифіката на сервер ключів є неможливим, оскільки "
+"використання серверів ключів було явним чином вимкнено."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2957,6 +2965,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Освіження сертифікатів OpenPGP неможливе, оскільки використання серверів "
+"ключів було явним чином вимкнено."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3675,17 +3685,27 @@ msgstr "Програма для обробки, яка створюватиме 
 msgid "Archive command to use when archiving files:"
 msgstr "Команда для архівування файлів:"
 
-#: src/conf/dirservconfigpage.cpp:134
+#: src/conf/dirservconfigpage.cpp:135
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "Сервер ключів OpenPGP:"
 
-#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
+#: src/conf/dirservconfigpage.cpp:140
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Enter the address of the keyserver to use when searching for OpenPGP "
+"certificates and when uploading OpenPGP certificates. If you do not enter an "
+"address then an internal default will be used. To disable the use of an "
+"OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "Служби каталогу X.509"
 
-#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:176 src/conf/dirservconfigpage.cpp:180
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3694,17 +3714,17 @@ msgstr ""
 "Налаштовування служб каталогу є неможливим, оскільки використані бібліотеки "
 "gpgme є надто застарілими."
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:197
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "&Тайм-аут LDAP (хв:сек):"
 
-#: src/conf/dirservconfigpage.cpp:201
+#: src/conf/dirservconfigpage.cpp:210
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "&Макс. кількість елементів у відповіді до запиту:"
 
-#: src/conf/dirservconfigpage.cpp:213
+#: src/conf/dirservconfigpage.cpp:222
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
@@ -3712,7 +3732,7 @@ msgstr ""
 "Отримувати ключі сертифікації, яких не вистачає, при імпортуванні нових "
 "ключів"
 
-#: src/conf/dirservconfigpage.cpp:215
+#: src/conf/dirservconfigpage.cpp:224
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3723,7 +3743,7 @@ msgstr ""
 "було використано для сертифікації ідентифікаторів користувачів нових "
 "імпортованих ключів OpenPGP."
 
-#: src/conf/dirservconfigpage.cpp:222
+#: src/conf/dirservconfigpage.cpp:231
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
@@ -3731,7 +3751,7 @@ msgstr ""
 "Надсилати запит до каталогів сертифікатів надавачів для усіх ідентифікаторів "
 "користувачів"
 
-#: src/conf/dirservconfigpage.cpp:224
+#: src/conf/dirservconfigpage.cpp:233
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3745,12 +3765,12 @@ msgstr ""
 "сертифікат OpenPGP. Якщо позначено цей пункт, Kleopatra надсилатиме запит до "
 "WKD для усіх ідентифікаторів користувачів."
 
-#: src/conf/dirservconfigpage.cpp:461 src/conf/dirservconfigpage.cpp:465
+#: src/conf/dirservconfigpage.cpp:470 src/conf/dirservconfigpage.cpp:474
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "Помилка сервера: gpgconf, схоже, що не знає запису для %1/%2"
 
-#: src/conf/dirservconfigpage.cpp:474 src/conf/dirservconfigpage.cpp:481
+#: src/conf/dirservconfigpage.cpp:483 src/conf/dirservconfigpage.cpp:490
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Помилка сервера: gpgconf має неправильний тип для %1/%2: %3 %4"

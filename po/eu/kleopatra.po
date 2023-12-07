@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-06 00:43+0000\n"
-"PO-Revision-Date: 2023-11-07 22:25+0100\n"
+"POT-Creation-Date: 2023-12-07 00:42+0000\n"
+"PO-Revision-Date: 2023-12-06 12:12+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.2\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -1379,7 +1379,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Ziurtagiria ezin da gako-zerbitzari batera esportatu, gako-zerbitzarien "
+"erabilera esplizituki ezgaitu delako."
 msgstr[1] ""
+"Ziurtagiriak ezin dira gako-zerbitzari batera esportatu, gako-zerbitzarien "
+"erabilera esplizituki ezgaitu delako."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2932,6 +2936,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Ezin dira OpenPGP ziurtagiriak berritu, gako-zerbitzarien erabilera "
+"esplizituki ezgaitu delako."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3632,17 +3638,27 @@ msgstr ""
 msgid "Archive command to use when archiving files:"
 msgstr "Fitxategiak artxibatzeko erabili beharreko komandoa:"
 
-#: src/conf/dirservconfigpage.cpp:134
+#: src/conf/dirservconfigpage.cpp:135
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "OpenPGP gako-zerbitzaria:"
 
-#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
+#: src/conf/dirservconfigpage.cpp:140
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Enter the address of the keyserver to use when searching for OpenPGP "
+"certificates and when uploading OpenPGP certificates. If you do not enter an "
+"address then an internal default will be used. To disable the use of an "
+"OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "X.509 direktorio zerbitzuak"
 
-#: src/conf/dirservconfigpage.cpp:167 src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:176 src/conf/dirservconfigpage.cpp:180
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3651,23 +3667,23 @@ msgstr ""
 "Direktorio zerbitzuak ezin dira konfiguratu erabilitako «gpgme» liburutegiak "
 "zaharregiak direlako."
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:197
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "LDAP &denbora-muga (minutu:segundo):"
 
-#: src/conf/dirservconfigpage.cpp:201
+#: src/conf/dirservconfigpage.cpp:210
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "Itaunak itzulitako elementu kopuru &maximoa"
 
-#: src/conf/dirservconfigpage.cpp:213
+#: src/conf/dirservconfigpage.cpp:222
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr "Eskuratu falta diren ziurtapen gakoak gako berriak inportatzean"
 
-#: src/conf/dirservconfigpage.cpp:215
+#: src/conf/dirservconfigpage.cpp:224
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3677,14 +3693,14 @@ msgstr ""
 "Gaituz gero, Kleopatra, berriki inportatutako OpenPGP gakoen erabiltzaileen "
 "IDak ziurtatzeko erabili ziren gakoak automatikoki eskuratzen saiatuko da."
 
-#: src/conf/dirservconfigpage.cpp:222
+#: src/conf/dirservconfigpage.cpp:231
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 "Itaundu hornitzaileen ziurtagiri-direktorioak erabiltzaile ID guztietarako"
 
-#: src/conf/dirservconfigpage.cpp:224
+#: src/conf/dirservconfigpage.cpp:233
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3699,13 +3715,13 @@ msgstr ""
 "erabiltzaile IDetarako. Aukera hori gaituta badago, Kleopatrak WKDak "
 "erabiltzaile ID guztien bila itaunduko ditu."
 
-#: src/conf/dirservconfigpage.cpp:461 src/conf/dirservconfigpage.cpp:465
+#: src/conf/dirservconfigpage.cpp:470 src/conf/dirservconfigpage.cpp:474
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr ""
 "Bizkarraldekoaren errorea: «gpgconf»ek ez du %1/%2(r)en sarrera ezagutzen"
 
-#: src/conf/dirservconfigpage.cpp:474 src/conf/dirservconfigpage.cpp:481
+#: src/conf/dirservconfigpage.cpp:483 src/conf/dirservconfigpage.cpp:490
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Euskarriaren errorea: «gpgconf»ek %1/%2(r)en mota okerra du: %3 %4"
@@ -9119,15 +9135,11 @@ msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
 #: src/mainwindow.cpp:713
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops.pdf"
-msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
+msgstr "BSI-VSA-10573-ENG_secops.pdf"
 
 #: src/mainwindow.cpp:718
 #, kde-format
@@ -9135,15 +9147,11 @@ msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
 #: src/mainwindow.cpp:719
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops.pdf"
-msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
+msgstr "BSI-VSA-10584-ENG_secops.pdf"
 
 #: src/mainwindow.cpp:744
 #, kde-format

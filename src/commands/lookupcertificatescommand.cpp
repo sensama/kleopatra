@@ -280,8 +280,6 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
         dialog->showInformation({});
     }
 
-    query = str;
-
     keyListing.reset();
     keyListing.pattern = str;
 
@@ -290,15 +288,15 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     }
 
     if (protocol != GpgME::CMS) {
-        static const QRegularExpression rx(QRegularExpression::anchoredPattern(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}")));
-        if (rx.match(query).hasMatch() && !str.startsWith(QLatin1String("0x"), Qt::CaseInsensitive)) {
-            qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query";
-            startKeyListJob(OpenPGP, QStringLiteral("0x") + str);
+        static const QRegularExpression rx(QRegularExpression::anchoredPattern(QLatin1String("[0-9a-fA-F]{6,}")));
+        if (rx.match(str).hasMatch()) {
+            qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query" << str;
+            startKeyListJob(OpenPGP, QLatin1String{"0x"} + str);
         } else {
             startKeyListJob(OpenPGP, str);
-            if (str.contains(QLatin1Char{'@'}) && !searchTextToEmailAddress(str).isEmpty()) {
-                startWKDLookupJob(str);
-            }
+        }
+        if (str.contains(QLatin1Char{'@'}) && !searchTextToEmailAddress(str).isEmpty()) {
+            startWKDLookupJob(str);
         }
     }
 }

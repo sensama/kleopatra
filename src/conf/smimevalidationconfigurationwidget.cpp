@@ -96,10 +96,6 @@ private:
             labelledOCSPResponderURL.setWidgets(OCSPResponderURL, OCSPResponderURLLabel);
             labelledOCSPResponderSignature.setWidgets(OCSPResponderSignature, OCSPResponderSignatureLabel);
 
-            if (QLayout *l = q->layout()) {
-                l->setContentsMargins(0, 0, 0, 0);
-            }
-
             OCSPResponderSignature->setOnlyX509CertificatesAllowed(true);
             OCSPResponderSignature->setOnlySigningCertificatesAllowed(true);
             OCSPResponderSignature->setMultipleCertificatesAllowed(false);

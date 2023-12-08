@@ -137,6 +137,10 @@ public:
         auto mainLayout = new QVBoxLayout(q);
 
         auto groupsLayout = new QGridLayout;
+        groupsLayout->setContentsMargins(q->style()->pixelMetric(QStyle::PM_LayoutLeftMargin),
+                                         q->style()->pixelMetric(QStyle::PM_LayoutTopMargin),
+                                         q->style()->pixelMetric(QStyle::PM_LayoutRightMargin),
+                                         q->style()->pixelMetric(QStyle::PM_LayoutBottomMargin));
         groupsLayout->setColumnStretch(0, 1);
         groupsLayout->setRowStretch(1, 1);
         int row = -1;

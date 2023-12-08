@@ -58,7 +58,6 @@ SmartCardConfigurationPage::SmartCardConfigurationPage(QObject *parent, const KP
     , d{std::make_unique<Private>(this)}
 {
     auto mainLayout = new QVBoxLayout{widget()};
-    mainLayout->setContentsMargins(0, 0, 0, 0);
 
     {
         auto l = new QHBoxLayout{};

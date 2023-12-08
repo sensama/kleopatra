@@ -119,7 +119,6 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 #else
     auto glay = new QGridLayout(q->widget());
 #endif
-    glay->setContentsMargins(0, 0, 0, 0);
 
     // OpenPGP keyserver
     int row = 0;
@@ -156,7 +155,9 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 #else
         auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), q->widget()};
 #endif
+        groupBox->setFlat(true);
         auto groupBoxLayout = new QVBoxLayout{groupBox};
+        groupBoxLayout->setContentsMargins({});
 
         if (gpgme_check_version("1.16.0")) {
 #if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)

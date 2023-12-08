@@ -55,10 +55,7 @@ CryptoOperationsConfigWidget::CryptoOperationsConfigWidget(QWidget *p, Qt::Windo
 void CryptoOperationsConfigWidget::setupGui()
 {
     auto baseLay = new QVBoxLayout(this);
-    baseLay->setContentsMargins(0, 0, 0, 0);
 
-    auto fileGrp = new QGroupBox(i18n("File Operations"));
-    auto fileGrpLay = new QVBoxLayout;
     mPGPFileExtCB = new QCheckBox(i18n(R"(Create OpenPGP encrypted files with ".pgp" file extensions instead of ".gpg")"));
     mASCIIArmorCB = new QCheckBox(i18n("Create signed or encrypted files as text files."));
     mASCIIArmorCB->setToolTip(i18nc("@info",
@@ -73,13 +70,13 @@ void CryptoOperationsConfigWidget::setupGui()
     mSymmetricOnlyCB = new QCheckBox(i18n("Use symmetric encryption only."));
     mSymmetricOnlyCB->setToolTip(i18nc("@info", "Set this option to disable public key encryption."));
 
-    fileGrpLay->addWidget(mPGPFileExtCB);
-    fileGrpLay->addWidget(mTreatP7mEmailCB);
-    fileGrpLay->addWidget(mAutoDecryptVerifyCB);
-    fileGrpLay->addWidget(mAutoExtractArchivesCB);
-    fileGrpLay->addWidget(mASCIIArmorCB);
-    fileGrpLay->addWidget(mTmpDirCB);
-    fileGrpLay->addWidget(mSymmetricOnlyCB);
+    baseLay->addWidget(mPGPFileExtCB);
+    baseLay->addWidget(mTreatP7mEmailCB);
+    baseLay->addWidget(mAutoDecryptVerifyCB);
+    baseLay->addWidget(mAutoExtractArchivesCB);
+    baseLay->addWidget(mASCIIArmorCB);
+    baseLay->addWidget(mTmpDirCB);
+    baseLay->addWidget(mSymmetricOnlyCB);
 
     auto comboLay = new QGridLayout;
 
@@ -93,11 +90,7 @@ void CryptoOperationsConfigWidget::setupGui()
     comboLay->addWidget(mArchiveDefinitionCB.label(), 1, 0);
     comboLay->addWidget(mArchiveDefinitionCB.widget(), 1, 1);
 
-    fileGrpLay->addLayout(comboLay);
-
-    fileGrp->setLayout(fileGrpLay);
-    baseLay->addWidget(fileGrp);
-
+    baseLay->addLayout(comboLay);
     baseLay->addStretch(1);
 
     for (auto cb : findChildren<QCheckBox *>()) {

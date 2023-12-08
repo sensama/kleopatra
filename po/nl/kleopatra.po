@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-07 00:42+0000\n"
-"PO-Revision-Date: 2023-11-16 18:51+0100\n"
+"POT-Creation-Date: 2023-12-08 00:42+0000\n"
+"PO-Revision-Date: 2023-12-07 10:03+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -1385,7 +1385,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Het certificaat exporteren naar een sleutelserver is niet mogelijk omdat het "
+"gebruik van sleutelservers expliciet is uitgeschakeld."
 msgstr[1] ""
+"De certificaten exporteren naar een sleutelserver is niet mogelijk omdat het "
+"gebruik van sleutelservers expliciet is uitgeschakeld."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2596,7 +2600,7 @@ msgstr "Certificaten worden geladen... (kan even duren)"
 msgid "Show Details"
 msgstr "Details tonen"
 
-#: src/commands/lookupcertificatescommand.cpp:432
+#: src/commands/lookupcertificatescommand.cpp:437
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2612,7 +2616,7 @@ msgstr ""
 "andere X.509 directory-service kunnen configureren in de configuratiedialoog."
 "</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:439
+#: src/commands/lookupcertificatescommand.cpp:444
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2627,13 +2631,13 @@ msgstr ""
 "andere OpenPGP keyserver kunnen configureren in de configuratiedialoog.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:445
+#: src/commands/lookupcertificatescommand.cpp:450
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Ongeldig antwoord uit de server"
 
-#: src/commands/lookupcertificatescommand.cpp:476
+#: src/commands/lookupcertificatescommand.cpp:481
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2641,14 +2645,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "Eén certificaat zonder naam en e-mailadres is genegeerd."
 msgstr[1] "%1 certificaten zonder naam en e-mailadres zijn genegeerd."
 
-#: src/commands/lookupcertificatescommand.cpp:514
-#: src/commands/lookupcertificatescommand.cpp:517
+#: src/commands/lookupcertificatescommand.cpp:519
+#: src/commands/lookupcertificatescommand.cpp:522
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Server voor %1 certificaten"
 
-#: src/commands/lookupcertificatescommand.cpp:550
+#: src/commands/lookupcertificatescommand.cpp:555
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2658,7 +2662,7 @@ msgstr ""
 "Zoeken op server voor certificaten is mislukt. De ontvangen fout was:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:558
+#: src/commands/lookupcertificatescommand.cpp:563
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2674,13 +2678,13 @@ msgstr ""
 "vergroten, maar als één van de geconfigureerde servers de limiterende factor "
 "is, dan moet u de zoekopdracht verfijnen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:566
+#: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Resultaat is afgekapt"
 
-#: src/commands/lookupcertificatescommand.cpp:577
+#: src/commands/lookupcertificatescommand.cpp:581
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2693,7 +2697,7 @@ msgstr ""
 "om te kunnen zoeken.</para><para>U kunt hier: <interface>Instellingen-"
 ">Kleopatra instellen</interface> een mapserver instellen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:582
+#: src/commands/lookupcertificatescommand.cpp:586
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -2945,6 +2949,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Vernieuwen van OpenPGP certificaten is niet mogelijk omdat het gebruik van "
+"sleutelservers expliciet is uitgeschakeld."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3664,6 +3670,11 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Voer het adres in van de te gebruiken sleutelserver bij zoeken naar OpenPGP "
+"certificaten en bij uploaden van OpenPGP certificaten. Als u geen adres "
+"invoert dan zal een interne standaard worden gebruikt. Om het gebruik van "
+"een OpenPGP sleutelserver uit te schakelen voer de speciale waarde "
+"<emphasis>none</emphasis> in."
 
 #: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-07 00:42+0000\n"
-"PO-Revision-Date: 2023-12-06 07:23+0100\n"
+"POT-Creation-Date: 2023-12-08 00:42+0000\n"
+"PO-Revision-Date: 2023-12-07 10:32+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -2594,7 +2594,7 @@ msgstr "Nalagam potrdila... (lahko traja dalj časa)"
 msgid "Show Details"
 msgstr "Pokaži podrobnosti"
 
-#: src/commands/lookupcertificatescommand.cpp:432
+#: src/commands/lookupcertificatescommand.cpp:437
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2609,7 +2609,7 @@ msgstr ""
 "edinstveni določilniki za potrdila.</para><para>Morda želite postaviti drugo "
 "storitev imenika X.509 v pogovornem oknu nastavitev.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:439
+#: src/commands/lookupcertificatescommand.cpp:444
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2623,13 +2623,13 @@ msgstr ""
 "določilniki za potrdila.</para><para>Morda želite postaviti drugega "
 "strežnika ključev OpenPGP v pogovornem oknu nastavitev.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:445
+#: src/commands/lookupcertificatescommand.cpp:450
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Neveljaven odgovor strežnika"
 
-#: src/commands/lookupcertificatescommand.cpp:476
+#: src/commands/lookupcertificatescommand.cpp:481
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2639,14 +2639,14 @@ msgstr[1] "%1 potrdili brez imena in e-poštnega naslova sta bila prezrta."
 msgstr[2] "%1 potrdila brez imena in e-poštnega naslova so bila prezrta."
 msgstr[3] "%1 potrdil brez imena in e-poštnega naslova je bilo prezrtih."
 
-#: src/commands/lookupcertificatescommand.cpp:514
-#: src/commands/lookupcertificatescommand.cpp:517
+#: src/commands/lookupcertificatescommand.cpp:519
+#: src/commands/lookupcertificatescommand.cpp:522
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 strežnik za potrdila"
 
-#: src/commands/lookupcertificatescommand.cpp:550
+#: src/commands/lookupcertificatescommand.cpp:555
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2656,7 +2656,7 @@ msgstr ""
 "Iskanje potrdil na strežniku ni uspelo. Vrnjena napaka je bila:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:558
+#: src/commands/lookupcertificatescommand.cpp:563
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2672,13 +2672,13 @@ msgstr ""
 "če pa je omejitev na strani strežnika, boste morali prilagoditi svoje "
 "iskanje.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:566
+#: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Rezultat je skrajšan"
 
-#: src/commands/lookupcertificatescommand.cpp:577
+#: src/commands/lookupcertificatescommand.cpp:581
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2692,7 +2692,7 @@ msgstr ""
 "iskalo.</para><para>Imeniške strežnike lahko nastavite v "
 "<interface>Nastavitve → Nastavi Kleopatro</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:582
+#: src/commands/lookupcertificatescommand.cpp:586
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3671,6 +3671,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Vnesite naslov strežnika ključev za uporabo pri iskanju potrdil OpenPGP in "
+"pri nalaganju potrdil OpenPGP. Če ne vnesete naslova, bo uporabljen notranji "
+"privzeti naslov. Če želite onemogočiti uporabo strežnika ključev OpenPGP, "
+"vnesite posebno vrednost <emphasis>none</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format

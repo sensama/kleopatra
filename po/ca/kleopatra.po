@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-07 00:42+0000\n"
-"PO-Revision-Date: 2023-12-06 10:39+0100\n"
+"POT-Creation-Date: 2023-12-08 00:42+0000\n"
+"PO-Revision-Date: 2023-12-07 10:51+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -2594,7 +2594,7 @@ msgstr "S'estan carregant els certificats... (pot trigar una estona)"
 msgid "Show Details"
 msgstr "Mostra els detalls"
 
-#: src/commands/lookupcertificatescommand.cpp:432
+#: src/commands/lookupcertificatescommand.cpp:437
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2610,7 +2610,7 @@ msgstr ""
 "para><para>És possible que vulgueu configurar un servei de directori X.509 "
 "diferent en el diàleg de configuració.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:439
+#: src/commands/lookupcertificatescommand.cpp:444
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2625,13 +2625,13 @@ msgstr ""
 "para><para>És possible que vulgueu configurar un servidor de claus OpenPGP "
 "diferent en el diàleg de configuració.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:445
+#: src/commands/lookupcertificatescommand.cpp:450
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Resposta no vàlida del servidor"
 
-#: src/commands/lookupcertificatescommand.cpp:476
+#: src/commands/lookupcertificatescommand.cpp:481
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2641,14 +2641,14 @@ msgstr[0] ""
 msgstr[1] ""
 "S'han ignorat %1 certificats sense nom ni adreça de correu electrònic."
 
-#: src/commands/lookupcertificatescommand.cpp:514
-#: src/commands/lookupcertificatescommand.cpp:517
+#: src/commands/lookupcertificatescommand.cpp:519
+#: src/commands/lookupcertificatescommand.cpp:522
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Servidor de certificats %1"
 
-#: src/commands/lookupcertificatescommand.cpp:550
+#: src/commands/lookupcertificatescommand.cpp:555
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2659,7 +2659,7 @@ msgstr ""
 "estat:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:558
+#: src/commands/lookupcertificatescommand.cpp:563
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2675,13 +2675,13 @@ msgstr ""
 "configuració, però si el factor de limitació és un dels servidors "
 "configurats, haureu de refinar la cerca.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:566
+#: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Resultat truncat"
 
-#: src/commands/lookupcertificatescommand.cpp:577
+#: src/commands/lookupcertificatescommand.cpp:581
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2695,7 +2695,7 @@ msgstr ""
 "podeu configurar els servidors de directori: <interface>Arranjament -> "
 "Configura Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:582
+#: src/commands/lookupcertificatescommand.cpp:586
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3668,6 +3668,11 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Introduïu l'adreça del servidor de claus a utilitzar en cercar certificats "
+"OpenPGP i en pujar certificats OpenPGP. Si no introduïu cap adreça, "
+"s'utilitzarà un valor predeterminat intern. Per a desactivar l'ús d'un "
+"servidor de claus OpenPGP introduïu el valor especial <emphasis>none</"
+"emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format

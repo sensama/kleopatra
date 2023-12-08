@@ -331,7 +331,9 @@ public:
         if (parent->objectName().isEmpty())
             parent->setObjectName(QString::fromUtf8("AppearanceConfigWidget"));
         auto mainLayout = new QVBoxLayout{parent};
+        mainLayout->setContentsMargins({});
         tabWidget = new QTabWidget(parent);
+        tabWidget->setDocumentMode(true);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
 
         {

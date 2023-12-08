@@ -22,6 +22,7 @@ AppearanceConfigurationPage::AppearanceConfigurationPage(QObject *parent, const 
     : KCModule(parent, data)
 {
     auto lay = new QVBoxLayout(widget());
+    lay->setContentsMargins({});
     mWidget = new AppearanceConfigWidget(widget());
     lay->addWidget(mWidget);
 

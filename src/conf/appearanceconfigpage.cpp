@@ -31,6 +31,7 @@ AppearanceConfigurationPage::AppearanceConfigurationPage(QObject *parent, const 
     mWidget = new AppearanceConfigWidget(this);
 #else
     auto lay = new QVBoxLayout(widget());
+    lay->setContentsMargins({});
     mWidget = new AppearanceConfigWidget(widget());
 #endif
     lay->addWidget(mWidget);

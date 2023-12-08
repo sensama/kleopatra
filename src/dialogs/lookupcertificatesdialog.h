@@ -29,8 +29,16 @@ class LookupCertificatesDialog : public QDialog
 {
     Q_OBJECT
 public:
+    enum QueryMode {
+        AnyQuery, //< any query is allowed
+        EmailQuery, //< only email queries are allowed
+    };
+
     explicit LookupCertificatesDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~LookupCertificatesDialog() override;
+
+    void setQueryMode(QueryMode mode);
+    QueryMode queryMode() const;
 
     void setCertificates(const std::vector<GpgME::Key> &certs);
     std::vector<GpgME::Key> selectedCertificates() const;

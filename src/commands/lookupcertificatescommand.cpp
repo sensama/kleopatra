@@ -247,6 +247,10 @@ void LookupCertificatesCommand::Private::createDialog()
     dialog = new LookupCertificatesDialog;
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
+
+    const bool wkdOnly = !haveKeyserverConfigured() && !haveX509DirectoryServerConfigured();
+    dialog->setQueryMode(wkdOnly ? LookupCertificatesDialog::EmailQuery : LookupCertificatesDialog::AnyQuery);
+
     connect(dialog, &LookupCertificatesDialog::searchTextChanged, q, [this](const QString &text) {
         slotSearchTextChanged(text);
     });

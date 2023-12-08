@@ -57,7 +57,7 @@ private:
     }
     void slotSearchClicked()
     {
-        Q_EMIT q->searchTextChanged(ui.findED->text());
+        Q_EMIT q->searchTextChanged(searchText());
     }
     void slotDetailsClicked()
     {

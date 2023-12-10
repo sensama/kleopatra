@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-09 00:42+0000\n"
-"PO-Revision-Date: 2023-12-07 10:51+0100\n"
+"PO-Revision-Date: 2023-12-09 11:56+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -7242,22 +7242,16 @@ msgid "Import"
 msgstr "Importa"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr ""
-"Introduïu un nom i una adreça de correu electrònic a emprar per al "
-"certificat."
+msgstr "Introduïu un terme de cerca per a cercar certificats coincidents."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr ""
-"Introduïu un nom i una adreça de correu electrònic a emprar per al "
-"certificat."
+msgstr "Introduïu una adreça de correu per a cercar certificats coincidents."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8052,20 +8046,18 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Consell per a EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Aquest text s'usarà com a text de marcador de posició per al camp de "
-"l'adreça de correu electrònic dels certificats OpenPGP i S/MIME."
+"Aquest text es mostrarà a sobre del camp de l'adreça de correu electrònic "
+"dels certificats OpenPGP i com a marcador de posició per als certificats S/"
+"MIME."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8090,10 +8082,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Marcador de posició per a EMAIL"
+msgstr "Valor d'EMAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8103,23 +8094,22 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Valor preomplert per al camp d'adreça de correu electrònic dels certificats "
+"OpenPGP i S/MIME. Això substituirà EMAIL_prefill. És útil si no es troba cap "
+"configuració del sistema adequada per a EMAIL_prefill."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Consell per a NAME"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
-"Aquest text s'usarà com a text de marcador de posició per al camp de nom "
-"dels certificats S/MIME."
+"Aquest text es mostrarà a sobre del camp de nom dels certificats OpenPGP."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8143,10 +8133,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Marcador de posició per a NAME"
+msgstr "Valor de NAME"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8156,6 +8145,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Valor preomplert per al camp de nom dels certificats OpenPGP. Això "
+"substituirà NAME_prefill. És útil si no es troba cap configuració del "
+"sistema adequada per a NAME_prefill."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -12538,42 +12530,3 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
-#~ "para><para>You can configure OpenPGP directory servers in "
-#~ "<application>Kleopatra</application>'s configuration dialog.</"
-#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
-#~ "resource> as the server to export to?</para>"
-#~ msgstr ""
-#~ "<para>No s'ha configurat cap servei de directori OpenPGP.</para><para>Com "
-#~ "que no n'hi ha cap de configurat, el <application>Kleopatra</application> "
-#~ "usarà <resource>keys.gnupg.net</resource> com a servidor d'exportació.</"
-#~ "para><para>Podeu configurar els servidors de directori OpenPGP en el "
-#~ "diàleg de configuració del <application>Kleopatra</application>.</"
-#~ "para><para>Voleu continuar amb <resource>keys.gnupg.net</resource> com a "
-#~ "servidor d'exportació?</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
-#~ "not all of the certificates carry the name of their preferred certificate "
-#~ "server (few do), a fallback server is needed to fetch from.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
-#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
-#~ "configuration dialog.</para><para>Do you want to continue with "
-#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
-#~ msgstr ""
-#~ "<para>No s'ha configurat cap servei de directori OpenPGP.</para><para>Si "
-#~ "no tots els certificats porten el nom del seu servidor de certificat "
-#~ "preferit (pocs ho fan), cal un servidor alternatiu de recollida.</"
-#~ "para><para>Com que no n'hi ha cap de configurat, el "
-#~ "<application>Kleopatra</application> usarà <resource>keys.gnupg.net</"
-#~ "resource> com a alternatiu.</para><para>Podeu configurar els servidors de "
-#~ "directori OpenPGP en el diàleg de configuració del Kleopatra.</"
-#~ "para><para>Voleu continuar amb <resource>keys.gnupg.net</resource> com a "
-#~ "servidor alternatiu?</para>"

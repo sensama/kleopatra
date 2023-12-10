@@ -1,23 +1,24 @@
 # translation of kleopatra.po to Chinese Traditional
 #
+# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2006, 2008, 2009, 2010.
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007, 2008.
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2008, 2010, 2011, 2012, 2013, 2014, 2015.
 # pan93412 <pan93412@gmail.com>, 2019.
-# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-24 01:35+0000\n"
-"PO-Revision-Date: 2023-12-08 23:55+0900\n"
+"PO-Revision-Date: 2023-12-09 19:13+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 24.01.80\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -5881,15 +5882,13 @@ msgid ""
 msgstr "以下是如何在憑證中儲存新的使用者代碼："
 
 #: src/dialogs/certificatedetailsdialog.cpp:63
-#, fuzzy, kde-format
-#| msgid "OpenPGP Certificates"
+#, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate"
 msgstr "OpenPGP 憑證"
 
 #: src/dialogs/certificatedetailsdialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "S/MIME Certificates"
+#, kde-format
 msgctxt "@title:window"
 msgid "S/MIME Certificate"
 msgstr "S/MIME 憑證"
@@ -6073,24 +6072,21 @@ msgid "Copy fingerprint"
 msgstr "複製指紋"
 
 #: src/dialogs/certificatedetailswidget.cpp:310
-#, fuzzy, kde-format
-#| msgid "Issuer"
+#, kde-format
 msgid "Issuer:"
-msgstr "產生者"
+msgstr "配發者："
 
 #: src/dialogs/certificatedetailswidget.cpp:313
-#, fuzzy, kde-format
-#| msgid "Do not check certificate policies"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
-msgstr "不要檢查憑證政策"
+msgstr "顯示配發者憑證"
 
 #: src/dialogs/certificatedetailswidget.cpp:314
-#, fuzzy, kde-format
-#| msgid "Show certificate validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
-msgstr "顯示憑證有效性"
+msgstr "顯示憑證"
 
 #: src/dialogs/certificatedetailswidget.cpp:320
 #, kde-format
@@ -6108,16 +6104,14 @@ msgid "See certifications for details."
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:333
-#, fuzzy, kde-format
-#| msgid "EMail address:"
+#, kde-format
 msgid "Related addresses:"
-msgstr "電子郵件地址："
+msgstr "相關地址："
 
 #: src/dialogs/certificatedetailswidget.cpp:338
-#, fuzzy, kde-format
-#| msgid "EMail address:"
+#, kde-format
 msgid "Related addresses"
-msgstr "電子郵件地址："
+msgstr "相關地址"
 
 #: src/dialogs/certificatedetailswidget.cpp:349
 #, kde-format
@@ -6126,11 +6120,10 @@ msgid "More Details..."
 msgstr "更多詳細資訊..."
 
 #: src/dialogs/certificatedetailswidget.cpp:352
-#, fuzzy, kde-format
-#| msgid "Details..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Trust Chain Details"
-msgstr "詳情..."
+msgstr "信任鏈詳情"
 
 #: src/dialogs/certificatedetailswidget.cpp:355
 #, kde-format
@@ -6194,16 +6187,13 @@ msgid "no email"
 msgstr "無電子郵件"
 
 #: src/dialogs/certificatedetailswidget.cpp:630
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to add the user-id: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?"
 "</para>"
-msgstr "<para>試著新增使用者代碼時發生錯誤：<message>%1</message></para>"
+msgstr ""
+"<para>您確定要撤銷這個使用者 ID 嗎？<nl/><emphasis>%1</emphasis></para>"
 
 #: src/dialogs/certificatedetailswidget.cpp:817
 #, kde-format
@@ -6250,10 +6240,9 @@ msgid "Revoke User ID"
 msgstr "撤銷使用者 ID"
 
 #: src/dialogs/certificatedetailswidget.cpp:905
-#, fuzzy, kde-format
-#| msgid "Never"
+#, kde-format
 msgid "never"
-msgstr "永久有效"
+msgstr "永不"
 
 #: src/dialogs/certificatedetailswidget.cpp:907
 #, kde-format
@@ -6274,10 +6263,9 @@ msgstr "最後的訊息"
 
 #: src/dialogs/certificatedetailswidget.cpp:910
 #: src/dialogs/certificatedetailswidget.cpp:914
-#, fuzzy, kde-format
-#| msgid "Message #%1"
+#, kde-format
 msgid "Message count"
-msgstr "訊息 #%1"
+msgstr "訊息數量"
 
 #: src/dialogs/certificatedetailswidget.cpp:911
 #: src/smartcard/openpgpcard.cpp:102
@@ -6302,16 +6290,14 @@ msgid "Common Name"
 msgstr "俗名"
 
 #: src/dialogs/certificatedetailswidget.cpp:1004
-#, fuzzy, kde-format
-#| msgid "Animations"
+#, kde-format
 msgid "Organization"
-msgstr "動畫"
+msgstr "組織"
 
 #: src/dialogs/certificatedetailswidget.cpp:1005
-#, fuzzy, kde-format
-#| msgid "Strength"
+#, kde-format
 msgid "Street"
-msgstr "強度"
+msgstr "街道"
 
 #: src/dialogs/certificatedetailswidget.cpp:1006
 #, kde-format
@@ -6319,10 +6305,9 @@ msgid "City"
 msgstr "城市"
 
 #: src/dialogs/certificatedetailswidget.cpp:1007
-#, fuzzy, kde-format
-#| msgid "Status"
+#, kde-format
 msgid "State"
-msgstr "狀態"
+msgstr "州/省/縣"
 
 #: src/dialogs/certificatedetailswidget.cpp:1008
 #, kde-format
@@ -6336,10 +6321,9 @@ msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr "更新憑證廢棄清單並為憑證進行完整的有效性檢查。"
 
 #: src/dialogs/certificatedetailswidget.cpp:1045
-#, fuzzy, kde-format
-#| msgid "The certificate could not be certified. <b>Error</b>: %1"
+#, kde-format
 msgid "The issuer certificate could not be found locally."
-msgstr "此憑證無法被確認。<b>錯誤：</b>%1"
+msgstr "配發者憑證無法在本機上找到。"
 
 #: src/dialogs/certificateselectiondialog.cpp:135
 #, kde-format
@@ -6386,19 +6370,15 @@ msgid "Lookup..."
 msgstr "查詢..."
 
 #: src/dialogs/certificateselectiondialog.cpp:174
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Lookup certificates on server"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
-msgstr "在伺服器上搜尋憑證"
+msgstr "在伺服器上查詢憑證"
 
 #: src/dialogs/certificateselectiondialog.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Lookup certificates on server"
+#, kde-format
 msgid "Look up certificate"
-msgstr "在伺服器上搜尋憑證"
+msgstr "查詢憑證"
 
 #: src/dialogs/certificateselectiondialog.cpp:176
 #, kde-format
@@ -7357,15 +7337,13 @@ msgid "no"
 msgstr "否"
 
 #: src/dialogs/subkeyswidget.cpp:242
-#, fuzzy, kde-format
-#| msgid "SmartCard"
+#, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
-msgstr "智慧卡"
+msgstr "智慧卡 %1"
 
 #: src/dialogs/subkeyswidget.cpp:244
-#, fuzzy, kde-format
-#| msgid "SmartCard"
+#, kde-format
 msgid "smart card"
 msgstr "智慧卡"
 
@@ -7376,9 +7354,7 @@ msgid "offline"
 msgstr "離線"
 
 #: src/dialogs/subkeyswidget.cpp:249
-#, fuzzy, kde-format
-#| msgctxt "stored..."
-#| msgid "on this computer"
+#, kde-format
 msgid "on this computer"
 msgstr "在此電腦上"
 
@@ -7389,12 +7365,10 @@ msgid "unknown"
 msgstr "未知"
 
 #: src/dialogs/subkeyswidget.cpp:273
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
-msgstr "子金鑰"
+msgstr "子金鑰詳情"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -7402,11 +7376,10 @@ msgid "Issuer Certificate Not Found (%1)"
 msgstr "找不到憑證產生者（%1）"
 
 #: src/dialogs/trustchainwidget.cpp:84
-#, fuzzy, kde-format
-#| msgid "Chain"
+#, kde-format
 msgctxt "@title:window"
 msgid "Trust Chain"
-msgstr "鍊"
+msgstr "信任鍊"
 
 #: src/dialogs/updatenotification.cpp:76
 #, kde-format
@@ -7482,8 +7455,7 @@ msgid "User IDs and certifications"
 msgstr "使用者 ID 與憑證"
 
 #: src/dialogs/weboftrustwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Show certificate details"
+#, kde-format
 msgctxt "@action"
 msgid "Show Certificate Details"
 msgstr "顯示憑證詳情"
@@ -7937,10 +7909,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:113
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgid "Show appearance configuration"
-msgstr "顯示擁有者資訊"
+msgstr "顯示外觀設定"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:117
@@ -7950,25 +7921,21 @@ msgstr "顯示加密操作設定"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:121
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "No Directory Servers Configured"
+#, kde-format
 msgid "Show directory services configuration"
-msgstr "沒有設定目錄伺服器"
+msgstr "顯示目錄服務設定"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:125
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgid "Show GnuPG system configuration"
-msgstr "顯示擁有者資訊"
+msgstr "顯示 GnuPG 系統設定"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:129
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgid "Show smart cards configuration"
-msgstr "顯示擁有者資訊"
+msgstr "顯示智慧卡設定"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:133
@@ -8457,10 +8424,9 @@ msgid "Change..."
 msgstr "變更..."
 
 #: src/libkleopatraclient/gui/certificaterequester.cpp:243
-#, fuzzy, kde-format
-#| msgid "Kleopatra"
+#, kde-format
 msgid "Kleopatra Error"
-msgstr "Kleopatra"
+msgstr "Kleopatra 錯誤"
 
 #: src/libkleopatraclient/gui/certificaterequester.cpp:243
 #, kde-format
@@ -8541,8 +8507,7 @@ msgid "&Quit <application>%1</application>"
 msgstr "離開 <application>%1</application>(&Q)"
 
 #: src/mainwindow.cpp:111
-#, fuzzy, kde-format
-#| msgid "Only &Close Window"
+#, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "只關閉視窗(&C)"
@@ -8558,8 +8523,7 @@ msgstr ""
 "想要只關閉此視窗，而不完全關閉 <application>%1</application>。"
 
 #: src/mainwindow.cpp:208
-#, fuzzy, kde-format
-#| msgid "Really Quit?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "確定要離開嗎？"
@@ -10612,7 +10576,7 @@ msgstr "重新命名分頁"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
-msgstr ""
+msgstr "用提供的名稱儲存檔案。"
 
 #: src/utils/overwritedialog.cpp:218
 #, fuzzy, kde-format
@@ -10630,11 +10594,10 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:227
-#, fuzzy, kde-format
-#| msgid "Skipped"
+#, kde-format
 msgctxt "@action:button"
 msgid "Skip"
-msgstr "已略過"
+msgstr "略過"
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
@@ -10654,34 +10617,31 @@ msgctxt "@info:tooltip"
 msgid ""
 "Do not write this file and any other files that would overwrite an already "
 "existing file."
-msgstr ""
+msgstr "不要寫入這個檔案或是其他會覆寫現存檔案的檔案。"
 
 #: src/utils/overwritedialog.cpp:238
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
-msgstr "全部覆寫"
+msgstr "覆寫"
 
 #: src/utils/overwritedialog.cpp:240
-#, fuzzy, kde-format
-#| msgid "Overwrite Existing File?"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
-msgstr "要覆寫檔案嗎？"
+msgstr "覆寫現存檔案。"
 
 #: src/utils/overwritedialog.cpp:244
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
-msgstr "全部覆寫"
+msgstr "覆寫全部"
 
 #: src/utils/overwritedialog.cpp:246
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
-msgstr ""
+msgstr "覆寫現存檔案及其他已經存在的檔案。"
 
 #: src/utils/path-helper.cpp:154
 #, kde-format
@@ -10772,10 +10732,9 @@ msgid "Lookup on Server..."
 msgstr "在伺服器上查詢..."
 
 #: src/view/keylistcontroller.cpp:380
-#, fuzzy, kde-format
-#| msgid "Search for Certificate by fingerprint"
+#, kde-format
 msgid "Search for certificates online using a public keyserver"
-msgstr "依指紋搜尋憑證"
+msgstr "用公開金鑰伺服器在線上搜尋憑證"
 
 #: src/view/keylistcontroller.cpp:389
 #, kde-format
@@ -10833,10 +10792,9 @@ msgid "Revoke Certificate..."
 msgstr "註銷憑證..."
 
 #: src/view/keylistcontroller.cpp:476
-#, fuzzy, kde-format
-#| msgid "Please select a certificate"
+#, kde-format
 msgid "Revoke the selected OpenPGP certificate"
-msgstr "請選取憑證"
+msgstr "撤銷選取的 OpenPGP 憑證"
 
 #: src/view/keylistcontroller.cpp:484
 #, kde-format
@@ -10854,10 +10812,9 @@ msgid "Certify..."
 msgstr "保證..."
 
 #: src/view/keylistcontroller.cpp:494
-#, fuzzy, kde-format
-#| msgid "The validity of the signature cannot be verified."
+#, kde-format
 msgid "Certify the validity of the selected certificate"
-msgstr "無法檢查簽章的有效性。"
+msgstr "保證所選憑證的有效性"
 
 #: src/view/keylistcontroller.cpp:502
 #, kde-format
@@ -10949,16 +10906,14 @@ msgid "View Columns"
 msgstr "檢視欄位"
 
 #: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
-#, fuzzy, kde-format
-#| msgid "Hierarchical Certificate List"
+#, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "階層式憑證清單"
 
 #: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
-#, fuzzy, kde-format
-#| msgid "certificate"
+#, kde-format
 msgid "List of certificates"
-msgstr "憑證"
+msgstr "憑證列表"
 
 #: src/view/netkeywidget.cpp:83 src/view/p15cardwidget.cpp:81
 #: src/view/pgpcardwidget.cpp:175 src/view/pivcardwidget.cpp:112
@@ -11085,7 +11040,7 @@ msgstr "設定 NKS PIN 碼"
 #: src/view/nullpinwidget.cpp:70
 #, kde-format
 msgid "Setting a PIN is required but <b>can't be reverted</b>."
-msgstr ""
+msgstr "設定 PIN 碼是必須的但<b>不可回復</b>。"
 
 #: src/view/nullpinwidget.cpp:72
 #, kde-format
@@ -11102,19 +11057,16 @@ msgid ""
 msgstr ""
 
 #: src/view/nullpinwidget.cpp:76
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Set Initial Pin"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "設定初始 PIN 碼"
 
 #: src/view/openpgpkeycardwidget.cpp:53
-#, fuzzy, kde-format
-#| msgid "Show all details"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Details"
-msgstr "顯示所有詳情"
+msgstr "顯示詳情"
 
 #: src/view/openpgpkeycardwidget.cpp:54
 #, kde-format
@@ -11160,12 +11112,10 @@ msgid "<em>Invalid fingerprint</em>"
 msgstr "<em>無效的指紋</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:218
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Create Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Regenerate Key"
-msgstr "建立金鑰"
+msgstr "重新建立金鑰"
 
 #: src/view/openpgpkeycardwidget.cpp:219
 #, kde-format
@@ -11180,16 +11130,14 @@ msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr ""
 
 #: src/view/p15cardwidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgid "OpenPGP keys:"
-msgstr "OpenPGP"
+msgstr "OpenPGP 金鑰："
 
 #: src/view/p15cardwidget.cpp:117
-#, fuzzy, kde-format
-#| msgid "Scanning directories..."
+#, kde-format
 msgid "Searching in directory service..."
-msgstr "掃描目錄中..."
+msgstr "正於目錄服務中搜尋..."
 
 #: src/view/p15cardwidget.cpp:132
 #, kde-format
@@ -11228,10 +11176,9 @@ msgid "Import Notepad"
 msgstr "匯入筆記本"
 
 #: src/view/padwidget.cpp:86
-#, fuzzy, kde-format
-#| msgid "Never"
+#, kde-format
 msgid "Revert"
-msgstr "永久有效"
+msgstr "回復"
 
 #: src/view/padwidget.cpp:114
 #, fuzzy, kde-format
@@ -11427,10 +11374,9 @@ msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 卡片"
 
 #: src/view/pgpcardwidget.cpp:300 src/view/pgpcardwidget.cpp:302
-#, fuzzy, kde-format
-#| msgid "Cannot send data"
+#, kde-format
 msgid "not set"
-msgstr "無法送出資料"
+msgstr "未設定"
 
 #: src/view/pgpcardwidget.cpp:346
 #, kde-format
@@ -11855,8 +11801,7 @@ msgid "Move Tab Left"
 msgstr "將分頁左移"
 
 #: src/view/tabwidget.cpp:886
-#, fuzzy, kde-format
-#| msgid "Move Tab Left"
+#, kde-format
 msgid "Move this tab left"
 msgstr "將分頁左移"
 
@@ -11866,8 +11811,7 @@ msgid "Move Tab Right"
 msgstr "將分頁右移"
 
 #: src/view/tabwidget.cpp:899
-#, fuzzy, kde-format
-#| msgid "Move Tab Right"
+#, kde-format
 msgid "Move this tab right"
 msgstr "將分頁右移"
 

@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-09 00:42+0000\n"
-"PO-Revision-Date: 2023-12-08 08:08+0100\n"
+"PO-Revision-Date: 2023-12-10 07:30+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -7215,22 +7215,18 @@ msgid "Import"
 msgstr "Importar"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr ""
-"Escriba un nome e un enderezo de correo electrónico para usar para o "
-"certificado."
+msgstr "Escriba un termo de busca para buscar certificados que coincidan."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr ""
-"Escriba un nome e un enderezo de correo electrónico para usar para o "
-"certificado."
+"Escriba un enderezo de correo electrónico para buscar certificados que "
+"coincidan."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8020,20 +8016,18 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Consello do enderezo de correo electrónico (EMAIL)"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Este texto usarase como texto marcador de posición do campo de enderezo de "
-"correo electrónico (EMAIL) dos certificados OpenPGP e S/MIME."
+"Este texto amosarase sobre o campo de enderezo de correo electrónico (EMAIL) "
+"dos certificados OpenPGP e como marcador de posición dese campo dos "
+"certificados S/MIME."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8058,10 +8052,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Marca de posición do enderezo de correo electrónico (EMAIL)"
+msgstr "Valor do enderezo de correo electrónico (EMAIL)"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8071,23 +8064,22 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Valor enchido previamente do campo de enderezo de correo electrónico de "
+"certificados OpenPGP e S/MIME. Isto sobredefinirá EMAIL_prefill. É útil se "
+"non se atopan opcións para EMAIL_prefill ou esas opcións non son axeitadas."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Consello do nome (NAME)"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
-"Este texto usarase como texto marcador de posición do campo de nome (NAME) "
-"dos certificados OpenPGP."
+"Este texto amosarase sobre o campo de nome (NAME) dos certificados OpenPGP."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8111,10 +8103,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Marca de posición do nome (NAME)"
+msgstr "Valor do nome (NAME)"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8124,6 +8115,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Valor enchido previamente do campo de nome de certificados OpenPGP. Isto "
+"sobredefinirá NAME_prefill. É útil se non se atopa unha opción para "
+"NAME_prefill ou esa opción non é axeitada."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52

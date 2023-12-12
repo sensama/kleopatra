@@ -2,21 +2,21 @@
 # Pavol Cvengros <orpheus@hq.alert.sk>, 2003.
 # Stanislav Visnovsky <visnovsky@kde.org>, 2003, 2004.
 # Richard Fric <Richard.Fric@kdemail.net>, 2006, 2009.
-# Roman Paholík <wizzardsk@gmail.com>, 2012, 2013, 2014, 2015, 2016, 2017.
+# SPDX-FileCopyrightText: 2012, 2013, 2014, 2015, 2016, 2017, 2023 Roman Paholík <wizzardsk@gmail.com>
 # Matej Mrenica <matejm98mthw@gmail.com>, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2020-09-08 18:56+0200\n"
-"Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
-"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2023-12-11 19:20+0100\n"
+"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #, kde-format
@@ -53,7 +53,7 @@ msgstr "Steffen Hansen"
 
 #: src/aboutdata.cpp:36
 msgid "Matthias Kalle Dalheimer"
-msgstr ""
+msgstr "Matthias Kalle Dalheimer"
 
 #: src/aboutdata.cpp:36
 msgid "Original Author"
@@ -140,10 +140,10 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-2019 Vývojári Kleopatra"
 
 #: src/aboutdata.cpp:114
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
 msgid "Uses:"
-msgstr ""
+msgstr "Použitia"
 
 #: src/commands/adduseridcommand.cpp:204
 #, fuzzy, kde-kuit-format
@@ -218,10 +218,10 @@ msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:132
 #: src/view/pivcardwidget.cpp:271
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
-msgstr ""
+msgstr "Vytvorené"
 
 #: src/commands/certificatetopivcardcommand.cpp:138
 #, kde-format
@@ -273,7 +273,7 @@ msgstr "Presun kľúča do karty zlyhal: %1"
 #| msgid "Newly revoked:"
 msgctxt "@title:window"
 msgid "Key is Revoked"
-msgstr "Novozrušené platnosti:"
+msgstr "Kľúč je odmietnutý."
 
 #: src/commands/certifycertificatecommand.cpp:154
 #, kde-format
@@ -317,9 +317,7 @@ msgid "Certification Not Possible"
 msgstr "Certifikácia nie je možná"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Create"
+#, kde-format
 msgid "Create"
 msgstr "Vytvoriť"
 
@@ -808,9 +806,7 @@ msgid "CRL cache cleared successfully."
 msgstr "Vyrovnávacia pamäť pre CRL úspešne vyčistená."
 
 #: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:477
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Success"
+#, kde-format
 msgctxt "@title:window"
 msgid "Success"
 msgstr "Úspech"
@@ -1131,7 +1127,7 @@ msgstr "Chyba šifrovania schránky"
 #| msgid "certificate"
 msgctxt "A generic filename for exported certificates"
 msgid "certificates"
-msgstr "certifikát"
+msgstr "Certifikáty"
 
 #: src/commands/exportcertificatecommand.cpp:221
 #, fuzzy, kde-format
@@ -1159,7 +1155,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Import CRL Error"
 msgid "Export Error"
-msgstr "Chyba pri importe CRL"
+msgstr "Chyba exportu: %1"
 
 #: src/commands/exportcertificatecommand.cpp:281
 #, kde-format
@@ -1225,11 +1221,10 @@ msgstr "Zlyhalo prepísanie <filename>%1</filename>."
 #: src/commands/exportsecretsubkeycommand.cpp:249
 #: src/commands/exportsecretsubkeycommand.cpp:260
 #: src/commands/exportsecretsubkeycommand.cpp:279
-#, fuzzy, kde-format
-#| msgid "Certificate Export Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Failed"
-msgstr "Export certifikátu zlyhal"
+msgstr "Export zlyhal"
 
 #: src/commands/exportgroupscommand.cpp:189
 #, fuzzy, kde-kuit-format
@@ -1244,10 +1239,9 @@ msgid "Exporting certificate groups..."
 msgstr "Exportovanie certifikátov..."
 
 #: src/commands/exportgroupscommand.cpp:238
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open <filename>%1</filename> for reading."
+#, kde-kuit-format
 msgid "Cannot open file <filename>%1</filename> for writing."
-msgstr "Nie je možné otvoriť <filename>%1</filename> na čítanie."
+msgstr "Nie je možné otvoriť súbor <filename>%1</filename> na zápis."
 
 #: src/commands/exportgroupscommand.cpp:246
 #, fuzzy, kde-kuit-format
@@ -1461,18 +1455,16 @@ msgstr ""
 #: src/commands/exportsecretkeycommand.cpp:92
 #: src/commands/exportsecretkeycommand.cpp:94
 #: src/commands/exportsecretsubkeycommand.cpp:83
-#, fuzzy, kde-format
-#| msgid "Secret Key Files"
+#, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Files"
 msgstr "Súbory tajného kľúča"
 
 #: src/commands/exportsecretkeycommand.cpp:97
-#, fuzzy, kde-format
-#| msgid "Any files"
+#, kde-format
 msgctxt "description of filename filter"
 msgid "All Files"
-msgstr "Akékoľvek súbory"
+msgstr "Všetky súbory"
 
 #: src/commands/exportsecretkeycommand.cpp:105
 #: src/commands/exportsecretkeycommand.cpp:278
@@ -1508,11 +1500,10 @@ msgstr ""
 
 #: src/commands/exportsecretkeycommand.cpp:263
 #: src/commands/exportsecretsubkeycommand.cpp:248
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open <filename>%1</filename> for reading."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
-msgstr "Nie je možné otvoriť <filename>%1</filename> na čítanie."
+msgstr "Nie je možné otvoriť súbor <filename>%1</filename> na zápis."
 
 #: src/commands/exportsecretkeycommand.cpp:271
 #, fuzzy, kde-kuit-format
@@ -1734,11 +1725,10 @@ msgid ""
 msgstr "Súbor \"%1\" už existuje. Chcete ho prepísať?"
 
 #: src/commands/genrevokecommand.cpp:123
-#, fuzzy, kde-format
-#| msgid "Overwrite File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Overwrite File?"
-msgstr "Prepísať súbor"
+msgstr "Prepísať súbor?"
 
 #: src/commands/genrevokecommand.cpp:182
 #, kde-format
@@ -1846,7 +1836,7 @@ msgstr "Vyberte súbor certifikátu"
 #| msgid "Generating Keys"
 msgctxt "@title:window"
 msgid "Fetching Keys"
-msgstr "Generujem kľúče"
+msgstr "Získavam kľúče..."
 
 #: src/commands/importcertificatefromkeyservercommand.cpp:66
 #, fuzzy, kde-format
@@ -2059,8 +2049,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr "Importovali ste nový vertifikát (verejný kľúč)"
 
 #: src/commands/importcertificatescommand.cpp:443
-#, fuzzy, kde-format
-#| msgid "Certify"
+#, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Certifikovať"
@@ -2326,11 +2315,10 @@ msgid ""
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:213
-#, fuzzy, kde-format
-#| msgid "Signature:"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Signature"
-msgstr "Podpis:"
+msgstr "Podpis"
 
 #: src/commands/keytocardcommand.cpp:217
 #, fuzzy, kde-format
@@ -2482,7 +2470,7 @@ msgstr "Záložný kľúč"
 #| msgid "Select File"
 msgctxt "@action:button"
 msgid "Delete Key"
-msgstr "Vybrať súbor"
+msgstr "Vymazať kľúč"
 
 #: src/commands/keytocardcommand.cpp:480
 #, fuzzy, kde-format
@@ -2539,7 +2527,7 @@ msgstr ""
 #| msgid "Current selection"
 msgctxt "@title:window"
 msgid "Confirm Deletion"
-msgstr "Aktuálny výber"
+msgstr "Potvrdiť vymazanie"
 
 #: src/commands/keytocardcommand.cpp:643
 #, fuzzy, kde-kuit-format
@@ -2840,11 +2828,9 @@ msgid "The key hasn't changed."
 msgstr "Tajné kľúče nezmenené:"
 
 #: src/commands/refreshcertificatecommand.cpp:214
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "OpenPGP certificates exported successfully."
+#, kde-format
 msgid "The key has been revoked."
-msgstr "Certifikáty OpenPGP úspešne exportované."
+msgstr "Kľúč bol odvolaný."
 
 #: src/commands/refreshcertificatecommand.cpp:217
 #, fuzzy, kde-format
@@ -2913,12 +2899,10 @@ msgstr ""
 "<qt><p>Nastala chyba počas načítavania certifikácií:</p><p><b>%1</b></p></qt>"
 
 #: src/commands/refreshcertificatecommand.cpp:282
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Available"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
-msgstr "Dostupná aktualizácia"
+msgstr "Obnova zlyhala"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:41
 #, kde-kuit-format
@@ -3215,7 +3199,7 @@ msgstr "Certifikáty OpenPGP úspešne exportované."
 #| msgid "Newly revoked:"
 msgctxt "@title:window"
 msgid "Key Revoked"
-msgstr "Novozrušené platnosti:"
+msgstr "kľúč zrušený"
 
 #: src/commands/revokekeycommand.cpp:232
 #, fuzzy, kde-kuit-format
@@ -3443,21 +3427,20 @@ msgstr "(neznámy certifikát)"
 
 #: src/conf/appearanceconfigwidget.cpp:391
 #: src/conf/appearanceconfigwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "nikdy"
 
 #: src/conf/appearanceconfigwidget.cpp:392
 #: src/conf/appearanceconfigwidget.cpp:405
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] " deň"
+msgstr[1] " dni"
+msgstr[2] " dni"
 
 #: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
@@ -3488,11 +3471,10 @@ msgstr ""
 #| msgid "Generating Keys"
 msgctxt "@title:tab"
 msgid "General"
-msgstr "Generujem kľúče"
+msgstr "Všeobecné"
 
 #: src/conf/appearanceconfigwidget.cpp:436
-#, fuzzy, kde-format
-#| msgid "Set &Icon..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Icon..."
 msgstr "Nastaviť ikonu..."
@@ -3502,32 +3484,30 @@ msgstr "Nastaviť ikonu..."
 #| msgid "Set &Text Color..."
 msgctxt "@action:button"
 msgid "Set Text Color..."
-msgstr "Nastaviť farbu &textu..."
+msgstr "Nastaviť farbu textu"
 
 #: src/conf/appearanceconfigwidget.cpp:450
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgctxt "@action:button"
 msgid "Set Background Color..."
-msgstr "Nastaviť farbu &pozadia..."
+msgstr "Nastaviť farbu pozadia"
 
 #: src/conf/appearanceconfigwidget.cpp:457
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
 msgctxt "@action:button"
 msgid "Set Font..."
-msgstr "Nastaviť &písmo..."
+msgstr "Nastaviť písmo"
 
 #: src/conf/appearanceconfigwidget.cpp:464
-#, fuzzy, kde-format
-#| msgid "Italic"
+#, kde-format
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Kurzíva"
 
 #: src/conf/appearanceconfigwidget.cpp:471
-#, fuzzy, kde-format
-#| msgid "Bold"
+#, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Tučné"
@@ -3537,7 +3517,7 @@ msgstr "Tučné"
 #| msgid "Strikeout"
 msgctxt "@option:check"
 msgid "Strikeout"
-msgstr "Prečiarknuté"
+msgstr "strikeout"
 
 #: src/conf/appearanceconfigwidget.cpp:487
 #, fuzzy, kde-format
@@ -3581,7 +3561,7 @@ msgstr "Nenastavený žiadny adresárový server"
 #, fuzzy, kde-format
 #| msgid "Default Appearance"
 msgid "Appearance"
-msgstr "Štandardný vzhľad"
+msgstr "Vzhľad"
 
 #: src/conf/configuredialog.cpp:51
 #, fuzzy, kde-format
@@ -3592,7 +3572,7 @@ msgstr "Zastaviť operáciu"
 #: src/conf/configuredialog.cpp:57
 #, kde-format
 msgid "S/MIME Validation"
-msgstr ""
+msgstr "S/MIME kontrola"
 
 #: src/conf/configuredialog.cpp:63
 #, fuzzy, kde-format
@@ -3603,7 +3583,7 @@ msgstr "SmartCard"
 #: src/conf/configuredialog.cpp:69
 #, kde-format
 msgid "GnuPG System"
-msgstr ""
+msgstr "GnuPG systém"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
 #, kde-format
@@ -3760,16 +3740,15 @@ msgid "Configure Groups"
 msgstr "Nastaviť"
 
 #: src/conf/groupsconfigdialog.cpp:93
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgid "Groups"
-msgstr "Zobraziť podrobnosti"
+msgstr "Skupiny"
 
 #: src/conf/groupsconfigdialog.cpp:108
 #, fuzzy, kde-format
 #| msgid "&Help"
 msgid "Help"
-msgstr "&Pomocník"
+msgstr "Pomocník"
 
 #: src/conf/groupsconfigdialog.cpp:110
 #, kde-format
@@ -3779,15 +3758,14 @@ msgid "handout_group-feature_gnupg_en.pdf"
 msgstr ""
 
 #: src/conf/groupsconfigpage.cpp:80
-#, fuzzy, kde-format
-#| msgid "Save As"
+#, kde-format
 msgid "Save changes"
-msgstr "Uložiť ako"
+msgstr "Uložiť zmeny"
 
 #: src/conf/groupsconfigpage.cpp:82
 #, kde-format
 msgid "Discard changes"
-msgstr ""
+msgstr "Zahodiť zmeny"
 
 #: src/conf/groupsconfigpage.cpp:86
 #, kde-kuit-format
@@ -3798,19 +3776,17 @@ msgid ""
 msgstr ""
 
 #: src/conf/groupsconfigpage.cpp:88
-#, fuzzy, kde-format
-#| msgid "Save As"
+#, kde-format
 msgctxt "@title::window"
 msgid "Save changes?"
-msgstr "Uložiť ako"
+msgstr "Uložiť zmeny?"
 
 #: src/conf/groupsconfigwidget.cpp:145 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
-#, fuzzy, kde-format
-#| msgid "&Search:"
+#, kde-format
 msgctxt "@label"
 msgid "Search:"
-msgstr "&Hľadať:"
+msgstr "Hľadať:"
 
 #: src/conf/groupsconfigwidget.cpp:146 src/conf/groupsconfigwidget.cpp:152
 #, fuzzy, kde-format
@@ -3834,24 +3810,23 @@ msgid "Enter search term"
 msgstr "Podpísané ID používateľov:"
 
 #: src/conf/groupsconfigwidget.cpp:171
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "groups of keys"
 msgid "groups"
-msgstr "Zobraziť podrobnosti"
+msgstr "skupiny"
 
 #: src/conf/groupsconfigwidget.cpp:180
 #, fuzzy, kde-format
 #| msgid "New..."
 msgctxt "@action::button"
 msgid "New"
-msgstr "Nové..."
+msgstr "Nové"
 
 #: src/conf/groupsconfigwidget.cpp:183
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action::button"
 msgid "Edit"
-msgstr ""
+msgstr "Upraviť"
 
 #: src/conf/groupsconfigwidget.cpp:187
 #, fuzzy, kde-format
@@ -3871,19 +3846,19 @@ msgstr "Exportovať"
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
-msgstr ""
+msgstr "Nová skupina"
 
 #: src/conf/groupsconfigwidget.cpp:304
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
-msgstr ""
+msgstr "Nová skupina"
 
 #: src/conf/groupsconfigwidget.cpp:342
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
-msgstr ""
+msgstr "Upraviť skupinu"
 
 #: src/conf/kleopageconfigdialog.cpp:93
 #, kde-format
@@ -5010,7 +4985,7 @@ msgstr "(nenájdené žiadne zodpovedajúce certifikáty)"
 #| msgid "Error"
 msgctxt "@info"
 msgid "Error: %1"
-msgstr "Chyba"
+msgstr "Chyba: %1"
 
 #: src/crypto/gui/certificateselectionline.cpp:39
 #, kde-format
@@ -5454,8 +5429,7 @@ msgid ""
 msgstr "Šifrovať s heslom. Ktokoľvek, kto má heslo, vie čítať údaje."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:167
-#, fuzzy, kde-format
-#| msgid "Output"
+#, kde-format
 msgctxt "@title:group"
 msgid "Output"
 msgstr "Výstup"
@@ -5695,14 +5669,14 @@ msgstr ""
 #| msgid "Output directory."
 msgctxt "Lineedit accessible name"
 msgid "Output directory"
-msgstr "Výstupný adresár."
+msgstr "Výstupný adresár"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:449
 #, fuzzy, kde-format
 #| msgid "Sign"
 msgctxt "@action:button"
 msgid "Sign"
-msgstr "Podpis"
+msgstr "Podpísať"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:452
 #, fuzzy, kde-format
@@ -5717,7 +5691,7 @@ msgstr "Šifrovať"
 #| msgid "Sign / Encrypt"
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
-msgstr "Podpíš / zašifruj"
+msgstr "Podpíš/zašifruj..."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:469
 #, kde-format
@@ -6179,7 +6153,7 @@ msgstr "Overovanie kontrolného súčtu (%2) v %1"
 #| msgid "Add User-ID..."
 msgctxt "title:window"
 msgid "Add User ID"
-msgstr "Pridať ID používateľa..."
+msgstr "Pridať ID užívateľa..."
 
 #: src/dialogs/adduseriddialog.cpp:65
 #, kde-format
@@ -6313,21 +6287,21 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgid "User IDs:"
-msgstr "ID používateľov"
+msgstr "ID užívateľov"
 
 #: src/dialogs/certificatedetailswidget.cpp:215
 #: src/dialogs/certifywidget.cpp:403
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgid "User IDs"
-msgstr "ID používateľov"
+msgstr "ID užívateľov"
 
 #: src/dialogs/certificatedetailswidget.cpp:230
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgctxt "@action:button"
 msgid "Add User ID"
-msgstr "Pridať ID používateľa..."
+msgstr "Pridať ID užívateľa..."
 
 #: src/dialogs/certificatedetailswidget.cpp:233
 #, fuzzy, kde-format
@@ -6385,8 +6359,7 @@ msgstr "Platné od:"
 
 #: src/dialogs/certificatedetailswidget.cpp:290
 #: src/dialogs/expirydialog.cpp:205
-#, fuzzy, kde-format
-#| msgid "Valid until:"
+#, kde-format
 msgid "Valid until:"
 msgstr "Platný do:"
 
@@ -6489,7 +6462,7 @@ msgstr "Podrobnosti reťaze dôvery..."
 #| msgid "&Update"
 msgctxt "@action:button"
 msgid "Update"
-msgstr "Akt&ualizovať"
+msgstr "Aktualizovať"
 
 #: src/dialogs/certificatedetailswidget.cpp:363
 #, fuzzy, kde-format
@@ -6499,8 +6472,7 @@ msgid "Export"
 msgstr "Exportovať"
 
 #: src/dialogs/certificatedetailswidget.cpp:366
-#, fuzzy, kde-format
-#| msgid "Change &passphrase"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change Passphrase"
 msgstr "Zmeniť heslo"
@@ -6553,9 +6525,9 @@ msgid "Trust Level"
 msgstr "Úroveň dôveryhodnosti"
 
 #: src/dialogs/certificatedetailswidget.cpp:518
-#, kde-format
+#, fuzzy, kde-format
 msgid "Tags"
-msgstr ""
+msgstr "Značky"
 
 #: src/dialogs/certificatedetailswidget.cpp:536
 #, fuzzy, kde-format
@@ -6803,7 +6775,7 @@ msgstr "Vytvoriť nový certifikát"
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgid "Groups..."
-msgstr "Zobraziť podrobnosti"
+msgstr "Skupiny"
 
 #: src/dialogs/certificateselectiondialog.cpp:177
 #, fuzzy, kde-format
@@ -6872,7 +6844,7 @@ msgstr "Pokročilé"
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgid "Show advanced options"
-msgstr "Pokročilé nastavenia"
+msgstr "Zobraziť po&kročilé možnosti"
 
 #: src/dialogs/certifywidget.cpp:414
 #, fuzzy, kde-format
@@ -6887,9 +6859,9 @@ msgid "Publish on keyserver afterwards"
 msgstr "Publikovať na serveri..."
 
 #: src/dialogs/certifywidget.cpp:433
-#, kde-format
+#, fuzzy, kde-format
 msgid "Tags:"
-msgstr ""
+msgstr "Značky:"
 
 #: src/dialogs/certifywidget.cpp:437
 #, kde-format
@@ -6912,7 +6884,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Option:"
 msgid "Expiration:"
-msgstr "Voľba:"
+msgstr "Platnosť do:"
 
 #: src/dialogs/certifywidget.cpp:463
 #, kde-format
@@ -6983,7 +6955,7 @@ msgstr "Dôveryhodný vydavateľ?"
 #: src/dialogs/certifywidget.cpp:510
 #, kde-format
 msgid "Domain:"
-msgstr ""
+msgstr "Doména:"
 
 #: src/dialogs/certifywidget.cpp:700
 #, kde-format
@@ -7121,7 +7093,7 @@ msgstr "Názov:"
 #, kde-format
 msgctxt "@title"
 msgid "Available Keys"
-msgstr ""
+msgstr "Dostupné kľúče"
 
 #: src/dialogs/editgroupdialog.cpp:102 src/dialogs/editgroupdialog.cpp:108
 #, fuzzy, kde-format
@@ -7137,9 +7109,9 @@ msgid "Search the list of available keys for keys matching the search term."
 msgstr ""
 
 #: src/dialogs/editgroupdialog.cpp:121
-#, kde-format
+#, fuzzy, kde-format
 msgid "available keys"
-msgstr ""
+msgstr "Dostupné kľúče"
 
 #: src/dialogs/editgroupdialog.cpp:137
 #, fuzzy, kde-format
@@ -7195,7 +7167,7 @@ msgstr "Zobraziť podrobnosti"
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
-msgstr ""
+msgstr "Upraviť skupinu"
 
 #: src/dialogs/expirydialog.cpp:70
 #, kde-format
@@ -7328,7 +7300,7 @@ msgstr "Neplatný e-mail"
 #: src/dialogs/gencardkeydialog.cpp:71
 #, kde-format
 msgid "Algorithm:"
-msgstr ""
+msgstr "Algoritmus:"
 
 #: src/dialogs/gencardkeydialog.cpp:78
 #, kde-format
@@ -7405,14 +7377,13 @@ msgstr "Názov"
 #, fuzzy, kde-format
 #| msgid "new dns name"
 msgid "Enter a name."
-msgstr "nový dns názov"
+msgstr "Vyberte názov"
 
 #: src/dialogs/nameandemailwidget.cpp:75 src/dialogs/nameandemailwidget.cpp:217
-#, fuzzy, kde-format
-#| msgid "EMail address:"
+#, kde-format
 msgctxt "@label"
 msgid "Email address"
-msgstr "E-mailová adresa:"
+msgstr "E-mailová adresa"
 
 #: src/dialogs/nameandemailwidget.cpp:76
 #, fuzzy, kde-format
@@ -7502,13 +7473,13 @@ msgstr "Prosím, zadajte názov alebo e-mailovú adresu..."
 #| msgid "Revoke..."
 msgctxt "title:window"
 msgid "Revoke Key"
-msgstr "Odvolať..."
+msgstr "Zrušiť platnosť kľúča..."
 
 #: src/dialogs/revokekeydialog.cpp:100
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Reason for revocation"
-msgstr ""
+msgstr "Dôvod zrušenia platnosti:"
 
 #: src/dialogs/revokekeydialog.cpp:102
 #, fuzzy, kde-format
@@ -7518,22 +7489,22 @@ msgid "No reason specified"
 msgstr "Nie je zadaný príkaz"
 
 #: src/dialogs/revokekeydialog.cpp:104
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@option:radio"
 msgid "Key has been compromised"
-msgstr ""
+msgstr "Kľúč bol odmaskovaný"
 
 #: src/dialogs/revokekeydialog.cpp:106
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@option:radio"
 msgid "Key is superseded"
-msgstr ""
+msgstr "Kľúč je nahradený"
 
 #: src/dialogs/revokekeydialog.cpp:108
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@option:radio"
 msgid "Key is no longer used"
-msgstr ""
+msgstr "Kľúč sa už nepoužíva"
 
 #: src/dialogs/revokekeydialog.cpp:123
 #, fuzzy, kde-format
@@ -7547,7 +7518,7 @@ msgstr "Popis:"
 #| msgid "Revoke..."
 msgctxt "@action:button"
 msgid "Revoke Key"
-msgstr "Odvolať..."
+msgstr "Zrušiť platnosť kľúča..."
 
 #: src/dialogs/revokekeydialog.cpp:197
 #, kde-format
@@ -7604,7 +7575,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Show all test results"
 msgid "test results"
-msgstr "Ukázať všetky výsledky testu"
+msgstr "Výsledky testu"
 
 #: src/dialogs/selftestdialog.cpp:401
 #, fuzzy, kde-format
@@ -7642,8 +7613,7 @@ msgid "Run these tests at startup"
 msgstr "Spustiť tieto testy pri štarte"
 
 #: src/dialogs/selftestdialog.cpp:472
-#, fuzzy, kde-format
-#| msgid "Continue"
+#, kde-format
 msgctxt "@action:button"
 msgid "Continue"
 msgstr "Pokračovať"
@@ -7753,8 +7723,7 @@ msgid "Subkeys"
 msgstr "Podkľúče:"
 
 #: src/dialogs/subkeyswidget.cpp:93
-#, fuzzy, kde-format
-#| msgid "ID"
+#, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
@@ -7767,29 +7736,25 @@ msgid "Type"
 msgstr "Typ"
 
 #: src/dialogs/subkeyswidget.cpp:95
-#, fuzzy, kde-format
-#| msgid "Valid From"
+#, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Platný od"
 
 #: src/dialogs/subkeyswidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Valid Until"
+#, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Platný do"
 
 #: src/dialogs/subkeyswidget.cpp:97
-#, fuzzy, kde-format
-#| msgid "Status"
+#, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Stav"
 
 #: src/dialogs/subkeyswidget.cpp:98
-#, fuzzy, kde-format
-#| msgid "Strength"
+#, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Sila"
@@ -7806,14 +7771,13 @@ msgstr "Použitie"
 #| msgid "Primary"
 msgctxt "@title:column"
 msgid "Primary"
-msgstr "Primárny"
+msgstr "Primárna"
 
 #: src/dialogs/subkeyswidget.cpp:101
-#, fuzzy, kde-format
-#| msgid "Stored:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Storage"
-msgstr "Uložené:"
+msgstr "Úložisko"
 
 #: src/dialogs/subkeyswidget.cpp:122 src/view/keylistcontroller.cpp:440
 #, kde-format
@@ -7847,13 +7811,13 @@ msgstr "Exportovať tajný kľúč"
 #| msgid "Yes"
 msgctxt "yes, is primary key"
 msgid "yes"
-msgstr "Áno"
+msgstr "áno"
 
 #: src/dialogs/subkeyswidget.cpp:245
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
-msgstr ""
+msgstr "nie"
 
 #: src/dialogs/subkeyswidget.cpp:248
 #, fuzzy, kde-format
@@ -7869,18 +7833,13 @@ msgid "smart card"
 msgstr "SmartCard"
 
 #: src/dialogs/subkeyswidget.cpp:253
-#, fuzzy, kde-format
-#| msgctxt "history size spinbox suffix"
-#| msgid " line"
-#| msgid_plural " lines"
+#, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
-msgstr " riadok"
+msgstr "nepripojený"
 
 #: src/dialogs/subkeyswidget.cpp:255
-#, fuzzy, kde-format
-#| msgctxt "stored..."
-#| msgid "on this computer"
+#, kde-format
 msgid "on this computer"
 msgstr "na tomto počítači"
 
@@ -9061,10 +9020,10 @@ msgid "Invalid arguments: %1"
 msgstr "Neplatné argumenty: %1"
 
 #: src/mainwindow.cpp:101
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
-msgstr ""
+msgstr "Ukončiť aplikáciu <application>%1</application>"
 
 #: src/mainwindow.cpp:108
 #, fuzzy, kde-format
@@ -9087,8 +9046,7 @@ msgstr ""
 "Môžno budete chcieť namiesto toho toto okno zatvoriť bez ukončenia %1."
 
 #: src/mainwindow.cpp:205
-#, fuzzy, kde-format
-#| msgid "Really Quit?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Naozaj skončiť?"
@@ -9132,8 +9090,7 @@ msgid "Check for updates"
 msgstr "Skontrolovať aktualizácie"
 
 #: src/mainwindow.cpp:537
-#, fuzzy, kde-format
-#| msgid "Certificates"
+#, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certifikáty"
@@ -9145,8 +9102,7 @@ msgid "Show certificate overview"
 msgstr "Ukázať podrobnosti certifikátu"
 
 #: src/mainwindow.cpp:541
-#, fuzzy, kde-format
-#| msgid "Notepad"
+#, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
 "verifying text"
@@ -9356,8 +9312,7 @@ msgid "Key Material"
 msgstr "Materiál kľúča"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:245
-#, fuzzy, kde-format
-#| msgid "RSA"
+#, kde-format
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
@@ -9367,11 +9322,10 @@ msgstr "RSA"
 #| msgid "+ RSA"
 msgctxt "@option:check"
 msgid "+ RSA"
-msgstr "+ RSA"
+msgstr "RSA"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:266
-#, fuzzy, kde-format
-#| msgid "DSA"
+#, kde-format
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
@@ -9381,7 +9335,7 @@ msgstr "DSA"
 #| msgid "+ Elgamal"
 msgctxt "@option:check"
 msgid "+ Elgamal"
-msgstr "+ Elgamal"
+msgstr "ElGamal"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:275
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:293
@@ -9392,8 +9346,7 @@ msgid "This subkey is required for encryption."
 msgstr "Privátny kľúč je potrebný na dešifrovanie alebo podpis."
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:284
-#, fuzzy, kde-format
-#| msgid "ECDSA"
+#, kde-format
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr "ECDSA"
@@ -9403,7 +9356,7 @@ msgstr "ECDSA"
 #| msgid "+ ECDH"
 msgctxt "@option:check"
 msgid "+ ECDH"
-msgstr "+ ECDH"
+msgstr "ECDH"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:306
 #, fuzzy, kde-format
@@ -9413,15 +9366,13 @@ msgid "Certificate Usage"
 msgstr "Použitie certifikátu"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:310
-#, fuzzy, kde-format
-#| msgid "Signing"
+#, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Podpisovanie"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:314
-#, fuzzy, kde-format
-#| msgid "Certification"
+#, kde-format
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "Certifikácia"
@@ -9441,15 +9392,13 @@ msgid "Authentication"
 msgstr "Overenie"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:329
-#, fuzzy, kde-format
-#| msgid "Valid until:"
+#, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "Platný do:"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:343
-#, fuzzy, kde-format
-#| msgid "Technical Details"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "Technické detaily"
@@ -9466,7 +9415,7 @@ msgstr "Ďalšie ID používateľov"
 #| msgid "EMail Addresses"
 msgctxt "@title:group"
 msgid "EMail Addresses"
-msgstr "E-mailové adresy"
+msgstr "Emailové adresy"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:373
 #, fuzzy, kde-format
@@ -9635,26 +9584,26 @@ msgstr "Pár kľúčov bol úspešne vytvorený."
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Entry"
-msgstr ""
+msgstr "Pridať záznam"
 
 #: src/newcertificatewizard/listwidget.cpp:178
 #, fuzzy, kde-format
 #| msgid "Remove"
 msgctxt "@action:button"
 msgid "Remove Entry"
-msgstr "Odstrániť"
+msgstr "Odstrániť položku"
 
 #: src/newcertificatewizard/listwidget.cpp:180
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Move Up"
-msgstr ""
+msgstr "Posunúť hore"
 
 #: src/newcertificatewizard/listwidget.cpp:182
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Move Down"
-msgstr ""
+msgstr "Posunúť dole"
 
 #: src/newcertificatewizard/newcertificatewizard.cpp:40
 #, kde-format
@@ -9663,8 +9612,7 @@ msgid "Key Pair Creation Wizard"
 msgstr "Sprievodca vytvorením páru kľúčov"
 
 #: src/newcertificatewizard/resultpage.cpp:87
-#, fuzzy, kde-format
-#| msgid "Result"
+#, kde-format
 msgctxt "@title:group"
 msgid "Result"
 msgstr "Výsledok"
@@ -10258,10 +10206,9 @@ msgstr ""
 "application>."
 
 #: src/smartcard/openpgpcard.cpp:105
-#, fuzzy, kde-format
-#| msgid "Signature:"
+#, kde-format
 msgid "Signature"
-msgstr "Podpis:"
+msgstr "Podpis"
 
 #: src/smartcard/openpgpcard.cpp:107
 #, kde-format
@@ -10317,22 +10264,22 @@ msgid "ECC (NIST P-521)"
 msgstr ""
 
 #: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:417
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
-msgstr ""
+msgstr "RSA"
 
 #: src/smartcard/openpgpcard.cpp:190 src/view/pgpcardwidget.cpp:418
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
-msgstr ""
+msgstr "RSA"
 
 #: src/smartcard/openpgpcard.cpp:191 src/view/pgpcardwidget.cpp:422
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
-msgstr ""
+msgstr "RSA"
 
 #: src/smartcard/pivcard.cpp:85
 #, fuzzy, kde-format
@@ -10395,8 +10342,7 @@ msgid "NetKey"
 msgstr ""
 
 #: src/smartcard/utils.cpp:27
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "OpenPGP"
 msgstr "OpenPGP"
@@ -10415,29 +10361,29 @@ msgid "&Open Certificate Manager..."
 msgstr "&Otvoriť správcu certifikátov"
 
 #: src/systrayicon.cpp:133
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
-msgstr ""
+msgstr "Nastaviť"
 
 #: src/systrayicon.cpp:135
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
-msgstr ""
+msgstr "O aplikácii"
 
 #: src/systrayicon.cpp:137
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
-msgstr ""
+msgstr "Vypnutie"
 
 #: src/systrayicon.cpp:139
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@title:menu"
 msgid "SmartCard"
-msgstr "SmartCard"
+msgstr "Smartcard"
 
 #: src/systrayicon.cpp:140
 #, fuzzy, kde-format
@@ -11143,10 +11089,10 @@ msgid "Could not create temporary file for output \"%1\""
 msgstr "Nepodarilo sa vytvoriť dočasný súbor pre výstup \"%1\""
 
 #: src/utils/output.cpp:560
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
-msgstr ""
+msgstr "Súbor už existuje"
 
 #: src/utils/output.cpp:654
 #, kde-format
@@ -11215,23 +11161,20 @@ msgstr "Súbor \"%1\" už existuje. Chcete ho prepísať?"
 #| "Overwrite?"
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr ""
-"Súbor <b>%1</b> už existuje.\n"
-"Prepísať?"
+msgstr "Súbor <i>%1</i> už existuje."
 
 #: src/utils/overwritedialog.cpp:190
-#, fuzzy, kde-format
-#| msgid "Real name:"
+#, kde-format
 msgctxt "@label"
 msgid "Rename:"
-msgstr "Skutočné meno:"
+msgstr "Premenovať:"
 
 #: src/utils/overwritedialog.cpp:199
 #, fuzzy, kde-format
 #| msgid "Test Name"
 msgctxt "@action:button"
 msgid "Suggest New Name"
-msgstr "Testovací názov"
+msgstr "Navrhnúť &nový názov"
 
 #: src/utils/overwritedialog.cpp:200
 #, kde-format
@@ -11240,11 +11183,10 @@ msgid "Suggest a file name that does not already exist."
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:211
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename"
-msgstr "Premenovať kartu"
+msgstr "Premenovať"
 
 #: src/utils/overwritedialog.cpp:212
 #, kde-format
@@ -11268,11 +11210,10 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:227
-#, fuzzy, kde-format
-#| msgid "Skipped"
+#, kde-format
 msgctxt "@action:button"
 msgid "Skip"
-msgstr "Preskočené"
+msgstr "Preskočiť"
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
@@ -11284,7 +11225,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
-msgstr ""
+msgstr "Preskočiť všetko"
 
 #: src/utils/overwritedialog.cpp:234
 #, kde-format
@@ -11295,11 +11236,10 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:238
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
-msgstr "Prepísať všetko"
+msgstr "Prepísať"
 
 #: src/utils/overwritedialog.cpp:240
 #, fuzzy, kde-format
@@ -11309,8 +11249,7 @@ msgid "Overwrite the existing file."
 msgstr "Prepísať existujúci súbor?"
 
 #: src/utils/overwritedialog.cpp:244
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Prepísať všetko"
@@ -11539,7 +11478,7 @@ msgstr "Zmeniť heslo..."
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
-msgstr "Pridať ID používateľa..."
+msgstr "Pridať ID užívateľa..."
 
 #: src/view/keylistcontroller.cpp:458
 #, kde-format
@@ -11794,7 +11733,7 @@ msgstr "Vytvoriť nový pár kľúčov alebo požiadavku na podpísanie certifik
 #| msgid "Slot empty"
 msgctxt "@info"
 msgid "<em>No key</em>"
-msgstr "Slot prázdny"
+msgstr "Žiadny kľúč"
 
 #: src/view/openpgpkeycardwidget.cpp:174
 #, fuzzy, kde-format
@@ -11995,8 +11934,7 @@ msgid "Encrypt Notepad"
 msgstr "Zápisník Podpíš / Zašifruj"
 
 #: src/view/padwidget.cpp:504
-#, fuzzy, kde-format
-#| msgid "Sign / Encrypt Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Zápisník Podpíš / Zašifruj"
@@ -12008,10 +11946,10 @@ msgid "Cardholder:"
 msgstr "Držiteľ karty:"
 
 #: src/view/pgpcardwidget.cpp:193 src/view/pgpcardwidget.cpp:209
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Edit"
-msgstr ""
+msgstr "Upraviť"
 
 #: src/view/pgpcardwidget.cpp:194 src/view/pgpcardwidget.cpp:210
 #, kde-format
@@ -12243,8 +12181,7 @@ msgid "URL successfully changed."
 msgstr "URL adresa úspešne zmenená."
 
 #: src/view/pivcardwidget.cpp:143
-#, fuzzy, kde-format
-#| msgid "Change PIN"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Zmeniť PIN"
@@ -12288,12 +12225,10 @@ msgid ""
 msgstr ""
 
 #: src/view/pivcardwidget.cpp:180 src/view/pivcardwidget.cpp:259
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Generating Keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate"
-msgstr "Generujem kľúče"
+msgstr "Generovať"
 
 #: src/view/pivcardwidget.cpp:191
 #, fuzzy, kde-format
@@ -12358,7 +12293,7 @@ msgstr "Slot prázdny"
 #| msgid "Generating Keys"
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Generate %1"
-msgstr "Generujem kľúče"
+msgstr "Generovať"
 
 #: src/view/pivcardwidget.cpp:278
 #, fuzzy, kde-format
@@ -12379,7 +12314,7 @@ msgstr "neznáme"
 #| msgid "Places"
 msgctxt "@action:button"
 msgid "Replace"
-msgstr "Miesta"
+msgstr "Nahradiť"
 
 #: src/view/pivcardwidget.cpp:289
 #, kde-format
@@ -12586,10 +12521,9 @@ msgid "Collapse All"
 msgstr "Zbaliť všetko"
 
 #: src/view/tabwidget.cpp:963
-#, fuzzy, kde-format
-#| msgid "Certificates"
+#, kde-format
 msgid "All Certificates"
-msgstr "Certifikáty"
+msgstr "Všetky certifikáty"
 
 #: src/view/welcomewidget.cpp:99
 #, kde-format

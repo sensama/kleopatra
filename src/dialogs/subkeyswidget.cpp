@@ -120,7 +120,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
 
     if (isOwnKey) {
-        auto action = menu->addAction(i18n("Change End of Validity Period..."), q, [this, subkey]() {
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("change-date-symbolic")), i18n("Change End of Validity Period..."), q, [this, subkey]() {
             auto cmd = new ChangeExpiryCommand(subkey.parent());
             cmd->setSubkey(subkey);
             ui.subkeysTree->setEnabled(false);

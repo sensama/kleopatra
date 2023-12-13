@@ -11,14 +11,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-24 01:35+0000\n"
-"PO-Revision-Date: 2023-12-09 19:13+0900\n"
+"PO-Revision-Date: 2023-12-13 04:53+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.01.80\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -589,11 +589,10 @@ msgid "Changing the PUK failed: %1"
 msgstr "變更 PUK 碼時失敗：%1"
 
 #: src/commands/changepincommand.cpp:150
-#, fuzzy, kde-format
-#| msgid "Signing failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
-msgstr "簽署失敗：%1"
+msgstr "解除鎖定 PIN 碼失敗：%1"
 
 #: src/commands/changepincommand.cpp:153
 #, kde-format
@@ -644,11 +643,10 @@ msgid "PUK successfully changed."
 msgstr "PUK 碼已成功變更。"
 
 #: src/commands/changepincommand.cpp:182
-#, fuzzy, kde-format
-#| msgid "Expiry date changed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
-msgstr "到期日已成功變更。"
+msgstr "已成功解除鎖定並設定新 PIN 碼。"
 
 #: src/commands/changepincommand.cpp:185
 #, kde-format
@@ -3200,10 +3198,9 @@ msgid "Select One or More Files to Sign and/or Encrypt"
 msgstr "選擇一個或以上的檔案來簽署與加密"
 
 #: src/commands/signencryptfoldercommand.cpp:36
-#, fuzzy, kde-format
-#| msgid "Select One or More Files to Sign and/or Encrypt"
+#, kde-format
 msgid "Select Folder to Sign and/or Encrypt"
-msgstr "選擇一個或以上的檔案來簽署與加密"
+msgstr "選擇資料夾來簽署與加密"
 
 #: src/conf/appearanceconfigwidget.cpp:136
 #, kde-format
@@ -3423,10 +3420,9 @@ msgstr "所建立的 OpenPGP 加密檔用 \".pgp\" 而不是用 \".gpg\" 做副�
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:63
 #: src/kcfg/fileoperationspreferences.kcfg:30
-#, fuzzy, kde-format
-#| msgid "Sign and/or encrypt file(s)"
+#, kde-format
 msgid "Create signed or encrypted files as text files."
-msgstr "簽署/加密檔案"
+msgstr "將簽署或加密的檔案作為文字檔案建立。"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
@@ -3459,10 +3455,9 @@ msgstr "解密後自動解開封存檔"
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:71
 #: src/kcfg/fileoperationspreferences.kcfg:35
-#, fuzzy, kde-format
-#| msgid "Sign and/or encrypt file(s)"
+#, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
-msgstr "簽署/加密檔案"
+msgstr "在加密檔案的資料夾中建立暫時解密的檔案。"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
@@ -3484,10 +3479,9 @@ msgid "Set this option to disable public key encryption."
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:87
-#, fuzzy, kde-format
-#| msgid "Checksum program to use:"
+#, kde-format
 msgid "Checksum program to use when creating checksum files:"
-msgstr "要使用的檢查碼程式："
+msgstr "建立檢查碼檔案時要使用的檢查碼程式："
 
 #: src/conf/cryptooperationsconfigwidget.cpp:92
 #, kde-format
@@ -4378,11 +4372,10 @@ msgid "Unknown certificate"
 msgstr "未知的憑證"
 
 #: src/crypto/decryptverifytask.cpp:278
-#, fuzzy, kde-format
-#| msgid "Signature expired"
+#, kde-format
 msgctxt "1 is a date"
 msgid "Signature created on %1"
-msgstr "簽章過期"
+msgstr "簽章於 %1 建立"
 
 #: src/crypto/decryptverifytask.cpp:281
 #, kde-format
@@ -4395,22 +4388,20 @@ msgid "With certificate:"
 msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:288
-#, fuzzy, kde-format
-#| msgid "The signature is invalid: %1"
+#, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The signature is %1"
-msgstr "此簽章不正確：%1"
+msgstr "簽章是 %1"
 
 #: src/crypto/decryptverifytask.cpp:291
-#, fuzzy, kde-format
-#| msgid "The signature is bad."
+#, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The signature <b>is not</b> %1."
-msgstr "此簽章不正確。"
+msgstr "簽章<b>不是</b> %1"
 
 #: src/crypto/decryptverifytask.cpp:308 src/crypto/signencrypttask.cpp:55
 #, kde-format
@@ -4440,11 +4431,10 @@ msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>%1 個無效的簽章。</b>"
 
 #: src/crypto/decryptverifytask.cpp:458
-#, fuzzy, kde-format
-#| msgid "The certificate could not be certified. <b>Error</b>: %1"
+#, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
-msgstr[0] "此憑證無法被確認。<b>錯誤：</b>%1"
+msgstr[0] "<b>%1 個簽章無法被檢查。</b>"
 
 #: src/crypto/decryptverifytask.cpp:464
 #, fuzzy, kde-format
@@ -7625,7 +7615,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:9
 #, kde-format
 msgid "Placeholder for CN"
-msgstr ""
+msgstr "俗名預設文字"
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:10
@@ -7633,13 +7623,13 @@ msgstr ""
 msgid ""
 "This text will be used as placeholder text for the common name (CN) field of "
 "S/MIME certificates."
-msgstr ""
+msgstr "這串文字會用來當做 S/MIME 憑證俗名 (common name, CN) 欄位的預設文字。"
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:14
 #, kde-format
 msgid "Prefill CN automatically"
-msgstr ""
+msgstr "自動預先填入俗名"
 
 #. i18n: ectx: whatsthis, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:16
@@ -7650,12 +7640,15 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"若為真，則 S/MIME 憑證的俗名 (common name, CN) 欄位會預先填入從系統收集來的資"
+"訊，\n"
+"         例如桌面的電子郵件設定或是 Windows 上 Active Directory 的設定。"
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Placeholder for EMAIL"
-msgstr ""
+msgstr "電子郵件預設文字"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
@@ -7663,13 +7656,13 @@ msgstr ""
 msgid ""
 "This text will be used as placeholder text for the email address field of "
 "OpenPGP and S/MIME certificates."
-msgstr ""
+msgstr "這串文字會用來當做 OpenPGP 和 S/MIME 憑證電子郵件地址欄位的預設文字。"
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
 #, kde-format
 msgid "Prefill EMAIL automatically"
-msgstr ""
+msgstr "自動預先填入電子郵件"
 
 #. i18n: ectx: whatsthis, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:27
@@ -7680,12 +7673,15 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"若為真，則 OpenPGP 和 S/MIME 憑證的電子郵件地址欄位會預先填入從系統收集來的資"
+"訊，\n"
+"         例如桌面的電子郵件設定或是 Windows 上 Active Directory 的設定。"
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
 #, kde-format
 msgid "Placeholder for NAME"
-msgstr ""
+msgstr "名稱預設文字"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -7693,13 +7689,13 @@ msgstr ""
 msgid ""
 "This text will be used as placeholder text for the name field of OpenPGP "
 "certificates."
-msgstr ""
+msgstr "這串文字會用來當做 OpenPGP 憑證名稱欄位的預設文字。"
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Prefill NAME automatically"
-msgstr ""
+msgstr "自動預先填入名稱"
 
 #. i18n: ectx: whatsthis, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:38
@@ -7710,6 +7706,8 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"若為真，則 OpenPGP 憑證的名稱欄位會預先填入從系統收集來的資訊，\n"
+"         例如桌面的電子郵件設定或是 Windows 上 Active Directory 的設定。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:42
@@ -7789,7 +7787,7 @@ msgstr "隱藏進階設定"
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
-msgstr ""
+msgstr "若為真，在新憑證精靈裡隱藏進階設定按鈕。"
 
 #. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
@@ -7830,7 +7828,7 @@ msgstr "簽署後顯示結果"
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
-msgstr ""
+msgstr "若為真，則成功簽署剪貼簿之後會顯示結果。"
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:86
@@ -7844,7 +7842,7 @@ msgstr "加密後顯示結果"
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
 "clipboard."
-msgstr ""
+msgstr "若為真，則成功加密剪貼簿之後會顯示結果。"
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:93
@@ -8020,7 +8018,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:178
 #, kde-format
 msgid "URL schemes to block"
-msgstr ""
+msgstr "要阻擋的 URL 機制"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:180
@@ -8030,6 +8028,8 @@ msgid ""
 "         This can be used to prevent the application from opening external "
 "applications for certain URLs."
 msgstr ""
+"這是應用程式應該阻擋的 URL 機制列表。\n"
+"         這可以用來防止應用程式為某些網址開啟外部應用程式。"
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
 #: src/kcfg/settings.kcfg:186
@@ -8075,6 +8075,8 @@ msgid ""
 "inserted with unknown certificates. This can take a while and blocks the "
 "smartcard while the command is running."
 msgstr ""
+"若為真，則 Kleopatra 在插入有未知憑證的 PKCS#15 智慧卡時會呼叫 gpgsm --"
+"learn。這會需要一段時間並在指令執行中時會擋住智慧卡其他功能。"
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
 #: src/kcfg/settings.kcfg:201
@@ -10547,11 +10549,10 @@ msgstr ""
 "要覆寫它嗎？"
 
 #: src/utils/overwritedialog.cpp:190
-#, fuzzy, kde-format
-#| msgid "Real name:"
+#, kde-format
 msgctxt "@label"
 msgid "Rename:"
-msgstr "真實姓名："
+msgstr "重新命名："
 
 #: src/utils/overwritedialog.cpp:199
 #, kde-format
@@ -10566,11 +10567,10 @@ msgid "Suggest a file name that does not already exist."
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:211
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename"
-msgstr "重新命名分頁"
+msgstr "重新命名"
 
 #: src/utils/overwritedialog.cpp:212
 #, kde-format
@@ -10579,11 +10579,10 @@ msgid "Save the file with the given name."
 msgstr "用提供的名稱儲存檔案。"
 
 #: src/utils/overwritedialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
-msgstr "重新命名分頁"
+msgstr "重新命名全部"
 
 #: src/utils/overwritedialog.cpp:221
 #, kde-format
@@ -11320,10 +11319,9 @@ msgid "Change the PIN required for using the keys on the smartcard."
 msgstr "變更要使用智慧卡上的金鑰前所需要的 PIN 碼。"
 
 #: src/view/pgpcardwidget.cpp:246
-#, fuzzy, kde-format
-#| msgid "Select All"
+#, kde-format
 msgid "Unblock Card"
-msgstr "全部選擇"
+msgstr "解除鎖定卡片"
 
 #: src/view/pgpcardwidget.cpp:247
 #, kde-format
@@ -11348,7 +11346,7 @@ msgstr "變更重設碼"
 #: src/view/pgpcardwidget.cpp:263
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
-msgstr ""
+msgstr "變更需要用來解鎖智慧卡的 PIN 碼並設定新 PIN 碼。"
 
 #: src/view/pgpcardwidget.cpp:272
 #, kde-format
@@ -11537,7 +11535,7 @@ msgstr "變更 PUK 碼"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
-msgstr ""
+msgstr "變更允許 PIN 碼重設的 PIN 碼解鎖金鑰。"
 
 #: src/view/pivcardwidget.cpp:162
 #, kde-format

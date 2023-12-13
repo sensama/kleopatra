@@ -429,9 +429,7 @@ MainWindow::Private::Private(MainWindow *qq)
     KDAB_SET_OBJECT_NAME(controller);
 
     AbstractKeyListModel *flatModel = AbstractKeyListModel::createFlatKeyListModel(q);
-    flatModel->useKeyCache(true, KeyList::AllKeys);
     AbstractKeyListModel *hierarchicalModel = AbstractKeyListModel::createHierarchicalKeyListModel(q);
-    hierarchicalModel->useKeyCache(true, KeyList::AllKeys);
 
     KDAB_SET_OBJECT_NAME(flatModel);
     KDAB_SET_OBJECT_NAME(hierarchicalModel);
@@ -495,6 +493,17 @@ MainWindow::Private::Private(MainWindow *qq)
     if (KeyCache::instance()->initialized()) {
         keyListingDone();
     }
+
+    // delay setting the models to use the key cache so that the UI (including
+    // the "Loading certificate cache..." overlay) is shown before the
+    // blocking key cache initialization happens
+    QMetaObject::invokeMethod(
+        q,
+        [flatModel, hierarchicalModel]() {
+            flatModel->useKeyCache(true, KeyList::AllKeys);
+            hierarchicalModel->useKeyCache(true, KeyList::AllKeys);
+        },
+        Qt::QueuedConnection);
 }
 
 MainWindow::Private::~Private()

@@ -15,6 +15,7 @@
 
 #include "subkeyswidget.h"
 
+#include "commands/addsubkeycommand.h"
 #include "commands/changeexpirycommand.h"
 #include "commands/exportsecretsubkeycommand.h"
 #include "commands/importpaperkeycommand.h"
@@ -83,6 +84,7 @@ public:
     struct UI {
         QVBoxLayout *mainLayout;
         TreeWidget *subkeysTree;
+        QPushButton *addSubkeyButton = nullptr;
 
         QPushButton *changeValidityBtn = nullptr;
         QPushButton *exportOpenSSHBtn = nullptr;
@@ -368,9 +370,25 @@ SubKeysDialog::SubKeysDialog(QWidget *parent)
 {
     setWindowTitle(i18nc("@title:window", "Subkeys Details"));
     auto l = new QVBoxLayout(this);
-    l->addWidget(new SubKeysWidget(this));
+    const auto subKeysWidget = new SubKeysWidget(this);
+    l->addWidget(subKeysWidget);
 
     auto bbox = new QDialogButtonBox(this);
+
+    auto addSubkeyButton = new QPushButton(this);
+    addSubkeyButton->setText(i18nc("@action:button", "Add Subkey"));
+    addSubkeyButton->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
+    addSubkeyButton->setObjectName(QLatin1String("AddSubkeyButton"));
+    bbox->addButton(addSubkeyButton, QDialogButtonBox::ActionRole);
+    connect(addSubkeyButton, &QPushButton::clicked, this, [this]() {
+        const auto cmd = new AddSubkeyCommand(key());
+        connect(cmd, &AddSubkeyCommand::finished, this, [this]() {
+            key().update();
+        });
+        cmd->setParentWidget(this);
+        cmd->start();
+    });
+
     auto btn = bbox->addButton(QDialogButtonBox::Close);
     connect(btn, &QPushButton::clicked, this, &QDialog::accept);
     l->addWidget(bbox);
@@ -403,6 +421,9 @@ void SubKeysDialog::setKey(const GpgME::Key &key)
     auto w = findChild<SubKeysWidget *>();
     Q_ASSERT(w);
     w->setKey(key);
+    if (!key.hasSecret()) {
+        findChild<QPushButton *>(QLatin1String("AddSubkeyButton"))->setVisible(false);
+    }
 }
 
 GpgME::Key SubKeysDialog::key() const

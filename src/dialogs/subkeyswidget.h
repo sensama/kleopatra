@@ -25,6 +25,7 @@ public:
 
 private:
     class Private;
+    friend class SubKeysDialog;
     const QScopedPointer<Private> d;
 };
 

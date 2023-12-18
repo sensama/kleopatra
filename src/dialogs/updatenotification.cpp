@@ -101,7 +101,7 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
 
     proc->start();
 }
-
+#ifdef Q_OS_WIN
 /* Extract the actual version number (conforming to the semanticversioning spec)
  * from the Version strings which might be used for Gpg4win / GnuPG VS-Desktop
  * which are optionally prefixed with some text followed by a dash
@@ -114,6 +114,7 @@ static const QByteArray extractVersionNumber(const QString &versionString)
     const auto current = match.hasMatch() ? match.captured(1) : versionString;
     return current.toUtf8();
 }
+#endif
 
 void UpdateNotification::checkUpdate(QWidget *parent, bool force)
 {

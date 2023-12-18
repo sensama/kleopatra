@@ -226,7 +226,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
                       subkey.neverExpires() ? Kleo::Formatting::expirationDateString(subkey.parent()) : Kleo::Formatting::expirationDateString(subkey));
         item->setData(3,
                       Qt::AccessibleTextRole,
-                      subkey.neverExpires() ? Kleo::Formatting::expirationDateString(subkey.parent()) : Kleo::Formatting::expirationDateString(subkey));
+                      subkey.neverExpires() ? Kleo::Formatting::accessibleExpirationDate(subkey.parent()) : Kleo::Formatting::accessibleExpirationDate(subkey));
         item->setData(4, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
         switch (subkey.publicKeyAlgorithm()) {
         case GpgME::Subkey::AlgoECDSA:

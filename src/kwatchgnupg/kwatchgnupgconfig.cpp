@@ -13,8 +13,6 @@
 
 #include "kwatchgnupg.h"
 
-#include "utils/qt-cxx20-compat.h"
-
 #include <Libkleo/FileNameRequester>
 
 #include <KConfig>

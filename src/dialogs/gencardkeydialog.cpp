@@ -10,7 +10,7 @@
 #include "gencardkeydialog.h"
 
 #include "smartcard/algorithminfo.h"
-#include "utils/qt-cxx20-compat.h"
+
 #include "utils/userinfo.h"
 
 #include <QCheckBox>

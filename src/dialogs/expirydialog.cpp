@@ -15,7 +15,6 @@
 
 #include "utils/expiration.h"
 #include "utils/gui-helper.h"
-#include "utils/qt-cxx20-compat.h"
 
 #include <Libkleo/Formatting>
 

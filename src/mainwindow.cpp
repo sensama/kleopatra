@@ -37,7 +37,7 @@
 #include "utils/detail_p.h"
 #include "utils/filedialog.h"
 #include "utils/gui-helper.h"
-#include "utils/qt-cxx20-compat.h"
+
 #include <Libkleo/GnuPG>
 
 #include "dialogs/updatenotification.h"

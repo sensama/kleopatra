@@ -24,8 +24,6 @@
 
 #include "algorithminfo.h"
 
-#include <utils/qt-cxx20-compat.h>
-
 #include <Libkleo/Algorithm>
 #include <Libkleo/GnuPG>
 

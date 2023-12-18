@@ -16,7 +16,6 @@
 #include <utils/kleo_assert.h>
 #include <utils/output.h>
 #include <utils/path-helper.h>
-#include <utils/qt-cxx20-compat.h>
 
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/Formatting>

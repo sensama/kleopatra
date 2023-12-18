@@ -15,8 +15,6 @@
 
 #include "deviceinfowatcher.h"
 
-#include <utils/qt-cxx20-compat.h>
-
 #include <Libkleo/Algorithm>
 #include <Libkleo/Assuan>
 #include <Libkleo/FileSystemWatcher>

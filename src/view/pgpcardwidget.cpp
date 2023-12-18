@@ -28,8 +28,6 @@
 
 #include "dialogs/gencardkeydialog.h"
 
-#include <utils/qt-cxx20-compat.h>
-
 #include <Libkleo/Compliance>
 #include <Libkleo/GnuPG>
 

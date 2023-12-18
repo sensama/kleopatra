@@ -18,6 +18,11 @@
 class QDate;
 class QShowEvent;
 
+namespace GpgME
+{
+class Key;
+}
+
 namespace Kleo
 {
 namespace Dialogs
@@ -41,6 +46,7 @@ public:
 
     void setUpdateExpirationOfAllSubkeys(bool update);
     bool updateExpirationOfAllSubkeys() const;
+    void setPrimaryKey(const GpgME::Key &key);
 
     void accept() override;
 

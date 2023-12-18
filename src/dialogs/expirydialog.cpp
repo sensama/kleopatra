@@ -13,6 +13,7 @@
 
 #include "expirydialog.h"
 
+#include "utils/accessibility.h"
 #include "utils/expiration.h"
 #include "utils/gui-helper.h"
 #include "utils/qt-cxx20-compat.h"
@@ -70,6 +71,8 @@ private:
         QRadioButton *onRB;
         KDateComboBox *onCB;
         QCheckBox *updateSubkeysCheckBox;
+        QLabel *primaryKeyExpirationDate;
+        LabelHelper labelHelper;
 
         explicit UI(Mode mode, Dialogs::ExpiryDialog *qq)
         {
@@ -109,6 +112,11 @@ private:
 
                 vboxLayout->addLayout(hboxLayout);
             }
+
+            primaryKeyExpirationDate = new QLabel(qq);
+            primaryKeyExpirationDate->setVisible(false);
+            vboxLayout->addWidget(primaryKeyExpirationDate);
+            labelHelper.addLabel(primaryKeyExpirationDate);
 
             {
                 updateSubkeysCheckBox = new QCheckBox{i18n("Also update the validity period of the subkeys"), qq};
@@ -220,6 +228,15 @@ void ExpiryDialog::showEvent(QShowEvent *event)
 {
     d->setInitialFocus();
     QDialog::showEvent(event);
+}
+
+void ExpiryDialog::setPrimaryKey(const GpgME::Key &key)
+{
+    if (!key.subkey(0).neverExpires()) {
+        d->ui.primaryKeyExpirationDate->setText(i18n("Expiration of primary key: %1", Kleo::Formatting::expirationDateString(key)));
+        d->ui.onCB->setMaximumDate(Kleo::Formatting::expirationDate(key));
+        d->ui.primaryKeyExpirationDate->setVisible(true);
+    }
 }
 
 #include "moc_expirydialog.cpp"

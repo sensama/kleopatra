@@ -288,7 +288,9 @@ void ChangeExpiryCommand::doStart()
     d->dialog->setDateOfExpiry((subkey.neverExpires() //
                                     ? QDate{} //
                                     : defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration)));
-    if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {
+    if (mode == ExpiryDialog::Mode::UpdateIndividualSubkey && subkey.keyID() != subkey.parent().keyID()) {
+        d->dialog->setPrimaryKey(subkey.parent());
+    } else if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {
         d->dialog->setUpdateExpirationOfAllSubkeys(allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(d->key));
     }
 

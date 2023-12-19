@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-24 01:35+0000\n"
+"POT-Creation-Date: 2023-12-19 01:34+0000\n"
 "PO-Revision-Date: 2023-08-06 23:11+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2388,8 +2388,8 @@ msgstr "키를 기록할 카드 슬롯을 선택하십시오:"
 #: src/commands/keytocardcommand.cpp:255
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:388 src/view/pgpcardwidget.cpp:454
-#: src/view/pgpcardwidget.cpp:501
+#: src/view/pgpcardwidget.cpp:386 src/view/pgpcardwidget.cpp:452
+#: src/view/pgpcardwidget.cpp:499
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "일련 번호가 다음과 같은 OpenPGP 카드를 찾을 수 없음: %1"
@@ -2402,7 +2402,7 @@ msgstr "죄송합니다! 이 키는 OpenPGP 카드로 전송할 수 없습니다
 #: src/commands/keytocardcommand.cpp:280 src/commands/keytocardcommand.cpp:399
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:397
+#: src/view/pgpcardwidget.cpp:395
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -3832,8 +3832,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "새로 만들기"
 
-#: src/conf/groupsconfigwidget.cpp:185 src/view/pgpcardwidget.cpp:187
-#: src/view/pgpcardwidget.cpp:205
+#: src/conf/groupsconfigwidget.cpp:185 src/view/pgpcardwidget.cpp:185
+#: src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -4620,7 +4620,7 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "서명이 %1이(가) <b>아닙니다</b>."
 
-#: src/crypto/decryptverifytask.cpp:308 src/crypto/signencrypttask.cpp:55
+#: src/crypto/decryptverifytask.cpp:308 src/crypto/signencrypttask.cpp:54
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
@@ -4733,8 +4733,8 @@ msgstr ""
 "알 수 없습니다."
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
-#: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
-#: src/crypto/signencrypttask.cpp:819
+#: src/crypto/signencrypttask.cpp:241 src/crypto/signencrypttask.cpp:258
+#: src/crypto/signencrypttask.cpp:818
 #, kde-format
 msgid "Input error: %1"
 msgstr "입력 오류: %1"
@@ -4918,7 +4918,7 @@ msgstr "EncryptEMailController::protocolAsString() 호출이 모호합니다."
 msgid "User cancel"
 msgstr "사용자가 취소함"
 
-#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:195
+#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:194
 #, kde-format
 msgid "Encryption canceled."
 msgstr "암호화가 취소되었습니다."
@@ -4928,7 +4928,7 @@ msgstr "암호화가 취소되었습니다."
 msgid "Encryption failed: %1"
 msgstr "암호화 실패: %1"
 
-#: src/crypto/encryptemailtask.cpp:73 src/crypto/signencrypttask.cpp:202
+#: src/crypto/encryptemailtask.cpp:73 src/crypto/signencrypttask.cpp:201
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "암호화에 성공했습니다."
@@ -4960,7 +4960,7 @@ msgstr "일치하는 인증서나 그룹을 찾을 수 없음"
 msgid "Multiple matching certificates or groups found"
 msgstr "일치하는 인증서나 그룹을 여러 개 찾음"
 
-#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:212
+#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:211
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, kde-format
@@ -5830,7 +5830,7 @@ msgstr "서명용 인증서 변경..."
 msgid "<b>Choose Operation to be Performed</b>"
 msgstr "<b>수행할 작업을 선택하십시오</b>"
 
-#: src/crypto/gui/signingcertificateselectiondialog.cpp:32
+#: src/crypto/gui/signingcertificateselectiondialog.cpp:31
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Signing Certificates"
@@ -5926,7 +5926,7 @@ msgstr "뒤로"
 msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr "NewSignEncryptEMailController::protocolAsString() 호출이 모호합니다."
 
-#: src/crypto/signemailtask.cpp:69 src/crypto/signencrypttask.cpp:178
+#: src/crypto/signemailtask.cpp:69 src/crypto/signencrypttask.cpp:177
 #, kde-format
 msgid "Signing canceled."
 msgstr "서명이 취소되었습니다."
@@ -5936,7 +5936,7 @@ msgstr "서명이 취소되었습니다."
 msgid "Signing failed: %1"
 msgstr "서명 실패: %1"
 
-#: src/crypto/signemailtask.cpp:76 src/crypto/signencrypttask.cpp:184
+#: src/crypto/signemailtask.cpp:76 src/crypto/signencrypttask.cpp:183
 #, kde-format
 msgid "Signing succeeded."
 msgstr "서명에 성공했습니다."
@@ -5995,59 +5995,59 @@ msgstr ""
 "SignEncryptFilesController::Private::slotWizardOperationPrepared에서 예상하"
 "지 못한 예외 발생"
 
-#: src/crypto/signencrypttask.cpp:182
+#: src/crypto/signencrypttask.cpp:181
 #, kde-format
 msgid "Signing failed."
 msgstr "서명에 실패했습니다."
 
-#: src/crypto/signencrypttask.cpp:199
+#: src/crypto/signencrypttask.cpp:198
 #, kde-format
 msgid "Encryption failed."
 msgstr "암호화에 실패했습니다."
 
-#: src/crypto/signencrypttask.cpp:227
+#: src/crypto/signencrypttask.cpp:226
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "서명과 암호화에 성공했습니다."
 
-#: src/crypto/signencrypttask.cpp:244 src/crypto/signencrypttask.cpp:261
+#: src/crypto/signencrypttask.cpp:243 src/crypto/signencrypttask.cpp:260
 #, kde-format
 msgid "Output error: %1"
 msgstr "출력 오류: %1"
 
-#: src/crypto/signencrypttask.cpp:268
+#: src/crypto/signencrypttask.cpp:267
 #, kde-format
 msgid " Encryption succeeded."
 msgstr " 암호화에 성공했습니다."
 
-#: src/crypto/signencrypttask.cpp:280
+#: src/crypto/signencrypttask.cpp:279
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>서명/암호화가 취소되었습니다.</b>"
 
-#: src/crypto/signencrypttask.cpp:280
+#: src/crypto/signencrypttask.cpp:279
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr " %1: 서명/암호화에 실패했습니다."
 
-#: src/crypto/signencrypttask.cpp:283
+#: src/crypto/signencrypttask.cpp:282
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:479
+#: src/crypto/signencrypttask.cpp:478
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "작업에 사용할 프로토콜을 알 수 없음"
 
-#: src/crypto/signencrypttask.cpp:533
+#: src/crypto/signencrypttask.cpp:532
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:673 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:672 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6056,7 +6056,7 @@ msgstr ""
 "다음 파일의 공통된 기반 디렉터리를 찾을 수 없음:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:690
+#: src/crypto/signencrypttask.cpp:689
 #, fuzzy, kde-format
 #| msgctxt "Lineedit accessible name"
 #| msgid "OpenPGP signed and encrypted file"
@@ -6064,7 +6064,7 @@ msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "OpenPGP로 서명 및 암호화된 파일"
 
-#: src/crypto/signencrypttask.cpp:710
+#: src/crypto/signencrypttask.cpp:709
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -6072,7 +6072,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "키 쌍 생성 중..."
 
-#: src/crypto/signencrypttask.cpp:730
+#: src/crypto/signencrypttask.cpp:729
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -6299,7 +6299,7 @@ msgstr "신뢰 단계:"
 msgid "Valid from:"
 msgstr "유효 기간 시작:"
 
-#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:98
+#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:97
 #, kde-format
 msgid "Valid until:"
 msgstr "유효 기간 끝:"
@@ -6532,7 +6532,7 @@ msgid "Message count"
 msgstr "메시지 개수"
 
 #: src/dialogs/certificatedetailswidget.cpp:911
-#: src/smartcard/openpgpcard.cpp:102
+#: src/smartcard/openpgpcard.cpp:100
 #, kde-format
 msgid "Encryption"
 msgstr "암호화"
@@ -7057,33 +7057,33 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "그룹 편집"
 
-#: src/dialogs/expirydialog.cpp:85
+#: src/dialogs/expirydialog.cpp:84
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "하위 키가 유효함으로 간주될 날짜를 선택하십시오:"
 
-#: src/dialogs/expirydialog.cpp:86
+#: src/dialogs/expirydialog.cpp:85
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "인증서가 유효함으로 간주될 날짜를 선택하십시오:"
 
-#: src/dialogs/expirydialog.cpp:90
+#: src/dialogs/expirydialog.cpp:89
 #, kde-format
 msgid "Unlimited validity"
 msgstr "무제한 유효"
 
-#: src/dialogs/expirydialog.cpp:114
+#: src/dialogs/expirydialog.cpp:113
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr "하위 키 유효 기간도 업데이트"
 
-#: src/dialogs/expirydialog.cpp:141
+#: src/dialogs/expirydialog.cpp:140
 #, kde-format
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "%1까지 유효함"
 
-#: src/dialogs/expirydialog.cpp:168
+#: src/dialogs/expirydialog.cpp:167
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
@@ -7667,25 +7667,25 @@ msgstr "신뢰 체인"
 msgid "Searching for updates..."
 msgstr "업데이트 검색 중..."
 
-#: src/dialogs/updatenotification.cpp:164
+#: src/dialogs/updatenotification.cpp:165
 #, kde-format
 msgctxt "@info"
 msgid "No update found in the available version database."
 msgstr "사용 가능한 버전 데이터베이스에서 업데이트를 찾을 수 없습니다."
 
-#: src/dialogs/updatenotification.cpp:164
+#: src/dialogs/updatenotification.cpp:165
 #, kde-format
 msgctxt "@title"
 msgid "Up to date"
 msgstr "최신 상태"
 
-#: src/dialogs/updatenotification.cpp:189
+#: src/dialogs/updatenotification.cpp:190
 #, kde-format
 msgctxt "%1 is the version number"
 msgid "Version %1 is available."
 msgstr "버전 %1을(를) 사용할 수 있습니다."
 
-#: src/dialogs/updatenotification.cpp:190
+#: src/dialogs/updatenotification.cpp:191
 #, kde-format
 msgctxt "Link to NEWS style changelog"
 msgid ""
@@ -7695,18 +7695,18 @@ msgstr ""
 "<a href=\"https://www.gpg4win.org/change-history.html\">새 기능</a>을 참조하"
 "십시오."
 
-#: src/dialogs/updatenotification.cpp:194
+#: src/dialogs/updatenotification.cpp:195
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Available"
 msgstr "업데이트 사용 가능"
 
-#: src/dialogs/updatenotification.cpp:199
+#: src/dialogs/updatenotification.cpp:200
 #, kde-format
 msgid "Show this notification for future updates."
 msgstr "다음 업데이트가 나왔을 때 이 알림을 표시합니다."
 
-#: src/dialogs/updatenotification.cpp:206
+#: src/dialogs/updatenotification.cpp:207
 #, kde-format
 msgid "&Get update"
 msgstr "업데이트 받기(&U)"
@@ -9974,84 +9974,84 @@ msgid ""
 "Quit any other running instances of <application>Kleopatra</application>."
 msgstr "다른 <application>Kleopatra</application>를 끝내십시오."
 
-#: src/smartcard/openpgpcard.cpp:101
+#: src/smartcard/openpgpcard.cpp:99
 #, kde-format
 msgid "Signature"
 msgstr "서명"
 
-#: src/smartcard/openpgpcard.cpp:103
+#: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Authentication"
 msgstr "인증"
 
-#: src/smartcard/openpgpcard.cpp:162
+#: src/smartcard/openpgpcard.cpp:160
 #, fuzzy, kde-format
 #| msgid "ECDH (Curve P-256)"
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
 msgstr "ECDH(P-256 곡선)"
 
-#: src/smartcard/openpgpcard.cpp:163
+#: src/smartcard/openpgpcard.cpp:161
 #, fuzzy, kde-format
 #| msgid "ECDH (Curve P-384)"
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
 msgstr "ECDH(P-384 곡선)"
 
-#: src/smartcard/openpgpcard.cpp:164
+#: src/smartcard/openpgpcard.cpp:162
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
 msgstr ""
 
-#: src/smartcard/openpgpcard.cpp:165
+#: src/smartcard/openpgpcard.cpp:163
 #, fuzzy, kde-format
 #| msgid "ECDH (Curve P-256)"
 msgctxt "@info"
 msgid "ECC (Curve25519)"
 msgstr "ECDH(P-256 곡선)"
 
-#: src/smartcard/openpgpcard.cpp:166
+#: src/smartcard/openpgpcard.cpp:164
 #, fuzzy, kde-format
 #| msgid "ECDH (Curve P-384)"
 msgctxt "@info"
 msgid "ECC (Curve448)"
 msgstr "ECDH(P-384 곡선)"
 
-#: src/smartcard/openpgpcard.cpp:167
+#: src/smartcard/openpgpcard.cpp:165
 #, fuzzy, kde-format
 #| msgid "ECDH (Curve P-256)"
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
 msgstr "ECDH(P-256 곡선)"
 
-#: src/smartcard/openpgpcard.cpp:168
+#: src/smartcard/openpgpcard.cpp:166
 #, fuzzy, kde-format
 #| msgid "ECDH (Curve P-384)"
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
 msgstr "ECDH(P-384 곡선)"
 
-#: src/smartcard/openpgpcard.cpp:169
+#: src/smartcard/openpgpcard.cpp:167
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
 msgstr ""
 
-#: src/smartcard/openpgpcard.cpp:170
+#: src/smartcard/openpgpcard.cpp:168
 #, fuzzy, kde-format
 #| msgid "RSA (2048 bits)"
 msgctxt "@info"
 msgid "RSA 2048"
 msgstr "RSA(2048비트)"
 
-#: src/smartcard/openpgpcard.cpp:171
+#: src/smartcard/openpgpcard.cpp:169
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
 msgstr ""
 
-#: src/smartcard/openpgpcard.cpp:172
+#: src/smartcard/openpgpcard.cpp:170
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
@@ -11320,7 +11320,7 @@ msgid "List of certificates"
 msgstr "인증서 목록"
 
 #: src/view/netkeywidget.cpp:83 src/view/p15cardwidget.cpp:81
-#: src/view/pgpcardwidget.cpp:175 src/view/pivcardwidget.cpp:112
+#: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
 #, kde-format
 msgid "Serial number:"
 msgstr "일련 번호:"
@@ -11341,7 +11341,7 @@ msgctxt "@action"
 msgid "Load Certificates"
 msgstr "인증서 불러오기"
 
-#: src/view/netkeywidget.cpp:143 src/view/pgpcardwidget.cpp:227
+#: src/view/netkeywidget.cpp:143 src/view/pgpcardwidget.cpp:225
 #, kde-format
 msgid "Actions:"
 msgstr "동작:"
@@ -11693,18 +11693,18 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "메모장 서명/암호화"
 
-#: src/view/pgpcardwidget.cpp:181
+#: src/view/pgpcardwidget.cpp:179
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "카드 소유자:"
 
-#: src/view/pgpcardwidget.cpp:188 src/view/pgpcardwidget.cpp:206
+#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
 #, kde-format
 msgid "Change"
 msgstr "변경"
 
-#: src/view/pgpcardwidget.cpp:197
+#: src/view/pgpcardwidget.cpp:195
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -11712,149 +11712,149 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "공개 키 URL:"
 
-#: src/view/pgpcardwidget.cpp:218 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:216 src/view/pivcardwidget.cpp:122
 #, kde-format
 msgid "Keys:"
 msgstr "키:"
 
-#: src/view/pgpcardwidget.cpp:232
+#: src/view/pgpcardwidget.cpp:230
 #, kde-format
 msgid "Generate New Keys"
 msgstr "새 키 생성"
 
-#: src/view/pgpcardwidget.cpp:233
+#: src/view/pgpcardwidget.cpp:231
 #, kde-format
 msgid "Create a new primary key and generate subkeys on the card."
 msgstr "카드에 새 주 키와 하위 키를 생성합니다."
 
-#: src/view/pgpcardwidget.cpp:238
+#: src/view/pgpcardwidget.cpp:236
 #, kde-format
 msgid "Change PIN"
 msgstr "PIN 변경"
 
-#: src/view/pgpcardwidget.cpp:239
+#: src/view/pgpcardwidget.cpp:237
 #, kde-format
 msgid "Change the PIN required for using the keys on the smartcard."
 msgstr "스마트카드의 키를 사용할 때 필요한 PIN을 변경합니다."
 
-#: src/view/pgpcardwidget.cpp:246
+#: src/view/pgpcardwidget.cpp:244
 #, kde-format
 msgid "Unblock Card"
 msgstr "카드 차단 해제"
 
-#: src/view/pgpcardwidget.cpp:247
+#: src/view/pgpcardwidget.cpp:245
 #, kde-format
 msgid "Unblock the smartcard and set a new PIN."
 msgstr "스마트카드의 차단을 해제하고 새 PIN을 설정합니다."
 
-#: src/view/pgpcardwidget.cpp:254
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgid "Change Admin PIN"
 msgstr "관리자 PIN 변경"
 
-#: src/view/pgpcardwidget.cpp:255
+#: src/view/pgpcardwidget.cpp:253
 #, kde-format
 msgid "Change the PIN required for administrative operations."
 msgstr "관리 작업에 필요한 PIN을 변경합니다."
 
-#: src/view/pgpcardwidget.cpp:262
+#: src/view/pgpcardwidget.cpp:260
 #, kde-format
 msgid "Change Reset Code"
 msgstr "초기화 코드 변경"
 
-#: src/view/pgpcardwidget.cpp:263
+#: src/view/pgpcardwidget.cpp:261
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgstr ""
 "스마트카드의 차단을 해제하고 새 PIN을 설정할 때 필요한 PIN을 변경합니다."
 
-#: src/view/pgpcardwidget.cpp:272
+#: src/view/pgpcardwidget.cpp:270
 #, kde-format
 msgid "Create OpenPGP Key"
 msgstr "OpenPGP 키 생성"
 
-#: src/view/pgpcardwidget.cpp:273
+#: src/view/pgpcardwidget.cpp:271
 #, kde-format
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "카드에 저장된 키에 대한 OpenPGP 키를 생성합니다."
 
-#: src/view/pgpcardwidget.cpp:293
+#: src/view/pgpcardwidget.cpp:291
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "알 수 없는 OpenPGP v%1 카드"
 
-#: src/view/pgpcardwidget.cpp:294
+#: src/view/pgpcardwidget.cpp:292
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 카드"
 
-#: src/view/pgpcardwidget.cpp:300 src/view/pgpcardwidget.cpp:302
+#: src/view/pgpcardwidget.cpp:298 src/view/pgpcardwidget.cpp:300
 #, kde-format
 msgid "not set"
 msgstr "설정하지 않음"
 
-#: src/view/pgpcardwidget.cpp:346
+#: src/view/pgpcardwidget.cpp:344
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "키 생성 중"
 
-#: src/view/pgpcardwidget.cpp:347
+#: src/view/pgpcardwidget.cpp:345
 #, kde-format
 msgid "This may take several minutes..."
 msgstr "시간이 걸릴 수도 있습니다..."
 
-#: src/view/pgpcardwidget.cpp:362
+#: src/view/pgpcardwidget.cpp:360
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "새 키 생성 실패: %1"
 
-#: src/view/pgpcardwidget.cpp:372
+#: src/view/pgpcardwidget.cpp:370
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "암호화 키 백업 저장"
 
-#: src/view/pgpcardwidget.cpp:372
+#: src/view/pgpcardwidget.cpp:370
 #, kde-format
 msgid "Backup Key"
 msgstr "백업 키"
 
-#: src/view/pgpcardwidget.cpp:374
+#: src/view/pgpcardwidget.cpp:372
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr "백업을 이동할 수 없습니다. 백업 키 저장 위치: %1"
 
-#: src/view/pgpcardwidget.cpp:380
+#: src/view/pgpcardwidget.cpp:378
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "이 카드에 대한 새 키를 생성했습니다."
 
-#: src/view/pgpcardwidget.cpp:380 src/view/pgpcardwidget.cpp:471
-#: src/view/pgpcardwidget.cpp:518
+#: src/view/pgpcardwidget.cpp:378 src/view/pgpcardwidget.cpp:469
+#: src/view/pgpcardwidget.cpp:516
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "성공"
 
-#: src/view/pgpcardwidget.cpp:394
+#: src/view/pgpcardwidget.cpp:392
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr "카드의 기존 키는 <b>삭제되었고</b> 새 키로 대체되었습니다."
 
-#: src/view/pgpcardwidget.cpp:399
+#: src/view/pgpcardwidget.cpp:397
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "비밀 키 삭제"
 
-#: src/view/pgpcardwidget.cpp:413
+#: src/view/pgpcardwidget.cpp:411
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -11862,69 +11862,69 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:430
+#: src/view/pgpcardwidget.cpp:428
 #, kde-format
 msgid "Change cardholder"
 msgstr "카드 소유자 변경"
 
-#: src/view/pgpcardwidget.cpp:430
+#: src/view/pgpcardwidget.cpp:428
 #, kde-format
 msgid "New name:"
 msgstr "새 이름:"
 
-#: src/view/pgpcardwidget.cpp:436
+#: src/view/pgpcardwidget.cpp:434
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "\"<\" 글자를 사용할 수 없습니다."
 
-#: src/view/pgpcardwidget.cpp:440
+#: src/view/pgpcardwidget.cpp:438
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "공백 두 개는 사용할 수 없음"
 
-#: src/view/pgpcardwidget.cpp:444
+#: src/view/pgpcardwidget.cpp:442
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "이름 길이는 최대 38글자입니다."
 
-#: src/view/pgpcardwidget.cpp:467
+#: src/view/pgpcardwidget.cpp:465
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "이름 변경 실패: %1"
 
-#: src/view/pgpcardwidget.cpp:471
+#: src/view/pgpcardwidget.cpp:469
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "이름을 변경했습니다."
 
-#: src/view/pgpcardwidget.cpp:482
+#: src/view/pgpcardwidget.cpp:480
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "공개 키를 찾을 수 있는 URL 변경"
 
-#: src/view/pgpcardwidget.cpp:483
+#: src/view/pgpcardwidget.cpp:481
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "새 공개 키 URL:"
 
-#: src/view/pgpcardwidget.cpp:494
+#: src/view/pgpcardwidget.cpp:492
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "URL 길이는 최대 254글자입니다."
 
-#: src/view/pgpcardwidget.cpp:514
+#: src/view/pgpcardwidget.cpp:512
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "URL 변경 실패: %1"
 
-#: src/view/pgpcardwidget.cpp:518
+#: src/view/pgpcardwidget.cpp:516
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."

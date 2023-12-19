@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 00:42+0000\n"
+"POT-Creation-Date: 2023-12-19 00:42+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -5025,7 +5025,7 @@ msgstr "(níor aimsíodh aon teastais chomhoiriúnacha)"
 msgid "Multiple matching certificates or groups found"
 msgstr "(níor aimsíodh aon teastais chomhoiriúnacha)"
 
-#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:212
+#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:220
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:1005
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
@@ -6377,7 +6377,8 @@ msgstr ""
 msgid "Valid from:"
 msgstr "Bailí Ó"
 
-#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:98
+#: src/dialogs/certificatedetailswidget.cpp:288
+#: src/dialogs/expirydialog.cpp:101
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgid "Valid until:"
@@ -7180,42 +7181,47 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:85
+#: src/dialogs/expirydialog.cpp:88
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
 msgid "Please select until when the subkey should be valid:"
 msgstr "Teastais Iompórtáilte ó %1"
 
-#: src/dialogs/expirydialog.cpp:86
+#: src/dialogs/expirydialog.cpp:89
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
 msgid "Please select until when the certificate should be valid:"
 msgstr "Teastais Iompórtáilte ó %1"
 
-#: src/dialogs/expirydialog.cpp:90
+#: src/dialogs/expirydialog.cpp:93
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Unlimited validity"
 msgstr "Taispeáin bailíocht an teastais"
 
-#: src/dialogs/expirydialog.cpp:114
+#: src/dialogs/expirydialog.cpp:122
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:141
+#: src/dialogs/expirydialog.cpp:149
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Bailí go dtí:"
 
-#: src/dialogs/expirydialog.cpp:168
+#: src/dialogs/expirydialog.cpp:176
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
+msgstr ""
+
+#: src/dialogs/expirydialog.cpp:236
+#, kde-format
+msgid "Expiration of primary key: %1"
 msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
@@ -7762,33 +7768,33 @@ msgid "Export secret subkey"
 msgstr "Eochair rúnda á heaspórtáil..."
 
 # can be used for signing/encryption/certification/authentication
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Yes"
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "Is sea"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:243
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:242
+#: src/dialogs/subkeyswidget.cpp:246
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "Roghnaigh Uile"
 
-#: src/dialogs/subkeyswidget.cpp:244
+#: src/dialogs/subkeyswidget.cpp:248
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "smart card"
 msgstr "Roghnaigh Uile"
 
-#: src/dialogs/subkeyswidget.cpp:247
+#: src/dialogs/subkeyswidget.cpp:251
 #, fuzzy, kde-format
 #| msgctxt "history size spinbox suffix"
 #| msgid " line"
@@ -7797,12 +7803,12 @@ msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr " líne"
 
-#: src/dialogs/subkeyswidget.cpp:249
+#: src/dialogs/subkeyswidget.cpp:253
 #, kde-format
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:251
+#: src/dialogs/subkeyswidget.cpp:255
 #, fuzzy, kde-format
 #| msgctxt "unknown trust level"
 #| msgid "unknown"
@@ -7810,7 +7816,7 @@ msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "anaithnid"
 
-#: src/dialogs/subkeyswidget.cpp:273
+#: src/dialogs/subkeyswidget.cpp:277
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"

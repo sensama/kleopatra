@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 00:42+0000\n"
+"POT-Creation-Date: 2023-12-19 00:42+0000\n"
 "PO-Revision-Date: 2023-11-27 12:56+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -4976,7 +4976,7 @@ msgstr "Не найдены соответствующие сертификат�
 msgid "Multiple matching certificates or groups found"
 msgstr "Найдено несколько соответствующих сертификатов или групп"
 
-#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:212
+#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:220
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:1005
 #: src/view/formtextinput.cpp:120
 #, kde-format
@@ -6314,7 +6314,8 @@ msgstr "Уровень доверия:"
 msgid "Valid from:"
 msgstr "Действителен с:"
 
-#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:98
+#: src/dialogs/certificatedetailswidget.cpp:288
+#: src/dialogs/expirydialog.cpp:101
 #, kde-format
 msgid "Valid until:"
 msgstr "Срок действия:"
@@ -7101,37 +7102,42 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Изменение группы"
 
-#: src/dialogs/expirydialog.cpp:85
+#: src/dialogs/expirydialog.cpp:88
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "Выберите срок действия подключа:"
 
-#: src/dialogs/expirydialog.cpp:86
+#: src/dialogs/expirydialog.cpp:89
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "Выберите срок действия сертификата:"
 
-#: src/dialogs/expirydialog.cpp:90
+#: src/dialogs/expirydialog.cpp:93
 #, kde-format
 msgid "Unlimited validity"
 msgstr "Неограниченный срок действия"
 
-#: src/dialogs/expirydialog.cpp:114
+#: src/dialogs/expirydialog.cpp:122
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr "Также обновить период действия подключей"
 
-#: src/dialogs/expirydialog.cpp:141
+#: src/dialogs/expirydialog.cpp:149
 #, kde-format
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Действует до %1"
 
-#: src/dialogs/expirydialog.cpp:168
+#: src/dialogs/expirydialog.cpp:176
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "Изменение периода действия"
+
+#: src/dialogs/expirydialog.cpp:236
+#, kde-format
+msgid "Expiration of primary key: %1"
+msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7678,47 +7684,47 @@ msgstr "Перенести на смарт-карту"
 msgid "Export secret subkey"
 msgstr "Экспорт закрытого подключа"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:243
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "да"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:243
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "нет"
 
-#: src/dialogs/subkeyswidget.cpp:242
+#: src/dialogs/subkeyswidget.cpp:246
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "смарт-карта %1"
 
-#: src/dialogs/subkeyswidget.cpp:244
+#: src/dialogs/subkeyswidget.cpp:248
 #, kde-format
 msgid "smart card"
 msgstr "смарт-карта"
 
-#: src/dialogs/subkeyswidget.cpp:247
+#: src/dialogs/subkeyswidget.cpp:251
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "автономный"
 
-#: src/dialogs/subkeyswidget.cpp:249
+#: src/dialogs/subkeyswidget.cpp:253
 #, kde-format
 msgid "on this computer"
 msgstr "на этом компьютере"
 
-#: src/dialogs/subkeyswidget.cpp:251
+#: src/dialogs/subkeyswidget.cpp:255
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "неизвестно"
 
-#: src/dialogs/subkeyswidget.cpp:273
+#: src/dialogs/subkeyswidget.cpp:277
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-14 00:42+0000\n"
+"POT-Creation-Date: 2023-12-19 00:42+0000\n"
 "PO-Revision-Date: 2014-09-10 14:40+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -5274,7 +5274,7 @@ msgstr "(nem található illeszkedő tanúsítvány)"
 msgid "Multiple matching certificates or groups found"
 msgstr "(nem található illeszkedő tanúsítvány)"
 
-#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:212
+#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:220
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:1005
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
@@ -6659,7 +6659,8 @@ msgstr "Más megbízhatósági szint beállítása: %1"
 msgid "Valid from:"
 msgstr "Érvényes ettől"
 
-#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:98
+#: src/dialogs/certificatedetailswidget.cpp:288
+#: src/dialogs/expirydialog.cpp:101
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgid "Valid until:"
@@ -7489,40 +7490,45 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:85
+#: src/dialogs/expirydialog.cpp:88
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the subkey should be valid:"
 msgstr "Válasszon egyet az alábbi tanúsítványok közül:"
 
-#: src/dialogs/expirydialog.cpp:86
+#: src/dialogs/expirydialog.cpp:89
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the certificate should be valid:"
 msgstr "Válasszon egyet az alábbi tanúsítványok közül:"
 
-#: src/dialogs/expirydialog.cpp:90
+#: src/dialogs/expirydialog.cpp:93
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Unlimited validity"
 msgstr "Tanúsítványérvényesség"
 
-#: src/dialogs/expirydialog.cpp:114
+#: src/dialogs/expirydialog.cpp:122
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:141
+#: src/dialogs/expirydialog.cpp:149
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Érvényes eddig:"
 
-#: src/dialogs/expirydialog.cpp:168
+#: src/dialogs/expirydialog.cpp:176
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
+msgstr ""
+
+#: src/dialogs/expirydialog.cpp:236
+#, kde-format
+msgid "Expiration of primary key: %1"
 msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
@@ -8100,33 +8106,33 @@ msgstr "Intelligens kártya"
 msgid "Export secret subkey"
 msgstr "A kijelölt titkos kulcsok:"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Yes"
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "Igen"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:243
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:242
+#: src/dialogs/subkeyswidget.cpp:246
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "Intelligens kártya"
 
-#: src/dialogs/subkeyswidget.cpp:244
+#: src/dialogs/subkeyswidget.cpp:248
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "smart card"
 msgstr "Intelligens kártya"
 
-#: src/dialogs/subkeyswidget.cpp:247
+#: src/dialogs/subkeyswidget.cpp:251
 #, fuzzy, kde-format
 #| msgctxt "history size spinbox suffix"
 #| msgid " line"
@@ -8135,14 +8141,14 @@ msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr " sor"
 
-#: src/dialogs/subkeyswidget.cpp:249
+#: src/dialogs/subkeyswidget.cpp:253
 #, fuzzy, kde-format
 #| msgctxt "stored..."
 #| msgid "on this computer"
 msgid "on this computer"
 msgstr "ezen a számítógépen"
 
-#: src/dialogs/subkeyswidget.cpp:251
+#: src/dialogs/subkeyswidget.cpp:255
 #, fuzzy, kde-format
 #| msgctxt "unknown trust level"
 #| msgid "unknown"
@@ -8150,7 +8156,7 @@ msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "ismeretlen"
 
-#: src/dialogs/subkeyswidget.cpp:273
+#: src/dialogs/subkeyswidget.cpp:277
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-19 00:42+0000\n"
+"POT-Creation-Date: 2023-12-21 00:43+0000\n"
 "PO-Revision-Date: 2023-12-19 07:08+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
-"%100<=4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.4.1\n"
 
@@ -6551,7 +6551,7 @@ msgid "Message count"
 msgstr "Število sporočil"
 
 #: src/dialogs/certificatedetailswidget.cpp:911
-#: src/smartcard/openpgpcard.cpp:102
+#: src/smartcard/openpgpcard.cpp:103
 #, kde-format
 msgid "Encryption"
 msgstr "Šifriranje"
@@ -7578,138 +7578,176 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(neobvezno) Nastavite začetni PIN (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:86
+#: src/dialogs/subkeyswidget.cpp:98
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Podključi:"
 
-#: src/dialogs/subkeyswidget.cpp:91
+#: src/dialogs/subkeyswidget.cpp:103
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Podključi"
 
-#: src/dialogs/subkeyswidget.cpp:94
+#: src/dialogs/subkeyswidget.cpp:106
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:95
+#: src/dialogs/subkeyswidget.cpp:107
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Vrsta"
 
-#: src/dialogs/subkeyswidget.cpp:96
+#: src/dialogs/subkeyswidget.cpp:108
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Veljaven od"
 
-#: src/dialogs/subkeyswidget.cpp:97
+#: src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Veljaven do"
 
-#: src/dialogs/subkeyswidget.cpp:98
+#: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Stanje"
 
-#: src/dialogs/subkeyswidget.cpp:99
+#: src/dialogs/subkeyswidget.cpp:111
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Moč"
 
-#: src/dialogs/subkeyswidget.cpp:100
+#: src/dialogs/subkeyswidget.cpp:112
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Uporaba"
 
-#: src/dialogs/subkeyswidget.cpp:101
+#: src/dialogs/subkeyswidget.cpp:113
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Primarni"
 
-#: src/dialogs/subkeyswidget.cpp:102
+#: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Hramba"
 
-#: src/dialogs/subkeyswidget.cpp:123 src/view/keylistcontroller.cpp:511
-#, kde-format
-msgid "Change End of Validity Period..."
-msgstr "Spremeni konec obdobja veljavnosti..."
+#: src/dialogs/subkeyswidget.cpp:121
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change Validity"
+msgctxt "@action:button"
+msgid "Change validity"
+msgstr "Spremeni veljavnost"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:124
+#, fuzzy, kde-format
+#| msgid "Export OpenSSH key"
+msgctxt "@action:button"
+msgid "Export OpenSSH key"
+msgstr "Izvozi ključ OpenSSH"
+
+#: src/dialogs/subkeyswidget.cpp:127
+#, fuzzy, kde-format
+#| msgid "Restore printed backup"
+msgctxt "@action:button"
+msgid "Restore printed backup"
+msgstr "Obnovi tiskano varovalno kopijo"
+
+#: src/dialogs/subkeyswidget.cpp:130
+#, fuzzy, kde-format
+#| msgid "Transfer to smartcard"
+msgctxt "@action:button"
+msgid "Transfer to smartcard"
+msgstr "Prenesi na pametno kartico"
+
+#: src/dialogs/subkeyswidget.cpp:133
+#, fuzzy, kde-format
+#| msgid "Export secret subkey"
+msgctxt "@action:button"
+msgid "Export secret subkey"
+msgstr "Izvozi tajni podključ"
+
+#: src/dialogs/subkeyswidget.cpp:212
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change Validity"
+msgid "Change validity"
+msgstr "Spremeni veljavnost"
+
+#: src/dialogs/subkeyswidget.cpp:219
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Izvozi ključ OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:224
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Obnovi tiskano varovalno kopijo"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:231
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Prenesi na pametno kartico"
 
-#: src/dialogs/subkeyswidget.cpp:172
+#: src/dialogs/subkeyswidget.cpp:239
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Izvozi tajni podključ"
 
-#: src/dialogs/subkeyswidget.cpp:243
+#: src/dialogs/subkeyswidget.cpp:329
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "da"
 
-#: src/dialogs/subkeyswidget.cpp:243
+#: src/dialogs/subkeyswidget.cpp:329
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "ne"
 
-#: src/dialogs/subkeyswidget.cpp:246
+#: src/dialogs/subkeyswidget.cpp:332
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "pametna kartica %1"
 
-#: src/dialogs/subkeyswidget.cpp:248
+#: src/dialogs/subkeyswidget.cpp:334
 #, kde-format
 msgid "smart card"
 msgstr "pametna kartica"
 
-#: src/dialogs/subkeyswidget.cpp:251
+#: src/dialogs/subkeyswidget.cpp:337
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "nepovezano"
 
-#: src/dialogs/subkeyswidget.cpp:253
+#: src/dialogs/subkeyswidget.cpp:339
 #, kde-format
 msgid "on this computer"
 msgstr "na tem računalniku"
 
-#: src/dialogs/subkeyswidget.cpp:255
+#: src/dialogs/subkeyswidget.cpp:341
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "neznano"
 
-#: src/dialogs/subkeyswidget.cpp:277
+#: src/dialogs/subkeyswidget.cpp:367
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
@@ -10101,81 +10139,15 @@ msgstr ""
 "Končaj vse druge zagnane pojavke programa <application>Kleopatra</"
 "application>."
 
-#: src/smartcard/openpgpcard.cpp:101
+#: src/smartcard/openpgpcard.cpp:102
 #, kde-format
 msgid "Signature"
 msgstr "Podpis"
 
-#: src/smartcard/openpgpcard.cpp:103
+#: src/smartcard/openpgpcard.cpp:104
 #, kde-format
 msgid "Authentication"
 msgstr "Overjanje"
-
-#: src/smartcard/openpgpcard.cpp:162
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-256)"
-msgstr "ECC (Brainpool P-256)"
-
-#: src/smartcard/openpgpcard.cpp:163
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-384)"
-msgstr "ECC (Brainpool P-384)"
-
-#: src/smartcard/openpgpcard.cpp:164
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-512)"
-msgstr "ECC (Brainpool P-512)"
-
-#: src/smartcard/openpgpcard.cpp:165
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Curve25519)"
-msgstr "ECC (Curve25519)"
-
-#: src/smartcard/openpgpcard.cpp:166
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Curve448)"
-msgstr "ECC (Curve448)"
-
-#: src/smartcard/openpgpcard.cpp:167
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-256)"
-msgstr "ECC (NIST P-256)"
-
-#: src/smartcard/openpgpcard.cpp:168
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-384)"
-msgstr "ECC (NIST P-384)"
-
-#: src/smartcard/openpgpcard.cpp:169
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-521)"
-msgstr "ECC (NIST P-521)"
-
-#: src/smartcard/openpgpcard.cpp:170
-#, kde-format
-msgctxt "@info"
-msgid "RSA 2048"
-msgstr "RSA 2048"
-
-#: src/smartcard/openpgpcard.cpp:171
-#, kde-format
-msgctxt "@info"
-msgid "RSA 3072"
-msgstr "RSA 3072"
-
-#: src/smartcard/openpgpcard.cpp:172
-#, kde-format
-msgctxt "@info"
-msgid "RSA 4096"
-msgstr "RSA 4096"
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -11349,6 +11321,11 @@ msgstr "Preklici potrdilo..."
 msgid "Revoke the certification of the selected certificate"
 msgstr "Prekličite potrjevanje izbranega potrdila"
 
+#: src/view/keylistcontroller.cpp:511
+#, kde-format
+msgid "Change End of Validity Period..."
+msgstr "Spremeni konec obdobja veljavnosti..."
+
 #: src/view/keylistcontroller.cpp:520
 #, kde-format
 msgctxt "@action:inmenu"
@@ -12449,6 +12426,50 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-256)"
+#~ msgstr "ECC (Brainpool P-256)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-384)"
+#~ msgstr "ECC (Brainpool P-384)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-512)"
+#~ msgstr "ECC (Brainpool P-512)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Curve25519)"
+#~ msgstr "ECC (Curve25519)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Curve448)"
+#~ msgstr "ECC (Curve448)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-256)"
+#~ msgstr "ECC (NIST P-256)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-384)"
+#~ msgstr "ECC (NIST P-384)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-521)"
+#~ msgstr "ECC (NIST P-521)"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 2048"
+#~ msgstr "RSA 2048"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 3072"
+#~ msgstr "RSA 3072"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 4096"
+#~ msgstr "RSA 4096"
 
 #~ msgctxt "@info"
 #~ msgid ""

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-19 00:42+0000\n"
-"PO-Revision-Date: 2023-11-17 11:35+0100\n"
+"POT-Creation-Date: 2023-12-21 00:43+0000\n"
+"PO-Revision-Date: 2023-12-20 03:24+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1379,7 +1379,13 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"L'esportazione del certificato su un server delle chiavi non è possibile "
+"perché l'utilizzo dei server delle chiavi è stato disabilitato "
+"esplicitamente."
 msgstr[1] ""
+"L'esportazione dei certificati su un server delle chiavi non è possibile "
+"perché l'utilizzo dei server delle chiavi è stato disabilitato "
+"esplicitamente."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2940,6 +2946,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"L'aggiornamento dei certificati OpenPGP non è possibile perché l'utilizzo "
+"dei server delle chiavi è stato disabilitato esplicitamente."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3665,6 +3673,11 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Digita l'indirizzo del server delle chiavi da utilizzare durante la ricerca "
+"di certificati OpenPGP e il caricamento di certificati OpenPGP. Se non "
+"digiti un indirizzo, sarà utilizzato un indirizzo predefinito interno. Per "
+"disabilitare l'uso di un server di chiavi OpenPGP, digita il valore speciale "
+"<emphasis>none</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
@@ -6539,7 +6552,7 @@ msgid "Message count"
 msgstr "Totale dei messaggi"
 
 #: src/dialogs/certificatedetailswidget.cpp:911
-#: src/smartcard/openpgpcard.cpp:102
+#: src/smartcard/openpgpcard.cpp:103
 #, kde-format
 msgid "Encryption"
 msgstr "Cifratura"
@@ -7119,7 +7132,7 @@ msgstr "Cambia periodo di validità"
 #: src/dialogs/expirydialog.cpp:236
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Scadenza della chiave principale: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7224,20 +7237,18 @@ msgid "Import"
 msgstr "Importa"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr ""
-"Digita un nome e un indirizzo di posta da utilizzare per il certificato."
+msgstr "Digita un termine di ricerca per cercare i certificati corrispondenti."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr ""
-"Digita un nome e un indirizzo di posta da utilizzare per il certificato."
+"Digita un indirizzo di posta elettronica per cercare i certificati "
+"corrispondenti."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7575,138 +7586,176 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(opzionale) Imposta PIN iniziale (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:86
+#: src/dialogs/subkeyswidget.cpp:98
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Sottochiavi:"
 
-#: src/dialogs/subkeyswidget.cpp:91
+#: src/dialogs/subkeyswidget.cpp:103
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Sottochiavi"
 
-#: src/dialogs/subkeyswidget.cpp:94
+#: src/dialogs/subkeyswidget.cpp:106
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:95
+#: src/dialogs/subkeyswidget.cpp:107
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Tipo"
 
-#: src/dialogs/subkeyswidget.cpp:96
+#: src/dialogs/subkeyswidget.cpp:108
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Valido da"
 
-#: src/dialogs/subkeyswidget.cpp:97
+#: src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Valido fino"
 
-#: src/dialogs/subkeyswidget.cpp:98
+#: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Stato"
 
-#: src/dialogs/subkeyswidget.cpp:99
+#: src/dialogs/subkeyswidget.cpp:111
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Robustezza"
 
-#: src/dialogs/subkeyswidget.cpp:100
+#: src/dialogs/subkeyswidget.cpp:112
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Uso"
 
-#: src/dialogs/subkeyswidget.cpp:101
+#: src/dialogs/subkeyswidget.cpp:113
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Primaria"
 
-#: src/dialogs/subkeyswidget.cpp:102
+#: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Archiviazione"
 
-#: src/dialogs/subkeyswidget.cpp:123 src/view/keylistcontroller.cpp:511
-#, kde-format
-msgid "Change End of Validity Period..."
-msgstr "Cambia la fine del periodo di validità..."
+#: src/dialogs/subkeyswidget.cpp:121
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change Validity"
+msgctxt "@action:button"
+msgid "Change validity"
+msgstr "Cambia validità"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:124
+#, fuzzy, kde-format
+#| msgid "Export OpenSSH key"
+msgctxt "@action:button"
+msgid "Export OpenSSH key"
+msgstr "Esporta chiave OpenSSH"
+
+#: src/dialogs/subkeyswidget.cpp:127
+#, fuzzy, kde-format
+#| msgid "Restore printed backup"
+msgctxt "@action:button"
+msgid "Restore printed backup"
+msgstr "Ripristina la copia di sicurezza stampata"
+
+#: src/dialogs/subkeyswidget.cpp:130
+#, fuzzy, kde-format
+#| msgid "Transfer to smartcard"
+msgctxt "@action:button"
+msgid "Transfer to smartcard"
+msgstr "Trasferisci su smartcard"
+
+#: src/dialogs/subkeyswidget.cpp:133
+#, fuzzy, kde-format
+#| msgid "Export secret subkey"
+msgctxt "@action:button"
+msgid "Export secret subkey"
+msgstr "Esporta sottochiave segreta"
+
+#: src/dialogs/subkeyswidget.cpp:212
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change Validity"
+msgid "Change validity"
+msgstr "Cambia validità"
+
+#: src/dialogs/subkeyswidget.cpp:219
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Esporta chiave OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:224
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Ripristina la copia di sicurezza stampata"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:231
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Trasferisci su smartcard"
 
-#: src/dialogs/subkeyswidget.cpp:172
+#: src/dialogs/subkeyswidget.cpp:239
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Esporta sottochiave segreta"
 
-#: src/dialogs/subkeyswidget.cpp:243
+#: src/dialogs/subkeyswidget.cpp:329
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "sì"
 
-#: src/dialogs/subkeyswidget.cpp:243
+#: src/dialogs/subkeyswidget.cpp:329
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "no"
 
-#: src/dialogs/subkeyswidget.cpp:246
+#: src/dialogs/subkeyswidget.cpp:332
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "smart card %1"
 
-#: src/dialogs/subkeyswidget.cpp:248
+#: src/dialogs/subkeyswidget.cpp:334
 #, kde-format
 msgid "smart card"
 msgstr "smart card"
 
-#: src/dialogs/subkeyswidget.cpp:251
+#: src/dialogs/subkeyswidget.cpp:337
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "non in linea"
 
-#: src/dialogs/subkeyswidget.cpp:253
+#: src/dialogs/subkeyswidget.cpp:339
 #, kde-format
 msgid "on this computer"
 msgstr "su questo computer"
 
-#: src/dialogs/subkeyswidget.cpp:255
+#: src/dialogs/subkeyswidget.cpp:341
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "sconosciuta"
 
-#: src/dialogs/subkeyswidget.cpp:277
+#: src/dialogs/subkeyswidget.cpp:367
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
@@ -8029,20 +8078,18 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Suggerimento pre EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Questo testo sarà utilizzato come testo segnaposto per il campo "
-"dell'indirizzo email dei certificati OpenPGP e S/MIME."
+"Questo testo sarà mostrato sopra il campo dell'indirizzo di posta "
+"elettronica dei certificati OpenPGP e come segnaposto in tale campo per i "
+"certificati S/MIME."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8066,10 +8113,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Segnaposto per EMAIL"
+msgstr "Valore di EMAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8079,23 +8125,22 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Valore precompilato per il campo dell'indirizzo di posta dei certificati "
+"OpenPGP e S/MIME. Ciò sovrascriverà EMAIL_prefill. È utile se non vengono "
+"trovate impostazioni di sistema o non sono appropriate per EMAIL_prefill."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Suggerimento pre EMAIL"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
-"Questo testo sarà utilizzato come testo segnaposto per il campo del nome dei "
-"certificati OpenPGP."
+"Questo testo sarà mostrato sopra il campo del nome dei certificati OpenPGP."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8119,10 +8164,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Segnaposto per NAME"
+msgstr "Valore di EMAIL"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8132,6 +8176,10 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Valore precompilato per il campo del nome dei certificati OpenPGP. Ciò "
+"sovrascriverà NAME_prefill. È utile se non viene trovata alcuna impostazione "
+"di sistema o se viene trovata un'impostazione di sistema non appropriata per "
+"NAME_prefill."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -10136,81 +10184,15 @@ msgstr ""
 "Fa terminare tutte le altre istanze di <application>Kleopatra</application> "
 "in esecuzione."
 
-#: src/smartcard/openpgpcard.cpp:101
+#: src/smartcard/openpgpcard.cpp:102
 #, kde-format
 msgid "Signature"
 msgstr "Firma"
 
-#: src/smartcard/openpgpcard.cpp:103
+#: src/smartcard/openpgpcard.cpp:104
 #, kde-format
 msgid "Authentication"
 msgstr "Autenticazione"
-
-#: src/smartcard/openpgpcard.cpp:162
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-256)"
-msgstr "ECC (Brainpool P-256)"
-
-#: src/smartcard/openpgpcard.cpp:163
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-384)"
-msgstr "ECC (Brainpool P-384)"
-
-#: src/smartcard/openpgpcard.cpp:164
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-512)"
-msgstr "ECC (Brainpool P-512)"
-
-#: src/smartcard/openpgpcard.cpp:165
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Curve25519)"
-msgstr "ECC (Curve25519)"
-
-#: src/smartcard/openpgpcard.cpp:166
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Curve448)"
-msgstr "ECC (Curve448)"
-
-#: src/smartcard/openpgpcard.cpp:167
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-256)"
-msgstr "ECC (NIST P-256)"
-
-#: src/smartcard/openpgpcard.cpp:168
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-384)"
-msgstr "ECC (NIST P-384)"
-
-#: src/smartcard/openpgpcard.cpp:169
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-521)"
-msgstr "ECC (NIST P-521)"
-
-#: src/smartcard/openpgpcard.cpp:170
-#, kde-format
-msgctxt "@info"
-msgid "RSA 2048"
-msgstr "RSA 2048"
-
-#: src/smartcard/openpgpcard.cpp:171
-#, kde-format
-msgctxt "@info"
-msgid "RSA 3072"
-msgstr "RSA 3072"
-
-#: src/smartcard/openpgpcard.cpp:172
-#, kde-format
-msgctxt "@info"
-msgid "RSA 4096"
-msgstr "RSA 4096"
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -11401,6 +11383,11 @@ msgstr "Revoca certificazione..."
 msgid "Revoke the certification of the selected certificate"
 msgstr "Revoca la certificazione del certificato selezionato"
 
+#: src/view/keylistcontroller.cpp:511
+#, kde-format
+msgid "Change End of Validity Period..."
+msgstr "Cambia la fine del periodo di validità..."
+
 #: src/view/keylistcontroller.cpp:520
 #, kde-format
 msgctxt "@action:inmenu"
@@ -12510,6 +12497,50 @@ msgid ""
 msgstr ""
 "Importa il certificato da un file.<nl/>Per importare da un server delle "
 "chiavi pubblico usa invece <interface>Cerca sul server</interface>."
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-256)"
+#~ msgstr "ECC (Brainpool P-256)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-384)"
+#~ msgstr "ECC (Brainpool P-384)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-512)"
+#~ msgstr "ECC (Brainpool P-512)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Curve25519)"
+#~ msgstr "ECC (Curve25519)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Curve448)"
+#~ msgstr "ECC (Curve448)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-256)"
+#~ msgstr "ECC (NIST P-256)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-384)"
+#~ msgstr "ECC (NIST P-384)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-521)"
+#~ msgstr "ECC (NIST P-521)"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 2048"
+#~ msgstr "RSA 2048"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 3072"
+#~ msgstr "RSA 3072"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 4096"
+#~ msgstr "RSA 4096"
 
 #~ msgctxt "@info"
 #~ msgid ""

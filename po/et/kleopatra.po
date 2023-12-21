@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-19 00:42+0000\n"
+"POT-Creation-Date: 2023-12-21 00:43+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -6800,7 +6800,7 @@ msgid "Message count"
 msgstr "Kirjade arv"
 
 #: src/dialogs/certificatedetailswidget.cpp:911
-#: src/smartcard/openpgpcard.cpp:102
+#: src/smartcard/openpgpcard.cpp:103
 #, kde-format
 msgid "Encryption"
 msgstr "Krüptimine"
@@ -7865,137 +7865,173 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(lisavõimalus) Määra algne PIN (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:86
+#: src/dialogs/subkeyswidget.cpp:98
 #, fuzzy, kde-format
 #| msgid "Subkeys:"
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Alamvõtmed:"
 
-#: src/dialogs/subkeyswidget.cpp:91
+#: src/dialogs/subkeyswidget.cpp:103
 #, fuzzy, kde-format
 #| msgid "Subkeys:"
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Alamvõtmed:"
 
-#: src/dialogs/subkeyswidget.cpp:94
+#: src/dialogs/subkeyswidget.cpp:106
 #, fuzzy, kde-format
 #| msgid "ID"
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:95
+#: src/dialogs/subkeyswidget.cpp:107
 #, fuzzy, kde-format
 #| msgid "Type"
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Tüüp"
 
-#: src/dialogs/subkeyswidget.cpp:96
+#: src/dialogs/subkeyswidget.cpp:108
 #, fuzzy, kde-format
 #| msgid "Valid From"
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Kehtiv alates"
 
-#: src/dialogs/subkeyswidget.cpp:97
+#: src/dialogs/subkeyswidget.cpp:109
 #, fuzzy, kde-format
 #| msgid "Valid Until"
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Kehtiv kuni"
 
-#: src/dialogs/subkeyswidget.cpp:98
+#: src/dialogs/subkeyswidget.cpp:110
 #, fuzzy, kde-format
 #| msgid "Status"
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Olek"
 
-#: src/dialogs/subkeyswidget.cpp:99
+#: src/dialogs/subkeyswidget.cpp:111
 #, fuzzy, kde-format
 #| msgid "Strength"
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Tugevus"
 
-#: src/dialogs/subkeyswidget.cpp:100
+#: src/dialogs/subkeyswidget.cpp:112
 #, fuzzy, kde-format
 #| msgid "Usage"
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Kasutamine"
 
-#: src/dialogs/subkeyswidget.cpp:101
+#: src/dialogs/subkeyswidget.cpp:113
 #, fuzzy, kde-format
 #| msgid "Primary"
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Esmane"
 
-#: src/dialogs/subkeyswidget.cpp:102
+#: src/dialogs/subkeyswidget.cpp:114
 #, fuzzy, kde-format
 #| msgid "Stored:"
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Salvestatud:"
 
-#: src/dialogs/subkeyswidget.cpp:123 src/view/keylistcontroller.cpp:511
-#, kde-format
-msgid "Change End of Validity Period..."
-msgstr ""
+#: src/dialogs/subkeyswidget.cpp:121
+#, fuzzy, kde-format
+#| msgid "Validity"
+msgctxt "@action:button"
+msgid "Change validity"
+msgstr "Kehtiv"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:124
+#, fuzzy, kde-format
+#| msgid "Export Secret Key"
+msgctxt "@action:button"
+msgid "Export OpenSSH key"
+msgstr "Salajase võtme eksport"
+
+#: src/dialogs/subkeyswidget.cpp:127
+#, fuzzy, kde-format
+#| msgid "Restore printed backup"
+msgctxt "@action:button"
+msgid "Restore printed backup"
+msgstr "Taasta trükitud varukoopia"
+
+#: src/dialogs/subkeyswidget.cpp:130
+#, fuzzy, kde-format
+#| msgid "Transfer to smartcard"
+msgctxt "@action:button"
+msgid "Transfer to smartcard"
+msgstr "Kanna üle kiipkaardile"
+
+#: src/dialogs/subkeyswidget.cpp:133
+#, fuzzy, kde-format
+#| msgid "Export Secret Key"
+msgctxt "@action:button"
+msgid "Export secret subkey"
+msgstr "Salajase võtme eksport"
+
+#: src/dialogs/subkeyswidget.cpp:212
+#, fuzzy, kde-format
+#| msgid "Validity"
+msgid "Change validity"
+msgstr "Kehtiv"
+
+#: src/dialogs/subkeyswidget.cpp:219
 #, fuzzy, kde-format
 #| msgid "Export Secret Key"
 msgid "Export OpenSSH key"
 msgstr "Salajase võtme eksport"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:224
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Taasta trükitud varukoopia"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:231
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Kanna üle kiipkaardile"
 
-#: src/dialogs/subkeyswidget.cpp:172
+#: src/dialogs/subkeyswidget.cpp:239
 #, fuzzy, kde-format
 #| msgid "Export Secret Key"
 msgid "Export secret subkey"
 msgstr "Salajase võtme eksport"
 
-#: src/dialogs/subkeyswidget.cpp:243
+#: src/dialogs/subkeyswidget.cpp:329
 #, fuzzy, kde-format
 #| msgid "Yes"
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "Jah"
 
-#: src/dialogs/subkeyswidget.cpp:243
+#: src/dialogs/subkeyswidget.cpp:329
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:246
+#: src/dialogs/subkeyswidget.cpp:332
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "Kiipkaart"
 
-#: src/dialogs/subkeyswidget.cpp:248
+#: src/dialogs/subkeyswidget.cpp:334
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "smart card"
 msgstr "Kiipkaart"
 
-#: src/dialogs/subkeyswidget.cpp:251
+#: src/dialogs/subkeyswidget.cpp:337
 #, fuzzy, kde-format
 #| msgctxt "history size spinbox suffix"
 #| msgid " line"
@@ -8004,21 +8040,21 @@ msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr " rida"
 
-#: src/dialogs/subkeyswidget.cpp:253
+#: src/dialogs/subkeyswidget.cpp:339
 #, fuzzy, kde-format
 #| msgctxt "stored..."
 #| msgid "on this computer"
 msgid "on this computer"
 msgstr "selles arvutis"
 
-#: src/dialogs/subkeyswidget.cpp:255
+#: src/dialogs/subkeyswidget.cpp:341
 #, fuzzy, kde-format
 #| msgid "unknown"
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "teadmata"
 
-#: src/dialogs/subkeyswidget.cpp:277
+#: src/dialogs/subkeyswidget.cpp:367
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
@@ -10391,89 +10427,16 @@ msgid ""
 msgstr ""
 "Sulge kõik teised töötavad <application>Kleopatra</application> protsessid."
 
-#: src/smartcard/openpgpcard.cpp:101
+#: src/smartcard/openpgpcard.cpp:102
 #, fuzzy, kde-format
 #| msgid "Signature:"
 msgid "Signature"
 msgstr "Allkiri:"
 
-#: src/smartcard/openpgpcard.cpp:103
+#: src/smartcard/openpgpcard.cpp:104
 #, kde-format
 msgid "Authentication"
 msgstr "Autentimine"
-
-#: src/smartcard/openpgpcard.cpp:162
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
-msgctxt "@info"
-msgid "ECC (Brainpool P-256)"
-msgstr "ECDH (Curve P-256)"
-
-#: src/smartcard/openpgpcard.cpp:163
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
-msgctxt "@info"
-msgid "ECC (Brainpool P-384)"
-msgstr "ECDH (Curve P-384)"
-
-#: src/smartcard/openpgpcard.cpp:164
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-512)"
-msgstr ""
-
-#: src/smartcard/openpgpcard.cpp:165
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
-msgctxt "@info"
-msgid "ECC (Curve25519)"
-msgstr "ECDH (Curve P-256)"
-
-#: src/smartcard/openpgpcard.cpp:166
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
-msgctxt "@info"
-msgid "ECC (Curve448)"
-msgstr "ECDH (Curve P-384)"
-
-#: src/smartcard/openpgpcard.cpp:167
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
-msgctxt "@info"
-msgid "ECC (NIST P-256)"
-msgstr "ECDH (Curve P-256)"
-
-#: src/smartcard/openpgpcard.cpp:168
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
-msgctxt "@info"
-msgid "ECC (NIST P-384)"
-msgstr "ECDH (Curve P-384)"
-
-#: src/smartcard/openpgpcard.cpp:169
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-521)"
-msgstr ""
-
-#: src/smartcard/openpgpcard.cpp:170
-#, fuzzy, kde-format
-#| msgid "RSA (2048 bits)"
-msgctxt "@info"
-msgid "RSA 2048"
-msgstr "RSA (2048 bitti)"
-
-#: src/smartcard/openpgpcard.cpp:171
-#, kde-format
-msgctxt "@info"
-msgid "RSA 3072"
-msgstr ""
-
-#: src/smartcard/openpgpcard.cpp:172
-#, kde-format
-msgctxt "@info"
-msgid "RSA 4096"
-msgstr ""
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -11678,6 +11641,11 @@ msgstr "Tühista see sertifikaat..."
 msgid "Revoke the certification of the selected certificate"
 msgstr "Valitud sertifikaadi kehtivuse sertifitseerimine"
 
+#: src/view/keylistcontroller.cpp:511
+#, kde-format
+msgid "Change End of Validity Period..."
+msgstr ""
+
 #: src/view/keylistcontroller.cpp:520
 #, fuzzy, kde-format
 #| msgid "Change Certification Trust..."
@@ -12831,6 +12799,48 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
+
+#, fuzzy
+#~| msgid "ECDH (Curve P-256)"
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-256)"
+#~ msgstr "ECDH (Curve P-256)"
+
+#, fuzzy
+#~| msgid "ECDH (Curve P-384)"
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-384)"
+#~ msgstr "ECDH (Curve P-384)"
+
+#, fuzzy
+#~| msgid "ECDH (Curve P-256)"
+#~ msgctxt "@info"
+#~ msgid "ECC (Curve25519)"
+#~ msgstr "ECDH (Curve P-256)"
+
+#, fuzzy
+#~| msgid "ECDH (Curve P-384)"
+#~ msgctxt "@info"
+#~ msgid "ECC (Curve448)"
+#~ msgstr "ECDH (Curve P-384)"
+
+#, fuzzy
+#~| msgid "ECDH (Curve P-256)"
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-256)"
+#~ msgstr "ECDH (Curve P-256)"
+
+#, fuzzy
+#~| msgid "ECDH (Curve P-384)"
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-384)"
+#~ msgstr "ECDH (Curve P-384)"
+
+#, fuzzy
+#~| msgid "RSA (2048 bits)"
+#~ msgctxt "@info"
+#~ msgid "RSA 2048"
+#~ msgstr "RSA (2048 bitti)"
 
 #~ msgctxt "@info"
 #~ msgid ""

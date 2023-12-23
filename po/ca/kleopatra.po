@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-22 00:42+0000\n"
-"PO-Revision-Date: 2023-12-21 09:33+0100\n"
+"POT-Creation-Date: 2023-12-23 00:42+0000\n"
+"PO-Revision-Date: 2023-12-22 13:36+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -4763,7 +4763,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:554 src/crypto/decryptverifytask.cpp:608
 #: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
-#: src/crypto/signencrypttask.cpp:819
+#: src/crypto/signencrypttask.cpp:857
 #, kde-format
 msgid "Input error: %1"
 msgstr "Error d'entrada: %1"
@@ -6007,7 +6007,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "arxiu"
 
-#: src/crypto/signencryptfilescontroller.cpp:672
+#: src/crypto/signencryptfilescontroller.cpp:674
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6016,7 +6016,7 @@ msgstr ""
 "S'ha detectat una excepció inesperada a SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:674
+#: src/crypto/signencryptfilescontroller.cpp:676
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6071,13 +6071,13 @@ msgstr "%1: <b>%2</b>"
 msgid "Cannot determine protocol for task"
 msgstr "No es pot determinar cap protocol per a la tasca"
 
-#: src/crypto/signencrypttask.cpp:533
+#: src/crypto/signencrypttask.cpp:530
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1,..."
 
-#: src/crypto/signencrypttask.cpp:673 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:711 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6086,19 +6086,19 @@ msgstr ""
 "No s'ha pogut trobar el directori base comú per a aquests fitxers:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:690
+#: src/crypto/signencrypttask.cpp:728
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "S'està creant un arxiu signat i encriptat..."
 
-#: src/crypto/signencrypttask.cpp:710
+#: src/crypto/signencrypttask.cpp:748
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "S'està creant un arxiu encriptat..."
 
-#: src/crypto/signencrypttask.cpp:730
+#: src/crypto/signencrypttask.cpp:768
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -6448,19 +6448,16 @@ msgstr ""
 "és possible retirar un certificat de revocació una vegada ha estat publicat."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Gestiona grups"
+msgstr "Gestiona les subclaus"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Subclaus"
+msgstr "Mostra les subclaus"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -12521,47 +12518,3 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-256)"
-#~ msgstr "ECC (Brainpool P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-384)"
-#~ msgstr "ECC (Brainpool P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-512)"
-#~ msgstr "ECC (Brainpool P-512)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve25519)"
-#~ msgstr "ECC (Curve25519)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve448)"
-#~ msgstr "ECC (Curve448)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-256)"
-#~ msgstr "ECC (NIST P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-384)"
-#~ msgstr "ECC (NIST P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-521)"
-#~ msgstr "ECC (NIST P-521)"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 2048"
-#~ msgstr "RSA 2048"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 3072"
-#~ msgstr "RSA 3072"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 4096"
-#~ msgstr "RSA 4096"

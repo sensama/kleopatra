@@ -402,6 +402,7 @@ MainWindow::Private::UI::UI(MainWindow *q)
 {
     auto mainWidget = new QWidget{q};
     auto mainLayout = new QVBoxLayout(mainWidget);
+    mainLayout->setContentsMargins({});
     stackWidget = new QStackedWidget{q};
 
     searchTab = new CertificateView{q};

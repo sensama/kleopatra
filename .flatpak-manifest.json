@@ -77,6 +77,22 @@
             ]
         },
         {
+            "name": "ktextaddons",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_WITH_QT6=ON"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/libraries/ktextaddons",
+                    "branch": "master"
+                }
+            ]
+        },
+        {
             "name": "kpimtextedit",
             "buildsystem": "cmake-ninja",
             "config-opts": [
@@ -87,22 +103,6 @@
                 {
                     "type": "git",
                     "url": "https://invent.kde.org/pim/kpimtextedit",
-                    "branch": "master"
-                }
-            ]
-        },
-        {
-            "name": "ktextaddons",
-            "buildsystem": "cmake-ninja",
-            "config-opts": [
-                "-DBUILD_TESTING=OFF",
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-		"-DBUILD_WITH_QT6=ON"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://invent.kde.org/libraries/ktextaddons",
                     "branch": "master"
                 }
             ]

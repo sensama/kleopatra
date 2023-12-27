@@ -234,6 +234,20 @@
             "config-opts": [
                 "-DBUILD_TESTING=OFF"
             ]
+        },
+        {
+            "name": "kgapi",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/libkgapi.git",
+                    "branch": "master"
+                }
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]
         },	
         {
             "name": "mailtransport",

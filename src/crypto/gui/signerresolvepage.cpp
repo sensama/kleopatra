@@ -283,7 +283,7 @@ SignerResolvePage::Private::Private(SignerResolvePage *qq)
     auto layout = new QVBoxLayout(q);
 
     signEncryptGroup = new QButtonGroup(q);
-    q->connect(signEncryptGroup, SIGNAL(buttonClicked(int)), q, SLOT(operationButtonClicked(int)));
+    q->connect(signEncryptGroup, SIGNAL(idClicked(int)), q, SLOT(operationButtonClicked(int)));
 
     signAndEncryptRB = new QRadioButton;
     signAndEncryptRB->setText(i18n("Sign and encrypt (OpenPGP only)"));

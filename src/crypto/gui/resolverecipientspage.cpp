@@ -403,7 +403,7 @@ ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
     auto protocolWidget = new QWidget;
     auto protocolLayout = new QHBoxLayout(protocolWidget);
     auto protocolGroup = new QButtonGroup(q);
-    connect(protocolGroup, SIGNAL(buttonClicked(int)), q, SLOT(protocolSelected(int)));
+    connect(protocolGroup, SIGNAL(idClicked(int)), q, SLOT(protocolSelected(int)));
     m_pgpRB = new QRadioButton;
     m_pgpRB->setText(i18n("OpenPGP"));
     protocolGroup->addButton(m_pgpRB, OpenPGP);

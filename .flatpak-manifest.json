@@ -174,7 +174,10 @@
                     "url": "https://invent.kde.org/pim/libkleo",
                     "branch": "master"
                 }
-            ]
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]	    
         },
         {
             "name": "kmime",
@@ -185,7 +188,10 @@
                     "url": "https://invent.kde.org/pim/kmime",
                     "branch": "master"
                 }
-            ]
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]	    
         },
         {       
             "name": "akonadi",
@@ -196,7 +202,10 @@
                     "url": "https://invent.kde.org/pim/akonadi",
                     "branch": "master"
                 }
-            ]
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]	    
         },
         {
             "name": "akonadi-mime",
@@ -207,8 +216,25 @@
                     "url": "https://invent.kde.org/pim/akonadi-mime",
                     "branch": "master"
                 }
-            ]
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]	    
         },
+        {
+            "name": "ksmtp",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/ksmtp.git",
+                    "branch": "master"
+                }
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]
+        },	
         {
             "name": "mailtransport",
             "buildsystem": "cmake-ninja",
@@ -218,7 +244,10 @@
                     "url": "https://invent.kde.org/pim/kmailtransport",
                     "branch": "master"
                 }
-            ]
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]	    
         },
         {
             "name": "kidentitymanager",
@@ -229,7 +258,10 @@
                     "url": "https://invent.kde.org/pim/kidentitymanagement",
                     "branch": "master"
                 }
-            ]
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]	    
         },
         {
             "name": "mmetreeparser",
@@ -240,7 +272,10 @@
                     "url": "https://invent.kde.org/pim/mimetreeparser",
                     "branch": "master"
                 }
-            ]
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]	    
         },
         {
             "name": "kleopatra",
@@ -250,7 +285,10 @@
                     "type": "dir",
                     "path": "."
                 }
-            ]
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]	    
         }
     ]
 }

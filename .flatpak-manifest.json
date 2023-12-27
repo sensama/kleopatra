@@ -279,6 +279,20 @@
             ]	    
         },
         {
+            "name": "kmbox",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/kmbox",
+                    "branch": "master"
+                }
+            ],
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ]
+        },	
+        {
             "name": "mmetreeparser",
             "buildsystem": "cmake-ninja",
             "sources": [

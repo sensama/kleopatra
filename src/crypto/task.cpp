@@ -12,8 +12,6 @@
 #include "task.h"
 #include "task_p.h"
 
-#include "kleopatra_debug.h"
-
 #include <Libkleo/KleoException>
 
 #include <Libkleo/AuditLogEntry>

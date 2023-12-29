@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-23 00:42+0000\n"
-"PO-Revision-Date: 2023-11-18 22:19+0100\n"
+"PO-Revision-Date: 2023-12-28 20:52+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -1360,7 +1360,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Att exportera certifikatet till en nyckelserver är inte möjligt eftersom "
+"användningen av nyckelservrar uttryckligen har inaktiverats."
 msgstr[1] ""
+"Att exportera certifikaten till en nyckelserver är inte möjligt eftersom "
+"användningen av nyckelservrar uttryckligen har inaktiverats."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2903,6 +2907,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Det är inte möjligt att uppdatera OpenPGP-certifikaten eftersom användningen "
+"av nyckelservrar uttryckligen har inaktiverats."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3615,6 +3621,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Ange adressen till nyckelservern som ska användas vid sökning efter OpenPGP-"
+"certifikat och när OpenPGP-certifikat laddas upp. Om en adress inte anges "
+"används en intern standard. För att inaktivera användningen av en OpenPGP-"
+"nyckelserver anges specialvärdet <emphasis>ingen</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
@@ -6364,19 +6374,16 @@ msgstr ""
 "att återkalla ett sådant återkallelsecertifikat när det väl har publicerats."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Hantera grupper"
+msgstr "Hantera delnycklar"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Delnycklar"
+msgstr "Visa delnycklar"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7077,7 +7084,7 @@ msgstr "Ändra giltighetsperiod"
 #: src/dialogs/expirydialog.cpp:236
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Utgångsdatum för primär nyckel: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7182,18 +7189,16 @@ msgid "Import"
 msgstr "Importera"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Ange ett namn och en e-postadress att använda för certifikatet."
+msgstr "Ange ett sökbegrepp för att söka efter matchande certifikat."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Ange ett namn och en e-postadress att använda för certifikatet."
+msgstr "Ange en e-postadress för att söka efter matchande certifikat."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7589,45 +7594,37 @@ msgid "Storage"
 msgstr "Lagring"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Ändra giltighet"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Exportera OpenSSH-nyckel"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Återställ utskriven säkerhetskopia"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Överför till smartkort"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Exportera hemlig delnyckel"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Ändra giltighet"
 
@@ -8013,20 +8010,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Tips för E-POST"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Texten används som platsmarkörtext för det e-postadressfältet i OpenPGP- och "
-"S/MIME-certifikat."
+"Texten visas ovanför OpenPGP-certifikatens e-postadressfält och som "
+"platsmarkör i fältet för S/MIME-certifikat."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8050,10 +8044,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Platsmarkör för e-post"
+msgstr "Värde på E-POST"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8063,22 +8056,21 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Värde ifyllt i förväg för e-postadressfältet i OpenPGP- och S/MIME-"
+"certifikat. Det överskrider E-POST ifylld i förväg. Det är användbart om "
+"inga eller olämpliga systeminställningar hittas för E-POST ifylld i förväg."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Tips för NAMN"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
-"Texten används som platsmarkörtext för namnfältet i OpenPGP-certifikat."
+msgstr "Texten visas ovanför OpenPGP-certifikatens namnfält."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8102,10 +8094,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Platsmarkör för namn"
+msgstr "Värde på NAMN"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8115,6 +8106,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Värde ifyllt i förväg för namnfältet i OpenPGP- och S/MIME-certifikat. Det "
+"överskrider NAMN ifyllt i förväg. Det är användbart om inga eller olämpliga "
+"systeminställningar hittas för NAMN ifyllt i förväg."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52

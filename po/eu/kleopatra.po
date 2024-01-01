@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-23 00:42+0000\n"
-"PO-Revision-Date: 2023-12-08 13:40+0100\n"
+"PO-Revision-Date: 2024-01-01 00:57+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -6424,19 +6424,16 @@ msgstr ""
 "atzera egiterik."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Kudeatu taldeak"
+msgstr "Kudeatu azpigakoak"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Azpi-gakoak"
+msgstr "Erakutsi azpigakoak"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7129,7 +7126,7 @@ msgstr "Aldatu baliotasun aldea"
 #: src/dialogs/expirydialog.cpp:236
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Gako nagusia iraungitzea: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7233,18 +7230,16 @@ msgid "Import"
 msgstr "Inportatu"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Sartu ziurtagiriarekin erabiltzeko izena eta e-posta helbidea."
+msgstr "Sartu ziurtagiriak aurkitzeko bilaketa termino bat."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Sartu ziurtagiriarekin erabiltzeko izena eta e-posta helbidea."
+msgstr "Sartu ziurtagiriak aurkitzeko e-posta helbide bat."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7644,45 +7639,37 @@ msgid "Storage"
 msgstr "Biltegiratzea"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Aldatu baliotasuna"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
-msgstr "Esportatu Open SSH gakoa"
+msgstr "Esportatu OpenSSH gakoa"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Leheneratu inprimatutako babes-kopia"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Transferentzia txartela-adimendunera"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Esportatu azpi-gako sekretua"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Aldatu baliotasuna"
 
@@ -8068,20 +8055,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "«EMAIL»erako argibidea"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Testu hori, OpenPGP eta S/MIME ziurtagirien e-posta helbide eremuaren leku-"
-"marka testu gisa erabiliko da."
+"Testu hori OpenPGP ziurtagirien e-posta helbide eremuaren gainean erakutsiko "
+"da eta eremu horretan S/MIME ziurtagirietarako leku-marka bezala."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8105,10 +8089,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "«EMAIL»erako leku-marka"
+msgstr "«EMAIL»en balioa"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8118,23 +8101,21 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"OpenPGP eta S/MIME ziurtagirien e-posta helbide eremurako aurrez beteriko "
+"balioa. Horrek «EMAIL_prefill» gainidatziko du. Erabilgarria «EMAIL_prefill» "
+"sistemaren ezarpena baliorik gabe edo edo balio ezegokiarekin aurkitzen bada."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "«NAME»rako argibidea"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
-"Testu hori, OpenPGP ziurtagirien izen  eremuaren leku-marka testu gisa "
-"erabiliko da."
+msgstr "Testu hori OpenPGP ziurtagirien izen eremuaren gainean erakutsiko da."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8158,10 +8139,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "«NAME»rako leku marka"
+msgstr "«NAME»ren balioa"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8171,6 +8151,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"OpenPGP ziurtagirien izen eremurako aurrez beteriko balioa. Horrek "
+"«NAME_prefill» gainidatziko du. Erabilgarria «NAME_prefill» sistemaren "
+"ezarpena baliorik gabe edo edo balio ezegokiarekin aurkitzen bada."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52

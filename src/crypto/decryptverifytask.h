@@ -171,6 +171,9 @@ public:
 
     void setExtractArchive(bool extract);
     void setInputFile(const QString &path);
+    // for files
+    void setOutputFile(const QString &path);
+    // for archives
     void setOutputDirectory(const QString &directory);
 
     QString inputLabel() const override;
@@ -206,6 +209,9 @@ public:
     void setIgnoreMDCError(bool value);
     void setExtractArchive(bool extract);
     void setInputFile(const QString &path);
+    // for files
+    void setOutputFile(const QString &path);
+    // for archives
     void setOutputDirectory(const QString &directory);
 
     QString inputLabel() const override;

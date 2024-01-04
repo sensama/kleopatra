@@ -52,6 +52,7 @@
 #include <QByteArray>
 #include <QDateTime>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QIODevice>
 #include <QLocale>
@@ -1077,6 +1078,7 @@ public:
     bool m_ignoreMDCError = false;
     bool m_extractArchive = false;
     QString m_inputFilePath;
+    QString m_outputFilePath;
     QString m_outputDirectory;
 };
 
@@ -1166,7 +1168,7 @@ void DecryptVerifyTask::autodetectProtocolFromInput()
 
 QString DecryptVerifyTask::label() const
 {
-    return i18n("Decrypting: %1...", d->m_input->label());
+    return i18n("Decrypting %1...", inputLabel());
 }
 
 unsigned long long DecryptVerifyTask::inputSize() const
@@ -1176,12 +1178,18 @@ unsigned long long DecryptVerifyTask::inputSize() const
 
 QString DecryptVerifyTask::inputLabel() const
 {
-    return d->m_input ? d->m_input->label() : QString();
+    return d->m_input ? d->m_input->label() : QFileInfo{d->m_inputFilePath}.fileName();
 }
 
 QString DecryptVerifyTask::outputLabel() const
 {
-    return d->m_output ? d->m_output->label() : d->m_outputDirectory;
+    if (d->m_output) {
+        return d->m_output->label();
+    } else if (!d->m_outputFilePath.isEmpty()) {
+        return QFileInfo{d->m_outputFilePath}.fileName();
+    } else {
+        return d->m_outputDirectory;
+    }
 }
 
 Protocol DecryptVerifyTask::protocol() const
@@ -1212,6 +1220,11 @@ void DecryptVerifyTask::setExtractArchive(bool extract)
 void DecryptVerifyTask::setInputFile(const QString &path)
 {
     d->m_inputFilePath = path;
+}
+
+void DecryptVerifyTask::setOutputFile(const QString &path)
+{
+    d->m_outputFilePath = path;
 }
 
 void DecryptVerifyTask::setOutputDirectory(const QString &directory)
@@ -1252,6 +1265,20 @@ static void setIgnoreMDCErrorFlag(QGpgME::Job *job, bool ignoreMDCError)
 
 void DecryptVerifyTask::Private::startDecryptVerifyJob()
 {
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+    if (QFile::exists(m_outputFilePath)) {
+        // The output files are always written to a temporary location. Therefore, this can only occur
+        // if two signed/encrypted files with the same name in different folders are verified/decrypted
+        // because they would be written to the same temporary location.
+        QMetaObject::invokeMethod(
+            q,
+            [this]() {
+                slotResult(DecryptionResult{Error::fromCode(GPG_ERR_EEXIST)}, VerificationResult{});
+            },
+            Qt::QueuedConnection);
+        return;
+    }
+#endif
     try {
         std::unique_ptr<QGpgME::DecryptVerifyJob> job{m_backend->decryptVerifyJob()};
         kleo_assert(job);
@@ -1263,8 +1290,14 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
                              slotResult(decryptResult, verifyResult, plainText);
                          });
         connect(job.get(), &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+        job->setInputFile(m_inputFilePath);
+        job->setOutputFile(m_outputFilePath);
+        const auto err = job->startIt();
+#else
         ensureIOOpen(m_input->ioDevice().get(), m_output->ioDevice().get());
         job->start(m_input->ioDevice(), m_output->ioDevice());
+#endif
         q->setJob(job.release());
     } catch (const GpgME::Exception &e) {
         q->emitResult(q->fromDecryptVerifyResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
@@ -1480,6 +1513,7 @@ public:
     Protocol m_protocol = UnknownProtocol;
     bool m_extractArchive = false;
     QString m_inputFilePath;
+    QString m_outputFilePath;
     QString m_outputDirectory;
 };
 
@@ -1569,7 +1603,7 @@ void VerifyOpaqueTask::autodetectProtocolFromInput()
 
 QString VerifyOpaqueTask::label() const
 {
-    return i18n("Verifying: %1...", d->m_input->label());
+    return i18n("Verifying %1...", inputLabel());
 }
 
 unsigned long long VerifyOpaqueTask::inputSize() const
@@ -1579,12 +1613,18 @@ unsigned long long VerifyOpaqueTask::inputSize() const
 
 QString VerifyOpaqueTask::inputLabel() const
 {
-    return d->m_input ? d->m_input->label() : QString();
+    return d->m_input ? d->m_input->label() : QFileInfo{d->m_inputFilePath}.fileName();
 }
 
 QString VerifyOpaqueTask::outputLabel() const
 {
-    return d->m_output ? d->m_output->label() : d->m_outputDirectory;
+    if (d->m_output) {
+        return d->m_output->label();
+    } else if (!d->m_outputFilePath.isEmpty()) {
+        return QFileInfo{d->m_outputFilePath}.fileName();
+    } else {
+        return d->m_outputDirectory;
+    }
 }
 
 Protocol VerifyOpaqueTask::protocol() const
@@ -1600,6 +1640,11 @@ void VerifyOpaqueTask::setExtractArchive(bool extract)
 void VerifyOpaqueTask::setInputFile(const QString &path)
 {
     d->m_inputFilePath = path;
+}
+
+void VerifyOpaqueTask::setOutputFile(const QString &path)
+{
+    d->m_outputFilePath = path;
 }
 
 void VerifyOpaqueTask::setOutputDirectory(const QString &directory)
@@ -1619,6 +1664,20 @@ void VerifyOpaqueTask::doStart()
 
 void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
 {
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+    if (QFile::exists(m_outputFilePath)) {
+        // The output files are always written to a temporary location. Therefore, this can only occur
+        // if two signed/encrypted files with the same name in different folders are verified/decrypted
+        // because they would be written to the same temporary location.
+        QMetaObject::invokeMethod(
+            q,
+            [this]() {
+                slotResult(VerificationResult{Error::fromCode(GPG_ERR_EEXIST)});
+            },
+            Qt::QueuedConnection);
+        return;
+    }
+#endif
     try {
         std::unique_ptr<QGpgME::VerifyOpaqueJob> job{m_backend->verifyOpaqueJob()};
         kleo_assert(job);
@@ -1626,8 +1685,14 @@ void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
             slotResult(result, plainText);
         });
         connect(job.get(), &QGpgME::Job::jobProgress, q, &VerifyOpaqueTask::setProgress);
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+        job->setInputFile(m_inputFilePath);
+        job->setOutputFile(m_outputFilePath);
+        const auto err = job->startIt();
+#else
         ensureIOOpen(m_input->ioDevice().get(), m_output ? m_output->ioDevice().get() : nullptr);
         job->start(m_input->ioDevice(), m_output ? m_output->ioDevice() : std::shared_ptr<QIODevice>());
+#endif
         q->setJob(job.release());
     } catch (const GpgME::Exception &e) {
         q->emitResult(q->fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));

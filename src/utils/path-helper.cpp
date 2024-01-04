@@ -23,12 +23,11 @@
 #include <QStandardPaths>
 #include <QStorageInfo>
 #include <QString>
+#ifdef Q_OS_WIN
+#include <QTemporaryFile>
+#endif
 
 #include <algorithm>
-
-#ifdef Q_OS_WIN
-extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
-#endif
 
 using namespace Kleo;
 
@@ -103,39 +102,19 @@ QString Kleo::stripSuffix(const QString &fileName)
     return fi.dir().filePath(fi.completeBaseName());
 }
 
-#ifdef Q_OS_WIN
-namespace
-{
-class NTFSPermissionsCheck
-{
-public:
-    NTFSPermissionsCheck()
-    {
-        // enable the NTFS permissions check
-        qt_ntfs_permission_lookup++;
-        qCDebug(KLEOPATRA_LOG) << __func__ << "NTFS permissions check" << (qt_ntfs_permission_lookup ? "enabled" : "disabled");
-    }
-
-    ~NTFSPermissionsCheck()
-    {
-        // disable the NTFS permissions check
-        qt_ntfs_permission_lookup--;
-        qCDebug(KLEOPATRA_LOG) << __func__ << "NTFS permissions check" << (qt_ntfs_permission_lookup ? "enabled" : "disabled");
-    }
-};
-}
-#endif
-
 bool Kleo::isWritable(const QFileInfo &fi)
 {
 #ifdef Q_OS_WIN
-    NTFSPermissionsCheck withExpensiveNTFSPermissionsCheck;
-    const auto result = fi.isWritable();
-    qCDebug(KLEOPATRA_LOG) << __func__ << fi.absoluteFilePath() << (result ? "is writable" : "is not writable");
-    return result;
-#else
-    return fi.isWritable();
+    if (fi.isDir()) {
+        QTemporaryFile dummy{fi.absoluteFilePath() + QLatin1String{"/tempXXXXXX"}};
+        const auto fileCreated = dummy.open();
+        if (!fileCreated) {
+            qCDebug(KLEOPATRA_LOG) << "Failed to create test file in folder" << fi.absoluteFilePath();
+        }
+        return fileCreated;
+    }
 #endif
+    return fi.isWritable();
 }
 
 #ifdef Q_OS_WIN

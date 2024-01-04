@@ -218,7 +218,7 @@ void DecryptVerifyFilesDialog::checkAccept()
         }
     } else if (!fi.isDir()) {
         KMessageBox::information(this, i18n("Please select a different output folder."), i18nc("@title:window", "Invalid Output Folder"));
-    } else if (!fi.isWritable()) {
+    } else if (!Kleo::isWritable(fi)) {
         KMessageBox::information(
             this,
             xi18nc("@info",

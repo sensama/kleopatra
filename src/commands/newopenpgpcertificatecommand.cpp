@@ -33,6 +33,7 @@
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
+#include <QGpgME/QuickJob>
 
 #include <QProgressDialog>
 #include <QSettings>
@@ -61,8 +62,9 @@ public:
 
     void getCertificateDetails();
     void createCertificate();
-    void showResult(const KeyGenerationResult &result);
+    void showResult(const KeyGenerationResult &result, const Key &key);
     void showErrorDialog(const KeyGenerationResult &result);
+    QGpgME::QuickJob *addAdsk(const Key &key, const char *fingerprint);
 
 private:
     KeyParameters keyParameters;
@@ -150,12 +152,51 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
     }
 
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
-        QMetaObject::invokeMethod(
-            q,
-            [this, result] {
-                showResult(result);
-            },
-            Qt::QueuedConnection);
+        if (result.error().isCanceled()) {
+            finished();
+            return;
+        }
+
+        // Ensure that we have the key in the cache
+        Key key;
+        if (!result.error().code() && result.fingerprint()) {
+            std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
+            if (ctx) {
+                Error err;
+                key = ctx->key(result.fingerprint(), err, /*secret=*/true);
+                if (!key.isNull()) {
+                    KeyCache::mutableInstance()->insert(key);
+                }
+            }
+        }
+
+        if (!Settings{}.adsk().isEmpty() && !result.error().code() && result.fingerprint()) {
+            QMetaObject::invokeMethod(
+                q,
+                [this, result, key] {
+                    auto job = addAdsk(key, Settings{}.adsk().toLatin1().data());
+                    connect(job, &QGpgME::QuickJob::result, q, [this, result, key](const auto &adskResult) {
+                        if (!adskResult.code()) {
+                            QMetaObject::invokeMethod(
+                                q,
+                                [this, result, key] {
+                                    showResult(result, key);
+                                },
+                                Qt::QueuedConnection);
+                        } else {
+                            error(i18n("Failed to add ADSK: %1", Formatting::errorAsString(adskResult)));
+                        }
+                    });
+                },
+                Qt::QueuedConnection);
+        } else {
+            QMetaObject::invokeMethod(
+                q,
+                [this, result, key] {
+                    showResult(result, key);
+                },
+                Qt::QueuedConnection);
+        }
     });
     if (const Error err = keyGenJob->start(keyParameters.toString())) {
         error(i18n("Could not start key pair creation: %1", Formatting::errorAsString(err)));
@@ -180,26 +221,8 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
     progressDialog->show();
 }
 
-void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult &result)
+void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult &result, const Key &key)
 {
-    if (result.error().isCanceled()) {
-        finished();
-        return;
-    }
-
-    // Ensure that we have the key in the cache
-    Key key;
-    if (!result.error().code() && result.fingerprint()) {
-        std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
-        if (ctx) {
-            Error err;
-            key = ctx->key(result.fingerprint(), err, /*secret=*/true);
-            if (!key.isNull()) {
-                KeyCache::mutableInstance()->insert(key);
-            }
-        }
-    }
-
     if (!key.isNull()) {
         success(
             xi18n("<para>A new OpenPGP certificate was created successfully.</para>"
@@ -269,6 +292,22 @@ void NewOpenPGPCertificateCommand::doCancel()
     if (d->job) {
         d->job->slotCancel();
     }
+}
+
+QGpgME::QuickJob *NewOpenPGPCertificateCommand::Private::addAdsk(const Key &key, const char *fingerprint)
+{
+    const auto backend = QGpgME::openpgp();
+    if (!backend) {
+        return nullptr;
+    }
+
+    const auto job = backend->quickJob();
+    if (!job) {
+        return nullptr;
+    }
+
+    job->startAddAdsk(key, fingerprint);
+    return job;
 }
 
 #undef d

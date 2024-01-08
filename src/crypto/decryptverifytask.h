@@ -133,6 +133,9 @@ public:
     void setInput(const std::shared_ptr<Input> &input);
     void setSignedData(const std::shared_ptr<Input> &signedData);
 
+    void setSignatureFile(const QString &path);
+    void setSignedFile(const QString &path);
+
     void setProtocol(GpgME::Protocol prot);
     void autodetectProtocolFromInput() override;
 

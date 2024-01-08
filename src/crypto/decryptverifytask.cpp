@@ -1752,9 +1752,14 @@ public:
         q->connect(job, &QGpgME::Job::jobProgress, q, &VerifyDetachedTask::setProgress);
     }
 
+    QString signatureLabel() const;
+    QString signedDataLabel() const;
+
     std::shared_ptr<Input> m_input, m_signedData;
     const QGpgME::Protocol *m_backend = nullptr;
     Protocol m_protocol = UnknownProtocol;
+    QString m_signatureFilePath;
+    QString m_signedFilePath;
 };
 
 void VerifyDetachedTask::Private::slotResult(const VerificationResult &result)
@@ -1778,6 +1783,16 @@ void VerifyDetachedTask::Private::slotResult(const VerificationResult &result)
     }
 }
 
+QString VerifyDetachedTask::Private::signatureLabel() const
+{
+    return m_input ? m_input->label() : m_signatureFilePath;
+}
+
+QString VerifyDetachedTask::Private::signedDataLabel() const
+{
+    return m_signedData ? m_signedData->label() : m_signedFilePath;
+}
+
 VerifyDetachedTask::VerifyDetachedTask(QObject *parent)
     : AbstractDecryptVerifyTask(parent)
     , d(new Private(this))
@@ -1798,6 +1813,16 @@ void VerifyDetachedTask::setSignedData(const std::shared_ptr<Input> &signedData)
 {
     d->m_signedData = signedData;
     kleo_assert(d->m_signedData && d->m_signedData->ioDevice());
+}
+
+void VerifyDetachedTask::setSignatureFile(const QString &path)
+{
+    d->m_signatureFilePath = path;
+}
+
+void VerifyDetachedTask::setSignedFile(const QString &path)
+{
+    d->m_signedFilePath = path;
 }
 
 void VerifyDetachedTask::setProtocol(Protocol prot)
@@ -1829,28 +1854,31 @@ unsigned long long VerifyDetachedTask::inputSize() const
 
 QString VerifyDetachedTask::label() const
 {
-    if (d->m_signedData) {
+    const QString signedDataLabel = d->signedDataLabel();
+    if (!signedDataLabel.isEmpty()) {
         return xi18nc(
             "Verification of a detached signature in progress. The first file contains the data."
             "The second file is the signature file.",
-            "Verifying: <filename>%1</filename> with <filename>%2</filename>...",
-            d->m_signedData->label(),
-            d->m_input->label());
+            "Verifying <filename>%1</filename> with <filename>%2</filename>...",
+            signedDataLabel,
+            d->signatureLabel());
     }
-    return i18n("Verifying signature: %1...", d->m_input->label());
+    return i18n("Verifying signature %1...", d->signatureLabel());
 }
 
 QString VerifyDetachedTask::inputLabel() const
 {
-    if (d->m_signedData && d->m_input) {
+    const QString signatureLabel = d->signatureLabel();
+    const QString signedDataLabel = d->signedDataLabel();
+    if (!signedDataLabel.isEmpty() && !signatureLabel.isEmpty()) {
         return xi18nc(
             "Verification of a detached signature summary. The first file contains the data."
             "The second file is signature.",
             "Verified <filename>%1</filename> with <filename>%2</filename>",
-            d->m_signedData->label(),
-            d->m_input->label());
+            signedDataLabel,
+            signatureLabel);
     }
-    return d->m_input ? d->m_input->label() : QString();
+    return signatureLabel;
 }
 
 QString VerifyDetachedTask::outputLabel() const
@@ -1870,9 +1898,21 @@ void VerifyDetachedTask::doStart()
         std::unique_ptr<QGpgME::VerifyDetachedJob> job{d->m_backend->verifyDetachedJob()};
         kleo_assert(job);
         d->registerJob(job.get());
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+        if (d->m_protocol == GpgME::OpenPGP) {
+            job->setSignatureFile(d->m_signatureFilePath);
+            job->setSignedFile(d->m_signedFilePath);
+            job->startIt();
+        } else {
+            ensureIOOpen(d->m_input->ioDevice().get(), nullptr);
+            ensureIOOpen(d->m_signedData->ioDevice().get(), nullptr);
+            job->start(d->m_input->ioDevice(), d->m_signedData->ioDevice());
+        }
+#else
         ensureIOOpen(d->m_input->ioDevice().get(), nullptr);
         ensureIOOpen(d->m_signedData->ioDevice().get(), nullptr);
         job->start(d->m_input->ioDevice(), d->m_signedData->ioDevice());
+#endif
         setJob(job.release());
     } catch (const GpgME::Exception &e) {
         emitResult(fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));

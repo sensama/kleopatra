@@ -404,8 +404,18 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
             } else {
                 qCDebug(KLEOPATRA_LOG) << "Detached verify: " << cFile.fileName << " Data: " << signedDataFileName;
                 std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+                if (cFile.protocol == GpgME::OpenPGP) {
+                    t->setSignatureFile(cFile.fileName);
+                    t->setSignedFile(signedDataFileName);
+                } else {
+                    t->setInput(Input::createFromFile(cFile.fileName));
+                    t->setSignedData(Input::createFromFile(signedDataFileName));
+                }
+#else
                 t->setInput(Input::createFromFile(cFile.fileName));
                 t->setSignedData(Input::createFromFile(signedDataFileName));
+#endif
                 t->setProtocol(cFile.protocol);
                 tasks.push_back(t);
             }
@@ -427,8 +437,18 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                     }
                     foundSig = true;
                     std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+                    if (cFile.protocol == GpgME::OpenPGP) {
+                        t->setSignatureFile(sig);
+                        t->setSignedFile(cFile.fileName);
+                    } else {
+                        t->setInput(Input::createFromFile(sig));
+                        t->setSignedData(Input::createFromFile(cFile.fileName));
+                    }
+#else
                     t->setInput(Input::createFromFile(sig));
                     t->setSignedData(Input::createFromFile(cFile.fileName));
+#endif
                     t->setProtocol(proto);
                     tasks.push_back(t);
                 }

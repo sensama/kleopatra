@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-05 00:42+0000\n"
+"POT-Creation-Date: 2024-01-09 00:41+0000\n"
 "PO-Revision-Date: 2006-02-12 21:29+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -4497,7 +4497,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
-#: src/crypto/signencrypttask.cpp:857
+#: src/crypto/signencrypttask.cpp:883
 #, kde-format
 msgid "Input error: %1"
 msgstr ""
@@ -4589,7 +4589,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1106 src/crypto/decryptverifytask.cpp:1306
 #: src/crypto/decryptverifytask.cpp:1388 src/crypto/decryptverifytask.cpp:1489
 #: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1701
-#: src/crypto/decryptverifytask.cpp:1775 src/crypto/decryptverifytask.cpp:1881
+#: src/crypto/decryptverifytask.cpp:1780 src/crypto/decryptverifytask.cpp:1921
 #, kde-format
 msgid "Caught exception: %1"
 msgstr ""
@@ -4597,7 +4597,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1109 src/crypto/decryptverifytask.cpp:1308
 #: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1491
 #: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1703
-#: src/crypto/decryptverifytask.cpp:1777 src/crypto/decryptverifytask.cpp:1883
+#: src/crypto/decryptverifytask.cpp:1782 src/crypto/decryptverifytask.cpp:1923
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -4629,7 +4629,7 @@ msgstr ""
 msgid "Decrypting: %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1598 src/crypto/decryptverifytask.cpp:1819
+#: src/crypto/decryptverifytask.cpp:1598 src/crypto/decryptverifytask.cpp:1844
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4641,20 +4641,22 @@ msgstr ""
 msgid "Verifying %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1836
-#, kde-kuit-format
+#: src/crypto/decryptverifytask.cpp:1862
+#, fuzzy, kde-kuit-format
+#| msgid "Import Certificates..."
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
-msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
-msgstr ""
+msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
+msgstr "Sertifikatlarni import qilish..."
 
-#: src/crypto/decryptverifytask.cpp:1840
-#, kde-format
-msgid "Verifying signature: %1..."
-msgstr ""
+#: src/crypto/decryptverifytask.cpp:1866
+#, fuzzy, kde-format
+#| msgid "Import Certificates..."
+msgid "Verifying signature %1..."
+msgstr "Sertifikatlarni import qilish..."
 
-#: src/crypto/decryptverifytask.cpp:1849
+#: src/crypto/decryptverifytask.cpp:1877
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -5747,14 +5749,14 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "Qidirish:"
 
-#: src/crypto/signencryptfilescontroller.cpp:674
+#: src/crypto/signencryptfilescontroller.cpp:678
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 msgstr ""
 
-#: src/crypto/signencryptfilescontroller.cpp:676
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5818,27 +5820,27 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:711 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:728
+#: src/crypto/signencrypttask.cpp:754
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Sertifikat tafsilotlari..."
 
-#: src/crypto/signencrypttask.cpp:748
+#: src/crypto/signencrypttask.cpp:774
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:768
+#: src/crypto/signencrypttask.cpp:794
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."

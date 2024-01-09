@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-05 00:42+0000\n"
+"POT-Creation-Date: 2024-01-09 00:41+0000\n"
 "PO-Revision-Date: 2014-09-10 14:40+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -5033,7 +5033,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
-#: src/crypto/signencrypttask.cpp:857
+#: src/crypto/signencrypttask.cpp:883
 #, kde-format
 msgid "Input error: %1"
 msgstr "Bemeneti hiba: %1"
@@ -5130,7 +5130,7 @@ msgstr "%1: %2"
 #: src/crypto/decryptverifytask.cpp:1106 src/crypto/decryptverifytask.cpp:1306
 #: src/crypto/decryptverifytask.cpp:1388 src/crypto/decryptverifytask.cpp:1489
 #: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1701
-#: src/crypto/decryptverifytask.cpp:1775 src/crypto/decryptverifytask.cpp:1881
+#: src/crypto/decryptverifytask.cpp:1780 src/crypto/decryptverifytask.cpp:1921
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Az elkapott kivétel: %1"
@@ -5138,7 +5138,7 @@ msgstr "Az elkapott kivétel: %1"
 #: src/crypto/decryptverifytask.cpp:1109 src/crypto/decryptverifytask.cpp:1308
 #: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1491
 #: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1703
-#: src/crypto/decryptverifytask.cpp:1777 src/crypto/decryptverifytask.cpp:1883
+#: src/crypto/decryptverifytask.cpp:1782 src/crypto/decryptverifytask.cpp:1923
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -5174,7 +5174,7 @@ msgstr ""
 msgid "Decrypting: %1..."
 msgstr "Dekódolás: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1598 src/crypto/decryptverifytask.cpp:1819
+#: src/crypto/decryptverifytask.cpp:1598 src/crypto/decryptverifytask.cpp:1844
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5189,7 +5189,7 @@ msgstr ""
 msgid "Verifying %1..."
 msgstr "Ellenőrzés: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1836
+#: src/crypto/decryptverifytask.cpp:1862
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5198,17 +5198,18 @@ msgstr "Ellenőrzés: %1..."
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
-msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 "Nem sikerült átmásolni a(z) <filename>%1</filename> nevű ideiglenes fájlt "
 "ide: <filename>%2</filename>. <message>%3</message>"
 
-#: src/crypto/decryptverifytask.cpp:1840
-#, kde-format
-msgid "Verifying signature: %1..."
+#: src/crypto/decryptverifytask.cpp:1866
+#, fuzzy, kde-format
+#| msgid "Verifying signature: %1..."
+msgid "Verifying signature %1..."
 msgstr "Aláírás ellenőrzése: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1849
+#: src/crypto/decryptverifytask.cpp:1877
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6335,7 +6336,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archívum"
 
-#: src/crypto/signencryptfilescontroller.cpp:674
+#: src/crypto/signencryptfilescontroller.cpp:678
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6344,7 +6345,7 @@ msgstr ""
 "Nem várt kivétel történt itt: SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared. %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:676
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6405,7 +6406,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:711 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6414,14 +6415,14 @@ msgstr ""
 "Nem található közös alapkönyvtár ezekhez a fájlokhoz:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:728
+#: src/crypto/signencrypttask.cpp:754
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Fájlok aláírása és/vagy titkosítása"
 
-#: src/crypto/signencrypttask.cpp:748
+#: src/crypto/signencrypttask.cpp:774
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -6429,7 +6430,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Kulcs létrehozása…"
 
-#: src/crypto/signencrypttask.cpp:768
+#: src/crypto/signencrypttask.cpp:794
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."

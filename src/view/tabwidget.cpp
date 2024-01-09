@@ -26,6 +26,8 @@
 #include <Libkleo/Stl_Util>
 
 #include <gpgme++/key.h>
+// needed for GPGME_VERSION_NUMBER
+#include <gpgme.h>
 
 #include <KActionCollection>
 #include <KConfig>
@@ -205,6 +207,10 @@ Page::Page(const KConfigGroup &group, QWidget *parent)
 
 void Page::init()
 {
+#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+    view()->setDragDropMode(QAbstractItemView::DragOnly);
+    view()->setDragEnabled(true);
+#endif
 }
 
 Page::~Page()

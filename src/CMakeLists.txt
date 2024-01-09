@@ -434,6 +434,8 @@ set(_kleopatra_SRCS
   utils/iodevicelogger.h
   utils/kdpipeiodevice.cpp
   utils/kdpipeiodevice.h
+  utils/keyexportdraghandler.cpp
+  utils/keyexportdraghandler.h
   utils/keyparameters.cpp
   utils/keyparameters.h
   utils/kuniqueservice.cpp

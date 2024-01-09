@@ -35,12 +35,16 @@
 #include "utils/detail_p.h"
 #include "utils/filedialog.h"
 #include "utils/gui-helper.h"
+#include "utils/keyexportdraghandler.h"
 #include "utils/qt-cxx20-compat.h"
 #include "utils/userinfo.h"
 
 #include <Libkleo/GnuPG>
 
 #include "dialogs/updatenotification.h"
+
+// needed for GPGME_VERSION_NUMBER
+#include <gpgme.h>
 
 #include "kleopatra_debug.h"
 #include <KAboutData>
@@ -436,6 +440,12 @@ MainWindow::Private::Private(MainWindow *qq)
 
     KDAB_SET_OBJECT_NAME(flatModel);
     KDAB_SET_OBJECT_NAME(hierarchicalModel);
+
+#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+    auto keyExportDragHandler = std::make_shared<KeyExportDragHandler>();
+    flatModel->setDragHandler(keyExportDragHandler);
+    hierarchicalModel->setDragHandler(keyExportDragHandler);
+#endif
 
     controller.setFlatModel(flatModel);
     controller.setHierarchicalModel(hierarchicalModel);

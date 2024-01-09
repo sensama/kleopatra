@@ -62,9 +62,10 @@ public:
 
     void getCertificateDetails();
     void createCertificate();
-    void showResult(const KeyGenerationResult &result, const Key &key);
+    void showResult(const KeyGenerationResult &result, const Key &key, const GpgME::Error &error);
     void showErrorDialog(const KeyGenerationResult &result);
-    QGpgME::QuickJob *addAdsk(const Key &key, const char *fingerprint);
+    void addAdsk(const Key &key, const QString &fingerprint, const KeyGenerationResult &result);
+    void handleKeyGenerationResult(const KeyGenerationResult &result);
 
 private:
     KeyParameters keyParameters;
@@ -73,6 +74,7 @@ private:
     QPointer<NewOpenPGPCertificateDetailsDialog> detailsDialog;
     QPointer<QGpgME::Job> job;
     QPointer<QProgressDialog> progressDialog;
+    QString adskfpr;
 };
 
 NewOpenPGPCertificateCommand::Private *NewOpenPGPCertificateCommand::d_func()
@@ -152,52 +154,9 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
     }
 
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
-        if (result.error().isCanceled()) {
-            finished();
-            return;
-        }
-
-        // Ensure that we have the key in the cache
-        Key key;
-        if (!result.error().code() && result.fingerprint()) {
-            std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
-            if (ctx) {
-                Error err;
-                key = ctx->key(result.fingerprint(), err, /*secret=*/true);
-                if (!key.isNull()) {
-                    KeyCache::mutableInstance()->insert(key);
-                }
-            }
-        }
-
-        if (!Settings{}.adsk().isEmpty() && !result.error().code() && result.fingerprint()) {
-            QMetaObject::invokeMethod(
-                q,
-                [this, result, key] {
-                    auto job = addAdsk(key, Settings{}.adsk().toLatin1().data());
-                    connect(job, &QGpgME::QuickJob::result, q, [this, result, key](const auto &adskResult) {
-                        if (!adskResult.code()) {
-                            QMetaObject::invokeMethod(
-                                q,
-                                [this, result, key] {
-                                    showResult(result, key);
-                                },
-                                Qt::QueuedConnection);
-                        } else {
-                            error(i18n("Failed to add ADSK: %1", Formatting::errorAsString(adskResult)));
-                        }
-                    });
-                },
-                Qt::QueuedConnection);
-        } else {
-            QMetaObject::invokeMethod(
-                q,
-                [this, result, key] {
-                    showResult(result, key);
-                },
-                Qt::QueuedConnection);
-        }
+        handleKeyGenerationResult(result);
     });
+
     if (const Error err = keyGenJob->start(keyParameters.toString())) {
         error(i18n("Could not start key pair creation: %1", Formatting::errorAsString(err)));
         finished();
@@ -221,13 +180,21 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
     progressDialog->show();
 }
 
-void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult &result, const Key &key)
+void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult &result, const Key &key, const GpgME::Error &adskError)
 {
     if (!key.isNull()) {
-        success(
-            xi18n("<para>A new OpenPGP certificate was created successfully.</para>"
-                  "<para>Fingerprint of the new certificate: %1</para>",
-                  Formatting::prettyID(key.primaryFingerprint())));
+        if (adskError.code() && !adskError.isCanceled()) {
+            success(
+                xi18n("<para>A new OpenPGP certificate was created successfully, but adding an ADSK failed: %1</para>"
+                      "<para>Fingerprint of the new certificate: %2</para>",
+                      Formatting::errorAsString(adskError),
+                      Formatting::prettyID(key.primaryFingerprint())));
+        } else {
+            success(
+                xi18n("<para>A new OpenPGP certificate was created successfully.</para>"
+                      "<para>Fingerprint of the new certificate: %1</para>",
+                      Formatting::prettyID(key.primaryFingerprint())));
+        }
         finished();
     } else {
         showErrorDialog(result);
@@ -294,20 +261,65 @@ void NewOpenPGPCertificateCommand::doCancel()
     }
 }
 
-QGpgME::QuickJob *NewOpenPGPCertificateCommand::Private::addAdsk(const Key &key, const char *fingerprint)
+void NewOpenPGPCertificateCommand::Private::addAdsk(const Key &key, const QString &fingerprint, const KeyGenerationResult &result)
 {
     const auto backend = QGpgME::openpgp();
     if (!backend) {
-        return nullptr;
+        return;
     }
 
     const auto job = backend->quickJob();
     if (!job) {
-        return nullptr;
+        return;
     }
 
-    job->startAddAdsk(key, fingerprint);
-    return job;
+    job->startAddAdsk(key, fingerprint.toLatin1().data());
+    connect(job, &QGpgME::QuickJob::result, q, [key, this, result](const auto &error) {
+        QMetaObject::invokeMethod(
+            q,
+            [key, error, this, result] {
+                showResult(result, key, error);
+            },
+            Qt::QueuedConnection);
+    });
+}
+
+void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyGenerationResult &result)
+{
+    if (result.error().isCanceled()) {
+        finished();
+        return;
+    }
+
+    // Ensure that we have the key in the cache
+    Key key;
+    if (!result.error().code() && result.fingerprint()) {
+        std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
+        if (ctx) {
+            Error err;
+            key = ctx->key(result.fingerprint(), err, /*secret=*/true);
+            if (!key.isNull()) {
+                KeyCache::mutableInstance()->insert(key);
+            }
+        }
+    }
+
+    adskfpr = Settings{}.mandatoryADSK();
+    if (!adskfpr.isEmpty() && !result.error().code() && result.fingerprint() && !key.isNull()) {
+        QMetaObject::invokeMethod(
+            q,
+            [this, result, key] {
+                addAdsk(key, adskfpr, result);
+            },
+            Qt::QueuedConnection);
+        return;
+    }
+    QMetaObject::invokeMethod(
+        q,
+        [this, result, key] {
+            showResult(result, key, GpgME::Error());
+        },
+        Qt::QueuedConnection);
 }
 
 #undef d

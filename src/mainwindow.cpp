@@ -855,42 +855,7 @@ void MainWindow::dropEvent(QDropEvent *e)
 
     const QStringList files = extract_local_files(e->mimeData());
 
-    const unsigned int classification = classify(files);
-
-    QMenu menu;
-
-    QAction *const signEncrypt = menu.addAction(i18n("Sign/Encrypt..."));
-    QAction *const decryptVerify = mayBeAnyMessageType(classification) ? menu.addAction(i18n("Decrypt/Verify...")) : nullptr;
-    if (signEncrypt || decryptVerify) {
-        menu.addSeparator();
-    }
-
-    QAction *const importCerts = mayBeAnyCertStoreType(classification) ? menu.addAction(i18n("Import Certificates")) : nullptr;
-    QAction *const importCRLs = mayBeCertificateRevocationList(classification) ? menu.addAction(i18n("Import CRLs")) : nullptr;
-    if (importCerts || importCRLs) {
-        menu.addSeparator();
-    }
-
-    if (!signEncrypt && !decryptVerify && !importCerts && !importCRLs) {
-        return;
-    }
-
-    menu.addAction(i18n("Cancel"));
-    const QAction *const chosen = menu.exec(mapToGlobal(e->position().toPoint()));
-
-    if (!chosen) {
-        return;
-    }
-
-    if (chosen == signEncrypt) {
-        d->createAndStart<SignEncryptFilesCommand>(files);
-    } else if (chosen == decryptVerify) {
-        d->createAndStart<DecryptVerifyFilesCommand>(files);
-    } else if (chosen == importCerts) {
-        d->createAndStart<ImportCertificateFromFileCommand>(files);
-    } else if (chosen == importCRLs) {
-        d->createAndStart<ImportCrlCommand>(files);
-    }
+    KleopatraApplication::instance()->handleFiles(files);
 
     e->accept();
 }

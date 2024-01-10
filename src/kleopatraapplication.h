@@ -100,6 +100,8 @@ public Q_SLOTS:
     void checksumFiles(const QStringList &files, GpgME::Protocol /* unused */);
     void slotActivateRequested(const QStringList &arguments, const QString &workingDirectory);
 
+    void handleFiles(const QStringList &files, WId parentId = 0);
+
 Q_SIGNALS:
     /* Emitted from slotActivateRequested to enable setting the
      * correct exitValue */

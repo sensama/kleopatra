@@ -183,7 +183,7 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
 void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult &result, const Key &key, const GpgME::Error &adskError)
 {
     if (!key.isNull()) {
-        if (adskError.code() && !adskError.isCanceled()) {
+        if (adskError) {
             success(
                 xi18n("<para>A new OpenPGP certificate was created successfully, but adding an ADSK failed: %1</para>"
                       "<para>Fingerprint of the new certificate: %2</para>",
@@ -265,11 +265,13 @@ void NewOpenPGPCertificateCommand::Private::addAdsk(const Key &key, const QStrin
 {
     const auto backend = QGpgME::openpgp();
     if (!backend) {
+        finished();
         return;
     }
 
     const auto job = backend->quickJob();
     if (!job) {
+        finished();
         return;
     }
 
@@ -293,7 +295,7 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
 
     // Ensure that we have the key in the cache
     Key key;
-    if (!result.error().code() && result.fingerprint()) {
+    if (!result.error() && result.fingerprint()) {
         std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
         if (ctx) {
             Error err;
@@ -305,7 +307,7 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
     }
 
     adskfpr = Settings{}.mandatoryADSK();
-    if (!adskfpr.isEmpty() && !result.error().code() && result.fingerprint() && !key.isNull()) {
+    if (!adskfpr.isEmpty() && !result.error() && result.fingerprint() && !key.isNull()) {
         QMetaObject::invokeMethod(
             q,
             [this, result, key] {

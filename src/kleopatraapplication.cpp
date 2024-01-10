@@ -557,25 +557,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
                     errors << i18n("Cannot read \"%1\"", fileName);
                 }
             }
-            const QVector<Command *> allCmds = Command::commandsForFiles(files);
-            for (Command *cmd : allCmds) {
-                if (parentId) {
-                    cmd->setParentWId(parentId);
-                } else {
-                    MainWindow *mw = mainWindow();
-                    if (!mw) {
-                        mw = new MainWindow;
-                        mw->setAttribute(Qt::WA_DeleteOnClose);
-                        setMainWindow(mw);
-                        d->connectConfigureDialog();
-                    }
-                    cmd->setParentWidget(mw);
-                }
-                if (dynamic_cast<ImportCertificateFromFileCommand *>(cmd)) {
-                    openOrRaiseMainWindow();
-                }
-                cmd->start();
-            }
+            handleFiles(files, parentId);
         }
     }
     d->firstNewInstance = false;
@@ -590,6 +572,29 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
 #endif
 
     return errors.join(QLatin1Char('\n'));
+}
+
+void KleopatraApplication::handleFiles(const QStringList &files, WId parentId)
+{
+    const QVector<Command *> allCmds = Command::commandsForFiles(files);
+    for (Command *cmd : allCmds) {
+        if (parentId) {
+            cmd->setParentWId(parentId);
+        } else {
+            MainWindow *mw = mainWindow();
+            if (!mw) {
+                mw = new MainWindow;
+                mw->setAttribute(Qt::WA_DeleteOnClose);
+                setMainWindow(mw);
+                d->connectConfigureDialog();
+            }
+            cmd->setParentWidget(mw);
+        }
+        if (dynamic_cast<ImportCertificateFromFileCommand *>(cmd)) {
+            openOrRaiseMainWindow();
+        }
+        cmd->start();
+    }
 }
 
 #ifndef QT_NO_SYSTEMTRAYICON

@@ -1,5 +1,5 @@
 /*
-    conf/groupsconfigdialog.h
+    conf/groupsconfigdialog.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2021 g10 Code GmbH

@@ -133,6 +133,9 @@ public:
     void setInput(const std::shared_ptr<Input> &input);
     void setSignedData(const std::shared_ptr<Input> &signedData);
 
+    void setSignatureFile(const QString &path);
+    void setSignedFile(const QString &path);
+
     void setProtocol(GpgME::Protocol prot);
     void autodetectProtocolFromInput() override;
 
@@ -171,6 +174,9 @@ public:
 
     void setExtractArchive(bool extract);
     void setInputFile(const QString &path);
+    // for files
+    void setOutputFile(const QString &path);
+    // for archives
     void setOutputDirectory(const QString &directory);
 
     QString inputLabel() const override;
@@ -206,6 +212,9 @@ public:
     void setIgnoreMDCError(bool value);
     void setExtractArchive(bool extract);
     void setInputFile(const QString &path);
+    // for files
+    void setOutputFile(const QString &path);
+    // for archives
     void setOutputDirectory(const QString &directory);
 
     QString inputLabel() const override;

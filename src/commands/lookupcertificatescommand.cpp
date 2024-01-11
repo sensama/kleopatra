@@ -247,6 +247,10 @@ void LookupCertificatesCommand::Private::createDialog()
     dialog = new LookupCertificatesDialog;
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
+
+    const bool wkdOnly = !haveKeyserverConfigured() && !haveX509DirectoryServerConfigured();
+    dialog->setQueryMode(wkdOnly ? LookupCertificatesDialog::EmailQuery : LookupCertificatesDialog::AnyQuery);
+
     connect(dialog, &LookupCertificatesDialog::searchTextChanged, q, [this](const QString &text) {
         slotSearchTextChanged(text);
     });
@@ -280,8 +284,6 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
         dialog->showInformation({});
     }
 
-    query = str;
-
     keyListing.reset();
     keyListing.pattern = str;
 
@@ -290,21 +292,28 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     }
 
     if (protocol != GpgME::CMS) {
-        static const QRegularExpression rx(QRegularExpression::anchoredPattern(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}")));
-        if (rx.match(query).hasMatch() && !str.startsWith(QLatin1String("0x"), Qt::CaseInsensitive)) {
-            qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query";
-            startKeyListJob(OpenPGP, QStringLiteral("0x") + str);
+        static const QRegularExpression rx(QRegularExpression::anchoredPattern(QLatin1String("[0-9a-fA-F]{6,}")));
+        if (rx.match(str).hasMatch()) {
+            qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query" << str;
+            startKeyListJob(OpenPGP, QLatin1String{"0x"} + str);
         } else {
             startKeyListJob(OpenPGP, str);
-            if (str.contains(QLatin1Char{'@'}) && !searchTextToEmailAddress(str).isEmpty()) {
-                startWKDLookupJob(str);
-            }
+        }
+        if (str.contains(QLatin1Char{'@'}) && !searchTextToEmailAddress(str).isEmpty()) {
+            startWKDLookupJob(str);
         }
     }
 }
 
 void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, const QString &str)
 {
+    if ((proto == GpgME::OpenPGP) && !haveKeyserverConfigured()) {
+        // avoid starting an OpenPGP key server lookup if key server usage has been disabled;
+        // for S/MIME we start the job regardless of configured directory servers to account for
+        // dirmngr knowing better than our check for directory servers
+        return;
+    }
+
     KeyListJob *const klj = createKeyListJob(proto);
     if (!klj) {
         return;
@@ -569,10 +578,9 @@ void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyLi
 
 bool LookupCertificatesCommand::Private::checkConfig() const
 {
-    const bool haveOrDontNeedOpenPGPServer = haveKeyserverConfigured() || (protocol == GpgME::CMS);
-    const bool haveOrDontNeedCMSServer = haveX509DirectoryServerConfigured() || (protocol == GpgME::OpenPGP);
-    const bool ok = haveOrDontNeedOpenPGPServer || haveOrDontNeedCMSServer;
-    if (!ok)
+    // unless CMS-only lookup is requested we always try a lookup via WKD
+    const bool ok = (protocol != GpgME::CMS) || haveX509DirectoryServerConfigured();
+    if (!ok) {
         information(xi18nc("@info",
                            "<para>You do not have any directory servers configured.</para>"
                            "<para>You need to configure at least one directory server to "
@@ -580,6 +588,7 @@ bool LookupCertificatesCommand::Private::checkConfig() const
                            "<para>You can configure directory servers here: "
                            "<interface>Settings->Configure Kleopatra</interface>.</para>"),
                     i18nc("@title", "No Directory Servers Configured"));
+    }
     return ok;
 }
 

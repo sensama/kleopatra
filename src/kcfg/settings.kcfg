@@ -17,8 +17,8 @@
      <default>true</default>
    </entry>
    <entry key="EMAIL_placeholder" name="emailPlaceholder" type="String">
-     <label>Placeholder for EMAIL</label>
-     <whatsthis>This text will be used as placeholder text for the email address field of OpenPGP and S/MIME certificates.</whatsthis>
+     <label>Hint for EMAIL</label>
+     <whatsthis>This text will be shown above the email address field of OpenPGP certificates and as placeholder in that field for S/MIME certificates.</whatsthis>
      <default></default>
    </entry>
    <entry key="EMAIL_prefill" name="prefillEmail" type="Bool">
@@ -27,9 +27,14 @@
          e.g., from the email settings of the desktop or, on Windows, from the Active Directory.</whatsthis>
      <default>true</default>
    </entry>
+   <entry key="EMAIL" name="email" type="String">
+     <label>Value of EMAIL</label>
+     <whatsthis>Prefilled value for the email address field of OpenPGP and S/MIME certificates. This will override EMAIL_prefill. It is useful if no or unsuitable system settings are found for EMAIL_prefill.</whatsthis>
+     <default></default>
+   </entry>
    <entry key="NAME_placeholder" name="namePlaceholder" type="String">
-     <label>Placeholder for NAME</label>
-     <whatsthis>This text will be used as placeholder text for the name field of OpenPGP certificates.</whatsthis>
+     <label>Hint for NAME</label>
+     <whatsthis>This text will be shown above the name field of OpenPGP certificates.</whatsthis>
      <default></default>
    </entry>
    <entry key="NAME_prefill" name="prefillName" type="Bool">
@@ -37,6 +42,11 @@
      <whatsthis>If true, then the name field of OpenPGP certificates will be prefilled with information gathered from the system,
          e.g., from the email settings of the desktop or, on Windows, from the Active Directory.</whatsthis>
      <default>true</default>
+   </entry>
+   <entry key="NAME" name="name" type="String">
+     <label>Value of NAME</label>
+     <whatsthis>Prefilled value for the name field of OpenPGP certificates. This will override NAME_prefill. It is useful if no or an unsuitable system setting is found for NAME_prefill.</whatsthis>
+     <default></default>
    </entry>
    <entry key="ValidityPeriodInDays" type="Int">
      <label>Default validity period</label>

@@ -27,8 +27,7 @@ QString stripSuffix(const QString &fileName);
 /**
  * Checks if the file/directory referenced by \p fi is writable.
  *
- * On Windows, this enables the NTFS permissions check which is an expensive
- * operation. Only use this in the main thread.
+ * On Windows, a temporary file is created to check if a directory is writable.
  * \sa QFileInfo::isWritable
  */
 bool isWritable(const QFileInfo &fi);

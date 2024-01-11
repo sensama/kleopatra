@@ -479,6 +479,10 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.smimeAddressList->setVisible(isSMIME);
 
     ui.moreDetailsBtn->setVisible(isLocalKey);
+    ui.moreDetailsBtn->setText(isSMIME        ? i18nc("@action:button", "More Details...")
+                                   : isOwnKey ? i18nc("@action:button", "Manage Subkeys")
+                                              : i18nc("@action:button", "Show Subkeys"));
+
     ui.trustChainDetailsBtn->setVisible(isSMIME);
     ui.refreshBtn->setVisible(isLocalKey);
     ui.changePassphraseBtn->setVisible(isSecretKeyStoredInKeyRing(key));

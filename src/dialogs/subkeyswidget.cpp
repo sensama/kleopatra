@@ -66,6 +66,12 @@ public:
         });
     }
 
+    void changeValidity(const GpgME::Subkey &subkey);
+    void exportSSH(const GpgME::Subkey &subkey);
+    void keyToCard(const GpgME::Subkey &subkey);
+    void exportSecret(const GpgME::Subkey &subkey);
+    void importPaperKey();
+
 private:
     void tableContextMenuRequested(const QPoint &p);
     void keysMayHaveChanged();
@@ -77,6 +83,12 @@ public:
     struct UI {
         QVBoxLayout *mainLayout;
         NavigatableTreeWidget *subkeysTree;
+
+        QPushButton *changeValidityBtn = nullptr;
+        QPushButton *exportOpenSSHBtn = nullptr;
+        QPushButton *restoreBtn = nullptr;
+        QPushButton *transferToSmartcardBtn = nullptr;
+        QPushButton *exportSecretBtn = nullptr;
 
         UI(QWidget *widget)
         {
@@ -102,9 +114,86 @@ public:
                 i18nc("@title:column", "Storage"),
             });
             mainLayout->addWidget(subkeysTree);
+
+            {
+                auto buttonRow = new QHBoxLayout;
+
+                changeValidityBtn = new QPushButton(i18nc("@action:button", "Change validity"), widget);
+                buttonRow->addWidget(changeValidityBtn);
+
+                exportOpenSSHBtn = new QPushButton{i18nc("@action:button", "Export OpenSSH key"), widget};
+                buttonRow->addWidget(exportOpenSSHBtn);
+
+                restoreBtn = new QPushButton(i18nc("@action:button", "Restore printed backup"), widget);
+                buttonRow->addWidget(restoreBtn);
+
+                transferToSmartcardBtn = new QPushButton(i18nc("@action:button", "Transfer to smartcard"), widget);
+                buttonRow->addWidget(transferToSmartcardBtn);
+
+                exportSecretBtn = new QPushButton(i18nc("@action:button", "Export secret subkey"), widget);
+                buttonRow->addWidget(exportSecretBtn);
+
+                buttonRow->addStretch(1);
+
+                mainLayout->addLayout(buttonRow);
+            }
         }
     } ui;
 };
+
+void SubKeysWidget::Private::changeValidity(const GpgME::Subkey &subkey)
+{
+    auto cmd = new ChangeExpiryCommand(subkey.parent());
+    cmd->setSubkey(subkey);
+    ui.subkeysTree->setEnabled(false);
+    connect(cmd, &ChangeExpiryCommand::finished, q, [this]() {
+        ui.subkeysTree->setEnabled(true);
+        key.update();
+        q->setKey(key);
+    });
+    cmd->setParentWidget(q);
+    cmd->start();
+}
+
+void SubKeysWidget::Private::exportSSH(const GpgME::Subkey &subkey)
+{
+    QScopedPointer<ExportDialog> dlg(new ExportDialog(q));
+    dlg->setKey(subkey, static_cast<unsigned int>(GpgME::Context::ExportSSH));
+    dlg->exec();
+}
+
+void SubKeysWidget::Private::importPaperKey()
+{
+    auto cmd = new ImportPaperKeyCommand(key);
+    ui.subkeysTree->setEnabled(false);
+    connect(cmd, &ImportPaperKeyCommand::finished, q, [this]() {
+        ui.subkeysTree->setEnabled(true);
+    });
+    cmd->setParentWidget(q);
+    cmd->start();
+}
+
+void SubKeysWidget::Private::keyToCard(const GpgME::Subkey &subkey)
+{
+    auto cmd = new KeyToCardCommand(subkey);
+    ui.subkeysTree->setEnabled(false);
+    connect(cmd, &KeyToCardCommand::finished, q, [this]() {
+        ui.subkeysTree->setEnabled(true);
+    });
+    cmd->setParentWidget(q);
+    cmd->start();
+}
+
+void SubKeysWidget::Private::exportSecret(const GpgME::Subkey &subkey)
+{
+    auto cmd = new ExportSecretSubkeyCommand{{subkey}};
+    ui.subkeysTree->setEnabled(false);
+    connect(cmd, &ExportSecretSubkeyCommand::finished, q, [this]() {
+        ui.subkeysTree->setEnabled(true);
+    });
+    cmd->setParentWidget(q);
+    cmd->start();
+}
 
 void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
 {
@@ -120,49 +209,27 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
 
     if (isOwnKey) {
-        auto action = menu->addAction(i18n("Change End of Validity Period..."), q, [this, subkey]() {
-            auto cmd = new ChangeExpiryCommand(subkey.parent());
-            cmd->setSubkey(subkey);
-            ui.subkeysTree->setEnabled(false);
-            connect(cmd, &ChangeExpiryCommand::finished, q, [this]() {
-                ui.subkeysTree->setEnabled(true);
-                key.update();
-                q->setKey(key);
-            });
-            cmd->setParentWidget(q);
-            cmd->start();
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("change-date-symbolic")), i18n("Change validity"), q, [this, subkey]() {
+            changeValidity(subkey);
         });
         action->setEnabled(canBeUsedForSecretKeyOperations(subkey.parent()));
     }
 
     if (subkey.canAuthenticate()) {
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")), i18n("Export OpenSSH key"), q, [this, subkey]() {
-            QScopedPointer<ExportDialog> dlg(new ExportDialog(q));
-            dlg->setKey(subkey, static_cast<unsigned int>(GpgME::Context::ExportSSH));
-            dlg->exec();
+            exportSSH(subkey);
         });
     }
 
     auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-import")), i18n("Restore printed backup"), q, [this, subkey]() {
-        auto cmd = new ImportPaperKeyCommand(subkey.parent());
-        ui.subkeysTree->setEnabled(false);
-        connect(cmd, &ImportPaperKeyCommand::finished, q, [this]() {
-            ui.subkeysTree->setEnabled(true);
-        });
-        cmd->setParentWidget(q);
-        cmd->start();
+        importPaperKey();
     });
+
     action->setEnabled(!secretSubkeyStoredInKeyRing);
 
     if (isOwnKey) {
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("send-to-symbolic")), i18n("Transfer to smartcard"), q, [this, subkey]() {
-            auto cmd = new KeyToCardCommand(subkey);
-            ui.subkeysTree->setEnabled(false);
-            connect(cmd, &KeyToCardCommand::finished, q, [this]() {
-                ui.subkeysTree->setEnabled(true);
-            });
-            cmd->setParentWidget(q);
-            cmd->start();
+            keyToCard(subkey);
         });
         action->setEnabled(secretSubkeyStoredInKeyRing && !KeyToCardCommand::getSuitableCards(subkey).empty());
     }
@@ -170,13 +237,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     const bool isPrimarySubkey = subkey.keyID() == key.keyID();
     if (isOwnKey && !isPrimarySubkey) {
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")), i18n("Export secret subkey"), q, [this, subkey]() {
-            auto cmd = new ExportSecretSubkeyCommand{{subkey}};
-            ui.subkeysTree->setEnabled(false);
-            connect(cmd, &ExportSecretSubkeyCommand::finished, q, [this]() {
-                ui.subkeysTree->setEnabled(true);
-            });
-            cmd->setParentWidget(q);
-            cmd->start();
+            exportSecret(subkey);
         });
         action->setEnabled(secretSubkeyStoredInKeyRing);
     }
@@ -197,6 +258,31 @@ SubKeysWidget::SubKeysWidget(QWidget *parent)
     : QWidget(parent)
     , d(new Private(this))
 {
+    connect(d->ui.subkeysTree, &NavigatableTreeWidget::currentItemChanged, this, [this] {
+        const auto currentIndex = d->ui.subkeysTree->currentIndex().row();
+        const auto &subkey = d->key.subkey(currentIndex);
+        const bool secretSubkeyStoredInKeyRing = subkey.isSecret() && !subkey.isCardKey();
+        d->ui.exportOpenSSHBtn->setEnabled(subkey.canAuthenticate());
+        d->ui.changeValidityBtn->setEnabled(d->key.hasSecret() && canBeUsedForSecretKeyOperations(subkey.parent()));
+        d->ui.exportSecretBtn->setEnabled(d->key.hasSecret() && subkey.fingerprint() != d->key.primaryFingerprint() && secretSubkeyStoredInKeyRing);
+        d->ui.restoreBtn->setEnabled(!secretSubkeyStoredInKeyRing);
+        d->ui.transferToSmartcardBtn->setEnabled(secretSubkeyStoredInKeyRing && !KeyToCardCommand::getSuitableCards(subkey).empty());
+    });
+    connect(d->ui.changeValidityBtn, &QPushButton::clicked, this, [this] {
+        d->changeValidity(d->key.subkey(d->ui.subkeysTree->currentIndex().row()));
+    });
+    connect(d->ui.exportOpenSSHBtn, &QPushButton::clicked, this, [this] {
+        d->exportSSH(d->key.subkey(d->ui.subkeysTree->currentIndex().row()));
+    });
+    connect(d->ui.restoreBtn, &QPushButton::clicked, this, [this] {
+        d->importPaperKey();
+    });
+    connect(d->ui.transferToSmartcardBtn, &QPushButton::clicked, this, [this] {
+        d->keyToCard(d->key.subkey(d->ui.subkeysTree->currentIndex().row()));
+    });
+    connect(d->ui.exportSecretBtn, &QPushButton::clicked, this, [this] {
+        d->exportSecret(d->key.subkey(d->ui.subkeysTree->currentIndex().row()));
+    });
 }
 
 SubKeysWidget::~SubKeysWidget() = default;
@@ -221,8 +307,12 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         item->setData(1, Qt::DisplayRole, Kleo::Formatting::type(subkey));
         item->setData(2, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
         item->setData(2, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(subkey));
-        item->setData(3, Qt::DisplayRole, Kleo::Formatting::expirationDateString(subkey));
-        item->setData(3, Qt::AccessibleTextRole, Formatting::accessibleExpirationDate(subkey));
+        item->setData(3,
+                      Qt::DisplayRole,
+                      subkey.neverExpires() ? Kleo::Formatting::expirationDateString(subkey.parent()) : Kleo::Formatting::expirationDateString(subkey));
+        item->setData(3,
+                      Qt::AccessibleTextRole,
+                      subkey.neverExpires() ? Kleo::Formatting::accessibleExpirationDate(subkey.parent()) : Kleo::Formatting::accessibleExpirationDate(subkey));
         item->setData(4, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
         switch (subkey.publicKeyAlgorithm()) {
         case GpgME::Subkey::AlgoECDSA:
@@ -260,6 +350,10 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         d->ui.subkeysTree->hideColumn(8);
     }
     d->ui.subkeysTree->header()->resizeSections(QHeaderView::ResizeToContents);
+
+    d->ui.changeValidityBtn->setVisible(key.hasSecret());
+    d->ui.exportSecretBtn->setVisible(key.hasSecret());
+    d->ui.transferToSmartcardBtn->setVisible(key.hasSecret());
 }
 
 GpgME::Key SubKeysWidget::key() const

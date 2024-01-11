@@ -11,7 +11,9 @@
 
 #include "lookupcertificatesdialog.h"
 
-#include "view/keytreeview.h"
+#include <view/keytreeview.h>
+
+#include <kleopatra_debug.h>
 
 #include <Libkleo/KeyListModel>
 
@@ -26,6 +28,8 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
 #include <QTreeView>
 #include <QVBoxLayout>
 
@@ -34,8 +38,6 @@
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
-
-static const int minimalSearchTextLength = 1;
 
 class LookupCertificatesDialog::Private
 {
@@ -57,7 +59,7 @@ private:
     }
     void slotSearchClicked()
     {
-        Q_EMIT q->searchTextChanged(ui.findED->text());
+        Q_EMIT q->searchTextChanged(searchText());
     }
     void slotDetailsClicked()
     {
@@ -96,10 +98,17 @@ private:
         return ui.resultTV->selectedKeys().size();
     }
 
+    QValidator *queryValidator();
+    void updateQueryMode();
+
 private:
+    QueryMode queryMode = AnyQuery;
     bool passive;
+    QValidator *anyQueryValidator = nullptr;
+    QValidator *emailQueryValidator = nullptr;
 
     struct Ui {
+        QLabel *guidanceLabel;
         QLabel *findLB;
         QLineEdit *findED;
         QPushButton *findPB;
@@ -117,6 +126,10 @@ private:
             auto gridLayout = new QGridLayout{};
 
             int row = 0;
+            guidanceLabel = new QLabel{dialog};
+            gridLayout->addWidget(guidanceLabel, row, 0, 1, 3);
+
+            row++;
             findLB = new QLabel{i18n("Find:"), dialog};
             gridLayout->addWidget(findLB, row, 0, 1, 1);
 
@@ -226,6 +239,7 @@ LookupCertificatesDialog::Private::Private(LookupCertificatesDialog *qq)
     , ui(q)
 {
     connect(ui.resultTV->view()->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), q, SLOT(slotSelectionChanged()));
+    updateQueryMode();
 }
 
 LookupCertificatesDialog::Private::~Private()
@@ -256,6 +270,50 @@ void LookupCertificatesDialog::Private::writeConfig()
     configGroup.sync();
 }
 
+static QString guidanceText(LookupCertificatesDialog::QueryMode mode)
+{
+    switch (mode) {
+    default:
+        qCWarning(KLEOPATRA_LOG) << __func__ << "Unknown query mode:" << mode;
+        [[fallthrough]];
+    case LookupCertificatesDialog::AnyQuery:
+        return xi18nc("@info", "Enter a search term to search for matching certificates.");
+    case LookupCertificatesDialog::EmailQuery:
+        return xi18nc("@info", "Enter an email address to search for matching certificates.");
+    };
+}
+
+QValidator *LookupCertificatesDialog::Private::queryValidator()
+{
+    switch (queryMode) {
+    default:
+        qCWarning(KLEOPATRA_LOG) << __func__ << "Unknown query mode:" << queryMode;
+        [[fallthrough]];
+    case AnyQuery: {
+        if (!anyQueryValidator) {
+            // allow any query with at least one non-whitespace character
+            anyQueryValidator = new QRegularExpressionValidator{QRegularExpression{QStringLiteral(".*\\S+.*")}, q};
+        }
+        return anyQueryValidator;
+    }
+    case EmailQuery: {
+        if (!emailQueryValidator) {
+            // allow anything that looks remotely like an email address, i.e.
+            // anything with an '@' surrounded by non-whitespace characters
+            const QRegularExpression simpleEmailRegex{QStringLiteral(".*\\S+@\\S+.*")};
+            emailQueryValidator = new QRegularExpressionValidator{simpleEmailRegex, q};
+        }
+        return emailQueryValidator;
+    }
+    }
+}
+
+void LookupCertificatesDialog::Private::updateQueryMode()
+{
+    ui.guidanceLabel->setText(guidanceText(queryMode));
+    ui.findED->setValidator(queryValidator());
+}
+
 LookupCertificatesDialog::LookupCertificatesDialog(QWidget *p, Qt::WindowFlags f)
     : QDialog(p, f)
     , d(new Private(this))
@@ -267,6 +325,17 @@ LookupCertificatesDialog::LookupCertificatesDialog(QWidget *p, Qt::WindowFlags f
 LookupCertificatesDialog::~LookupCertificatesDialog()
 {
     d->writeConfig();
+}
+
+void LookupCertificatesDialog::setQueryMode(QueryMode mode)
+{
+    d->queryMode = mode;
+    d->updateQueryMode();
+}
+
+LookupCertificatesDialog::QueryMode LookupCertificatesDialog::queryMode() const
+{
+    return d->queryMode;
 }
 
 void LookupCertificatesDialog::setCertificates(const std::vector<Key> &certs)
@@ -335,7 +404,7 @@ void LookupCertificatesDialog::Private::enableDisableWidgets()
         return;
     }
 
-    ui.findPB->setEnabled(searchText().size() >= minimalSearchTextLength);
+    ui.findPB->setEnabled(ui.findED->hasAcceptableInput());
 
     const int n = q->selectedCertificates().size();
 

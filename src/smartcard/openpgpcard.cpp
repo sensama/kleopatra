@@ -25,6 +25,7 @@
 #include "algorithminfo.h"
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
@@ -156,22 +157,9 @@ std::string OpenPGPCard::pubkeyUrl() const
 
 std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms() const
 {
-    static const std::map<std::string, QString> displayNames = {
-        {"brainpoolP256r1", i18nc("@info", "ECC (Brainpool P-256)")},
-        {"brainpoolP384r1", i18nc("@info", "ECC (Brainpool P-384)")},
-        {"brainpoolP512r1", i18nc("@info", "ECC (Brainpool P-512)")},
-        {"curve25519", i18nc("@info", "ECC (Curve25519)")},
-        {"curve448", i18nc("@info", "ECC (Curve448)")},
-        {"nistp256", i18nc("@info", "ECC (NIST P-256)")},
-        {"nistp384", i18nc("@info", "ECC (NIST P-384)")},
-        {"nistp521", i18nc("@info", "ECC (NIST P-521)")},
-        {"rsa2048", i18nc("@info", "RSA 2048")},
-        {"rsa3072", i18nc("@info", "RSA 3072")},
-        {"rsa4096", i18nc("@info", "RSA 4096")},
-    };
     std::vector<AlgorithmInfo> algos;
     std::transform(mAlgorithms.cbegin(), mAlgorithms.cend(), std::back_inserter(algos), [](const auto &algo) {
-        return AlgorithmInfo{algo, displayNames.at(algo)};
+        return AlgorithmInfo{algo, Formatting::prettyAlgorithmName(algo)};
     });
     return algos;
 }

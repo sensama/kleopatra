@@ -404,8 +404,18 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
             } else {
                 qCDebug(KLEOPATRA_LOG) << "Detached verify: " << cFile.fileName << " Data: " << signedDataFileName;
                 std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+                if (cFile.protocol == GpgME::OpenPGP) {
+                    t->setSignatureFile(cFile.fileName);
+                    t->setSignedFile(signedDataFileName);
+                } else {
+                    t->setInput(Input::createFromFile(cFile.fileName));
+                    t->setSignedData(Input::createFromFile(signedDataFileName));
+                }
+#else
                 t->setInput(Input::createFromFile(cFile.fileName));
                 t->setSignedData(Input::createFromFile(signedDataFileName));
+#endif
                 t->setProtocol(cFile.protocol);
                 tasks.push_back(t);
             }
@@ -427,8 +437,18 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                     }
                     foundSig = true;
                     std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+                    if (cFile.protocol == GpgME::OpenPGP) {
+                        t->setSignatureFile(sig);
+                        t->setSignedFile(cFile.fileName);
+                    } else {
+                        t->setInput(Input::createFromFile(sig));
+                        t->setSignedData(Input::createFromFile(cFile.fileName));
+                    }
+#else
                     t->setInput(Input::createFromFile(sig));
                     t->setSignedData(Input::createFromFile(cFile.fileName));
+#endif
                     t->setProtocol(proto);
                     tasks.push_back(t);
                 }
@@ -440,7 +460,14 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
         } else {
             const FileOperationsPreferences fileOpSettings;
             // Any Message type so we have input and output.
-            const auto input = Input::createFromFile(cFile.fileName);
+            std::shared_ptr<Input> input;
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+            if (cFile.protocol != GpgME::OpenPGP) {
+                input = Input::createFromFile(cFile.fileName);
+            }
+#else
+            input = Input::createFromFile(cFile.fileName);
+#endif
 
             std::shared_ptr<ArchiveDefinition> ad;
             if (fileOpSettings.autoExtractArchives()) {
@@ -465,6 +492,7 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
             const auto wd = QDir(m_workDir->path());
 
             std::shared_ptr<Output> output;
+            QString outputFilePath;
             if (ad) {
                 if ((ad->id() == QLatin1String{"tar"}) && archiveJobsCanBeUsed(cFile.protocol)) {
                     // we don't need an output
@@ -472,7 +500,14 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                     output = ad->createOutputFromUnpackCommand(cFile.protocol, ad->stripExtension(cFile.protocol, cFile.baseName), wd);
                 }
             } else {
-                output = Output::createFromFile(wd.absoluteFilePath(outputFileName(fi.fileName())), false);
+                outputFilePath = wd.absoluteFilePath(outputFileName(fi.fileName()));
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+                if (cFile.protocol != GpgME::OpenPGP) {
+                    output = Output::createFromFile(outputFilePath, false);
+                }
+#else
+                output = Output::createFromFile(outputFilePath, false);
+#endif
             }
 
             // If this might be opaque CMS signature, then try that. We already handled
@@ -482,7 +517,9 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
             if (isOpaqueSignature(cFile.classification) || isCMSOpaqueSignature) {
                 qCDebug(KLEOPATRA_LOG) << "creating a VerifyOpaqueTask";
                 std::shared_ptr<VerifyOpaqueTask> t(new VerifyOpaqueTask);
-                t->setInput(input);
+                if (input) {
+                    t->setInput(input);
+                }
                 if (output) {
                     t->setOutput(output);
                 }
@@ -497,6 +534,11 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                         const auto baseFileName = QFileInfo{ad->stripExtension(cFile.protocol, cFile.baseName)}.fileName();
                         t->setOutputDirectory(QDir{m_workDir->path()}.filePath(baseFileName));
                     }
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+                } else if (cFile.protocol == GpgME::OpenPGP) {
+                    t->setInputFile(cFile.fileName);
+                    t->setOutputFile(outputFilePath);
+#endif
                 }
                 tasks.push_back(t);
             } else {
@@ -505,7 +547,9 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                 // an encrypted message is also signed.
                 qCDebug(KLEOPATRA_LOG) << "creating a DecryptVerifyTask";
                 std::shared_ptr<DecryptVerifyTask> t(new DecryptVerifyTask);
-                t->setInput(input);
+                if (input) {
+                    t->setInput(input);
+                }
                 if (output) {
                     t->setOutput(output);
                 }
@@ -520,6 +564,11 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                         const auto baseFileName = QFileInfo{ad->stripExtension(cFile.protocol, cFile.baseName)}.fileName();
                         t->setOutputDirectory(QDir{m_workDir->path()}.filePath(baseFileName));
                     }
+#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+                } else if (cFile.protocol == GpgME::OpenPGP) {
+                    t->setInputFile(cFile.fileName);
+                    t->setOutputFile(outputFilePath);
+#endif
                 }
                 cFile.output = output;
                 tasks.push_back(t);

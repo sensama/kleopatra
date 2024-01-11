@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    dialogs/revokekeydialog.h
+    dialogs/revokekeydialog.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2022 g10 Code GmbH

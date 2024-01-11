@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    dialogs/createcsrforcardkeydialog.h
+    dialogs/createcsrforcardkeydialog.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2020 g10 Code GmbH

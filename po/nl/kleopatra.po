@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-03 01:36+0000\n"
+"POT-Creation-Date: 2024-01-13 00:38+0000\n"
 "PO-Revision-Date: 2023-11-07 09:50+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -111,23 +111,23 @@ msgstr "Laurent Montel"
 msgid "Qt5 port, general code maintenance"
 msgstr "Qt5 port, algemeen onderhoud aan code"
 
-#: src/aboutdata.cpp:95
+#: src/aboutdata.cpp:93
 #, kde-format
 msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
 msgid "Uses:"
 msgstr "Gebruikt:"
 
-#: src/aboutdata.cpp:129
+#: src/aboutdata.cpp:127
 #, kde-format
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp:131
+#: src/aboutdata.cpp:129
 #, kde-format
 msgid "Certificate Manager and Unified Crypto GUI"
 msgstr "Certificaatbeheerder en grafische schil voor Unified Crypto"
 
-#: src/aboutdata.cpp:133
+#: src/aboutdata.cpp:131
 #, kde-format
 msgid ""
 "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
@@ -138,12 +138,12 @@ msgstr ""
 "Klarälvdalens Datakonsult AB\n"
 "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
 
-#: src/aboutdata.cpp:136
+#: src/aboutdata.cpp:134
 #, kde-format
 msgid "(c) 2016-2018 Intevation GmbH"
 msgstr "(c) 2016-2018 Intevation GmbH"
 
-#: src/aboutdata.cpp:138
+#: src/aboutdata.cpp:136
 #, kde-format
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 De ontwikkelaars van Kleopatra, g10 Code GmbH"
@@ -1191,8 +1191,7 @@ msgstr "Certificaat exporteren bevestigen"
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#: src/commands/exportopenpgpcertstoservercommand.cpp:111
-#: src/commands/exportopenpgpcertstoservercommand.cpp:129
+#: src/commands/exportopenpgpcertstoservercommand.cpp:120
 #, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
@@ -1391,38 +1390,19 @@ msgstr ""
 "<para>Er is een fout opgetreden tijdens het exporteren:</para><para><message>"
 "%1</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:103
-#, kde-kuit-format
+#: src/commands/exportopenpgpcertstoservercommand.cpp:102
+#, kde-format
 msgctxt "@info"
 msgid ""
-"<para>No OpenPGP directory services have been configured.</para><para>Since "
-"none is configured, <application>Kleopatra</application> will use "
-"<resource>keys.gnupg.net</resource> as the server to export to.</"
-"para><para>You can configure OpenPGP directory servers in "
-"<application>Kleopatra</application>'s configuration dialog.</para><para>Do "
-"you want to continue with <resource>keys.gnupg.net</resource> as the server "
-"to export to?</para>"
-msgstr ""
-"<para>Er zijn geen OpenPGP directory services ingesteld.</para><para> Omdat "
-"deze niet zijn ingesteld, zal <application>Kleopatra</application> de "
-"<resource>keys.gnupg.net</resource> server gebruiken om naar toe te "
-"exporteren.</para><para>OpenPGP directory services kunnen in de "
-"configuratiedialoog van <application>Kleopatra</application> ingesteld "
-"worden.</para><para>Wilt u verder gaan met <resource>keys.gnupg.net</"
-"resource> als de server om naar toe te exporteren?</para>"
+"Exporting the certificate to a key server is not possible because the usage "
+"of key servers has been disabled explicitly."
+msgid_plural ""
+"Exporting the certificates to a key server is not possible because the usage "
+"of key servers has been disabled explicitly."
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:110
-#: src/commands/exportopenpgpcertstoservercommand.cpp:128
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
-#: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export"
-msgstr "Export van openPGP certificaat"
-
-#: src/commands/exportopenpgpcertstoservercommand.cpp:123
+#: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1438,19 +1418,29 @@ msgstr ""
 "naar de publieke directory-server exporteert, zodat u ze indien nodig later "
 "weer kan herroepen.</para><para>Wilt u verder gaan?</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:152
+#: src/commands/exportopenpgpcertstoservercommand.cpp:119
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
+#: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
+#, kde-format
+msgctxt "@title:window"
+msgid "OpenPGP Certificate Export"
+msgstr "Export van openPGP certificaat"
+
+#: src/commands/exportopenpgpcertstoservercommand.cpp:140
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Fout bij exporteren van openPGP certificaat"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:157
+#: src/commands/exportopenpgpcertstoservercommand.cpp:145
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "Export van openPGP certificaat voltooid"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:163
+#: src/commands/exportopenpgpcertstoservercommand.cpp:151
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1462,13 +1452,13 @@ msgstr ""
 "door een onverwachte fout voortijdig gestopt.</para><para>Voor details zie "
 "de uitvoer van <icode>%1</icode>.</para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:174
+#: src/commands/exportopenpgpcertstoservercommand.cpp:162
 #: src/commands/importcertificatescommand.cpp:621
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:175
+#: src/commands/exportopenpgpcertstoservercommand.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1476,7 +1466,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr "%1<nl />%2"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:180
+#: src/commands/exportopenpgpcertstoservercommand.cpp:168
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1488,7 +1478,7 @@ msgstr ""
 "opgetreden.</para> <para>De uitvoer van <command>%1</command> was:<nl /> "
 "<message>%2</message></para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:188
+#: src/commands/exportopenpgpcertstoservercommand.cpp:176
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -2622,7 +2612,7 @@ msgstr "Certificaten worden geladen... (kan even duren)"
 msgid "Show Details"
 msgstr "Details tonen"
 
-#: src/commands/lookupcertificatescommand.cpp:432
+#: src/commands/lookupcertificatescommand.cpp:441
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2638,7 +2628,7 @@ msgstr ""
 "andere X.509 directory-service kunnen configureren in de configuratiedialoog."
 "</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:439
+#: src/commands/lookupcertificatescommand.cpp:448
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2653,13 +2643,13 @@ msgstr ""
 "andere OpenPGP keyserver kunnen configureren in de configuratiedialoog.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:445
+#: src/commands/lookupcertificatescommand.cpp:454
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Ongeldig antwoord uit de server"
 
-#: src/commands/lookupcertificatescommand.cpp:476
+#: src/commands/lookupcertificatescommand.cpp:485
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2667,14 +2657,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "Eén certificaat zonder naam en e-mailadres is genegeerd."
 msgstr[1] "%1 certificaten zonder naam en e-mailadres zijn genegeerd."
 
-#: src/commands/lookupcertificatescommand.cpp:514
-#: src/commands/lookupcertificatescommand.cpp:517
+#: src/commands/lookupcertificatescommand.cpp:523
+#: src/commands/lookupcertificatescommand.cpp:526
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Server voor %1 certificaten"
 
-#: src/commands/lookupcertificatescommand.cpp:550
+#: src/commands/lookupcertificatescommand.cpp:559
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2684,7 +2674,7 @@ msgstr ""
 "Zoeken op server voor certificaten is mislukt. De ontvangen fout was:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:558
+#: src/commands/lookupcertificatescommand.cpp:567
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2700,13 +2690,13 @@ msgstr ""
 "vergroten, maar als één van de geconfigureerde servers de limiterende factor "
 "is, dan moet u de zoekopdracht verfijnen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:566
+#: src/commands/lookupcertificatescommand.cpp:575
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Resultaat is afgekapt"
 
-#: src/commands/lookupcertificatescommand.cpp:577
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2719,7 +2709,7 @@ msgstr ""
 "om te kunnen zoeken.</para><para>U kunt hier: <interface>Instellingen-"
 ">Kleopatra instellen</interface> een mapserver instellen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:582
+#: src/commands/lookupcertificatescommand.cpp:590
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -2964,38 +2954,15 @@ msgstr ""
 "<para>Er is een fout opgetreden tijdens het bijwerken van het certificaat:</"
 "para><para><message>%1</message></para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:43
-#, kde-kuit-format
+#: src/commands/refreshopenpgpcertscommand.cpp:44
+#, kde-format
 msgctxt "@info"
 msgid ""
-"<para>No OpenPGP directory services have been configured.</para><para>If not "
-"all of the certificates carry the name of their preferred certificate server "
-"(few do), a fallback server is needed to fetch from.</para><para>Since none "
-"is configured, <application>Kleopatra</application> will use <resource>keys."
-"gnupg.net</resource> as the fallback.</para><para>You can configure OpenPGP "
-"directory servers in Kleopatra's configuration dialog.</para><para>Do you "
-"want to continue with <resource>keys.gnupg.net</resource> as fallback server?"
-"</para>"
+"Refreshing the OpenPGP certificates is not possible because the usage of key "
+"servers has been disabled explicitly."
 msgstr ""
-"<para>Er zijn geen OpenPGP directory services ingesteld.</para><para> "
-"Wanneer niet alle certificaten de naam bevatten van de geprefereerde "
-"certificaatserver (enkele doen het), is een server nodig om op terug te "
-"vallen voor het ophalen.</para><para>Omdat er geen ingesteld is, zal "
-"<application>Kleopatra</application> de server <resource>keys.gnupg.net</"
-"resource> gebruiken om op terug te vallen.</para><para>OpenPGP directory "
-"services kunnen in de configuratiedialoog van <application>Kleopatra</"
-"application> ingesteld worden.</para><para>Wilt u verder gaan met "
-"<resource>keys.gnupg.net</resource> als de server om op terug te vallen?</"
-"para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:52
-#: src/commands/refreshopenpgpcertscommand.cpp:67
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Refresh"
-msgstr "OpenPGP-certificaat verversen"
-
-#: src/commands/refreshopenpgpcertscommand.cpp:61
+#: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3013,19 +2980,25 @@ msgstr ""
 "hoeveelheid certificaten.</para> <para>Weet u zeker dat u verder wilt gaan?</"
 "para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:87
+#: src/commands/refreshopenpgpcertscommand.cpp:56
+#, kde-format
+msgctxt "@title:window"
+msgid "OpenPGP Certificate Refresh"
+msgstr "OpenPGP-certificaat verversen"
+
+#: src/commands/refreshopenpgpcertscommand.cpp:73
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Error"
 msgstr "Fout bij openPGP-certificaat verversen"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:92
+#: src/commands/refreshopenpgpcertscommand.cpp:78
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Finished"
 msgstr "OpenPGP-certificaat verversen voltooid"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:98
+#: src/commands/refreshopenpgpcertscommand.cpp:84
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3037,7 +3010,7 @@ msgstr ""
 "door een onverwachte fout voortijdig gestopt.</para><para>Voor details zie "
 "de uitvoer van <icode>%1</icode>.</para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:107
+#: src/commands/refreshopenpgpcertscommand.cpp:93
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3048,7 +3021,7 @@ msgstr ""
 "certificaten.</para> <para>De uitvoer van <command>%1</command> was: <bcode>"
 "%2</bcode></para>"
 
-#: src/commands/refreshopenpgpcertscommand.cpp:115
+#: src/commands/refreshopenpgpcertscommand.cpp:101
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates refreshed successfully."
@@ -3131,7 +3104,7 @@ msgstr ""
 
 #: src/commands/revokecertificationcommand.cpp:83
 #: src/commands/revokecertificationcommand.cpp:97
-#: src/dialogs/certificatedetailswidget.cpp:636
+#: src/dialogs/certificatedetailswidget.cpp:640
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -3554,7 +3527,7 @@ msgstr ""
 "is."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:139
+#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN-attribuutvolgorde"
@@ -3688,17 +3661,27 @@ msgstr ""
 msgid "Archive command to use when archiving files:"
 msgstr "Archiveringscommando te gebruiken voor het archiveren van bestanden:"
 
-#: src/conf/dirservconfigpage.cpp:125
+#: src/conf/dirservconfigpage.cpp:126
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "OpenPGP sleutelserver:"
 
-#: src/conf/dirservconfigpage.cpp:136
+#: src/conf/dirservconfigpage.cpp:131
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Enter the address of the keyserver to use when searching for OpenPGP "
+"certificates and when uploading OpenPGP certificates. If you do not enter an "
+"address then an internal default will be used. To disable the use of an "
+"OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:145
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "X.509 directory services"
 
-#: src/conf/dirservconfigpage.cpp:151
+#: src/conf/dirservconfigpage.cpp:160
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3707,24 +3690,24 @@ msgstr ""
 "Configuratie van directory services is niet mogelijk omdat de gebruikte "
 "gpgme-bibliotheken te oud zijn."
 
-#: src/conf/dirservconfigpage.cpp:162
+#: src/conf/dirservconfigpage.cpp:171
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "LDAP-verloop&tijd (minuten:seconden):"
 
-#: src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:180
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "&Maximaal aantal resultaten van een zoekopdracht:"
 
-#: src/conf/dirservconfigpage.cpp:179
+#: src/conf/dirservconfigpage.cpp:188
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr ""
 "Ontbrekende certificeringssleutels ophalen bij importeren van nieuwe sleutels"
 
-#: src/conf/dirservconfigpage.cpp:181
+#: src/conf/dirservconfigpage.cpp:190
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3735,14 +3718,14 @@ msgstr ""
 "gebruikt zijn voor certificering van de gebruiker-id's van nieuw "
 "geïmporteerde OpenPGP sleutels op te halen."
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:197
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 "Certificaatmappen van leveranciers voor alle gebruiker-ID's ondervragen"
 
-#: src/conf/dirservconfigpage.cpp:190
+#: src/conf/dirservconfigpage.cpp:199
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3756,12 +3739,12 @@ msgstr ""
 "een OpenPGP certificaat bijwerkte. Als deze optie is ingeschakeld zal "
 "Kleopatra WKD's voor alle gebruiker-ID's ondervragen."
 
-#: src/conf/dirservconfigpage.cpp:424
+#: src/conf/dirservconfigpage.cpp:435
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "Backend-fout: gpgconf kent blijkbaar het item voor %1/%2 niet"
 
-#: src/conf/dirservconfigpage.cpp:431
+#: src/conf/dirservconfigpage.cpp:442
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Backend-fout: gpgconf heeft een verkeerd type voor %1/%2: %3 %4"
@@ -4396,7 +4379,7 @@ msgstr ""
 "moet worden, geen mengsel van beiden."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:874
+#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:883
 #, kde-format
 msgid "Cancel"
 msgstr "Annuleren"
@@ -4528,62 +4511,62 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "Bestanden ontcijferen/verifiëren "
 
-#: src/crypto/decryptverifytask.cpp:187
+#: src/crypto/decryptverifytask.cpp:188
 #, kde-format
 msgid "Error: Signature not verified"
 msgstr "Fout: ondertekening is niet geverifieerd"
 
-#: src/crypto/decryptverifytask.cpp:189
+#: src/crypto/decryptverifytask.cpp:190
 #, kde-format
 msgid "Good signature"
 msgstr "Correcte ondertekening"
 
-#: src/crypto/decryptverifytask.cpp:191
+#: src/crypto/decryptverifytask.cpp:192
 #, kde-format
 msgid "Signing certificate was revoked"
 msgstr "Ondertekeningscertificaat is ingetrokken"
 
-#: src/crypto/decryptverifytask.cpp:193
+#: src/crypto/decryptverifytask.cpp:194
 #, kde-format
 msgid "Signing certificate is expired"
 msgstr "Ondertekeningscertificaat is verlopen"
 
-#: src/crypto/decryptverifytask.cpp:195
+#: src/crypto/decryptverifytask.cpp:196
 #, kde-format
 msgid "Certificate is not available"
 msgstr "Certificaat is niet beschikbaar"
 
-#: src/crypto/decryptverifytask.cpp:197
+#: src/crypto/decryptverifytask.cpp:198
 #, kde-format
 msgid "Signature expired"
 msgstr "Handtekening verlopen"
 
-#: src/crypto/decryptverifytask.cpp:199
+#: src/crypto/decryptverifytask.cpp:200
 #, kde-format
 msgid "CRL missing"
 msgstr "CRL ontbreekt"
 
-#: src/crypto/decryptverifytask.cpp:201
+#: src/crypto/decryptverifytask.cpp:202
 #, kde-format
 msgid "CRL too old"
 msgstr "CRL te oud"
 
-#: src/crypto/decryptverifytask.cpp:203
+#: src/crypto/decryptverifytask.cpp:204
 #, kde-format
 msgid "Bad policy"
 msgstr "Slecht beleid"
 
-#: src/crypto/decryptverifytask.cpp:205
+#: src/crypto/decryptverifytask.cpp:206
 #, kde-format
 msgid "System error"
 msgstr "Systeemfout"
 
-#: src/crypto/decryptverifytask.cpp:207
+#: src/crypto/decryptverifytask.cpp:208
 #, kde-format
 msgid "Bad signature"
 msgstr "Ongeldige ondertekening"
 
-#: src/crypto/decryptverifytask.cpp:219
+#: src/crypto/decryptverifytask.cpp:220
 #, kde-format
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
@@ -4592,14 +4575,14 @@ msgstr ""
 "De ondertekening is geldig maar het vertrouwen in de geldigheid van het "
 "certificaat is marginaal."
 
-#: src/crypto/decryptverifytask.cpp:221
+#: src/crypto/decryptverifytask.cpp:222
 #, kde-format
 msgid "The signature is valid and the certificate's validity is fully trusted."
 msgstr ""
 "De ondertekening is geldig en de geldigheid van het certificaat is volledig "
 "vertrouwd."
 
-#: src/crypto/decryptverifytask.cpp:223
+#: src/crypto/decryptverifytask.cpp:224
 #, kde-format
 msgid ""
 "The signature is valid and the certificate's validity is ultimately trusted."
@@ -4607,7 +4590,7 @@ msgstr ""
 "De ondertekening is geldig en de geldigheid van het certificaat is ultiem "
 "vertrouwd."
 
-#: src/crypto/decryptverifytask.cpp:225
+#: src/crypto/decryptverifytask.cpp:226
 #, kde-format
 msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
@@ -4616,42 +4599,42 @@ msgstr ""
 "De ondertekening is geldig maar de geldigheid van het certificaat is "
 "<em>niet vertrouwd</em>."
 
-#: src/crypto/decryptverifytask.cpp:227
+#: src/crypto/decryptverifytask.cpp:228
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr ""
 "De ondertekening is geldig maar de geldigheid van het certificaat is "
 "onbekend."
 
-#: src/crypto/decryptverifytask.cpp:230
+#: src/crypto/decryptverifytask.cpp:231
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr ""
 "De ondertekening is geldig maar de geldigheid van het certificaat is "
 "ongedefinieerd."
 
-#: src/crypto/decryptverifytask.cpp:242 src/crypto/decryptverifytask.cpp:258
+#: src/crypto/decryptverifytask.cpp:243 src/crypto/decryptverifytask.cpp:259
 #, kde-format
 msgid "Unknown certificate"
 msgstr "Onbekende certificaat"
 
-#: src/crypto/decryptverifytask.cpp:278
+#: src/crypto/decryptverifytask.cpp:279
 #, kde-format
 msgctxt "1 is a date"
 msgid "Signature created on %1"
 msgstr "Handtekening is aangemaakt op %1"
 
-#: src/crypto/decryptverifytask.cpp:281
+#: src/crypto/decryptverifytask.cpp:282
 #, kde-format
 msgid "With unavailable certificate:"
 msgstr "Met niet beschikbaar certificaat:"
 
-#: src/crypto/decryptverifytask.cpp:283
+#: src/crypto/decryptverifytask.cpp:284
 #, kde-format
 msgid "With certificate:"
 msgstr "Met certificaat:"
 
-#: src/crypto/decryptverifytask.cpp:288
+#: src/crypto/decryptverifytask.cpp:289
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4659,7 +4642,7 @@ msgctxt ""
 msgid "The signature is %1"
 msgstr "De ondertekening is %1"
 
-#: src/crypto/decryptverifytask.cpp:291
+#: src/crypto/decryptverifytask.cpp:292
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4667,47 +4650,47 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "De ondertekening <b>is niet</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:308 src/crypto/signencrypttask.cpp:54
+#: src/crypto/decryptverifytask.cpp:309 src/crypto/signencrypttask.cpp:54
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr "%1 &rarr; %2"
 
-#: src/crypto/decryptverifytask.cpp:439
+#: src/crypto/decryptverifytask.cpp:440
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "<b>Verificatie geannuleerd.</b>"
 
-#: src/crypto/decryptverifytask.cpp:441
+#: src/crypto/decryptverifytask.cpp:442
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "<b>Verificatie mislukt: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:447
+#: src/crypto/decryptverifytask.cpp:448
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr "<b>Geen handtekening gevonden.</b>"
 
-#: src/crypto/decryptverifytask.cpp:452
+#: src/crypto/decryptverifytask.cpp:453
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>Ongeldige handtekening.</b>"
 msgstr[1] "<b> %1 ongeldige handtekeningen.</b>"
 
-#: src/crypto/decryptverifytask.cpp:458
+#: src/crypto/decryptverifytask.cpp:459
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "<b>Het gegeven konden niet geverifieerd worden.</b>"
 msgstr[1] "<b>%1 handtekeningen konden niet geverifieerd worden.</b>"
 
-#: src/crypto/decryptverifytask.cpp:464
+#: src/crypto/decryptverifytask.cpp:465
 #, kde-format
 msgid "<b>Valid signature by %1</b>"
 msgstr "<b>Geldige handtekening door %1</b>"
 
-#: src/crypto/decryptverifytask.cpp:466
+#: src/crypto/decryptverifytask.cpp:467
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
@@ -4716,19 +4699,19 @@ msgstr ""
 "<br/><b> Waarschuwing:</b>Het e-mailadres van de afzender is niet opgeslagen "
 "in de %1 gebruikt voor ondertekening."
 
-#: src/crypto/decryptverifytask.cpp:467
+#: src/crypto/decryptverifytask.cpp:468
 #, kde-format
 msgid "certificate"
 msgstr "certificaat"
 
-#: src/crypto/decryptverifytask.cpp:469
+#: src/crypto/decryptverifytask.cpp:470
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] "<b> Geldige handtekening</b>"
 msgstr[1] "<b> %1 geldige handtekeningen.</b>"
 
-#: src/crypto/decryptverifytask.cpp:471
+#: src/crypto/decryptverifytask.cpp:472
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -4737,46 +4720,46 @@ msgstr ""
 "<br/><b> Waarschuwing:</b>Het e-mailadres van de afzender is niet opgeslagen "
 "in de voor ondertekening gebruikte certificaten."
 
-#: src/crypto/decryptverifytask.cpp:483
+#: src/crypto/decryptverifytask.cpp:484
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>Ontcijfering geannuleerd.</b>"
 
-#: src/crypto/decryptverifytask.cpp:485
+#: src/crypto/decryptverifytask.cpp:486
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Geen bescherming van integriteit (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:485 src/crypto/decryptverifytask.cpp:487
-#: src/crypto/decryptverifytask.cpp:489
+#: src/crypto/decryptverifytask.cpp:486 src/crypto/decryptverifytask.cpp:488
+#: src/crypto/decryptverifytask.cpp:490
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>Ontcijfering mislukt: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:491
+#: src/crypto/decryptverifytask.cpp:492
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b> Ontcijfering geslaagd.</b>"
 
-#: src/crypto/decryptverifytask.cpp:511 src/crypto/decryptverifytask.cpp:534
+#: src/crypto/decryptverifytask.cpp:512 src/crypto/decryptverifytask.cpp:535
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr "Handtekening is ongeldig: %1"
 
-#: src/crypto/decryptverifytask.cpp:520
+#: src/crypto/decryptverifytask.cpp:521
 #, kde-format
 msgid "You can search the certificate on a keyserver or import it from a file."
 msgstr ""
 "U kunt het certificaat zoeken op een sleutelserver of importeren uit een "
 "bestand."
 
-#: src/crypto/decryptverifytask.cpp:529
+#: src/crypto/decryptverifytask.cpp:530
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr ""
 "De gebruikte sleutel is niet door u gecertificeerd of een vertrouwd persoon."
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:531
 #, kde-format
 msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
@@ -4785,14 +4768,14 @@ msgstr ""
 "Het certificaat is niet gecertificeerd door een betrouwbare Certificate "
 "Authority of de Certificate Authority is onbekend."
 
-#: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
+#: src/crypto/decryptverifytask.cpp:554 src/crypto/decryptverifytask.cpp:608
 #: src/crypto/signencrypttask.cpp:241 src/crypto/signencrypttask.cpp:258
-#: src/crypto/signencrypttask.cpp:818
+#: src/crypto/signencrypttask.cpp:882
 #, kde-format
 msgid "Input error: %1"
 msgstr "Uitvoerfout: %1"
 
-#: src/crypto/decryptverifytask.cpp:564
+#: src/crypto/decryptverifytask.cpp:565
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
@@ -4800,34 +4783,34 @@ msgstr ""
 "<p>Het afzenderadres %1 is niet in het certificaat opgeslagen. Opgeslagen: "
 "%2 </p>"
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:567
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:578
+#: src/crypto/decryptverifytask.cpp:579
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] "Een onbekende ontvanger."
 msgstr[1] "%1 onbekende ontvangers."
 
-#: src/crypto/decryptverifytask.cpp:581
+#: src/crypto/decryptverifytask.cpp:582
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "Ontvanger:"
 msgstr[1] "Ontvangers:"
 
-#: src/crypto/decryptverifytask.cpp:591
+#: src/crypto/decryptverifytask.cpp:592
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "Een onbekende ontvanger"
 msgstr[1] "%1 onbekende ontvangers"
 
-#: src/crypto/decryptverifytask.cpp:618
+#: src/crypto/decryptverifytask.cpp:619
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4835,7 +4818,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "De ontcijfering is %1."
 
-#: src/crypto/decryptverifytask.cpp:621
+#: src/crypto/decryptverifytask.cpp:622
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4843,12 +4826,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "De ontcijfering <b>is niet</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:632
+#: src/crypto/decryptverifytask.cpp:633
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Ingebedde bestandsnaam: '%1'"
 
-#: src/crypto/decryptverifytask.cpp:639
+#: src/crypto/decryptverifytask.cpp:640
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -4857,7 +4840,7 @@ msgstr ""
 "<b>OPmerking:</b> U kun niet zeker van zijn wie dit bericht heeft "
 "versleuteld omdat het niet is ondertekend."
 
-#: src/crypto/decryptverifytask.cpp:644
+#: src/crypto/decryptverifytask.cpp:645
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4869,7 +4852,7 @@ msgstr ""
 "waarschijnlijk dat het bestand legitiem is.  Dit komt omdat in die tijd "
 "bescherming van integriteit niet breed werd gebruikt."
 
-#: src/crypto/decryptverifytask.cpp:649
+#: src/crypto/decryptverifytask.cpp:650
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4881,31 +4864,31 @@ msgstr ""
 "Als u er op vertrouwt dat het bestand niet is gemanipuleerd, dan zou u het "
 "opnieuw moeten versleutelen nadat u ontcijfering hebt afgedwongen."
 
-#: src/crypto/decryptverifytask.cpp:946
+#: src/crypto/decryptverifytask.cpp:947
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1103 src/crypto/decryptverifytask.cpp:1272
-#: src/crypto/decryptverifytask.cpp:1354 src/crypto/decryptverifytask.cpp:1455
-#: src/crypto/decryptverifytask.cpp:1506 src/crypto/decryptverifytask.cpp:1635
-#: src/crypto/decryptverifytask.cpp:1709 src/crypto/decryptverifytask.cpp:1815
+#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1305
+#: src/crypto/decryptverifytask.cpp:1387 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1700
+#: src/crypto/decryptverifytask.cpp:1779 src/crypto/decryptverifytask.cpp:1920
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Uitzondering gevangen: %1"
 
-#: src/crypto/decryptverifytask.cpp:1106 src/crypto/decryptverifytask.cpp:1274
-#: src/crypto/decryptverifytask.cpp:1357 src/crypto/decryptverifytask.cpp:1457
-#: src/crypto/decryptverifytask.cpp:1509 src/crypto/decryptverifytask.cpp:1637
-#: src/crypto/decryptverifytask.cpp:1711 src/crypto/decryptverifytask.cpp:1817
+#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1307
+#: src/crypto/decryptverifytask.cpp:1390 src/crypto/decryptverifytask.cpp:1490
+#: src/crypto/decryptverifytask.cpp:1543 src/crypto/decryptverifytask.cpp:1702
+#: src/crypto/decryptverifytask.cpp:1781 src/crypto/decryptverifytask.cpp:1922
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Onbekende uitzondering ontvangen"
 
-#: src/crypto/decryptverifytask.cpp:1160
+#: src/crypto/decryptverifytask.cpp:1162
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4914,12 +4897,13 @@ msgstr ""
 "Kon niet bepalen of dit een S/MIME of een OpenPGP ondertekening/"
 "versleuteltekst is - misschien is het geen van beide?"
 
-#: src/crypto/decryptverifytask.cpp:1168 src/crypto/decryptverifytask.cpp:1418
-#, kde-format
-msgid "Decrypting: %1..."
+#: src/crypto/decryptverifytask.cpp:1170
+#, fuzzy, kde-format
+#| msgid "Decrypting: %1..."
+msgid "Decrypting %1..."
 msgstr "Ontcijferen: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1410
+#: src/crypto/decryptverifytask.cpp:1443
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -4928,7 +4912,12 @@ msgstr ""
 "Kon niet bepalen of dit versleuteld is met S/MIME of OpenPGP - misschien is "
 "het helemaal geen versleutelingstekst?"
 
-#: src/crypto/decryptverifytask.cpp:1563 src/crypto/decryptverifytask.cpp:1753
+#: src/crypto/decryptverifytask.cpp:1451
+#, kde-format
+msgid "Decrypting: %1..."
+msgstr "Ontcijferen: %1..."
+
+#: src/crypto/decryptverifytask.cpp:1597 src/crypto/decryptverifytask.cpp:1843
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4937,27 +4926,33 @@ msgstr ""
 "Kon niet bepalen of dit een S/MIME of een OpenPGP ondertekening is - "
 "misschien is het helemaal geen ondertekening?"
 
-#: src/crypto/decryptverifytask.cpp:1571
-#, kde-format
-msgid "Verifying: %1..."
+#: src/crypto/decryptverifytask.cpp:1605
+#, fuzzy, kde-format
+#| msgid "Verifying: %1..."
+msgid "Verifying %1..."
 msgstr "Verifiëren: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1770
-#, kde-kuit-format
+#: src/crypto/decryptverifytask.cpp:1861
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature in progress. The first file contains "
+#| "the data.The second file is the signature file."
+#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
-msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 "Bezig met verifiëren van: <filename>%1</filename> met <filename>%2</"
 "filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1774
-#, kde-format
-msgid "Verifying signature: %1..."
+#: src/crypto/decryptverifytask.cpp:1865
+#, fuzzy, kde-format
+#| msgid "Verifying signature: %1..."
+msgid "Verifying signature %1..."
 msgstr "Ondertekening verifiëren: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1783
+#: src/crypto/decryptverifytask.cpp:1876
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -5020,7 +5015,7 @@ msgstr "Geen overeenkomende certificaten of groepen gevonden"
 msgid "Multiple matching certificates or groups found"
 msgstr "Meerdere overeenkomende certificaten of groepen gevonden"
 
-#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:211
+#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:219
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, kde-format
@@ -5925,7 +5920,7 @@ msgid "Unknown Recipient:"
 msgstr "Onbekende ontvanger:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:127
+#: src/dialogs/lookupcertificatesdialog.cpp:140
 #, kde-format
 msgid "Search"
 msgstr "Zoeken"
@@ -6042,7 +6037,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archief"
 
-#: src/crypto/signencryptfilescontroller.cpp:672
+#: src/crypto/signencryptfilescontroller.cpp:678
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6051,7 +6046,7 @@ msgstr ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:674
+#: src/crypto/signencryptfilescontroller.cpp:680
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6106,13 +6101,13 @@ msgstr "%1: <b>%2</b>"
 msgid "Cannot determine protocol for task"
 msgstr "Kan protocol voor taak niet bepalen"
 
-#: src/crypto/signencrypttask.cpp:532
+#: src/crypto/signencrypttask.cpp:529
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:672 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6121,19 +6116,19 @@ msgstr ""
 "Kan de gemeenschappelijke basismap voor deze bestanden niet vinden:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:689
+#: src/crypto/signencrypttask.cpp:753
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Ondertekend en versleuteld archief wordt aangemaakt ..."
 
-#: src/crypto/signencrypttask.cpp:709
+#: src/crypto/signencrypttask.cpp:773
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Versleuteld archief wordt aangemaakt ..."
 
-#: src/crypto/signencrypttask.cpp:729
+#: src/crypto/signencrypttask.cpp:793
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -6342,7 +6337,7 @@ msgid "Revoke Certifications"
 msgstr "Certificering herroepen"
 
 #: src/dialogs/certificatedetailswidget.cpp:244
-#: src/dialogs/certificatedetailswidget.cpp:632
+#: src/dialogs/certificatedetailswidget.cpp:636
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
@@ -6358,7 +6353,8 @@ msgstr "Vertrouwensniveau:"
 msgid "Valid from:"
 msgstr "Geldig vanaf:"
 
-#: src/dialogs/certificatedetailswidget.cpp:288 src/dialogs/expirydialog.cpp:97
+#: src/dialogs/certificatedetailswidget.cpp:288
+#: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Geldig tot:"
@@ -6436,6 +6432,7 @@ msgid "Related addresses"
 msgstr "Gerelateerde adressen"
 
 #: src/dialogs/certificatedetailswidget.cpp:349
+#: src/dialogs/certificatedetailswidget.cpp:482
 #, kde-format
 msgctxt "@action:button"
 msgid "More Details..."
@@ -6477,40 +6474,55 @@ msgstr ""
 "gebruikt. Het is niet mogelijk zo'n intrekkingscertificaat te herroepen "
 "nadat het is gepubliceerd."
 
-#: src/dialogs/certificatedetailswidget.cpp:502
+#: src/dialogs/certificatedetailswidget.cpp:483
+#, fuzzy, kde-format
+#| msgid "Manage groups"
+msgctxt "@action:button"
+msgid "Manage Subkeys"
+msgstr "Groepen beheren"
+
+#: src/dialogs/certificatedetailswidget.cpp:484
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Subkeys"
+msgctxt "@action:button"
+msgid "Show Subkeys"
+msgstr "Sub-sleutels"
+
+#: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "onbeperkt"
 
-#: src/dialogs/certificatedetailswidget.cpp:525
+#: src/dialogs/certificatedetailswidget.cpp:529
 #, kde-format
 msgid "Email"
 msgstr "E-mail"
 
-#: src/dialogs/certificatedetailswidget.cpp:525
+#: src/dialogs/certificatedetailswidget.cpp:529
 #: src/newcertificatewizard/enterdetailspage.cpp:63
 #, kde-format
 msgid "Name"
 msgstr "Naam"
 
-#: src/dialogs/certificatedetailswidget.cpp:525
+#: src/dialogs/certificatedetailswidget.cpp:529
 #, kde-format
 msgid "Trust Level"
 msgstr "Vertrouwensniveau"
 
-#: src/dialogs/certificatedetailswidget.cpp:525
+#: src/dialogs/certificatedetailswidget.cpp:529
 #, kde-format
 msgid "Tags"
 msgstr "Tags"
 
-#: src/dialogs/certificatedetailswidget.cpp:543
+#: src/dialogs/certificatedetailswidget.cpp:547
 #, kde-format
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "geen e-mail"
 
-#: src/dialogs/certificatedetailswidget.cpp:630
+#: src/dialogs/certificatedetailswidget.cpp:634
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6519,19 +6531,19 @@ msgid ""
 msgstr ""
 "<para>Wilt u het gebruiker-id: <emphasis>%1</emphasis> intrekken?</para>"
 
-#: src/dialogs/certificatedetailswidget.cpp:817
+#: src/dialogs/certificatedetailswidget.cpp:821
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr "Van vlag voorzien als primaire gebruiker-id"
 
-#: src/dialogs/certificatedetailswidget.cpp:826
+#: src/dialogs/certificatedetailswidget.cpp:830
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "Gebruiker-ID's certificeren..."
 
-#: src/dialogs/certificatedetailswidget.cpp:827
+#: src/dialogs/certificatedetailswidget.cpp:831
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
@@ -6539,13 +6551,13 @@ msgid_plural "Certify User IDs..."
 msgstr[0] "Gebruiker-ID certificeren..."
 msgstr[1] "Gebruiker-ID's certificeren"
 
-#: src/dialogs/certificatedetailswidget.cpp:834
+#: src/dialogs/certificatedetailswidget.cpp:838
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "Certificering herroepen..."
 
-#: src/dialogs/certificatedetailswidget.cpp:835
+#: src/dialogs/certificatedetailswidget.cpp:839
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
@@ -6553,94 +6565,94 @@ msgid_plural "Revoke Certifications..."
 msgstr[0] "Certificaat herroepen..."
 msgstr[1] "Certificaat herroepen..."
 
-#: src/dialogs/certificatedetailswidget.cpp:844
+#: src/dialogs/certificatedetailswidget.cpp:848
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "Publiceren bij e-mailleverancier ..."
 
-#: src/dialogs/certificatedetailswidget.cpp:859
+#: src/dialogs/certificatedetailswidget.cpp:863
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "Gebruiker-id intrekken"
 
-#: src/dialogs/certificatedetailswidget.cpp:905
+#: src/dialogs/certificatedetailswidget.cpp:909
 #, kde-format
 msgid "never"
 msgstr "nooit"
 
-#: src/dialogs/certificatedetailswidget.cpp:907
+#: src/dialogs/certificatedetailswidget.cpp:911
 #, kde-format
 msgid "Signing"
 msgstr "Ondertekenen"
 
-#: src/dialogs/certificatedetailswidget.cpp:908
 #: src/dialogs/certificatedetailswidget.cpp:912
+#: src/dialogs/certificatedetailswidget.cpp:916
 #, kde-format
 msgid "First message"
 msgstr "Eerste bericht"
 
-#: src/dialogs/certificatedetailswidget.cpp:909
 #: src/dialogs/certificatedetailswidget.cpp:913
+#: src/dialogs/certificatedetailswidget.cpp:917
 #, kde-format
 msgid "Last message"
 msgstr "Laatste bericht"
 
-#: src/dialogs/certificatedetailswidget.cpp:910
 #: src/dialogs/certificatedetailswidget.cpp:914
+#: src/dialogs/certificatedetailswidget.cpp:918
 #, kde-format
 msgid "Message count"
 msgstr "Aantal berichten"
 
-#: src/dialogs/certificatedetailswidget.cpp:911
-#: src/smartcard/openpgpcard.cpp:100
+#: src/dialogs/certificatedetailswidget.cpp:915
+#: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Encryption"
 msgstr "Versleuteling"
 
-#: src/dialogs/certificatedetailswidget.cpp:946
+#: src/dialogs/certificatedetailswidget.cpp:950
 #, kde-format
 msgid "Updating..."
 msgstr "Bezig met bijwerken..."
 
-#: src/dialogs/certificatedetailswidget.cpp:986
+#: src/dialogs/certificatedetailswidget.cpp:990
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "De sleutel bijwerken uit externe bronnen."
 
-#: src/dialogs/certificatedetailswidget.cpp:1003
+#: src/dialogs/certificatedetailswidget.cpp:1007
 #, kde-format
 msgid "Common Name"
 msgstr "Algemene naam"
 
-#: src/dialogs/certificatedetailswidget.cpp:1004
+#: src/dialogs/certificatedetailswidget.cpp:1008
 #, kde-format
 msgid "Organization"
 msgstr "Organisatie"
 
-#: src/dialogs/certificatedetailswidget.cpp:1005
+#: src/dialogs/certificatedetailswidget.cpp:1009
 #, kde-format
 msgid "Street"
 msgstr "Straat"
 
-#: src/dialogs/certificatedetailswidget.cpp:1006
+#: src/dialogs/certificatedetailswidget.cpp:1010
 #, kde-format
 msgid "City"
 msgstr "Stad"
 
-#: src/dialogs/certificatedetailswidget.cpp:1007
+#: src/dialogs/certificatedetailswidget.cpp:1011
 #, kde-format
 msgid "State"
 msgstr "Staat/provincie"
 
-#: src/dialogs/certificatedetailswidget.cpp:1008
+#: src/dialogs/certificatedetailswidget.cpp:1012
 #, kde-format
 msgid "Country"
 msgstr "Land"
 
-#: src/dialogs/certificatedetailswidget.cpp:1036
+#: src/dialogs/certificatedetailswidget.cpp:1040
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
@@ -6648,7 +6660,7 @@ msgstr ""
 "De CRL's bijwerken en een volledige controle op geldigheid van het "
 "certificaat doen."
 
-#: src/dialogs/certificatedetailswidget.cpp:1045
+#: src/dialogs/certificatedetailswidget.cpp:1049
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "Het certificaat van de uitgever is niet lokaal gevonden."
@@ -7148,37 +7160,42 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Groep bewerken"
 
-#: src/dialogs/expirydialog.cpp:84
+#: src/dialogs/expirydialog.cpp:87
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "Selecteer tot wanneer de sub-sleutel geldig zou moeten zijn:"
 
-#: src/dialogs/expirydialog.cpp:85
+#: src/dialogs/expirydialog.cpp:88
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "Selecteer tot wanneer het certificaat geldig zou moeten zijn:"
 
-#: src/dialogs/expirydialog.cpp:89
+#: src/dialogs/expirydialog.cpp:92
 #, kde-format
 msgid "Unlimited validity"
 msgstr "Onbeperkte geldigheid"
 
-#: src/dialogs/expirydialog.cpp:113
+#: src/dialogs/expirydialog.cpp:121
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr "Ook de geldigheidsperiode van de sub-sleutels bijwerken"
 
-#: src/dialogs/expirydialog.cpp:140
+#: src/dialogs/expirydialog.cpp:148
 #, kde-format
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Geldig tot %1"
 
-#: src/dialogs/expirydialog.cpp:167
+#: src/dialogs/expirydialog.cpp:175
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "Geldigheidsperiode wijzigen"
+
+#: src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgid "Expiration of primary key: %1"
+msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7247,41 +7264,55 @@ msgstr "Details groeperen"
 msgid "Note: This group is defined in the configuration files of gpg."
 msgstr "Opmerking: deze is gedefinieerd in de configuratiebestanden van gpg."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:120
+#: src/dialogs/lookupcertificatesdialog.cpp:133
 #, kde-format
 msgid "Find:"
 msgstr "Zoeken:"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:142
+#: src/dialogs/lookupcertificatesdialog.cpp:155
 #, kde-format
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:147
+#: src/dialogs/lookupcertificatesdialog.cpp:160
 #, kde-format
 msgid "Deselect All"
 msgstr "Alles deselecteren"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:154
+#: src/dialogs/lookupcertificatesdialog.cpp:167
 #, kde-format
 msgid "Details..."
 msgstr "Details..."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:159
+#: src/dialogs/lookupcertificatesdialog.cpp:172
 #, kde-format
 msgid "Save As..."
 msgstr "Opslaan als..."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:191
+#: src/dialogs/lookupcertificatesdialog.cpp:204
 #, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "Op server opzoeken"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:201
+#: src/dialogs/lookupcertificatesdialog.cpp:214
 #, kde-format
 msgid "Import"
 msgstr "Importeren"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:280
+#, fuzzy, kde-kuit-format
+#| msgid "Enter a name and an email address to use for the certificate."
+msgctxt "@info"
+msgid "Enter a search term to search for matching certificates."
+msgstr "Voer een naam en e-mailadres in om te gebruiken voor het certificaat."
+
+#: src/dialogs/lookupcertificatesdialog.cpp:282
+#, fuzzy, kde-kuit-format
+#| msgid "Enter a name and an email address to use for the certificate."
+msgctxt "@info"
+msgid "Enter an email address to search for matching certificates."
+msgstr "Voer een naam en e-mailadres in om te gebruiken voor het certificaat."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7614,138 +7645,176 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(optioneel) Stel initiële PIN in (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:86
+#: src/dialogs/subkeyswidget.cpp:98
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Sub-sleutels:"
 
-#: src/dialogs/subkeyswidget.cpp:91
+#: src/dialogs/subkeyswidget.cpp:103
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Sub-sleutels"
 
-#: src/dialogs/subkeyswidget.cpp:94
+#: src/dialogs/subkeyswidget.cpp:106
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:95
+#: src/dialogs/subkeyswidget.cpp:107
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Type"
 
-#: src/dialogs/subkeyswidget.cpp:96
+#: src/dialogs/subkeyswidget.cpp:108
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Geldig vanaf"
 
-#: src/dialogs/subkeyswidget.cpp:97
+#: src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Geldig tot"
 
-#: src/dialogs/subkeyswidget.cpp:98
+#: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Status"
 
-#: src/dialogs/subkeyswidget.cpp:99
+#: src/dialogs/subkeyswidget.cpp:111
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Sterkte"
 
-#: src/dialogs/subkeyswidget.cpp:100
+#: src/dialogs/subkeyswidget.cpp:112
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Gebruik"
 
-#: src/dialogs/subkeyswidget.cpp:101
+#: src/dialogs/subkeyswidget.cpp:113
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Primaire"
 
-#: src/dialogs/subkeyswidget.cpp:102
+#: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Opslag"
 
-#: src/dialogs/subkeyswidget.cpp:123 src/view/keylistcontroller.cpp:511
-#, kde-format
-msgid "Change End of Validity Period..."
-msgstr "Het eind van de geldigheidsperiode wijzigen..."
+#: src/dialogs/subkeyswidget.cpp:121
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change Validity"
+msgctxt "@action:button"
+msgid "Change validity"
+msgstr "Geldigheid wijzigen"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:124
+#, fuzzy, kde-format
+#| msgid "Export OpenSSH key"
+msgctxt "@action:button"
+msgid "Export OpenSSH key"
+msgstr "OpenSSH-sleutel exporteren"
+
+#: src/dialogs/subkeyswidget.cpp:127
+#, fuzzy, kde-format
+#| msgid "Restore printed backup"
+msgctxt "@action:button"
+msgid "Restore printed backup"
+msgstr "Afgedrukte reservekopie herstellen"
+
+#: src/dialogs/subkeyswidget.cpp:130
+#, fuzzy, kde-format
+#| msgid "Transfer to smartcard"
+msgctxt "@action:button"
+msgid "Transfer to smartcard"
+msgstr "Naar smartcard overbrengen"
+
+#: src/dialogs/subkeyswidget.cpp:133
+#, fuzzy, kde-format
+#| msgid "Export secret subkey"
+msgctxt "@action:button"
+msgid "Export secret subkey"
+msgstr "Geheime sub-sleutel exporteren"
+
+#: src/dialogs/subkeyswidget.cpp:212
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change Validity"
+msgid "Change validity"
+msgstr "Geldigheid wijzigen"
+
+#: src/dialogs/subkeyswidget.cpp:219
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "OpenSSH-sleutel exporteren"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:224
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Afgedrukte reservekopie herstellen"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:231
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Naar smartcard overbrengen"
 
-#: src/dialogs/subkeyswidget.cpp:172
+#: src/dialogs/subkeyswidget.cpp:239
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Geheime sub-sleutel exporteren"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:329
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "ja"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:329
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "nee"
 
-#: src/dialogs/subkeyswidget.cpp:242
+#: src/dialogs/subkeyswidget.cpp:332
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "smartcard %1"
 
-#: src/dialogs/subkeyswidget.cpp:244
+#: src/dialogs/subkeyswidget.cpp:334
 #, kde-format
 msgid "smart card"
 msgstr "smartcard"
 
-#: src/dialogs/subkeyswidget.cpp:247
+#: src/dialogs/subkeyswidget.cpp:337
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "offline"
 
-#: src/dialogs/subkeyswidget.cpp:249
+#: src/dialogs/subkeyswidget.cpp:339
 #, kde-format
 msgid "on this computer"
 msgstr "op deze computer"
 
-#: src/dialogs/subkeyswidget.cpp:251
+#: src/dialogs/subkeyswidget.cpp:341
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "onbekend"
 
-#: src/dialogs/subkeyswidget.cpp:273
+#: src/dialogs/subkeyswidget.cpp:367
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
@@ -8068,15 +8137,18 @@ msgstr ""
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
 #, kde-format
-msgid "Placeholder for EMAIL"
-msgstr "Plaatshouder voor E-MAIL"
+msgid "Hint for EMAIL"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the email address field of "
+#| "OpenPGP and S/MIME certificates."
 msgid ""
-"This text will be used as placeholder text for the email address field of "
-"OpenPGP and S/MIME certificates."
+"This text will be shown above the email address field of OpenPGP "
+"certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
 "Deze tekst zal gebruikt worden als plaatshoudertekst voor het veld e-"
 "mailadres van OpenPGP en S/MIME certificaten."
@@ -8101,30 +8173,47 @@ msgstr ""
 "         bijv., uit de e-mailinstellingen van het bureaublad of, onder "
 "Windows, uit de Active Directory."
 
-#. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, kde-format
-msgid "Placeholder for NAME"
-msgstr "Plaatshouder voor NAAM"
+#, fuzzy, kde-format
+#| msgid "Placeholder for EMAIL"
+msgid "Value of EMAIL"
+msgstr "Plaatshouder voor E-MAIL"
 
-#. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
 #, kde-format
 msgid ""
-"This text will be used as placeholder text for the name field of OpenPGP "
-"certificates."
+"Prefilled value for the email address field of OpenPGP and S/MIME "
+"certificates. This will override EMAIL_prefill. It is useful if no or "
+"unsuitable system settings are found for EMAIL_prefill."
+msgstr ""
+
+#. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:36
+#, kde-format
+msgid "Hint for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:37
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the name field of OpenPGP "
+#| "certificates."
+msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
 "Deze tekst zal gebruikt worden als plaatshoudertekst voor het naamveld van "
 "OpenPGP certificaten."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:36
+#: src/kcfg/settings.kcfg:41
 #, kde-format
 msgid "Prefill NAME automatically"
 msgstr "NAAM automatisch vooraf invullen"
 
 #. i18n: ectx: whatsthis, entry (prefillName), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:38
+#: src/kcfg/settings.kcfg:43
 #, kde-format
 msgid ""
 "If true, then the name field of OpenPGP certificates will be prefilled with "
@@ -8137,14 +8226,30 @@ msgstr ""
 "         bijv., uit de e-mailinstellingen van het bureaublad of, onder "
 "Windows, uit de Active Directory."
 
+#. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:47
+#, fuzzy, kde-format
+#| msgid "Placeholder for NAME"
+msgid "Value of NAME"
+msgstr "Plaatshouder voor NAAM"
+
+#. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:48
+#, kde-format
+msgid ""
+"Prefilled value for the name field of OpenPGP certificates. This will "
+"override NAME_prefill. It is useful if no or an unsuitable system setting is "
+"found for NAME_prefill."
+msgstr ""
+
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:42
+#: src/kcfg/settings.kcfg:52
 #, kde-format
 msgid "Default validity period"
 msgstr "Standaard geldigheidsperiode"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:43
+#: src/kcfg/settings.kcfg:53
 #, kde-format
 msgid "Specifies the default validity period of new OpenPGP keys in days."
 msgstr ""
@@ -8152,7 +8257,7 @@ msgstr ""
 "dagen."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:44
+#: src/kcfg/settings.kcfg:54
 #, kde-format
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
@@ -8170,13 +8275,13 @@ msgstr ""
 "vastgelegd op de toegestane minimale of maximale geldigheidsperiode)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:48
+#: src/kcfg/settings.kcfg:58
 #, kde-format
 msgid "Minimum validity period"
 msgstr "Minimale geldigheidsperiode"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:49
+#: src/kcfg/settings.kcfg:59
 #, kde-format
 msgid "Specifies the minimum validity period of new OpenPGP keys in days."
 msgstr ""
@@ -8184,7 +8289,7 @@ msgstr ""
 "dagen."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:50
+#: src/kcfg/settings.kcfg:60
 #, kde-format
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid at least, "
@@ -8196,13 +8301,13 @@ msgstr ""
 "sleutel op zijn vroegst zal vervallen."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:54
+#: src/kcfg/settings.kcfg:64
 #, kde-format
 msgid "Maximum validity period"
 msgstr "Maximale geldigheidsperiode"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:55
+#: src/kcfg/settings.kcfg:65
 #, kde-format
 msgid "Specifies the maximum validity period of new OpenPGP keys in days."
 msgstr ""
@@ -8210,7 +8315,7 @@ msgstr ""
 "dagen."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:56
+#: src/kcfg/settings.kcfg:66
 #, kde-format
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid at most, or, "
@@ -8225,13 +8330,13 @@ msgstr ""
 "toegestaan."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:60
+#: src/kcfg/settings.kcfg:70
 #, kde-format
 msgid "Hide advanced settings"
 msgstr "Geavanceerde instellingen verbergen"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:61
+#: src/kcfg/settings.kcfg:71
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
@@ -8240,20 +8345,20 @@ msgstr ""
 "certificatenassistent."
 
 #. i18n: ectx: label, entry, group (Certification)
-#: src/kcfg/settings.kcfg:67
+#: src/kcfg/settings.kcfg:77
 #, kde-format
 msgid "Default certification validity"
 msgstr "Standaard geldigheidsperiode certificaat"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
-#: src/kcfg/settings.kcfg:68
+#: src/kcfg/settings.kcfg:78
 #, kde-format
 msgid "Specifies the default validity of certifications in days."
 msgstr ""
 "Specificeert de standaard geldigheidsperiode van certificaten in dagen."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
-#: src/kcfg/settings.kcfg:69
+#: src/kcfg/settings.kcfg:79
 #, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
@@ -8265,7 +8370,7 @@ msgstr ""
 "vervallen. Stel dit in op 0 voor onbeperkte geldigheid van certificaten."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
-#: src/kcfg/settings.kcfg:75
+#: src/kcfg/settings.kcfg:85
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr ""
@@ -8273,13 +8378,13 @@ msgstr ""
 "controlesom"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:81
+#: src/kcfg/settings.kcfg:91
 #, kde-format
 msgid "Show results after signing"
 msgstr "Resultaten tonen na ondertekenen"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:82
+#: src/kcfg/settings.kcfg:92
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
@@ -8288,13 +8393,13 @@ msgstr ""
 "klembord."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:86
+#: src/kcfg/settings.kcfg:96
 #, kde-format
 msgid "Show results after encryption"
 msgstr "Resultaten tonen na versleuteling"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:87
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -8304,19 +8409,19 @@ msgstr ""
 "klembord."
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:93
+#: src/kcfg/settings.kcfg:103
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "S/MIME inschakelen"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:94
+#: src/kcfg/settings.kcfg:104
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "Schakelt ondersteuning voor S/MIME (CMS) in."
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:95
+#: src/kcfg/settings.kcfg:105
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -8326,20 +8431,20 @@ msgstr ""
 "die gerelateerd is aan S/MIME (CMS)."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:99
+#: src/kcfg/settings.kcfg:109
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "Maken van S/MIME-certificaten bieden"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:100
+#: src/kcfg/settings.kcfg:110
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr ""
 "Biedt het aanmaken van S/MIME verzoeken voor ondertekenen van certificaten."
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:101
+#: src/kcfg/settings.kcfg:111
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -8349,19 +8454,19 @@ msgstr ""
 "certificaten niet bieden."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:115
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "Ondertekenen met S/MIME-certificaten bieden"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:106
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr "Biedt ondertekenen van tekst of bestanden met S/MIME-certificaten."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:107
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -8371,43 +8476,43 @@ msgstr ""
 "van ondertekeningen met S/MIME-certificaten."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:113
+#: src/kcfg/settings.kcfg:123
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "Configuratie van het uiterlijk tonen"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:117
+#: src/kcfg/settings.kcfg:127
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Configuratie van versleutelingsbewerkingen tonen"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:121
+#: src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "Configuratie van directory services tonen"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:125
+#: src/kcfg/settings.kcfg:135
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "Configuratie van GnuPG-systeemconfiguratie tonen"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:129
+#: src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "Configuratie van smartcards tonen"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:133
+#: src/kcfg/settings.kcfg:143
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "Configuratie van S/MIME-validatie tonen"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:140
+#: src/kcfg/settings.kcfg:150
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr ""
@@ -8415,19 +8520,19 @@ msgstr ""
 "certificaten."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:146
+#: src/kcfg/settings.kcfg:156
 #, kde-format
 msgid "Enable Groups"
 msgstr "Groepen inschakelen"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:147
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "Gebruik van groepen sleutels inschakelen."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:148
+#: src/kcfg/settings.kcfg:158
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr ""
@@ -8435,13 +8540,13 @@ msgstr ""
 "maken."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:154
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "Sleutels voor ondertekening na importeren ophalen"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:157
+#: src/kcfg/settings.kcfg:167
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8455,14 +8560,14 @@ msgstr ""
 "         nuttig in combinatie met vertrouwde introducers."
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:161
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 "Certificaatmappen van leveranciers voor alle gebruiker-ID's ondervragen"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:164
+#: src/kcfg/settings.kcfg:174
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -8480,13 +8585,13 @@ msgstr ""
 "gebruiker-ID's ondervragen."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:170
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "Aankomend verloop van certificaat melden"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:172
+#: src/kcfg/settings.kcfg:182
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8496,13 +8601,13 @@ msgstr ""
 "         wanneer certificaten gebruikt worden die spoedig verlopen."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:178
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Te blokkeren URL-schema's"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:190
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8515,13 +8620,13 @@ msgstr ""
 "toepassingen voor bepaalde URL's opent."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:196
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Altijd smartcard-certificaten op sleutelserver zoeken"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:187
+#: src/kcfg/settings.kcfg:197
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8531,7 +8636,7 @@ msgstr ""
 "geconfigureerde sleutelserver."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:189
+#: src/kcfg/settings.kcfg:199
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8545,19 +8650,19 @@ msgstr ""
 "te doen voor LDAP-sleutelservers."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:193
+#: src/kcfg/settings.kcfg:203
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "S/MIME certificaten ui PKCS#15 smartcards proberen te laden"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:194
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "S/MIME certificaten uit PKCS#15 (CardOS) smartcards automatisch laden"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:195
+#: src/kcfg/settings.kcfg:205
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8569,7 +8674,7 @@ msgstr ""
 "blokkeren terwijl het commando bezig is."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:201
+#: src/kcfg/settings.kcfg:211
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Profielinstellingen uitschakelen"
@@ -9054,18 +9159,18 @@ msgstr "Kon de GnuPG-logweergave niet starten. Controleer uw installatie."
 msgid "Error Starting KWatchGnuPG"
 msgstr "Fout bij starten van KWatchGnuPG"
 
-#: src/mainwindow.cpp:519
+#: src/mainwindow.cpp:528
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG-logweergave"
 
-#: src/mainwindow.cpp:531
+#: src/mainwindow.cpp:540
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Achtergrondproces herstarten"
 
-#: src/mainwindow.cpp:532
+#: src/mainwindow.cpp:541
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9075,23 +9180,23 @@ msgstr ""
 "Het achtergrondproces herstarten, bijv. na het maken van wijzigingen in de "
 "configuratie."
 
-#: src/mainwindow.cpp:544
+#: src/mainwindow.cpp:553
 #, kde-format
 msgid "Check for updates"
 msgstr "Controleren op bijwerken"
 
-#: src/mainwindow.cpp:557
+#: src/mainwindow.cpp:566
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certificaten"
 
-#: src/mainwindow.cpp:558
+#: src/mainwindow.cpp:567
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Overzicht van certificaten tonen"
 
-#: src/mainwindow.cpp:568
+#: src/mainwindow.cpp:577
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9099,44 +9204,44 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Tekstgebied"
 
-#: src/mainwindow.cpp:569
+#: src/mainwindow.cpp:578
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Pad voor versleutelen/ontcijferen en ondertekenen/verifiëren van tekst tonen"
 
-#: src/mainwindow.cpp:579
+#: src/mainwindow.cpp:588
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Smartcards"
 
-#: src/mainwindow.cpp:580
+#: src/mainwindow.cpp:589
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Beheer van smartcards tonen"
 
-#: src/mainwindow.cpp:591
+#: src/mainwindow.cpp:600
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Zelftest uitvoeren"
 
-#: src/mainwindow.cpp:602
+#: src/mainwindow.cpp:611
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Groepen configureren..."
 
-#: src/mainwindow.cpp:632
+#: src/mainwindow.cpp:641
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Focus op snelzoeken instellen"
 
-#: src/mainwindow.cpp:644
+#: src/mainwindow.cpp:653
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win-compendium"
 
-#: src/mainwindow.cpp:648
+#: src/mainwindow.cpp:657
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9144,48 +9249,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:658
+#: src/mainwindow.cpp:667
 #, kde-format
 msgid "&Quickguide"
 msgstr "&Snelgids"
 
-#: src/mainwindow.cpp:659
+#: src/mainwindow.cpp:668
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:666
+#: src/mainwindow.cpp:675
 #, kde-format
 msgid "&Password-based encryption"
 msgstr "Op &wachtwoord gebaseerde versleuteling"
 
-#: src/mainwindow.cpp:667
+#: src/mainwindow.cpp:676
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:673
+#: src/mainwindow.cpp:682
 #, kde-format
 msgid "&Group configuration"
 msgstr "&Groepsconfiguratie"
 
-#: src/mainwindow.cpp:674
+#: src/mainwindow.cpp:683
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:682
+#: src/mainwindow.cpp:691
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr "E-&mail versleuteld in Outlook"
 
-#: src/mainwindow.cpp:683
+#: src/mainwindow.cpp:692
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9193,60 +9298,60 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:692
+#: src/mainwindow.cpp:701
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Certificatenbeheer"
 
-#: src/mainwindow.cpp:693
+#: src/mainwindow.cpp:702
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:700
+#: src/mainwindow.cpp:709
 #, kde-format
 msgid "&Smartcard setup"
 msgstr "Opzet van &smartcards"
 
-#: src/mainwindow.cpp:701
+#: src/mainwindow.cpp:710
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:707
+#: src/mainwindow.cpp:716
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG-opdrachtregel"
 
-#: src/mainwindow.cpp:716
+#: src/mainwindow.cpp:725
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:717
+#: src/mainwindow.cpp:726
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:724
+#: src/mainwindow.cpp:733
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:725
+#: src/mainwindow.cpp:734
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:751
+#: src/mainwindow.cpp:760
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9255,28 +9360,28 @@ msgstr ""
 "Er zijn nog enkele achtergrondacties actief. Deze worden door het sluiten "
 "van het venster gestopt. Doorgaan?"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:763
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Actieve achtergrondtaken"
 
-#: src/mainwindow.cpp:858 src/view/keylistcontroller.cpp:406
+#: src/mainwindow.cpp:867 src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Ondertekenen/versleutelen..."
 
-#: src/mainwindow.cpp:859 src/utils/clipboardmenu.cpp:50
+#: src/mainwindow.cpp:868 src/utils/clipboardmenu.cpp:50
 #: src/view/keylistcontroller.cpp:397
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Ontcijferen/verifiëren..."
 
-#: src/mainwindow.cpp:864
+#: src/mainwindow.cpp:873
 #, kde-format
 msgid "Import Certificates"
 msgstr "Certificaten importeren"
 
-#: src/mainwindow.cpp:865
+#: src/mainwindow.cpp:874
 #, kde-format
 msgid "Import CRLs"
 msgstr "CRL's importeren"
@@ -10130,81 +10235,15 @@ msgid ""
 msgstr ""
 "Alle overige exemplaren van <application>Kleopatra</application> afsluiten."
 
-#: src/smartcard/openpgpcard.cpp:99
+#: src/smartcard/openpgpcard.cpp:100
 #, kde-format
 msgid "Signature"
 msgstr "Ondertekening"
 
-#: src/smartcard/openpgpcard.cpp:101
+#: src/smartcard/openpgpcard.cpp:102
 #, kde-format
 msgid "Authentication"
 msgstr "Authenticatie"
-
-#: src/smartcard/openpgpcard.cpp:160
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-256)"
-msgstr "ECC (Brainpool P-256)"
-
-#: src/smartcard/openpgpcard.cpp:161
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-384)"
-msgstr "ECC (Brainpool P-384)"
-
-#: src/smartcard/openpgpcard.cpp:162
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Brainpool P-512)"
-msgstr "ECC (Brainpool P-512)"
-
-#: src/smartcard/openpgpcard.cpp:163
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Curve25519)"
-msgstr "ECC (Curve25519)"
-
-#: src/smartcard/openpgpcard.cpp:164
-#, kde-format
-msgctxt "@info"
-msgid "ECC (Curve448)"
-msgstr "ECC (Curve448)"
-
-#: src/smartcard/openpgpcard.cpp:165
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-256)"
-msgstr "ECC (NIST P-256)"
-
-#: src/smartcard/openpgpcard.cpp:166
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-384)"
-msgstr "ECC (NIST P-384)"
-
-#: src/smartcard/openpgpcard.cpp:167
-#, kde-format
-msgctxt "@info"
-msgid "ECC (NIST P-521)"
-msgstr "ECC (NIST P-521)"
-
-#: src/smartcard/openpgpcard.cpp:168
-#, kde-format
-msgctxt "@info"
-msgid "RSA 2048"
-msgstr "RSA 2048"
-
-#: src/smartcard/openpgpcard.cpp:169
-#, kde-format
-msgctxt "@info"
-msgid "RSA 3072"
-msgstr "RSA 3072"
-
-#: src/smartcard/openpgpcard.cpp:170
-#, kde-format
-msgctxt "@info"
-msgid "RSA 4096"
-msgstr "RSA 4096"
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -11198,12 +11237,12 @@ msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 "Het bestaande bestand en alle andere bestanden die al bestaan overschrijven."
 
-#: src/utils/path-helper.cpp:154
+#: src/utils/path-helper.cpp:133
 #, kde-format
 msgid "Cannot remove directory %1"
 msgstr "Kon map %1 niet verwijderen"
 
-#: src/utils/path-helper.cpp:159
+#: src/utils/path-helper.cpp:138
 #, kde-format
 msgid "Cannot remove file %1: %2"
 msgstr "Kon bestand %1 niet verwijderen: %2"
@@ -11386,6 +11425,11 @@ msgstr "Certificaat herroepen..."
 msgid "Revoke the certification of the selected certificate"
 msgstr "De certificate van het geselecteerde certificaat herroepen."
 
+#: src/view/keylistcontroller.cpp:511
+#, kde-format
+msgid "Change End of Validity Period..."
+msgstr "Het eind van de geldigheidsperiode wijzigen..."
+
 #: src/view/keylistcontroller.cpp:520
 #, kde-format
 msgctxt "@action:inmenu"
@@ -11555,7 +11599,7 @@ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "Stel SigG PIN in"
 
-#: src/view/netkeywidget.cpp:245
+#: src/view/netkeywidget.cpp:246
 #, kde-format
 msgid "Error"
 msgstr "Fout"
@@ -12504,6 +12548,90 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>No OpenPGP directory services have been configured.</"
+#~ "para><para>Since none is configured, <application>Kleopatra</application> "
+#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
+#~ "para><para>You can configure OpenPGP directory servers in "
+#~ "<application>Kleopatra</application>'s configuration dialog.</"
+#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
+#~ "resource> as the server to export to?</para>"
+#~ msgstr ""
+#~ "<para>Er zijn geen OpenPGP directory services ingesteld.</para><para> "
+#~ "Omdat deze niet zijn ingesteld, zal <application>Kleopatra</application> "
+#~ "de <resource>keys.gnupg.net</resource> server gebruiken om naar toe te "
+#~ "exporteren.</para><para>OpenPGP directory services kunnen in de "
+#~ "configuratiedialoog van <application>Kleopatra</application> ingesteld "
+#~ "worden.</para><para>Wilt u verder gaan met <resource>keys.gnupg.net</"
+#~ "resource> als de server om naar toe te exporteren?</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
+#~ "not all of the certificates carry the name of their preferred certificate "
+#~ "server (few do), a fallback server is needed to fetch from.</"
+#~ "para><para>Since none is configured, <application>Kleopatra</application> "
+#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
+#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
+#~ "configuration dialog.</para><para>Do you want to continue with "
+#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
+#~ msgstr ""
+#~ "<para>Er zijn geen OpenPGP directory services ingesteld.</para><para> "
+#~ "Wanneer niet alle certificaten de naam bevatten van de geprefereerde "
+#~ "certificaatserver (enkele doen het), is een server nodig om op terug te "
+#~ "vallen voor het ophalen.</para><para>Omdat er geen ingesteld is, zal "
+#~ "<application>Kleopatra</application> de server <resource>keys.gnupg.net</"
+#~ "resource> gebruiken om op terug te vallen.</para><para>OpenPGP directory "
+#~ "services kunnen in de configuratiedialoog van <application>Kleopatra</"
+#~ "application> ingesteld worden.</para><para>Wilt u verder gaan met "
+#~ "<resource>keys.gnupg.net</resource> als de server om op terug te vallen?</"
+#~ "para>"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-256)"
+#~ msgstr "ECC (Brainpool P-256)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-384)"
+#~ msgstr "ECC (Brainpool P-384)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Brainpool P-512)"
+#~ msgstr "ECC (Brainpool P-512)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Curve25519)"
+#~ msgstr "ECC (Curve25519)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (Curve448)"
+#~ msgstr "ECC (Curve448)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-256)"
+#~ msgstr "ECC (NIST P-256)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-384)"
+#~ msgstr "ECC (NIST P-384)"
+
+#~ msgctxt "@info"
+#~ msgid "ECC (NIST P-521)"
+#~ msgstr "ECC (NIST P-521)"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 2048"
+#~ msgstr "RSA 2048"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 3072"
+#~ msgstr "RSA 3072"
+
+#~ msgctxt "@info"
+#~ msgid "RSA 4096"
+#~ msgstr "RSA 4096"
 
 #~ msgid "File Operations"
 #~ msgstr "Bestandsbewerkingen"

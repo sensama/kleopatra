@@ -34,7 +34,7 @@ project(kleopatra VERSION ${kleopatra_version})
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF_MIN_VERSION "5.246.0")
+set(KF_MIN_VERSION "5.248.0")
 set(KIDENTITYMANAGEMENT_VERSION "6.0.40")
 set(KMAILTRANSPORT_VERSION "6.0.40")
 set(AKONADI_MIME_VERSION "6.0.40")
@@ -48,7 +48,7 @@ set(GPG_ERROR_REQUIRED_VERSION "1.36")
 
 if (WIN32)
   set(KF6_WANT_VERSION "6.0.40")
-  set(KMIME_WANT_VERSION "5.246.0")
+  set(KMIME_WANT_VERSION "5.248.0")
 else ()
   set(KF6_WANT_VERSION ${KF_MIN_VERSION})
   set(KMIME_WANT_VERSION ${KMIME_VERSION})

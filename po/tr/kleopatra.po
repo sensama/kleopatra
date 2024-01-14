@@ -1,5 +1,5 @@
 # Translators:
-# SPDX-FileCopyrightText: 2022, 2023 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 # Adem Alp Yıldız <ademalp@kde.org.tr>, 2004.
 # Eren Türkay <eren@pardus.org.tr>, 2010.
 # Görkem Çetin <gorkem@kde.org>, 2004.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-13 00:38+0000\n"
-"PO-Revision-Date: 2023-12-27 14:36+0300\n"
+"PO-Revision-Date: 2024-01-13 22:52+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.85\n"
+"X-Generator: Lokalize 24.01.90\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1392,7 +1392,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Sertifikayı bir anahtar sunucusuna dışa aktarmak olanaklı değil; çünkü "
+"anahtar sunucularının kullanımı açıkça devre dışı bırakıldı."
 msgstr[1] ""
+"Sertifikaları bir anahtar sunucusuna dışa aktarmak olanaklı değil; çünkü "
+"anahtar sunucularının kullanımı açıkça devre dışı bırakıldı."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2933,6 +2937,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"OpenPGP sertifikalarını yenilemek olanaklı değil; çünkü anahtar "
+"sunucularının kullanımı açıkça devre dışı bırakıldı."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3643,6 +3649,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"OpenPGP sertifikaları aranırken ve karşıya yüklenirken kullanılacak anahtar "
+"sunucusunun adresini girin. Bir adres girmezseniz bir içsel öntanımlı "
+"kullanılacaktır. Bir OpenPGP anahtar sunucusunun kullanımını devre dışı "
+"bırakmak için <emphasis>none</emphasis> özel değerini kullanın."
 
 #: src/conf/dirservconfigpage.cpp:145
 #, kde-format
@@ -4842,10 +4852,9 @@ msgstr ""
 "şifrelenmemiş veya imzalanmamış olabilir mi?"
 
 #: src/crypto/decryptverifytask.cpp:1170
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "Şifre çözülüyor: %1..."
+msgstr "%1 şifresi çözülüyor..."
 
 #: src/crypto/decryptverifytask.cpp:1443
 #, kde-format
@@ -4871,28 +4880,22 @@ msgstr ""
 "olmayabilir mi?"
 
 #: src/crypto/decryptverifytask.cpp:1605
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Doğrulanıyor: %1..."
+msgstr "%1 doğrulanıyor..."
 
 #: src/crypto/decryptverifytask.cpp:1861
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
-msgstr "Doğrulama: <filename>%2</filename> ile <filename>%1</filename>..."
+msgstr "<filename>%1</filename>, <filename>%2</filename> ile doğrulanıyor..."
 
 #: src/crypto/decryptverifytask.cpp:1865
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "İmza doğrulanıyor: %1..."
+msgstr "%1 imzası doğrulanıyor..."
 
 #: src/crypto/decryptverifytask.cpp:1876
 #, kde-kuit-format
@@ -6403,19 +6406,16 @@ msgstr ""
 "olanaklı değildir."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Grupları yönet"
+msgstr "Alt Anahtarları Yönet"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Alt anahtarlar"
+msgstr "Alt Anahtarları Göster"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7115,7 +7115,7 @@ msgstr "Geçerlilik Periyodunu Değiştir"
 #: src/dialogs/expirydialog.cpp:235
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Birincil anahtarın son kullanım tarihi: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7221,18 +7221,16 @@ msgid "Import"
 msgstr "İçe Aktar"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Sertifikayla kullanım için bir ad ve e-posta adresi girin."
+msgstr "Eşleşen sertifikaları aramak için bir arama terimi girin."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Sertifikayla kullanım için bir ad ve e-posta adresi girin."
+msgstr "Eşleşen sertifikaları aramak için bir e-posta adresi girin."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7627,45 +7625,37 @@ msgid "Storage"
 msgstr "Depolama"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Geçerliliği Değiştir"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
-msgstr "OpenSSH Anahtarı Dışa Aktar"
+msgstr "OpenSSH Anahtarını Dışa Aktar"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
-msgstr "Yazdırılmış yedeği geri yükle"
+msgstr "Yazdırılmış Yedeği Geri Yükle"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
-msgstr "Akıllı karta aktar"
+msgstr "Akıllı Karta Aktar"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
-msgstr "Gizli alt anahtarı dışa aktar"
+msgstr "Gizli Alt Anahtarı Dışa Aktar"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Geçerliliği Değiştir"
 
@@ -8050,20 +8040,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "EPOSTA için ipucu"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Bu metin, OpenPGP ve S/MIME sertifikalarının e-posta alanı için yer tutucu "
-"olarak kullanılacaktır."
+"Bu metin, OpenPGP sertifikalarının e-posta adresi alanının üstünde ve S/MIME "
+"sertifikaları için bu alanda yer tutucu olarak gösterilecektir."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8086,10 +8073,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "EPOSTA için Yer Tutucu"
+msgstr "EPOSTA değeri"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8099,23 +8085,21 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"OpenPGP ve S/MIME sertifikalarının e-posta adresi alanı için önceden "
+"doldurulan değer. Bu, EPOSTA_prefill'i geçersiz kılar. EPOSTA_prefill için "
+"sistem ayarı hiç yoksa veya kullanıma uygun değilse yararlıdır."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "AD için ipucu"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
-"Bu metin, OpenPGP sertifikalarının ad alanı için yer tutucu olarak "
-"kullanılacaktır."
+msgstr "Bu metin OpenPGP sertifikalarının ad alanının üstünde gösterilecektir."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8138,10 +8122,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "AD için Yer Tutucu"
+msgstr "AD değeri"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8151,6 +8134,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"OpenPGP ve S/MIME sertifikalarının ad alanı için önceden doldurulan değer. "
+"Bu, AD_prefill'i geçersiz kılar. AD_prefill için sistem ayarı hiç yoksa veya "
+"kullanıma uygun değilse yararlıdır."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52

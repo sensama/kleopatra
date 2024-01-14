@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-13 00:38+0000\n"
-"PO-Revision-Date: 2024-01-03 14:17+0100\n"
+"PO-Revision-Date: 2024-01-13 09:04+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -1370,7 +1370,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Eksporti la atestilon al ŝlosila servilo ne eblas ĉar la uzado de ŝlosilaj "
+"serviloj estis malŝaltita eksplicite."
 msgstr[1] ""
+"Eksporti la atestilojn al ŝlosila servilo ne eblas ĉar la uzado de ŝlosilaj "
+"serviloj estis malŝaltita eksplicite."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2911,6 +2915,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Refreŝigi la OpenPGP-atestilojn ne eblas ĉar la uzado de ŝlosilserviloj "
+"estis malŝaltita eksplicite."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3610,6 +3616,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Enigu la adreson de la ŝlosilservilo uzenda dum serĉado por OpenPGP-"
+"atestiloj kaj dum alŝuto de OpenPGP-atestiloj. Se vi ne enigas adreson tiam "
+"interna defaŭlto estos uzata. Por malŝalti la uzon de OpenPGP-ŝlosilservilo "
+"enigu la specialan valoron <emphasis>none</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:145
 #, kde-format
@@ -4818,10 +4828,9 @@ msgstr ""
 "eble ĝi estas nek ĉifrteksto nek subskribo?"
 
 #: src/crypto/decryptverifytask.cpp:1170
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "Malĉifri: %1..."
+msgstr "Malĉifrante %1..."
 
 #: src/crypto/decryptverifytask.cpp:1443
 #, kde-format
@@ -4847,28 +4856,22 @@ msgstr ""
 "tute ne estas subskribo?"
 
 #: src/crypto/decryptverifytask.cpp:1605
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Kontrolante: %1..."
+msgstr "Kontrolante %1..."
 
 #: src/crypto/decryptverifytask.cpp:1861
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
-msgstr "Kontrolante: <filename>%1</filename> kun <filename>%2</filename>..."
+msgstr "Konfirmante: <filename>%1</filename> per <filename>%2</filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1865
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "Kontrolante subskribon: %1..."
+msgstr "Konfirmante subskribon %1..."
 
 #: src/crypto/decryptverifytask.cpp:1876
 #, kde-kuit-format
@@ -4876,7 +4879,7 @@ msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
 "data.The second file is signature."
 msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgstr "Kontrolita <filename>%1</filename> kun <filename>%2</filename>"
+msgstr "Konfirmis <filename>%1</filename> per <filename>%2</filename>"
 
 #: src/crypto/encryptemailcontroller.cpp:121
 #, kde-format
@@ -6378,19 +6381,16 @@ msgstr ""
 "post kiam ĝi estas publikigita."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Administri grupojn"
+msgstr "Administri Subŝlosilojn"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Subŝlosiloj"
+msgstr "Montri Subŝlosilojn"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7081,7 +7081,7 @@ msgstr "Ŝanĝi Validperiodon"
 #: src/dialogs/expirydialog.cpp:235
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Eksvalidiĝo de ĉefŝlosilo: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7186,18 +7186,16 @@ msgid "Import"
 msgstr "Importi"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Enigi nomon kaj retpoŝtadreson por uzi por la atestilo."
+msgstr "Enigu serĉterminon por serĉi pri kongruaj atestiloj."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Enigi nomon kaj retpoŝtadreson por uzi por la atestilo."
+msgstr "Enigu retpoŝtadreson por serĉi pri kongruaj atestiloj."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7593,45 +7591,37 @@ msgid "Storage"
 msgstr "Konservado"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
-msgstr "Ŝanĝi Validecon"
+msgstr "Ŝanĝi validecon"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Eksporti OpenSSH-ŝlosilon"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
-msgstr "Restarigi presitan sekurkopion"
+msgstr "Restaŭri presitan sekurkopion"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
-msgstr "Transigi al smartcard"
+msgstr "Transdoni al smartcard"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Eksporti sekretan subŝlosilon"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Ŝanĝi Validecon"
 
@@ -8014,20 +8004,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Helpeto por EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Ĉi tiu teksto estos uzata kiel lokokupilo por la retpoŝtadresa kampo de "
-"OpenPGP kaj S/MIME-atestiloj."
+"Ĉi tiu teksto estos montrata super la retpoŝtadresa kampo de OpenPGP-"
+"atestiloj kaj kiel lokokupilo en tiu kampo por S/MIME-atestiloj."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8051,10 +8038,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Anstataŭilo por EMAIL"
+msgstr "Valoro por EMAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8064,23 +8050,22 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Antaŭplenigita valoro por la retpoŝtadresa kampo de OpenPGP- kaj S/MIME-"
+"atestiloj. Ĉi tio superregos EMAIL_prefill. Ĝi estas utila se neniu aŭ "
+"nekonvenaj sistemagordoj estas trovitaj por EMAIL_prefill."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Helpeto por NAME"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
-"Ĉi tiu teksto estos uzata kiel lokokupilo por la nomkampo de OpenPGP-"
-"atestiloj."
+"Ĉi tiu teksto estos montrata kiel super la nomkampo de OpenPGP-atestiloj."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8104,10 +8089,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Anstataŭilo por NAME"
+msgstr "Valoro por NAME"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8117,6 +8101,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Antaŭplenigita valoro por la nomkampo de OpenPGP-atestiloj. Ĉi tio "
+"superregos NAME_prefill. Ĝi estas utila se neniu aŭ netaŭga sistemagordo "
+"estas trovita por NAME_prefill."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -12382,87 +12369,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
-#~ "para><para>You can configure OpenPGP directory servers in "
-#~ "<application>Kleopatra</application>'s configuration dialog.</"
-#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
-#~ "resource> as the server to export to?</para>"
-#~ msgstr ""
-#~ "<para>Neniu OpenPGP-dosierujoj estas agordita.</para><para>Ĉar neniu "
-#~ "estas agordita, <application>Kleopatra</application> uzos <resource>keys."
-#~ "gnupg.net</resource> kiel la servilon por eksporti al.</para><para>Vi "
-#~ "povas agordi OpenPGP-dosierujojn en la agorda dialogo de "
-#~ "<application>Kleopatra</application>.</para><para>Ĉu vi volas daŭrigi per "
-#~ "<resource>keys.gnupg.net </resource> kiel la servilo por eksporti?</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
-#~ "not all of the certificates carry the name of their preferred certificate "
-#~ "server (few do), a fallback server is needed to fetch from.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
-#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
-#~ "configuration dialog.</para><para>Do you want to continue with "
-#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
-#~ msgstr ""
-#~ "<para>Neniu OpenPGP-dosierujservoj estas agordita.</para><para>Se ne ĉiuj "
-#~ "atestiloj portas la nomon de sia preferata atestilo (malmultaj faras), "
-#~ "rezervservilo estas necesa por preni de.</para> <para>Ĉar neniu estas "
-#~ "agordita, <application>Kleopatra</application> uzos <resource>keys.gnupg."
-#~ "net</resource> kiel rezervilon.</para><para>Vi povas agordi servilojn de "
-#~ "dosierujo OpenPGP en la agordo de Kleopatra. dialogo.</para><para>Ĉu vi "
-#~ "volas daŭrigi kun <resource>keys.gnupg.net</resource> kiel rezerva "
-#~ "servilo?</para>"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-256)"
-#~ msgstr "ECC (Brainpool P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-384)"
-#~ msgstr "ECC (Brainpool P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-512)"
-#~ msgstr "ECC (Brainpool P-512)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve25519)"
-#~ msgstr "ECC (Kurbo25519)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve448)"
-#~ msgstr "ECC (Kurbo448)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-256)"
-#~ msgstr "ECC (NIST P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-384)"
-#~ msgstr "ECC (NIST P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-521)"
-#~ msgstr "ECC (NIST P-521)"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 2048"
-#~ msgstr "RSA 2048"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 3072"
-#~ msgstr "RSA 3072"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 4096"
-#~ msgstr "RSA 4096"
-
-#~ msgid "File Operations"
-#~ msgstr "Dosieraj Operacioj"

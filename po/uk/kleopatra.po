@@ -5,20 +5,20 @@
 #
 # Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2004, 2005, 2006, 2007.
 # Andriy Rysin <rysin@kde.org>, 2006.
-# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-13 00:38+0000\n"
-"PO-Revision-Date: 2023-11-07 13:19+0200\n"
+"PO-Revision-Date: 2024-01-13 09:49+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 23.04.1\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
@@ -1397,9 +1397,17 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Експортування сертифікатів на сервер ключів є неможливим, оскільки "
+"використання серверів ключів було явним чином вимкнено."
 msgstr[1] ""
+"Експортування сертифікатів на сервер ключів є неможливим, оскільки "
+"використання серверів ключів було явним чином вимкнено."
 msgstr[2] ""
+"Експортування сертифікатів на сервер ключів є неможливим, оскільки "
+"використання серверів ключів було явним чином вимкнено."
 msgstr[3] ""
+"Експортування сертифіката на сервер ключів є неможливим, оскільки "
+"використання серверів ключів було явним чином вимкнено."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2973,6 +2981,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Освіження сертифікатів OpenPGP неможливе, оскільки використання серверів "
+"ключів було явним чином вимкнено."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3700,6 +3710,11 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Введіть адресу сервера ключів, яким слід скористатися при пошуку "
+"сертифікатів OpenPGP і для вивантаження сертифікатів OpenPGP. Якщо ви не "
+"вкажете адресу, буде використано типове вбудоване значення. Щоб вимкнути "
+"використання сервера ключів OpenPGP, введіть особливе значення "
+"<emphasis>none</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:145
 #, kde-format
@@ -4925,10 +4940,9 @@ msgstr ""
 "OpenPGP — можливо, це не шифрований текст і не підпис?"
 
 #: src/crypto/decryptverifytask.cpp:1170
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "Розшифрування: %1…"
+msgstr "Розшифрування %1…"
 
 #: src/crypto/decryptverifytask.cpp:1443
 #, kde-format
@@ -4954,29 +4968,23 @@ msgstr ""
 "підпис?"
 
 #: src/crypto/decryptverifytask.cpp:1605
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Перевірка: %1…"
+msgstr "Перевірка %1…"
 
 #: src/crypto/decryptverifytask.cpp:1861
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
-"Перевіряємо: <filename>%1</filename> за допомогою <filename>%2</filename>…"
+"Перевіряємо <filename>%1</filename> за допомогою <filename>%2</filename>…"
 
 #: src/crypto/decryptverifytask.cpp:1865
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "Перевірка підпису: %1…"
+msgstr "Перевірка підпису %1…"
 
 #: src/crypto/decryptverifytask.cpp:1876
 #, kde-kuit-format
@@ -6502,19 +6510,16 @@ msgstr ""
 "оприлюднення."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Керувати групами"
+msgstr "Керувати підключами"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Підключі"
+msgstr "Показати підключі"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7241,7 +7246,7 @@ msgstr "Зміна кінця строку дії"
 #: src/dialogs/expirydialog.cpp:235
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Завершення строку дії основного ключа: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7347,22 +7352,16 @@ msgid "Import"
 msgstr "Імпортувати"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr ""
-"Введіть ім'я і адресу електронної пошти, яким слід скористатися для цього "
-"сертифіката."
+msgstr "Введіть критерій відповідності для пошуку сертифікатів."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr ""
-"Введіть ім'я і адресу електронної пошти, яким слід скористатися для цього "
-"сертифіката."
+msgstr "Введіть адресу електронної пошти для пошуку відповідних сертифікатів."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7766,45 +7765,37 @@ msgid "Storage"
 msgstr "Сховище даних"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Змінити чинність"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Експортувати ключ OpenSSH"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Відновити із роздрукованої резервної копії"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Перенести на картку пам'яті"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Експортувати закритий підключ"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Змінити чинність"
 
@@ -8197,20 +8188,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Підказка щодо EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Цей текст буде використано як текст-заповнювач для поля адреси електронної "
-"пошти сертифікатів S/MIME."
+"Цей текст буде показано над полем адреси електронної пошти для сертифікатів "
+"OpenPGP та як заповнювач у відповідному полі сертифікатів S/MIME."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8234,10 +8222,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Заповнювач для EMAIL"
+msgstr "Значення EMAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8247,23 +8234,22 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Стандартне значення для поля адреси електронної пошти сертифікатів OpenPGP і "
+"S/MIME. Має вищий пріоритет за EMAIL_prefill. Корисно якщо для "
+"загальносистемного параметра EMAIL_prefill не вказано значення або вказано "
+"непридатне значення."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Підказка щодо NAME"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
-"Цей текст буде використано як текст-заповнювач для поля імені сертифікатів "
-"OpenPGP."
+msgstr "Цей текст буде показано над полем назви сертифікатів OpenPGP."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8287,10 +8273,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Заповнювач для NAME"
+msgstr "Значення NAME"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8300,6 +8285,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Стандартний вміст для поля назви сертифікатів OpenPGP. Має вищий пріоритет "
+"за NAME_prefill. Корисний, якщо для загальносистемного параметра "
+"NAME_prefill не вказано значення або вказано непридатне значення."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52

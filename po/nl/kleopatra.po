@@ -3,20 +3,20 @@
 # Rinse de Vries <rinse@kde.nl>, 2004.
 # Tom Albers <toma@omat.nl>, 2004.
 # Rinse de Vries <rinsedevries@kde.nl>, 2004, 2010.
-# SPDX-FileCopyrightText: 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-13 00:38+0000\n"
-"PO-Revision-Date: 2023-11-07 09:50+0100\n"
+"PO-Revision-Date: 2024-01-13 13:13+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.2\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -24,7 +24,7 @@ msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 "Bram Schoenmakers -  2004; 2005; 2007,Rinse de Vries - 2004; 2008,Tom Albers "
-"- 2004,Freek de Kruijf - 2008 t/m 2023"
+"- 2004,Freek de Kruijf - 2008 t/m 2024"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -1400,7 +1400,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Het certificaat exporteren naar een sleutelserver is niet mogelijk omdat het "
+"gebruik van sleutelservers expliciet is uitgeschakeld."
 msgstr[1] ""
+"De certificaten exporteren naar een sleutelserver is niet mogelijk omdat het "
+"gebruik van sleutelservers expliciet is uitgeschakeld."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2961,6 +2965,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Vernieuwen van OpenPGP certificaten is niet mogelijk omdat het gebruik van "
+"sleutelservers expliciet is uitgeschakeld."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3675,6 +3681,11 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Voer het adres in van de te gebruiken sleutelserver bij zoeken naar OpenPGP "
+"certificaten en bij uploaden van OpenPGP certificaten. Als u geen adres "
+"invoert dan zal een interne standaard worden gebruikt. Om het gebruik van "
+"een OpenPGP sleutelserver uit te schakelen voer de speciale waarde "
+"<emphasis>none</emphasis> in."
 
 #: src/conf/dirservconfigpage.cpp:145
 #, kde-format
@@ -4898,10 +4909,9 @@ msgstr ""
 "versleuteltekst is - misschien is het geen van beide?"
 
 #: src/crypto/decryptverifytask.cpp:1170
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "Ontcijferen: %1..."
+msgstr "Ontcijferen van %1..."
 
 #: src/crypto/decryptverifytask.cpp:1443
 #, kde-format
@@ -4927,17 +4937,12 @@ msgstr ""
 "misschien is het helemaal geen ondertekening?"
 
 #: src/crypto/decryptverifytask.cpp:1605
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Verifiëren: %1..."
+msgstr "Verifiëren van %1..."
 
 #: src/crypto/decryptverifytask.cpp:1861
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
@@ -4947,10 +4952,9 @@ msgstr ""
 "filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1865
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "Ondertekening verifiëren: %1..."
+msgstr "Ondertekening verifiëren %1..."
 
 #: src/crypto/decryptverifytask.cpp:1876
 #, kde-kuit-format
@@ -6475,19 +6479,16 @@ msgstr ""
 "nadat het is gepubliceerd."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Groepen beheren"
+msgstr "Sub-sleutels beheren"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Sub-sleutels"
+msgstr "Sub-sleutels tonen"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7195,7 +7196,7 @@ msgstr "Geldigheidsperiode wijzigen"
 #: src/dialogs/expirydialog.cpp:235
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Vervallen van geldigheid van primaire sleutel: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7301,18 +7302,16 @@ msgid "Import"
 msgstr "Importeren"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Voer een naam en e-mailadres in om te gebruiken voor het certificaat."
+msgstr "Voer een zoekterm in om te zoeken naar overeenkomende certificaten."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Voer een naam en e-mailadres in om te gebruiken voor het certificaat."
+msgstr "Voer een e-mailadres in om te zoeken naar overeenkomende certificaten."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7712,45 +7711,37 @@ msgid "Storage"
 msgstr "Opslag"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Geldigheid wijzigen"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "OpenSSH-sleutel exporteren"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Afgedrukte reservekopie herstellen"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Naar smartcard overbrengen"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Geheime sub-sleutel exporteren"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Geldigheid wijzigen"
 
@@ -8138,20 +8129,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Tip voor E-MAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Deze tekst zal gebruikt worden als plaatshoudertekst voor het veld e-"
-"mailadres van OpenPGP en S/MIME certificaten."
+"Deze tekst zal getoond worden boven het e-mailadresveld van OpenPGP "
+"certificaten en als plaatshouder in dat veld voor S/MIME certificaten."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8175,10 +8163,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Plaatshouder voor E-MAIL"
+msgstr "Waarde van E-MAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8188,23 +8175,22 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Vooraf ingevulde waarde voor het e-mailadresveld van OpenPGP en S/MIME "
+"certificaten. Dit zal EMAIL_prefill overschrijven. Het is nuttig als geen of "
+"onbruikbare systeeminstellingen zijn gevonden voor EMAIL_prefill."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Tip voor NAAM"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
-"Deze tekst zal gebruikt worden als plaatshoudertekst voor het naamveld van "
-"OpenPGP certificaten."
+"Deze tekst zal getoond worden als het naamveld van OpenPGP certificaten."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8228,10 +8214,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Plaatshouder voor NAAM"
+msgstr "Waarde van NAAM"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8241,6 +8226,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Vooraf ingevulde waarde voor het naamveld van OpenPGP. Dit zal NAME_prefill "
+"overschrijven. Het is nuttig als geen of onbruikbare systeeminstellingen "
+"zijn gevonden voor NAME_prefill."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52

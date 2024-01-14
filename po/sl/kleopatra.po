@@ -1,27 +1,27 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kleopatra package.
 #
 # Gregor Rakar <gregor.rakar@kiss.si>, 2004, 2005.
 # Andrej Vernekar <andrej.vernekar@moj.net>, 2005, 2008, 2009.
 # Jure Repinc <jlp@holodeck1.com>, 2006, 2013.
 # Andrej Mernik <andrejm@ubuntu.si>, 2016, 2017.
-# Matjaž Jeran <matjaz.jeran@amis.net>, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2019, 2020, 2021, 2022, 2023, 2024 Matjaž Jeran <matjaz.jeran@amis.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-13 00:38+0000\n"
-"PO-Revision-Date: 2023-11-07 18:14+0100\n"
+"PO-Revision-Date: 2024-01-13 08:47+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1392,9 +1392,17 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Izvoz potrdila na strežnik ključev ni mogoč, ker je bila uporaba strežnikov "
+"ključev izrecno onemogočena."
 msgstr[1] ""
+"Izvoz potrdil na strežnik ključev ni mogoč, ker je bila uporaba strežnikov "
+"ključev izrecno onemogočena."
 msgstr[2] ""
+"Izvoz potrdil na strežnik ključev ni mogoč, ker je bila uporaba strežnikov "
+"ključev izrecno onemogočena."
 msgstr[3] ""
+"Izvoz potrdil na strežnik ključev ni mogoč, ker je bila uporaba strežnikov "
+"ključev izrecno onemogočena."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2951,6 +2959,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Osveževanje potrdil OpenPGP ni mogoče, ker je bila raba strežnikov ključev "
+"so izrecno onemogočena."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3671,6 +3681,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Vnesite naslov strežnika ključev, ki ga želite uporabiti pri iskanju OpenPGP "
+"potrdil in pri prenosu potrdil OpenPGP tja. Če ne vnesete naslova, potem bo "
+"uporabljen interni privzeti naslov. Če želite onemogočiti rabo strežnika "
+"ključev OpenPGP vnesite posebno vrednost <emphasis>none</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:145
 #, kde-format
@@ -4881,8 +4895,7 @@ msgstr ""
 "to ni niti šifrirano besedilo niti podpis?"
 
 #: src/crypto/decryptverifytask.cpp:1170
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
 msgstr "Dešifriranje: %1..."
 
@@ -4910,17 +4923,12 @@ msgstr ""
 "sploh ni podpis?"
 
 #: src/crypto/decryptverifytask.cpp:1605
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Preverjanje: %1 ..."
+msgstr "Preverjanje: %1..."
 
 #: src/crypto/decryptverifytask.cpp:1861
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
@@ -4928,8 +4936,7 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Preverjanje: <filename>%1</filename> z <filename>%2</filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1865
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
 msgstr "Preverjanje podpisa: %1..."
 
@@ -6443,19 +6450,16 @@ msgstr ""
 "ni več mogoče umakniti."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Upravljaj grupe"
+msgstr "Upravljanje podključev"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Podključi"
+msgstr "Prikaži podključe"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7165,7 +7169,7 @@ msgstr "Spremeni obdobje veljavnosti"
 #: src/dialogs/expirydialog.cpp:235
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Potek primarnega ključa: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7271,18 +7275,16 @@ msgid "Import"
 msgstr "Uvozi"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Vnesite ime in naslov e-pošte za uporabo tega potrdila."
+msgstr "Vnesite iskalni izraz za iskanje ustreznih potrdil."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Vnesite ime in naslov e-pošte za uporabo tega potrdila."
+msgstr "Vnesite e-poštni naslov za iskanje ustreznih potrdil."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7678,45 +7680,37 @@ msgid "Storage"
 msgstr "Hramba"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Spremeni veljavnost"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Izvozi ključ OpenSSH"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Obnovi tiskano varovalno kopijo"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Prenesi na pametno kartico"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Izvozi tajni podključ"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Spremeni veljavnost"
 
@@ -8098,20 +8092,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Namig za EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"To besedilo bo uporabljeno kot besedilo rubrike za polje e-poštnega naslova "
-"potrdil OpenPGP ali S/MIME."
+"To besedilo bo prikazano nad poljem za e-poštni naslov OpenPGP potrdila in "
+"kot nadomestni znak v tem polju za potrdila S/MIME."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8135,10 +8126,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Rubrika za EMAIL"
+msgstr "Vrednost za EMAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8148,23 +8138,21 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Vnaprej izpolnjena vrednost za polje e-poštnega naslova OpenPGP in S/MIME "
+"potrdila. To bo preglasilo EMAIL_prefill. Uporabno je, če ne obstaja oz. ni "
+"najdene ustrezne sistemske nastavitve za EMAIL_prefill."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Namig za NAME"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
-"To besedilo bo uporabljeno kot besedilo rubrike za polje imena potrdil "
-"OpenPGP."
+msgstr "To besedilo bo prikazano nad poljem z imenom potrdil OpenPGP."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8188,10 +8176,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Rubrika za NAME"
+msgstr "Vrednost za NAME"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8201,6 +8188,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Vnaprej izpolnjena vrednost za polje z imenom potrdil OpenPGP. To bo "
+"preglasilo NAME_prefill. To je uporabno, če ne obstaja ali je najdena "
+"sistemska nastavitev neustrezna za NAME_prefill."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52

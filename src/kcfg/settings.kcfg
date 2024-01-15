@@ -66,6 +66,11 @@
      <whatsthis>This setting specifies how many days a new OpenPGP key is valid at most, or, in other words, after how many days the new key will expire at the latest. If this setting is not set or if it is set to a negative value, then unlimited validity is allowed.</whatsthis>
      <default>-1</default>
    </entry>
+   <entry key="DesignatedRevoker" type="String">
+     <label>Designated revoker</label>
+     <whatsthis>The fingerprint of a designated revoker to be added to each new key. Must be given in the form "algo:fpr [sensitive]". Algo is the public key algorithm of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the fingerprint of the designated revoker. The optional ‘sensitive’ flag marks the designated revoker as sensitive information. Only v4 keys may be designated revokers. GnuPG 2.4.4 is required for adding sensitive revokers.</whatsthis>
+     <default></default>
+   </entry>
    <entry key="HideAdvanced" type="Bool">
      <label>Hide advanced settings</label>
      <whatsthis>If true, hides the advanced settings button in the new certificate wizard.</whatsthis>

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-13 00:38+0000\n"
-"PO-Revision-Date: 2024-01-12 17:45+0100\n"
+"PO-Revision-Date: 2024-01-13 16:01+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -1399,7 +1399,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"L'exportació del certificat a un servidor de claus no és possible perquè "
+"l'ús de servidors de claus s'ha desactivat explícitament."
 msgstr[1] ""
+"L'exportació dels certificats cap a un servidor de claus no és possible "
+"perquè l'ús de servidors de claus s'ha desactivat explícitament."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2960,6 +2964,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"L'actualització dels certificats OpenPGP no és possible perquè l'ús de "
+"servidors de claus s'ha desactivat explícitament."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3676,6 +3682,11 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Introduïu l'adreça del servidor de claus que s'utilitzarà en buscar "
+"certificats OpenPGP i en pujar certificats OpenPGP. Si no introduïu cap "
+"adreça, s'utilitzarà un valor predeterminat intern. Per a desactivar l'ús "
+"d'un servidor de claus OpenPGP introduïu el valor especial <emphasis>none</"
+"emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:145
 #, kde-format
@@ -4901,10 +4912,9 @@ msgstr ""
 "OpenPGP. Potser no es tracta de text xifrat o una signatura?"
 
 #: src/crypto/decryptverifytask.cpp:1170
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "S'està desencriptant: %1..."
+msgstr "S'està desencriptant %1..."
 
 #: src/crypto/decryptverifytask.cpp:1443
 #, kde-format
@@ -4930,29 +4940,23 @@ msgstr ""
 "Potser no és cap signatura?"
 
 #: src/crypto/decryptverifytask.cpp:1605
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "S'està verificant: %1..."
+msgstr "S'està verificant %1..."
 
 #: src/crypto/decryptverifytask.cpp:1861
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
-"S'està verificant: <filename>%1</filename> amb <filename>%2</filename>..."
+"S'està verificant <filename>%1</filename> amb <filename>%2</filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1865
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "S'està verificant la signatura: %1..."
+msgstr "S'està verificant la signatura %1..."
 
 #: src/crypto/decryptverifytask.cpp:1876
 #, kde-kuit-format
@@ -6470,19 +6474,16 @@ msgstr ""
 "és possible retirar un certificat de revocació una vegada ha sigut publicat."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Gestiona grups"
+msgstr "Gestiona les subclaus"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Subclaus"
+msgstr "Mostra les subclaus"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7187,7 +7188,7 @@ msgstr "Canvia el període de validesa"
 #: src/dialogs/expirydialog.cpp:235
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Expiració de la clau primària: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7293,22 +7294,16 @@ msgid "Import"
 msgstr "Importa"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr ""
-"Introduïu un nom i una adreça de correu electrònic que s'utilitzarà per al "
-"certificat."
+msgstr "Introduïu un terme de busca per a buscar certificats coincidents."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr ""
-"Introduïu un nom i una adreça de correu electrònic que s'utilitzarà per al "
-"certificat."
+msgstr "Introduïu una adreça de correu per a buscar certificats coincidents."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7713,45 +7708,37 @@ msgid "Storage"
 msgstr "Emmagatzematge"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Canvia la validesa"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Exporta la clau OpenSSH"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Restaura una còpia de seguretat impresa"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Transferix cap a la targeta intel·ligent"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Exporta la subclau secreta"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Canvia la validesa"
 
@@ -8141,20 +8128,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Consell per a EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Este text s'utilitzarà com a text de marcador de posició per al camp de "
-"l'adreça de correu electrònic dels certificats OpenPGP i S/MIME."
+"Este text es mostrarà damunt del camp de l'adreça de correu electrònic dels "
+"certificats OpenPGP i com a marcador de posició per als certificats S/MIME."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8179,10 +8163,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Marcador de posició per a EMAIL"
+msgstr "Valor d'EMAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8192,23 +8175,21 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Valor emplenat prèviament per al camp d'adreça de correu electrònic dels "
+"certificats OpenPGP i S/MIME. Açò substituirà EMAIL_prefill. És útil si no "
+"es troba cap configuració del sistema adequada."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Consell per a NAME"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
-"Este text s'utilitzarà com a text de marcador de posició per al camp de nom "
-"dels certificats S/MIME."
+msgstr "Este text es mostrarà damunt del camp de nom dels certificats OpenPGP."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8232,10 +8213,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Marcador de posició per a NAME"
+msgstr "Valor de NAME"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8245,6 +8225,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Valor emplenat prèviament per al camp de nom dels certificats OpenPGP. Açò "
+"substituirà NAME_prefill. És útil si no es troba cap configuració del "
+"sistema adequada."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-13 00:38+0000\n"
+"POT-Creation-Date: 2024-01-16 00:38+0000\n"
 "PO-Revision-Date: 2023-08-06 23:11+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2725,20 +2725,20 @@ msgstr "설정한 디렉터리 서버 없음"
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME 인증서 서명 요청 생성이 허용되어 있지 않습니다."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:157
+#: src/commands/newopenpgpcertificatecommand.cpp:161
 #: src/newcertificatewizard/keycreationpage.cpp:97
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "키 쌍 생성을 시작할 수 없음: %1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:167
+#: src/commands/newopenpgpcertificatecommand.cpp:171
 #: src/newcertificatewizard/keycreationpage.cpp:51
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "키 쌍 생성 중..."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:168
+#: src/commands/newopenpgpcertificatecommand.cpp:172
 #: src/newcertificatewizard/keycreationpage.cpp:55
 #, kde-format
 msgid ""
@@ -2747,7 +2747,7 @@ msgid ""
 msgstr ""
 "키 생성에는 다량의 난수가 필요합니다. 이 과정에는 시간이 걸릴 수 있습니다..."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:201
+#: src/commands/newopenpgpcertificatecommand.cpp:205
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
@@ -2756,7 +2756,7 @@ msgstr ""
 "<para>새 OpenPGP 인증서를 생성했습니다.</para><para>새 인증서의 지문: %1</"
 "para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:215
+#: src/commands/newopenpgpcertificatecommand.cpp:219
 #, kde-kuit-format
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
@@ -2765,7 +2765,7 @@ msgstr ""
 "<para>새 OpenPGP 인증서 생성에 실패했습니다.</para><para>오류: <message>%1</"
 "message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:221
+#: src/commands/newopenpgpcertificatecommand.cpp:225
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
@@ -2775,7 +2775,7 @@ msgstr ""
 "<para>새 OpenPGP 인증서를 생성했지만 키 모음에서 찾을 수 없습니다.</"
 "para><para>새 인증서의 지문: <nl/>%1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:228
+#: src/commands/newopenpgpcertificatecommand.cpp:232
 #: src/crypto/newsignencryptemailcontroller.cpp:382
 #: src/crypto/newsignencryptemailcontroller.cpp:384
 #, kde-format
@@ -3521,7 +3521,7 @@ msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr "고대비 모드가 활성화되어 있으므로 색상을 미리 볼 수 없습니다."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:149
+#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN 속성 순서"
@@ -8210,32 +8210,50 @@ msgstr ""
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
 #, kde-format
+msgid "Designated revoker"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:71
+#, kde-format
+msgid ""
+"The fingerprint of a designated revoker to be added to each new key. Must be "
+"given in the form \"algo:fpr [sensitive]\". Algo is the public key algorithm "
+"of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the fingerprint "
+"of the designated revoker. The optional ‘sensitive’ flag marks the "
+"designated revoker as sensitive information. Only v4 keys may be designated "
+"revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
+msgstr ""
+
+#. i18n: ectx: label, entry, group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:75
+#, kde-format
 msgid "Hide advanced settings"
 msgstr "고급 설정 숨기기"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:71
+#: src/kcfg/settings.kcfg:76
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
 msgstr "이 옵션을 설정하면 새 인증서 마법사의 고급 설정 단추를 숨깁니다."
 
 #. i18n: ectx: label, entry, group (Certification)
-#: src/kcfg/settings.kcfg:77
+#: src/kcfg/settings.kcfg:82
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Default certification validity"
 msgstr "인증서 유효성 표시"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
-#: src/kcfg/settings.kcfg:78
+#: src/kcfg/settings.kcfg:83
 #, fuzzy, kde-format
 #| msgid "Specifies the default validity period of new OpenPGP keys in days."
 msgid "Specifies the default validity of certifications in days."
 msgstr "새로운 OpenPGP 키의 기본 유효 기간을 일 단위로 설정합니다."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:84
 #, fuzzy, kde-format
 #| msgid ""
 #| "This setting specifies how many days a new OpenPGP key is valid at least, "
@@ -8250,32 +8268,32 @@ msgstr ""
 "키가 만료되지 않습니다."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:90
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr "체크섬 파일을 생성할 때 사용할 프로그램"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:91
+#: src/kcfg/settings.kcfg:96
 #, kde-format
 msgid "Show results after signing"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:92
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:96
+#: src/kcfg/settings.kcfg:101
 #, kde-format
 msgid "Show results after encryption"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:102
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -8283,19 +8301,19 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:103
+#: src/kcfg/settings.kcfg:108
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "S/MIME 활성화"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:104
+#: src/kcfg/settings.kcfg:109
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "S/MIME(CMS) 지원을 활성화합니다."
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:110
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -8305,19 +8323,19 @@ msgstr ""
 "다."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:114
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "S/MIME 인증서 생성 허용"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:110
+#: src/kcfg/settings.kcfg:115
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "S/MIME 인증서 서명 요청 생성을 허용합니다."
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:111
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -8327,19 +8345,19 @@ msgstr ""
 "니다."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:115
+#: src/kcfg/settings.kcfg:120
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "S/MIME 인증서로 서명 허용"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:116
+#: src/kcfg/settings.kcfg:121
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr "텍스트나 파일을 S/MIME 인증서로 서명하는 것을 허용합니다."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:117
+#: src/kcfg/settings.kcfg:122
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -8348,73 +8366,73 @@ msgstr ""
 "거짓으로 설정하면 Kleopatra에서 S/MIME 인증서 서명 기능을 제공하지 않습니다."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:123
+#: src/kcfg/settings.kcfg:128
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "모양 설정 표시"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:127
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "암호화 작업 설정 표시"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:131
+#: src/kcfg/settings.kcfg:136
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "디렉터리 서비스 설정 표시"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:135
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "GnuPG 시스템 설정 표시"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:139
+#: src/kcfg/settings.kcfg:144
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "스마트카드 설정 표시"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:143
+#: src/kcfg/settings.kcfg:148
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "S/MIME 검증 설정 표시"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:150
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "X.509 인증서의 DN 속성의 표시 순서를 설정합니다."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:156
+#: src/kcfg/settings.kcfg:161
 #, kde-format
 msgid "Enable Groups"
 msgstr "그룹 활성화"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:157
+#: src/kcfg/settings.kcfg:162
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "키 그룹을 사용합니다."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:158
+#: src/kcfg/settings.kcfg:163
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "수신자 목록을 만드는 키 그룹을 사용합니다."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:164
+#: src/kcfg/settings.kcfg:169
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "가져온 후 서명자 키 가져오기"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:167
+#: src/kcfg/settings.kcfg:172
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8428,13 +8446,13 @@ msgstr ""
 "         신뢰할 수 있는 도입자와 함께 사용할 때 유용합니다."
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:176
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:174
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -8446,14 +8464,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:185
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "Notify about upcoming certificate expiration"
 msgstr "(일치하는 인증서 찾을 수 없음)"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:182
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8461,13 +8479,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:188
+#: src/kcfg/settings.kcfg:193
 #, kde-format
 msgid "URL schemes to block"
 msgstr "차단할 URL 스키마"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:190
+#: src/kcfg/settings.kcfg:195
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8478,13 +8496,13 @@ msgstr ""
 "         앱에서 특정 URL의 외부 앱을 여는 것을 차단할 수 있습니다."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:196
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "항상 키 서버에서 스마트카드 인증서 검색"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:197
+#: src/kcfg/settings.kcfg:202
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8492,7 +8510,7 @@ msgid ""
 msgstr "스마트카드 키에 해당하는 인증서를 설정한 키 서버에서 검색합니다."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:199
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8505,19 +8523,19 @@ msgstr ""
 "        기본값으로 LDAP 키 서버에서만 이 작업을 수행합니다."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:203
+#: src/kcfg/settings.kcfg:208
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "PKCS#15 스마트카드에서 S/MIME 인증서 불러오기 시도"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:204
+#: src/kcfg/settings.kcfg:209
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "자동으로 PKCS#15(CardOS) 스마트카드에서 S/MIME 인증서 불러오기"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:205
+#: src/kcfg/settings.kcfg:210
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8529,7 +8547,7 @@ msgstr ""
 "수 있으며 명령이 실행 중일 때 스마트카드를 점유합니다."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:211
+#: src/kcfg/settings.kcfg:216
 #, kde-format
 msgid "Disable profile settings"
 msgstr "프로필 설정 비활성화"

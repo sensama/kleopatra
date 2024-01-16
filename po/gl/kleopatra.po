@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-13 00:38+0000\n"
-"PO-Revision-Date: 2023-12-07 08:51+0100\n"
+"POT-Creation-Date: 2024-01-16 00:38+0000\n"
+"PO-Revision-Date: 2024-01-09 11:55+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -1394,7 +1394,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Non é posíbel exportar o certificado a un servidor de chaves porque se "
+"desactivou explicitamente o uso de servidores de chaves."
 msgstr[1] ""
+"Non é posíbel exportar os certificados a un servidor de chaves porque se "
+"desactivou explicitamente o uso de servidores de chaves."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2709,20 +2713,20 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
 "Non se lle permite crear solicitudes de sinatura de certificado S/MIME."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:157
+#: src/commands/newopenpgpcertificatecommand.cpp:161
 #: src/newcertificatewizard/keycreationpage.cpp:97
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Non foi posíbel iniciar a creación da parella de chaves: %1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:167
+#: src/commands/newopenpgpcertificatecommand.cpp:171
 #: src/newcertificatewizard/keycreationpage.cpp:51
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Creando a parella de chaves…"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:168
+#: src/commands/newopenpgpcertificatecommand.cpp:172
 #: src/newcertificatewizard/keycreationpage.cpp:55
 #, kde-format
 msgid ""
@@ -2732,7 +2736,7 @@ msgstr ""
 "O proceso de crear unha chave require grandes cantidades de números "
 "aleatorios. Isto pode levar varios minutos…"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:201
+#: src/commands/newopenpgpcertificatecommand.cpp:205
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
@@ -2741,7 +2745,7 @@ msgstr ""
 "<para>Creouse un novo certificado OpenPGP.</para><para>Pegada do novo "
 "certificado: %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:215
+#: src/commands/newopenpgpcertificatecommand.cpp:219
 #, kde-kuit-format
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
@@ -2750,7 +2754,7 @@ msgstr ""
 "<para>Non foi posíbel crear o novo certificado de OpenPGP.</para><para>Erro: "
 "<message>%1</message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:221
+#: src/commands/newopenpgpcertificatecommand.cpp:225
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
@@ -2760,7 +2764,7 @@ msgstr ""
 "<para>Creouse un novo certificado de OpenPGP, pero non se atopou no chaveiro."
 "</para><para>Pegada do novo certificado:<nl/>%1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:228
+#: src/commands/newopenpgpcertificatecommand.cpp:232
 #: src/crypto/newsignencryptemailcontroller.cpp:382
 #: src/crypto/newsignencryptemailcontroller.cpp:384
 #, kde-format
@@ -2946,6 +2950,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Non é posíbel actualizar os certificados OpenPGP porque o uso de servidores "
+"de chaves desactivouse explicitamente."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3515,7 +3521,7 @@ msgstr ""
 "está activo."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:149
+#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Orde dos atributos DN"
@@ -3658,6 +3664,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Introduza o enderezo do servidor de chaves para usar ao buscar certificados "
+"OpenPGP e ao enviar certificados OpenPGP. Se non introduce un enderezo, "
+"úsase o predeterminado interno. Para desactivar o uso dun servidor de chaves "
+"OpenPGP introduza o valor especial <emphasis>none</emphasis> (nada)."
 
 #: src/conf/dirservconfigpage.cpp:145
 #, kde-format
@@ -4870,10 +4880,9 @@ msgstr ""
 "- pode non ser un cifrado ou unha sinatura?"
 
 #: src/crypto/decryptverifytask.cpp:1170
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "Está a descifrar: %1…"
+msgstr "Descifrando %1…"
 
 #: src/crypto/decryptverifytask.cpp:1443
 #, kde-format
@@ -4899,28 +4908,22 @@ msgstr ""
 "podería ser que non se trate dunha sinatura?"
 
 #: src/crypto/decryptverifytask.cpp:1605
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Verificando: %1…"
+msgstr "Verificando %1…"
 
 #: src/crypto/decryptverifytask.cpp:1861
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
-msgstr "Verificando: <filename>%1</filename> con <filename>%2</filename>…"
+msgstr "Verificando <filename>%1</filename> con <filename>%2</filename>…"
 
 #: src/crypto/decryptverifytask.cpp:1865
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "Verificando a sinatura: %1…"
+msgstr "Verificando a sinatura %1…"
 
 #: src/crypto/decryptverifytask.cpp:1876
 #, kde-kuit-format
@@ -6439,19 +6442,16 @@ msgstr ""
 "vez publicado o certificado de revogación, non pode dar volta atrás."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Xestionar os grupos"
+msgstr "Xestionar as subchaves"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Subchaves"
+msgstr "Amosar as subchaves"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7151,7 +7151,7 @@ msgstr "Cambiar o período de validez"
 #: src/dialogs/expirydialog.cpp:235
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Caducidade da clave primaria: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7257,22 +7257,18 @@ msgid "Import"
 msgstr "Importar"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr ""
-"Escriba un nome e un enderezo de correo electrónico para usar para o "
-"certificado."
+msgstr "Escriba un termo de busca para buscar certificados que coincidan."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr ""
-"Escriba un nome e un enderezo de correo electrónico para usar para o "
-"certificado."
+"Escriba un enderezo de correo electrónico para buscar certificados que "
+"coincidan."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7677,45 +7673,37 @@ msgid "Storage"
 msgstr "Almacenamento"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Cambiar a validez"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Exportar a chave de OpenSSH"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Restaurar a salvagarda impresa"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Transferir a unha tarxeta intelixente"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Exportar a subchave secreta"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Cambiar a validez"
 
@@ -8100,20 +8088,18 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Consello do enderezo de correo electrónico (EMAIL)"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Este texto usarase como texto marcador de posición do campo de enderezo de "
-"correo electrónico (EMAIL) dos certificados OpenPGP e S/MIME."
+"Este texto amosarase sobre o campo de enderezo de correo electrónico (EMAIL) "
+"dos certificados OpenPGP e como marcador de posición dese campo dos "
+"certificados S/MIME."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8138,10 +8124,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Marca de posición do enderezo de correo electrónico (EMAIL)"
+msgstr "Valor do enderezo de correo electrónico (EMAIL)"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8151,23 +8136,22 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Valor enchido previamente do campo de enderezo de correo electrónico de "
+"certificados OpenPGP e S/MIME. Isto sobredefinirá EMAIL_prefill. É útil se "
+"non se atopan opcións para EMAIL_prefill ou esas opcións non son axeitadas."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Consello do nome (NAME)"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
-"Este texto usarase como texto marcador de posición do campo de nome (NAME) "
-"dos certificados OpenPGP."
+"Este texto amosarase sobre o campo de nome (NAME) dos certificados OpenPGP."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8191,10 +8175,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Marca de posición do nome (NAME)"
+msgstr "Valor do nome (NAME)"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8204,6 +8187,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Valor enchido previamente do campo de nome de certificados OpenPGP. Isto "
+"sobredefinirá NAME_prefill. É útil se non se atopa unha opción para "
+"NAME_prefill ou esa opción non é axeitada."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -8289,11 +8275,29 @@ msgstr ""
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
 #, kde-format
+msgid "Designated revoker"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:71
+#, kde-format
+msgid ""
+"The fingerprint of a designated revoker to be added to each new key. Must be "
+"given in the form \"algo:fpr [sensitive]\". Algo is the public key algorithm "
+"of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the fingerprint "
+"of the designated revoker. The optional ‘sensitive’ flag marks the "
+"designated revoker as sensitive information. Only v4 keys may be designated "
+"revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
+msgstr ""
+
+#. i18n: ectx: label, entry, group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:75
+#, kde-format
 msgid "Hide advanced settings"
 msgstr "Agochar a configuración avanzada"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:71
+#: src/kcfg/settings.kcfg:76
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
@@ -8302,19 +8306,19 @@ msgstr ""
 "certificados."
 
 #. i18n: ectx: label, entry, group (Certification)
-#: src/kcfg/settings.kcfg:77
+#: src/kcfg/settings.kcfg:82
 #, kde-format
 msgid "Default certification validity"
 msgstr "Validez de certificación predeterminada"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
-#: src/kcfg/settings.kcfg:78
+#: src/kcfg/settings.kcfg:83
 #, kde-format
 msgid "Specifies the default validity of certifications in days."
 msgstr "Indica a validez de certificada predeterminada en días."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:84
 #, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
@@ -8327,7 +8331,7 @@ msgstr ""
 "validez das certificacións."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:90
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr ""
@@ -8335,26 +8339,26 @@ msgstr ""
 "de ficheiros"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:91
+#: src/kcfg/settings.kcfg:96
 #, kde-format
 msgid "Show results after signing"
 msgstr "Amosar os resultados tras asinar"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:92
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
 msgstr "Se se marca, os resultados amósanse tras asinar o portapapeis."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:96
+#: src/kcfg/settings.kcfg:101
 #, kde-format
 msgid "Show results after encryption"
 msgstr "Amosar os resultados tras cifrar"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:102
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -8362,19 +8366,19 @@ msgid ""
 msgstr "Se se marca, os resultados amósanse tras cifrar o portapapeis."
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:103
+#: src/kcfg/settings.kcfg:108
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "Activar S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:104
+#: src/kcfg/settings.kcfg:109
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "Permite S/MIME (CMS)."
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:110
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -8384,19 +8388,19 @@ msgstr ""
 "funcionalidade relacionada con S/MIME (CMS)."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:114
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "Permitir a creación ce certificados S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:110
+#: src/kcfg/settings.kcfg:115
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "Permite crear solicitudes de sinatura de certificado S/MIME."
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:111
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -8406,19 +8410,19 @@ msgstr ""
 "certificado S/MIME."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:115
+#: src/kcfg/settings.kcfg:120
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "Permitir asinar con certificados S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:116
+#: src/kcfg/settings.kcfg:121
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr "Permite asinar ficheiros ou texto con certificados S/MIME."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:117
+#: src/kcfg/settings.kcfg:122
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -8428,74 +8432,74 @@ msgstr ""
 "con certificados S/MIME."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:123
+#: src/kcfg/settings.kcfg:128
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "Amosar a configuración da aparencia"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:127
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Amosar a configuración das operacións criptográficas"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:131
+#: src/kcfg/settings.kcfg:136
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "Amosar a configuración de servizos de directorio"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:135
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "Amosar a configuración do sistema de GnuPG"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:139
+#: src/kcfg/settings.kcfg:144
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "Amosar a configuración das tarxetas intelixentes"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:143
+#: src/kcfg/settings.kcfg:148
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "Amosar a configuración da validación de S/MIME"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:150
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "Indica a orde de visualización dos atributos DN de certificados X.509."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:156
+#: src/kcfg/settings.kcfg:161
 #, kde-format
 msgid "Enable Groups"
 msgstr "Activar os grupos"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:157
+#: src/kcfg/settings.kcfg:162
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "Activar o uso de grupos de chaves."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:158
+#: src/kcfg/settings.kcfg:163
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr ""
 "Activar o uso de grupos de chaves para crear listas de persoas destinatarias."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:164
+#: src/kcfg/settings.kcfg:169
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "Obter as chaves das asinantes tras importar"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:167
+#: src/kcfg/settings.kcfg:172
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8509,7 +8513,7 @@ msgstr ""
 "introdutoras de confianza."
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:176
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
@@ -8517,7 +8521,7 @@ msgstr ""
 "certificados de fornecedores."
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:174
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -8534,13 +8538,13 @@ msgstr ""
 "identificadores de persoas usuarias."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:185
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "Notificar sobre a vindeira caducidade de certificado"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:182
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8550,13 +8554,13 @@ msgstr ""
 "que están a piques de caducar."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:188
+#: src/kcfg/settings.kcfg:193
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Esquemas de URL para bloquear"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:190
+#: src/kcfg/settings.kcfg:195
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8568,14 +8572,14 @@ msgstr ""
 "certos URL."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:196
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr ""
 "Buscar sempre os certificados de tarxetas intelixentes no servidor de chaves"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:197
+#: src/kcfg/settings.kcfg:202
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8585,7 +8589,7 @@ msgstr ""
 "servidor de chaves configurado."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:199
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8599,14 +8603,14 @@ msgstr ""
 "LDAP."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:203
+#: src/kcfg/settings.kcfg:208
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr ""
 "Intentar cargar os certificados S/MIME de tarxetas intelixentes PKCS#15"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:204
+#: src/kcfg/settings.kcfg:209
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
@@ -8614,7 +8618,7 @@ msgstr ""
 "PKCS#15 (CardOS)"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:205
+#: src/kcfg/settings.kcfg:210
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8626,7 +8630,7 @@ msgstr ""
 "e bloquear a tarxeta intelixente mentres a orde está en execución."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:211
+#: src/kcfg/settings.kcfg:216
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Desactivar a configuración do perfil"

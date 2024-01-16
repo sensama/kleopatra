@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-13 00:38+0000\n"
+"POT-Creation-Date: 2024-01-16 00:38+0000\n"
 "PO-Revision-Date: 2024-01-13 05:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2565,20 +2565,20 @@ msgstr "未配置目录服务器"
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您无权创建 S/MIME 证书签名请求。"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:157
+#: src/commands/newopenpgpcertificatecommand.cpp:161
 #: src/newcertificatewizard/keycreationpage.cpp:97
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "不能开始创建密钥对：%1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:167
+#: src/commands/newopenpgpcertificatecommand.cpp:171
 #: src/newcertificatewizard/keycreationpage.cpp:51
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "正在创建密钥对..."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:168
+#: src/commands/newopenpgpcertificatecommand.cpp:172
 #: src/newcertificatewizard/keycreationpage.cpp:55
 #, kde-format
 msgid ""
@@ -2586,7 +2586,7 @@ msgid ""
 "may require several minutes..."
 msgstr "创建一个密钥的过程需要大量的随机数字。这可能需要几分钟的时间..."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:201
+#: src/commands/newopenpgpcertificatecommand.cpp:205
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
@@ -2594,7 +2594,7 @@ msgid ""
 msgstr ""
 "<para>一个新的 OpenPGP 证书已成功创建。</para><para>新证书的指纹： %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:215
+#: src/commands/newopenpgpcertificatecommand.cpp:219
 #, kde-kuit-format
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
@@ -2603,7 +2603,7 @@ msgstr ""
 "<para>创建新的 OpenPGP 证书失败。</para><para>错误。 <message>%1</message></"
 "para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:221
+#: src/commands/newopenpgpcertificatecommand.cpp:225
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
@@ -2613,7 +2613,7 @@ msgstr ""
 "<para>一个新的 OpenPGP 证书已成功创建，但在密钥环中找不到它。</para><para>新"
 "证书的指纹：<nl/>%1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:228
+#: src/commands/newopenpgpcertificatecommand.cpp:232
 #: src/crypto/newsignencryptemailcontroller.cpp:382
 #: src/crypto/newsignencryptemailcontroller.cpp:384
 #, kde-format
@@ -3317,7 +3317,7 @@ msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr "颜色预览已禁用，因为高对比度模式已激活。"
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:149
+#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN 属性序"
@@ -7863,30 +7863,48 @@ msgstr ""
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
 #, kde-format
+msgid "Designated revoker"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:71
+#, kde-format
+msgid ""
+"The fingerprint of a designated revoker to be added to each new key. Must be "
+"given in the form \"algo:fpr [sensitive]\". Algo is the public key algorithm "
+"of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the fingerprint "
+"of the designated revoker. The optional ‘sensitive’ flag marks the "
+"designated revoker as sensitive information. Only v4 keys may be designated "
+"revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
+msgstr ""
+
+#. i18n: ectx: label, entry, group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:75
+#, kde-format
 msgid "Hide advanced settings"
 msgstr "隐藏高级设置"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:71
+#: src/kcfg/settings.kcfg:76
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
 msgstr "如果选中，则在新证书向导中隐藏高级设置按钮。"
 
 #. i18n: ectx: label, entry, group (Certification)
-#: src/kcfg/settings.kcfg:77
+#: src/kcfg/settings.kcfg:82
 #, kde-format
 msgid "Default certification validity"
 msgstr "默认认证有效性"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
-#: src/kcfg/settings.kcfg:78
+#: src/kcfg/settings.kcfg:83
 #, kde-format
 msgid "Specifies the default validity of certifications in days."
 msgstr "指定证书在天内的默认有效性。"
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:84
 #, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
@@ -7897,32 +7915,32 @@ msgstr ""
 "置为 0 以保证证书的无限有效性。"
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:90
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr "创建校验和文件时所用的校验和程序"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:91
+#: src/kcfg/settings.kcfg:96
 #, kde-format
 msgid "Show results after signing"
 msgstr "签名后显示结果"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:92
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
 msgstr "如果为 true，那么在成功签署剪贴板后会显示结果。"
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:96
+#: src/kcfg/settings.kcfg:101
 #, kde-format
 msgid "Show results after encryption"
 msgstr "加密后显示结果"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:102
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -7930,19 +7948,19 @@ msgid ""
 msgstr "如果为 true，那么在成功加密剪贴板后会显示结果。"
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:103
+#: src/kcfg/settings.kcfg:108
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "启用 S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:104
+#: src/kcfg/settings.kcfg:109
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "启用 S/MIME (CMS)。"
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:110
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -7952,19 +7970,19 @@ msgstr ""
 "的功能。"
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:114
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "允许 S/MIME 证书创建"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:110
+#: src/kcfg/settings.kcfg:115
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "允许创建 S/MIME 证书签名请求。"
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:111
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -7972,19 +7990,19 @@ msgid ""
 msgstr "如果为 false，那么 Kleopatra 将无法创建 S/MIME 证书签名请求。"
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:115
+#: src/kcfg/settings.kcfg:120
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "允许使用 S/MIME 证书签名"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:116
+#: src/kcfg/settings.kcfg:121
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr "允许使用 S/MIME 证书签名文本或文件。"
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:117
+#: src/kcfg/settings.kcfg:122
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -7993,73 +8011,73 @@ msgstr ""
 "如果为 false，那么 Kleopatra 将无法提供使用 S/MIME 证书创建签名的功能。"
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:123
+#: src/kcfg/settings.kcfg:128
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "显示外观配置"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:127
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "显示加密操作配置"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:131
+#: src/kcfg/settings.kcfg:136
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "显示目录服务配置"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:135
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "显示 GnuPG 系统配置"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:139
+#: src/kcfg/settings.kcfg:144
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "显示智能卡配置"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:143
+#: src/kcfg/settings.kcfg:148
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "显示 S/MIME 验证配置"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:150
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "指定 X.509 证书的 DN 属性的显示顺序。"
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:156
+#: src/kcfg/settings.kcfg:161
 #, kde-format
 msgid "Enable Groups"
 msgstr "启用分组"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:157
+#: src/kcfg/settings.kcfg:162
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "启用组密钥。"
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:158
+#: src/kcfg/settings.kcfg:163
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "启用对密钥组的使用来创建收件人列表。"
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:164
+#: src/kcfg/settings.kcfg:169
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "导入后检索签名密钥"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:167
+#: src/kcfg/settings.kcfg:172
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8072,13 +8090,13 @@ msgstr ""
 "         这与受信任的介绍人结合使用很有用。"
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:176
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:174
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -8090,13 +8108,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:185
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "通知即将到期的证书"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:182
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8106,13 +8124,13 @@ msgstr ""
 "        证书即将过期时，Kleopatra 将在某个地方显示通知。"
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:188
+#: src/kcfg/settings.kcfg:193
 #, kde-format
 msgid "URL schemes to block"
 msgstr "要阻止的 URL 方案"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:190
+#: src/kcfg/settings.kcfg:195
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8123,13 +8141,13 @@ msgstr ""
 "         这可用于防止应用程序打开某些 URL 的外部应用程序。"
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:196
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "总是在密钥服务器上搜索智能卡证书"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:197
+#: src/kcfg/settings.kcfg:202
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8137,7 +8155,7 @@ msgid ""
 msgstr "搜索配置密钥服务器上属于智能卡密钥的证书。"
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:199
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8149,19 +8167,19 @@ msgstr ""
 "        默认行为是仅用于 LDAP 密钥服务器。"
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:203
+#: src/kcfg/settings.kcfg:208
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "尝试从 PKCS#15 智能卡加载 S/MIME 证书"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:204
+#: src/kcfg/settings.kcfg:209
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "从 PKCS#15 (CardOS) 智能卡自动加载 S/MIME 证书"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:205
+#: src/kcfg/settings.kcfg:210
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8172,7 +8190,7 @@ msgstr ""
 "gpgsm --learning。 这可能需要一段时间，并在命令运行时屏蔽智能卡。"
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:211
+#: src/kcfg/settings.kcfg:216
 #, kde-format
 msgid "Disable profile settings"
 msgstr "禁用配置文件设置"

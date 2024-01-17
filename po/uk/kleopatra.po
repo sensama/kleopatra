@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-16 00:38+0000\n"
-"PO-Revision-Date: 2024-01-13 09:49+0200\n"
+"PO-Revision-Date: 2024-01-16 16:12+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -8373,7 +8373,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:70
 #, kde-format
 msgid "Designated revoker"
-msgstr ""
+msgstr "Визначене відкликання"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:71
@@ -8386,6 +8386,13 @@ msgid ""
 "designated revoker as sensitive information. Only v4 keys may be designated "
 "revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
 msgstr ""
+"Відбиток визначеного відкликання, який слід додати до кожного нового ключа. "
+"Слід вказувати у формі «алгоритм:відбиток [конфіденційнийу]». Алгоритм — "
+"алгоритм відкритого ключа автора відкликання (тобто RSA=1, DSA=17 тощо). "
+"Відбиток — відбиток визначеного відкликання. Додатковий прапорець "
+"«конфіденційний» позначає запис визначеного відкликання як конфіденційні "
+"дані. Визначеними відкликаннями можуть бути лише ключі версії. Для додавання "
+"конфіденційних відкликань потрібна принаймні версія GnuPG 2.4.4."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:75

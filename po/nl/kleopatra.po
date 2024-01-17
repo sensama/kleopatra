@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-16 00:38+0000\n"
-"PO-Revision-Date: 2024-01-13 13:13+0100\n"
+"PO-Revision-Date: 2024-01-16 11:42+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -8321,7 +8321,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:70
 #, kde-format
 msgid "Designated revoker"
-msgstr ""
+msgstr "Aangewezen intrekker"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:71
@@ -8334,6 +8334,13 @@ msgid ""
 "designated revoker as sensitive information. Only v4 keys may be designated "
 "revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
 msgstr ""
+"De vingerafdruk van een aangewezen intrekker om toe te voegen aan elke "
+"nieuwe sleutel. Moet gegeven worden in de vorm van \"algo:fpr [sensitive]\". "
+"Algo is het publieke sleutelalgoritme van de aangewezen intrekker (d.w.z. "
+"RSA=1, DSA=17, etc.) fpr is de vingerafdruk van de aangewezen intrekker. De "
+"optionele vlag ‘sensitive’ markeert de aangewezen intrekker als gevoelige "
+"informatie. Slechts v4 sleutels kunnen aangewezen worden aan intrekkers. "
+"GnuPG 2.4.4 is vereist voor toevoegen van gevoelige intrekkers."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:75

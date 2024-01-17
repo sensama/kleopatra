@@ -1,7 +1,7 @@
 # Translation of kleopatra.po to Catalan
 # Copyright (C) 2004-2024 This_file_is_part_of_KDE
 #
-# SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Antoni Bella Pérez <antonibella5@yahoo.com>
+# SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Antoni Bella Pérez <antonibella5@yahoo.com>
 # Albert Astals Cid <aacid@kde.org>, 2004, 2005.
 # Sebastià Pla i Sanz <sps@sastia.com>, 2004, 2006.
 # Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009, 2010, 2011.
@@ -11,14 +11,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-16 00:38+0000\n"
-"PO-Revision-Date: 2024-01-13 16:01+0100\n"
-"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"PO-Revision-Date: 2024-01-16 19:51+0100\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -467,7 +467,7 @@ msgid ""
 msgstr ""
 "<para>Voleu concedir a «%1» el dret de marcar els certificats com a %2 per "
 "vós?</para><para><emphasis>Això significa que el propietari d'aquest "
-"certificat comprova correctament les empremtes dactilars i confirma les "
+"certificat comprova correctament les empremtes digitals i confirma les "
 "identitats d'altres.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
@@ -481,7 +481,7 @@ msgid ""
 msgstr ""
 "<para>Voleu concedir a «%1» el dret de marcar els certificats com a vàlids "
 "per vós?</para><para><emphasis>Això significa que el propietari d'aquest "
-"certificat comprova correctament les empremtes dactilars i confirma les "
+"certificat comprova correctament les empremtes digitals i confirma les "
 "identitats d'altres.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
@@ -8309,7 +8309,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:70
 #, kde-format
 msgid "Designated revoker"
-msgstr ""
+msgstr "Revocador designat"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:71
@@ -8322,6 +8322,13 @@ msgid ""
 "designated revoker as sensitive information. Only v4 keys may be designated "
 "revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
 msgstr ""
+"L'empremta digital d'un revocador designat que s'afegirà a cada clau nova. "
+"S'ha de donar en la forma \"algo:fpr [sensible]\". Algo és l'algorisme de "
+"clau pública del revocador designat (és a dir, RSA1,1, DSA1717, etc.) fpr és "
+"l'empremta digital del revocador designat. L'indicador opcional «sensible» "
+"marca el revocador designat com a informació sensible. Només les claus v4 "
+"poden ser designades revocadores. El GnuPG 2.4.4 és necessari per a afegir "
+"revocadors sensibles."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:75

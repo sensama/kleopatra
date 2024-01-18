@@ -307,7 +307,7 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
     }
 
     adskfpr = Settings{}.mandatoryADSK();
-    if (!adskfpr.isEmpty() && !result.error() && result.fingerprint() && !key.isNull()) {
+    if (!adskfpr.isEmpty() && !key.isNull()) {
         QMetaObject::invokeMethod(
             q,
             [this, result, key] {

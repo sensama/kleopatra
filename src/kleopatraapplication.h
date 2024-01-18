@@ -86,6 +86,7 @@ public:
 public Q_SLOTS:
     void openOrRaiseMainWindow();
     void openOrRaiseConfigDialog();
+    void openOrRaiseGroupsConfigDialog(QWidget *parent);
 #ifndef QT_NO_SYSTEMTRAYICON
     void startMonitoringSmartCard();
     void importCertificatesFromFile(const QStringList &files, GpgME::Protocol proto);

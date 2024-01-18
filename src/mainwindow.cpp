@@ -30,8 +30,6 @@
 #include "commands/selftestcommand.h"
 #include "commands/signencryptfilescommand.h"
 
-#include "conf/groupsconfigdialog.h"
-
 #include "utils/action_data.h"
 #include "utils/clipboardmenu.h"
 #include "utils/detail_p.h"
@@ -281,11 +279,8 @@ public:
 
     void configureGroups()
     {
-        if (KConfigDialog::showDialog(GroupsConfigDialog::dialogName())) {
-            return;
-        }
-        KConfigDialog *dialog = new GroupsConfigDialog(q);
-        dialog->show();
+        // open groups config dialog as independent top-level window
+        KleopatraApplication::instance()->openOrRaiseGroupsConfigDialog(nullptr);
     }
 
     void showHandbook();

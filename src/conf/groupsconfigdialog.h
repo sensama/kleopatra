@@ -10,28 +10,16 @@
 
 #pragma once
 
-#include <KConfigDialog>
+#include <QDialog>
 
 #include <memory>
 
-class GroupsConfigDialog : public KConfigDialog
+class GroupsConfigDialog : public QDialog
 {
     Q_OBJECT
 public:
     explicit GroupsConfigDialog(QWidget *parent = nullptr);
     ~GroupsConfigDialog() override;
-
-    static QString dialogName();
-
-protected:
-    void showEvent(QShowEvent *event) override;
-
-private Q_SLOTS:
-    void updateSettings() override;
-    void updateWidgets() override;
-
-private:
-    bool hasChanged() override;
 
 private:
     class Private;

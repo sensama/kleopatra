@@ -235,10 +235,6 @@ public:
         });
     }
 
-    ~Private()
-    {
-    }
-
 private:
     auto getGroupIndex(const KeyGroup &group)
     {
@@ -371,14 +367,19 @@ private:
 
         // look up index of updated group; the groupIndex used above may have become invalid
         const auto updatedGroupIndex = getGroupIndex(updatedGroup);
-        if (!updatedGroupIndex.isValid()) {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "Failed to find index of group" << updatedGroup;
-            return;
-        }
-        const bool success = ui.groupsList->model()->setData(updatedGroupIndex, QVariant::fromValue(updatedGroup));
-        if (!success) {
-            qCDebug(KLEOPATRA_LOG) << "Updating group in model failed";
-            return;
+        if (updatedGroupIndex.isValid()) {
+            const bool success = ui.groupsList->model()->setData(updatedGroupIndex, QVariant::fromValue(updatedGroup));
+            if (!success) {
+                qCDebug(KLEOPATRA_LOG) << "Updating group in model failed";
+                return;
+            }
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Failed to find index of group" << updatedGroup << "; maybe it was removed behind our back; re-add it";
+            const QModelIndex newIndex = groupsModel->addGroup(updatedGroup);
+            if (!newIndex.isValid()) {
+                qCDebug(KLEOPATRA_LOG) << "Re-adding group to model failed";
+                return;
+            }
         }
 
         Q_EMIT q->changed();
@@ -410,7 +411,6 @@ private:
             return;
         }
 
-        // execute export group command
         auto cmd = new CertifyGroupCommand{selectedGroups.front()};
         cmd->setParentWidget(q->window());
         cmd->start();
@@ -424,7 +424,6 @@ private:
             return;
         }
 
-        // execute export group command
         auto cmd = new ExportGroupsCommand(selectedGroups);
         cmd->start();
     }

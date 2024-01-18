@@ -12,157 +12,156 @@
 
 #include "groupsconfigdialog.h"
 
-#include "groupsconfigpage.h"
+#include "groupsconfigwidget.h"
 
-#include "utils/gui-helper.h"
-
-#include <KConfigGroup>
-#include <KGuiItem>
-#include <KLocalizedString>
-#include <KSharedConfig>
-#include <KStandardGuiItem>
+#include <kleopatra_debug.h>
+#include <utils/gui-helper.h>
+#include <utils/scrollarea.h>
 
 #include <Libkleo/DocAction>
+#include <Libkleo/KeyCache>
+#include <Libkleo/KeyGroup>
+
+#include <KConfigGroup>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #include <QDialogButtonBox>
-#include <QLineEdit>
 #include <QPushButton>
-#include <QScrollArea>
+#include <QVBoxLayout>
+
+using namespace Kleo;
 
 class GroupsConfigDialog::Private
 {
     friend class ::GroupsConfigDialog;
     GroupsConfigDialog *const q;
 
-    GroupsConfigPage *configPage = nullptr;
-    bool initialFocusWasSet = false;
-
 public:
     Private(GroupsConfigDialog *qq)
         : q(qq)
-        , configPage(new GroupsConfigPage(qq))
     {
-        restoreLayout();
-    }
-
-    ~Private()
-    {
-        saveLayout();
-    }
-
-    void setInitialFocus()
-    {
-        if (initialFocusWasSet) {
-            return;
-        }
-        // this is a bit hacky, but fixing the focus chain where the dialog
-        // button box comes before the page, which causes the first button in
-        // the button box to be focussed initially, is even more hacky
-        Q_ASSERT(configPage->findChildren<QLineEdit *>().size() == 1);
-        if (auto searchField = configPage->findChild<QLineEdit *>()) {
-            searchField->setFocus();
-        }
-        initialFocusWasSet = true;
     }
 
 private:
-    void saveLayout()
-    {
-        KConfigGroup configGroup(KSharedConfig::openStateConfig(), QStringLiteral("GroupsConfigDialog"));
-        configGroup.writeEntry("Size", q->size());
-        configGroup.sync();
-    }
+    void saveLayout();
+    void restoreLayout(const QSize &defaultSize = {});
 
-    void restoreLayout(const QSize &defaultSize = QSize())
-    {
-        const KConfigGroup configGroup(KSharedConfig::openStateConfig(), QStringLiteral("GroupsConfigDialog"));
-        const QSize size = configGroup.readEntry("Size", defaultSize);
-        if (size.isValid()) {
-            q->resize(size);
-        }
-    }
+    void loadGroups();
+    void saveGroups();
+
+    void onKeysMayHaveChanged();
+
+private:
+    GroupsConfigWidget *configWidget = nullptr;
+
+    bool savingChanges = false;
 };
 
+void GroupsConfigDialog::Private::saveLayout()
+{
+    KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1String("GroupsConfigDialog"));
+    configGroup.writeEntry("Size", q->size());
+    configGroup.sync();
+}
+
+void GroupsConfigDialog::Private::restoreLayout(const QSize &defaultSize)
+{
+    const KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1String("GroupsConfigDialog"));
+    const QSize size = configGroup.readEntry("Size", defaultSize);
+    if (size.isValid()) {
+        q->resize(size);
+    }
+}
+
+void GroupsConfigDialog::Private::loadGroups()
+{
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
+    configWidget->setGroups(KeyCache::instance()->configurableGroups());
+}
+
+void GroupsConfigDialog::Private::saveGroups()
+{
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
+    savingChanges = true;
+    KeyCache::mutableInstance()->saveConfigurableGroups(configWidget->groups());
+    savingChanges = false;
+
+    // reload after saving to ensure that the groups reflect the saved groups (e.g. in case of immutable entries)
+    loadGroups();
+}
+
+void GroupsConfigDialog::Private::onKeysMayHaveChanged()
+{
+    if (savingChanges) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring changes caused by ourselves";
+        return;
+    }
+    qCDebug(KLEOPATRA_LOG) << "Reloading groups";
+    loadGroups();
+}
+
 GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
-    : KConfigDialog(parent, GroupsConfigDialog::dialogName(), /*config=*/nullptr)
+    : QDialog(parent)
     , d(new Private(this))
 {
     setWindowTitle(i18nc("@title:window", "Configure Groups"));
-    setFaceType(KPageDialog::Plain);
 
-    const auto *const item = addPage(d->configPage, i18n("Groups"), /*pixmapName=*/QString(), /*header=*/QString(), /*manage=*/false);
-    // prevent scroll area embedding the config page from receiving focus
-    const auto scrollAreas = item->widget()->findChildren<QScrollArea *>();
-    for (auto sa : scrollAreas) {
-        sa->setFocusPolicy(Qt::NoFocus);
-    }
+    auto mainLayout = new QVBoxLayout{this};
 
-    // there are no defaults to restore
-    buttonBox()->removeButton(buttonBox()->button(QDialogButtonBox::RestoreDefaults));
+    auto scrollArea = new ScrollArea{this};
+    scrollArea->setFocusPolicy(Qt::NoFocus);
+    scrollArea->setFrameStyle(QFrame::NoFrame);
+    scrollArea->setBackgroundRole(backgroundRole());
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
+    auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+    scrollAreaLayout->setContentsMargins({});
 
-    QPushButton *resetButton = buttonBox()->addButton(QDialogButtonBox::Reset);
-    KGuiItem::assign(resetButton, KStandardGuiItem::reset());
-    resetButton->setEnabled(false);
+    d->configWidget = new GroupsConfigWidget{this};
+    d->configWidget->setContentsMargins({});
+    scrollAreaLayout->addWidget(d->configWidget);
 
-    const auto helpAction =
-        new Kleo::DocAction(QIcon::fromTheme(QStringLiteral("help")),
-                            i18n("Help"),
-                            i18nc("Only available in German and English. Leave to English for other languages.", "handout_group-feature_gnupg_en.pdf"),
-                            QStringLiteral("../share/doc/gnupg-vsd"));
+    mainLayout->addWidget(scrollArea);
+
+    auto buttonBox = new QDialogButtonBox{QDialogButtonBox::Close, this};
+
+    mainLayout->addWidget(buttonBox);
+
+    auto helpAction = std::make_unique<Kleo::DocAction>(
+        QIcon::fromTheme(QStringLiteral("help")),
+        i18n("Help"),
+        i18nc("Only available in German and English. Leave to English for other languages.", "handout_group-feature_gnupg_en.pdf"),
+        QStringLiteral("../share/doc/gnupg-vsd"),
+        this);
     if (helpAction->isEnabled()) {
-        auto helpButton = buttonBox()->button(QDialogButtonBox::Help);
-        if (helpButton) {
-            disconnect(helpButton, &QAbstractButton::clicked, nullptr, nullptr);
-            connect(helpButton, &QAbstractButton::clicked, helpAction, &QAction::trigger);
-            connect(helpButton, &QObject::destroyed, helpAction, &QObject::deleteLater);
-        }
-    } else {
-        delete helpAction;
+        auto helpButton = buttonBox->addButton(QDialogButtonBox::Help);
+        disconnect(helpButton, &QAbstractButton::clicked, nullptr, nullptr);
+        connect(helpButton, &QAbstractButton::clicked, helpAction.get(), &QAction::trigger);
+        helpAction.release();
     }
 
     // prevent accidental closing of dialog when pressing Enter while the search field has focus
     Kleo::unsetAutoDefaultButtons(this);
 
-    connect(buttonBox()->button(QDialogButtonBox::Reset), &QAbstractButton::clicked, this, &GroupsConfigDialog::updateWidgets);
+    // Close button (defined with RejectRole) should close the dialog
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::accept);
 
-    connect(d->configPage, &GroupsConfigPage::changed, this, [this]() {
-        updateButtons();
-        if (QPushButton *button = buttonBox()->button(QDialogButtonBox::Reset)) {
-            button->setEnabled(d->configPage->hasChanged());
-        }
+    connect(d->configWidget, &GroupsConfigWidget::changed, this, [this]() {
+        d->saveGroups();
     });
+
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this]() {
+        d->onKeysMayHaveChanged();
+    });
+
+    d->restoreLayout();
+    d->loadGroups();
 }
 
-GroupsConfigDialog::~GroupsConfigDialog() = default;
-
-QString GroupsConfigDialog::dialogName()
+GroupsConfigDialog::~GroupsConfigDialog()
 {
-    return QStringLiteral("Group Settings");
-}
-
-void GroupsConfigDialog::showEvent(QShowEvent *event)
-{
-    d->setInitialFocus();
-
-    KConfigDialog::showEvent(event);
-
-    // prevent accidental closing of dialog when pressing Enter while the search field has focus
-    Kleo::unsetDefaultButtons(buttonBox());
-}
-
-void GroupsConfigDialog::updateSettings()
-{
-    d->configPage->save();
-}
-
-void GroupsConfigDialog::updateWidgets()
-{
-    d->configPage->load();
-}
-
-bool GroupsConfigDialog::hasChanged()
-{
-    return d->configPage->hasChanged();
+    d->saveLayout();
 }
 
 #include "moc_groupsconfigdialog.cpp"

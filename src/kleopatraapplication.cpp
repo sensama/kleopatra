@@ -21,6 +21,7 @@
 #include "systrayicon.h"
 
 #include <conf/configuredialog.h>
+#include <conf/groupsconfigdialog.h>
 #include <smartcard/readerstatus.h>
 
 #include <Libkleo/GnuPG>
@@ -208,6 +209,7 @@ public:
     bool firstNewInstance;
     QPointer<FocusFrame> focusFrame;
     QPointer<ConfigureDialog> configureDialog;
+    QPointer<GroupsConfigDialog> groupsConfigDialog;
     QPointer<MainWindow> mainWindow;
     std::unique_ptr<SmartCard::ReaderStatus> readerStatus;
 #ifndef QT_NO_SYSTEMTRAYICON
@@ -349,6 +351,7 @@ void KleopatraApplication::init()
 
 KleopatraApplication::~KleopatraApplication()
 {
+    delete d->groupsConfigDialog;
     delete d->mainWindow;
 }
 
@@ -721,6 +724,18 @@ void KleopatraApplication::openConfigDialogWithForeignParent(WId parentWId)
 void KleopatraApplication::openOrRaiseConfigDialog()
 {
     openConfigDialogWithForeignParent(0);
+}
+
+void KleopatraApplication::openOrRaiseGroupsConfigDialog(QWidget *parent)
+{
+    if (!d->groupsConfigDialog) {
+        d->groupsConfigDialog = new GroupsConfigDialog{parent};
+        d->groupsConfigDialog->setAttribute(Qt::WA_DeleteOnClose);
+    } else {
+        // reparent the dialog to ensure it's shown on top of the (modal) parent
+        d->groupsConfigDialog->setParent(parent, Qt::Dialog);
+    }
+    open_or_raise(d->groupsConfigDialog);
 }
 
 #ifndef QT_NO_SYSTEMTRAYICON

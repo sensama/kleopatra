@@ -210,8 +210,6 @@ set(_kleopatra_SRCS
   conf/configuredialog.h
   conf/groupsconfigdialog.cpp
   conf/groupsconfigdialog.h
-  conf/groupsconfigpage.cpp
-  conf/groupsconfigpage.h
   conf/groupsconfigwidget.cpp
   conf/groupsconfigwidget.h
   crypto/autodecryptverifyfilescontroller.cpp

@@ -11,9 +11,8 @@
 
 #include "certificateselectiondialog.h"
 
-#include "settings.h"
-
-#include "conf/groupsconfigdialog.h"
+#include <kleopatraapplication.h>
+#include <settings.h>
 
 #include <view/keytreeview.h>
 #include <view/searchbar.h>
@@ -110,14 +109,8 @@ private:
     }
     void manageGroups()
     {
-        KConfigDialog *dialog = KConfigDialog::exists(GroupsConfigDialog::dialogName());
-        if (dialog) {
-            // reparent the dialog to ensure it's shown on top of the modal CertificateSelectionDialog
-            dialog->setParent(q, Qt::Dialog);
-        } else {
-            dialog = new GroupsConfigDialog(q);
-        }
-        dialog->show();
+        // ensure that the dialog is shown on top of the modal CertificateSelectionDialog
+        KleopatraApplication::instance()->openOrRaiseGroupsConfigDialog(q);
     }
     void slotKeysMayHaveChanged();
     void slotCurrentViewChanged(QAbstractItemView *newView);

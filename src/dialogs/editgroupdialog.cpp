@@ -187,18 +187,18 @@ public:
 
         mainLayout->addWidget(new KSeparator(Qt::Horizontal, q));
 
-        ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, q);
-        QPushButton *okButton = ui.buttonBox->button(QDialogButtonBox::Ok);
-        KGuiItem::assign(okButton, KStandardGuiItem::ok());
+        ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, q);
+        QPushButton *saveButton = ui.buttonBox->button(QDialogButtonBox::Save);
+        KGuiItem::assign(saveButton, KStandardGuiItem::save());
         KGuiItem::assign(ui.buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
-        okButton->setEnabled(false);
+        saveButton->setEnabled(false);
         mainLayout->addWidget(ui.buttonBox);
 
         // prevent accidental closing of dialog when pressing Enter while a search field has focus
         Kleo::unsetAutoDefaultButtons(q);
 
-        connect(ui.groupNameEdit, &QLineEdit::textChanged, q, [okButton](const QString &text) {
-            okButton->setEnabled(!text.trimmed().isEmpty());
+        connect(ui.groupNameEdit, &QLineEdit::textChanged, q, [saveButton](const QString &text) {
+            saveButton->setEnabled(!text.trimmed().isEmpty());
         });
         connect(ui.availableKeysFilter, &QLineEdit::textChanged, ui.availableKeysList, &KeyTreeView::setStringFilter);
         connect(ui.availableKeysList->view()->selectionModel(),

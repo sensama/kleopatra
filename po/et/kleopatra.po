@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 00:41+0000\n"
+"POT-Creation-Date: 2024-01-19 01:41+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -2807,7 +2807,7 @@ msgid "No Directory Servers Configured"
 msgstr "Kataloogiservereid pole seadistatud"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:487
 #, fuzzy, kde-format
 #| msgid "Create a new key pair or certificate signing request"
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -3875,7 +3875,7 @@ msgstr "Taustaprogrammi viga: gpgconf ei paista tundvat %1/%2/%3 kirjet"
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Taustaprogrammi viga: gpgconf'il on %1/%2/%3 jaoks vale tüüp: %4 %5"
 
-#: src/conf/groupsconfigdialog.cpp:90
+#: src/conf/groupsconfigdialog.cpp:108
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Configure"
@@ -3883,50 +3883,18 @@ msgctxt "@title:window"
 msgid "Configure Groups"
 msgstr "Seadistamine"
 
-#: src/conf/groupsconfigdialog.cpp:93
-#, fuzzy, kde-format
-#| msgid "Show Details"
-msgid "Groups"
-msgstr "Näita üksikasju"
-
-#: src/conf/groupsconfigdialog.cpp:109
+#: src/conf/groupsconfigdialog.cpp:133
 #, fuzzy, kde-format
 #| msgid "&Help"
 msgid "Help"
 msgstr "&Abi"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:134
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:81
-#, fuzzy, kde-format
-#| msgid "Save As"
-msgid "Save changes"
-msgstr "Salvestamine"
-
-#: src/conf/groupsconfigpage.cpp:83
-#, kde-format
-msgid "Discard changes"
-msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:87
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The certificates or the certificate groups have been updated in the "
-"background.</para><para>Do you want to save your changes?</para>"
-msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:89
-#, fuzzy, kde-format
-#| msgid "Save As"
-msgctxt "@title::window"
-msgid "Save changes?"
-msgstr "Salvestamine"
 
 #: src/conf/groupsconfigwidget.cpp:147 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
@@ -4000,19 +3968,19 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "Eksport"
 
-#: src/conf/groupsconfigwidget.cpp:323
+#: src/conf/groupsconfigwidget.cpp:319
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:326
+#: src/conf/groupsconfigwidget.cpp:322
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:363
+#: src/conf/groupsconfigwidget.cpp:359
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
@@ -4515,7 +4483,7 @@ msgstr ""
 "aga need ei tohi segiläbi esineda."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:876
+#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:871
 #, kde-format
 msgid "Cancel"
 msgstr "Loobu"
@@ -6886,52 +6854,52 @@ msgstr "Palun kirjuta nimi või e-posti aadress..."
 msgid "The issuer certificate could not be found locally."
 msgstr "See sertifikaat on kohalikult keelatud."
 
-#: src/dialogs/certificateselectiondialog.cpp:135
+#: src/dialogs/certificateselectiondialog.cpp:128
 #, kde-format
 msgid "Please select one or more of the following certificates:"
 msgstr "Palun vali vähemalt üks järgmistest sertifikaatidest:"
 
-#: src/dialogs/certificateselectiondialog.cpp:136
+#: src/dialogs/certificateselectiondialog.cpp:129
 #, kde-format
 msgid "Please select one of the following certificates:"
 msgstr "Palun vali üks järgmistest sertifikaatidest:"
 
-#: src/dialogs/certificateselectiondialog.cpp:168
+#: src/dialogs/certificateselectiondialog.cpp:161
 #: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgid "Reload"
 msgstr "Laadi uuesti"
 
-#: src/dialogs/certificateselectiondialog.cpp:169
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Refresh certificate list"
 msgstr "Värskenda sertifikaadiloendit"
 
-#: src/dialogs/certificateselectiondialog.cpp:170
+#: src/dialogs/certificateselectiondialog.cpp:163
 #: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Impordi ..."
 
-#: src/dialogs/certificateselectiondialog.cpp:171
+#: src/dialogs/certificateselectiondialog.cpp:164
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import certificate from file"
 msgstr "Sertifikaadi import failist"
 
-#: src/dialogs/certificateselectiondialog.cpp:172
+#: src/dialogs/certificateselectiondialog.cpp:165
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgid "Import certificate"
 msgstr "Impordi sertifikaadid"
 
-#: src/dialogs/certificateselectiondialog.cpp:173
+#: src/dialogs/certificateselectiondialog.cpp:166
 #, kde-format
 msgid "Lookup..."
 msgstr "Otsi..."
 
-#: src/dialogs/certificateselectiondialog.cpp:174
+#: src/dialogs/certificateselectiondialog.cpp:167
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Lookup certificates on server"
@@ -6939,52 +6907,52 @@ msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
 msgstr "Sertifikaadi otsing serveris"
 
-#: src/dialogs/certificateselectiondialog.cpp:175
+#: src/dialogs/certificateselectiondialog.cpp:168
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Lookup certificates on server"
 msgid "Look up certificate"
 msgstr "Sertifikaadi otsing serveris"
 
-#: src/dialogs/certificateselectiondialog.cpp:176
+#: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgid "New..."
 msgstr "Uus..."
 
-#: src/dialogs/certificateselectiondialog.cpp:177
+#: src/dialogs/certificateselectiondialog.cpp:170
 #, fuzzy, kde-format
 #| msgid "OpenPGP Certificates"
 msgctxt "@info:tooltip"
 msgid "Create a new OpenPGP certificate"
 msgstr "OpenPGP sertifikaadid"
 
-#: src/dialogs/certificateselectiondialog.cpp:178
+#: src/dialogs/certificateselectiondialog.cpp:171
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Create a new certificate"
 msgid "Create certificate"
 msgstr "Uue sertifikaadi loomine"
 
-#: src/dialogs/certificateselectiondialog.cpp:179
+#: src/dialogs/certificateselectiondialog.cpp:172
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgid "Groups..."
 msgstr "Näita üksikasju"
 
-#: src/dialogs/certificateselectiondialog.cpp:180
+#: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "Change Certification Trust..."
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
 msgstr "Muuda sertifikaadi usaldusväärsust..."
 
-#: src/dialogs/certificateselectiondialog.cpp:181
+#: src/dialogs/certificateselectiondialog.cpp:174
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgid "Manage groups"
 msgstr "Näita üksikasju"
 
-#: src/dialogs/certificateselectiondialog.cpp:230
+#: src/dialogs/certificateselectiondialog.cpp:223
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Selection"
@@ -9112,47 +9080,47 @@ msgstr "Töödeldavad failid"
 msgid "String or Fingerprint for query and search"
 msgstr "String või sõrmejälg päringu ja otsingu jaoks"
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:383
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Käsu käivitamine nurjus"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:425
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Mitmeti tõlgendatav protokoll: --openpgp ja --cms"
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:459
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Võtmele --search pole otsingustringi määratud"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:470
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Võtmele --query pole sõrmejäljeargumenti määratud"
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:531
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Mitmeti tõlgendatavad käsud \"%1\" ja \"%2\""
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:538
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Käsule \"%1\" pole faili määratud"
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:552
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\" lugemine nurjus"
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:843
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:843
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -9292,20 +9260,20 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "Vigased argumendid: %1"
 
-#: src/mainwindow.cpp:104
+#: src/mainwindow.cpp:102
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr ""
 
-#: src/mainwindow.cpp:111
+#: src/mainwindow.cpp:109
 #, fuzzy, kde-format
 #| msgid "Only &Close Window"
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Sul&ge ainult aken"
 
-#: src/mainwindow.cpp:205
+#: src/mainwindow.cpp:203
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "%1 may be used by other applications as a service.\n"
@@ -9318,14 +9286,14 @@ msgstr ""
 "%1 võib olla mõne teise rakenduse jaoks kasutusel teenusena.\n"
 "Väljumise asemel võiks lihtsalt sulgeda %1 akna."
 
-#: src/mainwindow.cpp:208
+#: src/mainwindow.cpp:206
 #, fuzzy, kde-format
 #| msgid "Really Quit?"
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Kas tõesti väljuda?"
 
-#: src/mainwindow.cpp:298
+#: src/mainwindow.cpp:293
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9334,23 +9302,23 @@ msgstr ""
 "GnuPG loginäitaja (kwatchgnupg) käivitamine nurjus. Palun kontrolli "
 "paigaldust."
 
-#: src/mainwindow.cpp:300
+#: src/mainwindow.cpp:295
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Viga KWatchGnuPG käivitamisel"
 
-#: src/mainwindow.cpp:533
+#: src/mainwindow.cpp:528
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG logi näitaja"
 
-#: src/mainwindow.cpp:545
+#: src/mainwindow.cpp:540
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:546
+#: src/mainwindow.cpp:541
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9358,25 +9326,25 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:558
+#: src/mainwindow.cpp:553
 #, kde-format
 msgid "Check for updates"
 msgstr "Kontrolli uuendusi"
 
-#: src/mainwindow.cpp:571
+#: src/mainwindow.cpp:566
 #, fuzzy, kde-format
 #| msgid "Certificates"
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Sertifikaadid"
 
-#: src/mainwindow.cpp:572
+#: src/mainwindow.cpp:567
 #, fuzzy, kde-format
 #| msgid "Show certificate details"
 msgid "Show certificate overview"
 msgstr "Sertifikaadi üksikasjade näitamine"
 
-#: src/mainwindow.cpp:582
+#: src/mainwindow.cpp:577
 #, fuzzy, kde-format
 #| msgid "Notepad"
 msgctxt ""
@@ -9385,46 +9353,46 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Notepad"
 
-#: src/mainwindow.cpp:583
+#: src/mainwindow.cpp:578
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:593
+#: src/mainwindow.cpp:588
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Kiipkaart"
 
-#: src/mainwindow.cpp:594
+#: src/mainwindow.cpp:589
 #, fuzzy, kde-format
 #| msgid "Smartcard Management"
 msgid "Show smartcard management"
 msgstr "Kiipkaardi haldamine"
 
-#: src/mainwindow.cpp:605
+#: src/mainwindow.cpp:600
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Soorita enesetest"
 
-#: src/mainwindow.cpp:616
+#: src/mainwindow.cpp:611
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgid "Configure Groups..."
 msgstr "%1 &seadistamine..."
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:641
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Fookus kiirotsingule"
 
-#: src/mainwindow.cpp:658
+#: src/mainwindow.cpp:653
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win kompendium"
 
-#: src/mainwindow.cpp:662
+#: src/mainwindow.cpp:657
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9432,50 +9400,50 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:671
+#: src/mainwindow.cpp:666
 #, kde-format
 msgid "&Quickguide"
 msgstr ""
 
-#: src/mainwindow.cpp:672
+#: src/mainwindow.cpp:667
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:678
+#: src/mainwindow.cpp:673
 #, fuzzy, kde-format
 #| msgid "Force decryption"
 msgid "&Password-based encryption"
 msgstr "Jõuga lahtikrüptimine"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:674
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:684
+#: src/mainwindow.cpp:679
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgid "&Group configuration"
 msgstr "Omaniku teabe näitamine"
 
-#: src/mainwindow.cpp:685
+#: src/mainwindow.cpp:680
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:692
+#: src/mainwindow.cpp:687
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr ""
 
-#: src/mainwindow.cpp:693
+#: src/mainwindow.cpp:688
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9483,62 +9451,62 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:701
+#: src/mainwindow.cpp:696
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "&Certification Management"
 msgstr "Sertifitseerimine"
 
-#: src/mainwindow.cpp:702
+#: src/mainwindow.cpp:697
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:708
+#: src/mainwindow.cpp:703
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "&Smartcard setup"
 msgstr "Kiipkaart"
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:704
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:714
+#: src/mainwindow.cpp:709
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:721
+#: src/mainwindow.cpp:716
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr ""
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:717
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:727
+#: src/mainwindow.cpp:722
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr ""
 
-#: src/mainwindow.cpp:728
+#: src/mainwindow.cpp:723
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:748
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9547,28 +9515,28 @@ msgstr ""
 "Taustal tootavad ikka veel mõned ülesanded. Akna sulgemisel nende töö "
 "lõpetatakse. Kas jätkata?"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:751
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Taustal töötavad ülesanded"
 
-#: src/mainwindow.cpp:860 src/view/keylistcontroller.cpp:406
+#: src/mainwindow.cpp:855 src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Allkirjasta/krüpti..."
 
-#: src/mainwindow.cpp:861 src/utils/clipboardmenu.cpp:50
+#: src/mainwindow.cpp:856 src/utils/clipboardmenu.cpp:50
 #: src/view/keylistcontroller.cpp:397
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Krüpti lahti/verifitseeri..."
 
-#: src/mainwindow.cpp:866
+#: src/mainwindow.cpp:861
 #, kde-format
 msgid "Import Certificates"
 msgstr "Impordi sertifikaadid"
 
-#: src/mainwindow.cpp:867
+#: src/mainwindow.cpp:862
 #, kde-format
 msgid "Import CRLs"
 msgstr "Impordi CRL-id"
@@ -12826,6 +12794,22 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
+
+#, fuzzy
+#~| msgid "Show Details"
+#~ msgid "Groups"
+#~ msgstr "Näita üksikasju"
+
+#, fuzzy
+#~| msgid "Save As"
+#~ msgid "Save changes"
+#~ msgstr "Salvestamine"
+
+#, fuzzy
+#~| msgid "Save As"
+#~ msgctxt "@title::window"
+#~ msgid "Save changes?"
+#~ msgstr "Salvestamine"
 
 #, fuzzy
 #~| msgid "ECDH (Curve P-256)"

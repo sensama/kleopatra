@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 00:41+0000\n"
+"POT-Creation-Date: 2024-01-19 01:41+0000\n"
 "PO-Revision-Date: 2007-09-09 17:32+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -2836,7 +2836,7 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:487
 #, fuzzy, kde-format
 #| msgid "&Generate Key Pair && Certificate Request"
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -3892,53 +3892,23 @@ msgstr "ब्याकइन्ड त्रुटि: %1/%2/%3 का ला�
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "ब्याकइन्ड त्रुटि: %1/%2/%3: %4 %5 का लागि gpgconf सँग गलत प्रकार छ"
 
-#: src/conf/groupsconfigdialog.cpp:90
+#: src/conf/groupsconfigdialog.cpp:108
 #, fuzzy, kde-format
 #| msgid "Configure"
 msgctxt "@title:window"
 msgid "Configure Groups"
 msgstr "कन्फिगर गर्नुहोस्"
 
-#: src/conf/groupsconfigdialog.cpp:93
-#, fuzzy, kde-format
-#| msgid "&Details"
-msgid "Groups"
-msgstr "विस्तृत विवरण"
-
-#: src/conf/groupsconfigdialog.cpp:109
+#: src/conf/groupsconfigdialog.cpp:133
 #, kde-format
 msgid "Help"
 msgstr ""
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:134
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_group-feature_gnupg_en.pdf"
-msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:81
-#, kde-format
-msgid "Save changes"
-msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:83
-#, kde-format
-msgid "Discard changes"
-msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:87
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The certificates or the certificate groups have been updated in the "
-"background.</para><para>Do you want to save your changes?</para>"
-msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:89
-#, kde-format
-msgctxt "@title::window"
-msgid "Save changes?"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:147 src/dialogs/editgroupdialog.cpp:101
@@ -4014,19 +3984,19 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "गुप्तिकरणका लागि मात्र"
 
-#: src/conf/groupsconfigwidget.cpp:323
+#: src/conf/groupsconfigwidget.cpp:319
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:326
+#: src/conf/groupsconfigwidget.cpp:322
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:363
+#: src/conf/groupsconfigwidget.cpp:359
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
@@ -4473,7 +4443,7 @@ msgid ""
 msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:876
+#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:871
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Cancel"
@@ -6819,106 +6789,106 @@ msgstr ""
 msgid "The issuer certificate could not be found locally."
 msgstr "वितरक प्रमाणपत्र फेला परेन ( %1)"
 
-#: src/dialogs/certificateselectiondialog.cpp:135
+#: src/dialogs/certificateselectiondialog.cpp:128
 #, kde-format
 msgid "Please select one or more of the following certificates:"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:136
+#: src/dialogs/certificateselectiondialog.cpp:129
 #, kde-format
 msgid "Please select one of the following certificates:"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:168
+#: src/dialogs/certificateselectiondialog.cpp:161
 #: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgid "Reload"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:169
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info:tooltip"
 msgid "Refresh certificate list"
 msgstr "प्रमाणपत्र"
 
-#: src/dialogs/certificateselectiondialog.cpp:170
+#: src/dialogs/certificateselectiondialog.cpp:163
 #: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Imported:"
 msgid "Import..."
 msgstr "आयातित:"
 
-#: src/dialogs/certificateselectiondialog.cpp:171
+#: src/dialogs/certificateselectiondialog.cpp:164
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info:tooltip"
 msgid "Import certificate from file"
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/dialogs/certificateselectiondialog.cpp:172
+#: src/dialogs/certificateselectiondialog.cpp:165
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "Import certificate"
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/dialogs/certificateselectiondialog.cpp:173
+#: src/dialogs/certificateselectiondialog.cpp:166
 #, kde-format
 msgid "Lookup..."
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:174
+#: src/dialogs/certificateselectiondialog.cpp:167
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
 msgstr "प्रमाणपत्र प्रबन्धक त्रुटि"
 
-#: src/dialogs/certificateselectiondialog.cpp:175
+#: src/dialogs/certificateselectiondialog.cpp:168
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Look up certificate"
 msgstr "प्रमाणपत्र प्रबन्धक त्रुटि"
 
-#: src/dialogs/certificateselectiondialog.cpp:176
+#: src/dialogs/certificateselectiondialog.cpp:169
 #, fuzzy, kde-format
 #| msgid "A.k.a."
 msgid "New..."
 msgstr "A.k.a."
 
-#: src/dialogs/certificateselectiondialog.cpp:177
+#: src/dialogs/certificateselectiondialog.cpp:170
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgctxt "@info:tooltip"
 msgid "Create a new OpenPGP certificate"
 msgstr "प्रमाणपत्र प्रबन्धक त्रुटि"
 
-#: src/dialogs/certificateselectiondialog.cpp:178
+#: src/dialogs/certificateselectiondialog.cpp:171
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgid "Create certificate"
 msgstr "प्रमाणपत्र मेट्नुहोस्"
 
-#: src/dialogs/certificateselectiondialog.cpp:179
+#: src/dialogs/certificateselectiondialog.cpp:172
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Groups..."
 msgstr "विस्तृत विवरण"
 
-#: src/dialogs/certificateselectiondialog.cpp:180
+#: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
 msgstr "प्रमाणपत्र बचत गर्नुहोस्"
 
-#: src/dialogs/certificateselectiondialog.cpp:181
+#: src/dialogs/certificateselectiondialog.cpp:174
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Manage groups"
 msgstr "विस्तृत विवरण"
 
-#: src/dialogs/certificateselectiondialog.cpp:230
+#: src/dialogs/certificateselectiondialog.cpp:223
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@title:window"
@@ -8977,7 +8947,7 @@ msgstr ""
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:383
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -8987,43 +8957,43 @@ msgstr ""
 "gpgsm कार्यान्वयन गर्न असफल:\n"
 "%1"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:425
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:459
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:470
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:531
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:538
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:552
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot read \"%1\""
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:843
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:843
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -9177,19 +9147,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr ""
 
-#: src/mainwindow.cpp:104
+#: src/mainwindow.cpp:102
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr ""
 
-#: src/mainwindow.cpp:111
+#: src/mainwindow.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr ""
 
-#: src/mainwindow.cpp:205
+#: src/mainwindow.cpp:203
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9197,13 +9167,13 @@ msgid ""
 "%1</application>."
 msgstr ""
 
-#: src/mainwindow.cpp:208
+#: src/mainwindow.cpp:206
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr ""
 
-#: src/mainwindow.cpp:298
+#: src/mainwindow.cpp:293
 #, fuzzy, kde-format
 #| msgid ""
 #| "Could not start GnuPG LogViewer (kwatchgnupg). Please check your "
@@ -9213,25 +9183,25 @@ msgid ""
 "installation."
 msgstr "GnuPG LogViewer सुरुआत गर्न सकेन (kwatchgnupg) । कृपया स्थापना जाँच गर्नुहोस् !"
 
-#: src/mainwindow.cpp:300
+#: src/mainwindow.cpp:295
 #, fuzzy, kde-format
 #| msgid "Configure &GpgME Backend"
 msgid "Error Starting KWatchGnuPG"
 msgstr "GpgME ब्याकइन्ड कन्फिगर गर्नुहोस्"
 
-#: src/mainwindow.cpp:533
+#: src/mainwindow.cpp:528
 #, fuzzy, kde-format
 #| msgid "GnuPG Log Viewer..."
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG कार्य दर्शक..."
 
-#: src/mainwindow.cpp:545
+#: src/mainwindow.cpp:540
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:546
+#: src/mainwindow.cpp:541
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9239,25 +9209,25 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:558
+#: src/mainwindow.cpp:553
 #, kde-format
 msgid "Check for updates"
 msgstr ""
 
-#: src/mainwindow.cpp:571
+#: src/mainwindow.cpp:566
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "प्रमाणपत्र"
 
-#: src/mainwindow.cpp:572
+#: src/mainwindow.cpp:567
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
 msgid "Show certificate overview"
 msgstr "प्रमाणपत्रको विस्तृत विवरण..."
 
-#: src/mainwindow.cpp:582
+#: src/mainwindow.cpp:577
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9265,44 +9235,44 @@ msgctxt ""
 msgid "Notepad"
 msgstr ""
 
-#: src/mainwindow.cpp:583
+#: src/mainwindow.cpp:578
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:593
+#: src/mainwindow.cpp:588
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr ""
 
-#: src/mainwindow.cpp:594
+#: src/mainwindow.cpp:589
 #, kde-format
 msgid "Show smartcard management"
 msgstr ""
 
-#: src/mainwindow.cpp:605
+#: src/mainwindow.cpp:600
 #, kde-format
 msgid "Perform Self-Test"
 msgstr ""
 
-#: src/mainwindow.cpp:616
+#: src/mainwindow.cpp:611
 #, fuzzy, kde-format
 #| msgid "Configure"
 msgid "Configure Groups..."
 msgstr "कन्फिगर गर्नुहोस्"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:641
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/mainwindow.cpp:658
+#: src/mainwindow.cpp:653
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr ""
 
-#: src/mainwindow.cpp:662
+#: src/mainwindow.cpp:657
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9310,50 +9280,50 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:671
+#: src/mainwindow.cpp:666
 #, kde-format
 msgid "&Quickguide"
 msgstr ""
 
-#: src/mainwindow.cpp:672
+#: src/mainwindow.cpp:667
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:678
+#: src/mainwindow.cpp:673
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "&Password-based encryption"
 msgstr "गुप्तिकरणका लागि मात्र"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:674
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:684
+#: src/mainwindow.cpp:679
 #, fuzzy, kde-format
 #| msgid "Information"
 msgid "&Group configuration"
 msgstr "सूचना"
 
-#: src/mainwindow.cpp:685
+#: src/mainwindow.cpp:680
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:692
+#: src/mainwindow.cpp:687
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr ""
 
-#: src/mainwindow.cpp:693
+#: src/mainwindow.cpp:688
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9361,92 +9331,92 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:701
+#: src/mainwindow.cpp:696
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "&Certification Management"
 msgstr "प्रमाणपत्र प्रबन्धक त्रुटि"
 
-#: src/mainwindow.cpp:702
+#: src/mainwindow.cpp:697
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:708
+#: src/mainwindow.cpp:703
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgid "&Smartcard setup"
 msgstr "CRL फाइल चयन गर्नुहोस्"
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:704
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:714
+#: src/mainwindow.cpp:709
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:721
+#: src/mainwindow.cpp:716
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr ""
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:717
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:727
+#: src/mainwindow.cpp:722
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr ""
 
-#: src/mainwindow.cpp:728
+#: src/mainwindow.cpp:723
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:748
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
 msgstr ""
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:751
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr ""
 
-#: src/mainwindow.cpp:860 src/view/keylistcontroller.cpp:406
+#: src/mainwindow.cpp:855 src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/mainwindow.cpp:861 src/utils/clipboardmenu.cpp:50
+#: src/mainwindow.cpp:856 src/utils/clipboardmenu.cpp:50
 #: src/view/keylistcontroller.cpp:397
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Decrypt/Verify..."
 msgstr "कुञ्जी मेट्दैछ..."
 
-#: src/mainwindow.cpp:866
+#: src/mainwindow.cpp:861
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "Import Certificates"
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/mainwindow.cpp:867
+#: src/mainwindow.cpp:862
 #, fuzzy, kde-format
 #| msgid "Import CRLs..."
 msgid "Import CRLs"
@@ -12638,6 +12608,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "&Details"
+#~ msgid "Groups"
+#~ msgstr "विस्तृत विवरण"
 
 #, fuzzy
 #~| msgid "%1 bit"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-16 00:38+0000\n"
+"POT-Creation-Date: 2024-01-19 00:37+0000\n"
 "PO-Revision-Date: 2023-09-12 21:35+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -2713,7 +2713,7 @@ msgid "No Directory Servers Configured"
 msgstr "Några katalogservrar är inte inställda"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:487
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -3735,54 +3735,23 @@ msgstr "Gränssnittsfel: gpgconf verkar inte känna till posten för %1/%2"
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Gränssnittsfel: gpgconf har fel typ för %1/%2: %3 %4"
 
-#: src/conf/groupsconfigdialog.cpp:90
+#: src/conf/groupsconfigdialog.cpp:108
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Groups"
 msgstr "Anpassa grupper"
 
-#: src/conf/groupsconfigdialog.cpp:93
-#, kde-format
-msgid "Groups"
-msgstr "Grupper"
-
-#: src/conf/groupsconfigdialog.cpp:109
+#: src/conf/groupsconfigdialog.cpp:133
 #, kde-format
 msgid "Help"
 msgstr "Hjälp"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:134
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
-
-#: src/conf/groupsconfigpage.cpp:81
-#, kde-format
-msgid "Save changes"
-msgstr "Spara ändringar"
-
-#: src/conf/groupsconfigpage.cpp:83
-#, kde-format
-msgid "Discard changes"
-msgstr "Kasta ändringar"
-
-#: src/conf/groupsconfigpage.cpp:87
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The certificates or the certificate groups have been updated in the "
-"background.</para><para>Do you want to save your changes?</para>"
-msgstr ""
-"<para>Certifikaten eller certifikatgrupperna har uppdaterats i bakgrunden.</"
-"para><para>Vill du spara dina ändringar?</para>"
-
-#: src/conf/groupsconfigpage.cpp:89
-#, kde-format
-msgctxt "@title::window"
-msgid "Save changes?"
-msgstr "Spara ändringar?"
 
 #: src/conf/groupsconfigwidget.cpp:151 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
@@ -3853,19 +3822,19 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "Exportera"
 
-#: src/conf/groupsconfigwidget.cpp:327
+#: src/conf/groupsconfigwidget.cpp:323
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "Ny grupp"
 
-#: src/conf/groupsconfigwidget.cpp:330
+#: src/conf/groupsconfigwidget.cpp:326
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
 msgstr "Ny grupp"
 
-#: src/conf/groupsconfigwidget.cpp:367
+#: src/conf/groupsconfigwidget.cpp:363
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
@@ -4362,7 +4331,7 @@ msgstr ""
 "båda."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:883
+#: src/dialogs/updatenotification.cpp:76
 #, kde-format
 msgid "Cancel"
 msgstr "Avbryt"
@@ -6625,94 +6594,94 @@ msgstr ""
 msgid "The issuer certificate could not be found locally."
 msgstr "Utgivarens certifikat hittades inte lokalt."
 
-#: src/dialogs/certificateselectiondialog.cpp:135
+#: src/dialogs/certificateselectiondialog.cpp:128
 #, kde-format
 msgid "Please select one or more of the following certificates:"
 msgstr "Välj ett eller fler av följande certifikat:"
 
-#: src/dialogs/certificateselectiondialog.cpp:136
+#: src/dialogs/certificateselectiondialog.cpp:129
 #, kde-format
 msgid "Please select one of the following certificates:"
 msgstr "Välj ett av följande certifikat:"
 
-#: src/dialogs/certificateselectiondialog.cpp:168
+#: src/dialogs/certificateselectiondialog.cpp:161
 #: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgid "Reload"
 msgstr "Uppdatera"
 
-#: src/dialogs/certificateselectiondialog.cpp:169
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Refresh certificate list"
 msgstr "Uppdatera certifikatlista"
 
-#: src/dialogs/certificateselectiondialog.cpp:170
+#: src/dialogs/certificateselectiondialog.cpp:163
 #: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Importera..."
 
-#: src/dialogs/certificateselectiondialog.cpp:171
+#: src/dialogs/certificateselectiondialog.cpp:164
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import certificate from file"
 msgstr "Importera certifikat från fil"
 
-#: src/dialogs/certificateselectiondialog.cpp:172
+#: src/dialogs/certificateselectiondialog.cpp:165
 #, kde-format
 msgid "Import certificate"
 msgstr "Importera certifikat"
 
-#: src/dialogs/certificateselectiondialog.cpp:173
+#: src/dialogs/certificateselectiondialog.cpp:166
 #, kde-format
 msgid "Lookup..."
 msgstr "Slå upp..."
 
-#: src/dialogs/certificateselectiondialog.cpp:174
+#: src/dialogs/certificateselectiondialog.cpp:167
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
 msgstr "Slå upp certifikat på server"
 
-#: src/dialogs/certificateselectiondialog.cpp:175
+#: src/dialogs/certificateselectiondialog.cpp:168
 #, kde-format
 msgid "Look up certificate"
 msgstr "Slå upp certifikat"
 
-#: src/dialogs/certificateselectiondialog.cpp:176
+#: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgid "New..."
 msgstr "Nytt..."
 
-#: src/dialogs/certificateselectiondialog.cpp:177
+#: src/dialogs/certificateselectiondialog.cpp:170
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a new OpenPGP certificate"
 msgstr "Skapa ett nytt OpenPGP-certifikat"
 
-#: src/dialogs/certificateselectiondialog.cpp:178
+#: src/dialogs/certificateselectiondialog.cpp:171
 #, kde-format
 msgid "Create certificate"
 msgstr "Skapa certifikat"
 
-#: src/dialogs/certificateselectiondialog.cpp:179
+#: src/dialogs/certificateselectiondialog.cpp:172
 #, kde-format
 msgid "Groups..."
 msgstr "Grupper..."
 
-#: src/dialogs/certificateselectiondialog.cpp:180
+#: src/dialogs/certificateselectiondialog.cpp:173
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
 msgstr "Hantera certifikatgrupper"
 
-#: src/dialogs/certificateselectiondialog.cpp:181
+#: src/dialogs/certificateselectiondialog.cpp:174
 #, kde-format
 msgid "Manage groups"
 msgstr "Hantera grupper"
 
-#: src/dialogs/certificateselectiondialog.cpp:230
+#: src/dialogs/certificateselectiondialog.cpp:223
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Selection"
@@ -8884,47 +8853,47 @@ msgstr "Fil(er) att behandla"
 msgid "String or Fingerprint for query and search"
 msgstr "Sträng eller fingeravtryck för fråga och sök"
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:383
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Misslyckades köra kommando"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:425
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Tvetydigt protokoll: --openpgp och --cms"
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:459
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Ingen söksträng angiven för --search"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:470
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Inget fingeravtrycksargument angivet för --query"
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:531
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Tvetydiga kommandon \"%1\" och \"%2\""
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:538
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Inga filer angivna för kommandot \"%1\""
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:552
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Kan inte läsa \"%1\""
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:848
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Att öppna en extern länk är administrativt förhindrat."
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:848
 #, kde-format
 msgid "Prohibited"
 msgstr "Förhindrat"
@@ -9076,19 +9045,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "felaktigt argument: %1"
 
-#: src/mainwindow.cpp:104
+#: src/mainwindow.cpp:102
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "&Avsluta <application>%1</application>"
 
-#: src/mainwindow.cpp:111
+#: src/mainwindow.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Stän&g bara fönster"
 
-#: src/mainwindow.cpp:205
+#: src/mainwindow.cpp:203
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9099,13 +9068,13 @@ msgstr ""
 "<nl/>Kanske vill du istället stänga fönstret utan att avsluta <application>"
 "%1</application>."
 
-#: src/mainwindow.cpp:208
+#: src/mainwindow.cpp:206
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Verkligen avsluta?"
 
-#: src/mainwindow.cpp:298
+#: src/mainwindow.cpp:293
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9114,23 +9083,23 @@ msgstr ""
 "Kunde inte starta GnuPG-loggvisning (kwatchgnupg). Kontrollera "
 "installationen."
 
-#: src/mainwindow.cpp:300
+#: src/mainwindow.cpp:295
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Fel vid start av KwatchGnuPG"
 
-#: src/mainwindow.cpp:528
+#: src/mainwindow.cpp:523
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG-loggvisning"
 
-#: src/mainwindow.cpp:540
+#: src/mainwindow.cpp:535
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Starta om bakgrundsprocesser"
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:536
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9139,23 +9108,23 @@ msgid ""
 msgstr ""
 "Starta om bakgrundsprocesser, t.ex. efter att ha ändrat inställningarna."
 
-#: src/mainwindow.cpp:553
+#: src/mainwindow.cpp:548
 #, kde-format
 msgid "Check for updates"
 msgstr "Sök efter uppdateringar"
 
-#: src/mainwindow.cpp:566
+#: src/mainwindow.cpp:561
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certifikat"
 
-#: src/mainwindow.cpp:567
+#: src/mainwindow.cpp:562
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Visa certifikatöversikt"
 
-#: src/mainwindow.cpp:577
+#: src/mainwindow.cpp:572
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9163,45 +9132,45 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Anteckningsblock"
 
-#: src/mainwindow.cpp:578
+#: src/mainwindow.cpp:573
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Visa anteckningsblock för kryptering/avkodning och signering/verifiering av "
 "text"
 
-#: src/mainwindow.cpp:588
+#: src/mainwindow.cpp:583
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Smartkort"
 
-#: src/mainwindow.cpp:589
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Visa smartkortshantering"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:595
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Utför självtest"
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:606
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Anpassa grupper..."
 
-#: src/mainwindow.cpp:641
+#: src/mainwindow.cpp:636
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Ge fokus till snabbsökning"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win kompendium"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:652
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9209,48 +9178,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:667
+#: src/mainwindow.cpp:662
 #, kde-format
 msgid "&Quickguide"
 msgstr "Snabb&handledning"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:663
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:675
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "&Password-based encryption"
 msgstr "Lösenordsbaserad kry&ptering"
 
-#: src/mainwindow.cpp:676
+#: src/mainwindow.cpp:671
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:682
+#: src/mainwindow.cpp:677
 #, kde-format
 msgid "&Group configuration"
 msgstr "&Gruppinställning"
 
-#: src/mainwindow.cpp:683
+#: src/mainwindow.cpp:678
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:691
+#: src/mainwindow.cpp:686
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr "&E-postkryptering i Outlook"
 
-#: src/mainwindow.cpp:692
+#: src/mainwindow.cpp:687
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9258,60 +9227,60 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:701
+#: src/mainwindow.cpp:696
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Certifikathantering"
 
-#: src/mainwindow.cpp:702
+#: src/mainwindow.cpp:697
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:704
 #, kde-format
 msgid "&Smartcard setup"
 msgstr "&Smartkortsinställning"
 
-#: src/mainwindow.cpp:710
+#: src/mainwindow.cpp:705
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:716
+#: src/mainwindow.cpp:711
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG &kommandorad"
 
-#: src/mainwindow.cpp:725
+#: src/mainwindow.cpp:720
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:726
+#: src/mainwindow.cpp:721
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:728
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:729
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:760
+#: src/mainwindow.cpp:755
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9320,31 +9289,10 @@ msgstr ""
 "Det finns fortfarande bakgrundsaktiviteter som pågår. De kommer att avbrytas "
 "när fönstret stängs. Fortsätt?"
 
-#: src/mainwindow.cpp:763
+#: src/mainwindow.cpp:758
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Pågående bakgrundsaktiviteter"
-
-#: src/mainwindow.cpp:867 src/view/keylistcontroller.cpp:406
-#, kde-format
-msgid "Sign/Encrypt..."
-msgstr "Signera och kryptera..."
-
-#: src/mainwindow.cpp:868 src/utils/clipboardmenu.cpp:50
-#: src/view/keylistcontroller.cpp:397
-#, kde-format
-msgid "Decrypt/Verify..."
-msgstr "Avkoda och verifiera..."
-
-#: src/mainwindow.cpp:873
-#, kde-format
-msgid "Import Certificates"
-msgstr "Importera certifikat"
-
-#: src/mainwindow.cpp:874
-#, kde-format
-msgid "Import CRLs"
-msgstr "Importera CRL:er"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:221
 #, kde-format
@@ -10894,6 +10842,11 @@ msgstr "S/MIME-signering..."
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-signering..."
 
+#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:397
+#, kde-format
+msgid "Decrypt/Verify..."
+msgstr "Avkoda och verifiera..."
+
 #: src/utils/expiration.cpp:104
 #, kde-format
 msgctxt "@info"
@@ -11291,6 +11244,11 @@ msgstr "Importera ett certifikat från en fil"
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Avkoda och/eller verifiera filer"
+
+#: src/view/keylistcontroller.cpp:406
+#, kde-format
+msgid "Sign/Encrypt..."
+msgstr "Signera och kryptera..."
 
 #: src/view/keylistcontroller.cpp:407
 #, kde-format
@@ -12484,6 +12442,33 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
+
+#~ msgid "Groups"
+#~ msgstr "Grupper"
+
+#~ msgid "Save changes"
+#~ msgstr "Spara ändringar"
+
+#~ msgid "Discard changes"
+#~ msgstr "Kasta ändringar"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The certificates or the certificate groups have been updated in the "
+#~ "background.</para><para>Do you want to save your changes?</para>"
+#~ msgstr ""
+#~ "<para>Certifikaten eller certifikatgrupperna har uppdaterats i bakgrunden."
+#~ "</para><para>Vill du spara dina ändringar?</para>"
+
+#~ msgctxt "@title::window"
+#~ msgid "Save changes?"
+#~ msgstr "Spara ändringar?"
+
+#~ msgid "Import Certificates"
+#~ msgstr "Importera certifikat"
+
+#~ msgid "Import CRLs"
+#~ msgstr "Importera CRL:er"
 
 #~ msgctxt "@info"
 #~ msgid ""

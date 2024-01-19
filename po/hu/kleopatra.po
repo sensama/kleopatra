@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-16 00:38+0000\n"
+"POT-Creation-Date: 2024-01-19 00:37+0000\n"
 "PO-Revision-Date: 2014-09-10 14:40+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2903,7 +2903,7 @@ msgid "No Directory Servers Configured"
 msgstr "Nincs beállítva címtárszolgáltató"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:487
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -3986,57 +3986,25 @@ msgstr "Hiba: a gpgconf nem ismeri ezt a bejegyzést: %1/%2/%3"
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Hiba: a gpgconf rossz típussal ismeri ezt: %1/%2/%3 - %4 %5"
 
-#: src/conf/groupsconfigdialog.cpp:90
+#: src/conf/groupsconfigdialog.cpp:108
 #, fuzzy, kde-format
 #| msgid "Configure"
 msgctxt "@title:window"
 msgid "Configure Groups"
 msgstr "Beállítás"
 
-#: src/conf/groupsconfigdialog.cpp:93
-#, fuzzy, kde-format
-#| msgid "Show Details"
-msgid "Groups"
-msgstr "A részletek megjelenítése"
-
-#: src/conf/groupsconfigdialog.cpp:109
+#: src/conf/groupsconfigdialog.cpp:133
 #, fuzzy, kde-format
 #| msgid "&Help"
 msgid "Help"
 msgstr "&Súgó"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:134
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:81
-#, fuzzy, kde-format
-#| msgid "Save As"
-msgid "Save changes"
-msgstr "Mentés másként"
-
-#: src/conf/groupsconfigpage.cpp:83
-#, kde-format
-msgid "Discard changes"
-msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:87
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The certificates or the certificate groups have been updated in the "
-"background.</para><para>Do you want to save your changes?</para>"
-msgstr ""
-
-#: src/conf/groupsconfigpage.cpp:89
-#, fuzzy, kde-format
-#| msgid "Save As"
-msgctxt "@title::window"
-msgid "Save changes?"
-msgstr "Mentés másként"
 
 #: src/conf/groupsconfigwidget.cpp:151 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
@@ -4110,19 +4078,19 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "Exportálás"
 
-#: src/conf/groupsconfigwidget.cpp:327
+#: src/conf/groupsconfigwidget.cpp:323
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:330
+#: src/conf/groupsconfigwidget.cpp:326
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:367
+#: src/conf/groupsconfigwidget.cpp:363
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
@@ -4657,7 +4625,7 @@ msgstr ""
 "fájloknak, vagy ellenőrizendő fájloknak kell lenniük, a keveredés tilos."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:883
+#: src/dialogs/updatenotification.cpp:76
 #, kde-format
 msgid "Cancel"
 msgstr "Mégsem"
@@ -7034,36 +7002,36 @@ msgstr ""
 msgid "The issuer certificate could not be found locally."
 msgstr "Ez a tanúsítvány helyben le van tiltva."
 
-#: src/dialogs/certificateselectiondialog.cpp:135
+#: src/dialogs/certificateselectiondialog.cpp:128
 #, kde-format
 msgid "Please select one or more of the following certificates:"
 msgstr "Válasszon ki egy vagy több tanúsítványt:"
 
-#: src/dialogs/certificateselectiondialog.cpp:136
+#: src/dialogs/certificateselectiondialog.cpp:129
 #, kde-format
 msgid "Please select one of the following certificates:"
 msgstr "Válasszon egyet az alábbi tanúsítványok közül:"
 
-#: src/dialogs/certificateselectiondialog.cpp:168
+#: src/dialogs/certificateselectiondialog.cpp:161
 #: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgid "Reload"
 msgstr "Újratöltés"
 
-#: src/dialogs/certificateselectiondialog.cpp:169
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Refresh certificate list"
 msgstr "A tanúsítványlista frissítése"
 
-#: src/dialogs/certificateselectiondialog.cpp:170
+#: src/dialogs/certificateselectiondialog.cpp:163
 #: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
 msgid "Import..."
 msgstr "Importálás"
 
-#: src/dialogs/certificateselectiondialog.cpp:171
+#: src/dialogs/certificateselectiondialog.cpp:164
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
@@ -7071,18 +7039,18 @@ msgctxt "@info:tooltip"
 msgid "Import certificate from file"
 msgstr "Importált tanúsítványok innen: %1"
 
-#: src/dialogs/certificateselectiondialog.cpp:172
+#: src/dialogs/certificateselectiondialog.cpp:165
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgid "Import certificate"
 msgstr "Tanúsítványok importálása"
 
-#: src/dialogs/certificateselectiondialog.cpp:173
+#: src/dialogs/certificateselectiondialog.cpp:166
 #, kde-format
 msgid "Lookup..."
 msgstr "Lekérdezés..."
 
-#: src/dialogs/certificateselectiondialog.cpp:174
+#: src/dialogs/certificateselectiondialog.cpp:167
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Lookup certificates on server"
@@ -7090,52 +7058,52 @@ msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
 msgstr "Tanúsítványok lekérdezése kiszolgálóról"
 
-#: src/dialogs/certificateselectiondialog.cpp:175
+#: src/dialogs/certificateselectiondialog.cpp:168
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Lookup certificates on server"
 msgid "Look up certificate"
 msgstr "Tanúsítványok lekérdezése kiszolgálóról"
 
-#: src/dialogs/certificateselectiondialog.cpp:176
+#: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgid "New..."
 msgstr "Új…"
 
-#: src/dialogs/certificateselectiondialog.cpp:177
+#: src/dialogs/certificateselectiondialog.cpp:170
 #, fuzzy, kde-format
 #| msgid "OpenPGP Certificates"
 msgctxt "@info:tooltip"
 msgid "Create a new OpenPGP certificate"
 msgstr "OpenPGP-tanúsítványok"
 
-#: src/dialogs/certificateselectiondialog.cpp:178
+#: src/dialogs/certificateselectiondialog.cpp:171
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Create a new certificate"
 msgid "Create certificate"
 msgstr "Új tanúsítvány"
 
-#: src/dialogs/certificateselectiondialog.cpp:179
+#: src/dialogs/certificateselectiondialog.cpp:172
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgid "Groups..."
 msgstr "A részletek megjelenítése"
 
-#: src/dialogs/certificateselectiondialog.cpp:180
+#: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "Change Owner Trust..."
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
 msgstr "A tulajdonos megváltoztatása..."
 
-#: src/dialogs/certificateselectiondialog.cpp:181
+#: src/dialogs/certificateselectiondialog.cpp:174
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgid "Manage groups"
 msgstr "A részletek megjelenítése"
 
-#: src/dialogs/certificateselectiondialog.cpp:230
+#: src/dialogs/certificateselectiondialog.cpp:223
 #, fuzzy, kde-format
 #| msgid "Certificate Selection"
 msgctxt "@title:window"
@@ -9282,49 +9250,49 @@ msgstr "Feldolgozandó fájlok"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:383
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to execute command"
 msgstr "Nem sikerült a(z) „%1” végrehajtása: %2"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:425
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:459
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:470
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:531
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:538
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:552
 #, fuzzy, kde-format
 #| msgid "Cannot send \"%1\" status"
 msgid "Cannot read \"%1\""
 msgstr "Nem küldhető „%1” állapot"
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:848
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:848
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -9472,20 +9440,20 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "érvénytelen mód: \"%1\""
 
-#: src/mainwindow.cpp:104
+#: src/mainwindow.cpp:102
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr ""
 
-#: src/mainwindow.cpp:111
+#: src/mainwindow.cpp:109
 #, fuzzy, kde-format
 #| msgid "Only &Close Window"
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Csak az ablak be&zárása"
 
-#: src/mainwindow.cpp:205
+#: src/mainwindow.cpp:203
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "%1 may be used by other applications as a service.\n"
@@ -9498,14 +9466,14 @@ msgstr ""
 "Lehet, hogy egy alkalmazás még szolgáltatásként használja ezt: %1.\n"
 "Ha kívánja, zárja be ezt az ablakot %1 bezárása nélkül."
 
-#: src/mainwindow.cpp:208
+#: src/mainwindow.cpp:206
 #, fuzzy, kde-format
 #| msgid "Really Quit?"
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Biztosan ki szeretne lépni?"
 
-#: src/mainwindow.cpp:298
+#: src/mainwindow.cpp:293
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9514,23 +9482,23 @@ msgstr ""
 "Nem sikerült elindítani a GnuPG naplómegjelenítőt (kwatchgnupg). "
 "Ellenőrizze, hogy megfelelően telepítve van-e a program."
 
-#: src/mainwindow.cpp:300
+#: src/mainwindow.cpp:295
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Nem sikerült elindítani: KWatchGnuPG"
 
-#: src/mainwindow.cpp:528
+#: src/mainwindow.cpp:523
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG naplómegjelenítő"
 
-#: src/mainwindow.cpp:540
+#: src/mainwindow.cpp:535
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:536
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9538,25 +9506,25 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:553
+#: src/mainwindow.cpp:548
 #, kde-format
 msgid "Check for updates"
 msgstr ""
 
-#: src/mainwindow.cpp:566
+#: src/mainwindow.cpp:561
 #, fuzzy, kde-format
 #| msgid "Certificates"
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Tanúsítványok"
 
-#: src/mainwindow.cpp:567
+#: src/mainwindow.cpp:562
 #, fuzzy, kde-format
 #| msgid "Show certificate details"
 msgid "Show certificate overview"
 msgstr "A tanúsítvány részletei"
 
-#: src/mainwindow.cpp:577
+#: src/mainwindow.cpp:572
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9564,45 +9532,45 @@ msgctxt ""
 msgid "Notepad"
 msgstr ""
 
-#: src/mainwindow.cpp:578
+#: src/mainwindow.cpp:573
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:588
+#: src/mainwindow.cpp:583
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Intelligens kártya"
 
-#: src/mainwindow.cpp:589
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Show smartcard management"
 msgstr ""
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:595
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Önteszt"
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:606
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgid "Configure Groups..."
 msgstr "&Beállítások: %1…"
 
-#: src/mainwindow.cpp:641
+#: src/mainwindow.cpp:636
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Fókusz beállítása a gyors keresőre"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr ""
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:652
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9610,50 +9578,50 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:667
+#: src/mainwindow.cpp:662
 #, kde-format
 msgid "&Quickguide"
 msgstr ""
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:663
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:675
+#: src/mainwindow.cpp:670
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgid "&Password-based encryption"
 msgstr "Titkosítás"
 
-#: src/mainwindow.cpp:676
+#: src/mainwindow.cpp:671
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:682
+#: src/mainwindow.cpp:677
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgid "&Group configuration"
 msgstr "Tulajdonosi jellemzők"
 
-#: src/mainwindow.cpp:683
+#: src/mainwindow.cpp:678
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:691
+#: src/mainwindow.cpp:686
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr ""
 
-#: src/mainwindow.cpp:692
+#: src/mainwindow.cpp:687
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9661,62 +9629,62 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:701
+#: src/mainwindow.cpp:696
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "&Certification Management"
 msgstr "Ellenőrzés"
 
-#: src/mainwindow.cpp:702
+#: src/mainwindow.cpp:697
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:704
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "&Smartcard setup"
 msgstr "Intelligens kártya"
 
-#: src/mainwindow.cpp:710
+#: src/mainwindow.cpp:705
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:716
+#: src/mainwindow.cpp:711
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:725
+#: src/mainwindow.cpp:720
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr ""
 
-#: src/mainwindow.cpp:726
+#: src/mainwindow.cpp:721
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:728
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr ""
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:729
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:760
+#: src/mainwindow.cpp:755
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9725,31 +9693,10 @@ msgstr ""
 "Még folyamatban van egy háttérművelet. Az ablak becsukásakor az is be fog "
 "záródni. Folytatni szeretné?"
 
-#: src/mainwindow.cpp:763
+#: src/mainwindow.cpp:758
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Futó háttérfolyamatok"
-
-#: src/mainwindow.cpp:867 src/view/keylistcontroller.cpp:406
-#, kde-format
-msgid "Sign/Encrypt..."
-msgstr "Aláírás/titkosítás..."
-
-#: src/mainwindow.cpp:868 src/utils/clipboardmenu.cpp:50
-#: src/view/keylistcontroller.cpp:397
-#, kde-format
-msgid "Decrypt/Verify..."
-msgstr "Dekódolás/ellenőrzés..."
-
-#: src/mainwindow.cpp:873
-#, kde-format
-msgid "Import Certificates"
-msgstr "Tanúsítványok importálása"
-
-#: src/mainwindow.cpp:874
-#, kde-format
-msgid "Import CRLs"
-msgstr "Visszavonási listák importálása"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:221
 #, fuzzy, kde-format
@@ -11381,6 +11328,11 @@ msgstr "S/MIME-aláírás…"
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-aláírás…"
 
+#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:397
+#, kde-format
+msgid "Decrypt/Verify..."
+msgstr "Dekódolás/ellenőrzés..."
+
 #: src/utils/expiration.cpp:104
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
@@ -11804,6 +11756,11 @@ msgstr "Importált tanúsítványok innen: %1"
 #| msgid "Decrypt and/or verify file(s)"
 msgid "Decrypt and/or verify files"
 msgstr "Fájl dekódolása és/vagy ellenőrzése"
+
+#: src/view/keylistcontroller.cpp:406
+#, kde-format
+msgid "Sign/Encrypt..."
+msgstr "Aláírás/titkosítás..."
 
 #: src/view/keylistcontroller.cpp:407
 #, fuzzy, kde-format
@@ -13069,6 +13026,28 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Show Details"
+#~ msgid "Groups"
+#~ msgstr "A részletek megjelenítése"
+
+#, fuzzy
+#~| msgid "Save As"
+#~ msgid "Save changes"
+#~ msgstr "Mentés másként"
+
+#, fuzzy
+#~| msgid "Save As"
+#~ msgctxt "@title::window"
+#~ msgid "Save changes?"
+#~ msgstr "Mentés másként"
+
+#~ msgid "Import Certificates"
+#~ msgstr "Tanúsítványok importálása"
+
+#~ msgid "Import CRLs"
+#~ msgstr "Visszavonási listák importálása"
 
 #~ msgctxt "@info"
 #~ msgid ""

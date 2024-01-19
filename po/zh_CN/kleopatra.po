@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-16 00:38+0000\n"
+"POT-Creation-Date: 2024-01-19 00:37+0000\n"
 "PO-Revision-Date: 2024-01-13 05:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2560,7 +2560,7 @@ msgid "No Directory Servers Configured"
 msgstr "未配置目录服务器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:487
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您无权创建 S/MIME 证书签名请求。"
@@ -3516,52 +3516,23 @@ msgstr "后端错误：gpgconf 未能找到 %1/%2 的项"
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "后端错误：gpgconf 格式错误 %1/%2: %3 %4"
 
-#: src/conf/groupsconfigdialog.cpp:90
+#: src/conf/groupsconfigdialog.cpp:108
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Groups"
 msgstr "配置组"
 
-#: src/conf/groupsconfigdialog.cpp:93
-#, kde-format
-msgid "Groups"
-msgstr "组"
-
-#: src/conf/groupsconfigdialog.cpp:109
+#: src/conf/groupsconfigdialog.cpp:133
 #, kde-format
 msgid "Help"
 msgstr "帮助"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:134
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
-
-#: src/conf/groupsconfigpage.cpp:81
-#, kde-format
-msgid "Save changes"
-msgstr "保存更改"
-
-#: src/conf/groupsconfigpage.cpp:83
-#, kde-format
-msgid "Discard changes"
-msgstr "放弃更改"
-
-#: src/conf/groupsconfigpage.cpp:87
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The certificates or the certificate groups have been updated in the "
-"background.</para><para>Do you want to save your changes?</para>"
-msgstr "<para>证书或证书组已被更新。</para><para>您想要保存您的更改吗？</para>"
-
-#: src/conf/groupsconfigpage.cpp:89
-#, kde-format
-msgctxt "@title::window"
-msgid "Save changes?"
-msgstr "是否保存更改？"
 
 #: src/conf/groupsconfigwidget.cpp:151 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
@@ -3628,19 +3599,19 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "导出"
 
-#: src/conf/groupsconfigwidget.cpp:327
+#: src/conf/groupsconfigwidget.cpp:323
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "新建组"
 
-#: src/conf/groupsconfigwidget.cpp:330
+#: src/conf/groupsconfigwidget.cpp:326
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
 msgstr "新建组"
 
-#: src/conf/groupsconfigwidget.cpp:367
+#: src/conf/groupsconfigwidget.cpp:363
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
@@ -4111,7 +4082,7 @@ msgstr ""
 "合。"
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:76 src/mainwindow.cpp:883
+#: src/dialogs/updatenotification.cpp:76
 #, kde-format
 msgid "Cancel"
 msgstr "取消"
@@ -6307,94 +6278,94 @@ msgstr "更新CRL并对证书进行全面验证。"
 msgid "The issuer certificate could not be found locally."
 msgstr "无法在本地找到发行者证书。"
 
-#: src/dialogs/certificateselectiondialog.cpp:135
+#: src/dialogs/certificateselectiondialog.cpp:128
 #, kde-format
 msgid "Please select one or more of the following certificates:"
 msgstr "请从下面选择一个或多个证书："
 
-#: src/dialogs/certificateselectiondialog.cpp:136
+#: src/dialogs/certificateselectiondialog.cpp:129
 #, kde-format
 msgid "Please select one of the following certificates:"
 msgstr "请从下面选择一个证书："
 
-#: src/dialogs/certificateselectiondialog.cpp:168
+#: src/dialogs/certificateselectiondialog.cpp:161
 #: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgid "Reload"
 msgstr "重新加载"
 
-#: src/dialogs/certificateselectiondialog.cpp:169
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Refresh certificate list"
 msgstr "刷新证书列表"
 
-#: src/dialogs/certificateselectiondialog.cpp:170
+#: src/dialogs/certificateselectiondialog.cpp:163
 #: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "导入..."
 
-#: src/dialogs/certificateselectiondialog.cpp:171
+#: src/dialogs/certificateselectiondialog.cpp:164
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import certificate from file"
 msgstr "从文件导入证书"
 
-#: src/dialogs/certificateselectiondialog.cpp:172
+#: src/dialogs/certificateselectiondialog.cpp:165
 #, kde-format
 msgid "Import certificate"
 msgstr "导入证书"
 
-#: src/dialogs/certificateselectiondialog.cpp:173
+#: src/dialogs/certificateselectiondialog.cpp:166
 #, kde-format
 msgid "Lookup..."
 msgstr "查询..."
 
-#: src/dialogs/certificateselectiondialog.cpp:174
+#: src/dialogs/certificateselectiondialog.cpp:167
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
 msgstr "在服务器上查找证书"
 
-#: src/dialogs/certificateselectiondialog.cpp:175
+#: src/dialogs/certificateselectiondialog.cpp:168
 #, kde-format
 msgid "Look up certificate"
 msgstr "查找证书"
 
-#: src/dialogs/certificateselectiondialog.cpp:176
+#: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgid "New..."
 msgstr "新建..."
 
-#: src/dialogs/certificateselectiondialog.cpp:177
+#: src/dialogs/certificateselectiondialog.cpp:170
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a new OpenPGP certificate"
 msgstr "创建新的 OpenPGP 证书"
 
-#: src/dialogs/certificateselectiondialog.cpp:178
+#: src/dialogs/certificateselectiondialog.cpp:171
 #, kde-format
 msgid "Create certificate"
 msgstr "创建证书"
 
-#: src/dialogs/certificateselectiondialog.cpp:179
+#: src/dialogs/certificateselectiondialog.cpp:172
 #, kde-format
 msgid "Groups..."
 msgstr "组..."
 
-#: src/dialogs/certificateselectiondialog.cpp:180
+#: src/dialogs/certificateselectiondialog.cpp:173
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
 msgstr "管理组证书"
 
-#: src/dialogs/certificateselectiondialog.cpp:181
+#: src/dialogs/certificateselectiondialog.cpp:174
 #, kde-format
 msgid "Manage groups"
 msgstr "管理分组"
 
-#: src/dialogs/certificateselectiondialog.cpp:230
+#: src/dialogs/certificateselectiondialog.cpp:223
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Selection"
@@ -8431,47 +8402,47 @@ msgstr "待处理的文件"
 msgid "String or Fingerprint for query and search"
 msgstr "用于查询和搜索的字符串或指纹"
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:383
 #, kde-format
 msgid "Failed to execute command"
 msgstr "执行命令失败"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:425
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "模糊协议：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:459
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "没有为 --search 指定搜索字符串"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:470
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "没有为 --query 指定指纹参数"
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:531
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "模糊命令 %1 和 %2"
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:538
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "没有为 %1 命令指定文件"
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:552
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "无法读取“%1”"
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:848
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "在行政上禁止打开外部链接。"
 
-#: src/kleopatraapplication.cpp:828
+#: src/kleopatraapplication.cpp:848
 #, kde-format
 msgid "Prohibited"
 msgstr "已封禁"
@@ -8616,19 +8587,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "无效的参数：%1"
 
-#: src/mainwindow.cpp:104
+#: src/mainwindow.cpp:102
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "退出 <application>%1</application>(&Q)"
 
-#: src/mainwindow.cpp:111
+#: src/mainwindow.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "只关闭窗口(&C)"
 
-#: src/mainwindow.cpp:205
+#: src/mainwindow.cpp:203
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -8638,36 +8609,36 @@ msgstr ""
 "<application>%1</application> 可能被其他应用程序用作一种服务。<nl/>你可能想要"
 "关闭此窗口而不退出 <application>%1</application>。"
 
-#: src/mainwindow.cpp:208
+#: src/mainwindow.cpp:206
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "真要退出吗？"
 
-#: src/mainwindow.cpp:298
+#: src/mainwindow.cpp:293
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr "不能启动 GnuPG 日志查看器(kwatchgnupg)，请检查您的安装。"
 
-#: src/mainwindow.cpp:300
+#: src/mainwindow.cpp:295
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "启动 KWatchGnuPG 出错"
 
-#: src/mainwindow.cpp:528
+#: src/mainwindow.cpp:523
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG 日志查看器"
 
-#: src/mainwindow.cpp:540
+#: src/mainwindow.cpp:535
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "重启后台进程"
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:536
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8675,23 +8646,23 @@ msgid ""
 "configuration."
 msgstr "重新启动后台进程，例如在更改配置之后。"
 
-#: src/mainwindow.cpp:553
+#: src/mainwindow.cpp:548
 #, kde-format
 msgid "Check for updates"
 msgstr "检查更新"
 
-#: src/mainwindow.cpp:566
+#: src/mainwindow.cpp:561
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "证书"
 
-#: src/mainwindow.cpp:567
+#: src/mainwindow.cpp:562
 #, kde-format
 msgid "Show certificate overview"
 msgstr "显示证书概述"
 
-#: src/mainwindow.cpp:577
+#: src/mainwindow.cpp:572
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -8699,43 +8670,43 @@ msgctxt ""
 msgid "Notepad"
 msgstr "记事本"
 
-#: src/mainwindow.cpp:578
+#: src/mainwindow.cpp:573
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr "显示加密/解密和签名/验证文本的键盘"
 
-#: src/mainwindow.cpp:588
+#: src/mainwindow.cpp:583
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "智能卡"
 
-#: src/mainwindow.cpp:589
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Show smartcard management"
 msgstr "显示智能卡管理"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:595
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "执行自检"
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:606
 #, kde-format
 msgid "Configure Groups..."
 msgstr "配置组..."
 
-#: src/mainwindow.cpp:641
+#: src/mainwindow.cpp:636
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "焦点设置到快速搜索栏"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win 简编"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:652
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -8743,48 +8714,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:667
+#: src/mainwindow.cpp:662
 #, kde-format
 msgid "&Quickguide"
 msgstr "快速向导(&Q)"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:663
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:675
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "&Password-based encryption"
 msgstr "基于密码的加密($P)"
 
-#: src/mainwindow.cpp:676
+#: src/mainwindow.cpp:671
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:682
+#: src/mainwindow.cpp:677
 #, kde-format
 msgid "&Group configuration"
 msgstr "分组配置(&G)"
 
-#: src/mainwindow.cpp:683
+#: src/mainwindow.cpp:678
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:691
+#: src/mainwindow.cpp:686
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr "Outlook 中的邮件加密(&M)"
 
-#: src/mainwindow.cpp:692
+#: src/mainwindow.cpp:687
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -8792,60 +8763,60 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:701
+#: src/mainwindow.cpp:696
 #, kde-format
 msgid "&Certification Management"
 msgstr "认证管理(&C)"
 
-#: src/mainwindow.cpp:702
+#: src/mainwindow.cpp:697
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:704
 #, kde-format
 msgid "&Smartcard setup"
 msgstr "智能卡设置(&S)"
 
-#: src/mainwindow.cpp:710
+#: src/mainwindow.cpp:705
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:716
+#: src/mainwindow.cpp:711
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG 命令行​​(&L)"
 
-#: src/mainwindow.cpp:725
+#: src/mainwindow.cpp:720
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:726
+#: src/mainwindow.cpp:721
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:728
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:729
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:760
+#: src/mainwindow.cpp:755
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8853,31 +8824,10 @@ msgid ""
 msgstr ""
 "还有其他后台操作正在运行。当关闭此窗口后这些操作也将被终止，您想要继续吗？"
 
-#: src/mainwindow.cpp:763
+#: src/mainwindow.cpp:758
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "正在运行的后台任务"
-
-#: src/mainwindow.cpp:867 src/view/keylistcontroller.cpp:406
-#, kde-format
-msgid "Sign/Encrypt..."
-msgstr "签名/加密..."
-
-#: src/mainwindow.cpp:868 src/utils/clipboardmenu.cpp:50
-#: src/view/keylistcontroller.cpp:397
-#, kde-format
-msgid "Decrypt/Verify..."
-msgstr "解密/校验..."
-
-#: src/mainwindow.cpp:873
-#, kde-format
-msgid "Import Certificates"
-msgstr "导入证书"
-
-#: src/mainwindow.cpp:874
-#, kde-format
-msgid "Import CRLs"
-msgstr "导入 CRL..."
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:221
 #, kde-format
@@ -10372,6 +10322,11 @@ msgstr "S/MIME 签名..."
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP 签名..."
 
+#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:397
+#, kde-format
+msgid "Decrypt/Verify..."
+msgstr "解密/校验..."
+
 #: src/utils/expiration.cpp:104
 #, kde-format
 msgctxt "@info"
@@ -10762,6 +10717,11 @@ msgstr "从文件导入证书"
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "解密和/或校验文件"
+
+#: src/view/keylistcontroller.cpp:406
+#, kde-format
+msgid "Sign/Encrypt..."
+msgstr "签名/加密..."
 
 #: src/view/keylistcontroller.cpp:407
 #, kde-format
@@ -11925,6 +11885,32 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgid "Groups"
+#~ msgstr "组"
+
+#~ msgid "Save changes"
+#~ msgstr "保存更改"
+
+#~ msgid "Discard changes"
+#~ msgstr "放弃更改"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The certificates or the certificate groups have been updated in the "
+#~ "background.</para><para>Do you want to save your changes?</para>"
+#~ msgstr ""
+#~ "<para>证书或证书组已被更新。</para><para>您想要保存您的更改吗？</para>"
+
+#~ msgctxt "@title::window"
+#~ msgid "Save changes?"
+#~ msgstr "是否保存更改？"
+
+#~ msgid "Import Certificates"
+#~ msgstr "导入证书"
+
+#~ msgid "Import CRLs"
+#~ msgstr "导入 CRL..."
 
 #~ msgctxt "@info"
 #~ msgid ""

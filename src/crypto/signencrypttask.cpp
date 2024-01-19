@@ -569,8 +569,9 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
 {
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
     if (proto == GpgME::OpenPGP) {
-        kleo_assert(!input);
-        kleo_assert(!output);
+        // either input and output are both set (e.g. when encrypting the notepad),
+        // or they are both unset (when encrypting files)
+        kleo_assert((!input && !output) || (input && output));
     } else {
         kleo_assert(input);
 
@@ -599,7 +600,7 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
             std::unique_ptr<QGpgME::SignEncryptJob> job = createSignEncryptJob(proto);
             kleo_assert(job.get());
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
-            if (proto == GpgME::OpenPGP) {
+            if (proto == GpgME::OpenPGP && !input && !output) {
                 kleo_assert(inputFileNames.size() == 1);
                 job->setSigners(signers);
                 job->setRecipients(recipients);
@@ -627,7 +628,7 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
             std::unique_ptr<QGpgME::EncryptJob> job = createEncryptJob(proto);
             kleo_assert(job.get());
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
-            if (proto == GpgME::OpenPGP) {
+            if (proto == GpgME::OpenPGP && !input && !output) {
                 kleo_assert(inputFileNames.size() == 1);
                 job->setRecipients(recipients);
                 job->setInputFile(inputFileNames.front());
@@ -657,7 +658,7 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
         kleo_assert(!(detached && clearsign));
         const GpgME::SignatureMode sigMode = detached ? GpgME::Detached : clearsign ? GpgME::Clearsigned : GpgME::NormalSignatureMode;
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
-        if (proto == GpgME::OpenPGP) {
+        if (proto == GpgME::OpenPGP && !input && !output) {
             kleo_assert(inputFileNames.size() == 1);
             job->setSigners(signers);
             job->setInputFile(inputFileNames.front());

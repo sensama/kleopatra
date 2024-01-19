@@ -14,7 +14,9 @@
 #include <commands/exportgroupscommand.h>
 #include <dialogs/editgroupdialog.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Debug>
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
 #include <Libkleo/KeyHelpers>
@@ -22,6 +24,7 @@
 #include <Libkleo/KeyListSortFilterProxyModel>
 
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <KRandom>
 
 #include <QItemSelectionModel>
@@ -385,11 +388,47 @@ private:
         Q_EMIT q->changed();
     }
 
+    bool confirmDeletion(const std::vector<KeyGroup> &groups)
+    {
+        QString message;
+        QStringList groupSummaries;
+        if (groups.size() == 1) {
+            message = xi18nc("@info",
+                             "<para>Do you really want to delete this group?</para>"
+                             "<para><emphasis>%1</emphasis></para>"
+                             "<para>Once deleted, it cannot be restored.</para>")
+                          .arg(Formatting::summaryLine(groups.front()));
+        } else {
+            message = xi18ncp("@info",
+                              "<para>Do you really want to delete this %1 group?</para>"
+                              "<para>Once deleted, it cannot be restored.</para>",
+                              "<para>Do you really want to delete these %1 groups?</para>"
+                              "<para>Once deleted, they cannot be restored.</para>",
+                              groups.size());
+            Kleo::transform(groups, std::back_inserter(groupSummaries), [](const auto &g) {
+                return Formatting::summaryLine(g);
+            });
+        }
+        const auto answer = KMessageBox::questionTwoActionsList(q,
+                                                                message,
+                                                                groupSummaries,
+                                                                i18ncp("@title:window", "Delete Group", "Delete Groups", groups.size()),
+                                                                KStandardGuiItem::del(),
+                                                                KStandardGuiItem::cancel(),
+                                                                {},
+                                                                KMessageBox::Notify | KMessageBox::Dangerous);
+        return answer == KMessageBox::PrimaryAction;
+    }
+
     void deleteGroup()
     {
         const auto selectedGroups = getGroups(selectedRows());
         if (selectedGroups.empty()) {
             qCDebug(KLEOPATRA_LOG) << "selection is empty";
+            return;
+        }
+
+        if (!confirmDeletion(selectedGroups)) {
             return;
         }
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-19 00:37+0000\n"
+"POT-Creation-Date: 2024-01-20 00:37+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -2169,7 +2169,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr ""
 
 #: src/commands/importcertificatescommand.cpp:414
-#: src/conf/groupsconfigwidget.cpp:197
+#: src/conf/groupsconfigwidget.cpp:200
 #, fuzzy, kde-format
 #| msgid "Certify"
 msgctxt "@action:button"
@@ -3860,7 +3860,7 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:151 src/dialogs/editgroupdialog.cpp:101
+#: src/conf/groupsconfigwidget.cpp:154 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
 #, fuzzy, kde-format
 #| msgid "Search:"
@@ -3868,20 +3868,20 @@ msgctxt "@label"
 msgid "Search:"
 msgstr "Cuardaigh:"
 
-#: src/conf/groupsconfigwidget.cpp:152 src/conf/groupsconfigwidget.cpp:158
+#: src/conf/groupsconfigwidget.cpp:155 src/conf/groupsconfigwidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Sínithe nua:"
 
-#: src/conf/groupsconfigwidget.cpp:153 src/conf/groupsconfigwidget.cpp:159
+#: src/conf/groupsconfigwidget.cpp:156 src/conf/groupsconfigwidget.cpp:162
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:160 src/dialogs/editgroupdialog.cpp:110
+#: src/conf/groupsconfigwidget.cpp:163 src/dialogs/editgroupdialog.cpp:110
 #: src/dialogs/editgroupdialog.cpp:168
 #, fuzzy, kde-format
 #| msgid "Real name:"
@@ -3889,42 +3889,42 @@ msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "Fíorainm:"
 
-#: src/conf/groupsconfigwidget.cpp:177
+#: src/conf/groupsconfigwidget.cpp:180
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "Taispeáin Mionsonraí"
 
-#: src/conf/groupsconfigwidget.cpp:186
+#: src/conf/groupsconfigwidget.cpp:189
 #, fuzzy, kde-format
 #| msgid "New..."
 msgctxt "@action:button"
 msgid "New"
 msgstr "Nua..."
 
-#: src/conf/groupsconfigwidget.cpp:189 src/view/pgpcardwidget.cpp:185
+#: src/conf/groupsconfigwidget.cpp:192 src/view/pgpcardwidget.cpp:185
 #: src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:193
+#: src/conf/groupsconfigwidget.cpp:196
 #: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
 msgstr "Scrios"
 
-#: src/conf/groupsconfigwidget.cpp:198
+#: src/conf/groupsconfigwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
 msgstr "teastas"
 
-#: src/conf/groupsconfigwidget.cpp:202
+#: src/conf/groupsconfigwidget.cpp:205
 #: src/dialogs/certificatedetailswidget.cpp:358
 #, fuzzy, kde-format
 #| msgid "Export"
@@ -3932,23 +3932,64 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "Easpórtáil"
 
-#: src/conf/groupsconfigwidget.cpp:323
+#: src/conf/groupsconfigwidget.cpp:326
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:326
+#: src/conf/groupsconfigwidget.cpp:329
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:363
+#: src/conf/groupsconfigwidget.cpp:366
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr ""
+
+#: src/conf/groupsconfigwidget.cpp:397
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Do you really want to delete this group?</para><para><emphasis>%1</"
+"emphasis></para><para>Once deleted, it cannot be restored.</para>"
+msgstr ""
+"<para>Tharla earráid agus na deimhniúcháin á luchtú: <message>%1</message></"
+"para>"
+
+#: src/conf/groupsconfigwidget.cpp:403
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you really want to delete this %1 group?</para><para>Once deleted, "
+"it cannot be restored.</para>"
+msgid_plural ""
+"<para>Do you really want to delete these %1 groups?</para><para>Once "
+"deleted, they cannot be restored.</para>"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+#: src/conf/groupsconfigwidget.cpp:415
+#, fuzzy, kde-format
+#| msgid "Delete"
+msgctxt "@title:window"
+msgid "Delete Group"
+msgid_plural "Delete Groups"
+msgstr[0] "Scrios"
+msgstr[1] "Scrios"
+msgstr[2] "Scrios"
+msgstr[3] "Scrios"
+msgstr[4] "Scrios"
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format

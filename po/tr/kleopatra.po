@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-19 01:41+0000\n"
+"POT-Creation-Date: 2024-01-20 01:36+0000\n"
 "PO-Revision-Date: 2024-01-09 16:09+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -2074,7 +2074,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr "Yeni bir sertifika (genel anahtar) içe aktardınız"
 
 #: src/commands/importcertificatescommand.cpp:414
-#: src/conf/groupsconfigwidget.cpp:193
+#: src/conf/groupsconfigwidget.cpp:196
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
@@ -3735,88 +3735,123 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:147 src/dialogs/editgroupdialog.cpp:101
+#: src/conf/groupsconfigwidget.cpp:150 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
 msgstr "Ara:"
 
-#: src/conf/groupsconfigwidget.cpp:148 src/conf/groupsconfigwidget.cpp:154
+#: src/conf/groupsconfigwidget.cpp:151 src/conf/groupsconfigwidget.cpp:157
 #, kde-format
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Grupları ara"
 
-#: src/conf/groupsconfigwidget.cpp:149 src/conf/groupsconfigwidget.cpp:155
+#: src/conf/groupsconfigwidget.cpp:152 src/conf/groupsconfigwidget.cpp:158
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "Arama terimiyle eşleşen grupları listede ara."
 
-#: src/conf/groupsconfigwidget.cpp:156 src/dialogs/editgroupdialog.cpp:110
+#: src/conf/groupsconfigwidget.cpp:159 src/dialogs/editgroupdialog.cpp:110
 #: src/dialogs/editgroupdialog.cpp:168
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "Arama terimini gir"
 
-#: src/conf/groupsconfigwidget.cpp:173
+#: src/conf/groupsconfigwidget.cpp:176
 #, kde-format
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "gruplar"
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:185
 #, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Yeni"
 
-#: src/conf/groupsconfigwidget.cpp:185 src/view/pgpcardwidget.cpp:187
+#: src/conf/groupsconfigwidget.cpp:188 src/view/pgpcardwidget.cpp:187
 #: src/view/pgpcardwidget.cpp:205
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr "Düzenle"
 
-#: src/conf/groupsconfigwidget.cpp:189
+#: src/conf/groupsconfigwidget.cpp:192
 #: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
 msgstr "Sil"
 
-#: src/conf/groupsconfigwidget.cpp:194
+#: src/conf/groupsconfigwidget.cpp:197
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
 msgstr "Bu gruptaki tüm sertifikaların sertifikasyon sürecini başlatın."
 
-#: src/conf/groupsconfigwidget.cpp:198
+#: src/conf/groupsconfigwidget.cpp:201
 #: src/dialogs/certificatedetailswidget.cpp:358
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Dışa Aktar"
 
-#: src/conf/groupsconfigwidget.cpp:319
+#: src/conf/groupsconfigwidget.cpp:322
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "Yeni Grup"
 
-#: src/conf/groupsconfigwidget.cpp:322
+#: src/conf/groupsconfigwidget.cpp:325
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
 msgstr "Yeni Grup"
 
-#: src/conf/groupsconfigwidget.cpp:359
+#: src/conf/groupsconfigwidget.cpp:362
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Grubu Düzenle"
+
+#: src/conf/groupsconfigwidget.cpp:393
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
+#| "emphasis> ?</para>"
+msgctxt "@info"
+msgid ""
+"<para>Do you really want to delete this group?</para><para><emphasis>%1</"
+"emphasis></para><para>Once deleted, it cannot be restored.</para>"
+msgstr ""
+"<para><emphasis>%1</emphasis><nl/>kullanıcı kimliğini yürürlükten kaldırmayı "
+"gerçekten istiyor musunuz?</para>"
+
+#: src/conf/groupsconfigwidget.cpp:399
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you really want to delete this %1 group?</para><para>Once deleted, "
+"it cannot be restored.</para>"
+msgid_plural ""
+"<para>Do you really want to delete these %1 groups?</para><para>Once "
+"deleted, they cannot be restored.</para>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/conf/groupsconfigwidget.cpp:411
+#, fuzzy, kde-format
+#| msgid "Delete"
+msgctxt "@title:window"
+msgid "Delete Group"
+msgid_plural "Delete Groups"
+msgstr[0] "Sil"
+msgstr[1] "Sil"
 
 #: src/conf/kleopageconfigdialog.cpp:85
 #, kde-format
@@ -4680,7 +4715,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:555 src/crypto/decryptverifytask.cpp:609
 #: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
-#: src/crypto/signencrypttask.cpp:883
+#: src/crypto/signencrypttask.cpp:884
 #, kde-format
 msgid "Input error: %1"
 msgstr "Girdi hatası: %1"
@@ -4780,18 +4815,18 @@ msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1106 src/crypto/decryptverifytask.cpp:1306
-#: src/crypto/decryptverifytask.cpp:1388 src/crypto/decryptverifytask.cpp:1489
-#: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1701
-#: src/crypto/decryptverifytask.cpp:1780 src/crypto/decryptverifytask.cpp:1921
+#: src/crypto/decryptverifytask.cpp:1106 src/crypto/decryptverifytask.cpp:1311
+#: src/crypto/decryptverifytask.cpp:1393 src/crypto/decryptverifytask.cpp:1494
+#: src/crypto/decryptverifytask.cpp:1546 src/crypto/decryptverifytask.cpp:1711
+#: src/crypto/decryptverifytask.cpp:1790 src/crypto/decryptverifytask.cpp:1931
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "İstisna yakalandı: %1"
 
-#: src/crypto/decryptverifytask.cpp:1109 src/crypto/decryptverifytask.cpp:1308
-#: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1491
-#: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1703
-#: src/crypto/decryptverifytask.cpp:1782 src/crypto/decryptverifytask.cpp:1923
+#: src/crypto/decryptverifytask.cpp:1109 src/crypto/decryptverifytask.cpp:1313
+#: src/crypto/decryptverifytask.cpp:1396 src/crypto/decryptverifytask.cpp:1496
+#: src/crypto/decryptverifytask.cpp:1549 src/crypto/decryptverifytask.cpp:1713
+#: src/crypto/decryptverifytask.cpp:1792 src/crypto/decryptverifytask.cpp:1933
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -4812,7 +4847,7 @@ msgstr ""
 msgid "Decrypting %1..."
 msgstr "%1 şifresi çözülüyor..."
 
-#: src/crypto/decryptverifytask.cpp:1444
+#: src/crypto/decryptverifytask.cpp:1449
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -4821,12 +4856,12 @@ msgstr ""
 "Bunun S/MIME ile mi OpenPGP ile mi şifrelendiği belirlenemedi, şifreli metin "
 "olmayabilir mi?"
 
-#: src/crypto/decryptverifytask.cpp:1452
+#: src/crypto/decryptverifytask.cpp:1457
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Şifre çözülüyor: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1598 src/crypto/decryptverifytask.cpp:1844
+#: src/crypto/decryptverifytask.cpp:1603 src/crypto/decryptverifytask.cpp:1854
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4835,12 +4870,12 @@ msgstr ""
 "Bunun S/MIME veya OpenPGP imzası olduğu ayırt edilemedi, bir imza "
 "olmayabilir mi?"
 
-#: src/crypto/decryptverifytask.cpp:1606
+#: src/crypto/decryptverifytask.cpp:1611
 #, kde-format
 msgid "Verifying %1..."
 msgstr "%1 doğrulanıyor..."
 
-#: src/crypto/decryptverifytask.cpp:1862
+#: src/crypto/decryptverifytask.cpp:1872
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4848,12 +4883,12 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename>, <filename>%2</filename> ile doğrulanıyor..."
 
-#: src/crypto/decryptverifytask.cpp:1866
+#: src/crypto/decryptverifytask.cpp:1876
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "%1 imzası doğrulanıyor..."
 
-#: src/crypto/decryptverifytask.cpp:1877
+#: src/crypto/decryptverifytask.cpp:1887
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -5990,7 +6025,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:738 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5999,19 +6034,19 @@ msgstr ""
 "Bu dosyalar için ortak taban dizin bulunamıyor:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:754
+#: src/crypto/signencrypttask.cpp:755
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "İmzalı ve şifreli arşiv oluşturuluyor..."
 
-#: src/crypto/signencrypttask.cpp:774
+#: src/crypto/signencrypttask.cpp:775
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Şifreli arşiv oluşturuluyor..."
 
-#: src/crypto/signencrypttask.cpp:794
+#: src/crypto/signencrypttask.cpp:795
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."

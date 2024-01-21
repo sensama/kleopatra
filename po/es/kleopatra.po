@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-20 00:37+0000\n"
-"PO-Revision-Date: 2024-01-18 20:43+0100\n"
+"PO-Revision-Date: 2024-01-20 02:36+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -3874,18 +3874,14 @@ msgid "Edit Group"
 msgstr "Editar grupo"
 
 #: src/conf/groupsconfigwidget.cpp:397
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para>¿Realmente desea revocar la ID de usuario<nl/><emphasis>%1</emphasis>?"
-"</para>"
+"<para>¿Realmente desea borrar este grupo?</para><para><emphasis>%1</"
+"emphasis></para><para>Una vez borrado no se podrá restaurar.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:403
 #, kde-kuit-format
@@ -3897,16 +3893,19 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>¿Realmente desea borrar este grupo?</para><para>Una vez borrado no se "
+"podrá restaurar.</para>"
 msgstr[1] ""
+"<para>¿Realmente desea borrar estos %1 grupos?</para><para>Una vez borrados "
+"no se podrán restaurar.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:415
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Borrar"
-msgstr[1] "Borrar"
+msgstr[0] "Borrar grupo"
+msgstr[1] "Borrar grupos"
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format

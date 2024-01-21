@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-20 01:36+0000\n"
-"PO-Revision-Date: 2024-01-09 07:14+0100\n"
+"PO-Revision-Date: 2024-01-20 09:03+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.4.2\n"
 
@@ -3849,18 +3849,14 @@ msgid "Edit Group"
 msgstr "Uredi grupo"
 
 #: src/conf/groupsconfigwidget.cpp:393
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para>Ali zares želite preklicati uporabnikov določilnik: <nl/><emphasis>%1</"
-"emphasis> ?</para>"
+"<para>Ali res želite izbrisati to skupino?</para><para><emphasis>%1</"
+"emphasis></para><para>Ko je izbrisana, je ni več mogoče obnoviti.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
@@ -3872,20 +3868,27 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Ali res želite izbrisati to skupino %1?</para><para>Ko je izbrisana, "
+"je ni več mogoče obnoviti.</para>"
 msgstr[1] ""
+"<para>Ali res želite izbrisati ti skupini %1?</para><para>Ko sta izbrisani, "
+"ju ni več mogoče obnoviti.</para>"
 msgstr[2] ""
+"<para>Ali res želite izbrisati te skupine %1?</para><para>Ko so izbrisane, "
+"jih ni več mogoče obnoviti.</para>"
 msgstr[3] ""
+"<para>Ali res želite izbrisati te skupine %1?</para><para>Ko so izbrisane, "
+"jih ni več mogoče obnoviti.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Izbriši"
-msgstr[1] "Izbriši"
-msgstr[2] "Izbriši"
-msgstr[3] "Izbriši"
+msgstr[0] "Izbriši skupino"
+msgstr[1] "Izbriši skupini"
+msgstr[2] "Izbriši skupine"
+msgstr[3] "Izbriši skupine"
 
 #: src/conf/kleopageconfigdialog.cpp:85
 #, kde-format

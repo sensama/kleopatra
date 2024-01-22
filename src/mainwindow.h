@@ -25,6 +25,8 @@ public:
 
 public Q_SLOTS:
     void importCertificatesFromFile(const QStringList &files);
+    void exportWindow();
+    void unexportWindow();
 
 protected:
     QByteArray savedGeometry;

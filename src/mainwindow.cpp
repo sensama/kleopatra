@@ -87,6 +87,11 @@
 #include <Libkleo/SystemInfo>
 
 #include <KSharedConfig>
+
+#ifdef Q_OS_UNIX
+#include <KWaylandExtras>
+#endif
+
 #include <chrono>
 #include <vector>
 using namespace std::chrono_literals;
@@ -437,6 +442,15 @@ MainWindow::Private::Private(MainWindow *qq)
     ui.searchTab->tabWidget()->setFlatModel(flatModel);
     ui.searchTab->tabWidget()->setHierarchicalModel(hierarchicalModel);
 
+#ifdef Q_OS_UNIX
+    connect(KWaylandExtras::self(), &KWaylandExtras::windowExported, q, [this](const auto &window, const auto &token) {
+        if (window == q->windowHandle()) {
+            qputenv("PINENTRY_GEOM_HINT", token.toLatin1());
+        }
+    });
+    q->exportWindow();
+#endif
+
     setupActions();
 
     ui.stackWidget->setCurrentWidget(ui.searchTab);
@@ -774,6 +788,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
             setEnabled(true);
         }
     }
+    unexportWindow();
     if (isQuitting || qApp->isSavingSession()) {
         d->ui.searchTab->tabWidget()->saveViews(KSharedConfig::openConfig().data());
         KConfigGroup grp(KConfigGroup(KSharedConfig::openConfig(), autoSaveGroup()));
@@ -872,6 +887,21 @@ void MainWindow::saveProperties(KConfigGroup &cg)
     qCDebug(KLEOPATRA_LOG);
     KXmlGuiWindow::saveProperties(cg);
     cg.writeEntry("hidden", isHidden());
+}
+
+void MainWindow::exportWindow()
+{
+#ifdef Q_OS_UNIX
+    (void)winId(); // Ensures that windowHandle() returns the window
+    KWaylandExtras::self()->exportWindow(windowHandle());
+#endif
+}
+
+void MainWindow::unexportWindow()
+{
+#ifdef Q_OS_UNIX
+    KWaylandExtras::self()->unexportWindow(windowHandle());
+#endif
 }
 
 #include "mainwindow.moc"

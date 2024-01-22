@@ -658,6 +658,11 @@ void KleopatraApplication::toggleMainWindowVisibility()
     } else {
         openOrRaiseMainWindow();
     }
+    if (mainWindow()->isVisible()) {
+        mainWindow()->exportWindow();
+    } else {
+        mainWindow()->unexportWindow();
+    }
 }
 
 void KleopatraApplication::restoreMainWindow()

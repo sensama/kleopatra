@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-20 01:36+0000\n"
-"PO-Revision-Date: 2024-01-09 16:09+0300\n"
+"PO-Revision-Date: 2024-01-21 15:28+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.85\n"
+"X-Generator: Lokalize 24.01.95\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -806,7 +806,7 @@ msgstr "CRL Önbelleği Temizleme Hatası"
 #, kde-format
 msgctxt "@title:window"
 msgid "Clear CRL Cache Finished"
-msgstr "CRL Önbelleği Temizleme İşlemi Tamamlandı"
+msgstr "CRL Önbelleği Temizlendi"
 
 #: src/commands/clearcrlcachecommand.cpp:52
 #, kde-format
@@ -1302,8 +1302,8 @@ msgid ""
 msgstr ""
 "<para>Bu gruptaki tüm OpenPGP sertifikalarını dışa aktarılabilir bir "
 "sertifikayla sertifikalamadınız. Sertifikalarınıza güvenen kişiler "
-"sertifikayı doğrulayamayabilir.</para><para>Dışa aktarmayı sürdürmek istiyor "
-"musunuz?</para>"
+"sertifikaları doğrulayamayabilir.</para><para>Dışa aktarmayı sürdürmek "
+"istiyor musunuz?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
@@ -1329,8 +1329,8 @@ msgid ""
 msgstr ""
 "<para>Aşağıda listelenen gruplardaki tüm OpenPGP sertifikalarını dışa "
 "aktarılabilir bir sertifikayla sertifikalamadınız. Sertifikalarınıza güvenen "
-"kişiler sertifikayı doğrulayamayabilir.</para><para>Dışa aktarmayı sürdürmek "
-"istiyor musunuz?</para>"
+"kişiler sertifikaları doğrulayamayabilir.</para><para>Dışa aktarmayı "
+"sürdürmek istiyor musunuz?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
@@ -1420,7 +1420,7 @@ msgstr "OpenPGP Sertifikası Dışa Aktarma Hatası"
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
-msgstr "OpenPGP Sertifika Dışa Aktarma İşlemi Bitti"
+msgstr "OpenPGP Sertifikası Dışa Aktarma Bitti"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:151
 #, kde-kuit-format
@@ -2221,7 +2221,7 @@ msgstr "CRL dosyası başarıyla içe aktarıldı."
 #: src/commands/importcrlcommand.cpp:210
 #, kde-format
 msgid "Import CRL Finished"
-msgstr "CRL İçe Aktarma Tamamlandı"
+msgstr "CRL İçe Aktarma Bitti"
 
 #: src/commands/importpaperkeycommand.cpp:86
 #: src/crypto/autodecryptverifyfilescontroller.cpp:340
@@ -2789,8 +2789,8 @@ msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
-"Bu akıllı kart üzerinde bir anahtar üretemezsiniz; çünkü uyumlu "
-"algoritmaların hiçbirini desteklemiyor."
+"Bu akıllı kart üzerinde bir anahtar üretemezsiniz; çünkü hiçbir uyumlu "
+"algoritmayı desteklemiyor."
 
 #: src/commands/refreshcertificatecommand.cpp:153
 #: src/commands/refreshcertificatecommand.cpp:211
@@ -2959,7 +2959,7 @@ msgstr "OpenPGP Sertifika Yenileme Hatası"
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Finished"
-msgstr "OpenPGP Sertifika Yenileme Tamamlandı"
+msgstr "OpenPGP Sertifikası Yenilemesi Bitti"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:84
 #, kde-kuit-format
@@ -3022,7 +3022,7 @@ msgstr "X.509 Sertifika Yenileme Hatası"
 #, kde-format
 msgctxt "@title:window"
 msgid "X.509 Certificate Refresh Finished"
-msgstr "X.509 Sertifika Yenileme Tamamlandı"
+msgstr "X.509 Sertifikası Yenilemesi Bitti"
 
 #: src/commands/refreshx509certscommand.cpp:79
 #, kde-kuit-format
@@ -3638,11 +3638,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
-"OpenPGP sertifikalarını ararken ve OpenPGP sertifikalarını yüklerken "
-"kullanılacak anahtar sunucusunun adresini girin. Bir adres girmezseniz "
-"dahili bir öntanımlı kullanılacaktır. OpenPGP anahtar sunucusunun "
-"kullanımını devre dışı bırakmak için <emphasis>none</emphasis> özel değerini "
-"girin."
+"OpenPGP sertifikaları aranırken ve karşıya yüklenirken kullanılacak anahtar "
+"sunucusunun adresini girin. Bir adres girmezseniz bir içsel öntanımlı "
+"kullanılacaktır. Bir OpenPGP anahtar sunucusunun kullanımını devre dışı "
+"bırakmak için <emphasis>none</emphasis> özel değerini kullanın."
 
 #: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
@@ -3681,7 +3680,7 @@ msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys that "
 "were used to certify the user IDs of newly imported OpenPGP keys."
 msgstr ""
-"Etkinleştirilmişse Kleopatra otomatik olarak yeni içe aktarılmış OpenPGP "
+"Etkinleştirilmişse Kleopatra kendiliğinden yeni içe aktarılmış OpenPGP "
 "anahtarlarının kullanıcı kimliklerini sertifikalamada kullanılan anahtarları "
 "alacaktır."
 
@@ -3819,18 +3818,14 @@ msgid "Edit Group"
 msgstr "Grubu Düzenle"
 
 #: src/conf/groupsconfigwidget.cpp:393
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para><emphasis>%1</emphasis><nl/>kullanıcı kimliğini yürürlükten kaldırmayı "
-"gerçekten istiyor musunuz?</para>"
+"<para>Bu grubu silmeyi gerçekten istiyor musunuz?</para><para><emphasis>%1</"
+"emphasis></para><para>Bir kez silindikten sonra geri yüklenemez.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
@@ -3842,16 +3837,19 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Bu %1 grubu silmeyi gerçekten istiyor musunuz?</para><para>Bir kez "
+"silindikten sonra geri yüklenemez.</para>"
 msgstr[1] ""
+"<para>Bu %1 grubu silmeyi gerçekten istiyor musunuz?</para><para>Bir kez "
+"silindikten sonra geri yüklenemez.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Sil"
-msgstr[1] "Sil"
+msgstr[0] "Grubu Sil"
+msgstr[1] "Grupları Sil"
 
 #: src/conf/kleopageconfigdialog.cpp:85
 #, kde-format
@@ -4528,18 +4526,19 @@ msgstr "Kötü imza"
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
-msgstr "İmza geçerli; ancak sertifikanın geçerliliği düşük."
+msgstr "İmza geçerli; ancak sertifikanın geçerliliği pek az."
 
 #: src/crypto/decryptverifytask.cpp:222
 #, kde-format
 msgid "The signature is valid and the certificate's validity is fully trusted."
-msgstr "İmza geçerli ve sertifikanın geçerliliğine tam güveniliyor."
+msgstr "İmza geçerli ve sertifikanın geçerliliğine güveniliyor."
 
 #: src/crypto/decryptverifytask.cpp:224
 #, kde-format
 msgid ""
 "The signature is valid and the certificate's validity is ultimately trusted."
-msgstr "İmza geçerli ve sertifikanın geçerliliğine sınırsız güveniliyor."
+msgstr ""
+"İmza geçerli ve sertifikanın geçerliliğine en yüksek düzeyde güveniliyor."
 
 #: src/crypto/decryptverifytask.cpp:226
 #, kde-format
@@ -5751,7 +5750,7 @@ msgstr "Aşağıdaki alıcılar için bir anahtar bulunamadı:"
 #: src/crypto/gui/signencryptwidget.cpp:828
 #, kde-format
 msgid "Failed to find some keys"
-msgstr "Bazı anahtarlar bulunamadı"
+msgstr "Bazı Anahtarlar Bulunamadı"
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format
@@ -7210,7 +7209,7 @@ msgstr "İçe Aktar"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Eşleşen sertifikaları aramak için bir terim girin."
+msgstr "Eşleşen sertifikaları aramak için bir arama terimi girin."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
 #, kde-kuit-format
@@ -7925,7 +7924,7 @@ msgid ""
 msgstr ""
 "Bu seçenek ile Kleopatra, girdi dosyaları ile ne yapmak istediğiniz artık "
 "sormaz; ancak bunun yerine giriş için geçerli olarak tespit ettiği işlemleri "
-"otomatik olarak başlatır."
+"kendiliğinden başlatır."
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:20
@@ -8026,7 +8025,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr "EMAIL ipucu"
+msgstr "EPOSTA için ipucu"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
@@ -8035,8 +8034,8 @@ msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Bu metin, OpenPGP sertifikalarının e-posta alanının üzerinde ve S/MIME "
-"sertifikalarının ilgili alanında yer tutucu olarak gösterilecektir."
+"Bu metin, OpenPGP sertifikalarının e-posta adresi alanının üstünde ve S/MIME "
+"sertifikaları için bu alanda yer tutucu olarak gösterilecektir."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8061,7 +8060,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:31
 #, kde-format
 msgid "Value of EMAIL"
-msgstr "EMAIL değeri"
+msgstr "EPOSTA değeri"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8072,21 +8071,20 @@ msgid ""
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
 "OpenPGP ve S/MIME sertifikalarının e-posta adresi alanı için önceden "
-"doldurulmuş değer. Bu, EMAIL_prefill'i geçersiz kılar. EMAIL_prefill için "
-"uyumsuz veya hiç olmayan sistem ayarları bulunursa yararlıdır."
+"doldurulan değer. Bu, EPOSTA_prefill'i geçersiz kılar. EPOSTA_prefill için "
+"sistem ayarı hiç yoksa veya kullanıma uygun değilse yararlıdır."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr "NAME ipucu"
+msgstr "AD için ipucu"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
-"Bu metin, OpenPGP sertifikalarının ad alanının üzerinde gösterilecektir."
+msgstr "Bu metin OpenPGP sertifikalarının ad alanının üstünde gösterilecektir."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8111,7 +8109,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:47
 #, kde-format
 msgid "Value of NAME"
-msgstr "NAME değeri"
+msgstr "AD değeri"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8121,9 +8119,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
-"OpenPGP ve S/MIME sertifikalarının ad alanı için önceden doldurulmuş değer. "
-"Bu, NAME_prefill'i geçersiz kılar. NAME_prefill için uyumsuz veya hiç "
-"olmayan sistem ayarları bulunursa yararlıdır."
+"OpenPGP ve S/MIME sertifikalarının ad alanı için önceden doldurulan değer. "
+"Bu, AD_prefill'i geçersiz kılar. AD_prefill için sistem ayarı hiç yoksa veya "
+"kullanıma uygun değilse yararlıdır."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -9109,7 +9107,7 @@ msgstr "Grupları Yapılandır..."
 #: src/mainwindow.cpp:641
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr "Odağı Hızlı Aramaya Ayarla"
+msgstr "Odağı Tez Aramaya Ayarla"
 
 #: src/mainwindow.cpp:653
 #, kde-format
@@ -9127,7 +9125,7 @@ msgstr "gpg4win-compendium-en.pdf"
 #: src/mainwindow.cpp:666
 #, kde-format
 msgid "&Quickguide"
-msgstr "&Hızlı Kılavuz"
+msgstr "&Tez Kılavuz"
 
 #: src/mainwindow.cpp:667
 #, kde-format
@@ -11922,8 +11920,8 @@ msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
-"Bu akıllı kart üzerinde anahtarlar üretemezsiniz; çünkü uyumlu "
-"algoritmalardan hiçbirini desteklemiyor."
+"Bu akıllı kart üzerinde anahtarlar üretemezsiniz; çünkü hiçbir uyumlu "
+"algoritmayı desteklemiyor."
 
 #: src/view/pgpcardwidget.cpp:430
 #, kde-format

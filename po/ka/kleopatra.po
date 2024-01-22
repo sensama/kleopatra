@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-20 01:36+0000\n"
-"PO-Revision-Date: 2023-12-24 05:11+0100\n"
+"PO-Revision-Date: 2024-01-21 11:48+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -3786,18 +3786,14 @@ msgid "Edit Group"
 msgstr "ჯგუფის ჩასწორება"
 
 #: src/conf/groupsconfigwidget.cpp:393
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para>მართლა გნებავთ, გააუქმოთ მომხმარებლის ID<nl/><emphasis>%1</emphasis> ?"
-"</para>"
+"<para>მართლა გნებავთ ამ ჯგუფის წაშლა?</para><para><emphasis>%1</emphasis></"
+"para><para>წაშლის ქმედება შეუქცევადია.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
@@ -3809,16 +3805,19 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>მართლა გნებავთ ამ %1 ჯგუფის წაშლა?</para><para>წაშლა შეუქცევადია.</"
+"para>"
 msgstr[1] ""
+"<para>მართლა გნებავთ ამ %1 ჯგუფის წაშლა?</para><para>წაშლა შეუქცევადია.</"
+"para>"
 
 #: src/conf/groupsconfigwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "წაშლა"
-msgstr[1] "წაშლა"
+msgstr[0] "ჯგუფის წაშლა"
+msgstr[1] "ჯგუფის წაშლა"
 
 #: src/conf/kleopageconfigdialog.cpp:85
 #, kde-format
@@ -4815,8 +4814,7 @@ msgstr ""
 "ხელმოწერაა და არც შიფრი?"
 
 #: src/crypto/decryptverifytask.cpp:1171
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
 msgstr "გაშიფვრა: %1..."
 
@@ -4842,17 +4840,12 @@ msgstr ""
 "ვერ დავადგინე, ეს S/MIME ხელმოწერაა, თუ OpenPGP. თუ საერთოდ ხელმოწერა არაა?"
 
 #: src/crypto/decryptverifytask.cpp:1611
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "შემოწმება: %1..."
+msgstr "%1-ის გადამოწმება..."
 
 #: src/crypto/decryptverifytask.cpp:1872
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
@@ -4860,8 +4853,7 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "გადამოწმება: <filename>%1</filename> <filename>%2</filename>-სთან...."
 
 #: src/crypto/decryptverifytask.cpp:1876
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
 msgstr "ხელმოწერის გადამოწმება: %1..."
 

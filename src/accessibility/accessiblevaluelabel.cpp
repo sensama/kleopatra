@@ -18,7 +18,7 @@
 
 using namespace Kleo;
 
-static constexpr QAccessible::Role ValueRole = static_cast<QAccessible::Role>(QAccessible::UserRole + 1);
+static constexpr QAccessible::Role ValueRole = static_cast<QAccessible::Role>(QAccessible::UserRole);
 
 AccessibleValueLabel::AccessibleValueLabel(QWidget *w)
     : QAccessibleWidget{w, ValueRole}

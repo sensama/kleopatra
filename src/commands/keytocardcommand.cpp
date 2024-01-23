@@ -90,7 +90,9 @@ private:
     void updateDone();
 
     void keyHasBeenCopiedToCard();
-    bool backupKey();
+    void backupHasBeenCreated(const QString &backupFilename);
+
+    QString backupKey();
     std::vector<QByteArray> readSecretKeyFile();
     bool writeSecretKeyBackup(const QString &filename, const std::vector<QByteArray> &keydata);
 
@@ -481,22 +483,44 @@ void KeyToCardCommand::Private::keyHasBeenCopiedToCard()
     const auto answer = KMessageBox::questionTwoActionsCancel(parentWidgetOrView(),
                                                               xi18nc("@info",
                                                                      "<para>The key has been copied to the card.</para>"
-                                                                     "<para>Do you want to delete the copy of the key stored on this computer?</para>"),
+                                                                     "<para>You can now delete the copy of the key stored on this computer. "
+                                                                     "Optionally, you can first create a backup of the key.</para>"),
                                                               i18nc("@title:window", "Success"),
-                                                              KGuiItem{i18nc("@action:button", "Create Backup and Delete Key")},
-                                                              KGuiItem{i18nc("@action:button", "Delete Key")},
-                                                              KGuiItem{i18nc("@action:button", "Keep Key")});
-    if (answer == KMessageBox::ButtonCode::Cancel) {
-        finished();
-        return;
-    }
+                                                              KGuiItem{i18nc("@action:button", "Create backup")},
+                                                              KGuiItem{i18nc("@action:button", "Delete copy on disk")},
+                                                              KGuiItem{i18nc("@action:button", "Keep copy on disk")});
     if (answer == KMessageBox::ButtonCode::PrimaryAction) {
-        if (!backupKey()) {
-            finished();
-            return;
+        const QString backupFilename = backupKey();
+        if (backupFilename.isEmpty()) {
+            // user canceled the backup or there was an error; repeat above question
+            QMetaObject::invokeMethod(q, [this]() {
+                keyHasBeenCopiedToCard();
+            });
         }
+        backupHasBeenCreated(backupFilename);
+    } else if (answer == KMessageBox::ButtonCode::SecondaryAction) {
+        startDeleteSecretKeyLocally();
+    } else {
+        finished();
     }
-    startDeleteSecretKeyLocally();
+}
+
+void KeyToCardCommand::Private::backupHasBeenCreated(const QString &backupFilename)
+{
+    const auto answer =
+        KMessageBox::questionTwoActions(parentWidgetOrView(),
+                                        xi18nc("@info",
+                                               "<para>The key has been copied to the card and a backup has been written to <filename>%1</filename>.</para>"
+                                               "<para>Do you want to delete the copy of the key stored on this computer?</para>",
+                                               backupFilename),
+                                        i18nc("@title:window", "Success"),
+                                        KGuiItem{i18nc("@action:button", "Delete copy on disk")},
+                                        KGuiItem{i18nc("@action:button", "Keep copy on disk")});
+    if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+        startDeleteSecretKeyLocally();
+    } else {
+        finished();
+    }
 }
 
 namespace
@@ -547,17 +571,17 @@ QString requestPrivateKeyBackupFilename(const QString &proposedFilename, QWidget
 }
 }
 
-bool KeyToCardCommand::Private::backupKey()
+QString KeyToCardCommand::Private::backupKey()
 {
     static const QByteArray backupInfoName = "Backup-info:";
 
     auto keydata = readSecretKeyFile();
     if (keydata.empty()) {
-        return false;
+        return {};
     }
     const auto filename = requestPrivateKeyBackupFilename(proposeFilename(subkey), parentWidgetOrView());
     if (filename.isEmpty()) {
-        return false;
+        return {};
     }
 
     // remove old backup info
@@ -574,7 +598,11 @@ bool KeyToCardCommand::Private::backupKey()
     };
     keydata.insert(keydata.begin(), backupInfo.join(' ') + '\n');
 
-    return writeSecretKeyBackup(filename, keydata);
+    if (writeSecretKeyBackup(filename, keydata)) {
+        return filename;
+    } else {
+        return {};
+    }
 }
 
 std::vector<QByteArray> KeyToCardCommand::Private::readSecretKeyFile()
@@ -626,7 +654,7 @@ void KeyToCardCommand::Private::startDeleteSecretKeyLocally()
     }
 
     const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
-                                                        xi18n("Do you really want to delete the local copy of the secret key?"),
+                                                        xi18n("Do you really want to delete the copy of the key stored on this computer?"),
                                                         i18nc("@title:window", "Confirm Deletion"),
                                                         KStandardGuiItem::del(),
                                                         KStandardGuiItem::cancel(),
@@ -646,10 +674,12 @@ void KeyToCardCommand::Private::startDeleteSecretKeyLocally()
 void KeyToCardCommand::Private::deleteSecretKeyLocallyFinished(const GpgME::Error &err)
 {
     if (err) {
-        error(xi18nc("@info", "<para>Failed to delete the key:</para><para><message>%1</message></para>", Formatting::errorAsString(err)));
+        error(xi18nc("@info",
+                     "<para>Failed to delete the copy of the key stored on this computer:</para><para><message>%1</message></para>",
+                     Formatting::errorAsString(err)));
     }
     ReaderStatus::mutableInstance()->updateStatus();
-    success(i18nc("@info", "Successfully copied the key to the card."));
+    success(i18nc("@info", "Successfully deleted the copy of the key stored on this computer."));
     finished();
 }
 

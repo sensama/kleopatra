@@ -455,7 +455,7 @@ MainWindow::Private::Private(MainWindow *qq)
 #ifdef Q_OS_UNIX
     connect(KWaylandExtras::self(), &KWaylandExtras::windowExported, q, [this](const auto &window, const auto &token) {
         if (window == q->windowHandle()) {
-            qputenv("PINENTRY_GEOM_HINT", token.toLatin1());
+            qputenv("PINENTRY_GEOM_HINT", QUrl::toPercentEncoding(token));
         }
     });
     q->exportWindow();

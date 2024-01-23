@@ -73,6 +73,11 @@ public:
     explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName);
 
 private:
+    enum Confirmation {
+        AskForConfirmation,
+        SkipConfirmation,
+    };
+
     void start();
 
     void startKeyToOpenPGPCard();
@@ -96,7 +101,7 @@ private:
     std::vector<QByteArray> readSecretKeyFile();
     bool writeSecretKeyBackup(const QString &filename, const std::vector<QByteArray> &keydata);
 
-    void startDeleteSecretKeyLocally();
+    void startDeleteSecretKeyLocally(Confirmation confirmation);
     void deleteSecretKeyLocallyFinished(const GpgME::Error &err);
 
 private:
@@ -499,7 +504,7 @@ void KeyToCardCommand::Private::keyHasBeenCopiedToCard()
         }
         backupHasBeenCreated(backupFilename);
     } else if (answer == KMessageBox::ButtonCode::SecondaryAction) {
-        startDeleteSecretKeyLocally();
+        startDeleteSecretKeyLocally(AskForConfirmation);
     } else {
         finished();
     }
@@ -517,7 +522,8 @@ void KeyToCardCommand::Private::backupHasBeenCreated(const QString &backupFilena
                                         KGuiItem{i18nc("@action:button", "Delete copy on disk")},
                                         KGuiItem{i18nc("@action:button", "Keep copy on disk")});
     if (answer == KMessageBox::ButtonCode::PrimaryAction) {
-        startDeleteSecretKeyLocally();
+        // the user has created a backup; don't ask again for confirmation before deleting the copy on disk
+        startDeleteSecretKeyLocally(SkipConfirmation);
     } else {
         finished();
     }
@@ -644,7 +650,7 @@ bool KeyToCardCommand::Private::writeSecretKeyBackup(const QString &filename, co
     return true;
 }
 
-void KeyToCardCommand::Private::startDeleteSecretKeyLocally()
+void KeyToCardCommand::Private::startDeleteSecretKeyLocally(Confirmation confirmation)
 {
     const auto card = SmartCard::ReaderStatus::instance()->getCard(serialNumber(), appName);
     if (!card) {
@@ -653,16 +659,18 @@ void KeyToCardCommand::Private::startDeleteSecretKeyLocally()
         return;
     }
 
-    const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
-                                                        xi18n("Do you really want to delete the copy of the key stored on this computer?"),
-                                                        i18nc("@title:window", "Confirm Deletion"),
-                                                        KStandardGuiItem::del(),
-                                                        KStandardGuiItem::cancel(),
-                                                        {},
-                                                        KMessageBox::Notify | KMessageBox::Dangerous);
-    if (answer != KMessageBox::ButtonCode::PrimaryAction) {
-        finished();
-        return;
+    if (confirmation == AskForConfirmation) {
+        const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
+                                                            xi18nc("@info", "Do you really want to delete the copy of the key stored on this computer?"),
+                                                            i18nc("@title:window", "Confirm Deletion"),
+                                                            KStandardGuiItem::del(),
+                                                            KStandardGuiItem::cancel(),
+                                                            {},
+                                                            KMessageBox::Notify | KMessageBox::Dangerous);
+        if (answer != KMessageBox::ButtonCode::PrimaryAction) {
+            finished();
+            return;
+        }
     }
 
     const auto cmd = QByteArray{"DELETE_KEY --force "} + subkey.keyGrip();

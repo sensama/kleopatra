@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-20 00:37+0000\n"
-"PO-Revision-Date: 2024-01-08 03:57+0900\n"
+"PO-Revision-Date: 2024-01-22 17:05+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -3666,12 +3666,11 @@ msgid_plural ""
 msgstr[0] ""
 
 #: src/conf/groupsconfigwidget.cpp:415
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "刪除"
+msgstr[0] "刪除群組"
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -4621,10 +4620,9 @@ msgstr ""
 "字？"
 
 #: src/crypto/decryptverifytask.cpp:1170
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "解密中：%1..."
+msgstr "正在解密 %1..."
 
 #: src/crypto/decryptverifytask.cpp:1443
 #, kde-format
@@ -4646,42 +4644,31 @@ msgid ""
 msgstr "無法決定這是用 S/MIME 還是 OpenGPG 簽署。也許它根本不是簽章？"
 
 #: src/crypto/decryptverifytask.cpp:1605
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "檢查中：%1..."
+msgstr "正在檢查 %1..."
 
 #: src/crypto/decryptverifytask.cpp:1861
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
-msgstr "檢查中：<filename>%1</filename> 使用簽章檔 <filename>%2</filename>..."
+msgstr ""
+"正在使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1865
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "檢查簽章中：%1..."
+msgstr "正在檢查簽章 %1..."
 
 #: src/crypto/decryptverifytask.cpp:1876
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
 "data.The second file is signature."
 msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgstr ""
-"無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
-"<message>%3</message>"
+msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
 
 #: src/crypto/encryptemailcontroller.cpp:121
 #, kde-format
@@ -5289,11 +5276,10 @@ msgid "S/MIME Signatures (*.p7s *.pem)"
 msgstr "S/MIME 簽章 (*.p7s *.pem)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:353
-#, fuzzy, kde-format
-#| msgid "&Input file is a detached signature"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
-msgstr "輸入檔是一個分離的簽章(&I)"
+msgstr "這是分離的 OpenPGP 簽章的檔案名稱。"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:354
 #, kde-format
@@ -6145,19 +6131,16 @@ msgstr ""
 "撤銷憑證公開後無法被收回。"
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "管理群組"
+msgstr "管理子金鑰"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "子金鑰"
+msgstr "顯示子金鑰"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -6452,10 +6435,9 @@ msgstr ""
 "注意：只有指紋是可以明確用來辨識金鑰和它的擁有者的。</i>"
 
 #: src/dialogs/certifywidget.cpp:310
-#, fuzzy, kde-format
-#| msgid "Certify"
+#, kde-format
 msgid "Certify with:"
-msgstr "保證"
+msgstr "使用以下來保證："
 
 #: src/dialogs/certifywidget.cpp:322
 #, kde-format
@@ -6472,11 +6454,10 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:339
-#, fuzzy, kde-format
-#| msgid "certificate"
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr "憑證"
+msgstr "有一個或多個憑證不能被保證。"
 
 #: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
 #: src/dialogs/certifywidget.cpp:588
@@ -6599,11 +6580,10 @@ msgid "Fingerprint"
 msgstr "指紋"
 
 #: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
-#, fuzzy, kde-format
-#| msgid "The certificate could not be certified. <b>Error</b>: %1"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "此憑證無法被確認。<b>錯誤：</b>%1"
+msgstr "不能保證 S/MIME 憑證。"
 
 #: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
 #, kde-format
@@ -6617,27 +6597,21 @@ msgid "Is this your own key?"
 msgstr "這是您自己的金鑰嗎？"
 
 #: src/dialogs/certifywidget.cpp:934
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the owner trust for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
-msgstr "<p>試著改變 <b>%1</b> 的擁有者信任時發生錯誤：</p> <p>%2</p>"
+msgstr "<p>變更金鑰 <b>%1</b> 的憑證信任時失敗：</p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:937
-#, fuzzy, kde-format
-#| msgid "Owner Trust Change Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
-msgstr "變更擁有者信任成功。"
+msgstr "憑證信任變更失敗"
 
 #: src/dialogs/certifywidget.cpp:944
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "PIN set successfully."
+#, kde-format
 msgid "Owner trust set successfully."
-msgstr "PIN 碼已成功設定。"
+msgstr "成功設定擁有者信任。"
 
 #: src/dialogs/deletecertificatesdialog.cpp:91
 #, kde-format
@@ -6645,16 +6619,13 @@ msgid "These are the certificates you have selected for deletion:"
 msgstr "這些是您選擇要刪除的憑證："
 
 #: src/dialogs/deletecertificatesdialog.cpp:93
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates will be deleted even though you did <emphasis>not</"
-#| "emphasis><nl/> explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+#, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
 "select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr ""
-"這些憑證將被刪除，即使您並未選擇要刪除它們。<nl/>（<a href=\"whatsthis://\">"
-"為什麼要刪除？</a>）："
+"這些憑證將被刪除，即使您<b>並未</b>明確選擇要刪除它們（<a href=\"whatsthis://"
+"\">為什麼會被刪除？</a>）："
 
 #: src/dialogs/deletecertificatesdialog.cpp:114
 #, kde-kuit-format
@@ -6928,18 +6899,16 @@ msgid "Import"
 msgstr "匯入"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "輸入憑證用的名稱及電子郵件地址。"
+msgstr "輸入搜尋字串來搜尋相符的憑證。"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "輸入憑證用的名稱及電子郵件地址。"
+msgstr "輸入電子郵件地址來搜尋相符的憑證。"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -6966,21 +6935,21 @@ msgstr "請輸入一個電子郵件地址。"
 #: src/dialogs/nameandemailwidget.cpp:95
 #, kde-format
 msgid "The name must not include <, >, and @."
-msgstr ""
+msgstr "名稱不能包含 <、> 或 @。"
 
 #: src/dialogs/nameandemailwidget.cpp:96
 #, kde-format
 msgctxt "text for screen readers"
 msgid ""
 "The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
+msgstr "名稱不能包含小於符號、大於符號，或小老鼠 (at) 符號。"
 
 #: src/dialogs/nameandemailwidget.cpp:99
 #, kde-format
 msgid ""
 "The name must be in the format required by your organization and it must not "
 "include <, >, and @."
-msgstr ""
+msgstr "名稱必須符合您的組織所要求的格式，並且不能包含 <、> 或 @。"
 
 #: src/dialogs/nameandemailwidget.cpp:102
 #, kde-format
@@ -6989,6 +6958,8 @@ msgid ""
 "The name must be in the format required by your organization and it must not "
 "include less-than sign, greater-than sign, and at sign."
 msgstr ""
+"名稱必須符合您的組織所要求的格式，並且包含小於符號、大於符號，或小老鼠 (at) "
+"符號。"
 
 #: src/dialogs/nameandemailwidget.cpp:111
 #, kde-format
@@ -7318,23 +7289,19 @@ msgid "Primary"
 msgstr "主要"
 
 #: src/dialogs/subkeyswidget.cpp:114
-#, fuzzy, kde-format
-#| msgid "Stored"
+#, kde-format
 msgctxt "@title:column"
 msgid "Storage"
-msgstr "已保存"
+msgstr "儲存"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "變更有效性"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "匯出 OpenSSH 金鑰"
@@ -7343,26 +7310,22 @@ msgstr "匯出 OpenSSH 金鑰"
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
-msgstr ""
+msgstr "回復印出的備份"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "移轉到智慧卡"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "匯出秘密子金鑰"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "變更有效性"
 
@@ -7374,7 +7337,7 @@ msgstr "匯出 OpenSSH 金鑰"
 #: src/dialogs/subkeyswidget.cpp:224
 #, kde-format
 msgid "Restore printed backup"
-msgstr ""
+msgstr "回復印出的備份"
 
 #: src/dialogs/subkeyswidget.cpp:231
 #, kde-format
@@ -7674,13 +7637,13 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
-msgstr ""
+msgstr "設定此選項來避免使用使用者的暫存目錄。"
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
-msgstr ""
+msgstr "設定此選項來停用公鑰加密。"
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:9
@@ -7719,7 +7682,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "電子郵件提示"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
@@ -7753,10 +7716,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "電子郵件預設文字"
+msgstr "電子郵件的數值"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -7766,12 +7728,14 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"OpenPGP 和 S/MIME 憑證電子郵件欄位預先填入的數值。這會覆寫 EMAIL_prefill。這"
+"可以用來在系統 EMAIL_prefill 設定不存在或不適合的時候取代它。"
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "名稱提示"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
@@ -7802,10 +7766,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "名稱預設文字"
+msgstr "名稱的數值"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -7815,6 +7778,8 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"OpenPGP 憑證名稱欄位預先填入的數值。這會覆寫 NAME_prefill。這可以用來在系統 "
+"NAME_prefill 設定不存在或不適合的時候取代它。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -7826,7 +7791,7 @@ msgstr "預設有效期間"
 #: src/kcfg/settings.kcfg:53
 #, kde-format
 msgid "Specifies the default validity period of new OpenPGP keys in days."
-msgstr ""
+msgstr "設定新的 OpenPGP 金鑰的預設有效期間（日數）。"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
@@ -8126,10 +8091,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:185
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgid "Notify about upcoming certificate expiration"
-msgstr "（找不到符合的憑證）"
+msgstr "為即將到期的憑證顯示通知提醒"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:187
@@ -8505,11 +8469,9 @@ msgid ""
 msgstr ""
 
 #: src/libkleopatraclient/core/command.cpp:592
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Could not connect to UiServer: <message>%1</message>"
+#, kde-format
 msgid "Could not connect to Kleopatra UI server at %1: %2"
-msgstr "無法連線到介面伺服器：<message>%1</message>"
+msgstr "無法連線到在 %1 的 Kleopatra UI 伺服器：%2"
 
 #: src/libkleopatraclient/core/command.cpp:599
 #, kde-format
@@ -8517,28 +8479,24 @@ msgid "Could not get the process-id of the Kleopatra UI server at %1: %2"
 msgstr ""
 
 #: src/libkleopatraclient/core/command.cpp:625
-#, fuzzy, kde-format
-#| msgid "Failed to execute %1: %2"
+#, kde-format
 msgid "Failed to send critical option %1: %2"
-msgstr "執行 %1 時失敗：%2"
+msgstr "傳送重要選項 %1 時失敗：%2"
 
 #: src/libkleopatraclient/core/command.cpp:634
-#, fuzzy, kde-format
-#| msgid "Failed to execute %1: %2"
+#, kde-format
 msgid "Failed to send file path %1: %2"
-msgstr "執行 %1 時失敗：%2"
+msgstr "傳送檔案路徑 %1 時失敗：%2"
 
 #: src/libkleopatraclient/core/command.cpp:641
-#, fuzzy, kde-format
-#| msgid "Failed to execute %1: %2"
+#, kde-format
 msgid "Failed to send sender %1: %2"
-msgstr "執行 %1 時失敗：%2"
+msgstr "傳送寄件者 %1 時失敗：%2"
 
 #: src/libkleopatraclient/core/command.cpp:648
-#, fuzzy, kde-format
-#| msgid "Failed to execute %1: %2"
+#, kde-format
 msgid "Failed to send recipient %1: %2"
-msgstr "執行 %1 時失敗：%2"
+msgstr "傳送收件者 %1 時失敗：%2"
 
 #: src/libkleopatraclient/core/command.cpp:662
 #, kde-format
@@ -8698,10 +8656,9 @@ msgid "Certificates"
 msgstr "憑證"
 
 #: src/mainwindow.cpp:562
-#, fuzzy, kde-format
-#| msgid "Show certificate details"
+#, kde-format
 msgid "Show certificate overview"
-msgstr "顯示憑證詳情"
+msgstr "顯示憑證概覽"
 
 #: src/mainwindow.cpp:572
 #, kde-format
@@ -9179,10 +9136,9 @@ msgid "Send Public Key By EMail..."
 msgstr "透過電子郵件傳送公鑰..."
 
 #: src/newcertificatewizard/resultpage.cpp:114
-#, fuzzy, kde-format
-#| msgid "Upload Certificate To Directory Service..."
+#, kde-format
 msgid "Upload Public Key To Directory Service..."
-msgstr "將憑證上傳到目錄伺服器..."
+msgstr "將公鑰上傳到目錄伺服器..."
 
 #: src/newcertificatewizard/resultpage.cpp:117
 #, kde-format
@@ -9282,10 +9238,9 @@ msgid "My new public OpenPGP key"
 msgstr "我的新 OpenPGP 金鑰"
 
 #: src/newcertificatewizard/resultpage.cpp:303
-#, fuzzy, kde-format
-#| msgid "Please find attached my new OpenPGP certificate."
+#, kde-format
 msgid "Please find attached my new public OpenPGP key."
-msgstr "Please find attached my new OpenPGP certificate."
+msgstr "請見附件中有我的新的 OpenPGP 公開金鑰。"
 
 #: src/newcertificatewizard/resultpage.cpp:307
 #, kde-kuit-format
@@ -10051,13 +10006,10 @@ msgid "Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"
 msgstr "遇到未知的例外狀況，發生於 SignCommand::Private::slotMicAlgDetermined"
 
 #: src/uiserver/encryptcommand.cpp:69
-#, fuzzy, kde-format
-#| msgid ""
-#| "ENCRYPT is an email mode command, connection seems to be in filmanager "
-#| "mode"
+#, kde-format
 msgid ""
 "ENCRYPT is an email mode command, connection seems to be in filemanager mode"
-msgstr "ENCRYPT 是電子郵件模式的指令，而此連線似乎是在檔案管理模式。"
+msgstr "ENCRYPT 是電子郵件模式的指令，而此連線似乎是在檔案管理模式"
 
 #: src/uiserver/encryptcommand.cpp:72
 #, kde-format
@@ -10568,28 +10520,18 @@ msgid "Could not find clipboard"
 msgstr "找不到剪貼簿"
 
 #: src/utils/overwritedialog.cpp:138
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <b>%1</b> already exists.\n"
-#| "Overwrite?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
-msgstr ""
-"檔案 <b>%1</b> 已存在。\n"
-"要覆寫它嗎？"
+msgstr "檔案 <filename>%1</filename> 已存在。請輸入另一個檔案名稱。"
 
 #: src/utils/overwritedialog.cpp:185
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <b>%1</b> already exists.\n"
-#| "Overwrite?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr ""
-"檔案 <b>%1</b> 已存在。\n"
-"要覆寫它嗎？"
+msgstr "檔案 <filename>%1</filename> 已存在。"
 
 #: src/utils/overwritedialog.cpp:190
 #, kde-format
@@ -11001,12 +10943,10 @@ msgid "Create OpenPGP Key"
 msgstr "建立 OpenPGP 金鑰"
 
 #: src/view/netkeywidget.cpp:150 src/view/pivcardwidget.cpp:138
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Imported Certificates from %1"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr "從 %1 匯入憑證"
+msgstr "為卡片上儲存的金鑰建立一個 OpenPGP 金鑰。"
 
 #: src/view/netkeywidget.cpp:157 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
@@ -11078,10 +11018,9 @@ msgid "The NullPIN is still active on this card."
 msgstr "NullPIN 在這張卡片上仍為作用中。"
 
 #: src/view/nullpinwidget.cpp:36
-#, fuzzy, kde-format
-#| msgid "You need to select at least one signing certificate to proceed."
+#, kde-format
 msgid "You need to set a PIN before you can use the certificates."
-msgstr "您至少需要選擇一個 OpenPGP 簽署憑證來執行此動作。"
+msgstr "您必須先設定 PIN 碼才能使用憑證。"
 
 #: src/view/nullpinwidget.cpp:42
 #, kde-format

@@ -15,8 +15,8 @@
 #include <utils/accessibility.h>
 #include <utils/scrollarea.h>
 
-#include <Libkleo/NavigatableTreeView>
 #include <Libkleo/SystemInfo>
+#include <Libkleo/TreeView>
 
 #include <KColorScheme>
 #include <KLocalizedString>
@@ -219,18 +219,18 @@ private:
     bool m_showAll;
 };
 
-class TreeView : public NavigatableTreeView
+class TreeViewInternal : public TreeView
 {
     Q_OBJECT
 public:
-    using NavigatableTreeView::NavigatableTreeView;
+    using TreeView::TreeView;
 
 protected:
     void focusInEvent(QFocusEvent *event) override
     {
-        NavigatableTreeView::focusInEvent(event);
+        TreeView::focusInEvent(event);
         // queue the invokation, so that it happens after the widget itself got focus
-        QMetaObject::invokeMethod(this, &TreeView::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, &TreeViewInternal::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
     }
 
 private:
@@ -348,7 +348,7 @@ private:
     Proxy proxy;
 
     struct UI {
-        TreeView *resultsTV = nullptr;
+        TreeViewInternal *resultsTV = nullptr;
         QCheckBox *showAllCB = nullptr;
         QGroupBox *detailsGB = nullptr;
         QLabel *detailsLB = nullptr;
@@ -383,7 +383,7 @@ private:
                 auto vbox = new QVBoxLayout{widget};
                 vbox->setContentsMargins(0, 0, 0, 0);
 
-                resultsTV = new TreeView{qq};
+                resultsTV = new TreeViewInternal{qq};
                 resultsTV->setAccessibleName(i18n("test results"));
                 QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
                 sizePolicy.setHorizontalStretch(0);

@@ -46,7 +46,7 @@
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyHelpers>
-#include <Libkleo/NavigatableTreeWidget>
+#include <Libkleo/TreeWidget>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -166,7 +166,7 @@ private:
     struct UI {
         QWidget *userIDs = nullptr;
         QLabel *userIDTableLabel = nullptr;
-        NavigatableTreeWidget *userIDTable = nullptr;
+        TreeWidget *userIDTable = nullptr;
         QPushButton *addUserIDBtn = nullptr;
         QPushButton *setPrimaryUserIDBtn = nullptr;
         QPushButton *certifyBtn = nullptr;
@@ -208,7 +208,7 @@ private:
                 userIDTableLabel = new QLabel(i18n("User IDs:"), parent);
                 userIDsLayout->addWidget(userIDTableLabel);
 
-                userIDTable = new NavigatableTreeWidget{parent};
+                userIDTable = new TreeWidget{parent};
                 userIDTableLabel->setBuddy(userIDTable);
                 userIDTable->setAccessibleName(i18n("User IDs"));
                 QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();

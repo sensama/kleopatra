@@ -34,8 +34,8 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/KeySelectionCombo>
-#include <Libkleo/NavigatableTreeWidget>
 #include <Libkleo/Predicates>
+#include <Libkleo/TreeWidget>
 
 #include <QGpgME/ChangeOwnerTrustJob>
 #include <QGpgME/Protocol>
@@ -221,18 +221,18 @@ auto checkBoxSize(const QCheckBox *checkBox)
     return checkBox->style()->sizeFromContents(QStyle::CT_CheckBox, &opt, QSize(), checkBox);
 }
 
-class TreeWidget : public NavigatableTreeWidget
+class TreeWidgetInternal : public TreeWidget
 {
     Q_OBJECT
 public:
-    using NavigatableTreeWidget::NavigatableTreeWidget;
+    using TreeWidget::TreeWidget;
 
 protected:
     void focusInEvent(QFocusEvent *event) override
     {
-        NavigatableTreeWidget::focusInEvent(event);
+        TreeWidget::focusInEvent(event);
         // queue the invokation, so that it happens after the widget itself got focus
-        QMetaObject::invokeMethod(this, &TreeWidget::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, &TreeWidgetInternal::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
     }
 
     bool edit(const QModelIndex &index, EditTrigger trigger, QEvent *event) override
@@ -241,10 +241,10 @@ protected:
             const auto *const keyEvent = static_cast<QKeyEvent *>(event);
             if (keyEvent->key() == Qt::Key_Space || keyEvent->key() == Qt::Key_Select) {
                 // toggle checked state regardless of the index's column
-                return NavigatableTreeWidget::edit(index.siblingAtColumn(0), trigger, event);
+                return TreeWidget::edit(index.siblingAtColumn(0), trigger, event);
             }
         }
-        return NavigatableTreeWidget::edit(index, trigger, event);
+        return TreeWidget::edit(index, trigger, event);
     }
 
 private:
@@ -970,7 +970,7 @@ public:
     KeySelectionCombo *mSecKeySelect = nullptr;
     KMessageWidget *mMissingOwnerTrustInfo = nullptr;
     KMessageWidget *mBadCertificatesInfo = nullptr;
-    NavigatableTreeWidget *userIdListView = nullptr;
+    TreeWidget *userIdListView = nullptr;
     AnimatedExpander *mAdvancedOptionsExpander = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;

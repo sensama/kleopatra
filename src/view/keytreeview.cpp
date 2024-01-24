@@ -16,8 +16,8 @@
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeyRearrangeColumnsProxyModel>
-#include <Libkleo/NavigatableTreeView>
 #include <Libkleo/Predicates>
+#include <Libkleo/TreeView>
 
 #include "utils/headerview.h"
 #include "utils/tags.h"
@@ -53,13 +53,27 @@ Q_DECLARE_METATYPE(GpgME::Key)
 namespace
 {
 
-class TreeView : public NavigatableTreeView
+class TreeViewInternal : public Kleo::TreeView
 {
 public:
-    explicit TreeView(QWidget *parent = nullptr)
-        : NavigatableTreeView{parent}
+    explicit TreeViewInternal(QWidget *parent = nullptr)
+        : Kleo::TreeView{parent}
     {
-        header()->installEventFilter(this);
+        connect(this, &TreeView::columnEnabled, this, [this](int column) {
+            if (column == TAGS_COLUMN) {
+                Tags::enableTags();
+            }
+            auto tv = qobject_cast<KeyTreeView *>(this->parent());
+            if (tv) {
+                tv->resizeColumns();
+            }
+        });
+        connect(this, &TreeView::columnDisabled, this, [this]() {
+            auto tv = qobject_cast<KeyTreeView *>(this->parent());
+            if (tv) {
+                tv->resizeColumns();
+            }
+        });
     }
 
     QSize minimumSizeHint() const override
@@ -69,57 +83,11 @@ public:
     }
 
 protected:
-    bool eventFilter(QObject *watched, QEvent *event) override
-    {
-        Q_UNUSED(watched)
-        if (event->type() == QEvent::ContextMenu) {
-            auto e = static_cast<QContextMenuEvent *>(event);
-
-            if (!mHeaderPopup) {
-                mHeaderPopup = new QMenu(this);
-                mHeaderPopup->setTitle(i18n("View Columns"));
-                for (int i = 0; i < model()->columnCount(); ++i) {
-                    QAction *tmp = mHeaderPopup->addAction(model()->headerData(i, Qt::Horizontal).toString());
-                    tmp->setData(QVariant(i));
-                    tmp->setCheckable(true);
-                    mColumnActions << tmp;
-                }
-
-                connect(mHeaderPopup, &QMenu::triggered, this, [this](QAction *action) {
-                    const int col = action->data().toInt();
-                    if ((col == TAGS_COLUMN) && action->isChecked()) {
-                        Tags::enableTags();
-                    }
-                    if (action->isChecked()) {
-                        showColumn(col);
-                    } else {
-                        hideColumn(col);
-                    }
-
-                    auto tv = qobject_cast<KeyTreeView *>(parent());
-                    if (tv) {
-                        tv->resizeColumns();
-                    }
-                });
-            }
-
-            for (QAction *action : std::as_const(mColumnActions)) {
-                const int column = action->data().toInt();
-                action->setChecked(!isColumnHidden(column));
-            }
-
-            mHeaderPopup->popup(mapToGlobal(e->pos()));
-            return true;
-        }
-
-        return false;
-    }
-
     void focusInEvent(QFocusEvent *event) override
     {
         QTreeView::focusInEvent(event);
         // queue the invokation, so that it happens after the widget itself got focus
-        QMetaObject::invokeMethod(this, &TreeView::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, &TreeViewInternal::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
     }
 
 private:
@@ -152,7 +120,7 @@ KeyTreeView::KeyTreeView(QWidget *parent)
     : QWidget(parent)
     , m_proxy(new KeyListSortFilterProxyModel(this))
     , m_additionalProxy(nullptr)
-    , m_view(new TreeView(this))
+    , m_view(new TreeViewInternal(this))
     , m_flatModel(nullptr)
     , m_hierarchicalModel(nullptr)
     , m_stringFilter()
@@ -166,7 +134,7 @@ KeyTreeView::KeyTreeView(const KeyTreeView &other)
     : QWidget(nullptr)
     , m_proxy(new KeyListSortFilterProxyModel(this))
     , m_additionalProxy(other.m_additionalProxy ? other.m_additionalProxy->clone() : nullptr)
-    , m_view(new TreeView(this))
+    , m_view(new TreeViewInternal(this))
     , m_flatModel(other.m_flatModel)
     , m_hierarchicalModel(other.m_hierarchicalModel)
     , m_stringFilter(other.m_stringFilter)
@@ -187,7 +155,7 @@ KeyTreeView::KeyTreeView(const QString &text,
     : QWidget(parent)
     , m_proxy(new KeyListSortFilterProxyModel(this))
     , m_additionalProxy(proxy)
-    , m_view(new TreeView(this))
+    , m_view(new TreeViewInternal(this))
     , m_flatModel(nullptr)
     , m_hierarchicalModel(nullptr)
     , m_stringFilter(text)

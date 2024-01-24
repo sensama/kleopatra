@@ -16,7 +16,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyHelpers>
-#include <Libkleo/NavigatableTreeView>
+#include <Libkleo/TreeView>
 #include <Libkleo/UserIDListModel>
 
 #include <KLocalizedString>
@@ -45,7 +45,7 @@ private:
     GpgME::Key key;
     UserIDListModel certificationsModel;
     QGpgME::KeyListJob *keyListJob = nullptr;
-    NavigatableTreeView *certificationsTV = nullptr;
+    TreeView *certificationsTV = nullptr;
     QAction *detailsAction = nullptr;
     QAction *certifyAction = nullptr;
     QAction *revokeAction = nullptr;
@@ -56,7 +56,7 @@ public:
     {
         certificationsModel.enableRemarks(Tags::tagsEnabled());
 
-        certificationsTV = new NavigatableTreeView{q};
+        certificationsTV = new TreeView{q};
         certificationsTV->setAccessibleName(i18n("User IDs and certifications"));
         certificationsTV->setModel(&certificationsModel);
         certificationsTV->setAllColumnsShowFocus(false);

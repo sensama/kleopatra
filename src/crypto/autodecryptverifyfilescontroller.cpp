@@ -23,14 +23,16 @@
 
 #include "commands/decryptverifyfilescommand.h"
 
-#include <Libkleo/GnuPG>
 #include <utils/archivedefinition.h>
 #include <utils/input.h>
 #include <utils/kleo_assert.h>
 #include <utils/output.h>
+#include <utils/overwritedialog.h>
 #include <utils/path-helper.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Classify>
+#include <Libkleo/GnuPG>
 
 #ifndef Q_OS_WIN
 #include <KIO/CopyJob>
@@ -176,9 +178,13 @@ void AutoDecryptVerifyFilesController::Private::exec()
         // Without workdir there is nothing to move.
         const QDir workdir(m_workDir->path());
         const QDir outDir(m_dialog->outputLocation());
-        bool overWriteAll = false;
         qCDebug(KLEOPATRA_LOG) << workdir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
-        for (const QFileInfo &fi : workdir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
+        const auto filesAndFoldersToMove = workdir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
+        const auto fileCount = Kleo::count_if(filesAndFoldersToMove, [](const auto &fi) {
+            return !fi.isDir();
+        });
+        OverwritePolicy overwritePolicy{m_dialog, fileCount > 1 ? OverwritePolicy::MultipleFiles : OverwritePolicy::Options{}};
+        for (const QFileInfo &fi : filesAndFoldersToMove) {
             const auto inpath = fi.absoluteFilePath();
 
             if (fi.isDir()) {
@@ -245,31 +251,27 @@ void AutoDecryptVerifyFilesController::Private::exec()
                     outFileName = embeddedFileName;
                 }
             }
-            const auto outpath = outDir.absoluteFilePath(outFileName);
+            auto outpath = outDir.absoluteFilePath(outFileName);
             qCDebug(KLEOPATRA_LOG) << "Moving " << inpath << " to " << outpath;
             const QFileInfo ofi(outpath);
             if (ofi.exists()) {
-                int sel = KMessageBox::Cancel;
-                if (!overWriteAll) {
-                    sel = KMessageBox::questionTwoActionsCancel(m_dialog,
-                                                                i18n("The file <b>%1</b> already exists.\n"
-                                                                     "Overwrite?",
-                                                                     outpath),
-                                                                i18n("Overwrite Existing File?"),
-                                                                KStandardGuiItem::overwrite(),
-                                                                KGuiItem(i18n("Overwrite All")),
-                                                                KStandardGuiItem::cancel());
-                }
-                if (sel == KMessageBox::Cancel) {
-                    qCDebug(KLEOPATRA_LOG) << "Overwriting canceled for: " << outpath;
+                const auto newPath = overwritePolicy.obtainOverwritePermission(outpath);
+                if (newPath.isEmpty()) {
+                    if (overwritePolicy.policy() == OverwritePolicy::Cancel) {
+                        qCDebug(KLEOPATRA_LOG) << "Overwriting canceled for: " << outpath;
+                        break;
+                    }
+                    // else Skip
                     continue;
-                }
-                if (sel == KMessageBox::ButtonCode::SecondaryAction) { // Overwrite All
-                    overWriteAll = true;
-                }
-                if (!QFile::remove(outpath)) {
-                    reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to delete <filename>%1</filename>.", outpath));
-                    continue;
+                } else if (newPath == outpath) {
+                    // overwrite existing file
+                    if (!QFile::remove(outpath)) {
+                        reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to delete <filename>%1</filename>.", outpath));
+                        continue;
+                    }
+                } else {
+                    // use new name for file
+                    outpath = newPath;
                 }
             }
             if (!QFile::rename(inpath, outpath)) {

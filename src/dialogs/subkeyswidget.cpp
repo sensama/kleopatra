@@ -26,7 +26,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyHelpers>
-#include <Libkleo/NavigatableTreeWidget>
+#include <Libkleo/TreeWidget>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -82,7 +82,7 @@ public:
 public:
     struct UI {
         QVBoxLayout *mainLayout;
-        NavigatableTreeWidget *subkeysTree;
+        TreeWidget *subkeysTree;
 
         QPushButton *changeValidityBtn = nullptr;
         QPushButton *exportOpenSSHBtn = nullptr;
@@ -98,7 +98,7 @@ public:
             auto subkeysTreeLabel = new QLabel{i18nc("@label", "Subkeys:"), widget};
             mainLayout->addWidget(subkeysTreeLabel);
 
-            subkeysTree = new NavigatableTreeWidget{widget};
+            subkeysTree = new TreeWidget{widget};
             subkeysTreeLabel->setBuddy(subkeysTree);
             subkeysTree->setAccessibleName(i18nc("@label", "Subkeys"));
             subkeysTree->setRootIsDecorated(false);
@@ -258,7 +258,7 @@ SubKeysWidget::SubKeysWidget(QWidget *parent)
     : QWidget(parent)
     , d(new Private(this))
 {
-    connect(d->ui.subkeysTree, &NavigatableTreeWidget::currentItemChanged, this, [this] {
+    connect(d->ui.subkeysTree, &TreeWidget::currentItemChanged, this, [this] {
         const auto currentIndex = d->ui.subkeysTree->currentIndex().row();
         const auto &subkey = d->key.subkey(currentIndex);
         const bool secretSubkeyStoredInKeyRing = subkey.isSecret() && !subkey.isCardKey();

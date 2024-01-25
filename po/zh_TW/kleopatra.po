@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 00:37+0000\n"
+"POT-Creation-Date: 2024-01-25 00:37+0000\n"
 "PO-Revision-Date: 2024-01-22 17:05+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -174,7 +174,7 @@ msgstr "新增使用者 ID 成功"
 #: src/commands/certificatetopivcardcommand.cpp:122
 #: src/commands/certificatetopivcardcommand.cpp:180
 #: src/commands/importcertificatefrompivcardcommand.cpp:77
-#: src/commands/keytocardcommand.cpp:365
+#: src/commands/keytocardcommand.cpp:372
 #: src/commands/pivgeneratecardkeycommand.cpp:124
 #: src/commands/pivgeneratecardkeycommand.cpp:196
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:196
@@ -195,7 +195,7 @@ msgid ""
 msgstr "請以 16 進位形式輸入 PIV 卡片應用管理金鑰。"
 
 #: src/commands/certificatetopivcardcommand.cpp:129
-#: src/commands/keytocardcommand.cpp:343
+#: src/commands/keytocardcommand.cpp:350
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr "抱歉！沒有找到適合寫入這個卡片欄位的憑證。"
@@ -803,7 +803,8 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "憑證撤銷清冊快取已成功清除。"
 
-#: src/commands/command_p.h:92 src/commands/keytocardcommand.cpp:485
+#: src/commands/command_p.h:92 src/commands/keytocardcommand.cpp:493
+#: src/commands/keytocardcommand.cpp:521
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -2150,7 +2151,7 @@ msgid "Import CRL Finished"
 msgstr "匯入憑證撤銷清冊已完成"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "無法開啟 <filename>%1</filename> 以讀取。"
@@ -2221,58 +2222,58 @@ msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:152
+#: src/commands/keytocardcommand.cpp:159
 #, kde-format
 msgid "Select Card"
 msgstr "選擇卡片"
 
-#: src/commands/keytocardcommand.cpp:153
+#: src/commands/keytocardcommand.cpp:160
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "請選擇要寫入金鑰到哪張卡片："
 
-#: src/commands/keytocardcommand.cpp:182 src/commands/keytocardcommand.cpp:464
-#: src/commands/keytocardcommand.cpp:623
+#: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:657
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "找不到符合以下序號的卡片：%1"
 
-#: src/commands/keytocardcommand.cpp:192
+#: src/commands/keytocardcommand.cpp:199
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr "抱歉！不支援寫入金鑰到卡片 <emphasis>%1</emphasis>。"
 
-#: src/commands/keytocardcommand.cpp:220
+#: src/commands/keytocardcommand.cpp:227
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Signature"
 msgstr "簽章"
 
-#: src/commands/keytocardcommand.cpp:224
+#: src/commands/keytocardcommand.cpp:231
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "加密"
 
-#: src/commands/keytocardcommand.cpp:228
+#: src/commands/keytocardcommand.cpp:235
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "認證"
 
-#: src/commands/keytocardcommand.cpp:234
+#: src/commands/keytocardcommand.cpp:241
 #, kde-format
 msgid "Select Card Slot"
 msgstr "選擇卡片欄位"
 
-#: src/commands/keytocardcommand.cpp:235
+#: src/commands/keytocardcommand.cpp:242
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr "請選擇金鑰要寫入到哪個卡片欄位："
 
-#: src/commands/keytocardcommand.cpp:255
+#: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
 #: src/view/pgpcardwidget.cpp:386 src/view/pgpcardwidget.cpp:452
@@ -2281,12 +2282,12 @@ msgstr "請選擇金鑰要寫入到哪個卡片欄位："
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "找不到符合以下序號的 OpenPGP 卡片：%1"
 
-#: src/commands/keytocardcommand.cpp:265
+#: src/commands/keytocardcommand.cpp:272
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "抱歉！這個金鑰無法被移轉到 OpenPGP 卡片上。"
 
-#: src/commands/keytocardcommand.cpp:280 src/commands/keytocardcommand.cpp:399
+#: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
 #: src/view/pgpcardwidget.cpp:395
@@ -2296,7 +2297,7 @@ msgid ""
 "the existing key."
 msgstr "將會無法解密過去為現存金鑰加密的通訊。"
 
-#: src/commands/keytocardcommand.cpp:283 src/commands/keytocardcommand.cpp:402
+#: src/commands/keytocardcommand.cpp:290 src/commands/keytocardcommand.cpp:409
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2307,144 +2308,174 @@ msgstr ""
 "<p>卡片 <em>%1</em> 在這個欄位裡已經有一個金鑰了。繼續進行將會<b>覆寫</b>該金"
 "鑰。</p><p>如果沒有備份，現存的金鑰將會永久遺失。</p>"
 
-#: src/commands/keytocardcommand.cpp:286
+#: src/commands/keytocardcommand.cpp:293
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "現存金鑰的指紋："
 
-#: src/commands/keytocardcommand.cpp:289 src/commands/keytocardcommand.cpp:408
+#: src/commands/keytocardcommand.cpp:296 src/commands/keytocardcommand.cpp:415
 #: src/commands/pivgeneratecardkeycommand.cpp:139
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "覆寫現存金鑰"
 
-#: src/commands/keytocardcommand.cpp:290 src/commands/keytocardcommand.cpp:409
+#: src/commands/keytocardcommand.cpp:297 src/commands/keytocardcommand.cpp:416
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
 msgstr "覆寫現存金鑰"
 
-#: src/commands/keytocardcommand.cpp:348
+#: src/commands/keytocardcommand.cpp:355
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "選擇憑證"
 
-#: src/commands/keytocardcommand.cpp:349
+#: src/commands/keytocardcommand.cpp:356
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "請選擇要寫入哪個憑證的金鑰對到卡片裡："
 
-#: src/commands/keytocardcommand.cpp:384
+#: src/commands/keytocardcommand.cpp:391
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "抱歉！這個金鑰無法被移轉到 PIV 卡片上。"
 
-#: src/commands/keytocardcommand.cpp:389
+#: src/commands/keytocardcommand.cpp:396
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr "抱歉！只有加密金鑰和簽章金鑰才能被移轉到 PIV 卡片上。"
 
-#: src/commands/keytocardcommand.cpp:405
+#: src/commands/keytocardcommand.cpp:412
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "現存金鑰的 key grip："
 
-#: src/commands/keytocardcommand.cpp:472
+#: src/commands/keytocardcommand.cpp:479
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
 msgstr "複製金鑰到卡片上時失敗。"
 
-#: src/commands/keytocardcommand.cpp:483
-#, kde-kuit-format
+#: src/commands/keytocardcommand.cpp:490
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>Do you want to "
+#| "delete the copy of the key stored on this computer?</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>Do you want to delete "
-"the copy of the key stored on this computer?</para>"
+"<para>The key has been copied to the card.</para><para>You can now delete "
+"the copy of the key stored on this computer. Optionally, you can first "
+"create a backup of the key.</para>"
 msgstr ""
 "<para>金鑰已被複製到卡片上。</para><para>您要刪除該金鑰儲存在這台電腦上的複本"
 "嗎？</para>"
 
-#: src/commands/keytocardcommand.cpp:486
+#: src/commands/keytocardcommand.cpp:494
+#, fuzzy, kde-format
+#| msgid "Paper backup"
+msgctxt "@action:button"
+msgid "Create backup"
+msgstr "Paper 備份"
+
+#: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
-msgid "Create Backup and Delete Key"
-msgstr "建立備份並刪除金鑰"
+msgid "Delete copy on disk"
+msgstr ""
 
-#: src/commands/keytocardcommand.cpp:487
+#: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
-msgid "Delete Key"
-msgstr "刪除金鑰"
+msgid "Keep copy on disk"
+msgstr ""
 
-#: src/commands/keytocardcommand.cpp:488
-#, kde-format
-msgctxt "@action:button"
-msgid "Keep Key"
-msgstr "保留金鑰"
+#: src/commands/keytocardcommand.cpp:518
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>Do you want to "
+#| "delete the copy of the key stored on this computer?</para>"
+msgctxt "@info"
+msgid ""
+"<para>The key has been copied to the card and a backup has been written to "
+"<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
+"key stored on this computer?</para>"
+msgstr ""
+"<para>金鑰已被複製到卡片上。</para><para>您要刪除該金鑰儲存在這台電腦上的複本"
+"嗎？</para>"
 
-#: src/commands/keytocardcommand.cpp:533
+#: src/commands/keytocardcommand.cpp:563
 #, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "備份私鑰"
 
-#: src/commands/keytocardcommand.cpp:536
+#: src/commands/keytocardcommand.cpp:566
 #, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "私鑰備份檔"
 
-#: src/commands/keytocardcommand.cpp:587
+#: src/commands/keytocardcommand.cpp:621
 #, kde-kuit-format
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr "無法開啟私鑰檔案 <filename>%1</filename> 以讀取。"
 
-#: src/commands/keytocardcommand.cpp:596
+#: src/commands/keytocardcommand.cpp:630
 #, kde-kuit-format
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "私鑰檔 <filename>%1</filename> 是空的。"
 
-#: src/commands/keytocardcommand.cpp:606
+#: src/commands/keytocardcommand.cpp:640
 #, kde-kuit-format
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "無法開啟檔案 <filename>%1</filename> 以寫入。"
 
-#: src/commands/keytocardcommand.cpp:613
+#: src/commands/keytocardcommand.cpp:647
 #, kde-kuit-format
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr "寫入私鑰備份到 <filename>%1</filename> 時失敗。"
 
-#: src/commands/keytocardcommand.cpp:629
-#, kde-kuit-format
-msgid "Do you really want to delete the local copy of the secret key?"
+#: src/commands/keytocardcommand.cpp:664
+#, fuzzy, kde-kuit-format
+#| msgid "Do you really want to delete the local copy of the secret key?"
+msgctxt "@info"
+msgid ""
+"Do you really want to delete the copy of the key stored on this computer?"
 msgstr "您確定要刪除私鑰的本機複本嗎？"
 
-#: src/commands/keytocardcommand.cpp:630
+#: src/commands/keytocardcommand.cpp:665
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "確認刪除"
 
-#: src/commands/keytocardcommand.cpp:649
-#, kde-kuit-format
+#: src/commands/keytocardcommand.cpp:686
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
 msgctxt "@info"
 msgid ""
-"<para>Failed to delete the key:</para><para><message>%1</message></para>"
+"<para>Failed to delete the copy of the key stored on this computer:</"
+"para><para><message>%1</message></para>"
 msgstr "<para>刪除金鑰時失敗：</para><para><message>%1</message></para>"
 
-#: src/commands/keytocardcommand.cpp:652
-#, kde-format
+#: src/commands/keytocardcommand.cpp:690
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully generated a new key for this card."
 msgctxt "@info"
-msgid "Successfully copied the key to the card."
-msgstr "已成功複製金鑰到卡片上。"
+msgid "Successfully deleted the copy of the key stored on this computer."
+msgstr "已成功為這張卡片產生新金鑰。"
 
-#: src/commands/keytocardcommand.cpp:712
+#: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4008,7 +4039,7 @@ msgstr ""
 "\"主機\" 或 \"主機：連接埠\"。若是未指定連接埠，則預設使用 389（標準 LDAP 連"
 "接埠）。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4016,7 +4047,7 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4026,7 +4057,7 @@ msgstr ""
 "<para>將 <filename>%1</filename> 移動到 <filename>%2</filename> 失敗。</"
 "para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4035,65 +4066,46 @@ msgid ""
 msgstr ""
 "<para>將 <filename>%1</filename> 移動到 <filename>%2</filename> 失敗。</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "檔案是否應以原始檔名 <filename>%1</filename> 儲存？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "使用原始檔案名稱？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "不，儲存為 <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "好，儲存為 <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"檔案 <b>%1</b> 已存在。\n"
-"要覆寫它嗎？"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "要覆寫檔案嗎？"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "全部覆寫"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "刪除 <filename>%1</filename> 失敗。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr "將 <filename>%1</filename> 移動到 <filename>%2</filename> 失敗。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr "檔案 <filename>%1</filename> 內含憑證，而無法被解密或檢查。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "選取要用簽章 <filename>%1</filename> 檢查的檔案"
@@ -4502,7 +4514,7 @@ msgstr "此憑證已經被確認過了。"
 
 #: src/crypto/decryptverifytask.cpp:554 src/crypto/decryptverifytask.cpp:608
 #: src/crypto/signencrypttask.cpp:241 src/crypto/signencrypttask.cpp:258
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:883
 #, kde-format
 msgid "Input error: %1"
 msgstr "輸入錯誤：%1"
@@ -4592,18 +4604,18 @@ msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1：%2"
 
-#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1305
-#: src/crypto/decryptverifytask.cpp:1387 src/crypto/decryptverifytask.cpp:1488
-#: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1700
-#: src/crypto/decryptverifytask.cpp:1779 src/crypto/decryptverifytask.cpp:1920
+#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1310
+#: src/crypto/decryptverifytask.cpp:1392 src/crypto/decryptverifytask.cpp:1493
+#: src/crypto/decryptverifytask.cpp:1545 src/crypto/decryptverifytask.cpp:1710
+#: src/crypto/decryptverifytask.cpp:1789 src/crypto/decryptverifytask.cpp:1930
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "補捉到例外狀況：%1"
 
-#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1307
-#: src/crypto/decryptverifytask.cpp:1390 src/crypto/decryptverifytask.cpp:1490
-#: src/crypto/decryptverifytask.cpp:1543 src/crypto/decryptverifytask.cpp:1702
-#: src/crypto/decryptverifytask.cpp:1781 src/crypto/decryptverifytask.cpp:1922
+#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1312
+#: src/crypto/decryptverifytask.cpp:1395 src/crypto/decryptverifytask.cpp:1495
+#: src/crypto/decryptverifytask.cpp:1548 src/crypto/decryptverifytask.cpp:1712
+#: src/crypto/decryptverifytask.cpp:1791 src/crypto/decryptverifytask.cpp:1932
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -4624,31 +4636,31 @@ msgstr ""
 msgid "Decrypting %1..."
 msgstr "正在解密 %1..."
 
-#: src/crypto/decryptverifytask.cpp:1443
+#: src/crypto/decryptverifytask.cpp:1448
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr "無法決定這是用 S/MIME 還是 OpenGPG 加密。也許它根本不是加密文字？"
 
-#: src/crypto/decryptverifytask.cpp:1451
+#: src/crypto/decryptverifytask.cpp:1456
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "解密中：%1..."
 
-#: src/crypto/decryptverifytask.cpp:1597 src/crypto/decryptverifytask.cpp:1843
+#: src/crypto/decryptverifytask.cpp:1602 src/crypto/decryptverifytask.cpp:1853
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr "無法決定這是用 S/MIME 還是 OpenGPG 簽署。也許它根本不是簽章？"
 
-#: src/crypto/decryptverifytask.cpp:1605
+#: src/crypto/decryptverifytask.cpp:1610
 #, kde-format
 msgid "Verifying %1..."
 msgstr "正在檢查 %1..."
 
-#: src/crypto/decryptverifytask.cpp:1861
+#: src/crypto/decryptverifytask.cpp:1871
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4657,12 +4669,12 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 "正在使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1865
+#: src/crypto/decryptverifytask.cpp:1875
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "正在檢查簽章 %1..."
 
-#: src/crypto/decryptverifytask.cpp:1876
+#: src/crypto/decryptverifytask.cpp:1886
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -5771,7 +5783,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5780,19 +5792,19 @@ msgstr ""
 "找不到以下檔案的共用基礎目錄：\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:754
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "正在建立已簽署且已加密的封存檔 ..."
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:774
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "正在建立已加密的封存檔 ..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:794
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -11903,6 +11915,35 @@ msgid ""
 msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
+
+#~ msgctxt "@action:button"
+#~ msgid "Create Backup and Delete Key"
+#~ msgstr "建立備份並刪除金鑰"
+
+#~ msgctxt "@action:button"
+#~ msgid "Delete Key"
+#~ msgstr "刪除金鑰"
+
+#~ msgctxt "@action:button"
+#~ msgid "Keep Key"
+#~ msgstr "保留金鑰"
+
+#~ msgctxt "@info"
+#~ msgid "Successfully copied the key to the card."
+#~ msgstr "已成功複製金鑰到卡片上。"
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "檔案 <b>%1</b> 已存在。\n"
+#~ "要覆寫它嗎？"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "要覆寫檔案嗎？"
+
+#~ msgid "Overwrite All"
+#~ msgstr "全部覆寫"
 
 #~ msgid "Groups"
 #~ msgstr "群組"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 00:37+0000\n"
+"POT-Creation-Date: 2024-01-25 00:37+0000\n"
 "PO-Revision-Date: 2024-01-18 21:13+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -178,7 +178,7 @@ msgstr ""
 #: src/commands/certificatetopivcardcommand.cpp:122
 #: src/commands/certificatetopivcardcommand.cpp:180
 #: src/commands/importcertificatefrompivcardcommand.cpp:77
-#: src/commands/keytocardcommand.cpp:365
+#: src/commands/keytocardcommand.cpp:372
 #: src/commands/pivgeneratecardkeycommand.cpp:124
 #: src/commands/pivgeneratecardkeycommand.cpp:196
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:196
@@ -201,7 +201,7 @@ msgstr ""
 "шестнадесетичен кодирана форма."
 
 #: src/commands/certificatetopivcardcommand.cpp:129
-#: src/commands/keytocardcommand.cpp:343
+#: src/commands/keytocardcommand.cpp:350
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
@@ -831,7 +831,8 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "Кеш-паметта CRL е изчистена успешно."
 
-#: src/commands/command_p.h:92 src/commands/keytocardcommand.cpp:485
+#: src/commands/command_p.h:92 src/commands/keytocardcommand.cpp:493
+#: src/commands/keytocardcommand.cpp:521
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -2247,7 +2248,7 @@ msgid "Import CRL Finished"
 msgstr "Импортирането на CRL завърши"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Не може да се отвори <filename> %1 </filename> за четене."
@@ -2322,23 +2323,23 @@ msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:152
+#: src/commands/keytocardcommand.cpp:159
 #, kde-format
 msgid "Select Card"
 msgstr "Избиране на карта"
 
-#: src/commands/keytocardcommand.cpp:153
+#: src/commands/keytocardcommand.cpp:160
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "Моля, изберете картата, на която трябва да се запише ключът:"
 
-#: src/commands/keytocardcommand.cpp:182 src/commands/keytocardcommand.cpp:464
-#: src/commands/keytocardcommand.cpp:623
+#: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:657
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "Неуспешно намиране на картата със сериен номер: %1"
 
-#: src/commands/keytocardcommand.cpp:192
+#: src/commands/keytocardcommand.cpp:199
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2347,36 +2348,36 @@ msgstr ""
 "Съжалявам! Прехвърляне на ключове в карта  <emphasis>%1</emphasis> не се "
 "поддържа."
 
-#: src/commands/keytocardcommand.cpp:220
+#: src/commands/keytocardcommand.cpp:227
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Signature"
 msgstr "Подпис"
 
-#: src/commands/keytocardcommand.cpp:224
+#: src/commands/keytocardcommand.cpp:231
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "Криптиране"
 
-#: src/commands/keytocardcommand.cpp:228
+#: src/commands/keytocardcommand.cpp:235
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "Удостоверяване"
 
-#: src/commands/keytocardcommand.cpp:234
+#: src/commands/keytocardcommand.cpp:241
 #, kde-format
 msgid "Select Card Slot"
 msgstr "Избиране на слот за карта"
 
-#: src/commands/keytocardcommand.cpp:235
+#: src/commands/keytocardcommand.cpp:242
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr ""
 "Моля, изберете слота на картата, на който трябва да бъде записан ключът:"
 
-#: src/commands/keytocardcommand.cpp:255
+#: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
 #: src/view/pgpcardwidget.cpp:386 src/view/pgpcardwidget.cpp:452
@@ -2385,12 +2386,12 @@ msgstr ""
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Неуспешно намиране на OpenPGP картата със сериен номер: %1"
 
-#: src/commands/keytocardcommand.cpp:265
+#: src/commands/keytocardcommand.cpp:272
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "Съжалявам! Този ключ не може да бъде прехвърлена на OpenPGP карта."
 
-#: src/commands/keytocardcommand.cpp:280 src/commands/keytocardcommand.cpp:399
+#: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
 #: src/view/pgpcardwidget.cpp:395
@@ -2402,7 +2403,7 @@ msgstr ""
 "Вече няма да е възможно да се дешифрира минала комуникация, кодирана за "
 "съществуващия ключ."
 
-#: src/commands/keytocardcommand.cpp:283 src/commands/keytocardcommand.cpp:402
+#: src/commands/keytocardcommand.cpp:290 src/commands/keytocardcommand.cpp:409
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2414,31 +2415,31 @@ msgstr ""
 "ще<b> презапише </b> този ключ. </p> <p> Ако няма резервно копие, "
 "съществуващият ключ ще бъде безвъзвратно загубен. </p>"
 
-#: src/commands/keytocardcommand.cpp:286
+#: src/commands/keytocardcommand.cpp:293
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "Съществуващият ключ има пръстов отпечатък:"
 
-#: src/commands/keytocardcommand.cpp:289 src/commands/keytocardcommand.cpp:408
+#: src/commands/keytocardcommand.cpp:296 src/commands/keytocardcommand.cpp:415
 #: src/commands/pivgeneratecardkeycommand.cpp:139
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "Презаписване на съществуващ ключ"
 
-#: src/commands/keytocardcommand.cpp:290 src/commands/keytocardcommand.cpp:409
+#: src/commands/keytocardcommand.cpp:297 src/commands/keytocardcommand.cpp:416
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
 msgstr "Презаписване на съществуващ ключ"
 
-#: src/commands/keytocardcommand.cpp:348
+#: src/commands/keytocardcommand.cpp:355
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "Избиране на сертификат"
 
-#: src/commands/keytocardcommand.cpp:349
+#: src/commands/keytocardcommand.cpp:356
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
@@ -2446,12 +2447,12 @@ msgstr ""
 "Моля, изберете сертификата, чиято двойка ключове искате да запишете на "
 "картата:"
 
-#: src/commands/keytocardcommand.cpp:384
+#: src/commands/keytocardcommand.cpp:391
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "Съжалявам! Този ключ не може да се прехвърля на PIV карта."
 
-#: src/commands/keytocardcommand.cpp:389
+#: src/commands/keytocardcommand.cpp:396
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
@@ -2460,107 +2461,137 @@ msgstr ""
 "Съжалявам! Само ключове за криптиране и подписване могат да бъдат "
 "прехвърлени на карти PIV."
 
-#: src/commands/keytocardcommand.cpp:405
+#: src/commands/keytocardcommand.cpp:412
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "Съществуващата ключът има ключова хватка:"
 
-#: src/commands/keytocardcommand.cpp:472
+#: src/commands/keytocardcommand.cpp:479
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
 msgstr "Копирането на ключа в картата е неуспешно."
 
-#: src/commands/keytocardcommand.cpp:483
-#, kde-kuit-format
+#: src/commands/keytocardcommand.cpp:490
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>Do you want to "
+#| "delete the copy of the key stored on this computer?</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>Do you want to delete "
-"the copy of the key stored on this computer?</para>"
+"<para>The key has been copied to the card.</para><para>You can now delete "
+"the copy of the key stored on this computer. Optionally, you can first "
+"create a backup of the key.</para>"
 msgstr ""
 "<para>Ключът е копиран в картата.</para><para>Искате ли да изтриете копието "
 "на ключа, съхранено на този компютър?</para>"
 
-#: src/commands/keytocardcommand.cpp:486
+#: src/commands/keytocardcommand.cpp:494
+#, fuzzy, kde-format
+#| msgid "Paper backup"
+msgctxt "@action:button"
+msgid "Create backup"
+msgstr "Архивиране на хартия"
+
+#: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
-msgid "Create Backup and Delete Key"
-msgstr "Създаване на резервно копие и изтриване на ключ"
+msgid "Delete copy on disk"
+msgstr ""
 
-#: src/commands/keytocardcommand.cpp:487
+#: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
-msgid "Delete Key"
-msgstr "Изтриване на ключ"
+msgid "Keep copy on disk"
+msgstr ""
 
-#: src/commands/keytocardcommand.cpp:488
-#, kde-format
-msgctxt "@action:button"
-msgid "Keep Key"
-msgstr "Запазване на ключ"
+#: src/commands/keytocardcommand.cpp:518
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>Do you want to "
+#| "delete the copy of the key stored on this computer?</para>"
+msgctxt "@info"
+msgid ""
+"<para>The key has been copied to the card and a backup has been written to "
+"<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
+"key stored on this computer?</para>"
+msgstr ""
+"<para>Ключът е копиран в картата.</para><para>Искате ли да изтриете копието "
+"на ключа, съхранено на този компютър?</para>"
 
-#: src/commands/keytocardcommand.cpp:533
+#: src/commands/keytocardcommand.cpp:563
 #, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Резервно копие на секретния ключ"
 
-#: src/commands/keytocardcommand.cpp:536
+#: src/commands/keytocardcommand.cpp:566
 #, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "Файлове с резервно копие на секретния ключ"
 
-#: src/commands/keytocardcommand.cpp:587
+#: src/commands/keytocardcommand.cpp:621
 #, kde-kuit-format
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr ""
 "Не може да се отвори  файлът за частен ключ <filename> %1 </filename> за "
 "четене."
 
-#: src/commands/keytocardcommand.cpp:596
+#: src/commands/keytocardcommand.cpp:630
 #, kde-kuit-format
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "Файлът за частен ключ  <filename>%1</filename> е празен."
 
-#: src/commands/keytocardcommand.cpp:606
+#: src/commands/keytocardcommand.cpp:640
 #, kde-kuit-format
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Не може да се отвори файл <filename>%1</filename> за запис."
 
-#: src/commands/keytocardcommand.cpp:613
+#: src/commands/keytocardcommand.cpp:647
 #, kde-kuit-format
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
 "Записването на резервно копие на секретния ключ в <filename>%1</filename> е "
 "неуспешно."
 
-#: src/commands/keytocardcommand.cpp:629
-#, kde-kuit-format
-msgid "Do you really want to delete the local copy of the secret key?"
+#: src/commands/keytocardcommand.cpp:664
+#, fuzzy, kde-kuit-format
+#| msgid "Do you really want to delete the local copy of the secret key?"
+msgctxt "@info"
+msgid ""
+"Do you really want to delete the copy of the key stored on this computer?"
 msgstr "Наистина ли искате да изтриете локалното копие на секретния ключ?"
 
-#: src/commands/keytocardcommand.cpp:630
+#: src/commands/keytocardcommand.cpp:665
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "Потвърждение на изтриването"
 
-#: src/commands/keytocardcommand.cpp:649
-#, kde-kuit-format
+#: src/commands/keytocardcommand.cpp:686
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
 msgctxt "@info"
 msgid ""
-"<para>Failed to delete the key:</para><para><message>%1</message></para>"
+"<para>Failed to delete the copy of the key stored on this computer:</"
+"para><para><message>%1</message></para>"
 msgstr ""
 "<para>Неуспешно изтриване на ключа: </para><para><message>%1</message></para>"
 
-#: src/commands/keytocardcommand.cpp:652
-#, kde-format
+#: src/commands/keytocardcommand.cpp:690
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully generated a new key for this card."
 msgctxt "@info"
-msgid "Successfully copied the key to the card."
-msgstr "Копирана успешно ключът към картата."
+msgid "Successfully deleted the copy of the key stored on this computer."
+msgstr "Успешно генериран нов ключ за тази карта."
 
-#: src/commands/keytocardcommand.cpp:712
+#: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4245,7 +4276,7 @@ msgstr ""
 "(стандартният LDAP порт) се използва.Изцяло изключва използването на HTTP за "
 "S/MIME."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4257,7 +4288,7 @@ msgstr ""
 "> Ако съдържат подписани или криптирани данни, моля, докладвайте за грешка "
 "(вижте Помощ-> Докладване на грешка)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4267,7 +4298,7 @@ msgstr ""
 "<para>Неуспешно преместване на <filename> %1 </filename> в <filename> %2 </"
 "filename>.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4277,60 +4308,41 @@ msgstr ""
 "<para>Неуспешно преместване на <filename> %1 </filename> в <filename> %2 </"
 "filename>.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Да се запази ли файлът с оригиналното име <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Да се използва ли оригиналното име на файла?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Не, запазване като <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Да, запазване като <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"Файлът  <b>%1 </b> вече съществува.\n"
-"Да се презапише ли?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Презаписване на съществуващ файл?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Презаписване на всички"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Неуспешно изтриване на <filename> %1 </filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Неуспешно преместване на <filename> %1 </filename> в <filename> %2 </"
 "filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4339,7 +4351,7 @@ msgstr ""
 "Файлът <filename> %1 </filename> съдържа сертификати и не може да бъде "
 "дешифриран или проверен."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "Изберете файла, за да го проверите с подписа <filename>%1</filename>"
@@ -4759,7 +4771,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:554 src/crypto/decryptverifytask.cpp:608
 #: src/crypto/signencrypttask.cpp:241 src/crypto/signencrypttask.cpp:258
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:883
 #, kde-format
 msgid "Input error: %1"
 msgstr "Грешка при въвеждане: %1"
@@ -4858,18 +4870,18 @@ msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1305
-#: src/crypto/decryptverifytask.cpp:1387 src/crypto/decryptverifytask.cpp:1488
-#: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1700
-#: src/crypto/decryptverifytask.cpp:1779 src/crypto/decryptverifytask.cpp:1920
+#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1310
+#: src/crypto/decryptverifytask.cpp:1392 src/crypto/decryptverifytask.cpp:1493
+#: src/crypto/decryptverifytask.cpp:1545 src/crypto/decryptverifytask.cpp:1710
+#: src/crypto/decryptverifytask.cpp:1789 src/crypto/decryptverifytask.cpp:1930
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Уловено изключение: %1"
 
-#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1307
-#: src/crypto/decryptverifytask.cpp:1390 src/crypto/decryptverifytask.cpp:1490
-#: src/crypto/decryptverifytask.cpp:1543 src/crypto/decryptverifytask.cpp:1702
-#: src/crypto/decryptverifytask.cpp:1781 src/crypto/decryptverifytask.cpp:1922
+#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1312
+#: src/crypto/decryptverifytask.cpp:1395 src/crypto/decryptverifytask.cpp:1495
+#: src/crypto/decryptverifytask.cpp:1548 src/crypto/decryptverifytask.cpp:1712
+#: src/crypto/decryptverifytask.cpp:1791 src/crypto/decryptverifytask.cpp:1932
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -4890,7 +4902,7 @@ msgstr ""
 msgid "Decrypting %1..."
 msgstr "Дешифриране: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1443
+#: src/crypto/decryptverifytask.cpp:1448
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -4899,12 +4911,12 @@ msgstr ""
 "Не можа да се определи дали това е криптирано с S/MIME или OpenPGP - може би "
 "изобщо не е шифротекст?"
 
-#: src/crypto/decryptverifytask.cpp:1451
+#: src/crypto/decryptverifytask.cpp:1456
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Дешифриране: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1597 src/crypto/decryptverifytask.cpp:1843
+#: src/crypto/decryptverifytask.cpp:1602 src/crypto/decryptverifytask.cpp:1853
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4913,12 +4925,12 @@ msgstr ""
 "Не може да се определи дали това е S/MIME или OpenPGP подпис -може би изобщо "
 "не е подпис?"
 
-#: src/crypto/decryptverifytask.cpp:1605
+#: src/crypto/decryptverifytask.cpp:1610
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Проверка: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1861
+#: src/crypto/decryptverifytask.cpp:1871
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4926,12 +4938,12 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Проверка: <filename> %1 </filename> с <filename> %2 </filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1865
+#: src/crypto/decryptverifytask.cpp:1875
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Проверка на подписа: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1876
+#: src/crypto/decryptverifytask.cpp:1886
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -6081,7 +6093,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6090,19 +6102,19 @@ msgstr ""
 "Не мога да намеря обща основна директория за тези файлове: \n"
 " %1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:754
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Създаване на подписан и шифриран архив ..."
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:774
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Създаване на шифриран архив ..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:794
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -12525,6 +12537,35 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgctxt "@action:button"
+#~ msgid "Create Backup and Delete Key"
+#~ msgstr "Създаване на резервно копие и изтриване на ключ"
+
+#~ msgctxt "@action:button"
+#~ msgid "Delete Key"
+#~ msgstr "Изтриване на ключ"
+
+#~ msgctxt "@action:button"
+#~ msgid "Keep Key"
+#~ msgstr "Запазване на ключ"
+
+#~ msgctxt "@info"
+#~ msgid "Successfully copied the key to the card."
+#~ msgstr "Копирана успешно ключът към картата."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "Файлът  <b>%1 </b> вече съществува.\n"
+#~ "Да се презапише ли?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Презаписване на съществуващ файл?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Презаписване на всички"
 
 #~ msgid "Groups"
 #~ msgstr "Групи"

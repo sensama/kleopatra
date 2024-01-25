@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 00:37+0000\n"
+"POT-Creation-Date: 2024-01-25 00:37+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -185,7 +185,7 @@ msgstr "Kasutaja ID lisamine õnnestus"
 #: src/commands/certificatetopivcardcommand.cpp:122
 #: src/commands/certificatetopivcardcommand.cpp:180
 #: src/commands/importcertificatefrompivcardcommand.cpp:77
-#: src/commands/keytocardcommand.cpp:365
+#: src/commands/keytocardcommand.cpp:372
 #: src/commands/pivgeneratecardkeycommand.cpp:124
 #: src/commands/pivgeneratecardkeycommand.cpp:196
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:196
@@ -208,7 +208,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:129
-#: src/commands/keytocardcommand.cpp:343
+#: src/commands/keytocardcommand.cpp:350
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
@@ -878,7 +878,8 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "CRL vahemälu edukalt puhastatud."
 
-#: src/commands/command_p.h:92 src/commands/keytocardcommand.cpp:485
+#: src/commands/command_p.h:92 src/commands/keytocardcommand.cpp:493
+#: src/commands/keytocardcommand.cpp:521
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Success"
@@ -2350,7 +2351,7 @@ msgid "Import CRL Finished"
 msgstr "CRL-i import on lõpetatud"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Faili <filename>%1</filename> avamine lugemiseks nurjus."
@@ -2423,65 +2424,65 @@ msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:152
+#: src/commands/keytocardcommand.cpp:159
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "Select Card"
 msgstr "Vali kõik"
 
-#: src/commands/keytocardcommand.cpp:153
+#: src/commands/keytocardcommand.cpp:160
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select the card the key should be written to:"
 msgstr "Palun vali üks järgmistest sertifikaatidest:"
 
-#: src/commands/keytocardcommand.cpp:182 src/commands/keytocardcommand.cpp:464
-#: src/commands/keytocardcommand.cpp:623
+#: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:657
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "Sellise seerianumbriga kaarti ei leitud: %1"
 
-#: src/commands/keytocardcommand.cpp:192
+#: src/commands/keytocardcommand.cpp:199
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:220
+#: src/commands/keytocardcommand.cpp:227
 #, fuzzy, kde-format
 #| msgid "Signature:"
 msgctxt "@item:inlistbox"
 msgid "Signature"
 msgstr "Allkiri:"
 
-#: src/commands/keytocardcommand.cpp:224
+#: src/commands/keytocardcommand.cpp:231
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "Krüptimine"
 
-#: src/commands/keytocardcommand.cpp:228
+#: src/commands/keytocardcommand.cpp:235
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "Autentimine"
 
-#: src/commands/keytocardcommand.cpp:234
+#: src/commands/keytocardcommand.cpp:241
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "Select Card Slot"
 msgstr "Vali kõik"
 
-#: src/commands/keytocardcommand.cpp:235
+#: src/commands/keytocardcommand.cpp:242
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select the card slot the key should be written to:"
 msgstr "Palun vali üks järgmistest sertifikaatidest:"
 
-#: src/commands/keytocardcommand.cpp:255
+#: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
 #: src/view/pgpcardwidget.cpp:386 src/view/pgpcardwidget.cpp:452
@@ -2491,12 +2492,12 @@ msgstr "Palun vali üks järgmistest sertifikaatidest:"
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Sellise seerianumbriga kaarti ei leitud: %1"
 
-#: src/commands/keytocardcommand.cpp:265
+#: src/commands/keytocardcommand.cpp:272
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:280 src/commands/keytocardcommand.cpp:399
+#: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
 #: src/view/pgpcardwidget.cpp:395
@@ -2508,7 +2509,7 @@ msgstr ""
 "Enam ei ole võimalik lahti krüptida varasemaid sõnumeid, mis on krüptitud "
 "olemasolevale võtmele."
 
-#: src/commands/keytocardcommand.cpp:283 src/commands/keytocardcommand.cpp:402
+#: src/commands/keytocardcommand.cpp:290 src/commands/keytocardcommand.cpp:409
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2525,19 +2526,19 @@ msgstr ""
 "üle</b>.</p><p>Kui varukoopiat pole, siis läheb olemasolev võti jäädavalt "
 "kaotsi.</p>"
 
-#: src/commands/keytocardcommand.cpp:286
+#: src/commands/keytocardcommand.cpp:293
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "Olemasoleva võtme sõrmejälg:"
 
-#: src/commands/keytocardcommand.cpp:289 src/commands/keytocardcommand.cpp:408
+#: src/commands/keytocardcommand.cpp:296 src/commands/keytocardcommand.cpp:415
 #: src/commands/pivgeneratecardkeycommand.cpp:139
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "Olemasoleva võtme ülekirjutamine"
 
-#: src/commands/keytocardcommand.cpp:290 src/commands/keytocardcommand.cpp:409
+#: src/commands/keytocardcommand.cpp:297 src/commands/keytocardcommand.cpp:416
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Overwrite existing key"
@@ -2545,14 +2546,14 @@ msgctxt "@action:button"
 msgid "Overwrite Existing Key"
 msgstr "Olemasoleva võtme ülekirjutamine"
 
-#: src/commands/keytocardcommand.cpp:348
+#: src/commands/keytocardcommand.cpp:355
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "Sertifikaadifaili valimine"
 
-#: src/commands/keytocardcommand.cpp:349
+#: src/commands/keytocardcommand.cpp:356
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Please select here whether you want to sign or encrypt files."
@@ -2560,25 +2561,25 @@ msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "Palun vali, kas soovid faile allkirjastada või krüptida."
 
-#: src/commands/keytocardcommand.cpp:384
+#: src/commands/keytocardcommand.cpp:391
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:389
+#: src/commands/keytocardcommand.cpp:396
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:405
+#: src/commands/keytocardcommand.cpp:412
 #, fuzzy, kde-format
 #| msgid "The existing key has the fingerprint:"
 msgid "The existing key has the key grip:"
 msgstr "Olemasoleva võtme sõrmejälg:"
 
-#: src/commands/keytocardcommand.cpp:472
+#: src/commands/keytocardcommand.cpp:479
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Moving the key to the card failed: %1"
@@ -2586,86 +2587,96 @@ msgctxt "@info"
 msgid "Copying the key to the card failed."
 msgstr "Võtme liigutamine kaardile nurjus: %1"
 
-#: src/commands/keytocardcommand.cpp:483
+#: src/commands/keytocardcommand.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>Do you want to delete "
-"the copy of the key stored on this computer?</para>"
+"<para>The key has been copied to the card.</para><para>You can now delete "
+"the copy of the key stored on this computer. Optionally, you can first "
+"create a backup of the key.</para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:486
+#: src/commands/keytocardcommand.cpp:494
 #, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#| msgid "Paper backup"
 msgctxt "@action:button"
-msgid "Create Backup and Delete Key"
-msgstr "Salavõtme varundamine"
+msgid "Create backup"
+msgstr "Pabervarukoopia"
 
-#: src/commands/keytocardcommand.cpp:487
-#, fuzzy, kde-format
-#| msgid "Select File"
+#: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
+#, kde-format
 msgctxt "@action:button"
-msgid "Delete Key"
-msgstr "Faili valimine"
+msgid "Delete copy on disk"
+msgstr ""
 
-#: src/commands/keytocardcommand.cpp:488
-#, fuzzy, kde-format
-#| msgid "Revoke..."
+#: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
+#, kde-format
 msgctxt "@action:button"
-msgid "Keep Key"
-msgstr "Tühista..."
+msgid "Keep copy on disk"
+msgstr ""
 
-#: src/commands/keytocardcommand.cpp:533
+#: src/commands/keytocardcommand.cpp:518
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The key has been copied to the card and a backup has been written to "
+"<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
+"key stored on this computer?</para>"
+msgstr ""
+
+#: src/commands/keytocardcommand.cpp:563
 #, fuzzy, kde-format
 #| msgid "Backup Secret Key"
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Salavõtme varundamine"
 
-#: src/commands/keytocardcommand.cpp:536
+#: src/commands/keytocardcommand.cpp:566
 #, fuzzy, kde-format
 #| msgid "Secret Key Files"
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "Salajase võtme failid"
 
-#: src/commands/keytocardcommand.cpp:587
+#: src/commands/keytocardcommand.cpp:621
 #, fuzzy, kde-kuit-format
 #| msgid "Cannot open <filename>%1</filename> for reading."
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr "Faili <filename>%1</filename> avamine lugemiseks nurjus."
 
-#: src/commands/keytocardcommand.cpp:596
+#: src/commands/keytocardcommand.cpp:630
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "<filename>%1</filename> kustutamine nurjus."
 
-#: src/commands/keytocardcommand.cpp:606
+#: src/commands/keytocardcommand.cpp:640
 #, fuzzy, kde-kuit-format
 #| msgid "Cannot open <filename>%1</filename> for reading."
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Faili <filename>%1</filename> avamine lugemiseks nurjus."
 
-#: src/commands/keytocardcommand.cpp:613
+#: src/commands/keytocardcommand.cpp:647
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr "<filename>%1</filename> kustutamine nurjus."
 
-#: src/commands/keytocardcommand.cpp:629
+#: src/commands/keytocardcommand.cpp:664
 #, kde-kuit-format
-msgid "Do you really want to delete the local copy of the secret key?"
+msgctxt "@info"
+msgid ""
+"Do you really want to delete the copy of the key stored on this computer?"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:630
+#: src/commands/keytocardcommand.cpp:665
 #, fuzzy, kde-format
 #| msgid "Current selection"
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "Aktiivne valik"
 
-#: src/commands/keytocardcommand.cpp:649
+#: src/commands/keytocardcommand.cpp:686
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2673,18 +2684,20 @@ msgstr "Aktiivne valik"
 #| "message></para>"
 msgctxt "@info"
 msgid ""
-"<para>Failed to delete the key:</para><para><message>%1</message></para>"
+"<para>Failed to delete the copy of the key stored on this computer:</"
+"para><para><message>%1</message></para>"
 msgstr ""
 "<para>Sertifitseerimise laadimisel tekkis viga: <message>%1</message></para>"
 
-#: src/commands/keytocardcommand.cpp:652
+#: src/commands/keytocardcommand.cpp:690
 #, fuzzy, kde-format
-#| msgid "Successfully copied the key to the card."
+#| msgctxt "@info"
+#| msgid "Successfully generated a new key for this card."
 msgctxt "@info"
-msgid "Successfully copied the key to the card."
-msgstr "Võti kopeeriti edukalt kaardile."
+msgid "Successfully deleted the copy of the key stored on this computer."
+msgstr "Kaardile genereeriti uus võti edukalt."
 
-#: src/commands/keytocardcommand.cpp:712
+#: src/commands/keytocardcommand.cpp:750
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4391,7 +4404,7 @@ msgstr ""
 "Süntaks on \"MASIN\" või \"MASIN:PORT\". Kui PORT ära jätta, kasutatakse "
 "porti 389 (standardne LDAP port)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4403,7 +4416,7 @@ msgstr ""
 "allkirjastatud või krüptitud andmeid, anna palun veast teada (vt Abi-"
 ">Veateade)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -4414,7 +4427,7 @@ msgstr ""
 "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</filename> "
 "nurjus."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -4425,7 +4438,7 @@ msgstr ""
 "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</filename> "
 "nurjus."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgid ""
@@ -4434,56 +4447,37 @@ msgstr ""
 "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</filename> "
 "nurjus."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "No, Save As <filename>%1</filename>"
 msgstr "<filename>%1</filename> kustutamine nurjus."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "<filename>%1</filename> kustutamine nurjus."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"Fail <b>%1</b> on juba olemas.\n"
-"Kas kirjutada see üle?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Kas kirjutada fail üle?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Kirjuta kõik üle"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> kustutamine nurjus."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</filename> "
 "nurjus."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4492,7 +4486,7 @@ msgstr ""
 "Fail <filename>%1</filename> sisaldab sertifikaate ja seda ei saa lahti "
 "krüptida ega verifitseerida."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgid "Select the file to verify with the signature <filename>%1</filename>"
@@ -4922,7 +4916,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:554 src/crypto/decryptverifytask.cpp:608
 #: src/crypto/signencrypttask.cpp:241 src/crypto/signencrypttask.cpp:258
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:883
 #, kde-format
 msgid "Input error: %1"
 msgstr "Sisendi viga: %1"
@@ -5030,18 +5024,18 @@ msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1305
-#: src/crypto/decryptverifytask.cpp:1387 src/crypto/decryptverifytask.cpp:1488
-#: src/crypto/decryptverifytask.cpp:1540 src/crypto/decryptverifytask.cpp:1700
-#: src/crypto/decryptverifytask.cpp:1779 src/crypto/decryptverifytask.cpp:1920
+#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1310
+#: src/crypto/decryptverifytask.cpp:1392 src/crypto/decryptverifytask.cpp:1493
+#: src/crypto/decryptverifytask.cpp:1545 src/crypto/decryptverifytask.cpp:1710
+#: src/crypto/decryptverifytask.cpp:1789 src/crypto/decryptverifytask.cpp:1930
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Ilmnes erind: %1"
 
-#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1307
-#: src/crypto/decryptverifytask.cpp:1390 src/crypto/decryptverifytask.cpp:1490
-#: src/crypto/decryptverifytask.cpp:1543 src/crypto/decryptverifytask.cpp:1702
-#: src/crypto/decryptverifytask.cpp:1781 src/crypto/decryptverifytask.cpp:1922
+#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1312
+#: src/crypto/decryptverifytask.cpp:1395 src/crypto/decryptverifytask.cpp:1495
+#: src/crypto/decryptverifytask.cpp:1548 src/crypto/decryptverifytask.cpp:1712
+#: src/crypto/decryptverifytask.cpp:1791 src/crypto/decryptverifytask.cpp:1932
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -5063,7 +5057,7 @@ msgstr ""
 msgid "Decrypting %1..."
 msgstr "Lahtikrüptimine: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1443
+#: src/crypto/decryptverifytask.cpp:1448
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5072,12 +5066,12 @@ msgstr ""
 "Ei õnnestunud määrata, kas see on krüptitud S/MIME-ga või OpenPGP-ga - võib-"
 "olla pole see üldse krüptogramm?"
 
-#: src/crypto/decryptverifytask.cpp:1451
+#: src/crypto/decryptverifytask.cpp:1456
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Lahtikrüptimine: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1597 src/crypto/decryptverifytask.cpp:1843
+#: src/crypto/decryptverifytask.cpp:1602 src/crypto/decryptverifytask.cpp:1853
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5086,13 +5080,13 @@ msgstr ""
 "Ei õnnestunud määrata, kas tegemist on S/MIME või OpenPGP allkirjaga - võib-"
 "olla pole see üldse allkiri?"
 
-#: src/crypto/decryptverifytask.cpp:1605
+#: src/crypto/decryptverifytask.cpp:1610
 #, fuzzy, kde-format
 #| msgid "Verifying: %1..."
 msgid "Verifying %1..."
 msgstr "Verifitseerimine: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1861
+#: src/crypto/decryptverifytask.cpp:1871
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature in progress. The first file contains "
@@ -5105,13 +5099,13 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 "Verifitseerimine: <filename>%1</filename> failiga <filename>%2</filename> ..."
 
-#: src/crypto/decryptverifytask.cpp:1865
+#: src/crypto/decryptverifytask.cpp:1875
 #, fuzzy, kde-format
 #| msgid "Verifying signature: %1..."
 msgid "Verifying signature %1..."
 msgstr "Allkirja verifitseerimine: %1..i."
 
-#: src/crypto/decryptverifytask.cpp:1876
+#: src/crypto/decryptverifytask.cpp:1886
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -6306,7 +6300,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6315,14 +6309,14 @@ msgstr ""
 "Järgmiste failide ühist baaskataloogi ei leitud:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:754
 #, fuzzy, kde-format
 #| msgid "The signed and encrypted file."
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Allkirjastatud ja krüptitud fail."
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:774
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -6330,7 +6324,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Võtmepaari loomine ..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:794
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -12874,6 +12868,43 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
+
+#, fuzzy
+#~| msgid "Backup Secret Key"
+#~ msgctxt "@action:button"
+#~ msgid "Create Backup and Delete Key"
+#~ msgstr "Salavõtme varundamine"
+
+#, fuzzy
+#~| msgid "Select File"
+#~ msgctxt "@action:button"
+#~ msgid "Delete Key"
+#~ msgstr "Faili valimine"
+
+#, fuzzy
+#~| msgid "Revoke..."
+#~ msgctxt "@action:button"
+#~ msgid "Keep Key"
+#~ msgstr "Tühista..."
+
+#, fuzzy
+#~| msgid "Successfully copied the key to the card."
+#~ msgctxt "@info"
+#~ msgid "Successfully copied the key to the card."
+#~ msgstr "Võti kopeeriti edukalt kaardile."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "Fail <b>%1</b> on juba olemas.\n"
+#~ "Kas kirjutada see üle?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Kas kirjutada fail üle?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Kirjuta kõik üle"
 
 #, fuzzy
 #~| msgid "Show Details"

@@ -106,13 +106,12 @@ public:
             subkeysTree->setRootIsDecorated(false);
             subkeysTree->setHeaderLabels({
                 i18nc("@title:column", "ID"),
-                i18nc("@title:column", "Type"),
+                i18nc("@title:column", "Fingerprint"),
                 i18nc("@title:column", "Valid From"),
                 i18nc("@title:column", "Valid Until"),
                 i18nc("@title:column", "Status"),
-                i18nc("@title:column", "Strength"),
+                i18nc("@title:column", "Algorithm"),
                 i18nc("@title:column", "Usage"),
-                i18nc("@title:column", "Primary"),
                 i18nc("@title:column", "Storage"),
             });
             mainLayout->addWidget(subkeysTree);
@@ -306,7 +305,8 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         item->setData(0, Qt::DisplayRole, Formatting::prettyID(subkey.keyID()));
         item->setData(0, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.keyID()));
         item->setData(0, Qt::UserRole, QVariant::fromValue(subkey));
-        item->setData(1, Qt::DisplayRole, Kleo::Formatting::type(subkey));
+        item->setData(1, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
+        item->setData(1, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.fingerprint()));
         item->setData(2, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
         item->setData(2, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(subkey));
         item->setData(3,
@@ -316,31 +316,23 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
                       Qt::AccessibleTextRole,
                       subkey.neverExpires() ? Kleo::Formatting::accessibleExpirationDate(subkey.parent()) : Kleo::Formatting::accessibleExpirationDate(subkey));
         item->setData(4, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
-        switch (subkey.publicKeyAlgorithm()) {
-        case GpgME::Subkey::AlgoECDSA:
-        case GpgME::Subkey::AlgoEDDSA:
-        case GpgME::Subkey::AlgoECDH:
-            item->setData(5, Qt::DisplayRole, QString::fromStdString(subkey.algoName()));
-            break;
-        default:
-            item->setData(5, Qt::DisplayRole, QString::number(subkey.length()));
-        }
+        item->setData(5, Qt::DisplayRole, Kleo::Formatting::prettyAlgorithmName(subkey.algoName()));
         item->setData(6, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
         const auto isPrimary = subkey.keyID() == key.keyID();
-        item->setData(7, Qt::DisplayRole, isPrimary ? QStringLiteral("✓") : QString());
-        item->setData(7, Qt::AccessibleTextRole, isPrimary ? i18nc("yes, is primary key", "yes") : i18nc("no, is not primary key", "no"));
-        if (subkey.isCardKey()) {
+        if (!key.hasSecret()) {
+            item->setData(7, Qt::DisplayRole, i18nc("not applicable", "n/a"));
+        } else if (subkey.isCardKey()) {
             if (const char *serialNo = subkey.cardSerialNumber()) {
-                item->setData(8, Qt::DisplayRole, i18nc("smart card <serial number>", "smart card %1", QString::fromUtf8(serialNo)));
+                item->setData(7, Qt::DisplayRole, i18nc("smart card <serial number>", "smart card %1", QString::fromUtf8(serialNo)));
             } else {
-                item->setData(8, Qt::DisplayRole, i18n("smart card"));
+                item->setData(7, Qt::DisplayRole, i18n("smart card"));
             }
         } else if (isPrimary && key.hasSecret() && !subkey.isSecret()) {
-            item->setData(8, Qt::DisplayRole, i18nc("key is 'offline key', i.e. secret key is not stored on this computer", "offline"));
+            item->setData(7, Qt::DisplayRole, i18nc("key is 'offline key', i.e. secret key is not stored on this computer", "offline"));
         } else if (subkey.isSecret()) {
-            item->setData(8, Qt::DisplayRole, i18n("on this computer"));
+            item->setData(7, Qt::DisplayRole, i18n("on this computer"));
         } else {
-            item->setData(8, Qt::DisplayRole, i18nc("unknown storage location", "unknown"));
+            item->setData(7, Qt::DisplayRole, i18nc("unknown storage location", "unknown"));
         }
         d->ui.subkeysTree->addTopLevelItem(item);
         if (subkey.fingerprint() == selectedKeyFingerprint) {
@@ -353,10 +345,8 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     d->ui.exportSecretBtn->setVisible(key.hasSecret());
     d->ui.transferToSmartcardBtn->setVisible(key.hasSecret());
 
-    d->ui.subkeysTree->restoreColumnLayout(QStringLiteral("SubkeysWidget"));
-    if (!key.hasSecret()) {
-        // hide information about storage location for keys of other people
-        d->ui.subkeysTree->hideColumn(8);
+    if (!d->ui.subkeysTree->restoreColumnLayout(QStringLiteral("SubkeysWidget"))) {
+        d->ui.subkeysTree->hideColumn(1);
     }
 }
 

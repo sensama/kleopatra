@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
 "PO-Revision-Date: 2024-01-21 11:48+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -2203,7 +2203,7 @@ msgid "Import CRL Finished"
 msgstr "CRL-ის შემოტანა დასრულდა"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "ფაილის <filename>%1</filename> წასაკითხად გახსნის შეცდომა."
@@ -4204,7 +4204,7 @@ msgstr ""
 "სინტაქსია \"ჰოსტი\" ან \"ჰოსტი:პორტი\". თუ პორტი გამოტოვებულია, გამოიყენება "
 "პორტი 389 (სტანდარტული LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4216,7 +4216,7 @@ msgstr ""
 "ხელმოწერილ ან დაშიფრულ მონაცემებს, მოგვწერეთ ამ შეცდომის შესახებ (იხილეთ "
 "დახმარება->შეცდომის ანგარიში)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4226,7 +4226,7 @@ msgstr ""
 "<para>შეცდომა <filename>%1</filename>-ის <filename>%2</filename>-ში "
 "გადატანისას </para>.<para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4236,58 +4236,39 @@ msgstr ""
 "<para>შეცდომა <filename>%1</filename>-ის <filename>%2</filename>-ზე "
 "გადარქმევისას.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "შევნახო ფაილი საწყისი სახელით <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "გამოვიყენო ფაილის საწყისი სახელი?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "არა. შეინახე, როგორც <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "დიახ. შეინახე, როგორც <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"ფაილი <b>%1</b> უკვე არსებობს.\n"
-"გადავაწერო?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "გადავაწერო არსებულ ფაილს?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "ყველას ზედგადაწერა"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename>-ის წაშლის შეცდომა."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "ფაილის <filename>%1</filename> <filename>%2</filename>-ში გადატანა ჩავარდა."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4296,7 +4277,7 @@ msgstr ""
 "ფაილი <filename>%1</filename> სერტიფიკატებს შეიცავს და მისი გაშიფვრა ან "
 "გადამოწმება შეუძლებელია."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "აირჩიეთ გადასამოწმებელი ფაილი ხელმოწერით <filename>%1</filename>"
@@ -12380,6 +12361,19 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "ფაილი <b>%1</b> უკვე არსებობს.\n"
+#~ "გადავაწერო?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "გადავაწერო არსებულ ფაილს?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "ყველას ზედგადაწერა"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

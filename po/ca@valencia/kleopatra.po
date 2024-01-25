@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
 "PO-Revision-Date: 2024-01-20 12:56+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -2239,7 +2239,7 @@ msgid "Import CRL Finished"
 msgstr "La importació de la CRL ha acabat"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "No s'ha pogut obrir el fitxer <filename>%1</filename> per a lectura."
@@ -4283,7 +4283,7 @@ msgstr ""
 "La sintaxi és «màquina» o «màquina:port». Si s'omet el port, s'utilitzarà el "
 "port 389 (que és l'estàndard LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4295,7 +4295,7 @@ msgstr ""
 "contenen dades encriptades o signades, informeu d'algun error (vegeu «Ajuda -"
 "> Informeu d'un error»)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4305,7 +4305,7 @@ msgstr ""
 "<para>No s'ha pogut moure <filename>%1</filename> a <filename>%2</filename>."
 "</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4315,7 +4315,7 @@ msgstr ""
 "<para>No s'ha pogut moure <filename>%1</filename> a <filename>%2</filename>."
 "</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4323,51 +4323,32 @@ msgstr ""
 "El fitxer s'ha de guardar amb el nom del fitxer original <filename>%1</"
 "filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Voleu emprar el nom del fitxer original?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "No, guarda com a <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Sí, guarda com a <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"El fitxer <b>%1</b> ja existix.\n"
-"El sobreescric?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Sobreescriure el fitxer existent?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Sobreescriure-ho tot"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "No s'ha pogut suprimir <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr "No s'ha pogut moure <filename>%1</filename> a <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4376,7 +4357,7 @@ msgstr ""
 "El fitxer <filename>%1</filename> conté els certificats i no es pot "
 "desencriptar o verificar."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -12564,6 +12545,19 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "El fitxer <b>%1</b> ja existix.\n"
+#~ "El sobreescric?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Sobreescriure el fitxer existent?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Sobreescriure-ho tot"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

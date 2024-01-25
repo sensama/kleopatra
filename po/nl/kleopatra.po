@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
-"PO-Revision-Date: 2024-01-20 14:57+0100\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
+"PO-Revision-Date: 2024-01-24 10:46+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -2242,7 +2242,7 @@ msgid "Import CRL Finished"
 msgstr "CRL importeren voltooid"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Kan <filename>%1</filename> niet openen voor lezen."
@@ -2468,53 +2468,46 @@ msgid "Copying the key to the card failed."
 msgstr "De sleutel naar de card kopiëren is mislukt."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>De sleutel is naar de card gekopieerd.</para><para>Wilt u de de kopie "
-"van de sleutel opgeslagen op deze computer verwijderen?</para>"
+"<para>De sleutel is naar de card gekopieerd.</para><para>U kunt nu de kopie "
+"van de sleutel opgeslagen op deze computer verwijderen. Optioneel kunt u "
+"eerste een reservekopie van de sleutel aanmaken.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Papieren reservekopie"
+msgstr "Reservekopie maken"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Kopie op schijf verwijderen"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Kopie op schijf behouden"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>De sleutel is naar de card gekopieerd.</para><para>Wilt u de de kopie "
-"van de sleutel opgeslagen op deze computer verwijderen?</para>"
+"<para>De sleutel is naar de card gekopieerd en een reservekopie is naar "
+"<filename>%1</filename> geschreven.</para><para>Wilt u de kopie van de "
+"sleutel opgeslagen op deze computer verwijderen?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2553,12 +2546,12 @@ msgstr ""
 "is mislukt."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Wilt u de lokale kopie van de geheime sleutel verwijderen?"
+msgstr ""
+"Wilt u de kopie van de sleutel opgeslagen op deze computer verwijderen?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2567,25 +2560,21 @@ msgid "Confirm Deletion"
 msgstr "Verwijderen bevestigen"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>De sleutel verwijderen is mislukt:</para><para><message>%1</message></"
-"para>"
+"<para>Een kopie van de sleutel op deze computer verwijderen is mislukt:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Een nieuwe sleutel voor deze kaart is met succes gegenereerd."
+msgstr ""
+"De kopie van de sleutel opgeslagen op deze computer is met succes verwijderd."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -4274,7 +4263,7 @@ msgstr ""
 "De syntaxis is \"HOST\" of \"HOST:POORT\". Wanneer de POORT weggelaten wordt "
 "zal standaard poort 389 gebruikt worden (de standaard LDAP-poort)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4286,7 +4275,7 @@ msgstr ""
 "<nl/>Als ze ondertekende of versleutelde gegevens bevatten rapporteer dan "
 "een bug (zie Help->Rapporteer bug)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4296,7 +4285,7 @@ msgstr ""
 "<para>Verplaatsen van <filename>%1</filename> naar <filename>%2</filename> "
 "is mislukt.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4306,7 +4295,7 @@ msgstr ""
 "<para>Verplaatsen van <filename>%1</filename> naar <filename>%2</filename> "
 "is mislukt.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4314,53 +4303,34 @@ msgstr ""
 "Moet het bestand opgeslagen worden met de oorspronkelijke bestandsnaam "
 "<filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Oorspronkelijke bestandsnaam gebruiken?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Nee, opslaan als <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Ja, opslaan als <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"Het bestand <b>%1</b> bestaat reeds.\n"
-"Overschrijven?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Bestaand bestand overschrijven?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Alles overschrijven"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Verwijderen van <filename>%1</filename> is mislukt."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Verplaatsen van <filename>%1</filename> naar <filename>%2</filename> is "
 "mislukt."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4369,7 +4339,7 @@ msgstr ""
 "Het bestand <filename>%1</filename> bevat certificaten en kan niet "
 "ontcijferd of geverifieerd worden."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -12546,6 +12516,19 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "Het bestand <b>%1</b> bestaat reeds.\n"
+#~ "Overschrijven?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Bestaand bestand overschrijven?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Alles overschrijven"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

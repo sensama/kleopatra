@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -2405,7 +2405,7 @@ msgid "Import CRL Finished"
 msgstr "Uvoz CRL Završen"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4521,7 +4521,7 @@ msgstr ""
 "Sintaksa je \"Host\" ili \"Host: Port\". Ako port je izostavljen, porz 389 "
 "(standardni LDAP port) se koristi."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4529,7 +4529,7 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4543,7 +4543,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4557,7 +4557,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4569,12 +4569,12 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4585,7 +4585,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4596,26 +4596,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"Datoteka <b>%1</b> već postoji.\n"
-"Prebrisati?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Pisati preko postojeće datoteke?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Pisati preko svega"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4626,7 +4607,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4637,14 +4618,14 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -13092,6 +13073,19 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "Datoteka <b>%1</b> već postoji.\n"
+#~ "Prebrisati?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Pisati preko postojeće datoteke?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Pisati preko svega"
 
 #, fuzzy
 #~| msgid "Export Secret Keys..."

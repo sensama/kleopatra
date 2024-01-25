@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
-"PO-Revision-Date: 2024-01-21 15:28+0300\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
+"PO-Revision-Date: 2024-01-24 22:02+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -2225,7 +2225,7 @@ msgid "Import CRL Finished"
 msgstr "CRL İçe Aktarma Bitti"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "<filename>%1</filename>, okuma için açılamadı."
@@ -2446,53 +2446,46 @@ msgid "Copying the key to the card failed."
 msgstr "Anahtarı karta kopyalama başarısız."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>Anahtar karta kopyalandı.</para><para>Bu bilgisayarda depolanan "
-"anahtar kopyasını silmek istiyor musunuz?</para>"
+"<para>Anahtar karta kopyalandı.</para><para>Artık bu bilgisayarda depolanan "
+"anahtar kopyasını silebilirsiniz. İsteğe bağlı olarak, önce bir yedeğini de "
+"oluşturabilirsiniz.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Kağıda yedekleme"
+msgstr "Yedek Oluştur"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Diskteki Kopyayı Sil"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Diskteki Kopyayı Tut"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>Anahtar karta kopyalandı.</para><para>Bu bilgisayarda depolanan "
-"anahtar kopyasını silmek istiyor musunuz?</para>"
+"<para>Anahtar karta kopyalandı ve bir yedek <filename>%1</filename> konumuna "
+"yazıldı.</para><para>Bu bilgisayarda depolanan anahtar kopyasını silmek "
+"istiyor musunuz?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2528,12 +2521,13 @@ msgstr ""
 "<filename>%1</filename> dosyasına gizli anahtarın yedeğini yazma başarısız."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Gizli anahtarın yerel kopyasını silmek istediğinize emin misiniz?"
+msgstr ""
+"Bu bilgisayarda kopyalanan anahtar kopyasını silmeyi gerçekten istiyor "
+"musunuz?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2542,23 +2536,20 @@ msgid "Confirm Deletion"
 msgstr "Silmeyi Onayla"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
-msgstr "<para>Anahtar silinemedi:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>Bu bilgisayarda depolanan anahtar kopyası silinemedi:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Bu kart için yeni bir anahtar başarıyla oluşturuldu."
+msgstr "Bu bilgisayarda depolanan anahtar kopyası başarıyla silindi."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -4235,7 +4226,7 @@ msgstr ""
 "Söz dizimi \"HOST\" veya \"HOST:PORT\" şeklindedir. PORT kısmı yazılmazsa "
 "standart LDAP kapısı olan 389 kullanılır."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4247,7 +4238,7 @@ msgstr ""
 "şifreli veri içeriyorsa lütfen hata bildirimi yapın (bkz. Yardım -> Hata "
 "Bildir...)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4257,7 +4248,7 @@ msgstr ""
 "<para><filename>%1</filename> dosyasını <filename>%2</filename> konumuna "
 "taşıma başarısız oldu.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4267,59 +4258,40 @@ msgstr ""
 "<para><filename>%1</filename> dosyasını <filename>%2</filename> konumuna "
 "taşıma başarısız oldu.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Dosya, özgün dosya adı <filename>%1</filename> ile mi kaydedilsin?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Özgün Dosya Adını Kullan?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Hayır, <filename>%1</filename> Olarak Kaydet"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Evet, <filename>%1</filename> Olarak Kaydet"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"<b>%1</b> dosyası halihazırda var.\n"
-"Üzerine yazılsın mı?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Var Olan Dosyanın Üzerine Yaz?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Tümünün Üzerine Yaz"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> dosyasını silme başarısız oldu."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename> dosyasını <filename>%2</filename> konumuna taşıma "
 "başarısız oldu."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4328,7 +4300,7 @@ msgstr ""
 "<filename>%1</filename> dosyası sertifikalar içeriyor ve şifresi çözülemez "
 "veya doğrulanamaz."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "<filename>%1</filename> imzasıyla doğrulanacak dosyayı seç"
@@ -12431,6 +12403,19 @@ msgid ""
 msgstr ""
 "Bir dosyadan sertifika içe aktarın.<nl/>Genel bir anahtar sunucusundan içe "
 "aktarmak için, <interface>Sunucuda Ara</interface> seçeneğini kullanın."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "<b>%1</b> dosyası halihazırda var.\n"
+#~ "Üzerine yazılsın mı?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Var Olan Dosyanın Üzerine Yaz?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Tümünün Üzerine Yaz"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

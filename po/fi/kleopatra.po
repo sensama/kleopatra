@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
 "PO-Revision-Date: 2023-09-26 13:13+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -2236,7 +2236,7 @@ msgid "Import CRL Finished"
 msgstr "CRL-tuonti valmis"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Tiedostoa <filename>%1</filename> ei voi avata luettavaksi."
@@ -4227,7 +4227,7 @@ msgstr ""
 "Syntaksi on ”KONE” tai ”KONE:PORTTI”. Jos PORTTIa ei anneta, käytetään "
 "porttia 389 (standardi LDAP-portti)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4239,7 +4239,7 @@ msgstr ""
 "sisältävät allekirjoitettua tai salattua tietoa, ilmoita ohjelmavirheestä "
 "(katso Ohje | Ilmoita ohjelmavirheestä)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4249,7 +4249,7 @@ msgstr ""
 "<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
 "filename> epäonnistui.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4259,60 +4259,41 @@ msgstr ""
 "<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
 "filename> epäonnistui.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr ""
 "Tallennetaanko tiedosto alkuperäisellä nimellä <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Käytetäänkö alkuperäistä tiedostonimeä?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Ei, tallenna nimellä <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Kyllä, tallenna nimellä <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"Tiedosto <b>%1</b> on jo olemassa.\n"
-"Korvataanko se?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Korvataanko olemassa oleva tiedosto?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Korvaa kaikki"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Tiedoston <filename>%1</filename> poisto epäonnistui."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</filename> "
 "epäonnistui."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4321,7 +4302,7 @@ msgstr ""
 "Tiedosto <filename>%1</filename> sisältää varmenteita eikä sitä voi todentaa "
 "tai sen salausta purkaa."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -12435,6 +12416,19 @@ msgid ""
 msgstr ""
 "Tuo varmenne tiedostosta.<nl/>Tuodaksesi julkisesta avainpalvelimesta käytä "
 "tämän sijaan toimintoa<interface>Etsi palvelimesta</interface>."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "Tiedosto <b>%1</b> on jo olemassa.\n"
+#~ "Korvataanko se?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Korvataanko olemassa oleva tiedosto?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Korvaa kaikki"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
-"PO-Revision-Date: 2024-01-20 11:12+0100\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
+"PO-Revision-Date: 2024-01-24 18:32+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -2233,7 +2233,7 @@ msgid "Import CRL Finished"
 msgstr "CRL inportatzea amaitu da"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Ezin du <filename>%1</filename> irakurtzeko ireki."
@@ -2456,53 +2456,46 @@ msgid "Copying the key to the card failed."
 msgstr "Gakoa txartelera kopiatzea huts egin du."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>Gakoa txartelera kopiatu da.</para><para>Ordenagailuan gordetako "
-"gakoaren kopia ezabatu nahi duzu?</para>"
+"<para>Gakoa txartelera kopiatu da.</para><para>Orain, ordenagailu honetan "
+"gordetako gakoaren kopia ezabatu dezakezu. Aukeran, lehendabizi gakoaren "
+"babeskopia bat sor dezakezu.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Babes-kopia paperean"
+msgstr "Sortu babeskopia"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Ezabatu diskoko kopia"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Mantendu diskoko kopia"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>Gakoa txartelera kopiatu da.</para><para>Ordenagailuan gordetako "
-"gakoaren kopia ezabatu nahi duzu?</para>"
+"<para>Gakoa txartelera kopiatu da eta <filename>%1</filename>(e)n babeskopia "
+"bat idatzi da .</para><para>Ordenagailu honetan gordetako gakoaren kopia "
+"ezabatu nahi duzu?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2541,12 +2534,12 @@ msgstr ""
 "egin du."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Benetan ezabatu nahi duzu gako sekretuaren kopia lokala?"
+msgstr ""
+"Benetan ezabatu nahi duzu ordenagailu honetan gordetako gakoaren kopia?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2555,24 +2548,20 @@ msgid "Confirm Deletion"
 msgstr "Baieztatu ezabatzea"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Gakoa ezabatzea huts egin du:</para><para><message>%1</message></para>"
+"<para>Ordenagailu honetan gordetako gakoaren kopia ezabatzea huts egin du:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Txartel horretarako gako berri bat ondo sortu da."
+msgstr "Ordenagailu honetan gordetako gakoaren kopia behar bezala ezabatu da."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -4254,7 +4243,7 @@ msgstr ""
 "Sintaxia hau da, \"OSTALARIA\" edo \"OSTALARIA:ATAKA\". ATAKA zehazten ez "
 "bada, 389 ataka (LDAP ataka estandarra) erabiliko da."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4266,7 +4255,7 @@ msgstr ""
 "Sinatutako edo zifratutako datuak badituzte, mesedez, eman akatsaren berri "
 "(begiratu Laguntza->Akatsaren berri ematea)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4276,7 +4265,7 @@ msgstr ""
 "<para><filename>%1</filename> <filename>%2</filename>(e)ra eramatea huts "
 "egin du.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4286,7 +4275,7 @@ msgstr ""
 "<para><filename>%1</filename> <filename>%2</filename>(e)ra eramatea huts "
 "egin du.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4294,52 +4283,33 @@ msgstr ""
 "<filename>%1</filename> fitxategia jatorrizko fitxategi-izenarekin gorde "
 "behar da?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Jatorrizko fitxategi-izena erabili?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Ez, gorde <filename>%1</filename> gisa"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Bai, gorde <filename>%1</filename> gisa"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"<b>%1</b> fitxategia lehendik ere badago.\n"
-"Gainidatzi?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Aurrez dagoen fitxategia gainidatzi?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Guztia gainidatzi"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> ezabatzea huts egin du."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename> <filename>%2</filename>(e)ra eramatea huts egin du."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4348,7 +4318,7 @@ msgstr ""
 "<filename>%1</filename> fitxategiak ziurtagiriak ditu eta ezin da deszifratu "
 "edo egiaztatu."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -12486,6 +12456,19 @@ msgid ""
 msgstr ""
 "Inportatu ziurtagiria fitxategi batetik.<nl/>Gako-zerbitzari publiko batetik "
 "inportatzeko, berriz, erabili <interface>Bilatu zerbitzarian</interface>."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "<b>%1</b> fitxategia lehendik ere badago.\n"
+#~ "Gainidatzi?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Aurrez dagoen fitxategia gainidatzi?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Guztia gainidatzi"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

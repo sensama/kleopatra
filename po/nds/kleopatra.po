@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -2398,7 +2398,7 @@ msgid "Import CRL Finished"
 msgstr "ZTL-Import afslaten"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4510,7 +4510,7 @@ msgstr ""
 "De Schriefwies is \"Reekner\" oder \"Reekner:Port\". Is keen Port angeven, "
 "warrt Port 389 (Standardport för LDAP) bruukt."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4518,7 +4518,7 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4532,7 +4532,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4546,7 +4546,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4558,12 +4558,12 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4574,7 +4574,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4585,26 +4585,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"Dat gifft de Datei <b>%1</b> al.\n"
-"Överschrieven?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Vörhannen Datei överschrieven?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "All överschrieven"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4615,7 +4596,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4626,14 +4607,14 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -13102,6 +13083,19 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "Dat gifft de Datei <b>%1</b> al.\n"
+#~ "Överschrieven?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Vörhannen Datei överschrieven?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "All överschrieven"
 
 #, fuzzy
 #~| msgid "Export Secret Key"

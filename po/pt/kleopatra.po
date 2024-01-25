@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-24 01:37+0000\n"
+"POT-Creation-Date: 2024-01-25 01:35+0000\n"
 "PO-Revision-Date: 2023-07-08 12:52+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -2326,7 +2326,7 @@ msgid "Import CRL Finished"
 msgstr "A Importação da CRL Terminou"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:342
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Não foi possível aceder ao <filename>%1</filename> para leitura."
@@ -4352,7 +4352,7 @@ msgstr ""
 "A sintaxe é igual a \"MÁQUINA\" ou \"MÁQUINA:PORTO\". Se o PORTO for "
 "omitido, será usado o porto 389 (o porto-padrão do LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:149
+#: src/crypto/autodecryptverifyfilescontroller.cpp:151
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4364,7 +4364,7 @@ msgstr ""
 "esses ficheiros.<nl/>Se tiverem dados assinados ou encriptados, por favor "
 "comunique um erro (ver Ajuda->Comunicar um Erro)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4374,7 +4374,7 @@ msgstr ""
 "<para>Não foi possível mover o <filename>%1</filename> para <filename>%2</"
 "filename>.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4384,7 +4384,7 @@ msgstr ""
 "<para>Não foi possível mover o <filename>%1</filename> para <filename>%2</"
 "filename>.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:237
+#: src/crypto/autodecryptverifyfilescontroller.cpp:243
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4392,53 +4392,34 @@ msgstr ""
 "Deseja gravar o ficheiro com o nome do ficheiro original <filename>%1</"
 "filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Usar o Nome do Ficheiro Original?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Não, Gravar como <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:246
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Sim, Gravar como <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:255
-#, kde-format
-msgid ""
-"The file <b>%1</b> already exists.\n"
-"Overwrite?"
-msgstr ""
-"O ficheiro <b>%1</b> já existe.\n"
-"Deseja sobrepo-lo?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:258
-#, kde-format
-msgid "Overwrite Existing File?"
-msgstr "Sobrepor o Ficheiro Existente?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:260
-#, kde-format
-msgid "Overwrite All"
-msgstr "Sobrepor Tudo"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:271
+#: src/crypto/autodecryptverifyfilescontroller.cpp:269
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Não foi possível remover o <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:276
+#: src/crypto/autodecryptverifyfilescontroller.cpp:278
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Não foi possível mover o <filename>%1</filename> para <filename>%2</"
 "filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:350
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4447,7 +4428,7 @@ msgstr ""
 "O ficheiro <filename>%1</filename> contém certificados e não pode ser "
 "descodificado ou verificado."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:399
+#: src/crypto/autodecryptverifyfilescontroller.cpp:401
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -12671,6 +12652,19 @@ msgstr ""
 "Importa um certificado a partir de um ficheiro.<nl/>Para importar de um "
 "servidor de chaves públicas, use o <interface>Procurar num Servidor</"
 "interface> em alternativa."
+
+#~ msgid ""
+#~ "The file <b>%1</b> already exists.\n"
+#~ "Overwrite?"
+#~ msgstr ""
+#~ "O ficheiro <b>%1</b> já existe.\n"
+#~ "Deseja sobrepo-lo?"
+
+#~ msgid "Overwrite Existing File?"
+#~ msgstr "Sobrepor o Ficheiro Existente?"
+
+#~ msgid "Overwrite All"
+#~ msgstr "Sobrepor Tudo"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

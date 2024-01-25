@@ -43,7 +43,7 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
-#define TAGS_COLUMN 13
+static int tagsColumn;
 
 using namespace Kleo;
 using namespace GpgME;
@@ -60,7 +60,7 @@ public:
         : Kleo::TreeView{parent}
     {
         connect(this, &TreeView::columnEnabled, this, [this](int column) {
-            if (column == TAGS_COLUMN) {
+            if (column == tagsColumn) {
                 Tags::enableTags();
             }
             auto tv = qobject_cast<KeyTreeView *>(this->parent());
@@ -266,21 +266,26 @@ void KeyTreeView::init()
 
     auto rearangingModel = new KeyRearrangeColumnsProxyModel(this);
     rearangingModel->setSourceModel(m_proxy);
-    rearangingModel->setSourceColumns(QVector<int>() << KeyList::PrettyName //
-                                                     << KeyList::PrettyEMail //
-                                                     << KeyList::Validity //
-                                                     << KeyList::ValidFrom //
-                                                     << KeyList::ValidUntil //
-                                                     << KeyList::TechnicalDetails //
-                                                     << KeyList::KeyID //
-                                                     << KeyList::Fingerprint //
-                                                     << KeyList::OwnerTrust //
-                                                     << KeyList::Origin //
-                                                     << KeyList::LastUpdate //
-                                                     << KeyList::Issuer //
-                                                     << KeyList::SerialNumber //
-                                                     // If a column is added before this TAGS_COLUMN define has to be updated accordingly
-                                                     << KeyList::Remarks);
+    QVector<int> columns = {
+        KeyList::PrettyName,
+        KeyList::PrettyEMail,
+        KeyList::Validity,
+        KeyList::ValidFrom,
+        KeyList::ValidUntil,
+        KeyList::TechnicalDetails,
+        KeyList::KeyID,
+        KeyList::Fingerprint,
+        KeyList::OwnerTrust,
+        KeyList::Origin,
+        KeyList::LastUpdate,
+        KeyList::Issuer,
+        KeyList::SerialNumber,
+        KeyList::Remarks,
+        KeyList::Algorithm,
+        KeyList::Keygrip,
+    };
+    tagsColumn = columns.indexOf(KeyList::Remarks);
+    rearangingModel->setSourceColumns(columns);
     m_view->setModel(rearangingModel);
 
     /* Handle expansion state */
@@ -431,7 +436,7 @@ void KeyTreeView::restoreLayout(const KConfigGroup &group)
 
             header->resizeSection(i, width ? width : 100);
             header->moveSection(header->visualIndex(i), order);
-            if ((i == TAGS_COLUMN) && visible) {
+            if ((i == tagsColumn) && visible) {
                 Tags::enableTags();
             }
             if (!visible) {

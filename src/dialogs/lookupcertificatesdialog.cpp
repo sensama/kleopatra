@@ -263,10 +263,6 @@ void LookupCertificatesDialog::Private::writeConfig()
 {
     KConfigGroup configGroup(KSharedConfig::openStateConfig(), "LookupCertificatesDialog");
     configGroup.writeEntry("Size", q->size());
-
-    KConfigGroup resultKeysConfig = configGroup.group("ResultKeysView");
-    ui.resultTV->saveLayout(resultKeysConfig);
-
     configGroup.sync();
 }
 

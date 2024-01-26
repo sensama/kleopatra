@@ -321,6 +321,7 @@ void WebOfTrustWidget::setKey(const GpgME::Key &key)
     d->certificationsTV->expandAll();
     d->certificationsTV->header()->resizeSections(QHeaderView::ResizeToContents);
     d->startSignatureListing();
+    d->certificationsTV->restoreColumnLayout(QStringLiteral("WebOfTrustWidget"));
 }
 
 void WebOfTrustWidget::signatureListingNextKey(const GpgME::Key &key)

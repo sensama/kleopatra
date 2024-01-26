@@ -212,6 +212,28 @@ std::vector<int> KeyTreeView::columnSizes() const
     }
 }
 
+void KeyTreeView::restoreLayout(const KConfigGroup &group)
+{
+    if (!group.isValid() || !m_view->restoreColumnLayout(group.name())) {
+        // if config is empty then use default settings
+        // The numbers have to be in line with the order in
+        // setsSourceColumns above
+        m_view->hideColumn(5);
+
+        for (int i = 7; i < m_view->model()->columnCount(); ++i) {
+            m_view->hideColumn(i);
+        }
+        if (KeyCache::instance()->initialized()) {
+            QTimer::singleShot(0, this, &KeyTreeView::resizeColumns);
+        }
+    } else {
+        m_onceResized = true;
+    }
+    if (!m_view->isColumnHidden(tagsColumn)) {
+        Tags::enableTags();
+    }
+}
+
 void KeyTreeView::init()
 {
     KDAB_SET_OBJECT_NAME(m_proxy);
@@ -329,9 +351,8 @@ void KeyTreeView::init()
     updateModelConnections(nullptr, model());
 
     resizeColumns();
-    if (m_group.isValid()) {
-        restoreLayout(m_group);
-    }
+
+    restoreLayout(m_group);
 }
 
 void KeyTreeView::restoreExpandState()
@@ -373,92 +394,7 @@ void KeyTreeView::setUpTagKeys()
     }
 }
 
-void KeyTreeView::saveLayout(KConfigGroup &group)
-{
-    QHeaderView *header = m_view->header();
-
-    QVariantList columnVisibility;
-    QVariantList columnOrder;
-    QVariantList columnWidths;
-    const int headerCount = header->count();
-    columnVisibility.reserve(headerCount);
-    columnWidths.reserve(headerCount);
-    columnOrder.reserve(headerCount);
-    for (int i = 0; i < headerCount; ++i) {
-        columnVisibility << QVariant(!m_view->isColumnHidden(i));
-        columnWidths << QVariant(header->sectionSize(i));
-        columnOrder << QVariant(header->visualIndex(i));
-    }
-
-    group.writeEntry("ColumnVisibility", columnVisibility);
-    group.writeEntry("ColumnOrder", columnOrder);
-    group.writeEntry("ColumnWidths", columnWidths);
-
-    group.writeEntry("SortAscending", (int)header->sortIndicatorOrder());
-    if (header->isSortIndicatorShown()) {
-        group.writeEntry("SortColumn", header->sortIndicatorSection());
-    } else {
-        group.writeEntry("SortColumn", -1);
-    }
-}
-
-void KeyTreeView::restoreLayout(const KConfigGroup &group)
-{
-    QHeaderView *header = m_view->header();
-
-    QVariantList columnVisibility = group.readEntry("ColumnVisibility", QVariantList());
-    QVariantList columnOrder = group.readEntry("ColumnOrder", QVariantList());
-    QVariantList columnWidths = group.readEntry("ColumnWidths", QVariantList());
-
-    if (columnVisibility.isEmpty()) {
-        // if config is empty then use default settings
-        // The numbers have to be in line with the order in
-        // setsSourceColumns above
-        m_view->hideColumn(5);
-
-        for (int i = 7; i < m_view->model()->columnCount(); ++i) {
-            m_view->hideColumn(i);
-        }
-        if (KeyCache::instance()->initialized()) {
-            QTimer::singleShot(0, this, &KeyTreeView::resizeColumns);
-        }
-    } else {
-        for (int i = 0; i < header->count(); ++i) {
-            if (i >= columnOrder.size() || i >= columnWidths.size() || i >= columnVisibility.size()) {
-                // An additional column that was not around last time we saved.
-                // We default to hidden.
-                m_view->hideColumn(i);
-                continue;
-            }
-            bool visible = columnVisibility[i].toBool();
-            int width = columnWidths[i].toInt();
-            int order = columnOrder[i].toInt();
-
-            header->resizeSection(i, width ? width : 100);
-            header->moveSection(header->visualIndex(i), order);
-            if ((i == tagsColumn) && visible) {
-                Tags::enableTags();
-            }
-            if (!visible) {
-                m_view->hideColumn(i);
-            }
-        }
-        m_onceResized = true;
-    }
-
-    int sortOrder = group.readEntry("SortAscending", (int)Qt::AscendingOrder);
-    int sortColumn = group.readEntry("SortColumn", 0);
-    if (sortColumn >= 0) {
-        m_view->sortByColumn(sortColumn, (Qt::SortOrder)sortOrder);
-    }
-}
-
-KeyTreeView::~KeyTreeView()
-{
-    if (m_group.isValid()) {
-        saveLayout(m_group);
-    }
-}
+KeyTreeView::~KeyTreeView() = default;
 
 static QAbstractProxyModel *find_last_proxy(QAbstractProxyModel *pm)
 {

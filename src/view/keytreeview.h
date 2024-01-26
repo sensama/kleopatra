@@ -21,6 +21,8 @@
 
 #include <KConfigGroup>
 
+#include <Libkleo/TreeView>
+
 class QTreeView;
 
 namespace Kleo
@@ -112,8 +114,6 @@ public:
     void disconnectSearchBar();
     bool connectSearchBar(const SearchBar *bar);
     void resizeColumns();
-
-    void saveLayout(KConfigGroup &group);
     void restoreLayout(const KConfigGroup &group);
 
 public Q_SLOTS:
@@ -144,7 +144,7 @@ private:
     KeyListSortFilterProxyModel *m_proxy;
     AbstractKeyListSortFilterProxyModel *m_additionalProxy;
 
-    QTreeView *m_view;
+    TreeView *m_view;
 
     AbstractKeyListModel *m_flatModel;
     AbstractKeyListModel *m_hierarchicalModel;

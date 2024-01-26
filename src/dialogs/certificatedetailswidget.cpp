@@ -567,6 +567,7 @@ void CertificateDetailsWidget::Private::setUpUserIDTable()
 
         ui.userIDTable->addTopLevelItem(item);
     }
+    ui.userIDTable->restoreColumnLayout(QStringLiteral("UserIDTable"));
     if (!Tags::tagsEnabled()) {
         ui.userIDTable->hideColumn(3);
     }

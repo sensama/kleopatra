@@ -251,12 +251,6 @@ private:
         KConfigGroup configGroup(KSharedConfig::openConfig(), QStringLiteral("EditGroupDialog"));
         configGroup.writeEntry("Size", q->size());
 
-        KConfigGroup availableKeysConfig = configGroup.group(QStringLiteral("AvailableKeysView"));
-        ui.availableKeysList->saveLayout(availableKeysConfig);
-
-        KConfigGroup groupKeysConfig = configGroup.group(QStringLiteral("GroupKeysView"));
-        ui.groupKeysList->saveLayout(groupKeysConfig);
-
         configGroup.sync();
     }
 

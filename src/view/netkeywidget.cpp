@@ -184,11 +184,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     mTreeView->restoreLayout(configGroup);
 }
 
-NetKeyWidget::~NetKeyWidget()
-{
-    KConfigGroup configGroup(KSharedConfig::openConfig(), QStringLiteral("NetKeyCardView"));
-    mTreeView->saveLayout(configGroup);
-}
+NetKeyWidget::~NetKeyWidget() = default;
 
 namespace
 {

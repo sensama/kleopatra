@@ -345,15 +345,17 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
             d->ui.subkeysTree->setCurrentItem(item);
         }
     }
-    if (!key.hasSecret()) {
-        // hide information about storage location for keys of other people
-        d->ui.subkeysTree->hideColumn(8);
-    }
     d->ui.subkeysTree->header()->resizeSections(QHeaderView::ResizeToContents);
 
     d->ui.changeValidityBtn->setVisible(key.hasSecret());
     d->ui.exportSecretBtn->setVisible(key.hasSecret());
     d->ui.transferToSmartcardBtn->setVisible(key.hasSecret());
+
+    d->ui.subkeysTree->restoreColumnLayout(QStringLiteral("SubkeysWidget"));
+    if (!key.hasSecret()) {
+        // hide information about storage location for keys of other people
+        d->ui.subkeysTree->hideColumn(8);
+    }
 }
 
 GpgME::Key SubKeysWidget::key() const

@@ -73,7 +73,6 @@ public:
     void writeConfig()
     {
         KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("DeleteCertificatesDialog"));
-        ui.selectedKTV.saveLayout(dialog);
         dialog.writeEntry("Size", q->size());
         dialog.sync();
     }

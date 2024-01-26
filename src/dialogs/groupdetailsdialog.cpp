@@ -96,7 +96,6 @@ private:
     void saveLayout()
     {
         KConfigGroup configGroup(KSharedConfig::openStateConfig(), QStringLiteral("GroupDetailsDialog"));
-        ui.treeView->saveLayout(configGroup);
         configGroup.writeEntry("Size", q->size());
         configGroup.sync();
     }

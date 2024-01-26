@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 01:35+0000\n"
-"PO-Revision-Date: 2024-01-25 02:12+0100\n"
+"PO-Revision-Date: 2024-01-26 02:04+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -2475,19 +2475,16 @@ msgid "Copying the key to the card failed."
 msgstr "La copia de la clave en la tarjeta ha fallado."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>La clave se ha copiado en la tarjeta.</para><para>¿Desea borrar la "
-"copia de la clave guardada en este equipo?</para>"
+"<para>La clave se ha copiado en la tarjeta.</para><para>Ahora puede borrar "
+"la copia de la clave guardada en este equipo. De forma opcional, puede crear "
+"primero una copia de seguridad de la clave.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
 #, kde-format
@@ -2508,19 +2505,16 @@ msgid "Keep copy on disk"
 msgstr "Mantener copia en el disco"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>La clave se ha copiado en la tarjeta.</para><para>¿Desea borrar la "
-"copia de la clave guardada en este equipo?</para>"
+"<para>La clave se ha copiado en la tarjeta y se ha creado una copia de "
+"seguridad en <filename>%1</filename>.</para><para>¿Desea borrar la copia de "
+"la clave guardada en este equipo?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2560,12 +2554,11 @@ msgstr ""
 "filename> ha fallado."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "¿Realmente desea borrar la copia local de la clave secreta?"
+msgstr "¿Realmente desea borrar la copia de la clave guardada en este equipo?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2574,25 +2567,21 @@ msgid "Confirm Deletion"
 msgstr "Confirmar borrado"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>El borrado de la clave ha fallado:</para><para><message>%1</message></"
-"para>"
+"<para>No se ha podido borrar la copia de la clave guardada en este equipo:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Se ha generado correctamente una nueva clave para esta tarjeta."
+msgstr ""
+"Se ha borrado correctamente la copia de la clave guardada en este equipo."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format

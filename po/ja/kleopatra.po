@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
+"POT-Creation-Date: 2024-01-26 00:37+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1893,7 +1893,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "ファイル %1 を読み取りのために開けませんでした: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
 #, kde-format
 msgid "Certificates"
 msgstr "証明書"
@@ -11401,17 +11401,12 @@ msgstr "CRL キャッシュをダンプ"
 msgid "Import CRL From File..."
 msgstr "CRL をファイルからインポート..."
 
-#: src/view/keytreeview.cpp:80
-#, kde-format
-msgid "View Columns"
-msgstr "カラムを表示"
-
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "証明書の階層的リスト"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "List of certificates"
 msgstr "証明書のリスト"
@@ -12427,6 +12422,9 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#~ msgid "View Columns"
+#~ msgstr "カラムを表示"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

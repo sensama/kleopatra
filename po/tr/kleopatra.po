@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-01-24 21:56+0300\n"
+"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"PO-Revision-Date: 2024-01-25 16:58+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1871,7 +1871,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "%1, okuma için açılamadı: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
 #, kde-format
 msgid "Certificates"
 msgstr "Sertifikalar"
@@ -2462,53 +2462,46 @@ msgid "Copying the key to the card failed."
 msgstr "Anahtarı karta kopyalama başarısız."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>Anahtar karta kopyalandı.</para><para>Bu bilgisayarda depolanan "
-"anahtar kopyasını silmek istiyor musunuz?</para>"
+"<para>Anahtar karta kopyalandı.</para><para>Artık bu bilgisayarda depolanan "
+"anahtar kopyasını silebilirsiniz. İsteğe bağlı olarak, önce bir yedeğini de "
+"oluşturabilirsiniz.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Kağıda yedekleme"
+msgstr "Yedek Oluştur"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Diskteki Kopyayı Sil"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Diskteki Kopyayı Tut"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>Anahtar karta kopyalandı.</para><para>Bu bilgisayarda depolanan "
-"anahtar kopyasını silmek istiyor musunuz?</para>"
+"<para>Anahtar karta kopyalandı ve bir yedek <filename>%1</filename> konumuna "
+"yazıldı.</para><para>Bu bilgisayarda depolanan anahtar kopyasını silmek "
+"istiyor musunuz?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2544,12 +2537,13 @@ msgstr ""
 "<filename>%1</filename> dosyasına gizli anahtarın yedeğini yazma başarısız."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Gizli anahtarın yerel kopyasını silmek istediğinize emin misiniz?"
+msgstr ""
+"Bu bilgisayarda kopyalanan anahtar kopyasını silmeyi gerçekten istiyor "
+"musunuz?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2558,23 +2552,20 @@ msgid "Confirm Deletion"
 msgstr "Silmeyi Onayla"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
-msgstr "<para>Anahtar silinemedi:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>Bu bilgisayarda depolanan anahtar kopyası silinemedi:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Bu kart için yeni bir anahtar başarıyla oluşturuldu."
+msgstr "Bu bilgisayarda depolanan anahtar kopyası başarıyla silindi."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -11423,17 +11414,12 @@ msgstr "CRL Önbelleğini Dök"
 msgid "Import CRL From File..."
 msgstr "Dosyadan CRL İçe Aktar..."
 
-#: src/view/keytreeview.cpp:80
-#, kde-format
-msgid "View Columns"
-msgstr "Sütunları Görüntüle"
-
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Sertifikaların hiyerarşik listesi"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "List of certificates"
 msgstr "Sertifikaların listesi"
@@ -12458,31 +12444,5 @@ msgstr ""
 "Bir dosyadan sertifika içe aktarın.<nl/>Genel bir anahtar sunucusundan içe "
 "aktarmak için <interface>Sunucuda Ara</interface> seçeneğini kullanın."
 
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "Yedek Oluştur ve Anahtarı Sil"
-
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "Anahtarı Sil"
-
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "Anahtarı Tut"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key to the card."
-#~ msgstr "Anahtar, karta başarıyla kopyalandı."
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "<b>%1</b> dosyası halihazırda var.\n"
-#~ "Üzerine yazılsın mı?"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "Var Olan Dosyanın Üzerine Yaz?"
-
-#~ msgid "Overwrite All"
-#~ msgstr "Tümünün Üzerine Yaz"
+#~ msgid "View Columns"
+#~ msgstr "Sütunları Görüntüle"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-01-24 10:50+0100\n"
+"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"PO-Revision-Date: 2024-01-25 18:40+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -1706,7 +1706,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Non pote aperir file '%1' in lectura: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
 #, kde-format
 msgid "Certificates"
 msgstr "Certificatos"
@@ -2274,11 +2274,10 @@ msgid ""
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Retrocopia de papiro"
+msgstr "Crea retrocopia"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
@@ -2351,24 +2350,21 @@ msgid "Confirm Deletion"
 msgstr "Confirma deletion"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Il falleva deler le clave: </para><para><message>%1</message></para>"
+"<para>Il falleva deler le copia del clave immagazinate sur iste computator: "
+"</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully copied the key to the card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Copula de clave copiate con successo al carta."
+msgstr ""
+"Delite con successo le copia de clave immagazimate sur iste computator."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -10609,17 +10605,12 @@ msgstr ""
 msgid "Import CRL From File..."
 msgstr ""
 
-#: src/view/keytreeview.cpp:80
-#, kde-format
-msgid "View Columns"
-msgstr "Vide columnas"
-
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Lista hierarchic de certificatos"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "List of certificates"
 msgstr "Lista de certificatos"
@@ -11607,6 +11598,9 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid "View Columns"
+#~ msgstr "Vide columnas"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

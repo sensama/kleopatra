@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-01-24 10:38+0100\n"
+"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"PO-Revision-Date: 2024-01-25 10:33+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -1884,7 +1884,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Kon bestand %1 niet openen voor lezen: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
 #, kde-format
 msgid "Certificates"
 msgstr "Certificaten"
@@ -2484,53 +2484,46 @@ msgid "Copying the key to the card failed."
 msgstr "De sleutel naar de card kopiëren is mislukt."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>De sleutel is naar de card gekopieerd.</para><para>Wilt u de de kopie "
-"van de sleutel opgeslagen op deze computer verwijderen?</para>"
+"<para>De sleutel is naar de card gekopieerd.</para><para>U kunt nu de kopie "
+"van de sleutel opgeslagen op deze computer verwijderen. Eventueel kunt u "
+"eerst een reservekopie van de sleutel aanmaken.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Papieren reservekopie"
+msgstr "Reservekopie maken"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Kopie op schijf verwijderen"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Kopie op schijf behouden"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>De sleutel is naar de card gekopieerd.</para><para>Wilt u de de kopie "
-"van de sleutel opgeslagen op deze computer verwijderen?</para>"
+"<para>De sleutel is naar de card gekopieerd en een reservekopie is naar "
+"<filename>%1</filename> geschreven.</para><para>Wilt u de kopie van de "
+"sleutel opgeslagen op deze computer verwijderen?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2569,12 +2562,12 @@ msgstr ""
 "is mislukt."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Wilt u de lokale kopie van de geheime sleutel verwijderen?"
+msgstr ""
+"Wilt u de kopie van de sleutel opgeslagen op deze computer verwijderen?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2583,25 +2576,21 @@ msgid "Confirm Deletion"
 msgstr "Verwijderen bevestigen"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>De sleutel verwijderen is mislukt:</para><para><message>%1</message></"
-"para>"
+"<para>Een kopie van de sleutel op deze computer verwijderen is mislukt:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Een nieuwe sleutel voor deze kaart is met succes gegenereerd."
+msgstr ""
+"De kopie van de sleutel opgeslagen op deze computer is met succes verwijderd."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -11529,17 +11518,12 @@ msgstr "CRL-cache dumpen"
 msgid "Import CRL From File..."
 msgstr "CRL van bestand importeren..."
 
-#: src/view/keytreeview.cpp:80
-#, kde-format
-msgid "View Columns"
-msgstr "Kolommen tonen"
-
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Hiërarchische lijst met certificaten"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "List of certificates"
 msgstr "Lijst met certificaten"
@@ -12571,6 +12555,9 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgid "View Columns"
+#~ msgstr "Kolommen tonen"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

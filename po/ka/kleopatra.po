@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-01-24 07:08+0100\n"
+"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"PO-Revision-Date: 2024-01-25 05:57+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1848,7 +1848,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "ფაილის (%1) წასაკითხად გახსნის შეცდომა: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
 #, kde-format
 msgid "Certificates"
 msgstr "სერტიფიკატები"
@@ -2441,53 +2441,45 @@ msgid "Copying the key to the card failed."
 msgstr "გასაღების ბარათზე კოპირების შეცდომა."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>გასაღები წარმატებით დაკოპირდა ბარათზე.</para><para>გნებავთ ამ "
-"გასაღების კომპიუტერში შენახული ასლი წავშალო?</para>"
+"<para>გასაღები წარმატებით დაკოპირდა ბარათზე.</para><para>ახლა შეგიძლიათ, "
+"თქვენს კომპიუტერში შენახული გასაღების ასლი წაშალოთ. ან, შეგიძლიათ, ჯერ ამ "
+"გასაღების მარქაფი გააკეთოთ.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "ქაღალდის მარქაფი"
+msgstr "მარქაფის შექმნა"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "ასლის წაშლა დისკიდან"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "ასლის შენარჩუნება დისკზე"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>გასაღები წარმატებით დაკოპირდა ბარათზე.</para><para>გნებავთ ამ "
-"გასაღების კომპიუტერში შენახული ასლი წავშალო?</para>"
+"<para>გასაღები წარმატებით დაკოპირდა ბარათზე <filename>%1</filename>.</"
+"para><para>გნებავთ ამ გასაღების კომპიუტერში შენახული ასლი წავშალო?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2523,12 +2515,11 @@ msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr "საიდუმლო გასაღების მარქაფის <filename>%1</filename>-ში ჩაწერა ჩავარდა."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "მართლა გნებავთ საიდუმლო გასაღების ლოკალური ასლის წაშლა?"
+msgstr "მართლა გნებავთ ამ კომპიუტერზე დამახსოვრებული გასაღების ასლის წაშლა?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2537,24 +2528,21 @@ msgid "Confirm Deletion"
 msgstr "წაშლის დადასტურება"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>გასაღების წაშლა ჩავარდა:</para><para><message>%1</message></para>"
+"<para>თქვენს კომპიუტერში დამახსოვრებული გასაღების ასლის წაშლა ჩავარდა:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "ამ ბარათისთვის ახალი გასაღების გენერაცია წარმატებით დასრულდა."
+msgstr ""
+"ამ კომპიუტერზე დამახსოვრებული გასაღებს ასლის წაშლა წარმატებით დასრულდა."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -11369,17 +11357,12 @@ msgstr "CRL ქეშის დამპი"
 msgid "Import CRL From File..."
 msgstr "CRL-ის ფაილიდან შემოტანა..."
 
-#: src/view/keytreeview.cpp:80
-#, kde-format
-msgid "View Columns"
-msgstr "სვეტების ნახვა"
-
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "სერტიფიკატების იერარქიული სია"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "List of certificates"
 msgstr "სერტიფიკატების სია"
@@ -12403,6 +12386,9 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgid "View Columns"
+#~ msgstr "სვეტების ნახვა"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

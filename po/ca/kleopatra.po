@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-01-24 10:14+0100\n"
+"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"PO-Revision-Date: 2024-01-25 12:20+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -1882,7 +1882,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "No s'ha pogut obrir el fitxer %1 per a lectura: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
 #, kde-format
 msgid "Certificates"
 msgstr "Certificats"
@@ -2478,53 +2478,46 @@ msgid "Copying the key to the card failed."
 msgstr "Ha fallat en copiar la clau a la targeta."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>La clau s'ha copiat a la targeta.</para><para>Voleu suprimir la còpia "
-"de la clau emmagatzemada en aquest ordinador?</para>"
+"<para>La clau s'ha copiat a la targeta.</para><para>Ara podeu suprimir la "
+"còpia de la clau emmagatzemada en aquest ordinador. Opcionalment, abans "
+"podreu crear una còpia de seguretat de la clau.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Còpia de seguretat en paper"
+msgstr "Crea una còpia de seguretat"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Suprimeix la còpia en el disc"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Mantén la còpia en el disc"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>La clau s'ha copiat a la targeta.</para><para>Voleu suprimir la còpia "
-"de la clau emmagatzemada en aquest ordinador?</para>"
+"<para>La clau s'ha copiat a la targeta i s'ha escrit una còpia de seguretat "
+"a <filename>%1</filename>.</para><para>Voleu suprimir la còpia de la clau "
+"emmagatzemada en aquest ordinador?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2564,12 +2557,13 @@ msgstr ""
 "%1</filename>."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Segur que voleu suprimir la còpia local de la clau secreta?"
+msgstr ""
+"Segur que voleu suprimir la còpia de la clau emmagatzemada en aquest "
+"ordinador?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2578,24 +2572,22 @@ msgid "Confirm Deletion"
 msgstr "Confirmació de la supressió"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Ha fallat en suprimir la clau:</para><para><message>%1</message></para>"
+"<para>Ha fallat en suprimir la còpia de la clau emmagatzemada en aquest "
+"ordinador:</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "S'ha generat correctament una clau nova per a aquesta targeta."
+msgstr ""
+"S'ha suprimit correctament la còpia de la clau emmagatzemada en aquest "
+"ordinador."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -11541,17 +11533,12 @@ msgstr "Bolcat del cau de la CRL"
 msgid "Import CRL From File..."
 msgstr "Importa la CRL des d'un fitxer..."
 
-#: src/view/keytreeview.cpp:80
-#, kde-format
-msgid "View Columns"
-msgstr "Mostra les columnes"
-
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Llista jeràrquica de certificats"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "List of certificates"
 msgstr "Llista de certificats"
@@ -12582,6 +12569,9 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
+
+#~ msgid "View Columns"
+#~ msgstr "Mostra les columnes"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

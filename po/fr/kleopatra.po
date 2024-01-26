@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-01-11 10:40+0100\n"
+"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"PO-Revision-Date: 2024-01-23 14:00+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -1931,7 +1931,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Impossible d'ouvrir le fichier %1 en lecture : %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
 #, kde-format
 msgid "Certificates"
 msgstr "Certificats"
@@ -3976,18 +3976,15 @@ msgid "Edit Group"
 msgstr "Modifier un groupe"
 
 #: src/conf/groupsconfigwidget.cpp:397
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para>Voulez-vous vraiment révoquer l'identifiant utilisateur<nl/><emphasis>"
-"%1</emphasis> ?</para>"
+"<para>Voulez-vous vraiment supprimer ce groupe ? </para><para><emphasis>%1</"
+"emphasis></para><para>. Une fois supprimé, il est impossible de le restaurer."
+"</para>"
 
 #: src/conf/groupsconfigwidget.cpp:403
 #, kde-kuit-format
@@ -3999,16 +3996,19 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Voulez-vous vraiment supprimer ce groupe %1 ? </para><para> Une fois "
+"supprimé, il est impossible de le restaurer.</para>"
 msgstr[1] ""
+"<para>Voulez-vous vraiment supprimer ces %1 groupe ? </para><para> Une fois "
+"supprimé, il est impossible de les restaurer.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:415
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Supprimer"
-msgstr[1] "Supprimer"
+msgstr[0] "Supprimer un groupe"
+msgstr[1] "Supprimer des groupes"
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -8475,7 +8475,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:70
 #, kde-format
 msgid "Designated revoker"
-msgstr ""
+msgstr "Personne désignée pour la révocation"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:71
@@ -8488,6 +8488,16 @@ msgid ""
 "designated revoker as sensitive information. Only v4 keys may be designated "
 "revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
 msgstr ""
+"L'empreinte digitale d'une personne désignée pour la révocation à ajouter à "
+"chaque nouvelle clé. Elle doit être fournie sous la forme « algorithme : "
+"empreinte [sensible] ». Le paramètre « algorithme » est l'algorithme de clé "
+"publique pour la personne désignée pour la révocation (C'est-à-dire RSA = 1, "
+"DSA = 17, etc.). Le paramètre « empreinte » est l'empreinte digitale de la "
+"personne désignée pour la révocation. Le drapeau facultatif « sensible » "
+"indique que la personne désignée pour la révocation est une information "
+"sensible. Seules les clés V4 peuvent être des personnes désignées pour la "
+"révocation. La version 2.4.4 de GNUPG est nécessaire pour ajouter des "
+"personnes désignées pour la révocation en tant qu'informations sensibles ."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:75
@@ -11718,17 +11728,12 @@ msgstr "Copie (dump) du cache des LRC"
 msgid "Import CRL From File..."
 msgstr "Importer des LRC depuis un fichier..."
 
-#: src/view/keytreeview.cpp:80
-#, kde-format
-msgid "View Columns"
-msgstr "Afficher les colonnes"
-
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Liste hiérarchique des certificats"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "List of certificates"
 msgstr "Liste des certificats"
@@ -12770,6 +12775,9 @@ msgstr ""
 "Importer un certificat à partir d'un fichier. <nl/>Pour importer à partir "
 "d'un serveur de clés publiques, veuillez plutôt utiliser "
 "<interface>Rechercher sur le serveur</interface>."
+
+#~ msgid "View Columns"
+#~ msgstr "Afficher les colonnes"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

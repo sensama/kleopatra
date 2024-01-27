@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:37+0000\n"
-"PO-Revision-Date: 2024-01-20 02:36+0100\n"
+"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"PO-Revision-Date: 2024-01-26 01:57+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -1892,7 +1892,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "No se ha podido abrir el archivo %1 para lectura: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:276
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
 #, kde-format
 msgid "Certificates"
 msgstr "Certificados"
@@ -2492,53 +2492,46 @@ msgid "Copying the key to the card failed."
 msgstr "La copia de la clave en la tarjeta ha fallado."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>La clave se ha copiado en la tarjeta.</para><para>¿Desea borrar la "
-"copia de la clave guardada en este equipo?</para>"
+"<para>La clave se ha copiado en la tarjeta.</para><para>Ahora puede borrar "
+"la copia de la clave guardada en este equipo. De forma opcional, puede crear "
+"primero una copia de seguridad de la clave.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Copia de seguridad en papel"
+msgstr "Crear copia de seguridad"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Borrar copia del disco"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Conservar la copia en el disco"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>La clave se ha copiado en la tarjeta.</para><para>¿Desea borrar la "
-"copia de la clave guardada en este equipo?</para>"
+"<para>La clave se ha copiado en la tarjeta y se ha creado una copia de "
+"seguridad en <filename>%1</filename>.</para><para>¿Desea borrar la copia de "
+"la clave guardada en este equipo?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2578,12 +2571,11 @@ msgstr ""
 "filename> ha fallado."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "¿Realmente desea borrar la copia local de la clave secreta?"
+msgstr "¿Realmente desea borrar la copia de la clave guardada en este equipo?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2592,25 +2584,21 @@ msgid "Confirm Deletion"
 msgstr "Confirmar borrado"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>El borrado de la clave ha fallado:</para><para><message>%1</message></"
-"para>"
+"<para>No se ha podido borrar la copia de la clave guardada en este equipo:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Se ha generado correctamente una nueva clave para esta tarjeta."
+msgstr ""
+"Se ha borrado correctamente la copia de la clave guardada en este equipo."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -11059,12 +11047,10 @@ msgid "No input device"
 msgstr "Ningún dispositivo de entrada"
 
 #: src/utils/keyexportdraghandler.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "A generic filename for exported certificates"
-#| msgid "certificates"
+#, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
-msgstr "certificados"
+msgstr "certificados.%1"
 
 #: src/utils/log.cpp:149
 #, kde-format
@@ -11528,17 +11514,12 @@ msgstr "Volcar la caché CRL"
 msgid "Import CRL From File..."
 msgstr "Importar CRL desde archivo..."
 
-#: src/view/keytreeview.cpp:80
-#, kde-format
-msgid "View Columns"
-msgstr "Ver columnas"
-
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Lista jerárquica de certificados"
 
-#: src/view/keytreeview.cpp:277 src/view/keytreeview.cpp:629
+#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
 #, kde-format
 msgid "List of certificates"
 msgstr "Lista de certificados"
@@ -12568,6 +12549,9 @@ msgid ""
 msgstr ""
 "Importar certificado de un archivo.<nl/>Para importar de un servidor de "
 "claves público use <interface>Buscar en servidor</interface> en su lugar."
+
+#~ msgid "View Columns"
+#~ msgstr "Ver columnas"
 
 #~ msgctxt "@action:button"
 #~ msgid "Create Backup and Delete Key"

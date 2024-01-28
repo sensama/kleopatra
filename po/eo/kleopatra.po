@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-26 00:37+0000\n"
-"PO-Revision-Date: 2024-01-20 15:45+0100\n"
+"PO-Revision-Date: 2024-01-28 11:08+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -2440,53 +2440,46 @@ msgid "Copying the key to the card failed."
 msgstr "Kopiado de la ŝlosilo al la karto malsukcesis."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>La ŝlosilo estas kopiita al la karto.</para><para>Ĉu vi volas forigi "
-"la kopion de la ŝlosilo konservita en ĉi tiu komputilo?</para>"
+"<para>La ŝlosilo estis kopiita al la karto.</para><para>Vi povas nun forigi "
+"la kopion de la ŝlosilo konservita en ĉi tiu komputilo. Laŭvole, vi povas "
+"unue krei sekurkopion de la ŝlosilo.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Papera sekurkopio"
+msgstr "Krei sekurkopion"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Forigi kopion surdiske"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Konservi kopion surdiske"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>La ŝlosilo estas kopiita al la karto.</para><para>Ĉu vi volas forigi "
-"la kopion de la ŝlosilo konservita en ĉi tiu komputilo?</para>"
+"<para>La ŝlosilo estis kopiita al la karto kaj sekurkopio estis skribita al "
+"<filename>%1</filename>.</para><para>Ĉu vi volas forigi la kopion de la "
+"ŝlosilo konservita en ĉi tiu komputilo?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2525,12 +2518,12 @@ msgstr ""
 "malsukcesis."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Ĉu vi vere volas forigi la lokan kopion de la sekreta ŝlosilo?"
+msgstr ""
+"Ĉu vi vere volas forigi la kopion de la ŝlosilo konservita en ĉi komputilo?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2539,25 +2532,21 @@ msgid "Confirm Deletion"
 msgstr "Konfirmi Forigon"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Malsukcesis forigi la ŝlosilon:</para><para><message>%1</message></"
-"para>"
+"<para>Malsukcesis forigi la kopion de la ŝlosilo konservita en ĉi komputilo:"
+"</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Sukcese generis novan ŝlosilon por ĉi tiu karto."
+msgstr ""
+"Sukcese forigis la kopion de la ŝlosilo konservita en ĉi tiu komputilo."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -10909,12 +10898,10 @@ msgid "No input device"
 msgstr "Neniu eniga aparato"
 
 #: src/utils/keyexportdraghandler.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "A generic filename for exported certificates"
-#| msgid "certificates"
+#, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
-msgstr "atestilojn"
+msgstr "certificates.%1"
 
 #: src/utils/log.cpp:149
 #, kde-format
@@ -12401,35 +12388,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgid "View Columns"
-#~ msgstr "Vidi Kolumnojn"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "Krei Rezervon kaj Forigi Ŝlosilon"
-
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "Forigi Ŝlosilon"
-
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "Konservi Ŝlosilon"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key to the card."
-#~ msgstr "Sukcese kopiis la ŝlosilon al la karto."
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "La dosiero <b>%1</b> jam ekzistas.\n"
-#~ "Ĉu anstataŭigi?"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "Ĉu anstataŭigi Ekzistantan Dosieron?"
-
-#~ msgid "Overwrite All"
-#~ msgstr "Anstataŭigi Ĉion"

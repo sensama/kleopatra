@@ -74,6 +74,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
+include(ECMFeatureSummary)
 include(KDEClangFormat)
 include(KDEGitCommitHooks)
 
@@ -250,7 +251,7 @@ if(KF6DocTools_FOUND)
     kdoctools_install(po)
     add_subdirectory(doc)
 endif()
-feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
+ecm_feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 # add clang-format target for all our real source files
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h *.c)

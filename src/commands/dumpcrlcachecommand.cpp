@@ -183,7 +183,7 @@ private:
                 break;
             }
             const QByteArray line = chomped(process.readLine());
-            if (!line.size()) {
+            if (line.isEmpty()) {
                 continue;
             }
             if (!dialog->withRevocations() && line.contains("reasons")) {

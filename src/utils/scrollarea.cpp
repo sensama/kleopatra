@@ -25,7 +25,7 @@ ScrollArea::ScrollArea(QWidget *parent)
     : QScrollArea{parent}
 {
     auto w = new QWidget;
-    w->setObjectName(QLatin1String("scrollarea_widget"));
+    w->setObjectName(QLatin1StringView("scrollarea_widget"));
     new QVBoxLayout{w};
     setWidget(w);
     setWidgetResizable(true);

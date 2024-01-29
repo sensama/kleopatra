@@ -200,7 +200,7 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
                         lines.push_back(Formatting::prettyUserID(uid));
                     }
                 }
-                widgets.keyInfoLabel->setToolTip(toolTips.join(QLatin1String("<br/>")));
+                widgets.keyInfoLabel->setToolTip(toolTips.join(QLatin1StringView("<br/>")));
                 widgets.showCertificateDetailsButton->setEnabled(true);
             }
         } else {
@@ -209,10 +209,10 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
         }
 
         const QString fingerprint = widgets.keyInfoLabel->textFormat() == Qt::RichText
-            ? Formatting::prettyID(widgets.keyFingerprint.c_str()).replace(QLatin1Char(' '), QLatin1String("&nbsp;"))
+            ? Formatting::prettyID(widgets.keyFingerprint.c_str()).replace(QLatin1Char(' '), QLatin1StringView("&nbsp;"))
             : Formatting::prettyID(widgets.keyFingerprint.c_str());
         lines.insert(0, fingerprint);
-        const auto lineSeparator = widgets.keyInfoLabel->textFormat() == Qt::PlainText ? QLatin1String("\n") : QLatin1String("<br>");
+        const auto lineSeparator = widgets.keyInfoLabel->textFormat() == Qt::PlainText ? QLatin1StringView("\n") : QLatin1String("<br>");
         widgets.keyInfoLabel->setText(lines.join(lineSeparator));
 
         widgets.generateButton->setText(i18nc("@action:button", "Regenerate Key"));

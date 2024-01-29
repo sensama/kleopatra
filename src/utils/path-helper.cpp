@@ -106,7 +106,7 @@ bool Kleo::isWritable(const QFileInfo &fi)
 {
 #ifdef Q_OS_WIN
     if (fi.isDir()) {
-        QTemporaryFile dummy{fi.absoluteFilePath() + QLatin1String{"/tempXXXXXX"}};
+        QTemporaryFile dummy{fi.absoluteFilePath() + QLatin1StringView{"/tempXXXXXX"}};
         const auto fileCreated = dummy.open();
         if (!fileCreated) {
             qCDebug(KLEOPATRA_LOG) << "Failed to create test file in folder" << fi.absoluteFilePath();

@@ -12,4 +12,4 @@
 #include <QString>
 
 #define WATCHGNUPGBINARY QStringLiteral("watchgnupg")
-#define WATCHGNUPGSOCKET QString(Kleo::gnupgHomeDirectory() + QLatin1String("/log-socket"))
+#define WATCHGNUPGSOCKET QString(Kleo::gnupgHomeDirectory() + QLatin1StringView("/log-socket"))

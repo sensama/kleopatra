@@ -962,7 +962,7 @@ void TabWidget::createActions(KActionCollection *coll)
         // but do not add those actions to the action collection
         auto action = new QAction(ad.text, coll);
         if (ad.icon) {
-            action->setIcon(QIcon::fromTheme(QLatin1String(ad.icon)));
+            action->setIcon(QIcon::fromTheme(QLatin1StringView(ad.icon)));
         }
         action->setEnabled(ad.actionState == Enabled);
         d->otherPageActions.insert(ad.name, action);

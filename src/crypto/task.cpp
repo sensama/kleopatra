@@ -225,12 +225,12 @@ Task::Result::ContentType Task::Result::viewableContentType() const
 static QString image(const char *img)
 {
     // ### escape?
-    return KIconLoader::global()->iconPath(QLatin1String(img), KIconLoader::Small);
+    return KIconLoader::global()->iconPath(QLatin1StringView(img), KIconLoader::Small);
 }
 
 QString Task::Result::makeOverview(const QString &msg)
 {
-    return QLatin1String("<b>") + msg + QLatin1String("</b>");
+    return QLatin1StringView("<b>") + msg + QLatin1String("</b>");
 }
 
 QString Task::Result::iconPath(VisualCode code)

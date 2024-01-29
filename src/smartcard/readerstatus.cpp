@@ -83,8 +83,8 @@ static void
 logUnexpectedStatusLine(const std::pair<std::string, std::string> &line, const std::string &prefix = std::string(), const std::string &command = std::string())
 {
     qCWarning(KLEOPATRA_LOG) << (!prefix.empty() ? QString::fromStdString(prefix + ": ") : QString()) << "Unexpected status line"
-                             << (!command.empty() ? QString::fromStdString(" on " + command + ":") : QLatin1String(":")) << QString::fromStdString(line.first)
-                             << QString::fromStdString(line.second);
+                             << (!command.empty() ? QString::fromStdString(" on " + command + ":") : QLatin1StringView(":"))
+                             << QString::fromStdString(line.first) << QString::fromStdString(line.second);
 }
 
 static int parse_app_version(const std::string &s)

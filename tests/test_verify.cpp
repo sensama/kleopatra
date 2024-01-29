@@ -118,8 +118,8 @@ private Q_SLOTS:
     {
         qRegisterMetaType<GpgME::VerificationResult>();
 
-        const QString sigFileName = QLatin1String(KLEO_TEST_DATADIR) + QLatin1String("/test.data.sig");
-        const QString dataFileName = QLatin1String(KLEO_TEST_DATADIR) + QLatin1String("/test.data");
+        const QString sigFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1String("/test.data.sig");
+        const QString dataFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1String("/test.data");
 
         QFile sigFile(sigFileName);
         QVERIFY(sigFile.open(QFile::ReadOnly));
@@ -155,7 +155,7 @@ private Q_SLOTS:
      * encrypted PGP messages */
     void testDecryptVerifyOpaqueSigned()
     {
-        const QString sigFileName = QLatin1String(KLEO_TEST_DATADIR) + QLatin1String("/test.data.signed-opaque.asc");
+        const QString sigFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1String("/test.data.signed-opaque.asc");
         std::pair<GpgME::DecryptionResult, GpgME::VerificationResult> result;
         QByteArray plaintext;
         QFile sigFile(sigFileName);
@@ -170,7 +170,7 @@ private Q_SLOTS:
         GpgME::Signature sig = result.second.signature(0);
         QVERIFY(sig.validity() == GpgME::Signature::Validity::Full);
         QVERIFY(!sig.status().code());
-        QVERIFY(QString::fromUtf8(plaintext).startsWith(QLatin1String("/* -*- mode: c++; c-basic-offset:4 -*-")));
+        QVERIFY(QString::fromUtf8(plaintext).startsWith(QLatin1StringView("/* -*- mode: c++; c-basic-offset:4 -*-")));
     }
 
 #ifndef GPGME_MULTITHREADED_KEYLIST_BROKEN

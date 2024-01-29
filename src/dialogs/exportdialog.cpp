@@ -92,19 +92,19 @@ static QString injectComments(const GpgME::Key &key, const QByteArray &data)
                                             | Formatting::CertificateType | Formatting::CertificateUsage);
 
     // Fixup the HTML coming from the toolTip for our own format.
-    overView.remove(QLatin1String("<tr><th>"));
-    overView.replace(QLatin1String("</th><td>"), QLatin1String("\t"));
-    overView.replace(QLatin1String("</td></tr>"), QLatin1String("\n"));
-    overView.remove(QLatin1String("<table border=\"0\">"));
-    overView.remove(QLatin1String("\n</table>"));
-    overView.replace(QLatin1String("&lt;"), QLatin1String("<"));
-    overView.replace(QLatin1String("&gt;"), QLatin1String(">"));
+    overView.remove(QLatin1StringView("<tr><th>"));
+    overView.replace(QLatin1StringView("</th><td>"), QLatin1String("\t"));
+    overView.replace(QLatin1StringView("</td></tr>"), QLatin1String("\n"));
+    overView.remove(QLatin1StringView("<table border=\"0\">"));
+    overView.remove(QLatin1StringView("\n</table>"));
+    overView.replace(QLatin1StringView("&lt;"), QLatin1String("<"));
+    overView.replace(QLatin1StringView("&gt;"), QLatin1String(">"));
 
     auto overViewLines = overView.split(QLatin1Char('\n'));
 
     // Format comments so that they fit for RFC 4880
     auto comments = QStringLiteral("Comment: ");
-    comments += overViewLines.join(QLatin1String("\nComment: ")) + QLatin1Char('\n');
+    comments += overViewLines.join(QLatin1StringView("\nComment: ")) + QLatin1Char('\n');
 
     ret.insert(37 /* -----BEGIN PGP PUBLIC KEY BLOCK-----\n */, comments);
 
@@ -143,7 +143,7 @@ void ExportWidget::setKey(const GpgME::Subkey &key, unsigned int flags)
     connect(job, &QGpgME::ExportJob::result, this, &ExportWidget::exportResult);
 
     job->setExportFlags(flags);
-    job->start(QStringList() << QLatin1String(key.fingerprint()) + QLatin1Char('!'));
+    job->start(QStringList() << QLatin1StringView(key.fingerprint()) + QLatin1Char('!'));
 }
 
 void ExportWidget::setKey(const GpgME::Key &key, unsigned int flags)
@@ -160,7 +160,7 @@ void ExportWidget::setKey(const GpgME::Key &key, unsigned int flags)
     connect(job, &QGpgME::ExportJob::result, this, &ExportWidget::exportResult);
 
     job->setExportFlags(flags);
-    job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
+    job->start(QStringList() << QLatin1StringView(key.primaryFingerprint()));
 }
 
 GpgME::Key ExportWidget::key() const

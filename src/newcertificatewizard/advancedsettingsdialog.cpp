@@ -131,7 +131,7 @@ static QString get_curve(const QComboBox *cb)
 static void parseAlgoString(const QString &algoString, int *size, Subkey::PubkeyAlgo *algo, QString &curve)
 {
     const auto split = algoString.split(QLatin1Char('/'));
-    bool isEncrypt = split.size() == 2 && split[1].contains(QLatin1String("enc"));
+    bool isEncrypt = split.size() == 2 && split[1].contains(QLatin1StringView("enc"));
 
     // Normalize
     const auto lowered = split[0].toLower().remove(QLatin1Char('-'));
@@ -139,11 +139,11 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
         return;
     }
     *algo = Subkey::AlgoUnknown;
-    if (lowered.startsWith(QLatin1String("rsa"))) {
+    if (lowered.startsWith(QLatin1StringView("rsa"))) {
         *algo = Subkey::AlgoRSA;
-    } else if (lowered.startsWith(QLatin1String("dsa"))) {
+    } else if (lowered.startsWith(QLatin1StringView("dsa"))) {
         *algo = Subkey::AlgoDSA;
-    } else if (lowered.startsWith(QLatin1String("elg"))) {
+    } else if (lowered.startsWith(QLatin1StringView("elg"))) {
         *algo = Subkey::AlgoELG;
     }
 
@@ -158,11 +158,11 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
     }
 
     // Now the ECC Algorithms
-    if (lowered.startsWith(QLatin1String("ed25519"))) {
+    if (lowered.startsWith(QLatin1StringView("ed25519"))) {
         // Special handling for this as technically
         // this is a cv25519 curve used for EDDSA
         if (isEncrypt) {
-            curve = QLatin1String("cv25519");
+            curve = QLatin1StringView("cv25519");
             *algo = Subkey::AlgoECDH;
         } else {
             curve = split[0];
@@ -171,10 +171,10 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
         return;
     }
 
-    if (lowered.startsWith(QLatin1String("cv25519")) //
-        || lowered.startsWith(QLatin1String("nist")) //
-        || lowered.startsWith(QLatin1String("brainpool")) //
-        || lowered.startsWith(QLatin1String("secp"))) {
+    if (lowered.startsWith(QLatin1StringView("cv25519")) //
+        || lowered.startsWith(QLatin1StringView("nist")) //
+        || lowered.startsWith(QLatin1StringView("brainpool")) //
+        || lowered.startsWith(QLatin1StringView("secp"))) {
         curve = split[0];
         *algo = isEncrypt ? Subkey::AlgoECDH : Subkey::AlgoECDSA;
         return;
@@ -525,7 +525,7 @@ Subkey::PubkeyAlgo AdvancedSettingsDialog::keyType() const
 {
     return ui->dsaRB->isChecked()  ? Subkey::AlgoDSA
         : ui->rsaRB->isChecked()   ? Subkey::AlgoRSA
-        : ui->ecdsaRB->isChecked() ? ui->ecdsaKeyCurvesCB->currentText() == QLatin1String("ed25519") ? Subkey::AlgoEDDSA : Subkey::AlgoECDSA
+        : ui->ecdsaRB->isChecked() ? ui->ecdsaKeyCurvesCB->currentText() == QLatin1StringView("ed25519") ? Subkey::AlgoEDDSA : Subkey::AlgoECDSA
                                    : Subkey::AlgoUnknown;
 }
 
@@ -843,19 +843,19 @@ void AdvancedSettingsDialog::loadDefaultKeyType()
 
     const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
 
-    const QString entry = protocol == CMS ? QLatin1String(CMS_KEY_TYPE_ENTRY) : QLatin1String(PGP_KEY_TYPE_ENTRY);
+    const QString entry = protocol == CMS ? QLatin1StringView(CMS_KEY_TYPE_ENTRY) : QLatin1String(PGP_KEY_TYPE_ENTRY);
     const QString keyType = config.readEntry(entry).trimmed().toUpper();
 
-    if (protocol == OpenPGP && keyType == QLatin1String("DSA")) {
+    if (protocol == OpenPGP && keyType == QLatin1StringView("DSA")) {
         setKeyType(Subkey::AlgoDSA);
         setSubkeyType(Subkey::AlgoUnknown);
-    } else if (protocol == OpenPGP && keyType == QLatin1String("DSA+ELG")) {
+    } else if (protocol == OpenPGP && keyType == QLatin1StringView("DSA+ELG")) {
         setKeyType(Subkey::AlgoDSA);
         setSubkeyType(Subkey::AlgoELG_E);
     } else if (keyType.isEmpty() && engineIsVersion(2, 1, 17)) {
         loadDefaultGnuPGKeyType();
     } else {
-        if (!keyType.isEmpty() && keyType != QLatin1String("RSA"))
+        if (!keyType.isEmpty() && keyType != QLatin1StringView("RSA"))
             qCWarning(KLEOPATRA_LOG) << "invalid value \"" << qPrintable(keyType) << "\" for entry \"[CertificateCreationWizard]" << qPrintable(entry) << "\"";
         setKeyType(Subkey::AlgoRSA);
         setSubkeyType(Subkey::AlgoRSA);

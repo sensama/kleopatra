@@ -88,12 +88,12 @@ QString secretKeyFileFilters(GpgME::Protocol protocol)
 {
     switch (protocol) {
     case GpgME::OpenPGP:
-        return i18nc("description of filename filter", "Secret Key Files") + QLatin1String{" (*.asc *.gpg *.pgp)"};
+        return i18nc("description of filename filter", "Secret Key Files") + QLatin1StringView{" (*.asc *.gpg *.pgp)"};
     case GpgME::CMS:
-        return i18nc("description of filename filter", "Secret Key Files") + QLatin1String{" (*.p12)"};
+        return i18nc("description of filename filter", "Secret Key Files") + QLatin1StringView{" (*.p12)"};
     default:
         qCWarning(KLEOPATRA_LOG) << __func__ << "Error: Unknown protocol" << protocol;
-        return i18nc("description of filename filter", "All Files") + QLatin1String{" (*)"};
+        return i18nc("description of filename filter", "All Files") + QLatin1StringView{" (*)"};
     }
 }
 
@@ -215,7 +215,7 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJ
     });
     connect(exportJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 
-    const GpgME::Error err = exportJob->start({QLatin1String{key.primaryFingerprint()}});
+    const GpgME::Error err = exportJob->start({QLatin1StringView{key.primaryFingerprint()}});
     if (err) {
         showError(err);
         return {};

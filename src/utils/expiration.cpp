@@ -91,8 +91,8 @@ static QString dateToString(const QDate &date, QWidget *widget)
     auto locale = widget ? widget->locale() : QLocale{};
     const auto dateFormat = (locale
                                  .dateFormat(QLocale::ShortFormat) //
-                                 .replace(QLatin1String{"yy"}, QLatin1String{"yyyy"})
-                                 .replace(QLatin1String{"yyyyyyyy"}, QLatin1String{"yyyy"}));
+                                 .replace(QLatin1StringView{"yy"}, QLatin1String{"yyyy"})
+                                 .replace(QLatin1StringView{"yyyyyyyy"}, QLatin1String{"yyyy"}));
     return locale.toString(date, dateFormat);
 }
 

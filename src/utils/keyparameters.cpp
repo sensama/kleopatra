@@ -326,7 +326,7 @@ QString KeyParameters::toString() const
 {
     QStringList keyParameters;
 
-    keyParameters.push_back(QLatin1String("<GnupgKeyParms format=\"internal\">"));
+    keyParameters.push_back(QLatin1StringView("<GnupgKeyParms format=\"internal\">"));
 
     if (d->protocol == OpenPGP) {
         // for backward compatibility with GnuPG 2.0 and earlier
@@ -335,7 +335,7 @@ QString KeyParameters::toString() const
 
     // add Key-Type as first parameter
     if (!d->cardKeyRef.isEmpty()) {
-        keyParameters.push_back(serialize("Key-Type", QLatin1String{"card:"} + d->cardKeyRef));
+        keyParameters.push_back(serialize("Key-Type", QLatin1StringView{"card:"} + d->cardKeyRef));
     } else if (d->keyType != Subkey::AlgoUnknown) {
         keyParameters.push_back(serialize("Key-Type", serialize(d->keyType)));
     } else {
@@ -388,7 +388,7 @@ QString KeyParameters::toString() const
         return serialize("Revoker", designatedRevoker);
     });
 
-    keyParameters.push_back(QLatin1String("</GnupgKeyParms>"));
+    keyParameters.push_back(QLatin1StringView("</GnupgKeyParms>"));
 
     return keyParameters.join(QLatin1Char('\n'));
 }

@@ -52,7 +52,7 @@ QStringList ExportPaperKeyCommand::arguments() const
 
     result << gpgPath() << QStringLiteral("--batch");
     result << QStringLiteral("--export-secret-key");
-    result << QLatin1String(key.primaryFingerprint());
+    result << QLatin1StringView(key.primaryFingerprint());
 
     return result;
 }

@@ -41,7 +41,7 @@ using namespace QGpgME;
 namespace
 {
 
-static const QString certificateGroupFileExtension{QLatin1String{".kgrp"}};
+static const QString certificateGroupFileExtension{QLatin1StringView{".kgrp"}};
 
 QString proposeFilename(const std::vector<KeyGroup> &groups)
 {

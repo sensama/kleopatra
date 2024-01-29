@@ -292,10 +292,10 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     }
 
     if (protocol != GpgME::CMS) {
-        static const QRegularExpression rx(QRegularExpression::anchoredPattern(QLatin1String("[0-9a-fA-F]{6,}")));
+        static const QRegularExpression rx(QRegularExpression::anchoredPattern(QLatin1StringView("[0-9a-fA-F]{6,}")));
         if (rx.match(str).hasMatch()) {
             qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query" << str;
-            startKeyListJob(OpenPGP, QLatin1String{"0x"} + str);
+            startKeyListJob(OpenPGP, QLatin1StringView{"0x"} + str);
         } else {
             startKeyListJob(OpenPGP, str);
         }
@@ -516,7 +516,7 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
     setWaitForMoreJobs(true);
     if (!wkdKeys.empty()) {
         // set an import filter, so that only user IDs matching the email address used for the WKD lookup are imported
-        const QString importFilter = QLatin1String{"keep-uid=mbox = "} + searchTextToEmailAddress(keyListing.pattern);
+        const QString importFilter = QLatin1StringView{"keep-uid=mbox = "} + searchTextToEmailAddress(keyListing.pattern);
         startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource, {importFilter, Key::OriginWKD, keyListing.wkdSource});
     }
     if (!pgp.empty()) {

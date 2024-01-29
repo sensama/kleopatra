@@ -445,7 +445,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
     if (queryMode) {
         needle = parser.positionalArguments().join(QLatin1Char(' '));
     }
-    if (needle.startsWith(QLatin1String("openpgp4fpr:"))) {
+    if (needle.startsWith(QLatin1StringView("openpgp4fpr:"))) {
         needle.remove(0, 12);
     }
 

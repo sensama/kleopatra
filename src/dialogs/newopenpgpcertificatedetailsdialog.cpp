@@ -116,10 +116,10 @@ public:
     {
         q->setWindowTitle(i18nc("title:window", "Create OpenPGP Certificate"));
 
-        const KConfigGroup config{KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard")};
+        const KConfigGroup config{KSharedConfig::openConfig(), QLatin1StringView("CertificateCreationWizard")};
         const auto attrOrder = config.readEntry("OpenPGPAttributeOrder", QStringList{});
-        const auto nameIsRequired = attrOrder.contains(QLatin1String{"NAME!"}, Qt::CaseInsensitive);
-        const auto emailIsRequired = attrOrder.contains(QLatin1String{"EMAIL!"}, Qt::CaseInsensitive);
+        const auto nameIsRequired = attrOrder.contains(QLatin1StringView{"NAME!"}, Qt::CaseInsensitive);
+        const auto emailIsRequired = attrOrder.contains(QLatin1StringView{"EMAIL!"}, Qt::CaseInsensitive);
 
         ui.infoLabel->setText(nameIsRequired || emailIsRequired //
                                   ? i18n("Enter a name and an email address to use for the certificate.")

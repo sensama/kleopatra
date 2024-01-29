@@ -171,7 +171,7 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
 
         auto btn = new QPushButton;
         QString suffix;
-        const auto keyid = QLatin1String(sig.fingerprint());
+        const auto keyid = QLatin1StringView(sig.fingerprint());
         if (verifyResult.numSignatures() > 1) {
             suffix = QLatin1Char(' ') + keyid;
         }
@@ -342,7 +342,7 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
 {
     Q_ASSERT(m_result);
     qCDebug(KLEOPATRA_LOG) << "Link activated: " << link;
-    if (link.startsWith(QLatin1String("key:"))) {
+    if (link.startsWith(QLatin1StringView("key:"))) {
         auto split = link.split(QLatin1Char(':'));
         auto fpr = split.value(1);
         if (split.size() == 2 && isFingerprint(fpr)) {
@@ -360,7 +360,7 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
 
     const QUrl url(link);
 
-    if (url.host() == QLatin1String("showauditlog")) {
+    if (url.host() == QLatin1StringView("showauditlog")) {
         q->showAuditLog();
         return;
     }

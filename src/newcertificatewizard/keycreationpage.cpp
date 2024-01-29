@@ -235,7 +235,7 @@ void KeyCreationPage::slotResult(const GpgME::KeyGenerationResult &result, const
     if (config.readEntry("SkipResultPage", false)) {
         if (result.fingerprint()) {
             KleopatraApplication::instance()->slotActivateRequested(QStringList() << QStringLiteral("kleopatra") << QStringLiteral("--query")
-                                                                                  << QLatin1String(result.fingerprint()),
+                                                                                  << QLatin1StringView(result.fingerprint()),
                                                                     QString());
             QMetaObject::invokeMethod(wizard(), "close", Qt::QueuedConnection);
         } else {

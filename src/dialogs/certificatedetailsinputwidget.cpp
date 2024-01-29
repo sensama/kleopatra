@@ -240,17 +240,17 @@ public:
                 continue;
             }
             const QString defaultPreset = //
-                (attr == QLatin1String("CN"))      ? userFullName()
-                : (attr == QLatin1String("EMAIL")) ? userEmailAddress()
-                                                   : QString();
+                (attr == QLatin1StringView("CN"))      ? userFullName()
+                : (attr == QLatin1StringView("EMAIL")) ? userEmailAddress()
+                                                       : QString();
             const QString preset = config.readEntry(attr, defaultPreset);
             const bool required = key.endsWith(QLatin1Char('!'));
             const bool readonly = config.isEntryImmutable(attr);
-            const QString label = config.readEntry(attr + QLatin1String("_label"), attributeLabel(attr));
-            const QString regex = config.readEntry(attr + QLatin1String("_regex"));
+            const QString label = config.readEntry(attr + QLatin1StringView("_label"), attributeLabel(attr));
+            const QString regex = config.readEntry(attr + QLatin1StringView("_regex"));
 
             std::shared_ptr<QValidator> validator;
-            if (attr == QLatin1String("EMAIL")) {
+            if (attr == QLatin1StringView("EMAIL")) {
                 validator = regex.isEmpty() ? Validation::email() : Validation::email(regex);
             } else if (!regex.isEmpty()) {
                 validator = std::make_shared<QRegularExpressionValidator>(QRegularExpression{regex});
@@ -261,7 +261,7 @@ public:
             const Line line = {attr, label, regex, le, validator, required};
             ui.lines.push_back(line);
 
-            if (attr != QLatin1String("EMAIL")) {
+            if (attr != QLatin1StringView("EMAIL")) {
                 connect(le, &QLineEdit::textChanged, le, [this]() {
                     updateDN();
                 });
@@ -286,7 +286,7 @@ public:
                 continue;
             }
             QString attr = attributeFromKey(line.attr);
-            if (attr == QLatin1String("EMAIL")) {
+            if (attr == QLatin1StringView("EMAIL")) {
                 continue;
             }
             if (const char *const oid = oidForAttributeName(attr)) {

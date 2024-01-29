@@ -375,10 +375,10 @@ void DirectoryServicesConfigurationPage::Private::save()
         const auto keyserver = mOpenPGPKeyserverEdit.widget()->text().trimmed();
         if (keyserver.isEmpty()) {
             mOpenPGPServiceEntry->resetToDefault();
-        } else if (keyserver == QLatin1String{"none"}) {
+        } else if (keyserver == QLatin1StringView{"none"}) {
             mOpenPGPServiceEntry->setStringValue(keyserver);
         } else {
-            const auto keyserverUrl = keyserver.contains(QLatin1String{"://"}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
+            const auto keyserverUrl = keyserver.contains(QLatin1StringView{"://"}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
             mOpenPGPServiceEntry->setStringValue(keyserverUrl);
         }
     }
@@ -432,7 +432,7 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(cons
         if (showError == DoShowError) {
             KMessageBox::error(
                 q->widget(),
-                i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
+                i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1StringView(componentName), QLatin1String(entryName)));
         }
         return nullptr;
     }
@@ -440,8 +440,8 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(cons
         if (showError == DoShowError) {
             KMessageBox::error(q->widget(),
                                i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4",
-                                    QLatin1String(componentName),
-                                    QLatin1String(entryName),
+                                    QLatin1StringView(componentName),
+                                    QLatin1StringView(entryName),
                                     entry->argType(),
                                     entry->isList()));
         }

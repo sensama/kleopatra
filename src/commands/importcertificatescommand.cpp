@@ -219,7 +219,7 @@ static QString format_ids(const std::vector<QString> &ids)
             escapedIds << id.toHtmlEscaped();
         }
     }
-    return escapedIds.join(QLatin1String("<br>"));
+    return escapedIds.join(QLatin1StringView("<br>"));
 }
 
 static QString make_tooltip(const std::vector<ImportResultData> &results)
@@ -312,7 +312,7 @@ static QString make_report(const std::vector<ImportResultData> &results, const s
     }
 
     if (!lines.empty()) {
-        lines.push_back(headerLine.subs(QLatin1String{"&nbsp;"}).toString());
+        lines.push_back(headerLine.subs(QLatin1StringView{"&nbsp;"}).toString());
     }
 
     if (groups.size() > 0) {
@@ -326,7 +326,7 @@ static QString make_report(const std::vector<ImportResultData> &results, const s
         lines.push_back(normalLine.subs(i18n("Updated groups:")).subs(updatedGroups).toString());
     }
 
-    return lines.join(QLatin1String{});
+    return lines.join(QLatin1StringView{});
 }
 
 static bool isImportFromSingleSource(const std::vector<ImportResultData> &res)
@@ -336,18 +336,18 @@ static bool isImportFromSingleSource(const std::vector<ImportResultData> &res)
 
 static QString make_message_report(const std::vector<ImportResultData> &res, const std::vector<ImportedGroup> &groups)
 {
-    QString report{QLatin1String{"<html>"}};
+    QString report{QLatin1StringView{"<html>"}};
     if (res.empty()) {
         report += i18n("No imports (should not happen, please report a bug).");
     } else {
         const QString title = isImportFromSingleSource(res) && !res.front().id.isEmpty() ? i18n("Detailed results of importing %1:", res.front().id)
                                                                                          : i18n("Detailed results of import:");
-        report += QLatin1String{"<p>"} + title + QLatin1String{"</p>"};
-        report += QLatin1String{"<p><table width=\"100%\">"};
+        report += QLatin1StringView{"<p>"} + title + QLatin1String{"</p>"};
+        report += QLatin1StringView{"<p><table width=\"100%\">"};
         report += make_report(res, groups);
-        report += QLatin1String{"</table></p>"};
+        report += QLatin1StringView{"</table></p>"};
     }
-    report += QLatin1String{"</html>"};
+    report += QLatin1StringView{"</html>"};
     return report;
 }
 
@@ -477,7 +477,7 @@ auto consolidatedAuditLogEntries(const std::vector<ImportResultData> &res)
         return s;
     };
     std::transform(res.cbegin(), res.cend(), std::back_inserter(auditLogs), extractAndAnnotateAuditLog);
-    return AuditLogEntry{auditLogs.join(QLatin1String{"<hr>"}), Error{}};
+    return AuditLogEntry{auditLogs.join(QLatin1StringView{"<hr>"}), Error{}};
 }
 }
 

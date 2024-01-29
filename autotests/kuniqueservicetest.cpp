@@ -61,16 +61,16 @@ private Q_SLOTS:
 
         if (m_callCount == 1) {
             Q_ASSERT(args.count() == 1);
-            Q_ASSERT(args.at(0) == QLatin1String("dummy call"));
+            Q_ASSERT(args.at(0) == QLatin1StringView("dummy call"));
             m_service->setExitValue(0);
         } else if (m_callCount == 2) {
             Q_ASSERT(args.count() == 2);
-            Q_ASSERT(args.at(1) == QLatin1String("bad call"));
+            Q_ASSERT(args.at(1) == QLatin1StringView("bad call"));
             m_service->setExitValue(4);
         } else if (m_callCount == 3) {
             Q_ASSERT(args.count() == 3);
-            Q_ASSERT(args.at(1) == QLatin1String("real call"));
-            Q_ASSERT(args.at(2) == QLatin1String("second arg"));
+            Q_ASSERT(args.at(1) == QLatin1StringView("real call"));
+            Q_ASSERT(args.at(2) == QLatin1StringView("second arg"));
             m_service->setExitValue(0);
             // OK, all done, quit
             QCoreApplication::instance()->quit();

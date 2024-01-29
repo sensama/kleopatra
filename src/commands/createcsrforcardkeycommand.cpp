@@ -242,7 +242,7 @@ SaveToFileResult saveRequestToFile(const QString &filename, const QByteArray &re
 
 QUrl CreateCSRForCardKeyCommand::Private::saveRequest(const QByteArray &request)
 {
-    const QString proposedFilename = QLatin1String("request_%1.p10").arg(QDateTime::currentDateTime().toString(QStringLiteral("yyyy-MM-dd_HHmmss")));
+    const QString proposedFilename = QLatin1StringView("request_%1.p10").arg(QDateTime::currentDateTime().toString(QStringLiteral("yyyy-MM-dd_HHmmss")));
 
     while (true) {
         const QString filePath = FileDialog::getSaveFileNameEx(parentWidgetOrView(),

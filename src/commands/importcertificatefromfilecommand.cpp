@@ -154,15 +154,15 @@ void ImportCertificateFromFileCommand::doStart()
 
 static QStringList get_file_name(QWidget *parent)
 {
-    const QString certificateFilter = i18n("Certificates") + QLatin1String(" (*.asc *.cer *.cert *.crt *.der *.pem *.gpg *.p7c *.p12 *.pfx *.pgp *.kgrp)");
-    const QString anyFilesFilter = i18n("Any files") + QLatin1String(" (*)");
+    const QString certificateFilter = i18n("Certificates") + QLatin1StringView(" (*.asc *.cer *.cert *.crt *.der *.pem *.gpg *.p7c *.p12 *.pfx *.pgp *.kgrp)");
+    const QString anyFilesFilter = i18n("Any files") + QLatin1StringView(" (*)");
     QString previousDir;
     if (const KSharedConfig::Ptr config = KSharedConfig::openConfig()) {
         const KConfigGroup group(config, QStringLiteral("Import Certificate"));
         previousDir = group.readPathEntry("last-open-file-directory", QDir::homePath());
     }
     const QStringList files =
-        QFileDialog::getOpenFileNames(parent, i18n("Select Certificate File"), previousDir, certificateFilter + QLatin1String(";;") + anyFilesFilter);
+        QFileDialog::getOpenFileNames(parent, i18n("Select Certificate File"), previousDir, certificateFilter + QLatin1StringView(";;") + anyFilesFilter);
     if (!files.empty())
         if (const KSharedConfig::Ptr config = KSharedConfig::openConfig()) {
             KConfigGroup group(config, QStringLiteral("Import Certificate"));

@@ -58,7 +58,7 @@ public:
         lay->addWidget(new QLabel(QStringLiteral("\t\t<h3>") + i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>"), this));
         lay->addSpacing(10);
         lay->addWidget(new QLabel(QStringLiteral("\t\t") + i18n("Kleopatra currently supports the following card types:") + QStringLiteral("<ul><li>")
-                                      + supported.join(QLatin1String("</li><li>")) + QStringLiteral("</li></ul>"),
+                                      + supported.join(QLatin1StringView("</li><li>")) + QStringLiteral("</li></ul>"),
                                   this));
         lay->addSpacing(10);
         {

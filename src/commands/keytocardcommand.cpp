@@ -547,7 +547,7 @@ QString proposeFilename(const Subkey &subkey)
     }
     const auto shortKeyID = Formatting::prettyKeyID(key.shortKeyID());
     const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
-    const auto usage = Formatting::usageString(subkey).replace(QLatin1String{", "}, QLatin1String{"_"});
+    const auto usage = Formatting::usageString(subkey).replace(QLatin1StringView{", "}, QLatin1String{"_"});
     /* Not translated so it's better to use in tutorials etc. */
     filename = ((shortKeyID == shortSubkeyID) //
                     ? QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3"}.arg(name, shortKeyID, usage)
@@ -563,7 +563,7 @@ QString requestPrivateKeyBackupFilename(const QString &proposedFilename, QWidget
                                                   i18nc("@title:window", "Backup Secret Key"),
                                                   QStringLiteral("imp"),
                                                   proposedFilename,
-                                                  i18nc("description of filename filter", "Secret Key Backup Files") + QLatin1String{" (*.gpgsk)"});
+                                                  i18nc("description of filename filter", "Secret Key Backup Files") + QLatin1StringView{" (*.gpgsk)"});
 
     if (!filename.isEmpty()) {
         const QFileInfo fi{filename};
@@ -613,7 +613,7 @@ QString KeyToCardCommand::Private::backupKey()
 
 std::vector<QByteArray> KeyToCardCommand::Private::readSecretKeyFile()
 {
-    const auto filename = QString::fromLatin1(subkey.keyGrip()) + QLatin1String{".key"};
+    const auto filename = QString::fromLatin1(subkey.keyGrip()) + QLatin1StringView{".key"};
     const auto path = QDir{Kleo::gnupgPrivateKeysDirectory()}.filePath(filename);
 
     QFile file{path};

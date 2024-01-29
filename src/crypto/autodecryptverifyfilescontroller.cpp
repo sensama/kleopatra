@@ -496,7 +496,7 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
             std::shared_ptr<Output> output;
             QString outputFilePath;
             if (ad) {
-                if ((ad->id() == QLatin1String{"tar"}) && archiveJobsCanBeUsed(cFile.protocol)) {
+                if ((ad->id() == QLatin1StringView{"tar"}) && archiveJobsCanBeUsed(cFile.protocol)) {
                     // we don't need an output
                 } else {
                     output = ad->createOutputFromUnpackCommand(cFile.protocol, ad->stripExtension(cFile.protocol, cFile.baseName), wd);

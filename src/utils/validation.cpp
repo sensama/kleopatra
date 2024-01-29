@@ -101,7 +101,7 @@ std::shared_ptr<QValidator> Validation::email(const QString &addRX, Flags flags)
 std::shared_ptr<QValidator> Validation::pgpName(Flags flags)
 {
     // this regular expression is modeled after gnupg/g10/keygen.c:ask_user_id:
-    static const QString name_rx{QLatin1String{"[^0-9<>][^<>@]{4,}"}};
+    static const QString name_rx{QLatin1StringView{"[^0-9<>][^<>@]{4,}"}};
     return regularExpressionValidator(flags, name_rx);
 }
 
@@ -112,7 +112,7 @@ std::shared_ptr<QValidator> Validation::pgpName(const QString &addRX, Flags flag
 
 std::shared_ptr<QValidator> Validation::simpleName(Flags flags)
 {
-    static const QString name_rx{QLatin1String{"[^<>@]*"}};
+    static const QString name_rx{QLatin1StringView{"[^<>@]*"}};
     return std::shared_ptr<QValidator>{regularExpressionValidator(flags, name_rx)};
 }
 

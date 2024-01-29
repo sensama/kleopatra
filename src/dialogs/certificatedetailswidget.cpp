@@ -1125,7 +1125,7 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
             this,
             SLOT(keyListDone(GpgME::KeyListResult, std::vector<GpgME::Key>, QString, GpgME::Error)));
 
-    job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
+    job->start(QStringList() << QLatin1StringView(key.primaryFingerprint()));
 }
 
 GpgME::Key CertificateDetailsWidget::key() const

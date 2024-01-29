@@ -33,15 +33,15 @@ static const char *log_levels[] = {"none", "basic", "advanced", "expert", "guru"
 
 static int log_level_to_int(const QString &loglevel)
 {
-    if (loglevel == QLatin1String("none")) {
+    if (loglevel == QLatin1StringView("none")) {
         return 0;
-    } else if (loglevel == QLatin1String("basic")) {
+    } else if (loglevel == QLatin1StringView("basic")) {
         return 1;
-    } else if (loglevel == QLatin1String("advanced")) {
+    } else if (loglevel == QLatin1StringView("advanced")) {
         return 2;
-    } else if (loglevel == QLatin1String("expert")) {
+    } else if (loglevel == QLatin1StringView("expert")) {
         return 3;
-    } else if (loglevel == QLatin1String("guru")) {
+    } else if (loglevel == QLatin1StringView("guru")) {
         return 4;
     } else {
         // default

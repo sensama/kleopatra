@@ -127,7 +127,7 @@ void Log::setOutputDirectory(const QString &path)
     }
     d->m_outputDirectory = path;
     Q_ASSERT(!d->m_logFile);
-    const QString lfn = path + QLatin1String("/kleo-log");
+    const QString lfn = path + QLatin1StringView("/kleo-log");
     d->m_logFile = fopen(QDir::toNativeSeparators(lfn).toLocal8Bit().constData(), "a");
     Q_ASSERT(d->m_logFile);
 }

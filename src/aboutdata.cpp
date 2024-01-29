@@ -91,9 +91,9 @@ static void loadBackendVersions()
             QMetaObject::invokeMethod(qApp, [backendVersions]() {
                 auto about = KAboutData::applicationData();
                 about.setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
-                                   + QLatin1String{"<ul><li>"} //
-                                   + backendVersions.join(QLatin1String{"</li><li>"}) //
-                                   + QLatin1String{"</li></ul>"} //
+                                   + QLatin1StringView{"<ul><li>"} //
+                                   + backendVersions.join(QLatin1StringView{"</li><li>"}) //
+                                   + QLatin1StringView{"</li></ul>"} //
                                    + about.otherText());
                 KAboutData::setApplicationData(about);
             });
@@ -125,7 +125,7 @@ static void loadCustomAboutData(KAboutData *about)
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kleopatra"),
                  i18n("Kleopatra"),
-                 QLatin1String(kleopatra_version),
+                 QLatin1StringView(kleopatra_version),
                  i18n("Certificate Manager and Unified Crypto GUI"),
                  KAboutLicense::GPL,
                  i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0Dalheimer, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB\n"
@@ -140,14 +140,14 @@ AboutData::AboutData()
     for (unsigned int i = 0; i < sizeof authors / sizeof *authors; ++i) {
         addAuthor(KLocalizedString(authors[i].name).toString(),
                   KLocalizedString(authors[i].desc).toString(),
-                  QLatin1String(authors[i].email),
-                  QLatin1String(authors[i].web));
+                  QLatin1StringView(authors[i].email),
+                  QLatin1StringView(authors[i].web));
     }
     for (unsigned int i = 0; i < sizeof credits / sizeof *credits; ++i) {
         addCredit(KLocalizedString(credits[i].name).toString(),
                   KLocalizedString(credits[i].desc).toString(),
-                  QLatin1String(credits[i].email),
-                  QLatin1String(credits[i].web));
+                  QLatin1StringView(credits[i].email),
+                  QLatin1StringView(credits[i].web));
     }
 
     loadCustomAboutData(this);

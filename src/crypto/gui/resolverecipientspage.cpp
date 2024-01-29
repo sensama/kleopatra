@@ -255,7 +255,7 @@ Mailbox ResolveRecipientsPage::ItemWidget::mailbox() const
 
 void ResolveRecipientsPage::ItemWidget::selectCertificateInComboBox(const Key &key)
 {
-    m_certCombo->setCurrentIndex(m_certCombo->findData(QLatin1String(key.keyID())));
+    m_certCombo->setCurrentIndex(m_certCombo->findData(QLatin1StringView(key.keyID())));
 }
 
 void ResolveRecipientsPage::ItemWidget::addCertificateToComboBox(const GpgME::Key &key)
@@ -575,7 +575,7 @@ static QString listKeysForInfo(const std::vector<Key> &keys)
 {
     QStringList list;
     std::transform(keys.begin(), keys.end(), list.begin(), &Formatting::formatKeyLink);
-    return list.join(QLatin1String("<br/>"));
+    return list.join(QLatin1StringView("<br/>"));
 }
 
 void ResolveRecipientsPage::setAdditionalRecipientsInfo(const std::vector<Key> &recipients)

@@ -251,11 +251,11 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
              * for a proposal for the S/MIME file. */
             proposedFileName = fileNames[GpgME::OpenPGP];
             const int idx = proposedFileName.size() - 4;
-            if (proposedFileName.endsWith(QLatin1String(".asc"))) {
-                proposedFileName.replace(idx, 4, QLatin1String(".pem"));
+            if (proposedFileName.endsWith(QLatin1StringView(".asc"))) {
+                proposedFileName.replace(idx, 4, QLatin1StringView(".pem"));
             }
-            if (proposedFileName.endsWith(QLatin1String(".gpg")) || proposedFileName.endsWith(QLatin1String(".pgp"))) {
-                proposedFileName.replace(idx, 4, QLatin1String(".der"));
+            if (proposedFileName.endsWith(QLatin1StringView(".gpg")) || proposedFileName.endsWith(QLatin1String(".pgp"))) {
+                proposedFileName.replace(idx, 4, QLatin1StringView(".der"));
             }
         }
     }
@@ -270,8 +270,8 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
                                                i18nc("1 is protocol", "Export %1 Certificates", Formatting::displayName(protocol)),
                                                QStringLiteral("imp"),
                                                proposedFileName,
-                                               protocol == GpgME::OpenPGP ? i18n("OpenPGP Certificates") + QLatin1String(" (*.asc *.gpg *.pgp)")
-                                                                          : i18n("S/MIME Certificates") + QLatin1String(" (*.pem *.der)"));
+                                               protocol == GpgME::OpenPGP ? i18n("OpenPGP Certificates") + QLatin1StringView(" (*.asc *.gpg *.pgp)")
+                                                                          : i18n("S/MIME Certificates") + QLatin1StringView(" (*.pem *.der)"));
 
     if (!fname.isEmpty() && protocol == GpgME::CMS && fileNames[GpgME::OpenPGP] == fname) {
         KMessageBox::error(parentWidgetOrView(),
@@ -297,8 +297,8 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
     Q_ASSERT(backend);
     const QString fileName = fileNames[protocol];
     const bool binary = protocol == GpgME::OpenPGP
-        ? fileName.endsWith(QLatin1String(".gpg"), Qt::CaseInsensitive) || fileName.endsWith(QLatin1String(".pgp"), Qt::CaseInsensitive)
-        : fileName.endsWith(QLatin1String(".der"), Qt::CaseInsensitive);
+        ? fileName.endsWith(QLatin1StringView(".gpg"), Qt::CaseInsensitive) || fileName.endsWith(QLatin1String(".pgp"), Qt::CaseInsensitive)
+        : fileName.endsWith(QLatin1StringView(".der"), Qt::CaseInsensitive);
     std::unique_ptr<ExportJob> job(backend->publicKeyExportJob(!binary));
     Q_ASSERT(job.get());
 
@@ -311,7 +311,7 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
     QStringList fingerprints;
     fingerprints.reserve(keys.size());
     for (const Key &i : keys) {
-        fingerprints << QLatin1String(i.primaryFingerprint());
+        fingerprints << QLatin1StringView(i.primaryFingerprint());
     }
 
     const GpgME::Error err = job->start(fingerprints);

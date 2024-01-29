@@ -921,7 +921,7 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
 QString SignEncryptFilesResult::overview() const
 {
     const QString files = formatInputOutputLabel(m_input.label, m_output.label, !m_outputCreated);
-    return files + QLatin1String(": ") + makeOverview(makeResultOverview(m_sresult, m_eresult));
+    return files + QLatin1StringView(": ") + makeOverview(makeResultOverview(m_sresult, m_eresult));
 }
 
 QString SignEncryptFilesResult::details() const

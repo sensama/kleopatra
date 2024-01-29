@@ -130,7 +130,7 @@ QStringList ExportOpenPGPCertsToServerCommand::arguments() const
     result << QStringLiteral("--send-keys");
     const auto keys = d->keys();
     for (const Key &key : keys) {
-        result << QLatin1String(key.primaryFingerprint());
+        result << QLatin1StringView(key.primaryFingerprint());
     }
     return result;
 }

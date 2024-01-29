@@ -57,7 +57,7 @@ QString proposeFilename(const std::vector<Subkey> &subkeys)
         }
         const auto shortKeyID = Formatting::prettyKeyID(key.shortKeyID());
         const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
-        const auto usage = Formatting::usageString(subkey).replace(QLatin1String{", "}, QLatin1String{"_"});
+        const auto usage = Formatting::usageString(subkey).replace(QLatin1StringView{", "}, QLatin1String{"_"});
         /* Not translated so it's better to use in tutorials etc. */
         filename = QStringView{u"%1_%2_SECRET_SUBKEY_%3_%4"}.arg(name, shortKeyID, shortSubkeyID, usage);
     } else {
@@ -74,7 +74,7 @@ QString requestFilename(const std::vector<Subkey> &subkeys, const QString &propo
                                                   i18ncp("@title:window", "Export Subkey", "Export Subkeys", subkeys.size()),
                                                   QStringLiteral("imp"),
                                                   proposedFilename,
-                                                  i18nc("description of filename filter", "Secret Key Files") + QLatin1String{" (*.asc *.gpg *.pgp)"});
+                                                  i18nc("description of filename filter", "Secret Key Files") + QLatin1StringView{" (*.asc *.gpg *.pgp)"});
 
     if (!filename.isEmpty()) {
         const QFileInfo fi{filename};
@@ -94,7 +94,7 @@ QStringList getSubkeyFingerprints(const SubkeyContainer &subkeys)
 
     fingerprints.reserve(subkeys.size());
     std::transform(std::begin(subkeys), std::end(subkeys), std::back_inserter(fingerprints), [](const auto &subkey) {
-        return QLatin1String{subkey.fingerprint()} + u'!';
+        return QLatin1StringView{subkey.fingerprint()} + u'!';
     });
 
     return fingerprints;

@@ -524,7 +524,7 @@ public:
 
     void saveConfig()
     {
-        KConfigGroup conf{KSharedConfig::openConfig(), QLatin1String("CertifySettings")};
+        KConfigGroup conf{KSharedConfig::openConfig(), QLatin1StringView("CertifySettings")};
         if (!secKey().isNull()) {
             conf.writeEntry("LastKey", secKey().primaryFingerprint());
         }

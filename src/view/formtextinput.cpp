@@ -206,7 +206,7 @@ void FormTextInputBase::Private::updateAccessibleNameAndDescription()
     // Qt does not support "described-by" relations (like WCAG's "aria-describedby" relationship attribute);
     // emulate this by setting the hint text and, if the error is shown, the error message as accessible
     // description of the input field
-    const auto description = errorShown ? accessibleDescription() + QLatin1String{" "} + mErrorLabel->accessibleName() //
+    const auto description = errorShown ? accessibleDescription() + QLatin1StringView{" "} + mErrorLabel->accessibleName() //
                                         : accessibleDescription();
     if (mWidget && mWidget->accessibleDescription() != description) {
         mWidget->setAccessibleDescription(description);
@@ -218,7 +218,7 @@ void FormTextInputBase::Private::updateAccessibleNameAndDescription()
     // and its label
     QString name = annotatedIfRequired(mAccessibleName);
     if (errorShown) {
-        name += QLatin1String{", "} + invalidEntryText();
+        name += QLatin1StringView{", "} + invalidEntryText();
     };
     if (mLabel && mLabel->accessibleName() != name) {
         mLabel->setAccessibleName(name);

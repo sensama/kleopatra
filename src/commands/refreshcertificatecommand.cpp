@@ -248,15 +248,15 @@ static auto informationOnChanges(const ImportResult &result)
             details.push_back(i18n("New signatures: %1", result.newSignatures()));
         }
         if (!details.empty()) {
-            text += QLatin1String{"<br><br>"} + details.join(QLatin1String{"<br>"});
+            text += QLatin1StringView{"<br><br>"} + details.join(QLatin1String{"<br>"});
         }
     }
 
-    text = QLatin1String{"<p>"} + text + QLatin1String{"</p>"};
+    text = QLatin1StringView{"<p>"} + text + QLatin1String{"</p>"};
     if (result.numImported() > 0) {
-        text += QLatin1String{"<p>"}
+        text += QLatin1StringView{"<p>"}
             + i18np("Additionally, one new key has been retrieved.", "Additionally, %1 new keys have been retrieved.", result.numImported())
-            + QLatin1String{"</p>"};
+            + QLatin1StringView{"</p>"};
     }
 
     return text;
@@ -338,14 +338,15 @@ void RefreshCertificateCommand::Private::showOpenPGPResult()
     }
 
     QString text;
-    text += QLatin1String{"<p><strong>"} + i18nc("@info", "Result of update from keyserver, LDAP server, or Active Directory") + QLatin1String{"</strong></p>"};
+    text +=
+        QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of update from keyserver, LDAP server, or Active Directory") + QLatin1String{"</strong></p>"};
     if (receiveKeysResult.error()) {
         text += xi18nc("@info", "<para>The update failed: <message>%1</message></para>", Formatting::errorAsString(receiveKeysResult.error()));
     } else {
         text += informationOnChanges(receiveKeysResult);
     }
 
-    text += QLatin1String{"<p><strong>"} + i18nc("@info", "Result of update via Web Key Directory") + QLatin1String{"</strong></p>"};
+    text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of update via Web Key Directory") + QLatin1String{"</strong></p>"};
     if (wkdRefreshResult.error()) {
         text += xi18nc("@info", "<para>The update failed: <message>%1</message></para>", Formatting::errorAsString(wkdRefreshResult.error()));
     } else {

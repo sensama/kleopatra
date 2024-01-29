@@ -230,7 +230,7 @@ static QString collect_micalgs(const GpgME::SigningResult &result, GpgME::Protoc
     });
     if (proto == GpgME::OpenPGP)
         for (QStringList::iterator it = micalgs.begin(), end = micalgs.end(); it != end; ++it) {
-            it->prepend(QLatin1String("pgp-"));
+            it->prepend(QLatin1StringView("pgp-"));
         }
     micalgs.sort();
     micalgs.erase(std::unique(micalgs.begin(), micalgs.end()), micalgs.end());

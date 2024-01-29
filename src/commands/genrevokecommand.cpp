@@ -102,7 +102,7 @@ void GenRevokeCommand::postSuccessHook(QWidget *parentWidget)
 /* Well not much to do with GnuPGProcessCommand anymore I guess.. */
 void GenRevokeCommand::doStart()
 {
-    auto proposedFileName = ApplicationState::lastUsedExportDirectory() + u'/' + QString::fromLatin1(d->key().primaryFingerprint()) + QLatin1String{".rev"};
+    auto proposedFileName = ApplicationState::lastUsedExportDirectory() + u'/' + QString::fromLatin1(d->key().primaryFingerprint()) + QLatin1StringView{".rev"};
     while (mOutputFileName.isEmpty()) {
         mOutputFileName = QFileDialog::getSaveFileName(d->parentWidgetOrView(),
                                                        i18n("Generate revocation certificate"),
@@ -114,8 +114,8 @@ void GenRevokeCommand::doStart()
             d->finished();
             return;
         }
-        if (!mOutputFileName.endsWith(QLatin1String(".rev"))) {
-            mOutputFileName += QLatin1String(".rev");
+        if (!mOutputFileName.endsWith(QLatin1StringView(".rev"))) {
+            mOutputFileName += QLatin1StringView(".rev");
         }
         const QFileInfo fi{mOutputFileName};
         if (fi.exists()) {
@@ -146,16 +146,16 @@ void GenRevokeCommand::doStart()
             const QString line = QString::fromUtf8(proc->readLine()).trimmed();
             // Command-fd is a stable interface, while this is all kind of hacky we
             // are on a deadline :-/
-            if (line == QLatin1String("[GNUPG:] GET_BOOL gen_revoke.okay")) {
+            if (line == QLatin1StringView("[GNUPG:] GET_BOOL gen_revoke.okay")) {
                 proc->write("y\n");
-            } else if (line == QLatin1String("[GNUPG:] GET_LINE ask_revocation_reason.code")) {
+            } else if (line == QLatin1StringView("[GNUPG:] GET_LINE ask_revocation_reason.code")) {
                 proc->write("0\n");
-            } else if (line == QLatin1String("[GNUPG:] GET_LINE ask_revocation_reason.text")) {
+            } else if (line == QLatin1StringView("[GNUPG:] GET_LINE ask_revocation_reason.text")) {
                 proc->write("\n");
-            } else if (line == QLatin1String("[GNUPG:] GET_BOOL openfile.overwrite.okay")) {
+            } else if (line == QLatin1StringView("[GNUPG:] GET_BOOL openfile.overwrite.okay")) {
                 // We asked before
                 proc->write("y\n");
-            } else if (line == QLatin1String("[GNUPG:] GET_BOOL ask_revocation_reason.okay")) {
+            } else if (line == QLatin1StringView("[GNUPG:] GET_BOOL ask_revocation_reason.okay")) {
                 proc->write("y\n");
             }
         }
@@ -175,7 +175,7 @@ QStringList GenRevokeCommand::arguments() const
         QStringLiteral("-o"),
         mOutputFileName,
         QStringLiteral("--gen-revoke"),
-        QLatin1String(key.primaryFingerprint()),
+        QLatin1StringView(key.primaryFingerprint()),
     };
 }
 

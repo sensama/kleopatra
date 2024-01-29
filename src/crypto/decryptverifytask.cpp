@@ -247,10 +247,10 @@ static QString renderKey(const Key &key)
         const QString text = QStringLiteral("%1 (%2)")
                                  .arg(Formatting::prettyNameAndEMail(key).toHtmlEscaped())
                                  .arg(Formatting::prettyID(QString::fromLocal8Bit(key.primaryFingerprint()).right(16).toLatin1().constData()));
-        return renderKeyLink(QLatin1String(key.primaryFingerprint()), text);
+        return renderKeyLink(QLatin1StringView(key.primaryFingerprint()), text);
     }
 
-    return renderKeyLink(QLatin1String(key.primaryFingerprint()), Formatting::prettyID(key.primaryFingerprint()));
+    return renderKeyLink(QLatin1StringView(key.primaryFingerprint()), Formatting::prettyID(key.primaryFingerprint()));
 }
 
 static QString renderKeyEMailOnlyNameAsFallback(const Key &key)
@@ -260,7 +260,7 @@ static QString renderKeyEMailOnlyNameAsFallback(const Key &key)
     }
     const QString email = Formatting::prettyEMail(key);
     const QString user = !email.isEmpty() ? email : Formatting::prettyName(key);
-    return renderKeyLink(QLatin1String(key.primaryFingerprint()), user);
+    return renderKeyLink(QLatin1StringView(key.primaryFingerprint()), user);
 }
 
 static QString formatDate(const QDateTime &dt)
@@ -465,7 +465,7 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
         text = i18n("<b>Valid signature by %1</b>", renderKeyEMailOnlyNameAsFallback(sigs[0].key()));
         if (info.conflicts())
             text += i18n("<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used for signing.",
-                         renderKeyLink(QLatin1String(sigs[0].key().primaryFingerprint()), i18n("certificate")));
+                         renderKeyLink(QLatin1StringView(sigs[0].key().primaryFingerprint()), i18n("certificate")));
     } else {
         text = i18np("<b>Valid signature.</b>", "<b>%1 valid signatures.</b>", sigs.size());
         if (info.conflicts()) {
@@ -498,7 +498,7 @@ static QString formatSignature(const Signature &sig, const DecryptVerifyResult::
         return QString();
     }
 
-    const QString text = formatSigningInformation(sig) + QLatin1String("<br/>");
+    const QString text = formatSigningInformation(sig) + QLatin1StringView("<br/>");
     const Key key = sig.key();
 
     // Green
@@ -576,7 +576,7 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
     }
 
     if (knownRecipients.empty()) {
-        return QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) + QLatin1String("</i>");
+        return QLatin1StringView("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) + QLatin1String("</i>");
     }
 
     QString details = i18np("Recipient:", "Recipients:", numRecipients);
@@ -584,15 +584,15 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
     if (numRecipients == 1) {
         details += QLatin1Char(' ') + renderKey(knownRecipients.front());
     } else {
-        details += QLatin1String("<ul>");
+        details += QLatin1StringView("<ul>");
         for (const Key &key : knownRecipients) {
-            details += QLatin1String("<li>") + renderKey(key) + QLatin1String("</li>");
+            details += QLatin1StringView("<li>") + renderKey(key) + QLatin1String("</li>");
         }
         if (knownRecipients.size() < numRecipients) {
-            details += QLatin1String("<li><i>") + i18np("One unknown recipient", "%1 unknown recipients", numRecipients - knownRecipients.size())
-                + QLatin1String("</i></li>");
+            details += QLatin1StringView("<li><i>") + i18np("One unknown recipient", "%1 unknown recipients", numRecipients - knownRecipients.size())
+                + QLatin1StringView("</i></li>");
         }
-        details += QLatin1String("</ul>");
+        details += QLatin1StringView("</ul>");
     }
 
     return details;
@@ -637,7 +637,7 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res,
     }
 
     if (!isSigned) {
-        details += i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.") + QLatin1String("<br/>");
+        details += i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.") + QLatin1StringView("<br/>");
     }
 
     if (res.isLegacyCipherNoMDC()) {

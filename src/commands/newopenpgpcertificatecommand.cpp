@@ -93,7 +93,7 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
 
     if (keyParameters.protocol() == KeyParameters::NoProtocol) {
         const auto settings = Kleo::Settings{};
-        const KConfigGroup config{KSharedConfig::openConfig(), QLatin1String("CertificateCreationWizard")};
+        const KConfigGroup config{KSharedConfig::openConfig(), QLatin1StringView("CertificateCreationWizard")};
         // prefer the last used name and email address over the values retrieved from the system
         detailsDialog->setName(config.readEntry("NAME", QString{}));
         if (detailsDialog->name().isEmpty() && settings.prefillName()) {

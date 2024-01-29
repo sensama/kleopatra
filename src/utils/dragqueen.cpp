@@ -59,26 +59,26 @@ protected:
         // return m_source->retrieveData( format, type );
         switch (type.id()) {
         case QMetaType::QString:
-            if (format == QLatin1String("text/plain")) {
+            if (format == QLatin1StringView("text/plain")) {
                 return m_source->text();
             }
-            if (format == QLatin1String("text/html")) {
+            if (format == QLatin1StringView("text/html")) {
                 return m_source->html();
             }
             break;
         case QMetaType::QColor:
-            if (format == QLatin1String("application/x-color")) {
+            if (format == QLatin1StringView("application/x-color")) {
                 return m_source->colorData();
             }
             break;
         case QMetaType::QImage:
-            if (format == QLatin1String("application/x-qt-image")) {
+            if (format == QLatin1StringView("application/x-qt-image")) {
                 return m_source->imageData();
             }
             break;
         case QMetaType::QVariantList:
         case QMetaType::QUrl:
-            if (format == QLatin1String("text/uri-list")) {
+            if (format == QLatin1StringView("text/uri-list")) {
                 const QList<QUrl> urls = m_source->urls();
                 if (urls.size() == 1) {
                     return urls.front();

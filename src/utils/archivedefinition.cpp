@@ -57,21 +57,21 @@ void ArchiveDefinition::setInstallPath(const QString &ip)
 }
 
 // Archive Definition #N groups
-static const QLatin1String ID_ENTRY("id");
-static const QLatin1String NAME_ENTRY("Name");
-static const QLatin1String PACK_COMMAND_ENTRY("pack-command");
-static const QLatin1String PACK_COMMAND_OPENPGP_ENTRY("pack-command-openpgp");
-static const QLatin1String PACK_COMMAND_CMS_ENTRY("pack-command-cms");
-static const QLatin1String UNPACK_COMMAND_ENTRY("unpack-command");
-static const QLatin1String UNPACK_COMMAND_OPENPGP_ENTRY("unpack-command-openpgp");
-static const QLatin1String UNPACK_COMMAND_CMS_ENTRY("unpack-command-cms");
-static const QLatin1String EXTENSIONS_ENTRY("extensions");
-static const QLatin1String EXTENSIONS_OPENPGP_ENTRY("extensions-openpgp");
-static const QLatin1String EXTENSIONS_CMS_ENTRY("extensions-cms");
-static const QLatin1String FILE_PLACEHOLDER("%f");
-static const QLatin1String FILE_PLACEHOLDER_7BIT("%F");
-static const QLatin1String INSTALLPATH_PLACEHOLDER("%I");
-static const QLatin1String NULL_SEPARATED_STDIN_INDICATOR("0|");
+static const QLatin1StringView ID_ENTRY("id");
+static const QLatin1StringView NAME_ENTRY("Name");
+static const QLatin1StringView PACK_COMMAND_ENTRY("pack-command");
+static const QLatin1StringView PACK_COMMAND_OPENPGP_ENTRY("pack-command-openpgp");
+static const QLatin1StringView PACK_COMMAND_CMS_ENTRY("pack-command-cms");
+static const QLatin1StringView UNPACK_COMMAND_ENTRY("unpack-command");
+static const QLatin1StringView UNPACK_COMMAND_OPENPGP_ENTRY("unpack-command-openpgp");
+static const QLatin1StringView UNPACK_COMMAND_CMS_ENTRY("unpack-command-cms");
+static const QLatin1StringView EXTENSIONS_ENTRY("extensions");
+static const QLatin1StringView EXTENSIONS_OPENPGP_ENTRY("extensions-openpgp");
+static const QLatin1StringView EXTENSIONS_CMS_ENTRY("extensions-cms");
+static const QLatin1StringView FILE_PLACEHOLDER("%f");
+static const QLatin1StringView FILE_PLACEHOLDER_7BIT("%F");
+static const QLatin1StringView INSTALLPATH_PLACEHOLDER("%I");
+static const QLatin1StringView NULL_SEPARATED_STDIN_INDICATOR("0|");
 static const QLatin1Char NEWLINE_SEPARATED_STDIN_INDICATOR('|');
 
 namespace
@@ -110,7 +110,7 @@ static QString try_extensions(const QString &path)
     };
     static const size_t numExts = sizeof exts / sizeof *exts;
     for (unsigned int i = 0; i < numExts; ++i) {
-        const QFileInfo fi(path + QLatin1Char('.') + QLatin1String(exts[i]));
+        const QFileInfo fi(path + QLatin1Char('.') + QLatin1StringView(exts[i]));
         if (fi.exists()) {
             return fi.filePath();
         }
@@ -146,13 +146,13 @@ static void parse_command(QString cmdline,
     if (*method != ArchiveDefinition::CommandLine && cmdline.contains(FILE_PLACEHOLDER)) {
         throw ArchiveDefinitionError(id, i18n("Cannot use both %f and | in '%1'", whichCommand));
     }
-    cmdline.replace(FILE_PLACEHOLDER, QLatin1String("__files_go_here__"))
+    cmdline.replace(FILE_PLACEHOLDER, QLatin1StringView("__files_go_here__"))
         .replace(INSTALLPATH_PLACEHOLDER, QStringLiteral("__path_goes_here__"))
         .replace(FILE_PLACEHOLDER_7BIT, QStringLiteral("__file7Bit_go_here__"));
     l = KShell::splitArgs(cmdline, KShell::AbortOnMeta | KShell::TildeExpand, &errors);
     l = l.replaceInStrings(QStringLiteral("__files_go_here__"), FILE_PLACEHOLDER);
     l = l.replaceInStrings(QStringLiteral("__file7Bit_go_here__"), FILE_PLACEHOLDER_7BIT);
-    if (l.indexOf(QRegularExpression(QLatin1String(".*__path_goes_here__.*"))) >= 0) {
+    if (l.indexOf(QRegularExpression(QLatin1StringView(".*__path_goes_here__.*"))) >= 0) {
         l = l.replaceInStrings(QStringLiteral("__path_goes_here__"), ArchiveDefinition::installPath());
     }
     if (errors == KShell::BadQuoting) {
@@ -358,7 +358,7 @@ private:
              * the chars and replace them by _ to avoid completely broken
              * folder names when unpacking. This is only relevant for the
              * unpacked folder and does not effect files in the archive. */
-            const QRegularExpression non7Bit(QLatin1String(R"([^\x{0000}-\x{007F}])"));
+            const QRegularExpression non7Bit(QLatin1StringView(R"([^\x{0000}-\x{007F}])"));
             QString underscore_filename = file;
             underscore_filename.replace(non7Bit, QStringLiteral("_"));
             copy.replaceInStrings(FILE_PLACEHOLDER_7BIT, underscore_filename);

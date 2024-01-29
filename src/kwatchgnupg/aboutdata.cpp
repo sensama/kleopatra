@@ -39,7 +39,7 @@ AboutData::AboutData()
     for (unsigned int i = 0; i < sizeof authors / sizeof *authors; ++i) {
         addAuthor(KLocalizedString(authors[i].name).toString(),
                   KLocalizedString(authors[i].desc).toString(),
-                  QLatin1String(authors[i].email),
-                  QLatin1String(authors[i].web));
+                  QLatin1StringView(authors[i].email),
+                  QLatin1StringView(authors[i].web));
     }
 }

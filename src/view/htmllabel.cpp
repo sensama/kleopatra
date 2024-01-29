@@ -37,7 +37,7 @@ public:
 
 void HtmlLabel::Private::updateText(const QString &newText)
 {
-    static const QString styleTemplate{QLatin1String{"<style type=\"text/css\">a {color: %1;}</style>"}};
+    static const QString styleTemplate{QLatin1StringView{"<style type=\"text/css\">a {color: %1;}</style>"}};
 
     if (newText.isEmpty() && q->text().isEmpty()) {
         return;

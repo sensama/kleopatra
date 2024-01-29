@@ -232,8 +232,8 @@ void ResultPage::slotSaveRequestToFile()
     if (fileName.isEmpty()) {
         return;
     }
-    if (!fileName.endsWith(QLatin1String(".p10"), Qt::CaseInsensitive)) {
-        fileName += QLatin1String(".p10");
+    if (!fileName.endsWith(QLatin1StringView(".p10"), Qt::CaseInsensitive)) {
+        fileName += QLatin1StringView(".p10");
     }
     QFile src(QUrl(url()).toLocalFile());
     if (!src.copy(fileName))
@@ -282,7 +282,7 @@ void ResultPage::slotSendCertificateByEMail()
     }
     auto cmd = new ExportCertificateCommand(key());
     connect(cmd, &ExportCertificateCommand::finished, this, &ResultPage::slotSendCertificateByEMailContinuation);
-    cmd->setOpenPGPFileName(tmpDir().absoluteFilePath(fingerprint() + QLatin1String(".asc")));
+    cmd->setOpenPGPFileName(tmpDir().absoluteFilePath(fingerprint() + QLatin1StringView(".asc")));
     cmd->start();
     exportCertificateCommand = cmd;
 }

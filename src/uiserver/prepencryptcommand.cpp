@@ -109,7 +109,7 @@ void PrepEncryptCommand::Private::slotRecipientsResolved()
     QPointer<Private> that(this);
 
     try {
-        q->sendStatus("PROTOCOL", QLatin1String(controller->protocolAsString()));
+        q->sendStatus("PROTOCOL", QLatin1StringView(controller->protocolAsString()));
         q->registerMemento(NewSignEncryptEMailController::mementoName(), make_typed_memento(controller));
         q->done();
         return;

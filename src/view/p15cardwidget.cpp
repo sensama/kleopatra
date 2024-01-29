@@ -111,7 +111,7 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
     /* Only do auto import from LDAP */
     auto conf = QGpgME::cryptoConfig();
     Q_ASSERT(conf);
-    if (!Settings().alwaysSearchCardOnKeyserver() && !Kleo::keyserver().startsWith(QLatin1String{"ldap"})) {
+    if (!Settings().alwaysSearchCardOnKeyserver() && !Kleo::keyserver().startsWith(QLatin1StringView{"ldap"})) {
         return;
     }
     mStatusLabel->setText(i18n("Searching in directory service..."));

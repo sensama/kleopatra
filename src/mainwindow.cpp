@@ -216,7 +216,7 @@ public:
                                                              KStandardGuiItem_close(),
                                                              KStandardGuiItem_quit(),
                                                              KStandardGuiItem::cancel(),
-                                                             QLatin1String("really-quit-") + app.toLower());
+                                                             QLatin1StringView("really-quit-") + app.toLower());
         if (rc == KMessageBox::Cancel) {
             return;
         }

@@ -188,7 +188,7 @@ void ImportPaperKeyCommand::doStart()
 
     auto exportJob = QGpgME::openpgp()->publicKeyExportJob();
     connect(exportJob, &QGpgME::ExportJob::result, this, &ImportPaperKeyCommand::exportResult);
-    exportJob->start(QStringList() << QLatin1String(d->key().primaryFingerprint()));
+    exportJob->start(QStringList() << QLatin1StringView(d->key().primaryFingerprint()));
 }
 
 QString ImportPaperKeyCommand::errorCaption() const

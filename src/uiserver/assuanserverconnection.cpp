@@ -1429,10 +1429,10 @@ AssuanCommand::Mode AssuanCommand::checkMode() const
     }
 
     const QString modeString = option("mode").toString().toLower();
-    if (modeString == QLatin1String("filemanager")) {
+    if (modeString == QLatin1StringView("filemanager")) {
         return FileManager;
     }
-    if (modeString == QLatin1String("email")) {
+    if (modeString == QLatin1StringView("email")) {
         return EMail;
     }
     throw Exception(makeError(GPG_ERR_INV_ARG), i18n("invalid mode: \"%1\"", modeString));
@@ -1466,10 +1466,10 @@ GpgME::Protocol AssuanCommand::checkProtocol(Mode mode, int options) const
     }
 
     const QString protocolString = option("protocol").toString().toLower();
-    if (protocolString == QLatin1String("openpgp")) {
+    if (protocolString == QLatin1StringView("openpgp")) {
         return GpgME::OpenPGP;
     }
-    if (protocolString == QLatin1String("cms")) {
+    if (protocolString == QLatin1StringView("cms")) {
         return GpgME::CMS;
     }
     throw Exception(makeError(GPG_ERR_INV_ARG), i18n("invalid protocol \"%1\"", protocolString));

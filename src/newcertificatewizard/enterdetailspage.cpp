@@ -59,10 +59,10 @@ static void set_tab_order(const QList<QWidget *> &wl)
 
 static QString pgpLabel(const QString &attr)
 {
-    if (attr == QLatin1String("NAME")) {
+    if (attr == QLatin1StringView("NAME")) {
         return i18n("Name");
     }
-    if (attr == QLatin1String("EMAIL")) {
+    if (attr == QLatin1StringView("EMAIL")) {
         return i18n("EMail");
     }
     return QString();
@@ -257,7 +257,7 @@ void EnterDetailsPage::registerDialogPropertiesAsFields()
     for (unsigned int i = mo->propertyOffset(), end = i + mo->propertyCount(); i != end; ++i) {
         const QMetaProperty mp = mo->property(i);
         if (mp.isValid()) {
-            registerField(QLatin1String(mp.name()), dialog, mp.name(), SIGNAL(accepted()));
+            registerField(QLatin1StringView(mp.name()), dialog, mp.name(), SIGNAL(accepted()));
         }
     }
 }
@@ -372,18 +372,18 @@ void EnterDetailsPage::updateForm()
         const QString preset = savedValues.value(attr, config.readEntry(attr, QString()));
         const bool required = key.endsWith(QLatin1Char('!'));
         const bool readonly = config.isEntryImmutable(attr);
-        const QString label = config.readEntry(attr + QLatin1String("_label"), attributeLabel(attr, pgp()));
-        const QString regex = config.readEntry(attr + QLatin1String("_regex"));
-        const QString placeholder = config.readEntry(attr + QLatin1String{"_placeholder"});
+        const QString label = config.readEntry(attr + QLatin1StringView("_label"), attributeLabel(attr, pgp()));
+        const QString regex = config.readEntry(attr + QLatin1StringView("_regex"));
+        const QString placeholder = config.readEntry(attr + QLatin1StringView{"_placeholder"});
 
         int row;
         bool known = true;
         std::shared_ptr<QValidator> validator;
-        if (attr == QLatin1String("EMAIL")) {
+        if (attr == QLatin1StringView("EMAIL")) {
             row = row_index_of(ui->emailLE, ui->gridLayout);
             validator = regex.isEmpty() ? Validation::email() : Validation::email(regex);
-        } else if (attr == QLatin1String("NAME") || attr == QLatin1String("CN")) {
-            if ((pgp() && attr == QLatin1String("CN")) || (!pgp() && attr == QLatin1String("NAME"))) {
+        } else if (attr == QLatin1StringView("NAME") || attr == QLatin1String("CN")) {
+            if ((pgp() && attr == QLatin1StringView("CN")) || (!pgp() && attr == QLatin1String("NAME"))) {
                 continue;
             }
             if (pgp()) {
@@ -443,7 +443,7 @@ QString EnterDetailsPage::cmsDN() const
             continue;
         }
         QString attr = attributeFromKey(it->attr);
-        if (attr == QLatin1String("EMAIL")) {
+        if (attr == QLatin1StringView("EMAIL")) {
             continue;
         }
         if (const char *const oid = oidForAttributeName(attr)) {

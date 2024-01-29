@@ -20,11 +20,11 @@
 QString ApplicationState::lastUsedExportDirectory()
 {
     QString ret;
-    const KConfigGroup stateConfig{KSharedConfig::openStateConfig(), QLatin1String("Export")};
+    const KConfigGroup stateConfig{KSharedConfig::openStateConfig(), QLatin1StringView("Export")};
     ret = stateConfig.readEntry("LastDirectory");
     if (ret.isEmpty()) {
         // try the normal config for backward compatibility
-        const KConfigGroup config{KSharedConfig::openConfig(), QLatin1String("ExportDialog")};
+        const KConfigGroup config{KSharedConfig::openConfig(), QLatin1StringView("ExportDialog")};
         ret = config.readEntry("LastDirectory");
     }
     return ret.isEmpty() ? QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) : ret;
@@ -33,6 +33,6 @@ QString ApplicationState::lastUsedExportDirectory()
 void ApplicationState::setLastUsedExportDirectory(const QString &path)
 {
     const QFileInfo fi{path};
-    KConfigGroup stateConfig{KSharedConfig::openStateConfig(), QLatin1String("Export")};
+    KConfigGroup stateConfig{KSharedConfig::openStateConfig(), QLatin1StringView("Export")};
     stateConfig.writeEntry("LastDirectory", fi.isDir() ? fi.absoluteFilePath() : fi.absolutePath());
 }

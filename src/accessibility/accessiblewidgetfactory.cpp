@@ -28,7 +28,7 @@ QAccessibleInterface *Kleo::accessibleWidgetFactory(const QString &classname, QO
     if (classname == QString::fromLatin1(Kleo::HtmlLabel::staticMetaObject.className())
         || classname == QString::fromLatin1(Kleo::UrlLabel::staticMetaObject.className())) {
         iface = new AccessibleRichTextLabel{widget};
-    } else if (classname == QLatin1String("QLabel") && Kleo::representAsAccessibleValueWidget(widget)) {
+    } else if (classname == QLatin1StringView("QLabel") && Kleo::representAsAccessibleValueWidget(widget)) {
         iface = new AccessibleValueLabel{widget};
     }
 

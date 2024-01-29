@@ -261,11 +261,11 @@ std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_de
     const QFileInfo fi(outputFileName(filename));
     QString extension = fi.completeSuffix();
 
-    if (extension == QLatin1String("out")) { // added by outputFileName() -> useless
+    if (extension == QLatin1StringView("out")) { // added by outputFileName() -> useless
         return std::shared_ptr<ArchiveDefinition>();
     }
 
-    if (extension.endsWith(QLatin1String(".out"))) { // added by outputFileName() -> remove
+    if (extension.endsWith(QLatin1StringView(".out"))) { // added by outputFileName() -> remove
         extension.chop(4);
     }
 

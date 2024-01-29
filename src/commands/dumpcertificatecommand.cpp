@@ -239,7 +239,7 @@ void DumpCertificateCommand::Private::init()
     });
 
     if (!key().isNull()) {
-        process << gpgSmPath() << QStringLiteral("--dump-cert") << QLatin1String(key().primaryFingerprint());
+        process << gpgSmPath() << QStringLiteral("--dump-cert") << QLatin1StringView(key().primaryFingerprint());
     }
 }
 
@@ -331,7 +331,7 @@ void DumpCertificateCommand::Private::slotProcessFinished(int code, QProcess::Ex
                                i18n("The GpgSM process that tried to dump the certificate "
                                     "ended prematurely because of an unexpected error. "
                                     "Please check the output of gpgsm --dump-cert %1 for details.",
-                                    QLatin1String(key().primaryFingerprint())),
+                                    QLatin1StringView(key().primaryFingerprint())),
                                i18nc("@title:window", "Dump Certificate Error"));
         else if (code)
             KMessageBox::error(dialog,

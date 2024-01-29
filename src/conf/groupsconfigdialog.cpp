@@ -60,14 +60,14 @@ private:
 
 void GroupsConfigDialog::Private::saveLayout()
 {
-    KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1String("GroupsConfigDialog"));
+    KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1StringView("GroupsConfigDialog"));
     configGroup.writeEntry("Size", q->size());
     configGroup.sync();
 }
 
 void GroupsConfigDialog::Private::restoreLayout(const QSize &defaultSize)
 {
-    const KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1String("GroupsConfigDialog"));
+    const KConfigGroup configGroup(KSharedConfig::openStateConfig(), QLatin1StringView("GroupsConfigDialog"));
     const QSize size = configGroup.readEntry("Size", defaultSize);
     if (size.isValid()) {
         q->resize(size);

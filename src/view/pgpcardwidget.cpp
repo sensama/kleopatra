@@ -285,7 +285,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 
     mIs21 = card->appVersion() >= 0x0201;
     const QString manufacturer = QString::fromStdString(card->manufacturer());
-    const bool manufacturerIsUnknown = manufacturer.isEmpty() || manufacturer == QLatin1String("unknown");
+    const bool manufacturerIsUnknown = manufacturer.isEmpty() || manufacturer == QLatin1StringView("unknown");
     mVersionLabel->setText(
         manufacturerIsUnknown
             ? i18nc("Placeholder is a version number", "Unknown OpenPGP v%1 card", version)
@@ -434,7 +434,7 @@ void PGPCardWidget::changeNameRequested()
             KMessageBox::error(this, i18nc("@info", "The \"<\" character may not be used."));
             continue;
         }
-        if (text.contains(QLatin1String("  "))) {
+        if (text.contains(QLatin1StringView("  "))) {
             KMessageBox::error(this, i18nc("@info", "Double spaces are not allowed"));
             continue;
         }

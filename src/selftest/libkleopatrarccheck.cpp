@@ -53,7 +53,7 @@ public:
                                "<para>Kleopatra detected the following errors in the libkleopatrarc configuration:</para>"
                                "%1",
                                QStringLiteral("%1"))
-                            .arg(QStringLiteral("<ol><li>") + errors.join(QLatin1String("</li><li>")) + QStringLiteral("</li></ol>"));
+                            .arg(QStringLiteral("<ol><li>") + errors.join(QLatin1StringView("</li><li>")) + QStringLiteral("</li></ol>"));
     }
 
     ///* reimp */ bool canFixAutomatically() const { return false; }

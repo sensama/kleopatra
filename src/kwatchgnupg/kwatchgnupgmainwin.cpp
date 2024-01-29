@@ -153,7 +153,7 @@ void KWatchGnuPGMainWindow::setGnuPGConfig()
         {
             QGpgME::CryptoConfigEntry *const entry = cconfig->entry(comp->name(), QStringLiteral("log-file"));
             if (entry) {
-                entry->setStringValue(QLatin1String("socket://") + config.readEntry("Socket", WATCHGNUPGSOCKET));
+                entry->setStringValue(QLatin1StringView("socket://") + config.readEntry("Socket", WATCHGNUPGSOCKET));
                 logclients << QStringLiteral("%1 (%2)").arg(*it, comp->description());
             }
         }

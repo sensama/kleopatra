@@ -27,7 +27,7 @@ void UrlLabel::setUrl(const QUrl &url, const QString &text)
 {
     // we prepend a zero-width-space character to work around a bug in QLabel::focusNextPrevChild(false)
     // which makes it impossible to leave the label with Shift+Tab if the text starts with a link
-    static const QString templateString{QLatin1String{"&#8203;<a href=\"%1\">%2</a>"}};
+    static const QString templateString{QLatin1StringView{"&#8203;<a href=\"%1\">%2</a>"}};
 
     if (url.isEmpty()) {
         HtmlLabel::setHtml({});

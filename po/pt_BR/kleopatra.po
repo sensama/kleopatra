@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"POT-Creation-Date: 2024-01-30 00:37+0000\n"
 "PO-Revision-Date: 2023-07-05 18:09-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -632,7 +632,7 @@ msgstr "A senha foi alterada com sucesso"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:268 src/view/netkeywidget.cpp:320
+#: src/view/netkeywidget.cpp:264 src/view/netkeywidget.cpp:316
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Não foi possível encontrar o cartão com chip com o número de série: %1"
@@ -1937,7 +1937,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Não foi possível abrir o arquivo %1 para leitura: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:266
 #, kde-format
 msgid "Certificates"
 msgstr "Certificados"
@@ -2990,7 +2990,7 @@ msgstr[1] ""
 
 #: src/commands/refreshcertificatecommand.cpp:287
 #: src/commands/refreshcertificatecommand.cpp:321
-#: src/commands/refreshcertificatecommand.cpp:355
+#: src/commands/refreshcertificatecommand.cpp:356
 #, fuzzy, kde-format
 #| msgid "&Update"
 msgctxt "@title:window"
@@ -3022,7 +3022,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/refreshcertificatecommand.cpp:335
-#: src/commands/refreshcertificatecommand.cpp:366
+#: src/commands/refreshcertificatecommand.cpp:367
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Update Available"
@@ -3030,14 +3030,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Atualização disponível"
 
-#: src/commands/refreshcertificatecommand.cpp:341
+#: src/commands/refreshcertificatecommand.cpp:342
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:343
-#: src/commands/refreshcertificatecommand.cpp:350
+#: src/commands/refreshcertificatecommand.cpp:344
+#: src/commands/refreshcertificatecommand.cpp:351
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3047,13 +3047,13 @@ msgid "<para>The update failed: <message>%1</message></para>"
 msgstr ""
 "<para>Falha ao salvar a solicitação.</para><para><message>%1</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:348
+#: src/commands/refreshcertificatecommand.cpp:349
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:363
+#: src/commands/refreshcertificatecommand.cpp:364
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3221,7 +3221,7 @@ msgstr ""
 
 #: src/commands/revokecertificationcommand.cpp:83
 #: src/commands/revokecertificationcommand.cpp:97
-#: src/dialogs/certificatedetailswidget.cpp:640
+#: src/dialogs/certificatedetailswidget.cpp:641
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -3953,7 +3953,7 @@ msgid "Edit"
 msgstr "Editar"
 
 #: src/conf/groupsconfigwidget.cpp:196
-#: src/dialogs/deletecertificatesdialog.cpp:126
+#: src/dialogs/deletecertificatesdialog.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -6519,7 +6519,7 @@ msgid "Revoke Certifications"
 msgstr "Revogar certificação"
 
 #: src/dialogs/certificatedetailswidget.cpp:244
-#: src/dialogs/certificatedetailswidget.cpp:636
+#: src/dialogs/certificatedetailswidget.cpp:637
 #, fuzzy, kde-format
 #| msgid "Revoke this User ID"
 msgctxt "@action:button"
@@ -6718,7 +6718,7 @@ msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "novo e-mail"
 
-#: src/dialogs/certificatedetailswidget.cpp:634
+#: src/dialogs/certificatedetailswidget.cpp:635
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6732,20 +6732,20 @@ msgstr ""
 "<para>Ocorreu um erro ao tentar adicionar o id do usuário: <message>%1</"
 "message></para>"
 
-#: src/dialogs/certificatedetailswidget.cpp:821
+#: src/dialogs/certificatedetailswidget.cpp:822
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:830
+#: src/dialogs/certificatedetailswidget.cpp:831
 #, fuzzy, kde-format
 #| msgid "Enter User ID"
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "Inserir IDs do usuário"
 
-#: src/dialogs/certificatedetailswidget.cpp:831
+#: src/dialogs/certificatedetailswidget.cpp:832
 #, fuzzy, kde-format
 #| msgid "Enter User ID"
 msgctxt "@action:inmenu"
@@ -6754,14 +6754,14 @@ msgid_plural "Certify User IDs..."
 msgstr[0] "Inserir IDs do usuário"
 msgstr[1] "Inserir IDs do usuário"
 
-#: src/dialogs/certificatedetailswidget.cpp:838
+#: src/dialogs/certificatedetailswidget.cpp:839
 #, fuzzy, kde-format
 #| msgid "Revoke Certification..."
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "Revogar certificação..."
 
-#: src/dialogs/certificatedetailswidget.cpp:839
+#: src/dialogs/certificatedetailswidget.cpp:840
 #, fuzzy, kde-format
 #| msgid "Revoke Certification..."
 msgctxt "@action:inmenu"
@@ -6770,103 +6770,103 @@ msgid_plural "Revoke Certifications..."
 msgstr[0] "Revogar certificação..."
 msgstr[1] "Revogar certificação..."
 
-#: src/dialogs/certificatedetailswidget.cpp:848
+#: src/dialogs/certificatedetailswidget.cpp:849
 #, fuzzy, kde-format
 #| msgid "Publish on Server..."
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "Publicar no servidor..."
 
-#: src/dialogs/certificatedetailswidget.cpp:863
+#: src/dialogs/certificatedetailswidget.cpp:864
 #, fuzzy, kde-format
 #| msgid "Revoke this User ID"
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "Revogar este ID de Usuário"
 
-#: src/dialogs/certificatedetailswidget.cpp:909
+#: src/dialogs/certificatedetailswidget.cpp:910
 #, kde-format
 msgid "never"
 msgstr "nunca"
 
-#: src/dialogs/certificatedetailswidget.cpp:911
+#: src/dialogs/certificatedetailswidget.cpp:912
 #, kde-format
 msgid "Signing"
 msgstr "Assinatura"
 
-#: src/dialogs/certificatedetailswidget.cpp:912
-#: src/dialogs/certificatedetailswidget.cpp:916
+#: src/dialogs/certificatedetailswidget.cpp:913
+#: src/dialogs/certificatedetailswidget.cpp:917
 #, kde-format
 msgid "First message"
 msgstr "Primeira mensagem"
 
-#: src/dialogs/certificatedetailswidget.cpp:913
-#: src/dialogs/certificatedetailswidget.cpp:917
+#: src/dialogs/certificatedetailswidget.cpp:914
+#: src/dialogs/certificatedetailswidget.cpp:918
 #, kde-format
 msgid "Last message"
 msgstr "Última mensagem"
 
-#: src/dialogs/certificatedetailswidget.cpp:914
-#: src/dialogs/certificatedetailswidget.cpp:918
+#: src/dialogs/certificatedetailswidget.cpp:915
+#: src/dialogs/certificatedetailswidget.cpp:919
 #, kde-format
 msgid "Message count"
 msgstr "Contagem de mensagens"
 
-#: src/dialogs/certificatedetailswidget.cpp:915
+#: src/dialogs/certificatedetailswidget.cpp:916
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Encryption"
 msgstr "Criptografia"
 
-#: src/dialogs/certificatedetailswidget.cpp:950
+#: src/dialogs/certificatedetailswidget.cpp:951
 #, kde-format
 msgid "Updating..."
 msgstr "Atualizando..."
 
-#: src/dialogs/certificatedetailswidget.cpp:990
+#: src/dialogs/certificatedetailswidget.cpp:991
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1007
+#: src/dialogs/certificatedetailswidget.cpp:1008
 #, kde-format
 msgid "Common Name"
 msgstr "Nome comum"
 
-#: src/dialogs/certificatedetailswidget.cpp:1008
+#: src/dialogs/certificatedetailswidget.cpp:1009
 #, kde-format
 msgid "Organization"
 msgstr "Organização"
 
-#: src/dialogs/certificatedetailswidget.cpp:1009
+#: src/dialogs/certificatedetailswidget.cpp:1010
 #, kde-format
 msgid "Street"
 msgstr "Rua"
 
-#: src/dialogs/certificatedetailswidget.cpp:1010
+#: src/dialogs/certificatedetailswidget.cpp:1011
 #, kde-format
 msgid "City"
 msgstr "Cidade"
 
-#: src/dialogs/certificatedetailswidget.cpp:1011
+#: src/dialogs/certificatedetailswidget.cpp:1012
 #, kde-format
 msgid "State"
 msgstr "Estado"
 
-#: src/dialogs/certificatedetailswidget.cpp:1012
+#: src/dialogs/certificatedetailswidget.cpp:1013
 #, kde-format
 msgid "Country"
 msgstr "País"
 
-#: src/dialogs/certificatedetailswidget.cpp:1040
+#: src/dialogs/certificatedetailswidget.cpp:1041
 #, fuzzy, kde-format
 #| msgid "Please enter a name or email address..."
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr "Digite um nome ou endereço de e-mail..."
 
-#: src/dialogs/certificatedetailswidget.cpp:1049
+#: src/dialogs/certificatedetailswidget.cpp:1050
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgid "The issuer certificate could not be found locally."
@@ -7202,12 +7202,12 @@ msgstr "Sucesso na alteração da confiança na certificação"
 msgid "Owner trust set successfully."
 msgstr "O PIN foi definido com sucesso."
 
-#: src/dialogs/deletecertificatesdialog.cpp:91
+#: src/dialogs/deletecertificatesdialog.cpp:90
 #, kde-format
 msgid "These are the certificates you have selected for deletion:"
 msgstr "Estes são os certificados selecionado para remoção:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:93
+#: src/dialogs/deletecertificatesdialog.cpp:92
 #, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
@@ -7216,7 +7216,7 @@ msgstr ""
 "Estes certificados serão excluídos mesmo que você <b>não</b> os selecionou "
 "explicitamente (<a href=\"whatsthis://\">Porque?</a>):"
 
-#: src/dialogs/deletecertificatesdialog.cpp:114
+#: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -7239,7 +7239,7 @@ msgstr ""
 "certificados: quando você exclui a pasta, você exclui o seu conteúdo também."
 "</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:191
+#: src/dialogs/deletecertificatesdialog.cpp:190
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7260,7 +7260,7 @@ msgstr[1] ""
 "passadas e criptografadas para o certificado e, por este motivo, eles não "
 "deverão ser excluídos."
 
-#: src/dialogs/deletecertificatesdialog.cpp:205
+#: src/dialogs/deletecertificatesdialog.cpp:204
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7281,7 +7281,7 @@ msgstr[1] ""
 "passadas e criptografadas para o certificado e, por este motivo, eles não "
 "deverão ser excluídos."
 
-#: src/dialogs/deletecertificatesdialog.cpp:220
+#: src/dialogs/deletecertificatesdialog.cpp:219
 #, fuzzy, kde-format
 #| msgid "Secret Key Deletion"
 msgctxt "@title:window"
@@ -7370,7 +7370,7 @@ msgstr ""
 msgid "group keys"
 msgstr "Chaves do grupo:"
 
-#: src/dialogs/editgroupdialog.cpp:351
+#: src/dialogs/editgroupdialog.cpp:345
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
@@ -7474,13 +7474,13 @@ msgstr ""
 "Será solicitada uma senha para proteger esse arquivo durante a geração da "
 "chave."
 
-#: src/dialogs/groupdetailsdialog.cpp:129
+#: src/dialogs/groupdetailsdialog.cpp:128
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Details"
 msgstr "Detalhes do grupo"
 
-#: src/dialogs/groupdetailsdialog.cpp:142
+#: src/dialogs/groupdetailsdialog.cpp:141
 #, kde-format
 msgid "Note: This group is defined in the configuration files of gpg."
 msgstr "Nota: Este grupo é definido nos arquivos de configuração do GPG."
@@ -7522,14 +7522,14 @@ msgstr "Procurar no servidor"
 msgid "Import"
 msgstr "Importar"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:280
+#: src/dialogs/lookupcertificatesdialog.cpp:276
 #, fuzzy, kde-kuit-format
 #| msgid "Please enter a name or email address..."
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
 msgstr "Digite um nome ou endereço de e-mail..."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:282
+#: src/dialogs/lookupcertificatesdialog.cpp:278
 #, fuzzy, kde-kuit-format
 #| msgid "Please enter a name or email address..."
 msgctxt "@info"
@@ -8069,7 +8069,7 @@ msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "desconhecida"
 
-#: src/dialogs/subkeyswidget.cpp:367
+#: src/dialogs/subkeyswidget.cpp:369
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
@@ -8231,7 +8231,7 @@ msgid ""
 "the certifications for details."
 msgstr "Revogar a certificação do certificado selecionado"
 
-#: src/dialogs/weboftrustwidget.cpp:338
+#: src/dialogs/weboftrustwidget.cpp:339
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8241,7 +8241,7 @@ msgstr ""
 "<para>Ocorreu um erro na tentativa de carregar as certificações: <message>"
 "%1</message></para>"
 
-#: src/dialogs/weboftrustwidget.cpp:341
+#: src/dialogs/weboftrustwidget.cpp:342
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -11798,13 +11798,13 @@ msgstr "Descarregar cache da CRL"
 msgid "Import CRL From File..."
 msgstr "Importar CRL do arquivo..."
 
-#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:538
 #, fuzzy, kde-format
 #| msgid "Hierarchical Certificate List"
 msgid "Hierarchical list of certificates"
 msgstr "Lista hierárquica de certificados"
 
-#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:538
 #, fuzzy, kde-format
 #| msgid "With certificate:"
 msgid "List of certificates"
@@ -11869,42 +11869,42 @@ msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Alterar PIN do NKS"
 
-#: src/view/netkeywidget.cpp:167 src/view/netkeywidget.cpp:235
+#: src/view/netkeywidget.cpp:167 src/view/netkeywidget.cpp:231
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Alterar PIN do SigG"
 
-#: src/view/netkeywidget.cpp:220
+#: src/view/netkeywidget.cpp:216
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "Cartão NetKey v%1"
 
-#: src/view/netkeywidget.cpp:233 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:229 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "Definir PIN do SigG"
 
-#: src/view/netkeywidget.cpp:246
+#: src/view/netkeywidget.cpp:242
 #, kde-format
 msgid "Error"
 msgstr "Erro"
 
-#: src/view/netkeywidget.cpp:306
+#: src/view/netkeywidget.cpp:302
 #, kde-format
 msgid "Select Key"
 msgstr "Selecionar chave"
 
-#: src/view/netkeywidget.cpp:307
+#: src/view/netkeywidget.cpp:303
 #, fuzzy, kde-format
 #| msgid "Create a new key pair or certificate signing request"
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
 msgstr "Criar um novo par de chaves ou um pedido de assinatura do certificado"
 
-#: src/view/netkeywidget.cpp:325
+#: src/view/netkeywidget.cpp:321
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "

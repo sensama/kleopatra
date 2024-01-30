@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-26 00:37+0000\n"
+"POT-Creation-Date: 2024-01-30 00:37+0000\n"
 "PO-Revision-Date: 2024-01-25 05:57+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -595,7 +595,7 @@ msgstr "საკვანძო ფრაზა წარმატებით 
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:268 src/view/netkeywidget.cpp:320
+#: src/view/netkeywidget.cpp:264 src/view/netkeywidget.cpp:316
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "შეცდომა ჭკვიანი ბარათის პოვნისას სერიული ნომრით: %1"
@@ -1848,7 +1848,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "ფაილის (%1) წასაკითხად გახსნის შეცდომა: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:244
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:266
 #, kde-format
 msgid "Certificates"
 msgstr "სერტიფიკატები"
@@ -2856,7 +2856,7 @@ msgstr[1] "დამატებით მიღებულია %1 ახა�
 
 #: src/commands/refreshcertificatecommand.cpp:287
 #: src/commands/refreshcertificatecommand.cpp:321
-#: src/commands/refreshcertificatecommand.cpp:355
+#: src/commands/refreshcertificatecommand.cpp:356
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
@@ -2889,13 +2889,13 @@ msgstr ""
 "para><para><message>%2</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:335
-#: src/commands/refreshcertificatecommand.cpp:366
+#: src/commands/refreshcertificatecommand.cpp:367
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "განახლების შეცდომა"
 
-#: src/commands/refreshcertificatecommand.cpp:341
+#: src/commands/refreshcertificatecommand.cpp:342
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
@@ -2903,20 +2903,20 @@ msgstr ""
 "გასაღებების სერვერიდან, LDAP სერვერიდან ან Active Directory-ის სერვერიდან "
 "განახლების შედეგი"
 
-#: src/commands/refreshcertificatecommand.cpp:343
-#: src/commands/refreshcertificatecommand.cpp:350
+#: src/commands/refreshcertificatecommand.cpp:344
+#: src/commands/refreshcertificatecommand.cpp:351
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
 msgstr "<para>განახლება ჩავარდა: <message>%1</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:348
+#: src/commands/refreshcertificatecommand.cpp:349
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr "ვებ-გასაღებების კატალოგიდან განახლების შედეგი"
 
-#: src/commands/refreshcertificatecommand.cpp:363
+#: src/commands/refreshcertificatecommand.cpp:364
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3077,7 +3077,7 @@ msgstr ""
 
 #: src/commands/revokecertificationcommand.cpp:83
 #: src/commands/revokecertificationcommand.cpp:97
-#: src/dialogs/certificatedetailswidget.cpp:640
+#: src/dialogs/certificatedetailswidget.cpp:641
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -3778,7 +3778,7 @@ msgid "Edit"
 msgstr "ჩასწორება"
 
 #: src/conf/groupsconfigwidget.cpp:196
-#: src/dialogs/deletecertificatesdialog.cpp:126
+#: src/dialogs/deletecertificatesdialog.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -6242,7 +6242,7 @@ msgid "Revoke Certifications"
 msgstr "სერტიფიცირებების გაუქმება"
 
 #: src/dialogs/certificatedetailswidget.cpp:244
-#: src/dialogs/certificatedetailswidget.cpp:636
+#: src/dialogs/certificatedetailswidget.cpp:637
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
@@ -6423,7 +6423,7 @@ msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "ელფოსტის გარეშე"
 
-#: src/dialogs/certificatedetailswidget.cpp:634
+#: src/dialogs/certificatedetailswidget.cpp:635
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6433,19 +6433,19 @@ msgstr ""
 "<para>მართლა გნებავთ, გააუქმოთ მომხმარებლის ID<nl/><emphasis>%1</emphasis> ?"
 "</para>"
 
-#: src/dialogs/certificatedetailswidget.cpp:821
+#: src/dialogs/certificatedetailswidget.cpp:822
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr "როგორც ძირითადი მომხმარებლის ID-ის, მონიშვნა"
 
-#: src/dialogs/certificatedetailswidget.cpp:830
+#: src/dialogs/certificatedetailswidget.cpp:831
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "მომხმარებლის ID-ების სერტიფიკაცია..."
 
-#: src/dialogs/certificatedetailswidget.cpp:831
+#: src/dialogs/certificatedetailswidget.cpp:832
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
@@ -6453,13 +6453,13 @@ msgid_plural "Certify User IDs..."
 msgstr[0] "მომხმარებლის ID-ის სერტიფიკაცია..."
 msgstr[1] "მომხმარებლის ID-ების სერტიფიკაცია..."
 
-#: src/dialogs/certificatedetailswidget.cpp:838
+#: src/dialogs/certificatedetailswidget.cpp:839
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "სერტიფიკაციების გაუქმება..."
 
-#: src/dialogs/certificatedetailswidget.cpp:839
+#: src/dialogs/certificatedetailswidget.cpp:840
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
@@ -6467,100 +6467,100 @@ msgid_plural "Revoke Certifications..."
 msgstr[0] "სერტიფიკაციის გაუქმება..."
 msgstr[1] "სერტიფიკაციების გაუქმება..."
 
-#: src/dialogs/certificatedetailswidget.cpp:848
+#: src/dialogs/certificatedetailswidget.cpp:849
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "ელფოსტის მომწოდებელზე გამოცემა..."
 
-#: src/dialogs/certificatedetailswidget.cpp:863
+#: src/dialogs/certificatedetailswidget.cpp:864
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "მომხმარებლის ID-ის გაუქმება"
 
-#: src/dialogs/certificatedetailswidget.cpp:909
+#: src/dialogs/certificatedetailswidget.cpp:910
 #, kde-format
 msgid "never"
 msgstr "არასოდეს"
 
-#: src/dialogs/certificatedetailswidget.cpp:911
+#: src/dialogs/certificatedetailswidget.cpp:912
 #, kde-format
 msgid "Signing"
 msgstr "ხელმოწერა"
 
-#: src/dialogs/certificatedetailswidget.cpp:912
-#: src/dialogs/certificatedetailswidget.cpp:916
+#: src/dialogs/certificatedetailswidget.cpp:913
+#: src/dialogs/certificatedetailswidget.cpp:917
 #, kde-format
 msgid "First message"
 msgstr "პირველი შეტყობინება"
 
-#: src/dialogs/certificatedetailswidget.cpp:913
-#: src/dialogs/certificatedetailswidget.cpp:917
+#: src/dialogs/certificatedetailswidget.cpp:914
+#: src/dialogs/certificatedetailswidget.cpp:918
 #, kde-format
 msgid "Last message"
 msgstr "ბოლო შეტყობინება"
 
-#: src/dialogs/certificatedetailswidget.cpp:914
-#: src/dialogs/certificatedetailswidget.cpp:918
+#: src/dialogs/certificatedetailswidget.cpp:915
+#: src/dialogs/certificatedetailswidget.cpp:919
 #, kde-format
 msgid "Message count"
 msgstr "შეტყობინებების რაოდენობა"
 
-#: src/dialogs/certificatedetailswidget.cpp:915
+#: src/dialogs/certificatedetailswidget.cpp:916
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Encryption"
 msgstr "დაშიფვრა"
 
-#: src/dialogs/certificatedetailswidget.cpp:950
+#: src/dialogs/certificatedetailswidget.cpp:951
 #, kde-format
 msgid "Updating..."
 msgstr "განახლება..."
 
-#: src/dialogs/certificatedetailswidget.cpp:990
+#: src/dialogs/certificatedetailswidget.cpp:991
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "გასაღების განახლება გარე წყაროებიდან."
 
-#: src/dialogs/certificatedetailswidget.cpp:1007
+#: src/dialogs/certificatedetailswidget.cpp:1008
 #, kde-format
 msgid "Common Name"
 msgstr "სახელი"
 
-#: src/dialogs/certificatedetailswidget.cpp:1008
+#: src/dialogs/certificatedetailswidget.cpp:1009
 #, kde-format
 msgid "Organization"
 msgstr "ორგანიზაცია"
 
-#: src/dialogs/certificatedetailswidget.cpp:1009
+#: src/dialogs/certificatedetailswidget.cpp:1010
 #, kde-format
 msgid "Street"
 msgstr "ქუჩა"
 
-#: src/dialogs/certificatedetailswidget.cpp:1010
+#: src/dialogs/certificatedetailswidget.cpp:1011
 #, kde-format
 msgid "City"
 msgstr "ქალაქი"
 
-#: src/dialogs/certificatedetailswidget.cpp:1011
+#: src/dialogs/certificatedetailswidget.cpp:1012
 #, kde-format
 msgid "State"
 msgstr "State"
 
-#: src/dialogs/certificatedetailswidget.cpp:1012
+#: src/dialogs/certificatedetailswidget.cpp:1013
 #, kde-format
 msgid "Country"
 msgstr "ქვეყანა"
 
-#: src/dialogs/certificatedetailswidget.cpp:1040
+#: src/dialogs/certificatedetailswidget.cpp:1041
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr "სერტიფიკატის CRL-ების განახლება და სრული ვარგისიანობის შემოწმება."
 
-#: src/dialogs/certificatedetailswidget.cpp:1049
+#: src/dialogs/certificatedetailswidget.cpp:1050
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "გამომცემლის სერტიფიკატის ლოკალურად პოვნა შეუძლებელია."
@@ -6885,12 +6885,12 @@ msgstr "სერტიფიცირების ნდობის შეც�
 msgid "Owner trust set successfully."
 msgstr "მფლობლის ნდობა დაყენებულია."
 
-#: src/dialogs/deletecertificatesdialog.cpp:91
+#: src/dialogs/deletecertificatesdialog.cpp:90
 #, kde-format
 msgid "These are the certificates you have selected for deletion:"
 msgstr "ეს სერტიფიკატებია, რომლებიც წასაშლელად მონიშნეთ:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:93
+#: src/dialogs/deletecertificatesdialog.cpp:92
 #, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
@@ -6899,7 +6899,7 @@ msgstr ""
 "ეს სერტიფიკატები წაიშლება იმის მიუხედავად, რომ ისინი <b>არ მოგინიშნავთ</b> "
 "(<a href=\"whatisthis://\">რატომ?</a>):"
 
-#: src/dialogs/deletecertificatesdialog.cpp:114
+#: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -6920,7 +6920,7 @@ msgstr ""
 "შვილებიც წაიშლება. CA სერტიფიკატები რაღაც საქაღალდეების მსგავსია: როცა შლით "
 "საქაღალდეს, მისი შემცველობაც იშლება.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:191
+#: src/dialogs/deletecertificatesdialog.cpp:190
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -6939,7 +6939,7 @@ msgstr[1] ""
 "გასაღების მასალას, რომელიც საჭიროა, წარსული დაშიფრული ურთიერთობის გასაშიფრად "
 "და ამიტომ, არ უნდა წაიშალოს."
 
-#: src/dialogs/deletecertificatesdialog.cpp:205
+#: src/dialogs/deletecertificatesdialog.cpp:204
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -6958,7 +6958,7 @@ msgstr[1] ""
 "მასალას, რომელიც საჭიროა, წარსული დაშიფრული ურთიერთობის გასაშიფრად და "
 "ამიტომ, არ უნდა წაიშალოს."
 
-#: src/dialogs/deletecertificatesdialog.cpp:220
+#: src/dialogs/deletecertificatesdialog.cpp:219
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
@@ -7039,7 +7039,7 @@ msgstr "გასაღებების ჯგუფში ძებნის 
 msgid "group keys"
 msgstr "დაჯგუფებული გასაღებები"
 
-#: src/dialogs/editgroupdialog.cpp:351
+#: src/dialogs/editgroupdialog.cpp:345
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
@@ -7136,13 +7136,13 @@ msgid ""
 "generation."
 msgstr "გასაღების გენერაციისას ფაილის დაცვის საკვანძო ფრაზას გკითხავთ."
 
-#: src/dialogs/groupdetailsdialog.cpp:129
+#: src/dialogs/groupdetailsdialog.cpp:128
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Details"
 msgstr "ჯგუფის დეტალები"
 
-#: src/dialogs/groupdetailsdialog.cpp:142
+#: src/dialogs/groupdetailsdialog.cpp:141
 #, kde-format
 msgid "Note: This group is defined in the configuration files of gpg."
 msgstr "შენიშვნა: ეს ჯგუფი gpg-ის კონფიგურაციის ფაილებშია აღწერილი."
@@ -7183,13 +7183,13 @@ msgstr "სერვერზე მოძებნა"
 msgid "Import"
 msgstr "იმპორტი"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:280
+#: src/dialogs/lookupcertificatesdialog.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
 msgstr "შეიყვანეთ ძებნის პირობა შესაბამისი სერტიფიკატების მოსაძებნად."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:282
+#: src/dialogs/lookupcertificatesdialog.cpp:278
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
@@ -7683,7 +7683,7 @@ msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "უცნობი"
 
-#: src/dialogs/subkeyswidget.cpp:367
+#: src/dialogs/subkeyswidget.cpp:369
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
@@ -7845,7 +7845,7 @@ msgstr ""
 "ამ მომხმარებლის ID-სთვის სერტიფიკაციას ვერ გააუქმებთ. დეტალებისთვის მონიშნეთ "
 "სერტიფიკაცია."
 
-#: src/dialogs/weboftrustwidget.cpp:338
+#: src/dialogs/weboftrustwidget.cpp:339
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7855,7 +7855,7 @@ msgstr ""
 "<para>შეცდომა სერტიფიკაციების ჩატვირთვისას:</para><para><message>%1</"
 "message></para>"
 
-#: src/dialogs/weboftrustwidget.cpp:341
+#: src/dialogs/weboftrustwidget.cpp:342
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -11357,12 +11357,12 @@ msgstr "CRL ქეშის დამპი"
 msgid "Import CRL From File..."
 msgstr "CRL-ის ფაილიდან შემოტანა..."
 
-#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:538
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "სერტიფიკატების იერარქიული სია"
 
-#: src/view/keytreeview.cpp:245 src/view/keytreeview.cpp:602
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:538
 #, kde-format
 msgid "List of certificates"
 msgstr "სერტიფიკატების სია"
@@ -11425,35 +11425,35 @@ msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "NKS PIN-კოდის შეცვლა"
 
-#: src/view/netkeywidget.cpp:167 src/view/netkeywidget.cpp:235
+#: src/view/netkeywidget.cpp:167 src/view/netkeywidget.cpp:231
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "SigG PIN-კოდის შეცვლა"
 
-#: src/view/netkeywidget.cpp:220
+#: src/view/netkeywidget.cpp:216
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "ბარათი NetKey v%1"
 
-#: src/view/netkeywidget.cpp:233 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:229 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "SigG PIN-კოდის დაყენება"
 
-#: src/view/netkeywidget.cpp:246
+#: src/view/netkeywidget.cpp:242
 #, kde-format
 msgid "Error"
 msgstr "შეცდომა"
 
-#: src/view/netkeywidget.cpp:306
+#: src/view/netkeywidget.cpp:302
 #, kde-format
 msgid "Select Key"
 msgstr "აირჩიეთ გასაღები"
 
-#: src/view/netkeywidget.cpp:307
+#: src/view/netkeywidget.cpp:303
 #, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
@@ -11461,7 +11461,7 @@ msgstr ""
 "აირჩიეთ გასაღები, რომლისთვისაც გნებავთ, სერტიფიკატის ხელმოწერის მოთხოვნა "
 "შექმნათ:"
 
-#: src/view/netkeywidget.cpp:325
+#: src/view/netkeywidget.cpp:321
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "

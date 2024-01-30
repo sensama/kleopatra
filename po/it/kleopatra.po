@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 01:35+0000\n"
-"PO-Revision-Date: 2024-01-10 16:42+0100\n"
+"PO-Revision-Date: 2024-01-25 11:00+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -2462,53 +2462,46 @@ msgid "Copying the key to the card failed."
 msgstr "Copia della chiave sulla scheda non riuscita."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>La chiave è stata copiata sulla scheda.</para><para>Vuoi eliminare la "
-"copia della chiave memorizzata su questo computer?</para>"
+"<para>La chiave è stata copiata sulla carta.</para><para>Ora puoi eliminare "
+"la copia della chiave memorizzata su questo computer. Facoltativamente, puoi "
+"prima creare un backup della chiave.</para >"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Copia di sicurezza su carta"
+msgstr "Crea copia di sicurezza"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Elimina la copia su disco"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Conserva la copia su disco"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>La chiave è stata copiata sulla scheda.</para><para>Vuoi eliminare la "
-"copia della chiave memorizzata su questo computer?</para>"
+"<para>La chiave è stata copiata sulla carta ed è stato scritto un backup su "
+"<filename>%1</filename>.</para><para>Vuoi eliminare la copia della chiave "
+"memorizzata su questo computer?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2547,12 +2540,12 @@ msgstr ""
 "filename> non riuscita."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Vuoi davvero eliminare la copia locale della chiave segreta?"
+msgstr ""
+"Vuoi davvero eliminare la copia della chiave memorizzata su questo computer?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2561,25 +2554,21 @@ msgid "Confirm Deletion"
 msgstr "Conferma eliminazione"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Impossibile eliminare la chiave:</para><para><message>%1</message></"
-"para>"
+"<para>Impossibile eliminare la copia della chiave memorizzata su questo "
+"computer:</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Nuova chiave generata con successo per questa scheda."
+msgstr ""
+"Eliminazione della copia della chiave archiviata su questo computer riuscita."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -3885,16 +3874,15 @@ msgid "Edit Group"
 msgstr "Modifica gruppo"
 
 #: src/conf/groupsconfigwidget.cpp:393
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
-msgstr "<para>Vuoi davvero revocare l'ID<nl/><emphasis>%1</emphasis> ?</para>"
+msgstr ""
+"<para>Vuoi davvero eliminare questo gruppo?</para><para><emphasis>%1</"
+"emphasis></para><para>Una volta eliminato, non può essere ripristinato.</"
+"para>"
 
 #: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
@@ -3906,16 +3894,19 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Vuoi davvero eliminare questo gruppo?</para><para>Una volta eliminato, "
+"non può essere ripristinato.</para>"
 msgstr[1] ""
+"<para>Vuoi davvero eliminare questi %1 gruppi?</para><para>Una volta "
+"eliminati, non potranno essere ripristinati.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Elimina"
-msgstr[1] "Elimina"
+msgstr[0] "Elimina gruppo"
+msgstr[1] "Elimina gruppi"
 
 #: src/conf/kleopageconfigdialog.cpp:85
 #, kde-format

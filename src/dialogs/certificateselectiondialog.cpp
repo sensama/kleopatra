@@ -25,6 +25,7 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
 #include <Libkleo/KeyListModel>
+#include <Libkleo/UserIDProxyModel>
 
 #include <commands/importcertificatefromfilecommand.h>
 #include <commands/lookupcertificatescommand.h>
@@ -228,7 +229,7 @@ CertificateSelectionDialog::CertificateSelectionDialog(QWidget *parent)
     , d(new Private(this))
 {
     const KSharedConfig::Ptr config = KSharedConfig::openConfig(QStringLiteral("kleopatracertificateselectiondialogrc"));
-    d->ui.tabWidget.loadViews(config.data());
+    d->ui.tabWidget.loadViews(config.data(), TabWidget::ShowUserIDs);
     const KConfigGroup geometry(config, QStringLiteral("Geometry"));
     resize(geometry.readEntry("size", size()));
     d->slotKeysMayHaveChanged();
@@ -369,6 +370,21 @@ std::vector<Key> CertificateSelectionDialog::selectedCertificates() const
     const KeyListModelInterface *const model = d->ui.tabWidget.currentModel();
     Q_ASSERT(model);
     return model->keys(getSelectedRows(d->ui.tabWidget.currentView()));
+}
+
+std::vector<UserID> CertificateSelectionDialog::selectedUserIDs() const
+{
+    const auto model = d->ui.tabWidget.currentView()->model();
+    Q_ASSERT(model);
+
+    std::vector<UserID> userIds;
+    for (const auto &index : getSelectedRows(d->ui.tabWidget.currentView())) {
+        const auto userID = model->data(index, KeyList::UserIDRole).value<UserID>();
+        if (!userID.isNull()) {
+            userIds.push_back(userID);
+        }
+    }
+    return userIds;
 }
 
 Key CertificateSelectionDialog::selectedCertificate() const

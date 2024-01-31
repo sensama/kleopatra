@@ -32,6 +32,7 @@
 #include <Libkleo/KeyList>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
+#include <Libkleo/UserIDProxyModel>
 
 #include <KLocalizedString>
 
@@ -88,12 +89,17 @@ public:
                 return Kleo::Formatting::iconForUid(key.userID(0));
             }
 
+            const auto userID = KeyListSortFilterProxyModel::data(idx, KeyList::UserIDRole).value<GpgME::UserID>();
+            if (!userID.isNull()) {
+                return Kleo::Formatting::iconForUid(userID);
+            }
+
             const auto group = KeyListSortFilterProxyModel::data(idx, KeyList::GroupRole).value<KeyGroup>();
             if (!group.isNull()) {
                 return QIcon::fromTheme(QStringLiteral("group"));
             }
 
-            Q_ASSERT(!key.isNull() || !group.isNull());
+            Q_ASSERT(!key.isNull() || !userID.isNull() || !group.isNull());
             return QVariant();
         }
         default:
@@ -106,29 +112,35 @@ private:
     {
         const auto leftKey = sourceModel()->data(left, KeyList::KeyRole).value<GpgME::Key>();
         const auto leftGroup = leftKey.isNull() ? sourceModel()->data(left, KeyList::GroupRole).value<KeyGroup>() : KeyGroup{};
+        const auto leftUserID = sourceModel()->data(left, KeyList::UserIDRole).value<GpgME::UserID>();
+        const auto rightUserID = sourceModel()->data(right, KeyList::UserIDRole).value<GpgME::UserID>();
         const auto rightKey = sourceModel()->data(right, KeyList::KeyRole).value<GpgME::Key>();
         const auto rightGroup = rightKey.isNull() ? sourceModel()->data(right, KeyList::GroupRole).value<KeyGroup>() : KeyGroup{};
 
         // shouldn't happen, but still put null entries at the end
-        if (leftKey.isNull() && leftGroup.isNull()) {
+        if (leftKey.isNull() && leftUserID.isNull() && leftGroup.isNull()) {
             return false;
         }
-        if (rightKey.isNull() && rightGroup.isNull()) {
+        if (rightKey.isNull() && rightUserID.isNull() && rightGroup.isNull()) {
             return true;
         }
 
         // first sort by the displayed name and/or email address
-        const auto leftNameAndOrEmail = leftGroup.isNull() ? Formatting::nameAndEmailForSummaryLine(leftKey) : leftGroup.name();
-        const auto rightNameAndOrEmail = rightGroup.isNull() ? Formatting::nameAndEmailForSummaryLine(rightKey) : rightGroup.name();
+        const auto leftNameAndOrEmail = leftGroup.isNull()
+            ? (leftKey.isNull() ? Formatting::nameAndEmailForSummaryLine(leftUserID) : Formatting::nameAndEmailForSummaryLine(leftKey))
+            : leftGroup.name();
+        const auto rightNameAndOrEmail = rightGroup.isNull()
+            ? (rightKey.isNull() ? Formatting::nameAndEmailForSummaryLine(rightUserID) : Formatting::nameAndEmailForSummaryLine(rightKey))
+            : rightGroup.name();
         const int cmp = QString::localeAwareCompare(leftNameAndOrEmail, rightNameAndOrEmail);
         if (cmp) {
             return cmp < 0;
         }
         // then sort groups before certificates
-        if (!leftGroup.isNull() && !rightKey.isNull()) {
+        if (!leftGroup.isNull() && (!rightKey.isNull() || !rightUserID.isNull())) {
             return true; // left is group, right is certificate
         }
-        if (!leftKey.isNull() && !rightGroup.isNull()) {
+        if ((!leftKey.isNull() || !rightKey.isNull()) && !rightGroup.isNull()) {
             return false; // left is certificate, right is group
         }
 
@@ -138,15 +150,15 @@ private:
         }
 
         // sort certificates with same name/email by validity and creation time
-        const auto lUid = leftKey.userID(0);
-        const auto rUid = rightKey.userID(0);
+        const auto lUid = leftUserID.isNull() ? leftKey.userID(0) : leftUserID;
+        const auto rUid = rightUserID.isNull() ? rightKey.userID(0) : rightUserID;
         if (lUid.validity() != rUid.validity()) {
             return lUid.validity() > rUid.validity();
         }
 
         /* Both have the same validity, check which one is newer. */
         time_t leftTime = 0;
-        for (const GpgME::Subkey &s : leftKey.subkeys()) {
+        for (const GpgME::Subkey &s : (leftUserID.isNull() ? leftKey : leftUserID.parent()).subkeys()) {
             if (s.isBad()) {
                 continue;
             }
@@ -155,7 +167,7 @@ private:
             }
         }
         time_t rightTime = 0;
-        for (const GpgME::Subkey &s : rightKey.subkeys()) {
+        for (const GpgME::Subkey &s : (rightUserID.isNull() ? rightKey : rightUserID.parent()).subkeys()) {
             if (s.isBad()) {
                 continue;
             }
@@ -168,7 +180,9 @@ private:
         }
 
         // as final resort we compare the fingerprints
-        return strcmp(leftKey.primaryFingerprint(), rightKey.primaryFingerprint()) < 0;
+        return strcmp((leftUserID.isNull() ? leftKey : leftUserID.parent()).primaryFingerprint(),
+                      (rightUserID.isNull() ? rightKey : rightUserID.parent()).primaryFingerprint())
+            < 0;
     }
 };
 
@@ -206,6 +220,8 @@ public:
 
     void setGroup(const KeyGroup &group);
 
+    void setUserID(const GpgME::UserID &userID);
+
     void setKeyFilter(const std::shared_ptr<KeyFilter> &filter);
 
     void setAccessibleName(const QString &s);
@@ -231,6 +247,7 @@ public:
     bool mEditingInProgress = false;
     GpgME::Key mKey;
     KeyGroup mGroup;
+    GpgME::UserID mUserId;
 
     struct Ui {
         explicit Ui(QWidget *parent)
@@ -247,6 +264,7 @@ public:
 
 private:
     QString mAccessibleName;
+    UserIDProxyModel *const mUserIdProxyModel;
     KeyListSortFilterProxyModel *const mFilterModel;
     CompletionProxyModel *const mCompleterFilterModel;
     QCompleter *mCompleter = nullptr;
@@ -260,6 +278,7 @@ private:
 CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyUsage::Flags usage, KeyFilter *filter)
     : q{qq}
     , ui{qq}
+    , mUserIdProxyModel{new UserIDProxyModel{qq}}
     , mFilterModel{new KeyListSortFilterProxyModel{qq}}
     , mCompleterFilterModel{new CompletionProxyModel{qq}}
     , mCompleter{new QCompleter{qq}}
@@ -273,8 +292,10 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     ui.lineEdit.setContextMenuPolicy(Qt::CustomContextMenu);
     ui.lineEdit.addAction(mStatusAction, QLineEdit::LeadingPosition);
 
+    mUserIdProxyModel->setSourceModel(model);
+
     mCompleterFilterModel->setKeyFilter(mFilter);
-    mCompleterFilterModel->setSourceModel(model);
+    mCompleterFilterModel->setSourceModel(mUserIdProxyModel);
     // initialize dynamic sorting
     mCompleterFilterModel->sort(0);
     mCompleter->setModel(mCompleterFilterModel);
@@ -306,7 +327,7 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     mShowDetailsAction->setText(i18nc("@action:inmenu", "Show Details"));
     mShowDetailsAction->setEnabled(false);
 
-    mFilterModel->setSourceModel(model);
+    mFilterModel->setSourceModel(mUserIdProxyModel);
     mFilterModel->setFilterKeyColumn(KeyList::Summary);
     if (filter) {
         mFilterModel->setKeyFilter(mFilter);
@@ -366,12 +387,15 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     connect(mCompleter, qOverload<const QModelIndex &>(&QCompleter::activated), q, [this](const QModelIndex &index) {
         Key key = mCompleter->completionModel()->data(index, KeyList::KeyRole).value<Key>();
         auto group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();
-        if (!key.isNull()) {
+        auto userID = mCompleter->completionModel()->data(index, KeyList::UserIDRole).value<UserID>();
+        if (!userID.isNull()) {
+            q->setUserID(userID);
+        } else if (!key.isNull()) {
             q->setKey(key);
         } else if (!group.isNull()) {
             q->setGroup(group);
         } else {
-            qCDebug(KLEOPATRA_LOG) << "Activated item is neither key nor group";
+            qCDebug(KLEOPATRA_LOG) << "Activated item is neither key, nor userid, or group";
         }
         // queue the call of editFinished() to ensure that QLineEdit finished its own work
         QMetaObject::invokeMethod(
@@ -464,7 +488,7 @@ void CertificateLineEdit::Private::editFinished()
 void CertificateLineEdit::Private::checkLocate()
 {
     if (mStatus != Status::None) {
-        // try to locate key only if text matches no local certificates or groups
+        // try to locate key only if text matches no local certificates, user ids, or groups
         return;
     }
 
@@ -514,12 +538,13 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
     const auto mailText = ui.lineEdit.text().trimmed();
     auto newKey = Key();
     auto newGroup = KeyGroup();
+    auto newUserId = UserID();
     if (mailText.isEmpty()) {
         mStatus = Status::Empty;
     } else {
         mFilterModel->setFilterRegularExpression(QRegularExpression::escape(mailText));
         if (mFilterModel->rowCount() > 1) {
-            // keep current key or group if they still match
+            // keep current key, user id, or group if they still match
             if (!mKey.isNull()) {
                 for (int row = 0; row < mFilterModel->rowCount(); ++row) {
                     const QModelIndex index = mFilterModel->index(row, 0);
@@ -539,16 +564,27 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
                         break;
                     }
                 }
+            } else if (!mUserId.isNull()) {
+                for (int row = 0; row < mFilterModel->rowCount(); ++row) {
+                    const QModelIndex index = mFilterModel->index(row, 0);
+                    UserID userId = index.data(KeyList::UserIDRole).value<UserID>();
+                    if (!userId.isNull() && keysHaveSameFingerprint(userId.parent(), mUserId.parent()) && !strcmp(userId.id(), mUserId.id())) {
+                        newUserId = mUserId;
+                    }
+                }
             }
-            if (newKey.isNull() && newGroup.isNull()) {
+            if (newKey.isNull() && newGroup.isNull() && newUserId.isNull()) {
                 mStatus = Status::Ambiguous;
             }
         } else if (mFilterModel->rowCount() == 1) {
             const auto index = mFilterModel->index(0, 0);
-            newKey = mFilterModel->data(index, KeyList::KeyRole).value<Key>();
+            newUserId = mFilterModel->data(index, KeyList::UserIDRole).value<UserID>();
+            if (newUserId.isNull()) {
+                newKey = mFilterModel->data(index, KeyList::KeyRole).value<Key>();
+            }
             newGroup = mFilterModel->data(index, KeyList::GroupRole).value<KeyGroup>();
-            Q_ASSERT(!newKey.isNull() || !newGroup.isNull());
-            if (newKey.isNull() && newGroup.isNull()) {
+            Q_ASSERT(!newKey.isNull() || !newGroup.isNull() || !newUserId.isNull());
+            if (newKey.isNull() && newGroup.isNull() && newUserId.isNull()) {
                 mStatus = Status::None;
             }
         } else {
@@ -557,6 +593,7 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
     }
     mKey = newKey;
     mGroup = newGroup;
+    mUserId = newUserId;
 
     if (!mKey.isNull()) {
         /* FIXME: This needs to be solved by a multiple UID supporting model */
@@ -570,6 +607,12 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
         if (!mEditingInProgress) {
             setTextWithBlockedSignals(Formatting::summaryLine(mGroup), positioning);
+        }
+    } else if (!mUserId.isNull()) {
+        mStatus = Status::Success;
+        ui.lineEdit.setToolTip(Formatting::toolTip(mUserId, Formatting::ToolTipOption::AllOptions));
+        if (!mEditingInProgress) {
+            setTextWithBlockedSignals(Formatting::summaryLine(mUserId), positioning);
         }
     } else {
         ui.lineEdit.setToolTip({});
@@ -609,8 +652,10 @@ QIcon CertificateLineEdit::Private::statusIcon() const
             return mIconProvider.icon(mKey);
         } else if (!mGroup.isNull()) {
             return mIconProvider.icon(mGroup);
+        } else if (!mUserId.isNull()) {
+            return mIconProvider.icon(mUserId);
         } else {
-            qDebug(KLEOPATRA_LOG) << __func__ << "Success, but neither key nor group.";
+            qDebug(KLEOPATRA_LOG) << __func__ << "Success, but neither key, nor user id, or group.";
             return {};
         }
     case Status::None:
@@ -633,12 +678,15 @@ QString CertificateLineEdit::Private::statusToolTip() const
     case Status::Empty:
         return {};
     case Status::Success:
+        if (!mUserId.isNull()) {
+            return Formatting::validity(mUserId);
+        }
         if (!mKey.isNull()) {
             return Formatting::validity(mKey.userID(0));
         } else if (!mGroup.isNull()) {
             return Formatting::validity(mGroup);
         } else {
-            qDebug(KLEOPATRA_LOG) << __func__ << "Success, but neither key nor group.";
+            qDebug(KLEOPATRA_LOG) << __func__ << "Success, but neither key, nor user id, or group.";
             return {};
         }
     case Status::None:
@@ -735,6 +783,15 @@ KeyGroup CertificateLineEdit::group() const
     }
 }
 
+UserID CertificateLineEdit::userID() const
+{
+    if (isEnabled()) {
+        return d->mUserId;
+    } else {
+        return UserID();
+    }
+}
+
 QString CertificateLineEdit::Private::text() const
 {
     return ui.lineEdit.text().trimmed();
@@ -749,6 +806,7 @@ void CertificateLineEdit::Private::setKey(const Key &key)
 {
     mKey = key;
     mGroup = KeyGroup();
+    mUserId = UserID();
     qCDebug(KLEOPATRA_LOG) << "Setting Key. " << Formatting::summaryLine(key);
     // position cursor, so that that the start of the summary is visible
     setTextWithBlockedSignals(Formatting::summaryLine(key), CursorPositioning::MoveToStart);
@@ -760,10 +818,27 @@ void CertificateLineEdit::setKey(const Key &key)
     d->setKey(key);
 }
 
+void CertificateLineEdit::Private::setUserID(const UserID &userID)
+{
+    mUserId = userID;
+    mKey = Key();
+    mGroup = KeyGroup();
+    qCDebug(KLEOPATRA_LOG) << "Setting UserID. " << Formatting::summaryLine(userID);
+    // position cursor, so that the start of the summary is visible
+    setTextWithBlockedSignals(Formatting::summaryLine(userID), CursorPositioning::MoveToStart);
+    updateKey(CursorPositioning::MoveToStart);
+}
+
+void CertificateLineEdit::setUserID(const UserID &userID)
+{
+    d->setUserID(userID);
+}
+
 void CertificateLineEdit::Private::setGroup(const KeyGroup &group)
 {
     mGroup = group;
     mKey = Key();
+    mUserId = UserID();
     const QString summary = Formatting::summaryLine(group);
     qCDebug(KLEOPATRA_LOG) << "Setting KeyGroup. " << summary;
     // position cursor, so that that the start of the summary is visible

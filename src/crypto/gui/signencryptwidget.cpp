@@ -37,7 +37,7 @@
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
-#include <Libkleo/KeySelectionCombo>
+#include <Libkleo/UserIDSelectionCombo>
 
 #include <Libkleo/GnuPG>
 
@@ -134,9 +134,9 @@ public:
     void updateAllExpiryMessages();
 
 public:
-    KeySelectionCombo *mSigSelect = nullptr;
+    UserIDSelectionCombo *mSigSelect = nullptr;
     KMessageWidget *mSignKeyExpiryMessage = nullptr;
-    KeySelectionCombo *mSelfSelect = nullptr;
+    UserIDSelectionCombo *mSelfSelect = nullptr;
     KMessageWidget *mEncryptToSelfKeyExpiryMessage = nullptr;
     std::vector<RecipientWidgets> mRecpWidgets;
     QList<UnknownRecipientWidget *> mUnknownWidgets;
@@ -174,7 +174,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mSigChk->setEnabled(haveSecretKeys);
         d->mSigChk->setChecked(haveSecretKeys);
 
-        d->mSigSelect = new KeySelectionCombo{KeyUsage::Sign, this};
+        d->mSigSelect = new UserIDSelectionCombo{KeyUsage::Sign, this};
         d->mSigSelect->setEnabled(d->mSigChk->isChecked());
 
         d->mSignKeyExpiryMessage = new KMessageWidget{this};
@@ -192,7 +192,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
         });
-        connect(d->mSigSelect, &KeySelectionCombo::currentKeyChanged, this, [this]() {
+        connect(d->mSigSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
         });
@@ -209,7 +209,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mEncSelfChk = new QCheckBox{i18n("Encrypt for me:"), this};
         d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
-        d->mSelfSelect = new KeySelectionCombo{KeyUsage::Encrypt, this};
+        d->mSelfSelect = new UserIDSelectionCombo{KeyUsage::Encrypt, this};
         d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
         d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
         d->mEncryptToSelfKeyExpiryMessage->setVisible(false);
@@ -269,7 +269,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnEncryptionKey);
         });
-        connect(d->mSelfSelect, &KeySelectionCombo::currentKeyChanged, this, [this]() {
+        connect(d->mSelfSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnEncryptionKey);
         });
@@ -420,24 +420,29 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
         dlg.setStringFilter(!name.isEmpty() ? name : email);
     } else if (!certificateLineEdit->group().isNull()) {
         dlg.setStringFilter(certificateLineEdit->group().name());
+    } else if (!certificateLineEdit->userID().isNull()) {
+        const auto userID = certificateLineEdit->userID();
+        const auto name = QString::fromUtf8(userID.name());
+        const auto email = QString::fromUtf8(userID.email());
+        dlg.setStringFilter(!name.isEmpty() ? name : email);
     } else {
         dlg.setStringFilter(certificateLineEdit->text());
     }
 
     if (dlg.exec()) {
-        const std::vector<Key> keys = dlg.selectedCertificates();
+        const std::vector<UserID> userIds = dlg.selectedUserIDs();
         const std::vector<KeyGroup> groups = dlg.selectedGroups();
-        if (keys.size() == 0 && groups.size() == 0) {
+        if (userIds.size() == 0 && groups.size() == 0) {
             return;
         }
         CertificateLineEdit *certWidget = nullptr;
-        for (const Key &key : keys) {
+        for (const auto &userId : userIds) {
             if (!certWidget) {
                 certWidget = certificateLineEdit;
             } else {
                 certWidget = d->insertRecipientWidget(certWidget);
             }
-            certWidget->setKey(key);
+            certWidget->setUserID(userId);
         }
         for (const KeyGroup &group : groups) {
             if (!certWidget) {
@@ -546,11 +551,14 @@ std::vector<Key> SignEncryptWidget::recipients() const
         }
         const Key k = w->key();
         const KeyGroup g = w->group();
+        const UserID u = w->userID();
         if (!k.isNull()) {
             ret.push_back(k);
         } else if (!g.isNull()) {
             const auto keys = g.keys();
             std::copy(keys.begin(), keys.end(), std::back_inserter(ret));
+        } else if (!u.isNull()) {
+            ret.push_back(u.parent());
         }
     }
     const Key k = selfKey();
@@ -779,6 +787,9 @@ static bool recipientIsOkay(const CertificateLineEdit *edit)
     }
     if (!edit->hasAcceptableInput()) {
         return false;
+    }
+    if (const auto userID = edit->userID(); !userID.isNull()) {
+        return Kleo::canBeUsedForEncryption(userID.parent()) && !userID.isBad();
     }
     if (const auto key = edit->key(); !key.isNull()) {
         return Kleo::canBeUsedForEncryption(key);

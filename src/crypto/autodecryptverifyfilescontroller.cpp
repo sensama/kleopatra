@@ -169,6 +169,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
     DecryptVerifyFilesDialog dialog{coll};
     m_dialog = &dialog;
     m_dialog->setOutputLocation(heuristicBaseDirectory(m_passedFiles));
+    q->applyWindowID(m_dialog);
 
     QTimer::singleShot(0, q, SLOT(schedule()));
     const auto result = m_dialog->exec();

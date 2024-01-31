@@ -35,6 +35,12 @@ class TabWidget : public QWidget
 {
     Q_OBJECT
 public:
+    enum Option {
+        ShowKeys = 0x00,
+        ShowUserIDs = 0x01,
+    };
+    Q_DECLARE_FLAGS(Options, Option)
+
     explicit TabWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~TabWidget() override;
 
@@ -44,11 +50,11 @@ public:
     AbstractKeyListModel *hierarchicalModel() const;
 
     QAbstractItemView *addView(const QString &title = QString(), const QString &keyFilterID = QString(), const QString &searchString = QString());
-    QAbstractItemView *addView(const KConfigGroup &group);
+    QAbstractItemView *addView(const KConfigGroup &group, Options options);
     QAbstractItemView *
     addTemporaryView(const QString &title = QString(), AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &tabToolTip = QString());
 
-    void loadViews(const KConfig *cfg);
+    void loadViews(const KConfig *cfg, Options options = ShowKeys);
     void saveViews(KConfig *cfg) const;
 
     std::vector<QAbstractItemView *> views() const;

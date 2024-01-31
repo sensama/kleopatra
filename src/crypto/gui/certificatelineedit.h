@@ -19,6 +19,7 @@
 namespace GpgME
 {
 class Key;
+class UserID;
 }
 
 namespace Kleo
@@ -65,6 +66,8 @@ public:
 
     KeyGroup group() const;
 
+    GpgME::UserID userID() const;
+
     /** The current text */
     QString text() const;
 
@@ -82,6 +85,9 @@ public:
 
     /** Set the preselected group for this widget. */
     void setGroup(const KeyGroup &group);
+
+    /** Set the preselected userId for this widget. */
+    void setUserID(const GpgME::UserID &userID);
 
     /** Set the used keyfilter. */
     void setKeyFilter(const std::shared_ptr<KeyFilter> &filter);

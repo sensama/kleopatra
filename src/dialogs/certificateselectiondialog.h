@@ -21,6 +21,7 @@
 namespace GpgME
 {
 class Key;
+class UserID;
 }
 
 namespace Kleo
@@ -79,6 +80,8 @@ public:
 
     void selectGroups(const std::vector<Kleo::KeyGroup> &groups);
     std::vector<Kleo::KeyGroup> selectedGroups() const;
+
+    std::vector<GpgME::UserID> selectedUserIDs() const;
 
     static void filterAllowedKeys(std::vector<GpgME::Key> &keys, int options);
 

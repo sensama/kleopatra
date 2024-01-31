@@ -24,6 +24,7 @@
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/Stl_Util>
+#include <Libkleo/UserIDProxyModel>
 
 #include <gpgme++/key.h>
 // needed for GPGME_VERSION_NUMBER
@@ -986,9 +987,20 @@ QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, c
     return d->addView(page, d->currentPage());
 }
 
-QAbstractItemView *TabWidget::addView(const KConfigGroup &group)
+QAbstractItemView *TabWidget::addView(const KConfigGroup &group, Options options)
 {
-    return d->addView(new Page(group), nullptr);
+    if (options & ShowUserIDs) {
+        return d->addView(new Page(group.readEntry(TITLE_ENTRY),
+                                   group.readEntry(KEY_FILTER_ENTRY),
+                                   group.readEntry(STRING_FILTER_ENTRY),
+                                   new UserIDProxyModel(this),
+                                   {},
+                                   nullptr,
+                                   group),
+                          nullptr);
+    } else {
+        return d->addView(new Page(group), nullptr);
+    }
 }
 
 QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)
@@ -1056,7 +1068,7 @@ static QStringList extractViewGroups(const KConfig *config)
 // work around deleteGroup() not deleting groups out of groupList():
 static const bool KCONFIG_DELETEGROUP_BROKEN = true;
 
-void TabWidget::loadViews(const KConfig *config)
+void TabWidget::loadViews(const KConfig *config, Options options)
 {
     if (config) {
         QStringList groupList = extractViewGroups(config);
@@ -1064,7 +1076,7 @@ void TabWidget::loadViews(const KConfig *config)
         for (const QString &group : std::as_const(groupList)) {
             const KConfigGroup kcg(config, group);
             if (!KCONFIG_DELETEGROUP_BROKEN || kcg.readEntry("magic", 0U) == 0xFA1AFE1U) {
-                addView(kcg);
+                addView(kcg, options);
             }
         }
     }

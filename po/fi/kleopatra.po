@@ -7,13 +7,13 @@
 # Mikko Piippo <piippo@cc.helsinki.fi>, 2007, 2008.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 # Jiri Grönroos <jiri.gronroos+kde@iki.fi>, 2012.
-# Tommi Nieminen <translator@legisign.org>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# Tommi Nieminen <translator@legisign.org>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 01:35+0000\n"
-"PO-Revision-Date: 2023-09-26 13:13+0300\n"
+"PO-Revision-Date: 2024-01-29 21:42+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -333,72 +333,60 @@ msgstr "Varmentaminen onnistui"
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "Ryhmää ei voi varmentaa"
 
 #: src/commands/certifygroupcommand.cpp:117
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
-msgstr ""
+msgstr "Ryhmä sisältää S/MIME-varmenteita, joita ei voi varmentaa."
 
 #: src/commands/certifygroupcommand.cpp:171
 #: src/dialogs/certifycertificatedialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "Varmenna varmenne…"
+msgstr "Varmenna varmenteet"
 
 #: src/commands/certifygroupcommand.cpp:172
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "Varmenna varmenne…"
+msgstr "Varmennetaan varmenteita…"
 
 #: src/commands/certifygroupcommand.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Uuden OpenPGP-varmenteen luominen epäonnistui.</para><para>Virhe: "
-"<message>%1</message></para>"
+"<para>Varmenteiden varmentaminen epäonnistui.</para><para>Virhe: <message>"
+"%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:267
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "X.509-varmenteiden virkistys onnistui."
+msgstr "Kaikkien varmenteiden varmennus onnistui."
 
 #: src/commands/certifygroupcommand.cpp:272
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Uuden OpenPGP-varmenteen luominen epäonnistui.</para><para>Virhe: "
+"<para>Kaikkien varmenteiden varmennus epäonnistui.</para><para>Virhe: "
 "<message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:277
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "OpenPGP certificates exported successfully."
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "OpenPGP-varmenteiden vienti onnistui."
-msgstr[1] "OpenPGP-varmenteiden vienti onnistui."
+msgstr[0] "1/%2 varmenteen varmennus onnistui."
+msgstr[1] "%1/%2 varmenteen varmennus onnistui."
 
 #: src/commands/certifygroupcommand.cpp:295
 #, kde-format
@@ -407,29 +395,26 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
+"<p>Seuraavaksi varmennetut varmenteet lähetetään asetettuun "
+"varmennehakemistoon.</p>"
 
 #: src/commands/certifygroupcommand.cpp:300
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:309
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "Varmenteen vieminen epäonnistui: %1"
+msgstr "<p>Seuraavien varmenteiden varmennus epäonnistui:</p>"
 
 #: src/commands/certifygroupcommand.cpp:311
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr "Varmentaminen onnistui"
+msgstr "Varmentaminen valmis"
 
 #: src/commands/changeexpirycommand.cpp:225
 #, kde-format
@@ -1159,11 +1144,7 @@ msgstr "Leikepöydän salauksen virhe"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1171,41 +1152,34 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Varmenteelle ”%1” on annettu oikeus merkintä muita varmenteita "
-"kelvollisiksi puolestasi.</para><para>Haluatko perua tämän oikeuden?</para>"
+"<para>Tämän varmenteen kaikkia kelvollisia käyttäjätunnuksia ei ole "
+"varmennettu vietävissä olevalla varmenteella. Varmennukseesi luottavat eivät "
+"voi varmentaa varmennetta.</para><para>Haluatko jatkaa vientiä?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "OpenPGP-varmenteen vienti"
+msgstr "Vahvista varmenteen vienti"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:120
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Vie %1 varmennetta"
-msgstr[1] "Vie %1 varmennetta"
+msgstr[0] "Vie varmenne"
+msgstr[1] "Vie varmenteet"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1213,8 +1187,9 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Varmenteelle ”%1” on annettu oikeus merkintä muita varmenteita "
-"kelvollisiksi puolestasi.</para><para>Haluatko perua tämän oikeuden?</para>"
+"<para>Kaikkia alla lueteltujen varmenteiden kelvollisia käyttäjätunnuksia ei "
+"ole varmennettu vietävissä olevilla varmenteilla. Varmennukseesi luottavat "
+"eivät voi varmentaa varmenteita.</para><para>Haluatko jatkaa vientiä?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1312,11 +1287,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Ei voitu korvata tiedostoa <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1324,31 +1295,25 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Varmenteelle ”%1” on annettu oikeus merkintä muita varmenteita "
-"kelvollisiksi puolestasi.</para><para>Haluatko perua tämän oikeuden?</para>"
+"<para>Tämän ryhmän kaikkia OpenPGP-varmenteita ei ole varmennettu vietävissä "
+"olevalla varmenteella. Varmennukseesi luottavat eivät voi varmentaa "
+"varmenteita.</para><para>Haluatko jatkaa vientiä?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "Ryhmäasetukset"
+msgstr "Vahvista ryhmän vienti"
 
 #: src/commands/exportgroupscommand.cpp:203
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "Vientivirhe"
+msgstr "Vie ryhmä"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1356,15 +1321,15 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Varmenteelle ”%1” on annettu oikeus merkintä muita varmenteita "
-"kelvollisiksi puolestasi.</para><para>Haluatko perua tämän oikeuden?</para>"
+"<para>Kaikkia alla lueteltujen ryhmien OpenPGP-varmenteita ei ole "
+"varmennettu vietävissä olevilla varmenteilla. Varmennukseesi luottavat eivät "
+"voi varmentaa varmenteita.</para><para>Haluatko jatkaa vientiä?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr "Vientivirhe"
+msgstr "Vie ryhmät"
 
 #: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format
@@ -1404,7 +1369,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Varmennetta ei voi viedä avainpalvelimeen, koska avainpalvelinkäyttö on "
+"nimenomaisesti estetty."
 msgstr[1] ""
+"Varmenteita ei voi viedä avainpalvelimeen, koska avainpalvelinkäyttö on "
+"nimenomaisesti estetty."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2834,6 +2803,8 @@ msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Tälle älykortille ei voi luoda avainta, koska se ei tue mitään yhteensopivaa "
+"algoritmia."
 
 #: src/commands/refreshcertificatecommand.cpp:153
 #: src/commands/refreshcertificatecommand.cpp:211
@@ -2964,6 +2935,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"OpenPGP-varmenteita ei voi virkistää, koska avainpalvelinkäyttö on "
+"nimenomaisesti estetty."
 
 # Tietoinen valinta: Kielenhuolto ei tykkää riippuen-postpositiosta, mutta sen suosima ”mukaan” johtaa minusta liian usein harhaan
 #: src/commands/refreshopenpgpcertscommand.cpp:50
@@ -3597,7 +3570,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
-msgstr ""
+msgstr "Tulkitse päätteettömät .p7m-tiedostot sähköpostiviesteiksi."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:69
@@ -3664,6 +3637,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Anna sen avainpalvelimen osoite, jota käytetään etsittäessä ja lähetettäessä "
+"OpenPGP-varmenteita. Ellei osoitetta anneta, käytetään sisäistä oletusta. "
+"Arvolla <emphasis>none</emphasis> voi poistaa OpenPGP-avainpalvelimen "
+"käytöstä."
 
 #: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
@@ -3807,12 +3784,10 @@ msgid "Delete"
 msgstr "Poista"
 
 #: src/conf/groupsconfigwidget.cpp:197
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Write the key pair of a certificate to the card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr "Kirjoita varmenteen avainpari kortille"
+msgstr "Aloita varmennusprosessi ryhmän kaikille varmenteille."
 
 #: src/conf/groupsconfigwidget.cpp:201
 #: src/dialogs/certificatedetailswidget.cpp:358
@@ -4157,10 +4132,10 @@ msgid ""
 "requests relating to S/MIME.</p><p>The syntax is host:port, for instance "
 "myproxy.nowhere.com:3128.</p>"
 msgstr ""
-"<p>Ellei järjestelmään ole asetettu välityspalvelinta tai joudut käyttämään "
-"eri välityspalvelinta GpgSM:lle, voit määrittää sen tässä.</p><p>Sitä "
-"käytetään kaikkiin S/MIMEen liittyviin HTTP-pyyntöihin.</p><p>Syntaksi on "
-"kone:portti, esim. palvelin.jossakin.fi:3128.</p>"
+"<p>Ellei järjestelmään ole asetettu välityspalvelinta tai GpgSM:lle on "
+"käytettävä eri palvelinta, sen voi määrittää tässä.</p><p>Sitä käytetään "
+"kaikkiin S/MIMEen liittyviin HTTP-pyyntöihin.</p><p>Syntaksi on kone:portti, "
+"esim. palvelin.jossakin.fi:3128.</p>"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabLDAP)
 #: src/conf/smimevalidationconfigurationwidget.ui:246
@@ -4864,8 +4839,7 @@ msgstr ""
 "salattu – onkokaan tämä allekirjoitus tai salattu viesti?"
 
 #: src/crypto/decryptverifytask.cpp:1171
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
 msgstr "Puretaan salausta: %1…"
 
@@ -4893,17 +4867,12 @@ msgstr ""
 "tämä allekirjoitus?"
 
 #: src/crypto/decryptverifytask.cpp:1611
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Todennetaan: %1…"
+msgstr "Todennetaan %1…"
 
 #: src/crypto/decryptverifytask.cpp:1872
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
@@ -4913,10 +4882,9 @@ msgstr ""
 "filename>…"
 
 #: src/crypto/decryptverifytask.cpp:1876
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "Todennetaan allekirjoitusta: %1…"
+msgstr "Todennetaan allekirjoitusta %1…"
 
 #: src/crypto/decryptverifytask.cpp:1887
 #, kde-kuit-format
@@ -6422,19 +6390,16 @@ msgstr ""
 "julkaistu, sitä ei enää voi kumota."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Hallitse ryhmiä"
+msgstr "Hallitse aliavaimia"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Aliavaimet"
+msgstr "Näytä aliavaimet"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -6716,12 +6681,10 @@ msgid "Certify Certificate: %1"
 msgstr "Varmenna varmenne: %1"
 
 #: src/dialogs/certifycertificatedialog.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "Varmenna varmenne: %1"
+msgstr "Varmenna varmenneryhmä %1"
 
 #: src/dialogs/certifywidget.cpp:288
 #, kde-format
@@ -6730,7 +6693,7 @@ msgid ""
 "the key you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
-"Todenna sormenjälki, merkitse käyttäjätunnuksrt, jotka haluat varmentaa, ja "
+"Todenna sormenjälki, merkitse käyttäjätunnukset, jotka haluat varmentaa ja "
 "valitse avain, jolla haluat käyttäjätunnukset varmentaa.<br><i>Huom! Vain "
 "sormenjälki yksilöi varmasti avaimen omistajineen.</i>"
 
@@ -6756,11 +6719,10 @@ msgstr ""
 "tehdään tavallisesti omille avaimille."
 
 #: src/dialogs/certifywidget.cpp:339
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr "Varmenne on varmennettava, jotta sen voi merkitä kelvolliseksi."
+msgstr "Yhtä tai useampaa varmennetta ei voitu varmentaa."
 
 #: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
 #: src/dialogs/certifywidget.cpp:588
@@ -6792,6 +6754,8 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
+"Valitse tämä, jos haluat jakaa varmenteesi muille. Jos haluat vain merkitä "
+"varmenteet varmennetuiksi itsellesi, valinnan voi poistaa."
 
 #: src/dialogs/certifywidget.cpp:372
 #, kde-format
@@ -6805,6 +6769,8 @@ msgid ""
 "Check this option, if you want to upload your certifications to a "
 "certificate directory after successful certification."
 msgstr ""
+"Valitse tämä, jos haluat lähettää varmenteesi varmennehakemistoon "
+"onnistuneen varmennuksen päätteeksi."
 
 #: src/dialogs/certifywidget.cpp:387
 #, kde-format
@@ -6872,42 +6838,34 @@ msgid "Domain:"
 msgstr "Toimialue:"
 
 #: src/dialogs/certifywidget.cpp:556
-#, fuzzy, kde-format
-#| msgid ""
-#| "Verify the fingerprint, mark the user IDs you want to certify, and select "
-#| "the key you want to certify the user IDs with.<br><i>Note: Only the "
-#| "fingerprint clearly identifies the key and its owner.</i>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Verify the fingerprints, mark the user IDs you want to certify, and select "
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
-"Todenna sormenjälki, merkitse käyttäjätunnuksrt, jotka haluat varmentaa, ja "
-"valitse avain, jolla haluat käyttäjätunnukset varmentaa.<br><i>Huom! Vain "
-"sormenjälki yksilöi varmasti avaimen omistajineen.</i>"
+"Todenna sormenjäljet, merkitse varmennettavat käyttäjätunnukset ja valitse "
+"varmenne, jolla haluat käyttäjätunnukset varmentaa.<br><i>Huom! Vain "
+"sormenjäljet yksilöivät varmenteen omistajineen varmasti.</i>"
 
 #: src/dialogs/certifywidget.cpp:588
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "Sormenjälki:"
+msgstr "Sormenjälki"
 
 #: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for signing."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "Tätä varmennetta ei voi käyttää allekirjoittamiseen."
+msgstr "S/MIME-varmenteita ei voi varmentaa."
 
 #: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr "Varmenne on varmennettava, jotta sen voi merkitä kelvolliseksi."
+msgstr "Vanhentuneita tai peruttuja varmenteita ei voi varmentaa."
 
 #: src/dialogs/certifywidget.cpp:919
 #, kde-format
@@ -7126,7 +7084,7 @@ msgstr "Muuta kelpoisuusaikaa"
 #: src/dialogs/expirydialog.cpp:236
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Ensisijainen avain vanhenee: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7229,18 +7187,16 @@ msgid "Import"
 msgstr "Tuo"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Anna varmenteessa käytettävä nimi ja sähköpostiosoite."
+msgstr "Anna hakulause, jolla etsiä sopivia varmenteita."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Anna varmenteessa käytettävä nimi ja sähköpostiosoite."
+msgstr "Anna sähköpostiosoite, jolla etsiä sopivia varmenteita."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7634,45 +7590,37 @@ msgid "Storage"
 msgstr "Talletuspaikka"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Muuta kelpoisuutta"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Vie OpenSSH-avain"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Palauta tulostettu varmuuskopio"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Siirrä älykortille"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Vie salainen aliavain"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Muuta kelpoisuutta"
 
@@ -8050,20 +7998,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "EMAIL-kentän vihje"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Tätä tekstiä käytetään paikkamerkkitekstinä OpenPGP- ja S/MIME-varmenteiden "
-"sähköposti-kentälle (EMAIL)."
+"Tämä teksti näytetään OpenPGP-varmenteiden sähköpostiosoitekentän yllä ja "
+"paikkamerkkinä kentälle S/MIME-varmenteissa."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8087,10 +8032,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Paikkamerkki EMAIL-kentälle"
+msgstr "EMAIL-kentän arvo"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8100,23 +8044,21 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"OpenPGP- ja S/MIME-varmenteiden sähköpostiosoitekentän esitäytetty arvo. "
+"Ohittaa EMAIL_prefill-arvon. Tästä on apua, ellei EMAIL_prefill tarjoa tai "
+"tarjoaa epäsopivia järjestelmäasetuksia."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "NAME-kentän vihje"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
-"Tätä tekstiä käytetään paikkamerkkitekstinä S/MIME-varmenteiden nimi-"
-"kentälle (NAME)."
+msgstr "Tämä teksti näytetään OpenPGP-varmenteiden nimikentän yllä."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8140,10 +8082,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Paikkamerkki NAME-kentälle"
+msgstr "NAME-kentän arvo"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8153,6 +8094,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"OpenPGP-varmenteiden nimikentän esitäytetty arvo. Ohittaa NAME_prefill-"
+"arvon. Tästä on apua, ellei NAME_prefill tarjoa tai tarjoaa epäsopivia "
+"järjestelmäasetuksia."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -9221,15 +9165,11 @@ msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
 #: src/mainwindow.cpp:717
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops.pdf"
-msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
+msgstr "BSI-VSA-10573-ENG_secops.pdf"
 
 #: src/mainwindow.cpp:722
 #, kde-format
@@ -9237,15 +9177,11 @@ msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
 #: src/mainwindow.cpp:723
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops.pdf"
-msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
+msgstr "BSI-VSA-10584-ENG_secops.pdf"
 
 #: src/mainwindow.cpp:748
 #, kde-format
@@ -10104,7 +10040,7 @@ msgstr ""
 #: src/selftest/uiservercheck.cpp:59
 #, kde-format
 msgid "multiple instances"
-msgstr "useampia instansseja"
+msgstr "useampia ilmentymiä"
 
 #: src/selftest/uiservercheck.cpp:60
 #, kde-kuit-format
@@ -10123,7 +10059,7 @@ msgid ""
 "Quit any other running instances of <application>Kleopatra</application>."
 msgstr ""
 "Lopeta kaikki muut käynnissä olevat <application>Kleopatra</application>-"
-"instanssit."
+"ilmentymät."
 
 #: src/smartcard/openpgpcard.cpp:102
 #, kde-format
@@ -11940,6 +11876,8 @@ msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Tälle älykortille ei voi luoda avaimia, koska se ei tue mitään yhteensopivaa "
+"algoritmia."
 
 #: src/view/pgpcardwidget.cpp:430
 #, kde-format

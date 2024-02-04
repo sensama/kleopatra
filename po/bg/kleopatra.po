@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-02 00:38+0000\n"
-"PO-Revision-Date: 2024-01-18 21:13+0100\n"
+"PO-Revision-Date: 2024-02-03 15:55+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -2473,53 +2473,46 @@ msgid "Copying the key to the card failed."
 msgstr "Копирането на ключа в картата е неуспешно."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>Ключът е копиран в картата.</para><para>Искате ли да изтриете копието "
-"на ключа, съхранено на този компютър?</para>"
+"<para>Ключът е копиран в картата.</para><para>Вече можете да изтриете "
+"копието на ключа, съхранявано на този компютър. По желание можете първо "
+"дасъздадете резервно копие на ключа.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Архивиране на хартия"
+msgstr "Създаване на резервно копие"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Изтриване на копието от диска"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Запазване на копието на диска"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>Ключът е копиран в картата.</para><para>Искате ли да изтриете копието "
-"на ключа, съхранено на този компютър?</para>"
+"<para>Ключът е копиран в картата и е записано резервно копие в <filename>%1</"
+"filename>..</para><para>Искате ли да изтриете копието на ключа, съхранено на "
+"този компютър?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2558,12 +2551,11 @@ msgstr ""
 "неуспешно."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Наистина ли искате да изтриете локалното копие на секретния ключ?"
+msgstr "Наистина ли искате да изтриете локалното копие на ключа?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2572,24 +2564,20 @@ msgid "Confirm Deletion"
 msgstr "Потвърждение на изтриването"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Неуспешно изтриване на ключа: </para><para><message>%1</message></para>"
+"<para>Неуспешно изтриване на копието на ключа, запазено на този компютър : </"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Успешно генериран нов ключ за тази карта."
+msgstr "Успешно изтриване на копието на ключа, съхраняван на този компютър."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -3883,18 +3871,15 @@ msgid "Edit Group"
 msgstr "Редактиране на група"
 
 #: src/conf/groupsconfigwidget.cpp:397
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para>Самостоятелно ли искате да отнемете идентификатора на потребителя<nl/"
-"><emphasis>%1</emphasis> ?</para>"
+"<para>Наистина ли искате да изтриете тази група?</para><para><emphasis>%1</"
+"emphasis></para><para>След като бъде изтрита, тя не може да бъде "
+"възстановена..</para>"
 
 #: src/conf/groupsconfigwidget.cpp:403
 #, kde-kuit-format
@@ -3906,16 +3891,19 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Наистина ли искате да изтриете тази %1 група? </para><para>След като "
+"бъде изтрита, тя не може да бъде възстановена.</para>"
 msgstr[1] ""
+"<para>Наистина ли искате да изтриете тези %1 групи? </para><para>След като "
+"бъдат изтрити, те не може да бъдат възстановени.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:415
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Изтриване"
-msgstr[1] "Изтриване"
+msgstr[0] "Изтриване на група"
+msgstr[1] "Изтриване на групи"
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -11030,12 +11018,10 @@ msgid "No input device"
 msgstr "Няма входно устройство"
 
 #: src/utils/keyexportdraghandler.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "A generic filename for exported certificates"
-#| msgid "certificates"
+#, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
-msgstr "сертификати"
+msgstr "сертификати.%1"
 
 #: src/utils/log.cpp:149
 #, kde-format
@@ -12532,62 +12518,3 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
-
-#~ msgid "View Columns"
-#~ msgstr "Преглед на колони"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "Създаване на резервно копие и изтриване на ключ"
-
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "Изтриване на ключ"
-
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "Запазване на ключ"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key to the card."
-#~ msgstr "Копирана успешно ключът към картата."
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "Файлът  <b>%1 </b> вече съществува.\n"
-#~ "Да се презапише ли?"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "Презаписване на съществуващ файл?"
-
-#~ msgid "Overwrite All"
-#~ msgstr "Презаписване на всички"
-
-#~ msgid "Groups"
-#~ msgstr "Групи"
-
-#~ msgid "Save changes"
-#~ msgstr "Запазване на промените"
-
-#~ msgid "Discard changes"
-#~ msgstr "Отхвърляне на промените"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The certificates or the certificate groups have been updated in the "
-#~ "background.</para><para>Do you want to save your changes?</para>"
-#~ msgstr ""
-#~ "<para>Удостоверенията или групите сертификати са били актуализирани в "
-#~ "заден план. </para><para>Искате ли да запазите промените?</para>"
-
-#~ msgctxt "@title::window"
-#~ msgid "Save changes?"
-#~ msgstr "Запазване на промените?"
-
-#~ msgid "Import Certificates"
-#~ msgstr "Сертификати за импртиране"
-
-#~ msgid "Import CRLs"
-#~ msgstr "Импортиране на CRL"

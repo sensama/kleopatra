@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 01:35+0000\n"
-"PO-Revision-Date: 2024-01-11 22:06+0100\n"
+"PO-Revision-Date: 2024-02-04 08:42+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -2457,53 +2457,46 @@ msgid "Copying the key to the card failed."
 msgstr "Копирането на ключа в картата е неуспешно."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>Ключът е копиран в картата.</para><para>Искате ли да изтриете копието "
-"на ключа, съхранено на този компютър?</para>"
+"<para>Ключът е копиран в картата.</para><para>Вече можете да изтриете "
+"копието на ключа, съхранявано на този компютър. По желание можете първо "
+"дасъздадете резервно копие на ключа.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Архивиране на хартия"
+msgstr "Създаване на резервно копие"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Изтриване на копието от диска"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Запазване на копието на диска"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>Ключът е копиран в картата.</para><para>Искате ли да изтриете копието "
-"на ключа, съхранено на този компютър?</para>"
+"<para>Ключът е копиран в картата и е записано резервно копие в <filename>%1</"
+"filename>..</para><para>Искате ли да изтриете копието на ключа, съхранено на "
+"този компютър?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2542,12 +2535,11 @@ msgstr ""
 "неуспешно."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Наистина ли искате да изтриете локалното копие на секретния ключ?"
+msgstr "Наистина ли искате да изтриете локалното копие на ключа?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2556,24 +2548,20 @@ msgid "Confirm Deletion"
 msgstr "Потвърждение на изтриването"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Неуспешно изтриване на ключа: </para><para><message>%1</message></para>"
+"<para>Неуспешно изтриване на копието на ключа, запазено на този компютър : </"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Успешно генериран нов ключ за тази карта."
+msgstr "Успешно изтриване на копието на ключа, съхраняван на този компютър."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -3872,18 +3860,15 @@ msgid "Edit Group"
 msgstr "Редактиране на група"
 
 #: src/conf/groupsconfigwidget.cpp:393
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para>Самостоятелно ли искате да отнемете идентификатора на потребителя<nl/"
-"><emphasis>%1</emphasis> ?</para>"
+"<para>Наистина ли искате да изтриете тази група?</para><para><emphasis>%1</"
+"emphasis></para><para>След като бъде изтрита, тя не може да бъде "
+"възстановена..</para>"
 
 #: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
@@ -3895,15 +3880,18 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Наистина ли искате да изтриете тази група %1? </para><para> След като "
+"бъде изтрита, тя не може да бъде възстановена.</para>"
 msgstr[1] ""
+"<para>Наистина ли искате да изтриете тези %1 групи? </para><para>След като "
+"бъдат изтрити, те не може да бъдат възстановени.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Изтриване"
+msgstr[0] "Изтриване на група"
 msgstr[1] "Изтриване"
 
 #: src/conf/kleopageconfigdialog.cpp:85
@@ -12491,230 +12479,3 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "Файлът  <b>%1 </b> вече съществува.\n"
-#~ "Да се презапише ли?"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "Презаписване на съществуващ файл?"
-
-#~ msgid "Overwrite All"
-#~ msgstr "Презаписване на всички"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "Създаване на резервно копие и изтриване на ключ"
-
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "Изтриване на ключ"
-
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "Запазване на ключ"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key to the card."
-#~ msgstr "Копирана успешно ключът към картата."
-
-#~ msgid "Groups"
-#~ msgstr "Групи"
-
-#~ msgid "Save changes"
-#~ msgstr "Запазване на промените"
-
-#~ msgid "Discard changes"
-#~ msgstr "Отхвърляне на промените"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The certificates or the certificate groups have been updated in the "
-#~ "background.</para><para>Do you want to save your changes?</para>"
-#~ msgstr ""
-#~ "<para>Удостоверенията или групите сертификати са били актуализирани в "
-#~ "заден план. </para><para>Искате ли да запазите промените?</para>"
-
-#~ msgctxt "@title::window"
-#~ msgid "Save changes?"
-#~ msgstr "Запазване на промените?"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-256)"
-#~ msgstr "ECC (Brainpool P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-384)"
-#~ msgstr "ECC (Brainpool P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-512)"
-#~ msgstr "ECC (Brainpool P-512)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve25519)"
-#~ msgstr "ECC (Curve25519)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve448)"
-#~ msgstr "ECC (Curve448)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-256)"
-#~ msgstr "ECC (NIST P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-384)"
-#~ msgstr "ECC (NIST P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-521)"
-#~ msgstr "ECC (NIST P-521)"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 2048"
-#~ msgstr "RSA 2048"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 3072"
-#~ msgstr "RSA 3072"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 4096"
-#~ msgstr "RSA 4096"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
-#~ "para><para>You can configure OpenPGP directory servers in "
-#~ "<application>Kleopatra</application>'s configuration dialog.</"
-#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
-#~ "resource> as the server to export to?</para>"
-#~ msgstr ""
-#~ "<para> Не са конфигурирани услуги за директорията на OpenPGP. </"
-#~ "para><para> Ако не са конфигурирани, <application> Kleopatra </"
-#~ "application> ще използва<resource> keys.gnupg.net </resource> като сървър "
-#~ "за експортиране. </para><para> Можете да конфигурирате сървъри на "
-#~ "директорията на OpenPGP в диалоговият прозорец за конфигуриране на "
-#~ "<application> Kleopatra </application>. </para><para> Наистина ли искате "
-#~ "да продължите с <resource> keys.gnupg.net </resource> като сървър за "
-#~ "експортиране? </para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
-#~ "not all of the certificates carry the name of their preferred certificate "
-#~ "server (few do), a fallback server is needed to fetch from.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
-#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
-#~ "configuration dialog.</para><para>Do you want to continue with "
-#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
-#~ msgstr ""
-#~ "<para> Не са конфигурирани услуги за директорията на OpenPGP. </"
-#~ "para><para> Ако не всички сертификати носят името на предпочитания от тях "
-#~ "сървър за сертификати (малко от тях го имат), за извличането им е "
-#~ "необходим резервен сървър. </para><para> Ако няма конфигуриран, "
-#~ "<application> Kleopatra </application> ще използва  <resource>keys.gnupg."
-#~ "net </resource> като резервен вариант. </para><para> Можете да "
-#~ "конфигурирате OpenPGP сървъри на директории в диалоговия прозорец за "
-#~ "конфигуриране на Kleopatra. </para><para> Наистина ли искате да "
-#~ "продължите с <resource> keys.gnupg.net </resource> като резервен сървър?</"
-#~ "para>"
-
-#~ msgid "Backup Secret Key"
-#~ msgstr "Резервно копие на секретния ключ"
-
-#~ msgid "Secret Key Files"
-#~ msgstr "Тайни ключови файлове"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Error"
-#~ msgstr "Грешка при експортиране на секретен ключ"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Finished"
-#~ msgstr "Експортирането на секретен ключ завърши"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para> Процесът GPG или GpgSM, който се опита да експортира секретния "
-#~ "ключ, приключи преждевременно поради неочаквана грешка. </para><para> "
-#~ "Моля, проверете изходните данни на <icode> %1 </icode> за подробности. </"
-#~ "para>"
-
-#~ msgctxt "@info"
-#~ msgid "Secret key successfully exported."
-#~ msgstr "Тайният ключ е експортиран успешно."
-
-#~ msgctxt "@info"
-#~ msgid "Possibly bad passphrase given."
-#~ msgstr "Възможно е лош пропуск дал."
-
-#~ msgctxt "@info"
-#~ msgid "Failed to write data."
-#~ msgstr "Неуспешно записване на данни."
-
-#~ msgid "The backend does not support updating individual certificates."
-#~ msgstr "Не се поддържа актуализиране на индивидуални сертификати."
-
-#~ msgctxt "@info"
-#~ msgid "The backend does not support this operation."
-#~ msgstr "Бекендът не поддържа тази операция."
-
-#, fuzzy
-#~| msgctxt "1 is protocol"
-#~| msgid "Export %1 Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Export Certificates"
-#~ msgstr "Експортиране на сертификати %1"
-
-#, fuzzy
-#~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
-#~| msgid ""
-#~| "<para>The certificate '%1' is empowered to mark other certificates as %2 "
-#~| "for you.</para><para>Do you want to revoke this power?</para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>You haven't certified all OpenPGP certificates in this group.</"
-#~ "para><para>Do you want to continue the export?</para>"
-#~ msgstr ""
-#~ "<para>Сертификат '%1' има право да маркира други сертификати като %2 за "
-#~ "вас.</para><para>Искате ли да отмените това правомощие?</para>"
-
-#~ msgid "Sender"
-#~ msgstr "Подател"
-
-#~ msgctxt "@action::button"
-#~ msgid "Edit"
-#~ msgstr "Редактиране"
-
-#~ msgctxt "@action::button"
-#~ msgid "Delete"
-#~ msgstr "Изтриване"
-
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "Експортиране"
-
-#~ msgctxt "@info"
-#~ msgid "Unable to read file"
-#~ msgstr "Грешка при четене на файл"
-
-#~ msgid "Explain tags"
-#~ msgstr "Обясняване на етикетите"
-
-#~ msgid "Explain expiration"
-#~ msgstr "Обясняване на срока на валидност"
-
-#~ msgid "Explain trusted introducer"
-#~ msgstr "Обясняване на доверен представител"

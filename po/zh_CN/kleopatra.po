@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 01:35+0000\n"
-"PO-Revision-Date: 2024-01-21 14:14\n"
+"PO-Revision-Date: 2024-02-05 11:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -2324,26 +2324,19 @@ msgid "Copying the key to the card failed."
 msgstr "复制密钥到智能卡失败。"
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>密钥已复制到卡片。</para><para>您想要删除此计算机上存储的密钥副本吗？</"
-"para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "纸质备份"
+msgstr ""
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
@@ -2358,19 +2351,13 @@ msgid "Keep copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>密钥已复制到卡片。</para><para>您想要删除此计算机上存储的密钥副本吗？</"
-"para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2405,12 +2392,11 @@ msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr "备份私钥到 <filename>%1</filename> 失败。"
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "您真的要删除本地密钥吗？"
+msgstr ""
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2419,23 +2405,18 @@ msgid "Confirm Deletion"
 msgstr "确认删除"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
-msgstr "<para>密钥删除失败：</para><para><message>%1</message></para>"
+msgstr ""
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "已成功为智能卡生成新密钥。"
+msgstr ""
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -11863,32 +11844,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "文件 <b>%1</b> 已存在。\n"
-#~ "覆盖吗？"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "覆盖已有文件吗？"
-
-#~ msgid "Overwrite All"
-#~ msgstr "全部覆盖"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "备份和删除密钥"
-
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "删除密钥"
-
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "保留密钥"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key to the card."
-#~ msgstr "成功将密钥复制到智能卡。"

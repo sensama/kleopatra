@@ -11,14 +11,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-02 00:38+0000\n"
-"PO-Revision-Date: 2024-01-22 17:05+0900\n"
+"PO-Revision-Date: 2024-02-05 17:40+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.01.95\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -909,7 +909,7 @@ msgstr "從 %1 匯入憑證"
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated an OpenPGP key from the card keys."
-msgstr ""
+msgstr "已成功從卡片金鑰產生 OpenPGP 金鑰。"
 
 #: src/commands/decryptverifyclipboardcommand.cpp:141
 #, kde-format
@@ -1134,6 +1134,8 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
+"<para>您還沒有用可匯出的方式保證這個憑證的所有有效使用者 ID。依賴您的憑證的人"
+"可能無法檢查這個憑證。</para><para>您確定要繼續匯出嗎？</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
@@ -1165,6 +1167,8 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
+"<para>您還沒有用可匯出的方式保證以下所列憑證的所有有效使用者 ID。依賴您的憑證"
+"的人可能無法檢查這些憑證。</para><para>您確定要繼續匯出嗎？</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1270,7 +1274,7 @@ msgid ""
 "export?</para>"
 msgstr ""
 "<para>您還沒有用可匯出的方式保證這個群組內的所有 OpenPGP 憑證。依賴您的憑證的"
-"人可能無法檢查這些憑證。</para><para>您確定要繼續輸出嗎？</para>"
+"人可能無法檢查這些憑證。</para><para>您確定要繼續匯出嗎？</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
@@ -1295,7 +1299,7 @@ msgid ""
 "continue the export?</para>"
 msgstr ""
 "<para>您還沒有用可匯出的方式保證以下所列群組內的所有 OpenPGP 憑證。依賴您的憑"
-"證的人可能無法檢查這些憑證。</para><para>您確定要繼續輸出嗎？</para>"
+"證的人可能無法檢查這些憑證。</para><para>您確定要繼續匯出嗎？</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
@@ -1339,7 +1343,7 @@ msgid ""
 msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
-msgstr[0] ""
+msgstr[0] "無法匯出憑證至金鑰伺服器，因為金鑰伺服器的使用已經被明確停用。"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2387,13 +2391,13 @@ msgstr "Paper 備份"
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "刪除磁碟上的複本"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "保留磁碟上的複本"
 
 #: src/commands/keytocardcommand.cpp:518
 #, fuzzy, kde-kuit-format
@@ -3441,7 +3445,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
-msgstr ""
+msgstr "將沒有副檔名的 .p7m 檔案視為郵件。"
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
@@ -4176,7 +4180,7 @@ msgstr "執行 %1 時失敗：%2"
 #: src/crypto/createchecksumscontroller.cpp:498
 #, kde-kuit-format
 msgid "Failed to overwrite <filename>%1</filename>."
-msgstr ""
+msgstr "覆寫 <filename>%1</filename> 失敗。"
 
 #: src/crypto/createchecksumscontroller.cpp:524
 #, kde-format
@@ -4378,12 +4382,12 @@ msgstr "簽章於 %1 建立"
 #: src/crypto/decryptverifytask.cpp:282
 #, kde-format
 msgid "With unavailable certificate:"
-msgstr ""
+msgstr "利用無法使用的憑證："
 
 #: src/crypto/decryptverifytask.cpp:284
 #, kde-format
 msgid "With certificate:"
-msgstr ""
+msgstr "利用憑證："
 
 #: src/crypto/decryptverifytask.cpp:289
 #, kde-format
@@ -4474,7 +4478,7 @@ msgstr "<b>解密已取消。</b>"
 #: src/crypto/decryptverifytask.cpp:486
 #, kde-format
 msgid "No integrity protection (MDC)."
-msgstr ""
+msgstr "沒有一致性保護 (MDC)。"
 
 #: src/crypto/decryptverifytask.cpp:486 src/crypto/decryptverifytask.cpp:488
 #: src/crypto/decryptverifytask.cpp:490
@@ -4500,7 +4504,7 @@ msgstr "您可以在金鑰伺服器上搜尋憑證，或是從一個檔案匯入
 #: src/crypto/decryptverifytask.cpp:530
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
-msgstr ""
+msgstr "使用的金鑰未被您或任何已信任的人進行保證。"
 
 #: src/crypto/decryptverifytask.cpp:531
 #, fuzzy, kde-format
@@ -4577,7 +4581,7 @@ msgstr "嵌入檔案名稱：'%1'"
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
-msgstr ""
+msgstr "<b>注意：</b>由於信件未簽署，您並不能確定是誰加密了此信件。"
 
 #: src/crypto/decryptverifytask.cpp:645
 #, kde-format
@@ -4587,6 +4591,8 @@ msgid ""
 "that the file is legitimate.  This is because back then integrity protection "
 "was not widely used."
 msgstr ""
+"<b>提示：</b>如果檔案是在 2003 年以前加密的，它很可能還是正當的。這是因為當時"
+"還沒有廣泛使用一致性保護。"
 
 #: src/crypto/decryptverifytask.cpp:650
 #, kde-format
@@ -4596,7 +4602,7 @@ msgctxt ""
 msgid ""
 "If you are confident that the file was not manipulated you should re-encrypt "
 "it after you have forced the decryption."
-msgstr ""
+msgstr "如果您有信心檔案沒有被竄改，您應該在強制解密之後重新加密它。"
 
 #: src/crypto/decryptverifytask.cpp:947
 #, kde-format
@@ -4851,6 +4857,8 @@ msgid ""
 "<para>Cannot write in the output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
+"<para>無法寫入輸出資料夾 <filename>%1</filename>。</para><para>請選擇另一個輸"
+"出資料夾。</para>"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:206
 #, kde-format
@@ -5193,7 +5201,7 @@ msgstr "單獨加密/簽署各個檔案(&E)。"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
-msgstr ""
+msgstr "讓各個檔案保持分離，而不為它們全部建立封存檔。"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:186
 #, kde-format
@@ -8882,7 +8890,7 @@ msgstr "+ Elgamal"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
-msgstr ""
+msgstr "這個子金鑰是加密必須的。"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:280
 #, kde-format
@@ -10458,12 +10466,10 @@ msgid "No input device"
 msgstr "沒有輸入裝置"
 
 #: src/utils/keyexportdraghandler.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "A generic filename for exported certificates"
-#| msgid "certificates"
+#, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
-msgstr "憑證"
+msgstr "憑證.%1"
 
 #: src/utils/log.cpp:149
 #, kde-format

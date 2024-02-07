@@ -15,13 +15,13 @@
 # Heike Falk <hfalk@g10code.com>, 2019.
 # Alois Spitzbart <spitz234@hotmail.com>, 2021.
 # Frank Steinmetzger <dev@felsenfleischer.de>, 2022.
-# Eva Bolten <eva.bolten@gnupg.com>, 2022, 2023.
+# Eva Bolten <eva.bolten@gnupg.com>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 01:35+0000\n"
-"PO-Revision-Date: 2023-11-16 14:49+0100\n"
+"PO-Revision-Date: 2024-02-02 13:13+0100\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1409,7 +1409,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Der Export des Zertifikats auf einen Schlüsselserver ist nicht möglich, da "
+"die Verwendung von Schlüsselservern explizit deaktiviert wurde."
 msgstr[1] ""
+"Der Export der Zertifikate auf einen Schlüsselserver ist nicht möglich, da "
+"die Verwendung von Schlüsselservern explizit deaktiviert wurde."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -2501,53 +2505,47 @@ msgid "Copying the key to the card failed."
 msgstr "Das Kopieren des Schlüssels auf die Karte schlug fehl."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>Der Schlüssel wurde auf die Karte kopiert.</para><para>Soll die Kopie "
-"gelöscht werden, die sich auf diesem Computer befindet?</para>"
+"<para>Der Schlüssel wurde auf die Karte kopiert.</para><para>Sie können die "
+"auf diesem Computer gespeicherte Kopie nun löschen. Optional können Sie "
+"zuvor eine Sicherungskopie des Schlüssels erstellen.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Papiersicherung"
+msgstr "Sicherungskopie erstellen"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Lösche Kopie auf Festplatte"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Behalte Kopie auf Festplatte"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>Der Schlüssel wurde auf die Karte kopiert.</para><para>Soll die Kopie "
-"gelöscht werden, die sich auf diesem Computer befindet?</para>"
+"<para>Der Schlüssel wurde auf die Karte kopiert und eine Sicherungskopie "
+"wurde gespeichert als <filename>%1</filename>.</para><para>Soll nun die "
+"Kopie des Schlüssels gelöscht werden, die sich auf diesem Computer befindet?"
+"</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2587,12 +2585,12 @@ msgstr ""
 "fehlgeschlagen."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Wollen sie die lokale Kopie des geheimen Schlüssels wirklich löschen?"
+msgstr ""
+"Wollen Sie die Kopie des Schlüssels auf diesem Computer wirklich löschen?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2601,25 +2599,21 @@ msgid "Confirm Deletion"
 msgstr "Löschen bestätigen"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Löschen des Schlüssels fehlgeschlagen:</para><para><message>%1</"
-"message></para>"
+"<para>Das Löschen der Kopie des Schlüssels auf diesem Computer ist "
+"fehlgeschlagen:</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Neuer Schlüssel für diese Karte wurde erfolgreich erstellt."
+msgstr ""
+"Das Löschen der Kopie des Schlüssels auf diesem Computer war erfolgreich."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -3017,6 +3011,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Die Aktualisierung der Zertifikate ist nicht möglich, da die Verwendung von "
+"Schlüsselservern explizit deaktiviert wurde."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3736,6 +3732,11 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Geben Sie die Adresse des Keyservers an, der bei der Suche nach und beim "
+"Hochladen von OpenPGP-Zertifikaten verwendet werden soll. Wenn Sie keine "
+"Adresse angeben, wird ein interner Standard verwendet. Um die Verwendung "
+"eines OpenPGP-Schlüsselservers zu deaktivieren, geben Sie den speziellen "
+"Wert <emphasis>none</emphasis> an."
 
 #: src/conf/dirservconfigpage.cpp:155 src/conf/dirservconfigpage.cpp:157
 #, kde-format
@@ -3784,7 +3785,7 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
-"Suche für alle Benutzerkennungen bei Schlüsselverzeichnissen der Maildomänen "
+"Suche für alle Benutzerkennungen in Schlüsselverzeichnissen der Maildomänen "
 "Betreiber (WKDs)"
 
 #: src/conf/dirservconfigpage.cpp:233
@@ -3799,7 +3800,7 @@ msgstr ""
 "Standardmäßig fragt Kleopatra bei der Aktualisierung eines OpenPGP-"
 "Zertifikats die Schlüsselverzeichnisse der Maildomänen Betreiber (WKDs) nur "
 "für Benutzerkennungen ab, die ursprünglich aus einem WKD bezogen wurden. Ist "
-"diese Option aktiviert, dann fragt Kleopatra die WKDs nach allen "
+"diese Option aktiviert, dann fragt Kleopatra die WKDs für alle "
 "Benutzerkennungen ab."
 
 #: src/conf/dirservconfigpage.cpp:470 src/conf/dirservconfigpage.cpp:474
@@ -3918,11 +3919,7 @@ msgid "Edit Group"
 msgstr "Gruppe bearbeiten"
 
 #: src/conf/groupsconfigwidget.cpp:393
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
@@ -3941,15 +3938,18 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Wollen Sie diese Gruppe wirklich löschen?</para><para>Nach dem Löschen "
+"kann sie nicht wiederhergestellt werden.</para>"
 msgstr[1] ""
+"<para>Wollen Sie diese %1 Gruppen wirklich löschen?</para> <para>Nach dem "
+"Löschen können sie nicht wiederhergestellt werden.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Löschen"
+msgstr[0] "Gruppe Löschen"
 msgstr[1] "Löschen"
 
 #: src/conf/kleopageconfigdialog.cpp:85
@@ -4630,8 +4630,8 @@ msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
 msgstr ""
-"Die Signatur ist gültig aber das Vertrauen in die Gültigkeit des Zertifikats "
-"ist nur marginal. "
+"Die Signatur ist gültig, aber das Vertrauen in die Gültigkeit des "
+"Zertifikats ist nur marginal. "
 
 #: src/crypto/decryptverifytask.cpp:222
 #, kde-format
@@ -4654,21 +4654,21 @@ msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
 "em>."
 msgstr ""
-"Die Signatur ist gültig aber es besteht <em>kein Vertrauen</em> in die "
+"Die Signatur ist gültig, aber es besteht <em>kein Vertrauen</em> in die "
 "Gültigkeit des Zertifikats."
 
 #: src/crypto/decryptverifytask.cpp:228
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr ""
-"Die Signatur ist gültig aber die Gültigkeit des Zertifikats ist unbekannt."
+"Die Signatur ist gültig, aber die Gültigkeit des Zertifikats ist unbekannt."
 
 #: src/crypto/decryptverifytask.cpp:231
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr ""
-"Die Signatur ist gültig aber das Vertrauen in die Gültigkeit des Zertifikats "
-"ist unbekannt."
+"Die Signatur ist gültig, aber das Vertrauen in die Gültigkeit des "
+"Zertifikats ist unbekannt."
 
 #: src/crypto/decryptverifytask.cpp:243 src/crypto/decryptverifytask.cpp:259
 #, kde-format
@@ -4957,10 +4957,9 @@ msgstr ""
 "oder verschlüsselten Text handelt – möglicherweise ist es weder noch?"
 
 #: src/crypto/decryptverifytask.cpp:1171
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "Entschlüsselung: %1 ..."
+msgstr "%1 wird entschlüsselt ..."
 
 #: src/crypto/decryptverifytask.cpp:1449
 #, kde-format
@@ -4987,17 +4986,12 @@ msgstr ""
 "handelt – möglicherweise handelt es sich nicht um eine Signatur?"
 
 #: src/crypto/decryptverifytask.cpp:1611
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Gültigkeit wird geprüft: %1 ..."
+msgstr "%1 wird geprüft ..."
 
 #: src/crypto/decryptverifytask.cpp:1872
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
@@ -5005,8 +4999,7 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename> wird mit <filename>%2</filename> geprüft ..."
 
 #: src/crypto/decryptverifytask.cpp:1876
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
 msgstr "Signatur wird geprüft: %1 ..."
 
@@ -6538,19 +6531,16 @@ msgstr ""
 "zurückzuziehen."
 
 #: src/dialogs/certificatedetailswidget.cpp:483
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgctxt "@action:button"
 msgid "Manage Subkeys"
-msgstr "Gruppen verwalten"
+msgstr "Unterschlüssel verwalten"
 
 #: src/dialogs/certificatedetailswidget.cpp:484
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Subkeys"
-msgstr "Unterschlüssel"
+msgstr "Unterschlüssel anzeigen"
 
 #: src/dialogs/certificatedetailswidget.cpp:506
 #, kde-format
@@ -7258,7 +7248,7 @@ msgstr "Gültigkeitsdauer ändern"
 #: src/dialogs/expirydialog.cpp:236
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Ablaufdatum des primären Schlüssels: %1"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7364,18 +7354,18 @@ msgid "Import"
 msgstr "Importieren"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Geben Sie einen Namen und eine E-Mail-Adresse für das Zertifikat ein."
+msgstr ""
+"Geben Sie einen Suchbegriff für die Suche nach passenden Zertifikaten ein."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Geben Sie einen Namen und eine E-Mail-Adresse für das Zertifikat ein."
+msgstr ""
+"Geben Sie eine E-Mail-Adresse für die Suche nach passenden Zertifikaten ein."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7780,45 +7770,37 @@ msgid "Storage"
 msgstr "Speicherort"
 
 #: src/dialogs/subkeyswidget.cpp:121
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Ablaufdatum ändern"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "OpenSSH-Schlüssel exportieren"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Gedruckte Sicherung wiederherstellen"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Auf Smartcard übertragen"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Geheimen Unterschlüssel exportieren"
 
 #: src/dialogs/subkeyswidget.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Ablaufdatum ändern"
 
@@ -8207,20 +8189,17 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Hinweistext für EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Dieser Text wird als Platzhalter für das Feld „E-Mail-Adresse“ von S/MIME- "
-"und OpenPGP-Zertifikaten verwendet."
+"Dieser Text wird über dem Feld „E-Mail-Adresse“ von OpenPGP-Zertifikaten "
+"angezeigt und als Platzhalter in diesem Feld bei S/MIME-Zertifikaten."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8239,15 +8218,14 @@ msgid ""
 msgstr ""
 "Wenn aktiviert, wird das Feld „E-Mail-Adresse“ von S/MIME- und OpenPGP-"
 "Zertifikaten mit aus dem System ermittelten Informationen ausgefüllt,\n"
-"         z. B. von den E-Mail-Einstellungen oder bei Windows aus dem Active "
+"         z. B. aus den E-Mail-Einstellungen oder bei Windows aus dem Active "
 "Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Platzhalter für EMAIL"
+msgstr "Wert für EMAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8257,23 +8235,22 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Vorausgefüllter Wert für das E-Mail-Adressfeld von OpenPGP- und S/MIME-"
+"Zertifikaten. Damit wird EMAIL_prefill überschrieben. Er ist nützlich, wenn "
+"keine oder ungeeignete Systemeinstellungen für EMAIL_prefill gefunden werden."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Hinweistext für NAME"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
-"Dieser Text wird als Platzhalter für das Feld „Name“ von OpenPGP-"
-"Zertifikaten verwendet."
+"Dieser Text wird über dem Feld „Name“ von OpenPGP-Zertifikaten angezeigt."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8290,17 +8267,16 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
-"Wenn aktiviert, wird das Feld „Name“ von OpenPGp-Zertifikaten mit aus dem "
+"Wenn aktiviert, wird das Feld „Name“ von OpenPGP-Zertifikaten mit aus dem "
 "System ermittelten Informationen ausgefüllt,\n"
-"         z. B. von den E-Mail-Einstellungen oder bei Windows aus dem Active "
+"         z. B. aus den E-Mail-Einstellungen oder bei Windows aus dem Active "
 "Directory."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Platzhalter für NAME"
+msgstr "Wert für NAME"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8310,6 +8286,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Vorausgefüllter Wert für das Namensfeld von OpenPGP-Zertifikaten. Damit wird "
+"NAME_prefill überschrieben. Er ist nützlich, wenn keine oder eine unpassende "
+"Systemeinstellung für NAME_prefill gefunden wird."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -8641,10 +8620,10 @@ msgid ""
 "user IDs."
 msgstr ""
 "Standardmäßig fragt Kleopatra bei der Aktualisierung eines OpenPGP-"
-"Zertifikats die Schlüsselverzeichnisse         der Maildomänen Betreiber "
-"(WKDs) nur für Benutzerkennungen ab, die ursprünglich aus einer WKD bezogen "
-"wurden.\n"
-"        Ist diese Option aktiviert, dann fragt Kleopatra die WKDs nach allen "
+"Zertifikats die Schlüsselverzeichnisse\n"
+"        der Maildomänen Betreiber (WKDs) nur für Benutzerkennungen ab, die "
+"ursprünglich aus einem WKD bezogen wurden.\n"
+"        Ist diese Option aktiviert, dann fragt Kleopatra die WKDs für alle "
 "Benutzerkennungen ab."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
@@ -11732,7 +11711,7 @@ msgstr "NKS-PIN setzen"
 #, kde-format
 msgid "Setting a PIN is required but <b>can't be reverted</b>."
 msgstr ""
-"Eine PIN zu setzen ist notwendig aber kann <b>nicht rückgängig</b> gemacht "
+"Eine PIN zu setzen ist notwendig, aber kann <b>nicht rückgängig</b> gemacht "
 "werden."
 
 #: src/view/nullpinwidget.cpp:72

@@ -55,7 +55,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     , mLearnKeysLabel(new QLabel(this))
     , mErrorLabel(new QLabel(this))
     , mNullPinWidget(new NullPinWidget(this))
-    , mLearnKeysBtn(new QPushButton(this))
     , mChangeNKSPINBtn(new QPushButton(this))
     , mChangeSigGPINBtn(new QPushButton(this))
     , mTreeView(new KeyTreeView(this))
@@ -93,27 +92,9 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     vLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Certificates:"))), 0, Qt::AlignLeft);
 
     mLearnKeysLabel = new QLabel(i18n("There are unknown certificates on this card."));
-    mLearnKeysBtn->setText(i18nc("@action", "Load Certificates"));
-    connect(mLearnKeysBtn, &QPushButton::clicked, this, [this]() {
-        mLearnKeysBtn->setEnabled(false);
-        auto cmd = new LearnCardKeysCommand(GpgME::CMS);
-        cmd->setParentWidget(this);
-        cmd->start();
-
-        auto icon = KleopatraApplication::instance()->sysTrayIcon();
-        if (icon) {
-            icon->setLearningInProgress(true);
-        }
-
-        connect(cmd, &Command::finished, this, [icon]() {
-            ReaderStatus::mutableInstance()->updateStatus();
-            icon->setLearningInProgress(false);
-        });
-    });
 
     auto hLay2 = new QHBoxLayout;
     hLay2->addWidget(mLearnKeysLabel);
-    hLay2->addWidget(mLearnKeysBtn);
     hLay2->addStretch(1);
     vLay->addLayout(hLay2);
 
@@ -232,8 +213,6 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
     }
 
     const auto keys = card->keys();
-    mLearnKeysBtn->setEnabled(true);
-    mLearnKeysBtn->setVisible(card->canLearnKeys());
     mTreeView->setVisible(!keys.empty());
     mLearnKeysLabel->setVisible(keys.empty());
 
@@ -255,6 +234,27 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
     if (mCreateCSRButton) {
         mCreateCSRButton->setEnabled(!getKeysSuitableForCSRCreation(card).empty());
     }
+
+    if (card->canLearnKeys()) {
+        learnCard();
+    }
+}
+
+void NetKeyWidget::learnCard()
+{
+    auto cmd = new LearnCardKeysCommand(GpgME::CMS);
+    cmd->setParentWidget(this);
+    cmd->setShowsOutputWindow(false);
+    cmd->start();
+
+    auto icon = KleopatraApplication::instance()->sysTrayIcon();
+    if (icon) {
+        icon->setLearningInProgress(true);
+    }
+
+    connect(cmd, &Command::finished, this, [icon]() {
+        icon->setLearningInProgress(false);
+    });
 }
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)

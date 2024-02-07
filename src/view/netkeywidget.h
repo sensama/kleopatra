@@ -36,6 +36,7 @@ public:
     void setCard(const SmartCard::NetKeyCard *card);
 
 private:
+    void learnCard();
     void doChangePin(const std::string &keyRef);
     void createKeyFromCardKeys();
     void createCSR();
@@ -47,7 +48,6 @@ private:
     QLabel *mLearnKeysLabel = nullptr;
     QLabel *mErrorLabel = nullptr;
     NullPinWidget *mNullPinWidget = nullptr;
-    QPushButton *mLearnKeysBtn = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
     QPushButton *mCreateCSRButton = nullptr;
     QPushButton *mChangeNKSPINBtn = nullptr;

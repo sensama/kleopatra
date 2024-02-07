@@ -15,13 +15,13 @@
 # Heike Falk <hfalk@g10code.com>, 2019.
 # Alois Spitzbart <spitz234@hotmail.com>, 2021.
 # Frank Steinmetzger <dev@felsenfleischer.de>, 2022.
-# Eva Bolten <eva.bolten@gnupg.com>, 2022, 2023.
+# Eva Bolten <eva.bolten@gnupg.com>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-03 01:36+0000\n"
-"PO-Revision-Date: 2023-11-16 14:49+0100\n"
+"PO-Revision-Date: 2024-02-02 13:13+0100\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3779,7 +3779,7 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
-"Suche für alle Benutzerkennungen bei Schlüsselverzeichnissen der Maildomänen "
+"Suche für alle Benutzerkennungen in Schlüsselverzeichnissen der Maildomänen "
 "Betreiber (WKDs)"
 
 #: src/conf/dirservconfigpage.cpp:190
@@ -3794,7 +3794,7 @@ msgstr ""
 "Standardmäßig fragt Kleopatra bei der Aktualisierung eines OpenPGP-"
 "Zertifikats die Schlüsselverzeichnisse der Maildomänen Betreiber (WKDs) nur "
 "für Benutzerkennungen ab, die ursprünglich aus einem WKD bezogen wurden. Ist "
-"diese Option aktiviert, dann fragt Kleopatra die WKDs nach allen "
+"diese Option aktiviert, dann fragt Kleopatra die WKDs für alle "
 "Benutzerkennungen ab."
 
 #: src/conf/dirservconfigpage.cpp:424
@@ -4642,8 +4642,8 @@ msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
 msgstr ""
-"Die Signatur ist gültig aber das Vertrauen in die Gültigkeit des Zertifikats "
-"ist nur marginal. "
+"Die Signatur ist gültig, aber das Vertrauen in die Gültigkeit des "
+"Zertifikats ist nur marginal. "
 
 #: src/crypto/decryptverifytask.cpp:221
 #, kde-format
@@ -4666,21 +4666,21 @@ msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
 "em>."
 msgstr ""
-"Die Signatur ist gültig aber es besteht <em>kein Vertrauen</em> in die "
+"Die Signatur ist gültig, aber es besteht <em>kein Vertrauen</em> in die "
 "Gültigkeit des Zertifikats."
 
 #: src/crypto/decryptverifytask.cpp:227
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr ""
-"Die Signatur ist gültig aber die Gültigkeit des Zertifikats ist unbekannt."
+"Die Signatur ist gültig, aber die Gültigkeit des Zertifikats ist unbekannt."
 
 #: src/crypto/decryptverifytask.cpp:230
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr ""
-"Die Signatur ist gültig aber das Vertrauen in die Gültigkeit des Zertifikats "
-"ist unbekannt."
+"Die Signatur ist gültig, aber das Vertrauen in die Gültigkeit des "
+"Zertifikats ist unbekannt."
 
 #: src/crypto/decryptverifytask.cpp:242 src/crypto/decryptverifytask.cpp:258
 #, kde-format
@@ -8167,7 +8167,7 @@ msgid ""
 msgstr ""
 "Wenn aktiviert, wird das Feld „E-Mail-Adresse“ von S/MIME- und OpenPGP-"
 "Zertifikaten mit aus dem System ermittelten Informationen ausgefüllt,\n"
-"         z. B. von den E-Mail-Einstellungen oder bei Windows aus dem Active "
+"         z. B. aus den E-Mail-Einstellungen oder bei Windows aus dem Active "
 "Directory."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
@@ -8201,9 +8201,9 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
-"Wenn aktiviert, wird das Feld „Name“ von OpenPGp-Zertifikaten mit aus dem "
+"Wenn aktiviert, wird das Feld „Name“ von OpenPGP-Zertifikaten mit aus dem "
 "System ermittelten Informationen ausgefüllt,\n"
-"         z. B. von den E-Mail-Einstellungen oder bei Windows aus dem Active "
+"         z. B. aus den E-Mail-Einstellungen oder bei Windows aus dem Active "
 "Directory."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -8536,10 +8536,10 @@ msgid ""
 "user IDs."
 msgstr ""
 "Standardmäßig fragt Kleopatra bei der Aktualisierung eines OpenPGP-"
-"Zertifikats die Schlüsselverzeichnisse         der Maildomänen Betreiber "
-"(WKDs) nur für Benutzerkennungen ab, die ursprünglich aus einer WKD bezogen "
-"wurden.\n"
-"        Ist diese Option aktiviert, dann fragt Kleopatra die WKDs nach allen "
+"Zertifikats die Schlüsselverzeichnisse\n"
+"        der Maildomänen Betreiber (WKDs) nur für Benutzerkennungen ab, die "
+"ursprünglich aus einem WKD bezogen wurden.\n"
+"        Ist diese Option aktiviert, dann fragt Kleopatra die WKDs für alle "
 "Benutzerkennungen ab."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
@@ -11688,7 +11688,7 @@ msgstr "NKS-PIN setzen"
 #, kde-format
 msgid "Setting a PIN is required but <b>can't be reverted</b>."
 msgstr ""
-"Eine PIN zu setzen ist notwendig aber kann <b>nicht rückgängig</b> gemacht "
+"Eine PIN zu setzen ist notwendig, aber kann <b>nicht rückgängig</b> gemacht "
 "werden."
 
 #: src/view/nullpinwidget.cpp:72

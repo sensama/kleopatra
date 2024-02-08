@@ -49,7 +49,6 @@ public:
 
     Card::Status cardStatus(unsigned int slot) const;
     std::string firstCardWithNullPin() const;
-    bool anyCardCanLearnKeys() const;
 
     std::vector<std::shared_ptr<Card>> getCards() const;
 
@@ -73,7 +72,6 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void firstCardWithNullPinChanged(const std::string &serialNumber);
-    void anyCardCanLearnKeysChanged(bool);
     void cardAdded(const std::string &serialNumber, const std::string &appName);
     void cardChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);

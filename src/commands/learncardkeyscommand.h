@@ -27,11 +27,6 @@ public:
 
     GpgME::Protocol protocol() const;
 
-    /* reimp */ static Restrictions restrictions()
-    {
-        return AnyCardCanLearnKeys;
-    }
-
 private:
     void doStart() override;
 

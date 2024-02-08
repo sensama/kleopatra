@@ -23,7 +23,6 @@
 #include <commands/decryptverifyclipboardcommand.h>
 #include <commands/encryptclipboardcommand.h>
 #include <commands/importcertificatefromclipboardcommand.h>
-#include <commands/learncardkeyscommand.h>
 #include <commands/setinitialpincommand.h>
 #include <commands/signclipboardcommand.h>
 
@@ -72,9 +71,8 @@ private:
     {
         openCertificateManagerAction.setEnabled(!q->mainWindow() || !q->mainWindow()->isVisible());
         setInitialPinAction.setEnabled(!firstCardWithNullPin.empty());
-        learnCertificatesAction.setEnabled(anyCardCanLearnKeys);
 
-        q->setAttentionWanted((!firstCardWithNullPin.empty() || anyCardCanLearnKeys) && !q->attentionWindow());
+        q->setAttentionWanted(!firstCardWithNullPin.empty() && !q->attentionWindow());
     }
 
     void slotSetInitialPin()
@@ -86,12 +84,6 @@ private:
         }
     }
 
-    void slotLearnCertificates()
-    {
-        auto cmd = new LearnCardKeysCommand(GpgME::CMS);
-        q->setAttentionWindow(cmd->dialog());
-        startCommand(cmd);
-    }
     void startCommand(Command *cmd)
     {
         Q_ASSERT(cmd);
@@ -101,8 +93,6 @@ private:
 
 private:
     std::string firstCardWithNullPin;
-    bool anyCardCanLearnKeys = false;
-    bool learningInProgress = false;
 
     QMenu menu;
     QAction openCertificateManagerAction;
@@ -115,7 +105,6 @@ private:
     QMenu cardMenu;
     QAction updateCardStatusAction;
     QAction setInitialPinAction;
-    QAction learnCertificatesAction;
 
     QPointer<KAboutApplicationDialog> aboutDialog;
     QEventLoopLocker eventLoopLocker;
@@ -138,7 +127,6 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     , cardMenu(i18nc("@title:menu", "SmartCard"))
     , updateCardStatusAction(i18nc("@action:inmenu", "Update Card Status"), q)
     , setInitialPinAction(i18nc("@action:inmenu", "Set NetKey v3 Initial PIN..."), q)
-    , learnCertificatesAction(i18nc("@action:inmenu", "Learn NetKey v3 Card Certificates"), q)
     , aboutDialog()
 {
     q->setNormalIcon(QIcon::fromTheme(QStringLiteral("kleopatra")));
@@ -152,7 +140,6 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     KDAB_SET_OBJECT_NAME(clipboardMenu);
     KDAB_SET_OBJECT_NAME(cardMenu);
     KDAB_SET_OBJECT_NAME(setInitialPinAction);
-    KDAB_SET_OBJECT_NAME(learnCertificatesAction);
 
     connect(&openCertificateManagerAction, SIGNAL(triggered()), qApp, SLOT(openOrRaiseMainWindow()));
     connect(&configureAction, SIGNAL(triggered()), qApp, SLOT(openOrRaiseConfigDialog()));
@@ -160,7 +147,6 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     connect(&quitAction, &QAction::triggered, QCoreApplication::instance(), &QCoreApplication::quit);
     connect(&updateCardStatusAction, &QAction::triggered, ReaderStatus::instance(), &ReaderStatus::updateStatus);
     connect(&setInitialPinAction, SIGNAL(triggered()), q, SLOT(slotSetInitialPin()));
-    connect(&learnCertificatesAction, SIGNAL(triggered()), q, SLOT(slotLearnCertificates()));
 
     menu.addAction(&openCertificateManagerAction);
     menu.addAction(&configureAction);
@@ -171,7 +157,6 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     menu.addMenu(&cardMenu);
     cardMenu.addAction(&updateCardStatusAction);
     cardMenu.addAction(&setInitialPinAction);
-    cardMenu.addAction(&learnCertificatesAction);
     menu.addSeparator();
     menu.addAction(&quitAction);
 
@@ -212,8 +197,6 @@ void SysTrayIcon::doActivated()
         }
     if (!d->firstCardWithNullPin.empty()) {
         d->slotSetInitialPin();
-    } else if (d->anyCardCanLearnKeys) {
-        d->slotLearnCertificates();
     } else {
         // Toggle visibility of MainWindow
         KleopatraApplication::instance()->toggleMainWindowVisibility();
@@ -229,28 +212,9 @@ void SysTrayIcon::setFirstCardWithNullPin(const std::string &serialNumber)
     slotEnableDisableActions();
 }
 
-void SysTrayIcon::setAnyCardCanLearnKeys(bool on)
-{
-    if (d->anyCardCanLearnKeys == on || d->learningInProgress) {
-        return;
-    }
-    d->anyCardCanLearnKeys = on;
-    slotEnableDisableActions();
-}
-
 void SysTrayIcon::slotEnableDisableActions()
 {
     d->enableDisableActions();
-}
-
-/* We need this as the readerstatus might update even
- * while the loading is in progress. */
-void SysTrayIcon::setLearningInProgress(bool value)
-{
-    if (value) {
-        setAnyCardCanLearnKeys(false);
-    }
-    d->learningInProgress = value;
 }
 
 #include "moc_systrayicon.cpp"

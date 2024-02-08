@@ -27,11 +27,8 @@ public:
     MainWindow *mainWindow() const;
     QDialog *attentionWindow() const;
 
-    void setLearningInProgress(bool value);
-
 public Q_SLOTS:
     void setFirstCardWithNullPin(const std::string &serialNumber);
-    void setAnyCardCanLearnKeys(bool);
 
 private:
     void doActivated() override;
@@ -42,7 +39,6 @@ private:
     kdtools::pimpl_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotAbout())
     Q_PRIVATE_SLOT(d, void slotSetInitialPin())
-    Q_PRIVATE_SLOT(d, void slotLearnCertificates())
 };
 
 #endif // QT_NO_SYSTEMTRAYICON

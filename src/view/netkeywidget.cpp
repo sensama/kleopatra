@@ -212,7 +212,8 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mErrorLabel->setVisible(false);
     }
 
-    mTreeView->setKeys(card->keys());
+    const auto keys = card->keys();
+    mTreeView->setKeys(keys);
 
     if (mKeyForCardKeysButton) {
         mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey()
@@ -223,7 +224,8 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mCreateCSRButton->setEnabled(!getKeysSuitableForCSRCreation(card).empty());
     }
 
-    if (card->canLearnKeys()) {
+    if (card->keyInfos().size() > keys.size()) {
+        // the card contains keys we don't know; try to learn them from the card
         learnCard();
     }
 }
@@ -234,15 +236,6 @@ void NetKeyWidget::learnCard()
     cmd->setParentWidget(this);
     cmd->setShowsOutputWindow(false);
     cmd->start();
-
-    auto icon = KleopatraApplication::instance()->sysTrayIcon();
-    if (icon) {
-        icon->setLearningInProgress(true);
-    }
-
-    connect(cmd, &Command::finished, this, [icon]() {
-        icon->setLearningInProgress(false);
-    });
 }
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)

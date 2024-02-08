@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 01:35+0000\n"
-"PO-Revision-Date: 2024-01-29 21:42+0200\n"
+"PO-Revision-Date: 2024-01-31 17:47+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -2426,53 +2426,46 @@ msgid "Copying the key to the card failed."
 msgstr "Avaimen kopioiminen kortille epäonnistui."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>Avain on kopioitu kortille.</para><para>Haluatko poistaa avaimen tälle "
-"koneelle tallennetun kopion?</para>"
+"<para>Avain on kopioitu kortille.</para><para>Koneelle talletetun avaimen "
+"kopion voi nyt poistaa. Valinnaisesti voi avaimesta ensin tehdä "
+"varmuuskopion.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Paperivarmuuskopio"
+msgstr "Tee varmuuskopio"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Poista kopio levyltä"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Säilytä kopio levyllä"
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>Avain on kopioitu kortille.</para><para>Haluatko poistaa avaimen tälle "
-"koneelle tallennetun kopion?</para>"
+"<para>Avain on kopioitu kortille ja varmuuskopio tehty tiedostoon <filename>"
+"%1</filename>.</para><para>Haluatko poistaa tälle koneelle talletetun "
+"avaimen kopion?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2511,12 +2504,11 @@ msgstr ""
 "filename> epäonnistui."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Haluatko varmasti poistaa salaisen avaimen paikallisen kopion?"
+msgstr "Haluatko varmasti poistaa tälle koneelle talletetun avaimen kopion?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2525,25 +2517,20 @@ msgid "Confirm Deletion"
 msgstr "Vahvista poistaminen"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Avaimen poistaminen epäonnistui:</para><para><message>%1</message></"
-"para>"
+"<para>Koneelle talletetun avaimen kopion poistaminen epäonnistui:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Uuden avaimen luonti kortille onnistui."
+msgstr "Avaimen tälle koneelle talletetun kopion poistaminen onnistui."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -3815,18 +3802,14 @@ msgid "Edit Group"
 msgstr "Muokkaa ryhmää"
 
 #: src/conf/groupsconfigwidget.cpp:393
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para>Haluatko varmasti perus käyttäjätunnisteen<nl/><emphasis>%1</emphasis>?"
-"</para>"
+"<para>Haluatko varmasti poistaa tämän ryhmän?</para><para><emphasis>%1</"
+"emphasis></para><para>Poistamisen jälkeen sitä ei voi palauttaa.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
@@ -3838,16 +3821,19 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Haluatko varmasti poistaa tämän ryhmän?</para><para>Poistamisen "
+"jälkeen sitä ei voi palauttaa.</para>"
 msgstr[1] ""
+"<para>Haluatko varmasti poistaa nämä %1 ryhmää?</para><para>Poistamisen "
+"jälkeen niitä ei voi palauttaa.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Poista"
-msgstr[1] "Poista"
+msgstr[0] "Poista ryhmä"
+msgstr[1] "Poista ryhmät"
 
 #: src/conf/kleopageconfigdialog.cpp:85
 #, kde-format
@@ -6441,7 +6427,7 @@ msgid ""
 "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?"
 "</para>"
 msgstr ""
-"<para>Haluatko varmasti perus käyttäjätunnisteen<nl/><emphasis>%1</emphasis>?"
+"<para>Haluatko varmasti perua käyttäjätunnisteen<nl/><emphasis>%1</emphasis>?"
 "</para>"
 
 #: src/dialogs/certificatedetailswidget.cpp:821

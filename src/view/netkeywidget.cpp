@@ -52,7 +52,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     : QWidget(parent)
     , mSerialNumberLabel(new QLabel(this))
     , mVersionLabel(new QLabel(this))
-    , mLearnKeysLabel(new QLabel(this))
     , mErrorLabel(new QLabel(this))
     , mNullPinWidget(new NullPinWidget(this))
     , mChangeNKSPINBtn(new QPushButton(this))
@@ -90,13 +89,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     line1->setFrameShape(QFrame::HLine);
     vLay->addWidget(line1);
     vLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Certificates:"))), 0, Qt::AlignLeft);
-
-    mLearnKeysLabel = new QLabel(i18n("There are unknown certificates on this card."));
-
-    auto hLay2 = new QHBoxLayout;
-    hLay2->addWidget(mLearnKeysLabel);
-    hLay2->addStretch(1);
-    vLay->addLayout(hLay2);
 
     mErrorLabel->setVisible(false);
     vLay->addWidget(mErrorLabel);
@@ -212,10 +204,6 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
     }
 
-    const auto keys = card->keys();
-    mTreeView->setVisible(!keys.empty());
-    mLearnKeysLabel->setVisible(keys.empty());
-
     const auto errMsg = card->errorMsg();
     if (!errMsg.isEmpty()) {
         mErrorLabel->setText(QStringLiteral("<b>%1:</b> %2").arg(i18n("Error"), errMsg));
@@ -224,7 +212,7 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mErrorLabel->setVisible(false);
     }
 
-    mTreeView->setKeys(keys);
+    mTreeView->setKeys(card->keys());
 
     if (mKeyForCardKeysButton) {
         mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey()

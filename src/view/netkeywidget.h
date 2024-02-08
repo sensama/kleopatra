@@ -45,7 +45,6 @@ private:
     std::string mSerialNumber;
     QLabel *mSerialNumberLabel = nullptr;
     QLabel *mVersionLabel = nullptr;
-    QLabel *mLearnKeysLabel = nullptr;
     QLabel *mErrorLabel = nullptr;
     NullPinWidget *mNullPinWidget = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;

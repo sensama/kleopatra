@@ -178,10 +178,7 @@ public:
         Q_ASSERT(readerStatus);
         sysTray = new SysTrayIcon();
         sysTray->setFirstCardWithNullPin(readerStatus->firstCardWithNullPin());
-        sysTray->setAnyCardCanLearnKeys(readerStatus->anyCardCanLearnKeys());
-
         connect(readerStatus.get(), &SmartCard::ReaderStatus::firstCardWithNullPinChanged, sysTray, &SysTrayIcon::setFirstCardWithNullPin);
-        connect(readerStatus.get(), &SmartCard::ReaderStatus::anyCardCanLearnKeysChanged, sysTray, &SysTrayIcon::setAnyCardCanLearnKeys);
 #endif
     }
 

@@ -99,9 +99,6 @@ public:
     bool hasNullPin() const;
     void setHasNullPin(bool value);
 
-    bool canLearnKeys() const;
-    void setCanLearnKeys(bool value);
-
     QString errorMsg() const;
     void setErrorMsg(const QString &msg);
 
@@ -125,7 +122,6 @@ private:
     void updateKeyInfo(const KeyPairInfo &keyPairInfo);
 
 private:
-    bool mCanLearn = false;
     bool mHasNullPin = false;
     Status mStatus = NoCard;
     std::string mSerialNumber;

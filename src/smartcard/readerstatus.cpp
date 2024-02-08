@@ -777,7 +777,6 @@ public:
 
 Q_SIGNALS:
     void firstCardWithNullPinChanged(const std::string &serialNumber);
-    void anyCardCanLearnKeysChanged(bool);
     void cardAdded(const std::string &serialNumber, const std::string &appName);
     void cardChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
@@ -887,7 +886,6 @@ private:
                         m_cardInfos = newCards;
                     }
 
-                    bool anyLC = false;
                     std::string firstCardWithNullPin;
                     for (const auto &newCard : newCards) {
                         const auto serialNumber = newCard->serialNumber();
@@ -906,9 +904,6 @@ private:
                             }
                             oldCards.erase(matchingOldCard);
                         }
-                        if (newCard->canLearnKeys()) {
-                            anyLC = true;
-                        }
                         if (newCard->hasNullPin() && firstCardWithNullPin.empty()) {
                             firstCardWithNullPin = newCard->serialNumber();
                         }
@@ -922,7 +917,6 @@ private:
                     }
 
                     Q_EMIT firstCardWithNullPinChanged(firstCardWithNullPin);
-                    Q_EMIT anyCardCanLearnKeysChanged(anyLC);
                 } else {
                     auto updatedCard = get_card_status(cardApp.serialNumber, cardApp.appName, gpgAgent);
                     const auto serialNumber = updatedCard->serialNumber();
@@ -1016,7 +1010,6 @@ public:
         connect(this, &::ReaderStatusThread::cardRemoved, q, &ReaderStatus::cardRemoved);
         connect(this, &::ReaderStatusThread::updateFinished, q, &ReaderStatus::updateFinished);
         connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged, q, &ReaderStatus::firstCardWithNullPinChanged);
-        connect(this, &::ReaderStatusThread::anyCardCanLearnKeysChanged, q, &ReaderStatus::anyCardCanLearnKeysChanged);
 
         if (DeviceInfoWatcher::isSupported()) {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using new DeviceInfoWatcher";
@@ -1048,14 +1041,6 @@ private:
             return ci->hasNullPin();
         });
         return firstWithNullPin != cis.cend() ? (*firstWithNullPin)->serialNumber() : std::string();
-    }
-
-    bool anyCardCanLearnKeysImpl() const
-    {
-        const auto cis = cardInfos();
-        return std::any_of(cis.cbegin(), cis.cend(), [](const std::shared_ptr<Card> &ci) {
-            return ci->canLearnKeys();
-        });
     }
 
 private:
@@ -1107,11 +1092,6 @@ Card::Status ReaderStatus::cardStatus(unsigned int slot) const
 std::string ReaderStatus::firstCardWithNullPin() const
 {
     return d->firstCardWithNullPinImpl();
-}
-
-bool ReaderStatus::anyCardCanLearnKeys() const
-{
-    return d->anyCardCanLearnKeysImpl();
 }
 
 void ReaderStatus::startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &command, QObject *receiver, const TransactionFunc &slot)

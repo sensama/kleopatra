@@ -966,9 +966,6 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         if (!rs->firstCardWithNullPin().empty()) {
             result |= Command::AnyCardHasNullPin;
         }
-        if (rs->anyCardCanLearnKeys()) {
-            result |= Command::AnyCardCanLearnKeys;
-        }
     }
 
     return result;

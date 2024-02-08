@@ -201,23 +201,12 @@ void Card::setHasNullPin(bool value)
     mHasNullPin = value;
 }
 
-bool Card::canLearnKeys() const
-{
-    return mCanLearn;
-}
-
-void Card::setCanLearnKeys(bool value)
-{
-    mCanLearn = value;
-}
-
 bool Card::operator==(const Card &other) const
 {
-    return mCanLearn == other.mCanLearn && mHasNullPin == other.mHasNullPin && mStatus == other.mStatus && mSerialNumber == other.mSerialNumber
-        && mAppName == other.mAppName && mAppVersion == other.mAppVersion && mCardType == other.mCardType && mCardVersion == other.mCardVersion
-        && mCardHolder == other.mCardHolder && mSigningKeyRef == other.mSigningKeyRef && mEncryptionKeyRef == other.mEncryptionKeyRef
-        && mAuthenticationKeyRef == other.mAuthenticationKeyRef && mPinStates == other.mPinStates && mErrMsg == other.mErrMsg && mKeyInfos == other.mKeyInfos
-        && mCardInfo == other.mCardInfo;
+    return mHasNullPin == other.mHasNullPin && mStatus == other.mStatus && mSerialNumber == other.mSerialNumber && mAppName == other.mAppName
+        && mAppVersion == other.mAppVersion && mCardType == other.mCardType && mCardVersion == other.mCardVersion && mCardHolder == other.mCardHolder
+        && mSigningKeyRef == other.mSigningKeyRef && mEncryptionKeyRef == other.mEncryptionKeyRef && mAuthenticationKeyRef == other.mAuthenticationKeyRef
+        && mPinStates == other.mPinStates && mErrMsg == other.mErrMsg && mKeyInfos == other.mKeyInfos && mCardInfo == other.mCardInfo;
 }
 
 bool Card::operator!=(const Card &other) const

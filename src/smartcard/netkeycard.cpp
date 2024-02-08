@@ -84,13 +84,10 @@ void NetKeyCard::setKeyPairInfo(const std::vector<KeyPairInfo> &infos)
     klc->setKeyListMode(GpgME::Ephemeral);
     klc->addKeyListMode(GpgME::Validate);
 
-    setCanLearnKeys(false);
     mKeys.clear();
     for (const auto &info : infos) {
         const auto key = lookup_key(klc.get(), info.grip);
-        if (key.isNull()) {
-            setCanLearnKeys(true);
-        } else {
+        if (!key.isNull()) {
             mKeys.push_back(key);
         }
     }

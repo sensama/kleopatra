@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-02 00:38+0000\n"
-"PO-Revision-Date: 2024-02-09 23:07+0100\n"
+"PO-Revision-Date: 2024-02-11 00:00+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -278,11 +278,10 @@ msgid "Do you wish to create one now?"
 msgstr "지금 생성하시겠습니까?"
 
 #: src/commands/certifycertificatecommand.cpp:176
-#, fuzzy, kde-format
-#| msgid "Certification Not Possible"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Not Possible"
-msgstr "자격 증명 불가능"
+msgstr "인증 불가능"
 
 #: src/commands/certifycertificatecommand.cpp:177
 #, kde-format
@@ -299,45 +298,42 @@ msgstr "<p>다음의 자격 증명 중 오류 발생:<br/><br/><b>%1</b>:</p><p>
 #: src/commands/certifycertificatecommand.cpp:233
 #, kde-format
 msgid "Certification Error"
-msgstr "자격 증명 오류"
+msgstr "인증 오류"
 
 #: src/commands/certifycertificatecommand.cpp:238
 #, kde-format
 msgid "Certification successful."
-msgstr "자격 증명에 성공했습니다."
+msgstr "인증에 성공했습니다."
 
 #: src/commands/certifycertificatecommand.cpp:238
 #, kde-format
 msgid "Certification Succeeded"
-msgstr "자격 증명 성공"
+msgstr "인증 성공"
 
 #: src/commands/certifygroupcommand.cpp:116
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "그룹을 인증할 수 없음"
 
 #: src/commands/certifygroupcommand.cpp:117
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
-msgstr ""
+msgstr "이 그룹은 S/MIME 인증서를 포함하지만 인증할 수 없습니다."
 
 #: src/commands/certifygroupcommand.cpp:171
 #: src/dialogs/certifycertificatedialog.cpp:43
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "인증서 인증: %1"
+msgstr "인증서 인증"
 
 #: src/commands/certifygroupcommand.cpp:172
-#, fuzzy, kde-format
-#| msgid "Exporting certificates..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "인증서 내보내는 중..."
+msgstr "인증서 인증 중..."
 
 #: src/commands/certifygroupcommand.cpp:244
 #, fuzzy, kde-kuit-format
@@ -926,8 +922,7 @@ msgid "Create OpenPGP Key"
 msgstr "OpenPGP 키 생성"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, fuzzy, kde-format
-#| msgid "Enter User ID"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter User ID"
 msgstr "사용자 ID 입력"
@@ -956,8 +951,7 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "클립보드 복호화/검증 오류"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "복호화/검증 실패"
@@ -1089,8 +1083,7 @@ msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:335
 #: src/commands/dumpcertificatecommand.cpp:341
-#, fuzzy, kde-format
-#| msgid "Dump Certificate Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
 msgstr "인증서 덤프 오류"
@@ -1140,8 +1133,7 @@ msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:343
 #: src/commands/dumpcrlcachecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "CRL 캐시 덤프 오류"
@@ -1248,8 +1240,7 @@ msgid "You have to select different filenames for different protocols."
 msgstr "프로토콜별로 다른 파일 이름을 지정해야 합니다."
 
 #: src/commands/exportcertificatecommand.cpp:279
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
 msgstr "내보내기 오류"
@@ -1342,11 +1333,10 @@ msgid "Confirm Group Export"
 msgstr "그룹 설정"
 
 #: src/commands/exportgroupscommand.cpp:203
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "내보내기 오류"
+msgstr "그룹 내보내기"
 
 #: src/commands/exportgroupscommand.cpp:212
 #, fuzzy, kde-kuit-format
@@ -1771,8 +1761,7 @@ msgstr ""
 "다."
 
 #: src/commands/genrevokecommand.cpp:99
-#, fuzzy, kde-format
-#| msgid "Revocation certificate created"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "철회 인증서 생성됨"
@@ -2489,11 +2478,10 @@ msgstr ""
 "para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "종이 백업"
+msgstr "백업 만들기"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
@@ -3878,12 +3866,11 @@ msgid_plural ""
 msgstr[0] ""
 
 #: src/conf/groupsconfigwidget.cpp:415
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "삭제"
+msgstr[0] "그룹 삭제"
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -4274,8 +4261,7 @@ msgstr ""
 "파일을 원래 파일 이름인 <filename>%1</filename>(으)로 저장하시겠습니까?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:245
-#, fuzzy, kde-format
-#| msgid "Use Original File Name?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "원래 파일 이름을 사용하시겠습니까?"
@@ -5767,8 +5753,7 @@ msgid "Could not find a key for the following recipients:"
 msgstr "다음 받는 사람의 키를 찾을 수 없음:"
 
 #: src/crypto/gui/signencryptwidget.cpp:831
-#, fuzzy, kde-format
-#| msgid "Failed to find some keys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "일부 키를 찾을 수 없음"
@@ -5881,8 +5866,7 @@ msgid "The following errors and warnings were recorded:"
 msgstr "다음 오류와 경고가 발생했습니다:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, fuzzy, kde-format
-#| msgid "Checksum Verification Errors"
+#, kde-format
 msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "체크섬 검증 오류"
@@ -6757,8 +6741,7 @@ msgstr "인증서를 유효한 것(녹색)으로 표시하려면 인증해야 �
 
 #: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
 #: src/dialogs/certifywidget.cpp:588
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "사용자 ID"
@@ -6875,11 +6858,10 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:588
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "지문:"
+msgstr "지문"
 
 #: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
 #, fuzzy, kde-format
@@ -6910,8 +6892,7 @@ msgstr ""
 "<p>키 <b>%1</b>의 자격 증명 신뢰도를 변경하는 중 오류 발생:</p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp:937
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "자격 증명 신뢰 변경 실패"
@@ -6987,8 +6968,7 @@ msgstr[0] ""
 "다."
 
 #: src/dialogs/deletecertificatesdialog.cpp:219
-#, fuzzy, kde-format
-#| msgid "Secret Key Deletion"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "비밀 키 삭제"
@@ -7201,8 +7181,7 @@ msgid "Save As..."
 msgstr "다른 이름으로 저장..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:204
-#, fuzzy, kde-format
-#| msgid "Lookup on Server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "서버에서 찾아보기"
@@ -7624,29 +7603,25 @@ msgid "Change validity"
 msgstr "유효 기간 변경"
 
 #: src/dialogs/subkeyswidget.cpp:124
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "OpenSSH 키 내보내기"
 
 #: src/dialogs/subkeyswidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "인쇄된 백업 복원"
 
 #: src/dialogs/subkeyswidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "스마트카드로 전송"
 
 #: src/dialogs/subkeyswidget.cpp:133
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "비밀 하위 키 내보내기"
@@ -11510,8 +11485,7 @@ msgid ""
 msgstr "PIN을 두 번 이상 잘못 입력했다면 카드를 <b>복구할 수 없습니다</b>."
 
 #: src/view/nullpinwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Set initial PIN"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "초기 PIN 설정"

@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-03 01:36+0000\n"
-"PO-Revision-Date: 2024-02-10 13:46+0300\n"
+"PO-Revision-Date: 2024-02-11 12:38+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -370,37 +370,30 @@ msgstr ""
 "message></para>"
 
 #: src/commands/certifygroupcommand.cpp:267
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "Обновление сертификатов X.509 успешно завершено."
+msgstr "Все сертификаты заверены успешно."
 
 #: src/commands/certifygroupcommand.cpp:272
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Не удалось создать новый сертификат OpenPGP.</para><para>Ошибка: "
-"<message>%1</message></para>"
+"<para>Не удалось заверить все сертификаты.</para><para>Ошибка: <message>%1</"
+"message></para>"
 
 #: src/commands/certifygroupcommand.cpp:277
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "OpenPGP certificates exported successfully."
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "Сертификаты OpenPGP успешно экспортированы."
-msgstr[1] "Сертификаты OpenPGP успешно экспортированы."
-msgstr[2] "Сертификаты OpenPGP успешно экспортированы."
-msgstr[3] "Сертификаты OpenPGP успешно экспортированы."
+msgstr[0] "Успешно заверены %1 из %2 сертификатов."
+msgstr[1] "Успешно заверены %1 из %2 сертификатов."
+msgstr[2] "Успешно заверены %1 из %2 сертификатов."
+msgstr[3] "Успешно заверен %1 из %2 сертификатов."
 
 #: src/commands/certifygroupcommand.cpp:295
 #, kde-format
@@ -417,12 +410,10 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:309
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "Не удалось экспортировать сертификат: %1"
+msgstr "<p>Не удалось заверить следующие сертификаты:</p>"
 
 #: src/commands/certifygroupcommand.cpp:311
 #, kde-format
@@ -1093,8 +1084,7 @@ msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:335
 #: src/commands/dumpcertificatecommand.cpp:341
-#, fuzzy, kde-format
-#| msgid "Dump Certificate Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
 msgstr "Ошибка создания снимка сертификата"
@@ -1145,8 +1135,7 @@ msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:343
 #: src/commands/dumpcrlcachecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Ошибка создания снимка кэша отозванных сертификатов (CRL)"
@@ -1170,11 +1159,7 @@ msgstr "Ошибка шифрования содержимого буфера о
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1182,19 +1167,19 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Сертификат «%1» имеет право отмечать остальные сертификаты как "
-"действительные.</para><para>Отозвать это право?</para>"
+"<para>Вы не заверили все действительные идентификаторы пользователей этого "
+"сертификата с возможностью экспорта. Другие пользователи, полагающиеся на "
+"ваши заверения, могут не иметь возможности проверить сертификат.</"
+"para><para>Продолжить экспорт?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "Экспорт сертификата OpenPGP"
+msgstr "Подтверждение экспорта сертификата"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportcertificatecommand.cpp:202
@@ -1202,24 +1187,18 @@ msgstr "Экспорт сертификата OpenPGP"
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:111
 #: src/commands/exportopenpgpcertstoservercommand.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Экспорт сертификатов %1"
-msgstr[1] "Экспорт сертификатов %1"
-msgstr[2] "Экспорт сертификатов %1"
-msgstr[3] "Экспорт сертификатов %1"
+msgstr[0] "Экспортировать сертификаты"
+msgstr[1] "Экспортировать сертификаты"
+msgstr[2] "Экспортировать сертификаты"
+msgstr[3] "Экспортировать сертификат"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1227,8 +1206,10 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Сертификат «%1» имеет право отмечать остальные сертификаты как "
-"действительные.</para><para>Отозвать это право?</para>"
+"<para>Вы не заверили все действительные идентификаторы пользователей "
+"указанных ниже сертификатов с возможностью экспорта сертификаций. Другие "
+"пользователи, полагающиеся на ваши заверения, могут не иметь возможности "
+"проверить сертификаты.</para><para>Продолжить экспорт?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1258,8 +1239,7 @@ msgid "You have to select different filenames for different protocols."
 msgstr "Необходимо выбрать отличающиеся имена файлов для разных протоколов.\t"
 
 #: src/commands/exportcertificatecommand.cpp:279
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Ошибка экспорта"
@@ -1331,11 +1311,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Не удалось перезаписать существующий <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1343,17 +1319,17 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Сертификат «%1» имеет право отмечать остальные сертификаты как "
-"действительные.</para><para>Отозвать это право?</para>"
+"<para>Вы не заверили все сертификаты OpenPGP в этой группе с возможностью "
+"экспорта сертификации. Другие пользователи, полагающиеся на ваши заверения, "
+"могут не иметь возможности проверить сертификаты.</para><para>Продолжить "
+"экспорт?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "Настройка групп"
+msgstr "Подтверждение экспорта группы"
 
 #: src/commands/exportgroupscommand.cpp:203
 #, kde-format
@@ -1495,20 +1471,15 @@ msgid "%1<nl />%2"
 msgstr "%1<nl />%2"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:180
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to export OpenPGP certificates.</"
-#| "para> <para>The output from <command>%1</command> was: <message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export OpenPGP certificates.</para> "
 "<para>The output of <command>%1</command> was:<nl /><message>%2</message></"
 "para>"
 msgstr ""
-"<para>При попытке экспортировать сертификаты OpenPGP произошла ошибка.</"
-"para> <para>Вывод команды <command>%1</command>: <message>%2</message></para>"
+"<para>При экспорте сертификатов OpenPGP произошла ошибка.</para><para>Вывод "
+"команды <command>%1</command>:<nl /><message>%2</message> </para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:188
 #, kde-format
@@ -1802,8 +1773,7 @@ msgstr ""
 "вручную."
 
 #: src/commands/genrevokecommand.cpp:99
-#, fuzzy, kde-format
-#| msgid "Revocation certificate created"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Сертификат отзыва создан"
@@ -2855,6 +2825,8 @@ msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Эта смарт-карта не может быть использована для создания ключей, потому что "
+"она не поддерживает ни одного из совместимых алгоритмов."
 
 #: src/commands/refreshcertificatecommand.cpp:153
 #: src/commands/refreshcertificatecommand.cpp:211
@@ -2937,6 +2909,10 @@ msgid ""
 "certificate via Web Key Directory failed:</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Обновление сертификата с ключевого сервера, сервера LDAP или Active "
+"Directory не удалось:</para> <para><message>%1</message></para> "
+"<para>Обновление сертификата веб-каталог ключей не удалось:<message>%2</"
+"message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:335
 #: src/commands/refreshcertificatecommand.cpp:366
@@ -2950,23 +2926,20 @@ msgstr "Ошибка обновления"
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
+"Результат обновления из сервера ключей, сервера LDAP или Active Directory"
 
 #: src/commands/refreshcertificatecommand.cpp:343
 #: src/commands/refreshcertificatecommand.cpp:350
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<para>Не удалось сохранить запрос.</para><para><message>%1</message></para>"
+msgstr "<para>Ошибка обновления: <message>%1</message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:348
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
-msgstr ""
+msgstr "Результат обновления из веб-сервера ключей"
 
 #: src/commands/refreshcertificatecommand.cpp:363
 #, kde-kuit-format
@@ -3410,67 +3383,58 @@ msgid "This parameter has been locked down by the system administrator."
 msgstr "Доступ к этому параметру закрыт администратором системы."
 
 #: src/conf/appearanceconfigwidget.cpp:343
-#, fuzzy, kde-format
-#| msgid "Show not certified certificates"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
-msgstr "Показать незаверенные сертификаты"
+msgstr "Показать метки, связанные с сертификатами"
 
 #: src/conf/appearanceconfigwidget.cpp:344
-#, fuzzy, kde-format
-#| msgid "Enable display and usage of tags attached to keys."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
 msgstr ""
-"Включить отображение и возможность использования меток, входящих в ключи."
+"Включить отображение и возможность использования меток, входящих в "
+"сертификаты."
 
 #: src/conf/appearanceconfigwidget.cpp:350
-#, fuzzy, kde-format
-#| msgid "Show the following information in certificate list tooltips:"
+#, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
-msgstr "Показывать во всплывающих подсказках следующую информацию:"
+msgstr "Показывать во всплывающих подсказках следующую информацию"
 
 #: src/conf/appearanceconfigwidget.cpp:353
-#, fuzzy, kde-format
-#| msgid "Show validity"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Показывать действительность"
 
 #: src/conf/appearanceconfigwidget.cpp:356
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Показывать сведения о владельце"
 
 #: src/conf/appearanceconfigwidget.cpp:359
-#, fuzzy, kde-format
-#| msgid "Show technical details"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Показывать технические подробности"
 
 #: src/conf/appearanceconfigwidget.cpp:364
-#, fuzzy, kde-format
-#| msgid "Show certificate owner information"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr "Показывать информацию о владельце сертификата"
+msgstr "Показывать сведения о предстоящем истечении срока действия сертификата"
 
 #: src/conf/appearanceconfigwidget.cpp:371
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Is '%1' your own certificate?"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr "%1 — это ваш сертификат?"
+msgstr "Пороговое значение для собственных сертификатов:"
 
 #: src/conf/appearanceconfigwidget.cpp:377
 #: src/conf/appearanceconfigwidget.cpp:391
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "никогда"
@@ -3481,10 +3445,10 @@ msgstr "никогда"
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] " день"
+msgstr[1] " дня"
+msgstr[2] " дней"
+msgstr[3] " день"
 
 #: src/conf/appearanceconfigwidget.cpp:380
 #, kde-format
@@ -3493,13 +3457,14 @@ msgid ""
 "Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"Количество дней для заблаговременного предупреждения о том, что срок "
+"действия вашего собственного сертификата скоро истечёт."
 
 #: src/conf/appearanceconfigwidget.cpp:385
-#, fuzzy, kde-format
-#| msgid "Trust Root Certificate"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr "Добавить корневой сертификат в доверенные"
+msgstr "Пороговое значение для других сертификатов:"
 
 #: src/conf/appearanceconfigwidget.cpp:395
 #, kde-format
@@ -3508,74 +3473,65 @@ msgid ""
 "Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"Количество дней для заблаговременного предупреждения о том, что срок "
+"действия сертификата другого пользователя скоро истечёт."
 
 #: src/conf/appearanceconfigwidget.cpp:405
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Generate"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
-msgstr "Создать"
+msgstr "Общие"
 
 #: src/conf/appearanceconfigwidget.cpp:425
-#, fuzzy, kde-format
-#| msgid "Set &Icon..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Icon..."
-msgstr "&Значок…"
+msgstr "Значок…"
 
 #: src/conf/appearanceconfigwidget.cpp:432
-#, fuzzy, kde-format
-#| msgid "Set &Text Color..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Text Color..."
-msgstr "Цвет &текста…"
+msgstr "Цвет текста…"
 
 #: src/conf/appearanceconfigwidget.cpp:439
-#, fuzzy, kde-format
-#| msgid "Set &Background Color..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Background Color..."
-msgstr "Цвет &фона…"
+msgstr "Цвет фона…"
 
 #: src/conf/appearanceconfigwidget.cpp:446
-#, fuzzy, kde-format
-#| msgid "Set F&ont..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Font..."
-msgstr "&Шрифт…"
+msgstr "Шрифт…"
 
 #: src/conf/appearanceconfigwidget.cpp:453
-#, fuzzy, kde-format
-#| msgid "Italic"
+#, kde-format
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Курсив"
 
 #: src/conf/appearanceconfigwidget.cpp:460
-#, fuzzy, kde-format
-#| msgid "Bold"
+#, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Полужирный"
 
 #: src/conf/appearanceconfigwidget.cpp:467
-#, fuzzy, kde-format
-#| msgid "Strikeout"
+#, kde-format
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Зачёркнутый"
 
 #: src/conf/appearanceconfigwidget.cpp:476
-#, fuzzy, kde-format
-#| msgid "Default Appearance"
+#, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "Внешний вид по умолчанию"
 
 #: src/conf/appearanceconfigwidget.cpp:484
-#, fuzzy, kde-format
-#| msgid "Certificate Categories"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Категории сертификатов"
@@ -3663,7 +3619,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
-msgstr ""
+msgstr "Обрабатывать файлы .p7m без расширений как письма."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
@@ -3769,6 +3725,8 @@ msgstr ""
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
+"Опрашивать справочники сертификатов провайдеров для всех идентификаторов "
+"пользователей"
 
 #: src/conf/dirservconfigpage.cpp:190
 #, kde-kuit-format
@@ -3779,6 +3737,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"По умолчанию Kleopatra запрашивает справочники сертификатов у провайдеров "
+"(WKD) только для идентификаторов пользователей, которые изначально были "
+"получены из WKD при обновлении сертификата OpenPGP. Если эта опция включена, "
+"то Kleopatra будет запрашивать WKD для всех идентификаторов пользователей."
 
 #: src/conf/dirservconfigpage.cpp:424
 #, kde-format
@@ -3872,9 +3834,7 @@ msgid "groups"
 msgstr "группы"
 
 #: src/conf/groupsconfigwidget.cpp:186
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "New"
+#, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Создать"
@@ -3894,12 +3854,10 @@ msgid "Delete"
 msgstr "Удалить"
 
 #: src/conf/groupsconfigwidget.cpp:198
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Write the key pair of a certificate to the card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr "Запись пары ключей сертификата на карту"
+msgstr "Начать заверение всех сертификатов группы"
 
 #: src/conf/groupsconfigwidget.cpp:202
 #: src/dialogs/certificatedetailswidget.cpp:358
@@ -3936,11 +3894,10 @@ msgstr ""
 "Сохранить или отменить изменения?"
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, fuzzy, kde-format
-#| msgid "Apply Settings"
+#, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
-msgstr "Сохранить"
+msgstr "Применение параметров"
 
 #: src/conf/smartcardconfigpage.cpp:66
 #, kde-format
@@ -4305,24 +4262,24 @@ msgstr ""
 "«Помощь» -> «Сообщить об ошибке»."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:215
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para><para><message>%3</message></para>"
 msgstr ""
-"Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
+"<para>Не удалось переместить <filename>%1</filename> в <filename>%2</"
+"filename>.</para> <para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:225
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para>"
 msgstr ""
-"Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
+"<para>Не удалось переместить <filename>%1</filename> в <filename>%2</"
+"filename>.</para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:237
 #, kde-kuit-format
@@ -4331,11 +4288,10 @@ msgid ""
 msgstr "Сохранить файл с исходным названием <filename>%1</filename>?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:238
-#, fuzzy, kde-format
-#| msgid "Use Original File Name?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
-msgstr "Использовать исходное название файла?"
+msgstr "Использовать исходное имя файла?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-kuit-format
@@ -5123,29 +5079,28 @@ msgid "Please select an output folder."
 msgstr "Выберите папку для сохранения результатов."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:200
-#, fuzzy, kde-format
-#| msgid "No output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "Отсутствует папка для сохранения результатов."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to create output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
-"Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
+"<para>Не удалось создать папку для сохранения результатов <filename>%1</"
+"filename>.</para> <para>Выберите другую папку для сохранения результатов.</"
+"para>"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:214
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:226
-#, fuzzy, kde-format
-#| msgid "Invalid output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
-msgstr "Неверная папка для сохранения результатов."
+msgstr "Непригодная папка для сохранения результатов"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:219
 #, kde-format
@@ -5153,11 +5108,10 @@ msgid "Please select a different output folder."
 msgstr "Выберите другую папку для сохранения результатов."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:219
-#, fuzzy, kde-format
-#| msgid "Invalid output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
-msgstr "Неверная папка для сохранения результатов."
+msgstr "Неверная папка для сохранения результатов"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:224
 #, kde-kuit-format
@@ -5166,6 +5120,9 @@ msgid ""
 "<para>Cannot write in the output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
+"<para>Не удалось выполнить запись в папку для сохранения результатов "
+"<filename>%1</filename>.</para><para>Выберите другую папку для сохранения "
+"результатов.</para>"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:206
 #, kde-format
@@ -11352,7 +11309,7 @@ msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
-"Опубликовать выбранный сертификат (открытый ключ) в каталоге веб-ключей "
+"Опубликовать выбранный сертификат (открытый ключ) в веб-каталоге ключей "
 "поставщика услуг электронной почты (если предлагается)"
 
 #: src/view/keylistcontroller.cpp:361

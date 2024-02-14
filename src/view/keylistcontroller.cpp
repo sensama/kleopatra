@@ -34,6 +34,7 @@
 #include "commands/checksumcreatefilescommand.h"
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/clearcrlcachecommand.h"
+#include "commands/creategroupcommand.h"
 #include "commands/decryptverifyfilescommand.h"
 #include "commands/deletecertificatescommand.h"
 #include "commands/detailscommand.h"
@@ -542,6 +543,15 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             QString(),
         },
+        {
+            "certificates_create_group",
+            i18nc("@action:inmenu", "Create Group..."),
+            i18nc("@info:tooltip", "Create a group from the selected certificates"),
+            "resource-group-new",
+            nullptr,
+            nullptr,
+            QString(),
+        },
         // Tools menu
         {
             "tools_refresh_openpgp_certificates",
@@ -690,6 +700,7 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<ChangeExpiryCommand>(coll->action(QStringLiteral("certificates_change_expiry")));
     registerActionForCommand<ChangePassphraseCommand>(coll->action(QStringLiteral("certificates_change_passphrase")));
     registerActionForCommand<AddUserIDCommand>(coll->action(QStringLiteral("certificates_add_userid")));
+    registerActionForCommand<CreateGroupCommand>(coll->action(QStringLiteral("certificates_create_group")));
     //---
     registerActionForCommand<RevokeKeyCommand>(coll->action(QStringLiteral("certificates_revoke")));
     registerActionForCommand<DeleteCertificatesCommand>(coll->action(QStringLiteral("certificates_delete")));

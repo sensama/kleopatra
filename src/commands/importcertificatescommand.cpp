@@ -781,8 +781,17 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
     processResults();
 }
 
-static ImportedGroup storeGroup(const KeyGroup &group, const QString &id)
+static ImportedGroup storeGroup(const KeyGroup &group, const QString &id, QWidget *parent)
 {
+    if (Kleo::any_of(group.keys(), [](const auto &key) {
+            return !key.hasEncrypt();
+        })) {
+        KMessageBox::information(parent,
+                                 xi18nc("@info",
+                                        "<para>The imported group</para><para><emphasis>%1</emphasis></para><para>contains certificates that cannot be used for encryption. "
+                                        "This may lead to unexpected results.</para>",
+                                        group.name()));
+    }
     const auto status = KeyCache::instance()->group(group.id()).isNull() ? ImportedGroup::Status::New : ImportedGroup::Status::Updated;
     if (status == ImportedGroup::Status::New) {
         KeyCache::mutableInstance()->insert(group);
@@ -801,8 +810,8 @@ void ImportCertificatesCommand::Private::importGroups()
         if (certificateImportSucceeded) {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Importing groups from file" << path;
             const auto groups = readKeyGroups(path);
-            std::transform(std::begin(groups), std::end(groups), std::back_inserter(importedGroups), [path](const auto &group) {
-                return storeGroup(group, path);
+            std::transform(std::begin(groups), std::end(groups), std::back_inserter(importedGroups), [path, this](const auto &group) {
+                return storeGroup(group, path, parentWidgetOrView());
             });
         }
         increaseProgressValue();

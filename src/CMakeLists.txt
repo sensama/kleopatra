@@ -114,6 +114,8 @@ set(_kleopatra_SRCS
   commands/command.h
   commands/createcsrforcardkeycommand.cpp
   commands/createcsrforcardkeycommand.h
+  commands/creategroupcommand.cpp
+  commands/creategroupcommand.h
   commands/createopenpgpkeyfromcardkeyscommand.cpp
   commands/createopenpgpkeyfromcardkeyscommand.h
   commands/decryptverifyclipboardcommand.cpp

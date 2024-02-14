@@ -19,7 +19,9 @@
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
+#include <Libkleo/KeyListSortFilterProxyModel>
 
+#include <KColorScheme>
 #include <KConfigGroup>
 #include <KGuiItem>
 #include <KLocalizedString>
@@ -27,12 +29,14 @@
 #include <KSharedConfig>
 #include <KStandardGuiItem>
 
+#include <QApplication>
 #include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QItemSelectionModel>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPalette>
 #include <QPushButton>
 #include <QTreeView>
 #include <QVBoxLayout>
@@ -55,6 +59,47 @@ auto createOpenPGPOnlyKeyFilter()
     return filter;
 }
 }
+
+class DisableNonEncryptionKeysProxyModel : public Kleo::AbstractKeyListSortFilterProxyModel
+{
+    Q_OBJECT
+public:
+    using Kleo::AbstractKeyListSortFilterProxyModel::AbstractKeyListSortFilterProxyModel;
+    ~DisableNonEncryptionKeysProxyModel() override;
+    DisableNonEncryptionKeysProxyModel *clone() const override
+    {
+        return new DisableNonEncryptionKeysProxyModel(this->parent());
+    }
+
+    QVariant data(const QModelIndex &index, int role) const override
+    {
+        const auto sourceIndex = sourceModel()->index(index.row(), index.column());
+        if (!sourceIndex.data(KeyList::KeyRole).value<Key>().hasEncrypt()) {
+            if (role == Qt::ForegroundRole) {
+                return qApp->palette().color(QPalette::Disabled, QPalette::Text);
+            }
+            if (role == Qt::BackgroundRole) {
+                return KColorScheme(QPalette::Disabled, KColorScheme::View).background(KColorScheme::NeutralBackground).color();
+            }
+            if (role == Qt::ToolTipRole) {
+                return i18nc("@info:tooltip", "This certificate cannot be added to the group as it cannot be used for encryption.");
+            }
+        }
+        return sourceIndex.data(role);
+    }
+    Qt::ItemFlags flags(const QModelIndex &index) const override
+    {
+        auto originalFlags = index.model()->QAbstractItemModel::flags(index);
+        if (index.data(KeyList::KeyRole).value<Key>().hasEncrypt()) {
+            return originalFlags;
+        } else {
+            return (originalFlags & ~Qt::ItemIsEnabled);
+        }
+        return {};
+    }
+};
+
+DisableNonEncryptionKeysProxyModel::~DisableNonEncryptionKeysProxyModel() = default;
 
 class EditGroupDialog::Private
 {
@@ -117,7 +162,9 @@ public:
 
         availableKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
         availableKeysModel->setKeys(KeyCache::instance()->keys());
-        ui.availableKeysList = new KeyTreeView(q);
+        auto proxyModel = new DisableNonEncryptionKeysProxyModel(q);
+        proxyModel->setSourceModel(availableKeysModel);
+        ui.availableKeysList = new KeyTreeView({}, nullptr, proxyModel, q, {});
         ui.availableKeysList->view()->setAccessibleName(i18n("available keys"));
         ui.availableKeysList->view()->setRootIsDecorated(false);
         ui.availableKeysList->setFlatModel(availableKeysModel);
@@ -405,4 +452,5 @@ void EditGroupDialog::showEvent(QShowEvent *event)
     Kleo::unsetDefaultButtons(d->ui.buttonBox);
 }
 
+#include "editgroupdialog.moc"
 #include "moc_editgroupdialog.cpp"

@@ -463,6 +463,13 @@ private:
             return;
         }
 
+        if (Kleo::any_of(selectedGroups[0].keys(), [](const auto &key) {
+                return !key.hasEncrypt();
+            })) {
+            KMessageBox::information(q->parentWidget(),
+                                     i18nc("@info", "The group contains keys that cannot be used for encryption. This may lead to unexpected results."));
+        }
+
         auto cmd = new ExportGroupsCommand(selectedGroups);
         cmd->start();
     }

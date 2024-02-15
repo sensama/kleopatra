@@ -101,7 +101,7 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
  * e.g. "Gpg4win-3.1.15-beta15"; see https://dev.gnupg.org/T5663 */
 static const QByteArray extractVersionNumber(const QString &versionString)
 {
-    static const QRegularExpression catchSemVerRegExp{QLatin1StringView{R"(-([0-9]+(?:\.[0-9]+)*(?:-[.0-9A-Za-z-]+)?(?:\+[.0-9a-zA-Z-]+)?)$)"}};
+    static const QRegularExpression catchSemVerRegExp{QLatin1StringView{R"(-([0-9]+(?:\.[0-9]+)*(?:-[.0-9A-Za-z-]+)?(?:\+[.0-9a-zA-Z-]+)?)\)?$)"}};
 
     const auto match = catchSemVerRegExp.match(versionString);
     const auto current = match.hasMatch() ? match.captured(1) : versionString;

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-02 00:38+0000\n"
+"POT-Creation-Date: 2024-02-15 00:38+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -146,6 +146,26 @@ msgstr "(c) 2016-2018 Intevation GmbH"
 #, kde-format
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
+
+#: src/commands/addsubkeycommand.cpp:167
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
+#| "</p><p>%2</p>"
+msgid ""
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
+"%2</p>"
+msgstr ""
+"<p><b>%1</b> のパスフレーズを変更しようとしていたときにエラーが発生しました:"
+"</p><p>%2</p>"
+
+#: src/commands/addsubkeycommand.cpp:175
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The subkey was exported successfully."
+#| msgid_plural "%1 subkeys were exported successfully."
+msgid "Subkey added successfully."
+msgstr "%1 件の副鍵をエクスポートできました。"
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -6109,6 +6129,79 @@ msgstr "ファイル %1 のチェックサムファイルが見つかりませ�
 msgid "Verifying checksums (%2) in %1"
 msgstr "%1 のチェックサム (%2) を検証する"
 
+#: src/dialogs/addsubkeydialog.cpp:76
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#, kde-format
+msgctxt "@title:window"
+msgid "Advanced Settings"
+msgstr "高度な設定"
+
+#: src/dialogs/addsubkeydialog.cpp:90
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#, kde-format
+msgctxt "@title:group"
+msgid "Key Material"
+msgstr "鍵マテリアル"
+
+#: src/dialogs/addsubkeydialog.cpp:95 src/dialogs/gencardkeydialog.cpp:75
+#, kde-format
+msgid "Algorithm:"
+msgstr "アルゴリズム:"
+
+#: src/dialogs/addsubkeydialog.cpp:100
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#, kde-format
+msgctxt "@title:group"
+msgid "Certificate Usage"
+msgstr "証明書の用途"
+
+#: src/dialogs/addsubkeydialog.cpp:103
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#, kde-format
+msgctxt "@option:check"
+msgid "Signing"
+msgstr "署名"
+
+#: src/dialogs/addsubkeydialog.cpp:106
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#, kde-format
+msgctxt "@option:check"
+msgid "Encryption"
+msgstr "暗号化"
+
+#: src/dialogs/addsubkeydialog.cpp:110
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#, kde-format
+msgctxt "@option:check"
+msgid "Authentication"
+msgstr "認証"
+
+#: src/dialogs/addsubkeydialog.cpp:116
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
+#, kde-format
+msgctxt "@option:check"
+msgid "Valid until:"
+msgstr "有効期間期限:"
+
+#: src/dialogs/addsubkeydialog.cpp:151
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Subkeys"
+msgctxt "@title:window"
+msgid "Add Subkey"
+msgstr "副鍵"
+
+#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgid "Expiration of primary key: %1"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:264
+#, kde-format
+msgctxt "Default Algorithm"
+msgid "Default"
+msgstr ""
+
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
 msgctxt "title:window"
@@ -7119,11 +7212,6 @@ msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "有効期間の変更"
 
-#: src/dialogs/expirydialog.cpp:235
-#, kde-format
-msgid "Expiration of primary key: %1"
-msgstr ""
-
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
 msgid "Exporting ..."
@@ -7155,11 +7243,6 @@ msgstr "メール:"
 #, kde-format
 msgid "Invalid EMail"
 msgstr "無効なメール"
-
-#: src/dialogs/gencardkeydialog.cpp:75
-#, kde-format
-msgid "Algorithm:"
-msgstr "アルゴリズム:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
 #, kde-format
@@ -7566,73 +7649,73 @@ msgstr "ステップ 2: 資格のある署名の証明書の初期 PIN の設定
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(オプション) 初期 PIN (SigG) の設定"
 
-#: src/dialogs/subkeyswidget.cpp:98
+#: src/dialogs/subkeyswidget.cpp:100
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "副鍵:"
 
-#: src/dialogs/subkeyswidget.cpp:103
+#: src/dialogs/subkeyswidget.cpp:105
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "副鍵"
 
-#: src/dialogs/subkeyswidget.cpp:106
+#: src/dialogs/subkeyswidget.cpp:108
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:107
+#: src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "タイプ"
 
-#: src/dialogs/subkeyswidget.cpp:108
+#: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "有効期間開始"
 
-#: src/dialogs/subkeyswidget.cpp:109
+#: src/dialogs/subkeyswidget.cpp:111
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "有効期間期限"
 
-#: src/dialogs/subkeyswidget.cpp:110
+#: src/dialogs/subkeyswidget.cpp:112
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "状態"
 
-#: src/dialogs/subkeyswidget.cpp:111
+#: src/dialogs/subkeyswidget.cpp:113
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "強度"
 
-#: src/dialogs/subkeyswidget.cpp:112
+#: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "用途"
 
-#: src/dialogs/subkeyswidget.cpp:113
+#: src/dialogs/subkeyswidget.cpp:115
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "プライマリ"
 
-#: src/dialogs/subkeyswidget.cpp:114
+#: src/dialogs/subkeyswidget.cpp:116
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "ストレージ"
 
-#: src/dialogs/subkeyswidget.cpp:121
+#: src/dialogs/subkeyswidget.cpp:123
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Change Validity"
@@ -7640,106 +7723,114 @@ msgctxt "@action:button"
 msgid "Change validity"
 msgstr "有効期間の変更"
 
-#: src/dialogs/subkeyswidget.cpp:124
+#: src/dialogs/subkeyswidget.cpp:126
 #, fuzzy, kde-format
 #| msgid "Export OpenSSH key"
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "OpenSSH 鍵をエクスポート"
 
-#: src/dialogs/subkeyswidget.cpp:127
+#: src/dialogs/subkeyswidget.cpp:129
 #, fuzzy, kde-format
 #| msgid "Restore printed backup"
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "印刷されたバックアップを復旧"
 
-#: src/dialogs/subkeyswidget.cpp:130
+#: src/dialogs/subkeyswidget.cpp:132
 #, fuzzy, kde-format
 #| msgid "Transfer to smartcard"
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "スマートカードへ転送"
 
-#: src/dialogs/subkeyswidget.cpp:133
+#: src/dialogs/subkeyswidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Export secret subkey"
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "秘密副鍵をエクスポート"
 
-#: src/dialogs/subkeyswidget.cpp:212
+#: src/dialogs/subkeyswidget.cpp:214
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Change Validity"
 msgid "Change validity"
 msgstr "有効期間の変更"
 
-#: src/dialogs/subkeyswidget.cpp:219
+#: src/dialogs/subkeyswidget.cpp:221
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "OpenSSH 鍵をエクスポート"
 
-#: src/dialogs/subkeyswidget.cpp:224
+#: src/dialogs/subkeyswidget.cpp:226
 #, kde-format
 msgid "Restore printed backup"
 msgstr "印刷されたバックアップを復旧"
 
-#: src/dialogs/subkeyswidget.cpp:231
+#: src/dialogs/subkeyswidget.cpp:233
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "スマートカードへ転送"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:241
 #, kde-format
 msgid "Export secret subkey"
 msgstr "秘密副鍵をエクスポート"
 
-#: src/dialogs/subkeyswidget.cpp:329
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "はい"
 
-#: src/dialogs/subkeyswidget.cpp:329
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "いいえ"
 
-#: src/dialogs/subkeyswidget.cpp:332
+#: src/dialogs/subkeyswidget.cpp:334
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "スマートカード %1"
 
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:336
 #, kde-format
 msgid "smart card"
 msgstr "スマートカード"
 
-#: src/dialogs/subkeyswidget.cpp:337
+#: src/dialogs/subkeyswidget.cpp:339
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "オフライン"
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:341
 #, kde-format
 msgid "on this computer"
 msgstr "このコンピュータ"
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:343
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "不明"
 
-#: src/dialogs/subkeyswidget.cpp:369
+#: src/dialogs/subkeyswidget.cpp:371
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "副鍵の詳細"
+
+#: src/dialogs/subkeyswidget.cpp:379
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Subkeys"
+msgctxt "@action:button"
+msgid "Add Subkey"
+msgstr "副鍵"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -9280,18 +9371,6 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "進行中のバックグラウンドタスク"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
-#, kde-format
-msgctxt "@title:window"
-msgid "Advanced Settings"
-msgstr "高度な設定"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
-#, kde-format
-msgctxt "@title:group"
-msgid "Key Material"
-msgstr "鍵マテリアル"
-
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, kde-format
 msgctxt "@option:radio"
@@ -9335,41 +9414,11 @@ msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
-#, kde-format
-msgctxt "@title:group"
-msgid "Certificate Usage"
-msgstr "証明書の用途"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
-#, kde-format
-msgctxt "@option:check"
-msgid "Signing"
-msgstr "署名"
-
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, kde-format
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "保証"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
-#, kde-format
-msgctxt "@option:check"
-msgid "Encryption"
-msgstr "暗号化"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
-#, kde-format
-msgctxt "@option:check"
-msgid "Authentication"
-msgstr "認証"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
-#, kde-format
-msgctxt "@option:check"
-msgid "Valid until:"
-msgstr "有効期間期限:"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:339
 #, kde-format

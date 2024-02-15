@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-02 00:38+0000\n"
+"POT-Creation-Date: 2024-02-15 00:38+0000\n"
 "PO-Revision-Date: 2024-01-25 12:20+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -146,6 +146,26 @@ msgstr "(c) 2016-2018 Intevation GmbH"
 #, kde-format
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 Els desenvolupadors de Kleopatra, g10 Code GmbH"
+
+#: src/commands/addsubkeycommand.cpp:167
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
+#| "</p><p>%2</p>"
+msgid ""
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
+"%2</p>"
+msgstr ""
+"<p>S'ha produït un error en provar de canviar la frase de pas per a <b>%1</"
+"b>:</p> <p>%2</p>"
+
+#: src/commands/addsubkeycommand.cpp:175
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The subkey was exported successfully."
+#| msgid_plural "%1 subkeys were exported successfully."
+msgid "Subkey added successfully."
+msgstr "La subclau s'ha exportat correctament."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -6157,6 +6177,79 @@ msgstr "No s'ha pogut trobar el fitxer de suma de verificació per al fitxer %1"
 msgid "Verifying checksums (%2) in %1"
 msgstr "S'està verificant la suma de verificació (%2) en %1"
 
+#: src/dialogs/addsubkeydialog.cpp:76
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#, kde-format
+msgctxt "@title:window"
+msgid "Advanced Settings"
+msgstr "Configuració avançada"
+
+#: src/dialogs/addsubkeydialog.cpp:90
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#, kde-format
+msgctxt "@title:group"
+msgid "Key Material"
+msgstr "Material de clau"
+
+#: src/dialogs/addsubkeydialog.cpp:95 src/dialogs/gencardkeydialog.cpp:75
+#, kde-format
+msgid "Algorithm:"
+msgstr "Algorisme:"
+
+#: src/dialogs/addsubkeydialog.cpp:100
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#, kde-format
+msgctxt "@title:group"
+msgid "Certificate Usage"
+msgstr "Ús del certificat"
+
+#: src/dialogs/addsubkeydialog.cpp:103
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#, kde-format
+msgctxt "@option:check"
+msgid "Signing"
+msgstr "Signatura"
+
+#: src/dialogs/addsubkeydialog.cpp:106
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#, kde-format
+msgctxt "@option:check"
+msgid "Encryption"
+msgstr "Encriptació"
+
+#: src/dialogs/addsubkeydialog.cpp:110
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#, kde-format
+msgctxt "@option:check"
+msgid "Authentication"
+msgstr "Autenticació"
+
+#: src/dialogs/addsubkeydialog.cpp:116
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
+#, kde-format
+msgctxt "@option:check"
+msgid "Valid until:"
+msgstr "Vàlid fins a:"
+
+#: src/dialogs/addsubkeydialog.cpp:151
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Subkeys"
+msgctxt "@title:window"
+msgid "Add Subkey"
+msgstr "Subclaus"
+
+#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgid "Expiration of primary key: %1"
+msgstr "Expiració de la clau primària: %1"
+
+#: src/dialogs/addsubkeydialog.cpp:264
+#, kde-format
+msgctxt "Default Algorithm"
+msgid "Default"
+msgstr ""
+
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
 msgctxt "title:window"
@@ -7190,11 +7283,6 @@ msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "Canvia el període de validesa"
 
-#: src/dialogs/expirydialog.cpp:235
-#, kde-format
-msgid "Expiration of primary key: %1"
-msgstr "Expiració de la clau primària: %1"
-
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
 msgid "Exporting ..."
@@ -7226,11 +7314,6 @@ msgstr "Correu electrònic:"
 #, kde-format
 msgid "Invalid EMail"
 msgstr "Correu no vàlid"
-
-#: src/dialogs/gencardkeydialog.cpp:75
-#, kde-format
-msgid "Algorithm:"
-msgstr "Algorisme:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
 #, kde-format
@@ -7646,172 +7729,180 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "Establix el PIN inicial (SigG) (opcional)"
 
-#: src/dialogs/subkeyswidget.cpp:98
+#: src/dialogs/subkeyswidget.cpp:100
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Subclaus:"
 
-#: src/dialogs/subkeyswidget.cpp:103
+#: src/dialogs/subkeyswidget.cpp:105
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Subclaus"
 
-#: src/dialogs/subkeyswidget.cpp:106
+#: src/dialogs/subkeyswidget.cpp:108
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:107
+#: src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Tipus"
 
-#: src/dialogs/subkeyswidget.cpp:108
+#: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Vàlida des de"
 
-#: src/dialogs/subkeyswidget.cpp:109
+#: src/dialogs/subkeyswidget.cpp:111
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Vàlida fins"
 
-#: src/dialogs/subkeyswidget.cpp:110
+#: src/dialogs/subkeyswidget.cpp:112
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Estat"
 
-#: src/dialogs/subkeyswidget.cpp:111
+#: src/dialogs/subkeyswidget.cpp:113
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Fortalesa"
 
-#: src/dialogs/subkeyswidget.cpp:112
+#: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Ús"
 
-#: src/dialogs/subkeyswidget.cpp:113
+#: src/dialogs/subkeyswidget.cpp:115
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Primària"
 
-#: src/dialogs/subkeyswidget.cpp:114
+#: src/dialogs/subkeyswidget.cpp:116
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Emmagatzematge"
 
-#: src/dialogs/subkeyswidget.cpp:121
+#: src/dialogs/subkeyswidget.cpp:123
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Canvia la validesa"
 
-#: src/dialogs/subkeyswidget.cpp:124
+#: src/dialogs/subkeyswidget.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Exporta la clau OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:127
+#: src/dialogs/subkeyswidget.cpp:129
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Restaura una còpia de seguretat impresa"
 
-#: src/dialogs/subkeyswidget.cpp:130
+#: src/dialogs/subkeyswidget.cpp:132
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Transferix cap a la targeta intel·ligent"
 
-#: src/dialogs/subkeyswidget.cpp:133
+#: src/dialogs/subkeyswidget.cpp:135
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Exporta la subclau secreta"
 
-#: src/dialogs/subkeyswidget.cpp:212
+#: src/dialogs/subkeyswidget.cpp:214
 #, kde-format
 msgid "Change validity"
 msgstr "Canvia la validesa"
 
-#: src/dialogs/subkeyswidget.cpp:219
+#: src/dialogs/subkeyswidget.cpp:221
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Exporta la clau OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:224
+#: src/dialogs/subkeyswidget.cpp:226
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Restaura una còpia de seguretat impresa"
 
-#: src/dialogs/subkeyswidget.cpp:231
+#: src/dialogs/subkeyswidget.cpp:233
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Transferix cap a la targeta intel·ligent"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:241
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Exporta la subclau secreta"
 
-#: src/dialogs/subkeyswidget.cpp:329
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "sí"
 
-#: src/dialogs/subkeyswidget.cpp:329
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "no"
 
-#: src/dialogs/subkeyswidget.cpp:332
+#: src/dialogs/subkeyswidget.cpp:334
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "targeta intel·ligent %1"
 
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:336
 #, kde-format
 msgid "smart card"
 msgstr "targeta intel·ligent"
 
-#: src/dialogs/subkeyswidget.cpp:337
+#: src/dialogs/subkeyswidget.cpp:339
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "fora de línia"
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:341
 #, kde-format
 msgid "on this computer"
 msgstr "en este ordinador"
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:343
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "desconeguda"
 
-#: src/dialogs/subkeyswidget.cpp:369
+#: src/dialogs/subkeyswidget.cpp:371
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Detalls de les subclaus"
+
+#: src/dialogs/subkeyswidget.cpp:379
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Subkeys"
+msgctxt "@action:button"
+msgid "Add Subkey"
+msgstr "Subclaus"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -9384,18 +9475,6 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "Tasques en curs en segon pla"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
-#, kde-format
-msgctxt "@title:window"
-msgid "Advanced Settings"
-msgstr "Configuració avançada"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
-#, kde-format
-msgctxt "@title:group"
-msgid "Key Material"
-msgstr "Material de clau"
-
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, kde-format
 msgctxt "@option:radio"
@@ -9439,41 +9518,11 @@ msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
-#, kde-format
-msgctxt "@title:group"
-msgid "Certificate Usage"
-msgstr "Ús del certificat"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
-#, kde-format
-msgctxt "@option:check"
-msgid "Signing"
-msgstr "Signatura"
-
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, kde-format
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "Certificació"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
-#, kde-format
-msgctxt "@option:check"
-msgid "Encryption"
-msgstr "Encriptació"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
-#, kde-format
-msgctxt "@option:check"
-msgid "Authentication"
-msgstr "Autenticació"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
-#, kde-format
-msgctxt "@option:check"
-msgid "Valid until:"
-msgstr "Vàlid fins a:"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:339
 #, kde-format

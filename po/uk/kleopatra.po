@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-02 00:38+0000\n"
+"POT-Creation-Date: 2024-02-15 00:38+0000\n"
 "PO-Revision-Date: 2024-01-25 16:32+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -148,6 +148,25 @@ msgstr "© Intevation GmbH, 2016–2018"
 #, kde-format
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "© Розробники Kleopatra, g10 Code GmbH, 2010–%1"
+
+#: src/commands/addsubkeycommand.cpp:167
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
+#| "</p><p>%2</p>"
+msgid ""
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
+"%2</p>"
+msgstr ""
+"<p>Під час спроби зміни пароля для <b>%1</b> сталася помилка:</p><p>%2</p>"
+
+#: src/commands/addsubkeycommand.cpp:175
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The subkey was exported successfully."
+#| msgid_plural "%1 subkeys were exported successfully."
+msgid "Subkey added successfully."
+msgstr "Успішно експортовано %1 підключ."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -6197,6 +6216,80 @@ msgstr "Не вдалося виявити файла контрольних с�
 msgid "Verifying checksums (%2) in %1"
 msgstr "Перевірка контрольних сум (%2) у %1"
 
+#: src/dialogs/addsubkeydialog.cpp:76
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#, kde-format
+msgctxt "@title:window"
+msgid "Advanced Settings"
+msgstr "Додаткові параметри"
+
+#: src/dialogs/addsubkeydialog.cpp:90
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#, kde-format
+msgctxt "@title:group"
+msgid "Key Material"
+msgstr "Матеріал ключа"
+
+#: src/dialogs/addsubkeydialog.cpp:95 src/dialogs/gencardkeydialog.cpp:75
+#, kde-format
+msgid "Algorithm:"
+msgstr "Алгоритм:"
+
+#: src/dialogs/addsubkeydialog.cpp:100
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#, kde-format
+msgctxt "@title:group"
+msgid "Certificate Usage"
+msgstr "Використання сертифіката"
+
+#: src/dialogs/addsubkeydialog.cpp:103
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#, kde-format
+msgctxt "@option:check"
+msgid "Signing"
+msgstr "Підписування"
+
+#: src/dialogs/addsubkeydialog.cpp:106
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#, kde-format
+msgctxt "@option:check"
+msgid "Encryption"
+msgstr "Шифрування"
+
+#: src/dialogs/addsubkeydialog.cpp:110
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#, kde-format
+msgctxt "@option:check"
+msgid "Authentication"
+msgstr "Розпізнавання"
+
+#: src/dialogs/addsubkeydialog.cpp:116
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
+#, kde-format
+msgctxt "@option:check"
+msgid "Valid until:"
+msgstr "Строк дії:"
+
+#: src/dialogs/addsubkeydialog.cpp:151
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Subkeys"
+msgctxt "@title:window"
+msgid "Add Subkey"
+msgstr "Підключі"
+
+#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgid "Expiration of primary key: %1"
+msgstr "Завершення строку дії основного ключа: %1"
+
+#: src/dialogs/addsubkeydialog.cpp:264
+#, fuzzy, kde-format
+#| msgid "default"
+msgctxt "Default Algorithm"
+msgid "Default"
+msgstr "типовий"
+
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
 msgctxt "title:window"
@@ -7255,11 +7348,6 @@ msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "Зміна кінця строку дії"
 
-#: src/dialogs/expirydialog.cpp:235
-#, kde-format
-msgid "Expiration of primary key: %1"
-msgstr "Завершення строку дії основного ключа: %1"
-
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
 msgid "Exporting ..."
@@ -7291,11 +7379,6 @@ msgstr "Ел. пошта:"
 #, kde-format
 msgid "Invalid EMail"
 msgstr "Некоректний запис адреси електронної пошти"
-
-#: src/dialogs/gencardkeydialog.cpp:75
-#, kde-format
-msgid "Algorithm:"
-msgstr "Алгоритм:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
 #, kde-format
@@ -7710,172 +7793,180 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(необов'язкове) Встановити початковий PIN (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:98
+#: src/dialogs/subkeyswidget.cpp:100
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Підключі:"
 
-#: src/dialogs/subkeyswidget.cpp:103
+#: src/dialogs/subkeyswidget.cpp:105
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Підключі"
 
-#: src/dialogs/subkeyswidget.cpp:106
+#: src/dialogs/subkeyswidget.cpp:108
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "Ід."
 
-#: src/dialogs/subkeyswidget.cpp:107
+#: src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Тип"
 
-#: src/dialogs/subkeyswidget.cpp:108
+#: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Чинний з"
 
-#: src/dialogs/subkeyswidget.cpp:109
+#: src/dialogs/subkeyswidget.cpp:111
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Чинний до"
 
-#: src/dialogs/subkeyswidget.cpp:110
+#: src/dialogs/subkeyswidget.cpp:112
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Стан"
 
-#: src/dialogs/subkeyswidget.cpp:111
+#: src/dialogs/subkeyswidget.cpp:113
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Стійкість"
 
-#: src/dialogs/subkeyswidget.cpp:112
+#: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Використання"
 
-#: src/dialogs/subkeyswidget.cpp:113
+#: src/dialogs/subkeyswidget.cpp:115
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Основний"
 
-#: src/dialogs/subkeyswidget.cpp:114
+#: src/dialogs/subkeyswidget.cpp:116
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Сховище даних"
 
-#: src/dialogs/subkeyswidget.cpp:121
+#: src/dialogs/subkeyswidget.cpp:123
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Змінити чинність"
 
-#: src/dialogs/subkeyswidget.cpp:124
+#: src/dialogs/subkeyswidget.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Експортувати ключ OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:127
+#: src/dialogs/subkeyswidget.cpp:129
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Відновити із роздрукованої резервної копії"
 
-#: src/dialogs/subkeyswidget.cpp:130
+#: src/dialogs/subkeyswidget.cpp:132
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Перенести на картку пам'яті"
 
-#: src/dialogs/subkeyswidget.cpp:133
+#: src/dialogs/subkeyswidget.cpp:135
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Експортувати закритий підключ"
 
-#: src/dialogs/subkeyswidget.cpp:212
+#: src/dialogs/subkeyswidget.cpp:214
 #, kde-format
 msgid "Change validity"
 msgstr "Змінити чинність"
 
-#: src/dialogs/subkeyswidget.cpp:219
+#: src/dialogs/subkeyswidget.cpp:221
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Експортувати ключ OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:224
+#: src/dialogs/subkeyswidget.cpp:226
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Відновити із роздрукованої резервної копії"
 
-#: src/dialogs/subkeyswidget.cpp:231
+#: src/dialogs/subkeyswidget.cpp:233
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Перенести на картку пам'яті"
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:241
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Експортувати закритий підключ"
 
-#: src/dialogs/subkeyswidget.cpp:329
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "так"
 
-#: src/dialogs/subkeyswidget.cpp:329
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "ні"
 
-#: src/dialogs/subkeyswidget.cpp:332
+#: src/dialogs/subkeyswidget.cpp:334
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "картка пам'яті %1"
 
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:336
 #, kde-format
 msgid "smart card"
 msgstr "картка пам'яті"
 
-#: src/dialogs/subkeyswidget.cpp:337
+#: src/dialogs/subkeyswidget.cpp:339
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "поза мережею"
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:341
 #, kde-format
 msgid "on this computer"
 msgstr "на цьому комп'ютері"
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:343
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "невідомий"
 
-#: src/dialogs/subkeyswidget.cpp:369
+#: src/dialogs/subkeyswidget.cpp:371
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Параметри підключів"
+
+#: src/dialogs/subkeyswidget.cpp:379
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Subkeys"
+msgctxt "@action:button"
+msgid "Add Subkey"
+msgstr "Підключі"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -9445,18 +9536,6 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "Виконуються фонові завдання"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
-#, kde-format
-msgctxt "@title:window"
-msgid "Advanced Settings"
-msgstr "Додаткові параметри"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
-#, kde-format
-msgctxt "@title:group"
-msgid "Key Material"
-msgstr "Матеріал ключа"
-
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, kde-format
 msgctxt "@option:radio"
@@ -9500,41 +9579,11 @@ msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
-#, kde-format
-msgctxt "@title:group"
-msgid "Certificate Usage"
-msgstr "Використання сертифіката"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
-#, kde-format
-msgctxt "@option:check"
-msgid "Signing"
-msgstr "Підписування"
-
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, kde-format
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "Посвідчення"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
-#, kde-format
-msgctxt "@option:check"
-msgid "Encryption"
-msgstr "Шифрування"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
-#, kde-format
-msgctxt "@option:check"
-msgid "Authentication"
-msgstr "Розпізнавання"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
-#, kde-format
-msgctxt "@option:check"
-msgid "Valid until:"
-msgstr "Строк дії:"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:339
 #, kde-format
@@ -12929,9 +12978,6 @@ msgstr ""
 
 #~ msgid "Finalizing output..."
 #~ msgstr "Завершуємо виведення даних…"
-
-#~ msgid "default"
-#~ msgstr "типовий"
 
 #~ msgid ""
 #~ "This means that every configuration option of the GnuPG System will be "

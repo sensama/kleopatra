@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-02 00:38+0000\n"
+"POT-Creation-Date: 2024-02-15 00:38+0000\n"
 "PO-Revision-Date: 2022-06-17 18:10+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -144,6 +144,25 @@ msgstr ""
 #, kde-format
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr ""
+
+#: src/commands/addsubkeycommand.cpp:167
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
+#| "%1</b></p></qt>"
+msgid ""
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
+"%2</p>"
+msgstr ""
+"<qt><p>Det oppstod ein feil ved sletting av sertifikatet:</p><p><b>%1</b></"
+"p></qt>"
+
+#: src/commands/addsubkeycommand.cpp:175
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "PIN set successfully."
+msgid "Subkey added successfully."
+msgstr "PIN-verdi lagra."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -5785,6 +5804,78 @@ msgstr ""
 msgid "Verifying checksums (%2) in %1"
 msgstr ""
 
+#: src/dialogs/addsubkeydialog.cpp:76
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#, kde-format
+msgctxt "@title:window"
+msgid "Advanced Settings"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:90
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#, kde-format
+msgctxt "@title:group"
+msgid "Key Material"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:95 src/dialogs/gencardkeydialog.cpp:75
+#, kde-format
+msgid "Algorithm:"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:100
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#, kde-format
+msgctxt "@title:group"
+msgid "Certificate Usage"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:103
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#, kde-format
+msgctxt "@option:check"
+msgid "Signing"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:106
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#, kde-format
+msgctxt "@option:check"
+msgid "Encryption"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:110
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#, kde-format
+msgctxt "@option:check"
+msgid "Authentication"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:116
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
+#, kde-format
+msgctxt "@option:check"
+msgid "Valid until:"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:151
+#, fuzzy, kde-format
+#| msgid "New subkeys:"
+msgctxt "@title:window"
+msgid "Add Subkey"
+msgstr "Nye undernøklar:"
+
+#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgid "Expiration of primary key: %1"
+msgstr ""
+
+#: src/dialogs/addsubkeydialog.cpp:264
+#, kde-format
+msgctxt "Default Algorithm"
+msgid "Default"
+msgstr ""
+
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
 msgctxt "title:window"
@@ -6773,11 +6864,6 @@ msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:235
-#, kde-format
-msgid "Expiration of primary key: %1"
-msgstr ""
-
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
 msgid "Exporting ..."
@@ -6808,11 +6894,6 @@ msgstr ""
 #: src/dialogs/gencardkeydialog.cpp:68
 #, kde-format
 msgid "Invalid EMail"
-msgstr ""
-
-#: src/dialogs/gencardkeydialog.cpp:75
-#, kde-format
-msgid "Algorithm:"
 msgstr ""
 
 #: src/dialogs/gencardkeydialog.cpp:82
@@ -7196,174 +7277,181 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:98
+#: src/dialogs/subkeyswidget.cpp:100
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:103
+#: src/dialogs/subkeyswidget.cpp:105
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:106
+#: src/dialogs/subkeyswidget.cpp:108
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:107
+#: src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:108
+#: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:109
+#: src/dialogs/subkeyswidget.cpp:111
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:110
+#: src/dialogs/subkeyswidget.cpp:112
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:111
+#: src/dialogs/subkeyswidget.cpp:113
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:112
+#: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:113
+#: src/dialogs/subkeyswidget.cpp:115
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:114
+#: src/dialogs/subkeyswidget.cpp:116
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:121
+#: src/dialogs/subkeyswidget.cpp:123
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Vis om sertifikatet er gyldig"
 
-#: src/dialogs/subkeyswidget.cpp:124
+#: src/dialogs/subkeyswidget.cpp:126
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:127
+#: src/dialogs/subkeyswidget.cpp:129
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:130
+#: src/dialogs/subkeyswidget.cpp:132
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:133
+#: src/dialogs/subkeyswidget.cpp:135
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:212
+#: src/dialogs/subkeyswidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Change validity"
 msgstr "Vis om sertifikatet er gyldig"
 
-#: src/dialogs/subkeyswidget.cpp:219
+#: src/dialogs/subkeyswidget.cpp:221
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:224
+#: src/dialogs/subkeyswidget.cpp:226
 #, kde-format
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:231
+#: src/dialogs/subkeyswidget.cpp:233
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:239
+#: src/dialogs/subkeyswidget.cpp:241
 #, kde-format
 msgid "Export secret subkey"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:329
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:329
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:332
+#: src/dialogs/subkeyswidget.cpp:334
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:336
 #, kde-format
 msgid "smart card"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:337
+#: src/dialogs/subkeyswidget.cpp:339
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:341
 #, kde-format
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:343
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:369
+#: src/dialogs/subkeyswidget.cpp:371
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr ""
+
+#: src/dialogs/subkeyswidget.cpp:379
+#, fuzzy, kde-format
+#| msgid "New subkeys:"
+msgctxt "@action:button"
+msgid "Add Subkey"
+msgstr "Nye undernøklar:"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -8775,18 +8863,6 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "Oppgåver i bakgrunnen"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
-#, kde-format
-msgctxt "@title:window"
-msgid "Advanced Settings"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
-#, kde-format
-msgctxt "@title:group"
-msgid "Key Material"
-msgstr ""
-
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, kde-format
 msgctxt "@option:radio"
@@ -8830,40 +8906,10 @@ msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
-#, kde-format
-msgctxt "@title:group"
-msgid "Certificate Usage"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
-#, kde-format
-msgctxt "@option:check"
-msgid "Signing"
-msgstr ""
-
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, kde-format
 msgctxt "@option:check"
 msgid "Certification"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
-#, kde-format
-msgctxt "@option:check"
-msgid "Encryption"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
-#, kde-format
-msgctxt "@option:check"
-msgid "Authentication"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
-#, kde-format
-msgctxt "@option:check"
-msgid "Valid until:"
 msgstr ""
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:339

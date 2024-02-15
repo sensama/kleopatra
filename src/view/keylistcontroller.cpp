@@ -414,7 +414,7 @@ void KeyListController::createActions(KActionCollection *coll)
             "file_sign_encrypt_folder",
             i18n("Sign/Encrypt Folder..."),
             i18n("Encrypt and/or sign folders"),
-            nullptr /*"folder-edit-sign-encrypt"*/,
+            "folder-edit-sign-encrypt-symbolic",
             nullptr,
             nullptr,
             QString(),

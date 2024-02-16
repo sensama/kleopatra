@@ -635,6 +635,18 @@ void MainWindow::Private::setupActions()
                 configureGroups();
             },
             QString(),
+        },
+        // Toolbar
+        {
+            "configure_groups_toolbar",
+            i18nc("@action:intoolbar", "Groups"),
+            QString(),
+            "group",
+            q,
+            [this](bool) {
+                configureGroups();
+            },
+            QString(),
         }};
 
     make_actions_from_data(action_data, coll);

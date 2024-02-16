@@ -14,6 +14,8 @@
 #include <utils/accessibility.h>
 #include <view/keytreeview.h>
 
+#include <Libkleo/Algorithm>
+#include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/Stl_Util>
 
@@ -77,12 +79,30 @@ public:
         dialog.sync();
     }
 
+    void checkGroups(const std::vector<Key> &keys)
+    {
+        const auto &groups = KeyCache::instance()->groups();
+        for (const auto &key : keys) {
+            if (Kleo::any_of(groups, [key](const auto &group) {
+                    return group.keys().contains(key);
+                })) {
+                ui.groupsKTV.addKeysUnselected({key});
+            }
+        }
+        if (!ui.groupsKTV.keys().empty()) {
+            ui.groupsLB.setVisible(true);
+            ui.groupsKTV.setVisible(true);
+        }
+    }
+
 private:
     struct UI {
         QLabel selectedLB;
         KeyTreeView selectedKTV;
         QLabel unselectedLB;
         KeyTreeView unselectedKTV;
+        QLabel groupsLB;
+        KeyTreeView groupsKTV;
         QDialogButtonBox buttonBox;
         QVBoxLayout vlay;
 
@@ -93,6 +113,8 @@ private:
                                 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"),
                            qq)
             , unselectedKTV(qq)
+            , groupsLB(i18n("These certificates are part of groups. Deleting them may cause receivers to be unable to decrypt messages:"))
+            , groupsKTV(qq)
             , buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel)
             , vlay(qq)
         {
@@ -100,6 +122,8 @@ private:
             KDAB_SET_OBJECT_NAME(selectedKTV);
             KDAB_SET_OBJECT_NAME(unselectedLB);
             KDAB_SET_OBJECT_NAME(unselectedKTV);
+            KDAB_SET_OBJECT_NAME(groupsLB);
+            KDAB_SET_OBJECT_NAME(groupsKTV);
             KDAB_SET_OBJECT_NAME(buttonBox);
             KDAB_SET_OBJECT_NAME(vlay);
 
@@ -107,6 +131,8 @@ private:
             vlay.addWidget(&selectedKTV, 1);
             vlay.addWidget(&unselectedLB);
             vlay.addWidget(&unselectedKTV, 1);
+            vlay.addWidget(&groupsLB);
+            vlay.addWidget(&groupsKTV, 1);
             vlay.addWidget(&buttonBox);
 
             const QString unselectedWhatsThis = xi18nc("@info:whatsthis",
@@ -134,6 +160,11 @@ private:
             unselectedKTV.setHierarchicalView(false);
             unselectedKTV.view()->setSelectionMode(QAbstractItemView::NoSelection);
 
+            groupsLB.setVisible(false);
+            groupsKTV.setFlatModel(AbstractKeyListModel::createFlatKeyListModel(&groupsKTV));
+            groupsKTV.setHierarchicalView(false);
+            groupsKTV.setVisible(false);
+
             connect(&buttonBox, SIGNAL(accepted()), qq, SLOT(accept()));
             connect(&buttonBox, &QDialogButtonBox::rejected, qq, &QDialog::reject);
         }
@@ -155,6 +186,7 @@ DeleteCertificatesDialog::~DeleteCertificatesDialog()
 void DeleteCertificatesDialog::setSelectedKeys(const std::vector<Key> &keys)
 {
     d->ui.selectedKTV.setKeys(keys);
+    d->checkGroups(keys);
 }
 
 void DeleteCertificatesDialog::setUnselectedKeys(const std::vector<Key> &keys)
@@ -162,6 +194,7 @@ void DeleteCertificatesDialog::setUnselectedKeys(const std::vector<Key> &keys)
     d->ui.unselectedLB.setVisible(!keys.empty());
     d->ui.unselectedKTV.setVisible(!keys.empty());
     d->ui.unselectedKTV.setKeys(keys);
+    d->checkGroups(keys);
 }
 
 std::vector<Key> DeleteCertificatesDialog::keys() const

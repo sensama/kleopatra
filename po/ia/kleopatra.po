@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-15 00:38+0000\n"
-"PO-Revision-Date: 2024-01-25 18:40+0100\n"
+"POT-Creation-Date: 2024-02-16 00:38+0000\n"
+"PO-Revision-Date: 2024-02-15 12:12+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -146,12 +146,9 @@ msgid ""
 msgstr ""
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "Le subclave esseva exportate con successo."
+msgstr "Subclave addite con successo."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -4559,34 +4556,34 @@ msgstr "Cryptation falleva: %1"
 msgid "Encryption succeeded."
 msgstr ""
 
-#: src/crypto/gui/certificatelineedit.cpp:271
+#: src/crypto/gui/certificatelineedit.cpp:290
 #, kde-format
 msgid "Please enter a name or email address..."
 msgstr ""
 
-#: src/crypto/gui/certificatelineedit.cpp:286
-#: src/crypto/gui/certificatelineedit.cpp:287
+#: src/crypto/gui/certificatelineedit.cpp:307
+#: src/crypto/gui/certificatelineedit.cpp:308
 #, kde-format
 msgid "Show certificate list"
 msgstr "Monstra lista de certificato"
 
-#: src/crypto/gui/certificatelineedit.cpp:306
+#: src/crypto/gui/certificatelineedit.cpp:327
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Monstra Detalios"
 
-#: src/crypto/gui/certificatelineedit.cpp:592
+#: src/crypto/gui/certificatelineedit.cpp:635
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "Nulle certificato o gruppo correspondente trovate"
 
-#: src/crypto/gui/certificatelineedit.cpp:594
+#: src/crypto/gui/certificatelineedit.cpp:637
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "Certificatos multiple o gruppos correspondente trovate"
 
-#: src/crypto/gui/certificatelineedit.cpp:664 src/dialogs/expirydialog.cpp:219
+#: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, kde-format
@@ -5305,19 +5302,19 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "clave de destinatario"
 
-#: src/crypto/gui/signencryptwidget.cpp:589
+#: src/crypto/gui/signencryptwidget.cpp:597
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Iste certificato es expirate."
 
-#: src/crypto/gui/signencryptwidget.cpp:592
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Iste certificato expira hodie."
 
-#: src/crypto/gui/signencryptwidget.cpp:594
+#: src/crypto/gui/signencryptwidget.cpp:602
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5325,24 +5322,24 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Iste certificato expira deman."
 msgstr[1] "Iste certificato expira in %1 dies."
 
-#: src/crypto/gui/signencryptwidget.cpp:599
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Iste certificato non pote esser usate per cryptar."
 
-#: src/crypto/gui/signencryptwidget.cpp:601
+#: src/crypto/gui/signencryptwidget.cpp:609
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Iste certificato non pote esser usate per signar."
 
-#: src/crypto/gui/signencryptwidget.cpp:829
+#: src/crypto/gui/signencryptwidget.cpp:840
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Il non pote trovar un clave per le sequentes destinatarios:"
 
-#: src/crypto/gui/signencryptwidget.cpp:831
+#: src/crypto/gui/signencryptwidget.cpp:842
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
@@ -5732,12 +5729,10 @@ msgid "Valid until:"
 msgstr "Valide usque:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Subclaves"
+msgstr "Adde Subclave"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -5745,11 +5740,10 @@ msgid "Expiration of primary key: %1"
 msgstr ""
 
 #: src/dialogs/addsubkeydialog.cpp:264
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr "predefinite"
+msgstr "Predefinite"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -6241,94 +6235,94 @@ msgstr ""
 msgid "The issuer certificate could not be found locally."
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:128
+#: src/dialogs/certificateselectiondialog.cpp:129
 #, kde-format
 msgid "Please select one or more of the following certificates:"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:129
+#: src/dialogs/certificateselectiondialog.cpp:130
 #, kde-format
 msgid "Please select one of the following certificates:"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:161
+#: src/dialogs/certificateselectiondialog.cpp:162
 #: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgid "Reload"
 msgstr "Recarga"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
+#: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Refresh certificate list"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:163
+#: src/dialogs/certificateselectiondialog.cpp:164
 #: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Importa..."
 
-#: src/dialogs/certificateselectiondialog.cpp:164
+#: src/dialogs/certificateselectiondialog.cpp:165
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import certificate from file"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:165
+#: src/dialogs/certificateselectiondialog.cpp:166
 #, kde-format
 msgid "Import certificate"
 msgstr "Importa certificato"
 
-#: src/dialogs/certificateselectiondialog.cpp:166
+#: src/dialogs/certificateselectiondialog.cpp:167
 #, kde-format
 msgid "Lookup..."
 msgstr "Il cerca ..."
 
-#: src/dialogs/certificateselectiondialog.cpp:167
+#: src/dialogs/certificateselectiondialog.cpp:168
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
 msgstr "Cerca certificato sur servitor"
 
-#: src/dialogs/certificateselectiondialog.cpp:168
+#: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgid "Look up certificate"
 msgstr "Cerca certificato"
 
-#: src/dialogs/certificateselectiondialog.cpp:169
+#: src/dialogs/certificateselectiondialog.cpp:170
 #, kde-format
 msgid "New..."
 msgstr "Nove ..."
 
-#: src/dialogs/certificateselectiondialog.cpp:170
+#: src/dialogs/certificateselectiondialog.cpp:171
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a new OpenPGP certificate"
 msgstr "Crea un nove Certificato de OpenPGP"
 
-#: src/dialogs/certificateselectiondialog.cpp:171
+#: src/dialogs/certificateselectiondialog.cpp:172
 #, kde-format
 msgid "Create certificate"
 msgstr "Crea certificato"
 
-#: src/dialogs/certificateselectiondialog.cpp:172
+#: src/dialogs/certificateselectiondialog.cpp:173
 #, kde-format
 msgid "Groups..."
 msgstr "Gruppos..."
 
-#: src/dialogs/certificateselectiondialog.cpp:173
+#: src/dialogs/certificateselectiondialog.cpp:174
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
 msgstr "Gere gruppos de certificato"
 
-#: src/dialogs/certificateselectiondialog.cpp:174
+#: src/dialogs/certificateselectiondialog.cpp:175
 #, kde-format
 msgid "Manage groups"
 msgstr "Gere gruppos"
 
-#: src/dialogs/certificateselectiondialog.cpp:223
+#: src/dialogs/certificateselectiondialog.cpp:224
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Selection"
@@ -7286,12 +7280,10 @@ msgid "Subkeys Details"
 msgstr "Detaios de subclaves"
 
 #: src/dialogs/subkeyswidget.cpp:379
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "Subclaves"
+msgstr "Adde Subclave"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -11480,92 +11472,92 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/tabwidget.cpp:637
+#: src/view/tabwidget.cpp:638
 #, kde-format
 msgid "Rename Tab"
 msgstr "Renomina Scheda"
 
-#: src/view/tabwidget.cpp:637
+#: src/view/tabwidget.cpp:638
 #, kde-format
 msgid "New tab title:"
 msgstr "Nove titulo de scheda:"
 
-#: src/view/tabwidget.cpp:839
+#: src/view/tabwidget.cpp:840
 #, kde-format
 msgid "New Tab"
 msgstr "Nove scheda"
 
-#: src/view/tabwidget.cpp:840
+#: src/view/tabwidget.cpp:841
 #, kde-format
 msgid "Open a new tab"
 msgstr "Aperi un nove scheda"
 
-#: src/view/tabwidget.cpp:854
+#: src/view/tabwidget.cpp:855
 #, kde-format
 msgid "Rename Tab..."
 msgstr "Renomina scheda..."
 
-#: src/view/tabwidget.cpp:855
+#: src/view/tabwidget.cpp:856
 #, kde-format
 msgid "Rename this tab"
 msgstr "Renomina iste scheda"
 
-#: src/view/tabwidget.cpp:867
+#: src/view/tabwidget.cpp:868
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "Duplica scheda"
 
-#: src/view/tabwidget.cpp:868
+#: src/view/tabwidget.cpp:869
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "Duplica iste scheda"
 
-#: src/view/tabwidget.cpp:878
+#: src/view/tabwidget.cpp:879
 #, kde-format
 msgid "Close Tab"
 msgstr "Claude scheda"
 
-#: src/view/tabwidget.cpp:879
+#: src/view/tabwidget.cpp:880
 #, kde-format
 msgid "Close this tab"
 msgstr "Claude iste scheda"
 
-#: src/view/tabwidget.cpp:891
+#: src/view/tabwidget.cpp:892
 #, kde-format
 msgid "Move Tab Left"
 msgstr "Move scheda a sinistra"
 
-#: src/view/tabwidget.cpp:892
+#: src/view/tabwidget.cpp:893
 #, kde-format
 msgid "Move this tab left"
 msgstr "Move iste scheda a sinistra"
 
-#: src/view/tabwidget.cpp:904
+#: src/view/tabwidget.cpp:905
 #, kde-format
 msgid "Move Tab Right"
 msgstr "Move scheda a dextera"
 
-#: src/view/tabwidget.cpp:905
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Move this tab right"
 msgstr "Move iste scheda a dextera"
 
-#: src/view/tabwidget.cpp:917
+#: src/view/tabwidget.cpp:918
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "Lista de certificato hierarchic"
 
-#: src/view/tabwidget.cpp:930
+#: src/view/tabwidget.cpp:931
 #, kde-format
 msgid "Expand All"
 msgstr "Expande omne"
 
-#: src/view/tabwidget.cpp:943
+#: src/view/tabwidget.cpp:944
 #, kde-format
 msgid "Collapse All"
 msgstr "Plica omne"
 
-#: src/view/tabwidget.cpp:1073
+#: src/view/tabwidget.cpp:1085
 #, kde-format
 msgid "All Certificates"
 msgstr "Omne Certificatos"

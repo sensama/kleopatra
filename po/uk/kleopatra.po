@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-16 00:38+0000\n"
+"POT-Creation-Date: 2024-02-17 00:38+0000\n"
 "PO-Revision-Date: 2024-02-15 16:58+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1857,8 +1857,8 @@ msgstr "Процес завершив роботу"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:882
-#: src/commands/importcertificatescommand.cpp:932
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:941
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Імпортування сертифіката зазнало невдачі"
@@ -2209,7 +2209,22 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ні, це не мій"
 
-#: src/commands/importcertificatescommand.cpp:846
+#: src/commands/importcertificatescommand.cpp:791
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
+#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+msgctxt "@info"
+msgid ""
+"<para>The imported group</para><para><emphasis>%1</emphasis></"
+"para><para>contains certificates that cannot be used for encryption. This "
+"may lead to unexpected results.</para>"
+msgstr ""
+"<para>Хочете вилучити цю групу?</para><para><emphasis>%1</emphasis></"
+"para><para>Після вилучення її не можна буде відновити.</para>"
+
+#: src/commands/importcertificatescommand.cpp:855
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2218,8 +2233,8 @@ msgstr[1] "Отримуємо %1 ключі підписувачів… (ця д
 msgstr[2] "Отримуємо %1 ключів підписувачів… (ця дія триватиме певний час)"
 msgstr[3] "Отримуємо ключ підписувача… (ця дія триватиме певний час)"
 
-#: src/commands/importcertificatescommand.cpp:881
-#: src/commands/importcertificatescommand.cpp:931
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3889,7 +3904,7 @@ msgid "Edit"
 msgstr "Змінити"
 
 #: src/conf/groupsconfigwidget.cpp:196
-#: src/dialogs/deletecertificatesdialog.cpp:125
+#: src/dialogs/deletecertificatesdialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -7123,12 +7138,12 @@ msgstr "Не вдалося змінити довіру до сертифіка�
 msgid "Owner trust set successfully."
 msgstr "Довіру до власника успішно встановлено."
 
-#: src/dialogs/deletecertificatesdialog.cpp:90
+#: src/dialogs/deletecertificatesdialog.cpp:110
 #, kde-format
 msgid "These are the certificates you have selected for deletion:"
 msgstr "Ось список сертифікатів, позначених для вилучення:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:92
+#: src/dialogs/deletecertificatesdialog.cpp:112
 #, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
@@ -7137,7 +7152,14 @@ msgstr ""
 "Ці сертифікати буде вилучено, навіть якщо ви <b>не</b><nl/> позначите їх "
 "явно (<a href=\"whatsthis://\">пояснення</a>):"
 
-#: src/dialogs/deletecertificatesdialog.cpp:113
+#: src/dialogs/deletecertificatesdialog.cpp:116
+#, kde-format
+msgid ""
+"These certificates are part of groups. Deleting them may cause receivers to "
+"be unable to decrypt messages:"
+msgstr ""
+
+#: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -7160,7 +7182,7 @@ msgstr ""
 "теками, які містять інші сертифікати: якщо ви вилучаєте теку, ви вилучаєте і "
 "її вміст.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:190
+#: src/dialogs/deletecertificatesdialog.cpp:223
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7191,7 +7213,7 @@ msgstr[3] ""
 "наступного обміну інформацією, зашифрованого з цим сертифікатом, і тому його "
 "не можна вилучати."
 
-#: src/dialogs/deletecertificatesdialog.cpp:204
+#: src/dialogs/deletecertificatesdialog.cpp:237
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7222,7 +7244,7 @@ msgstr[3] ""
 "наступного обміну інформацією, зашифрованого з цим сертифікатом, і тому його "
 "не можна вилучати."
 
-#: src/dialogs/deletecertificatesdialog.cpp:219
+#: src/dialogs/deletecertificatesdialog.cpp:252
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"

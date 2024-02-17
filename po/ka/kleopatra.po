@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-16 00:38+0000\n"
+"POT-Creation-Date: 2024-02-17 00:38+0000\n"
 "PO-Revision-Date: 2024-02-15 06:32+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -1812,8 +1812,8 @@ msgstr "პროცესი დასრულდა"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:882
-#: src/commands/importcertificatescommand.cpp:932
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:941
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "სერტიფიკატების შემოტანის შეცდომა"
@@ -2158,7 +2158,22 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "არა, ჩემი არაა"
 
-#: src/commands/importcertificatescommand.cpp:846
+#: src/commands/importcertificatescommand.cpp:791
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
+#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+msgctxt "@info"
+msgid ""
+"<para>The imported group</para><para><emphasis>%1</emphasis></"
+"para><para>contains certificates that cannot be used for encryption. This "
+"may lead to unexpected results.</para>"
+msgstr ""
+"<para>მართლა გნებავთ ამ ჯგუფის წაშლა?</para><para><emphasis>%1</emphasis></"
+"para><para>წაშლის ქმედება შეუქცევადია.</para>"
+
+#: src/commands/importcertificatescommand.cpp:855
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2167,8 +2182,8 @@ msgstr[0] ""
 msgstr[1] ""
 "%1 ხელმომწერის გასაღების გამოთხოვა... (ამას კარგა ხანი შეიძლება დასჭირდეს)"
 
-#: src/commands/importcertificatescommand.cpp:881
-#: src/commands/importcertificatescommand.cpp:931
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3792,7 +3807,7 @@ msgid "Edit"
 msgstr "ჩასწორება"
 
 #: src/conf/groupsconfigwidget.cpp:196
-#: src/dialogs/deletecertificatesdialog.cpp:125
+#: src/dialogs/deletecertificatesdialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -6970,12 +6985,12 @@ msgstr "სერტიფიცირების ნდობის შეც�
 msgid "Owner trust set successfully."
 msgstr "მფლობლის ნდობა დაყენებულია."
 
-#: src/dialogs/deletecertificatesdialog.cpp:90
+#: src/dialogs/deletecertificatesdialog.cpp:110
 #, kde-format
 msgid "These are the certificates you have selected for deletion:"
 msgstr "ეს სერტიფიკატებია, რომლებიც წასაშლელად მონიშნეთ:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:92
+#: src/dialogs/deletecertificatesdialog.cpp:112
 #, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
@@ -6984,7 +6999,14 @@ msgstr ""
 "ეს სერტიფიკატები წაიშლება იმის მიუხედავად, რომ ისინი <b>არ მოგინიშნავთ</b> "
 "(<a href=\"whatisthis://\">რატომ?</a>):"
 
-#: src/dialogs/deletecertificatesdialog.cpp:113
+#: src/dialogs/deletecertificatesdialog.cpp:116
+#, kde-format
+msgid ""
+"These certificates are part of groups. Deleting them may cause receivers to "
+"be unable to decrypt messages:"
+msgstr ""
+
+#: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -7005,7 +7027,7 @@ msgstr ""
 "შვილებიც წაიშლება. CA სერტიფიკატები რაღაც საქაღალდეების მსგავსია: როცა შლით "
 "საქაღალდეს, მისი შემცველობაც იშლება.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:190
+#: src/dialogs/deletecertificatesdialog.cpp:223
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7024,7 +7046,7 @@ msgstr[1] ""
 "გასაღების მასალას, რომელიც საჭიროა, წარსული დაშიფრული ურთიერთობის გასაშიფრად "
 "და ამიტომ, არ უნდა წაიშალოს."
 
-#: src/dialogs/deletecertificatesdialog.cpp:204
+#: src/dialogs/deletecertificatesdialog.cpp:237
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7043,7 +7065,7 @@ msgstr[1] ""
 "მასალას, რომელიც საჭიროა, წარსული დაშიფრული ურთიერთობის გასაშიფრად და "
 "ამიტომ, არ უნდა წაიშალოს."
 
-#: src/dialogs/deletecertificatesdialog.cpp:219
+#: src/dialogs/deletecertificatesdialog.cpp:252
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"

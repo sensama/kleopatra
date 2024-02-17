@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-16 00:38+0000\n"
-"PO-Revision-Date: 2024-01-25 07:40+0100\n"
+"POT-Creation-Date: 2024-02-17 00:38+0000\n"
+"PO-Revision-Date: 2024-02-16 17:21+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.4.2\n"
 
@@ -150,24 +150,18 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 razvijalci Kleopatre, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p>Med spreminjanjem geselne fraze za <b>%1</b> je prišlo do napake:</p><p>"
-"%2</p>"
+"<p>Prišlo je do napake pri poskusu dodajanju novega podključa do <b>%1</b>:</"
+"p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "%1 podključ je bil uspešno izvožen."
+msgstr "Podključ uspešno dodan."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -1852,8 +1846,8 @@ msgstr "Opravilo zaključeno"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:882
-#: src/commands/importcertificatescommand.cpp:932
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:941
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Uvoz potrdil ni uspel"
@@ -2205,7 +2199,22 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ne, to ni moje"
 
-#: src/commands/importcertificatescommand.cpp:846
+#: src/commands/importcertificatescommand.cpp:791
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
+#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+msgctxt "@info"
+msgid ""
+"<para>The imported group</para><para><emphasis>%1</emphasis></"
+"para><para>contains certificates that cannot be used for encryption. This "
+"may lead to unexpected results.</para>"
+msgstr ""
+"<para>Ali res želite izbrisati to skupino?</para><para><emphasis>%1</"
+"emphasis></para><para>Ko je izbrisana, je ni več mogoče obnoviti.</para>"
+
+#: src/commands/importcertificatescommand.cpp:855
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2214,8 +2223,8 @@ msgstr[1] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 msgstr[2] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 msgstr[3] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 
-#: src/commands/importcertificatescommand.cpp:881
-#: src/commands/importcertificatescommand.cpp:931
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3862,7 +3871,7 @@ msgid "Edit"
 msgstr "Uredi"
 
 #: src/conf/groupsconfigwidget.cpp:196
-#: src/dialogs/deletecertificatesdialog.cpp:125
+#: src/dialogs/deletecertificatesdialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -6218,12 +6227,10 @@ msgid "Valid until:"
 msgstr "Veljaven do:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Podključi"
+msgstr "Dodaj podključ"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -6231,11 +6238,10 @@ msgid "Expiration of primary key: %1"
 msgstr "Potek primarnega ključa: %1"
 
 #: src/dialogs/addsubkeydialog.cpp:264
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr "privzeto"
+msgstr "Privzeto"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -7065,12 +7071,12 @@ msgstr "Sprememba zaupanja v potrdilo ni uspela"
 msgid "Owner trust set successfully."
 msgstr "Zaupanje lastnika je bilo uspešno nastavljeno."
 
-#: src/dialogs/deletecertificatesdialog.cpp:90
+#: src/dialogs/deletecertificatesdialog.cpp:110
 #, kde-format
 msgid "These are the certificates you have selected for deletion:"
 msgstr "Za izbris ste izbrali naslednja potrdila:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:92
+#: src/dialogs/deletecertificatesdialog.cpp:112
 #, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
@@ -7079,7 +7085,14 @@ msgstr ""
 "Ta potrdila bodo Izbrisana, čeprav jih<nl/><emphasis>niste</emphasis> "
 "izrecno izbrali. (<a href=\"whatsthis://\">Zakaj?</a>):"
 
-#: src/dialogs/deletecertificatesdialog.cpp:113
+#: src/dialogs/deletecertificatesdialog.cpp:116
+#, kde-format
+msgid ""
+"These certificates are part of groups. Deleting them may cause receivers to "
+"be unable to decrypt messages:"
+msgstr ""
+
+#: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -7101,7 +7114,7 @@ msgstr ""
 "overiteljev si lahko zamišljate kot mape, ki vsebujejo druga potrdila. Ko "
 "izbrišete mapo, izbrišete tudi njeno vsebino.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:190
+#: src/dialogs/deletecertificatesdialog.cpp:223
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7128,7 +7141,7 @@ msgstr[3] ""
 "dešifriranje pretekle komunikacije, ki je bila šifrirana za ta potrdila, in "
 "jih zato ni dobro izbrisati."
 
-#: src/dialogs/deletecertificatesdialog.cpp:204
+#: src/dialogs/deletecertificatesdialog.cpp:237
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7155,7 +7168,7 @@ msgstr[3] ""
 "zahtevani za dešifriranje pretekle komunikacije, ki je bila šifrirana za ta "
 "potrdila, in jih zato ni dobro izbrisati."
 
-#: src/dialogs/deletecertificatesdialog.cpp:219
+#: src/dialogs/deletecertificatesdialog.cpp:252
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
@@ -7878,12 +7891,10 @@ msgid "Subkeys Details"
 msgstr "Podrobnosti podključev"
 
 #: src/dialogs/subkeyswidget.cpp:379
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "Podključi"
+msgstr "Dodaj podključ"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format

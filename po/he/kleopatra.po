@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-16 00:38+0000\n"
+"POT-Creation-Date: 2024-02-17 00:38+0000\n"
 "PO-Revision-Date: 2024-02-15 23:10+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -1742,8 +1742,8 @@ msgstr ""
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:882
-#: src/commands/importcertificatescommand.cpp:932
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:941
 #, fuzzy, kde-format
 msgid "Certificate Import Failed"
 msgstr "התעודה יובאה"
@@ -2087,7 +2087,18 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "לא, זה לא שלי"
 
-#: src/commands/importcertificatescommand.cpp:846
+#: src/commands/importcertificatescommand.cpp:791
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The imported group</para><para><emphasis>%1</emphasis></"
+"para><para>contains certificates that cannot be used for encryption. This "
+"may lead to unexpected results.</para>"
+msgstr ""
+"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
+"היה: "
+
+#: src/commands/importcertificatescommand.cpp:855
 #, fuzzy, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2096,8 +2107,8 @@ msgstr[1] "הארך תוקף תעודה"
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/commands/importcertificatescommand.cpp:881
-#: src/commands/importcertificatescommand.cpp:931
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3620,7 +3631,7 @@ msgid "Edit"
 msgstr "עריכה"
 
 #: src/conf/groupsconfigwidget.cpp:196
-#: src/dialogs/deletecertificatesdialog.cpp:125
+#: src/dialogs/deletecertificatesdialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -6649,19 +6660,26 @@ msgstr "שינוי מהימנות האישור נכשלה"
 msgid "Owner trust set successfully."
 msgstr "מהימנות הבעלים הוגדרה בהצלחה."
 
-#: src/dialogs/deletecertificatesdialog.cpp:90
+#: src/dialogs/deletecertificatesdialog.cpp:110
 #, kde-format
 msgid "These are the certificates you have selected for deletion:"
 msgstr ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:92
+#: src/dialogs/deletecertificatesdialog.cpp:112
 #, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
 "select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:113
+#: src/dialogs/deletecertificatesdialog.cpp:116
+#, kde-format
+msgid ""
+"These certificates are part of groups. Deleting them may cause receivers to "
+"be unable to decrypt messages:"
+msgstr ""
+
+#: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -6675,7 +6693,7 @@ msgid ""
 "contents, too.</para>"
 msgstr ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:190
+#: src/dialogs/deletecertificatesdialog.cpp:223
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -6690,7 +6708,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:204
+#: src/dialogs/deletecertificatesdialog.cpp:237
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -6705,7 +6723,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:219
+#: src/dialogs/deletecertificatesdialog.cpp:252
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"

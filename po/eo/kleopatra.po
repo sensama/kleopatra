@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-16 00:38+0000\n"
-"PO-Revision-Date: 2024-01-28 11:08+0100\n"
+"POT-Creation-Date: 2024-02-17 00:38+0000\n"
+"PO-Revision-Date: 2024-02-16 21:15+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -142,23 +142,17 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 La programistoj de Kleopatra, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p>Okazis eraro dum provado ŝanĝi la pasfrazon por <b>%1</b>:</p><p>%2</p>"
+"<p>Okazis eraro provante aldoni novan subŝlosilon al <b>%1</b>:</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "La subŝlosilo estis eksportita sukcese."
+msgstr "La subŝlosilo estis aldonita sukcese."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -1815,8 +1809,8 @@ msgstr "Procezo finita"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:882
-#: src/commands/importcertificatescommand.cpp:932
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:941
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Atestilo Importo Malsukcesis"
@@ -2161,15 +2155,30 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ne, Ĝi Ne estas Mia"
 
-#: src/commands/importcertificatescommand.cpp:846
+#: src/commands/importcertificatescommand.cpp:791
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
+#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+msgctxt "@info"
+msgid ""
+"<para>The imported group</para><para><emphasis>%1</emphasis></"
+"para><para>contains certificates that cannot be used for encryption. This "
+"may lead to unexpected results.</para>"
+msgstr ""
+"<para>Ĉu vi vere volas forigi ĉi tiun grupon?</para><para><emphasis>%1</"
+"emphasis></para><para>Post forigo, ĝi ne povas esti restaŭrata.</para>"
+
+#: src/commands/importcertificatescommand.cpp:855
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Prenante 1 subskribantoŝlosilon... (tio povas daŭri iom)"
 msgstr[1] "Prenante %1 subskribantoŝlosilojn... (tio povas daŭri iom)"
 
-#: src/commands/importcertificatescommand.cpp:881
-#: src/commands/importcertificatescommand.cpp:931
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3795,7 +3804,7 @@ msgid "Edit"
 msgstr "Redakti"
 
 #: src/conf/groupsconfigwidget.cpp:196
-#: src/dialogs/deletecertificatesdialog.cpp:125
+#: src/dialogs/deletecertificatesdialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -6141,12 +6150,10 @@ msgid "Valid until:"
 msgstr "Valida ĝis:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Subŝlosiloj"
+msgstr "Aldoni Subŝlosilon"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -6157,7 +6164,7 @@ msgstr "Eksvalidiĝo de ĉefŝlosilo: %1"
 #, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr ""
+msgstr "Defaŭlta"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -6979,12 +6986,12 @@ msgstr "Atestilofida Ŝanĝo Malsukcesis"
 msgid "Owner trust set successfully."
 msgstr "Fido de posedanto sukcese fiksita."
 
-#: src/dialogs/deletecertificatesdialog.cpp:90
+#: src/dialogs/deletecertificatesdialog.cpp:110
 #, kde-format
 msgid "These are the certificates you have selected for deletion:"
 msgstr "Jen la atestiloj, kiujn vi elektis por forigo:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:92
+#: src/dialogs/deletecertificatesdialog.cpp:112
 #, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
@@ -6993,7 +7000,14 @@ msgstr ""
 "Ĉi tiuj atestiloj estos forigitaj kvankam vi <b>ne</b> eksplicite elektis "
 "ilin (<a href=\"whatsthis://\">Kial?</a>):"
 
-#: src/dialogs/deletecertificatesdialog.cpp:113
+#: src/dialogs/deletecertificatesdialog.cpp:116
+#, kde-format
+msgid ""
+"These certificates are part of groups. Deleting them may cause receivers to "
+"be unable to decrypt messages:"
+msgstr ""
+
+#: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -7015,7 +7029,7 @@ msgstr ""
 "enhavantaj aliajn atestojn: Kiam vi forigas la dosierujon, vi ankaŭ forigas "
 "ĝian enhavon.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:190
+#: src/dialogs/deletecertificatesdialog.cpp:223
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7034,7 +7048,7 @@ msgstr[1] ""
 "materialon, kio estas bezonata por malĉifri pasintan komunikon ĉifritan al "
 "la atestilo, kaj tial ne estu forigataj."
 
-#: src/dialogs/deletecertificatesdialog.cpp:204
+#: src/dialogs/deletecertificatesdialog.cpp:237
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7053,7 +7067,7 @@ msgstr[1] ""
 "ŝlosilmaterialon, kio estas bezonata por malĉifri pasintan komunikon "
 "ĉifritan al la atestilo kaj tial ne estu forigataj."
 
-#: src/dialogs/deletecertificatesdialog.cpp:219
+#: src/dialogs/deletecertificatesdialog.cpp:252
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
@@ -7778,12 +7792,10 @@ msgid "Subkeys Details"
 msgstr "Subŝlosiloj Detaloj"
 
 #: src/dialogs/subkeyswidget.cpp:379
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "Subŝlosiloj"
+msgstr "Aldoni Subŝlosilon"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format

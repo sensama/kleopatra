@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-17 00:38+0000\n"
-"PO-Revision-Date: 2024-01-25 11:00+0100\n"
+"PO-Revision-Date: 2024-02-16 09:18+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -144,24 +144,18 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "© 2010-%1 gli sviluppatori di Kleopatra, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p>Si è verificato un errore cercando di cambiare la frase segreta di <b>%1</"
-"b>:</p><p>%2</p>"
+"<p>Si è verificato un errore durante il tentativo di aggiungere una nuova "
+"sottochiave a <b>%1</b>:</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "La sottochiave è stata esportata correttamente."
+msgstr "Sottochiave aggiunta correttamente."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -2062,7 +2056,7 @@ msgstr "Nuovi gruppi:"
 #: src/commands/importcertificatescommand.cpp:326
 #, kde-format
 msgid "Updated groups:"
-msgstr "Gruppi aggiornati"
+msgstr "Gruppi aggiornati:"
 
 #: src/commands/importcertificatescommand.cpp:341
 #, kde-format
@@ -6231,12 +6225,10 @@ msgid "Valid until:"
 msgstr "Valido fino:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Sottochiavi"
+msgstr "Aggiungi sottochiave"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -6244,11 +6236,10 @@ msgid "Expiration of primary key: %1"
 msgstr "Scadenza della chiave principale: %1"
 
 #: src/dialogs/addsubkeydialog.cpp:264
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr "predefinita"
+msgstr "Predefinito"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -6641,7 +6632,7 @@ msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
 msgstr[0] "Certifica l'ID utente..."
-msgstr[1] "Certifica gli ID utente"
+msgstr[1] "Certifica gli ID utente..."
 
 #: src/dialogs/certificatedetailswidget.cpp:839
 #, kde-format
@@ -7265,7 +7256,7 @@ msgstr "Seleziona fino a quando il certificato dovrebbe essere valido:"
 #: src/dialogs/expirydialog.cpp:92
 #, kde-format
 msgid "Unlimited validity"
-msgstr "Validità limitata"
+msgstr "Validità illimitata"
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7900,12 +7891,10 @@ msgid "Subkeys Details"
 msgstr "Dettagli delle sotto-chiavi"
 
 #: src/dialogs/subkeyswidget.cpp:379
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "Sottochiavi"
+msgstr "Aggiungi sottochiave"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-17 00:38+0000\n"
-"PO-Revision-Date: 2024-02-03 15:55+0100\n"
+"PO-Revision-Date: 2024-02-17 13:07+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -146,24 +146,17 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p> Възникна грешка при опит за промяна на паролата за <b> %1 </b>: </p> <p>"
-"%2 </p>"
+"<p> Възникна грешка при опит за добавяне на ключ <b> %1 </b>: </p> <p>%2 </p>"
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "Подключът е експортиран успешно."
+msgstr "Подключът е добавен успешно."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -2191,20 +2184,16 @@ msgid "No, It's Not Mine"
 msgstr "Не, не е мой"
 
 #: src/commands/importcertificatescommand.cpp:791
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
-#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The imported group</para><para><emphasis>%1</emphasis></"
 "para><para>contains certificates that cannot be used for encryption. This "
 "may lead to unexpected results.</para>"
 msgstr ""
-"<para>Наистина ли искате да изтриете тази група?</para><para><emphasis>%1</"
-"emphasis></para><para>След като бъде изтрита, тя не може да бъде "
-"възстановена..</para>"
+"<para>Импортиранта група</para><para><emphasis>%1</emphasis></"
+"para><para>съдържа сертификати, които не могат да се използват за "
+"криптиране. Това може да доведе до неочаквани резултати.</para>"
 
 #: src/commands/importcertificatescommand.cpp:855
 #, kde-format
@@ -6220,12 +6209,10 @@ msgid "Valid until:"
 msgstr "Валиден до:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Подключове"
+msgstr "Добавяне на подключове"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -6236,7 +6223,7 @@ msgstr "Изтичане на главен ключ: %1"
 #, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr ""
+msgstr "По подразбиране"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -7093,6 +7080,8 @@ msgid ""
 "These certificates are part of groups. Deleting them may cause receivers to "
 "be unable to decrypt messages:"
 msgstr ""
+"Тези сертификати са част от групи. Изтриването им може да доведе до това, че "
+"получателите да не могат да декриптират съобщенията:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
@@ -7883,12 +7872,10 @@ msgid "Subkeys Details"
 msgstr "Подробности за подключове"
 
 #: src/dialogs/subkeyswidget.cpp:379
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "Подключове"
+msgstr "Добавяне на подключове"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format

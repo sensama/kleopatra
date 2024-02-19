@@ -58,7 +58,6 @@
 #include <QLocale>
 #include <QMimeDatabase>
 #include <QStringList>
-#include <QTextDocument> // Qt::escape
 
 #include <algorithm>
 #include <sstream>

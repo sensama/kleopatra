@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-17 00:38+0000\n"
-"PO-Revision-Date: 2024-02-15 09:53+0100\n"
+"PO-Revision-Date: 2024-02-17 10:39+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -2198,19 +2198,16 @@ msgid "No, It's Not Mine"
 msgstr "Nee, het is niet van mij"
 
 #: src/commands/importcertificatescommand.cpp:791
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
-#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The imported group</para><para><emphasis>%1</emphasis></"
 "para><para>contains certificates that cannot be used for encryption. This "
 "may lead to unexpected results.</para>"
 msgstr ""
-"<para>Wilt u deze groep verwijderen?</para><para><emphasis>%1</emphasis></"
-"para><para>Eenmaal verwijderd kan deze niet hersteld worden.</para>"
+"<para>De geïmporteerde groep</para><para><emphasis>%1</emphasis></"
+"para><para>bevat certificaten die niet gebruikt kunnen worden voor "
+"versleuteling. Dit kan leiden tot onverwachte resultaten.</para>"
 
 #: src/commands/importcertificatescommand.cpp:855
 #, kde-format
@@ -7117,6 +7114,8 @@ msgid ""
 "These certificates are part of groups. Deleting them may cause receivers to "
 "be unable to decrypt messages:"
 msgstr ""
+"Deze certificaten zijn onderdeel van groepen. Ze verwijderen kan veroorzaken "
+"dat ontvangers niet in staat zijn om berichten te ontcijferen:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format

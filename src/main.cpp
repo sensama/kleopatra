@@ -57,7 +57,6 @@
 #include <QElapsedTimer>
 #include <QEventLoop>
 #include <QMessageBox>
-#include <QTextDocument> // for Qt::escape
 #include <QThreadPool>
 #include <QTime>
 #include <QTimer>

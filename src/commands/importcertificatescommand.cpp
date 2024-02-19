@@ -51,7 +51,6 @@
 #include <QEventLoop>
 #include <QProgressDialog>
 #include <QString>
-#include <QTextDocument> // for Qt::escape
 #include <QTreeView>
 #include <QWidget>
 

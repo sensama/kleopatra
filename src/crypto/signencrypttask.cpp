@@ -39,7 +39,6 @@
 #include "kleopatra_debug.h"
 #include <QFileInfo>
 #include <QPointer>
-#include <QTextDocument> // for Qt::escape
 
 using namespace Kleo;
 using namespace Kleo::Crypto;

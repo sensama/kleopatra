@@ -28,7 +28,6 @@
 #include <KLocalizedString>
 
 #include <QPointer>
-#include <QTextDocument> // for Qt::escape
 
 #include <algorithm>
 #include <functional>

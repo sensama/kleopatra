@@ -19,7 +19,6 @@
 #include <KLocalizedString>
 
 #include <QIcon>
-#include <QTextDocument> // for Qt::escape
 
 #include <gpgme++/error.h>
 

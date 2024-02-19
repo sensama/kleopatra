@@ -28,7 +28,6 @@
 #include <KLocalizedString>
 
 #include <QPointer>
-#include <QTextDocument> // for Qt::escape
 
 using namespace Kleo;
 using namespace Kleo::Crypto;

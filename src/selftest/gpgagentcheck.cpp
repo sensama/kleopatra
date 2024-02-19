@@ -17,8 +17,6 @@
 
 #include <gpgme++/context.h>
 
-#include <QTextDocument> // for Qt::escape
-
 #include <KLocalizedString>
 
 using namespace Kleo;

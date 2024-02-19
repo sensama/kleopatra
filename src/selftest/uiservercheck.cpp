@@ -17,7 +17,6 @@
 
 #include <QCoreApplication>
 #include <QEventLoop>
-#include <QTextDocument> // for Qt::escape
 
 #include <KLocalizedString>
 

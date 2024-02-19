@@ -60,6 +60,34 @@ auto createOpenPGPOnlyKeyFilter()
 }
 }
 
+class WarnNonEncryptionKeysProxyModel : public Kleo::AbstractKeyListSortFilterProxyModel
+{
+    Q_OBJECT
+public:
+    using Kleo::AbstractKeyListSortFilterProxyModel::AbstractKeyListSortFilterProxyModel;
+    ~WarnNonEncryptionKeysProxyModel() override;
+    WarnNonEncryptionKeysProxyModel *clone() const override
+    {
+        return new WarnNonEncryptionKeysProxyModel(this->parent());
+    }
+
+    QVariant data(const QModelIndex &index, int role) const override
+    {
+        const auto sourceIndex = sourceModel()->index(index.row(), index.column());
+        if (!sourceIndex.data(KeyList::KeyRole).value<Key>().hasEncrypt()) {
+            if (role == Qt::DecorationRole && index.column() == 0) {
+                return QIcon::fromTheme(QStringLiteral("data-warning"));
+            }
+            if (role == Qt::ToolTipRole) {
+                return i18nc("@info:tooltip", "This certificate cannot be used for encryption.");
+            }
+        }
+        return sourceIndex.data(role);
+    }
+};
+
+WarnNonEncryptionKeysProxyModel::~WarnNonEncryptionKeysProxyModel() = default;
+
 class DisableNonEncryptionKeysProxyModel : public Kleo::AbstractKeyListSortFilterProxyModel
 {
     Q_OBJECT
@@ -221,7 +249,9 @@ public:
         }
 
         groupKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
-        ui.groupKeysList = new KeyTreeView(q);
+
+        auto warnNonEncryptionProxyModel = new WarnNonEncryptionKeysProxyModel(q);
+        ui.groupKeysList = new KeyTreeView({}, nullptr, warnNonEncryptionProxyModel, q, {});
         ui.groupKeysList->view()->setAccessibleName(i18n("group keys"));
         ui.groupKeysList->view()->setRootIsDecorated(false);
         ui.groupKeysList->setFlatModel(groupKeysModel);

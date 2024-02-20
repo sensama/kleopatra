@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-17 00:38+0000\n"
+"POT-Creation-Date: 2024-02-20 00:38+0000\n"
 "PO-Revision-Date: 2023-06-17 12:16+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -466,7 +466,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Is '%1' your own certificate?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:638
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1492,7 +1492,7 @@ msgstr ""
 "output of <icode>%1</icode> for details.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:620
 #, kde-format
 msgid " "
 msgstr " "
@@ -1865,8 +1865,8 @@ msgstr "Process finished"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Certificate Import Failed"
@@ -1896,7 +1896,7 @@ msgid "Notepad"
 msgstr "Notepad"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:186
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1915,7 +1915,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Could not open file %1 for reading: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:266
+#: src/commands/importcertificatescommand.cpp:282 src/view/keytreeview.cpp:266
 #, kde-format
 msgid "Certificates"
 msgstr "Certificates"
@@ -1953,217 +1953,217 @@ msgstr "Sorry! No certificate to import from this card slot was found."
 msgid "Card Certificate"
 msgstr "Card Certificate"
 
-#: src/commands/importcertificatescommand.cpp:188
+#: src/commands/importcertificatescommand.cpp:187
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Importing certificates... (this can take a while)"
 
-#: src/commands/importcertificatescommand.cpp:243
+#: src/commands/importcertificatescommand.cpp:242
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Imported Certificates from %1"
 
-#: src/commands/importcertificatescommand.cpp:245
+#: src/commands/importcertificatescommand.cpp:244
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Imported certificates from these sources:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:255
+#: src/commands/importcertificatescommand.cpp:254
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Imported Certificates"
 
-#: src/commands/importcertificatescommand.cpp:268
+#: src/commands/importcertificatescommand.cpp:267
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:269
+#: src/commands/importcertificatescommand.cpp:268
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:270
+#: src/commands/importcertificatescommand.cpp:269
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:284
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:283
+#: src/commands/importcertificatescommand.cpp:323
 #, kde-format
 msgid "Total number processed:"
 msgstr "Total number processed:"
 
-#: src/commands/importcertificatescommand.cpp:285
+#: src/commands/importcertificatescommand.cpp:284
 #, kde-format
 msgid "Imported:"
 msgstr "Imported:"
 
-#: src/commands/importcertificatescommand.cpp:287
+#: src/commands/importcertificatescommand.cpp:286
 #, kde-format
 msgid "New signatures:"
 msgstr "New signatures:"
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:288
 #, kde-format
 msgid "New user IDs:"
 msgstr "New user IDs:"
 
-#: src/commands/importcertificatescommand.cpp:291
+#: src/commands/importcertificatescommand.cpp:290
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Certificates without user IDs:"
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:292
 #, kde-format
 msgid "New subkeys:"
 msgstr "New subkeys:"
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:294
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Newly revoked:"
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:296
 #, kde-format
 msgid "Not imported:"
 msgstr "Not imported:"
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:298
 #, kde-format
 msgid "Unchanged:"
 msgstr "Unchanged:"
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:300
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Secret keys processed:"
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:302
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Secret keys imported:"
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:306
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Secret keys <em>not</em> imported:"
 
-#: src/commands/importcertificatescommand.cpp:309
+#: src/commands/importcertificatescommand.cpp:308
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Secret keys unchanged:"
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:310
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Deprecated PGP-2 keys skipped:"
 
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:322
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Certificate Groups"
 
-#: src/commands/importcertificatescommand.cpp:325
+#: src/commands/importcertificatescommand.cpp:324
 #, kde-format
 msgid "New groups:"
 msgstr "New groups:"
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "Updated groups:"
 msgstr "Updated groups:"
 
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:340
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr "No imports (should not happen, please report a bug)."
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:342
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Detailed results of importing %1:"
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Detailed results of import:"
 
-#: src/commands/importcertificatescommand.cpp:402
+#: src/commands/importcertificatescommand.cpp:401
 #, kde-format
 msgid "A phone call to the person."
 msgstr "A phone call to the person."
 
-#: src/commands/importcertificatescommand.cpp:403
+#: src/commands/importcertificatescommand.cpp:402
 #, kde-format
 msgid "Using a business card."
 msgstr "Using a business card."
 
-#: src/commands/importcertificatescommand.cpp:404
+#: src/commands/importcertificatescommand.cpp:403
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Confirming it on a trusted website."
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:407
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "In order to mark the certificate as valid it needs to be certified."
 
-#: src/commands/importcertificatescommand.cpp:409
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Certifying means that you check the Fingerprint."
 
-#: src/commands/importcertificatescommand.cpp:410
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Some suggestions to do this are:"
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:411
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Do you wish to start this process now?"
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:412
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "You have imported a new certificate (public key)"
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:413
 #: src/conf/groupsconfigwidget.cpp:200
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Certify"
 
-#: src/commands/importcertificatescommand.cpp:467
+#: src/commands/importcertificatescommand.cpp:466
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (imported with %2)"
 
-#: src/commands/importcertificatescommand.cpp:471
+#: src/commands/importcertificatescommand.cpp:470
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "Audit log is empty."
 
-#: src/commands/importcertificatescommand.cpp:473
+#: src/commands/importcertificatescommand.cpp:472
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Import was cancelled."
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:492
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Certificate Import Result"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:501
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2172,7 +2172,7 @@ msgstr ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:506
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2181,13 +2181,13 @@ msgstr ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
 "%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:622
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2199,19 +2199,19 @@ msgstr ""
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:639
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Yes, It's Mine"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:640
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "No, It's Not Mine"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:790
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2226,15 +2226,15 @@ msgstr ""
 "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?"
 "</para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:854
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Fetching 1 signer key... (this can take a while)"
 msgstr[1] "Fetching %1 signer keys... (this can take a while)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:939
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -4530,62 +4530,62 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "Decrypt/Verify Files"
 
-#: src/crypto/decryptverifytask.cpp:188
+#: src/crypto/decryptverifytask.cpp:187
 #, kde-format
 msgid "Error: Signature not verified"
 msgstr "Error: Signature not verified"
 
-#: src/crypto/decryptverifytask.cpp:190
+#: src/crypto/decryptverifytask.cpp:189
 #, kde-format
 msgid "Good signature"
 msgstr "Good signature"
 
-#: src/crypto/decryptverifytask.cpp:192
+#: src/crypto/decryptverifytask.cpp:191
 #, kde-format
 msgid "Signing certificate was revoked"
 msgstr "Signing certificate was revoked"
 
-#: src/crypto/decryptverifytask.cpp:194
+#: src/crypto/decryptverifytask.cpp:193
 #, kde-format
 msgid "Signing certificate is expired"
 msgstr "Signing certificate is expired"
 
-#: src/crypto/decryptverifytask.cpp:196
+#: src/crypto/decryptverifytask.cpp:195
 #, kde-format
 msgid "Certificate is not available"
 msgstr "Certificate is not available"
 
-#: src/crypto/decryptverifytask.cpp:198
+#: src/crypto/decryptverifytask.cpp:197
 #, kde-format
 msgid "Signature expired"
 msgstr "Signature expired"
 
-#: src/crypto/decryptverifytask.cpp:200
+#: src/crypto/decryptverifytask.cpp:199
 #, kde-format
 msgid "CRL missing"
 msgstr "CRL missing"
 
-#: src/crypto/decryptverifytask.cpp:202
+#: src/crypto/decryptverifytask.cpp:201
 #, kde-format
 msgid "CRL too old"
 msgstr "CRL too old"
 
-#: src/crypto/decryptverifytask.cpp:204
+#: src/crypto/decryptverifytask.cpp:203
 #, kde-format
 msgid "Bad policy"
 msgstr "Bad policy"
 
-#: src/crypto/decryptverifytask.cpp:206
+#: src/crypto/decryptverifytask.cpp:205
 #, kde-format
 msgid "System error"
 msgstr "System error"
 
-#: src/crypto/decryptverifytask.cpp:208
+#: src/crypto/decryptverifytask.cpp:207
 #, kde-format
 msgid "Bad signature"
 msgstr "Bad signature"
 
-#: src/crypto/decryptverifytask.cpp:220
+#: src/crypto/decryptverifytask.cpp:219
 #, kde-format
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
@@ -4594,20 +4594,20 @@ msgstr ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
 
-#: src/crypto/decryptverifytask.cpp:222
+#: src/crypto/decryptverifytask.cpp:221
 #, kde-format
 msgid "The signature is valid and the certificate's validity is fully trusted."
 msgstr ""
 "The signature is valid and the certificate's validity is fully trusted."
 
-#: src/crypto/decryptverifytask.cpp:224
+#: src/crypto/decryptverifytask.cpp:223
 #, kde-format
 msgid ""
 "The signature is valid and the certificate's validity is ultimately trusted."
 msgstr ""
 "The signature is valid and the certificate's validity is ultimately trusted."
 
-#: src/crypto/decryptverifytask.cpp:226
+#: src/crypto/decryptverifytask.cpp:225
 #, kde-format
 msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
@@ -4616,38 +4616,38 @@ msgstr ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
 "em>."
 
-#: src/crypto/decryptverifytask.cpp:228
+#: src/crypto/decryptverifytask.cpp:227
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr "The signature is valid but the certificate's validity is unknown."
 
-#: src/crypto/decryptverifytask.cpp:231
+#: src/crypto/decryptverifytask.cpp:230
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr "The signature is valid but the certificate's validity is undefined."
 
-#: src/crypto/decryptverifytask.cpp:243 src/crypto/decryptverifytask.cpp:259
+#: src/crypto/decryptverifytask.cpp:242 src/crypto/decryptverifytask.cpp:258
 #, kde-format
 msgid "Unknown certificate"
 msgstr "Unknown certificate"
 
-#: src/crypto/decryptverifytask.cpp:279
+#: src/crypto/decryptverifytask.cpp:278
 #, kde-format
 msgctxt "1 is a date"
 msgid "Signature created on %1"
 msgstr "Signature created on %1"
 
-#: src/crypto/decryptverifytask.cpp:282
+#: src/crypto/decryptverifytask.cpp:281
 #, kde-format
 msgid "With unavailable certificate:"
 msgstr "With unavailable certificate:"
 
-#: src/crypto/decryptverifytask.cpp:284
+#: src/crypto/decryptverifytask.cpp:283
 #, kde-format
 msgid "With certificate:"
 msgstr "With certificate:"
 
-#: src/crypto/decryptverifytask.cpp:289
+#: src/crypto/decryptverifytask.cpp:288
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4655,7 +4655,7 @@ msgctxt ""
 msgid "The signature is %1"
 msgstr "The signature is %1"
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:291
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4663,47 +4663,47 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "The signature <b>is not</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:309 src/crypto/signencrypttask.cpp:54
+#: src/crypto/decryptverifytask.cpp:308 src/crypto/signencrypttask.cpp:53
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr "%1 &rarr; %2"
 
-#: src/crypto/decryptverifytask.cpp:440
+#: src/crypto/decryptverifytask.cpp:439
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "<b>Verification cancelled.</b>"
 
-#: src/crypto/decryptverifytask.cpp:442
+#: src/crypto/decryptverifytask.cpp:441
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "<b>Verification failed: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:448
+#: src/crypto/decryptverifytask.cpp:447
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr "<b>No signatures found.</b>"
 
-#: src/crypto/decryptverifytask.cpp:453
+#: src/crypto/decryptverifytask.cpp:452
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>Invalid signature.</b>"
 msgstr[1] "<b>%1 invalid signatures.</b>"
 
-#: src/crypto/decryptverifytask.cpp:459
+#: src/crypto/decryptverifytask.cpp:458
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "The certificate could not be certified. <b>Error</b>: %1"
 msgstr[1] "<b>%1 signatures could not be verified.</b>"
 
-#: src/crypto/decryptverifytask.cpp:465
+#: src/crypto/decryptverifytask.cpp:464
 #, kde-format
 msgid "<b>Valid signature by %1</b>"
 msgstr "<b>Valid signature by %1</b>"
 
-#: src/crypto/decryptverifytask.cpp:467
+#: src/crypto/decryptverifytask.cpp:466
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
@@ -4712,19 +4712,19 @@ msgstr ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
 "for signing."
 
-#: src/crypto/decryptverifytask.cpp:468
+#: src/crypto/decryptverifytask.cpp:467
 #, kde-format
 msgid "certificate"
 msgstr "certificate"
 
-#: src/crypto/decryptverifytask.cpp:470
+#: src/crypto/decryptverifytask.cpp:469
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] "<b>Valid signature.</b>"
 msgstr[1] "<b>%1 valid signatures.</b>"
 
-#: src/crypto/decryptverifytask.cpp:472
+#: src/crypto/decryptverifytask.cpp:471
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -4733,44 +4733,44 @@ msgstr ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
 "certificates used for signing."
 
-#: src/crypto/decryptverifytask.cpp:484
+#: src/crypto/decryptverifytask.cpp:483
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>Decryption cancelled.</b>"
 
-#: src/crypto/decryptverifytask.cpp:486
+#: src/crypto/decryptverifytask.cpp:485
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "No integrity protection (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:486 src/crypto/decryptverifytask.cpp:488
-#: src/crypto/decryptverifytask.cpp:490
+#: src/crypto/decryptverifytask.cpp:485 src/crypto/decryptverifytask.cpp:487
+#: src/crypto/decryptverifytask.cpp:489
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>Decryption failed: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:492
+#: src/crypto/decryptverifytask.cpp:491
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>Decryption succeeded.</b>"
 
-#: src/crypto/decryptverifytask.cpp:512 src/crypto/decryptverifytask.cpp:535
+#: src/crypto/decryptverifytask.cpp:511 src/crypto/decryptverifytask.cpp:534
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr "The signature is invalid: %1"
 
-#: src/crypto/decryptverifytask.cpp:521
+#: src/crypto/decryptverifytask.cpp:520
 #, kde-format
 msgid "You can search the certificate on a keyserver or import it from a file."
 msgstr ""
 "You can search the certificate on a keyserver or import it from a file."
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:529
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr "The used key is not certified by you or any trusted person."
 
-#: src/crypto/decryptverifytask.cpp:531
+#: src/crypto/decryptverifytask.cpp:530
 #, kde-format
 msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
@@ -4779,48 +4779,48 @@ msgstr ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
 "or the Certificate Authority is unknown."
 
-#: src/crypto/decryptverifytask.cpp:554 src/crypto/decryptverifytask.cpp:608
-#: src/crypto/signencrypttask.cpp:241 src/crypto/signencrypttask.cpp:258
-#: src/crypto/signencrypttask.cpp:883
+#: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
+#: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:882
 #, kde-format
 msgid "Input error: %1"
 msgstr "Input error: %1"
 
-#: src/crypto/decryptverifytask.cpp:565
+#: src/crypto/decryptverifytask.cpp:564
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
 msgstr ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
 
-#: src/crypto/decryptverifytask.cpp:567
+#: src/crypto/decryptverifytask.cpp:566
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:579
+#: src/crypto/decryptverifytask.cpp:578
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] "One unknown recipient."
 msgstr[1] "%1 unknown recipients."
 
-#: src/crypto/decryptverifytask.cpp:582
+#: src/crypto/decryptverifytask.cpp:581
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "Recipient:"
 msgstr[1] "Recipients:"
 
-#: src/crypto/decryptverifytask.cpp:592
+#: src/crypto/decryptverifytask.cpp:591
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "One unknown recipient"
 msgstr[1] "%1 unknown recipients"
 
-#: src/crypto/decryptverifytask.cpp:619
+#: src/crypto/decryptverifytask.cpp:618
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4828,7 +4828,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "The decryption is %1."
 
-#: src/crypto/decryptverifytask.cpp:622
+#: src/crypto/decryptverifytask.cpp:621
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4836,12 +4836,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "The decryption <b>is not</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:633
+#: src/crypto/decryptverifytask.cpp:632
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Embedded file name: '%1'"
 
-#: src/crypto/decryptverifytask.cpp:640
+#: src/crypto/decryptverifytask.cpp:639
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -4850,7 +4850,7 @@ msgstr ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
 
-#: src/crypto/decryptverifytask.cpp:645
+#: src/crypto/decryptverifytask.cpp:644
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4862,7 +4862,7 @@ msgstr ""
 "that the file is legitimate.  This is because back then integrity protection "
 "was not widely used."
 
-#: src/crypto/decryptverifytask.cpp:650
+#: src/crypto/decryptverifytask.cpp:649
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4874,31 +4874,31 @@ msgstr ""
 "If you are confident that the file was not manipulated you should re-encrypt "
 "it after you have forced the decryption."
 
-#: src/crypto/decryptverifytask.cpp:947
+#: src/crypto/decryptverifytask.cpp:946
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1310
-#: src/crypto/decryptverifytask.cpp:1392 src/crypto/decryptverifytask.cpp:1493
-#: src/crypto/decryptverifytask.cpp:1545 src/crypto/decryptverifytask.cpp:1710
-#: src/crypto/decryptverifytask.cpp:1789 src/crypto/decryptverifytask.cpp:1930
+#: src/crypto/decryptverifytask.cpp:1104 src/crypto/decryptverifytask.cpp:1309
+#: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1492
+#: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1709
+#: src/crypto/decryptverifytask.cpp:1788 src/crypto/decryptverifytask.cpp:1929
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Caught exception: %1"
 
-#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1312
-#: src/crypto/decryptverifytask.cpp:1395 src/crypto/decryptverifytask.cpp:1495
-#: src/crypto/decryptverifytask.cpp:1548 src/crypto/decryptverifytask.cpp:1712
-#: src/crypto/decryptverifytask.cpp:1791 src/crypto/decryptverifytask.cpp:1932
+#: src/crypto/decryptverifytask.cpp:1107 src/crypto/decryptverifytask.cpp:1311
+#: src/crypto/decryptverifytask.cpp:1394 src/crypto/decryptverifytask.cpp:1494
+#: src/crypto/decryptverifytask.cpp:1547 src/crypto/decryptverifytask.cpp:1711
+#: src/crypto/decryptverifytask.cpp:1790 src/crypto/decryptverifytask.cpp:1931
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Caught unknown exception"
 
-#: src/crypto/decryptverifytask.cpp:1162
+#: src/crypto/decryptverifytask.cpp:1161
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4907,13 +4907,13 @@ msgstr ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 
-#: src/crypto/decryptverifytask.cpp:1170
+#: src/crypto/decryptverifytask.cpp:1169
 #, fuzzy, kde-format
 #| msgid "Decrypting: %1..."
 msgid "Decrypting %1..."
 msgstr "Decrypting: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1448
+#: src/crypto/decryptverifytask.cpp:1447
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -4922,12 +4922,12 @@ msgstr ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 
-#: src/crypto/decryptverifytask.cpp:1456
+#: src/crypto/decryptverifytask.cpp:1455
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Decrypting: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1602 src/crypto/decryptverifytask.cpp:1853
+#: src/crypto/decryptverifytask.cpp:1601 src/crypto/decryptverifytask.cpp:1852
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4936,13 +4936,13 @@ msgstr ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 
-#: src/crypto/decryptverifytask.cpp:1610
+#: src/crypto/decryptverifytask.cpp:1609
 #, fuzzy, kde-format
 #| msgid "Verifying: %1..."
 msgid "Verifying %1..."
 msgstr "Verifying: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1871
+#: src/crypto/decryptverifytask.cpp:1870
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature in progress. The first file contains "
@@ -4954,13 +4954,13 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1875
+#: src/crypto/decryptverifytask.cpp:1874
 #, fuzzy, kde-format
 #| msgid "Verifying signature: %1..."
 msgid "Verifying signature %1..."
 msgstr "Verifying signature: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1886
+#: src/crypto/decryptverifytask.cpp:1885
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -4981,17 +4981,17 @@ msgstr "Call to EncryptEMailController::protocolAsString() is ambiguous."
 msgid "User cancel"
 msgstr "User cancel"
 
-#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:194
+#: src/crypto/encryptemailtask.cpp:65 src/crypto/signencrypttask.cpp:193
 #, kde-format
 msgid "Encryption canceled."
 msgstr "Encryption cancelled."
 
-#: src/crypto/encryptemailtask.cpp:70
+#: src/crypto/encryptemailtask.cpp:69
 #, kde-format
 msgid "Encryption failed: %1"
 msgstr "Encryption failed: %1"
 
-#: src/crypto/encryptemailtask.cpp:73 src/crypto/signencrypttask.cpp:201
+#: src/crypto/encryptemailtask.cpp:72 src/crypto/signencrypttask.cpp:200
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "Encryption succeeded."
@@ -5983,17 +5983,17 @@ msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 
-#: src/crypto/signemailtask.cpp:69 src/crypto/signencrypttask.cpp:177
+#: src/crypto/signemailtask.cpp:68 src/crypto/signencrypttask.cpp:176
 #, kde-format
 msgid "Signing canceled."
 msgstr "Signing cancelled."
 
-#: src/crypto/signemailtask.cpp:73
+#: src/crypto/signemailtask.cpp:72
 #, kde-format
 msgid "Signing failed: %1"
 msgstr "Signing failed: %1"
 
-#: src/crypto/signemailtask.cpp:76 src/crypto/signencrypttask.cpp:183
+#: src/crypto/signemailtask.cpp:75 src/crypto/signencrypttask.cpp:182
 #, kde-format
 msgid "Signing succeeded."
 msgstr "Signing succeeded."
@@ -6052,59 +6052,59 @@ msgstr ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared"
 
-#: src/crypto/signencrypttask.cpp:181
+#: src/crypto/signencrypttask.cpp:180
 #, kde-format
 msgid "Signing failed."
 msgstr "Signing failed."
 
-#: src/crypto/signencrypttask.cpp:198
+#: src/crypto/signencrypttask.cpp:197
 #, kde-format
 msgid "Encryption failed."
 msgstr "Encryption failed."
 
-#: src/crypto/signencrypttask.cpp:226
+#: src/crypto/signencrypttask.cpp:225
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "Signing and encryption succeeded."
 
-#: src/crypto/signencrypttask.cpp:243 src/crypto/signencrypttask.cpp:260
+#: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
 #, kde-format
 msgid "Output error: %1"
 msgstr "Output error: %1"
 
-#: src/crypto/signencrypttask.cpp:267
+#: src/crypto/signencrypttask.cpp:266
 #, kde-format
 msgid " Encryption succeeded."
 msgstr " Encryption succeeded."
 
-#: src/crypto/signencrypttask.cpp:279
+#: src/crypto/signencrypttask.cpp:278
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>Sign/encrypt cancelled.</b>"
 
-#: src/crypto/signencrypttask.cpp:279
+#: src/crypto/signencrypttask.cpp:278
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr " %1: Sign/encrypt failed."
 
-#: src/crypto/signencrypttask.cpp:282
+#: src/crypto/signencrypttask.cpp:281
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:478
+#: src/crypto/signencrypttask.cpp:477
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Cannot determine protocol for task"
 
-#: src/crypto/signencrypttask.cpp:529
+#: src/crypto/signencrypttask.cpp:528
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6113,19 +6113,19 @@ msgstr ""
 "Cannot find common base directory for these files:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:754
+#: src/crypto/signencrypttask.cpp:753
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Creating signed and encrypted archive ..."
 
-#: src/crypto/signencrypttask.cpp:774
+#: src/crypto/signencrypttask.cpp:773
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Creating encrypted archive ..."
 
-#: src/crypto/signencrypttask.cpp:794
+#: src/crypto/signencrypttask.cpp:793
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -7619,7 +7619,7 @@ msgctxt "@title:window"
 msgid "Self Test"
 msgstr "Self Test"
 
-#: src/dialogs/setinitialpindialog.cpp:69
+#: src/dialogs/setinitialpindialog.cpp:68
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7629,19 +7629,19 @@ msgstr ""
 "No NullPin found. <warning>If this PIN was not set by you personally, the "
 "card might have been tampered with.</warning>"
 
-#: src/dialogs/setinitialpindialog.cpp:76
+#: src/dialogs/setinitialpindialog.cpp:75
 #, kde-format
 msgctxt "@info"
 msgid "Canceled setting PIN."
 msgstr "Cancelled setting PIN."
 
-#: src/dialogs/setinitialpindialog.cpp:79
+#: src/dialogs/setinitialpindialog.cpp:78
 #, kde-kuit-format
 msgctxt "@info"
 msgid "There was an error setting the PIN: <message>%1</message>."
 msgstr "There was an error setting the PIN: <message>%1</message>."
 
-#: src/dialogs/setinitialpindialog.cpp:81
+#: src/dialogs/setinitialpindialog.cpp:80
 #, kde-format
 msgctxt "@info"
 msgid "PIN set successfully."
@@ -9088,7 +9088,7 @@ msgstr "Kleopatra Error"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "There was an error while connecting to Kleopatra: %1"
 
-#: src/main.cpp:134
+#: src/main.cpp:133
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9104,13 +9104,13 @@ msgstr ""
 "application> will not function in this setting.</para><para>Please ask your "
 "administrator for help in resolving this issue.</para>"
 
-#: src/main.cpp:138
+#: src/main.cpp:137
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME Too Old"
 
-#: src/main.cpp:160
+#: src/main.cpp:159
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9126,23 +9126,23 @@ msgstr ""
 "<filename>AppData\\Roaming\\gnupg</filename> directory with proper "
 "permissions.</para>"
 
-#: src/main.cpp:164
+#: src/main.cpp:163
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Are you sure that you want to continue?</para>"
 
-#: src/main.cpp:165
+#: src/main.cpp:164
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Running as Administrator"
 
-#: src/main.cpp:233
+#: src/main.cpp:232
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI Server Error"
 
-#: src/main.cpp:237
+#: src/main.cpp:236
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9161,7 +9161,7 @@ msgstr ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 
-#: src/main.cpp:267
+#: src/main.cpp:266
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Invalid arguments: %1"
@@ -10028,18 +10028,18 @@ msgctxt "@info %1: test name"
 msgid "<para>See \"%1\" above.</para>"
 msgstr "<para>See \"%1\" above.</para>"
 
-#: src/selftest/gpgagentcheck.cpp:35
+#: src/selftest/gpgagentcheck.cpp:33
 #, kde-format
 msgctxt "@title"
 msgid "Gpg-Agent Connectivity"
 msgstr "Gpg-Agent Connectivity"
 
-#: src/selftest/gpgagentcheck.cpp:45
+#: src/selftest/gpgagentcheck.cpp:43
 #, kde-format
 msgid "GpgME library too old"
 msgstr "GpgME library too old"
 
-#: src/selftest/gpgagentcheck.cpp:47
+#: src/selftest/gpgagentcheck.cpp:45
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -10049,7 +10049,7 @@ msgstr ""
 "Either the GpgME library itself is too old, or the GpgME++ library was "
 "compiled against an older GpgME that did not support connecting to gpg-agent."
 
-#: src/selftest/gpgagentcheck.cpp:51
+#: src/selftest/gpgagentcheck.cpp:49
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10059,12 +10059,12 @@ msgstr ""
 "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure that "
 "gpgme++ was compiled against it."
 
-#: src/selftest/gpgagentcheck.cpp:63
+#: src/selftest/gpgagentcheck.cpp:61
 #, kde-format
 msgid "GpgME does not support gpg-agent"
 msgstr "GpgME does not support gpg-agent"
 
-#: src/selftest/gpgagentcheck.cpp:65
+#: src/selftest/gpgagentcheck.cpp:63
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10078,12 +10078,12 @@ msgstr ""
 "installation.</para><para>The error returned was: <message>%1</message>.</"
 "para>"
 
-#: src/selftest/gpgagentcheck.cpp:77
+#: src/selftest/gpgagentcheck.cpp:75
 #, kde-format
 msgid "unexpected error"
 msgstr "unexpected error"
 
-#: src/selftest/gpgagentcheck.cpp:79
+#: src/selftest/gpgagentcheck.cpp:77
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10184,24 +10184,24 @@ msgctxt "@title"
 msgid "Error Deleting Registry Key"
 msgstr "Error Deleting Registry Key"
 
-#: src/selftest/uiservercheck.cpp:34
+#: src/selftest/uiservercheck.cpp:33
 #, kde-format
 msgctxt "@title"
 msgid "UiServer Connectivity"
 msgstr "UiServer Connectivity"
 
-#: src/selftest/uiservercheck.cpp:52
+#: src/selftest/uiservercheck.cpp:51
 #, kde-format
 msgid "not reachable"
 msgstr "not reachable"
 
-#: src/selftest/uiservercheck.cpp:53
+#: src/selftest/uiservercheck.cpp:52
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not connect to UiServer: <message>%1</message>"
 msgstr "Could not connect to UiServer: <message>%1</message>"
 
-#: src/selftest/uiservercheck.cpp:55
+#: src/selftest/uiservercheck.cpp:54
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10213,12 +10213,12 @@ msgstr ""
 "connections to <resource>localhost</resource> or <resource>127.0.0.1</"
 "resource>).</para>"
 
-#: src/selftest/uiservercheck.cpp:59
+#: src/selftest/uiservercheck.cpp:58
 #, kde-format
 msgid "multiple instances"
 msgstr "multiple instances"
 
-#: src/selftest/uiservercheck.cpp:60
+#: src/selftest/uiservercheck.cpp:59
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10228,7 +10228,7 @@ msgstr ""
 "It seems another <application>Kleopatra</application> is running (with "
 "process-id %1)"
 
-#: src/selftest/uiservercheck.cpp:61
+#: src/selftest/uiservercheck.cpp:60
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

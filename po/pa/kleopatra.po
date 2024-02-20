@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-17 00:38+0000\n"
+"POT-Creation-Date: 2024-02-20 00:38+0000\n"
 "PO-Revision-Date: 2011-01-01 14:02+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -466,7 +466,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "(ਅਣਜਾਣ ਸਰਟੀਫਿਕੇਟ)"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:638
 #, fuzzy, kde-format
 #| msgid "Certificates"
 msgctxt "@title:window"
@@ -1452,7 +1452,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:620
 #, fuzzy, kde-format
 #| msgid ", "
 msgid " "
@@ -1810,8 +1810,8 @@ msgstr ""
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨਾ ਫੇਲ੍ਹ"
@@ -1841,7 +1841,7 @@ msgid "Notepad"
 msgstr ""
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgctxt "@title:window"
@@ -1863,7 +1863,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:266
+#: src/commands/importcertificatescommand.cpp:282 src/view/keytreeview.cpp:266
 #, kde-format
 msgid "Certificates"
 msgstr "ਸਰਟੀਫਿਕੇਟ"
@@ -1905,195 +1905,195 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:188
+#: src/commands/importcertificatescommand.cpp:187
 #, fuzzy, kde-format
 #| msgid "Loading certificate cache..."
 msgid "Importing certificates... (this can take a while)"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਕੈਸ਼ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
 
-#: src/commands/importcertificatescommand.cpp:243
+#: src/commands/importcertificatescommand.cpp:242
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "%1 ਤੋਂ ਇੰਪੋਰਟ ਕੀਤੇ ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:245
+#: src/commands/importcertificatescommand.cpp:244
 #, fuzzy, kde-format
 #| msgid "Imported Certificates from %1"
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "%1 ਤੋਂ ਇੰਪੋਰਟ ਕੀਤੇ ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:255
+#: src/commands/importcertificatescommand.cpp:254
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "ਇੰਪੋਰਟ ਕੀਤੇ ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:268
+#: src/commands/importcertificatescommand.cpp:267
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:269
+#: src/commands/importcertificatescommand.cpp:268
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:270
+#: src/commands/importcertificatescommand.cpp:269
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:284
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:283
+#: src/commands/importcertificatescommand.cpp:323
 #, kde-format
 msgid "Total number processed:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:285
+#: src/commands/importcertificatescommand.cpp:284
 #, kde-format
 msgid "Imported:"
 msgstr "ਇੰਪੋਰਟ ਕੀਤੇ:"
 
-#: src/commands/importcertificatescommand.cpp:287
+#: src/commands/importcertificatescommand.cpp:286
 #, kde-format
 msgid "New signatures:"
 msgstr "ਨਵੇਂ ਦਸਤਖਤ:"
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:288
 #, kde-format
 msgid "New user IDs:"
 msgstr "ਨਵੇਂ ਯੂਜ਼ਰ ID:"
 
-#: src/commands/importcertificatescommand.cpp:291
+#: src/commands/importcertificatescommand.cpp:290
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:292
 #, kde-format
 msgid "New subkeys:"
 msgstr "ਨਵੀਂ ਸਬ-ਕੀ:"
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:294
 #, kde-format
 msgid "Newly revoked:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:296
 #, kde-format
 msgid "Not imported:"
 msgstr "ਇੰਪੋਰਟ ਨਾ ਕੀਤੇ:"
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:298
 #, kde-format
 msgid "Unchanged:"
 msgstr "ਬਿਨ-ਬਦਲਾਅ:"
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:300
 #, fuzzy, kde-format
 #| msgid "Selected secret certificate:"
 msgid "Secret keys processed:"
 msgstr "ਚੁਣਿਆ ਗੁਪਤ ਸਰਟੀਫਿਕੇਟ:"
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:302
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Secret keys imported:"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਫਾਇਲ ਚੁਣੋ"
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:306
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Secret keys <em>not</em> imported:"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਫਾਇਲ ਚੁਣੋ"
 
-#: src/commands/importcertificatescommand.cpp:309
+#: src/commands/importcertificatescommand.cpp:308
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "ਗੁਪਤ ਕੁੰਜੀਆਂ ਨਹੀਂ ਬਦਲੀਆਂ:"
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:310
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:322
 #, fuzzy, kde-format
 #| msgid "Certificate Dump"
 msgid "Certificate Groups"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਡੰਪ"
 
-#: src/commands/importcertificatescommand.cpp:325
+#: src/commands/importcertificatescommand.cpp:324
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New groups:"
 msgstr "ਨਵੇਂ ਦਸਤਖਤ:"
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "Updated groups:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:340
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:342
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "Detailed results of import:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:402
+#: src/commands/importcertificatescommand.cpp:401
 #, kde-format
 msgid "A phone call to the person."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:403
+#: src/commands/importcertificatescommand.cpp:402
 #, kde-format
 msgid "Using a business card."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:404
+#: src/commands/importcertificatescommand.cpp:403
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:407
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:409
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:410
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:411
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:412
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:413
 #: src/conf/groupsconfigwidget.cpp:200
 #, fuzzy, kde-format
 #| msgid "Certify"
@@ -2101,51 +2101,51 @@ msgctxt "@action:button"
 msgid "Certify"
 msgstr "ਜਾਂਚ"
 
-#: src/commands/importcertificatescommand.cpp:467
+#: src/commands/importcertificatescommand.cpp:466
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:471
+#: src/commands/importcertificatescommand.cpp:470
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:473
+#: src/commands/importcertificatescommand.cpp:472
 #, fuzzy, kde-format
 #| msgid "Operation canceled."
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "ਓਪਰੇਸ਼ਨ ਰੱਦ ਕੀਤਾ।"
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:492
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਨਤੀਜਾ"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:501
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:506
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
 "%2</b></p></qt>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:622
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2154,19 +2154,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:639
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:640
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:790
 #, fuzzy, kde-kuit-format
 #| msgid "An error occurred importing this certificate: %1"
 msgctxt "@info"
@@ -2176,7 +2176,7 @@ msgid ""
 "may lead to unexpected results.</para>"
 msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ: %1"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:854
 #, fuzzy, kde-format
 #| msgid "Loading certificate cache..."
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2184,8 +2184,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "ਸਰਟੀਫਿਕੇਟ ਕੈਸ਼ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
 msgstr[1] "ਸਰਟੀਫਿਕੇਟ ਕੈਸ਼ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:939
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -4383,124 +4383,124 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "ਫਾਇਲਾਂ ਡਿਕ੍ਰਿਪਟ/ਜਾਂਚ"
 
-#: src/crypto/decryptverifytask.cpp:188
+#: src/crypto/decryptverifytask.cpp:187
 #, kde-format
 msgid "Error: Signature not verified"
 msgstr "ਗਲਤੀ: ਦਸਤਖਤ ਜਾਂਚੇ ਨਹੀਂ ਜਾ ਸਕੇ"
 
-#: src/crypto/decryptverifytask.cpp:190
+#: src/crypto/decryptverifytask.cpp:189
 #, kde-format
 msgid "Good signature"
 msgstr "ਵਧੀਆ ਦਸਤਖਤ"
 
-#: src/crypto/decryptverifytask.cpp:192
+#: src/crypto/decryptverifytask.cpp:191
 #, fuzzy, kde-format
 #| msgid "Signing certificate revoked"
 msgid "Signing certificate was revoked"
 msgstr "ਸਾਈਨਿੰਗ ਸਰਟੀਫਿਕੇਟ ਮਨਸੂਖ ਕੀਤੇ"
 
-#: src/crypto/decryptverifytask.cpp:194
+#: src/crypto/decryptverifytask.cpp:193
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgid "Signing certificate is expired"
 msgstr "ਸਾਈਨਿੰਗ ਸਰਟੀਫਿਕੇਟ ਦੀ ਮਿਆਦ ਪੁੱਗੀ"
 
-#: src/crypto/decryptverifytask.cpp:196
+#: src/crypto/decryptverifytask.cpp:195
 #, fuzzy, kde-format
 #| msgid "Certificate Export Failed"
 msgid "Certificate is not available"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਐਕਸਪੋਰਟ ਫੇਲ੍ਹ"
 
-#: src/crypto/decryptverifytask.cpp:198
+#: src/crypto/decryptverifytask.cpp:197
 #, kde-format
 msgid "Signature expired"
 msgstr "ਦਸਤਖਤ ਦੀ ਮਿਆਦ ਪੁੱਗੀ"
 
-#: src/crypto/decryptverifytask.cpp:200
+#: src/crypto/decryptverifytask.cpp:199
 #, kde-format
 msgid "CRL missing"
 msgstr "CRL ਗੁੰਮ ਹੈ"
 
-#: src/crypto/decryptverifytask.cpp:202
+#: src/crypto/decryptverifytask.cpp:201
 #, kde-format
 msgid "CRL too old"
 msgstr "CRL ਬੁਹਤ ਪੁਰਾਣਾ ਹੈ"
 
-#: src/crypto/decryptverifytask.cpp:204
+#: src/crypto/decryptverifytask.cpp:203
 #, kde-format
 msgid "Bad policy"
 msgstr "ਗਲਤ ਪਾਲਸੀ"
 
-#: src/crypto/decryptverifytask.cpp:206
+#: src/crypto/decryptverifytask.cpp:205
 #, kde-format
 msgid "System error"
 msgstr "ਸਿਸਟਮ ਗਲਤੀ"
 
-#: src/crypto/decryptverifytask.cpp:208
+#: src/crypto/decryptverifytask.cpp:207
 #, kde-format
 msgid "Bad signature"
 msgstr "ਖਰਾਬ ਦਸਤਖਤ"
 
-#: src/crypto/decryptverifytask.cpp:220
+#: src/crypto/decryptverifytask.cpp:219
 #, kde-format
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:222
+#: src/crypto/decryptverifytask.cpp:221
 #, kde-format
 msgid "The signature is valid and the certificate's validity is fully trusted."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:224
+#: src/crypto/decryptverifytask.cpp:223
 #, kde-format
 msgid ""
 "The signature is valid and the certificate's validity is ultimately trusted."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:226
+#: src/crypto/decryptverifytask.cpp:225
 #, kde-format
 msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
 "em>."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:228
+#: src/crypto/decryptverifytask.cpp:227
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:231
+#: src/crypto/decryptverifytask.cpp:230
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:243 src/crypto/decryptverifytask.cpp:259
+#: src/crypto/decryptverifytask.cpp:242 src/crypto/decryptverifytask.cpp:258
 #, kde-format
 msgid "Unknown certificate"
 msgstr "ਅਣਜਾਣ ਸਰਟੀਫਿਕੇਟ"
 
-#: src/crypto/decryptverifytask.cpp:279
+#: src/crypto/decryptverifytask.cpp:278
 #, fuzzy, kde-format
 #| msgid "Signature expired"
 msgctxt "1 is a date"
 msgid "Signature created on %1"
 msgstr "ਦਸਤਖਤ ਦੀ ਮਿਆਦ ਪੁੱਗੀ"
 
-#: src/crypto/decryptverifytask.cpp:282
+#: src/crypto/decryptverifytask.cpp:281
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "With unavailable certificate:"
 msgstr "ਡਿਫਾਲਟ ਸਰਟੀਫਿਕੇਟ"
 
-#: src/crypto/decryptverifytask.cpp:284
+#: src/crypto/decryptverifytask.cpp:283
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgid "With certificate:"
 msgstr "ਸਰਟੀਫਿਕੇਟ"
 
-#: src/crypto/decryptverifytask.cpp:289
+#: src/crypto/decryptverifytask.cpp:288
 #, fuzzy, kde-format
 #| msgid "The signature is invalid: %1"
 msgctxt ""
@@ -4509,7 +4509,7 @@ msgctxt ""
 msgid "The signature is %1"
 msgstr "ਦਸਤਖਤ ਗਲਤ ਹਨ: %1"
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:291
 #, fuzzy, kde-format
 #| msgid "The signature is bad."
 msgctxt ""
@@ -4518,35 +4518,35 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "ਦਸਤਖਤ ਗਲਤ ਹਨ।"
 
-#: src/crypto/decryptverifytask.cpp:309 src/crypto/signencrypttask.cpp:54
+#: src/crypto/decryptverifytask.cpp:308 src/crypto/signencrypttask.cpp:53
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr "%1 &rarr; %2"
 
-#: src/crypto/decryptverifytask.cpp:440
+#: src/crypto/decryptverifytask.cpp:439
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "<b>ਜਾਂਚ ਰੱਦ ਕੀਤੀ ਗਈ।</b>"
 
-#: src/crypto/decryptverifytask.cpp:442
+#: src/crypto/decryptverifytask.cpp:441
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "<b>ਜਾਂਚ ਫੇਲ੍ਹ ਹੋਈ: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:448
+#: src/crypto/decryptverifytask.cpp:447
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:453
+#: src/crypto/decryptverifytask.cpp:452
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>ਗਲਤ ਦਸਤਖਤ ਹਨ।</b>"
 msgstr[1] "<b>%1 ਗਲਤ ਦਸਤਖਤ</b>"
 
-#: src/crypto/decryptverifytask.cpp:459
+#: src/crypto/decryptverifytask.cpp:458
 #, fuzzy, kde-format
 #| msgid "<b>Choose Operation to be Performed</b>"
 msgid "<b>The data could not be verified.</b>"
@@ -4554,66 +4554,66 @@ msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "<b>ਕੀਤੀ ਜਾਣ ਵਾਲੀ ਕਾਰਵਾਈ ਚੁਣੋ</b>"
 msgstr[1] "<b>ਕੀਤੀ ਜਾਣ ਵਾਲੀ ਕਾਰਵਾਈ ਚੁਣੋ</b>"
 
-#: src/crypto/decryptverifytask.cpp:465
+#: src/crypto/decryptverifytask.cpp:464
 #, fuzzy, kde-format
 #| msgid "<b>Invalid signature.</b>"
 #| msgid_plural "<b>%1 invalid signatures.</b>"
 msgid "<b>Valid signature by %1</b>"
 msgstr "<b>ਗਲਤ ਦਸਤਖਤ ਹਨ।</b>"
 
-#: src/crypto/decryptverifytask.cpp:467
+#: src/crypto/decryptverifytask.cpp:466
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
 "for signing."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:468
+#: src/crypto/decryptverifytask.cpp:467
 #, kde-format
 msgid "certificate"
 msgstr "ਸਰਟੀਫਿਕੇਟ"
 
-#: src/crypto/decryptverifytask.cpp:470
+#: src/crypto/decryptverifytask.cpp:469
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/crypto/decryptverifytask.cpp:472
+#: src/crypto/decryptverifytask.cpp:471
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
 "certificates used for signing."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:484
+#: src/crypto/decryptverifytask.cpp:483
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>ਡਿਕ੍ਰਿਪਸ਼ਨ ਰੱਦ ਕੀਤੀ।</b>"
 
-#: src/crypto/decryptverifytask.cpp:486
+#: src/crypto/decryptverifytask.cpp:485
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:486 src/crypto/decryptverifytask.cpp:488
-#: src/crypto/decryptverifytask.cpp:490
+#: src/crypto/decryptverifytask.cpp:485 src/crypto/decryptverifytask.cpp:487
+#: src/crypto/decryptverifytask.cpp:489
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>ਡਿਕ੍ਰਿਪਸ਼ਨ ਫੇਲ੍ਹ: %1</b>"
 
-#: src/crypto/decryptverifytask.cpp:492
+#: src/crypto/decryptverifytask.cpp:491
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>ਡਿਕ੍ਰਿਪਸ਼ਨ ਸਫ਼ਲ ਹੈ।</b>"
 
-#: src/crypto/decryptverifytask.cpp:512 src/crypto/decryptverifytask.cpp:535
+#: src/crypto/decryptverifytask.cpp:511 src/crypto/decryptverifytask.cpp:534
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr "ਦਸਤਖਤ ਗਲਤ ਹਨ: %1"
 
-#: src/crypto/decryptverifytask.cpp:521
+#: src/crypto/decryptverifytask.cpp:520
 #, fuzzy, kde-format
 #| msgid ""
 #| "Certificate: %1\n"
@@ -4623,59 +4623,59 @@ msgstr ""
 "ਸਰਟੀਫਿਕੇਟ: %1\n"
 "ਫਿੰਗਰਪਰਿੰਟ: %2"
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:529
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:531
+#: src/crypto/decryptverifytask.cpp:530
 #, kde-format
 msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
 "or the Certificate Authority is unknown."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:554 src/crypto/decryptverifytask.cpp:608
-#: src/crypto/signencrypttask.cpp:241 src/crypto/signencrypttask.cpp:258
-#: src/crypto/signencrypttask.cpp:883
+#: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
+#: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:882
 #, kde-format
 msgid "Input error: %1"
 msgstr "ਇੰਪੁੱਟ ਗਲਤੀ: %1"
 
-#: src/crypto/decryptverifytask.cpp:565
+#: src/crypto/decryptverifytask.cpp:564
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:567
+#: src/crypto/decryptverifytask.cpp:566
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:579
+#: src/crypto/decryptverifytask.cpp:578
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/crypto/decryptverifytask.cpp:582
+#: src/crypto/decryptverifytask.cpp:581
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "ਪਰਾਪਤ ਕਰਤਾ:"
 msgstr[1] "ਪਰਾਪਤ ਕਰਤਾ:"
 
-#: src/crypto/decryptverifytask.cpp:592
+#: src/crypto/decryptverifytask.cpp:591
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/crypto/decryptverifytask.cpp:619
+#: src/crypto/decryptverifytask.cpp:618
 #, fuzzy, kde-format
 #| msgid "The signature is bad."
 msgctxt ""
@@ -4684,7 +4684,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "ਦਸਤਖਤ ਗਲਤ ਹਨ।"
 
-#: src/crypto/decryptverifytask.cpp:622
+#: src/crypto/decryptverifytask.cpp:621
 #, fuzzy, kde-format
 #| msgid "The signature is bad."
 msgctxt ""
@@ -4693,19 +4693,19 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "ਦਸਤਖਤ ਗਲਤ ਹਨ।"
 
-#: src/crypto/decryptverifytask.cpp:633
+#: src/crypto/decryptverifytask.cpp:632
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:640
+#: src/crypto/decryptverifytask.cpp:639
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:645
+#: src/crypto/decryptverifytask.cpp:644
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4714,7 +4714,7 @@ msgid ""
 "was not widely used."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:650
+#: src/crypto/decryptverifytask.cpp:649
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4724,69 +4724,69 @@ msgid ""
 "it after you have forced the decryption."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:947
+#: src/crypto/decryptverifytask.cpp:946
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1310
-#: src/crypto/decryptverifytask.cpp:1392 src/crypto/decryptverifytask.cpp:1493
-#: src/crypto/decryptverifytask.cpp:1545 src/crypto/decryptverifytask.cpp:1710
-#: src/crypto/decryptverifytask.cpp:1789 src/crypto/decryptverifytask.cpp:1930
+#: src/crypto/decryptverifytask.cpp:1104 src/crypto/decryptverifytask.cpp:1309
+#: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1492
+#: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1709
+#: src/crypto/decryptverifytask.cpp:1788 src/crypto/decryptverifytask.cpp:1929
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "ਅਪਵਾਦ ਮਿਲਿਆ: %1"
 
-#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1312
-#: src/crypto/decryptverifytask.cpp:1395 src/crypto/decryptverifytask.cpp:1495
-#: src/crypto/decryptverifytask.cpp:1548 src/crypto/decryptverifytask.cpp:1712
-#: src/crypto/decryptverifytask.cpp:1791 src/crypto/decryptverifytask.cpp:1932
+#: src/crypto/decryptverifytask.cpp:1107 src/crypto/decryptverifytask.cpp:1311
+#: src/crypto/decryptverifytask.cpp:1394 src/crypto/decryptverifytask.cpp:1494
+#: src/crypto/decryptverifytask.cpp:1547 src/crypto/decryptverifytask.cpp:1711
+#: src/crypto/decryptverifytask.cpp:1790 src/crypto/decryptverifytask.cpp:1931
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1162
+#: src/crypto/decryptverifytask.cpp:1161
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1170
+#: src/crypto/decryptverifytask.cpp:1169
 #, fuzzy, kde-format
 #| msgid "Decrypting: %1..."
 msgid "Decrypting %1..."
 msgstr "ਡਿਕ੍ਰਿਪਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1448
+#: src/crypto/decryptverifytask.cpp:1447
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1456
+#: src/crypto/decryptverifytask.cpp:1455
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "ਡਿਕ੍ਰਿਪਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1602 src/crypto/decryptverifytask.cpp:1853
+#: src/crypto/decryptverifytask.cpp:1601 src/crypto/decryptverifytask.cpp:1852
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1610
+#: src/crypto/decryptverifytask.cpp:1609
 #, fuzzy, kde-format
 #| msgid "Verifying: %1..."
 msgid "Verifying %1..."
 msgstr "ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1871
+#: src/crypto/decryptverifytask.cpp:1870
 #, fuzzy, kde-kuit-format
 #| msgid "An error occurred importing this certificate: %1"
 msgctxt ""
@@ -4795,13 +4795,13 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ: %1"
 
-#: src/crypto/decryptverifytask.cpp:1875
+#: src/crypto/decryptverifytask.cpp:1874
 #, fuzzy, kde-format
 #| msgid "Verifying signature: %1..."
 msgid "Verifying signature %1..."
 msgstr "ਦਸਤਖਤਾਂ ਦੀ ਜਾਂਚ ਜਾਰੀ: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1886
+#: src/crypto/decryptverifytask.cpp:1885
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -4822,17 +4822,17 @@ msgstr ""
 msgid "User cancel"
 msgstr "ਯੂਜ਼ਰ ਰੱਦ ਕੀਤਾ"
 
-#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:194
+#: src/crypto/encryptemailtask.cpp:65 src/crypto/signencrypttask.cpp:193
 #, kde-format
 msgid "Encryption canceled."
 msgstr "ਇੰਕ੍ਰਿਪਸ਼ਨ ਰੱਦ ਕੀਤੀ।"
 
-#: src/crypto/encryptemailtask.cpp:70
+#: src/crypto/encryptemailtask.cpp:69
 #, kde-format
 msgid "Encryption failed: %1"
 msgstr "ਇੰਕ੍ਰਿਪਸ਼ਨ ਫੇਲ੍ਹ ਹੈ: %1"
 
-#: src/crypto/encryptemailtask.cpp:73 src/crypto/signencrypttask.cpp:201
+#: src/crypto/encryptemailtask.cpp:72 src/crypto/signencrypttask.cpp:200
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "ਇੰਕ੍ਰਿਪਸ਼ਨ ਸਫ਼ਲ ਹੈ।"
@@ -5856,17 +5856,17 @@ msgstr "ਪਿੱਛੇ"
 msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 
-#: src/crypto/signemailtask.cpp:69 src/crypto/signencrypttask.cpp:177
+#: src/crypto/signemailtask.cpp:68 src/crypto/signencrypttask.cpp:176
 #, kde-format
 msgid "Signing canceled."
 msgstr "ਸਾਈਨਿੰਗ ਰੱਦ ਕੀਤੀ।"
 
-#: src/crypto/signemailtask.cpp:73
+#: src/crypto/signemailtask.cpp:72
 #, kde-format
 msgid "Signing failed: %1"
 msgstr "ਸਾਈਨਿੰਗ ਫੇਲ੍ਹ ਹੈ: %1"
 
-#: src/crypto/signemailtask.cpp:76 src/crypto/signencrypttask.cpp:183
+#: src/crypto/signemailtask.cpp:75 src/crypto/signencrypttask.cpp:182
 #, kde-format
 msgid "Signing succeeded."
 msgstr "ਸਾਈਨਿੰਗ ਸਫ਼ਲ ਰਹੀ।"
@@ -5921,73 +5921,73 @@ msgid ""
 "slotWizardOperationPrepared"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:181
+#: src/crypto/signencrypttask.cpp:180
 #, kde-format
 msgid "Signing failed."
 msgstr "ਸਾਈਨਿੰਗ ਫੇਲ੍ਹ ਹੋਈ।"
 
-#: src/crypto/signencrypttask.cpp:198
+#: src/crypto/signencrypttask.cpp:197
 #, kde-format
 msgid "Encryption failed."
 msgstr "ਇੰਕ੍ਰਿਪਸ਼ਨ ਫੇਲ੍ਹ ਹੈ।"
 
-#: src/crypto/signencrypttask.cpp:226
+#: src/crypto/signencrypttask.cpp:225
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "ਸਾਈਨਿੰਗ ਅਤੇ ਇੰਕ੍ਰਿਪਸ਼ਨ ਸਫ਼ਲ ਹੈ।"
 
-#: src/crypto/signencrypttask.cpp:243 src/crypto/signencrypttask.cpp:260
+#: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
 #, kde-format
 msgid "Output error: %1"
 msgstr "ਆਉਟਪੁੱਟ ਗਲਤੀ: %1"
 
-#: src/crypto/signencrypttask.cpp:267
+#: src/crypto/signencrypttask.cpp:266
 #, kde-format
 msgid " Encryption succeeded."
 msgstr " ਇੰਕ੍ਰਿਪਸ਼ਨ ਸਫ਼ਲ ਹੋਈ।"
 
-#: src/crypto/signencrypttask.cpp:279
+#: src/crypto/signencrypttask.cpp:278
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>ਸਾਈਨ/ਇੰਕ੍ਰਿਪਟ ਰੱਦ ਕੀਤਾ।</b>"
 
-#: src/crypto/signencrypttask.cpp:279
+#: src/crypto/signencrypttask.cpp:278
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr " %1: ਸਾਈਨ/ਇੰਕ੍ਰਿਪਟ ਫੇਲ੍ਹ ਹੈ।"
 
-#: src/crypto/signencrypttask.cpp:282
+#: src/crypto/signencrypttask.cpp:281
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:478
+#: src/crypto/signencrypttask.cpp:477
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "ਟਾਸਕ 'ਚ ਪਰੋਟੋਕਾਲ ਪਛਾਣਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ"
 
-#: src/crypto/signencrypttask.cpp:529
+#: src/crypto/signencrypttask.cpp:528
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:754
+#: src/crypto/signencrypttask.cpp:753
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "ਫਾਇਲ ਸਾਇਨ ਜਾਂ/ਅਤੇ ਇੰਕ੍ਰਿਪਟ"
 
-#: src/crypto/signencrypttask.cpp:774
+#: src/crypto/signencrypttask.cpp:773
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -5995,7 +5995,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "ਕੁੰਜੀ ਬਣਾਈ ਜਾ ਰਹੀ ਹੈ..."
 
-#: src/crypto/signencrypttask.cpp:794
+#: src/crypto/signencrypttask.cpp:793
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -7552,7 +7552,7 @@ msgctxt "@title:window"
 msgid "Self Test"
 msgstr "ਟੈਸਟ ਫੇਰ ਚਲਾਓ"
 
-#: src/dialogs/setinitialpindialog.cpp:69
+#: src/dialogs/setinitialpindialog.cpp:68
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7560,20 +7560,20 @@ msgid ""
 "card might have been tampered with.</warning>"
 msgstr ""
 
-#: src/dialogs/setinitialpindialog.cpp:76
+#: src/dialogs/setinitialpindialog.cpp:75
 #, fuzzy, kde-format
 #| msgid "Advanced Settings..."
 msgctxt "@info"
 msgid "Canceled setting PIN."
 msgstr "ਤਕਨੀਕੀ ਸੈਟਿੰਗ..."
 
-#: src/dialogs/setinitialpindialog.cpp:79
+#: src/dialogs/setinitialpindialog.cpp:78
 #, kde-kuit-format
 msgctxt "@info"
 msgid "There was an error setting the PIN: <message>%1</message>."
 msgstr ""
 
-#: src/dialogs/setinitialpindialog.cpp:81
+#: src/dialogs/setinitialpindialog.cpp:80
 #, kde-format
 msgctxt "@info"
 msgid "PIN set successfully."
@@ -8968,7 +8968,7 @@ msgstr "ਕਲੀਉਪਾਟਰਾ"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:134
+#: src/main.cpp:133
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8979,13 +8979,13 @@ msgid ""
 "administrator for help in resolving this issue.</para>"
 msgstr ""
 
-#: src/main.cpp:138
+#: src/main.cpp:137
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr ""
 
-#: src/main.cpp:160
+#: src/main.cpp:159
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8996,23 +8996,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:164
+#: src/main.cpp:163
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:165
+#: src/main.cpp:164
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:233
+#: src/main.cpp:232
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI ਸਰਵਰ ਗਲਤੀ"
 
-#: src/main.cpp:237
+#: src/main.cpp:236
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9026,7 +9026,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:267
+#: src/main.cpp:266
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr ""
@@ -9855,18 +9855,18 @@ msgctxt "@info %1: test name"
 msgid "<para>See \"%1\" above.</para>"
 msgstr "<para>ਉੱਤੇ \"%1\" ਵੇਖੋ।</para>"
 
-#: src/selftest/gpgagentcheck.cpp:35
+#: src/selftest/gpgagentcheck.cpp:33
 #, kde-format
 msgctxt "@title"
 msgid "Gpg-Agent Connectivity"
 msgstr ""
 
-#: src/selftest/gpgagentcheck.cpp:45
+#: src/selftest/gpgagentcheck.cpp:43
 #, kde-format
 msgid "GpgME library too old"
 msgstr ""
 
-#: src/selftest/gpgagentcheck.cpp:47
+#: src/selftest/gpgagentcheck.cpp:45
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -9874,7 +9874,7 @@ msgid ""
 "compiled against an older GpgME that did not support connecting to gpg-agent."
 msgstr ""
 
-#: src/selftest/gpgagentcheck.cpp:51
+#: src/selftest/gpgagentcheck.cpp:49
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9882,12 +9882,12 @@ msgid ""
 "gpgme++ was compiled against it."
 msgstr ""
 
-#: src/selftest/gpgagentcheck.cpp:63
+#: src/selftest/gpgagentcheck.cpp:61
 #, kde-format
 msgid "GpgME does not support gpg-agent"
 msgstr ""
 
-#: src/selftest/gpgagentcheck.cpp:65
+#: src/selftest/gpgagentcheck.cpp:63
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9897,12 +9897,12 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/selftest/gpgagentcheck.cpp:77
+#: src/selftest/gpgagentcheck.cpp:75
 #, kde-format
 msgid "unexpected error"
 msgstr ""
 
-#: src/selftest/gpgagentcheck.cpp:79
+#: src/selftest/gpgagentcheck.cpp:77
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9991,24 +9991,24 @@ msgctxt "@title"
 msgid "Error Deleting Registry Key"
 msgstr "ਕੁੰਜੀਆਂ ਹਟਾਈਆਂ ਜਾ ਰਹੀਆਂ ਹਨ..."
 
-#: src/selftest/uiservercheck.cpp:34
+#: src/selftest/uiservercheck.cpp:33
 #, kde-format
 msgctxt "@title"
 msgid "UiServer Connectivity"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:52
+#: src/selftest/uiservercheck.cpp:51
 #, kde-format
 msgid "not reachable"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:53
+#: src/selftest/uiservercheck.cpp:52
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not connect to UiServer: <message>%1</message>"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:55
+#: src/selftest/uiservercheck.cpp:54
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10017,12 +10017,12 @@ msgid ""
 "resource>).</para>"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:59
+#: src/selftest/uiservercheck.cpp:58
 #, fuzzy, kde-format
 msgid "multiple instances"
 msgstr "ਬਹੁ ਮੌਜੂਦਗੀ"
 
-#: src/selftest/uiservercheck.cpp:60
+#: src/selftest/uiservercheck.cpp:59
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10031,7 +10031,7 @@ msgid ""
 msgstr ""
 "ਇੰਝ ਜਾਪਦਾ ਹੈ ਕਿ <application>ਕਲੀਉਪਾਟਰਾ</application> ਚਲੱਦਾ ਹੈ (ਪਰੋਸੈੱਸ-id %1 ਨਾਲ)"
 
-#: src/selftest/uiservercheck.cpp:61
+#: src/selftest/uiservercheck.cpp:60
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

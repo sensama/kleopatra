@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-17 00:38+0000\n"
-"PO-Revision-Date: 2024-02-15 23:10+0200\n"
+"POT-Creation-Date: 2024-02-20 00:38+0000\n"
+"PO-Revision-Date: 2024-02-19 22:06+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -158,12 +158,9 @@ msgstr ""
 "היה: "
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "תת־המפתח יוצא בהצלחה."
+msgstr "תת־המפתח נוסף בהצלחה."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -446,7 +443,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "&צור תעודה"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:638
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1395,7 +1392,7 @@ msgstr ""
 "הצפוי בשל שגיאה לא צפויה."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:620
 #, kde-format
 msgid " "
 msgstr ""
@@ -1742,8 +1739,8 @@ msgstr ""
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, fuzzy, kde-format
 msgid "Certificate Import Failed"
 msgstr "התעודה יובאה"
@@ -1773,7 +1770,7 @@ msgid "Notepad"
 msgstr "מחברת"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:186
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1794,7 +1791,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:266
+#: src/commands/importcertificatescommand.cpp:282 src/view/keytreeview.cpp:266
 #, fuzzy, kde-format
 msgid "Certificates"
 msgstr "תעודות"
@@ -1834,217 +1831,217 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "תעודות"
 
-#: src/commands/importcertificatescommand.cpp:188
+#: src/commands/importcertificatescommand.cpp:187
 #, fuzzy, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/importcertificatescommand.cpp:243
+#: src/commands/importcertificatescommand.cpp:242
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/importcertificatescommand.cpp:245
+#: src/commands/importcertificatescommand.cpp:244
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/importcertificatescommand.cpp:255
+#: src/commands/importcertificatescommand.cpp:254
 #, fuzzy, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "הארך תוקף תעודה"
 
-#: src/commands/importcertificatescommand.cpp:268
+#: src/commands/importcertificatescommand.cpp:267
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:269
+#: src/commands/importcertificatescommand.cpp:268
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:270
+#: src/commands/importcertificatescommand.cpp:269
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:284
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:283
+#: src/commands/importcertificatescommand.cpp:323
 #, kde-format
 msgid "Total number processed:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:285
+#: src/commands/importcertificatescommand.cpp:284
 #, fuzzy, kde-format
 msgid "Imported:"
 msgstr "שגיאה בייבוא"
 
-#: src/commands/importcertificatescommand.cpp:287
+#: src/commands/importcertificatescommand.cpp:286
 #, kde-format
 msgid "New signatures:"
 msgstr "חתימות חדשות:"
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:288
 #, kde-format
 msgid "New user IDs:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:291
+#: src/commands/importcertificatescommand.cpp:290
 #, fuzzy, kde-format
 msgid "Certificates without user IDs:"
 msgstr "תעודות"
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:292
 #, kde-format
 msgid "New subkeys:"
 msgstr "תת־מפתחות חדשים:"
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:294
 #, kde-format
 msgid "Newly revoked:"
 msgstr "שלילות חדשות:"
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:296
 #, fuzzy, kde-format
 msgid "Not imported:"
 msgstr "שגיאה בייבוא"
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:298
 #, kde-format
 msgid "Unchanged:"
 msgstr "ללא שינוי:"
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:300
 #, fuzzy, kde-format
 msgid "Secret keys processed:"
 msgstr "&צור תעודה"
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:302
 #, fuzzy, kde-format
 msgid "Secret keys imported:"
 msgstr "התעודה יובאה"
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:306
 #, fuzzy, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "התעודה יובאה"
 
-#: src/commands/importcertificatescommand.cpp:309
+#: src/commands/importcertificatescommand.cpp:308
 #, fuzzy, kde-format
 msgid "Secret keys unchanged:"
 msgstr "&צור תעודה"
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:310
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:322
 #, fuzzy, kde-format
 msgid "Certificate Groups"
 msgstr "תעודות"
 
-#: src/commands/importcertificatescommand.cpp:325
+#: src/commands/importcertificatescommand.cpp:324
 #, kde-format
 msgid "New groups:"
 msgstr "קבוצות חדשות:"
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "Updated groups:"
 msgstr "קבוצות עדכניות:"
 
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:340
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr "אין ייבוא (לא אמור לקרות, נא לדווח על תקלה)."
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:342
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "תוצאות מפורטות על ייבוא %1:"
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "תוצאות מפורות על ייבוא:"
 
-#: src/commands/importcertificatescommand.cpp:402
+#: src/commands/importcertificatescommand.cpp:401
 #, kde-format
 msgid "A phone call to the person."
 msgstr "שיחת טלפון לאדם."
 
-#: src/commands/importcertificatescommand.cpp:403
+#: src/commands/importcertificatescommand.cpp:402
 #, kde-format
 msgid "Using a business card."
 msgstr "באמצעות כרטיס ביקור."
 
-#: src/commands/importcertificatescommand.cpp:404
+#: src/commands/importcertificatescommand.cpp:403
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "אישור מול אתר מהימן."
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:407
 #, fuzzy, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "תעודות"
 
-#: src/commands/importcertificatescommand.cpp:409
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "הסמכה משמעותה שמתבצעת בדיקה של טביעת האצבע."
 
-#: src/commands/importcertificatescommand.cpp:410
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "כמה מההצעות לעשות את זה הן:"
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:411
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "להתחיל את התהליך הזה כעת?"
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:412
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "ייבאת אישור חדש (מפתח ציבורי)"
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:413
 #: src/conf/groupsconfigwidget.cpp:200
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "תעודות"
 
-#: src/commands/importcertificatescommand.cpp:467
+#: src/commands/importcertificatescommand.cpp:466
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (יובא עם %2)"
 
-#: src/commands/importcertificatescommand.cpp:471
+#: src/commands/importcertificatescommand.cpp:470
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "יומן הפיקוח ריק."
 
-#: src/commands/importcertificatescommand.cpp:473
+#: src/commands/importcertificatescommand.cpp:472
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "מנהל התעודות"
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:492
 #, fuzzy, kde-format
 msgid "Certificate Import Result"
 msgstr "התעודה יובאה"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:501
 #, fuzzy, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2053,20 +2050,20 @@ msgstr ""
 "אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
 "היה: "
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:506
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
 "%2</b></p></qt>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:622
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2075,19 +2072,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:639
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "כן, זה שלי"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:640
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "לא, זה לא שלי"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:790
 #, fuzzy, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2098,7 +2095,7 @@ msgstr ""
 "אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
 "היה: "
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:854
 #, fuzzy, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2107,8 +2104,8 @@ msgstr[1] "הארך תוקף תעודה"
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:939
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3076,31 +3073,30 @@ msgid "Key Revoked"
 msgstr "המפתח נשלל"
 
 #: src/commands/revokekeycommand.cpp:215
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during the revocation:</para><para><message>%1</"
 "message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה במהלך השלילה:</para><para><message>%1</message></para>"
 
 #: src/commands/revokekeycommand.cpp:218
 #: src/commands/revokeuseridcommand.cpp:129
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation Failed"
-msgstr "מנהל התעודות"
+msgstr "השלילה נכשלה"
 
 #: src/commands/revokeuseridcommand.cpp:125
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to revoke the user ID<nl/><emphasis>%1</"
 "emphasis>.</para><para><message>%2</message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה במהלך הניסיון לשלול את מזהה המשתמש<nl/><emphasis>%1</"
+"emphasis>.</para><para><message>%2</message></para>"
 
 #: src/commands/revokeuseridcommand.cpp:134
 #, kde-kuit-format
@@ -3111,16 +3107,16 @@ msgid ""
 msgstr ""
 
 #: src/commands/revokeuseridcommand.cpp:135
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation Succeeded"
-msgstr "מנהל התעודות"
+msgstr "השלילה הצליחה"
 
 #: src/commands/setinitialpincommand.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Set Initial Pin"
-msgstr "מחרוזת שאילתה ראשונית"
+msgstr "הגדרת קוד אישי ראשוני"
 
 #: src/commands/setinitialpincommand.cpp:87
 #: src/commands/setinitialpincommand.cpp:171
@@ -3206,7 +3202,7 @@ msgid "Select Folder to Sign and/or Encrypt"
 msgstr ""
 
 #: src/conf/appearanceconfigwidget.cpp:136
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<ללא שם>"
@@ -3217,10 +3213,10 @@ msgid "This parameter has been locked down by the system administrator."
 msgstr ""
 
 #: src/conf/appearanceconfigwidget.cpp:343
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
-msgstr "אין אפשרות ליצור את התעודה: %1"
+msgstr "הצגת תגיות שמוצמדות לאישורים"
 
 #: src/conf/appearanceconfigwidget.cpp:344
 #, kde-format
@@ -3235,34 +3231,34 @@ msgid "Show the following information in certificate list tooltips:"
 msgstr ""
 
 #: src/conf/appearanceconfigwidget.cpp:353
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
-msgstr "בתוקף"
+msgstr "הצגת תוקף"
 
 #: src/conf/appearanceconfigwidget.cpp:356
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
-msgstr "מידע לגבי התעודה"
+msgstr "הצגת פרטי בעלות"
 
 #: src/conf/appearanceconfigwidget.cpp:359
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
-msgstr "&פרטים"
+msgstr "הצגת פירוט טכני"
 
 #: src/conf/appearanceconfigwidget.cpp:364
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr "מידע לגבי התעודה"
+msgstr "הצגת תפוגות תוקף קרבות של אישורים"
 
 #: src/conf/appearanceconfigwidget.cpp:371
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr "&צור תעודה"
+msgstr "סף לאישורים עצמיים:"
 
 #: src/conf/appearanceconfigwidget.cpp:377
 #: src/conf/appearanceconfigwidget.cpp:391
@@ -3291,10 +3287,10 @@ msgid ""
 msgstr "נא לבחור את מספר הימים לאזהרה מראש, אם האישור שלך עומד לפוג בקרוב."
 
 #: src/conf/appearanceconfigwidget.cpp:385
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr "הארך תוקף תעודה"
+msgstr "סף לאישורים אחרים:"
 
 #: src/conf/appearanceconfigwidget.cpp:395
 #, kde-format
@@ -3306,10 +3302,10 @@ msgstr ""
 "נא לבחור את מספר הימים לאזהרה מראש, אם אישור של מישהו אחר עומד לפוג בקרוב."
 
 #: src/conf/appearanceconfigwidget.cpp:405
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
-msgstr "&צור תעודה"
+msgstr "כללי"
 
 #: src/conf/appearanceconfigwidget.cpp:425
 #, kde-format
@@ -3354,16 +3350,16 @@ msgid "Strikeout"
 msgstr "קו חוצה"
 
 #: src/conf/appearanceconfigwidget.cpp:476
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
-msgstr "&צור תעודה"
+msgstr "מראה ברירת מחדל"
 
 #: src/conf/appearanceconfigwidget.cpp:484
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
-msgstr "תעודות"
+msgstr "קטגוריות אישורים"
 
 #: src/conf/appearanceconfigwidget.cpp:509
 #, kde-format
@@ -3393,9 +3389,9 @@ msgid "Appearance"
 msgstr "מראה"
 
 #: src/conf/configuredialog.cpp:51
-#, fuzzy, kde-format
+#, kde-format
 msgid "Crypto Operations"
-msgstr "&צור תעודה"
+msgstr "פעולות קריפטוגרפיות"
 
 #: src/conf/configuredialog.cpp:57
 #, kde-format
@@ -3403,9 +3399,9 @@ msgid "S/MIME Validation"
 msgstr "אימות S/MIME"
 
 #: src/conf/configuredialog.cpp:63
-#, fuzzy, kde-format
+#, kde-format
 msgid "Smart Cards"
-msgstr "בחירת קובץ רשימת ביטול תעודות"
+msgstr "כרטיסים חכמים"
 
 #: src/conf/configuredialog.cpp:69
 #, kde-format
@@ -3491,9 +3487,9 @@ msgid "Archive command to use when archiving files:"
 msgstr "פקודת ארכיון לשימוש בעת העברת פריטים לארכיון:"
 
 #: src/conf/dirservconfigpage.cpp:126
-#, fuzzy, kde-format
+#, kde-format
 msgid "OpenPGP keyserver:"
-msgstr "שגיאה עם מנהל תעודות"
+msgstr "שרת מפתחות OpenPGP:"
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-kuit-format
@@ -3593,10 +3589,10 @@ msgid "Search:"
 msgstr "חיפוש:"
 
 #: src/conf/groupsconfigwidget.cpp:155 src/conf/groupsconfigwidget.cpp:161
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label"
 msgid "Search groups"
-msgstr "תעודה חדשה"
+msgstr "חיפוש קבוצות"
 
 #: src/conf/groupsconfigwidget.cpp:156 src/conf/groupsconfigwidget.cpp:162
 #, kde-format
@@ -3606,22 +3602,22 @@ msgstr "חיפוש קבוצות ברשימה שעונות על ביטוי החי
 
 #: src/conf/groupsconfigwidget.cpp:163 src/dialogs/editgroupdialog.cpp:110
 #: src/dialogs/editgroupdialog.cpp:168
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
-msgstr "מספר סידורי"
+msgstr "נא למלא ביטוי לחיפוש"
 
 #: src/conf/groupsconfigwidget.cpp:180
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "groups of keys"
 msgid "groups"
-msgstr "&פרטים"
+msgstr "קבוצות"
 
 #: src/conf/groupsconfigwidget.cpp:189
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "New"
-msgstr "כינוי"
+msgstr "חדש"
 
 #: src/conf/groupsconfigwidget.cpp:192 src/view/pgpcardwidget.cpp:185
 #: src/view/pgpcardwidget.cpp:203
@@ -3645,10 +3641,10 @@ msgstr "תעודות"
 
 #: src/conf/groupsconfigwidget.cpp:205
 #: src/dialogs/certificatedetailswidget.cpp:358
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Export"
-msgstr "רשימת ביטול..."
+msgstr "ייצוא"
 
 #: src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -3693,16 +3689,14 @@ msgstr[2] ""
 msgstr[3] ""
 
 #: src/conf/groupsconfigwidget.cpp:415
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "מחיקה"
-msgstr[1] "מחיקה"
-msgstr[2] "מחיקה"
-msgstr[3] "מחיקה"
+msgstr[0] "מחיקת קבוצה"
+msgstr[1] "מחיקת קבוצות"
+msgstr[2] "מחיקת קבוצות"
+msgstr[3] "מחיקת קבצים"
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -3712,10 +3706,10 @@ msgid ""
 msgstr ""
 
 #: src/conf/kleopageconfigdialog.cpp:86
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
-msgstr "מיקום"
+msgstr "החלת הגדרות"
 
 #: src/conf/smartcardconfigpage.cpp:66
 #, kde-format
@@ -3760,9 +3754,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, intervalRefreshCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:21
-#, fuzzy, kde-format
+#, kde-format
 msgid "Check certificate validity every"
-msgstr "&יצירת תעודה"
+msgstr "לבדוק את תוקף האישור כל"
 
 #. i18n: ectx: property (specialValueText), widget (QSpinBox, intervalRefreshSB)
 #: src/conf/smimevalidationconfigurationwidget.ui:37
@@ -3793,9 +3787,9 @@ msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, OCSPGroupBox)
 #: src/conf/smimevalidationconfigurationwidget.ui:81
-#, fuzzy, kde-format
+#, kde-format
 msgid "Online Certificate Validation"
-msgstr "מידע לגבי התעודה"
+msgstr "אימות אישורים מקוון"
 
 #. i18n: ectx: property (text), widget (QLabel, OCSPResponderURLLabel)
 #: src/conf/smimevalidationconfigurationwidget.ui:87
@@ -3819,9 +3813,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreServiceURLCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:114
-#, fuzzy, kde-format
+#, kde-format
 msgid "Ignore service URL of certificates"
-msgstr "בתעודות המקומיות"
+msgstr "התעלמות מכתובת שירות של אישורים"
 
 #. i18n: ectx: property (whatsThis), widget (KleopatraClientCopy::Gui::CertificateRequester, OCSPResponderSignature)
 #: src/conf/smimevalidationconfigurationwidget.ui:121
@@ -3887,9 +3881,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, fetchMissingCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:164
-#, fuzzy, kde-format
+#, kde-format
 msgid "Fetch missing issuer certificates"
-msgstr "&צור תעודה"
+msgstr "משיכת אישורי מנפיק חסרים"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabHTTP)
 #: src/conf/smimevalidationconfigurationwidget.ui:172
@@ -4020,14 +4014,14 @@ msgid ""
 msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:222
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para><para><message>%3</message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>העברת <filename>%1</filename> אל <filename>%2</filename> נכשלה.</"
+"para><para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:232
 #, fuzzy, kde-kuit-format
@@ -4052,14 +4046,14 @@ msgid "Use Original File Name?"
 msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:246
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
-msgstr "אין אפשרות ליצור את התעודה: %1"
+msgstr "לא, לשמור בשם <filename>%1</filename>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:247
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
-msgstr "אין אפשרות ליצור את התעודה: %1"
+msgstr "כן, לשמור בשם <filename>%1</filename>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:270
 #, kde-kuit-format
@@ -4079,9 +4073,9 @@ msgid ""
 msgstr ""
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:402
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr "אין אפשרות ליצור את התעודה: %1"
+msgstr "נא לבחור את הקובץ לאימות עם החתימה <filename>%1</filename>"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format
@@ -4245,118 +4239,118 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "פענוח/אימות קבצים"
 
-#: src/crypto/decryptverifytask.cpp:188
+#: src/crypto/decryptverifytask.cpp:187
 #, kde-format
 msgid "Error: Signature not verified"
 msgstr "שגיאה: החתימה לא אומתה"
 
-#: src/crypto/decryptverifytask.cpp:190
+#: src/crypto/decryptverifytask.cpp:189
 #, kde-format
 msgid "Good signature"
 msgstr "חתימה תקינה"
 
-#: src/crypto/decryptverifytask.cpp:192
+#: src/crypto/decryptverifytask.cpp:191
 #, kde-format
 msgid "Signing certificate was revoked"
 msgstr "אישור החתימה נשלל"
 
-#: src/crypto/decryptverifytask.cpp:194
+#: src/crypto/decryptverifytask.cpp:193
 #, kde-format
 msgid "Signing certificate is expired"
 msgstr "תוקף אישור החתימה פג"
 
-#: src/crypto/decryptverifytask.cpp:196
+#: src/crypto/decryptverifytask.cpp:195
 #, kde-format
 msgid "Certificate is not available"
 msgstr "האישור לא זמין"
 
-#: src/crypto/decryptverifytask.cpp:198
+#: src/crypto/decryptverifytask.cpp:197
 #, kde-format
 msgid "Signature expired"
 msgstr "תוקף החתימה פג"
 
-#: src/crypto/decryptverifytask.cpp:200
+#: src/crypto/decryptverifytask.cpp:199
 #, kde-format
 msgid "CRL missing"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:202
+#: src/crypto/decryptverifytask.cpp:201
 #, kde-format
 msgid "CRL too old"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:204
+#: src/crypto/decryptverifytask.cpp:203
 #, kde-format
 msgid "Bad policy"
 msgstr "מדיניות שגויה"
 
-#: src/crypto/decryptverifytask.cpp:206
+#: src/crypto/decryptverifytask.cpp:205
 #, kde-format
 msgid "System error"
 msgstr "שגיאת מערכת"
 
-#: src/crypto/decryptverifytask.cpp:208
+#: src/crypto/decryptverifytask.cpp:207
 #, kde-format
 msgid "Bad signature"
 msgstr "חתימה פגומה"
 
-#: src/crypto/decryptverifytask.cpp:220
+#: src/crypto/decryptverifytask.cpp:219
 #, kde-format
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:222
+#: src/crypto/decryptverifytask.cpp:221
 #, kde-format
 msgid "The signature is valid and the certificate's validity is fully trusted."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:224
+#: src/crypto/decryptverifytask.cpp:223
 #, kde-format
 msgid ""
 "The signature is valid and the certificate's validity is ultimately trusted."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:226
+#: src/crypto/decryptverifytask.cpp:225
 #, kde-format
 msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
 "em>."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:228
+#: src/crypto/decryptverifytask.cpp:227
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:231
+#: src/crypto/decryptverifytask.cpp:230
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:243 src/crypto/decryptverifytask.cpp:259
+#: src/crypto/decryptverifytask.cpp:242 src/crypto/decryptverifytask.cpp:258
 #, kde-format
 msgid "Unknown certificate"
 msgstr "אישור לא ידוע"
 
-#: src/crypto/decryptverifytask.cpp:279
+#: src/crypto/decryptverifytask.cpp:278
 #, kde-format
 msgctxt "1 is a date"
 msgid "Signature created on %1"
 msgstr "החתימה נוצרה ב־%1"
 
-#: src/crypto/decryptverifytask.cpp:282
+#: src/crypto/decryptverifytask.cpp:281
 #, kde-format
 msgid "With unavailable certificate:"
 msgstr "אם אישור לא זמין:"
 
-#: src/crypto/decryptverifytask.cpp:284
+#: src/crypto/decryptverifytask.cpp:283
 #, kde-format
 msgid "With certificate:"
 msgstr "עם אישור:"
 
-#: src/crypto/decryptverifytask.cpp:289
+#: src/crypto/decryptverifytask.cpp:288
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4364,7 +4358,7 @@ msgctxt ""
 msgid "The signature is %1"
 msgstr "החתימה היא %1"
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:291
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4372,28 +4366,28 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:309 src/crypto/signencrypttask.cpp:54
+#: src/crypto/decryptverifytask.cpp:308 src/crypto/signencrypttask.cpp:53
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:440
+#: src/crypto/decryptverifytask.cpp:439
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "<b>האימות בוטל.</b>"
 
-#: src/crypto/decryptverifytask.cpp:442
+#: src/crypto/decryptverifytask.cpp:441
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "<b>האימות נכשל: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:448
+#: src/crypto/decryptverifytask.cpp:447
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr "<b>לא נמצאו חתימות.</b>"
 
-#: src/crypto/decryptverifytask.cpp:453
+#: src/crypto/decryptverifytask.cpp:452
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
@@ -4402,7 +4396,7 @@ msgstr[1] "<b>שתי חתימות שגויות.</b>"
 msgstr[2] "<b>%1 חתימות שגויות.</b>"
 msgstr[3] "<b>%1 חתימות שגויות.</b>"
 
-#: src/crypto/decryptverifytask.cpp:459
+#: src/crypto/decryptverifytask.cpp:458
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
@@ -4411,24 +4405,24 @@ msgstr[1] "<b>אי אפשר לאמת שתיים מהחתימות.</b>"
 msgstr[2] "<b>אי אפשר לאמת %1 מהחתימות.</b>"
 msgstr[3] "<b>אי אפשר לאמת %1 מהחתימות.</b>"
 
-#: src/crypto/decryptverifytask.cpp:465
+#: src/crypto/decryptverifytask.cpp:464
 #, kde-format
 msgid "<b>Valid signature by %1</b>"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:467
+#: src/crypto/decryptverifytask.cpp:466
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
 "for signing."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:468
+#: src/crypto/decryptverifytask.cpp:467
 #, kde-format
 msgid "certificate"
 msgstr "אישור"
 
-#: src/crypto/decryptverifytask.cpp:470
+#: src/crypto/decryptverifytask.cpp:469
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
@@ -4437,76 +4431,76 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/crypto/decryptverifytask.cpp:472
+#: src/crypto/decryptverifytask.cpp:471
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
 "certificates used for signing."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:484
+#: src/crypto/decryptverifytask.cpp:483
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>הפענוח מבוטל.</b>"
 
-#: src/crypto/decryptverifytask.cpp:486
+#: src/crypto/decryptverifytask.cpp:485
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:486 src/crypto/decryptverifytask.cpp:488
-#: src/crypto/decryptverifytask.cpp:490
+#: src/crypto/decryptverifytask.cpp:485 src/crypto/decryptverifytask.cpp:487
+#: src/crypto/decryptverifytask.cpp:489
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>הפענוח נכשל: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:492
+#: src/crypto/decryptverifytask.cpp:491
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>הפענוח הצליח.</b>"
 
-#: src/crypto/decryptverifytask.cpp:512 src/crypto/decryptverifytask.cpp:535
+#: src/crypto/decryptverifytask.cpp:511 src/crypto/decryptverifytask.cpp:534
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:521
-#, fuzzy, kde-format
+#: src/crypto/decryptverifytask.cpp:520
+#, kde-format
 msgid "You can search the certificate on a keyserver or import it from a file."
-msgstr "חפש בתחילה תעודות חיצוניות"
+msgstr "אפשר לחפש את האישור בשרת מפתחות או לייבא אותו מקובץ."
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:529
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:531
+#: src/crypto/decryptverifytask.cpp:530
 #, kde-format
 msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
 "or the Certificate Authority is unknown."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:554 src/crypto/decryptverifytask.cpp:608
-#: src/crypto/signencrypttask.cpp:241 src/crypto/signencrypttask.cpp:258
-#: src/crypto/signencrypttask.cpp:883
+#: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
+#: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:882
 #, kde-format
 msgid "Input error: %1"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:565
+#: src/crypto/decryptverifytask.cpp:564
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:567
+#: src/crypto/decryptverifytask.cpp:566
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:579
+#: src/crypto/decryptverifytask.cpp:578
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
@@ -4515,7 +4509,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/crypto/decryptverifytask.cpp:582
+#: src/crypto/decryptverifytask.cpp:581
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
@@ -4524,7 +4518,7 @@ msgstr[1] "נמענים:"
 msgstr[2] "נמענים:"
 msgstr[3] "נמענים:"
 
-#: src/crypto/decryptverifytask.cpp:592
+#: src/crypto/decryptverifytask.cpp:591
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
@@ -4533,7 +4527,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/crypto/decryptverifytask.cpp:619
+#: src/crypto/decryptverifytask.cpp:618
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4541,7 +4535,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "הפענוח הוא %1."
 
-#: src/crypto/decryptverifytask.cpp:622
+#: src/crypto/decryptverifytask.cpp:621
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4549,19 +4543,19 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:633
+#: src/crypto/decryptverifytask.cpp:632
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:640
+#: src/crypto/decryptverifytask.cpp:639
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:645
+#: src/crypto/decryptverifytask.cpp:644
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4570,7 +4564,7 @@ msgid ""
 "was not widely used."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:650
+#: src/crypto/decryptverifytask.cpp:649
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4580,67 +4574,67 @@ msgid ""
 "it after you have forced the decryption."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:947
+#: src/crypto/decryptverifytask.cpp:946
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1105 src/crypto/decryptverifytask.cpp:1310
-#: src/crypto/decryptverifytask.cpp:1392 src/crypto/decryptverifytask.cpp:1493
-#: src/crypto/decryptverifytask.cpp:1545 src/crypto/decryptverifytask.cpp:1710
-#: src/crypto/decryptverifytask.cpp:1789 src/crypto/decryptverifytask.cpp:1930
+#: src/crypto/decryptverifytask.cpp:1104 src/crypto/decryptverifytask.cpp:1309
+#: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1492
+#: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1709
+#: src/crypto/decryptverifytask.cpp:1788 src/crypto/decryptverifytask.cpp:1929
 #, kde-format
 msgid "Caught exception: %1"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1108 src/crypto/decryptverifytask.cpp:1312
-#: src/crypto/decryptverifytask.cpp:1395 src/crypto/decryptverifytask.cpp:1495
-#: src/crypto/decryptverifytask.cpp:1548 src/crypto/decryptverifytask.cpp:1712
-#: src/crypto/decryptverifytask.cpp:1791 src/crypto/decryptverifytask.cpp:1932
+#: src/crypto/decryptverifytask.cpp:1107 src/crypto/decryptverifytask.cpp:1311
+#: src/crypto/decryptverifytask.cpp:1394 src/crypto/decryptverifytask.cpp:1494
+#: src/crypto/decryptverifytask.cpp:1547 src/crypto/decryptverifytask.cpp:1711
+#: src/crypto/decryptverifytask.cpp:1790 src/crypto/decryptverifytask.cpp:1931
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1162
+#: src/crypto/decryptverifytask.cpp:1161
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1170
+#: src/crypto/decryptverifytask.cpp:1169
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "%1 מפוענח…"
 
-#: src/crypto/decryptverifytask.cpp:1448
+#: src/crypto/decryptverifytask.cpp:1447
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1456
+#: src/crypto/decryptverifytask.cpp:1455
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1602 src/crypto/decryptverifytask.cpp:1853
+#: src/crypto/decryptverifytask.cpp:1601 src/crypto/decryptverifytask.cpp:1852
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1610
+#: src/crypto/decryptverifytask.cpp:1609
 #, kde-format
 msgid "Verifying %1..."
 msgstr "%1 מאומת…"
 
-#: src/crypto/decryptverifytask.cpp:1871
+#: src/crypto/decryptverifytask.cpp:1870
 #, fuzzy, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4650,12 +4644,12 @@ msgstr ""
 "אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
 "היה: "
 
-#: src/crypto/decryptverifytask.cpp:1875
+#: src/crypto/decryptverifytask.cpp:1874
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "החתימה %1 מאומתת…"
 
-#: src/crypto/decryptverifytask.cpp:1886
+#: src/crypto/decryptverifytask.cpp:1885
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -4676,17 +4670,17 @@ msgstr ""
 msgid "User cancel"
 msgstr "בוטל ע״י המשתמש"
 
-#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:194
+#: src/crypto/encryptemailtask.cpp:65 src/crypto/signencrypttask.cpp:193
 #, kde-format
 msgid "Encryption canceled."
 msgstr "ההצפנה בוטלה."
 
-#: src/crypto/encryptemailtask.cpp:70
+#: src/crypto/encryptemailtask.cpp:69
 #, kde-format
 msgid "Encryption failed: %1"
 msgstr "ההצפנה נכשלה: %1"
 
-#: src/crypto/encryptemailtask.cpp:73 src/crypto/signencrypttask.cpp:201
+#: src/crypto/encryptemailtask.cpp:72 src/crypto/signencrypttask.cpp:200
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "ההצפנה הצליחה."
@@ -4709,14 +4703,14 @@ msgid "Show Details"
 msgstr "הצגת פרטים"
 
 #: src/crypto/gui/certificatelineedit.cpp:635
-#, fuzzy, kde-format
+#, kde-format
 msgid "No matching certificates or groups found"
-msgstr "&צור תעודה"
+msgstr "לא נמצאו אישורים או קבוצות תואמים"
 
 #: src/crypto/gui/certificatelineedit.cpp:637
-#, fuzzy, kde-format
+#, kde-format
 msgid "Multiple matching certificates or groups found"
-msgstr "&צור תעודה"
+msgstr "נמצאו כמה קבוצות אישורים תואמות"
 
 #: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
@@ -4727,9 +4721,9 @@ msgid "Error: %1"
 msgstr "שגיאה: %1"
 
 #: src/crypto/gui/certificateselectionline.cpp:39
-#, fuzzy, kde-format
+#, kde-format
 msgid "(no matching certificates found)"
-msgstr "&צור תעודה"
+msgstr "(לא נמצאו אישורים תואמים)"
 
 #: src/crypto/gui/certificateselectionline.cpp:41
 #, kde-format
@@ -4798,14 +4792,14 @@ msgid "No Output Folder"
 msgstr "אין תיקיית פלט"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:212
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to create output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>יצירת תיקיית הפלט <filename>%1</filename> נכשלה.</para><para>נא לבחור "
+"תיקייה אחרת לפלט.</para>"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:214
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:226
@@ -5232,10 +5226,10 @@ msgid "Encrypt-To-Self Warning"
 msgstr ""
 
 #: src/crypto/gui/signencryptfileswizard.cpp:345
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME signature."
-msgstr "&יצירת תעודה"
+msgstr "זה שם קובץ חתימת ה־S/MIME."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:346
 #, kde-format
@@ -5256,10 +5250,10 @@ msgid "S/MIME Signatures (*.p7s *.pem)"
 msgstr "חתימות S/MIME‏ (‎*.p7s ‏‎*.pem)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:353
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
-msgstr "&יצירת תעודה"
+msgstr "זה שם קובץ חתימת ה־OpenPGP המנותקת."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:354
 #, kde-format
@@ -5636,17 +5630,17 @@ msgstr ""
 msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 
-#: src/crypto/signemailtask.cpp:69 src/crypto/signencrypttask.cpp:177
+#: src/crypto/signemailtask.cpp:68 src/crypto/signencrypttask.cpp:176
 #, kde-format
 msgid "Signing canceled."
 msgstr ""
 
-#: src/crypto/signemailtask.cpp:73
+#: src/crypto/signemailtask.cpp:72
 #, kde-format
 msgid "Signing failed: %1"
 msgstr ""
 
-#: src/crypto/signemailtask.cpp:76 src/crypto/signencrypttask.cpp:183
+#: src/crypto/signemailtask.cpp:75 src/crypto/signencrypttask.cpp:182
 #, kde-format
 msgid "Signing succeeded."
 msgstr ""
@@ -5701,78 +5695,78 @@ msgid ""
 "slotWizardOperationPrepared"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:181
+#: src/crypto/signencrypttask.cpp:180
 #, kde-format
 msgid "Signing failed."
 msgstr "החתימה נכשלה."
 
-#: src/crypto/signencrypttask.cpp:198
+#: src/crypto/signencrypttask.cpp:197
 #, kde-format
 msgid "Encryption failed."
 msgstr "ההצפנה נכשלה."
 
-#: src/crypto/signencrypttask.cpp:226
+#: src/crypto/signencrypttask.cpp:225
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "החתימה וההצפנה הצליחו."
 
-#: src/crypto/signencrypttask.cpp:243 src/crypto/signencrypttask.cpp:260
+#: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
 #, kde-format
 msgid "Output error: %1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:267
+#: src/crypto/signencrypttask.cpp:266
 #, kde-format
 msgid " Encryption succeeded."
 msgstr "ההצפנה הצליחה."
 
-#: src/crypto/signencrypttask.cpp:279
+#: src/crypto/signencrypttask.cpp:278
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>חתימה/הצפנה בוטלו.</b>"
 
-#: src/crypto/signencrypttask.cpp:279
+#: src/crypto/signencrypttask.cpp:278
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:282
+#: src/crypto/signencrypttask.cpp:281
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:478
+#: src/crypto/signencrypttask.cpp:477
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:529
+#: src/crypto/signencrypttask.cpp:528
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:737 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:754
+#: src/crypto/signencrypttask.cpp:753
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "נוצר ארכיון חתום ומוצפן…"
 
-#: src/crypto/signencrypttask.cpp:774
+#: src/crypto/signencrypttask.cpp:773
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "נוצר ארכיון מוצפן…"
 
-#: src/crypto/signencrypttask.cpp:794
+#: src/crypto/signencrypttask.cpp:793
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -5854,12 +5848,10 @@ msgid "Valid until:"
 msgstr "בתוקף עד:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "תת־מפתחות"
+msgstr "הוספת תת־מפתח"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -7189,7 +7181,7 @@ msgctxt "@title:window"
 msgid "Self Test"
 msgstr "בדיקה עצמית"
 
-#: src/dialogs/setinitialpindialog.cpp:69
+#: src/dialogs/setinitialpindialog.cpp:68
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7197,21 +7189,19 @@ msgid ""
 "card might have been tampered with.</warning>"
 msgstr ""
 
-#: src/dialogs/setinitialpindialog.cpp:76
+#: src/dialogs/setinitialpindialog.cpp:75
 #, kde-format
 msgctxt "@info"
 msgid "Canceled setting PIN."
 msgstr ""
 
-#: src/dialogs/setinitialpindialog.cpp:79
-#, fuzzy, kde-kuit-format
+#: src/dialogs/setinitialpindialog.cpp:78
+#, kde-kuit-format
 msgctxt "@info"
 msgid "There was an error setting the PIN: <message>%1</message>."
-msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+msgstr "אירעה שגיאה בהגדרת הקוד האישי: <message>%1</message>."
 
-#: src/dialogs/setinitialpindialog.cpp:81
+#: src/dialogs/setinitialpindialog.cpp:80
 #, kde-format
 msgctxt "@info"
 msgid "PIN set successfully."
@@ -7424,12 +7414,10 @@ msgid "Subkeys Details"
 msgstr "פרטי תת־מפתח"
 
 #: src/dialogs/subkeyswidget.cpp:379
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "תת־מפתחות"
+msgstr "הוספת תת־מפתח"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -7542,9 +7530,9 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/weboftrustwidget.cpp:212
-#, fuzzy, kde-format
+#, kde-format
 msgid "Revocation of self-certifications is currently not possible."
-msgstr "הארך תוקף תעודה"
+msgstr "שלילת אישורים עצמאיים אינה אפשרית כרגע."
 
 #: src/dialogs/weboftrustwidget.cpp:215
 #, kde-format
@@ -7571,21 +7559,21 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/weboftrustwidget.cpp:232
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
 "the certifications for details."
-msgstr "&צור תעודה"
+msgstr ""
+"אי אפשר לשלול אף אחד מהאישורים של מזהה משתמש זה. יש לבחור באישור כלשהו "
+"לפרטים."
 
 #: src/dialogs/weboftrustwidget.cpp:339
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while loading the certifications: <message>%1</"
 "message></para>"
-msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+msgstr "<para>אירעה שגיאה בטעינת האישורים: <message>%1</message></para>"
 
 #: src/dialogs/weboftrustwidget.cpp:342
 #, kde-format
@@ -8528,7 +8516,7 @@ msgstr "שגיאה ב־Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:134
+#: src/main.cpp:133
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8539,13 +8527,13 @@ msgid ""
 "administrator for help in resolving this issue.</para>"
 msgstr ""
 
-#: src/main.cpp:138
+#: src/main.cpp:137
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME ישן מדי"
 
-#: src/main.cpp:160
+#: src/main.cpp:159
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8556,23 +8544,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:164
+#: src/main.cpp:163
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:165
+#: src/main.cpp:164
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:233
+#: src/main.cpp:232
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "שגיאת שרת מנשק משתמש GPG"
 
-#: src/main.cpp:237
+#: src/main.cpp:236
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8586,7 +8574,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:267
+#: src/main.cpp:266
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "ארגומנטים שגויים: %1"
@@ -9398,18 +9386,18 @@ msgctxt "@info %1: test name"
 msgid "<para>See \"%1\" above.</para>"
 msgstr ""
 
-#: src/selftest/gpgagentcheck.cpp:35
+#: src/selftest/gpgagentcheck.cpp:33
 #, kde-format
 msgctxt "@title"
 msgid "Gpg-Agent Connectivity"
 msgstr "קישוריות ל־Gpg-Agent"
 
-#: src/selftest/gpgagentcheck.cpp:45
+#: src/selftest/gpgagentcheck.cpp:43
 #, kde-format
 msgid "GpgME library too old"
 msgstr "ספריית GpgME ישנה מדי"
 
-#: src/selftest/gpgagentcheck.cpp:47
+#: src/selftest/gpgagentcheck.cpp:45
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -9419,7 +9407,7 @@ msgstr ""
 "או שספריית GpgME עצמה ישנה מדי, או שספריית GpgME++‎ הודרה מול GpgME ישנה יותר "
 "שלא תומכת בהתחברות ל־gpg-agent."
 
-#: src/selftest/gpgagentcheck.cpp:51
+#: src/selftest/gpgagentcheck.cpp:49
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9429,13 +9417,13 @@ msgstr ""
 "יש לשדרג ל־<application>gpgme</application> 1.2.0 ומעלה ולוודא ש־gpgme++‎ "
 "הודרה מולו."
 
-#: src/selftest/gpgagentcheck.cpp:63
+#: src/selftest/gpgagentcheck.cpp:61
 #, kde-format
 msgid "GpgME does not support gpg-agent"
 msgstr "GpgME לא תומכת ב־gpg-agent"
 
-#: src/selftest/gpgagentcheck.cpp:65
-#, fuzzy, kde-kuit-format
+#: src/selftest/gpgagentcheck.cpp:63
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The <application>GpgME</application> library is new enough to support "
@@ -9443,15 +9431,16 @@ msgid ""
 "installation.</para><para>The error returned was: <message>%1</message>.</"
 "para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>ספריית <application>GpgME</application> חדשה מספיק כדי לתמוך ב־"
+"<application>gpg-agent</application>, אך נראה שזה לא המצב עם ההתקנה הזאת.</"
+"para><para>השגיאה שהוחזרה הייתה: <message>%1</message>.</para>"
 
-#: src/selftest/gpgagentcheck.cpp:77
+#: src/selftest/gpgagentcheck.cpp:75
 #, kde-format
 msgid "unexpected error"
 msgstr "שגיאה בלתי צפוייה"
 
-#: src/selftest/gpgagentcheck.cpp:79
+#: src/selftest/gpgagentcheck.cpp:77
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9542,24 +9531,24 @@ msgctxt "@title"
 msgid "Error Deleting Registry Key"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:34
+#: src/selftest/uiservercheck.cpp:33
 #, kde-format
 msgctxt "@title"
 msgid "UiServer Connectivity"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:52
+#: src/selftest/uiservercheck.cpp:51
 #, kde-format
 msgid "not reachable"
 msgstr "לא נגיש"
 
-#: src/selftest/uiservercheck.cpp:53
+#: src/selftest/uiservercheck.cpp:52
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not connect to UiServer: <message>%1</message>"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:55
+#: src/selftest/uiservercheck.cpp:54
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9568,12 +9557,12 @@ msgid ""
 "resource>).</para>"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:59
+#: src/selftest/uiservercheck.cpp:58
 #, kde-format
 msgid "multiple instances"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:60
+#: src/selftest/uiservercheck.cpp:59
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9581,7 +9570,7 @@ msgid ""
 "process-id %1)"
 msgstr ""
 
-#: src/selftest/uiservercheck.cpp:61
+#: src/selftest/uiservercheck.cpp:60
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -11295,7 +11284,7 @@ msgstr "נוצרים מפתחות"
 #: src/view/pgpcardwidget.cpp:345
 #, kde-format
 msgid "This may take several minutes..."
-msgstr ""
+msgstr "פעולה זו יכולה לארוך כמה דקות…"
 
 #: src/view/pgpcardwidget.cpp:360
 #, kde-format
@@ -11311,19 +11300,19 @@ msgstr "שמירת גיבוי של מפתח ההצפנה"
 #: src/view/pgpcardwidget.cpp:370
 #, kde-format
 msgid "Backup Key"
-msgstr ""
+msgstr "מפתח גיבוי"
 
 #: src/view/pgpcardwidget.cpp:372
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
-msgstr ""
+msgstr "העברת הגיבוי נכשלה. מפתח הגיבוי עדיין מאוחסן תחת: %1"
 
 #: src/view/pgpcardwidget.cpp:378
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
-msgstr ""
+msgstr "מפתח חדש נוצר בהצלחה לכרטיס זה."
 
 #: src/view/pgpcardwidget.cpp:378 src/view/pgpcardwidget.cpp:469
 #: src/view/pgpcardwidget.cpp:516
@@ -11337,7 +11326,7 @@ msgstr ""
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
-msgstr ""
+msgstr "המפתחות הקיימים בכרטיס הזה <b>יימחקו</b> ויוחלפו במפתחות חדשים."
 
 #: src/view/pgpcardwidget.cpp:397
 #, kde-format
@@ -11351,11 +11340,13 @@ msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"אי אפשר לייצר מפתחות חדשים על הכרטיס החכם הזה כיוון שהוא לא תומך באף אחד "
+"מהאלגוריתמים הנתמכים."
 
 #: src/view/pgpcardwidget.cpp:428
 #, kde-format
 msgid "Change cardholder"
-msgstr ""
+msgstr "החלפת בעלי הכרטיס"
 
 #: src/view/pgpcardwidget.cpp:428
 #, kde-format
@@ -11366,19 +11357,19 @@ msgstr "שם חדש:"
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
-msgstr ""
+msgstr "אי אפשר להשתמש בתו „<”"
 
 #: src/view/pgpcardwidget.cpp:438
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
-msgstr ""
+msgstr "אסור להשתמש ברווחים כפולים"
 
 #: src/view/pgpcardwidget.cpp:442
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
-msgstr ""
+msgstr "גודל השם לא יכול לחרוג מ־38 תווים."
 
 #: src/view/pgpcardwidget.cpp:465
 #, kde-format
@@ -11395,18 +11386,18 @@ msgstr "השם נערך בהצלחה."
 #: src/view/pgpcardwidget.cpp:480
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
-msgstr ""
+msgstr "להחליף את הכתובת בה ניתן למצוא את המפתח הציבורי"
 
 #: src/view/pgpcardwidget.cpp:481
 #, kde-format
 msgid "New pubkey URL:"
-msgstr ""
+msgstr "כתובת חדשה למפתח ציבורי:"
 
 #: src/view/pgpcardwidget.cpp:492
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
-msgstr ""
+msgstr "גודל הכתובת לא יכול לחרוג מ־254 תווים."
 
 #: src/view/pgpcardwidget.cpp:512
 #, kde-format
@@ -11424,7 +11415,7 @@ msgstr "הכתובת נערכה בהצלחה."
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PIN"
-msgstr ""
+msgstr "החלפת קוד אישי"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -11450,7 +11441,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Admin Key"
-msgstr ""
+msgstr "החלפת מפתח ניהול"
 
 #: src/view/pivcardwidget.cpp:164
 #, kde-format
@@ -11532,7 +11523,7 @@ msgstr "<em>אין אישור תואם</em>"
 #, kde-format
 msgctxt "@info unknown key algorithm"
 msgid "unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 #: src/view/pivcardwidget.cpp:300
 #, kde-format
@@ -11559,7 +11550,7 @@ msgstr "סינון אישורים לפי טקסט"
 #: src/view/searchbar.cpp:139
 #, kde-format
 msgid "Show only certificates that match the entered search term."
-msgstr ""
+msgstr "להציג רק אישורים שעונים על ביטוי החיפוש שהוקלד."
 
 #: src/view/searchbar.cpp:142
 #, kde-format
@@ -11593,19 +11584,19 @@ msgstr "חיפוש…<%1>"
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 - v3.3"
-msgstr ""
+msgstr "OpenPGP v2.0 - v3.3"
 
 #: src/view/smartcardwidget.cpp:54
 #, kde-format
 msgctxt "Gnuk is a cryptographic token for GnuPG"
 msgid "Gnuk"
-msgstr ""
+msgstr "Gnuk"
 
 #: src/view/smartcardwidget.cpp:55
 #, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3"
-msgstr ""
+msgstr "NetKey v3"
 
 #: src/view/smartcardwidget.cpp:56
 #, kde-format
@@ -11617,7 +11608,7 @@ msgstr ""
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
-msgstr ""
+msgstr "CardOS 5 (מגוון יישומים)"
 
 #: src/view/smartcardwidget.cpp:58
 #, kde-format
@@ -11627,7 +11618,7 @@ msgstr "נא להכניס כרטיס חכם תואם."
 #: src/view/smartcardwidget.cpp:60
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
-msgstr ""
+msgstr "Kleopatra תומכת כרגע בסוגי הכרטיסים הבאים:"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format
@@ -11640,13 +11631,13 @@ msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
 "smartcard"
 msgid "%1 - %2 - %3"
-msgstr ""
+msgstr "%1 - %2 - %3"
 
 #: src/view/smartcardwidget.cpp:170
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: src/view/tabwidget.cpp:638
 #, kde-format

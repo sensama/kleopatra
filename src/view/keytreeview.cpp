@@ -350,9 +350,14 @@ void KeyTreeView::init()
 
     updateModelConnections(nullptr, model());
 
-    resizeColumns();
-
-    restoreLayout(m_group);
+    if (KeyCache::instance()->initialized()) {
+        restoreLayout(m_group);
+    } else {
+        connect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, [this]() {
+            restoreLayout(m_group);
+            disconnect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, nullptr);
+        });
+    }
 }
 
 void KeyTreeView::restoreExpandState()

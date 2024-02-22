@@ -25,6 +25,7 @@
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
+#include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 
 #include <KConfigGroup>
@@ -181,7 +182,14 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     vLay->addStretch(1);
 
     const KConfigGroup configGroup(KSharedConfig::openConfig(), QStringLiteral("NetKeyCardView"));
-    mTreeView->restoreLayout(configGroup);
+
+    if (KeyCache::instance()->initialized()) {
+        mTreeView->restoreLayout(configGroup);
+    } else {
+        connect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, [this, configGroup]() {
+            mTreeView->restoreLayout(configGroup);
+        });
+    }
 }
 
 NetKeyWidget::~NetKeyWidget() = default;

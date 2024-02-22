@@ -115,8 +115,6 @@ public:
         return m_canChangeHierarchical;
     }
 
-    void saveState();
-
     Page *clone() const override
     {
         return new Page(*this);
@@ -235,20 +233,14 @@ Page::~Page()
 {
 }
 
-void Page::saveState()
-{
-    m_configGroup.writeEntry(TITLE_ENTRY, m_title);
-    m_configGroup.writeEntry(STRING_FILTER_ENTRY, stringFilter());
-    m_configGroup.writeEntry(KEY_FILTER_ENTRY, keyFilter() ? keyFilter()->id() : QString());
-    m_configGroup.writeEntry(HIERARCHICAL_VIEW_ENTRY, isHierarchicalView());
-}
-
 void Page::setStringFilter(const QString &filter)
 {
     if (!m_canChangeStringFilter) {
         return;
     }
     KeyTreeView::setStringFilter(filter);
+    m_configGroup.writeEntry(STRING_FILTER_ENTRY, stringFilter());
+    m_configGroup.sync();
 }
 
 void Page::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
@@ -262,6 +254,8 @@ void Page::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
     if (oldTitle != newTitle) {
         Q_EMIT titleChanged(newTitle);
     }
+    m_configGroup.writeEntry(KEY_FILTER_ENTRY, keyFilter() ? keyFilter()->id() : QString());
+    m_configGroup.sync();
 }
 
 void Page::setTitle(const QString &t)
@@ -277,6 +271,8 @@ void Page::setTitle(const QString &t)
     const QString newTitle = title();
     if (oldTitle != newTitle) {
         Q_EMIT titleChanged(newTitle);
+        m_configGroup.writeEntry(TITLE_ENTRY, m_title);
+        m_configGroup.sync();
     }
 }
 
@@ -304,6 +300,8 @@ void Page::setHierarchicalView(bool on)
         return;
     }
     KeyTreeView::setHierarchicalView(on);
+    m_configGroup.writeEntry(HIERARCHICAL_VIEW_ENTRY, on);
+    m_configGroup.sync();
 }
 
 void Page::setTemporary(bool on)
@@ -1117,7 +1115,6 @@ void TabWidget::saveViews()
                 continue;
             }
             tabs += p->configGroup().name();
-            p->saveState();
         }
     }
     d->config->group(d->configKey).writeEntry("Tabs", tabs);

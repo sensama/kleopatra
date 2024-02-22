@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:38+0000\n"
-"PO-Revision-Date: 2024-02-17 10:39+0100\n"
+"POT-Creation-Date: 2024-02-22 00:38+0000\n"
+"PO-Revision-Date: 2024-02-21 12:08+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -920,26 +920,22 @@ msgid "Error Saving Request"
 msgstr "Fout bij opslaan van verzoek"
 
 #: src/commands/creategroupcommand.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "Dit certificaat kan niet gebruikt worden voor versleuteling."
+msgstr ""
+"Geen van de geselecteerde certificaten kan gebruikt worden voor "
+"versleuteling. Er zal geen groep worden aangemaakt."
 
 #: src/commands/creategroupcommand.cpp:101
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b> Waarschuwing</b> Geen van de geselecteerde certificaten lijken van uzelf "
-"te zijn. Het weer ontcijferen van versleutelde gegevens zal niet mogelijk "
-"zijn."
+"Enigen van de geselecteerde certificaten kunnen niet gebruikt worden voor "
+"versleuteling. Deze zullen niet aan de groep worden toegevoegd."
 
 #: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -3964,20 +3960,14 @@ msgstr[0] "Groep verwijderen"
 msgstr[1] "Verwijderen"
 
 #: src/conf/groupsconfigwidget.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The imported group</para><para><emphasis>%1</emphasis></"
-#| "para><para>contains certificates that cannot be used for encryption. This "
-#| "may lead to unexpected results.</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains keys that cannot be used for encryption. This may lead to "
 "unexpected results."
 msgstr ""
-"<para>De geïmporteerde groep</para><para><emphasis>%1</emphasis></"
-"para><para>bevat certificaten die niet gebruikt kunnen worden voor "
-"versleuteling. Dit kan leiden tot onverwachte resultaten.</para>"
+"De groep bevat sleutels die niet gebruikt kunnen worden voor versleuteling. "
+"Dit kan leiden tot onverwachte resultaten."
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -7227,22 +7217,20 @@ msgid "Secret Key Deletion"
 msgstr "Verwijdering van geheime sleutel"
 
 #: src/dialogs/editgroupdialog.cpp:82
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Dit certificaat kan niet gebruikt worden voor versleuteling."
 
 #: src/dialogs/editgroupdialog.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "Dit certificaat kan niet gebruikt worden voor versleuteling."
+msgstr ""
+"Dit certificaat kan niet toegevoegd worden aan de groep omdat het niet "
+"gebruikt kan worden voor versleuteling."
 
 #: src/dialogs/editgroupdialog.cpp:156
 #, kde-format
@@ -9407,8 +9395,7 @@ msgid "Configure Groups..."
 msgstr "Groepen configureren..."
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Groepen"
@@ -11590,18 +11577,16 @@ msgid "Add User ID..."
 msgstr "Gebruiker-id toevoegen..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Groepen configureren..."
+msgstr "Groep aanmaken..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "De geldigheid van het geselecteerde certificaat bevestigen."
+msgstr "Een groep aanmaken van de geselecteerde certificaten."
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -12608,11 +12593,6 @@ msgstr "Alles uitvouwen"
 msgid "Collapse All"
 msgstr "Alles invouwen"
 
-#: src/view/tabwidget.cpp:1085
-#, kde-format
-msgid "All Certificates"
-msgstr "Alle certificaten"
-
 #: src/view/welcomewidget.cpp:115
 #, kde-format
 msgctxt "%1 is version"
@@ -12692,6 +12672,9 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgid "All Certificates"
+#~ msgstr "Alle certificaten"
 
 #~ msgid "View Columns"
 #~ msgstr "Kolommen tonen"

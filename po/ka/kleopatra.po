@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:38+0000\n"
-"PO-Revision-Date: 2024-02-17 04:08+0100\n"
+"POT-Creation-Date: 2024-02-22 00:38+0000\n"
+"PO-Revision-Date: 2024-02-21 04:58+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -909,25 +909,22 @@ msgid "Error Saving Request"
 msgstr "მოთხოვნის შენახვის შეცდომა"
 
 #: src/commands/creategroupcommand.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "ამ სერტიფიკატის დაშიფვრისთვის გამოყენება შეუძლებელია."
+msgstr ""
+"მონიშნული ამ სერტიფიკატის დაშიფვრისთვის გამოყენება შეუძლებელია. ჯგუფი არ "
+"შეიქმნება."
 
 #: src/commands/creategroupcommand.cpp:101
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>გაფრთხილება:</b>მონიშნული სერტიფიკატებიდან თქვენ არცერთი გეკუთვნით. "
-"დაშიფრულ მონაცემებს კიდევ ერთხელ ვეღარ გაშიფრავთ."
+"შეუძლებელია ზოგიერთი მონიშნული სერტიფიკატის დაშიფვრისთვის გამოყენება. ისინი "
+"ჯგუფში ჩამატებული არ იქნება."
 
 #: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -3897,20 +3894,14 @@ msgstr[0] "ჯგუფის წაშლა"
 msgstr[1] "ჯგუფის წაშლა"
 
 #: src/conf/groupsconfigwidget.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The imported group</para><para><emphasis>%1</emphasis></"
-#| "para><para>contains certificates that cannot be used for encryption. This "
-#| "may lead to unexpected results.</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains keys that cannot be used for encryption. This may lead to "
 "unexpected results."
 msgstr ""
-"<para>შემოტანილი ჯგუფი</para><para><emphasis>%1</emphasis></"
-"para><para>შეიცავს სერტიფიკატებს, რომლებსაც დაშიფვრისთვის ვერ გამოიყენებთ. "
-"ამან, შეიძლება, მოულოდნელ შედეგებამდე მიგიყვანოთ.</para>"
+"ჯგუფი შეიცავს გასაღებებს, რომლებსაც დაშიფვრისთვის ვერ გამოიყენებთ. ამან, "
+"შეიძლება, მოულოდნელ შედეგებამდე მიგიყვანოთ."
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -7108,22 +7099,20 @@ msgid "Secret Key Deletion"
 msgstr "საიდუმლო გასაღების წაშლა"
 
 #: src/dialogs/editgroupdialog.cpp:82
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "ამ სერტიფიკატის დაშიფვრისთვის გამოყენება შეუძლებელია."
 
 #: src/dialogs/editgroupdialog.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "ამ სერტიფიკატის დაშიფვრისთვის გამოყენება შეუძლებელია."
+msgstr ""
+"ამ სერტიფიკატს ჯგუფში ვერ ჩაამატებთ, რადგან მისი დაშიფვრისთვის გამოყენება "
+"შეუძლებელია."
 
 #: src/dialogs/editgroupdialog.cpp:156
 #, kde-format
@@ -9253,8 +9242,7 @@ msgid "Configure Groups..."
 msgstr "ჯგუფების მორგება..."
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "ჯგუფები"
@@ -11430,18 +11418,16 @@ msgid "Add User ID..."
 msgstr "მომხმარებლის ID-ის დამატება..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "ჯგუფების მორგება..."
+msgstr "ჯგუფის შექმნა..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "მონიშნული სერტიფიკატის ვარგისიანობის სერტიფიკაცია"
+msgstr "ჯგუფის შექმნა მონიშნული სერტიფიკატებიდან"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -12439,11 +12425,6 @@ msgstr "ყველას ამოკეცვა"
 msgid "Collapse All"
 msgstr "ყველას ჩაკეცვა"
 
-#: src/view/tabwidget.cpp:1085
-#, kde-format
-msgid "All Certificates"
-msgstr "ყველა სერტიფიკატი"
-
 #: src/view/welcomewidget.cpp:115
 #, kde-format
 msgctxt "%1 is version"
@@ -12522,6 +12503,9 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgid "All Certificates"
+#~ msgstr "ყველა სერტიფიკატი"
 
 #~ msgid "View Columns"
 #~ msgstr "სვეტების ნახვა"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:38+0000\n"
-"PO-Revision-Date: 2024-02-17 09:21+0200\n"
+"POT-Creation-Date: 2024-02-22 00:38+0000\n"
+"PO-Revision-Date: 2024-02-21 09:58+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -920,25 +920,22 @@ msgid "Error Saving Request"
 msgstr "Помилка під час збереження запиту"
 
 #: src/commands/creategroupcommand.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "Цим сертифікатом не можна скористатися для шифрування."
+msgstr ""
+"Жодним із позначених сертифікатів не можна скористатися для шифрування. Не "
+"буде створено жодної групи."
 
 #: src/commands/creategroupcommand.cpp:101
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>Попередження:</b> Здається, що жоден з вибраних сертифікатів не є вашим "
-"власним. Ви не зможете розшифрувати зашифровані ними дані."
+"Деякими з позначених сертифікатів не можна скористатися для шифрування. Ці "
+"сертифікати не буде додано до групи."
 
 #: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -4002,20 +3999,14 @@ msgstr[2] "Вилучити групи"
 msgstr[3] "Вилучити групу"
 
 #: src/conf/groupsconfigwidget.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The imported group</para><para><emphasis>%1</emphasis></"
-#| "para><para>contains certificates that cannot be used for encryption. This "
-#| "may lead to unexpected results.</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains keys that cannot be used for encryption. This may lead to "
 "unexpected results."
 msgstr ""
-"<para>В імпортованій групі</para><para><emphasis>%1</emphasis></"
-"para><para>містяться сертифікати, які не можна використовувати для "
-"шифрування. Це може призвести до неочікуваних результатів.</para>"
+"У групі містяться ключі, якими не можна скористатися для шифрування. Це може "
+"призвести до неочікуваних результатів."
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -7287,22 +7278,20 @@ msgid "Secret Key Deletion"
 msgstr "Вилучення закритого ключа"
 
 #: src/dialogs/editgroupdialog.cpp:82
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Цим сертифікатом не можна скористатися для шифрування."
 
 #: src/dialogs/editgroupdialog.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "Цим сертифікатом не можна скористатися для шифрування."
+msgstr ""
+"Цей сертифікат не можна додати до групи, оскільки ним не можна скористатися "
+"для шифрування."
 
 #: src/dialogs/editgroupdialog.cpp:156
 #, kde-format
@@ -9469,8 +9458,7 @@ msgid "Configure Groups..."
 msgstr "Налаштувати групи…"
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Групи"
@@ -11659,18 +11647,16 @@ msgid "Add User ID..."
 msgstr "Додати ідентифікатор користувача…"
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Налаштувати групи…"
+msgstr "Створити групу…"
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "Сертифікувати чинність позначеного сертифіката"
+msgstr "Створити групу з позначених сертифікатів"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -12671,11 +12657,6 @@ msgstr "Розгорнути всі"
 msgid "Collapse All"
 msgstr "Згорнути всі"
 
-#: src/view/tabwidget.cpp:1085
-#, kde-format
-msgid "All Certificates"
-msgstr "Усі сертифікати"
-
 #: src/view/welcomewidget.cpp:115
 #, kde-format
 msgctxt "%1 is version"
@@ -12754,6 +12735,9 @@ msgid ""
 msgstr ""
 "Імпортувати сертифікат з файла.<nl/>Щоб імпортувати дані з сервера відкритих "
 "ключів, скористайтеся пунктом <interface>Шукати на сервері</interface>."
+
+#~ msgid "All Certificates"
+#~ msgstr "Усі сертифікати"
 
 #~ msgid "View Columns"
 #~ msgstr "Переглянути стовпчики"

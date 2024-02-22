@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:38+0000\n"
-"PO-Revision-Date: 2024-02-17 12:08+0100\n"
+"POT-Creation-Date: 2024-02-22 00:38+0000\n"
+"PO-Revision-Date: 2024-02-21 16:21+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -919,25 +919,22 @@ msgid "Error Saving Request"
 msgstr "Error en desar la sol·licitud"
 
 #: src/commands/creategroupcommand.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "Aquest certificat no es pot emprar per a encriptatge."
+msgstr ""
+"Cap dels certificats seleccionats es pot utilitzar per a encriptar. No es "
+"crearà cap grup."
 
 #: src/commands/creategroupcommand.cpp:101
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>Avís:</b> cap dels certificats seleccionats sembla que sigui el vostre. "
-"No podreu tornar a desencriptar les dades encriptades."
+"Alguns dels certificats seleccionats no es poden utilitzar per a encriptar. "
+"Aquests no s'afegiran al grup."
 
 #: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -3965,20 +3962,14 @@ msgstr[0] "Suprimeix el grup"
 msgstr[1] "Suprimeix els grups"
 
 #: src/conf/groupsconfigwidget.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The imported group</para><para><emphasis>%1</emphasis></"
-#| "para><para>contains certificates that cannot be used for encryption. This "
-#| "may lead to unexpected results.</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains keys that cannot be used for encryption. This may lead to "
 "unexpected results."
 msgstr ""
-"<para>El grup importat</para><para><emphasis>%1</emphasis></para><para>conté "
-"certificats que no es poden fer servir per a encriptar. Això podria portar a "
-"resultats inesperats.</para>"
+"El grup conté claus que no es poden fer servir per a encriptar. Això podria "
+"portar a resultats inesperats."
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -7210,22 +7201,20 @@ msgid "Secret Key Deletion"
 msgstr "Supressió de la clau secreta"
 
 #: src/dialogs/editgroupdialog.cpp:82
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
-msgstr "Aquest certificat no es pot emprar per a encriptatge."
+msgstr "Aquest certificat no es pot emprar per a encriptar."
 
 #: src/dialogs/editgroupdialog.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "Aquest certificat no es pot emprar per a encriptatge."
+msgstr ""
+"Aquest certificat no es pot afegir al grup perquè no es pot emprar per a "
+"encriptar."
 
 #: src/dialogs/editgroupdialog.cpp:156
 #, kde-format
@@ -9402,8 +9391,7 @@ msgid "Configure Groups..."
 msgstr "Configura els grups..."
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Grups"
@@ -11606,18 +11594,16 @@ msgid "Add User ID..."
 msgstr "Afegeix un ID d'usuari..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Configura els grups..."
+msgstr "Crea un grup..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "Certifica la validesa del certificat seleccionat"
+msgstr "Crea un grup a partir dels certificats seleccionats"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -12622,11 +12608,6 @@ msgstr "Expandeix-ho tot"
 msgid "Collapse All"
 msgstr "Redueix-ho tot"
 
-#: src/view/tabwidget.cpp:1085
-#, kde-format
-msgid "All Certificates"
-msgstr "Tots els certificats"
-
 #: src/view/welcomewidget.cpp:115
 #, kde-format
 msgctxt "%1 is version"
@@ -12705,6 +12686,9 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
+
+#~ msgid "All Certificates"
+#~ msgstr "Tots els certificats"
 
 #~ msgid "View Columns"
 #~ msgstr "Mostra les columnes"

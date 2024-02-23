@@ -29,28 +29,6 @@ using namespace Kleo::SmartCard;
 // static
 const std::string NetKeyCard::AppName = "nks";
 
-namespace
-{
-static GpgME::Key lookup_key(GpgME::Context *ctx, const std::string &keyGrip)
-{
-    if (!ctx || keyGrip.empty()) {
-        return GpgME::Key();
-    }
-    const std::string pattern = '&' + keyGrip;
-    qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: pattern=" << pattern.c_str();
-    if (const auto err = ctx->startKeyListing(pattern.c_str())) {
-        qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: startKeyListing failed:" << Formatting::errorAsString(err);
-        return GpgME::Key();
-    }
-    GpgME::Error e;
-    const auto key = ctx->nextKey(e);
-    ctx->endKeyListing();
-    qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: e=" << e.code() << "; key.isNull()" << key.isNull();
-    return key;
-}
-
-} // namespace
-
 NetKeyCard::NetKeyCard(const Card &card)
     : Card(card)
 {
@@ -67,30 +45,6 @@ std::string NetKeyCard::nksPinKeyRef()
 std::string NetKeyCard::sigGPinKeyRef()
 {
     return std::string("PW1.CH.SIG");
-}
-
-void NetKeyCard::processCardInfo()
-{
-    setKeyPairInfo(keyInfos());
-}
-
-void NetKeyCard::setKeyPairInfo(const std::vector<KeyPairInfo> &infos)
-{
-    // check that any of the keys are new
-    const std::unique_ptr<GpgME::Context> klc(GpgME::Context::createForProtocol(GpgME::CMS));
-    if (!klc.get()) {
-        return;
-    }
-    klc->setKeyListMode(GpgME::Ephemeral);
-    klc->addKeyListMode(GpgME::Validate);
-
-    mKeys.clear();
-    for (const auto &info : infos) {
-        const auto key = lookup_key(klc.get(), info.grip);
-        if (!key.isNull()) {
-            mKeys.push_back(key);
-        }
-    }
 }
 
 // State 0 -> NKS PIN Retry counter
@@ -116,37 +70,4 @@ bool NetKeyCard::hasSigGNullPin() const
         return false;
     }
     return states[2] == Card::NullPin;
-}
-
-std::vector<GpgME::Key> NetKeyCard::keys() const
-{
-    return mKeys;
-}
-
-bool NetKeyCard::operator==(const Card &other) const
-{
-    static const _detail::ByFingerprint<std::equal_to> keysHaveSameFingerprint;
-
-    if (!Card::operator==(other)) {
-        qCDebug(KLEOPATRA_LOG) << "NetKeyCard" << __func__ << "Card don't match";
-        return false;
-    }
-
-    const auto otherNetKeyCard = dynamic_cast<const NetKeyCard *>(&other);
-    if (!otherNetKeyCard) {
-        qCWarning(KLEOPATRA_LOG) << "Failed to cast other card to NetKeyCard";
-        return false;
-    }
-    if (mKeys.size() != otherNetKeyCard->mKeys.size()) {
-        qCDebug(KLEOPATRA_LOG) << "NetKeyCard" << __func__ << "Number of keys doesn't match";
-        return false;
-    }
-    const auto otherHasKey = [otherNetKeyCard](const GpgME::Key &key) {
-        return Kleo::any_of(otherNetKeyCard->mKeys, [key](const GpgME::Key &otherKey) {
-            return keysHaveSameFingerprint(key, otherKey);
-        });
-    };
-    const bool result = Kleo::all_of(mKeys, otherHasKey);
-    qCDebug(KLEOPATRA_LOG) << "NetKeyCard" << __func__ << "Keys match?" << result;
-    return result;
 }

@@ -25,9 +25,13 @@
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
+#include <Libkleo/Debug>
+#include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 
 #include <KConfigGroup>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <KSharedConfig>
 
 #include <QHBoxLayout>
@@ -37,9 +41,6 @@
 #include <QScrollArea>
 #include <QTreeView>
 #include <QVBoxLayout>
-
-#include <KLocalizedString>
-#include <KMessageBox>
 
 #include <gpgme++/context.h>
 #include <gpgme++/engineinfo.h>
@@ -155,6 +156,8 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
 
     const KConfigGroup configGroup(KSharedConfig::openConfig(), QStringLiteral("NetKeyCardView"));
     mTreeView->restoreLayout(configGroup);
+
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, &NetKeyWidget::loadCertificates);
 }
 
 NetKeyWidget::~NetKeyWidget() = default;
@@ -212,9 +215,6 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mErrorLabel->setVisible(false);
     }
 
-    const auto keys = card->keys();
-    mTreeView->setKeys(keys);
-
     if (mKeyForCardKeysButton) {
         mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey()
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
@@ -224,10 +224,42 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mCreateCSRButton->setEnabled(!getKeysSuitableForCSRCreation(card).empty());
     }
 
-    if (card->keyInfos().size() > keys.size()) {
+    loadCertificates();
+    if (mCertificates.size() != card->keyInfos().size()) {
         // the card contains keys we don't know; try to learn them from the card
         learnCard();
     }
+}
+
+void NetKeyWidget::loadCertificates()
+{
+    qCDebug(KLEOPATRA_LOG) << __func__;
+    if (mSerialNumber.empty()) {
+        // ignore KeyCache::keysMayHaveChanged signal until the card has been set
+        return;
+    }
+
+    const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
+    if (!netKeyCard) {
+        qCDebug(KLEOPATRA_LOG) << "Failed to find the smartcard with the serial number:" << mSerialNumber;
+        return;
+    }
+
+    const auto cardKeyInfos = netKeyCard->keyInfos();
+    mCertificates.clear();
+    mCertificates.reserve(cardKeyInfos.size());
+
+    // try to get the certificates from the key cache
+    for (const auto &cardKeyInfo : cardKeyInfos) {
+        const auto certificate = KeyCache::instance()->findSubkeyByKeyGrip(cardKeyInfo.grip).parent();
+        if (!certificate.isNull() && (certificate.protocol() == GpgME::CMS)) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Found certificate for card key" << cardKeyInfo.grip << "in cache:" << certificate;
+            mCertificates.push_back(certificate);
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Did not find certificate for card key" << cardKeyInfo.grip << "in cache";
+        }
+    }
+    mTreeView->setKeys(mCertificates);
 }
 
 void NetKeyWidget::learnCard()

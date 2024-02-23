@@ -21,7 +21,6 @@
 #include "commands/createcsrforcardkeycommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/detailscommand.h"
-#include "commands/learncardkeyscommand.h"
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
@@ -264,10 +263,8 @@ void NetKeyWidget::loadCertificates()
 
 void NetKeyWidget::learnCard()
 {
-    auto cmd = new LearnCardKeysCommand(GpgME::CMS);
-    cmd->setParentWidget(this);
-    cmd->setShowsOutputWindow(false);
-    cmd->start();
+    qCDebug(KLEOPATRA_LOG) << __func__;
+    ReaderStatus::mutableInstance()->learnCards(GpgME::CMS);
 }
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)

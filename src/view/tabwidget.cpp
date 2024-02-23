@@ -42,6 +42,7 @@
 #include <QAbstractProxyModel>
 #include <QMenu>
 #include <QRegularExpression>
+#include <QTimer>
 #include <QToolButton>
 #include <QTreeView>
 #include <QVBoxLayout>
@@ -1041,8 +1042,10 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
     });
 
     if (columnReference) {
-        page->setColumnSizes(columnReference->columnSizes());
-        page->setSortColumn(columnReference->sortColumn(), columnReference->sortOrder());
+        QTimer::singleShot(0, q, [=]() {
+            page->setColumnSizes(columnReference->columnSizes());
+            page->setSortColumn(columnReference->sortColumn(), columnReference->sortOrder());
+        });
     }
 
     QAbstractItemView *const previous = q->currentView();

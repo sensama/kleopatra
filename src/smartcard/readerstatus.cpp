@@ -40,6 +40,7 @@
 
 #include <QMutex>
 #include <QPointer>
+#include <QProcess>
 #include <QRegularExpression>
 #include <QThread>
 #include <QWaitCondition>
@@ -736,11 +737,22 @@ struct Transaction {
     AssuanTransaction *assuanTransaction;
 };
 
+static const Transaction learnCMSTransaction = {{"__all__", "__cms__"}, "__learn__", nullptr, nullptr, nullptr};
 static const Transaction updateTransaction = {{"__all__", "__all__"}, "__update__", nullptr, nullptr, nullptr};
 static const Transaction quitTransaction = {{"__all__", "__all__"}, "__quit__", nullptr, nullptr, nullptr};
 
 namespace
 {
+static void logProcessOutput(const char *prefix, const char *label, const QByteArray &output)
+{
+    if (output.isEmpty()) {
+        return;
+    }
+    for (const auto &line : output.split('\n')) {
+        qCDebug(KLEOPATRA_LOG) << prefix << label << line;
+    }
+}
+
 class ReaderStatusThread : public QThread
 {
     Q_OBJECT
@@ -782,6 +794,7 @@ Q_SIGNALS:
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
     void updateFinished();
     void oneTransactionFinished(const GpgME::Error &err);
+    void cardsLearned(GpgME::Protocol protocol);
 
 public Q_SLOTS:
     void deviceStatusChanged(const QByteArray &details)
@@ -794,6 +807,16 @@ public Q_SLOTS:
     {
         qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[GUI]::ping()";
         addTransaction(updateTransaction);
+    }
+
+    void learnCards(GpgME::Protocol protocol)
+    {
+        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[GUI]::learnCards(" << Formatting::displayName(protocol) << ")";
+        if (protocol == GpgME::CMS) {
+            addTransaction(learnCMSTransaction);
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "unsupported protocol";
+        }
     }
 
     void stop()
@@ -821,6 +844,37 @@ private Q_SLOTS:
     }
 
 private:
+    void learnCMSCards()
+    {
+        QProcess process;
+        connect(&process, &QProcess::readyReadStandardOutput, &process, [&process]() {
+            logProcessOutput("learnCMSCards", "stdout:", process.readAllStandardOutput());
+        });
+        connect(&process, &QProcess::readyReadStandardError, &process, [&process]() {
+            logProcessOutput("learnCMSCards", "stderr:", process.readAllStandardError());
+        });
+
+        process.start(gpgSmPath(), {QStringLiteral("--learn-card"), QStringLiteral("-v")});
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Running" << process.program() << process.arguments().join(QLatin1Char{' '});
+        if (!process.waitForStarted()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Starting" << process.program() << "failed";
+            return;
+        }
+        // ensure that gpgsm doesn't wait for input
+        process.closeWriteChannel();
+
+        const bool success = process.waitForFinished(60000); // 60 seconds should be more than enough
+
+        logProcessOutput(__func__, "stdout:", process.readAllStandardOutput());
+        logProcessOutput(__func__, "stderr:", process.readAllStandardError());
+        if (success) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Running" << process.program() << process.arguments().join(QLatin1Char{' '}) << "succeeded";
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Running" << process.program() << process.arguments().join(QLatin1Char{' '})
+                                   << "failed; error:" << process.error() << ", exit code:" << process.exitCode();
+        }
+    }
+
     void run() override
     {
         while (true) {
@@ -875,7 +929,7 @@ private:
                 return; // quit
             }
 
-            if ((nullSlot && command == updateTransaction.command)) {
+            if (nullSlot && command == updateTransaction.command) {
                 bool anyError = false;
 
                 if (cardApp.serialNumber == "__all__" || cardApp.appName == "__all__") {
@@ -954,6 +1008,9 @@ private:
                 }
 
                 Q_EMIT updateFinished();
+            } else if (nullSlot && command == learnCMSTransaction.command) {
+                learnCMSCards();
+                Q_EMIT cardsLearned(GpgME::CMS);
             } else {
                 GpgME::Error err;
                 if (gpgHasMultiCardMultiAppSupport()) {
@@ -1010,6 +1067,7 @@ public:
         connect(this, &::ReaderStatusThread::cardRemoved, q, &ReaderStatus::cardRemoved);
         connect(this, &::ReaderStatusThread::updateFinished, q, &ReaderStatus::updateFinished);
         connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged, q, &ReaderStatus::firstCardWithNullPinChanged);
+        connect(this, &::ReaderStatusThread::cardsLearned, q, &ReaderStatus::cardsLearned);
 
         if (DeviceInfoWatcher::isSupported()) {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using new DeviceInfoWatcher";
@@ -1122,6 +1180,11 @@ void ReaderStatus::updateCard(const std::string &serialNumber, const std::string
     const CardApp cardApp = {serialNumber, appName};
     const Transaction t = {cardApp, updateTransaction.command, nullptr, nullptr, nullptr};
     d->addTransaction(t);
+}
+
+void ReaderStatus::learnCards(GpgME::Protocol protocol)
+{
+    d->learnCards(protocol);
 }
 
 std::vector<std::shared_ptr<Card>> ReaderStatus::getCards() const

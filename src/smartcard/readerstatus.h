@@ -14,6 +14,8 @@
 
 #include "card.h"
 
+#include <gpgme++/global.h>
+
 #include <memory>
 #include <vector>
 
@@ -68,6 +70,7 @@ public:
 public Q_SLOTS:
     void updateStatus();
     void updateCard(const std::string &serialNumber, const std::string &appName);
+    void learnCards(GpgME::Protocol protocol);
     void startMonitoring();
 
 Q_SIGNALS:
@@ -76,6 +79,7 @@ Q_SIGNALS:
     void cardChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
     void updateFinished();
+    void cardsLearned(GpgME::Protocol protocol);
     void startOfGpgAgentRequested();
 
 private:

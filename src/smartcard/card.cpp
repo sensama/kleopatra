@@ -252,7 +252,6 @@ void Card::setCardInfo(const std::vector<std::pair<std::string, std::string>> &i
         qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
         parseCardInfo(pair.first, pair.second);
     }
-    processCardInfo();
 }
 
 namespace
@@ -317,10 +316,6 @@ void Card::parseCardInfo(const std::string &name, const std::string &value)
     } else {
         mCardInfo.insert({name, value});
     }
-}
-
-void Card::processCardInfo()
-{
 }
 
 void Card::addCardInfo(const std::string &name, const std::string &value)

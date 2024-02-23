@@ -30,17 +30,6 @@ public:
 
     bool hasSigGNullPin() const;
     bool hasNKSNullPin() const;
-
-    std::vector<GpgME::Key> keys() const;
-
-private:
-    void processCardInfo() override;
-    void setKeyPairInfo(const std::vector<KeyPairInfo> &infos);
-
-    bool operator==(const Card &other) const override;
-
-private:
-    std::vector<GpgME::Key> mKeys;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

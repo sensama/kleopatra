@@ -111,8 +111,6 @@ protected:
     void setAppName(const std::string &name);
     void setInitialKeyInfos(const std::vector<KeyPairInfo> &infos);
 
-    virtual void processCardInfo();
-
     void addCardInfo(const std::string &name, const std::string &value);
     std::string cardInfo(const std::string &name) const;
 

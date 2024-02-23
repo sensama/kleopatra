@@ -11,10 +11,16 @@
 #include <gpgme++/error.h>
 
 #include <string>
+#include <vector>
 
 class QLabel;
 class QPushButton;
 class QScrollArea;
+
+namespace GpgME
+{
+class Key;
+}
 
 namespace Kleo
 {
@@ -36,6 +42,7 @@ public:
     void setCard(const SmartCard::NetKeyCard *card);
 
 private:
+    void loadCertificates();
     void learnCard();
     void doChangePin(const std::string &keyRef);
     void createKeyFromCardKeys();
@@ -43,6 +50,8 @@ private:
 
 private:
     std::string mSerialNumber;
+    std::vector<GpgME::Key> mCertificates;
+
     QLabel *mSerialNumberLabel = nullptr;
     QLabel *mVersionLabel = nullptr;
     QLabel *mErrorLabel = nullptr;

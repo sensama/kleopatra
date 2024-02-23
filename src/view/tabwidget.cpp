@@ -40,6 +40,7 @@
 #include <QTabWidget>
 
 #include <QAbstractProxyModel>
+#include <QHeaderView>
 #include <QMenu>
 #include <QRegularExpression>
 #include <QTimer>
@@ -1042,10 +1043,21 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
     });
 
     if (columnReference) {
-        QTimer::singleShot(0, q, [=]() {
-            page->setColumnSizes(columnReference->columnSizes());
-            page->setSortColumn(columnReference->sortColumn(), columnReference->sortOrder());
-        });
+        QMetaObject::invokeMethod(
+            q,
+            [=]() {
+                page->setColumnSizes(columnReference->columnSizes());
+                page->setSortColumn(columnReference->sortColumn(), columnReference->sortOrder());
+            },
+            Qt::QueuedConnection);
+        for (auto i = 0; i < columnReference->view()->model()->columnCount(); i++) {
+            page->view()->setColumnHidden(i, columnReference->view()->isColumnHidden(i));
+            page->view()->header()->moveSection(page->view()->header()->visualIndex(i), columnReference->view()->header()->visualIndex(i));
+        }
+        for (auto row = 0; row < page->view()->model()->rowCount(); row++) {
+            page->view()->setExpanded(page->view()->model()->index(row, 0),
+                                      columnReference->view()->isExpanded(columnReference->view()->model()->index(row, 0)));
+        }
     }
 
     QAbstractItemView *const previous = q->currentView();

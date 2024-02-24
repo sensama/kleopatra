@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-23 00:38+0000\n"
+"POT-Creation-Date: 2024-02-24 00:37+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -7415,7 +7415,7 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:588
+#: src/dialogs/certifywidget.cpp:588 src/dialogs/subkeyswidget.cpp:109
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgctxt "@title:column"
@@ -8175,13 +8175,6 @@ msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:109
-#, fuzzy, kde-format
-#| msgid "Type"
-msgctxt "@title:column"
-msgid "Type"
-msgstr "Түрі"
-
 #: src/dialogs/subkeyswidget.cpp:110
 #, fuzzy, kde-format
 #| msgid "Valid From"
@@ -8204,11 +8197,10 @@ msgid "Status"
 msgstr "Күйі"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, fuzzy, kde-format
-#| msgid "Strength"
+#, kde-format
 msgctxt "@title:column"
-msgid "Strength"
-msgstr "Мықтылығы"
+msgid "Algorithm"
+msgstr ""
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, fuzzy, kde-format
@@ -8218,108 +8210,95 @@ msgid "Usage"
 msgstr "Ішкі кілтті қолдануы:"
 
 #: src/dialogs/subkeyswidget.cpp:115
-#, kde-format
-msgctxt "@title:column"
-msgid "Primary"
-msgstr ""
-
-#: src/dialogs/subkeyswidget.cpp:116
 #, fuzzy, kde-format
 #| msgid "Stored"
 msgctxt "@title:column"
 msgid "Storage"
 msgstr " Қайда сақталған:"
 
-#: src/dialogs/subkeyswidget.cpp:123
+#: src/dialogs/subkeyswidget.cpp:122
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Жарамдылығы"
 
-#: src/dialogs/subkeyswidget.cpp:126
+#: src/dialogs/subkeyswidget.cpp:125
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Құпия кілтін экспорттау..."
 
-#: src/dialogs/subkeyswidget.cpp:129
+#: src/dialogs/subkeyswidget.cpp:128
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:132
+#: src/dialogs/subkeyswidget.cpp:131
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Смарт-карта"
 
-#: src/dialogs/subkeyswidget.cpp:135
+#: src/dialogs/subkeyswidget.cpp:134
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Құпия кілтін экспорттау..."
 
-#: src/dialogs/subkeyswidget.cpp:214
+#: src/dialogs/subkeyswidget.cpp:213
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgid "Change validity"
 msgstr "Жарамдылығы"
 
-#: src/dialogs/subkeyswidget.cpp:221
+#: src/dialogs/subkeyswidget.cpp:220
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgid "Export OpenSSH key"
 msgstr "Құпия кілтін экспорттау..."
 
-#: src/dialogs/subkeyswidget.cpp:226
+#: src/dialogs/subkeyswidget.cpp:225
 #, kde-format
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:233
+#: src/dialogs/subkeyswidget.cpp:232
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "Transfer to smartcard"
 msgstr "Смарт-карта"
 
-#: src/dialogs/subkeyswidget.cpp:241
+#: src/dialogs/subkeyswidget.cpp:240
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgid "Export secret subkey"
 msgstr "Құпия кілтін экспорттау..."
 
-#: src/dialogs/subkeyswidget.cpp:331
-#, fuzzy, kde-format
-#| msgid "Yes"
-msgctxt "yes, is primary key"
-msgid "yes"
-msgstr "Иә"
-
-#: src/dialogs/subkeyswidget.cpp:331
+#: src/dialogs/subkeyswidget.cpp:323
 #, kde-format
-msgctxt "no, is not primary key"
-msgid "no"
+msgctxt "not applicable"
+msgid "n/a"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:326
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "Смарт-карта"
 
-#: src/dialogs/subkeyswidget.cpp:336
+#: src/dialogs/subkeyswidget.cpp:328
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "smart card"
 msgstr "Смарт-карта"
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:331
 #, fuzzy, kde-format
 #| msgctxt "history size spinbox suffix"
 #| msgid " line"
@@ -8328,14 +8307,14 @@ msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr " жол"
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:333
 #, fuzzy, kde-format
 #| msgctxt "stored..."
 #| msgid "on this computer"
 msgid "on this computer"
 msgstr "Осы компьютерінде"
 
-#: src/dialogs/subkeyswidget.cpp:343
+#: src/dialogs/subkeyswidget.cpp:335
 #, fuzzy, kde-format
 #| msgctxt "unknown trust level"
 #| msgid "unknown"
@@ -8343,7 +8322,7 @@ msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "беймәлім"
 
-#: src/dialogs/subkeyswidget.cpp:371
+#: src/dialogs/subkeyswidget.cpp:361
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -8351,7 +8330,7 @@ msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Ішкі кілттер"
 
-#: src/dialogs/subkeyswidget.cpp:379
+#: src/dialogs/subkeyswidget.cpp:369
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -13125,6 +13104,24 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Type"
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Түрі"
+
+#, fuzzy
+#~| msgid "Strength"
+#~ msgctxt "@title:column"
+#~ msgid "Strength"
+#~ msgstr "Мықтылығы"
+
+#, fuzzy
+#~| msgid "Yes"
+#~ msgctxt "yes, is primary key"
+#~ msgid "yes"
+#~ msgstr "Иә"
 
 #, fuzzy
 #~| msgid "Certificates"

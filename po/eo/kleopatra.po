@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-23 00:38+0000\n"
+"POT-Creation-Date: 2024-02-24 00:37+0000\n"
 "PO-Revision-Date: 2024-02-18 08:21+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -6979,7 +6979,7 @@ msgstr ""
 "<br><i>Rimarku: Nur la fingrospuroj klare identigas la atestilon kaj ĝian "
 "posedanton.</i>"
 
-#: src/dialogs/certifywidget.cpp:588
+#: src/dialogs/certifywidget.cpp:588 src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
@@ -7694,12 +7694,6 @@ msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:109
-#, kde-format
-msgctxt "@title:column"
-msgid "Type"
-msgstr "Tipo"
-
 #: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
@@ -7719,10 +7713,11 @@ msgid "Status"
 msgstr "Stato"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Algorithm:"
 msgctxt "@title:column"
-msgid "Strength"
-msgstr "Forto"
+msgid "Algorithm"
+msgstr "Algoritmo:"
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
@@ -7733,117 +7728,105 @@ msgstr "Uzado"
 #: src/dialogs/subkeyswidget.cpp:115
 #, kde-format
 msgctxt "@title:column"
-msgid "Primary"
-msgstr "Primaraj"
-
-#: src/dialogs/subkeyswidget.cpp:116
-#, kde-format
-msgctxt "@title:column"
 msgid "Storage"
 msgstr "Konservado"
 
-#: src/dialogs/subkeyswidget.cpp:123
+#: src/dialogs/subkeyswidget.cpp:122
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Ŝanĝi validecon"
 
-#: src/dialogs/subkeyswidget.cpp:126
+#: src/dialogs/subkeyswidget.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Eksporti OpenSSH-ŝlosilon"
 
-#: src/dialogs/subkeyswidget.cpp:129
+#: src/dialogs/subkeyswidget.cpp:128
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Restaŭri presitan sekurkopion"
 
-#: src/dialogs/subkeyswidget.cpp:132
+#: src/dialogs/subkeyswidget.cpp:131
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Transdoni al smartcard"
 
-#: src/dialogs/subkeyswidget.cpp:135
+#: src/dialogs/subkeyswidget.cpp:134
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Eksporti sekretan subŝlosilon"
 
-#: src/dialogs/subkeyswidget.cpp:214
+#: src/dialogs/subkeyswidget.cpp:213
 #, kde-format
 msgid "Change validity"
 msgstr "Ŝanĝi Validecon"
 
-#: src/dialogs/subkeyswidget.cpp:221
+#: src/dialogs/subkeyswidget.cpp:220
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Eksporti OpenSSH-ŝlosilon"
 
-#: src/dialogs/subkeyswidget.cpp:226
+#: src/dialogs/subkeyswidget.cpp:225
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Restarigi presitan sekurkopion"
 
-#: src/dialogs/subkeyswidget.cpp:233
+#: src/dialogs/subkeyswidget.cpp:232
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Transigi al smartcard"
 
-#: src/dialogs/subkeyswidget.cpp:241
+#: src/dialogs/subkeyswidget.cpp:240
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Eksporti sekretan subŝlosilon"
 
-#: src/dialogs/subkeyswidget.cpp:331
+#: src/dialogs/subkeyswidget.cpp:323
 #, kde-format
-msgctxt "yes, is primary key"
-msgid "yes"
-msgstr "jes"
+msgctxt "not applicable"
+msgid "n/a"
+msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:331
-#, kde-format
-msgctxt "no, is not primary key"
-msgid "no"
-msgstr "ne"
-
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:326
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "inteligenta karto %1"
 
-#: src/dialogs/subkeyswidget.cpp:336
+#: src/dialogs/subkeyswidget.cpp:328
 #, kde-format
 msgid "smart card"
 msgstr "inteligenta karto"
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "eksterrete"
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:333
 #, kde-format
 msgid "on this computer"
 msgstr "sur ĉi tiu komputilo"
 
-#: src/dialogs/subkeyswidget.cpp:343
+#: src/dialogs/subkeyswidget.cpp:335
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "nekonata"
 
-#: src/dialogs/subkeyswidget.cpp:371
+#: src/dialogs/subkeyswidget.cpp:361
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Subŝlosiloj Detaloj"
 
-#: src/dialogs/subkeyswidget.cpp:379
+#: src/dialogs/subkeyswidget.cpp:369
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
@@ -12517,6 +12500,26 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgctxt "@title:column"
+#~ msgid "Strength"
+#~ msgstr "Forto"
+
+#~ msgctxt "@title:column"
+#~ msgid "Primary"
+#~ msgstr "Primaraj"
+
+#~ msgctxt "yes, is primary key"
+#~ msgid "yes"
+#~ msgstr "jes"
+
+#~ msgctxt "no, is not primary key"
+#~ msgid "no"
+#~ msgstr "ne"
 
 #~ msgid "All Certificates"
 #~ msgstr "Ĉiuj Atestiloj"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-23 00:38+0000\n"
+"POT-Creation-Date: 2024-02-24 00:37+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -7350,7 +7350,7 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:588
+#: src/dialogs/certifywidget.cpp:588 src/dialogs/subkeyswidget.cpp:109
 #, fuzzy, kde-format
 #| msgid "Fingerprint:"
 msgctxt "@title:column"
@@ -8115,13 +8115,6 @@ msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:109
-#, fuzzy, kde-format
-#| msgid "Type"
-msgctxt "@title:column"
-msgid "Type"
-msgstr "Typ"
-
 #: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
@@ -8141,10 +8134,11 @@ msgid "Status"
 msgstr "Stav"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Algorithm:"
 msgctxt "@title:column"
-msgid "Strength"
-msgstr "Sila"
+msgid "Algorithm"
+msgstr "Algoritmus:"
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, fuzzy, kde-format
@@ -8154,132 +8148,118 @@ msgid "Usage"
 msgstr "Použitie"
 
 #: src/dialogs/subkeyswidget.cpp:115
-#, fuzzy, kde-format
-#| msgid "Primary"
-msgctxt "@title:column"
-msgid "Primary"
-msgstr "Primárna"
-
-#: src/dialogs/subkeyswidget.cpp:116
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Úložisko"
 
-#: src/dialogs/subkeyswidget.cpp:123
+#: src/dialogs/subkeyswidget.cpp:122
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Platnosť"
 
-#: src/dialogs/subkeyswidget.cpp:126
+#: src/dialogs/subkeyswidget.cpp:125
 #, fuzzy, kde-format
 #| msgid "Export Secret Key"
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Exportovať tajný kľúč"
 
-#: src/dialogs/subkeyswidget.cpp:129
+#: src/dialogs/subkeyswidget.cpp:128
 #, fuzzy, kde-format
 #| msgid "Restore printed backup"
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Obnoviť tlačenú zálohu"
 
-#: src/dialogs/subkeyswidget.cpp:132
+#: src/dialogs/subkeyswidget.cpp:131
 #, fuzzy, kde-format
 #| msgid "Transfer to smartcard"
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Presunúť na smart kartu"
 
-#: src/dialogs/subkeyswidget.cpp:135
+#: src/dialogs/subkeyswidget.cpp:134
 #, fuzzy, kde-format
 #| msgid "Export Secret Key"
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Exportovať tajný kľúč"
 
-#: src/dialogs/subkeyswidget.cpp:214
+#: src/dialogs/subkeyswidget.cpp:213
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgid "Change validity"
 msgstr "Platnosť"
 
-#: src/dialogs/subkeyswidget.cpp:221
+#: src/dialogs/subkeyswidget.cpp:220
 #, fuzzy, kde-format
 #| msgid "Export Secret Key"
 msgid "Export OpenSSH key"
 msgstr "Exportovať tajný kľúč"
 
-#: src/dialogs/subkeyswidget.cpp:226
+#: src/dialogs/subkeyswidget.cpp:225
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Obnoviť tlačenú zálohu"
 
-#: src/dialogs/subkeyswidget.cpp:233
+#: src/dialogs/subkeyswidget.cpp:232
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Presunúť na smart kartu"
 
-#: src/dialogs/subkeyswidget.cpp:241
+#: src/dialogs/subkeyswidget.cpp:240
 #, fuzzy, kde-format
 #| msgid "Export Secret Key"
 msgid "Export secret subkey"
 msgstr "Exportovať tajný kľúč"
 
-#: src/dialogs/subkeyswidget.cpp:331
-#, fuzzy, kde-format
-#| msgid "Yes"
-msgctxt "yes, is primary key"
-msgid "yes"
-msgstr "áno"
-
-#: src/dialogs/subkeyswidget.cpp:331
+#: src/dialogs/subkeyswidget.cpp:323
 #, kde-format
-msgctxt "no, is not primary key"
-msgid "no"
-msgstr "nie"
+msgctxt "not applicable"
+msgid "n/a"
+msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:326
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "SmartCard"
 
-#: src/dialogs/subkeyswidget.cpp:336
+#: src/dialogs/subkeyswidget.cpp:328
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "smart card"
 msgstr "SmartCard"
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "nepripojený"
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:333
 #, kde-format
 msgid "on this computer"
 msgstr "na tomto počítači"
 
-#: src/dialogs/subkeyswidget.cpp:343
+#: src/dialogs/subkeyswidget.cpp:335
 #, fuzzy, kde-format
 #| msgid "unknown"
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "neznáme"
 
-#: src/dialogs/subkeyswidget.cpp:371
+#: src/dialogs/subkeyswidget.cpp:361
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Podrobnosti podkľúčov"
 
-#: src/dialogs/subkeyswidget.cpp:379
+#: src/dialogs/subkeyswidget.cpp:369
 #, fuzzy, kde-format
 #| msgid "Subkeys:"
 msgctxt "@action:button"
@@ -13002,6 +12982,32 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\"."
+
+#, fuzzy
+#~| msgid "Type"
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Typ"
+
+#~ msgctxt "@title:column"
+#~ msgid "Strength"
+#~ msgstr "Sila"
+
+#, fuzzy
+#~| msgid "Primary"
+#~ msgctxt "@title:column"
+#~ msgid "Primary"
+#~ msgstr "Primárna"
+
+#, fuzzy
+#~| msgid "Yes"
+#~ msgctxt "yes, is primary key"
+#~ msgid "yes"
+#~ msgstr "áno"
+
+#~ msgctxt "no, is not primary key"
+#~ msgid "no"
+#~ msgstr "nie"
 
 #~ msgid "All Certificates"
 #~ msgstr "Všetky certifikáty"

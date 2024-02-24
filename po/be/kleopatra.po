@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-23 00:38+0000\n"
+"POT-Creation-Date: 2024-02-24 00:37+0000\n"
 "PO-Revision-Date: 2007-05-25 13:03+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -6849,7 +6849,7 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:588
+#: src/dialogs/certifywidget.cpp:588 src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
@@ -7553,12 +7553,6 @@ msgctxt "@title:column"
 msgid "ID"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:109
-#, kde-format
-msgctxt "@title:column"
-msgid "Type"
-msgstr ""
-
 #: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
@@ -7580,7 +7574,7 @@ msgstr ""
 #: src/dialogs/subkeyswidget.cpp:113
 #, kde-format
 msgctxt "@title:column"
-msgid "Strength"
+msgid "Algorithm"
 msgstr ""
 
 #: src/dialogs/subkeyswidget.cpp:114
@@ -7592,127 +7586,114 @@ msgstr ""
 #: src/dialogs/subkeyswidget.cpp:115
 #, kde-format
 msgctxt "@title:column"
-msgid "Primary"
-msgstr ""
-
-#: src/dialogs/subkeyswidget.cpp:116
-#, kde-format
-msgctxt "@title:column"
 msgid "Storage"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:123
+#: src/dialogs/subkeyswidget.cpp:122
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Скасавана."
 
-#: src/dialogs/subkeyswidget.cpp:126
+#: src/dialogs/subkeyswidget.cpp:125
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Скасавана."
 
-#: src/dialogs/subkeyswidget.cpp:129
+#: src/dialogs/subkeyswidget.cpp:128
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:132
+#: src/dialogs/subkeyswidget.cpp:131
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:135
+#: src/dialogs/subkeyswidget.cpp:134
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Змяніць колер &фона..."
 
-#: src/dialogs/subkeyswidget.cpp:214
+#: src/dialogs/subkeyswidget.cpp:213
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Change validity"
 msgstr "Скасавана."
 
-#: src/dialogs/subkeyswidget.cpp:221
+#: src/dialogs/subkeyswidget.cpp:220
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Export OpenSSH key"
 msgstr "Скасавана."
 
-#: src/dialogs/subkeyswidget.cpp:226
+#: src/dialogs/subkeyswidget.cpp:225
 #, kde-format
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:233
+#: src/dialogs/subkeyswidget.cpp:232
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:241
+#: src/dialogs/subkeyswidget.cpp:240
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgid "Export secret subkey"
 msgstr "Змяніць колер &фона..."
 
-#: src/dialogs/subkeyswidget.cpp:331
-#, fuzzy, kde-format
-#| msgid "Yes"
-msgctxt "yes, is primary key"
-msgid "yes"
-msgstr "Так"
-
-#: src/dialogs/subkeyswidget.cpp:331
+#: src/dialogs/subkeyswidget.cpp:323
 #, kde-format
-msgctxt "no, is not primary key"
-msgid "no"
+msgctxt "not applicable"
+msgid "n/a"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:326
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "Змяніць колер &фона..."
 
-#: src/dialogs/subkeyswidget.cpp:336
+#: src/dialogs/subkeyswidget.cpp:328
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgid "smart card"
 msgstr "Змяніць колер &фона..."
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:333
 #, kde-format
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:343
+#: src/dialogs/subkeyswidget.cpp:335
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:371
+#: src/dialogs/subkeyswidget.cpp:361
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "&Падрабязнасці"
 
-#: src/dialogs/subkeyswidget.cpp:379
+#: src/dialogs/subkeyswidget.cpp:369
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@action:button"
@@ -12251,6 +12232,12 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Yes"
+#~ msgctxt "yes, is primary key"
+#~ msgid "yes"
+#~ msgstr "Так"
 
 #, fuzzy
 #~| msgid "Canceled."

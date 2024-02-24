@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-23 00:38+0000\n"
+"POT-Creation-Date: 2024-02-24 00:37+0000\n"
 "PO-Revision-Date: 2024-02-17 13:07+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -7055,7 +7055,7 @@ msgstr ""
 "сертифицирате потребителските идентификатори..<br><i>Забележка: Само "
 "пръстовият отпечатък ясно идентифицира ключа и неговия собственик.</i>"
 
-#: src/dialogs/certifywidget.cpp:588
+#: src/dialogs/certifywidget.cpp:588 src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
@@ -7777,12 +7777,6 @@ msgctxt "@title:column"
 msgid "ID"
 msgstr "Идентификатор"
 
-#: src/dialogs/subkeyswidget.cpp:109
-#, kde-format
-msgctxt "@title:column"
-msgid "Type"
-msgstr "Вид"
-
 #: src/dialogs/subkeyswidget.cpp:110
 #, kde-format
 msgctxt "@title:column"
@@ -7802,10 +7796,11 @@ msgid "Status"
 msgstr "Състояние"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Algorithm:"
 msgctxt "@title:column"
-msgid "Strength"
-msgstr "Надеждност"
+msgid "Algorithm"
+msgstr "Алгоритъм:"
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
@@ -7816,117 +7811,105 @@ msgstr "Използване"
 #: src/dialogs/subkeyswidget.cpp:115
 #, kde-format
 msgctxt "@title:column"
-msgid "Primary"
-msgstr "Основна"
-
-#: src/dialogs/subkeyswidget.cpp:116
-#, kde-format
-msgctxt "@title:column"
 msgid "Storage"
 msgstr "Съхранение"
 
-#: src/dialogs/subkeyswidget.cpp:123
+#: src/dialogs/subkeyswidget.cpp:122
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Промяна на валидност"
 
-#: src/dialogs/subkeyswidget.cpp:126
+#: src/dialogs/subkeyswidget.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Експортиране на OpenSSH ключ"
 
-#: src/dialogs/subkeyswidget.cpp:129
+#: src/dialogs/subkeyswidget.cpp:128
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Възстановяване на отпечатаното архивиране"
 
-#: src/dialogs/subkeyswidget.cpp:132
+#: src/dialogs/subkeyswidget.cpp:131
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Прехвърляне към смарт карта"
 
-#: src/dialogs/subkeyswidget.cpp:135
+#: src/dialogs/subkeyswidget.cpp:134
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Експортиране на секретни подключове"
 
-#: src/dialogs/subkeyswidget.cpp:214
+#: src/dialogs/subkeyswidget.cpp:213
 #, kde-format
 msgid "Change validity"
 msgstr "Промяна на валидност"
 
-#: src/dialogs/subkeyswidget.cpp:221
+#: src/dialogs/subkeyswidget.cpp:220
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Експортране на OpenSSH ключ"
 
-#: src/dialogs/subkeyswidget.cpp:226
+#: src/dialogs/subkeyswidget.cpp:225
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Възстановяване на отпечатаното архивиране"
 
-#: src/dialogs/subkeyswidget.cpp:233
+#: src/dialogs/subkeyswidget.cpp:232
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Прехвърляне към смарт карта"
 
-#: src/dialogs/subkeyswidget.cpp:241
+#: src/dialogs/subkeyswidget.cpp:240
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Експортране на секретни подключове"
 
-#: src/dialogs/subkeyswidget.cpp:331
+#: src/dialogs/subkeyswidget.cpp:323
 #, kde-format
-msgctxt "yes, is primary key"
-msgid "yes"
-msgstr "да"
+msgctxt "not applicable"
+msgid "n/a"
+msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:331
-#, kde-format
-msgctxt "no, is not primary key"
-msgid "no"
-msgstr "не"
-
-#: src/dialogs/subkeyswidget.cpp:334
+#: src/dialogs/subkeyswidget.cpp:326
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "смарт карта %1"
 
-#: src/dialogs/subkeyswidget.cpp:336
+#: src/dialogs/subkeyswidget.cpp:328
 #, kde-format
 msgid "smart card"
 msgstr "смарт карта"
 
-#: src/dialogs/subkeyswidget.cpp:339
+#: src/dialogs/subkeyswidget.cpp:331
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "изключен"
 
-#: src/dialogs/subkeyswidget.cpp:341
+#: src/dialogs/subkeyswidget.cpp:333
 #, kde-format
 msgid "on this computer"
 msgstr "на този компютър"
 
-#: src/dialogs/subkeyswidget.cpp:343
+#: src/dialogs/subkeyswidget.cpp:335
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "неизвестно"
 
-#: src/dialogs/subkeyswidget.cpp:371
+#: src/dialogs/subkeyswidget.cpp:361
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
 msgstr "Подробности за подключове"
 
-#: src/dialogs/subkeyswidget.cpp:379
+#: src/dialogs/subkeyswidget.cpp:369
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
@@ -12649,6 +12632,26 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Вид"
+
+#~ msgctxt "@title:column"
+#~ msgid "Strength"
+#~ msgstr "Надеждност"
+
+#~ msgctxt "@title:column"
+#~ msgid "Primary"
+#~ msgstr "Основна"
+
+#~ msgctxt "yes, is primary key"
+#~ msgid "yes"
+#~ msgstr "да"
+
+#~ msgctxt "no, is not primary key"
+#~ msgid "no"
+#~ msgstr "не"
 
 #~ msgid "All Certificates"
 #~ msgstr "Всички сертификати"

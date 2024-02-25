@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-24 00:37+0000\n"
-"PO-Revision-Date: 2024-02-18 08:21+0100\n"
+"PO-Revision-Date: 2024-02-24 21:13+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -902,25 +902,22 @@ msgid "Error Saving Request"
 msgstr "Eraro dum Konservado de Peto"
 
 #: src/commands/creategroupcommand.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "Ĉi tiu atestilo ne povas esti uzata por ĉifrado."
+msgstr ""
+"Neniu el la elektitaj atestiloj povas esti uzataj por ĉifrado. Neniu grupo "
+"estos kreata."
 
 #: src/commands/creategroupcommand.cpp:101
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>Averto:</b> Neniu el la elektitaj atestiloj ŝajnas esti via. Vi ne povos "
-"denove deĉifri la ĉifritajn datumojn."
+"Iuj el la elektitaj atestiloj ne povas esti uzataj por ĉifrado. Tiuj ne "
+"estos aldonataj al la grupo."
 
 #: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -3894,20 +3891,14 @@ msgstr[0] "Forigi Grupon"
 msgstr[1] "Forigi Grupojn"
 
 #: src/conf/groupsconfigwidget.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The imported group</para><para><emphasis>%1</emphasis></"
-#| "para><para>contains certificates that cannot be used for encryption. This "
-#| "may lead to unexpected results.</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains keys that cannot be used for encryption. This may lead to "
 "unexpected results."
 msgstr ""
-"<para>La importita grupo</para><para><emphasis>%1</emphasis></"
-"para><para>enhavas atestilojn, kiuj ne povas esti uzataj por ĉifrado. Ĉi tio "
-"povas konduki al neatenditaj rezultoj.</para>"
+"La grupo</para> enhavas atestilojn, kiuj ne povas esti uzataj por ĉifrado. "
+"Ĉi tio povas konduki al neatenditaj rezultoj."
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -7040,6 +7031,8 @@ msgid ""
 "These certificates are part of groups. Deleting them may cause receivers to "
 "be unable to decrypt messages:"
 msgstr ""
+"Ĉi tiuj atestiloj partoprenas en grupoj. Ilia forigo povas kaŭzi ke "
+"ricevantoj estas maleblaj malĉifri mesaĝojn:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
@@ -7108,22 +7101,20 @@ msgid "Secret Key Deletion"
 msgstr "Forigo de Sekreta Ŝlosilo"
 
 #: src/dialogs/editgroupdialog.cpp:82
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Ĉi tiu atestilo ne povas esti uzata por ĉifrado."
 
 #: src/dialogs/editgroupdialog.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "Ĉi tiu atestilo ne povas esti uzata por ĉifrado."
+msgstr ""
+"Ne eblas aldoni ĉi tiun atestilon al la grupo ĉar ne eblas uzi ĝin por "
+"ĉifrado."
 
 #: src/dialogs/editgroupdialog.cpp:156
 #, kde-format
@@ -7713,11 +7704,10 @@ msgid "Status"
 msgstr "Stato"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr "Algoritmo:"
+msgstr "Algoritmo"
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
@@ -7790,7 +7780,7 @@ msgstr "Eksporti sekretan subŝlosilon"
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: src/dialogs/subkeyswidget.cpp:326
 #, kde-format
@@ -9237,12 +9227,10 @@ msgid "Configure Groups..."
 msgstr "Agordi grupojn..."
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgctxt "groups of keys"
-#| msgid "groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
-msgstr "grupoj"
+msgstr "Grupoj"
 
 #: src/mainwindow.cpp:672
 #, kde-format
@@ -11416,18 +11404,16 @@ msgid "Add User ID..."
 msgstr "Aldoni Uzantan ID..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Agordi grupojn..."
+msgstr "Krei Grupon..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "Atesti la validecon de la elektita atestilo"
+msgstr "Krei grupo0n el la elektitaj atestiloj"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -12500,26 +12486,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgctxt "@title:column"
-#~ msgid "Type"
-#~ msgstr "Tipo"
-
-#~ msgctxt "@title:column"
-#~ msgid "Strength"
-#~ msgstr "Forto"
-
-#~ msgctxt "@title:column"
-#~ msgid "Primary"
-#~ msgstr "Primaraj"
-
-#~ msgctxt "yes, is primary key"
-#~ msgid "yes"
-#~ msgstr "jes"
-
-#~ msgctxt "no, is not primary key"
-#~ msgid "no"
-#~ msgstr "ne"
-
-#~ msgid "All Certificates"
-#~ msgstr "Ĉiuj Atestiloj"

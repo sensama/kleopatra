@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-24 00:37+0000\n"
-"PO-Revision-Date: 2024-02-19 21:25+0100\n"
+"PO-Revision-Date: 2024-02-24 08:59+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -915,25 +915,22 @@ msgid "Error Saving Request"
 msgstr "Erro ao gardar a solicitude"
 
 #: src/commands/creategroupcommand.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "O certificado non pode usarse para cifrar."
+msgstr ""
+"Ningún dos certificados seleccionados pode usarse para cifrar. Non se creará "
+"ningún grupo."
 
 #: src/commands/creategroupcommand.cpp:101
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>Advertencia:</b> Parece que ningún dos certificados seleccionados é o seu "
-"propio. Non será quen de descifrar de novo os datos cifrados."
+"Algún dos certificados seleccionados non poden usarse para cifrar. Non se "
+"engadirán ao grupo."
 
 #: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -3946,20 +3943,14 @@ msgstr[0] "Eliminar o grupo"
 msgstr[1] "Eliminar"
 
 #: src/conf/groupsconfigwidget.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The imported group</para><para><emphasis>%1</emphasis></"
-#| "para><para>contains certificates that cannot be used for encryption. This "
-#| "may lead to unexpected results.</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains keys that cannot be used for encryption. This may lead to "
 "unexpected results."
 msgstr ""
-"<para>O grupo importado</para><para><emphasis>%1</emphasis></"
-"para><para>contén certificados que non se poden usar para cifrar. Isto pode "
-"dar resultados inesperados.</para>"
+"O grupo contén chaves que non se poden usar para cifrar. Isto pode dar "
+"resultados inesperados."
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -7179,22 +7170,19 @@ msgid "Secret Key Deletion"
 msgstr "Eliminación de chave secreta"
 
 #: src/dialogs/editgroupdialog.cpp:82
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "O certificado non pode usarse para cifrar."
 
 #: src/dialogs/editgroupdialog.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "O certificado non pode usarse para cifrar."
+msgstr ""
+"O certificado non pode engadirse ao grupo porque non pode usarse para cifrar."
 
 #: src/dialogs/editgroupdialog.cpp:156
 #, kde-format
@@ -9340,8 +9328,7 @@ msgid "Configure Groups..."
 msgstr "Configurar os grupos…"
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Grupos"
@@ -11527,18 +11514,16 @@ msgid "Add User ID..."
 msgstr "Engadir un identificador de persoa usuaria…"
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Configurar os grupos…"
+msgstr "Crear un grupo…"
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "Certificar a validez do certificado seleccionado"
+msgstr "Crear un grupo a partir dos certificados seleccionados."
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format

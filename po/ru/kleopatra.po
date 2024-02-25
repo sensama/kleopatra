@@ -1,27 +1,28 @@
 # translation of kleopatra.po to Russian
 # Copyright (c) 2004, KDE Team.
+# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2023, 2024 Alexander Yavorsky <kekcuha@gmail.com>
 # Oleg Batalov <olegbatalov@mail.ru>, 2004.
 # Олег Баталов <batalov@twiga.kz>, 2004.
 # Andrey Cherepanov <skull@kde.ru>, 2005, 2009.
 # Alexander Potashev <aspotashev@gmail.com>, 2010, 2011, 2015, 2016, 2017, 2019.
 # Julia Dronova <juliette.tux@gmail.com>, 2012.
 # Alexander Lakhin <exclusion@gmail.com>, 2013.
-# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2023, 2024 Alexander Yavorsky <kekcuha@gmail.com>
 # Edwin Veber <edwin0307@gmail.com>, 2011.
 # Мария Шикунова <translation-team@basealt.ru>, 2021, 2022, 2023.
+# Alexander Yavorsky <kekcuha@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-24 00:37+0000\n"
-"PO-Revision-Date: 2024-02-12 10:16+0300\n"
+"PO-Revision-Date: 2024-02-20 16:32+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 21.08.3\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -421,6 +422,7 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
+"<p>Заверенные сертификаты будут переданы в используемую службу каталогов.</p>"
 
 #: src/commands/certifygroupcommand.cpp:300
 #, kde-format
@@ -7004,6 +7006,9 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
+"Используйте этот параметр чтобы сделать заверенные вами сертификаты "
+"доступными для других пользователей. Если же вы хотите, чтобы сертификаты "
+"были отмечены как заверенные только для себя, снимите этот флажок."
 
 #: src/dialogs/certifywidget.cpp:372
 #, kde-format
@@ -7017,6 +7022,8 @@ msgid ""
 "Check this option, if you want to upload your certifications to a "
 "certificate directory after successful certification."
 msgstr ""
+"Используйте этот параметр чтобы после успешного заверения сертификатов "
+"сведения о заверении были переданы в службу каталогов сертификатов."
 
 #: src/dialogs/certifywidget.cpp:387
 #, kde-format
@@ -12202,6 +12209,8 @@ msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Невозможно создать ключи внутри этой смарт-карты так как она не поддерживает "
+"ни одного совместимого алгоритма."
 
 #: src/view/pgpcardwidget.cpp:428
 #, kde-format

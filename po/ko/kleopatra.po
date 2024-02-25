@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-24 00:37+0000\n"
-"PO-Revision-Date: 2024-02-19 23:04+0100\n"
+"PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -884,25 +884,22 @@ msgid "Error Saving Request"
 msgstr "요청 저장 오류"
 
 #: src/commands/creategroupcommand.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "이 인증서를 암호화에 사용할 수 없습니다."
+msgstr ""
+"선택한 인증서 중 아무것도 암호화에 사용할 수 없습니다. 그룹을 생성하지 않습니"
+"다."
 
 #: src/commands/creategroupcommand.cpp:101
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>경고:</b> 내 인증서를 선택하지 않은 것 같습니다. 암호화된 데이터를 다시 복"
-"호화할 수 없습니다."
+"선택한 인증서 중 일부는 암호화에 사용할 수 없습니다. 해당 인증서는 그룹에 추"
+"가되지 않습니다."
 
 #: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -3793,20 +3790,14 @@ msgid_plural "Delete Groups"
 msgstr[0] "그룹 삭제"
 
 #: src/conf/groupsconfigwidget.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The imported group</para><para><emphasis>%1</emphasis></"
-#| "para><para>contains certificates that cannot be used for encryption. This "
-#| "may lead to unexpected results.</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains keys that cannot be used for encryption. This may lead to "
 "unexpected results."
 msgstr ""
-"<para>가져온 그룹</para><para><emphasis>%1</emphasis></para><para>에 암호화"
-"에 사용할 수 없는 인증서가 포함되어 있습니다. 예상하지 못한 결과를 가져올 수"
-"도 있습니다.</para>"
+"그룹에 암호화에 사용할 수 없는 키가 포함되어 있습니다. 예상하지 못한 결과를 "
+"가져올 수 있습니다."
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -6956,22 +6947,18 @@ msgid "Secret Key Deletion"
 msgstr "비밀 키 삭제"
 
 #: src/dialogs/editgroupdialog.cpp:82
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "이 인증서를 암호화에 사용할 수 없습니다."
 
 #: src/dialogs/editgroupdialog.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "이 인증서를 암호화에 사용할 수 없습니다."
+msgstr "이 인증서를 암호화에 사용할 수 없어서 그룹에 추가할 수 없습니다."
 
 #: src/dialogs/editgroupdialog.cpp:156
 #, kde-format
@@ -7553,11 +7540,10 @@ msgid "Status"
 msgstr "상태"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr "알고리즘:"
+msgstr "알고리즘"
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
@@ -7630,7 +7616,7 @@ msgstr "비밀 하위 키 내보내기"
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
-msgstr ""
+msgstr "없음"
 
 #: src/dialogs/subkeyswidget.cpp:326
 #, kde-format
@@ -9040,8 +9026,7 @@ msgid "Configure Groups..."
 msgstr "그룹 설정..."
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "그룹"
@@ -11181,18 +11166,16 @@ msgid "Add User ID..."
 msgstr "사용자 ID 추가..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "그룹 설정..."
+msgstr "그룹 만들기..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "선택한 인증서 유효성 검사"
+msgstr "선택한 인증서에서 그룹 만들기"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format

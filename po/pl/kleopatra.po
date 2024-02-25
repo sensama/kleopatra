@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1673995 $
+# Version: $Revision: 1674079 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-24 00:37+0000\n"
-"PO-Revision-Date: 2024-01-27 10:46+0100\n"
+"PO-Revision-Date: 2024-02-24 17:07+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -150,23 +150,18 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 Programiści Kleopatry, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p>Wystąpił błąd podczas próby zmiany hasła dla <b>%1</b>:</p><p>%2</p>"
+"<p>Wystąpił błąd podczas próby dodania nowego podklucza do <b>%1</b>:</p><p>"
+"%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "Pomyślnie wyeksportowano podklucz."
+msgstr "Pomyślnie dodano podklucz."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -924,25 +919,22 @@ msgid "Error Saving Request"
 msgstr "Błąd podczas zapisywania żądania"
 
 #: src/commands/creategroupcommand.cpp:96
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "Tego certyfikatu nie można używać do szyfrowania."
+msgstr ""
+"Nie można użyć żadnego z zaznaczonych certyfikatów do szyfrowania. Nie "
+"zostanie utworzona żadna grupa."
 
 #: src/commands/creategroupcommand.cpp:101
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>Ostrzeżenie:</b> Żaden z wybranych certyfikatów nie jest Twoim własnym. "
-"Nie będzie można odszyfrować zaszyfrowanych danych."
+"Niektórych zaznaczonych certyfikatów nie można użyć do szyfrowania. Nie "
+"zostaną ode dodane do grupy."
 
 #: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
 #, kde-format
@@ -2235,19 +2227,16 @@ msgid "No, It's Not Mine"
 msgstr "Nie, on nie jest mój"
 
 #: src/commands/importcertificatescommand.cpp:790
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
-#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The imported group</para><para><emphasis>%1</emphasis></"
 "para><para>contains certificates that cannot be used for encryption. This "
 "may lead to unexpected results.</para>"
 msgstr ""
-"<para>Czy na pewno usunąć tę grupę?</para><para><emphasis>%1</emphasis></"
-"para><para>Nie będzie jej można później przywrócić.</para>"
+"<para>Zaimportowana grupa</para><para><emphasis>%1</emphasis></"
+"para><para>zawiera certyfikaty, których nie można używać do szyfrowania. "
+"Może to prowadzić do nieoczekiwanych wyników.</para>"
 
 #: src/commands/importcertificatescommand.cpp:854
 #, kde-format
@@ -3957,18 +3946,14 @@ msgstr[1] "Usuń grupy"
 msgstr[2] "Usuń grupy"
 
 #: src/conf/groupsconfigwidget.cpp:470
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
-#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains keys that cannot be used for encryption. This may lead to "
 "unexpected results."
 msgstr ""
-"<para>Czy na pewno usunąć tę grupę?</para><para><emphasis>%1</emphasis></"
-"para><para>Nie będzie jej można później przywrócić.</para>"
+"Grupa zawiera certyfikaty, których nie można używać do szyfrowania. Może to "
+"prowadzić do nieoczekiwanych wyników."
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format
@@ -6244,12 +6229,10 @@ msgid "Valid until:"
 msgstr "Ważny do:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Podklucze"
+msgstr "Dodaj podklucz"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -6257,11 +6240,10 @@ msgid "Expiration of primary key: %1"
 msgstr "Wygasanie klucza głównego: %1"
 
 #: src/dialogs/addsubkeydialog.cpp:264
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr "domyślny"
+msgstr "Domyślne"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -7109,6 +7091,8 @@ msgid ""
 "These certificates are part of groups. Deleting them may cause receivers to "
 "be unable to decrypt messages:"
 msgstr ""
+"Te certyfikaty są częścią grup. Usunięcie ich może uniemożliwić odbiorcom "
+"odczytywanie wiadomości:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
@@ -7189,22 +7173,20 @@ msgid "Secret Key Deletion"
 msgstr "Usunięcie klucza poufnego"
 
 #: src/dialogs/editgroupdialog.cpp:82
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Tego certyfikatu nie można używać do szyfrowania."
 
 #: src/dialogs/editgroupdialog.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "Tego certyfikatu nie można używać do szyfrowania."
+msgstr ""
+"Tego certyfikatu nie można dodać do grupy, bo nie można go używać do "
+"szyfrowania."
 
 #: src/dialogs/editgroupdialog.cpp:156
 #, kde-format
@@ -7796,11 +7778,10 @@ msgid "Status"
 msgstr "Stan"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr "Algorytm:"
+msgstr "Algorytm"
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
@@ -7873,7 +7854,7 @@ msgstr "Wyeksportuj podklucz poufny"
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
-msgstr ""
+msgstr "n/d"
 
 #: src/dialogs/subkeyswidget.cpp:326
 #, kde-format
@@ -7910,12 +7891,10 @@ msgid "Subkeys Details"
 msgstr "Szczegóły podkluczy"
 
 #: src/dialogs/subkeyswidget.cpp:369
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "Podklucze"
+msgstr "Dodaj podklucz"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -9328,8 +9307,7 @@ msgid "Configure Groups..."
 msgstr "Ustawienia grup..."
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Grupy"
@@ -11500,18 +11478,16 @@ msgid "Add User ID..."
 msgstr "Dodaj ID użytkownika..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Ustawienia grup..."
+msgstr "Utwórz grupę..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "Scertyfikuj ważność wybranego certyfikatu"
+msgstr "Utwórz grupę z zaznaczonych certyfikatów"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -11526,7 +11502,7 @@ msgstr "Nowe żądanie certyfikatu S/MIME..."
 #: src/view/keylistcontroller.cpp:574
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
-msgstr "Utwórz nowe żądanie podpisania certyfikatu (ŻPC) S/MIME"
+msgstr "Utwórz nowe żądanie podpisania certyfikatu (CSR) S/MIME"
 
 #: src/view/keylistcontroller.cpp:585
 #, kde-format

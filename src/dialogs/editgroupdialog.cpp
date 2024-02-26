@@ -16,6 +16,7 @@
 #include <settings.h>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Compat>
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
@@ -74,7 +75,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const override
     {
         const auto sourceIndex = sourceModel()->index(index.row(), index.column());
-        if (!sourceIndex.data(KeyList::KeyRole).value<Key>().hasEncrypt()) {
+        if (!Kleo::keyHasEncrypt(sourceIndex.data(KeyList::KeyRole).value<Key>())) {
             if (role == Qt::DecorationRole && index.column() == 0) {
                 return QIcon::fromTheme(QStringLiteral("data-warning"));
             }
@@ -102,7 +103,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const override
     {
         const auto sourceIndex = sourceModel()->index(index.row(), index.column());
-        if (!sourceIndex.data(KeyList::KeyRole).value<Key>().hasEncrypt()) {
+        if (!Kleo::keyHasEncrypt(sourceIndex.data(KeyList::KeyRole).value<Key>())) {
             if (role == Qt::ForegroundRole) {
                 return qApp->palette().color(QPalette::Disabled, QPalette::Text);
             }
@@ -118,7 +119,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const override
     {
         auto originalFlags = index.model()->QAbstractItemModel::flags(index);
-        if (index.data(KeyList::KeyRole).value<Key>().hasEncrypt()) {
+        if (Kleo::keyHasEncrypt(index.data(KeyList::KeyRole).value<Key>())) {
             return originalFlags;
         } else {
             return (originalFlags & ~Qt::ItemIsEnabled);

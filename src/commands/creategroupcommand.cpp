@@ -11,6 +11,7 @@
 #include "command_p.h"
 #include "dialogs/editgroupdialog.h"
 
+#include <Libkleo/Compat>
 #include <Libkleo/KeyCache>
 
 #include <gpgme++/key.h>
@@ -89,7 +90,7 @@ void CreateGroupCommand::doStart()
 {
     auto keys = d->keys();
     auto removed = std::erase_if(keys, [](const auto &key) {
-        return !key.hasEncrypt();
+        return !Kleo::keyHasEncrypt(key);
     });
 
     if (removed == d->keys().size()) {

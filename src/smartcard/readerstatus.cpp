@@ -1067,7 +1067,7 @@ public:
         connect(this, &::ReaderStatusThread::cardRemoved, q, &ReaderStatus::cardRemoved);
         connect(this, &::ReaderStatusThread::updateFinished, q, &ReaderStatus::updateFinished);
         connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged, q, &ReaderStatus::firstCardWithNullPinChanged);
-        connect(this, &::ReaderStatusThread::cardsLearned, q, &ReaderStatus::cardsLearned);
+        connect(this, &::ReaderStatusThread::cardsLearned, q, &ReaderStatus::onCardsLearned);
 
         if (DeviceInfoWatcher::isSupported()) {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using new DeviceInfoWatcher";
@@ -1259,6 +1259,14 @@ Error ReaderStatus::switchCardBackToOpenPGPApp(const std::string &serialNumber)
         ::switchCardBackToOpenPGPApp(assuanContext, serialNumber, err);
     }
     return err;
+}
+
+void ReaderStatus::onCardsLearned(GpgME::Protocol protocol)
+{
+    qCDebug(KLEOPATRA_LOG) << __func__;
+    Q_EMIT cardsLearned(protocol);
+    // force a reload of the key cache to ensure that all learned certificates are loaded
+    KeyCache::mutableInstance()->reload(protocol, KeyCache::ForceReload);
 }
 
 #include "readerstatus.moc"

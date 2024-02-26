@@ -83,6 +83,8 @@ Q_SIGNALS:
     void startOfGpgAgentRequested();
 
 private:
+    void onCardsLearned(GpgME::Protocol protocol);
+
     class Private;
     std::shared_ptr<Private> d;
 };

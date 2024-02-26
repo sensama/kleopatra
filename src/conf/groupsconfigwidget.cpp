@@ -15,6 +15,7 @@
 #include <dialogs/editgroupdialog.h>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Compat>
 #include <Libkleo/Debug>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -464,7 +465,7 @@ private:
         }
 
         if (Kleo::any_of(selectedGroups[0].keys(), [](const auto &key) {
-                return !key.hasEncrypt();
+                return !Kleo::keyHasEncrypt(key);
             })) {
             KMessageBox::information(q->parentWidget(),
                                      i18nc("@info", "The group contains keys that cannot be used for encryption. This may lead to unexpected results."));

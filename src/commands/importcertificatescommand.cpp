@@ -22,6 +22,7 @@
 #include <utils/memory-helpers.h>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Compat>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroupImportExport>
@@ -784,7 +785,7 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
 static ImportedGroup storeGroup(const KeyGroup &group, const QString &id, QWidget *parent)
 {
     if (Kleo::any_of(group.keys(), [](const auto &key) {
-            return !key.hasEncrypt();
+            return !Kleo::keyHasEncrypt(key);
         })) {
         KMessageBox::information(parent,
                                  xi18nc("@info",

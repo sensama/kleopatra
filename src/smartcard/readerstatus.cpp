@@ -807,14 +807,10 @@ public Q_SLOTS:
         addTransaction(updateTransaction);
     }
 
-    void learnCards(GpgME::Protocol protocol)
+    void learnCardsCMS()
     {
-        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[GUI]::learnCards(" << Formatting::displayName(protocol) << ")";
-        if (protocol == GpgME::CMS) {
-            addTransaction(learnCMSTransaction);
-        } else {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "unsupported protocol";
-        }
+        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[GUI]::learnCardsCMS()";
+        addTransaction(learnCMSTransaction);
     }
 
     void stop()
@@ -1102,6 +1098,7 @@ private:
 private:
     FileSystemWatcher watcher;
     DeviceInfoWatcher devInfoWatcher;
+    bool learnCMSTransactionScheduled = false;
 };
 
 ReaderStatus::ReaderStatus(QObject *parent)
@@ -1182,7 +1179,13 @@ void ReaderStatus::updateCard(const std::string &serialNumber, const std::string
 
 void ReaderStatus::learnCards(GpgME::Protocol protocol)
 {
-    d->learnCards(protocol);
+    qCDebug(KLEOPATRA_LOG) << __func__ << "- procotol:" << Formatting::displayName(protocol);
+    if (protocol == GpgME::CMS && !d->learnCMSTransactionScheduled) {
+        d->learnCMSTransactionScheduled = true;
+        d->learnCardsCMS();
+    } else {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "unsupported protocol";
+    }
 }
 
 std::vector<std::shared_ptr<Card>> ReaderStatus::getCards() const
@@ -1263,6 +1266,7 @@ void ReaderStatus::onCardsLearned(GpgME::Protocol protocol)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
     Q_EMIT cardsLearned(protocol);
+    d->learnCMSTransactionScheduled = false;
     // force a reload of the key cache to ensure that all learned certificates are loaded
     KeyCache::mutableInstance()->reload(protocol, KeyCache::ForceReload);
 }

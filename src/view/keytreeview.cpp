@@ -350,14 +350,12 @@ void KeyTreeView::init()
 
     updateModelConnections(nullptr, model());
 
-    if (KeyCache::instance()->initialized()) {
-        restoreLayout(m_group);
-    } else {
-        connect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, [this]() {
+    QMetaObject::invokeMethod(
+        this,
+        [=]() {
             restoreLayout(m_group);
-            disconnect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, nullptr);
-        });
-    }
+        },
+        Qt::QueuedConnection);
 }
 
 void KeyTreeView::restoreExpandState()

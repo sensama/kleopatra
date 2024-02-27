@@ -745,7 +745,6 @@ class ReaderStatusThread : public QThread
 public:
     explicit ReaderStatusThread(QObject *parent = nullptr)
         : QThread(parent)
-        , m_gnupgHomePath(Kleo::gnupgHomeDirectory())
         , m_transactions(1, updateTransaction) // force initial scan
     {
         connect(this, &ReaderStatusThread::oneTransactionFinished, this, &ReaderStatusThread::slotOneTransactionFinished);
@@ -987,7 +986,6 @@ private:
 private:
     mutable QMutex m_mutex;
     QWaitCondition m_waitForTransactions;
-    const QString m_gnupgHomePath;
     // protected by m_mutex:
     std::vector<std::shared_ptr<Card>> m_cardInfos;
     std::list<Transaction> m_transactions, m_finishedTransactions;

@@ -305,7 +305,7 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard()
     }
 
     // Now do the deed
-    const auto time = QDateTime::fromSecsSinceEpoch(quint32(subkey.creationTime()), Qt::UTC);
+    const auto time = QDateTime::fromSecsSinceEpoch(quint32(subkey.creationTime()), QTimeZone::utc());
     const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3 %4")
                             .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()), QString::fromStdString(cardSlot), timestamp);

@@ -806,7 +806,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
     if (isQuitting || qApp->isSavingSession() || Kleo::userIsElevated()) {
-        d->ui.searchTab->tabWidget()->saveViews(KSharedConfig::openConfig().data());
+        d->ui.searchTab->tabWidget()->saveViews();
         KConfigGroup grp(KConfigGroup(KSharedConfig::openConfig(), autoSaveGroup()));
         saveMainWindowSettings(grp);
         e->accept();
@@ -820,7 +820,7 @@ void MainWindow::showEvent(QShowEvent *e)
 {
     KXmlGuiWindow::showEvent(e);
     if (d->firstShow) {
-        d->ui.searchTab->tabWidget()->loadViews(KSharedConfig::openConfig().data());
+        d->ui.searchTab->tabWidget()->loadViews(KSharedConfig::openStateConfig(), QStringLiteral("KeyList"));
         d->firstShow = false;
     }
 

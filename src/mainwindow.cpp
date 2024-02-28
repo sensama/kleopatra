@@ -712,6 +712,14 @@ void MainWindow::Private::setupActions()
     coll->addAction(QStringLiteral("help_doc_gnupg"), man_gnupg);
 
     /* The secops */
+    const auto approvalmanual =
+        new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
+                      i18n("Manual for VS-NfD approval (German)"),
+                      i18nc("Only available in German. Keep German file name for all languages", "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      coll);
+    coll->addAction(QStringLiteral("help_doc_approval_manual"), approvalmanual);
+
     const auto vsa10573 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
                                         i18n("SecOps VSA-10573"),
                                         i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10573-ENG_secops.pdf"),

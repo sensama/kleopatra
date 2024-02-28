@@ -115,7 +115,7 @@ public:
         return m_canChangeHierarchical;
     }
 
-    void saveTo(KConfigGroup &group) const;
+    void saveState();
 
     Page *clone() const override
     {
@@ -125,6 +125,17 @@ public:
     void liftAllRestrictions()
     {
         m_canBeClosed = m_canBeRenamed = m_canChangeStringFilter = m_canChangeKeyFilter = m_canChangeHierarchical = true;
+    }
+
+    void closePage()
+    {
+        m_configGroup.deleteGroup();
+        m_configGroup.sync();
+    }
+
+    KConfigGroup configGroup() const
+    {
+        return m_configGroup;
     }
 
 Q_SIGNALS:
@@ -142,6 +153,7 @@ private:
     bool m_canChangeStringFilter : 1;
     bool m_canChangeKeyFilter : 1;
     bool m_canChangeHierarchical : 1;
+    KConfigGroup m_configGroup;
 };
 } // anon namespace
 
@@ -155,6 +167,7 @@ Page::Page(const Page &other)
     , m_canChangeStringFilter(other.m_canChangeStringFilter)
     , m_canChangeKeyFilter(other.m_canChangeKeyFilter)
     , m_canChangeHierarchical(other.m_canChangeHierarchical)
+    , m_configGroup(other.configGroup().config()->group(QUuid::createUuid().toString()))
 {
     init();
 }
@@ -175,6 +188,7 @@ Page::Page(const QString &title,
     , m_canChangeStringFilter(true)
     , m_canChangeKeyFilter(true)
     , m_canChangeHierarchical(true)
+    , m_configGroup(group)
 {
     init();
 }
@@ -197,6 +211,7 @@ Page::Page(const KConfigGroup &group, QWidget *parent)
     , m_canChangeStringFilter(!group.isEntryImmutable(STRING_FILTER_ENTRY))
     , m_canChangeKeyFilter(!group.isEntryImmutable(KEY_FILTER_ENTRY))
     , m_canChangeHierarchical(!group.isEntryImmutable(HIERARCHICAL_VIEW_ENTRY))
+    , m_configGroup(group)
 {
     init();
     setHierarchicalView(group.readEntry(HIERARCHICAL_VIEW_ENTRY, true));
@@ -220,19 +235,12 @@ Page::~Page()
 {
 }
 
-void Page::saveTo(KConfigGroup &group) const
+void Page::saveState()
 {
-    group.writeEntry(TITLE_ENTRY, m_title);
-    group.writeEntry(STRING_FILTER_ENTRY, stringFilter());
-    group.writeEntry(KEY_FILTER_ENTRY, keyFilter() ? keyFilter()->id() : QString());
-    group.writeEntry(HIERARCHICAL_VIEW_ENTRY, isHierarchicalView());
-    QList<int> settings;
-    const auto sizes = columnSizes();
-    settings.reserve(sizes.size());
-    std::copy(sizes.cbegin(), sizes.cend(), std::back_inserter(settings));
-    group.writeEntry(COLUMN_SIZES, settings);
-    group.writeEntry(SORT_COLUMN, sortColumn());
-    group.writeEntry(SORT_DESCENDING, sortOrder() == Qt::DescendingOrder);
+    m_configGroup.writeEntry(TITLE_ENTRY, m_title);
+    m_configGroup.writeEntry(STRING_FILTER_ENTRY, stringFilter());
+    m_configGroup.writeEntry(KEY_FILTER_ENTRY, keyFilter() ? keyFilter()->id() : QString());
+    m_configGroup.writeEntry(HIERARCHICAL_VIEW_ENTRY, isHierarchicalView());
 }
 
 void Page::setStringFilter(const QString &filter)
@@ -475,6 +483,8 @@ private:
     Actions currentPageActions;
     Actions otherPageActions;
     bool actionsCreated = false;
+    KSharedConfig::Ptr config;
+    QString configKey;
 };
 
 TabWidget::Private::Private(TabWidget *qq)
@@ -625,7 +635,7 @@ void TabWidget::Private::slotPageHierarchyChanged(bool)
 
 void TabWidget::Private::slotNewTab()
 {
-    const KConfigGroup group = KSharedConfig::openConfig()->group(QString::asprintf("View #%u", tabWidget->count()));
+    const auto group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(configKey, QUuid::createUuid().toString()));
     Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString(), nullptr, QString(), nullptr, group);
     addView(page, currentPage());
     tabWidget->setCurrentIndex(tabWidget->count() - 1);
@@ -661,6 +671,7 @@ void TabWidget::Private::closePage(Page *page)
         return;
     }
     Q_EMIT q->viewAboutToBeRemoved(page->view());
+    page->closePage();
     tabWidget->removeTab(tabWidget->indexOf(page));
     enableDisableCurrentPageActions();
 }
@@ -723,7 +734,7 @@ TabWidget::TabWidget(QWidget *p, Qt::WindowFlags f)
 
 TabWidget::~TabWidget()
 {
-    saveViews(KSharedConfig::openConfig().data());
+    saveViews();
 }
 
 void TabWidget::setFlatModel(AbstractKeyListModel *model)
@@ -984,7 +995,7 @@ void TabWidget::createActions(KActionCollection *coll)
 
 QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, const QString &text)
 {
-    const KConfigGroup group = KSharedConfig::openConfig()->group(QString::asprintf("View #%u", d->tabWidget->count()));
+    const KConfigGroup group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(d->configKey, QUuid::createUuid().toString()));
     Page *page = new Page(title, id, text, nullptr, QString(), nullptr, group);
     return d->addView(page, d->currentPage());
 }
@@ -1075,25 +1086,18 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
     return view;
 }
 
-static QStringList extractViewGroups(const KConfig *config)
+static QStringList extractViewGroups(const KConfigGroup &config)
 {
-    return config ? config->groupList().filter(QRegularExpression(QStringLiteral("^View #\\d+$"))) : QStringList();
+    return config.readEntry("Tabs", QStringList());
 }
 
-// work around deleteGroup() not deleting groups out of groupList():
-static const bool KCONFIG_DELETEGROUP_BROKEN = true;
-
-void TabWidget::loadViews(const KConfig *config, Options options)
+void TabWidget::loadViews(const KSharedConfig::Ptr &config, const QString &configKey, Options options)
 {
-    if (config) {
-        QStringList groupList = extractViewGroups(config);
-        groupList.sort();
-        for (const QString &group : std::as_const(groupList)) {
-            const KConfigGroup kcg(config, group);
-            if (!KCONFIG_DELETEGROUP_BROKEN || kcg.readEntry("magic", 0U) == 0xFA1AFE1U) {
-                addView(kcg, options);
-            }
-        }
+    d->config = config;
+    d->configKey = configKey;
+    QStringList groupList = extractViewGroups(config->group(configKey));
+    for (const QString &view : std::as_const(groupList)) {
+        addView(KConfigGroup(config, view), options);
     }
     if (!count()) {
         // add default view:
@@ -1101,28 +1105,22 @@ void TabWidget::loadViews(const KConfig *config, Options options)
     }
 }
 
-void TabWidget::saveViews(KConfig *config) const
+void TabWidget::saveViews()
 {
-    if (!config) {
+    if (!d->config) {
         return;
     }
-    const auto extraView{extractViewGroups(config)};
-    for (const QString &group : extraView) {
-        config->deleteGroup(group);
-    }
-    unsigned int vg = 0;
+    QStringList tabs;
     for (unsigned int i = 0, end = count(); i != end; ++i) {
-        if (const Page *const p = d->page(i)) {
+        if (Page *const p = d->page(i)) {
             if (p->isTemporary()) {
                 continue;
             }
-            KConfigGroup group(config, QString::asprintf("View #%u", vg++));
-            p->saveTo(group);
-            if (KCONFIG_DELETEGROUP_BROKEN) {
-                group.writeEntry("magic", 0xFA1AFE1U);
-            }
+            tabs += p->configGroup().name();
+            p->saveState();
         }
     }
+    d->config->group(d->configKey).writeEntry("Tabs", tabs);
 }
 
 void TabWidget::connectSearchBar(SearchBar *sb)

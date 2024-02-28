@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include <KSharedConfig>
+
 #include <QWidget>
 
 #include <memory>
@@ -20,7 +22,6 @@ class QAbstractItemView;
 
 class KConfigGroup;
 class KActionCollection;
-class KConfig;
 
 namespace Kleo
 {
@@ -54,8 +55,8 @@ public:
     QAbstractItemView *
     addTemporaryView(const QString &title = QString(), AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &tabToolTip = QString());
 
-    void loadViews(const KConfig *cfg, Options options = ShowKeys);
-    void saveViews(KConfig *cfg) const;
+    void loadViews(const KSharedConfig::Ptr &config, const QString &configKeys, Options options = ShowKeys);
+    void saveViews();
 
     std::vector<QAbstractItemView *> views() const;
     QAbstractItemView *currentView() const;

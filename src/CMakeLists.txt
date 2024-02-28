@@ -449,6 +449,8 @@ set(_kleopatra_SRCS
   utils/log.cpp
   utils/log.h
   utils/memory-helpers.h
+  utils/migration.cpp
+  utils/migration.h
   utils/multivalidator.cpp
   utils/multivalidator.h
   utils/output.cpp

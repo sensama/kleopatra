@@ -228,9 +228,8 @@ CertificateSelectionDialog::CertificateSelectionDialog(QWidget *parent)
     : QDialog(parent)
     , d(new Private(this))
 {
-    const KSharedConfig::Ptr config = KSharedConfig::openConfig(QStringLiteral("kleopatracertificateselectiondialogrc"));
-    d->ui.tabWidget.loadViews(config.data(), TabWidget::ShowUserIDs);
-    const KConfigGroup geometry(config, QStringLiteral("Geometry"));
+    d->ui.tabWidget.loadViews(KSharedConfig::openStateConfig(), QStringLiteral("CertificateSelectionDialog"), TabWidget::ShowUserIDs);
+    const auto geometry = KSharedConfig::openStateConfig()->group(QStringLiteral("CertificateSelectionDialog"));
     resize(geometry.readEntry("size", size()));
     d->slotKeysMayHaveChanged();
 }
@@ -402,9 +401,8 @@ std::vector<KeyGroup> CertificateSelectionDialog::selectedGroups() const
 
 void CertificateSelectionDialog::hideEvent(QHideEvent *e)
 {
-    KSharedConfig::Ptr config = KSharedConfig::openConfig(QStringLiteral("kleopatracertificateselectiondialogrc"));
-    d->ui.tabWidget.saveViews(config.data());
-    KConfigGroup geometry(config, QStringLiteral("Geometry"));
+    d->ui.tabWidget.saveViews();
+    auto geometry = KSharedConfig::openStateConfig()->group(QStringLiteral("CertificateSelectionDialog"));
     geometry.writeEntry("size", size());
     QDialog::hideEvent(e);
 }

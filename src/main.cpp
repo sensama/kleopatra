@@ -15,6 +15,7 @@
 #include "aboutdata.h"
 #include "kleopatraapplication.h"
 #include "mainwindow.h"
+#include "utils/migration.h"
 
 #include "accessibility/accessiblewidgetfactory.h"
 
@@ -172,6 +173,8 @@ int main(int argc, char **argv)
     // setup / systray icon).
     app.init();
     STARTUP_TIMING << "Application initialized";
+
+    Migration::migrate();
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);

@@ -15,17 +15,23 @@
 
 #include "nameandemailwidget.h"
 
-#include "newcertificatewizard/advancedsettingsdialog_p.h"
+#include "dialogs/animatedexpander.h"
 #include "newcertificatewizard/keyalgo_p.h"
+#include "utils/expiration.h"
 #include "utils/keyparameters.h"
 #include "utils/scrollarea.h"
 
+#include <kdatecombobox.h>
 #include <settings.h>
 
 #include <Libkleo/Compat>
+#include <Libkleo/Compliance>
+#include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyUsage>
 
 #include <KConfigGroup>
+#include <KDateComboBox>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSeparator>
@@ -45,6 +51,11 @@
 using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
 
+static bool unlimitedValidityIsAllowed()
+{
+    return !Kleo::maximumExpirationDate().isValid();
+}
+
 class NewOpenPGPCertificateDetailsDialog::Private
 {
     friend class ::Kleo::NewOpenPGPCertificateDetailsDialog;
@@ -55,8 +66,12 @@ class NewOpenPGPCertificateDetailsDialog::Private
         ScrollArea *scrollArea;
         NameAndEmailWidget *nameAndEmail;
         QCheckBox *withPassCheckBox;
-        QPushButton *advancedButton;
         QDialogButtonBox *buttonBox;
+        QCheckBox *expiryCB;
+        KDateComboBox *expiryDE;
+        QComboBox *keyAlgoCB;
+        QLabel *keyAlgoLabel;
+        AnimatedExpander *expander;
 
         UI(QWidget *dialog)
         {
@@ -86,13 +101,33 @@ class NewOpenPGPCertificateDetailsDialog::Private
                 i18n("Encrypts the secret key with an unrecoverable passphrase. You will be asked for the passphrase during key generation."));
             scrollAreaLayout->addWidget(withPassCheckBox);
 
+            expander = new AnimatedExpander(i18n("Advanced options"), {}, dialog);
+            scrollAreaLayout->addWidget(expander);
+
+            auto advancedLayout = new QVBoxLayout;
+            expander->setContentLayout(advancedLayout);
+
+            keyAlgoLabel = new QLabel(dialog);
+            keyAlgoLabel->setText(i18nc("The algorithm and strength of encryption key", "Key Material"));
+            auto font = keyAlgoLabel->font();
+            font.setBold(true);
+            keyAlgoLabel->setFont(font);
+            advancedLayout->addWidget(keyAlgoLabel);
+
+            keyAlgoCB = new QComboBox(dialog);
+            keyAlgoLabel->setBuddy(keyAlgoCB);
+            advancedLayout->addWidget(keyAlgoCB);
+
             {
-                auto layout = new QHBoxLayout;
-                advancedButton = new QPushButton{i18n("Advanced Settings..."), dialog};
-                advancedButton->setAutoDefault(false);
-                layout->addStretch(1);
-                layout->addWidget(advancedButton);
-                scrollAreaLayout->addLayout(layout);
+                auto hbox = new QHBoxLayout;
+
+                expiryCB = new QCheckBox{i18nc("@option:check", "Valid until:"), dialog};
+                hbox->addWidget(expiryCB);
+
+                expiryDE = new KDateComboBox(dialog);
+                hbox->addWidget(expiryDE, 1);
+
+                advancedLayout->addLayout(hbox);
             }
 
             scrollAreaLayout->addStretch(1);
@@ -111,7 +146,6 @@ public:
     explicit Private(NewOpenPGPCertificateDetailsDialog *qq)
         : q{qq}
         , ui{qq}
-        , advancedSettingsDlg{new AdvancedSettingsDialog{qq}}
         , technicalParameters{KeyParameters::OpenPGP}
     {
         q->setWindowTitle(i18nc("title:window", "Create OpenPGP Certificate"));
@@ -135,7 +169,7 @@ public:
         ui.nameAndEmail->setEmailPattern(config.readEntry("EMAIL_regex"));
 
         Settings settings;
-        ui.advancedButton->setVisible(!settings.hideAdvanced());
+        ui.expander->setVisible(!settings.hideAdvanced());
 
         const auto conf = QGpgME::cryptoConfig();
         const auto entry = getCryptoConfigEntry(conf, "gpg-agent", "enforce-passphrase-constraints");
@@ -148,95 +182,124 @@ public:
             ui.withPassCheckBox->setEnabled(!config.isEntryImmutable("WithPassphrase"));
         }
 
-        advancedSettingsDlg->setProtocol(GpgME::OpenPGP);
-        updateTechnicalParameters(); // set key parameters to default values for OpenPGP
-
-        connect(advancedSettingsDlg, &QDialog::accepted, q, [this]() {
-            updateTechnicalParameters();
-        });
-        connect(ui.advancedButton, &QPushButton::clicked, q, [this]() {
-            advancedSettingsDlg->open();
-        });
         connect(ui.buttonBox, &QDialogButtonBox::accepted, q, [this]() {
             checkAccept();
         });
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
+
+        for (const auto &algorithm : DeVSCompliance::isActive() ? DeVSCompliance::compliantAlgorithms() : availableAlgorithms()) {
+            ui.keyAlgoCB->addItem(QString::fromStdString(algorithm), QString::fromStdString(algorithm));
+        }
+        auto cryptoConfig = QGpgME::cryptoConfig();
+        if (cryptoConfig) {
+            auto pubkeyEntry = getCryptoConfigEntry(QGpgME::cryptoConfig(), "gpg", "default_pubkey_algo");
+            if (pubkeyEntry) {
+                auto algo = pubkeyEntry->stringValue().split(QLatin1Char('/'))[0];
+                if (algo == QStringLiteral("ed25519")) {
+                    algo = QStringLiteral("curve25519");
+                } else if (algo == QStringLiteral("ed448")) {
+                    algo = QStringLiteral("curve448");
+                }
+                auto index = ui.keyAlgoCB->findData(algo);
+                if (index != -1) {
+                    ui.keyAlgoCB->setCurrentIndex(index);
+                } else {
+                    ui.keyAlgoCB->setCurrentIndex(0);
+                }
+            } else {
+                ui.keyAlgoCB->setCurrentIndex(0);
+            }
+        } else {
+            ui.keyAlgoCB->setCurrentIndex(0);
+        }
+
+        Kleo::setUpExpirationDateComboBox(ui.expiryDE);
+        ui.expiryCB->setEnabled(true);
+        if (settings.validityPeriodInDaysMax() != -1) {
+            ui.expiryDE->setMaximumDate(QDate::currentDate().addDays(settings.validityPeriodInDaysMax()));
+        }
+        if (settings.validityPeriodInDaysMin() != -1) {
+            ui.expiryDE->setMinimumDate(QDate::currentDate().addDays(settings.validityPeriodInDaysMin()));
+        }
+        setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
+        if (unlimitedValidityIsAllowed()) {
+            ui.expiryDE->setEnabled(ui.expiryCB->isChecked());
+        } else {
+            ui.expiryCB->setEnabled(false);
+        }
+        connect(ui.expiryCB, &QAbstractButton::toggled, q, [this](bool checked) {
+            ui.expiryDE->setEnabled(checked);
+            if (checked && !ui.expiryDE->isValid()) {
+                setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
+            }
+            updateTechnicalParameters();
+        });
+        connect(ui.expiryDE, &KDateComboBox::dateChanged, q, [this]() {
+            updateTechnicalParameters();
+        });
+        connect(ui.keyAlgoCB, &QComboBox::currentIndexChanged, q, [this]() {
+            updateTechnicalParameters();
+        });
+        updateTechnicalParameters(); // set key parameters to default values for OpenPGP
+        connect(ui.expander, &AnimatedExpander::startExpanding, q, [this]() {
+            q->resize(q->sizeHint().width() + 20, q->sizeHint().height() + ui.expander->contentHeight() + 20);
+        });
     }
 
 private:
-    KeyUsage keyUsage() const
-    {
-        KeyUsage usage;
-        if (advancedSettingsDlg->signingAllowed()) {
-            usage.setCanSign(true);
-        }
-        if (advancedSettingsDlg->encryptionAllowed() //
-            && !is_ecdh(advancedSettingsDlg->subkeyType()) && !is_dsa(advancedSettingsDlg->keyType()) && !is_rsa(advancedSettingsDlg->subkeyType())) {
-            usage.setCanEncrypt(true);
-        }
-        if (advancedSettingsDlg->authenticationAllowed()) {
-            usage.setCanAuthenticate(true);
-        }
-        if (advancedSettingsDlg->certificationAllowed()) {
-            usage.setCanCertify(true);
-        }
-        return usage;
-    }
-
-    KeyUsage subkeyUsage() const
-    {
-        KeyUsage usage;
-        if (advancedSettingsDlg->encryptionAllowed()
-            && (is_dsa(advancedSettingsDlg->keyType()) || is_rsa(advancedSettingsDlg->subkeyType()) || is_ecdh(advancedSettingsDlg->subkeyType()))) {
-            Q_ASSERT(advancedSettingsDlg->subkeyType());
-            usage.setCanEncrypt(true);
-        }
-        return usage;
-    }
-
     void updateTechnicalParameters()
     {
         technicalParameters = KeyParameters{KeyParameters::OpenPGP};
-
-        const auto keyType = advancedSettingsDlg->keyType();
-        technicalParameters.setKeyType(keyType);
-        if (is_ecdsa(keyType) || is_eddsa(keyType)) {
-            technicalParameters.setKeyCurve(advancedSettingsDlg->keyCurve());
-        } else if (const unsigned int strength = advancedSettingsDlg->keyStrength()) {
+        auto keyType = GpgME::Subkey::AlgoUnknown;
+        auto subkeyType = GpgME::Subkey::AlgoUnknown;
+        auto algoString = ui.keyAlgoCB->currentData().toString();
+        if (algoString.startsWith(QStringLiteral("rsa"))) {
+            keyType = GpgME::Subkey::AlgoRSA;
+            subkeyType = GpgME::Subkey::AlgoRSA;
+            const auto strength = algoString.mid(3).toInt();
             technicalParameters.setKeyLength(strength);
-        }
-        technicalParameters.setKeyUsage(keyUsage());
-
-        const auto subkeyType = advancedSettingsDlg->subkeyType();
-        if (subkeyType) {
-            technicalParameters.setSubkeyType(subkeyType);
-            if (is_ecdh(subkeyType)) {
-                technicalParameters.setSubkeyCurve(advancedSettingsDlg->subkeyCurve());
-            } else if (const unsigned int strength = advancedSettingsDlg->subkeyStrength()) {
-                technicalParameters.setSubkeyLength(strength);
+            technicalParameters.setSubkeyLength(strength);
+        } else if (algoString == QStringLiteral("curve25519") || algoString == QStringLiteral("curve448")) {
+            keyType = GpgME::Subkey::AlgoEDDSA;
+            subkeyType = GpgME::Subkey::AlgoECDH;
+            if (algoString.endsWith(QStringLiteral("25519"))) {
+                technicalParameters.setKeyCurve(QStringLiteral("ed25519"));
+                technicalParameters.setSubkeyCurve(QStringLiteral("cv25519"));
+            } else {
+                technicalParameters.setKeyCurve(QStringLiteral("ed448"));
+                technicalParameters.setSubkeyCurve(QStringLiteral("cv448"));
             }
-            technicalParameters.setSubkeyUsage(subkeyUsage());
+        } else {
+            keyType = GpgME::Subkey::AlgoECDSA;
+            subkeyType = GpgME::Subkey::AlgoECDH;
+            technicalParameters.setKeyCurve(algoString);
+            technicalParameters.setSubkeyCurve(algoString);
         }
+        technicalParameters.setKeyType(keyType);
+        technicalParameters.setSubkeyType(subkeyType);
 
-        if (advancedSettingsDlg->expiryDate().isValid()) {
-            technicalParameters.setExpirationDate(advancedSettingsDlg->expiryDate());
-        }
+        technicalParameters.setKeyUsage(KeyUsage(KeyUsage::Certify | KeyUsage::Sign));
+        technicalParameters.setSubkeyUsage(KeyUsage(KeyUsage::Encrypt));
+
+        technicalParameters.setExpirationDate(expiryDate());
         // name and email are set later
+    }
+
+    QDate expiryDate() const
+    {
+        return ui.expiryCB->isChecked() ? ui.expiryDE->date() : QDate{};
     }
 
     void setTechnicalParameters(const KeyParameters &parameters)
     {
-        advancedSettingsDlg->setKeyType(parameters.keyType());
-        advancedSettingsDlg->setKeyStrength(parameters.keyLength());
-        advancedSettingsDlg->setKeyCurve(parameters.keyCurve());
-        advancedSettingsDlg->setSubkeyType(parameters.subkeyType());
-        advancedSettingsDlg->setSubkeyStrength(parameters.subkeyLength());
-        advancedSettingsDlg->setSubkeyCurve(parameters.subkeyCurve());
-        advancedSettingsDlg->setSigningAllowed(parameters.keyUsage().canSign() || parameters.subkeyUsage().canSign());
-        advancedSettingsDlg->setEncryptionAllowed(parameters.keyUsage().canEncrypt() || parameters.subkeyUsage().canEncrypt());
-        advancedSettingsDlg->setCertificationAllowed(parameters.keyUsage().canCertify() || parameters.subkeyUsage().canCertify());
-        advancedSettingsDlg->setAuthenticationAllowed(parameters.keyUsage().canAuthenticate() || parameters.subkeyUsage().canAuthenticate());
-        advancedSettingsDlg->setExpiryDate(parameters.expirationDate());
+        int index;
+        if (parameters.keyType() == GpgME::Subkey::AlgoRSA_S) {
+            index = ui.keyAlgoCB->findData(QStringLiteral("rsa%1").arg(parameters.keyLength()));
+        } else {
+            index = ui.keyAlgoCB->findData(parameters.keyCurve());
+        }
+        ui.keyAlgoCB->setCurrentIndex(index);
+        setExpiryDate(parameters.expirationDate());
     }
 
     void checkAccept()
@@ -262,8 +325,35 @@ private:
         }
     }
 
+    QDate forceDateIntoAllowedRange(QDate date) const
+    {
+        const auto minDate = ui.expiryDE->minimumDate();
+        if (minDate.isValid() && date < minDate) {
+            date = minDate;
+        }
+        const auto maxDate = ui.expiryDE->maximumDate();
+        if (maxDate.isValid() && date > maxDate) {
+            date = maxDate;
+        }
+        return date;
+    }
+
+    void setExpiryDate(QDate date)
+    {
+        if (date.isValid()) {
+            ui.expiryDE->setDate(forceDateIntoAllowedRange(date));
+        } else {
+            // check if unlimited validity is allowed
+            if (unlimitedValidityIsAllowed()) {
+                ui.expiryDE->setDate(date);
+            }
+        }
+        if (ui.expiryCB->isEnabled()) {
+            ui.expiryCB->setChecked(ui.expiryDE->isValid());
+        }
+    }
+
 private:
-    AdvancedSettingsDialog *const advancedSettingsDlg;
     KeyParameters technicalParameters;
 };
 
@@ -271,6 +361,7 @@ NewOpenPGPCertificateDetailsDialog::NewOpenPGPCertificateDetailsDialog(QWidget *
     : QDialog{parent, f}
     , d(new Private{this})
 {
+    resize(sizeHint().width() + 20, sizeHint().height() + 20);
 }
 
 NewOpenPGPCertificateDetailsDialog::~NewOpenPGPCertificateDetailsDialog() = default;

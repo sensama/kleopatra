@@ -26,12 +26,16 @@
 #include <Libkleo/Compliance>
 #include <Libkleo/Debug>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
+
+#include <QGpgME/KeyListJob>
+#include <QGpgME/Protocol>
 
 #include <QHBoxLayout>
 #include <QInputDialog>
@@ -43,6 +47,7 @@
 
 #include <gpgme++/context.h>
 #include <gpgme++/engineinfo.h>
+#include <gpgme++/keylistresult.h>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -256,6 +261,61 @@ void NetKeyWidget::loadCertificates()
             mCertificates.push_back(certificate);
         } else {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Did not find certificate for card key" << cardKeyInfo.grip << "in cache";
+        }
+    }
+    mTreeView->setKeys(mCertificates);
+
+    ensureCertificatesAreValidated();
+}
+
+void NetKeyWidget::ensureCertificatesAreValidated()
+{
+    if (mCertificates.empty()) {
+        return;
+    }
+
+    std::vector<GpgME::Key> certificatesToValidate;
+    certificatesToValidate.reserve(mCertificates.size());
+    Kleo::copy_if(mCertificates, std::back_inserter(certificatesToValidate), [this](const auto &cert) {
+        // don't bother validating certificates that have expired or are otherwise invalid
+        return !cert.isBad() && !mValidatedCertificates.contains(cert);
+    });
+    if (!certificatesToValidate.empty()) {
+        startCertificateValidation(certificatesToValidate);
+        mValidatedCertificates.insert(certificatesToValidate.cbegin(), certificatesToValidate.cend());
+    }
+}
+
+void NetKeyWidget::startCertificateValidation(const std::vector<GpgME::Key> &certificates)
+{
+    qCDebug(KLEOPATRA_LOG) << __func__ << "Validating certificates" << certificates;
+    auto job = std::unique_ptr<QGpgME::KeyListJob>{QGpgME::smime()->keyListJob(false, true, true)};
+    auto ctx = QGpgME::Job::context(job.get());
+    ctx->addKeyListMode(GpgME::WithSecret);
+
+    connect(job.get(), &QGpgME::KeyListJob::result, this, &NetKeyWidget::certificateValidationDone);
+
+    job->start(Kleo::getFingerprints(certificates));
+    job.release();
+}
+
+void NetKeyWidget::certificateValidationDone(const GpgME::KeyListResult &result, const std::vector<GpgME::Key> &validatedCertificates)
+{
+    qCDebug(KLEOPATRA_LOG) << __func__ << "certificates:" << validatedCertificates;
+    if (result.error()) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Validating certificates failed:" << result.error();
+        return;
+    }
+    // replace the current certificates with the validated certificates
+    for (const auto &validatedCert : validatedCertificates) {
+        const auto fpr = validatedCert.primaryFingerprint();
+        const auto it = std::find_if(mCertificates.begin(), mCertificates.end(), [fpr](const auto &cert) {
+            return !qstrcmp(fpr, cert.primaryFingerprint());
+        });
+        if (it != mCertificates.end()) {
+            *it = validatedCert;
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Didn't find validated certificate in certificate list:" << validatedCert;
         }
     }
     mTreeView->setKeys(mCertificates);

@@ -11,14 +11,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-03 01:36+0000\n"
-"PO-Revision-Date: 2024-02-05 17:40+0900\n"
+"PO-Revision-Date: 2024-02-29 03:07+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 24.04.70\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -443,6 +443,8 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>您確定要給予「%1」為您將憑證標記為 %2 的能力嗎？</para><para><emphasis>"
+"這代表這個憑證的擁有者會正確檢查指紋並且確認他人的身份。</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -453,19 +455,20 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>您確定要給予「%1」為您將憑證標記為有效的能力嗎？</para><para><emphasis>"
+"這代表這個憑證的擁有者會正確檢查指紋並且確認他人的身份。</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
-#| msgid "Certification"
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "憑證"
+msgstr "給予保證能力"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "給予能力"
 
 #: src/commands/changeownertrustcommand.cpp:157
 #, kde-kuit-format
@@ -474,6 +477,8 @@ msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as %2 for "
 "you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
+"<para>憑證「%1」有能力為您將其他憑證標記為 %2。</para><para>您要撤銷這個能力"
+"嗎？</para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
 #, kde-kuit-format
@@ -482,19 +487,20 @@ msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as valid "
 "for you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
+"<para>憑證「%1」有能力為您將其他憑證標記為有效。</para><para>您要撤銷這個能力"
+"嗎？</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
 #, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr ""
+msgstr "撤銷保證能力"
 
 #: src/commands/changeownertrustcommand.cpp:168
-#, fuzzy, kde-format
-#| msgid "Select File"
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "選擇檔案"
+msgstr "撤銷能力"
 
 #: src/commands/changeownertrustcommand.cpp:234
 #, fuzzy, kde-kuit-format
@@ -509,28 +515,24 @@ msgid ""
 msgstr "<para>試著載入憑證時發生錯誤：<message>%1</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:241
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while loading the certifications: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
-msgstr "<para>試著載入憑證時發生錯誤：<message>%1</message></para>"
+msgstr ""
+"<para>給予保證能力給「%1」時發生錯誤。</para><para><message>%2</message></"
+"para>"
 
 #: src/commands/changeownertrustcommand.cpp:248
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while loading the certifications: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
-msgstr "<para>試著載入憑證時發生錯誤：<message>%1</message></para>"
+msgstr ""
+"<para>撤銷「%1」的保證能力時發生錯誤。</para><para><message>%2</message></"
+"para>"
 
 #: src/commands/changeownertrustcommand.cpp:264
 #, kde-format
@@ -539,18 +541,16 @@ msgid "Certificate '%1' was marked as your certificate."
 msgstr "憑證 '%1' 已標記為您的憑證。"
 
 #: src/commands/changeownertrustcommand.cpp:267
-#, fuzzy, kde-format
-#| msgid "Owner Trust Change Error"
+#, kde-format
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "變更擁有者信任錯誤"
+msgstr "保證能力已給予「%1」。"
 
 #: src/commands/changeownertrustcommand.cpp:270
-#, fuzzy, kde-format
-#| msgid "Configuration Error"
+#, kde-format
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "設定錯誤"
+msgstr "已撤銷「%1」的保證能力。"
 
 #: src/commands/changepassphrasecommand.cpp:179
 #, kde-format
@@ -3162,20 +3162,15 @@ msgid "PIV Card Application Administration Key set successfully."
 msgstr "成功設定 PIV 卡片應用管理金鑰。"
 
 #: src/commands/setprimaryuseridcommand.cpp:123
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to export the secret key.</para> "
-#| "<para>The output from <command>%1</command> was: <message>%2</message></"
-#| "para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to flag the user ID<nl/><emphasis>%1</"
 "emphasis><nl/>as the primary user ID.</para><para><message>%2</message></"
 "para>"
 msgstr ""
-"<para>試著匯出秘密金鑰時發生錯誤。</para> <para><command>%1</command> 的輸出"
-"為：<message>%2</message></para>"
+"<para>嘗試將使用者 ID<nl/><emphasis>%1</emphasis><nl/>標記為主要使用者 ID 時"
+"發生錯誤。</para><para><message>%2</message></para>"
 
 #: src/commands/setprimaryuseridcommand.cpp:132
 #, kde-kuit-format
@@ -3184,6 +3179,8 @@ msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
 msgstr ""
+"<para>使用者 ID<nl/><emphasis>%1</emphasis><nl/>已成功標記為主要使用者 ID。</"
+"para>"
 
 #: src/commands/signclipboardcommand.cpp:150
 #: src/commands/signclipboardcommand.cpp:162
@@ -6084,7 +6081,7 @@ msgstr "合規："
 #: src/dialogs/certificatedetailswidget.cpp:325
 #, kde-format
 msgid "Trusted introducer for:"
-msgstr ""
+msgstr "為以下的可信任介紹者："
 
 #: src/dialogs/certificatedetailswidget.cpp:327
 #, kde-format
@@ -6541,12 +6538,12 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:430
 #, kde-format
 msgid "Certify as trusted introducer"
-msgstr ""
+msgstr "保證為可信任的介紹者"
 
 #: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
-msgstr ""
+msgstr "您可以使用這個來為網域保證一個可信任的介紹者。"
 
 #: src/dialogs/certifywidget.cpp:432
 #, kde-format
@@ -7864,12 +7861,11 @@ msgstr "允許建立 S/MIME 憑證簽章請求。"
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
 #: src/kcfg/settings.kcfg:101
-#, fuzzy, kde-format
-#| msgid "Create a personal X.509 key pair and certification request "
+#, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
 "signing requests."
-msgstr "建立個人的 X.509 金鑰對與憑證要求"
+msgstr "若為否，則 Kleopatra 不會提供 S/MIME 憑證簽署請求的建立。"
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
 #: src/kcfg/settings.kcfg:105
@@ -8346,12 +8342,12 @@ msgstr ""
 #: src/kleopatraapplication.cpp:828
 #, kde-format
 msgid "Prohibited"
-msgstr ""
+msgstr "被禁止"
 
 #: src/libkleopatraclient/core/command.cpp:449
 #, kde-format
 msgid "Failed to start uiserver %1"
-msgstr ""
+msgstr "無法啟動 UI 伺服器 (uiserver) %1"
 
 #: src/libkleopatraclient/core/command.cpp:559
 #, kde-format
@@ -8362,7 +8358,7 @@ msgstr "無效的 socket 名稱！"
 #, kde-format
 msgid ""
 "Could not allocate resources to connect to Kleopatra UI server at %1: %2"
-msgstr ""
+msgstr "無法分配資源以連線到在 %1 的 Kleopatra UI 伺服器：%2"
 
 #: src/libkleopatraclient/core/command.cpp:592
 #, kde-format
@@ -8372,7 +8368,7 @@ msgstr "無法連線到在 %1 的 Kleopatra UI 伺服器：%2"
 #: src/libkleopatraclient/core/command.cpp:599
 #, kde-format
 msgid "Could not get the process-id of the Kleopatra UI server at %1: %2"
-msgstr ""
+msgstr "無法取得在 %1 的 Kleopatra UI 伺服器的行程 ID：%2"
 
 #: src/libkleopatraclient/core/command.cpp:625
 #, kde-format
@@ -8412,7 +8408,7 @@ msgstr "Kleopatra 錯誤"
 #: src/libkleopatraclient/gui/certificaterequester.cpp:243
 #, kde-format
 msgid "There was an error while connecting to Kleopatra: %1"
-msgstr ""
+msgstr "連線到 Kleopatra 時發生錯誤：%1"
 
 #: src/main.cpp:134
 #, kde-kuit-format
@@ -8538,7 +8534,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Restart the background processes, e.g. after making changes to the "
 "configuration."
-msgstr ""
+msgstr "重新啟動背景行程，例如在變更設定之後。"
 
 #: src/mainwindow.cpp:544
 #, kde-format
@@ -10789,18 +10785,16 @@ msgid "Revoke the certification of the selected certificate"
 msgstr "撤銷選取的憑證的保證"
 
 #: src/view/keylistcontroller.cpp:520
-#, fuzzy, kde-format
-#| msgid "Change Owner Trust..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "變更擁有者信任..."
+msgstr "變更保證能力..."
 
 #: src/view/keylistcontroller.cpp:521
-#, fuzzy, kde-format
-#| msgid "The validity of the signature cannot be verified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
-msgstr "無法檢查簽章的有效性。"
+msgstr "給予或撤銷選取的憑證的保證能力"
 
 #: src/view/keylistcontroller.cpp:529
 #, kde-format

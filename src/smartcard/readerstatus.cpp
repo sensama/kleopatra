@@ -792,6 +792,7 @@ Q_SIGNALS:
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
     void updateFinished();
     void oneTransactionFinished(const GpgME::Error &err);
+    void startingLearnCards(GpgME::Protocol protocol);
     void cardsLearned(GpgME::Protocol protocol);
 
 public Q_SLOTS:
@@ -1003,6 +1004,7 @@ private:
 
                 Q_EMIT updateFinished();
             } else if (nullSlot && command == learnCMSTransaction.command) {
+                Q_EMIT startingLearnCards(GpgME::CMS);
                 learnCMSCards();
                 Q_EMIT cardsLearned(GpgME::CMS);
             } else {
@@ -1061,6 +1063,7 @@ public:
         connect(this, &::ReaderStatusThread::cardRemoved, q, &ReaderStatus::cardRemoved);
         connect(this, &::ReaderStatusThread::updateFinished, q, &ReaderStatus::updateFinished);
         connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged, q, &ReaderStatus::firstCardWithNullPinChanged);
+        connect(this, &::ReaderStatusThread::startingLearnCards, q, &ReaderStatus::onStartingLearnCards);
         connect(this, &::ReaderStatusThread::cardsLearned, q, &ReaderStatus::onCardsLearned);
 
         if (DeviceInfoWatcher::isSupported()) {
@@ -1098,6 +1101,7 @@ private:
 private:
     FileSystemWatcher watcher;
     DeviceInfoWatcher devInfoWatcher;
+    std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
     bool learnCMSTransactionScheduled = false;
 };
 
@@ -1262,11 +1266,20 @@ Error ReaderStatus::switchCardBackToOpenPGPApp(const std::string &serialNumber)
     return err;
 }
 
+void ReaderStatus::onStartingLearnCards(GpgME::Protocol protocol)
+{
+    qCDebug(KLEOPATRA_LOG) << __func__;
+    // suspend automatic refreshes of the key cache while smart card keys are learned
+    d->keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
+    Q_EMIT startingLearnCards(protocol);
+}
+
 void ReaderStatus::onCardsLearned(GpgME::Protocol protocol)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
     Q_EMIT cardsLearned(protocol);
     d->learnCMSTransactionScheduled = false;
+    d->keyCacheAutoRefreshSuspension.reset();
     // force a reload of the key cache to ensure that all learned certificates are loaded
     KeyCache::mutableInstance()->reload(protocol, KeyCache::ForceReload);
 }

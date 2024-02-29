@@ -18,8 +18,6 @@
 #include "smartcard/p15card.h"
 #include "smartcard/readerstatus.h"
 
-#include "commands/learncardkeyscommand.h"
-
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -39,6 +37,7 @@
 #include <QGpgME/ImportFromKeyserverJob>
 #include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
+
 #include <gpgme++/importresult.h>
 #include <gpgme++/keylistresult.h>
 
@@ -46,7 +45,6 @@
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
-using namespace Kleo::Commands;
 
 P15CardWidget::P15CardWidget(QWidget *parent)
     : QWidget{parent}
@@ -179,12 +177,9 @@ void P15CardWidget::setCard(const P15Card *card)
     for (const auto &info : card->keyInfos()) {
         const auto key = KeyCache::instance()->findSubkeyByKeyGrip(info.grip);
         if (key.isNull()) {
-            auto cmd = new LearnCardKeysCommand(GpgME::CMS);
-            cmd->setParentWidget(this);
-            cmd->setShowsOutputWindow(false);
             qCDebug(KLEOPATRA_LOG) << "Did not find:" << info.grip.c_str() << "Starting gpgsm --learn.";
-            cmd->start();
-            connect(cmd, &Command::finished, this, []() {
+            ReaderStatus::mutableInstance()->learnCards(GpgME::CMS);
+            connect(ReaderStatus::instance(), &ReaderStatus::cardsLearned, this, []() {
                 qCDebug(KLEOPATRA_LOG) << "Learn command finished.";
             });
             return;

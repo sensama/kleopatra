@@ -168,8 +168,6 @@ set(_kleopatra_SRCS
   commands/importpaperkeycommand.h
   commands/keytocardcommand.cpp
   commands/keytocardcommand.h
-  commands/learncardkeyscommand.cpp
-  commands/learncardkeyscommand.h
   commands/lookupcertificatescommand.cpp
   commands/lookupcertificatescommand.h
   commands/newcertificatesigningrequestcommand.cpp

@@ -305,6 +305,8 @@ set(_kleopatra_SRCS
   dialogs/addsubkeydialog.h
   dialogs/adduseriddialog.cpp
   dialogs/adduseriddialog.h
+  dialogs/animatedexpander.cpp
+  dialogs/animatedexpander.h
   dialogs/certificatedetailsdialog.cpp
   dialogs/certificatedetailsdialog.h
   dialogs/certificatedetailsinputwidget.cpp

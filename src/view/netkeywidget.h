@@ -7,9 +7,13 @@
 */
 #pragma once
 
+#include <Libkleo/Predicates>
+
 #include <QWidget>
+
 #include <gpgme++/error.h>
 
+#include <set>
 #include <string>
 #include <vector>
 
@@ -20,6 +24,7 @@ class QScrollArea;
 namespace GpgME
 {
 class Key;
+class KeyListResult;
 }
 
 namespace Kleo
@@ -43,6 +48,9 @@ public:
 
 private:
     void loadCertificates();
+    void ensureCertificatesAreValidated();
+    void startCertificateValidation(const std::vector<GpgME::Key> &certificates);
+    void certificateValidationDone(const GpgME::KeyListResult &result, const std::vector<GpgME::Key> &keys);
     void learnCard();
     void doChangePin(const std::string &keyRef);
     void createKeyFromCardKeys();
@@ -51,6 +59,9 @@ private:
 private:
     std::string mSerialNumber;
     std::vector<GpgME::Key> mCertificates;
+
+    using KeySet = std::set<GpgME::Key, _detail::ByFingerprint<std::less>>;
+    KeySet mValidatedCertificates;
 
     QLabel *mSerialNumberLabel = nullptr;
     QLabel *mVersionLabel = nullptr;

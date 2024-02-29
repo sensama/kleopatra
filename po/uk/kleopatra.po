@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-27 00:37+0000\n"
+"POT-Creation-Date: 2024-02-29 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 08:47+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -457,7 +457,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Чи є «%1» вашим власним сертифікатом?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:639
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -919,7 +919,7 @@ msgctxt "@title"
 msgid "Error Saving Request"
 msgstr "Помилка під час збереження запиту"
 
-#: src/commands/creategroupcommand.cpp:96
+#: src/commands/creategroupcommand.cpp:97
 #, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
@@ -928,7 +928,7 @@ msgstr ""
 "Жодним із позначених сертифікатів не можна скористатися для шифрування. Не "
 "буде створено жодної групи."
 
-#: src/commands/creategroupcommand.cpp:101
+#: src/commands/creategroupcommand.cpp:102
 #, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
@@ -937,13 +937,13 @@ msgstr ""
 "Деякими з позначених сертифікатів не можна скористатися для шифрування. Ці "
 "сертифікати не буде додано до групи."
 
-#: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
+#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:327
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "Нова група"
 
-#: src/commands/creategroupcommand.cpp:108 src/conf/groupsconfigwidget.cpp:329
+#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:330
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
@@ -1507,7 +1507,7 @@ msgstr ""
 "</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:620
+#: src/commands/importcertificatescommand.cpp:621
 #, kde-format
 msgid " "
 msgstr ", "
@@ -1887,8 +1887,8 @@ msgstr "Процес завершив роботу"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:941
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Імпортування сертифіката зазнало невдачі"
@@ -1918,7 +1918,7 @@ msgid "Notepad"
 msgstr "Нотатник"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:186
+#: src/commands/importcertificatescommand.cpp:187
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1939,7 +1939,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Не вдалося відкрити файл %1 для читання: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:282 src/view/keytreeview.cpp:266
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:266
 #, kde-format
 msgid "Certificates"
 msgstr "Сертифікати"
@@ -1980,218 +1980,218 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Сертифікат картки"
 
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:188
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Імпортуємо сертифікати… (ця дія триватиме певний час)"
 
-#: src/commands/importcertificatescommand.cpp:242
+#: src/commands/importcertificatescommand.cpp:243
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Імпортовані сертифікати з %1"
 
-#: src/commands/importcertificatescommand.cpp:244
+#: src/commands/importcertificatescommand.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Імпортовані сертифікати з цих джерел:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:254
+#: src/commands/importcertificatescommand.cpp:255
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Імпортовані сертифікати"
 
-#: src/commands/importcertificatescommand.cpp:267
+#: src/commands/importcertificatescommand.cpp:268
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:268
+#: src/commands/importcertificatescommand.cpp:269
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:269
+#: src/commands/importcertificatescommand.cpp:270
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:283
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:284
+#: src/commands/importcertificatescommand.cpp:324
 #, kde-format
 msgid "Total number processed:"
 msgstr "Всього опрацьовано:"
 
-#: src/commands/importcertificatescommand.cpp:284
+#: src/commands/importcertificatescommand.cpp:285
 #, kde-format
 msgid "Imported:"
 msgstr "Імпортовано:"
 
-#: src/commands/importcertificatescommand.cpp:286
+#: src/commands/importcertificatescommand.cpp:287
 #, kde-format
 msgid "New signatures:"
 msgstr "Нові підписи:"
 
-#: src/commands/importcertificatescommand.cpp:288
+#: src/commands/importcertificatescommand.cpp:289
 #, kde-format
 msgid "New user IDs:"
 msgstr "Нові ІД користувачів:"
 
-#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Сертифікати без ІД користувача:"
 
-#: src/commands/importcertificatescommand.cpp:292
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "New subkeys:"
 msgstr "Нові підключі:"
 
-#: src/commands/importcertificatescommand.cpp:294
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Недавно відкликано:"
 
-#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "Not imported:"
 msgstr "Не імпортовано:"
 
-#: src/commands/importcertificatescommand.cpp:298
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "Unchanged:"
 msgstr "Не змінено:"
 
-#: src/commands/importcertificatescommand.cpp:300
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Оброблено закритих ключів:"
 
-#: src/commands/importcertificatescommand.cpp:302
+#: src/commands/importcertificatescommand.cpp:303
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Імпортовано закритих ключів:"
 
-#: src/commands/importcertificatescommand.cpp:306
+#: src/commands/importcertificatescommand.cpp:307
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "<em>Не</em> імпортовано закритих ключів:"
 
-#: src/commands/importcertificatescommand.cpp:308
+#: src/commands/importcertificatescommand.cpp:309
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Не змінено закритих ключів:"
 
-#: src/commands/importcertificatescommand.cpp:310
+#: src/commands/importcertificatescommand.cpp:311
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Пропущено застарілі ключі PGP-2:"
 
-#: src/commands/importcertificatescommand.cpp:322
+#: src/commands/importcertificatescommand.cpp:323
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Групи сертифікатів"
 
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "New groups:"
 msgstr "Нові групи:"
 
-#: src/commands/importcertificatescommand.cpp:325
+#: src/commands/importcertificatescommand.cpp:326
 #, kde-format
 msgid "Updated groups:"
 msgstr "Оновлені групи:"
 
-#: src/commands/importcertificatescommand.cpp:340
+#: src/commands/importcertificatescommand.cpp:341
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 "Нічого не імпортовано (цього не могло стати, будь ласка, повідомте про ваду)."
 
-#: src/commands/importcertificatescommand.cpp:342
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Докладні результати імпортування %1:"
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:344
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Докладні результати імпортування:"
 
-#: src/commands/importcertificatescommand.cpp:401
+#: src/commands/importcertificatescommand.cpp:402
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Дзвінок особі телефоном."
 
-#: src/commands/importcertificatescommand.cpp:402
+#: src/commands/importcertificatescommand.cpp:403
 #, kde-format
 msgid "Using a business card."
 msgstr "Використання бізнес-картки."
 
-#: src/commands/importcertificatescommand.cpp:403
+#: src/commands/importcertificatescommand.cpp:404
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Підтвердження на надійному сайті."
 
-#: src/commands/importcertificatescommand.cpp:407
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "Для того, щоб сертифікат вважався чинним, його слід посвідчити."
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Посвідчення означає перевірку відбитка."
 
-#: src/commands/importcertificatescommand.cpp:409
+#: src/commands/importcertificatescommand.cpp:410
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Декілька пропозицій щодо того, як це зробити:"
 
-#: src/commands/importcertificatescommand.cpp:411
+#: src/commands/importcertificatescommand.cpp:412
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Хочете розпочати процедуру зараз?"
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:413
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Вами імпортовано новий сертифікат (відкритий ключ)"
 
-#: src/commands/importcertificatescommand.cpp:413
-#: src/conf/groupsconfigwidget.cpp:200
+#: src/commands/importcertificatescommand.cpp:414
+#: src/conf/groupsconfigwidget.cpp:201
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Сертифікувати"
 
-#: src/commands/importcertificatescommand.cpp:466
+#: src/commands/importcertificatescommand.cpp:467
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (імпортовано за допомогою %2)"
 
-#: src/commands/importcertificatescommand.cpp:470
+#: src/commands/importcertificatescommand.cpp:471
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "Журнал перевірки порожній."
 
-#: src/commands/importcertificatescommand.cpp:472
+#: src/commands/importcertificatescommand.cpp:473
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Імпортування скасовано."
 
-#: src/commands/importcertificatescommand.cpp:492
+#: src/commands/importcertificatescommand.cpp:493
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Результат імпортування сертифіката"
 
-#: src/commands/importcertificatescommand.cpp:501
+#: src/commands/importcertificatescommand.cpp:502
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2200,7 +2200,7 @@ msgstr ""
 "<qt><p>Сталася помилка під час спроби імпортування сертифіката:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:506
+#: src/commands/importcertificatescommand.cpp:507
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2209,13 +2209,13 @@ msgstr ""
 "<qt><p>Сталася помилка під час спроби імпортування сертифікат %1:</p><p><b>"
 "%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:622
+#: src/commands/importcertificatescommand.cpp:623
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2227,19 +2227,19 @@ msgstr ""
 "numid></para><para>та ідентифікаторами користувача<list>%2</list></"
 "para><para>Це ваш власний сертифікат?</para>"
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:640
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Так, це мій"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:641
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ні, це не мій"
 
-#: src/commands/importcertificatescommand.cpp:790
+#: src/commands/importcertificatescommand.cpp:791
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2251,7 +2251,7 @@ msgstr ""
 "para><para>містяться сертифікати, які не можна використовувати для "
 "шифрування. Це може призвести до неочікуваних результатів.</para>"
 
-#: src/commands/importcertificatescommand.cpp:854
+#: src/commands/importcertificatescommand.cpp:855
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2260,8 +2260,8 @@ msgstr[1] "Отримуємо %1 ключі підписувачів… (ця д
 msgstr[2] "Отримуємо %1 ключів підписувачів… (ця дія триватиме певний час)"
 msgstr[3] "Отримуємо ключ підписувача… (ця дія триватиме певний час)"
 
-#: src/commands/importcertificatescommand.cpp:889
-#: src/commands/importcertificatescommand.cpp:939
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3885,78 +3885,78 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:154 src/dialogs/editgroupdialog.cpp:174
-#: src/dialogs/editgroupdialog.cpp:234
+#: src/conf/groupsconfigwidget.cpp:155 src/dialogs/editgroupdialog.cpp:175
+#: src/dialogs/editgroupdialog.cpp:235
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
 msgstr "Шукати:"
 
-#: src/conf/groupsconfigwidget.cpp:155 src/conf/groupsconfigwidget.cpp:161
+#: src/conf/groupsconfigwidget.cpp:156 src/conf/groupsconfigwidget.cpp:162
 #, kde-format
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Шукати групи"
 
-#: src/conf/groupsconfigwidget.cpp:156 src/conf/groupsconfigwidget.cpp:162
+#: src/conf/groupsconfigwidget.cpp:157 src/conf/groupsconfigwidget.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "Шукати у списку групи, які відповідають критерію пошуку."
 
-#: src/conf/groupsconfigwidget.cpp:163 src/dialogs/editgroupdialog.cpp:183
-#: src/dialogs/editgroupdialog.cpp:243
+#: src/conf/groupsconfigwidget.cpp:164 src/dialogs/editgroupdialog.cpp:184
+#: src/dialogs/editgroupdialog.cpp:244
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "Вкажіть критерій пошуку"
 
-#: src/conf/groupsconfigwidget.cpp:180
+#: src/conf/groupsconfigwidget.cpp:181
 #, kde-format
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "групи"
 
-#: src/conf/groupsconfigwidget.cpp:189
+#: src/conf/groupsconfigwidget.cpp:190
 #, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Створити"
 
-#: src/conf/groupsconfigwidget.cpp:192 src/view/pgpcardwidget.cpp:185
+#: src/conf/groupsconfigwidget.cpp:193 src/view/pgpcardwidget.cpp:185
 #: src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr "Змінити"
 
-#: src/conf/groupsconfigwidget.cpp:196
+#: src/conf/groupsconfigwidget.cpp:197
 #: src/dialogs/deletecertificatesdialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
 msgstr "Вилучити"
 
-#: src/conf/groupsconfigwidget.cpp:201
+#: src/conf/groupsconfigwidget.cpp:202
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
 msgstr "Почати процедуру посвідчення для усіх сертифікатів у групі."
 
-#: src/conf/groupsconfigwidget.cpp:205
+#: src/conf/groupsconfigwidget.cpp:206
 #: src/dialogs/certificatedetailswidget.cpp:358
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Експортувати"
 
-#: src/conf/groupsconfigwidget.cpp:366
+#: src/conf/groupsconfigwidget.cpp:367
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Редагування групи"
 
-#: src/conf/groupsconfigwidget.cpp:397
+#: src/conf/groupsconfigwidget.cpp:398
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3966,7 +3966,7 @@ msgstr ""
 "<para>Хочете вилучити цю групу?</para><para><emphasis>%1</emphasis></"
 "para><para>Після вилучення її не можна буде відновити.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:403
+#: src/conf/groupsconfigwidget.cpp:404
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3988,7 +3988,7 @@ msgstr[3] ""
 "<para>Хочете вилучити цю %1 групу?</para><para>Після вилучення її не можна "
 "буде відновити.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:415
+#: src/conf/groupsconfigwidget.cpp:416
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
@@ -3998,7 +3998,7 @@ msgstr[1] "Вилучити групи"
 msgstr[2] "Вилучити групи"
 msgstr[3] "Вилучити групу"
 
-#: src/conf/groupsconfigwidget.cpp:470
+#: src/conf/groupsconfigwidget.cpp:471
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -7277,13 +7277,13 @@ msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Вилучення закритого ключа"
 
-#: src/dialogs/editgroupdialog.cpp:82
+#: src/dialogs/editgroupdialog.cpp:83
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Цим сертифікатом не можна скористатися для шифрування."
 
-#: src/dialogs/editgroupdialog.cpp:113
+#: src/dialogs/editgroupdialog.cpp:114
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7293,81 +7293,81 @@ msgstr ""
 "Цей сертифікат не можна додати до групи, оскільки ним не можна скористатися "
 "для шифрування."
 
-#: src/dialogs/editgroupdialog.cpp:156
+#: src/dialogs/editgroupdialog.cpp:157
 #, kde-format
 msgctxt "Name of a group of keys"
 msgid "Name:"
 msgstr "Назва:"
 
-#: src/dialogs/editgroupdialog.cpp:168
+#: src/dialogs/editgroupdialog.cpp:169
 #, kde-format
 msgctxt "@title"
 msgid "Available Keys"
 msgstr "Наявні ключі"
 
-#: src/dialogs/editgroupdialog.cpp:175 src/dialogs/editgroupdialog.cpp:181
+#: src/dialogs/editgroupdialog.cpp:176 src/dialogs/editgroupdialog.cpp:182
 #, kde-format
 msgctxt "@label"
 msgid "Search available keys"
 msgstr "Шукати доступні ключі"
 
-#: src/dialogs/editgroupdialog.cpp:176 src/dialogs/editgroupdialog.cpp:182
+#: src/dialogs/editgroupdialog.cpp:177 src/dialogs/editgroupdialog.cpp:183
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr "Шукати у списку доступні ключі для ключів, які відповідають критерію."
 
-#: src/dialogs/editgroupdialog.cpp:196
+#: src/dialogs/editgroupdialog.cpp:197
 #, kde-format
 msgid "available keys"
 msgstr "доступні ключі"
 
-#: src/dialogs/editgroupdialog.cpp:212
+#: src/dialogs/editgroupdialog.cpp:213
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Keys"
 msgstr "Додати позначені ключі"
 
-#: src/dialogs/editgroupdialog.cpp:213
+#: src/dialogs/editgroupdialog.cpp:214
 #, kde-format
 msgid "Add the selected keys to the group"
 msgstr "Додати позначені ключі до групи"
 
-#: src/dialogs/editgroupdialog.cpp:219
+#: src/dialogs/editgroupdialog.cpp:220
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Keys"
 msgstr "Вилучити позначені ключі"
 
-#: src/dialogs/editgroupdialog.cpp:220
+#: src/dialogs/editgroupdialog.cpp:221
 #, kde-format
 msgid "Remove the selected keys from the group"
 msgstr "Вилучити позначені ключі з групи"
 
-#: src/dialogs/editgroupdialog.cpp:228
+#: src/dialogs/editgroupdialog.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Group Keys"
 msgstr "Ключі групи"
 
-#: src/dialogs/editgroupdialog.cpp:235 src/dialogs/editgroupdialog.cpp:241
+#: src/dialogs/editgroupdialog.cpp:236 src/dialogs/editgroupdialog.cpp:242
 #, kde-format
 msgctxt "@label"
 msgid "Search group keys"
 msgstr "Шукати ключі груп"
 
-#: src/dialogs/editgroupdialog.cpp:236 src/dialogs/editgroupdialog.cpp:242
+#: src/dialogs/editgroupdialog.cpp:237 src/dialogs/editgroupdialog.cpp:243
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of group keys for keys matching the search term."
 msgstr "Шукати у списку ключі груп для ключів, які відповідають критерію."
 
-#: src/dialogs/editgroupdialog.cpp:255
+#: src/dialogs/editgroupdialog.cpp:256
 #, kde-format
 msgid "group keys"
 msgstr "ключі груп"
 
-#: src/dialogs/editgroupdialog.cpp:422
+#: src/dialogs/editgroupdialog.cpp:423
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
@@ -8979,7 +8979,7 @@ msgstr "&Перегляд"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:132
+#: src/kleopatra.rc:44 src/kleopatra.rc:133
 #, kde-format
 msgid "&Certificates"
 msgstr "&Сертифікати"
@@ -9015,7 +9015,7 @@ msgid "&More documentation"
 msgstr "Д&одаткова документація"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:115 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:116 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Головна панель"
@@ -9543,29 +9543,40 @@ msgstr "Кома&ндний рядок GnuPG"
 
 #: src/mainwindow.cpp:756
 #, kde-format
+msgid "Manual for VS-NfD approval (German)"
+msgstr ""
+
+#: src/mainwindow.cpp:757
+#, kde-format
+msgctxt "Only available in German. Keep German file name for all languages"
+msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:764
+#, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:757
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:772
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:773
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:791
+#: src/mainwindow.cpp:799
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9574,7 +9585,7 @@ msgstr ""
 "Все ще виконуються деякі фонові дії. Їх буде припинено, якщо ви закриєте "
 "вікно. Продовжувати?"
 
-#: src/mainwindow.cpp:794
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Виконуються фонові завдання"

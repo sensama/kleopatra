@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-27 00:37+0000\n"
+"POT-Creation-Date: 2024-02-29 00:38+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -476,7 +476,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Είναι το '%1' δικό σας πιστοποιητικό;"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:639
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -943,7 +943,7 @@ msgctxt "@title"
 msgid "Error Saving Request"
 msgstr "Σφάλμα αίτησης αποθήκευσης"
 
-#: src/commands/creategroupcommand.cpp:96
+#: src/commands/creategroupcommand.cpp:97
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for encryption."
@@ -952,7 +952,7 @@ msgid ""
 "be created."
 msgstr "Το πιστοποιητικό αυτό δεν μπορεί να χρησιμοποιηθεί για κρυπτογράφηση."
 
-#: src/commands/creategroupcommand.cpp:101
+#: src/commands/creategroupcommand.cpp:102
 #, fuzzy, kde-format
 #| msgid ""
 #| "<b>Warning:</b> None of the selected certificates seem to be your own. "
@@ -965,13 +965,13 @@ msgstr ""
 "σας ανήκει. Δεν θα μπορείτε να αποκρυπτογραφήσετε τα κρυπτογραφημένα "
 "δεδομένα ξανά."
 
-#: src/commands/creategroupcommand.cpp:105 src/conf/groupsconfigwidget.cpp:326
+#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:327
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "Νέα ομάδα"
 
-#: src/commands/creategroupcommand.cpp:108 src/conf/groupsconfigwidget.cpp:329
+#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:330
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
@@ -1552,7 +1552,7 @@ msgstr ""
 "ελέγξτε την έξοδο του <icode>%1</icode> για λεπτομέρειες.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:620
+#: src/commands/importcertificatescommand.cpp:621
 #, kde-format
 msgid " "
 msgstr " "
@@ -1935,8 +1935,8 @@ msgstr "Η διεργασία ολοκληρώθηκε"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:941
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Αποτυχία εισαγωγής του πιστοποιητικού"
@@ -1967,7 +1967,7 @@ msgid "Notepad"
 msgstr "Σημειωματάριο"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:186
+#: src/commands/importcertificatescommand.cpp:187
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1986,7 +1986,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Αδυναμία ανοίγματος του αρχείου %1 για ανάγνωση: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:282 src/view/keytreeview.cpp:266
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:266
 #, kde-format
 msgid "Certificates"
 msgstr "Πιστοποιητικά"
@@ -2025,220 +2025,220 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Πιστοποιητικό κάρτας"
 
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:188
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Εισαγωγή πιστοποιητικών... (μπορεί να αργήσει λίγο)"
 
-#: src/commands/importcertificatescommand.cpp:242
+#: src/commands/importcertificatescommand.cpp:243
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Εισηγμένα πιστοποιητικά από %1"
 
-#: src/commands/importcertificatescommand.cpp:244
+#: src/commands/importcertificatescommand.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Εισηγμένα πιστοποιητικά από αυτές τις πηγές:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:254
+#: src/commands/importcertificatescommand.cpp:255
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Εισηγμένα πιστοποιητικά"
 
-#: src/commands/importcertificatescommand.cpp:267
+#: src/commands/importcertificatescommand.cpp:268
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:268
+#: src/commands/importcertificatescommand.cpp:269
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:269
+#: src/commands/importcertificatescommand.cpp:270
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:283
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:284
+#: src/commands/importcertificatescommand.cpp:324
 #, kde-format
 msgid "Total number processed:"
 msgstr "Συνολικός αριθμός επεξεργασμένων:"
 
-#: src/commands/importcertificatescommand.cpp:284
+#: src/commands/importcertificatescommand.cpp:285
 #, kde-format
 msgid "Imported:"
 msgstr "Εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:286
+#: src/commands/importcertificatescommand.cpp:287
 #, kde-format
 msgid "New signatures:"
 msgstr "Νέες υπογραφές:"
 
-#: src/commands/importcertificatescommand.cpp:288
+#: src/commands/importcertificatescommand.cpp:289
 #, kde-format
 msgid "New user IDs:"
 msgstr "Νέα ID χρηστών:"
 
-#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Πιστοποιητικά χωρίς ID χρηστών:"
 
-#: src/commands/importcertificatescommand.cpp:292
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "New subkeys:"
 msgstr "Νέα υποκλειδιά:"
 
-#: src/commands/importcertificatescommand.cpp:294
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Πρόσφατα ανακληθέντα:"
 
-#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "Not imported:"
 msgstr "Μη εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:298
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "Unchanged:"
 msgstr "Μη τροποποιημένα:"
 
-#: src/commands/importcertificatescommand.cpp:300
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Μυστικά κλειδιά που επεξεργάστηκαν:"
 
-#: src/commands/importcertificatescommand.cpp:302
+#: src/commands/importcertificatescommand.cpp:303
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Μυστικά κλειδιά που εισήχθησαν:"
 
-#: src/commands/importcertificatescommand.cpp:306
+#: src/commands/importcertificatescommand.cpp:307
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Μυστικά κλειδιά <em>μη</em> εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:308
+#: src/commands/importcertificatescommand.cpp:309
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Μυστικά κλειδιά μη τροποποιημένα:"
 
-#: src/commands/importcertificatescommand.cpp:310
+#: src/commands/importcertificatescommand.cpp:311
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Παλαιωμένα PGP-2 κλειδιά παραβλέφθηκαν:"
 
-#: src/commands/importcertificatescommand.cpp:322
+#: src/commands/importcertificatescommand.cpp:323
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Ομάδες πιστοποιητικών"
 
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "New groups:"
 msgstr "Νέες ομάδες:"
 
-#: src/commands/importcertificatescommand.cpp:325
+#: src/commands/importcertificatescommand.cpp:326
 #, kde-format
 msgid "Updated groups:"
 msgstr "Ενημέρωση ομάδων:"
 
-#: src/commands/importcertificatescommand.cpp:340
+#: src/commands/importcertificatescommand.cpp:341
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 "Χωρίς εισαγωγές (δεν θα έπρεπε να συμβαίνει αυτό, στείλτε μια αναφορά "
 "σφάλματος."
 
-#: src/commands/importcertificatescommand.cpp:342
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Αναλυτικά αποτελέσματα εισαγωγής του %1:"
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:344
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Αναλυτικά αποτελέσματα εισαγωγής:"
 
-#: src/commands/importcertificatescommand.cpp:401
+#: src/commands/importcertificatescommand.cpp:402
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Τηλεφωνική κλήση στο πρόσωπο."
 
-#: src/commands/importcertificatescommand.cpp:402
+#: src/commands/importcertificatescommand.cpp:403
 #, kde-format
 msgid "Using a business card."
 msgstr "Χρήση επαγγελματικής κάρτας."
 
-#: src/commands/importcertificatescommand.cpp:403
+#: src/commands/importcertificatescommand.cpp:404
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Επιβεβαίωση σε έμπιστο ιστότοπο."
 
-#: src/commands/importcertificatescommand.cpp:407
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr ""
 "Για να σημειωθεί το πιστοποιητικό ως έγκυρο χρειάζεται να πιστοποιηθεί."
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Πιστοποίηση σημαίνει ότι ελέγχετε το αποτύπωμα."
 
-#: src/commands/importcertificatescommand.cpp:409
+#: src/commands/importcertificatescommand.cpp:410
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Ορισμένες προτάσεις για να το κάνετε αυτό είναι:"
 
-#: src/commands/importcertificatescommand.cpp:411
+#: src/commands/importcertificatescommand.cpp:412
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Θέλετε να ξεκινήσετε αυτήν τη διαδικασία τώρα;"
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:413
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Έχετε εισαγάγει ένα νέο πιστοποιητικό (δημόσιο κλειδί)"
 
-#: src/commands/importcertificatescommand.cpp:413
-#: src/conf/groupsconfigwidget.cpp:200
+#: src/commands/importcertificatescommand.cpp:414
+#: src/conf/groupsconfigwidget.cpp:201
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Πιστοποίηση"
 
-#: src/commands/importcertificatescommand.cpp:466
+#: src/commands/importcertificatescommand.cpp:467
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (έγινε εισαγωγή με το %2)"
 
-#: src/commands/importcertificatescommand.cpp:470
+#: src/commands/importcertificatescommand.cpp:471
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "Το αρχείο καταγραφής ελέγχου είναι κενό."
 
-#: src/commands/importcertificatescommand.cpp:472
+#: src/commands/importcertificatescommand.cpp:473
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Η εισαγωγή ακυρώθηκε."
 
-#: src/commands/importcertificatescommand.cpp:492
+#: src/commands/importcertificatescommand.cpp:493
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Αποτέλεσμα εισαγωγής πιστοποιητικού"
 
-#: src/commands/importcertificatescommand.cpp:501
+#: src/commands/importcertificatescommand.cpp:502
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2247,7 +2247,7 @@ msgstr ""
 "<qt><p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια εισαγωγής πιστοποιητικού:</"
 "p><p><b>%1 </b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:506
+#: src/commands/importcertificatescommand.cpp:507
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2256,13 +2256,13 @@ msgstr ""
 "<qt><p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια εισαγωγής του πιστοποιητικού "
 "%1:</p><p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:622
+#: src/commands/importcertificatescommand.cpp:623
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2274,19 +2274,19 @@ msgstr ""
 "para><para><numid>%1</numid></para><para>και αναγνωριστικά χρήστη<list>%2</"
 "list></para><para>Είναι δικό σας το πιστοποιητικό;</para>"
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:640
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Ναι, είναι δικό μου"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:641
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Όχι, δεν είναι δικό μου"
 
-#: src/commands/importcertificatescommand.cpp:790
+#: src/commands/importcertificatescommand.cpp:791
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2301,15 +2301,15 @@ msgstr ""
 "<para>Θέλετε πραγματικά να ανακαλέσετε το αναγνωριστικό χρήστη<nl/><emphasis>"
 "%1</emphasis>;</para>"
 
-#: src/commands/importcertificatescommand.cpp:854
+#: src/commands/importcertificatescommand.cpp:855
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Λήψη 1 κλειδί υπογράφοντος... (μπορεί να αργήσει λίγο)"
 msgstr[1] "Λήψη %1 κλειδιά υπογράφοντος... (μπορεί να αργήσει λίγο)"
 
-#: src/commands/importcertificatescommand.cpp:889
-#: src/commands/importcertificatescommand.cpp:939
+#: src/commands/importcertificatescommand.cpp:890
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3923,39 +3923,39 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:154 src/dialogs/editgroupdialog.cpp:174
-#: src/dialogs/editgroupdialog.cpp:234
+#: src/conf/groupsconfigwidget.cpp:155 src/dialogs/editgroupdialog.cpp:175
+#: src/dialogs/editgroupdialog.cpp:235
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
 msgstr "Αναζήτηση:"
 
-#: src/conf/groupsconfigwidget.cpp:155 src/conf/groupsconfigwidget.cpp:161
+#: src/conf/groupsconfigwidget.cpp:156 src/conf/groupsconfigwidget.cpp:162
 #, kde-format
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Αναζήτηση ομάδων"
 
-#: src/conf/groupsconfigwidget.cpp:156 src/conf/groupsconfigwidget.cpp:162
+#: src/conf/groupsconfigwidget.cpp:157 src/conf/groupsconfigwidget.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "Αναζήτηση στη λίστα για ομάδες που ταιριάζουν στους όρους αναζήτησης."
 
-#: src/conf/groupsconfigwidget.cpp:163 src/dialogs/editgroupdialog.cpp:183
-#: src/dialogs/editgroupdialog.cpp:243
+#: src/conf/groupsconfigwidget.cpp:164 src/dialogs/editgroupdialog.cpp:184
+#: src/dialogs/editgroupdialog.cpp:244
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "Εισάγετε όρο αναζήτησης"
 
-#: src/conf/groupsconfigwidget.cpp:180
+#: src/conf/groupsconfigwidget.cpp:181
 #, kde-format
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "ομάδες"
 
-#: src/conf/groupsconfigwidget.cpp:189
+#: src/conf/groupsconfigwidget.cpp:190
 #, fuzzy, kde-format
 #| msgctxt "@action::button"
 #| msgid "New"
@@ -3963,21 +3963,21 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "Νέο"
 
-#: src/conf/groupsconfigwidget.cpp:192 src/view/pgpcardwidget.cpp:185
+#: src/conf/groupsconfigwidget.cpp:193 src/view/pgpcardwidget.cpp:185
 #: src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr "Επεξεργασία"
 
-#: src/conf/groupsconfigwidget.cpp:196
+#: src/conf/groupsconfigwidget.cpp:197
 #: src/dialogs/deletecertificatesdialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: src/conf/groupsconfigwidget.cpp:201
+#: src/conf/groupsconfigwidget.cpp:202
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Write the key pair of a certificate to the card"
@@ -3985,20 +3985,20 @@ msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
 msgstr "Εγγραφή στην κάρτα του ζεύγους κλειδιών ενός πιστοποιητικού"
 
-#: src/conf/groupsconfigwidget.cpp:205
+#: src/conf/groupsconfigwidget.cpp:206
 #: src/dialogs/certificatedetailswidget.cpp:358
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Εξαγωγή"
 
-#: src/conf/groupsconfigwidget.cpp:366
+#: src/conf/groupsconfigwidget.cpp:367
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Επεξεργασία ομάδας"
 
-#: src/conf/groupsconfigwidget.cpp:397
+#: src/conf/groupsconfigwidget.cpp:398
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4012,7 +4012,7 @@ msgstr ""
 "<para>Θέλετε πραγματικά να ανακαλέσετε το αναγνωριστικό χρήστη<nl/><emphasis>"
 "%1</emphasis>;</para>"
 
-#: src/conf/groupsconfigwidget.cpp:403
+#: src/conf/groupsconfigwidget.cpp:404
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4024,7 +4024,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/conf/groupsconfigwidget.cpp:415
+#: src/conf/groupsconfigwidget.cpp:416
 #, fuzzy, kde-format
 #| msgid "Delete"
 msgctxt "@title:window"
@@ -4033,7 +4033,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Διαγραφή"
 msgstr[1] "Διαγραφή"
 
-#: src/conf/groupsconfigwidget.cpp:470
+#: src/conf/groupsconfigwidget.cpp:471
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7325,7 +7325,7 @@ msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Διαγραφή μυστικού κλειδιού"
 
-#: src/dialogs/editgroupdialog.cpp:82
+#: src/dialogs/editgroupdialog.cpp:83
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for encryption."
@@ -7333,7 +7333,7 @@ msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Το πιστοποιητικό αυτό δεν μπορεί να χρησιμοποιηθεί για κρυπτογράφηση."
 
-#: src/dialogs/editgroupdialog.cpp:113
+#: src/dialogs/editgroupdialog.cpp:114
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for encryption."
@@ -7343,25 +7343,25 @@ msgid ""
 "encryption."
 msgstr "Το πιστοποιητικό αυτό δεν μπορεί να χρησιμοποιηθεί για κρυπτογράφηση."
 
-#: src/dialogs/editgroupdialog.cpp:156
+#: src/dialogs/editgroupdialog.cpp:157
 #, kde-format
 msgctxt "Name of a group of keys"
 msgid "Name:"
 msgstr "Όνομα:"
 
-#: src/dialogs/editgroupdialog.cpp:168
+#: src/dialogs/editgroupdialog.cpp:169
 #, kde-format
 msgctxt "@title"
 msgid "Available Keys"
 msgstr "Διαθέσιμα κλειδιά"
 
-#: src/dialogs/editgroupdialog.cpp:175 src/dialogs/editgroupdialog.cpp:181
+#: src/dialogs/editgroupdialog.cpp:176 src/dialogs/editgroupdialog.cpp:182
 #, kde-format
 msgctxt "@label"
 msgid "Search available keys"
 msgstr "Αναζήτηση διαθέσιμων κλειδιών"
 
-#: src/dialogs/editgroupdialog.cpp:176 src/dialogs/editgroupdialog.cpp:182
+#: src/dialogs/editgroupdialog.cpp:177 src/dialogs/editgroupdialog.cpp:183
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
@@ -7369,46 +7369,46 @@ msgstr ""
 "Αναζήτηση στη λίστα των διαθέσιμων κλειδιών για κλειδιά που ταιριάζουν στους "
 "όρους αναζήτησης."
 
-#: src/dialogs/editgroupdialog.cpp:196
+#: src/dialogs/editgroupdialog.cpp:197
 #, kde-format
 msgid "available keys"
 msgstr "διαθέσιμα κλειδιά"
 
-#: src/dialogs/editgroupdialog.cpp:212
+#: src/dialogs/editgroupdialog.cpp:213
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Keys"
 msgstr "Προσθήκη επιλεγμένων κλειδιών"
 
-#: src/dialogs/editgroupdialog.cpp:213
+#: src/dialogs/editgroupdialog.cpp:214
 #, kde-format
 msgid "Add the selected keys to the group"
 msgstr "Προσθήκη των επιλεγμένων κλειδιών στην ομάδα"
 
-#: src/dialogs/editgroupdialog.cpp:219
+#: src/dialogs/editgroupdialog.cpp:220
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Keys"
 msgstr "Αφαίρεση επιλεγμένων κλειδιών"
 
-#: src/dialogs/editgroupdialog.cpp:220
+#: src/dialogs/editgroupdialog.cpp:221
 #, kde-format
 msgid "Remove the selected keys from the group"
 msgstr "Αφαίρεση των επιλεγμένων κλειδιών από την ομάδα"
 
-#: src/dialogs/editgroupdialog.cpp:228
+#: src/dialogs/editgroupdialog.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Group Keys"
 msgstr "Ομαδοποίηση κλειδιών"
 
-#: src/dialogs/editgroupdialog.cpp:235 src/dialogs/editgroupdialog.cpp:241
+#: src/dialogs/editgroupdialog.cpp:236 src/dialogs/editgroupdialog.cpp:242
 #, kde-format
 msgctxt "@label"
 msgid "Search group keys"
 msgstr "Αναζήτηση σε κλειδιά ομάδας"
 
-#: src/dialogs/editgroupdialog.cpp:236 src/dialogs/editgroupdialog.cpp:242
+#: src/dialogs/editgroupdialog.cpp:237 src/dialogs/editgroupdialog.cpp:243
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of group keys for keys matching the search term."
@@ -7416,12 +7416,12 @@ msgstr ""
 "Αναζήτηση στη λίστα των ομάδων κλειδιών για κλειδιά που ταιριάζουν στους "
 "όρους αναζήτησης."
 
-#: src/dialogs/editgroupdialog.cpp:255
+#: src/dialogs/editgroupdialog.cpp:256
 #, kde-format
 msgid "group keys"
 msgstr "κλειδιά ομάδας"
 
-#: src/dialogs/editgroupdialog.cpp:422
+#: src/dialogs/editgroupdialog.cpp:423
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
@@ -9041,7 +9041,7 @@ msgstr "&Προβολή"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:132
+#: src/kleopatra.rc:44 src/kleopatra.rc:133
 #, kde-format
 msgid "&Certificates"
 msgstr "&Πιστοποιητικά"
@@ -9077,7 +9077,7 @@ msgid "&More documentation"
 msgstr "&Περισσότερη τεκμηρίωση"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:115 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:116 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Κύρια γραμμή εργαλείων"
@@ -9602,29 +9602,40 @@ msgstr "Γραμμή εντο&λής GnuPG"
 
 #: src/mainwindow.cpp:756
 #, kde-format
+msgid "Manual for VS-NfD approval (German)"
+msgstr ""
+
+#: src/mainwindow.cpp:757
+#, kde-format
+msgctxt "Only available in German. Keep German file name for all languages"
+msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:764
+#, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:757
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:772
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:773
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:791
+#: src/mainwindow.cpp:799
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9633,7 +9644,7 @@ msgstr ""
 "Υπάρχουν ακόμη κάποιες διεργασίες παρασκηνίου σε εξέλιξη. Αυτές θα "
 "τερματιστούν κατά το κλείσιμο του παραθύρου. Θα συνεχίσετε;"
 
-#: src/mainwindow.cpp:794
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Διεργασίες παρασκηνίου σε εξέλιξη"

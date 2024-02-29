@@ -79,10 +79,12 @@ Q_SIGNALS:
     void cardChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
     void updateFinished();
+    void startingLearnCards(GpgME::Protocol protocol);
     void cardsLearned(GpgME::Protocol protocol);
     void startOfGpgAgentRequested();
 
 private:
+    void onStartingLearnCards(GpgME::Protocol protocol);
     void onCardsLearned(GpgME::Protocol protocol);
 
     class Private;

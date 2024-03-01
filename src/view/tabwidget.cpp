@@ -671,6 +671,7 @@ void TabWidget::Private::closePage(Page *page)
     Q_EMIT q->viewAboutToBeRemoved(page->view());
     page->closePage();
     tabWidget->removeTab(tabWidget->indexOf(page));
+    q->saveViews();
     enableDisableCurrentPageActions();
 }
 
@@ -1118,6 +1119,7 @@ void TabWidget::saveViews()
         }
     }
     d->config->group(d->configKey).writeEntry("Tabs", tabs);
+    d->config->sync();
 }
 
 void TabWidget::connectSearchBar(SearchBar *sb)

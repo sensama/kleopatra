@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-29 00:38+0000\n"
-"PO-Revision-Date: 2024-02-05 11:37\n"
+"POT-Creation-Date: 2024-03-01 00:38+0000\n"
+"PO-Revision-Date: 2024-02-29 12:53\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -141,22 +141,16 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 Kleopatra 开发者, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
-msgstr "<p>尝试更改 <b>%1</b> 的密码句时出错：</p><p>%2</p>"
+msgstr ""
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "成功导出了 %1 个子密钥。"
+msgstr ""
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -884,24 +878,18 @@ msgid "Error Saving Request"
 msgstr "保存请求出错"
 
 #: src/commands/creategroupcommand.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "此证书不能用于加密。"
+msgstr ""
 
 #: src/commands/creategroupcommand.cpp:102
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>警告：</b>所选的证书中没有一个是属于您自己的。您无法再次解密已加密的数据。"
 
 #: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:327
 #, kde-format
@@ -5902,12 +5890,10 @@ msgid "Valid until:"
 msgstr "有效期结束于"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "子密钥"
+msgstr ""
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -6790,22 +6776,18 @@ msgid "Secret Key Deletion"
 msgstr "私钥删除"
 
 #: src/dialogs/editgroupdialog.cpp:83
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "此证书不能用于加密。"
 
 #: src/dialogs/editgroupdialog.cpp:114
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "此证书不能用于加密。"
+msgstr ""
 
 #: src/dialogs/editgroupdialog.cpp:157
 #, kde-format
@@ -7382,11 +7364,10 @@ msgid "Status"
 msgstr "状态"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr "算法："
+msgstr ""
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
@@ -7496,12 +7477,10 @@ msgid "Subkeys Details"
 msgstr "子密钥详情"
 
 #: src/dialogs/subkeyswidget.cpp:369
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "子密钥"
+msgstr ""
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -8637,7 +8616,7 @@ msgstr "Kleopatra 错误"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "连接 Kleopatra 时出错：%1"
 
-#: src/main.cpp:133
+#: src/main.cpp:134
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8652,13 +8631,13 @@ msgstr ""
 "para><para><application>Kleopatra</application> 将无法在此设置中运行。</"
 "para><para>请咨询您的管理员来帮助解决这个问题。</para>"
 
-#: src/main.cpp:137
+#: src/main.cpp:138
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME 版本太旧"
 
-#: src/main.cpp:159
+#: src/main.cpp:160
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8673,23 +8652,23 @@ msgstr ""
 "户身份管理，并以适当的权限复制 <filename>AppData\\Roaming\\gnupg</filename> "
 "目录。</para>"
 
-#: src/main.cpp:163
+#: src/main.cpp:164
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>您确定要继续吗？</para>"
 
-#: src/main.cpp:164
+#: src/main.cpp:165
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "作为管理员运行"
 
-#: src/main.cpp:232
+#: src/main.cpp:235
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG 界面服务器错误"
 
-#: src/main.cpp:236
+#: src/main.cpp:239
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8706,7 +8685,7 @@ msgstr ""
 "b><br/>这可能意味着您的安装有问题。 尝试重新安装或联系您的管理员以获得支持。"
 "<br/>您可以尝试继续使用 Kleopatra，但可能还有其他问题。</qt>"
 
-#: src/main.cpp:266
+#: src/main.cpp:269
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "无效的参数：%1"
@@ -8821,12 +8800,10 @@ msgid "Configure Groups..."
 msgstr "配置组..."
 
 #: src/mainwindow.cpp:642
-#, fuzzy, kde-format
-#| msgctxt "groups of keys"
-#| msgid "groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
-msgstr "分组"
+msgstr "组"
 
 #: src/mainwindow.cpp:672
 #, kde-format
@@ -10938,18 +10915,16 @@ msgid "Add User ID..."
 msgstr "添加用户 ID..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "配置组..."
+msgstr ""
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "验证所选证书的有效性"
+msgstr ""
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -11001,12 +10976,12 @@ msgstr "转储 CRL 缓存"
 msgid "Import CRL From File..."
 msgstr "从文件导入 CRL..."
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:543
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "证书分类列表"
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:543
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
 #, kde-format
 msgid "List of certificates"
 msgstr "证书列表"
@@ -11840,87 +11815,87 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/tabwidget.cpp:640
+#: src/view/tabwidget.cpp:650
 #, kde-format
 msgid "Rename Tab"
 msgstr "重命名标签页"
 
-#: src/view/tabwidget.cpp:640
+#: src/view/tabwidget.cpp:650
 #, kde-format
 msgid "New tab title:"
 msgstr "新标签页标题："
 
-#: src/view/tabwidget.cpp:842
+#: src/view/tabwidget.cpp:853
 #, kde-format
 msgid "New Tab"
 msgstr "新建标签页"
 
-#: src/view/tabwidget.cpp:843
+#: src/view/tabwidget.cpp:854
 #, kde-format
 msgid "Open a new tab"
 msgstr "打开新标签页"
 
-#: src/view/tabwidget.cpp:857
+#: src/view/tabwidget.cpp:868
 #, kde-format
 msgid "Rename Tab..."
 msgstr "重命名标签页..."
 
-#: src/view/tabwidget.cpp:858
+#: src/view/tabwidget.cpp:869
 #, kde-format
 msgid "Rename this tab"
 msgstr "重命名此标签页"
 
-#: src/view/tabwidget.cpp:870
+#: src/view/tabwidget.cpp:881
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "复制标签页"
 
-#: src/view/tabwidget.cpp:871
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "复制此标签页"
 
-#: src/view/tabwidget.cpp:881
+#: src/view/tabwidget.cpp:892
 #, kde-format
 msgid "Close Tab"
 msgstr "关闭标签页"
 
-#: src/view/tabwidget.cpp:882
+#: src/view/tabwidget.cpp:893
 #, kde-format
 msgid "Close this tab"
 msgstr "关闭此标签"
 
-#: src/view/tabwidget.cpp:894
+#: src/view/tabwidget.cpp:905
 #, kde-format
 msgid "Move Tab Left"
 msgstr "左移标签页"
 
-#: src/view/tabwidget.cpp:895
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Move this tab left"
 msgstr "向左移动此标签页"
 
-#: src/view/tabwidget.cpp:907
+#: src/view/tabwidget.cpp:918
 #, kde-format
 msgid "Move Tab Right"
 msgstr "右移标签页"
 
-#: src/view/tabwidget.cpp:908
+#: src/view/tabwidget.cpp:919
 #, kde-format
 msgid "Move this tab right"
 msgstr "向右移动此标签页"
 
-#: src/view/tabwidget.cpp:920
+#: src/view/tabwidget.cpp:931
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "层次证书列表"
 
-#: src/view/tabwidget.cpp:933
+#: src/view/tabwidget.cpp:944
 #, kde-format
 msgid "Expand All"
 msgstr "全部展开"
 
-#: src/view/tabwidget.cpp:946
+#: src/view/tabwidget.cpp:957
 #, kde-format
 msgid "Collapse All"
 msgstr "全部折叠"
@@ -11996,26 +11971,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgctxt "@title:column"
-#~ msgid "Type"
-#~ msgstr "类型"
-
-#~ msgctxt "@title:column"
-#~ msgid "Strength"
-#~ msgstr "强度"
-
-#~ msgctxt "@title:column"
-#~ msgid "Primary"
-#~ msgstr "第一个"
-
-#~ msgctxt "yes, is primary key"
-#~ msgid "yes"
-#~ msgstr "是"
-
-#~ msgctxt "no, is not primary key"
-#~ msgid "no"
-#~ msgstr "否"
-
-#~ msgid "All Certificates"
-#~ msgstr "全部证书"

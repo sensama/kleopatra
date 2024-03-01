@@ -36,7 +36,7 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
 
     auto waitWidget = new WaitWidget(this);
 
-    waitWidget->setText(i18n("Loading certificate cache..."));
+    waitWidget->setText(QLatin1String{"<h3>"} + i18n("Loading certificate cache...") + QLatin1String{"</h3>"});
 
     vLay->addWidget(waitWidget);
 

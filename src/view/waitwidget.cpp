@@ -37,11 +37,14 @@ WaitWidget::WaitWidget(QWidget *parent)
     vLay->addStretch(1);
 }
 
+WaitWidget::~WaitWidget() = default;
+
 void WaitWidget::setText(const QString &text)
 {
-    mLabel->setText(QStringLiteral("<h3>%1</h3>").arg(text));
+    mLabel->setText(text);
 }
 
-WaitWidget::~WaitWidget()
+QString WaitWidget::text() const
 {
+    return mLabel->text();
 }

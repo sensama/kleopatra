@@ -512,6 +512,9 @@ TabWidget::Private::Private(TabWidget *qq)
     connect(tabWidget->tabBar(), &QWidget::customContextMenuRequested, q, [this](const QPoint &p) {
         slotContextMenu(p);
     });
+    connect(tabWidget->tabBar(), &QTabBar::tabMoved, q, [this]() {
+        q->saveViews();
+    });
 }
 
 void TabWidget::Private::slotContextMenu(const QPoint &p)

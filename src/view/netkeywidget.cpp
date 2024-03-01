@@ -257,8 +257,8 @@ void NetKeyWidget::loadCertificates()
 
     // try to get the certificates from the key cache
     for (const auto &cardKeyInfo : cardKeyInfos) {
-        const auto certificate = KeyCache::instance()->findSubkeyByKeyGrip(cardKeyInfo.grip).parent();
-        if (!certificate.isNull() && (certificate.protocol() == GpgME::CMS)) {
+        const auto certificate = KeyCache::instance()->findSubkeyByKeyGrip(cardKeyInfo.grip, GpgME::CMS).parent();
+        if (!certificate.isNull()) {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Found certificate for card key" << cardKeyInfo.grip << "in cache:" << certificate;
             mCertificates.push_back(certificate);
         } else {

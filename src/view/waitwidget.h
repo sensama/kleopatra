@@ -21,9 +21,10 @@ public:
     ~WaitWidget() override;
 
     void setText(const QString &text);
+    QString text() const;
 
 private:
-    QLabel *mLabel;
+    QLabel *mLabel = nullptr;
 };
 
 } // namespace Kleo

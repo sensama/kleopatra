@@ -19,6 +19,7 @@
 #include <QVBoxLayout>
 
 using namespace Kleo;
+using namespace Qt::Literals::StringLiterals;
 
 KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
     : QWidget(parent)
@@ -36,7 +37,7 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
 
     auto waitWidget = new WaitWidget(this);
 
-    waitWidget->setText(i18n("Loading certificate cache..."));
+    waitWidget->setText("<h3>"_L1 + i18n("Loading certificate cache...") + "</h3>"_L1);
 
     vLay->addWidget(waitWidget);
 

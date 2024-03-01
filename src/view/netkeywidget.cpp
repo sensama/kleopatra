@@ -21,6 +21,7 @@
 #include "commands/createcsrforcardkeycommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/detailscommand.h"
+#include "view/progressoverlay.h"
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
@@ -32,6 +33,7 @@
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KSeparator>
 #include <KSharedConfig>
 
 #include <QGpgME/KeyListJob>
@@ -90,9 +92,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
 
     vLay->addWidget(mNullPinWidget);
 
-    auto line1 = new QFrame();
-    line1->setFrameShape(QFrame::HLine);
-    vLay->addWidget(line1);
+    vLay->addWidget(new KSeparator(Qt::Horizontal));
     vLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Certificates:"))), 0, Qt::AlignLeft);
 
     mErrorLabel->setVisible(false);
@@ -114,10 +114,11 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     });
     vLay->addWidget(mTreeView);
 
+    mTreeViewOverlay = new ProgressOverlay{mTreeView, this};
+    mTreeViewOverlay->hide();
+
     // The action area
-    auto line2 = new QFrame();
-    line2->setFrameShape(QFrame::HLine);
-    vLay->addWidget(line2);
+    vLay->addWidget(new KSeparator(Qt::Horizontal));
     vLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))), 0, Qt::AlignLeft);
 
     auto actionLayout = new QHBoxLayout();
@@ -324,7 +325,13 @@ void NetKeyWidget::certificateValidationDone(const GpgME::KeyListResult &result,
 void NetKeyWidget::learnCard()
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
+    mTreeViewOverlay->setText(i18nc("@info", "Reading certificates from smart card ..."));
+    mTreeViewOverlay->showOverlay();
     ReaderStatus::mutableInstance()->learnCards(GpgME::CMS);
+    connect(ReaderStatus::instance(), &ReaderStatus::cardsLearned, this, [this]() {
+        qCDebug(KLEOPATRA_LOG) << "ReaderStatus::cardsLearned";
+        mTreeViewOverlay->hideOverlay();
+    });
 }
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)

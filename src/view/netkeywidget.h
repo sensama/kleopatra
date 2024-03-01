@@ -31,6 +31,7 @@ namespace Kleo
 {
 class NullPinWidget;
 class KeyTreeView;
+class ProgressOverlay;
 
 namespace SmartCard
 {
@@ -72,6 +73,7 @@ private:
     QPushButton *mChangeNKSPINBtn = nullptr;
     QPushButton *mChangeSigGPINBtn = nullptr;
     KeyTreeView *mTreeView = nullptr;
+    ProgressOverlay *mTreeViewOverlay = nullptr;
     QScrollArea *mArea = nullptr;
 };
 } // namespace Kleo

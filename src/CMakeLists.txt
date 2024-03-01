@@ -503,6 +503,8 @@ set(_kleopatra_SRCS
   view/pgpcardwidget.h
   view/pivcardwidget.cpp
   view/pivcardwidget.h
+  view/progressoverlay.cpp
+  view/progressoverlay.h
   view/searchbar.cpp
   view/searchbar.h
   view/smartcardwidget.cpp

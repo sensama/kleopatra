@@ -1122,6 +1122,14 @@ ReaderStatus::~ReaderStatus()
 // slot
 void ReaderStatus::startMonitoring()
 {
+    qCDebug(KLEOPATRA_LOG) << __func__;
+    if (!KeyCache::instance()->initialized()) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "waiting for key cache ...";
+        connect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, &ReaderStatus::startMonitoring);
+        return;
+    }
+    disconnect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, &ReaderStatus::startMonitoring);
+    qCDebug(KLEOPATRA_LOG) << __func__ << "key cache is ready";
     d->start();
     if (DeviceInfoWatcher::isSupported()) {
         connect(&d->devInfoWatcher, &DeviceInfoWatcher::startOfGpgAgentRequested, this, &ReaderStatus::startOfGpgAgentRequested);

@@ -633,10 +633,12 @@ void TabWidget::Private::slotPageHierarchyChanged(bool)
 
 void TabWidget::Private::slotNewTab()
 {
-    const auto group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(configKey, QUuid::createUuid().toString()));
+    auto group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(configKey, QUuid::createUuid().toString()));
     Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString(), nullptr, QString(), nullptr, group);
+    group.writeEntry(KEY_FILTER_ENTRY, QStringLiteral("all-certificates"));
     addView(page, currentPage());
     tabWidget->setCurrentIndex(tabWidget->count() - 1);
+    q->saveViews();
 }
 
 void TabWidget::Private::renamePage(Page *page)

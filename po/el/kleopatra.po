@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-01 00:38+0000\n"
+"POT-Creation-Date: 2024-03-02 00:38+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -643,7 +643,7 @@ msgstr "Η τροποποίηση συνθηματικού ήταν επιτυχ
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:264 src/view/netkeywidget.cpp:316
+#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Αποτυχία εύρεσης της έξυπνης κάρτας με το σειραϊκό αριθμό: %1"
@@ -2735,40 +2735,6 @@ msgstr ""
 "<para>Η αποθήκευση του κλειδιού στην κάρτα απέτυχε:</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/learncardkeyscommand.cpp:59
-#, kde-format
-msgctxt "@title:window"
-msgid "Error Learning SmartCard"
-msgstr "Σφάλμα εκμάθησης SmartCard"
-
-#: src/commands/learncardkeyscommand.cpp:64
-#, kde-format
-msgctxt "@title:window"
-msgid "Finished Learning SmartCard"
-msgstr "Ολοκλήρωση εκμάθησης SmartCard"
-
-#: src/commands/learncardkeyscommand.cpp:70
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The GPG or GpgSM process that tried to learn the smart card ended "
-"prematurely because of an unexpected error.</para><para>Please check the "
-"output of <icode>%1</icode> for details.</para>"
-msgstr ""
-"<para>Η διεργασία GPG ή GpgSM η οποία προσπάθησε να μάθει την έξυπνη κάρτα "
-"τερμάτισε πρόωρα εξαιτίας ενός μη αναμενόμενου σφάλματος.</"
-"para><para>Ελέγξτε την έξοδο του <icode>%1</icode> για λεπτομέρειες.</para>"
-
-#: src/commands/learncardkeyscommand.cpp:101
-#, kde-format
-msgid "Loading certificates... (this can take a while)"
-msgstr "Φόρτωση πιστοποιητικών... (μπορεί να διαρκέσει)"
-
-#: src/commands/learncardkeyscommand.cpp:101
-#, kde-format
-msgid "Show Details"
-msgstr "Εμφάνιση λεπτομερειών"
-
 #: src/commands/lookupcertificatescommand.cpp:441
 #, kde-kuit-format
 msgctxt "@info"
@@ -2875,7 +2841,7 @@ msgid "No Directory Servers Configured"
 msgstr "Δεν διαμορφώθηκαν εξυπηρετητές καταλόγου"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:487
+#: src/kleopatraapplication.cpp:484
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -9190,47 +9156,47 @@ msgstr "Αρχείο(α) προς επεξεργασία"
 msgid "String or Fingerprint for query and search"
 msgstr "Συμβολοσειρά ή αποτύπωμα για ερώτηση και αναζήτηση"
 
-#: src/kleopatraapplication.cpp:383
+#: src/kleopatraapplication.cpp:380
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Αποτυχία εκτέλεσης εντολής"
 
-#: src/kleopatraapplication.cpp:425
+#: src/kleopatraapplication.cpp:422
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Διφορούμενο πρωτόκολλο: --openpgp και --cms"
 
-#: src/kleopatraapplication.cpp:459
+#: src/kleopatraapplication.cpp:456
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Δεν ορίστηκε συμβολοσειρά αναζήτησης για το --search"
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Δεν ορίστηκε όρισμα αποτυπώματος για το --query"
 
-#: src/kleopatraapplication.cpp:531
+#: src/kleopatraapplication.cpp:528
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Διφορούμενες εντολές «%1» και «%2»"
 
-#: src/kleopatraapplication.cpp:538
+#: src/kleopatraapplication.cpp:535
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Δεν ορίστηκαν αρχεία για την «%1» εντολή"
 
-#: src/kleopatraapplication.cpp:552
+#: src/kleopatraapplication.cpp:549
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Αδυναμία ανάγνωσης του «%1»"
 
-#: src/kleopatraapplication.cpp:853
+#: src/kleopatraapplication.cpp:850
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Το άνοιγμα εξωτερικού συνδέσμου απαγορεύεται από τον διαχειριστή."
 
-#: src/kleopatraapplication.cpp:853
+#: src/kleopatraapplication.cpp:850
 #, kde-format
 msgid "Prohibited"
 msgstr "Απαγορεύεται"
@@ -10539,53 +10505,47 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr "PIV"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:116
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "Ά&νοιγμα διαχειριστή πιστοποιητικών..."
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:118
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "&Διαμόρφωση <application>%1</application>..."
 
-#: src/systrayicon.cpp:132
+#: src/systrayicon.cpp:121
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "&Σχετικά με <application>%1</application>..."
 
-#: src/systrayicon.cpp:135
+#: src/systrayicon.cpp:124
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "&Τερματισμός <application>%1</application>"
 
-#: src/systrayicon.cpp:138
+#: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "Έξυπνη κάρτα"
 
-#: src/systrayicon.cpp:139
+#: src/systrayicon.cpp:128
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "Ενημέρωση κατάστασης κάρτας"
 
-#: src/systrayicon.cpp:140
+#: src/systrayicon.cpp:129
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
 msgstr "Ορισμός NetKey v3 αρχικού PIN..."
-
-#: src/systrayicon.cpp:141
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Learn NetKey v3 Card Certificates"
-msgstr "Εκμάθηση NetKey v3 πιστοποιητικών κάρτας"
 
 #: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
@@ -11521,7 +11481,7 @@ msgctxt "@label label text (required)"
 msgid "%1 (required)"
 msgstr "%1 (απαιτείται)"
 
-#: src/view/keycacheoverlay.cpp:39
+#: src/view/keycacheoverlay.cpp:40
 #, kde-format
 msgid "Loading certificate cache..."
 msgstr "Φόρτωση λανθάνουσας μνήμης πιστοποιητικού..."
@@ -11791,54 +11751,43 @@ msgstr "Ιεραρχική λίστα πιστοποιητικών"
 msgid "List of certificates"
 msgstr "Λίστα πιστοποιητικών"
 
-#: src/view/netkeywidget.cpp:83 src/view/p15cardwidget.cpp:81
+#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
 #: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
 #, kde-format
 msgid "Serial number:"
 msgstr "Σειριακός αριθμός:"
 
-#: src/view/netkeywidget.cpp:93
+#: src/view/netkeywidget.cpp:96
 #, kde-format
 msgid "Certificates:"
 msgstr "Πιστοποιητικά:"
 
-#: src/view/netkeywidget.cpp:95
-#, kde-format
-msgid "There are unknown certificates on this card."
-msgstr "Υπάρχουν άγνωστα πιστοποιητικά σε αυτήν την κάρτα."
-
-#: src/view/netkeywidget.cpp:96
-#, kde-format
-msgctxt "@action"
-msgid "Load Certificates"
-msgstr "Φόρτωση πιστοποιητικών"
-
-#: src/view/netkeywidget.cpp:143 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
 #, kde-format
 msgid "Actions:"
 msgstr "Ενέργειες:"
 
-#: src/view/netkeywidget.cpp:149 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Δημιουργία OpenPGP κλειδιού"
 
-#: src/view/netkeywidget.cpp:150 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr ""
 "Δημιουργία OpenPGP κλειδιού για τα κλειδιά που αποθηκεύτηκαν στην κάρτα."
 
-#: src/view/netkeywidget.cpp:157 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "Δημιουργία CSR"
 
-#: src/view/netkeywidget.cpp:158
+#: src/view/netkeywidget.cpp:137
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
@@ -11846,41 +11795,48 @@ msgstr ""
 "Δημιουργία αίτησης υπογραφής πιστοποιητικού για κλειδί που αποθηκεύτηκε στην "
 "κάρτα."
 
-#: src/view/netkeywidget.cpp:166
+#: src/view/netkeywidget.cpp:145
 #, kde-format
 msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Τροποποίηση NKS PIN"
 
-#: src/view/netkeywidget.cpp:167 src/view/netkeywidget.cpp:231
+#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Τροποποίηση SigG PIN"
 
-#: src/view/netkeywidget.cpp:216
+#: src/view/netkeywidget.cpp:197
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "Κάρτα NetKey %1"
 
-#: src/view/netkeywidget.cpp:229 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "Ρύθμιση SigG PIN"
 
-#: src/view/netkeywidget.cpp:242
+#: src/view/netkeywidget.cpp:217
 #, kde-format
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: src/view/netkeywidget.cpp:302
+#: src/view/netkeywidget.cpp:328
+#, fuzzy, kde-format
+#| msgid "Loading certificate cache..."
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr "Φόρτωση λανθάνουσας μνήμης πιστοποιητικού..."
+
+#: src/view/netkeywidget.cpp:379
 #, kde-format
 msgid "Select Key"
 msgstr "Επιλογή κλειδιού"
 
-#: src/view/netkeywidget.cpp:303
+#: src/view/netkeywidget.cpp:380
 #, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
@@ -11888,7 +11844,7 @@ msgstr ""
 "Επιλέξτε το κλειδί για το οποίο θέλετε να δημιουργηθεί μία αίτηση υπογραφής "
 "πιστοποιητικού:"
 
-#: src/view/netkeywidget.cpp:321
+#: src/view/netkeywidget.cpp:398
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -12013,32 +11969,32 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "Λυπάμαι. Δεν κατάφερα να βρω το κλειδί με αποτύπωμα %1."
 
-#: src/view/p15cardwidget.cpp:96
+#: src/view/p15cardwidget.cpp:94
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "OpenPGP κλειδιά:"
 
-#: src/view/p15cardwidget.cpp:117
+#: src/view/p15cardwidget.cpp:115
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "Αναζήτηση στην υπηρεσία καταλόγου..."
 
-#: src/view/p15cardwidget.cpp:132
+#: src/view/p15cardwidget.cpp:130
 #, kde-format
 msgid "Automatic import finished."
 msgstr "Η αυτόματη εισαγωγή ολοκληρώθηκε."
 
-#: src/view/p15cardwidget.cpp:137
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "Σφάλματα σε πολλά κλειδιά βρέθηκαν στον εξυπηρετητή."
 
-#: src/view/p15cardwidget.cpp:140
+#: src/view/p15cardwidget.cpp:138
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "Δεν βρέθηκε κλειδί στην υπηρεσία καταλόγου."
 
-#: src/view/p15cardwidget.cpp:149
+#: src/view/p15cardwidget.cpp:147
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
@@ -12813,6 +12769,42 @@ msgstr ""
 "Εισαγωγή πιστοποιητικού από αρχείο.<nl/>Για να εισάγετε από ένα δημόσιο "
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
+
+#~ msgctxt "@title:window"
+#~ msgid "Error Learning SmartCard"
+#~ msgstr "Σφάλμα εκμάθησης SmartCard"
+
+#~ msgctxt "@title:window"
+#~ msgid "Finished Learning SmartCard"
+#~ msgstr "Ολοκλήρωση εκμάθησης SmartCard"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
+#~ "prematurely because of an unexpected error.</para><para>Please check the "
+#~ "output of <icode>%1</icode> for details.</para>"
+#~ msgstr ""
+#~ "<para>Η διεργασία GPG ή GpgSM η οποία προσπάθησε να μάθει την έξυπνη "
+#~ "κάρτα τερμάτισε πρόωρα εξαιτίας ενός μη αναμενόμενου σφάλματος.</"
+#~ "para><para>Ελέγξτε την έξοδο του <icode>%1</icode> για λεπτομέρειες.</"
+#~ "para>"
+
+#~ msgid "Loading certificates... (this can take a while)"
+#~ msgstr "Φόρτωση πιστοποιητικών... (μπορεί να διαρκέσει)"
+
+#~ msgid "Show Details"
+#~ msgstr "Εμφάνιση λεπτομερειών"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Learn NetKey v3 Card Certificates"
+#~ msgstr "Εκμάθηση NetKey v3 πιστοποιητικών κάρτας"
+
+#~ msgid "There are unknown certificates on this card."
+#~ msgstr "Υπάρχουν άγνωστα πιστοποιητικά σε αυτήν την κάρτα."
+
+#~ msgctxt "@action"
+#~ msgid "Load Certificates"
+#~ msgstr "Φόρτωση πιστοποιητικών"
 
 #~ msgctxt "@title:column"
 #~ msgid "Type"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-01 00:38+0000\n"
+"POT-Creation-Date: 2024-03-02 00:38+0000\n"
 "PO-Revision-Date: 2009-02-27 21:59+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -663,7 +663,7 @@ msgstr "सीआरएल कैस साफ करना पूरा"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:264 src/view/netkeywidget.cpp:316
+#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -2709,37 +2709,6 @@ msgstr ""
 "<qt><p>प्रमानपत्र:</p><p><b>%1</b></p> निर्यात करे के कोसिसों के समय एक गलती हो "
 "गिस</qt>"
 
-#: src/commands/learncardkeyscommand.cpp:59
-#, kde-format
-msgctxt "@title:window"
-msgid "Error Learning SmartCard"
-msgstr ""
-
-#: src/commands/learncardkeyscommand.cpp:64
-#, kde-format
-msgctxt "@title:window"
-msgid "Finished Learning SmartCard"
-msgstr ""
-
-#: src/commands/learncardkeyscommand.cpp:70
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The GPG or GpgSM process that tried to learn the smart card ended "
-"prematurely because of an unexpected error.</para><para>Please check the "
-"output of <icode>%1</icode> for details.</para>"
-msgstr ""
-
-#: src/commands/learncardkeyscommand.cpp:101
-#, kde-format
-msgid "Loading certificates... (this can take a while)"
-msgstr ""
-
-#: src/commands/learncardkeyscommand.cpp:101
-#, kde-format
-msgid "Show Details"
-msgstr "विवरन देखाव"
-
 #: src/commands/lookupcertificatescommand.cpp:441
 #, kde-kuit-format
 msgctxt "@info"
@@ -2825,7 +2794,7 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:487
+#: src/kleopatraapplication.cpp:484
 #, fuzzy, kde-format
 #| msgid "&Generate Key Pair && Certificate Request"
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -9013,7 +8982,7 @@ msgstr ""
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:383
+#: src/kleopatraapplication.cpp:380
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -9023,42 +8992,42 @@ msgstr ""
 "जीपीजीएसएम चलाय मं फेल:\n"
 "%1"
 
-#: src/kleopatraapplication.cpp:425
+#: src/kleopatraapplication.cpp:422
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:459
+#: src/kleopatraapplication.cpp:456
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:531
+#: src/kleopatraapplication.cpp:528
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:538
+#: src/kleopatraapplication.cpp:535
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:552
+#: src/kleopatraapplication.cpp:549
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:853
+#: src/kleopatraapplication.cpp:850
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:853
+#: src/kleopatraapplication.cpp:850
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -10316,56 +10285,49 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr ""
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:116
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "प्रमानपत्र प्रबंधक गलती"
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:118
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr ""
 
-#: src/systrayicon.cpp:132
+#: src/systrayicon.cpp:121
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr ""
 
-#: src/systrayicon.cpp:135
+#: src/systrayicon.cpp:124
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr ""
 
-#: src/systrayicon.cpp:138
+#: src/systrayicon.cpp:127
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "सब्बो चुनव"
 
-#: src/systrayicon.cpp:139
+#: src/systrayicon.cpp:128
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr ""
 
-#: src/systrayicon.cpp:140
+#: src/systrayicon.cpp:129
 #, fuzzy, kde-format
 #| msgid "Set &Icon..."
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
 msgstr "चिनहा सेट करव... (&I)"
-
-#: src/systrayicon.cpp:141
-#, fuzzy, kde-format
-#| msgid "New Certificate..."
-msgctxt "@action:inmenu"
-msgid "Learn NetKey v3 Card Certificates"
-msgstr "नवा प्रमानपत्र..."
 
 #: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
@@ -11262,7 +11224,7 @@ msgctxt "@label label text (required)"
 msgid "%1 (required)"
 msgstr ""
 
-#: src/view/keycacheoverlay.cpp:39
+#: src/view/keycacheoverlay.cpp:40
 #, kde-format
 msgid "Loading certificate cache..."
 msgstr ""
@@ -11552,52 +11514,39 @@ msgstr "हियरार्चिकल प्रमानपत्र सू�
 msgid "List of certificates"
 msgstr "ए मोर प्रमानपत्र हे"
 
-#: src/view/netkeywidget.cpp:83 src/view/p15cardwidget.cpp:81
+#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
 #: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
 #, fuzzy, kde-format
 #| msgid "Serial number"
 msgid "Serial number:"
 msgstr "सीरियल नंबर"
 
-#: src/view/netkeywidget.cpp:93
+#: src/view/netkeywidget.cpp:96
 #, fuzzy, kde-format
 #| msgid "Certificates"
 msgid "Certificates:"
 msgstr "प्रमानपत्र"
 
-#: src/view/netkeywidget.cpp:95
-#, fuzzy, kde-format
-#| msgid "(unknown certificate)"
-msgid "There are unknown certificates on this card."
-msgstr "(अग्यात प्रमानपत्र)"
-
-#: src/view/netkeywidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "&Certificates"
-msgctxt "@action"
-msgid "Load Certificates"
-msgstr "प्रमानपत्र (&C)"
-
-#: src/view/netkeywidget.cpp:143 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
 #, fuzzy, kde-format
 #| msgid "Actions"
 msgid "Actions:"
 msgstr "काम"
 
-#: src/view/netkeywidget.cpp:149 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr ""
 
-#: src/view/netkeywidget.cpp:150 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
 #, fuzzy, kde-format
 #| msgid "Imported Certificates"
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "आयात करे गे प्रमानपत्र"
 
-#: src/view/netkeywidget.cpp:157 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, fuzzy, kde-format
 #| msgctxt "@action"
@@ -11606,59 +11555,66 @@ msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "कुंजी बनाव"
 
-#: src/view/netkeywidget.cpp:158
+#: src/view/netkeywidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "&Generate Key Pair && Certificate Request"
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
 msgstr "कुंजी युगल अउ प्रमानपत्र निवेदन बनाव (&G)"
 
-#: src/view/netkeywidget.cpp:166
+#: src/view/netkeywidget.cpp:145
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "बिन बदले:"
 
-#: src/view/netkeywidget.cpp:167 src/view/netkeywidget.cpp:231
+#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "बिन बदले:"
 
-#: src/view/netkeywidget.cpp:216
+#: src/view/netkeywidget.cpp:197
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr ""
 
-#: src/view/netkeywidget.cpp:229 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr ""
 
-#: src/view/netkeywidget.cpp:242
+#: src/view/netkeywidget.cpp:217
 #, fuzzy, kde-format
 #| msgid "Error"
 msgid "Error"
 msgstr "गलती"
 
-#: src/view/netkeywidget.cpp:302
+#: src/view/netkeywidget.cpp:328
+#, fuzzy, kde-format
+#| msgid "Imported Certificates"
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr "आयात करे गे प्रमानपत्र"
+
+#: src/view/netkeywidget.cpp:379
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgid "Select Key"
 msgstr "फाइल चुनव"
 
-#: src/view/netkeywidget.cpp:303
+#: src/view/netkeywidget.cpp:380
 #, fuzzy, kde-format
 #| msgid "&Generate Key Pair && Certificate Request"
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
 msgstr "कुंजी युगल अउ प्रमानपत्र निवेदन बनाव (&G)"
 
-#: src/view/netkeywidget.cpp:321
+#: src/view/netkeywidget.cpp:398
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -11781,34 +11737,34 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:96
+#: src/view/p15cardwidget.cpp:94
 #, fuzzy, kde-format
 #| msgid "OpenPGP"
 msgid "OpenPGP keys:"
 msgstr "ओपनपीजीपी"
 
-#: src/view/p15cardwidget.cpp:117
+#: src/view/p15cardwidget.cpp:115
 #, fuzzy, kde-format
 #| msgid "Fetching certificate from server..."
 msgid "Searching in directory service..."
 msgstr "सर्वर से प्रमानपत्र प्राप्त करत हे..."
 
-#: src/view/p15cardwidget.cpp:132
+#: src/view/p15cardwidget.cpp:130
 #, kde-format
 msgid "Automatic import finished."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:137
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:140
+#: src/view/p15cardwidget.cpp:138
 #, kde-format
 msgid "Key not found in directory service."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:149
+#: src/view/p15cardwidget.cpp:147
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
@@ -12608,6 +12564,26 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid "Show Details"
+#~ msgstr "विवरन देखाव"
+
+#, fuzzy
+#~| msgid "New Certificate..."
+#~ msgctxt "@action:inmenu"
+#~ msgid "Learn NetKey v3 Card Certificates"
+#~ msgstr "नवा प्रमानपत्र..."
+
+#, fuzzy
+#~| msgid "(unknown certificate)"
+#~ msgid "There are unknown certificates on this card."
+#~ msgstr "(अग्यात प्रमानपत्र)"
+
+#, fuzzy
+#~| msgid "&Certificates"
+#~ msgctxt "@action"
+#~ msgid "Load Certificates"
+#~ msgstr "प्रमानपत्र (&C)"
 
 #, fuzzy
 #~| msgid "Type"

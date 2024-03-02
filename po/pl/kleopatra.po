@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1674568 $
+# Version: $Revision: 1674640 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-01 00:38+0000\n"
+"POT-Creation-Date: 2024-03-02 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 17:07+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -618,7 +618,7 @@ msgstr "Udana zmiana hasła"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:264 src/view/netkeywidget.cpp:316
+#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Nie udało się znaleźć karty o numerze seryjnym: %1"
@@ -2651,40 +2651,6 @@ msgstr ""
 "<para>Nie udało się skopiować klucza na kartę:</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/learncardkeyscommand.cpp:59
-#, kde-format
-msgctxt "@title:window"
-msgid "Error Learning SmartCard"
-msgstr "Błąd podczas wykrywania karty inteligentnej"
-
-#: src/commands/learncardkeyscommand.cpp:64
-#, kde-format
-msgctxt "@title:window"
-msgid "Finished Learning SmartCard"
-msgstr "Zakończono wykrywanie karty inteligentnej"
-
-#: src/commands/learncardkeyscommand.cpp:70
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The GPG or GpgSM process that tried to learn the smart card ended "
-"prematurely because of an unexpected error.</para><para>Please check the "
-"output of <icode>%1</icode> for details.</para>"
-msgstr ""
-"<para>Proces GPG lub GpgSM zakończył się nieoczekiwanie z powodu błędu "
-"podczas próby wykrycia karty inteligentnej.</para><para>Więcej informacji "
-"znajduje się w wyniku <icode>%1</icode>.</para>"
-
-#: src/commands/learncardkeyscommand.cpp:101
-#, kde-format
-msgid "Loading certificates... (this can take a while)"
-msgstr "Wczytywanie certyfikatów... (może trochę trwać)"
-
-#: src/commands/learncardkeyscommand.cpp:101
-#, kde-format
-msgid "Show Details"
-msgstr "Pokaż szczegóły"
-
 #: src/commands/lookupcertificatescommand.cpp:441
 #, kde-kuit-format
 msgctxt "@info"
@@ -2788,7 +2754,7 @@ msgid "No Directory Servers Configured"
 msgstr "Nie ustawiono żadnych usług katalogowych"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:487
+#: src/kleopatraapplication.cpp:484
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Nie możesz tworzyć żądań podpisania certyfikatu S/MIME."
@@ -9000,47 +8966,47 @@ msgstr "Plik(i) do przetworzenia"
 msgid "String or Fingerprint for query and search"
 msgstr "Ciąg znaków lub odcisk klucza do zapytań i wyszukiwania"
 
-#: src/kleopatraapplication.cpp:383
+#: src/kleopatraapplication.cpp:380
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Nie można wykonać polecenia"
 
-#: src/kleopatraapplication.cpp:425
+#: src/kleopatraapplication.cpp:422
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Niejednoznaczny protokół: --openpgp oraz --cms"
 
-#: src/kleopatraapplication.cpp:459
+#: src/kleopatraapplication.cpp:456
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Nie podano tekstu do wyszukania dla --search"
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Nie podano odcisku klucza dla --query"
 
-#: src/kleopatraapplication.cpp:531
+#: src/kleopatraapplication.cpp:528
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Niejednoznaczne polecenia \"%1\" oraz \"%2\""
 
-#: src/kleopatraapplication.cpp:538
+#: src/kleopatraapplication.cpp:535
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Nie podano plików dla polecenia \"%1\""
 
-#: src/kleopatraapplication.cpp:552
+#: src/kleopatraapplication.cpp:549
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Nie można odczytać \"%1\""
 
-#: src/kleopatraapplication.cpp:853
+#: src/kleopatraapplication.cpp:850
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Otwieranie odnośników zewnętrznych jest odgórnie zabronione."
 
-#: src/kleopatraapplication.cpp:853
+#: src/kleopatraapplication.cpp:850
 #, kde-format
 msgid "Prohibited"
 msgstr "Zabronione"
@@ -10333,53 +10299,47 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr "PIV"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:116
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "&Otwórz zarządzanie certyfikatami..."
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:118
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "&Ustawienia <application>%1</application>..."
 
-#: src/systrayicon.cpp:132
+#: src/systrayicon.cpp:121
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "&O programie <application>%1</application>..."
 
-#: src/systrayicon.cpp:135
+#: src/systrayicon.cpp:124
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "&Wyłącz <application>%1</application>"
 
-#: src/systrayicon.cpp:138
+#: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "Karta inteligentna"
 
-#: src/systrayicon.cpp:139
+#: src/systrayicon.cpp:128
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "Uaktualnij stan karty"
 
-#: src/systrayicon.cpp:140
+#: src/systrayicon.cpp:129
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
 msgstr "Ustawiania początkowego kodu PIN NetKey v3..."
-
-#: src/systrayicon.cpp:141
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Learn NetKey v3 Card Certificates"
-msgstr "Wykrywanie certyfikatów na karcie NetKey v3"
 
 #: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
@@ -11295,7 +11255,7 @@ msgctxt "@label label text (required)"
 msgid "%1 (required)"
 msgstr "%1 (wymagane)"
 
-#: src/view/keycacheoverlay.cpp:39
+#: src/view/keycacheoverlay.cpp:40
 #, kde-format
 msgid "Loading certificate cache..."
 msgstr "Wczytywanie pamięci podręcznej certyfikatu..."
@@ -11560,101 +11520,97 @@ msgstr "Hierarchiczny wykaz certyfikatów"
 msgid "List of certificates"
 msgstr "Wykaz certyfikatów"
 
-#: src/view/netkeywidget.cpp:83 src/view/p15cardwidget.cpp:81
+#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
 #: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
 #, kde-format
 msgid "Serial number:"
 msgstr "Numer seryjny:"
 
-#: src/view/netkeywidget.cpp:93
+#: src/view/netkeywidget.cpp:96
 #, kde-format
 msgid "Certificates:"
 msgstr "Certyfikaty:"
 
-#: src/view/netkeywidget.cpp:95
-#, kde-format
-msgid "There are unknown certificates on this card."
-msgstr "Na tej karcie występują nieznane certyfikaty."
-
-#: src/view/netkeywidget.cpp:96
-#, kde-format
-msgctxt "@action"
-msgid "Load Certificates"
-msgstr "Wczytane certyfikaty"
-
-#: src/view/netkeywidget.cpp:143 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
 #, kde-format
 msgid "Actions:"
 msgstr "Działania:"
 
-#: src/view/netkeywidget.cpp:149 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Utwórz klucz OpenPGP"
 
-#: src/view/netkeywidget.cpp:150 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Utwórz klucz OpenPGP dla kluczy przechowywanych na karcie."
 
-#: src/view/netkeywidget.cpp:157 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "Utwórz CSR"
 
-#: src/view/netkeywidget.cpp:158
+#: src/view/netkeywidget.cpp:137
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
 msgstr ""
 "Utwórz żądanie podpisu certyfikatu dla klucza przechowywanego na karcie."
 
-#: src/view/netkeywidget.cpp:166
+#: src/view/netkeywidget.cpp:145
 #, kde-format
 msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Zmień PIN NKS"
 
-#: src/view/netkeywidget.cpp:167 src/view/netkeywidget.cpp:231
+#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Zmień PIN SigG"
 
-#: src/view/netkeywidget.cpp:216
+#: src/view/netkeywidget.cpp:197
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "Karta NetKey v%1"
 
-#: src/view/netkeywidget.cpp:229 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "Ustaw SigG PIN"
 
-#: src/view/netkeywidget.cpp:242
+#: src/view/netkeywidget.cpp:217
 #, kde-format
 msgid "Error"
 msgstr "Błąd"
 
-#: src/view/netkeywidget.cpp:302
+#: src/view/netkeywidget.cpp:328
+#, fuzzy, kde-format
+#| msgid "Loading certificate cache..."
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr "Wczytywanie pamięci podręcznej certyfikatu..."
+
+#: src/view/netkeywidget.cpp:379
 #, kde-format
 msgid "Select Key"
 msgstr "Wybierz klucz"
 
-#: src/view/netkeywidget.cpp:303
+#: src/view/netkeywidget.cpp:380
 #, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
 msgstr ""
 "Wybierz klucz, dla którego chcesz stworzyć żądanie podpisu certyfikatu:"
 
-#: src/view/netkeywidget.cpp:321
+#: src/view/netkeywidget.cpp:398
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -11777,32 +11733,32 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "Wybacz, ale nie mogę znaleźć klucza o odcisku %1."
 
-#: src/view/p15cardwidget.cpp:96
+#: src/view/p15cardwidget.cpp:94
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "Klucze OpenPGP:"
 
-#: src/view/p15cardwidget.cpp:117
+#: src/view/p15cardwidget.cpp:115
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "Szukanie w usłudze katalogu..."
 
-#: src/view/p15cardwidget.cpp:132
+#: src/view/p15cardwidget.cpp:130
 #, kde-format
 msgid "Automatic import finished."
 msgstr "Ukończono samoczynne importowanie."
 
-#: src/view/p15cardwidget.cpp:137
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "Błąd: znaleziono wiele kluczy na serwerze."
 
-#: src/view/p15cardwidget.cpp:140
+#: src/view/p15cardwidget.cpp:138
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "Nie znaleziono klucza w usłudze katalogu."
 
-#: src/view/p15cardwidget.cpp:149
+#: src/view/p15cardwidget.cpp:147
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
@@ -12575,6 +12531,41 @@ msgstr ""
 "Importowanie certyfikatu z pliku.<nl/> Aby zaimportować certyfikat z "
 "publicznego serwera kluczy wybierz <interface>Wyszukaj na serwerze</"
 "interface>."
+
+#~ msgctxt "@title:window"
+#~ msgid "Error Learning SmartCard"
+#~ msgstr "Błąd podczas wykrywania karty inteligentnej"
+
+#~ msgctxt "@title:window"
+#~ msgid "Finished Learning SmartCard"
+#~ msgstr "Zakończono wykrywanie karty inteligentnej"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
+#~ "prematurely because of an unexpected error.</para><para>Please check the "
+#~ "output of <icode>%1</icode> for details.</para>"
+#~ msgstr ""
+#~ "<para>Proces GPG lub GpgSM zakończył się nieoczekiwanie z powodu błędu "
+#~ "podczas próby wykrycia karty inteligentnej.</para><para>Więcej informacji "
+#~ "znajduje się w wyniku <icode>%1</icode>.</para>"
+
+#~ msgid "Loading certificates... (this can take a while)"
+#~ msgstr "Wczytywanie certyfikatów... (może trochę trwać)"
+
+#~ msgid "Show Details"
+#~ msgstr "Pokaż szczegóły"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Learn NetKey v3 Card Certificates"
+#~ msgstr "Wykrywanie certyfikatów na karcie NetKey v3"
+
+#~ msgid "There are unknown certificates on this card."
+#~ msgstr "Na tej karcie występują nieznane certyfikaty."
+
+#~ msgctxt "@action"
+#~ msgid "Load Certificates"
+#~ msgstr "Wczytane certyfikaty"
 
 #~ msgctxt "@title:column"
 #~ msgid "Type"

@@ -76,36 +76,3 @@ GpgME::Key TrustChainWidget::key() const
 {
     return d->key;
 }
-
-TrustChainDialog::TrustChainDialog(QWidget *parent)
-    : QDialog(parent)
-{
-    resize(650, 330);
-    setWindowTitle(i18nc("@title:window", "Trust Chain"));
-
-    auto l = new QVBoxLayout(this);
-    l->addWidget(new TrustChainWidget(this));
-
-    auto bbox = new QDialogButtonBox(this);
-    auto btn = bbox->addButton(QDialogButtonBox::Close);
-    connect(btn, &QPushButton::pressed, this, &QDialog::accept);
-    l->addWidget(bbox);
-}
-
-TrustChainDialog::~TrustChainDialog()
-{
-}
-
-void TrustChainDialog::setKey(const GpgME::Key &key)
-{
-    auto w = findChild<TrustChainWidget *>();
-    Q_ASSERT(w);
-    w->setKey(key);
-}
-
-GpgME::Key TrustChainDialog::key() const
-{
-    auto w = findChild<TrustChainWidget *>();
-    Q_ASSERT(w);
-    return w->key();
-}

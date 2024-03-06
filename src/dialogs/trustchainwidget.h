@@ -26,17 +26,5 @@ public:
 
 private:
     class Private;
-    const QScopedPointer<Private> d;
-};
-
-class TrustChainDialog : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit TrustChainDialog(QWidget *parent = nullptr);
-    ~TrustChainDialog() override;
-
-    void setKey(const GpgME::Key &key);
-    GpgME::Key key() const;
+    const std::unique_ptr<Private> d;
 };

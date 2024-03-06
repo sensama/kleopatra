@@ -314,6 +314,8 @@ set(_kleopatra_SRCS
   dialogs/certificatedetailsinputwidget.h
   dialogs/certificatedetailswidget.cpp
   dialogs/certificatedetailswidget.h
+  dialogs/certificatedumpwidget.cpp
+  dialogs/certificatedumpwidget.h
   dialogs/certificateselectiondialog.cpp
   dialogs/certificateselectiondialog.h
   dialogs/certifycertificatedialog.cpp
@@ -354,8 +356,8 @@ set(_kleopatra_SRCS
   dialogs/trustchainwidget.h
   dialogs/updatenotification.cpp
   dialogs/updatenotification.h
-  dialogs/weboftrustdialog.cpp
-  dialogs/weboftrustdialog.h
+  dialogs/useridswidget.cpp
+  dialogs/useridswidget.h
   dialogs/weboftrustwidget.cpp
   dialogs/weboftrustwidget.h
   interfaces/anchorprovider.h

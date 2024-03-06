@@ -25,21 +25,5 @@ public:
 
 private:
     class Private;
-    friend class SubKeysDialog;
-    const QScopedPointer<Private> d;
-};
-
-class SubKeysDialog : public QDialog
-{
-    Q_OBJECT
-public:
-    explicit SubKeysDialog(QWidget *parent = nullptr);
-    ~SubKeysDialog() override;
-
-    void setKey(const GpgME::Key &key);
-    GpgME::Key key() const;
-
-private:
-    void readConfig();
-    void writeConfig();
+    const std::unique_ptr<Private> d;
 };

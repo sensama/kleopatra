@@ -25,4 +25,7 @@ public:
 private:
     void readConfig();
     void writeConfig();
+
+    class Private;
+    std::unique_ptr<Private> d;
 };

@@ -10,6 +10,7 @@
 #include "weboftrustwidget.h"
 
 #include "commands/certifycertificatecommand.h"
+#include "commands/importcertificatefromkeyservercommand.h"
 #include "commands/revokecertificationcommand.h"
 #include "utils/tags.h"
 
@@ -21,9 +22,13 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KSeparator>
 
+#include <QDialogButtonBox>
 #include <QHeaderView>
+#include <QLabel>
 #include <QMenu>
+#include <QPushButton>
 #include <QVBoxLayout>
 
 #include <QGpgME/KeyListJob>
@@ -35,6 +40,24 @@
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
+
+namespace
+{
+void addActionButton(QLayout *buttonBox, QAction *action)
+{
+    if (!action) {
+        return;
+    }
+    auto button = new QPushButton(buttonBox->parentWidget());
+    button->setText(action->text());
+    buttonBox->addWidget(button);
+    button->setEnabled(action->isEnabled());
+    QObject::connect(action, &QAction::changed, button, [action, button]() {
+        button->setEnabled(action->isEnabled());
+    });
+    QObject::connect(button, &QPushButton::clicked, action, &QAction::trigger);
+}
+}
 
 class WebOfTrustWidget::Private
 {
@@ -49,12 +72,18 @@ private:
     QAction *detailsAction = nullptr;
     QAction *certifyAction = nullptr;
     QAction *revokeAction = nullptr;
+    QAction *fetchAction = nullptr;
+    QLabel *notAvailableLabel = nullptr;
+    QPushButton *moreButton = nullptr;
 
 public:
     Private(WebOfTrustWidget *qq)
         : q{qq}
     {
         certificationsModel.enableRemarks(Tags::tagsEnabled());
+        auto vLay = new QVBoxLayout(q);
+        vLay->setContentsMargins({});
+        vLay->setSpacing(0);
 
         certificationsTV = new TreeView{q};
         certificationsTV->setAccessibleName(i18n("User IDs and certifications"));
@@ -64,10 +93,12 @@ public:
         if (!Tags::tagsEnabled()) {
             certificationsTV->hideColumn(static_cast<int>(UserIDListModel::Column::Tags));
         }
-
-        auto vLay = new QVBoxLayout(q);
-        vLay->setContentsMargins(0, 0, 0, 0);
         vLay->addWidget(certificationsTV);
+
+        notAvailableLabel = new QLabel(i18nc("@info", "Certifications are not available before the certificate is imported."));
+        notAvailableLabel->setAlignment(Qt::AlignHCenter);
+        notAvailableLabel->setVisible(false);
+        vLay->addWidget(notAvailableLabel);
 
         detailsAction = new QAction{QIcon::fromTheme(QStringLiteral("dialog-information")), i18nc("@action", "Show Certificate Details"), q};
         connect(detailsAction, &QAction::triggered, q, [this]() {
@@ -86,6 +117,32 @@ public:
             });
         }
 
+        fetchAction = new QAction(QIcon::fromTheme(QStringLiteral("download")), i18nc("@action:button", "Fetch Missing Keys"));
+        fetchAction->setToolTip(i18nc("@info:tooltip", "Look up and import all keys that were used to certify the user IDs of this key"));
+        connect(fetchAction, &QAction::triggered, q, [this]() {
+            fetchMissingKeys();
+        });
+        auto separator = new KSeparator(q);
+        vLay->addWidget(separator);
+
+        auto bbox = new QHBoxLayout;
+
+        addActionButton(bbox, certifyAction);
+        addActionButton(bbox, revokeAction);
+
+        moreButton = new QPushButton(QIcon::fromTheme(QStringLiteral("application-menu")), {});
+        moreButton->setToolTip(i18nc("@info:tooltip", "Show more options"));
+        bbox->addWidget(moreButton);
+        connect(moreButton, &QPushButton::clicked, q, [=]() {
+            auto menu = new QMenu(q);
+            menu->addAction(detailsAction);
+            menu->addAction(fetchAction);
+            menu->popup(moreButton->mapToGlobal(QPoint()));
+        });
+
+        bbox->addStretch(1);
+
+        vLay->addLayout(bbox);
         connect(certificationsTV, &QAbstractItemView::doubleClicked, q, [this]() {
             certificationDblClicked();
         });
@@ -278,6 +335,24 @@ public:
         job->start(QStringList(QString::fromLatin1(key.primaryFingerprint())));
         keyListJob = job;
     }
+
+    void fetchMissingKeys()
+    {
+        if (q->key().isNull()) {
+            return;
+        }
+        const auto missingSignerKeyIds = Kleo::getMissingSignerKeyIds(q->key().userIDs());
+
+        auto cmd = new Kleo::ImportCertificateFromKeyserverCommand{QStringList{std::begin(missingSignerKeyIds), std::end(missingSignerKeyIds)}};
+        cmd->setParentWidget(q);
+        fetchAction->setEnabled(false);
+        connect(cmd, &Kleo::ImportCertificateFromKeyserverCommand::finished, q, [this]() {
+            // Trigger an update when done
+            q->setKey(q->key());
+            fetchAction->setEnabled(true);
+        });
+        cmd->start();
+    }
 };
 
 WebOfTrustWidget::WebOfTrustWidget(QWidget *parent)
@@ -315,6 +390,12 @@ void WebOfTrustWidget::setKey(const GpgME::Key &key)
         return;
     }
 
+    if (isRemoteKey(key)) {
+        d->certificationsTV->setVisible(false);
+        d->notAvailableLabel->setVisible(true);
+        d->moreButton->setEnabled(false);
+    }
+
     d->key = key;
     d->certificationsModel.setKey(key);
     d->updateActions();
@@ -322,6 +403,10 @@ void WebOfTrustWidget::setKey(const GpgME::Key &key)
     d->certificationsTV->header()->resizeSections(QHeaderView::ResizeToContents);
     d->startSignatureListing();
     d->certificationsTV->restoreColumnLayout(QStringLiteral("WebOfTrustWidget"));
+    for (int i = 0; i < d->certificationsModel.columnCount(); i++) {
+        d->certificationsTV->resizeColumnToContents(i);
+    }
+    d->fetchAction->setEnabled(!key.isBad());
 }
 
 void WebOfTrustWidget::signatureListingNextKey(const GpgME::Key &key)

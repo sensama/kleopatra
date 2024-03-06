@@ -55,6 +55,7 @@ public:
     std::vector<std::shared_ptr<Card>> getCards() const;
 
     std::shared_ptr<Card> getCard(const std::string &serialNumber, const std::string &appName) const;
+    std::shared_ptr<Card> getCardWithKeyRef(const std::string &serialNumber, const std::string &keyRef) const;
 
     template<typename T>
     std::shared_ptr<T> getCard(const std::string &serialNumber) const

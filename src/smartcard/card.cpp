@@ -344,3 +344,13 @@ std::string Card::keyFingerprint(const std::string &keyRef) const
 {
     return cardInfo("KLEO-FPR-" + keyRef);
 }
+
+void Card::setDisplayAppName(const QString &displayAppName)
+{
+    mDisplayAppName = displayAppName;
+}
+
+QString Card::displayAppName() const
+{
+    return mDisplayAppName;
+}

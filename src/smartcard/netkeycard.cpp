@@ -33,6 +33,7 @@ NetKeyCard::NetKeyCard(const Card &card)
     : Card(card)
 {
     setAppName(AppName);
+    setDisplayAppName(QStringLiteral("NetKey"));
 }
 
 // static

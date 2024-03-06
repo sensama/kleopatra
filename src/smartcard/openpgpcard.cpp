@@ -44,6 +44,7 @@ OpenPGPCard::OpenPGPCard(const Card &card)
     : Card(card)
 {
     setAppName(AppName);
+    setDisplayAppName(QStringLiteral("OpenPGP"));
     setInitialKeyInfos(OpenPGPCard::supportedKeys());
 }
 

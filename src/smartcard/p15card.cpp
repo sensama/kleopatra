@@ -18,4 +18,5 @@ P15Card::P15Card(const Card &card)
     : Card(card)
 {
     setAppName(AppName);
+    setDisplayAppName(QStringLiteral("PKCS#15"));
 }

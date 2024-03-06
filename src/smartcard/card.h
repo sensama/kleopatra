@@ -66,6 +66,7 @@ public:
     void setDisplaySerialNumber(const QString &sn);
 
     std::string appName() const;
+    QString displayAppName() const;
 
     void setAppVersion(int version);
     int appVersion() const;
@@ -109,6 +110,7 @@ public:
 
 protected:
     void setAppName(const std::string &name);
+    void setDisplayAppName(const QString &displayAppName);
     void setInitialKeyInfos(const std::vector<KeyPairInfo> &infos);
 
     void addCardInfo(const std::string &name, const std::string &value);
@@ -136,6 +138,7 @@ private:
     QString mErrMsg;
     std::vector<KeyPairInfo> mKeyInfos;
     std::multimap<std::string, std::string> mCardInfo;
+    QString mDisplayAppName;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

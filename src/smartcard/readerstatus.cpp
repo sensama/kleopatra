@@ -1294,4 +1294,15 @@ void ReaderStatus::onCardsLearned(GpgME::Protocol protocol)
     KeyCache::mutableInstance()->reload(protocol, KeyCache::ForceReload);
 }
 
+std::shared_ptr<Card> ReaderStatus::getCardWithKeyRef(const std::string &serialNumber, const std::string &keyRef) const
+{
+    for (const auto &card : SmartCard::ReaderStatus::instance()->getCards()) {
+        if (card->serialNumber() == serialNumber
+            && (card->authenticationKeyRef() == keyRef || card->signingKeyRef() == keyRef || card->encryptionKeyRef() == keyRef)) {
+            return card;
+        }
+    }
+    return nullptr;
+}
+
 #include "readerstatus.moc"

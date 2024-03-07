@@ -349,13 +349,6 @@ void KeyTreeView::init()
     });
 
     updateModelConnections(nullptr, model());
-
-    QMetaObject::invokeMethod(
-        this,
-        [=]() {
-            restoreLayout(m_group);
-        },
-        Qt::QueuedConnection);
 }
 
 void KeyTreeView::restoreExpandState()

@@ -639,6 +639,7 @@ void TabWidget::Private::slotNewTab()
     auto group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(configKey, QUuid::createUuid().toString()));
     Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString(), nullptr, QString(), nullptr, group);
     group.writeEntry(KEY_FILTER_ENTRY, QStringLiteral("all-certificates"));
+    group.sync();
     addView(page, currentPage());
     tabWidget->setCurrentIndex(tabWidget->count() - 1);
     q->saveViews();
@@ -999,25 +1000,34 @@ void TabWidget::createActions(KActionCollection *coll)
 
 QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, const QString &text)
 {
-    const KConfigGroup group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(d->configKey, QUuid::createUuid().toString()));
+    auto group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(d->configKey, QUuid::createUuid().toString()));
     Page *page = new Page(title, id, text, nullptr, QString(), nullptr, group);
+    group.writeEntry(KEY_FILTER_ENTRY, id);
+    group.sync();
     return d->addView(page, d->currentPage());
 }
 
 QAbstractItemView *TabWidget::addView(const KConfigGroup &group, Options options)
 {
+    Page *page = nullptr;
     if (options & ShowUserIDs) {
-        return d->addView(new Page(group.readEntry(TITLE_ENTRY),
-                                   group.readEntry(KEY_FILTER_ENTRY),
-                                   group.readEntry(STRING_FILTER_ENTRY),
-                                   new UserIDProxyModel(this),
-                                   {},
-                                   nullptr,
-                                   group),
-                          nullptr);
+        page = new Page(group.readEntry(TITLE_ENTRY),
+                        group.readEntry(KEY_FILTER_ENTRY),
+                        group.readEntry(STRING_FILTER_ENTRY),
+                        new UserIDProxyModel(this),
+                        {},
+                        nullptr,
+                        group);
     } else {
-        return d->addView(new Page(group), nullptr);
+        page = new Page(group);
     }
+    QMetaObject::invokeMethod(
+        this,
+        [page, group]() {
+            page->restoreLayout(group);
+        },
+        Qt::QueuedConnection);
+    return d->addView(page, nullptr);
 }
 
 QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)
@@ -1063,6 +1073,7 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
             [=]() {
                 page->setColumnSizes(columnReference->columnSizes());
                 page->setSortColumn(columnReference->sortColumn(), columnReference->sortOrder());
+                page->view()->saveColumnLayout(page->configGroup().name());
             },
             Qt::QueuedConnection);
         for (auto i = 0; i < columnReference->view()->model()->columnCount(); i++) {

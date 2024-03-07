@@ -46,7 +46,7 @@ public:
                 const KConfigGroup &group);
     ~KeyTreeView() override;
 
-    QTreeView *view() const
+    TreeView *view() const
     {
         return m_view;
     }

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-05 00:38+0000\n"
+"POT-Creation-Date: 2024-03-08 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -8035,20 +8035,30 @@ msgstr "기본 유효 기간"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, kde-format
-msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the default validity period of new or extended OpenPGP keys in "
+"days."
 msgstr "새로운 OpenPGP 키의 기본 유효 기간을 일 단위로 설정합니다."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid by "
+#| "default, or, in other words, after how many days the key will expire. Set "
+#| "this to 0 for unlimited validity. If this setting is not set or if it is "
+#| "set to a negative value, then new OpenPGP keys will be valid for three "
+#| "years (possibly clamped to the allowed minimum or maximum validity "
+#| "period) by default."
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid by default, "
-"or, in other words, after how many days the key will expire. Set this to 0 "
-"for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for three years "
-"(possibly clamped to the allowed minimum or maximum validity period) by "
-"default."
+"This setting specifies how many days an OpenPGP key will be valid by default "
+"at creation or change of validity, or, in other words, after how many days "
+"the key will expire. Set this to 0 for unlimited validity. If this setting "
+"is not set or is set to a negative value, then new or extended OpenPGP keys "
+"will be valid for three years (possibly clamped to the allowed minimum or "
+"maximum validity period) by default."
 msgstr ""
 "이 설정은 새 OpenPGP 키의 기본 유효 기간을 설정합니다. 해당 유효 기간 이후에"
 "는 키가 만료됩니다. 0으로 설정하면 키가 무기한 유효합니다. 이 옵션을 설정하"
@@ -8063,20 +8073,21 @@ msgstr "최소 유효 기간"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, kde-format
-msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the minimum allowed validity period of new or extended OpenPGP "
+"keys in days."
 msgstr "새로운 OpenPGP 키의 최소 유효 기간을 일 단위로 설정합니다."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
 #, kde-format
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid at least, "
-"or, in other words, after how many days the new key will expire at the "
-"earliest."
+"This setting specifies the minimum number of days a user can choose for the "
+"validity period of OpenPGP certficates. It applies at key creation and "
+"change of validity."
 msgstr ""
-"이 설정은 새 OpenPGP 키의 최소 유효 기간을 설정합니다. 최소한 이 기간 동안은 "
-"키가 만료되지 않습니다."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8086,18 +8097,26 @@ msgstr "최대 유효 기간"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, kde-format
-msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the maximum allowed validity period of new or extended OpenPGP "
+"keys in days."
 msgstr "새로운 OpenPGP 키의 최대 유효 기간을 일 단위로 설정합니다."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid at most, "
+#| "or, in other words, after how many days the new key will expire at the "
+#| "latest. If this setting is not set or if it is set to a negative value, "
+#| "then unlimited validity is allowed."
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid at most, or, "
-"in other words, after how many days the new key will expire at the latest. "
-"If this setting is not set or if it is set to a negative value, then "
-"unlimited validity is allowed."
+"This setting specifies the maximum number of days a user can choose for the "
+"validity period of OpenPGP certficates. It applies at key creation and "
+"change of validity. If this setting is not set or is set to a negative "
+"value, then unlimited validity is allowed."
 msgstr ""
 "이 설정은 새 OpenPGP 키의 최대 유효 기간을 설정합니다. 최대한 이 기간이 지나"
 "면 키가 만료됩니다. 이 옵션을 설정하지 않았거나 음수로 설정하면 무기한 유효"
@@ -11198,12 +11217,12 @@ msgstr "CRL 캐시 덤프"
 msgid "Import CRL From File..."
 msgstr "파일에서 CRL 가져오기..."
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:534
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "계층 구조 인증서 목록"
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:534
 #, kde-format
 msgid "List of certificates"
 msgstr "인증서 목록"
@@ -12042,87 +12061,87 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/tabwidget.cpp:653
+#: src/view/tabwidget.cpp:654
 #, kde-format
 msgid "Rename Tab"
 msgstr "탭 이름 바꾸기"
 
-#: src/view/tabwidget.cpp:653
+#: src/view/tabwidget.cpp:654
 #, kde-format
 msgid "New tab title:"
 msgstr "새 탭 제목:"
 
-#: src/view/tabwidget.cpp:857
+#: src/view/tabwidget.cpp:858
 #, kde-format
 msgid "New Tab"
 msgstr "새 탭"
 
-#: src/view/tabwidget.cpp:858
+#: src/view/tabwidget.cpp:859
 #, kde-format
 msgid "Open a new tab"
 msgstr "새 탭 열기"
 
-#: src/view/tabwidget.cpp:872
+#: src/view/tabwidget.cpp:873
 #, kde-format
 msgid "Rename Tab..."
 msgstr "탭 이름 바꾸기..."
 
-#: src/view/tabwidget.cpp:873
+#: src/view/tabwidget.cpp:874
 #, kde-format
 msgid "Rename this tab"
 msgstr "이 탭 이름 바꾸기"
 
-#: src/view/tabwidget.cpp:885
+#: src/view/tabwidget.cpp:886
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "탭 복제"
 
-#: src/view/tabwidget.cpp:886
+#: src/view/tabwidget.cpp:887
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "이 탭 복제"
 
-#: src/view/tabwidget.cpp:896
+#: src/view/tabwidget.cpp:897
 #, kde-format
 msgid "Close Tab"
 msgstr "탭 닫기"
 
-#: src/view/tabwidget.cpp:897
+#: src/view/tabwidget.cpp:898
 #, kde-format
 msgid "Close this tab"
 msgstr "이 탭 닫기"
 
-#: src/view/tabwidget.cpp:909
+#: src/view/tabwidget.cpp:910
 #, kde-format
 msgid "Move Tab Left"
 msgstr "탭 왼쪽으로 이동"
 
-#: src/view/tabwidget.cpp:910
+#: src/view/tabwidget.cpp:911
 #, kde-format
 msgid "Move this tab left"
 msgstr "이 탭을 왼쪽으로 이동"
 
-#: src/view/tabwidget.cpp:922
+#: src/view/tabwidget.cpp:923
 #, kde-format
 msgid "Move Tab Right"
 msgstr "탭 오른쪽으로 이동"
 
-#: src/view/tabwidget.cpp:923
+#: src/view/tabwidget.cpp:924
 #, kde-format
 msgid "Move this tab right"
 msgstr "이 탭을 오른쪽으로 이동"
 
-#: src/view/tabwidget.cpp:935
+#: src/view/tabwidget.cpp:936
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "계층 구조 키 목록"
 
-#: src/view/tabwidget.cpp:948
+#: src/view/tabwidget.cpp:949
 #, kde-format
 msgid "Expand All"
 msgstr "모두 펴기"
 
-#: src/view/tabwidget.cpp:961
+#: src/view/tabwidget.cpp:962
 #, kde-format
 msgid "Collapse All"
 msgstr "모두 접기"
@@ -12203,6 +12222,14 @@ msgid ""
 msgstr ""
 "파일에서 인증서를 가져옵니다.<nl/>공개 키 서버에서 키를 가져오려면 "
 "<interface>서버에서 찾아보기</interface>를 사용하십시오."
+
+#~ msgid ""
+#~ "This setting specifies how many days a new OpenPGP key is valid at least, "
+#~ "or, in other words, after how many days the new key will expire at the "
+#~ "earliest."
+#~ msgstr ""
+#~ "이 설정은 새 OpenPGP 키의 최소 유효 기간을 설정합니다. 최소한 이 기간 동안"
+#~ "은 키가 만료되지 않습니다."
 
 #~ msgctxt "@title:window"
 #~ msgid "Error Learning SmartCard"

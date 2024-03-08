@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-05 00:38+0000\n"
+"POT-Creation-Date: 2024-03-08 00:38+0000\n"
 "PO-Revision-Date: 2024-03-06 22:31+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -8282,21 +8282,31 @@ msgstr "Baliotasun aldi lehenetsia"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, kde-format
-msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the default validity period of new or extended OpenPGP keys in "
+"days."
 msgstr ""
 "OpenPGP gako berrien baliotasun aldi lehenetsia, egunetan, zehatzen du."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid by "
+#| "default, or, in other words, after how many days the key will expire. Set "
+#| "this to 0 for unlimited validity. If this setting is not set or if it is "
+#| "set to a negative value, then new OpenPGP keys will be valid for three "
+#| "years (possibly clamped to the allowed minimum or maximum validity "
+#| "period) by default."
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid by default, "
-"or, in other words, after how many days the key will expire. Set this to 0 "
-"for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for three years "
-"(possibly clamped to the allowed minimum or maximum validity period) by "
-"default."
+"This setting specifies how many days an OpenPGP key will be valid by default "
+"at creation or change of validity, or, in other words, after how many days "
+"the key will expire. Set this to 0 for unlimited validity. If this setting "
+"is not set or is set to a negative value, then new or extended OpenPGP keys "
+"will be valid for three years (possibly clamped to the allowed minimum or "
+"maximum validity period) by default."
 msgstr ""
 "Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
 "egunez balio duen, edo, beste hitz batzuekin, zenbat egun igaro ondoren "
@@ -8313,8 +8323,11 @@ msgstr "Gutxieneko baliotasun aldia"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, kde-format
-msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the minimum allowed validity period of new or extended OpenPGP "
+"keys in days."
 msgstr ""
 "OpenPGP gako berrien gutxieneko baliotasun aldia, egunetan, zehatzen du."
 
@@ -8322,13 +8335,10 @@ msgstr ""
 #: src/kcfg/settings.kcfg:60
 #, kde-format
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid at least, "
-"or, in other words, after how many days the new key will expire at the "
-"earliest."
+"This setting specifies the minimum number of days a user can choose for the "
+"validity period of OpenPGP certficates. It applies at key creation and "
+"change of validity."
 msgstr ""
-"Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
-"egunez balio duen, edo, beste hitz batzuekin, goizen, zenbat egun igaro "
-"ondoren iraungiko den."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8338,19 +8348,27 @@ msgstr "Gehieneko baliotasun aldia"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, kde-format
-msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the maximum allowed validity period of new or extended OpenPGP "
+"keys in days."
 msgstr ""
 "OpenPGP gako berrien gehieneko baliotasun aldia, egunetan, zehatzen du."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid at most, "
+#| "or, in other words, after how many days the new key will expire at the "
+#| "latest. If this setting is not set or if it is set to a negative value, "
+#| "then unlimited validity is allowed."
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid at most, or, "
-"in other words, after how many days the new key will expire at the latest. "
-"If this setting is not set or if it is set to a negative value, then "
-"unlimited validity is allowed."
+"This setting specifies the maximum number of days a user can choose for the "
+"validity period of OpenPGP certficates. It applies at key creation and "
+"change of validity. If this setting is not set or is set to a negative "
+"value, then unlimited validity is allowed."
 msgstr ""
 "Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian zenbat "
 "egunez balio duen, edo, beste hitz batzuekin, beranduen, zenbat egun igaro "
@@ -11540,12 +11558,12 @@ msgstr "Irauli CRL cachea"
 msgid "Import CRL From File..."
 msgstr "Inportatu CRL fitxategitik..."
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:534
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Ziurtagirien zerrenda hierarkikoa"
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:534
 #, kde-format
 msgid "List of certificates"
 msgstr "Ziurtagiri-zerrenda"
@@ -12396,87 +12414,87 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/tabwidget.cpp:653
+#: src/view/tabwidget.cpp:654
 #, kde-format
 msgid "Rename Tab"
 msgstr "Berrizendatu fitxa"
 
-#: src/view/tabwidget.cpp:653
+#: src/view/tabwidget.cpp:654
 #, kde-format
 msgid "New tab title:"
 msgstr "Fitxa berriaren titulua:"
 
-#: src/view/tabwidget.cpp:857
+#: src/view/tabwidget.cpp:858
 #, kde-format
 msgid "New Tab"
 msgstr "Fitxa berria"
 
-#: src/view/tabwidget.cpp:858
+#: src/view/tabwidget.cpp:859
 #, kde-format
 msgid "Open a new tab"
 msgstr "Ireki fitxa berri bat"
 
-#: src/view/tabwidget.cpp:872
+#: src/view/tabwidget.cpp:873
 #, kde-format
 msgid "Rename Tab..."
 msgstr "Berrizendatu fitxa..."
 
-#: src/view/tabwidget.cpp:873
+#: src/view/tabwidget.cpp:874
 #, kde-format
 msgid "Rename this tab"
 msgstr "Berrizendatu fitxa hau"
 
-#: src/view/tabwidget.cpp:885
+#: src/view/tabwidget.cpp:886
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "Bikoiztu fitxa"
 
-#: src/view/tabwidget.cpp:886
+#: src/view/tabwidget.cpp:887
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "Bikoiztu fitxa hau"
 
-#: src/view/tabwidget.cpp:896
+#: src/view/tabwidget.cpp:897
 #, kde-format
 msgid "Close Tab"
 msgstr "Itxi fitxa"
 
-#: src/view/tabwidget.cpp:897
+#: src/view/tabwidget.cpp:898
 #, kde-format
 msgid "Close this tab"
 msgstr "Itxi fitxa hau"
 
-#: src/view/tabwidget.cpp:909
+#: src/view/tabwidget.cpp:910
 #, kde-format
 msgid "Move Tab Left"
 msgstr "Eraman fitxa ezkerrera"
 
-#: src/view/tabwidget.cpp:910
+#: src/view/tabwidget.cpp:911
 #, kde-format
 msgid "Move this tab left"
 msgstr "Eraman fitxa hau ezkerrera"
 
-#: src/view/tabwidget.cpp:922
+#: src/view/tabwidget.cpp:923
 #, kde-format
 msgid "Move Tab Right"
 msgstr "Eraman fitxa eskuinera"
 
-#: src/view/tabwidget.cpp:923
+#: src/view/tabwidget.cpp:924
 #, kde-format
 msgid "Move this tab right"
 msgstr "Eraman fitxa hau eskuinera"
 
-#: src/view/tabwidget.cpp:935
+#: src/view/tabwidget.cpp:936
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "Gako zerrenda hierarkikoa"
 
-#: src/view/tabwidget.cpp:948
+#: src/view/tabwidget.cpp:949
 #, kde-format
 msgid "Expand All"
 msgstr "Zabaldu guztiak"
 
-#: src/view/tabwidget.cpp:961
+#: src/view/tabwidget.cpp:962
 #, kde-format
 msgid "Collapse All"
 msgstr "Tolestu guztiak"
@@ -12560,6 +12578,15 @@ msgid ""
 msgstr ""
 "Inportatu ziurtagiria fitxategi batetik.<nl/>Gako-zerbitzari publiko batetik "
 "inportatzeko, berriz, erabili <interface>Bilatu zerbitzarian</interface>."
+
+#~ msgid ""
+#~ "This setting specifies how many days a new OpenPGP key is valid at least, "
+#~ "or, in other words, after how many days the new key will expire at the "
+#~ "earliest."
+#~ msgstr ""
+#~ "Ezarpen horrek zehazten du OpenPGP gako berri batek era lehenetsian "
+#~ "zenbat egunez balio duen, edo, beste hitz batzuekin, goizen, zenbat egun "
+#~ "igaro ondoren iraungiko den."
 
 #~ msgctxt "@title:window"
 #~ msgid "Error Learning SmartCard"

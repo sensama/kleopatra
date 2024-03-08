@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1674862 $
+# Version: $Revision: 1675087 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-05 00:38+0000\n"
+"POT-Creation-Date: 2024-03-08 00:38+0000\n"
 "PO-Revision-Date: 2024-03-02 12:51+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -8286,20 +8286,30 @@ msgstr "Domyślny okres ważności"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, kde-format
-msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the default validity period of new or extended OpenPGP keys in "
+"days."
 msgstr "Określa domyślny okres ważności dla nowych kluczy OpenPGP w dniach."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid by "
+#| "default, or, in other words, after how many days the key will expire. Set "
+#| "this to 0 for unlimited validity. If this setting is not set or if it is "
+#| "set to a negative value, then new OpenPGP keys will be valid for three "
+#| "years (possibly clamped to the allowed minimum or maximum validity "
+#| "period) by default."
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid by default, "
-"or, in other words, after how many days the key will expire. Set this to 0 "
-"for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for three years "
-"(possibly clamped to the allowed minimum or maximum validity period) by "
-"default."
+"This setting specifies how many days an OpenPGP key will be valid by default "
+"at creation or change of validity, or, in other words, after how many days "
+"the key will expire. Set this to 0 for unlimited validity. If this setting "
+"is not set or is set to a negative value, then new or extended OpenPGP keys "
+"will be valid for three years (possibly clamped to the allowed minimum or "
+"maximum validity period) by default."
 msgstr ""
 "To ustawienie określa przez ile dni domyślnie ważny jest nowy klucz OpenPGP "
 "lub innymi słowy, po ilu dniach klucz wygaśnie. Ustaw na 0 dla nieskończonej "
@@ -8316,20 +8326,21 @@ msgstr "Najkrótszy okres ważności"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, kde-format
-msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the minimum allowed validity period of new or extended OpenPGP "
+"keys in days."
 msgstr "Określa najkrótszy okres ważności dla nowych kluczy OpenPGP w dniach."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
 #, kde-format
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid at least, "
-"or, in other words, after how many days the new key will expire at the "
-"earliest."
+"This setting specifies the minimum number of days a user can choose for the "
+"validity period of OpenPGP certficates. It applies at key creation and "
+"change of validity."
 msgstr ""
-"To ustawienie określa przez ile dni domyślnie ważny jest nowy klucz OpenPGP "
-"lub innymi słowy, po ilu dniach nowy klucz wygaśnie najwcześniej."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8339,18 +8350,26 @@ msgstr "Najdłuższy okres ważności"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, kde-format
-msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the maximum allowed validity period of new or extended OpenPGP "
+"keys in days."
 msgstr "Określa najdłuższy okres ważności dla nowych kluczy OpenPGP w dniach."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid at most, "
+#| "or, in other words, after how many days the new key will expire at the "
+#| "latest. If this setting is not set or if it is set to a negative value, "
+#| "then unlimited validity is allowed."
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid at most, or, "
-"in other words, after how many days the new key will expire at the latest. "
-"If this setting is not set or if it is set to a negative value, then "
-"unlimited validity is allowed."
+"This setting specifies the maximum number of days a user can choose for the "
+"validity period of OpenPGP certficates. It applies at key creation and "
+"change of validity. If this setting is not set or is set to a negative "
+"value, then unlimited validity is allowed."
 msgstr ""
 "To ustawienie określa przez ile dni domyślnie ważny jest nowy klucz OpenPGP "
 "lub innymi słowy, po ilu dniach nowy klucz wygaśnie najpóźniej. Jeśli ta "
@@ -11510,12 +11529,12 @@ msgstr "Dane pamięci podręcznej listy CRL"
 msgid "Import CRL From File..."
 msgstr "Zaimportuj listy CRL z pliku..."
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:534
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Hierarchiczny wykaz certyfikatów"
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:534
 #, kde-format
 msgid "List of certificates"
 msgstr "Wykaz certyfikatów"
@@ -12366,87 +12385,87 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/tabwidget.cpp:653
+#: src/view/tabwidget.cpp:654
 #, kde-format
 msgid "Rename Tab"
 msgstr "Zmień nazwę karty"
 
-#: src/view/tabwidget.cpp:653
+#: src/view/tabwidget.cpp:654
 #, kde-format
 msgid "New tab title:"
 msgstr "Nowa nazwa karty:"
 
-#: src/view/tabwidget.cpp:857
+#: src/view/tabwidget.cpp:858
 #, kde-format
 msgid "New Tab"
 msgstr "Nowa karta"
 
-#: src/view/tabwidget.cpp:858
+#: src/view/tabwidget.cpp:859
 #, kde-format
 msgid "Open a new tab"
 msgstr "Otwórz nową kartę"
 
-#: src/view/tabwidget.cpp:872
+#: src/view/tabwidget.cpp:873
 #, kde-format
 msgid "Rename Tab..."
 msgstr "Zmień nazwę karty..."
 
-#: src/view/tabwidget.cpp:873
+#: src/view/tabwidget.cpp:874
 #, kde-format
 msgid "Rename this tab"
 msgstr "Zmień nazwę tej karty"
 
-#: src/view/tabwidget.cpp:885
+#: src/view/tabwidget.cpp:886
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "Powiel kartę"
 
-#: src/view/tabwidget.cpp:886
+#: src/view/tabwidget.cpp:887
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "Powiel tą kartę"
 
-#: src/view/tabwidget.cpp:896
+#: src/view/tabwidget.cpp:897
 #, kde-format
 msgid "Close Tab"
 msgstr "Zamknij kartę"
 
-#: src/view/tabwidget.cpp:897
+#: src/view/tabwidget.cpp:898
 #, kde-format
 msgid "Close this tab"
 msgstr "Zamknij tą kartę"
 
-#: src/view/tabwidget.cpp:909
+#: src/view/tabwidget.cpp:910
 #, kde-format
 msgid "Move Tab Left"
 msgstr "Przesuń kartę w lewo"
 
-#: src/view/tabwidget.cpp:910
+#: src/view/tabwidget.cpp:911
 #, kde-format
 msgid "Move this tab left"
 msgstr "Przesuń tę kartę w lewo"
 
-#: src/view/tabwidget.cpp:922
+#: src/view/tabwidget.cpp:923
 #, kde-format
 msgid "Move Tab Right"
 msgstr "Przesuń kartę w prawo"
 
-#: src/view/tabwidget.cpp:923
+#: src/view/tabwidget.cpp:924
 #, kde-format
 msgid "Move this tab right"
 msgstr "Przesuń tę kartę w prawo"
 
-#: src/view/tabwidget.cpp:935
+#: src/view/tabwidget.cpp:936
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "Hierarchiczna lista certyfikatów"
 
-#: src/view/tabwidget.cpp:948
+#: src/view/tabwidget.cpp:949
 #, kde-format
 msgid "Expand All"
 msgstr "Rozwiń wszystko"
 
-#: src/view/tabwidget.cpp:961
+#: src/view/tabwidget.cpp:962
 #, kde-format
 msgid "Collapse All"
 msgstr "Zwiń wszystko"
@@ -12530,6 +12549,14 @@ msgstr ""
 "Importowanie certyfikatu z pliku.<nl/> Aby zaimportować certyfikat z "
 "publicznego serwera kluczy wybierz <interface>Wyszukaj na serwerze</"
 "interface>."
+
+#~ msgid ""
+#~ "This setting specifies how many days a new OpenPGP key is valid at least, "
+#~ "or, in other words, after how many days the new key will expire at the "
+#~ "earliest."
+#~ msgstr ""
+#~ "To ustawienie określa przez ile dni domyślnie ważny jest nowy klucz "
+#~ "OpenPGP lub innymi słowy, po ilu dniach nowy klucz wygaśnie najwcześniej."
 
 #~ msgctxt "@title:window"
 #~ msgid "Error Learning SmartCard"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-05 00:38+0000\n"
-"PO-Revision-Date: 2024-03-01 03:09+0900\n"
+"POT-Creation-Date: 2024-03-08 00:38+0000\n"
+"PO-Revision-Date: 2024-03-08 03:35+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -6190,7 +6190,7 @@ msgstr "為以下的可信任介紹者："
 #: src/dialogs/certificatedetailswidget.cpp:327
 #, kde-format
 msgid "See certifications for details."
-msgstr ""
+msgstr "詳情請見憑證。"
 
 #: src/dialogs/certificatedetailswidget.cpp:333
 #, kde-format
@@ -7905,20 +7905,23 @@ msgstr "預設有效期間"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, kde-format
-msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the default validity period of new or extended OpenPGP keys in "
+"days."
 msgstr "設定新的 OpenPGP 金鑰的預設有效期間（日數）。"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
 #, kde-format
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid by default, "
-"or, in other words, after how many days the key will expire. Set this to 0 "
-"for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for three years "
-"(possibly clamped to the allowed minimum or maximum validity period) by "
-"default."
+"This setting specifies how many days an OpenPGP key will be valid by default "
+"at creation or change of validity, or, in other words, after how many days "
+"the key will expire. Set this to 0 for unlimited validity. If this setting "
+"is not set or is set to a negative value, then new or extended OpenPGP keys "
+"will be valid for three years (possibly clamped to the allowed minimum or "
+"maximum validity period) by default."
 msgstr ""
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -7929,17 +7932,20 @@ msgstr "最小有效期間"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, kde-format
-msgid "Specifies the minimum validity period of new OpenPGP keys in days."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the minimum allowed validity period of new or extended OpenPGP "
+"keys in days."
+msgstr "設定新的 OpenPGP 金鑰的預設有效期間（日數）。"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
 #, kde-format
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid at least, "
-"or, in other words, after how many days the new key will expire at the "
-"earliest."
+"This setting specifies the minimum number of days a user can choose for the "
+"validity period of OpenPGP certficates. It applies at key creation and "
+"change of validity."
 msgstr ""
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -7950,18 +7956,21 @@ msgstr "最大有效期間"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, kde-format
-msgid "Specifies the maximum validity period of new OpenPGP keys in days."
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid ""
+"Specifies the maximum allowed validity period of new or extended OpenPGP "
+"keys in days."
+msgstr "設定新的 OpenPGP 金鑰的預設有效期間（日數）。"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
 #, kde-format
 msgid ""
-"This setting specifies how many days a new OpenPGP key is valid at most, or, "
-"in other words, after how many days the new key will expire at the latest. "
-"If this setting is not set or if it is set to a negative value, then "
-"unlimited validity is allowed."
+"This setting specifies the maximum number of days a user can choose for the "
+"validity period of OpenPGP certficates. It applies at key creation and "
+"change of validity. If this setting is not set or is set to a negative "
+"value, then unlimited validity is allowed."
 msgstr ""
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -10932,18 +10941,16 @@ msgid "Add User ID..."
 msgstr "新增使用者 ID..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "設定群組..."
+msgstr "建立群組..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "保證所選憑證的有效性"
+msgstr "從所選憑證建立群組"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -10995,12 +11002,12 @@ msgstr "印出憑證撤銷清冊快取內容"
 msgid "Import CRL From File..."
 msgstr "從檔案匯入憑證撤銷清冊..."
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:534
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "階層式憑證清單"
 
-#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:541
+#: src/view/keytreeview.cpp:267 src/view/keytreeview.cpp:534
 #, kde-format
 msgid "List of certificates"
 msgstr "憑證列表"
@@ -11041,11 +11048,10 @@ msgid "Create CSR"
 msgstr "建立 CSR"
 
 #: src/view/netkeywidget.cpp:137
-#, fuzzy, kde-format
-#| msgid "Create a personal X.509 key pair and certification request "
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
-msgstr "建立個人的 X.509 金鑰對與憑證要求"
+msgstr "為卡片上儲存的金鑰建立憑證簽署請求。"
 
 #: src/view/netkeywidget.cpp:145
 #, kde-format
@@ -11077,11 +11083,10 @@ msgid "Error"
 msgstr "錯誤"
 
 #: src/view/netkeywidget.cpp:328
-#, fuzzy, kde-format
-#| msgid "Loading certificate cache..."
+#, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
-msgstr "載入憑證快取中..."
+msgstr "從智慧卡讀取憑證中 ..."
 
 #: src/view/netkeywidget.cpp:379
 #, kde-format
@@ -11164,11 +11169,10 @@ msgid "Generate Key"
 msgstr "建立金鑰"
 
 #: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:196
-#, fuzzy, kde-format
-#| msgid "Create a personal X.509 key pair and certification request "
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for this key"
-msgstr "建立個人的 X.509 金鑰對與憑證要求"
+msgstr "為這個金鑰建立憑證簽署請求。"
 
 #: src/view/openpgpkeycardwidget.cpp:174
 #, kde-format
@@ -11826,87 +11830,87 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/tabwidget.cpp:653
+#: src/view/tabwidget.cpp:654
 #, kde-format
 msgid "Rename Tab"
 msgstr "重新命名分頁"
 
-#: src/view/tabwidget.cpp:653
+#: src/view/tabwidget.cpp:654
 #, kde-format
 msgid "New tab title:"
 msgstr "新分頁標題："
 
-#: src/view/tabwidget.cpp:857
+#: src/view/tabwidget.cpp:858
 #, kde-format
 msgid "New Tab"
 msgstr "新增分頁"
 
-#: src/view/tabwidget.cpp:858
+#: src/view/tabwidget.cpp:859
 #, kde-format
 msgid "Open a new tab"
 msgstr "開啟新分頁"
 
-#: src/view/tabwidget.cpp:872
+#: src/view/tabwidget.cpp:873
 #, kde-format
 msgid "Rename Tab..."
 msgstr "重新命名分頁..."
 
-#: src/view/tabwidget.cpp:873
+#: src/view/tabwidget.cpp:874
 #, kde-format
 msgid "Rename this tab"
 msgstr "重新命名此分頁"
 
-#: src/view/tabwidget.cpp:885
+#: src/view/tabwidget.cpp:886
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "複製分頁"
 
-#: src/view/tabwidget.cpp:886
+#: src/view/tabwidget.cpp:887
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "複製此分頁"
 
-#: src/view/tabwidget.cpp:896
+#: src/view/tabwidget.cpp:897
 #, kde-format
 msgid "Close Tab"
 msgstr "關閉分頁"
 
-#: src/view/tabwidget.cpp:897
+#: src/view/tabwidget.cpp:898
 #, kde-format
 msgid "Close this tab"
 msgstr "關閉此分頁"
 
-#: src/view/tabwidget.cpp:909
+#: src/view/tabwidget.cpp:910
 #, kde-format
 msgid "Move Tab Left"
 msgstr "將分頁左移"
 
-#: src/view/tabwidget.cpp:910
+#: src/view/tabwidget.cpp:911
 #, kde-format
 msgid "Move this tab left"
 msgstr "將分頁左移"
 
-#: src/view/tabwidget.cpp:922
+#: src/view/tabwidget.cpp:923
 #, kde-format
 msgid "Move Tab Right"
 msgstr "將分頁右移"
 
-#: src/view/tabwidget.cpp:923
+#: src/view/tabwidget.cpp:924
 #, kde-format
 msgid "Move this tab right"
 msgstr "將分頁右移"
 
-#: src/view/tabwidget.cpp:935
+#: src/view/tabwidget.cpp:936
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "階層式憑證清單"
 
-#: src/view/tabwidget.cpp:948
+#: src/view/tabwidget.cpp:949
 #, kde-format
 msgid "Expand All"
 msgstr "全部展開"
 
-#: src/view/tabwidget.cpp:961
+#: src/view/tabwidget.cpp:962
 #, kde-format
 msgid "Collapse All"
 msgstr "全部收回"

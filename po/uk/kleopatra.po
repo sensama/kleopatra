@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-08 00:38+0000\n"
-"PO-Revision-Date: 2024-03-02 09:16+0200\n"
+"POT-Creation-Date: 2024-03-09 00:38+0000\n"
+"PO-Revision-Date: 2024-03-08 09:17+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -8402,23 +8402,16 @@ msgstr "Типовий період чинності"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
-msgstr "Вказує типовий період чинності нових ключів OpenPGP у днях."
+msgstr ""
+"Вказує типовий період чинності нових або подовжених ключів OpenPGP у днях."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -8427,12 +8420,13 @@ msgid ""
 "will be valid for three years (possibly clamped to the allowed minimum or "
 "maximum validity period) by default."
 msgstr ""
-"Цей параметр визначає типовий строк дії нового ключа OpenPGP. Іншими "
-"словами, він визначає скільки днів ключ буде чинним. Якщо встановити "
-"значення 0, строк дії ключа буде необмеженим. Якщо для цього параметра не "
-"встановлено означення або встановлено від'ємне значення, типово, нові ключі "
-"OpenPGP будуть чинними протягом трьох років (можливе обмеження мінімальним і "
-"максимальний періодами чинності)."
+"Цей параметр визначає типовий строк дії нового ключа OpenPGP при створенні "
+"або зміні чинності. Іншими словами, він визначає скільки днів ключ буде "
+"чинним. Якщо встановити значення 0, строк дії ключа буде необмеженим. Якщо "
+"для цього параметра не встановлено означення або встановлено від'ємне "
+"значення, типово, нові або подовжені ключі OpenPGP будуть чинними протягом "
+"трьох років (можливе обмеження мінімальним і максимальний періодами "
+"чинності)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:58
@@ -8442,21 +8436,29 @@ msgstr "Мінімальний період чинності"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Вказує мінімальний період чинності нових ключів OpenPGP у днях."
+msgstr ""
+"Вказує мінімальний дозволений період чинності нових або подовжених ключів "
+"OpenPGP у днях."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies the minimum number of days a user can choose for "
+#| "the validity period of OpenPGP certficates. It applies at key creation "
+#| "and change of validity."
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
-"validity period of OpenPGP certficates. It applies at key creation and "
+"validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
+"Цей параметр визначає мінімальну кількість днів, яку користувач може вибрати "
+"для періоду чинності сертифікатів OpenPGP. Його буде застосовано при "
+"створенні або зміні чинності ключа."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8466,32 +8468,33 @@ msgstr "Максимальний період чинності"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Вказує максимальний період чинності нових ключів OpenPGP у днях."
+msgstr ""
+"Вказує максимальний дозволений період чинності нових або подовжених ключів "
+"OpenPGP у днях."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
 #, fuzzy, kde-format
 #| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#| "This setting specifies the maximum number of days a user can choose for "
+#| "the validity period of OpenPGP certficates. It applies at key creation "
+#| "and change of validity. If this setting is not set or is set to a "
+#| "negative value, then unlimited validity is allowed."
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
-"validity period of OpenPGP certficates. It applies at key creation and "
+"validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Цей параметр визначає максимальний строк дії нового ключа OpenPGP. Іншими "
-"словами, він визначає скільки днів ключ може бути чинним. Якщо встановити "
-"значення 0, строк дії ключа буде необмеженим. Якщо для цього параметра не "
-"встановлено означення або встановлено від'ємне значення, програма "
-"припускатиме, що чинність ключа не обмежено."
+"Цей параметр визначає максимальний кількість днів, яку користувач може "
+"вибрати для періоду чинності сертифікатів OpenPGP. Він застосовується при "
+"створенні або зміні чинності ключа. Якщо значення для параметра не "
+"встановлено або встановлено від'ємне значення, строк чинності не "
+"обмежуватиметься."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70

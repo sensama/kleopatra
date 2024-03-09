@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-08 00:38+0000\n"
+"POT-Creation-Date: 2024-03-09 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -8082,12 +8082,20 @@ msgstr "새로운 OpenPGP 키의 최소 유효 기간을 일 단위로 설정합
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid at most, "
+#| "or, in other words, after how many days the new key will expire at the "
+#| "latest. If this setting is not set or if it is set to a negative value, "
+#| "then unlimited validity is allowed."
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
-"validity period of OpenPGP certficates. It applies at key creation and "
+"validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
+"이 설정은 새 OpenPGP 키의 최대 유효 기간을 설정합니다. 최대한 이 기간이 지나"
+"면 키가 만료됩니다. 이 옵션을 설정하지 않았거나 음수로 설정하면 무기한 유효"
+"한 키가 허용됩니다."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8114,7 +8122,7 @@ msgstr "새로운 OpenPGP 키의 최대 유효 기간을 일 단위로 설정합
 #| "then unlimited validity is allowed."
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
-"validity period of OpenPGP certficates. It applies at key creation and "
+"validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""

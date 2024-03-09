@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-08 00:38+0000\n"
-"PO-Revision-Date: 2024-03-02 11:23+0100\n"
+"POT-Creation-Date: 2024-03-09 00:38+0000\n"
+"PO-Revision-Date: 2024-03-08 21:05+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -410,8 +410,8 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
-"<p>A continuació, els certificats certificats es pujaran al directori de "
-"certificats configurat.</p>"
+"<p>A continuació, els certificats que s'han certificat es pujaran al "
+"directori de certificats configurat.</p>"
 
 #: src/commands/certifygroupcommand.cpp:300
 #, kde-format
@@ -8330,25 +8330,17 @@ msgstr "Període de validesa predeterminat"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
 msgstr ""
 "Especifica el període de validesa predeterminat en dies de les claus OpenPGP "
-"noves."
+"noves o ampliades."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -8358,11 +8350,12 @@ msgid ""
 "maximum validity period) by default."
 msgstr ""
 "Aquest paràmetre especifica quants dies serà vàlida de manera predeterminada "
-"una clau OpenPGP nova, o, en altres paraules, després de quants dies "
-"caducarà la clau. Establiu-ho a 0 per a una validesa il·limitada. Si aquesta "
-"configuració no està establerta o si s'estableix en un valor negatiu, les "
-"claus OpenPGP noves seran vàlides durant tres anys (possiblement restringit "
-"al període de validesa mínim o màxim permès) de manera predeterminada."
+"una clau OpenPGP nova o en canviar la validesa, o, en altres paraules, "
+"després de quants dies caducarà la clau. Establiu-ho a 0 per a una validesa "
+"il·limitada. Si aquesta configuració no està establerta o si s'estableix en "
+"un valor negatiu, les claus OpenPGP noves o ampliades seran vàlides durant "
+"tres anys (possiblement restringit al període de validesa mínim o màxim "
+"permès) de manera predeterminada."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:58
@@ -8372,22 +8365,29 @@ msgstr "Període de validesa mínim"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
 msgstr ""
-"Especifica el període de validesa mínim en dies de les claus OpenPGP noves."
+"Especifica el període de validesa mínim en dies de les claus OpenPGP noves o "
+"ampliades."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies the minimum number of days a user can choose for "
+#| "the validity period of OpenPGP certficates. It applies at key creation "
+#| "and change of validity."
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
-"validity period of OpenPGP certficates. It applies at key creation and "
+"validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
+"Aquest paràmetre especifica el nombre mínim de dies que l'usuari pot triar "
+"per al període de validesa dels certificats OpenPGP. S'aplica a la creació "
+"de la clau i al canvi de validesa."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8397,32 +8397,32 @@ msgstr "Període de validesa màxim"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
 msgstr ""
-"Especifica el període de validesa màxim en dies de les claus OpenPGP noves."
+"Especifica el període de validesa màxim en dies de les claus OpenPGP noves o "
+"ampliades."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
 #, fuzzy, kde-format
 #| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#| "This setting specifies the maximum number of days a user can choose for "
+#| "the validity period of OpenPGP certficates. It applies at key creation "
+#| "and change of validity. If this setting is not set or is set to a "
+#| "negative value, then unlimited validity is allowed."
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
-"validity period of OpenPGP certficates. It applies at key creation and "
+"validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Aquest paràmetre especifica quants dies serà vàlida com a màxim una clau "
-"OpenPGP nova, o, en altres paraules, després de quants dies com a màxim "
-"caducarà la clau. Si aquest paràmetre no s'estableix o si s'estableix a un "
-"valor negatiu, llavors es permet una validesa il·limitada."
+"Aquest paràmetre especifica el nombre màxim de dies que l'usuari pot triar "
+"per al període de validesa dels certificats OpenPGP. S'aplica a la creació "
+"de la clau i al canvi de validesa. Si aquest paràmetre no s'estableix o si "
+"s'estableix a un valor negatiu, llavors es permet una validesa il·limitada."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
@@ -8442,12 +8442,12 @@ msgid ""
 "revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
 msgstr ""
 "L'empremta digital d'un revocador designat que s'afegirà a cada clau nova. "
-"S'ha de donar en la forma \"algo:fpr [sensible]\". Algo és l'algorisme de "
-"clau pública del revocador designat (és a dir, RSA1,1, DSA1717, etc.) fpr és "
-"l'empremta digital del revocador designat. L'indicador opcional «sensible» "
-"marca el revocador designat com a informació sensible. Només les claus v4 "
-"poden ser designades revocadores. El GnuPG 2.4.4 és necessari per a afegir "
-"revocadors sensibles."
+"S'ha de donar en la forma \"algo:fpr [confidencial]\". Algo és l'algorisme "
+"de clau pública del revocador designat (és a dir, RSA1,1, DSA1717, etc.) fpr "
+"és l'empremta digital del revocador designat. L'indicador opcional "
+"«confidencial» marca el revocador designat com a informació confidencial. "
+"Només les claus v4 poden ser designades revocadores. El GnuPG 2.4.4 és "
+"necessari per a afegir revocadors confidencials."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:75

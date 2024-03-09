@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-08 00:38+0000\n"
-"PO-Revision-Date: 2024-03-02 02:54+0100\n"
+"POT-Creation-Date: 2024-03-09 00:38+0000\n"
+"PO-Revision-Date: 2024-03-08 03:56+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -8205,24 +8205,17 @@ msgstr "ნაგულისხმები ვარგისიანობ�
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
 msgstr ""
-"მიუთითებს ახალი OpenPGP გასაღების ნაგულისხმევ ვარგისიანობის პერიოდს, დღეებში."
+"მიუთითებს ახალი ან გაგრძელებული OpenPGP გასაღების ნაგულისხმევ ვარგისიანობის "
+"პერიოდს, დღეებში."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -8231,12 +8224,13 @@ msgid ""
 "will be valid for three years (possibly clamped to the allowed minimum or "
 "maximum validity period) by default."
 msgstr ""
-"ეს პარამეტრი მიუთითებს, რამდენი დღე იქნება ახალი OpenPGP გასაღები "
-"ნაგულისხმევად ვარგისი, ან, სხვა სიტყვებით, რამდენ დღეში ამოიწურება ამ "
-"გასაღების ვადა. დააყენეთ 0 უვადო გასაღებისთვის. თუ ეს პარამეტრი დაყენებული "
-"არაა ან მნიშვნელობა უარყოფითია, OpenPGP-ის გასაღებები სამი წელი იქნება "
-"ვარგისი (შეიძლება, ოდნავ წაკვეთილი, რათა მინიმალურ ან მაქსიმალურ "
-"ვარგისიანობის შუალედში ჩაჯდეს), ნაგულისხმევად."
+"ეს პარამეტრი მიუთითებს, რამდენი დღე იქნება OpenPGP-ის გასაღები ვარგისი მისი "
+"შექმნისა და ვარგისიანობის შეცვლისას. ანუ, სხვა სიტყვებით, რამდენი დღის "
+"შემდეგ ამოიწურება გასაღების ვადა. დააყენეთ 0 უვადო ვარგისიანობისთვის. თუ ეს "
+"პარამეტრი დაყენებული არაა, ან დაყენებულია უარყოფით მნიშვნელობაზე, მაშინ "
+"ახალი ან გაფართოებული OpenPGP გასაღებები ვარგისი 3 წლით იქნება "
+"(შესაძლებელია, შემოკლდეს დაშვებულ მინიმალურ ან მაქსიმალურ მნიშვნელობამდე) "
+"ნაგულისხმევად."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:58
@@ -8246,22 +8240,29 @@ msgstr "მინიმალური ვარგისიანობის �
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
 msgstr ""
-"მიუთითებს ახალი OpenPGP გასაღების მინიმალურ ვარგისიანობის პერიოდს, დღეებში."
+"მიუთითებს ახალი ან გაგრძელებული OpenPGP გასაღების მინიმალურ ვარგისიანობის "
+"პერიოდს, დღეებში."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies the minimum number of days a user can choose for "
+#| "the validity period of OpenPGP certficates. It applies at key creation "
+#| "and change of validity."
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
-"validity period of OpenPGP certficates. It applies at key creation and "
+"validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
+"ეს პარამეტრი მიუთითებს დღეების მინიმალურ რაოდენობას, რომელიც მომხმარებელს "
+"მისი OpenPGP-ის სერტიფიკატების ვარგისობის ვადად შეუძლია, დააყენოს. ის ეხება "
+"გასაღების შექმნას და ვარგისობის შეცვლას."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8271,32 +8272,31 @@ msgstr "მაქსიმალური ვარგისიანობი�
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
 msgstr ""
-"მიუთითებს ახალი OpenPGP გასაღების მაქსიმალურ ვარგისიანობის პერიოდს, დღეებში."
+"მიუთითებს ახალი ან გაგრძელებული OpenPGP გასაღების მაქსიმალურ ვარგისიანობის "
+"პერიოდს, დღეებში."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
 #, fuzzy, kde-format
 #| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#| "This setting specifies the maximum number of days a user can choose for "
+#| "the validity period of OpenPGP certficates. It applies at key creation "
+#| "and change of validity. If this setting is not set or is set to a "
+#| "negative value, then unlimited validity is allowed."
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
-"validity period of OpenPGP certficates. It applies at key creation and "
+"validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"ეს პარამეტრი მიუთითებს, რამდენი დღე იქნება ახალი OpenPGP გასაღები ვარგისი, "
-"მაქსიმუმ, სხვა სიტყვებით, რამდენ დღეში, მაქსიმუმ, ამოიწურება ამ გასაღების "
-"ვადა. თუ ეს პარამეტრი დაყენებული არა ან მნიშვნელობა უარყოფითია, ვარგისიანობა "
-"უვადო იქნება."
+"ეს პარამეტრი მიუთითებს დღეების მაქსიმალურ რაოდენობას, რომელიც მომხმარებელს "
+"მისი OpenPGP-ის სერტიფიკატების ვარგისობის ვადად შეუძლია, დააყენოს. ის ეხება "
+"გასაღების შექმნას და ვარგისობის შეცვლას."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70

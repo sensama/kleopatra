@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-03 01:36+0000\n"
-"PO-Revision-Date: 2024-03-08 03:35+0900\n"
+"PO-Revision-Date: 2024-03-08 23:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -4391,7 +4391,7 @@ msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The signature is %1"
-msgstr "簽章是 %1"
+msgstr "此簽章%1"
 
 #: src/crypto/decryptverifytask.cpp:291
 #, kde-format
@@ -4399,7 +4399,7 @@ msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The signature <b>is not</b> %1."
-msgstr "簽章<b>不是</b> %1"
+msgstr "此簽章<b>不</b>%1。"
 
 #: src/crypto/decryptverifytask.cpp:308 src/crypto/signencrypttask.cpp:54
 #, kde-format
@@ -4550,22 +4550,20 @@ msgid_plural "%1 unknown recipients"
 msgstr[0] "%1 個未知的收件者"
 
 #: src/crypto/decryptverifytask.cpp:618
-#, fuzzy, kde-format
-#| msgid "The signature is bad."
+#, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The decryption is %1."
-msgstr "此簽章不正確。"
+msgstr "此解密%1。"
 
 #: src/crypto/decryptverifytask.cpp:621
-#, fuzzy, kde-format
-#| msgid "The signature is bad."
+#, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The decryption <b>is not</b> %1."
-msgstr "此簽章不正確。"
+msgstr "此解密<b>不</b>%1。"
 
 #: src/crypto/decryptverifytask.cpp:632
 #, kde-format
@@ -5208,6 +5206,9 @@ msgid ""
 "encrypting files because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para>您無法使用 <application>Kleopatra</application> 來簽署或加密檔案，因為 "
+"<application>Kleopatra</application> 所用的 <application>GnuPG</application> "
+"系統不%1。</para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:255
 #, kde-kuit-format
@@ -5219,6 +5220,9 @@ msgid ""
 "or encrypting files because the <application>GnuPG</application> system used "
 "by <application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para>抱歉！您無法使用 <application>Kleopatra</application> 來簽署或加密檔"
+"案，因為 <application>Kleopatra</application> 所用的 <application>GnuPG</"
+"application> 系統不%1。</para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:275
 #, kde-kuit-format
@@ -8445,7 +8449,7 @@ msgstr ""
 #: src/main.cpp:164
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
-msgstr ""
+msgstr "<para>您確定要繼續嗎？</para>"
 
 #: src/main.cpp:165
 #, kde-format
@@ -9213,18 +9217,14 @@ msgstr ""
 "application> 系統並未%1。</para>"
 
 #: src/selftest/compliancecheck.cpp:60
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Install <application>%1</application> version %2 or higher.</para>"
+#, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
 "RESTRICTED compliant or VS-NfD compliant"
 msgid ""
 "<para>Install a version of <application>GnuPG</application> that is %1.</"
 "para>"
-msgstr ""
-"<para>請安裝 <application>%1</application> 版本 %2 或以後的版本。</para>"
+msgstr "<para>請安裝%1的<application>GnuPG</application> 版本。</para>"
 
 #: src/selftest/enginecheck.cpp:46
 #, kde-format
@@ -10523,7 +10523,7 @@ msgstr "建議新的名稱"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
-msgstr ""
+msgstr "建議並非既存的檔案名稱。"
 
 #: src/utils/overwritedialog.cpp:211
 #, kde-format
@@ -10549,7 +10549,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
-msgstr ""
+msgstr "自動以另一個名字儲存所有原本會覆寫現有檔案的檔案。"
 
 #: src/utils/overwritedialog.cpp:227
 #, kde-format
@@ -10968,7 +10968,7 @@ msgstr "建立個人的 X.509 金鑰對與憑證要求"
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
 "the smartcard."
-msgstr ""
+msgstr "抱歉！智慧卡上沒有找到適合建立憑證簽署請求的金鑰。"
 
 #: src/view/nullpinwidget.cpp:35
 #, kde-format
@@ -10999,14 +10999,14 @@ msgstr "設定 PIN 碼是必須的但<b>不可回復</b>。"
 msgid ""
 "If you proceed you will be asked to enter a new PIN and later to repeat that "
 "PIN."
-msgstr ""
+msgstr "如果選擇繼續，將會請您輸入新 PIN 碼並再重複輸入它。"
 
 #: src/view/nullpinwidget.cpp:74
 #, kde-format
 msgid ""
 "It will <b>not be possible</b> to recover the card if the PIN has been "
 "entered wrongly more than 2 times."
-msgstr ""
+msgstr "PIN 碼輸入錯誤 2 次以上時將<b>不可能</b>回復卡片。"
 
 #: src/view/nullpinwidget.cpp:76
 #, kde-format
@@ -11024,7 +11024,7 @@ msgstr "顯示詳情"
 #, kde-format
 msgctxt "@action:tooltip"
 msgid "Show detailed information about this key"
-msgstr ""
+msgstr "顯示關於此金鑰的詳細資訊"
 
 #: src/view/openpgpkeycardwidget.cpp:56 src/view/openpgpkeycardwidget.cpp:175
 #, kde-format
@@ -11078,7 +11078,7 @@ msgstr "為這個卡片欄位產生金鑰，取代現有的金鑰"
 #, kde-format
 msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
-msgstr ""
+msgstr "抱歉，我找不到指紋為 %1 的金鑰。"
 
 #: src/view/p15cardwidget.cpp:96
 #, kde-format
@@ -11103,7 +11103,7 @@ msgstr "錯誤，伺服器上找到多個金鑰。"
 #: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Key not found in directory service."
-msgstr ""
+msgstr "金鑰未於目錄服務中找到。"
 
 #: src/view/p15cardwidget.cpp:149
 #, kde-format
@@ -11146,6 +11146,9 @@ msgid ""
 "encryption because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para>您無法使用 <application>Kleopatra</application> 來進行簽署或加密，因為 "
+"<application>Kleopatra</application> 所用的 <application>GnuPG</application> "
+"系統不%1。</para>"
 
 #: src/view/padwidget.cpp:150
 #, kde-format
@@ -11183,6 +11186,9 @@ msgid ""
 "or encryption because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para>抱歉！您無法使用 <application>Kleopatra</application> 來進行簽署或加"
+"密，因為 <application>Kleopatra</application> 所用的 <application>GnuPG</"
+"application> 系統不%1。</para>"
 
 #: src/view/padwidget.cpp:398
 #, kde-format

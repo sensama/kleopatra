@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-09 00:38+0000\n"
-"PO-Revision-Date: 2024-03-03 10:40+0100\n"
+"PO-Revision-Date: 2024-03-09 10:30+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -8294,24 +8294,17 @@ msgstr "Período de validez predeterminado"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
 msgstr ""
-"Indica o período de validez predeterminado das novas chaves OpenPGP en días."
+"Indica os días de validez predeterminado das chaves OpenPGP novas ou "
+"estendidas."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -8320,12 +8313,13 @@ msgid ""
 "will be valid for three years (possibly clamped to the allowed minimum or "
 "maximum validity period) by default."
 msgstr ""
-"Esta opción indica o número de días durante os que unha nova chave OpenPGP "
-"será válida de maneira predeterminada, cantos días teñen que pasar para que "
-"caduque. Defínaa como 0 para non limitar a validez. Se non define a opción "
-"ou a define cun valor negativo, de maneira predeterminada as novas chaves "
-"OpenPGP serán válidas durante tres anos (posiblemente acurtado ao período de "
-"validez mínimo ou máximo)."
+"Esta opción indica o número de días durante os que unha chave OpenPGP será "
+"válida de maneira predeterminada, ao creala ou ao cambiar a súa validez, "
+"cantos días teñen que pasar para que caduque. Defínaa como 0 para non "
+"limitar a validez. Se non define a opción ou a define cun valor negativo, de "
+"maneira predeterminada as chaves OpenPGP novas ou estendidas serán válidas "
+"durante tres anos (posiblemente acurtado ao período de validez mínimo ou "
+"máximo)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:58
@@ -8335,30 +8329,25 @@ msgstr "Período de validez mínimo"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Indica o período de validez mínimo das novas chaves OpenPGP en días."
+msgstr ""
+"Indica os días de validez mínimos permitidos das chaves OpenPGP novas ou "
+"estendidas."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"Esta opción indica o número de días máximo durante os que unha nova chave "
-"OpenPGP é válida, é dicir, cantos días teñen que pasar como máximo para que "
-"a nova chave caduque. Se a opción non está definida ou ten un valor "
-"negativo, permítese unha validez ilimitada."
+"Esta opción indica o número mínimo de días que unha persoa usuaria pode "
+"escoller para o período de validez dos certificados de OpenPGP. Aplícase ao "
+"crear a chave ou ao estender a súa validez."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8368,31 +8357,27 @@ msgstr "Período de validez máximo"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Indica o período de validez máximo das novas chaves OpenPGP en días."
+msgstr ""
+"Indica os días de validez máximos permitidos das chaves OpenPGP novas ou "
+"estendidas."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Esta opción indica o número de días máximo durante os que unha nova chave "
-"OpenPGP é válida, é dicir, cantos días teñen que pasar como máximo para que "
-"a nova chave caduque. Se a opción non está definida ou ten un valor "
-"negativo, permítese unha validez ilimitada."
+"Esta opción indica o número máximo de días que a persoa usuaria pode "
+"escoller como período de validez para certificados OpenPGP. Aplícase ao "
+"crear a chave ou cambiar a súa validez. Se a opción non está definida ou ten "
+"un valor negativo, permítese unha validez ilimitada."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70

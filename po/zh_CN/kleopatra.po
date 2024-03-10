@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-09 00:38+0000\n"
-"PO-Revision-Date: 2024-02-29 12:53\n"
+"PO-Revision-Date: 2024-03-09 04:46\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -7834,23 +7834,15 @@ msgstr "默认有效期"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
-msgstr "指定几天内新的 OpenPGP 密钥的默认有效期。"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -7859,9 +7851,6 @@ msgid ""
 "will be valid for three years (possibly clamped to the allowed minimum or "
 "maximum validity period) by default."
 msgstr ""
-"此设置指定新 OpenPGP 密钥默认有效的天数，或者换句话说，指定密钥过期的天数。将"
-"此设置为 0 表示无限有效性。如果未设置此设置或将其设置为负值，则默认情况下，新"
-"的 OpenPGP 密钥的有效期为三年 (可能固定在允许的最短或最长有效期内)。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:58
@@ -7871,29 +7860,20 @@ msgstr "最小有效期"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "指定几天内新的 OpenPGP 密钥的最短有效期。"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"此设置指定新的 OpenPGP 密钥最长有效的天数，或者换句话说，指定密钥最后过期的天"
-"数。如果未设置此设置或将其设置为负值，则默认情况下，新的 OpenPGP 密钥将有无限"
-"的有效期。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -7903,30 +7883,21 @@ msgstr "最大有效期"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "指定几天内新的 OpenPGP 密钥的最长有效期。"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"此设置指定新的 OpenPGP 密钥最长有效的天数，或者换句话说，指定密钥最后过期的天"
-"数。如果未设置此设置或将其设置为负值，则默认情况下，新的 OpenPGP 密钥将有无限"
-"的有效期。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
@@ -11045,11 +11016,10 @@ msgid "Error"
 msgstr "误差"
 
 #: src/view/netkeywidget.cpp:328
-#, fuzzy, kde-format
-#| msgid "Loading certificate cache..."
+#, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
-msgstr "正在加载证书缓存..."
+msgstr ""
 
 #: src/view/netkeywidget.cpp:379
 #, kde-format
@@ -11955,45 +11925,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgid ""
-#~ "This setting specifies how many days a new OpenPGP key is valid at least, "
-#~ "or, in other words, after how many days the new key will expire at the "
-#~ "earliest."
-#~ msgstr ""
-#~ "此设置指定了一个新的 OpenPGP 密钥的有效天数，或者至少有效， 换言之，新钥匙"
-#~ "最早将过期多少天。"
-
-#~ msgctxt "@title:window"
-#~ msgid "Error Learning SmartCard"
-#~ msgstr "智能卡识别出错"
-
-#~ msgctxt "@title:window"
-#~ msgid "Finished Learning SmartCard"
-#~ msgstr "智能卡识别完成"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG 或 GpgSM 进程在尝试识别智能卡时，因非预期错误而提前结束。</"
-#~ "para><para>请检查 <icode>%1</icode> 的输出了解详情。</para>"
-
-#~ msgid "Loading certificates... (this can take a while)"
-#~ msgstr "正在加载证书... （这可能需要一段时间）"
-
-#~ msgid "Show Details"
-#~ msgstr "显示细节"
-
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "识别 NetKey v3 智能卡证书"
-
-#~ msgid "There are unknown certificates on this card."
-#~ msgstr "此智能卡上有未知证书。"
-
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "加载证书"

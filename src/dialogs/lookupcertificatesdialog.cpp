@@ -214,7 +214,7 @@ private:
             importPB()->setText(i18n("Import"));
             importPB()->setEnabled(false);
 
-            connect(resultTV->view(), SIGNAL(doubleClicked(QModelIndex)), importPB(), SLOT(animateClick()));
+            connect(resultTV->view(), SIGNAL(doubleClicked(QModelIndex)), q, SLOT(slotDetailsClicked()));
 
             findED->setFocus();
 

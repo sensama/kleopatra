@@ -338,6 +338,9 @@ void LookupCertificatesDialog::setCertificates(const std::vector<Key> &certs)
 {
     d->ui.resultTV->view()->setFocus();
     d->ui.resultTV->setKeys(certs);
+    if (certs.size() == 1) {
+        d->ui.resultTV->view()->setCurrentIndex(d->ui.resultTV->view()->model()->index(0, 0));
+    }
 }
 
 std::vector<Key> LookupCertificatesDialog::selectedCertificates() const

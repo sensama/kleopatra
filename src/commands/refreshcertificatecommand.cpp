@@ -15,6 +15,7 @@
 #include <settings.h>
 
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -112,9 +113,21 @@ void RefreshCertificateCommand::Private::start()
 
     std::unique_ptr<QGpgME::Job> refreshJob;
     switch (key.protocol()) {
-    case GpgME::OpenPGP:
-        refreshJob = startReceiveKeysJob();
+    case GpgME::OpenPGP: {
+        if (haveKeyserverConfigured()) {
+            refreshJob = startReceiveKeysJob();
+        } else {
+            QMetaObject::invokeMethod(
+                q,
+                [this]() {
+                    // use GPG_ERR_USER_1 to signal skipped key server lookup
+                    onReceiveKeysJobResult(ImportResult{Error::fromCode(GPG_ERR_USER_1)});
+                },
+                Qt::QueuedConnection);
+            return;
+        }
         break;
+    }
     case GpgME::CMS:
         refreshJob = startSMIMEJob();
         break;
@@ -281,10 +294,14 @@ void RefreshCertificateCommand::Private::onReceiveKeysJobResult(const ImportResu
     }
     job = refreshJob.release();
 #else
-    if (result.error()) {
-        showError(result.error());
+    if (receiveKeysResult.error()) {
+        if (receiveKeysResult.error().code() == GPG_ERR_USER_1) {
+            information(i18nc("@info", "The update was skipped because no keyserver is configured."), i18nc("@title:window", "Update Skipped"));
+        } else {
+            showError(receiveKeysResult.error());
+        }
     } else {
-        information(informationOnChanges(result), i18nc("@title:window", "Key Updated"));
+        information(informationOnChanges(receiveKeysResult), i18nc("@title:window", "Key Updated"));
     }
 
     finished();
@@ -316,7 +333,11 @@ void RefreshCertificateCommand::Private::showOpenPGPResult()
 {
     if (wkdRefreshResult.error().code() == GPG_ERR_USER_1 || wkdRefreshResult.error().isCanceled()) {
         if (receiveKeysResult.error()) {
-            showError(receiveKeysResult.error());
+            if (receiveKeysResult.error().code() == GPG_ERR_USER_1) {
+                information(i18nc("@info", "The update was skipped because no keyserver is configured."), i18nc("@title:window", "Update Skipped"));
+            } else {
+                showError(receiveKeysResult.error());
+            }
         } else {
             information(informationOnChanges(receiveKeysResult), i18nc("@title:window", "Key Updated"));
         }
@@ -324,7 +345,7 @@ void RefreshCertificateCommand::Private::showOpenPGPResult()
         return;
     }
 
-    if (receiveKeysResult.error() && wkdRefreshResult.error()) {
+    if (receiveKeysResult.error() && (receiveKeysResult.error().code() != GPG_ERR_USER_1) && wkdRefreshResult.error()) {
         error(xi18nc("@info",
                      "<para>Updating the certificate from a keyserver, an LDAP server, or Active Directory failed:</para>"
                      "<para><message>%1</message></para>"
@@ -340,7 +361,11 @@ void RefreshCertificateCommand::Private::showOpenPGPResult()
     QString text;
     text += QLatin1String{"<p><strong>"} + i18nc("@info", "Result of update from keyserver, LDAP server, or Active Directory") + QLatin1String{"</strong></p>"};
     if (receiveKeysResult.error()) {
-        text += xi18nc("@info", "<para>The update failed: <message>%1</message></para>", Formatting::errorAsString(receiveKeysResult.error()));
+        if (receiveKeysResult.error().code() == GPG_ERR_USER_1) {
+            text += xi18nc("@info", "<para>The update was skipped because no keyserver is configured.</para>");
+        } else {
+            text += xi18nc("@info", "<para>The update failed: <message>%1</message></para>", Formatting::errorAsString(receiveKeysResult.error()));
+        }
     } else {
         text += informationOnChanges(receiveKeysResult);
     }

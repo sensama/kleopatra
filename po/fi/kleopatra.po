@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-09 00:38+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2024-01-31 17:47+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -2841,78 +2841,94 @@ msgstr ""
 "Tälle älykortille ei voi luoda avainta, koska se ei tue mitään yhteensopivaa "
 "algoritmia."
 
-#: src/commands/refreshcertificatecommand.cpp:153
-#: src/commands/refreshcertificatecommand.cpp:211
+#: src/commands/refreshcertificatecommand.cpp:166
+#: src/commands/refreshcertificatecommand.cpp:224
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Päivitetään avainta…"
 
-#: src/commands/refreshcertificatecommand.cpp:173
+#: src/commands/refreshcertificatecommand.cpp:186
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Päivitetään varmennetta…"
 
-#: src/commands/refreshcertificatecommand.cpp:231
+#: src/commands/refreshcertificatecommand.cpp:244
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "Avain ei ole muuttunut."
 
-#: src/commands/refreshcertificatecommand.cpp:235
+#: src/commands/refreshcertificatecommand.cpp:248
 #, kde-format
 msgid "The key has been revoked."
 msgstr "Avain on peruttu."
 
-#: src/commands/refreshcertificatecommand.cpp:238
+#: src/commands/refreshcertificatecommand.cpp:251
 #, kde-format
 msgid "The key has been updated."
 msgstr "Avain on päivitetty."
 
-#: src/commands/refreshcertificatecommand.cpp:242
+#: src/commands/refreshcertificatecommand.cpp:255
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Uusia käyttäjätunnuksia: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:245
+#: src/commands/refreshcertificatecommand.cpp:258
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Uusia aliavaimia: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:248
+#: src/commands/refreshcertificatecommand.cpp:261
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Uusia allekirjoituksia: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:258
+#: src/commands/refreshcertificatecommand.cpp:271
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "Lisäksi on noudettu yksi uusi avain."
 msgstr[1] "Lisäksi on noudettu %1 uutta avainta."
 
-#: src/commands/refreshcertificatecommand.cpp:287
-#: src/commands/refreshcertificatecommand.cpp:321
-#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, kde-format
+msgctxt "@info"
+msgid "The update was skipped because no keyserver is configured."
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Update Failed"
+msgctxt "@title:window"
+msgid "Update Skipped"
+msgstr "Päivitys epäonnistui"
+
+#: src/commands/refreshcertificatecommand.cpp:304
+#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:381
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "Avain päivitetty"
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "Varmenne on päivitetty."
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Varmenne päivitetty"
 
 # ”Web Key Directory” > WKD vain sen takia, että kyse on joka tapauksessa suomalaisen käyttäjän kannalta kryptisestä jonosta, joista kumpikin antaa guuglattaessa yhtä hyvät hakutulokset.
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:350
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2926,34 +2942,40 @@ msgstr ""
 "para><para>Varmenteen päivittäminen WKD:lla epäonnistui:</"
 "para><para><message>%2</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:335
-#: src/commands/refreshcertificatecommand.cpp:367
+#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:392
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Päivitys epäonnistui"
 
-#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:363
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
 "Avain- tai LDAP-palvelimesta tai Active Directorysta päivittämisen tulos"
 
-#: src/commands/refreshcertificatecommand.cpp:344
-#: src/commands/refreshcertificatecommand.cpp:351
+#: src/commands/refreshcertificatecommand.cpp:366
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The update was skipped because no keyserver is configured.</para>"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:368
+#: src/commands/refreshcertificatecommand.cpp:376
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
 msgstr "<para>Päivittäminen epäonnistui: <message>%1</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:349
+#: src/commands/refreshcertificatecommand.cpp:374
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr "WKD:sta päivittämisen tulos"
 
-#: src/commands/refreshcertificatecommand.cpp:364
+#: src/commands/refreshcertificatecommand.cpp:389
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

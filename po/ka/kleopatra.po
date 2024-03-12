@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-09 00:38+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2024-03-09 06:25+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -2825,77 +2825,93 @@ msgstr ""
 "ამ სმარტ ბარათზე გასაღებების გენერაციას ვერ შეძლებთ, რადგან, როგორც ჩანს, "
 "მას თავსებადი ალგორითმის მხარდაჭერა არ გააჩნია."
 
-#: src/commands/refreshcertificatecommand.cpp:153
-#: src/commands/refreshcertificatecommand.cpp:211
+#: src/commands/refreshcertificatecommand.cpp:166
+#: src/commands/refreshcertificatecommand.cpp:224
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "გასაღების განახლება..."
 
-#: src/commands/refreshcertificatecommand.cpp:173
+#: src/commands/refreshcertificatecommand.cpp:186
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "სერტიფიკატის განახლება..."
 
-#: src/commands/refreshcertificatecommand.cpp:231
+#: src/commands/refreshcertificatecommand.cpp:244
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "გასაღები არ შეცვლილა."
 
-#: src/commands/refreshcertificatecommand.cpp:235
+#: src/commands/refreshcertificatecommand.cpp:248
 #, kde-format
 msgid "The key has been revoked."
 msgstr "გასაღები გაუქმდა."
 
-#: src/commands/refreshcertificatecommand.cpp:238
+#: src/commands/refreshcertificatecommand.cpp:251
 #, kde-format
 msgid "The key has been updated."
 msgstr "გასაღები განახლდა."
 
-#: src/commands/refreshcertificatecommand.cpp:242
+#: src/commands/refreshcertificatecommand.cpp:255
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "ახალი მომხმარებლის ID-ები: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:245
+#: src/commands/refreshcertificatecommand.cpp:258
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "ახალი ქვეგასაღებები: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:248
+#: src/commands/refreshcertificatecommand.cpp:261
 #, kde-format
 msgid "New signatures: %1"
 msgstr "ახალი ხელმოწერები: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:258
+#: src/commands/refreshcertificatecommand.cpp:271
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "დამატებით მიღებულია 1 ახალი გასაღები."
 msgstr[1] "დამატებით მიღებულია %1 ახალი გასაღები."
 
-#: src/commands/refreshcertificatecommand.cpp:287
-#: src/commands/refreshcertificatecommand.cpp:321
-#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, kde-format
+msgctxt "@info"
+msgid "The update was skipped because no keyserver is configured."
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Update Failed"
+msgctxt "@title:window"
+msgid "Update Skipped"
+msgstr "განახლების შეცდომა"
+
+#: src/commands/refreshcertificatecommand.cpp:304
+#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:381
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "გასაღები განახლებულია"
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "სერტიფიკატი განახლდა."
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "სერტიფიკატი განახლებულია"
 
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:350
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2909,14 +2925,14 @@ msgstr ""
 "para><para>სერტიფიკატის ვებ-გასაღებების კატალოგიდან განახლება ჩავარდა:</"
 "para><para><message>%2</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:335
-#: src/commands/refreshcertificatecommand.cpp:367
+#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:392
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "განახლების შეცდომა"
 
-#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:363
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
@@ -2924,20 +2940,26 @@ msgstr ""
 "გასაღებების სერვერიდან, LDAP სერვერიდან ან Active Directory-ის სერვერიდან "
 "განახლების შედეგი"
 
-#: src/commands/refreshcertificatecommand.cpp:344
-#: src/commands/refreshcertificatecommand.cpp:351
+#: src/commands/refreshcertificatecommand.cpp:366
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The update was skipped because no keyserver is configured.</para>"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:368
+#: src/commands/refreshcertificatecommand.cpp:376
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
 msgstr "<para>განახლება ჩავარდა: <message>%1</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:349
+#: src/commands/refreshcertificatecommand.cpp:374
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr "ვებ-გასაღებების კატალოგიდან განახლების შედეგი"
 
-#: src/commands/refreshcertificatecommand.cpp:364
+#: src/commands/refreshcertificatecommand.cpp:389
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

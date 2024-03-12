@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-09 00:38+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2023-07-08 12:52+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -2990,77 +2990,93 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:153
-#: src/commands/refreshcertificatecommand.cpp:211
+#: src/commands/refreshcertificatecommand.cpp:166
+#: src/commands/refreshcertificatecommand.cpp:224
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "A actualizar a chave..."
 
-#: src/commands/refreshcertificatecommand.cpp:173
+#: src/commands/refreshcertificatecommand.cpp:186
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "A actualizar o certificado..."
 
-#: src/commands/refreshcertificatecommand.cpp:231
+#: src/commands/refreshcertificatecommand.cpp:244
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "A chave não foi modificada."
 
-#: src/commands/refreshcertificatecommand.cpp:235
+#: src/commands/refreshcertificatecommand.cpp:248
 #, kde-format
 msgid "The key has been revoked."
 msgstr "A chave foi revogada."
 
-#: src/commands/refreshcertificatecommand.cpp:238
+#: src/commands/refreshcertificatecommand.cpp:251
 #, kde-format
 msgid "The key has been updated."
 msgstr "A chave foi actualizada."
 
-#: src/commands/refreshcertificatecommand.cpp:242
+#: src/commands/refreshcertificatecommand.cpp:255
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Novos IDs de utilizador: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:245
+#: src/commands/refreshcertificatecommand.cpp:258
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Novas sub-chaves: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:248
+#: src/commands/refreshcertificatecommand.cpp:261
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Novas assinaturas: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:258
+#: src/commands/refreshcertificatecommand.cpp:271
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "Adicionalmente, foi obtida uma nova chave."
 msgstr[1] "Adicionalmente, foram obtidas %1 novas chaves."
 
-#: src/commands/refreshcertificatecommand.cpp:287
-#: src/commands/refreshcertificatecommand.cpp:321
-#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, kde-format
+msgctxt "@info"
+msgid "The update was skipped because no keyserver is configured."
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Update Failed"
+msgctxt "@title:window"
+msgid "Update Skipped"
+msgstr "Actualização sem Sucesso"
+
+#: src/commands/refreshcertificatecommand.cpp:304
+#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:381
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "Chave Actualizada"
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "O certificado foi actualizado."
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Certificado Actualizado"
 
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:350
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3070,21 +3086,27 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:335
-#: src/commands/refreshcertificatecommand.cpp:367
+#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:392
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Actualização sem Sucesso"
 
-#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:363
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:344
-#: src/commands/refreshcertificatecommand.cpp:351
+#: src/commands/refreshcertificatecommand.cpp:366
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The update was skipped because no keyserver is configured.</para>"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:368
+#: src/commands/refreshcertificatecommand.cpp:376
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3095,13 +3117,13 @@ msgstr ""
 "<para>Não foi possível gravar o pedido.</para><para><message>%1</message></"
 "para>"
 
-#: src/commands/refreshcertificatecommand.cpp:349
+#: src/commands/refreshcertificatecommand.cpp:374
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:364
+#: src/commands/refreshcertificatecommand.cpp:389
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

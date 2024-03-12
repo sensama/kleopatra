@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-09 00:38+0000\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -2999,88 +2999,103 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:153
-#: src/commands/refreshcertificatecommand.cpp:211
+#: src/commands/refreshcertificatecommand.cpp:166
+#: src/commands/refreshcertificatecommand.cpp:224
 #, fuzzy, kde-format
 #| msgid "Export"
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "នាំចេញ"
 
-#: src/commands/refreshcertificatecommand.cpp:173
+#: src/commands/refreshcertificatecommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Exporting certificates..."
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "កំពុង​នាំចេញ​វិញ្ញាបនបត្រ​..."
 
-#: src/commands/refreshcertificatecommand.cpp:231
+#: src/commands/refreshcertificatecommand.cpp:244
 #, fuzzy, kde-format
 #| msgid "Secret keys unchanged:"
 msgid "The key hasn't changed."
 msgstr "សោ​​សម្ងាត់​មិន​បាន​ផ្លាស់​ប្ដូរ​ឡើយ​ ៖​"
 
-#: src/commands/refreshcertificatecommand.cpp:235
+#: src/commands/refreshcertificatecommand.cpp:248
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "OpenPGP certificates exported successfully."
 msgid "The key has been revoked."
 msgstr "បាន​នាំ​វិញ្ញាបនបត្រ​ OpenPGP ចេញ​ដោយ​ជោគជ័យ​ ។"
 
-#: src/commands/refreshcertificatecommand.cpp:238
+#: src/commands/refreshcertificatecommand.cpp:251
 #, fuzzy, kde-format
 #| msgid "Your key is being created."
 msgid "The key has been updated."
 msgstr "សោ​របស់​អ្នក​កំពុង​ត្រូ​វបាន​បង្កើត ។"
 
-#: src/commands/refreshcertificatecommand.cpp:242
+#: src/commands/refreshcertificatecommand.cpp:255
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgid "New user IDs: %1"
 msgstr "លេខសម្គាល់​អ្នក​ប្រើ​ថ្មី ​៖"
 
-#: src/commands/refreshcertificatecommand.cpp:245
+#: src/commands/refreshcertificatecommand.cpp:258
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgid "New subkeys: %1"
 msgstr "សោ​រង​ថ្មី​ ៖​"
 
-#: src/commands/refreshcertificatecommand.cpp:248
+#: src/commands/refreshcertificatecommand.cpp:261
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New signatures: %1"
 msgstr "ហត្ថលេខា​ថ្មី ៖​"
 
-#: src/commands/refreshcertificatecommand.cpp:258
+#: src/commands/refreshcertificatecommand.cpp:271
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] ""
 
-#: src/commands/refreshcertificatecommand.cpp:287
-#: src/commands/refreshcertificatecommand.cpp:321
-#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, kde-format
+msgctxt "@info"
+msgid "The update was skipped because no keyserver is configured."
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, fuzzy, kde-format
+#| msgid "No Audit Log available"
+msgctxt "@title:window"
+msgid "Update Skipped"
+msgstr "មិន​មាន​កំណត់​ហេតុ​ត្រួតពិនិត្យ"
+
+#: src/commands/refreshcertificatecommand.cpp:304
+#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:381
 #, fuzzy, kde-format
 #| msgid "&Update"
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "ធ្វើ​បច្ចុប្បន្នភាព"
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, fuzzy, kde-format
 #| msgid "This certificate has expired."
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "វិញ្ញាបនបត្រ​បាន​ផុត​កំណត់ ។"
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "ការ​ប្រើប្រាស់​វិញ្ញាបនបត្រ"
 
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:350
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3090,22 +3105,28 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:335
-#: src/commands/refreshcertificatecommand.cpp:367
+#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:392
 #, fuzzy, kde-format
 #| msgid "No Audit Log available"
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "មិន​មាន​កំណត់​ហេតុ​ត្រួតពិនិត្យ"
 
-#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:363
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:344
-#: src/commands/refreshcertificatecommand.cpp:351
+#: src/commands/refreshcertificatecommand.cpp:366
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The update was skipped because no keyserver is configured.</para>"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:368
+#: src/commands/refreshcertificatecommand.cpp:376
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3115,13 +3136,13 @@ msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
 msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:349
+#: src/commands/refreshcertificatecommand.cpp:374
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:364
+#: src/commands/refreshcertificatecommand.cpp:389
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""

@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-09 00:38+0000\n"
-"PO-Revision-Date: 2024-03-09 10:36+0100\n"
+"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"PO-Revision-Date: 2024-03-10 09:32+0100\n"
 "Last-Translator: xavier <xyz@yahoo.com>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -2935,77 +2935,93 @@ msgstr ""
 "Il vous est impossible de générer une clé sur cette carte mémoire car elle "
 "ne prend en charge aucun des algorithmes conformes."
 
-#: src/commands/refreshcertificatecommand.cpp:153
-#: src/commands/refreshcertificatecommand.cpp:211
+#: src/commands/refreshcertificatecommand.cpp:166
+#: src/commands/refreshcertificatecommand.cpp:224
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Mise à jour de la clé en cours..."
 
-#: src/commands/refreshcertificatecommand.cpp:173
+#: src/commands/refreshcertificatecommand.cpp:186
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Mise à jour du certificat en cours..."
 
-#: src/commands/refreshcertificatecommand.cpp:231
+#: src/commands/refreshcertificatecommand.cpp:244
 #, kde-format
 msgid "The key hasn't changed."
 msgstr "La clé n'a pas été modifiée."
 
-#: src/commands/refreshcertificatecommand.cpp:235
+#: src/commands/refreshcertificatecommand.cpp:248
 #, kde-format
 msgid "The key has been revoked."
 msgstr "La clé a été révoquée."
 
-#: src/commands/refreshcertificatecommand.cpp:238
+#: src/commands/refreshcertificatecommand.cpp:251
 #, kde-format
 msgid "The key has been updated."
 msgstr "La clé a été mise à jour."
 
-#: src/commands/refreshcertificatecommand.cpp:242
+#: src/commands/refreshcertificatecommand.cpp:255
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Nouveaux ID utilisateur : %1"
 
-#: src/commands/refreshcertificatecommand.cpp:245
+#: src/commands/refreshcertificatecommand.cpp:258
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Nouvelles sous-clés : %1"
 
-#: src/commands/refreshcertificatecommand.cpp:248
+#: src/commands/refreshcertificatecommand.cpp:261
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Nouvelles signatures : %1"
 
-#: src/commands/refreshcertificatecommand.cpp:258
+#: src/commands/refreshcertificatecommand.cpp:271
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "De façon supplémentaire, une nouvelle clé a été retrouvée."
 msgstr[1] "De façon supplémentaire, %1 nouvelles clés ont été retrouvées."
 
-#: src/commands/refreshcertificatecommand.cpp:287
-#: src/commands/refreshcertificatecommand.cpp:321
-#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, kde-format
+msgctxt "@info"
+msgid "The update was skipped because no keyserver is configured."
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:299
+#: src/commands/refreshcertificatecommand.cpp:337
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Update Failed"
+msgctxt "@title:window"
+msgid "Update Skipped"
+msgstr "Échec de la mise à jour"
+
+#: src/commands/refreshcertificatecommand.cpp:304
+#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:381
 #, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "Clé mise à jour"
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
 msgstr "Le certificat a été mis à jour."
 
-#: src/commands/refreshcertificatecommand.cpp:310
+#: src/commands/refreshcertificatecommand.cpp:327
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgstr "Mise à jour du certificat"
 
-#: src/commands/refreshcertificatecommand.cpp:329
+#: src/commands/refreshcertificatecommand.cpp:350
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3019,14 +3035,14 @@ msgstr ""
 "message></para><para>Échec de la mise à jour du certificat à partir du "
 "dossier des clés Internet : </para><para><message>%2</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:335
-#: src/commands/refreshcertificatecommand.cpp:367
+#: src/commands/refreshcertificatecommand.cpp:356
+#: src/commands/refreshcertificatecommand.cpp:392
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Échec de la mise à jour"
 
-#: src/commands/refreshcertificatecommand.cpp:342
+#: src/commands/refreshcertificatecommand.cpp:363
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from keyserver, LDAP server, or Active Directory"
@@ -3034,8 +3050,14 @@ msgstr ""
 "Résultat de la mise à jour grâce au serveur de clés, le serveur « LDAP » ou "
 "« Active Directory »"
 
-#: src/commands/refreshcertificatecommand.cpp:344
-#: src/commands/refreshcertificatecommand.cpp:351
+#: src/commands/refreshcertificatecommand.cpp:366
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The update was skipped because no keyserver is configured.</para>"
+msgstr ""
+
+#: src/commands/refreshcertificatecommand.cpp:368
+#: src/commands/refreshcertificatecommand.cpp:376
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update failed: <message>%1</message></para>"
@@ -3043,13 +3065,13 @@ msgstr ""
 "<para>La mise à jour n'a pas pu être réalisée avec succès.</"
 "para><para><message>%1</message></para>"
 
-#: src/commands/refreshcertificatecommand.cpp:349
+#: src/commands/refreshcertificatecommand.cpp:374
 #, kde-format
 msgctxt "@info"
 msgid "Result of update via Web Key Directory"
 msgstr "Résultat de la mise à jour grâce au dossier des clés Internet"
 
-#: src/commands/refreshcertificatecommand.cpp:364
+#: src/commands/refreshcertificatecommand.cpp:389
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8522,21 +8544,16 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"Ce paramètre spécifie le nombre maximal de jours de validité d'une nouvelle "
-"clé « OpenPGP », ou, en d'autres termes, le nombre maximal de jours après "
-"lequel la clé expirera. Si ce paramètre n'est pas défini ou s'il est défini "
-"à une valeur négative, alors, cela impliquera alors une validité illimitée."
+"Ce paramètre spécifie le nombre minimal de jours qu’un utilisateur peut "
+"choisir comme période de validité pour des certificats « OpenPGP ». Il "
+"s’applique à partir de la création de la clé et à la modification de sa "
+"validité."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8556,22 +8573,18 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Ce paramètre spécifie le nombre maximal de jours de validité d'une nouvelle "
-"clé « OpenPGP », ou, en d'autres termes, le nombre maximal de jours après "
-"lequel la clé expirera. Si ce paramètre n'est pas défini ou s'il est défini "
-"à une valeur négative, alors, cela impliquera alors une validité illimitée."
+"Ce paramètre spécifie le nombre maximal de jours qu’un utilisateur peut "
+"choisir comme période de validité pour des certificats « OpenPGP ». Il "
+"s’applique à partir de la création de la clé et à la modification de sa "
+"validité. Si ce paramètre n’est pas défini ou est défini à une valeur "
+"négative, alors la validité illimitée est autorisée."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70

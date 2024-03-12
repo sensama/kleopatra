@@ -83,7 +83,7 @@ public:
      *
      * @returns null QString on success. Error message otherwise.
      */
-    static QList<Command *> commandsForFiles(const QStringList &files);
+    static QList<Command *> commandsForFiles(const QStringList &files, KeyListController *controller);
 
     /** Get a command for a query.
      *

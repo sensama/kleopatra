@@ -260,7 +260,7 @@ void Command::applyWindowID(QWidget *w) const
 }
 
 // static
-QList<Command *> Command::commandsForFiles(const QStringList &files)
+QList<Command *> Command::commandsForFiles(const QStringList &files, KeyListController *controller)
 {
     QStringList importFiles, decryptFiles, encryptFiles, checksumFiles, emailFiles;
     QList<Command *> cmds;
@@ -285,19 +285,19 @@ QList<Command *> Command::commandsForFiles(const QStringList &files)
         }
     }
     if (!importFiles.isEmpty()) {
-        cmds << new ImportCertificateFromFileCommand(importFiles, nullptr);
+        cmds << new ImportCertificateFromFileCommand(importFiles, controller);
     }
     if (!decryptFiles.isEmpty()) {
-        cmds << new DecryptVerifyFilesCommand(decryptFiles, nullptr);
+        cmds << new DecryptVerifyFilesCommand(decryptFiles, controller);
     }
     if (!encryptFiles.isEmpty()) {
-        cmds << new SignEncryptFilesCommand(encryptFiles, nullptr);
+        cmds << new SignEncryptFilesCommand(encryptFiles, controller);
     }
     if (!checksumFiles.isEmpty()) {
-        cmds << new ChecksumVerifyFilesCommand(checksumFiles, nullptr);
+        cmds << new ChecksumVerifyFilesCommand(checksumFiles, controller);
     }
     if (!emailFiles.isEmpty()) {
-        cmds << new ViewEmailFilesCommand(emailFiles, nullptr);
+        cmds << new ViewEmailFilesCommand(emailFiles, controller);
     }
     return cmds;
 }

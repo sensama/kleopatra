@@ -16,12 +16,19 @@
 
 #include <utils/pimpl_ptr.h>
 
+namespace Kleo
+{
+class KeyListController;
+}
+
 class MainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~MainWindow() override;
+
+    Kleo::KeyListController *keyListController();
 
 public Q_SLOTS:
     void importCertificatesFromFile(const QStringList &files);

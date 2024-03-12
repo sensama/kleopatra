@@ -934,5 +934,10 @@ void MainWindow::unexportWindow()
 #endif
 }
 
+KeyListController *MainWindow::keyListController()
+{
+    return &d->controller;
+}
+
 #include "mainwindow.moc"
 #include "moc_mainwindow.cpp"

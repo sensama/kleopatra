@@ -484,12 +484,18 @@ auto consolidatedAuditLogEntries(const std::vector<ImportResultData> &res)
 void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res, const std::vector<ImportedGroup> &groups)
 {
     const auto singleOpenPGPImport = getSingleOpenPGPImport(res);
+
+    if (std::ranges::any_of(res, [](const auto &result) {
+            return result.result.numImported() > 0;
+        })) {
+        setImportResultProxyModel(res);
+    }
+
     if (!singleOpenPGPImport.isNull()) {
         if (showPleaseCertify(singleOpenPGPImport)) {
             return;
         }
     }
-    setImportResultProxyModel(res);
     MessageBox::information(parentWidgetOrView(), make_message_report(res, groups), consolidatedAuditLogEntries(res), i18n("Certificate Import Result"));
 }
 

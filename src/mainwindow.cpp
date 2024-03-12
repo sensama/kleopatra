@@ -370,7 +370,7 @@ public:
 
     void restartDaemons()
     {
-        Kleo::killDaemons();
+        Kleo::restartGpgAgent();
     }
 
 private:

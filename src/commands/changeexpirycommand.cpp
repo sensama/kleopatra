@@ -40,8 +40,8 @@ namespace
 {
 bool subkeyHasSameExpirationAsPrimaryKey(const Subkey &subkey)
 {
-    // we allow for a difference in expiration of up to 10 seconds
-    static const auto maxExpirationDifference = 10;
+    // we allow for a difference in expiration of up to 1 hour (= 3600 seconds)
+    static const auto maxExpirationDifference = 3600;
 
     Q_ASSERT(!subkey.isNull());
     const auto key = subkey.parent();

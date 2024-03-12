@@ -280,9 +280,10 @@ void ChangeExpiryCommand::doStart()
     if (!d->subkey.isNull()) {
         mode = ExpiryDialog::Mode::UpdateIndividualSubkey;
     } else {
-        // count the number of subkeys for which the user has the choice to update
+        // count the number of (real) subkeys for which the user has the choice to update
         // the expiration together with the primary key
-        const auto numSubkeys = std::ranges::count_if(d->key.subkeys(), [](const auto &subkey) {
+        const auto subkeys = d->key.subkeys();
+        const auto numSubkeys = std::count_if(std::next(subkeys.begin()), subkeys.end(), [](const auto &subkey) {
             // skip revoked subkeys which would anyway be ignored by gpg;
             // also skip subkeys without explicit expiration because they inherit the primary key's expiration;
             // include all subkeys that are not yet expired or that expired around the same time as the primary key
@@ -290,7 +291,7 @@ void ChangeExpiryCommand::doStart()
                 && !subkey.neverExpires() //
                 && (!subkey.isExpired() || subkeyHasSameExpirationAsPrimaryKey(subkey));
         });
-        if (numSubkeys == 1) {
+        if (numSubkeys == 0) {
             mode = ExpiryDialog::Mode::UpdateCertificateWithoutSubkeys;
         } else {
             mode = ExpiryDialog::Mode::UpdateCertificateWithSubkeys;

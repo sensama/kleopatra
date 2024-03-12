@@ -573,7 +573,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
 
 void KleopatraApplication::handleFiles(const QStringList &files, WId parentId)
 {
-    const QVector<Command *> allCmds = Command::commandsForFiles(files);
+    const QVector<Command *> allCmds = Command::commandsForFiles(files, mainWindow()->keyListController());
     for (Command *cmd : allCmds) {
         if (parentId) {
             cmd->setParentWId(parentId);

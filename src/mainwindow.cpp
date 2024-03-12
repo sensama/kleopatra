@@ -905,5 +905,10 @@ void MainWindow::saveProperties(KConfigGroup &cg)
     cg.writeEntry("hidden", isHidden());
 }
 
+KeyListController *MainWindow::keyListController()
+{
+    return &d->controller;
+}
+
 #include "mainwindow.moc"
 #include "moc_mainwindow.cpp"

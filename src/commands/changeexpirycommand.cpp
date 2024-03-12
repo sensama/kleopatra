@@ -28,6 +28,8 @@
 
 #include <gpgme++/key.h>
 
+#include <algorithm>
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -277,10 +279,22 @@ void ChangeExpiryCommand::doStart()
     ExpiryDialog::Mode mode;
     if (!d->subkey.isNull()) {
         mode = ExpiryDialog::Mode::UpdateIndividualSubkey;
-    } else if (d->key.numSubkeys() == 1) {
-        mode = ExpiryDialog::Mode::UpdateCertificateWithoutSubkeys;
     } else {
-        mode = ExpiryDialog::Mode::UpdateCertificateWithSubkeys;
+        // count the number of subkeys for which the user has the choice to update
+        // the expiration together with the primary key
+        const auto numSubkeys = std::ranges::count_if(d->key.subkeys(), [](const auto &subkey) {
+            // skip revoked subkeys which would anyway be ignored by gpg;
+            // also skip subkeys without explicit expiration because they inherit the primary key's expiration;
+            // include all subkeys that are not yet expired or that expired around the same time as the primary key
+            return !subkey.isRevoked() //
+                && !subkey.neverExpires() //
+                && (!subkey.isExpired() || subkeyHasSameExpirationAsPrimaryKey(subkey));
+        });
+        if (numSubkeys == 1) {
+            mode = ExpiryDialog::Mode::UpdateCertificateWithoutSubkeys;
+        } else {
+            mode = ExpiryDialog::Mode::UpdateCertificateWithSubkeys;
+        }
     }
     d->ensureDialogCreated(mode);
     Q_ASSERT(d->dialog);

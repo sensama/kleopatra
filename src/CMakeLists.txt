@@ -11,7 +11,6 @@ if (NOT DISABLE_KWATCHGNUPG)
 endif()
 add_subdirectory(libkleopatraclient)
 add_subdirectory(conf)
-add_subdirectory(kconf_update)
 
 if(WIN32)
   set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_win.cpp)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -473,7 +473,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "បាន​បោះបង់​ការ​បញ្ជាក់ ។"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the expiry date for <b>%1</b>:"
@@ -483,7 +483,7 @@ msgid ""
 "for <b>%1</b>:</p><p>%2</p>"
 msgstr "<p>មាន​កំហុស​​កើតឡើង​នៅ​ខណៈ​ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​​ផុត​កំណត់​សម្រាប់ <b>%1</b>:</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, fuzzy, kde-format
 #| msgid "Expiry date changed successfully."
 msgid "End of validity period changed successfully."
@@ -497,7 +497,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "(មិនស្គាល់​វិញ្ញាបនបត្រ)"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, fuzzy, kde-format
 #| msgid "Certificates"
 msgctxt "@title:window"
@@ -1573,7 +1573,7 @@ msgstr ""
 "</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, fuzzy, kde-format
 #| msgid ", "
 msgid " "
@@ -1973,8 +1973,8 @@ msgstr "បាន​បញ្ចប់​ដំណើរការ​"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "ការ​នាំចូល​វិញ្ញាបនបត្រ​បាន​បរាជ័យ​"
@@ -2278,19 +2278,19 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "បាន​បោះបង់ប្រតិបត្តិការ ។"
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "លទ្ធផល​នាំចូល​នៃ​វិញ្ញាបនបត្រ​"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr "<qt><p>កំហុស​បាន​កើតឡើង នៅពេល​នាំចូល​វិញ្ញាបនបត្រ ៖</p><p><b>%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2299,13 +2299,13 @@ msgstr ""
 "<qt><p>កំហុស​បាន​កើត​ឡើង​ខណៈពេល​ដែល​កំពុង​ព្យាយាម​នាំចូល​វិញ្ញាបនបត្រ​ %1 ៖ </p><p><b>%2</b></"
 "p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2314,19 +2314,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2341,15 +2341,15 @@ msgstr ""
 "<para>កំហុស​មួយ​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​បន្ថែម​លេខ​សម្គាល់​​​អ្នក​ប្រើ ៖ <message>%1</message></"
 "para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, fuzzy, kde-format
 #| msgid "Load Certifications (may take a while)"
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "ផ្ទុក​ការ​បញ្ជាក់ (អាច​ចំណាយ​ពេល​មួយ​រយៈ)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

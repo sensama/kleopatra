@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
 "PO-Revision-Date: 2024-03-08 23:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -409,14 +409,14 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "已完成保證"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
 "for <b>%1</b>:</p><p>%2</p>"
 msgstr "<p>試圖變更 <b>%1</b> 的有效期間結尾時發生錯誤：</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "有效期間結尾已成功變更。"
@@ -428,7 +428,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "'%1' 是您自己的憑證嗎？"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1436,7 +1436,7 @@ msgstr ""
 "束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
@@ -1791,8 +1791,8 @@ msgstr "行程已完成"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "匯入憑證失敗"
@@ -2082,32 +2082,32 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "匯入已取消。"
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "憑證匯入結果"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證時發生錯誤：</p> <p><b>%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
 "%2</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證 %1 時發生錯誤：</p> <p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2118,19 +2118,19 @@ msgstr ""
 "<para>您已匯入憑證，它的指紋是：</para><para><numid>%1</numid></para><para>它"
 "的使用者 ID 是：<list>%2</list></para><para>這是您自己的憑證嗎？</para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "對，它是我的"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "它不是我的"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2144,14 +2144,14 @@ msgid ""
 msgstr ""
 "<para>您確定要撤銷這個使用者 ID 嗎？<nl/><emphasis>%1</emphasis></para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "正在取得 %1 個簽署者金鑰...（這可能會花上一段時間）"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

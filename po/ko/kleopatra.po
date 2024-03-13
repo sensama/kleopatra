@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -406,7 +406,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "인증 완료됨"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -414,7 +414,7 @@ msgid ""
 msgstr ""
 "<p><b>%1</b>의 유효 기간 종료 시점을 변경하는 중 오류 발생:</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "유효 기간 종료 시점을 변경했습니다."
@@ -426,7 +426,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "'%1'이(가) 사용자의 인증서입니까?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1442,7 +1442,7 @@ msgstr ""
 "조하십시오.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
@@ -1803,8 +1803,8 @@ msgstr "프로세스 완료됨"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "인증서 가져오기 실패"
@@ -2094,12 +2094,12 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "가져오기가 취소되었습니다."
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "인증서 가져오기 결과"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2107,7 +2107,7 @@ msgid ""
 msgstr ""
 "<qt><p>인증서를 가져오는 중 오류가 발생했습니다:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2115,13 +2115,13 @@ msgid ""
 msgstr ""
 "<qt><p>%1 인증서를 가져오는 중 오류가 발생했습니다:</p><p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2133,19 +2133,19 @@ msgstr ""
 "<list>%2</list>인 인증서를 가져왔습니다.</para><para>귀하의 인증서입니까?</"
 "para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "예, 내 인증서입니다"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "아니요, 내 인증서가 아닙니다"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2157,14 +2157,14 @@ msgstr ""
 "에 사용할 수 없는 인증서가 포함되어 있습니다. 예상하지 못한 결과를 가져올 수"
 "도 있습니다.</para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "서명자 키 %1개 가져오는 중...(시간이 걸릴 수 있습니다)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

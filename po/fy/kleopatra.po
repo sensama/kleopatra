@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
 "PO-Revision-Date: 2007-04-19 20:33+0200\n"
 "Last-Translator: Rinse de Vries <rinsedevries@kde.nl>\n"
 "Language-Team: Frysk <kde-i18n-fry@kde.org>\n"
@@ -456,7 +456,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "Downloaden sertifikaat mislearre"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -468,7 +468,7 @@ msgstr ""
 "<qt><p>Der die him in fout foar by it wiskjen fan de sertifikaten:</p><p><b>"
 "%1</b></p></qt>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, fuzzy, kde-format
 #| msgid "CRL cache cleared successfully."
 msgid "End of validity period changed successfully."
@@ -482,7 +482,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "CA-sertifikaten wurde wiske"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@title:window"
@@ -1581,7 +1581,7 @@ msgstr ""
 "ôfbrekke fanwege in ûnferwachte fout."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr ""
@@ -1977,8 +1977,8 @@ msgstr ""
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Ymportearjen sertifikaat mislearre"
@@ -2294,12 +2294,12 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Downloaden sertifikaat mislearre"
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Ymportresultaat sertifikaat"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to import the certificate %1:</"
@@ -2311,7 +2311,7 @@ msgstr ""
 "<qt><p>Der gie wat mis by it ymportearjen fan it sertifikaat %1:</p><p><b>"
 "%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2320,13 +2320,13 @@ msgstr ""
 "<qt><p>Der gie wat mis by it ymportearjen fan it sertifikaat %1:</p><p><b>"
 "%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2335,19 +2335,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -2361,7 +2361,7 @@ msgstr ""
 "<qt><p>Der die him in fout foar by it wiskjen fan de sertifikaten:</p><p><b>"
 "%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2369,8 +2369,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Dwaande om sertifikaat te eksportearjen..."
 msgstr[1] "Dwaande om sertifikaat te eksportearjen..."
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

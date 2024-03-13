@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
 "PO-Revision-Date: 2024-03-09 09:22+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -419,7 +419,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "Atestado Plenumita"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -428,7 +428,7 @@ msgstr ""
 "<p>Okazis eraro dum provado ŝanĝi la finon de la valideca periodo por <b>%1</"
 "b>:</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "Fino de valideca periodo ŝanĝiĝis sukcese."
@@ -440,7 +440,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Ĉu '%1' estas via propra atestilo?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1471,7 +1471,7 @@ msgstr ""
 "<icode>%1</icode> por detaloj.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
@@ -1839,8 +1839,8 @@ msgstr "Procezo finita"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Atestilo Importo Malsukcesis"
@@ -2132,12 +2132,12 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Importo estis nuligita."
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Atestila Importo-Rezulto"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2146,7 +2146,7 @@ msgstr ""
 "<qt><p>Okazis eraro dum provado importi la atestilon:</p><p><b>%1</b></p></"
 "qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2155,13 +2155,13 @@ msgstr ""
 "<qt><p>Okazis eraro dum provado importi la atestilon %1:</p><p><b>%2</b></"
 "p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2173,19 +2173,19 @@ msgstr ""
 "para><para>kaj uzantidentigiloj<list>%2</list></para><para>Ĉu ĉi tio estas "
 "via propra atestilo?</para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Jes, Ĝi estas Mia"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ne, Ĝi Ne estas Mia"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2197,15 +2197,15 @@ msgstr ""
 "para><para>enhavas atestilojn, kiuj ne povas esti uzataj por ĉifrado. Ĉi tio "
 "povas konduki al neatenditaj rezultoj.</para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Prenante 1 subskribantoŝlosilon... (tio povas daŭri iom)"
 msgstr[1] "Prenante %1 subskribantoŝlosilojn... (tio povas daŭri iom)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

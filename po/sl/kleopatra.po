@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
-"PO-Revision-Date: 2024-03-09 08:57+0100\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
+"PO-Revision-Date: 2024-03-12 07:37+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -434,7 +434,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "Potrditev končana"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -443,7 +443,7 @@ msgstr ""
 "<p>Med poskusom spremembe končnega datuma veljavnosti je prišlo do napake za "
 "<b>%1</b>:</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "Končni datum veljavnosti bil uspešno spremenjen."
@@ -455,7 +455,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Je '%1' vaše lastno potrdilo?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1500,7 +1500,7 @@ msgstr ""
 "preverite izhod ukaza <icode>%1</icode>.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
@@ -1876,8 +1876,8 @@ msgstr "Opravilo zaključeno"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Uvoz potrdil ni uspel"
@@ -2176,12 +2176,12 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Uvoz je bil preklican."
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Rezultati uvoza potrdil"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2190,7 +2190,7 @@ msgstr ""
 "<qt><p>Med poskusom uvoza potrdila je prišlo do napake:</p><p><b>%1</b></p></"
 "qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2199,13 +2199,13 @@ msgstr ""
 "<qt><p>Med poskusom uvoza potrdila %1 je prišlo do napake:</p><p><b>%2</b></"
 "p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2217,19 +2217,19 @@ msgstr ""
 "para><para>in uporabnikovim določilnikom<list>%2</list></para><para>Ali je "
 "to vaše lastno potrdilo?</para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Da, to je moje"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ne, to ni moje"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2241,7 +2241,7 @@ msgstr ""
 "para><para>vsebuje potrdila, ki jih ni mogoče uporabiti za šifriranje. To "
 "lahko vodi do nepričakovanih rezultatov.</para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2250,8 +2250,8 @@ msgstr[1] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 msgstr[2] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 msgstr[3] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2929,15 +2929,14 @@ msgstr[3] "Dodatno so bili pridobljeni %1 novi ključi."
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
 msgstr ""
+"Posodobitev je bila preskočena, ker ni konfiguriran niti en strežnik ključev."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "Posodobitev ni uspela"
+msgstr "Posodobitev preskočena"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -2993,6 +2992,8 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
+"<para>Posodobitev je bila preskočena, ker ni konfiguriran niti en strežnik "
+"ključev.</para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376

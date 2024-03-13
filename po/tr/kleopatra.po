@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
-"PO-Revision-Date: 2024-03-09 10:22+0300\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
+"PO-Revision-Date: 2024-03-12 13:24+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -433,7 +433,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "Sertifikasyon Tamamlandı"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -442,7 +442,7 @@ msgstr ""
 "<p><b>%1</b> sertifikasının geçerlilik tarihi sonu değiştirilmeye "
 "çalışılırken bir hata oluştu:</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "Geçerlilik tarihi sonu başarıyla değiştirildi."
@@ -454,7 +454,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "'%1', sizin kendi sertifikanız mı?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1495,7 +1495,7 @@ msgstr ""
 "<icode>%1</icode> çıktısını denetleyin.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
@@ -1865,8 +1865,8 @@ msgstr "Süreç tamamlandı"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Sertifika İçe Aktarma Başarısız"
@@ -2159,12 +2159,12 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "İçe aktarma iptal edildi."
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Sertifika İçe Aktarma Sonucu"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2173,7 +2173,7 @@ msgstr ""
 "<qt><p>Sertifika içe aktarılmaya çalışılırken bir hata oluştu:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2182,13 +2182,13 @@ msgstr ""
 "<qt> <p>%1 sertifikasını almaya çalışırken bir hata oluştu: </p><p><b>%2</"
 "b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2200,19 +2200,19 @@ msgstr ""
 "kullanıcı kimliklerini:<list>%2</list>içeren bir sertifika içe aktardınız</"
 "para><para>Bu sizin kendi sertifikanız mı?</para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Evet, Benim"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Hayır, Benim Değil"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2224,15 +2224,15 @@ msgstr ""
 "şifreleme için kullanılamayan sertifikalar içeriyor. Bu, beklenmedik "
 "sonuçlara neden olabilir.</para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "1 imzalayıcı anahtar getiriliyor… (bu biraz vakit alabilir)"
 msgstr[1] "%1 imzalayıcı anahtar getiriliyor… (bu biraz vakit alabilir)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2907,16 +2907,14 @@ msgstr[1] "Ek olarak, %1 yeni anahtar alındı."
 #, kde-format
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
-msgstr ""
+msgstr "Hiçbir anahtar sunucusu yapılandırılmadığından güncelleme atlandı."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "Güncelleme Başarısız"
+msgstr "Güncelleme Atlandı"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -2972,6 +2970,8 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
+"<para>Hiçbir anahtar sunucusu yapılandırılmadığından güncelleme atlandı.</"
+"para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376

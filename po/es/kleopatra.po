@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
-"PO-Revision-Date: 2024-03-10 17:48+0100\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
+"PO-Revision-Date: 2024-03-12 22:22+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -441,7 +441,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "Certificación terminada"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -450,7 +450,7 @@ msgstr ""
 "<p>Ha ocurrido un error al tratar de cambiar el fin del período de validez "
 "de <b>%1</b>:</p> <p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "Fin del período validez cambiado correctamente."
@@ -462,7 +462,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "¿Es «%1» su propio certificado?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1508,7 +1508,7 @@ msgstr ""
 "de <icode>%1</icode> para más detalles.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
@@ -1884,8 +1884,8 @@ msgstr "Proceso finalizado"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "La importación del certificado ha fallado"
@@ -2184,12 +2184,12 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "La importación se ha cancelado."
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Resultado de la importación del certificado"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2198,7 +2198,7 @@ msgstr ""
 "<qt><p>Ha ocurrido un error al intentar importar el certificado:</p><p><b>"
 "%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2207,13 +2207,13 @@ msgstr ""
 "<qt><p>Ha ocurrido un error al intentar importar el certificado %1:</p><p><b>"
 "%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2225,19 +2225,19 @@ msgstr ""
 "%1</numid></para><para>y las ID de usuario<list>%2</list></para><para>¿Es "
 "este su propio certificado?</para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Sí, es mío"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "No, no es mío"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2249,15 +2249,15 @@ msgstr ""
 "para><para>contiene certificados que no se pueden usar para cifrar. Esto "
 "puede conducir a resultados inesperados.</para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Obteniendo 1 clave de firmante... (esto puede tardar un rato)"
 msgstr[1] "Obteniendo %1 claves de firmantes... (esto puede tardar un rato)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2941,15 +2941,15 @@ msgstr[1] "Además, se han recuperado %1 nuevas claves."
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
 msgstr ""
+"Se ha omitido la actualización porque no se ha configurado ningún servidor "
+"de claves."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "La actualización ha fallado"
+msgstr "Actualización omitida"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -3005,6 +3005,8 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
+"<para>Se ha omitido la actualización porque no se ha configurado ningún "
+"servidor de claves.</para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376

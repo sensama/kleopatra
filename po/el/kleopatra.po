@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -455,7 +455,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "Επιτυχία πιστοποίησης"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -464,7 +464,7 @@ msgstr ""
 "<p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια τροποποίησης του τέλους περιόδου "
 "εγκυρότητας του <b>%1</b>:</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "Επιτυχία τροποποίησης λήξης περιόδου εγκυρότητας."
@@ -476,7 +476,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Είναι το '%1' δικό σας πιστοποιητικό;"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1552,7 +1552,7 @@ msgstr ""
 "ελέγξτε την έξοδο του <icode>%1</icode> για λεπτομέρειες.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
@@ -1935,8 +1935,8 @@ msgstr "Η διεργασία ολοκληρώθηκε"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Αποτυχία εισαγωγής του πιστοποιητικού"
@@ -2233,12 +2233,12 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Η εισαγωγή ακυρώθηκε."
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Αποτέλεσμα εισαγωγής πιστοποιητικού"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2247,7 +2247,7 @@ msgstr ""
 "<qt><p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια εισαγωγής πιστοποιητικού:</"
 "p><p><b>%1 </b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2256,13 +2256,13 @@ msgstr ""
 "<qt><p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια εισαγωγής του πιστοποιητικού "
 "%1:</p><p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2274,19 +2274,19 @@ msgstr ""
 "para><para><numid>%1</numid></para><para>και αναγνωριστικά χρήστη<list>%2</"
 "list></para><para>Είναι δικό σας το πιστοποιητικό;</para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Ναι, είναι δικό μου"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Όχι, δεν είναι δικό μου"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2301,15 +2301,15 @@ msgstr ""
 "<para>Θέλετε πραγματικά να ανακαλέσετε το αναγνωριστικό χρήστη<nl/><emphasis>"
 "%1</emphasis>;</para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Λήψη 1 κλειδί υπογράφοντος... (μπορεί να αργήσει λίγο)"
 msgstr[1] "Λήψη %1 κλειδιά υπογράφοντος... (μπορεί να αργήσει λίγο)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

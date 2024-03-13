@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:38+0000\n"
-"PO-Revision-Date: 2024-03-09 11:21+0100\n"
+"POT-Creation-Date: 2024-03-13 00:38+0000\n"
+"PO-Revision-Date: 2024-03-12 11:47+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -431,7 +431,7 @@ msgctxt "@title:window"
 msgid "Certification Completed"
 msgstr "La certificació s'ha completat"
 
-#: src/commands/changeexpirycommand.cpp:225
+#: src/commands/changeexpirycommand.cpp:227
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -440,7 +440,7 @@ msgstr ""
 "<p>S'ha produït un error en provar de canviar el final del període de "
 "validesa de <b>%1</b>:</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:233
+#: src/commands/changeexpirycommand.cpp:235
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "El final del període de validesa s'ha canviat correctament."
@@ -452,7 +452,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "És «%1» el vostre propi certificat?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1500,7 +1500,7 @@ msgstr ""
 "sortida de <icode>%1</icode> per als detalls.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
@@ -1874,8 +1874,8 @@ msgstr "El procés ha finalitzat"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:891
-#: src/commands/importcertificatescommand.cpp:941
+#: src/commands/importcertificatescommand.cpp:897
+#: src/commands/importcertificatescommand.cpp:947
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "La importació del certificat ha fallat"
@@ -2170,12 +2170,12 @@ msgctxt "@info"
 msgid "Import was canceled."
 msgstr "S'ha cancel·lat la importació."
 
-#: src/commands/importcertificatescommand.cpp:493
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Resultat en la importació de certificats"
 
-#: src/commands/importcertificatescommand.cpp:502
+#: src/commands/importcertificatescommand.cpp:508
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2184,7 +2184,7 @@ msgstr ""
 "<qt><p>S'ha produït un error en provar d'importar el certificat:</p><p><b>"
 "%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:507
+#: src/commands/importcertificatescommand.cpp:513
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2193,13 +2193,13 @@ msgstr ""
 "<qt><p>S'ha produït un error en provar d'importar el certificat %1:</p><p><b>"
 "%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:623
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2211,19 +2211,19 @@ msgstr ""
 "%1</numid></para><para>i ID d'usuari <list>%2</list></para><para>És el propi "
 "certificat?</para>"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Sí, és meu"
 
-#: src/commands/importcertificatescommand.cpp:641
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "No, no és meu"
 
-#: src/commands/importcertificatescommand.cpp:791
+#: src/commands/importcertificatescommand.cpp:797
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2235,15 +2235,15 @@ msgstr ""
 "certificats que no es poden fer servir per a encriptar. Això podria portar a "
 "resultats inesperats.</para>"
 
-#: src/commands/importcertificatescommand.cpp:855
+#: src/commands/importcertificatescommand.cpp:861
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "S'està recuperant 1 clau de signant... (pot trigar una estona)"
 msgstr[1] "S'estan recuperant %1 claus de signant... (pot trigar una estona)"
 
-#: src/commands/importcertificatescommand.cpp:890
-#: src/commands/importcertificatescommand.cpp:940
+#: src/commands/importcertificatescommand.cpp:896
+#: src/commands/importcertificatescommand.cpp:946
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2934,15 +2934,14 @@ msgstr[1] "A més, s'han recuperat %1 claus noves."
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
 msgstr ""
+"S'ha omès l'actualització perquè no hi ha cap servidor de claus configurat."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "L'actualització ha fallat"
+msgstr "L'actualització s'ha omès"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -2998,6 +2997,8 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
+"<para>S'ha omès l'actualització perquè no hi ha cap servidor de claus "
+"configurat.</para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376

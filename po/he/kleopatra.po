@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-13 00:38+0000\n"
-"PO-Revision-Date: 2024-03-09 23:20+0200\n"
+"PO-Revision-Date: 2024-03-13 16:15+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -1534,14 +1534,14 @@ msgstr ""
 "הצפוי בשל שגיאה לא צפויה."
 
 #: src/commands/exportpaperkeycommand.cpp:122
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to export the secret key.</para> "
 "<para>The output from <command>%1</command> was: <message>%2</message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה בניסיון לייצא את המפתח הסודי.</para> <para>הפלט של "
+"<command>%1</command> היה: <message>%2</message></para>"
 
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
@@ -2069,13 +2069,11 @@ msgid "Certificate Import Result"
 msgstr "תוצאת ייבוא אישור"
 
 #: src/commands/importcertificatescommand.cpp:508
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
-msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+msgstr "<qt><p>אירעה שגיאה בניסיון לייבא את האישור:</p><p><b>%1</b></p></qt>"
 
 #: src/commands/importcertificatescommand.cpp:513
 #, kde-format
@@ -2112,15 +2110,15 @@ msgid "No, It's Not Mine"
 msgstr "לא, זה לא שלי"
 
 #: src/commands/importcertificatescommand.cpp:797
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The imported group</para><para><emphasis>%1</emphasis></"
 "para><para>contains certificates that cannot be used for encryption. This "
 "may lead to unexpected results.</para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>הקבוצה המיובאת</para><para><emphasis>%1</emphasis></para><para>מכילה "
+"אישורים שלא ניתן להשתמש בהם להצפנה. יכול להוביל לתוצאות מפתיעות.</para>"
 
 #: src/commands/importcertificatescommand.cpp:861
 #, fuzzy, kde-format
@@ -2140,9 +2138,9 @@ msgid ""
 msgstr "סוג האישור הזה (%1) לא נתמך בהתקנה הזאת של Kleopatra."
 
 #: src/commands/importcrlcommand.cpp:55
-#, fuzzy, kde-format
+#, kde-format
 msgid "Certificate Revocation Lists, DER encoded"
-msgstr "&יצירת תעודה"
+msgstr "רשימות שלילת אישורים, בהצפנת DER"
 
 #: src/commands/importcrlcommand.cpp:56
 #, kde-format
@@ -2150,9 +2148,9 @@ msgid "Select CRL File to Import"
 msgstr "בחירת קובץ רשימת שלילה לייבוא"
 
 #: src/commands/importcrlcommand.cpp:172
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unable to start process dirmngr. Please check your installation."
-msgstr "אין אפשרות להפעיל את התהליך dirmngr. בדוק את ההתקנה שלך."
+msgstr "לא ניתן להפעיל את התהליך dirmngr. נא לבדוק את תקינות ההתקנה שלך."
 
 #: src/commands/importcrlcommand.cpp:174
 #, fuzzy, kde-format
@@ -2758,12 +2756,10 @@ msgstr ""
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "העדכון נכשל"
+msgstr "העדכון דולג"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -4643,14 +4639,12 @@ msgid "Verifying %1..."
 msgstr "%1 מאומת…"
 
 #: src/crypto/decryptverifytask.cpp:1870
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
-msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+msgstr "<filename>%1</filename> מאומת מול <filename>%2</filename>…"
 
 #: src/crypto/decryptverifytask.cpp:1874
 #, kde-format
@@ -5018,10 +5012,10 @@ msgid ""
 msgstr ""
 
 #: src/crypto/gui/signemailwizard.cpp:102
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Sign Text"
-msgstr "&צור תעודה"
+msgstr "טקסט חתימה"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:71
 #, kde-format
@@ -7778,7 +7772,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:47
 #, kde-format
 msgid "Value of NAME"
-msgstr ""
+msgstr "הערך של NAME (שם)"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8191,7 +8185,7 @@ msgstr ""
 #: src/kcfg/tagspreferences.kcfg:9
 #, kde-format
 msgid "Use tags"
-msgstr ""
+msgstr "להשתמש בתגיות"
 
 #. i18n: ectx: whatsthis, entry (UseTags), group (RemarkSettings)
 #: src/kcfg/tagspreferences.kcfg:10
@@ -10923,11 +10917,10 @@ msgid "Error"
 msgstr "שגיאה"
 
 #: src/view/netkeywidget.cpp:328
-#, fuzzy, kde-format
-#| msgid "Loading certificate cache..."
+#, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
-msgstr "מטמון האישורים נטען…"
+msgstr "האישורים נקראים מהכרטיס החכם…"
 
 #: src/view/netkeywidget.cpp:379
 #, kde-format

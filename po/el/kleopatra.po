@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-13 00:38+0000\n"
+"POT-Creation-Date: 2024-03-15 00:38+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -6345,6 +6345,7 @@ msgid "Authentication"
 msgstr "Ταυτοποίηση"
 
 #: src/dialogs/addsubkeydialog.cpp:116
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, kde-format
 msgctxt "@option:check"
@@ -6391,13 +6392,13 @@ msgstr ""
 "χρήστη."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:246
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:309
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Εισάγετε όνομα ή διεύθυνση ηλ. αλληλογραφίας..."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:257
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:320
 #, kde-format
 msgid "There is a problem."
 msgstr "Υπάρχει ένα πρόβλημα."
@@ -6512,7 +6513,7 @@ msgid "User IDs:"
 msgstr "Αναγνωριστικά χρηστών:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:345
+#: src/dialogs/certifywidget.cpp:232
 #, kde-format
 msgid "User IDs"
 msgstr "Αναγνωριστικά χρηστών"
@@ -6591,7 +6592,7 @@ msgid "Change Validity"
 msgstr "Αλλαγή εγκυρότητας"
 
 #: src/dialogs/certificatedetailswidget.cpp:298
-#: src/dialogs/certifywidget.cpp:305
+#: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Αποτύπωμα:"
@@ -6995,7 +6996,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Πιστοποίηση πιστοποιητικού: %1"
 
-#: src/dialogs/certifywidget.cpp:288
+#: src/dialogs/certifywidget.cpp:175
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7007,18 +7008,18 @@ msgstr ""
 "πιστοποιήσετε τα αναγνωριστικά χρήστη.<br><i>Σημείωση: Μόνο το δακτυλικό "
 "αποτύπωμα ξεκάθαρα ταυτοποιεί το κλειδί και τον ιδιοκτήτη του.</i>"
 
-#: src/dialogs/certifywidget.cpp:310
+#: src/dialogs/certifywidget.cpp:197
 #, kde-format
 msgid "Certify with:"
 msgstr "Πιστοποίηση με:"
 
-#: src/dialogs/certifywidget.cpp:322
+#: src/dialogs/certifywidget.cpp:209
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Ρύθμιση εμπιστοσύνης κατόχου"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7029,7 +7030,7 @@ msgstr ""
 "πιστοποίησης στην απόλυτη εμπιστοσύνη. Αυτό είναι που θέλετε συνήθως να "
 "κάνετε για τα δικά σας κλειδιά."
 
-#: src/dialogs/certifywidget.cpp:339
+#: src/dialogs/certifywidget.cpp:226
 #, fuzzy, kde-format
 #| msgid "In order to mark the certificate as valid it needs to be certified."
 msgctxt "@info"
@@ -7037,30 +7038,30 @@ msgid "One or more certificates cannot be certified."
 msgstr ""
 "Για να σημειωθεί το πιστοποιητικό ως έγκυρο χρειάζεται να πιστοποιηθεί."
 
-#: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
-#: src/dialogs/certifywidget.cpp:588
+#: src/dialogs/certifywidget.cpp:239 src/dialogs/certifywidget.cpp:461
+#: src/dialogs/certifywidget.cpp:475
 #, fuzzy, kde-format
 #| msgid "User IDs"
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Αναγνωριστικά χρηστών"
 
-#: src/dialogs/certifywidget.cpp:356
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgid "Advanced"
 msgstr "Προχωρημένο"
 
-#: src/dialogs/certifywidget.cpp:356
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgid "Show advanced options"
 msgstr "Εμφάνιση προχωρημένων ρυθμίσεων"
 
-#: src/dialogs/certifywidget.cpp:362
+#: src/dialogs/certifywidget.cpp:249
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Πιστοποίηση ορατή για όλους (εξαγώγιμη)"
 
-#: src/dialogs/certifywidget.cpp:364
+#: src/dialogs/certifywidget.cpp:251
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7069,12 +7070,12 @@ msgid ""
 "uncheck it."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:372
+#: src/dialogs/certifywidget.cpp:259
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Έπειτα δημοσίευση στον εξυπηρετητή"
 
-#: src/dialogs/certifywidget.cpp:374
+#: src/dialogs/certifywidget.cpp:261
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7082,19 +7083,19 @@ msgid ""
 "certificate directory after successful certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:387
+#: src/dialogs/certifywidget.cpp:274
 #, kde-format
 msgid "Tags:"
 msgstr "Ετικέτες:"
 
-#: src/dialogs/certifywidget.cpp:391
+#: src/dialogs/certifywidget.cpp:278
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 "Μπορείτε να το χρησιμοποιήσετε αυτό για να προσθέσετε πληροφορία σε ένα "
 "πιστοποιητικό."
 
-#: src/dialogs/certifywidget.cpp:392
+#: src/dialogs/certifywidget.cpp:279
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -7103,19 +7104,19 @@ msgstr ""
 "Οι ετικέτες που δημιουργούνται από οποιονδήποτε με πλήρη εμπιστοσύνη "
 "πιστοποίησης φαίνονται στη λίστα κλειδιών και μπορούν να αναζητηθούν."
 
-#: src/dialogs/certifywidget.cpp:407
+#: src/dialogs/certifywidget.cpp:294
 #, kde-format
 msgid "Expiration:"
 msgstr "Λήξη:"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:301
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "Μπορείτε να το χρησιμοποιήσετε αυτό για να ρυθμίσετε μια ημερομηνία λήξης "
 "για ένα πιστοποιητικό."
 
-#: src/dialogs/certifywidget.cpp:415
+#: src/dialogs/certifywidget.cpp:302
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7126,19 +7127,19 @@ msgstr ""
 "πιστοποίησης σε ένα ορισμένο χρονικό διάστημα. Όταν περάσει η ημερομηνία "
 "λήξης, η πιστοποίηση δεν είναι πλέον έγκυρη."
 
-#: src/dialogs/certifywidget.cpp:430
+#: src/dialogs/certifywidget.cpp:317
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Πιστοποίηση ως έμπιστος ενδιάμεσος"
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Μπορείτε να το χρησιμοποιήσετε αυτό για να πιστοποιήσετε έναν έμπιστο "
 "ενδιάμεσο για έναν τομέα."
 
-#: src/dialogs/certifywidget.cpp:432
+#: src/dialogs/certifywidget.cpp:319
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7150,12 +7151,12 @@ msgstr ""
 "πιστοποιημένα, δηλ. ένας έμπιστος ενδιάμεσος ενεργεί ως ένα είδος ενδιάμεσου "
 "της αρχής πιστοποίησης (CA) για έναν τομέα."
 
-#: src/dialogs/certifywidget.cpp:443
+#: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "Domain:"
 msgstr "Τομέας:"
 
-#: src/dialogs/certifywidget.cpp:556
+#: src/dialogs/certifywidget.cpp:443
 #, fuzzy, kde-format
 #| msgid ""
 #| "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7172,14 +7173,14 @@ msgstr ""
 "πιστοποιήσετε τα αναγνωριστικά χρήστη.<br><i>Σημείωση: Μόνο το δακτυλικό "
 "αποτύπωμα ξεκάθαρα ταυτοποιεί το κλειδί και τον ιδιοκτήτη του.</i>"
 
-#: src/dialogs/certifywidget.cpp:588 src/dialogs/subkeyswidget.cpp:109
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:109
 #, fuzzy, kde-format
 #| msgid "Fingerprint:"
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "Αποτύπωμα:"
 
-#: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
+#: src/dialogs/certifywidget.cpp:491 src/dialogs/certifywidget.cpp:492
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for signing."
@@ -7187,7 +7188,7 @@ msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "Το πιστοποιητικό αυτό δεν μπορεί να χρησιμοποιηθεί για υπογραφή."
 
-#: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
+#: src/dialogs/certifywidget.cpp:494 src/dialogs/certifywidget.cpp:495
 #, fuzzy, kde-format
 #| msgid "In order to mark the certificate as valid it needs to be certified."
 msgctxt "@info:tooltip"
@@ -7195,12 +7196,12 @@ msgid "Expired or revoked certificates cannot be certified."
 msgstr ""
 "Για να σημειωθεί το πιστοποιητικό ως έγκυρο χρειάζεται να πιστοποιηθεί."
 
-#: src/dialogs/certifywidget.cpp:919
+#: src/dialogs/certifywidget.cpp:806
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Αυτό το κλειδί είναι δικό σας;"
 
-#: src/dialogs/certifywidget.cpp:934
+#: src/dialogs/certifywidget.cpp:821
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -7208,14 +7209,14 @@ msgstr ""
 "<p>Η αλλαγή του επιπέδου εμπιστοσύνης πιστοποίησης του κλειδιού ήταν <b>%1</"
 "b>ανεπιτυχής:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:937
+#: src/dialogs/certifywidget.cpp:824
 #, fuzzy, kde-format
 #| msgid "Certification Trust Change Failed"
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Αποτυχία τροποποίησης της εμπιστοσύνης πιστοποιητικού"
 
-#: src/dialogs/certifywidget.cpp:944
+#: src/dialogs/certifywidget.cpp:831
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Η εμπιστοσύνη του κατόχου ρυθμίστηκε επιτυχώς."
@@ -7632,13 +7633,13 @@ msgstr ""
 "Εισάγετε μια ηλ. διεύθυνση στην σωστή μορφή που απαιτείται από τον οργανισμό "
 "σας."
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:84
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
 #: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
 msgstr "Προστατέψτε το παραχθέν κλειδί με ένα συνθηματικό."
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:86
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
 #: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
@@ -7648,25 +7649,33 @@ msgstr ""
 "Κρυπτογραφεί το μυστικό κλειδί με ένα μη ανακτήσιμο συνθηματικό. Θα "
 "ερωτηθείτε για το συνθηματικό κατά την παραγωγή του κλειδιού."
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
-#: src/newcertificatewizard/enterdetailspage.cpp:179
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "Προχωρημένες ρυθμίσεις..."
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
+#, fuzzy, kde-format
+#| msgid "Show advanced options"
+msgid "Advanced options"
+msgstr "Εμφάνιση προχωρημένων ρυθμίσεων"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:117
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key Material"
+msgstr "Υλικό κλειδιού"
+
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
 #, kde-format
 msgctxt "title:window"
 msgid "Create OpenPGP Certificate"
 msgstr "Δημιουργία πιστοποιητικού OpenPGP"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:125
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
 #, kde-format
 msgid "Enter a name and an email address to use for the certificate."
 msgstr ""
 "Εισάγετε ένα όνομα και μια ηλ. διεύθυνση για χρήση με το πιστοποιητικό."
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:126
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
 #, kde-format
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
@@ -9808,6 +9817,11 @@ msgstr "Πραγματικό όνομα:"
 #, kde-format
 msgid "EMail address:"
 msgstr "Διεύθυνση ηλ. αλληλογραφίας:"
+
+#: src/newcertificatewizard/enterdetailspage.cpp:179
+#, kde-format
+msgid "Advanced Settings..."
+msgstr "Προχωρημένες ρυθμίσεις..."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:199
 #, kde-format

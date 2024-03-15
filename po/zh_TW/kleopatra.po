@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-13 00:38+0000\n"
+"POT-Creation-Date: 2024-03-15 00:38+0000\n"
 "PO-Revision-Date: 2024-03-08 23:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -5935,6 +5935,7 @@ msgid "Authentication"
 msgstr "認證"
 
 #: src/dialogs/addsubkeydialog.cpp:116
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, kde-format
 msgctxt "@option:check"
@@ -5975,13 +5976,13 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "輸入使用者 ID 用的名稱或電子郵件地址。"
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:246
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:309
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "輸入名稱或是電子郵件地址。"
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:257
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:320
 #, kde-format
 msgid "There is a problem."
 msgstr "有問題。"
@@ -6092,7 +6093,7 @@ msgid "User IDs:"
 msgstr "使用者 ID："
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:345
+#: src/dialogs/certifywidget.cpp:232
 #, kde-format
 msgid "User IDs"
 msgstr "使用者 ID"
@@ -6169,7 +6170,7 @@ msgid "Change Validity"
 msgstr "變更有效性"
 
 #: src/dialogs/certificatedetailswidget.cpp:298
-#: src/dialogs/certifywidget.cpp:305
+#: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
 msgstr "指紋："
@@ -6563,7 +6564,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "保證憑證群組 %1"
 
-#: src/dialogs/certifywidget.cpp:288
+#: src/dialogs/certifywidget.cpp:175
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6573,18 +6574,18 @@ msgstr ""
 "確認指紋、標記您要保證的使用者 ID，並選取您要用哪個金鑰來進行保證。<br><i>請"
 "注意：只有指紋是可以明確用來辨識金鑰和它的擁有者的。</i>"
 
-#: src/dialogs/certifywidget.cpp:310
+#: src/dialogs/certifywidget.cpp:197
 #, kde-format
 msgid "Certify with:"
 msgstr "使用以下來保證："
 
-#: src/dialogs/certifywidget.cpp:322
+#: src/dialogs/certifywidget.cpp:209
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "設定擁有者信任"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6592,36 +6593,36 @@ msgid ""
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:339
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "有一個或多個憑證不能被保證。"
 
-#: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
-#: src/dialogs/certifywidget.cpp:588
+#: src/dialogs/certifywidget.cpp:239 src/dialogs/certifywidget.cpp:461
+#: src/dialogs/certifywidget.cpp:475
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "使用者 ID"
 
-#: src/dialogs/certifywidget.cpp:356
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgid "Advanced"
 msgstr "進階"
 
-#: src/dialogs/certifywidget.cpp:356
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgid "Show advanced options"
 msgstr "顯示進階選項"
 
-#: src/dialogs/certifywidget.cpp:362
+#: src/dialogs/certifywidget.cpp:249
 #, fuzzy, kde-format
 #| msgid "Certify for everyone to see"
 msgid "Certify for everyone to see (exportable)"
 msgstr "確認讓所有人可以看"
 
-#: src/dialogs/certifywidget.cpp:364
+#: src/dialogs/certifywidget.cpp:251
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6630,12 +6631,12 @@ msgid ""
 "uncheck it."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:372
+#: src/dialogs/certifywidget.cpp:259
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "之後公開到金鑰伺服器上"
 
-#: src/dialogs/certifywidget.cpp:374
+#: src/dialogs/certifywidget.cpp:261
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6643,34 +6644,34 @@ msgid ""
 "certificate directory after successful certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:387
+#: src/dialogs/certifywidget.cpp:274
 #, kde-format
 msgid "Tags:"
 msgstr "標籤："
 
-#: src/dialogs/certifywidget.cpp:391
+#: src/dialogs/certifywidget.cpp:278
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:392
+#: src/dialogs/certifywidget.cpp:279
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:407
+#: src/dialogs/certifywidget.cpp:294
 #, kde-format
 msgid "Expiration:"
 msgstr "過期："
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:301
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:415
+#: src/dialogs/certifywidget.cpp:302
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6678,17 +6679,17 @@ msgid ""
 "passed, your certification is no longer valid."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:430
+#: src/dialogs/certifywidget.cpp:317
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "保證為可信任的介紹者"
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "您可以使用這個來為網域保證一個可信任的介紹者。"
 
-#: src/dialogs/certifywidget.cpp:432
+#: src/dialogs/certifywidget.cpp:319
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6696,12 +6697,12 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:443
+#: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "Domain:"
 msgstr "網域："
 
-#: src/dialogs/certifywidget.cpp:556
+#: src/dialogs/certifywidget.cpp:443
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6712,42 +6713,42 @@ msgstr ""
 "確認指紋、標記您要保證的使用者 ID，並選取您要用哪個金鑰來進行保證。<br><i>請"
 "注意：只有指紋是可以明確用來辨識金鑰和它的擁有者的。</i>"
 
-#: src/dialogs/certifywidget.cpp:588 src/dialogs/subkeyswidget.cpp:109
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "指紋"
 
-#: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
+#: src/dialogs/certifywidget.cpp:491 src/dialogs/certifywidget.cpp:492
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "不能保證 S/MIME 憑證。"
 
-#: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
+#: src/dialogs/certifywidget.cpp:494 src/dialogs/certifywidget.cpp:495
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "過期或被撤銷的憑證不能被保證。"
 
-#: src/dialogs/certifywidget.cpp:919
+#: src/dialogs/certifywidget.cpp:806
 #, kde-format
 msgid "Is this your own key?"
 msgstr "這是您自己的金鑰嗎？"
 
-#: src/dialogs/certifywidget.cpp:934
+#: src/dialogs/certifywidget.cpp:821
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr "<p>變更金鑰 <b>%1</b> 的憑證信任時失敗：</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:937
+#: src/dialogs/certifywidget.cpp:824
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "憑證信任變更失敗"
 
-#: src/dialogs/certifywidget.cpp:944
+#: src/dialogs/certifywidget.cpp:831
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "成功設定擁有者信任。"
@@ -7126,13 +7127,13 @@ msgid ""
 "Enter an email address in the correct format required by your organization."
 msgstr "請輸入符合您組織的格式要求的電子郵件地址。"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:84
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
 #: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
 msgstr "用密碼保護產生的金鑰。"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:86
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
 #: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
@@ -7140,24 +7141,31 @@ msgid ""
 "for the passphrase during key generation."
 msgstr "用無法讀出的密碼將私鑰進行加密。產生金鑰時將會向您詢問密碼。"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
-#: src/newcertificatewizard/enterdetailspage.cpp:179
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "進階設定..."
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
+#, fuzzy, kde-format
+#| msgid "Show advanced options"
+msgid "Advanced options"
+msgstr "顯示進階選項"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:117
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
+#, fuzzy, kde-format
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key Material"
+msgstr "金鑰型式"
+
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
 #, kde-format
 msgctxt "title:window"
 msgid "Create OpenPGP Certificate"
 msgstr "建立 OpenPGP 憑證"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:125
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
 #, kde-format
 msgid "Enter a name and an email address to use for the certificate."
 msgstr "輸入憑證用的名稱及電子郵件地址。"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:126
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
 #, kde-format
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr "輸入憑證用的名稱或電子郵件地址。"
@@ -9136,6 +9144,11 @@ msgstr "真實姓名："
 #, kde-format
 msgid "EMail address:"
 msgstr "電子郵件地址："
+
+#: src/newcertificatewizard/enterdetailspage.cpp:179
+#, kde-format
+msgid "Advanced Settings..."
+msgstr "進階設定..."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:199
 #, kde-format

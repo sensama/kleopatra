@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-13 00:38+0000\n"
+"POT-Creation-Date: 2024-03-15 00:38+0000\n"
 "PO-Revision-Date: 2024-01-31 17:47+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -6178,6 +6178,7 @@ msgid "Authentication"
 msgstr "Todennus"
 
 #: src/dialogs/addsubkeydialog.cpp:116
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, kde-format
 msgctxt "@option:check"
@@ -6221,13 +6222,13 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "Anna käyttäjätunnisteen käyttämä nimi tai sähköpostiosoite."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:246
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:309
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Anna nimi tai sähköpostiosoite."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:257
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:320
 #, kde-format
 msgid "There is a problem."
 msgstr "Havaittiin ongelma."
@@ -6342,7 +6343,7 @@ msgid "User IDs:"
 msgstr "Käyttäjätunnisteet:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:345
+#: src/dialogs/certifywidget.cpp:232
 #, kde-format
 msgid "User IDs"
 msgstr "Käyttäjätunnisteet"
@@ -6419,7 +6420,7 @@ msgid "Change Validity"
 msgstr "Muuta kelpoisuutta"
 
 #: src/dialogs/certificatedetailswidget.cpp:298
-#: src/dialogs/certifywidget.cpp:305
+#: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Sormenjälki:"
@@ -6817,7 +6818,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Varmenna varmenneryhmä %1"
 
-#: src/dialogs/certifywidget.cpp:288
+#: src/dialogs/certifywidget.cpp:175
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6828,18 +6829,18 @@ msgstr ""
 "valitse avain, jolla haluat käyttäjätunnukset varmentaa.<br><i>Huom! Vain "
 "sormenjälki yksilöi varmasti avaimen omistajineen.</i>"
 
-#: src/dialogs/certifywidget.cpp:310
+#: src/dialogs/certifywidget.cpp:197
 #, kde-format
 msgid "Certify with:"
 msgstr "Varmenna avaimella:"
 
-#: src/dialogs/certifywidget.cpp:322
+#: src/dialogs/certifywidget.cpp:209
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Aseta omistajan luottamus"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6849,35 +6850,35 @@ msgstr ""
 "Napsauta asettaaksesi valitun varmenneavaimen luottamus äärimmäiseksi. Näin "
 "tehdään tavallisesti omille avaimille."
 
-#: src/dialogs/certifywidget.cpp:339
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "Yhtä tai useampaa varmennetta ei voitu varmentaa."
 
-#: src/dialogs/certifywidget.cpp:352 src/dialogs/certifywidget.cpp:574
-#: src/dialogs/certifywidget.cpp:588
+#: src/dialogs/certifywidget.cpp:239 src/dialogs/certifywidget.cpp:461
+#: src/dialogs/certifywidget.cpp:475
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Käyttäjätunniste"
 
-#: src/dialogs/certifywidget.cpp:356
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgid "Advanced"
 msgstr "Lisäasetukset"
 
-#: src/dialogs/certifywidget.cpp:356
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgid "Show advanced options"
 msgstr "Näytä lisäasetukset"
 
-#: src/dialogs/certifywidget.cpp:362
+#: src/dialogs/certifywidget.cpp:249
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Varmenna kaikkien nähtäväksi (vietävissä)"
 
-#: src/dialogs/certifywidget.cpp:364
+#: src/dialogs/certifywidget.cpp:251
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6888,12 +6889,12 @@ msgstr ""
 "Valitse tämä, jos haluat jakaa varmenteesi muille. Jos haluat vain merkitä "
 "varmenteet varmennetuiksi itsellesi, valinnan voi poistaa."
 
-#: src/dialogs/certifywidget.cpp:372
+#: src/dialogs/certifywidget.cpp:259
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Julkaise tuonnempana avainpalvelimeen"
 
-#: src/dialogs/certifywidget.cpp:374
+#: src/dialogs/certifywidget.cpp:261
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6903,17 +6904,17 @@ msgstr ""
 "Valitse tämä, jos haluat lähettää varmenteesi varmennehakemistoon "
 "onnistuneen varmennuksen päätteeksi."
 
-#: src/dialogs/certifywidget.cpp:387
+#: src/dialogs/certifywidget.cpp:274
 #, kde-format
 msgid "Tags:"
 msgstr "Tunnisteet:"
 
-#: src/dialogs/certifywidget.cpp:391
+#: src/dialogs/certifywidget.cpp:278
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Tätä voi käyttää lisättäessä varmenteeseen lisätietoa."
 
-#: src/dialogs/certifywidget.cpp:392
+#: src/dialogs/certifywidget.cpp:279
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6922,17 +6923,17 @@ msgstr ""
 "Tunnisteet, joiden antajalla on täyden luottamuksen varmenne, näytetään "
 "avainluettelossa ja niitä voi etsiä."
 
-#: src/dialogs/certifywidget.cpp:407
+#: src/dialogs/certifywidget.cpp:294
 #, kde-format
 msgid "Expiration:"
 msgstr "Vanhenee:"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:301
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Tätä voi käyttää asettamaan varmenteelle vanhenemispäivän."
 
-#: src/dialogs/certifywidget.cpp:415
+#: src/dialogs/certifywidget.cpp:302
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6942,17 +6943,17 @@ msgstr ""
 "Vanhenemispäivän asettamalla voi rajata varmenteen kelpoisuuden tietylle "
 "ajanjaksolle. Kun vanhenemispäivä on ohi, varmenne ei enää kelpaa."
 
-#: src/dialogs/certifywidget.cpp:430
+#: src/dialogs/certifywidget.cpp:317
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Varmenna luotettuna esittelijänä"
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "Tällä voi varmentaa luotetun esittelijän koko toimialueelle."
 
-#: src/dialogs/certifywidget.cpp:432
+#: src/dialogs/certifywidget.cpp:319
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6963,12 +6964,12 @@ msgstr ""
 "varmentamalta toimialueelta, pidetään varmennettuina, ts. luotettu "
 "esittelijä toimii toimialueelle eräänlaisena välillisenä CA:na."
 
-#: src/dialogs/certifywidget.cpp:443
+#: src/dialogs/certifywidget.cpp:330
 #, kde-format
 msgid "Domain:"
 msgstr "Toimialue:"
 
-#: src/dialogs/certifywidget.cpp:556
+#: src/dialogs/certifywidget.cpp:443
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6980,30 +6981,30 @@ msgstr ""
 "varmenne, jolla haluat käyttäjätunnukset varmentaa.<br><i>Huom! Vain "
 "sormenjäljet yksilöivät varmenteen omistajineen varmasti.</i>"
 
-#: src/dialogs/certifywidget.cpp:588 src/dialogs/subkeyswidget.cpp:109
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:109
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "Sormenjälki"
 
-#: src/dialogs/certifywidget.cpp:604 src/dialogs/certifywidget.cpp:605
+#: src/dialogs/certifywidget.cpp:491 src/dialogs/certifywidget.cpp:492
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "S/MIME-varmenteita ei voi varmentaa."
 
-#: src/dialogs/certifywidget.cpp:607 src/dialogs/certifywidget.cpp:608
+#: src/dialogs/certifywidget.cpp:494 src/dialogs/certifywidget.cpp:495
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "Vanhentuneita tai peruttuja varmenteita ei voi varmentaa."
 
-#: src/dialogs/certifywidget.cpp:919
+#: src/dialogs/certifywidget.cpp:806
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Onko tämä oma avaimesi?"
 
-#: src/dialogs/certifywidget.cpp:934
+#: src/dialogs/certifywidget.cpp:821
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -7011,13 +7012,13 @@ msgstr ""
 "<p>Avaimen <b>%1</b> varmenneluottamuksen muuttaminen epäonnistui:</p><p>%2</"
 "p>"
 
-#: src/dialogs/certifywidget.cpp:937
+#: src/dialogs/certifywidget.cpp:824
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Varmenteen luottamuksen asettaminen epäonnistui"
 
-#: src/dialogs/certifywidget.cpp:944
+#: src/dialogs/certifywidget.cpp:831
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Omistajan luottamuksen asettaminen onnistui."
@@ -7411,13 +7412,13 @@ msgid ""
 "Enter an email address in the correct format required by your organization."
 msgstr "Anna sähköpostiosoite organisaation vaatimassa oikeassa muodossa."
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:84
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
 #: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
 msgstr "Suojaa luotu avain salasanalla."
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:86
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
 #: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
@@ -7427,24 +7428,32 @@ msgstr ""
 "Salaa salaisen avaimen palauttamattomissa olevalla salasanalla. Salasana "
 "kysytään avainta luotaessa."
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
-#: src/newcertificatewizard/enterdetailspage.cpp:179
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "Lisäasetukset…"
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
+#, fuzzy, kde-format
+#| msgid "Show advanced options"
+msgid "Advanced options"
+msgstr "Näytä lisäasetukset"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:117
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key Material"
+msgstr "Avainmateriaali"
+
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
 #, kde-format
 msgctxt "title:window"
 msgid "Create OpenPGP Certificate"
 msgstr "Luo OpenPGP-varmenne"
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:125
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
 #, kde-format
 msgid "Enter a name and an email address to use for the certificate."
 msgstr "Anna varmenteessa käytettävä nimi ja sähköpostiosoite."
 
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:126
+#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
 #, kde-format
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr "Anna varmenteessa käytettävä nimi tai sähköpostiosoite tai kumpikin."
@@ -9550,6 +9559,11 @@ msgstr "Oikea nimi:"
 #, kde-format
 msgid "EMail address:"
 msgstr "Sähköpostiosoite:"
+
+#: src/newcertificatewizard/enterdetailspage.cpp:179
+#, kde-format
+msgid "Advanced Settings..."
+msgstr "Lisäasetukset…"
 
 #: src/newcertificatewizard/enterdetailspage.cpp:199
 #, kde-format

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-15 00:38+0000\n"
-"PO-Revision-Date: 2024-03-01 09:49+0100\n"
+"PO-Revision-Date: 2024-03-15 13:53+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 24.02.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -617,7 +617,7 @@ msgstr "Cambio della frase segreta effettuato"
 #: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
-msgstr "Impossibile trovare la smartcard con il numero seriale: %1"
+msgstr "Impossibile trovare la smart card con il numero seriale: %1"
 
 #: src/commands/changepincommand.cpp:147
 #, kde-format
@@ -2929,15 +2929,15 @@ msgstr[1] "Inoltre, sono state recuperate %1 nuove chiavi."
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
 msgstr ""
+"L'aggiornamento è stato saltato perché non è configurato alcun server delle "
+"chiavi."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "Aggiornamento non riuscito"
+msgstr "Aggiornamento saltato"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -2993,6 +2993,8 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
+"<para >L'aggiornamento è stato saltato perché non è configurato alcun server "
+"delle chiavi.</para >"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376
@@ -3633,7 +3635,7 @@ msgstr "Convalida S/MIME"
 #: src/conf/configuredialog.cpp:63
 #, kde-format
 msgid "Smart Cards"
-msgstr "Smartcard"
+msgstr "Smart card"
 
 #: src/conf/configuredialog.cpp:69
 #, kde-format
@@ -3979,7 +3981,7 @@ msgstr "Applica le impostazioni"
 #: src/conf/smartcardconfigpage.cpp:66
 #, kde-format
 msgid "Smart card reader to use:"
-msgstr "Lettore di smartcard da utilizzare:"
+msgstr "Lettore di smart card da utilizzare:"
 
 #: src/conf/smartcardconfigpage.cpp:92
 #, kde-format
@@ -7505,18 +7507,15 @@ msgstr ""
 "chiesta la frase segreta durante la generazione della chiave."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
+#, kde-format
 msgid "Advanced options"
-msgstr "Mostra le opzioni avanzate"
+msgstr "Opzioni avanzate"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Key Material"
+#, kde-format
 msgctxt "The algorithm and strength of encryption key"
 msgid "Key Material"
-msgstr "Materiale chiavi"
+msgstr "Materiale per le chiavi"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
 #, kde-format
@@ -7726,7 +7725,7 @@ msgid ""
 "</ol>\n"
 "You need to set initial PINs before you can use them.</p>"
 msgstr ""
-"<p>Su questa smartcard c'è spazio per due certificati:\n"
+"<p>Su questa smart card c'è spazio per due certificati:\n"
 "<ol>\n"
 "<li>Un certificato normale</li>\n"
 "<li>Un certificato speciale per creare <em>firme qualificate</em> secondo la "
@@ -7838,7 +7837,7 @@ msgstr "Ripristina la copia di sicurezza stampata"
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
-msgstr "Trasferisci su smartcard"
+msgstr "Trasferisci su smart card"
 
 #: src/dialogs/subkeyswidget.cpp:134
 #, kde-format
@@ -7864,7 +7863,7 @@ msgstr "Ripristina la copia di sicurezza stampata"
 #: src/dialogs/subkeyswidget.cpp:232
 #, kde-format
 msgid "Transfer to smartcard"
-msgstr "Trasferisci su smartcard"
+msgstr "Trasferisci su smart card"
 
 #: src/dialogs/subkeyswidget.cpp:240
 #, kde-format
@@ -8345,25 +8344,17 @@ msgstr "Periodo di validità predefinito"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
 msgstr ""
-"Specifica il periodo di validità in giorni predefinito per le nuove chiavi "
-"di OpenPGP."
+"Specifica il periodo di validità predefinito in giorni delle chiavi OpenPGP "
+"nuove o estese."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -8372,13 +8363,13 @@ msgid ""
 "will be valid for three years (possibly clamped to the allowed minimum or "
 "maximum validity period) by default."
 msgstr ""
-"Questa impostazione specifica per quanti giorni una nuova chiave OpenPGP è "
-"valida per impostazione predefinita o, in altre parole, dopo quanti giorni "
-"scadrà la chiave. Impostala a 0 per una validità illimitata. Se questo "
-"valore non è impostato o se è impostato a un valore negativo, le nuove "
-"chiavi OpenPGP saranno valide per tre anni in modo predefinito "
-"(eventualmente bloccate al periodo minimo o massimo consentito per il "
-"periodo di validità)."
+"Questa impostazione specifica quanti giorni una chiave OpenPGP sarà valida "
+"per impostazione predefinita al momento della creazione o del cambio di "
+"validità o, in altre parole, dopo quanti giorni scadrà la chiave. Impostala "
+"su 0 per una validità illimitata. Se questa impostazione non è impostata o è "
+"impostata su un valore negativo, le chiavi OpenPGP nuove o estese saranno "
+"valide per tre anni (eventualmente limitate al periodo di validità minimo o "
+"massimo consentito) per impostazione predefinita."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:58
@@ -8388,31 +8379,25 @@ msgstr "Periodo di validità minimo"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
 msgstr ""
-"Specifica il periodo di validità minimo delle nuove chiavi OpenPGP in giorni."
+"Specifica il periodo di validità minimo consentito delle chiavi OpenPGP "
+"nuove o estese in giorni."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"Questa impostazione specifica per quanti giorni una nuova chiave OpenPGP è "
-"valida al massimo o, in altre parole, dopo quanti giorni scadrà la chiave al "
-"più tardi. Se questo valore non è impostato o se è impostato a un valore "
-"negativo, sarà consentita una validità illimitata."
+"Questa impostazione specifica il numero minimo di giorni che un utente può "
+"scegliere per il periodo di validità dei certificati OpenPGP. Si applica "
+"alla creazione della chiave e al cambio di validità."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8422,33 +8407,28 @@ msgstr "Periodo massimo di validità"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
 msgstr ""
-"Specifica il periodo massimo di validità delle nuove chiavi OpenPGP in "
-"giorni."
+"Specifica il periodo di validità massimo consentito in giorni per le chiavi "
+"OpenPGP nuove o estese."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Questa impostazione specifica per quanti giorni una nuova chiave OpenPGP è "
-"valida al massimo o, in altre parole, dopo quanti giorni scadrà la chiave al "
-"più tardi. Se questo valore non è impostato o se è impostato a un valore "
-"negativo, sarà consentita una validità illimitata."
+"Questa impostazione specifica il numero massimo di giorni che un utente può "
+"scegliere per il periodo di validità dei certificati OpenPGP. Si applica "
+"alla creazione della chiave e al cambio di validità. Se questa impostazione "
+"non è impostata o è impostata su un valore negativo, è consentita una "
+"validità illimitata."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
@@ -8648,7 +8628,7 @@ msgstr "Mostra la configurazione GnuPG di sistema"
 #: src/kcfg/settings.kcfg:144
 #, kde-format
 msgid "Show smart cards configuration"
-msgstr "Mostra la configurazione delle smartcard"
+msgstr "Mostra la configurazione delle smart card"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:148
@@ -8768,7 +8748,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
-msgstr "Cerca sempre i certificati delle smartcard su un server di chiavi"
+msgstr "Cerca sempre i certificati delle smart card su un server di chiavi"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
 #: src/kcfg/settings.kcfg:202
@@ -8777,7 +8757,7 @@ msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
 "keyserver."
 msgstr ""
-"Cerca i certificati che appartengono alle chiavi di smartcard sul server di "
+"Cerca i certificati che appartengono alle chiavi di smart card sul server di "
 "chiavi configurato."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
@@ -8790,7 +8770,7 @@ msgid ""
 "LDAP keyservers."
 msgstr ""
 "Cerca sui server delle chiavi indipendentemente dal protocollo per la chiave "
-"della smartcard,a prescindere\n"
+"della smart card,a prescindere\n"
 "          dal protocollo del server delle chiavi. Il comportamento "
 "predefinito è di farlo solo per i server di chiavi LDAP."
 
@@ -8798,14 +8778,14 @@ msgstr ""
 #: src/kcfg/settings.kcfg:208
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
-msgstr "Prova a caricare i certificati S/MIME da smartcard PKCS#15"
+msgstr "Prova a caricare i certificati S/MIME da smart card PKCS#15"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:209
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
-"Carica automaticamente i certificati S/MIME da smartcard PKCS#15 (CARDOS)"
+"Carica automaticamente i certificati S/MIME da smart card PKCS#15 (CARDOS)"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:210
@@ -8815,7 +8795,7 @@ msgid ""
 "inserted with unknown certificates. This can take a while and blocks the "
 "smartcard while the command is running."
 msgstr ""
-"Se vero, Kleopatra invocherà gpgsm --learn se una smartcard PKCS#15 viene "
+"Se vero, Kleopatra invocherà gpgsm --learn se una smart card PKCS#15 viene "
 "inserita con certificati sconosciuti. Questo può richiedere del tempo e "
 "blocca la smartcard mentre il comando è in esecuzione."
 
@@ -9367,12 +9347,12 @@ msgstr ""
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
-msgstr "Smartcard"
+msgstr "Smart card"
 
 #: src/mainwindow.cpp:608
 #, kde-format
 msgid "Show smartcard management"
-msgstr "Mostra la gestione delle smartcard"
+msgstr "Mostra la gestione delle smart card"
 
 #: src/mainwindow.cpp:619
 #, kde-format
@@ -9472,7 +9452,7 @@ msgstr "certification_management_gnupgvsd_en.pdf"
 #: src/mainwindow.cpp:740
 #, kde-format
 msgid "&Smartcard setup"
-msgstr "Configurazione delle &smartcard"
+msgstr "Configurazione delle &smart card"
 
 #: src/mainwindow.cpp:741
 #, kde-format
@@ -10451,13 +10431,13 @@ msgstr "&Informazioni su <application>%1</application>..."
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
-msgstr "&Spegni <application>%1</application>"
+msgstr "E&sci da <application>%1</application>"
 
 #: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
-msgstr "SmartCard"
+msgstr "Smart card"
 
 #: src/systrayicon.cpp:128
 #, kde-format
@@ -11733,11 +11713,10 @@ msgid "Error"
 msgstr "Errore"
 
 #: src/view/netkeywidget.cpp:328
-#, fuzzy, kde-format
-#| msgid "Loading certificate cache..."
+#, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
-msgstr "Caricamento cache dei certificati..."
+msgstr "Lettura certificati da smart card..."
 
 #: src/view/netkeywidget.cpp:379
 #, kde-format
@@ -11759,7 +11738,7 @@ msgid ""
 "the smartcard."
 msgstr ""
 "Spiacenti! Nessuna chiave adatta alla creazione di una richiesta di firma "
-"del certificato trovata sulla smartcard."
+"del certificato trovata sulla smart card."
 
 #: src/view/nullpinwidget.cpp:35
 #, kde-format
@@ -12070,7 +12049,7 @@ msgstr "Cambia PIN"
 #: src/view/pgpcardwidget.cpp:237
 #, kde-format
 msgid "Change the PIN required for using the keys on the smartcard."
-msgstr "Cambia il PIN richiesto per utilizzare le chiavi sulla smartcard."
+msgstr "Cambia il PIN richiesto per utilizzare le chiavi sulla smart card."
 
 #: src/view/pgpcardwidget.cpp:244
 #, kde-format
@@ -12080,7 +12059,7 @@ msgstr "Sblocca scheda"
 #: src/view/pgpcardwidget.cpp:245
 #, kde-format
 msgid "Unblock the smartcard and set a new PIN."
-msgstr "Sblocca la smartcard e imposta un nuovo PIN."
+msgstr "Sblocca la smart card e imposta un nuovo PIN."
 
 #: src/view/pgpcardwidget.cpp:252
 #, kde-format
@@ -12101,7 +12080,7 @@ msgstr "Cambia codice di ripristino"
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgstr ""
-"Cambia il PIN richiesto per lo sblocco della smartcard e imposta un nuovo "
+"Cambia il PIN richiesto per lo sblocco della smart card e imposta un nuovo "
 "PIN."
 
 #: src/view/pgpcardwidget.cpp:270
@@ -12487,7 +12466,7 @@ msgstr "CardOS 5 (varie applicazioni)"
 #: src/view/smartcardwidget.cpp:58
 #, kde-format
 msgid "Please insert a compatible smartcard."
-msgstr "Inserisci una smartcard compatibile."
+msgstr "Inserisci una smart card compatibile."
 
 #: src/view/smartcardwidget.cpp:60
 #, kde-format
@@ -12497,7 +12476,7 @@ msgstr "Kleopatra supporta attualmente i seguenti tipi di schede:"
 #: src/view/smartcardwidget.cpp:118
 #, kde-format
 msgid "Smartcard Management"
-msgstr "Gestione della smartcard"
+msgstr "Gestione della smart card"
 
 #: src/view/smartcardwidget.cpp:165
 #, kde-format

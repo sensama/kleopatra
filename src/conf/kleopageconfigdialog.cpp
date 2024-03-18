@@ -188,6 +188,9 @@ void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath
     connect(module, &KCModule::needsSaveChanged, this, [this, module]() {
         moduleChanged(module->needsSave());
     });
+    if (module->needsSave()) {
+        mChangedModules.append(module);
+    }
 
     mHelpUrls.insert(name, docPath);
 }
@@ -215,7 +218,7 @@ void KleoPageConfigDialog::clientChanged()
     if (!item) {
         return;
     }
-    KCModule *module = qobject_cast<KCModule *>(item->widget());
+    KCModule *module = qobject_cast<KCModule *>(sender());
 
     if (!module) {
         return;

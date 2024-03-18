@@ -26,6 +26,9 @@ SMimeValidationConfigurationPage::SMimeValidationConfigurationPage(QObject *pare
     lay->addWidget(mWidget);
 
     connect(mWidget, &SMimeValidationConfigurationWidget::changed, this, &Kleo::Config::SMimeValidationConfigurationPage::markAsChanged);
+
+    load();
+    setNeedsSave(false);
 }
 
 void SMimeValidationConfigurationPage::load()
@@ -36,6 +39,7 @@ void SMimeValidationConfigurationPage::load()
 void SMimeValidationConfigurationPage::save()
 {
     mWidget->save();
+    setNeedsSave(false);
 }
 
 void SMimeValidationConfigurationPage::defaults()

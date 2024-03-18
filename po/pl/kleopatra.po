@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1675696 $
+# Version: $Revision: 1675915 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-15 00:38+0000\n"
-"PO-Revision-Date: 2024-03-02 12:51+0100\n"
+"PO-Revision-Date: 2024-03-17 11:17+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -2923,16 +2923,14 @@ msgstr[2] "Dodatkowo, otrzymano %1 nowych kluczy."
 #, kde-format
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
-msgstr ""
+msgstr "Pominięto uaktualnienie, bo nie ustawiono serwera kluczy."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "Aktualizacja nieudana"
+msgstr "Pominięto uaktualnienie"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -2986,7 +2984,7 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
-msgstr ""
+msgstr "<para>Pominięto uaktualnienie, bo nie ustawiono serwera kluczy.</para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376
@@ -7483,15 +7481,12 @@ msgstr ""
 "przy tworzeniu klucza."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
+#, kde-format
 msgid "Advanced options"
-msgstr "Pokaż ustawienia rozszerzone"
+msgstr "Ustawienia rozszerzone"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Key Material"
+#, kde-format
 msgctxt "The algorithm and strength of encryption key"
 msgid "Key Material"
 msgstr "Materiał klucza"
@@ -8317,23 +8312,17 @@ msgstr "Domyślny okres ważności"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
-msgstr "Określa domyślny okres ważności dla nowych kluczy OpenPGP w dniach."
+msgstr ""
+"Określa domyślny okres ważności dla nowych lub przedłużonych kluczy OpenPGP "
+"w dniach."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -8342,12 +8331,12 @@ msgid ""
 "will be valid for three years (possibly clamped to the allowed minimum or "
 "maximum validity period) by default."
 msgstr ""
-"To ustawienie określa przez ile dni domyślnie ważny jest nowy klucz OpenPGP "
-"lub innymi słowy, po ilu dniach klucz wygaśnie. Ustaw na 0 dla nieskończonej "
-"ważności. Jeśli ta wartość nie jest ustawiona lub jest ujemna, to nowe "
-"klucze OpenPGP domyślnie będą ważne przez trzy lata (co zostanie "
-"prawdopodobnie dostosowane do najkrótszego i najdłuższego dopuszczalnego "
-"okresu ważności)."
+"To ustawienie określa przez ile dni domyślnie będzie ważny nowy klucz "
+"OpenPGP po jego utworzeniu lub zmianie jego ważności lub innymi słowy, po "
+"ilu dniach klucz wygaśnie. Ustaw na 0 dla nieskończonej ważności. Jeśli ta "
+"wartość nie jest ustawiona lub jest ujemna, to nowe lub przedłużone klucze "
+"OpenPGP domyślnie będą ważne przez trzy lata (co zostanie prawdopodobnie "
+"dostosowane do najkrótszego i najdłuższego dopuszczalnego okresu ważności)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:58
@@ -8357,29 +8346,25 @@ msgstr "Najkrótszy okres ważności"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Określa najkrótszy okres ważności dla nowych kluczy OpenPGP w dniach."
+msgstr ""
+"Określa najkrótszy okres ważności dla nowych lub przedłużonych kluczy "
+"OpenPGP w dniach."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"To ustawienie określa przez ile dni domyślnie ważny jest nowy klucz OpenPGP "
-"lub innymi słowy, po ilu dniach nowy klucz wygaśnie najpóźniej. Jeśli ta "
-"wartość nie jest ustawiona lub jest ujemna, to ważność nigdy się nie skończy."
+"To ustawienie określa najkrótszą możliwą ważność, którą użytkownik może "
+"nadać certyfikatowi OpenPGP. Ma zastosowanie przy utworzeniu klucza lub "
+"zmianie jego ważności."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8389,30 +8374,27 @@ msgstr "Najdłuższy okres ważności"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Określa najdłuższy okres ważności dla nowych kluczy OpenPGP w dniach."
+msgstr ""
+"Określa najdłuższy okres ważności dla nowych lub przedłużonych kluczy "
+"OpenPGP w dniach."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"To ustawienie określa przez ile dni domyślnie ważny jest nowy klucz OpenPGP "
-"lub innymi słowy, po ilu dniach nowy klucz wygaśnie najpóźniej. Jeśli ta "
-"wartość nie jest ustawiona lub jest ujemna, to ważność nigdy się nie skończy."
+"To ustawienie określa najdłuższą możliwą ważność, którą użytkownik może "
+"nadać certyfikatowi OpenPGP. Ma zastosowanie przy utworzeniu klucza lub "
+"zmianie jego ważności. Jeśli nie ustawiono lub ustawiono na wartość ujemną, "
+"to dozwolona jest nieograniczona ważność."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70

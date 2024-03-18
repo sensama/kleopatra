@@ -45,6 +45,9 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QObject *parent, cons
     lay->addWidget(mWidget);
 
     connect(mWidget, &CryptoConfigModule::changed, this, &Kleo::Config::GnuPGSystemConfigurationPage::markAsChanged);
+
+    load();
+    setNeedsSave(false);
 }
 
 GnuPGSystemConfigurationPage::~GnuPGSystemConfigurationPage()
@@ -63,6 +66,7 @@ void GnuPGSystemConfigurationPage::load()
 void GnuPGSystemConfigurationPage::save()
 {
     mWidget->save();
+    setNeedsSave(false);
 #if 0
     // Tell other apps (e.g. kmail) that the gpgconf data might have changed
     QDBusMessage message =

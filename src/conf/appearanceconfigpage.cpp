@@ -37,6 +37,9 @@ AppearanceConfigurationPage::AppearanceConfigurationPage(QObject *parent, const 
     lay->addWidget(mWidget);
 
     connect(mWidget, &AppearanceConfigWidget::changed, this, &Kleo::Config::AppearanceConfigurationPage::markAsChanged);
+
+    load();
+    setNeedsSave(false);
 }
 
 void AppearanceConfigurationPage::load()
@@ -47,6 +50,7 @@ void AppearanceConfigurationPage::load()
 void AppearanceConfigurationPage::save()
 {
     mWidget->save();
+    setNeedsSave(false);
 }
 
 void AppearanceConfigurationPage::defaults()

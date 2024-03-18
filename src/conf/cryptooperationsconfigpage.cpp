@@ -36,6 +36,9 @@ CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QObject *pa
     lay->setContentsMargins(0, 0, 0, 0);
     lay->addWidget(mWidget);
     connect(mWidget, &CryptoOperationsConfigWidget::changed, this, &Kleo::Config::CryptoOperationsConfigurationPage::markAsChanged);
+
+    load();
+    setNeedsSave(false);
 }
 
 void CryptoOperationsConfigurationPage::load()
@@ -46,6 +49,7 @@ void CryptoOperationsConfigurationPage::load()
 void CryptoOperationsConfigurationPage::save()
 {
     mWidget->save();
+    setNeedsSave(false);
 }
 
 void CryptoOperationsConfigurationPage::defaults()

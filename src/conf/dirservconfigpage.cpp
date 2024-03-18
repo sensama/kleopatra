@@ -509,6 +509,8 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QObject *
 #endif
     , d{new Private{this}}
 {
+    load();
+    setNeedsSave(false);
 }
 
 DirectoryServicesConfigurationPage::~DirectoryServicesConfigurationPage() = default;
@@ -521,6 +523,7 @@ void DirectoryServicesConfigurationPage::load()
 void DirectoryServicesConfigurationPage::save()
 {
     d->save();
+    setNeedsSave(false);
 }
 
 void DirectoryServicesConfigurationPage::defaults()

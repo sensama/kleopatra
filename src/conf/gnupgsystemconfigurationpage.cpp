@@ -26,7 +26,7 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QObject *parent, cons
 
     QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
 
-    mWidget = new CryptoConfigModule(config, CryptoConfigModule::TabbedLayout, widget());
+    mWidget = new CryptoConfigModule(config, widget());
     lay->addWidget(mWidget);
 
     connect(mWidget, &CryptoConfigModule::changed, this, &Kleo::Config::GnuPGSystemConfigurationPage::markAsChanged);

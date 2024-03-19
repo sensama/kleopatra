@@ -36,7 +36,6 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QObject *parent, cons
     QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
 
     mWidget = new CryptoConfigModule(config,
-                                     CryptoConfigModule::TabbedLayout,
 #if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
                                      this);
 #else

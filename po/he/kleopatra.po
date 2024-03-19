@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-15 00:38+0000\n"
-"PO-Revision-Date: 2024-03-14 15:04+0200\n"
+"PO-Revision-Date: 2024-03-18 09:50+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -149,13 +149,11 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010‏-%1 מפתחי Kleopatra, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
-msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+msgstr "<p>אירעה שגיאה בניסיון להוסיף תת־מפתח חדש אל <b>%1</b>:</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:175
 #, kde-format
@@ -437,10 +435,10 @@ msgid "End of validity period changed successfully."
 msgstr "קובץ רשימת ביטול התעודות יובא בהצלחה."
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "&צור תעודה"
+msgstr "האם ‚%1’ הוא אישור עצמי שלך?"
 
 #: src/commands/changeownertrustcommand.cpp:104
 #: src/commands/importcertificatescommand.cpp:645
@@ -552,66 +550,65 @@ msgstr ""
 "היה: "
 
 #: src/commands/changeownertrustcommand.cpp:264
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid "Certificate '%1' was marked as your certificate."
-msgstr "תעודות"
+msgstr "האישור ‚%1’ סומן בתור אישור שלך."
 
 #: src/commands/changeownertrustcommand.cpp:267
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "שגיאה עם מנהל תעודות"
+msgstr "סמכות הסמכה הוענקה ל־‚%1’."
 
 #: src/commands/changeownertrustcommand.cpp:270
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "&צור תעודה"
+msgstr "סמכות ההסמכה של ‚%1’ נשללה."
 
 #: src/commands/changepassphrasecommand.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to change the passphrase for <b>%1</b>:</"
 "p><p>%2</p>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<p>אירעה שגיאה בניסיון לשנות את מילת הצופן עבור <b>%1</b>:</p><p>%2</p>"
 
 #: src/commands/changepassphrasecommand.cpp:183
-#, fuzzy, kde-format
+#, kde-format
 msgid "Passphrase Change Error"
-msgstr "שגיאה עם מנהל תעודות"
+msgstr "שגיאת החלפת מילת צופן"
 
 #: src/commands/changepassphrasecommand.cpp:188
-#, fuzzy, kde-format
+#, kde-format
 msgid "Passphrase changed successfully."
-msgstr "קובץ רשימת ביטול התעודות יובא בהצלחה."
+msgstr "מילת הצופן הוחלפה בהצלחה."
 
 #: src/commands/changepassphrasecommand.cpp:188
-#, fuzzy, kde-format
+#, kde-format
 msgid "Passphrase Change Succeeded"
-msgstr "מטמון רשימת ביטול..."
+msgstr "החלפת מילת הצופן הצליחה"
 
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
 #: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
-#, fuzzy, kde-format
+#, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
-msgstr "אין אפשרות ליצור את התעודה: %1"
+msgstr "נכשל איתור כרטיס חכם עם המספר הסידורי: %1"
 
 #: src/commands/changepincommand.cpp:147
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
-msgstr "&יצירת תעודה"
+msgstr "החלפת ה־PUK נכשלה: %1"
 
 #: src/commands/changepincommand.cpp:150
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
-msgstr "&יצירת תעודה"
+msgstr "שחרור חסימת ה־PIN נכשלה: %1"
 
 #: src/commands/changepincommand.cpp:153
 #, kde-format
@@ -1168,24 +1165,24 @@ msgstr ""
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "שגיאה עם מנהל תעודות"
+msgstr "אישור ייצוא אישורים"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:120
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "תעודה..."
-msgstr[1] "תעודה..."
-msgstr[2] "תעודה..."
-msgstr[3] "תעודה..."
+msgstr[0] "ייצוא אישור"
+msgstr[1] "ייצוא אישורים"
+msgstr[2] "ייצוא אישורים"
+msgstr[3] "ייצוא אישורים"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
@@ -1350,18 +1347,17 @@ msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "לא ניתן לפתוח את הקובץ <filename>%1</filename> לכתיבה."
 
 #: src/commands/exportgroupscommand.cpp:280
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgid "Writing certificates to file <filename>%1</filename> failed."
-msgstr "אין אפשרות ליצור את התעודה: %1"
+msgstr "כתיבת האישורים לקובץ <filename>%1</filename> נכשלה."
 
 #: src/commands/exportgroupscommand.cpp:288
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
 "message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה במהלך הייצוא:</para><para><message>%1</message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:102
 #, kde-format
@@ -1393,33 +1389,34 @@ msgstr ""
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:154
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export"
-msgstr "שגיאה עם מנהל תעודות"
+msgstr "ייצוא אישור OpenPGP"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:140
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
-msgstr "שגיאה עם מנהל תעודות"
+msgstr "שגיאת ייצוא אישור OpenPGP"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:145
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
-msgstr "&יצירת תעודה"
+msgstr "ייצוא אישור ה־OpenPGP הסתיים"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:151
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The GPG process that tried to export OpenPGP certificates ended "
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
-"התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
-"הצפוי בשל שגיאה לא צפויה."
+"<para>תהליך ה־GPG שניסה לייצא אישורי OpenPGP נקטע לפני הזמן עקב שגיאה לא "
+"ידועה.</para><para>נא לבדוק מה הפלט של <icode>%1</icode> לפרטים נוספים.</"
+"para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:162
 #: src/commands/importcertificatescommand.cpp:627
@@ -1523,15 +1520,16 @@ msgid "Error printing secret key"
 msgstr "שגיאה בהדפסת המפתח הסודי"
 
 #: src/commands/exportpaperkeycommand.cpp:113
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The GPG process that tried to export the secret key ended prematurely "
 "because of an unexpected error.</para><para>Please check the output of "
 "<icode>%1</icode> for details.</para>"
 msgstr ""
-"התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
-"הצפוי בשל שגיאה לא צפויה."
+"<para>תהליך ה־GPG שניסה לייצא את המפתח הסודי נקטע לפני הזמן עקב שגיאה לא "
+"ידועה.</para><para>נא לבדוק מה הפלט של <icode>%1</icode> לפרטים נוספים.</"
+"para>"
 
 #: src/commands/exportpaperkeycommand.cpp:122
 #, kde-kuit-format
@@ -2153,9 +2151,9 @@ msgid "Unable to start process dirmngr. Please check your installation."
 msgstr "לא ניתן להפעיל את התהליך dirmngr. נא לבדוק את תקינות ההתקנה שלך."
 
 #: src/commands/importcrlcommand.cpp:174
-#, fuzzy, kde-format
+#, kde-format
 msgid "Clear CRL Cache Error"
-msgstr "מטמון רשימת ביטול..."
+msgstr "שגיאה בפינוי מטמון רשימת השלילה"
 
 #: src/commands/importcrlcommand.cpp:192
 #, fuzzy, kde-format
@@ -2235,26 +2233,27 @@ msgid "Error importing secret key"
 msgstr "שגיאה בייבוא המפתח הסודי"
 
 #: src/commands/importpaperkeycommand.cpp:202
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The GPG process that tried to restore the secret key ended prematurely "
 "because of an unexpected error.</para><para>Please check the output of "
 "<icode>%1</icode> for details.</para>"
 msgstr ""
-"התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
-"הצפוי בשל שגיאה לא צפויה."
+"<para>תהליך ה־GPG שניסה לשחזר את המפתח הסודי נקטע לפני הזמן עקב שגיאה לא "
+"ידועה.</para><para>נא לבדוק מה הפלט של <icode>%1</icode> לפרטים נוספים.</"
+"para>"
 
 #: src/commands/importpaperkeycommand.cpp:211
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to restore the secret key.</para> "
 "<para>The output from <command>%1</command> was:</para><para><message>%2</"
 "message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה בניסיון לשחזר את המפתח הסודי.</para> <para>הפלט מ־<command>"
+"%1</command> היה:</para><para><message>%2</message></para>"
 
 #: src/commands/keytocardcommand.cpp:59
 #, kde-format
@@ -2871,25 +2870,26 @@ msgid "OpenPGP Certificate Refresh Finished"
 msgstr "רענון אישור OpenPGP הסתיים"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:84
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The GPG process that tried to refresh OpenPGP certificates ended "
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
-"התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
-"הצפוי בשל שגיאה לא צפויה."
+"<para>תהליך ה־GPG שניסה לרענן אישורי OpenPGP נקטע לפני הזמן עקב שגיאה לא "
+"ידועה.</para><para>נא לבדוק מה הפלט של <icode>%1</icode> לפרטים נוספים.</"
+"para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:93
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to refresh OpenPGP certificates.</para> "
 "<para>The output from <command>%1</command> was: <bcode>%2</bcode></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה בניסיון לרענן אישורי OpenPGP.</para> <para>הפלט מ־<command>"
+"%1</command> היה: <bcode>%2</bcode></para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:101
 #, kde-format
@@ -2928,26 +2928,27 @@ msgid "X.509 Certificate Refresh Finished"
 msgstr "רענון אישור X.509 הסתיים"
 
 #: src/commands/refreshx509certscommand.cpp:79
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The GpgSM process that tried to refresh X.509 certificates ended "
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
-"התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
-"הצפוי בשל שגיאה לא צפויה."
+"<para>תהליך ה־GpgSM שניסה לרענן אישורי X.509 נקטע לפני הזמן עקב שגיאה לא "
+"ידועה.</para><para>נא לבדוק מה הפלט של <icode>%1</icode> לפרטים נוספים.</"
+"para>"
 
 #: src/commands/refreshx509certscommand.cpp:88
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to refresh X.509 certificates.</"
 "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
 "para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה בניסיון לרענן אישורי X.509.</para><para>הפלט מ־<command>"
+"%1</command> היה: <bcode>%2</bcode></para>"
 
 #: src/commands/refreshx509certscommand.cpp:96
 #, kde-format
@@ -3028,14 +3029,14 @@ msgid "Confirm Publication"
 msgstr "אישור פרסום"
 
 #: src/commands/revokecertificationcommand.cpp:235
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The revocation of the certification of user ID<nl/>%1<nl/>made with "
 "key<nl/>%2<nl/>failed:</para><para><message>%3</message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>שלילת ההסמכה של מזהה המשתמש<nl/>%1<nl/>שנוצרה עם המפתח<nl/>%2<nl/"
+">נכשלה:</para><para><message>%3</message></para>"
 
 #: src/commands/revokecertificationcommand.cpp:326
 #, kde-format
@@ -3170,15 +3171,15 @@ msgid "PIV Card Application Administration Key set successfully."
 msgstr ""
 
 #: src/commands/setprimaryuseridcommand.cpp:123
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to flag the user ID<nl/><emphasis>%1</"
 "emphasis><nl/>as the primary user ID.</para><para><message>%2</message></"
 "para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה בניסיון לסמן את מזהה המשתמש<nl/><emphasis>%1</emphasis><nl/"
+">כמזהה המשתמש העיקרי.</para><para><message>%2</message></para>"
 
 #: src/commands/setprimaryuseridcommand.cpp:132
 #, kde-kuit-format
@@ -7033,18 +7034,15 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
+#, kde-format
 msgid "Advanced options"
-msgstr "הצגת אפשרויות מתקדמות"
+msgstr "אפשרויות מתקדמות"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Key Updated"
+#, kde-format
 msgctxt "The algorithm and strength of encryption key"
 msgid "Key Material"
-msgstr "המפתח עודכן"
+msgstr "חומר המפתח"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
 #, kde-format

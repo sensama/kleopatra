@@ -462,7 +462,7 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
         return;
     }
 
-    if (keyListing.result.error() && !keyListing.result.error().isCanceled()) {
+    if (keyListing.result.error() && !keyListing.result.error().isCanceled() && (keyListing.result.error().code() != GPG_ERR_NOT_FOUND)) {
         showError(dialog, keyListing.result);
     }
 

@@ -45,6 +45,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
+#include <QProgressDialog>
 #include <QRegularExpression>
 
 #include <algorithm>
@@ -124,6 +125,7 @@ private:
     QString query;
     bool autoStartLookup = false;
     QPointer<LookupCertificatesDialog> dialog;
+    QPointer<QProgressDialog> progress;
     struct KeyListingVariables {
         QPointer<KeyListJob> cms, openpgp;
         QPointer<WKDLookupJob> wkdJob;
@@ -303,6 +305,16 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
             startWKDLookupJob(str);
         }
     }
+
+    const auto jobCount = int(!keyListing.cms.isNull()) + int(!keyListing.openpgp.isNull()) + int(!keyListing.wkdJob.isNull());
+    if (jobCount > 0) {
+        progress = new QProgressDialog{dialog};
+        progress->setAttribute(Qt::WA_DeleteOnClose);
+        progress->setLabelText(i18nc("@info", "Searching for matching certificates ..."));
+        progress->setMaximum(jobCount);
+        progress->setMinimumDuration(0);
+        progress->setValue(0);
+    }
 }
 
 void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, const QString &str)
@@ -457,9 +469,15 @@ void showKeysWithoutFingerprintsNotification(QWidget *parent, GpgME::Protocol pr
 
 void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
 {
+    if (progress) {
+        progress->setValue(progress->value() + 1);
+    }
     if (keyListing.cms || keyListing.openpgp || keyListing.wkdJob) {
         // still waiting for jobs to complete
         return;
+    }
+    if (progress) {
+        progress->setValue(progress->maximum());
     }
 
     if (keyListing.result.error() && !keyListing.result.error().isCanceled() && (keyListing.result.error().code() != GPG_ERR_NOT_FOUND)) {

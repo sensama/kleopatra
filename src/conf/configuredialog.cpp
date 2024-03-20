@@ -92,7 +92,3 @@ void ConfigureDialog::hideEvent(QHideEvent *e)
     geometry.writeEntry("ConfigureDialogHeight", minSize.height());
     KleoPageConfigDialog::hideEvent(e);
 }
-
-ConfigureDialog::~ConfigureDialog()
-{
-}

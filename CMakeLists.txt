@@ -100,7 +100,6 @@ find_package(KF${KF_MAJOR_VERSION} ${KF5_WANT_VERSION}
     I18n
     IconThemes
     ItemModels
-    KCMUtils
     KIO
     WidgetsAddons
     WindowSystem

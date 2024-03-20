@@ -114,11 +114,7 @@ private:
 DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurationPage *q)
 {
     mConfig = QGpgME::cryptoConfig();
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto glay = new QGridLayout(q);
-#else
-    auto glay = new QGridLayout(q->widget());
-#endif
 
     // OpenPGP keyserver
     int row = 0;
@@ -126,11 +122,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         auto l = new QHBoxLayout{};
         l->setContentsMargins(0, 0, 0, 0);
 
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
         mOpenPGPKeyserverEdit.createWidgets(q);
-#else
-        mOpenPGPKeyserverEdit.createWidgets(q->widget());
-#endif
         mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
         if (engineIsVersion(2, 4, 4) //
             || (engineIsVersion(2, 2, 42) && !engineIsVersion(2, 3, 0))) {
@@ -144,45 +136,30 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         l->addWidget(mOpenPGPKeyserverEdit.widget());
 
         glay->addLayout(l, row, 0, 1, 3);
-        connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, q, &DirectoryServicesConfigurationPage::markAsChanged);
+        connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, q, &DirectoryServicesConfigurationPage::changed);
     }
 
     // X.509 servers
     if (Settings{}.cmsEnabled()) {
         ++row;
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
         auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), q};
-#else
-        auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), q->widget()};
-#endif
         groupBox->setFlat(true);
         auto groupBoxLayout = new QVBoxLayout{groupBox};
         groupBoxLayout->setContentsMargins({});
 
         if (gpgme_check_version("1.16.0")) {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
             mDirectoryServices = new Kleo::DirectoryServicesWidget(q);
-#else
-            mDirectoryServices = new Kleo::DirectoryServicesWidget(q->widget());
-#endif
             if (QLayout *l = mDirectoryServices->layout()) {
                 l->setContentsMargins(0, 0, 0, 0);
             }
             groupBoxLayout->addWidget(mDirectoryServices);
-            connect(mDirectoryServices, &DirectoryServicesWidget::changed, q, &DirectoryServicesConfigurationPage::markAsChanged);
+            connect(mDirectoryServices, &DirectoryServicesWidget::changed, q, &DirectoryServicesConfigurationPage::changed);
         } else {
             // QGpgME does not properly support keyserver flags for X.509 keyservers (added in GnuPG 2.2.28);
             // disable the configuration to prevent the configuration from being corrupted
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
             groupBoxLayout->addWidget(new QLabel{i18n("Configuration of directory services is not possible "
                                                       "because the used gpgme libraries are too old."),
                                                  q});
-#else
-            groupBoxLayout->addWidget(new QLabel{i18n("Configuration of directory services is not possible "
-                                                      "because the used gpgme libraries are too old."),
-                                                 q->widget()});
-
-#endif
         }
 
         glay->addWidget(groupBox, row, 0, 1, 3);
@@ -190,31 +167,19 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 
     // LDAP timeout
     ++row;
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     mTimeout.createWidgets(q);
-#else
-    mTimeout.createWidgets(q->widget());
-#endif
     mTimeout.label()->setText(i18n("LDAP &timeout (minutes:seconds):"));
     mTimeout.widget()->setDisplayFormat(QStringLiteral("mm:ss"));
-    connect(mTimeout.widget(), &QTimeEdit::timeChanged, q, &DirectoryServicesConfigurationPage::markAsChanged);
+    connect(mTimeout.widget(), &QTimeEdit::timeChanged, q, &DirectoryServicesConfigurationPage::changed);
     glay->addWidget(mTimeout.label(), row, 0);
     glay->addWidget(mTimeout.widget(), row, 1);
 
     // Max number of items returned by queries
     ++row;
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     mMaxItems.createWidgets(q);
-#else
-    mMaxItems.createWidgets(q->widget());
-#endif
     mMaxItems.label()->setText(i18n("&Maximum number of items returned by query:"));
     mMaxItems.widget()->setMinimum(0);
-#if QT_DEPRECATED_SINCE(5, 14)
-    connect(mMaxItems.widget(), qOverload<int>(&QSpinBox::valueChanged), q, &DirectoryServicesConfigurationPage::markAsChanged);
-#else
-    connect(mMaxItems.widget(), &QSpinBox::valueChanged, q, &DirectoryServicesConfigurationPage::markAsChanged);
-#endif
+    connect(mMaxItems.widget(), qOverload<int>(&QSpinBox::valueChanged), q, &DirectoryServicesConfigurationPage::changed);
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 
@@ -224,7 +189,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     mFetchMissingSignerKeysCB->setToolTip(xi18nc("@info:tooltip",
                                                  "If enabled, then Kleopatra will automatically try to retrieve the keys "
                                                  "that were used to certify the user IDs of newly imported OpenPGP keys."));
-    connect(mFetchMissingSignerKeysCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::markAsChanged);
+    connect(mFetchMissingSignerKeysCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::changed);
     glay->addWidget(mFetchMissingSignerKeysCB, row, 0, 1, 3);
 
     ++row;
@@ -234,7 +199,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
                                                  "By default, Kleopatra only queries the certificate directories of providers (WKD) "
                                                  "for user IDs that were originally retrieved from a WKD when you update an OpenPGP "
                                                  "certificate. If this option is enabled, then Kleopatra will query WKDs for all user IDs."));
-    connect(mQueryWKDsForAllUserIDsCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::markAsChanged);
+    connect(mQueryWKDsForAllUserIDsCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::changed);
     glay->addWidget(mQueryWKDsForAllUserIDsCB, row, 0, 1, 3);
 
     glay->setRowStretch(++row, 1);
@@ -465,52 +430,30 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(cons
     CryptoConfigEntry *const entry = Kleo::getCryptoConfigEntry(mConfig, componentName, entryName);
     if (!entry) {
         if (showError == DoShowError) {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
             KMessageBox::error(
                 q,
                 i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
-#else
-            KMessageBox::error(
-                q->widget(),
-                i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
-#endif
         }
         return nullptr;
     }
     if (entry->argType() != argType || entry->isList() != bool(multiplicity)) {
         if (showError == DoShowError) {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
             KMessageBox::error(q,
                                i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4",
                                     QLatin1String(componentName),
                                     QLatin1String(entryName),
                                     entry->argType(),
                                     entry->isList()));
-#else
-            KMessageBox::error(q->widget(),
-                               i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4",
-                                    QLatin1String(componentName),
-                                    QLatin1String(entryName),
-                                    entry->argType(),
-                                    entry->isList()));
-#endif
         }
         return nullptr;
     }
     return entry;
 }
 
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *parent, const QVariantList &args)
-    : KCModule{parent, args}
-#else
-DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
-#endif
+DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *parent)
+    : KleoConfigModule(parent)
     , d{new Private{this}}
 {
-    load();
-    setNeedsSave(false);
 }
 
 DirectoryServicesConfigurationPage::~DirectoryServicesConfigurationPage() = default;
@@ -523,7 +466,6 @@ void DirectoryServicesConfigurationPage::load()
 void DirectoryServicesConfigurationPage::save()
 {
     d->save();
-    setNeedsSave(false);
 }
 
 void DirectoryServicesConfigurationPage::defaults()

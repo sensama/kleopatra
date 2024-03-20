@@ -14,7 +14,14 @@
 #include <QList>
 
 class KPageWidgetItem;
-class KCModule;
+
+namespace Kleo
+{
+namespace Config
+{
+class KleoConfigModule;
+}
+}
 
 /**
  * KPageDialog based config dialog to be used when
@@ -25,7 +32,7 @@ class KleoPageConfigDialog : public KPageDialog
 public:
     explicit KleoPageConfigDialog(QWidget *parent = nullptr);
 
-    void addModule(const QString &name, const QString &docPath, const QString &icon, KCModule *module);
+    void addModule(const QString &name, const QString &docPath, const QString &icon, Kleo::Config::KleoConfigModule *module);
 
 Q_SIGNALS:
     void configCommitted();
@@ -43,7 +50,7 @@ private:
     void clientChanged();
     void apply();
 
-    QList<KCModule *> mModules;
-    QList<KCModule *> mChangedModules;
+    QList<Kleo::Config::KleoConfigModule *> mModules;
+    QList<Kleo::Config::KleoConfigModule *> mChangedModules;
     QMap<QString, QString> mHelpUrls;
 };

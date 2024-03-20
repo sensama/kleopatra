@@ -47,7 +47,6 @@ public:
     bool isPassive() const;
     void setSearchText(const QString &text);
     QString searchText() const;
-    void showInformation(const QString &message);
 
 Q_SIGNALS:
     void searchTextChanged(const QString &text);

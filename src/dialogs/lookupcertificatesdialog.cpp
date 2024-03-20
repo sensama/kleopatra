@@ -19,7 +19,6 @@
 
 #include <KConfigGroup>
 #include <KLocalizedString>
-#include <KMessageWidget>
 #include <KSeparator>
 #include <KSharedConfig>
 
@@ -117,7 +116,6 @@ private:
         QPushButton *deselectAllPB;
         QPushButton *detailsPB;
         QPushButton *saveAsPB;
-        KMessageWidget *messageWidget;
         QDialogButtonBox *buttonBox;
 
         void setupUi(QDialog *dialog)
@@ -175,12 +173,6 @@ private:
             buttonLayout->addWidget(saveAsPB);
 
             gridLayout->addLayout(buttonLayout, row, 2, 1, 1);
-
-            row++;
-            messageWidget = new KMessageWidget{dialog};
-            messageWidget->setMessageType(KMessageWidget::Information);
-            messageWidget->setVisible(false);
-            gridLayout->addWidget(messageWidget, row, 0, 1, 3);
 
             verticalLayout->addLayout(gridLayout);
 
@@ -370,16 +362,6 @@ void LookupCertificatesDialog::setSearchText(const QString &text)
 QString LookupCertificatesDialog::searchText() const
 {
     return d->ui.findED->text();
-}
-
-void LookupCertificatesDialog::showInformation(const QString &message)
-{
-    d->ui.messageWidget->setText(message);
-    if (message.isEmpty()) {
-        d->ui.messageWidget->animatedHide();
-    } else {
-        d->ui.messageWidget->animatedShow();
-    }
 }
 
 void LookupCertificatesDialog::accept()

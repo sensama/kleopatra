@@ -141,6 +141,7 @@ void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &f
     mTmpDirCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("DontUseTmpDir")));
     mSymmetricOnlyCB->setChecked(filePrefs.symmetricEncryptionOnly());
     mSymmetricOnlyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("SymmetricEncryptionOnly")));
+    mTreatP7mEmailCB->setChecked(classifyConfig.p7mWithoutExtensionAreEmail());
     mTreatP7mEmailCB->setEnabled(!classifyConfig.isP7mWithoutExtensionAreEmailImmutable());
 
     const auto defaultChecksumDefinitionId = settings.checksumDefinitionId();

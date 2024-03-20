@@ -7,8 +7,11 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 #pragma once
-#include <KCModule>
-#include <kcmutils_version.h>
+
+#include "kleoconfigmodule.h"
+
+#include <QWidget>
+
 namespace Kleo
 {
 namespace Config
@@ -16,11 +19,11 @@ namespace Config
 
 class SMimeValidationConfigurationWidget;
 
-class SMimeValidationConfigurationPage : public KCModule
+class SMimeValidationConfigurationPage : public KleoConfigModule
 {
     Q_OBJECT
 public:
-    explicit SMimeValidationConfigurationPage(QObject *parent, const KPluginMetaData &data = {});
+    explicit SMimeValidationConfigurationPage(QWidget *parent);
 
     void load() override;
     void save() override;

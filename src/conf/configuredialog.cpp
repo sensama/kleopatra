@@ -93,8 +93,4 @@ void ConfigureDialog::hideEvent(QHideEvent *e)
     KleoPageConfigDialog::hideEvent(e);
 }
 
-ConfigureDialog::~ConfigureDialog()
-{
-}
-
 #include "moc_configuredialog.cpp"

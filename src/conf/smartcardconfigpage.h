@@ -9,9 +9,10 @@
 */
 
 #pragma once
-#include <KCModule>
-#include <kcmutils_version.h>
 
+#include "kleoconfigmodule.h"
+
+#include <QWidget>
 #include <memory>
 
 namespace Kleo
@@ -19,11 +20,11 @@ namespace Kleo
 namespace Config
 {
 
-class SmartCardConfigurationPage : public KCModule
+class SmartCardConfigurationPage : public KleoConfigModule
 {
     Q_OBJECT
 public:
-    explicit SmartCardConfigurationPage(QObject *parent, const KPluginMetaData &data = {});
+    explicit SmartCardConfigurationPage(QWidget *parent);
     ~SmartCardConfigurationPage() override;
 
     void load() override;

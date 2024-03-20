@@ -18,17 +18,14 @@
 using namespace Kleo;
 using namespace Kleo::Config;
 
-CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QObject *parent, const KPluginMetaData &data)
-    : KCModule(parent, data)
+CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QWidget *parent)
+    : KleoConfigModule(parent)
 {
-    auto lay = new QVBoxLayout(widget());
-    mWidget = new CryptoOperationsConfigWidget(widget());
+    auto lay = new QVBoxLayout(this);
+    mWidget = new CryptoOperationsConfigWidget(this);
     lay->setContentsMargins(0, 0, 0, 0);
     lay->addWidget(mWidget);
-    connect(mWidget, &CryptoOperationsConfigWidget::changed, this, &Kleo::Config::CryptoOperationsConfigurationPage::markAsChanged);
-
-    load();
-    setNeedsSave(false);
+    connect(mWidget, &CryptoOperationsConfigWidget::changed, this, &Kleo::Config::CryptoOperationsConfigurationPage::changed);
 }
 
 void CryptoOperationsConfigurationPage::load()
@@ -39,7 +36,6 @@ void CryptoOperationsConfigurationPage::load()
 void CryptoOperationsConfigurationPage::save()
 {
     mWidget->save();
-    setNeedsSave(false);
 }
 
 void CryptoOperationsConfigurationPage::defaults()

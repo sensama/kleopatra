@@ -18,18 +18,15 @@
 using namespace Kleo;
 using namespace Kleo::Config;
 
-AppearanceConfigurationPage::AppearanceConfigurationPage(QObject *parent, const KPluginMetaData &data)
-    : KCModule(parent, data)
+AppearanceConfigurationPage::AppearanceConfigurationPage(QWidget *parent)
+    : KleoConfigModule(parent)
 {
-    auto lay = new QVBoxLayout(widget());
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins({});
-    mWidget = new AppearanceConfigWidget(widget());
+    mWidget = new AppearanceConfigWidget(this);
     lay->addWidget(mWidget);
 
-    connect(mWidget, &AppearanceConfigWidget::changed, this, &Kleo::Config::AppearanceConfigurationPage::markAsChanged);
-
-    load();
-    setNeedsSave(false);
+    connect(mWidget, &AppearanceConfigWidget::changed, this, &Kleo::Config::AppearanceConfigurationPage::changed);
 }
 
 void AppearanceConfigurationPage::load()
@@ -40,7 +37,6 @@ void AppearanceConfigurationPage::load()
 void AppearanceConfigurationPage::save()
 {
     mWidget->save();
-    setNeedsSave(false);
 }
 
 void AppearanceConfigurationPage::defaults()

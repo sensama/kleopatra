@@ -88,7 +88,6 @@ find_package(KF6 ${KF6_WANT_VERSION}
     I18n
     IconThemes
     ItemModels
-    KCMUtils
     KIO
     WidgetsAddons
     WindowSystem

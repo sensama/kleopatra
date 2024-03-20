@@ -18,21 +18,18 @@
 
 using namespace Kleo::Config;
 
-GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QObject *parent, const KPluginMetaData &data)
-    : KCModule(parent, data)
+GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent)
+    : KleoConfigModule(parent)
 {
-    auto lay = new QVBoxLayout(widget());
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
     QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
 
-    mWidget = new CryptoConfigModule(config, widget());
+    mWidget = new CryptoConfigModule(config, this);
     lay->addWidget(mWidget);
 
-    connect(mWidget, &CryptoConfigModule::changed, this, &Kleo::Config::GnuPGSystemConfigurationPage::markAsChanged);
-
-    load();
-    setNeedsSave(false);
+    connect(mWidget, &CryptoConfigModule::changed, this, &Kleo::Config::GnuPGSystemConfigurationPage::changed);
 }
 
 GnuPGSystemConfigurationPage::~GnuPGSystemConfigurationPage()
@@ -51,13 +48,6 @@ void GnuPGSystemConfigurationPage::load()
 void GnuPGSystemConfigurationPage::save()
 {
     mWidget->save();
-    setNeedsSave(false);
-#if 0
-    // Tell other apps (e.g. kmail) that the gpgconf data might have changed
-    QDBusMessage message =
-        QDBusMessage::createSignal(QString(), "org.kde.kleo.CryptoConfig", "changed");
-    QDBusConnection::sessionBus().send(message);
-#endif
 }
 
 void GnuPGSystemConfigurationPage::defaults()

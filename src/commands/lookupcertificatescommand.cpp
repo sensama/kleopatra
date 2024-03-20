@@ -283,7 +283,6 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     if (dialog) { // thus test
         dialog->setPassive(true);
         dialog->setCertificates(std::vector<Key>());
-        dialog->showInformation({});
     }
 
     keyListing.reset();
@@ -499,10 +498,7 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
         dialog->setPassive(false);
         dialog->setCertificates(keyListing.keys);
         if (keyListing.numKeysWithoutUserId > 0) {
-            dialog->showInformation(i18ncp("@info",
-                                           "One certificate without name and email address was ignored.",
-                                           "%1 certificates without name and email address were ignored.",
-                                           keyListing.numKeysWithoutUserId));
+            qCDebug(KLEOPATRA_LOG) << keyListing.numKeysWithoutUserId << "certificates without user IDs were ignored";
         }
     } else {
         finished();

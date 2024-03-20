@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-03-15 17:48+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -2668,7 +2668,15 @@ msgstr ""
 "<para>Не вдалося скопіювати ключ на картку:</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Посвідчуємо сертифікати…"
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2683,7 +2691,7 @@ msgstr ""
 "ідентифікаторами сертифікатів.</para><para>Можливо, вам варто вказати іншу "
 "службу каталогів X.509 у діалоговому вікні налаштувань програми.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2697,13 +2705,13 @@ msgstr ""
 "ідентифікаторами сертифікатів.</para><para>Можливо, вам варто вказати інший "
 "сервер ключів OpenPGP у діалоговому вікні налаштувань програми.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Некоректна відповідь сервера"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2717,14 +2725,14 @@ msgstr[2] ""
 msgstr[3] ""
 "Один сертифікат без імені та адреси електронної пошти було проігноровано."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Сервер сертифікатів %1"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2734,7 +2742,7 @@ msgstr ""
 "Невдала спроба пошуку на сервері сертифікатів. Повернуто дані про помилку:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2751,13 +2759,13 @@ msgstr ""
 "серверів встановлено коефіцієнт обмеження, вам слід все ж надати більше "
 "відомостей для пошуку.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Список результатів обрізано"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2771,7 +2779,7 @@ msgstr ""
 "para><para>Налаштувати сервери каталогів можна за допомогою пункту меню "
 "<interface>Параметри->Налаштувати Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3986,12 +3994,16 @@ msgstr[1] "Вилучити групи"
 msgstr[2] "Вилучити групи"
 msgstr[3] "Вилучити групу"
 
-#: src/conf/groupsconfigwidget.cpp:471
-#, kde-format
+#: src/conf/groupsconfigwidget.cpp:472
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The group contains keys that cannot be used for encryption. This may lead "
+#| "to unexpected results."
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "У групі містяться ключі, якими не можна скористатися для шифрування. Це може "
 "призвести до неочікуваних результатів."

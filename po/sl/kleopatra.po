@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-03-15 05:29+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -2652,7 +2652,15 @@ msgstr ""
 "<para>Kopiranje ključa na kartico ni uspelo.</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Potrjevanje potrdil …"
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2667,7 +2675,7 @@ msgstr ""
 "edinstveni določilniki za potrdila.</para><para>Morda želite postaviti drugo "
 "storitev imenika X.509 v pogovornem oknu nastavitev.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2681,13 +2689,13 @@ msgstr ""
 "določilniki za potrdila.</para><para>Morda želite postaviti drugega "
 "strežnika ključev OpenPGP v pogovornem oknu nastavitev.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Neveljaven odgovor strežnika"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2697,14 +2705,14 @@ msgstr[1] "%1 potrdilo brez imena in e-poštnega naslova je bilo prezrto."
 msgstr[2] "%1 potrdili brez imena in e-poštnega naslova sta bili prezrti."
 msgstr[3] "%1 potrdila brez imena in e-poštnega naslova so bila prezrta."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 strežnik za potrdila"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2714,7 +2722,7 @@ msgstr ""
 "Iskanje potrdil na strežniku ni uspelo. Vrnjena napaka je bila:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2730,13 +2738,13 @@ msgstr ""
 "če pa je omejitev na strani strežnika, boste morali prilagoditi svoje "
 "iskanje.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Rezultat je skrajšan"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2750,7 +2758,7 @@ msgstr ""
 "iskalo.</para><para>Imeniške strežnike lahko nastavite v "
 "<interface>Nastavitve → Nastavi Kleopatro</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3950,12 +3958,16 @@ msgstr[1] "Izbriši skupino"
 msgstr[2] "Izbriši skupini"
 msgstr[3] "Izbriši skupine"
 
-#: src/conf/groupsconfigwidget.cpp:471
-#, kde-format
+#: src/conf/groupsconfigwidget.cpp:472
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The group contains keys that cannot be used for encryption. This may lead "
+#| "to unexpected results."
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "Grupa vsebuje ključe, ki jih ni mogoče uporabiti za šifriranje. To lahko "
 "vodi do nepričakovanih rezultatov."

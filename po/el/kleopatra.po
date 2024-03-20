@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -2735,7 +2735,14 @@ msgstr ""
 "<para>Η αποθήκευση του κλειδιού στην κάρτα απέτυχε:</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgid "Certify Certificate..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Πιστοποίηση πιστοποιητικού..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2751,7 +2758,7 @@ msgstr ""
 "πιστοποιητικά.</para><para>Μπορεί να θέλετε να ρυθμίσετε μια νέα υπηρεσία "
 "καταλόγου X.509 στο παράθυρο των ρυθμίσεων.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2766,13 +2773,13 @@ msgstr ""
 "para><para>Μπορεί να θέλετε να ρυθμίσετε ένα διαφορετικό διακομιστή κλειδιών "
 "OpenPGP στο παράθυρο των ρυθμίσεων.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Μη έγκυρη απόκριση από τον εξυπηρετητή"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2780,14 +2787,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "Ένα πιστοποιητικό χωρίς όνομα και διεύθυνση email αγνοήθηκε."
 msgstr[1] "%1 πιστοποιητικά χωρίς όνομα και διεύθυνση email αγνοήθηκαν."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 εξυπηρετητής πιστοποιητικών"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2798,7 +2805,7 @@ msgstr ""
 "ήταν:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2814,13 +2821,13 @@ msgstr ""
 "διαμόρφωσης, αλλά αν ο περιορισμός οφείλεται σε έναν από τους διαμορφωμένους "
 "εξυπηρετητές θα πρέπει να τελειοποιήσετε την αναζήτησή σας.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Κοπή αποτελέσματος"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2834,7 +2841,7 @@ msgstr ""
 "αναζήτηση.</para><para>Μπορείτε να διαμορφώσετε εξυπηρετητές καταλόγου εδώ: "
 "<interface>Ρυθμίσεις->Διαμόρφωση Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -4021,7 +4028,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Διαγραφή"
 msgstr[1] "Διαγραφή"
 
-#: src/conf/groupsconfigwidget.cpp:471
+#: src/conf/groupsconfigwidget.cpp:472
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4029,8 +4036,8 @@ msgstr[1] "Διαγραφή"
 #| "emphasis> ?</para>"
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "<para>Θέλετε πραγματικά να ανακαλέσετε το αναγνωριστικό χρήστη<nl/><emphasis>"
 "%1</emphasis>;</para>"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-03-09 22:11+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -2644,7 +2644,15 @@ msgstr ""
 "<para>Копирането на ключа върху картата е неуспешно:</para><para><message>"
 "%1</message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Сертифициране на сертификат..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2659,7 +2667,7 @@ msgstr ""
 "уникални идентификатори за сертификати.</para><para> Вие може да изберете "
 "друга услуга за X.509 директория в прозореца за конфигурация.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2674,13 +2682,13 @@ msgstr ""
 "различен OpenPGP ключов сървър от диалоговия прозорец за конфигуриране.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Невалиден сървър на отговор"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2688,14 +2696,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "Едно удостоверение без име и имейл адрес е бил пренебрегнат."
 msgstr[1] "%1 сертификати без име и имейл адрес бяха игнорирани."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 сървър за сертифициране"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2705,7 +2713,7 @@ msgstr ""
 "Неуспешно търсене на сървър за сертификати. Върнатата грешка беше: \n"
 " %1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2721,13 +2729,13 @@ msgstr ""
 "прозорец, но ако един от конфигурираните сървъри е ограничителният фактор, "
 "вие трябва да прецизирате търсенето си. </para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Прекратен резултат"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2741,7 +2749,7 @@ msgstr ""
 "para><para> Вие може да конфигурирате сървъри на директории тук: <interface> "
 "Настройки-> Конфигуриране на Клеопатра </interface>. </para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3936,12 +3944,16 @@ msgid_plural "Delete Groups"
 msgstr[0] "Изтриване на група"
 msgstr[1] "Изтриване на групи"
 
-#: src/conf/groupsconfigwidget.cpp:471
-#, kde-format
+#: src/conf/groupsconfigwidget.cpp:472
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The group contains keys that cannot be used for encryption. This may lead "
+#| "to unexpected results."
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "Групата съдържа сертификати, които не могат да се използват за криптиране. "
 "Това може да доведе до неочаквани резултати."

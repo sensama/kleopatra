@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2553,7 +2553,15 @@ msgid ""
 msgstr ""
 "<para>키를 카드에 복사할 수 없음:</para><para><message>%1</message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "인증서 인증 중..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2568,7 +2576,7 @@ msgstr ""
 "para><para>설정 대화 상자에서 다른 X.509 디렉터리 서비스를 지정해 볼 수도 있"
 "습니다.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2581,27 +2589,27 @@ msgstr ""
 "별자로 지문을 사용하기 때문에 해당 인증서는 무시되었습니다.</para><para>설정 "
 "대화 상자에서 다른 OpenPGP 키 서버를 지정해 볼 수도 있습니다.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "잘못된 서버 응답"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
 msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "인증서 %1개는 이름과 이메일 주소가 없어서 무시되었습니다."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 인증서 서버"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2611,7 +2619,7 @@ msgstr ""
 "인증서를 서버에서 검색할 수 없습니다. 반환된 오류:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2626,13 +2634,13 @@ msgstr ""
 "수 있으나, 설정된 서버에서 제한을 지정했다면 다른 방법으로 검색해야 합니다.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "결과 잘림"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2645,7 +2653,7 @@ msgstr ""
 "소 하나는 지정해야 합니다.</para><para>다음에서 디렉터리 서버를 설정할 수 있"
 "습니다: <interface>설정->Kleopatra 설정</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3777,12 +3785,16 @@ msgid "Delete Group"
 msgid_plural "Delete Groups"
 msgstr[0] "그룹 삭제"
 
-#: src/conf/groupsconfigwidget.cpp:471
-#, kde-format
+#: src/conf/groupsconfigwidget.cpp:472
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The group contains keys that cannot be used for encryption. This may lead "
+#| "to unexpected results."
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "그룹에 암호화에 사용할 수 없는 키가 포함되어 있습니다. 예상하지 못한 결과를 "
 "가져올 수 있습니다."

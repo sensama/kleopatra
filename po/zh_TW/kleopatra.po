@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-03-08 23:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -2544,7 +2544,15 @@ msgid ""
 msgstr ""
 "<para>複製金鑰到卡片上時失敗：</para><para><message>%1</message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "正在保證憑證 ..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2558,7 +2566,7 @@ msgstr ""
 "紋才能明確分辨憑證。</para><para>您可能會希望去設定對話框裡設定一個不同的 "
 "X.509 目錄服務。</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2571,27 +2579,27 @@ msgstr ""
 "才能明確分辨憑證。</para><para>您可能會希望去設定對話框裡設定一個不同的 "
 "OpenPGP 金鑰伺服器。</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "無效的伺服器回覆"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
 msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "已忽略 %1 個沒有名稱和電子郵件地址的憑證。"
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 憑證伺服器"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2601,7 +2609,7 @@ msgstr ""
 "在憑證伺服器上搜尋失敗。傳回的錯誤為：\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2615,13 +2623,13 @@ msgstr ""
 "限。</para> <para>您可以試著調高本地端的上限值，但若限制是在遠端，您就需要再"
 "縮小查詢條件範圍。</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "結果被截斷"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2634,7 +2642,7 @@ msgstr ""
 "做搜尋。</para> <para>您可以在此設定目錄伺服器：<interface>「設定」─「設定 "
 "Kleopatra」</interface>。</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3737,7 +3745,7 @@ msgid "Delete Group"
 msgid_plural "Delete Groups"
 msgstr[0] "刪除群組"
 
-#: src/conf/groupsconfigwidget.cpp:471
+#: src/conf/groupsconfigwidget.cpp:472
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3745,8 +3753,8 @@ msgstr[0] "刪除群組"
 #| "emphasis> ?</para>"
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "<para>您確定要撤銷這個使用者 ID 嗎？<nl/><emphasis>%1</emphasis></para>"
 

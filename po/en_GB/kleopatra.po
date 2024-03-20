@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2023-06-17 12:16+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -2681,7 +2681,14 @@ msgstr ""
 "<para>Copying the key to the card failed:</para><para><message>%1</message></"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgid "Certify Certificate..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Certify Certificate..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2697,7 +2704,7 @@ msgstr ""
 "configure a different X.509 directory service in the configuration dialog.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2711,13 +2718,13 @@ msgstr ""
 "identifiers for certificates.</para><para>You may want to configure a "
 "different OpenPGP keyserver in the configuration dialog.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Invalid Server Reply"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2725,14 +2732,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "One certificate without name and email address was ignored."
 msgstr[1] "%1 certificates without name and email address were ignored."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 Certificate Server"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2742,7 +2749,7 @@ msgstr ""
 "Failed to search on certificate server. The error returned was:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2758,13 +2765,13 @@ msgstr ""
 "dialogue, but if one of the configured servers is the limiting factor, you "
 "have to refine your search.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Result Truncated"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2778,7 +2785,7 @@ msgstr ""
 "can configure directory servers here: <interface>Settings->Configure "
 "Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3939,7 +3946,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Delete"
 msgstr[1] "Delete"
 
-#: src/conf/groupsconfigwidget.cpp:471
+#: src/conf/groupsconfigwidget.cpp:472
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3947,8 +3954,8 @@ msgstr[1] "Delete"
 #| "emphasis> ?</para>"
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?"
 "</para>"

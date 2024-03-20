@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-01-31 17:47+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -2626,7 +2626,15 @@ msgstr ""
 "<para>Avaimen kopiointi kortille epäonnistui.</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Varmennetaan varmenteita…"
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2641,7 +2649,7 @@ msgstr ""
 "varmenteen ainutkertaiseksi tunnisteeksi.</para><para>Saatat haluta asettaa "
 "asetusikkunassa toisen X.509-hakemistopalvelun.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2655,13 +2663,13 @@ msgstr ""
 "ainutkertaiseksi tunnisteeksi.</para><para>Saatat haluta asettaa "
 "asetusikkunassa toisen OpenPGP-avainpalvelimen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Virheellinen vastaus palvelimelta"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2669,14 +2677,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "Sivuutettiin yksi nimetön ja sähköpostiosoitteeton varmenne."
 msgstr[1] "Sivuutettiin %1 nimetöntä ja sähköpostiosoitteetonta varmennetta."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1-varmennepalvelin"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2686,7 +2694,7 @@ msgstr ""
 "Haku varmennepalvelimesta epäonnistui. Palautettu virhe oli:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2701,13 +2709,13 @@ msgstr ""
 "voi asetusikkunassa yrittää nostaa, mutta jos rajoitus tulee joltakin "
 "määritetyltä palvelimelta, hakua on vain tarkennettava.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Hakutulos katkaistu"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2721,7 +2729,7 @@ msgstr ""
 "määrittää täällä: <interface>Asetukset → Kleopatran asetukset</interface>.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3888,7 +3896,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Poista ryhmä"
 msgstr[1] "Poista ryhmät"
 
-#: src/conf/groupsconfigwidget.cpp:471
+#: src/conf/groupsconfigwidget.cpp:472
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3896,8 +3904,8 @@ msgstr[1] "Poista ryhmät"
 #| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "<para>Haluatko varmasti poistaa tämän ryhmän?</para><para><emphasis>%1</"
 "emphasis></para><para>Poistamisen jälkeen sitä ei voi palauttaa.</para>"

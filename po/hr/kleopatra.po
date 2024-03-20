@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2004-04-20 13:24+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -2467,7 +2467,13 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Potvrde"
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2478,7 +2484,7 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2488,13 +2494,13 @@ msgid ""
 "different OpenPGP keyserver in the configuration dialog.</para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2503,14 +2509,14 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, fuzzy, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Potvrde"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2518,7 +2524,7 @@ msgid ""
 "%1"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2529,13 +2535,13 @@ msgid ""
 "have to refine your search.</para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2545,7 +2551,7 @@ msgid ""
 "Kleopatra</interface>.</para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3642,13 +3648,13 @@ msgstr[0] "&Detalji"
 msgstr[1] "&Detalji"
 msgstr[2] "&Detalji"
 
-#: src/conf/groupsconfigwidget.cpp:471
-#, kde-format
+#: src/conf/groupsconfigwidget.cpp:472
+#, fuzzy, kde-format
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
-msgstr ""
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
+msgstr "Uklonite certifikat"
 
 #: src/conf/kleopageconfigdialog.cpp:84
 #, kde-format

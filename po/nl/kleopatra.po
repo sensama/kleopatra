@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-03-15 12:39+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -2658,7 +2658,15 @@ msgstr ""
 "<para>Kopiëren van de sleutel naar de card is mislukt:</para><para><message>"
 "%1</message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Certificaten worden gecertificeerd..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2674,7 +2682,7 @@ msgstr ""
 "andere X.509 directory-service kunnen configureren in de configuratiedialoog."
 "</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2689,13 +2697,13 @@ msgstr ""
 "andere OpenPGP keyserver kunnen configureren in de configuratiedialoog.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Ongeldig antwoord uit de server"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2703,14 +2711,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "Eén certificaat zonder naam en e-mailadres is genegeerd."
 msgstr[1] "%1 certificaten zonder naam en e-mailadres zijn genegeerd."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Server voor %1 certificaten"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2720,7 +2728,7 @@ msgstr ""
 "Zoeken op server voor certificaten is mislukt. De ontvangen fout was:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2736,13 +2744,13 @@ msgstr ""
 "vergroten, maar als één van de geconfigureerde servers de limiterende factor "
 "is, dan moet u de zoekopdracht verfijnen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Resultaat is afgekapt"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2755,7 +2763,7 @@ msgstr ""
 "om te kunnen zoeken.</para><para>U kunt hier: <interface>Instellingen-"
 ">Kleopatra instellen</interface> een mapserver instellen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3948,12 +3956,16 @@ msgid_plural "Delete Groups"
 msgstr[0] "Groep verwijderen"
 msgstr[1] "Verwijderen"
 
-#: src/conf/groupsconfigwidget.cpp:471
-#, kde-format
+#: src/conf/groupsconfigwidget.cpp:472
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The group contains keys that cannot be used for encryption. This may lead "
+#| "to unexpected results."
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "De groep bevat sleutels die niet gebruikt kunnen worden voor versleuteling. "
 "Dit kan leiden tot onverwachte resultaten."

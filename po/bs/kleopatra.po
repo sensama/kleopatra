@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -2868,7 +2868,14 @@ msgstr ""
 "<para>Greška se desila pri učitavanju certifikata: <message>%1</message></"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgid "Certify Certificate..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Validiraj certifikate..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2879,7 +2886,7 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2889,13 +2896,13 @@ msgid ""
 "different OpenPGP keyserver in the configuration dialog.</para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2904,8 +2911,8 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, fuzzy, kde-format
 #| msgctxt "@title %1:\"OpenPGP\" or \"CMS\""
 #| msgid "%1 Certificate Server"
@@ -2913,7 +2920,7 @@ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 certifikacijski Server"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2923,7 +2930,7 @@ msgstr ""
 "Nije uspjela potraga na certifikacijskom serveru. Greška je vraćena:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2939,13 +2946,13 @@ msgstr ""
 "ako jedan od konfigurisanih  servera ograničavajući faktor, morate da "
 "precizirate svoju pretragu.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Rezultat odsječen"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2959,7 +2966,7 @@ msgstr ""
 "para><para>Imeničke serevere možete ovdje konfigurisati: <interface>Postavke-"
 ">Konfiguriši Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -4214,7 +4221,7 @@ msgstr[0] "Obriši"
 msgstr[1] "Obriši"
 msgstr[2] "Obriši"
 
-#: src/conf/groupsconfigwidget.cpp:471
+#: src/conf/groupsconfigwidget.cpp:472
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4222,8 +4229,8 @@ msgstr[2] "Obriši"
 #| "message></para>"
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "<para>Greška se desila pri pokušaju dodavanja user-id: <message>%1</"
 "message></para>"

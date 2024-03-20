@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -2792,7 +2792,14 @@ msgid ""
 "para>"
 msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgid "Certify Certificate..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "ផ្ទៀងផ្ទាត់​វិញ្ញាបនបត្រ..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2803,7 +2810,7 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2813,21 +2820,21 @@ msgid ""
 "different OpenPGP keyserver in the configuration dialog.</para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
 msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] ""
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, fuzzy, kde-format
 #| msgctxt "@title %1:\"OpenPGP\" or \"CMS\""
 #| msgid "%1 Certificate Server"
@@ -2835,7 +2842,7 @@ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 ម៉ាស៊ីនបម្រើវិញ្ញាបនបត្រ​"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2845,7 +2852,7 @@ msgstr ""
 "បាន​បរាជ័យ​ក្នុង​ការ​ស្វែងរក​ម៉ាស៊ីន​បម្រើ​​​វិញ្ញាបនបត្រ​ ។ កំហុស​ដែល​បាន​ត្រឡប់​គឺ ៖\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2860,13 +2867,13 @@ msgstr ""
 "ប្រអប់​កំណត់​រចនាសម្ព័ន្ធ​ ប៉ុន្តែ​​ម៉ាស៊ីន​បម្រើ​មួយ​ក្នុង​ចំណោម​ម៉ាស៊ីន​ដែល​បានកំណត់​រចនាសម្ព័ន្ធ​​កំពុង​កំណត់​ដែន​កំណត់​កត្តា "
 "អ្នក​ត្រូវ​តែ​ធ្វើ​ឲ្យកា​រស្វែងរ​ក​​ស្រស់ ។</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "បានកាត់​លទ្ធផល​ឲ្យ​ខ្លី"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2879,7 +2886,7 @@ msgstr ""
 "យ៉ាងយោចណាស់​ម៉ាស៊ីន​បម្រើ​ថត​មួយ ដើម្បី​ស្វែងរក​វា ។</para><para>អ្នក​អាច​កំណត់​រចនាសម្ព័ន្ធ​ម៉ាស៊ីន​បម្រើ​ថត​"
 "នៅ​ទីនេះ ៖ <interface>ការ​កំណត់->កំណត់​រចនាសម្ព័ន្ធ Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -4102,7 +4109,7 @@ msgid "Delete Group"
 msgid_plural "Delete Groups"
 msgstr[0] "លុប"
 
-#: src/conf/groupsconfigwidget.cpp:471
+#: src/conf/groupsconfigwidget.cpp:472
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4110,8 +4117,8 @@ msgstr[0] "លុប"
 #| "message></para>"
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "<para>កំហុស​មួយ​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​បន្ថែម​លេខ​សម្គាល់​​​អ្នក​ប្រើ ៖ <message>%1</message></"
 "para>"

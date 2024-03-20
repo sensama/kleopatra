@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-03-08 19:30+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -2645,7 +2645,15 @@ msgstr ""
 "<para>Gakoa txartelera kopiatzea huts egin du:</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Ziurtagiriak ziurtatzen..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2661,7 +2669,7 @@ msgstr ""
 "para><para>Baliteke konfiguratzeko elkarrizketa-koadroan X.509 direktorio "
 "zerbitzu ezberdin bat konfiguratu nahi izatea.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2676,13 +2684,13 @@ msgstr ""
 "konfiguratzeko elkarrizketa-koadroan X.509 direktorio zerbitzu ezberdin bat "
 "konfiguratu nahi izatea.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Zerbitzariaren erantzun baliogabea"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2690,14 +2698,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "Izenik eta e-postarik gabeko ziurtagiri bati ezikusi egin zaio."
 msgstr[1] "Izenik eta e-postarik gabeko %1 ziurtagiriri ezikusi egin zaie."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 ziurtagiri-zerbitzaria"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2707,7 +2715,7 @@ msgstr ""
 "Ziurtagiri-zerbitzarian bilatzea huts egin du. Itzulitako errorea:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2723,13 +2731,13 @@ msgstr ""
 "saia zaitezke, baina faktore mugatzailea konfiguratutako zerbitzarietako bat "
 "bada, zure bilaketa birdefinitu beharko duzu.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Emaitza moztuta"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2743,7 +2751,7 @@ msgstr ""
 "</para><para>Direktorio zerbitzariak hemen konfigura ditzakezu: "
 "<interface>Ezarpenak->Konfiguratu Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3927,12 +3935,16 @@ msgid_plural "Delete Groups"
 msgstr[0] "Ezabatu taldea"
 msgstr[1] "Ezabatu"
 
-#: src/conf/groupsconfigwidget.cpp:471
-#, kde-format
+#: src/conf/groupsconfigwidget.cpp:472
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The group contains keys that cannot be used for encryption. This may lead "
+#| "to unexpected results."
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "Taldeak zifratzeko erabili ezin diren ziurtagiriak ditu. Horrek ustekabeko "
 "emaitzak ekar ditzake."

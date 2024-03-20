@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-15 00:38+0000\n"
+"POT-Creation-Date: 2024-03-20 00:38+0000\n"
 "PO-Revision-Date: 2024-02-02 13:13+0100\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -2710,7 +2710,15 @@ msgstr ""
 "<para>Kopieren des Schlüssels auf Karte fehlgeschlagen:</para><para><message>"
 "%1</message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:441
+#: src/commands/lookupcertificatescommand.cpp:313
+#, fuzzy, kde-format
+#| msgctxt "@info:progress"
+#| msgid "Certifying certificates ..."
+msgctxt "@info"
+msgid "Searching for matching certificates ..."
+msgstr "Zertifikate werden beglaubigt ..."
+
+#: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2726,7 +2734,7 @@ msgstr ""
 "können einen anderen X.509-Verzeichnisdienst im Einrichtungsdialog "
 "konfigurieren.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:448
+#: src/commands/lookupcertificatescommand.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2741,13 +2749,13 @@ msgstr ""
 "können einen anderen OpenPGP-Schlüsselserver im Einrichtungsdialog "
 "konfigurieren.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:454
+#: src/commands/lookupcertificatescommand.cpp:466
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Ungültige Serverantwort"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
@@ -2755,14 +2763,14 @@ msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "Ein Zertifikat ohne Namen und E-Mail-Adresse wurde ignoriert."
 msgstr[1] "%1 Zertifikate ohne Namen und E-Mail-Adresse wurden ignoriert."
 
-#: src/commands/lookupcertificatescommand.cpp:523
-#: src/commands/lookupcertificatescommand.cpp:526
+#: src/commands/lookupcertificatescommand.cpp:541
+#: src/commands/lookupcertificatescommand.cpp:544
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 Zertifikatserver"
 
-#: src/commands/lookupcertificatescommand.cpp:559
+#: src/commands/lookupcertificatescommand.cpp:577
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2772,7 +2780,7 @@ msgstr ""
 "Suche auf Zertifikatserver fehlgeschlagen. Die Fehlermeldung lautet:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:567
+#: src/commands/lookupcertificatescommand.cpp:585
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2789,13 +2797,13 @@ msgstr ""
 "bei einem der eingestellten Server, müssen Sie Ihre Suche stärker eingrenzen."
 "</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:575
+#: src/commands/lookupcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Ergebnis gekürzt"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:603
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2810,7 +2818,7 @@ msgstr ""
 "Sie unter <interface>Einstellungen → Kleopatra einrichten ...</interface> "
 "vornehmen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:590
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -4008,7 +4016,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Gruppe Löschen"
 msgstr[1] "Löschen"
 
-#: src/conf/groupsconfigwidget.cpp:471
+#: src/conf/groupsconfigwidget.cpp:472
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4016,8 +4024,8 @@ msgstr[1] "Löschen"
 #| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgctxt "@info"
 msgid ""
-"The group contains keys that cannot be used for encryption. This may lead to "
-"unexpected results."
+"The group contains certificates that cannot be used for encryption. This may "
+"lead to unexpected results."
 msgstr ""
 "<para>Wollen Sie die Benutzerkennung<nl/><emphasis>%1</emphasis><nl/"
 ">wirklich widerrufen?</para>"

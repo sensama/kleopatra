@@ -120,6 +120,9 @@ private:
         }
     }
 
+    void cancelLookup();
+    void cancelJob(QPointer<Job> &job);
+
 private:
     GpgME::Protocol protocol = GpgME::UnknownProtocol;
     QString query;
@@ -127,8 +130,9 @@ private:
     QPointer<LookupCertificatesDialog> dialog;
     QPointer<QProgressDialog> progress;
     struct KeyListingVariables {
-        QPointer<KeyListJob> cms, openpgp;
-        QPointer<WKDLookupJob> wkdJob;
+        QPointer<Job> cms;
+        QPointer<Job> openpgp;
+        QPointer<Job> wkdJob;
         QString pattern;
         KeyListResult result;
         std::vector<Key> keys;
@@ -313,6 +317,9 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
         progress->setMaximum(jobCount);
         progress->setMinimumDuration(0);
         progress->setValue(0);
+        connect(progress, &QProgressDialog::canceled, q, [this]() {
+            cancelLookup();
+        });
     }
 }
 
@@ -363,7 +370,9 @@ void LookupCertificatesCommand::Private::startWKDLookupJob(const QString &str)
 
 void LookupCertificatesCommand::Private::slotNextKey(const Key &key)
 {
-    if (!key.primaryFingerprint()) {
+    if (key.isNull()) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring null key";
+    } else if (!key.primaryFingerprint()) {
         qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring key without fingerprint" << key;
         if (q->sender() == keyListing.cms) {
             keyListing.cmsKeysHaveNoFingerprints = true;
@@ -553,6 +562,28 @@ void LookupCertificatesCommand::Private::slotDetailsRequested(const Key &key)
     Command *const cmd = new DetailsCommand(key);
     cmd->setParentWidget(dialogOrParentWidgetOrView());
     cmd->start();
+}
+
+void LookupCertificatesCommand::Private::cancelLookup()
+{
+    cancelJob(keyListing.cms);
+    cancelJob(keyListing.openpgp);
+    cancelJob(keyListing.wkdJob);
+
+    if (dialog) {
+        dialog->setPassive(false);
+    } else {
+        finished();
+    }
+}
+
+void LookupCertificatesCommand::Private::cancelJob(QPointer<Job> &job)
+{
+    if (job) {
+        disconnect(job.data(), nullptr, q, nullptr);
+        job->slotCancel();
+        job.clear();
+    }
 }
 
 void LookupCertificatesCommand::doCancel()

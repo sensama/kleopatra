@@ -7,8 +7,11 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 #pragma once
-#include <KCModule>
-#include <kcmutils_version.h>
+
+#include "kleoconfigmodule.h"
+
+#include <QWidget>
+
 namespace Kleo
 {
 class CryptoConfigModule;
@@ -19,11 +22,11 @@ namespace Kleo
 namespace Config
 {
 
-class GnuPGSystemConfigurationPage : public KCModule
+class GnuPGSystemConfigurationPage : public KleoConfigModule
 {
     Q_OBJECT
 public:
-    explicit GnuPGSystemConfigurationPage(QObject *parent, const KPluginMetaData &data = {});
+    explicit GnuPGSystemConfigurationPage(QWidget *parent);
     ~GnuPGSystemConfigurationPage() override;
 
     void load() override;

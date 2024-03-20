@@ -113,7 +113,7 @@ private:
 DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurationPage *q)
 {
     mConfig = QGpgME::cryptoConfig();
-    auto glay = new QGridLayout(q->widget());
+    auto glay = new QGridLayout(q);
 
     // OpenPGP keyserver
     int row = 0;
@@ -121,36 +121,36 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         auto l = new QHBoxLayout{};
         l->setContentsMargins(0, 0, 0, 0);
 
-        mOpenPGPKeyserverEdit.createWidgets(q->widget());
+        mOpenPGPKeyserverEdit.createWidgets(q);
         mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
         l->addWidget(mOpenPGPKeyserverEdit.label());
         l->addWidget(mOpenPGPKeyserverEdit.widget());
 
         glay->addLayout(l, row, 0, 1, 3);
-        connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, q, &DirectoryServicesConfigurationPage::markAsChanged);
+        connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, q, &DirectoryServicesConfigurationPage::changed);
     }
 
     // X.509 servers
     if (Settings{}.cmsEnabled()) {
         ++row;
-        auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), q->widget()};
+        auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), q};
         groupBox->setFlat(true);
         auto groupBoxLayout = new QVBoxLayout{groupBox};
         groupBoxLayout->setContentsMargins({});
 
         if (gpgme_check_version("1.16.0")) {
-            mDirectoryServices = new Kleo::DirectoryServicesWidget(q->widget());
+            mDirectoryServices = new Kleo::DirectoryServicesWidget(q);
             if (QLayout *l = mDirectoryServices->layout()) {
                 l->setContentsMargins(0, 0, 0, 0);
             }
             groupBoxLayout->addWidget(mDirectoryServices);
-            connect(mDirectoryServices, &DirectoryServicesWidget::changed, q, &DirectoryServicesConfigurationPage::markAsChanged);
+            connect(mDirectoryServices, &DirectoryServicesWidget::changed, q, &DirectoryServicesConfigurationPage::changed);
         } else {
             // QGpgME does not properly support keyserver flags for X.509 keyservers (added in GnuPG 2.2.28);
             // disable the configuration to prevent the configuration from being corrupted
             groupBoxLayout->addWidget(new QLabel{i18n("Configuration of directory services is not possible "
                                                       "because the used gpgme libraries are too old."),
-                                                 q->widget()});
+                                                 q});
         }
 
         glay->addWidget(groupBox, row, 0, 1, 3);
@@ -158,39 +158,39 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 
     // LDAP timeout
     ++row;
-    mTimeout.createWidgets(q->widget());
+    mTimeout.createWidgets(q);
     mTimeout.label()->setText(i18n("LDAP &timeout (minutes:seconds):"));
     mTimeout.widget()->setDisplayFormat(QStringLiteral("mm:ss"));
-    connect(mTimeout.widget(), &QTimeEdit::timeChanged, q, &DirectoryServicesConfigurationPage::markAsChanged);
+    connect(mTimeout.widget(), &QTimeEdit::timeChanged, q, &DirectoryServicesConfigurationPage::changed);
     glay->addWidget(mTimeout.label(), row, 0);
     glay->addWidget(mTimeout.widget(), row, 1);
 
     // Max number of items returned by queries
     ++row;
-    mMaxItems.createWidgets(q->widget());
+    mMaxItems.createWidgets(q);
     mMaxItems.label()->setText(i18n("&Maximum number of items returned by query:"));
     mMaxItems.widget()->setMinimum(0);
-    connect(mMaxItems.widget(), &QSpinBox::valueChanged, q, &DirectoryServicesConfigurationPage::markAsChanged);
+    connect(mMaxItems.widget(), &QSpinBox::valueChanged, q, &DirectoryServicesConfigurationPage::changed);
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 
     ++row;
-    mFetchMissingSignerKeysCB = new QCheckBox{q->widget()};
+    mFetchMissingSignerKeysCB = new QCheckBox{q};
     mFetchMissingSignerKeysCB->setText(i18nc("@option:check", "Retrieve missing certification keys when importing new keys"));
     mFetchMissingSignerKeysCB->setToolTip(xi18nc("@info:tooltip",
                                                  "If enabled, then Kleopatra will automatically try to retrieve the keys "
                                                  "that were used to certify the user IDs of newly imported OpenPGP keys."));
-    connect(mFetchMissingSignerKeysCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::markAsChanged);
+    connect(mFetchMissingSignerKeysCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::changed);
     glay->addWidget(mFetchMissingSignerKeysCB, row, 0, 1, 3);
 
     ++row;
-    mQueryWKDsForAllUserIDsCB = new QCheckBox{q->widget()};
+    mQueryWKDsForAllUserIDsCB = new QCheckBox{q};
     mQueryWKDsForAllUserIDsCB->setText(i18nc("@option:check", "Query certificate directories of providers for all user IDs"));
     mQueryWKDsForAllUserIDsCB->setToolTip(xi18nc("@info:tooltip",
                                                  "By default, Kleopatra only queries the certificate directories of providers (WKD) "
                                                  "for user IDs that were originally retrieved from a WKD when you update an OpenPGP "
                                                  "certificate. If this option is enabled, then Kleopatra will query WKDs for all user IDs."));
-    connect(mQueryWKDsForAllUserIDsCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::markAsChanged);
+    connect(mQueryWKDsForAllUserIDsCB, &QCheckBox::toggled, q, &DirectoryServicesConfigurationPage::changed);
     glay->addWidget(mQueryWKDsForAllUserIDsCB, row, 0, 1, 3);
 
     glay->setRowStretch(++row, 1);
@@ -420,14 +420,14 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(cons
     if (!entry) {
         if (showError == DoShowError) {
             KMessageBox::error(
-                q->widget(),
+                q,
                 i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
         }
         return nullptr;
     }
     if (entry->argType() != argType || entry->isList() != bool(multiplicity)) {
         if (showError == DoShowError) {
-            KMessageBox::error(q->widget(),
+            KMessageBox::error(q,
                                i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4",
                                     QLatin1String(componentName),
                                     QLatin1String(entryName),
@@ -439,12 +439,10 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(cons
     return entry;
 }
 
-DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QObject *parent, const KPluginMetaData &data)
-    : KCModule(parent, data)
+DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *parent)
+    : KleoConfigModule(parent)
     , d{new Private{this}}
 {
-    load();
-    setNeedsSave(false);
 }
 
 DirectoryServicesConfigurationPage::~DirectoryServicesConfigurationPage() = default;
@@ -457,7 +455,6 @@ void DirectoryServicesConfigurationPage::load()
 void DirectoryServicesConfigurationPage::save()
 {
     d->save();
-    setNeedsSave(false);
 }
 
 void DirectoryServicesConfigurationPage::defaults()

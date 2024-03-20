@@ -22,20 +22,21 @@
 
 #include "kleopageconfigdialog.h"
 
+#include "kleoconfigmodule.h"
 
 #include <QDesktopServices>
 #include <QDialogButtonBox>
 #include <QProcess>
 #include <QPushButton>
-#include <QStandardPaths>
 #include <QUrl>
 
-#include <KCModule>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KStandardGuiItem>
 
 #include "kleopatra_debug.h"
+
+using namespace Kleo::Config;
 
 KleoPageConfigDialog::KleoPageConfigDialog(QWidget *parent)
     : KPageDialog(parent)
@@ -77,7 +78,7 @@ void KleoPageConfigDialog::slotCurrentPageChanged(KPageWidgetItem *current, KPag
     blockSignals(true);
     setCurrentPage(previous);
 
-    KCModule *previousModule = qobject_cast<KCModule *>(previous->widget());
+    auto previousModule = qobject_cast<KleoConfigModule *>(previous->widget());
     bool canceled = false;
     if (previousModule && mChangedModules.contains(previousModule)) {
         const int queryUser = KMessageBox::warningTwoActionsCancel(this,
@@ -107,7 +108,7 @@ void KleoPageConfigDialog::apply()
 {
     QPushButton *applyButton = buttonBox()->button(QDialogButtonBox::Apply);
     applyButton->setFocus();
-    for (KCModule *module : mChangedModules) {
+    for (const auto &module : mChangedModules) {
         module->save();
     }
     mChangedModules.clear();
@@ -122,7 +123,7 @@ void KleoPageConfigDialog::slotDefaultClicked()
         return;
     }
 
-    KCModule *module = qobject_cast<KCModule *>(item->widget());
+    auto module = qobject_cast<KleoConfigModule *>(item->widget());
     if (!module) {
         return;
     }
@@ -137,7 +138,7 @@ void KleoPageConfigDialog::slotUser1Clicked()
         return;
     }
 
-    KCModule *module = qobject_cast<KCModule *>(item->widget());
+    auto module = qobject_cast<KleoConfigModule *>(item->widget());
     if (!module) {
         return;
     }
@@ -180,24 +181,22 @@ void KleoPageConfigDialog::slotHelpClicked()
     }
 }
 
-void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath, const QString &icon, KCModule *module)
+void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath, const QString &icon, KleoConfigModule *module)
 {
     mModules << module;
-    KPageWidgetItem *item = addPage(module->widget(), name);
+    module->load();
+    auto item = addPage(module, name);
     item->setIcon(QIcon::fromTheme(icon));
-    connect(module, &KCModule::needsSaveChanged, this, [this, module]() {
-        moduleChanged(module->needsSave());
-    });
-    if (module->needsSave()) {
+    connect(module, &KleoConfigModule::changed, this, [this, module]() {
+        moduleChanged(true);
         mChangedModules.append(module);
-    }
-
+    });
     mHelpUrls.insert(name, docPath);
 }
 
 void KleoPageConfigDialog::moduleChanged(bool state)
 {
-    KCModule *module = qobject_cast<KCModule *>(sender());
+    auto module = qobject_cast<KleoConfigModule *>(sender());
     qCDebug(KLEOPATRA_LOG) << "Module changed: " << state << " mod " << module;
     if (mChangedModules.contains(module)) {
         if (!state) {
@@ -218,7 +217,7 @@ void KleoPageConfigDialog::clientChanged()
     if (!item) {
         return;
     }
-    KCModule *module = qobject_cast<KCModule *>(sender());
+    auto module = qobject_cast<KleoConfigModule *>(currentPage()->widget());
 
     if (!module) {
         return;

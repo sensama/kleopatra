@@ -40,7 +40,7 @@ public:
 };
 
 SmartCardConfigurationPage::Private::Private(SmartCardConfigurationPage *qq)
-    : mReaderPort{new ReaderPortSelection{qq->widget()}}
+    : mReaderPort{new ReaderPortSelection{qq}}
 {
 }
 
@@ -53,17 +53,17 @@ CryptoConfigEntry *SmartCardConfigurationPage::Private::readerPortConfigEntry(co
     return Kleo::getCryptoConfigEntry(config, "scdaemon", "reader-port");
 }
 
-SmartCardConfigurationPage::SmartCardConfigurationPage(QObject *parent, const KPluginMetaData &data)
-    : KCModule(parent, data)
+SmartCardConfigurationPage::SmartCardConfigurationPage(QWidget *parent)
+    : KleoConfigModule(parent)
     , d{std::make_unique<Private>(this)}
 {
-    auto mainLayout = new QVBoxLayout{widget()};
+    auto mainLayout = new QVBoxLayout{this};
 
     {
         auto l = new QHBoxLayout{};
         l->setContentsMargins(0, 0, 0, 0);
 
-        auto label = new QLabel{i18n("Smart card reader to use:"), widget()};
+        auto label = new QLabel{i18n("Smart card reader to use:"), this};
         label->setBuddy(d->mReaderPort);
 
         l->addWidget(label);
@@ -71,12 +71,10 @@ SmartCardConfigurationPage::SmartCardConfigurationPage(QObject *parent, const KP
 
         mainLayout->addLayout(l);
 
-        connect(d->mReaderPort, &ReaderPortSelection::valueChanged, this, &SmartCardConfigurationPage::markAsChanged);
+        connect(d->mReaderPort, &ReaderPortSelection::valueChanged, this, &SmartCardConfigurationPage::changed);
     }
 
     mainLayout->addStretch();
-
-    load();
 }
 
 SmartCardConfigurationPage::~SmartCardConfigurationPage() = default;

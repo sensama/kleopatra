@@ -16,19 +16,16 @@
 
 using namespace Kleo::Config;
 
-SMimeValidationConfigurationPage::SMimeValidationConfigurationPage(QObject *parent, const KPluginMetaData &data)
-    : KCModule(parent, data)
+SMimeValidationConfigurationPage::SMimeValidationConfigurationPage(QWidget *parent)
+    : KleoConfigModule(parent)
 {
-    auto lay = new QVBoxLayout(widget());
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
-    mWidget = new SMimeValidationConfigurationWidget(widget());
+    mWidget = new SMimeValidationConfigurationWidget(this);
     lay->addWidget(mWidget);
 
-    connect(mWidget, &SMimeValidationConfigurationWidget::changed, this, &Kleo::Config::SMimeValidationConfigurationPage::markAsChanged);
-
-    load();
-    setNeedsSave(false);
+    connect(mWidget, &SMimeValidationConfigurationWidget::changed, this, &Kleo::Config::SMimeValidationConfigurationPage::changed);
 }
 
 void SMimeValidationConfigurationPage::load()
@@ -39,7 +36,6 @@ void SMimeValidationConfigurationPage::load()
 void SMimeValidationConfigurationPage::save()
 {
     mWidget->save();
-    setNeedsSave(false);
 }
 
 void SMimeValidationConfigurationPage::defaults()

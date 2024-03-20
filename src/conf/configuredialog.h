@@ -16,12 +16,6 @@
 
 #include <config-kleopatra.h>
 
-/**
- * This is a small wrapper class that holds common code between
- * the KCM Config dialog (which is used when KCMUtils are available)
- * and the KleoPageConfigDialog. Which is just a KPageView
- * with the necessary bits of the KCMultiDialog behavior.
- */
 #include "kleopageconfigdialog.h"
 
 class ConfigureDialog : public KleoPageConfigDialog
@@ -29,7 +23,6 @@ class ConfigureDialog : public KleoPageConfigDialog
     Q_OBJECT
 public:
     explicit ConfigureDialog(QWidget *parent = nullptr);
-    ~ConfigureDialog() override;
 
 protected:
     void hideEvent(QHideEvent *) override;

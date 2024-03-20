@@ -8,8 +8,11 @@
 */
 
 #pragma once
-#include <KCModule>
-#include <kcmutils_version.h>
+
+#include <QWidget>
+
+#include "kleoconfigmodule.h"
+
 namespace Kleo
 {
 namespace Config
@@ -20,11 +23,11 @@ class CryptoOperationsConfigWidget;
 /**
  * "Crypto Operations" configuration page for kleopatra's configuration dialog
  */
-class CryptoOperationsConfigurationPage : public KCModule
+class CryptoOperationsConfigurationPage : public KleoConfigModule
 {
     Q_OBJECT
 public:
-    explicit CryptoOperationsConfigurationPage(QObject *parent, const KPluginMetaData &data = {});
+    explicit CryptoOperationsConfigurationPage(QWidget *parent);
 
     void load() override;
     void save() override;

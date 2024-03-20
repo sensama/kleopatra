@@ -38,6 +38,8 @@ set(kcm_kleopatra_PART_SRCS
   labelledwidget.cpp labelledwidget.h
   pluralhandlingspinbox.cpp
   pluralhandlingspinbox.h
+  kleoconfigmodule.cpp
+  kleoconfigmodule.h
   ${kleopatra_BINARY_DIR}/src/kleopatra_debug.cpp
   ${_kcm_kleopatra_libkleopatraclient_extra_SRCS}
 )
@@ -60,10 +62,10 @@ set_property(TARGET kcm_kleopatra_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(kcm_kleopatra_static
   KPim6::Libkleo
+  KF6::ConfigGui
   KF6::I18n
   KF6::IconThemes
   KF6::IconWidgets
-  KF6::KCMUtils
   KF6::WidgetsAddons
   ${_kcm_kleopatra_extra_libs}
   ${_kleopatra_dbusaddons_libs}

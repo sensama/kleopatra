@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-20 00:38+0000\n"
-"PO-Revision-Date: 2024-03-09 22:11+0100\n"
+"POT-Creation-Date: 2024-03-21 00:38+0000\n"
+"PO-Revision-Date: 2024-03-20 13:16+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -2645,12 +2645,10 @@ msgstr ""
 "%1</message></para>"
 
 #: src/commands/lookupcertificatescommand.cpp:313
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Certifying certificates ..."
+#, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
-msgstr "Сертифициране на сертификат..."
+msgstr "Търсене за съвпадащи сертификати..."
 
 #: src/commands/lookupcertificatescommand.cpp:453
 #, kde-kuit-format
@@ -2926,16 +2924,14 @@ msgstr[1] "Допълнително са извлечени %1 нови ключ
 #, kde-format
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
-msgstr ""
+msgstr "Актуализирането е пропуснато, защото няма настроен сървър за ключове."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "Грешка при актуализиране"
+msgstr "Актуализирането е пропуснато"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -2990,6 +2986,8 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
+"<para>Актуализирането е пропуснато, защото няма настроен сървър за ключове.</"
+"para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376
@@ -3945,11 +3943,7 @@ msgstr[0] "Изтриване на група"
 msgstr[1] "Изтриване на групи"
 
 #: src/conf/groupsconfigwidget.cpp:472
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "The group contains keys that cannot be used for encryption. This may lead "
-#| "to unexpected results."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains certificates that cannot be used for encryption. This may "
@@ -3958,7 +3952,7 @@ msgstr ""
 "Групата съдържа сертификати, които не могат да се използват за криптиране. "
 "Това може да доведе до неочаквани резултати."
 
-#: src/conf/kleopageconfigdialog.cpp:84
+#: src/conf/kleopageconfigdialog.cpp:85
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
@@ -3967,7 +3961,7 @@ msgstr ""
 "Настройките на текущия модул са променени.\n"
 "Искате ли да приложите промените или да ги отхвърлите?"
 
-#: src/conf/kleopageconfigdialog.cpp:86
+#: src/conf/kleopageconfigdialog.cpp:87
 #, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
@@ -3978,7 +3972,7 @@ msgstr "Прилагане на настройките"
 msgid "Smart card reader to use:"
 msgstr "Четец на смарт карти, който да използвате:"
 
-#: src/conf/smartcardconfigpage.cpp:92
+#: src/conf/smartcardconfigpage.cpp:90
 #, kde-format
 msgid "Cannot be configured with Kleopatra"
 msgstr "Не може да бъде конфигуриран с Kleopatra"
@@ -7504,15 +7498,12 @@ msgstr ""
 "генерирането на ключа ще ви бъде поискана паролата."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
+#, kde-format
 msgid "Advanced options"
-msgstr "Показване на разширени настройки"
+msgstr "Разширени настройки"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Key Material"
+#, kde-format
 msgctxt "The algorithm and strength of encryption key"
 msgid "Key Material"
 msgstr "Основен материал"

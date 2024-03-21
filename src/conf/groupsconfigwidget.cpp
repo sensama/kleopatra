@@ -139,6 +139,7 @@ public:
         : q(qq)
     {
         auto mainLayout = new QVBoxLayout(q);
+        mainLayout->setContentsMargins({});
 
         auto groupsLayout = new QGridLayout;
         groupsLayout->setContentsMargins(q->style()->pixelMetric(QStyle::PM_LayoutLeftMargin),

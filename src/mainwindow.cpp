@@ -38,6 +38,8 @@
 #include "utils/filedialog.h"
 #include "utils/gui-helper.h"
 #include "utils/qt-cxx20-compat.h"
+#include "utils/userinfo.h"
+
 #include <Libkleo/GnuPG>
 
 #include "dialogs/updatenotification.h"
@@ -200,6 +202,12 @@ public:
 
     void closeAndQuit()
     {
+        if (Kleo::userIsElevated()) {
+            // For users running Kleo with elevated permissions on Windows we
+            // always quit the application to avoid some problems.
+            qApp->quit();
+        }
+
         const QString app = KAboutData::applicationData().displayName();
         const int rc = KMessageBox::questionTwoActionsCancel(q,
                                                              xi18n("<application>%1</application> may be used by other applications as a service.<nl/>"

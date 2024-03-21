@@ -285,6 +285,7 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     // pressing return might trigger both search and dialog destruction (search focused and default key set)
     // On Windows, the dialog is then destroyed before this slot is called
     if (dialog) { // thus test
+        dialog->setOverlayText({});
         dialog->setPassive(true);
         dialog->setCertificates(std::vector<Key>());
     }
@@ -506,6 +507,9 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
     if (dialog) {
         dialog->setPassive(false);
         dialog->setCertificates(keyListing.keys);
+        if (keyListing.keys.size() == 0) {
+            dialog->setOverlayText(i18nc("@info", "No certificates found"));
+        }
         if (keyListing.numKeysWithoutUserId > 0) {
             qCDebug(KLEOPATRA_LOG) << keyListing.numKeysWithoutUserId << "certificates without user IDs were ignored";
         }

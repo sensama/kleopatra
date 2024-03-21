@@ -12,6 +12,7 @@
 #include "lookupcertificatesdialog.h"
 
 #include <view/keytreeview.h>
+#include <view/textoverlay.h>
 
 #include <kleopatra_debug.h>
 
@@ -112,6 +113,7 @@ private:
         QLineEdit *findED;
         QPushButton *findPB;
         Kleo::KeyTreeView *resultTV;
+        TextOverlay *overlay;
         QPushButton *selectAllPB;
         QPushButton *deselectAllPB;
         QPushButton *detailsPB;
@@ -146,6 +148,8 @@ private:
             resultTV = new Kleo::KeyTreeView(dialog);
             resultTV->setEnabled(true);
             resultTV->setMinimumSize(QSize(400, 0));
+            overlay = new TextOverlay{resultTV, dialog};
+            overlay->hide();
             gridLayout->addWidget(resultTV, row, 0, 1, 2);
 
             auto buttonLayout = new QVBoxLayout{};
@@ -364,6 +368,23 @@ QString LookupCertificatesDialog::searchText() const
     return d->ui.findED->text();
 }
 
+void LookupCertificatesDialog::setOverlayText(const QString &text)
+{
+    if (text.isEmpty()) {
+        d->ui.overlay->hideOverlay();
+    } else {
+        d->ui.overlay->setText(text);
+        d->ui.overlay->showOverlay();
+    }
+    d->ui.selectAllPB->setEnabled(text.isEmpty());
+    d->ui.deselectAllPB->setEnabled(text.isEmpty());
+}
+
+QString LookupCertificatesDialog::overlayText() const
+{
+    return d->ui.overlay->text();
+}
+
 void LookupCertificatesDialog::accept()
 {
     Q_ASSERT(!selectedCertificates().empty());
@@ -384,6 +405,8 @@ void LookupCertificatesDialog::Private::enableDisableWidgets()
     if (passive) {
         return;
     }
+
+    q->setOverlayText({});
 
     ui.findPB->setEnabled(ui.findED->hasAcceptableInput());
 

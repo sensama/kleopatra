@@ -48,6 +48,9 @@ public:
     void setSearchText(const QString &text);
     QString searchText() const;
 
+    void setOverlayText(const QString &text);
+    QString overlayText() const;
+
 Q_SIGNALS:
     void searchTextChanged(const QString &text);
     void saveAsRequested(const std::vector<GpgME::Key> &certs);

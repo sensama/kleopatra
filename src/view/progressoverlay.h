@@ -10,17 +10,16 @@
 */
 #pragma once
 
-#include <QWidget>
+#include "overlaywidget.h"
 
 namespace Kleo
 {
-class WaitWidget;
 
 /**
  * @internal
  * Overlay widget to block another widget while an operation is in progress.
  */
-class ProgressOverlay : public QWidget
+class ProgressOverlay : public OverlayWidget
 {
     Q_OBJECT
 public:
@@ -34,21 +33,6 @@ public:
 
     void setText(const QString &text);
     QString text() const;
-
-public Q_SLOTS:
-    void showOverlay();
-    void hideOverlay();
-
-protected:
-    bool eventFilter(QObject *object, QEvent *event) override;
-
-private:
-    void reposition();
-
-private:
-    bool shown = false;
-    QWidget *mBaseWidget = nullptr;
-    WaitWidget *mWaitWidget = nullptr;
 };
 
 } // namespace Kleo

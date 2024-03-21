@@ -496,6 +496,8 @@ set(_kleopatra_SRCS
   view/nullpinwidget.h
   view/openpgpkeycardwidget.cpp
   view/openpgpkeycardwidget.h
+  view/overlaywidget.cpp
+  view/overlaywidget.h
   view/p15cardwidget.cpp
   view/p15cardwidget.h
   view/padwidget.cpp

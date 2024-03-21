@@ -515,6 +515,8 @@ set(_kleopatra_SRCS
   view/smartcardwidget.h
   view/tabwidget.cpp
   view/tabwidget.h
+  view/textoverlay.cpp
+  view/textoverlay.h
   view/urllabel.cpp
   view/urllabel.h
   view/waitwidget.cpp

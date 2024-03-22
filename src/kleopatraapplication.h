@@ -70,9 +70,6 @@ public:
     const MainWindow *mainWindow() const;
     MainWindow *mainWindow();
 
-    const SysTrayIcon *sysTrayIcon() const;
-    SysTrayIcon *sysTrayIcon();
-
     void setIgnoreNewInstance(bool on);
     bool ignoreNewInstance() const;
     void toggleMainWindowVisibility();

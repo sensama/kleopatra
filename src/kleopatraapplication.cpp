@@ -596,18 +596,6 @@ void KleopatraApplication::handleFiles(const QStringList &files, WId parentId)
     }
 }
 
-#ifndef QT_NO_SYSTEMTRAYICON
-const SysTrayIcon *KleopatraApplication::sysTrayIcon() const
-{
-    return d->sysTray;
-}
-
-SysTrayIcon *KleopatraApplication::sysTrayIcon()
-{
-    return d->sysTray;
-}
-#endif
-
 const MainWindow *KleopatraApplication::mainWindow() const
 {
     return d->mainWindow;

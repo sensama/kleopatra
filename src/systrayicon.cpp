@@ -107,7 +107,6 @@ private:
     QAction setInitialPinAction;
 
     QPointer<KAboutApplicationDialog> aboutDialog;
-    QEventLoopLocker eventLoopLocker;
 };
 
 SysTrayIcon::Private::Private(SysTrayIcon *qq)

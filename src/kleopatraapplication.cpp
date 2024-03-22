@@ -27,6 +27,7 @@
 #include <Libkleo/GnuPG>
 #include <utils/kdpipeiodevice.h>
 #include <utils/log.h>
+#include <utils/userinfo.h>
 
 #include <gpgme++/key.h>
 
@@ -338,7 +339,11 @@ void KleopatraApplication::init()
 #ifndef QT_NO_SYSTEMTRAYICON
     d->sysTray->show();
 #endif
-    setQuitOnLastWindowClosed(false);
+    if (!Kleo::userIsElevated()) {
+        // For users running Kleo with elevated permissions on Windows we
+        // always quit the application when the last window is closed.
+        setQuitOnLastWindowClosed(false);
+    }
 
     // Sync config when we are about to quit
     connect(this, &QApplication::aboutToQuit, this, []() {

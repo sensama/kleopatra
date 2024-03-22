@@ -162,7 +162,9 @@ public:
         : q(qq)
         , ignoreNewInstance(true)
         , firstNewInstance(true)
+#ifndef QT_NO_SYSTEMTRAYICON
         , sysTray(nullptr)
+#endif
         , groupConfig{std::make_shared<KeyGroupConfig>(QStringLiteral("kleopatragroupsrc"))}
     {
     }

@@ -89,8 +89,8 @@ public Q_SLOTS:
     void openOrRaiseGroupsConfigDialog(QWidget *parent);
 #ifndef QT_NO_SYSTEMTRAYICON
     void startMonitoringSmartCard();
-    void importCertificatesFromFile(const QStringList &files, GpgME::Protocol proto);
 #endif
+    void importCertificatesFromFile(const QStringList &files, GpgME::Protocol proto);
     void encryptFiles(const QStringList &files, GpgME::Protocol proto);
     void signFiles(const QStringList &files, GpgME::Protocol proto);
     void signEncryptFiles(const QStringList &files, GpgME::Protocol proto);

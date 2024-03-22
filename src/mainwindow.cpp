@@ -826,7 +826,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
     unexportWindow();
-    if (isQuitting || qApp->isSavingSession()) {
+    if (isQuitting || qApp->isSavingSession() || Kleo::userIsElevated()) {
         d->ui.searchTab->tabWidget()->saveViews();
         KConfigGroup grp(KConfigGroup(KSharedConfig::openConfig(), autoSaveGroup()));
         saveMainWindowSettings(grp);

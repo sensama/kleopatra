@@ -339,7 +339,9 @@ void KleopatraApplication::init()
 #endif
 
 #ifndef QT_NO_SYSTEMTRAYICON
-    d->sysTray->show();
+    if (d->sysTray) {
+        d->sysTray->show();
+    }
 #endif
     if (!Kleo::userIsElevated()) {
         // For users running Kleo with elevated permissions on Windows we
@@ -616,7 +618,9 @@ void KleopatraApplication::setMainWindow(MainWindow *mainWindow)
 
     d->mainWindow = mainWindow;
 #ifndef QT_NO_SYSTEMTRAYICON
-    d->sysTray->setMainWindow(mainWindow);
+    if (d->sysTray) {
+        d->sysTray->setMainWindow(mainWindow);
+    }
 #endif
 
     d->connectConfigureDialog();

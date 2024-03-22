@@ -219,7 +219,7 @@ public:
         if (rc == KMessageBox::Cancel) {
             return;
         }
-        isQuitting = true;
+        isQuitting = rc == KMessageBox::ButtonCode::SecondaryAction;
         if (!q->close()) {
             return;
         }

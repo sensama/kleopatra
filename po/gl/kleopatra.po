@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-21 00:38+0000\n"
+"POT-Creation-Date: 2024-03-22 00:38+0000\n"
 "PO-Revision-Date: 2024-03-16 23:37+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -932,13 +932,13 @@ msgstr ""
 "Algún dos certificados seleccionados non poden usarse para cifrar. Non se "
 "engadirán ao grupo."
 
-#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:327
+#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:328
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "Novo grupo"
 
-#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:330
+#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:331
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
@@ -2142,7 +2142,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr "Importou un novo certificado (chave pública)"
 
 #: src/commands/importcertificatescommand.cpp:414
-#: src/conf/groupsconfigwidget.cpp:201
+#: src/conf/groupsconfigwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
@@ -2641,7 +2641,7 @@ msgstr ""
 "<para>Non foi posíbel copiar a chave na tarxeta:</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:313
+#: src/commands/lookupcertificatescommand.cpp:317
 #, fuzzy, kde-format
 #| msgctxt "@info:progress"
 #| msgid "Certifying certificates ..."
@@ -2649,7 +2649,7 @@ msgctxt "@info"
 msgid "Searching for matching certificates ..."
 msgstr "Certificando os certificados…"
 
-#: src/commands/lookupcertificatescommand.cpp:453
+#: src/commands/lookupcertificatescommand.cpp:462
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2664,7 +2664,7 @@ msgstr ""
 "identificadores únicos de certificados.</para><para>Considere configurar "
 "outro servizo de directorio de X.509 no diálogo de configuración.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:460
+#: src/commands/lookupcertificatescommand.cpp:469
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2678,30 +2678,27 @@ msgstr ""
 "únicos de certificados.</para><para>Considere configurar outro servidor de "
 "chaves de OpenPGP no diálogo de configuración.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:466
+#: src/commands/lookupcertificatescommand.cpp:475
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Resposta de servidor non válida"
 
-#: src/commands/lookupcertificatescommand.cpp:503
-#, kde-format
+#: src/commands/lookupcertificatescommand.cpp:511
+#, fuzzy, kde-format
+#| msgid "(no matching certificates found)"
 msgctxt "@info"
-msgid "One certificate without name and email address was ignored."
-msgid_plural "%1 certificates without name and email address were ignored."
-msgstr[0] ""
-"Ignorouse un certificado sen nome nin enderezo de correo electrónico."
-msgstr[1] ""
-"Ignoráronse %1 certificados sen nome nin enderezo de correo electrónico."
+msgid "No certificates found"
+msgstr "(non se atoparon certificados coincidentes)"
 
-#: src/commands/lookupcertificatescommand.cpp:541
-#: src/commands/lookupcertificatescommand.cpp:544
+#: src/commands/lookupcertificatescommand.cpp:550
+#: src/commands/lookupcertificatescommand.cpp:553
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Servidor de certificados %1"
 
-#: src/commands/lookupcertificatescommand.cpp:577
+#: src/commands/lookupcertificatescommand.cpp:608
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2712,7 +2709,7 @@ msgstr ""
 "foi:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:585
+#: src/commands/lookupcertificatescommand.cpp:616
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2728,13 +2725,13 @@ msgstr ""
 "pero se o factor limitador o estabelece a configuración dos servidores ha "
 "ter que redefinir a súa busca.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:593
+#: src/commands/lookupcertificatescommand.cpp:624
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Resultado truncado"
 
-#: src/commands/lookupcertificatescommand.cpp:603
+#: src/commands/lookupcertificatescommand.cpp:634
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2748,7 +2745,7 @@ msgstr ""
 "para><para>Pode configurar servidores de directorio aquí: "
 "<interface>Configuración->Configurar Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:608
+#: src/commands/lookupcertificatescommand.cpp:639
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3834,79 +3831,79 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:155 src/dialogs/editgroupdialog.cpp:175
+#: src/conf/groupsconfigwidget.cpp:156 src/dialogs/editgroupdialog.cpp:175
 #: src/dialogs/editgroupdialog.cpp:235
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
 msgstr "Buscar:"
 
-#: src/conf/groupsconfigwidget.cpp:156 src/conf/groupsconfigwidget.cpp:162
+#: src/conf/groupsconfigwidget.cpp:157 src/conf/groupsconfigwidget.cpp:163
 #, kde-format
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Buscar nos grupos"
 
-#: src/conf/groupsconfigwidget.cpp:157 src/conf/groupsconfigwidget.cpp:163
+#: src/conf/groupsconfigwidget.cpp:158 src/conf/groupsconfigwidget.cpp:164
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "Buscar na lista grupos que coincidan co termo de busca."
 
-#: src/conf/groupsconfigwidget.cpp:164 src/dialogs/editgroupdialog.cpp:184
+#: src/conf/groupsconfigwidget.cpp:165 src/dialogs/editgroupdialog.cpp:184
 #: src/dialogs/editgroupdialog.cpp:244
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "Escriba o termo de busca"
 
-#: src/conf/groupsconfigwidget.cpp:181
+#: src/conf/groupsconfigwidget.cpp:182
 #, kde-format
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "grupos"
 
-#: src/conf/groupsconfigwidget.cpp:190
+#: src/conf/groupsconfigwidget.cpp:191
 #, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Novo"
 
-#: src/conf/groupsconfigwidget.cpp:193 src/view/pgpcardwidget.cpp:185
+#: src/conf/groupsconfigwidget.cpp:194 src/view/pgpcardwidget.cpp:185
 #: src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr "Editar"
 
-#: src/conf/groupsconfigwidget.cpp:197
+#: src/conf/groupsconfigwidget.cpp:198
 #: src/dialogs/deletecertificatesdialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: src/conf/groupsconfigwidget.cpp:202
+#: src/conf/groupsconfigwidget.cpp:203
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
 msgstr ""
 "Iniciar o proceso de certificación para todos os certificados do grupo."
 
-#: src/conf/groupsconfigwidget.cpp:206
+#: src/conf/groupsconfigwidget.cpp:207
 #: src/dialogs/certificatedetailswidget.cpp:358
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Exportar"
 
-#: src/conf/groupsconfigwidget.cpp:367
+#: src/conf/groupsconfigwidget.cpp:368
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Editar o grupo"
 
-#: src/conf/groupsconfigwidget.cpp:398
+#: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3916,7 +3913,7 @@ msgstr ""
 "<para>Seguro que quere eliminar o grupo?</para><para><emphasis>%1</"
 "emphasis></para><para>Unha vez eliminado non pode recuperarse.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:404
+#: src/conf/groupsconfigwidget.cpp:405
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3932,7 +3929,7 @@ msgstr[1] ""
 "<para>Seguro que quere eliminar estes %1 grupos ?</para><para>Unha vez "
 "eliminados non poden recuperarse.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:416
+#: src/conf/groupsconfigwidget.cpp:417
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
@@ -3940,7 +3937,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Eliminar o grupo"
 msgstr[1] "Eliminar"
 
-#: src/conf/groupsconfigwidget.cpp:472
+#: src/conf/groupsconfigwidget.cpp:473
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7369,44 +7366,44 @@ msgstr "Nota: o grupo está definido nos ficheiros de configuración de gpg."
 msgid "Find:"
 msgstr "Atopar:"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:155
+#: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
 msgid "Select All"
 msgstr "Seleccionar todo"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:160
+#: src/dialogs/lookupcertificatesdialog.cpp:162
 #, kde-format
 msgid "Deselect All"
 msgstr "Anular a selección"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:167
+#: src/dialogs/lookupcertificatesdialog.cpp:169
 #, kde-format
 msgid "Details..."
 msgstr "Detalles…"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:172
+#: src/dialogs/lookupcertificatesdialog.cpp:174
 #, kde-format
 msgid "Save As..."
 msgstr "Gardar como…"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:204
+#: src/dialogs/lookupcertificatesdialog.cpp:200
 #, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "Consultar no servidor"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:214
+#: src/dialogs/lookupcertificatesdialog.cpp:210
 #, kde-format
 msgid "Import"
 msgstr "Importar"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:276
+#: src/dialogs/lookupcertificatesdialog.cpp:272
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
 msgstr "Escriba un termo de busca para buscar certificados que coincidan."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:278
+#: src/dialogs/lookupcertificatesdialog.cpp:274
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
@@ -9232,19 +9229,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "Argumentos incorrectos: %1"
 
-#: src/mainwindow.cpp:111
+#: src/mainwindow.cpp:112
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "&Saír de <application>%1</application>"
 
-#: src/mainwindow.cpp:118
+#: src/mainwindow.cpp:119
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Só pe&char a xanela"
 
-#: src/mainwindow.cpp:212
+#: src/mainwindow.cpp:219
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9255,13 +9252,13 @@ msgstr ""
 "<nl/>Quizais sexa mellor pechar esta xanela sen saír de <application>%1</"
 "application>."
 
-#: src/mainwindow.cpp:215
+#: src/mainwindow.cpp:222
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Seguro que quere saír?"
 
-#: src/mainwindow.cpp:302
+#: src/mainwindow.cpp:309
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9270,23 +9267,23 @@ msgstr ""
 "Non foi posíbel iniciar o Visor de Rexistros de GnuPG (kwatchgnupg). Por "
 "favor, comprobe a instalación."
 
-#: src/mainwindow.cpp:304
+#: src/mainwindow.cpp:311
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Erro ao Iniciar KWatchGnuPG"
 
-#: src/mainwindow.cpp:547
+#: src/mainwindow.cpp:554
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Visor de Rexistro de GnuPG"
 
-#: src/mainwindow.cpp:559
+#: src/mainwindow.cpp:566
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Reiniciar os procesos en segundo plano"
 
-#: src/mainwindow.cpp:560
+#: src/mainwindow.cpp:567
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9296,23 +9293,23 @@ msgstr ""
 "Reiniciar os procesos en segundo plano, p. ex. tras facer cambios na "
 "configuración."
 
-#: src/mainwindow.cpp:572
+#: src/mainwindow.cpp:579
 #, kde-format
 msgid "Check for updates"
 msgstr "Comprobar se hai actualizacións"
 
-#: src/mainwindow.cpp:585
+#: src/mainwindow.cpp:592
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certificados"
 
-#: src/mainwindow.cpp:586
+#: src/mainwindow.cpp:593
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Amosar o resumo do certificado"
 
-#: src/mainwindow.cpp:596
+#: src/mainwindow.cpp:603
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9320,49 +9317,49 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Caderno de notas"
 
-#: src/mainwindow.cpp:597
+#: src/mainwindow.cpp:604
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr "Amosar o caderno para cifrar/descifrar e asinar/verificar texto"
 
-#: src/mainwindow.cpp:607
+#: src/mainwindow.cpp:614
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Tarxetas intelixentes"
 
-#: src/mainwindow.cpp:608
+#: src/mainwindow.cpp:615
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Amosar a xestión de tarxetas intelixentes"
 
-#: src/mainwindow.cpp:619
+#: src/mainwindow.cpp:626
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Realizar a proba automática"
 
-#: src/mainwindow.cpp:630
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Configurar os grupos…"
 
-#: src/mainwindow.cpp:642
+#: src/mainwindow.cpp:649
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Grupos"
 
-#: src/mainwindow.cpp:672
+#: src/mainwindow.cpp:679
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Definir o foco na Busca rápida"
 
-#: src/mainwindow.cpp:684
+#: src/mainwindow.cpp:691
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Compendio de Gpg4win (en inglés)"
 
-#: src/mainwindow.cpp:688
+#: src/mainwindow.cpp:695
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9370,48 +9367,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:698
+#: src/mainwindow.cpp:705
 #, kde-format
 msgid "&Quickguide"
 msgstr "&Guía rápida"
 
-#: src/mainwindow.cpp:699
+#: src/mainwindow.cpp:706
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:706
+#: src/mainwindow.cpp:713
 #, kde-format
 msgid "&Password-based encryption"
 msgstr "Cifrado baseado en &contrasinal"
 
-#: src/mainwindow.cpp:707
+#: src/mainwindow.cpp:714
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:713
+#: src/mainwindow.cpp:720
 #, kde-format
 msgid "&Group configuration"
 msgstr "Configuración do &grupo"
 
-#: src/mainwindow.cpp:714
+#: src/mainwindow.cpp:721
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:729
 #, kde-format
 msgid "&Mail encryption in Outlook"
 msgstr "C&ifrado de correo en Outlook"
 
-#: src/mainwindow.cpp:723
+#: src/mainwindow.cpp:730
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9419,71 +9416,71 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:732
+#: src/mainwindow.cpp:739
 #, kde-format
 msgid "&Certification Management"
 msgstr "Xestión de &certificados"
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:740
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:740
+#: src/mainwindow.cpp:747
 #, kde-format
 msgid "&Smartcard setup"
 msgstr "Configuración de tar&xetas intelixentes"
 
-#: src/mainwindow.cpp:741
+#: src/mainwindow.cpp:748
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:754
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "&Liña de ordes de GnuPG"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:763
 #, kde-format
 msgid "Manual for VS-NfD approval (German)"
 msgstr "Manual da aprobación de VS-NfD (alemán)"
 
-#: src/mainwindow.cpp:757
+#: src/mainwindow.cpp:764
 #, kde-format
 msgctxt "Only available in German. Keep German file name for all languages"
 msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
 msgstr "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:771
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "VSA-10573 de SecOps"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:772
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:772
+#: src/mainwindow.cpp:779
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "VSA-10584 de SecOps"
 
-#: src/mainwindow.cpp:773
+#: src/mainwindow.cpp:780
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:799
+#: src/mainwindow.cpp:806
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9492,7 +9489,7 @@ msgstr ""
 "Aínda se está a realizar algunhas operacións no fondo. Terminaranse ao "
 "pechar a xanela. Continuar?"
 
-#: src/mainwindow.cpp:802
+#: src/mainwindow.cpp:809
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tarefas de fondo en execución"
@@ -12626,6 +12623,14 @@ msgid ""
 msgstr ""
 "Importar o certificado dun ficheiro.<nl/>Para importar dun servidor de "
 "chaves público use <interface>Buscar no servidor</interface> no seu lugar."
+
+#~ msgctxt "@info"
+#~ msgid "One certificate without name and email address was ignored."
+#~ msgid_plural "%1 certificates without name and email address were ignored."
+#~ msgstr[0] ""
+#~ "Ignorouse un certificado sen nome nin enderezo de correo electrónico."
+#~ msgstr[1] ""
+#~ "Ignoráronse %1 certificados sen nome nin enderezo de correo electrónico."
 
 #~ msgid ""
 #~ "This setting specifies how many days a new OpenPGP key is valid at least, "

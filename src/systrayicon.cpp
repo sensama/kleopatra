@@ -118,7 +118,6 @@ private:
     QAction learnCertificatesAction;
 
     QPointer<KAboutApplicationDialog> aboutDialog;
-    QEventLoopLocker eventLoopLocker;
 };
 
 SysTrayIcon::Private::Private(SysTrayIcon *qq)

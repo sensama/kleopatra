@@ -14,6 +14,9 @@
 #include <QDataStream>
 #include <QDir>
 
+#include <KLocalizedString>
+#include <KMessageBox>
+
 #include "kleopatra_debug.h"
 #include <windows.h>
 
@@ -27,7 +30,7 @@ class KUniqueService::KUniqueServicePrivate
 private:
     KUniqueService *q_ptr;
     HWND mResponder;
-    HANDLE mCurrentProcess;
+    HANDLE mResponderProc;
 
     const QString getWindowName() const
     {
@@ -70,20 +73,20 @@ private:
             qCDebug(KLEOPATRA_LOG) << "Responder called with invalid data type:" << cds->dwData;
             return;
         }
-        if (mCurrentProcess) {
-            qCDebug(KLEOPATRA_LOG) << "Already serving. Terminating process: " << mCurrentProcess;
+        if (mResponderProc) {
+            qCDebug(KLEOPATRA_LOG) << "Already serving. Terminating process: " << mResponderProc;
             setExitValue(42);
         }
         const QByteArray serialized(static_cast<const char *>(cds->lpData), cds->cbData);
         QDataStream ds(serialized);
         quint32 curProc;
         ds >> curProc;
-        mCurrentProcess = (HANDLE)curProc;
+        mResponderProc = (HANDLE)curProc;
         QString workDir;
         ds >> workDir;
         QStringList args;
         ds >> args;
-        qCDebug(KLEOPATRA_LOG) << "Process handle: " << mCurrentProcess << " requests activate with args " << args;
+        qCDebug(KLEOPATRA_LOG) << "Process handle: " << mResponderProc << " requests activate with args " << args;
         q->emitActivateRequested(args, workDir);
         return;
     }
@@ -91,7 +94,7 @@ private:
     KUniqueServicePrivate(KUniqueService *q)
         : q_ptr(q)
         , mResponder(nullptr)
-        , mCurrentProcess(nullptr)
+        , mResponderProc(nullptr)
     {
         HWND responder = getForeignResponder();
         if (!responder) {
@@ -100,28 +103,38 @@ private:
             return;
         }
         // We are the client
-
         QByteArray serialized;
         QDataStream ds(&serialized, QIODevice::WriteOnly);
-        DWORD targetId = 0;
-        GetWindowThreadProcessId(responder, &targetId);
-        if (!targetId) {
-            qCDebug(KLEOPATRA_LOG) << "No process id of responder window";
+        DWORD responderId = 0;
+        GetWindowThreadProcessId(responder, &responderId);
+        if (!responderId) {
+            qCDebug(KLEOPATRA_LOG) << "No id of responder window";
             return;
-        }
-        HANDLE targetHandle = OpenProcess(PROCESS_DUP_HANDLE, FALSE, targetId);
-        if (!targetHandle) {
-            qCDebug(KLEOPATRA_LOG) << "No target handle. Err: " << GetLastError();
         }
 
         // To allow the other process to terminate the process
         // needs a handle to us with the required access.
-        if (!DuplicateHandle(GetCurrentProcess(), GetCurrentProcess(), targetHandle, &mCurrentProcess, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
-            qCDebug(KLEOPATRA_LOG) << "Failed to duplicate handle";
+        int err = 0;
+        HANDLE responderHandle = OpenProcess(PROCESS_DUP_HANDLE, FALSE, responderId);
+        if (!responderHandle) {
+            qCDebug(KLEOPATRA_LOG) << "Open process returned NULL. Err: " << GetLastError();
+            err = 1;
+        } else if (!DuplicateHandle(GetCurrentProcess(), GetCurrentProcess(), responderHandle, &mResponderProc, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
+            qCDebug(KLEOPATRA_LOG) << "Duplicate Handle failed. Err: " << GetLastError();
+            err = 2;
         }
-        CloseHandle(targetHandle);
+        if (err) {
+            KMessageBox::error(nullptr,
+                               xi18nc("@info",
+                                      "<para><application>Kleopatra</application> seems to be running for you already, but with different privileges.</para>"
+                                      "<para>This usually happens if <application>Kleopatra</application> is accidentally run as Administrator.</para>"
+                                      "<para>Please right click the tray icon of <application>Kleopatra</application> and select 'quit' to try again.</para>"),
+                               xi18nc("@title", "<application>Kleopatra</application> failed to start"));
+            exit(err);
+        }
+        CloseHandle(responderHandle);
 
-        ds << (qint32)mCurrentProcess << QDir::currentPath() << QCoreApplication::arguments();
+        ds << (qint32)mResponderProc << QDir::currentPath() << QCoreApplication::arguments();
         COPYDATASTRUCT cds;
         cds.dwData = MY_DATA_TYPE;
         cds.cbData = serialized.size();
@@ -165,8 +178,8 @@ private:
 
     void setExitValue(int code)
     {
-        TerminateProcess(mCurrentProcess, (unsigned int)code);
-        mCurrentProcess = nullptr;
+        TerminateProcess(mResponderProc, (unsigned int)code);
+        mResponderProc = nullptr;
     }
 };
 

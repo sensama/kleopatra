@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 00:38+0000\n"
-"PO-Revision-Date: 2024-03-20 04:50+0100\n"
+"POT-Creation-Date: 2024-03-23 00:38+0000\n"
+"PO-Revision-Date: 2024-03-22 02:15+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -2652,11 +2652,10 @@ msgid "Invalid Server Reply"
 msgstr "სერვერის არასწორი პასუხი"
 
 #: src/commands/lookupcertificatescommand.cpp:511
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgctxt "@info"
 msgid "No certificates found"
-msgstr "(შესაბამისი სერტიფიკატები აღმოჩენილი არაა)"
+msgstr "სერტიფიკატები აღმოჩენილი არაა"
 
 #: src/commands/lookupcertificatescommand.cpp:550
 #: src/commands/lookupcertificatescommand.cpp:553
@@ -2717,7 +2716,7 @@ msgid "No Directory Servers Configured"
 msgstr "Directory-ის სერვერები მორგებული არაა"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:493
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME სერტიფიკატის ხელმოწერის მოთხოვნების შექმნის უფლება არ გაქვთ."
@@ -8928,47 +8927,47 @@ msgstr "დასამუსავებელი ფაილები"
 msgid "String or Fingerprint for query and search"
 msgstr "სტრიქონი ან ანაბეჭდი მოთხოვნისა და ძებნისთვის"
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:389
 #, kde-format
 msgid "Failed to execute command"
 msgstr "ბრძანების შესრულების შეცდომა"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:431
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "გაურკვეველი პროტოკოლი: --openpgp და --cms"
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "პარამეტრისთვის --search სტრიქონი მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:476
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "პარამეტრისთვის --query ანაბეჭდის არგუმენტი მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:537
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "ბუნდოვანი ბრძანებები \"%1\" და \"%2\""
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:544
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "ბრძანებისთვის \"%1\" ფაილები მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\"-ის წაკითხვა შეუძლებელია"
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "გარე ბმული გახსნა აკრძალულია ადმინისტრაციულად."
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Prohibited"
 msgstr "აკრძალულია"
@@ -10264,43 +10263,43 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr "PIV"
 
-#: src/systrayicon.cpp:116
+#: src/systrayicon.cpp:115
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "&სერტფიკატების მმართველის გახსნა..."
 
-#: src/systrayicon.cpp:118
+#: src/systrayicon.cpp:117
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "<application>%1</application>-ის &მორგება..."
 
-#: src/systrayicon.cpp:121
+#: src/systrayicon.cpp:120
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "<application>%1</application>-ის &შესახებ..."
 
-#: src/systrayicon.cpp:124
+#: src/systrayicon.cpp:123
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "<application>%1</application>-ის გამორთვა"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:126
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "სმარტ ბარათი"
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "ბარათის სტატუსის განახლება"
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:128
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
@@ -11013,6 +11012,25 @@ msgstr "შეყვანის მოწყობილობის გარ�
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
 msgstr "სერტიფიკატები. %1"
+
+#: src/utils/kuniqueservice_win.cpp:129
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> seems to be running for you "
+"already, but with different privileges.</para><para>This usually happens if "
+"<application>Kleopatra</application> is accidentally run as Administrator.</"
+"para><para>Please right click the tray icon of <application>Kleopatra</"
+"application> and select 'quit' to try again.</para>"
+msgstr ""
+
+#: src/utils/kuniqueservice_win.cpp:132
+#, fuzzy, kde-kuit-format
+#| msgctxt "@action:button"
+#| msgid "&Quit <application>%1</application>"
+msgctxt "@title"
+msgid "<application>Kleopatra</application> failed to start"
+msgstr "<application>%1</application>-დან &გასვლა"
 
 #: src/utils/log.cpp:149
 #, kde-format

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 00:38+0000\n"
+"POT-Creation-Date: 2024-03-23 00:38+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -2781,7 +2781,7 @@ msgid "No Directory Servers Configured"
 msgstr "ディレクトリサーバが設定されていません"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:493
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME 証明書署名要求の作成は許されていません。"
@@ -8989,47 +8989,47 @@ msgstr "処理するファイル"
 msgid "String or Fingerprint for query and search"
 msgstr "問い合わせと検索のための文字またはフィンガープリント"
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:389
 #, kde-format
 msgid "Failed to execute command"
 msgstr "コマンド実行に失敗"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:431
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "あいまいなプロトコル: --openpgp または --cms"
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search に対して何の検索文字もありません"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:476
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query に対してフィンガープリント引数が指定されてません"
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:537
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "あいまいなコマンド \"%1\" と \"%2\""
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:544
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "\"%1\"コマンドに対してファイルが指定されてません"
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\" を読めません"
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "外部リンクを開くことは管理として禁止されてます。"
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Prohibited"
 msgstr "禁止されてます"
@@ -10351,43 +10351,43 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr "PIV"
 
-#: src/systrayicon.cpp:116
+#: src/systrayicon.cpp:115
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "証明書マネージャを開く(&O)..."
 
-#: src/systrayicon.cpp:118
+#: src/systrayicon.cpp:117
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "設定 (&C) <application>%1</application>..."
 
-#: src/systrayicon.cpp:121
+#: src/systrayicon.cpp:120
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "このアプリケーションについて (&A) <application>%1</application>..."
 
-#: src/systrayicon.cpp:124
+#: src/systrayicon.cpp:123
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "終了 (&S) <application>%1</application>"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:126
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "スマートカード"
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "カードの状態を更新"
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:128
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
@@ -11092,6 +11092,25 @@ msgstr "入力デバイスがありません"
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
 msgstr "証明書"
+
+#: src/utils/kuniqueservice_win.cpp:129
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> seems to be running for you "
+"already, but with different privileges.</para><para>This usually happens if "
+"<application>Kleopatra</application> is accidentally run as Administrator.</"
+"para><para>Please right click the tray icon of <application>Kleopatra</"
+"application> and select 'quit' to try again.</para>"
+msgstr ""
+
+#: src/utils/kuniqueservice_win.cpp:132
+#, fuzzy, kde-kuit-format
+#| msgctxt "@action:button"
+#| msgid "&Quit <application>%1</application>"
+msgctxt "@title"
+msgid "<application>Kleopatra</application> failed to start"
+msgstr "終了 (&Q) <application>%1</application>"
 
 #: src/utils/log.cpp:149
 #, kde-format

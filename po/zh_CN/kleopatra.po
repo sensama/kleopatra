@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 00:38+0000\n"
+"POT-Creation-Date: 2024-03-23 00:38+0000\n"
 "PO-Revision-Date: 2024-03-17 20:42\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2593,7 +2593,7 @@ msgid "No Directory Servers Configured"
 msgstr "未配置目录服务器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:493
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您无权创建 S/MIME 证书签名请求。"
@@ -8505,47 +8505,47 @@ msgstr "待处理的文件"
 msgid "String or Fingerprint for query and search"
 msgstr "用于查询和搜索的字符串或指纹"
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:389
 #, kde-format
 msgid "Failed to execute command"
 msgstr "执行命令失败"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:431
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "模糊协议：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "没有为 --search 指定搜索字符串"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:476
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "没有为 --query 指定指纹参数"
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:537
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "模糊命令 %1 和 %2"
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:544
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "没有为 %1 命令指定文件"
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "无法读取“%1”"
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "在行政上禁止打开外部链接。"
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Prohibited"
 msgstr "已封禁"
@@ -9799,43 +9799,43 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr "PIV"
 
-#: src/systrayicon.cpp:116
+#: src/systrayicon.cpp:115
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "打开证书管理器(&O)..."
 
-#: src/systrayicon.cpp:118
+#: src/systrayicon.cpp:117
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "配置 <application>%1</application>(&C)..."
 
-#: src/systrayicon.cpp:121
+#: src/systrayicon.cpp:120
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "关于 <application>%1</application>(&A)..."
 
-#: src/systrayicon.cpp:124
+#: src/systrayicon.cpp:123
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "关闭 <application>%1</application>(&S)..."
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:126
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "智能卡"
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "更新卡状态"
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:128
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
@@ -10515,6 +10515,25 @@ msgstr "没有输入设备"
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
 msgstr ""
+
+#: src/utils/kuniqueservice_win.cpp:129
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> seems to be running for you "
+"already, but with different privileges.</para><para>This usually happens if "
+"<application>Kleopatra</application> is accidentally run as Administrator.</"
+"para><para>Please right click the tray icon of <application>Kleopatra</"
+"application> and select 'quit' to try again.</para>"
+msgstr ""
+
+#: src/utils/kuniqueservice_win.cpp:132
+#, fuzzy, kde-kuit-format
+#| msgctxt "@action:button"
+#| msgid "&Quit <application>%1</application>"
+msgctxt "@title"
+msgid "<application>Kleopatra</application> failed to start"
+msgstr "退出 <application>%1</application>(&Q)"
 
 #: src/utils/log.cpp:149
 #, kde-format

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 00:38+0000\n"
+"POT-Creation-Date: 2024-03-23 00:38+0000\n"
 "PO-Revision-Date: 2005-03-16 02:05-0800\n"
 "Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
 "Language-Team:  <ta@li.org>\n"
@@ -2879,7 +2879,7 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:493
 #, fuzzy, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "&விசை ஜோடி மற்றும் சான்றிதழ் வேண்டுகோளை உருவாக்கு"
@@ -9114,7 +9114,7 @@ msgstr ""
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:389
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -9124,43 +9124,43 @@ msgstr ""
 "ஜிபிஜிஎசெமை செயலாக்க முடியவில்லை\n"
 "%1"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:431
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:476
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:537
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:544
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:558
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot read \"%1\""
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -10442,45 +10442,45 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr ""
 
-#: src/systrayicon.cpp:116
+#: src/systrayicon.cpp:115
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "சான்றிதழ் மேலாளர் பிழை"
 
-#: src/systrayicon.cpp:118
+#: src/systrayicon.cpp:117
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr ""
 
-#: src/systrayicon.cpp:121
+#: src/systrayicon.cpp:120
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr ""
 
-#: src/systrayicon.cpp:124
+#: src/systrayicon.cpp:123
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr ""
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:126
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "சிஆர்எல் கோப்பினை தேர்ந்தெடு"
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr ""
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:128
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
 msgctxt "@action:inmenu"
@@ -11161,6 +11161,23 @@ msgstr ""
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
 msgstr "&சான்றிதழ்கள்"
+
+#: src/utils/kuniqueservice_win.cpp:129
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> seems to be running for you "
+"already, but with different privileges.</para><para>This usually happens if "
+"<application>Kleopatra</application> is accidentally run as Administrator.</"
+"para><para>Please right click the tray icon of <application>Kleopatra</"
+"application> and select 'quit' to try again.</para>"
+msgstr ""
+
+#: src/utils/kuniqueservice_win.cpp:132
+#, kde-kuit-format
+msgctxt "@title"
+msgid "<application>Kleopatra</application> failed to start"
+msgstr ""
 
 #: src/utils/log.cpp:149
 #, fuzzy, kde-format

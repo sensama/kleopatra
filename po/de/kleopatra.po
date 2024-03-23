@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 00:38+0000\n"
+"POT-Creation-Date: 2024-03-23 00:38+0000\n"
 "PO-Revision-Date: 2024-02-02 13:13+0100\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -161,24 +161,18 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 Die Kleopatra-Entwickler, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p>Beim Versuch, das Passwort für <b>%1</b> zu ändern, ist ein Fehler "
-"aufgetreten:</p><p>%2</p>"
+"<p>Beim Versuch, zu <b>%1</b>einen neuen Unterschlüssel hinzuzufügen, ist "
+"ein Fehler aufgetreten:</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "Unterschlüssel erfolgreich exportiert."
+msgstr "Unterschlüssel erfolgreich hinzugefügt."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -940,26 +934,22 @@ msgid "Error Saving Request"
 msgstr "Fehler beim Speichern der Anfrage"
 
 #: src/commands/creategroupcommand.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "Dieses Zertifikat kann nicht zum Verschlüsseln verwendet werden."
+msgstr ""
+"Keines der ausgewählten Zertifikate kann zum Verschlüsseln verwendet werden. "
+"Es wird keine Gruppe erstellt."
 
 #: src/commands/creategroupcommand.cpp:102
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>Warnung:</b> Keines der ausgewählten Zertifikate scheint Ihr eigenes "
-"Zertifikat zu sein. Sie werden nicht in der Lage sein, die verschlüsselten "
-"Daten anschließend wieder zu entschlüsseln."
+"Einige der ausgewählten Zertifikate können nicht zum Verschlüsseln verwendet "
+"werden. Diese werden der Gruppe nicht hinzugefügt."
 
 #: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:328
 #, kde-format
@@ -2824,7 +2814,7 @@ msgid "No Directory Servers Configured"
 msgstr "Keine Verzeichnisdienste eingerichtet"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:493
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -6346,12 +6336,10 @@ msgid "Valid until:"
 msgstr "Gültig bis:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Unterschlüssel"
+msgstr "Unterschlüssel hinzufügen"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -6359,11 +6347,10 @@ msgid "Expiration of primary key: %1"
 msgstr "Ablaufdatum des primären Schlüssels: %1"
 
 #: src/dialogs/addsubkeydialog.cpp:264
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr "Voreinstellung"
+msgstr "Standard"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -7222,6 +7209,9 @@ msgid ""
 "These certificates are part of groups. Deleting them may cause receivers to "
 "be unable to decrypt messages:"
 msgstr ""
+"Diese Zertifikate sind Teil von mindestens einer Gruppe. Das Löschen dieser "
+"Zertifikate kann dazu führen, dass die Empfänger die Nachrichten nicht "
+"entschlüsseln können:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:139
 #, kde-kuit-format
@@ -7295,22 +7285,20 @@ msgid "Secret Key Deletion"
 msgstr "Geheimen Schlüssel löschen"
 
 #: src/dialogs/editgroupdialog.cpp:83
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Dieses Zertifikat kann nicht zum Verschlüsseln verwendet werden."
 
 #: src/dialogs/editgroupdialog.cpp:114
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "Dieses Zertifikat kann nicht zum Verschlüsseln verwendet werden."
+msgstr ""
+"Dieses Zertifikat kann nicht zur Gruppe hinzugefügt werden, da es nicht zum "
+"Verschlüsseln verwendet werden kann."
 
 #: src/dialogs/editgroupdialog.cpp:157
 #, kde-format
@@ -7922,11 +7910,10 @@ msgid "Status"
 msgstr "Status"
 
 #: src/dialogs/subkeyswidget.cpp:113
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr "Algorithmus:"
+msgstr "Algorithmus"
 
 #: src/dialogs/subkeyswidget.cpp:114
 #, kde-format
@@ -7999,7 +7986,7 @@ msgstr "Geheimen Unterschlüssel exportieren"
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: src/dialogs/subkeyswidget.cpp:326
 #, kde-format
@@ -8036,12 +8023,10 @@ msgid "Subkeys Details"
 msgstr "Unterschlüssel-Details"
 
 #: src/dialogs/subkeyswidget.cpp:369
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Subkey"
-msgstr "Unterschlüssel"
+msgstr "Unterschlüssel hinzufügen"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format
@@ -9195,47 +9180,47 @@ msgstr "Zu bearbeitende Datei(en)"
 msgid "String or Fingerprint for query and search"
 msgstr "Suchbegriff oder Fingerabdruck für Abfrage und Suche"
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:389
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Der Befehl kann nicht ausgeführt werden"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:431
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Mehrdeutiges Protokoll: --openpgp und --cms"
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Kein Suchbegriff angegeben mit --search"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:476
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Kein Fingerabdruck angegeben mit --query"
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:537
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Mehrdeutige Befehle: „%1“ und „%2“"
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:544
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Keine Dateien für den Befehl „%1“ angegeben"
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "„%1“ kann nicht gelesen werden"
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Das Öffnen externer Adressen wurde durch den Systemverwalter verboten."
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Prohibited"
 msgstr "Verboten"
@@ -9506,8 +9491,7 @@ msgid "Configure Groups..."
 msgstr "Gruppen einrichten ..."
 
 #: src/mainwindow.cpp:649
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Gruppen"
@@ -9611,13 +9595,13 @@ msgstr "GnuPG-&Befehlszeile"
 #: src/mainwindow.cpp:763
 #, kde-format
 msgid "Manual for VS-NfD approval (German)"
-msgstr ""
+msgstr "Handbuch zur Zulassung "
 
 #: src/mainwindow.cpp:764
 #, kde-format
 msgctxt "Only available in German. Keep German file name for all languages"
 msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
-msgstr ""
+msgstr "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
 
 #: src/mainwindow.cpp:771
 #, kde-format
@@ -10557,43 +10541,43 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr "PIV"
 
-#: src/systrayicon.cpp:116
+#: src/systrayicon.cpp:115
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "Zertifikatsverwaltung öff&nen ..."
 
-#: src/systrayicon.cpp:118
+#: src/systrayicon.cpp:117
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "<application>%1</application> &einrichten ..."
 
-#: src/systrayicon.cpp:121
+#: src/systrayicon.cpp:120
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "&Über <application>%1</application> ..."
 
-#: src/systrayicon.cpp:124
+#: src/systrayicon.cpp:123
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "<application>%1</application> &beenden"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:126
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "Smartcard"
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "Kartenstatus aktualisieren"
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:128
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
@@ -11301,6 +11285,25 @@ msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
 msgstr "Zertifikate.%1"
 
+#: src/utils/kuniqueservice_win.cpp:129
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> seems to be running for you "
+"already, but with different privileges.</para><para>This usually happens if "
+"<application>Kleopatra</application> is accidentally run as Administrator.</"
+"para><para>Please right click the tray icon of <application>Kleopatra</"
+"application> and select 'quit' to try again.</para>"
+msgstr ""
+
+#: src/utils/kuniqueservice_win.cpp:132
+#, fuzzy, kde-kuit-format
+#| msgctxt "@action:button"
+#| msgid "&Quit <application>%1</application>"
+msgctxt "@title"
+msgid "<application>Kleopatra</application> failed to start"
+msgstr "<application>%1</application> b&eenden"
+
 #: src/utils/log.cpp:149
 #, kde-format
 msgid "Log Error: Could not open log file \"%1\" for writing."
@@ -11712,18 +11715,16 @@ msgid "Add User ID..."
 msgstr "Benutzerkennung hinzufügen ..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Gruppen einrichten ..."
+msgstr "Gruppe anlegen ..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "Die Gültigkeit des ausgewählten Zertifikats bestätigen"
+msgstr "Eine Gruppe aus den ausgewählten Zertifikaten erstellen"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -11858,11 +11859,10 @@ msgid "Error"
 msgstr "Fehler"
 
 #: src/view/netkeywidget.cpp:328
-#, fuzzy, kde-format
-#| msgid "Fetching certificate from server..."
+#, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
-msgstr "Zertifikat vom Server herunterladen ..."
+msgstr "Zertifikate werden von Smartcard importiert ..."
 
 #: src/view/netkeywidget.cpp:379
 #, kde-format

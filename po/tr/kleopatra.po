@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-22 00:38+0000\n"
-"PO-Revision-Date: 2024-03-22 01:09+0300\n"
+"POT-Creation-Date: 2024-03-23 00:38+0000\n"
+"PO-Revision-Date: 2024-03-22 16:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -2677,11 +2677,10 @@ msgid "Invalid Server Reply"
 msgstr "Geçersiz Sunucu Yanıtı"
 
 #: src/commands/lookupcertificatescommand.cpp:511
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgctxt "@info"
 msgid "No certificates found"
-msgstr "(eşleşen sertifika bulunamadı)"
+msgstr "Sertifika bulunamadı"
 
 #: src/commands/lookupcertificatescommand.cpp:550
 #: src/commands/lookupcertificatescommand.cpp:553
@@ -2743,7 +2742,7 @@ msgid "No Directory Servers Configured"
 msgstr "Hiçbir Dizin Sunucusu Yapılandırılmamış"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:484
+#: src/kleopatraapplication.cpp:493
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "İmzalama istekleri için S/MIME sertifikası oluşturma izniniz yok."
@@ -8981,47 +8980,47 @@ msgstr "İşlenecek dosya(lar)"
 msgid "String or Fingerprint for query and search"
 msgstr "Sorgu ve arama için dizi veya parmak izi"
 
-#: src/kleopatraapplication.cpp:380
+#: src/kleopatraapplication.cpp:389
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Komut yürütülemedi"
 
-#: src/kleopatraapplication.cpp:422
+#: src/kleopatraapplication.cpp:431
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Belirsiz protokol: --openpgp ve --cms"
 
-#: src/kleopatraapplication.cpp:456
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search için arama dizisi yok"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:476
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query için parmak izi değişkeni belirtilmedi"
 
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:537
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Belirsiz komutlar \"%1\" ve \"%2\""
 
-#: src/kleopatraapplication.cpp:535
+#: src/kleopatraapplication.cpp:544
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "\"%1\" komutu için dosya belirtilmedi"
 
-#: src/kleopatraapplication.cpp:549
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\" okunamıyor"
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Dış bir bağlantıyı açmak yönetim tarafından yasaklandı."
 
-#: src/kleopatraapplication.cpp:850
+#: src/kleopatraapplication.cpp:849
 #, kde-format
 msgid "Prohibited"
 msgstr "Yasaklı"
@@ -9133,7 +9132,7 @@ msgstr ""
 #: src/main.cpp:164
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
-msgstr "<para>Sürdürmek istediğinize emin misiniz?</para>"
+msgstr "<para>Sürdürmek istediğinizden emin misiniz?</para>"
 
 #: src/main.cpp:165
 #, kde-format
@@ -10319,43 +10318,43 @@ msgctxt "proper name of a type of smartcard"
 msgid "PIV"
 msgstr "PIV"
 
-#: src/systrayicon.cpp:116
+#: src/systrayicon.cpp:115
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "Sertifika Yöneticisini &Aç…"
 
-#: src/systrayicon.cpp:118
+#: src/systrayicon.cpp:117
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "<application>%1</application> Uygulamasını &Yapılandır…"
 
-#: src/systrayicon.cpp:121
+#: src/systrayicon.cpp:120
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "<application>%1</application> &Hakkında…"
 
-#: src/systrayicon.cpp:124
+#: src/systrayicon.cpp:123
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "<application>%1</application> Uygulamasından Çı&k"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:126
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "Akıllı Kart"
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:127
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "Kart Durumunu Güncelle"
 
-#: src/systrayicon.cpp:129
+#: src/systrayicon.cpp:128
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
@@ -11065,6 +11064,25 @@ msgstr "Giriş aygıtı yok"
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
 msgstr "sertifikalar.%1"
+
+#: src/utils/kuniqueservice_win.cpp:129
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> seems to be running for you "
+"already, but with different privileges.</para><para>This usually happens if "
+"<application>Kleopatra</application> is accidentally run as Administrator.</"
+"para><para>Please right click the tray icon of <application>Kleopatra</"
+"application> and select 'quit' to try again.</para>"
+msgstr ""
+
+#: src/utils/kuniqueservice_win.cpp:132
+#, fuzzy, kde-kuit-format
+#| msgctxt "@action:button"
+#| msgid "&Quit <application>%1</application>"
+msgctxt "@title"
+msgid "<application>Kleopatra</application> failed to start"
+msgstr "Çı&k: <application>%1</application>"
 
 #: src/utils/log.cpp:149
 #, kde-format

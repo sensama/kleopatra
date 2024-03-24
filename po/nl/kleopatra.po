@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-23 00:38+0000\n"
-"PO-Revision-Date: 2024-03-20 10:37+0100\n"
+"PO-Revision-Date: 2024-03-23 22:44+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -2702,11 +2702,10 @@ msgid "Invalid Server Reply"
 msgstr "Ongeldig antwoord uit de server"
 
 #: src/commands/lookupcertificatescommand.cpp:511
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgctxt "@info"
 msgid "No certificates found"
-msgstr "(geen overeenkomende certificaten gevonden)"
+msgstr "Geen certificaten gevonden"
 
 #: src/commands/lookupcertificatescommand.cpp:550
 #: src/commands/lookupcertificatescommand.cpp:553
@@ -11174,14 +11173,18 @@ msgid ""
 "para><para>Please right click the tray icon of <application>Kleopatra</"
 "application> and select 'quit' to try again.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> lijkt al actief te zijn voor u, "
+"maar met andere privileges.</para><para>Dit gebeurt gewoonlijk als "
+"<application>Kleopatra</application> per ongeluk actief is als beheerder.</"
+"para><para>Klik rechts op het pictogram in het systeemvak van "
+"<application>Kleopatra</application> en selecteer 'afsluiten' om het opnieuw "
+"te proberen.</para>"
 
 #: src/utils/kuniqueservice_win.cpp:132
-#, fuzzy, kde-kuit-format
-#| msgctxt "@action:button"
-#| msgid "&Quit <application>%1</application>"
+#, kde-kuit-format
 msgctxt "@title"
 msgid "<application>Kleopatra</application> failed to start"
-msgstr "<application>%1</application> &afsluiten"
+msgstr "Starten van <application>Kleopatra</application> is mislukt"
 
 #: src/utils/log.cpp:149
 #, kde-format

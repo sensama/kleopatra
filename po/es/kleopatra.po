@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-23 00:38+0000\n"
-"PO-Revision-Date: 2024-03-20 12:36+0100\n"
+"PO-Revision-Date: 2024-03-23 12:07+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -2710,11 +2710,10 @@ msgid "Invalid Server Reply"
 msgstr "Respuesta no válida del servidor"
 
 #: src/commands/lookupcertificatescommand.cpp:511
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgctxt "@info"
 msgid "No certificates found"
-msgstr "(no se han encontrado certificados que coincidan)"
+msgstr "No se han encontrado certificados"
 
 #: src/commands/lookupcertificatescommand.cpp:550
 #: src/commands/lookupcertificatescommand.cpp:553
@@ -11175,14 +11174,18 @@ msgid ""
 "para><para>Please right click the tray icon of <application>Kleopatra</"
 "application> and select 'quit' to try again.</para>"
 msgstr ""
+"<para>Parece que <application>Kleopatra</application> ya se estaba "
+"ejecutando, aunque con distintos privilegios.</para><para>Esto suele ocurrir "
+"cuando se ejecuta <application>Kleopatra</application> como administrador de "
+"forma accidental.</para><para>Haga clic en el icono de "
+"<application>Kleopatra</application> de la bandeja del sistema y seleccione "
+"«Salir» para volver a intentarlo.</para>"
 
 #: src/utils/kuniqueservice_win.cpp:132
-#, fuzzy, kde-kuit-format
-#| msgctxt "@action:button"
-#| msgid "&Quit <application>%1</application>"
+#, kde-kuit-format
 msgctxt "@title"
 msgid "<application>Kleopatra</application> failed to start"
-msgstr "&Salir de <application>%1</application>"
+msgstr "El inicio de <application>Kleopatra</application> ha fallado"
 
 #: src/utils/log.cpp:149
 #, kde-format

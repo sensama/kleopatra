@@ -101,6 +101,7 @@ public:
     void exportSecret(const GpgME::Subkey &subkey);
     void importPaperKey();
     void addSubkey();
+    void updateState();
 
 private:
     void tableContextMenuRequested(const QPoint &p);
@@ -301,19 +302,24 @@ void SubKeysWidget::Private::keysMayHaveChanged()
     }
 }
 
+void SubKeysWidget::Private::updateState()
+{
+    const auto currentIndex = ui.subkeysTree->currentIndex().row();
+    const auto &subkey = key.subkey(currentIndex);
+    const bool secretSubkeyStoredInKeyRing = subkey.isSecret() && !subkey.isCardKey();
+    ui.exportOpenSSHAction->setEnabled(subkey.canAuthenticate());
+    ui.changeValidityAction->setEnabled(key.hasSecret() && canBeUsedForSecretKeyOperations(subkey.parent()));
+    ui.exportSecretAction->setEnabled(key.hasSecret() && subkey.fingerprint() != key.primaryFingerprint() && secretSubkeyStoredInKeyRing);
+    ui.restoreAction->setEnabled(!secretSubkeyStoredInKeyRing);
+    ui.transferToSmartcardAction->setEnabled(secretSubkeyStoredInKeyRing && !KeyToCardCommand::getSuitableCards(subkey).empty());
+}
+
 SubKeysWidget::SubKeysWidget(QWidget *parent)
     : QWidget(parent)
     , d(new Private(this))
 {
     connect(d->ui.subkeysTree, &TreeWidget::currentItemChanged, this, [this] {
-        const auto currentIndex = d->ui.subkeysTree->currentIndex().row();
-        const auto &subkey = d->key.subkey(currentIndex);
-        const bool secretSubkeyStoredInKeyRing = subkey.isSecret() && !subkey.isCardKey();
-        d->ui.exportOpenSSHAction->setEnabled(subkey.canAuthenticate());
-        d->ui.changeValidityAction->setEnabled(d->key.hasSecret() && canBeUsedForSecretKeyOperations(subkey.parent()));
-        d->ui.exportSecretAction->setEnabled(d->key.hasSecret() && subkey.fingerprint() != d->key.primaryFingerprint() && secretSubkeyStoredInKeyRing);
-        d->ui.restoreAction->setEnabled(!secretSubkeyStoredInKeyRing);
-        d->ui.transferToSmartcardAction->setEnabled(secretSubkeyStoredInKeyRing && !KeyToCardCommand::getSuitableCards(subkey).empty());
+        d->updateState();
     });
     connect(d->ui.changeValidityAction, &QAction::triggered, this, [this] {
         d->changeValidity(d->key.subkey(d->ui.subkeysTree->currentIndex().row()));
@@ -401,6 +407,8 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     d->ui.exportOpenSSHBtn->setEnabled(false);
     d->ui.restoreBtn->setVisible(!key.hasSecret());
     d->ui.moreButton->setVisible(key.hasSecret());
+
+    d->updateState();
 
     if (!d->ui.subkeysTree->restoreColumnLayout(QStringLiteral("SubkeysWidget"))) {
         d->ui.subkeysTree->hideColumn(1);

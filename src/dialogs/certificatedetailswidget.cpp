@@ -256,7 +256,7 @@ private:
             tabWidget->addTab(webOfTrustWidget, i18nc("@title:tab", "Certifications"));
 
             trustChainWidget = new TrustChainWidget(parent);
-            tabWidget->addTab(trustChainWidget, i18nc("@title:tab", "Trust Cchain Details"));
+            tabWidget->addTab(trustChainWidget, i18nc("@title:tab", "Trust Chain Details"));
 
             certificateDumpWidget = new CertificateDumpWidget(parent);
             tabWidget->addTab(certificateDumpWidget, i18nc("@title:tab", "Certificate Dump"));

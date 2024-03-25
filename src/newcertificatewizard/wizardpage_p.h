@@ -43,11 +43,6 @@ protected:
         return static_cast<NewCertificateWizard *>(QWizardPage::wizard());
     }
 
-    bool pgp() const
-    {
-        return wizard()->protocol() == GpgME::OpenPGP;
-    }
-
     void restartAtEnterDetailsPage()
     {
         wizard()->restartAtEnterDetailsPage();
@@ -66,8 +61,6 @@ protected:
     }
     FIELD(bool, signingAllowed)
     FIELD(bool, encryptionAllowed)
-    FIELD(bool, certificationAllowed)
-    FIELD(bool, authenticationAllowed)
 
     FIELD(QString, name)
     FIELD(QString, email)
@@ -76,15 +69,7 @@ protected:
 
     FIELD(GpgME::Subkey::PubkeyAlgo, keyType)
     FIELD(int, keyStrength)
-    FIELD(QString, keyCurve)
 
-    FIELD(GpgME::Subkey::PubkeyAlgo, subkeyType)
-    FIELD(int, subkeyStrength)
-    FIELD(QString, subkeyCurve)
-
-    FIELD(QDate, expiryDate)
-
-    FIELD(QStringList, additionalUserIDs)
     FIELD(QStringList, additionalEMailAddresses)
     FIELD(QStringList, dnsNames)
     FIELD(QStringList, uris)

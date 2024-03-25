@@ -44,7 +44,6 @@ public:
 private:
     void startJob();
     Kleo::KeyUsage keyUsage() const;
-    Kleo::KeyUsage subkeyUsage() const;
     QString createGnupgKeyParms() const;
 
 private Q_SLOTS:

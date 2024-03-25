@@ -43,11 +43,6 @@ private:
 private Q_SLOTS:
     void slotSaveRequestToFile();
     void slotSendRequestByEMail();
-    void slotSendCertificateByEMail();
-    void slotSendCertificateByEMailContinuation();
-    void slotUploadCertificateToDirectoryServer();
-    void slotBackupCertificate();
-    void slotCreateRevocationRequest();
     void slotCreateSigningCertificate();
     void slotCreateEncryptionCertificate();
 

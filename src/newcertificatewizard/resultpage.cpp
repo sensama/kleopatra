@@ -54,10 +54,6 @@ struct ResultPage::UI {
     QGroupBox *nextStepsGB = nullptr;
     QPushButton *saveRequestToFilePB = nullptr;
     QPushButton *sendRequestByEMailPB = nullptr;
-    QPushButton *makeBackupPB = nullptr;
-    QPushButton *sendCertificateByEMailPB = nullptr;
-    QPushButton *uploadToKeyserverPB = nullptr;
-    QPushButton *createRevocationRequestPB = nullptr;
     QPushButton *createSigningCertificatePB = nullptr;
     QPushButton *createEncryptionCertificatePB = nullptr;
 
@@ -105,18 +101,6 @@ struct ResultPage::UI {
         sendRequestByEMailPB = new QPushButton{i18n("Send Certificate Request By EMail..."), nextStepsGB};
         nextStepsGBLayout->addWidget(sendRequestByEMailPB);
 
-        makeBackupPB = new QPushButton{i18n("Make a Backup Of Your Key Pair..."), nextStepsGB};
-        nextStepsGBLayout->addWidget(makeBackupPB);
-
-        sendCertificateByEMailPB = new QPushButton{i18n("Send Public Key By EMail..."), nextStepsGB};
-        nextStepsGBLayout->addWidget(sendCertificateByEMailPB);
-
-        uploadToKeyserverPB = new QPushButton{i18n("Upload Public Key To Directory Service..."), nextStepsGB};
-        nextStepsGBLayout->addWidget(uploadToKeyserverPB);
-
-        createRevocationRequestPB = new QPushButton{i18n("Create Revocation Request..."), nextStepsGB};
-        nextStepsGBLayout->addWidget(createRevocationRequestPB);
-
         createSigningCertificatePB = new QPushButton{i18n("Create Signing Certificate With Same Parameters"), nextStepsGB};
         nextStepsGBLayout->addWidget(createSigningCertificatePB);
 
@@ -140,10 +124,6 @@ ResultPage::ResultPage(QWidget *p)
 
     connect(ui->saveRequestToFilePB, &QPushButton::clicked, this, &ResultPage::slotSaveRequestToFile);
     connect(ui->sendRequestByEMailPB, &QPushButton::clicked, this, &ResultPage::slotSendRequestByEMail);
-    connect(ui->sendCertificateByEMailPB, &QPushButton::clicked, this, &ResultPage::slotSendCertificateByEMail);
-    connect(ui->uploadToKeyserverPB, &QPushButton::clicked, this, &ResultPage::slotUploadCertificateToDirectoryServer);
-    connect(ui->makeBackupPB, &QPushButton::clicked, this, &ResultPage::slotBackupCertificate);
-    connect(ui->createRevocationRequestPB, &QPushButton::clicked, this, &ResultPage::slotCreateRevocationRequest);
     connect(ui->createSigningCertificatePB, &QPushButton::clicked, this, &ResultPage::slotCreateSigningCertificate);
     connect(ui->createEncryptionCertificatePB, &QPushButton::clicked, this, &ResultPage::slotCreateEncryptionCertificate);
 
@@ -173,18 +153,13 @@ void ResultPage::initializePage()
 
     ui->resultTB->setVisible(!error);
     ui->errorTB->setVisible(error);
-    ui->dragQueen->setVisible(!error && !pgp());
+    ui->dragQueen->setVisible(!error);
     ui->restartWizardPB->setVisible(error);
     ui->nextStepsGB->setVisible(!error);
-    ui->saveRequestToFilePB->setVisible(!pgp());
-    ui->makeBackupPB->setVisible(pgp());
-    ui->createRevocationRequestPB->setVisible(pgp() && false); // not implemented
+    ui->saveRequestToFilePB->setVisible(true);
+    ui->sendRequestByEMailPB->setVisible(true);
 
-    ui->sendCertificateByEMailPB->setVisible(pgp());
-    ui->sendRequestByEMailPB->setVisible(!pgp());
-    ui->uploadToKeyserverPB->setVisible(pgp());
-
-    if (!error && !pgp()) {
+    if (!error) {
         if (signingAllowed() && !encryptionAllowed()) {
             successfullyCreatedSigningCertificate = true;
         } else if (!signingAllowed() && encryptionAllowed()) {
@@ -256,9 +231,6 @@ void ResultPage::slotSaveRequestToFile()
 
 void ResultPage::slotSendRequestByEMail()
 {
-    if (pgp()) {
-        return;
-    }
     const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
     invokeMailer(config.readEntry("CAEmailAddress"), // to
                  i18n("Please process this certificate."), // subject
@@ -273,61 +245,6 @@ void ResultPage::slotSendRequestByEMail()
                                     "<para>If that does not work, either, save the request to a file, and then attach that.</para>"),
                              i18nc("@title", "Sending Mail"),
                              QStringLiteral("newcertificatewizard-mailto-troubles"));
-}
-
-void ResultPage::slotSendCertificateByEMail()
-{
-    if (!pgp() || exportCertificateCommand) {
-        return;
-    }
-    auto cmd = new ExportCertificateCommand(key());
-    connect(cmd, &ExportCertificateCommand::finished, this, &ResultPage::slotSendCertificateByEMailContinuation);
-    cmd->setOpenPGPFileName(tmpDir().absoluteFilePath(fingerprint() + QLatin1StringView(".asc")));
-    cmd->start();
-    exportCertificateCommand = cmd;
-}
-
-void ResultPage::slotSendCertificateByEMailContinuation()
-{
-    if (!exportCertificateCommand) {
-        return;
-    }
-    // ### better error handling?
-    const QString fileName = exportCertificateCommand->openPGPFileName();
-    qCDebug(KLEOPATRA_LOG) << "fileName" << fileName;
-    exportCertificateCommand = nullptr;
-    if (fileName.isEmpty()) {
-        return;
-    }
-    invokeMailer(i18n("My new public OpenPGP key"), // subject
-                 i18n("Please find attached my new public OpenPGP key."), // body
-                 QFileInfo{fileName});
-    KMessageBox::information(this,
-                             xi18nc("@info",
-                                    "<para><application>Kleopatra</application> tried to send a mail via your default mail client.</para>"
-                                    "<para>Some mail clients are known not to support attachments when invoked this way.</para>"
-                                    "<para>If your mail client does not have an attachment, then attach the file <filename>%1</filename> manually.</para>",
-                                    fileName),
-                             i18nc("@title", "Sending Mail"),
-                             QStringLiteral("newcertificatewizard-openpgp-mailto-troubles"));
-}
-
-void ResultPage::slotUploadCertificateToDirectoryServer()
-{
-    if (pgp()) {
-        (new ExportOpenPGPCertsToServerCommand(key()))->start();
-    }
-}
-
-void ResultPage::slotBackupCertificate()
-{
-    if (pgp()) {
-        (new ExportSecretKeyCommand(key()))->start();
-    }
-}
-
-void ResultPage::slotCreateRevocationRequest()
-{
 }
 
 void ResultPage::slotCreateSigningCertificate()

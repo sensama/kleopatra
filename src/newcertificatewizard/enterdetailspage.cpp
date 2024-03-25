@@ -242,8 +242,7 @@ EnterDetailsPage::~EnterDetailsPage() = default;
 void EnterDetailsPage::initializePage()
 {
     updateForm();
-    ui->withPassCB->setVisible(pgp());
-    dialog->setProtocol(pgp() ? OpenPGP : CMS);
+    ui->withPassCB->setVisible(false);
 }
 
 void EnterDetailsPage::cleanupPage()
@@ -347,14 +346,10 @@ void EnterDetailsPage::updateForm()
     const auto settings = Kleo::Settings{};
     const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
 
-    QStringList attrOrder = config.readEntry(pgp() ? "OpenPGPAttributeOrder" : "DNAttributeOrder", QStringList());
+    QStringList attrOrder = config.readEntry("DNAttributeOrder", QStringList());
     if (attrOrder.empty()) {
-        if (pgp()) {
-            attrOrder << QStringLiteral("NAME") << QStringLiteral("EMAIL");
-        } else {
-            attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O") << QStringLiteral("C")
-                      << QStringLiteral("EMAIL!");
-        }
+        attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O") << QStringLiteral("C")
+                  << QStringLiteral("EMAIL!");
     }
 
     QList<QWidget *> widgets;
@@ -372,7 +367,7 @@ void EnterDetailsPage::updateForm()
         const QString preset = savedValues.value(attr, config.readEntry(attr, QString()));
         const bool required = key.endsWith(QLatin1Char('!'));
         const bool readonly = config.isEntryImmutable(attr);
-        const QString label = config.readEntry(attr + QLatin1StringView("_label"), attributeLabel(attr, pgp()));
+        const QString label = config.readEntry(attr + QLatin1StringView("_label"), attributeLabel(attr, false));
         const QString regex = config.readEntry(attr + QLatin1StringView("_regex"));
         const QString placeholder = config.readEntry(attr + QLatin1StringView{"_placeholder"});
 
@@ -383,11 +378,8 @@ void EnterDetailsPage::updateForm()
             row = row_index_of(ui->emailLE, ui->gridLayout);
             validator = regex.isEmpty() ? Validation::email() : Validation::email(regex);
         } else if (attr == QLatin1StringView("NAME") || attr == QLatin1String("CN")) {
-            if ((pgp() && attr == QLatin1StringView("CN")) || (!pgp() && attr == QLatin1String("NAME"))) {
+            if (attr == QLatin1String("NAME")) {
                 continue;
-            }
-            if (pgp()) {
-                validator = regex.isEmpty() ? Validation::pgpName() : Validation::pgpName(regex);
             }
             row = row_index_of(ui->nameLE, ui->gridLayout);
         } else {
@@ -421,8 +413,7 @@ void EnterDetailsPage::updateForm()
     widgets.push_back(ui->withPassCB);
     widgets.push_back(ui->advancedPB);
 
-    const bool prefillName = (pgp() && settings.prefillName()) || (!pgp() && settings.prefillCN());
-    if (ui->nameLE->text().isEmpty() && prefillName) {
+    if (ui->nameLE->text().isEmpty() && settings.prefillCN()) {
         ui->nameLE->setText(userFullName());
     }
     if (ui->emailLE->text().isEmpty() && settings.prefillEmail()) {
@@ -532,7 +523,7 @@ void EnterDetailsPage::slotAdvancedSettingsClicked()
 
 void EnterDetailsPage::slotUpdateResultLabel()
 {
-    ui->resultLE->setText(pgp() ? pgpUserID() : cmsDN());
+    ui->resultLE->setText(cmsDN());
 }
 
 #include "moc_enterdetailspage_p.cpp"

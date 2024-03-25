@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-23 00:38+0000\n"
-"PO-Revision-Date: 2024-03-20 09:40+0100\n"
+"PO-Revision-Date: 2024-03-23 11:45+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -2699,11 +2699,10 @@ msgid "Invalid Server Reply"
 msgstr "Resposta no vàlida del servidor"
 
 #: src/commands/lookupcertificatescommand.cpp:511
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgctxt "@info"
 msgid "No certificates found"
-msgstr "(no s'ha trobat cap certificat coincident)"
+msgstr "No s'ha trobat cap certificat"
 
 #: src/commands/lookupcertificatescommand.cpp:550
 #: src/commands/lookupcertificatescommand.cpp:553
@@ -11194,14 +11193,18 @@ msgid ""
 "para><para>Please right click the tray icon of <application>Kleopatra</"
 "application> and select 'quit' to try again.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> pareix que ja està funcionant, "
+"però amb privilegis diferents.</para><para>Açò normalment passa si "
+"<application>Kleopatra</application> s'executa accidentalment com a "
+"administrador.</para><para>Feu clic dret en la icona de la safata de "
+"<application>Kleopatra</application> i seleccioneu «ix» per a tornar-ho a "
+"provar.</para>"
 
 #: src/utils/kuniqueservice_win.cpp:132
-#, fuzzy, kde-kuit-format
-#| msgctxt "@action:button"
-#| msgid "&Quit <application>%1</application>"
+#, kde-kuit-format
 msgctxt "@title"
 msgid "<application>Kleopatra</application> failed to start"
-msgstr "I&x de <application>%1</application>"
+msgstr "<application>Kleopatra</application> ha fallat en iniciar-se"
 
 #: src/utils/log.cpp:149
 #, kde-format
@@ -12704,11 +12707,3 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
-
-#~ msgctxt "@info"
-#~ msgid "One certificate without name and email address was ignored."
-#~ msgid_plural "%1 certificates without name and email address were ignored."
-#~ msgstr[0] ""
-#~ "S'ha ignorat un certificat sense nom ni adreça de correu electrònic."
-#~ msgstr[1] ""
-#~ "S'han ignorat %1 certificats sense nom ni adreça de correu electrònic."

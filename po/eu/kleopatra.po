@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-23 00:38+0000\n"
-"PO-Revision-Date: 2024-03-08 19:30+0100\n"
+"PO-Revision-Date: 2024-03-24 23:53+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.02.0\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -2646,12 +2646,10 @@ msgstr ""
 "message></para>"
 
 #: src/commands/lookupcertificatescommand.cpp:317
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Certifying certificates ..."
+#, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
-msgstr "Ziurtagiriak ziurtatzen..."
+msgstr "Bat datozen ziurtagiriak bilatzen..."
 
 #: src/commands/lookupcertificatescommand.cpp:462
 #, kde-kuit-format
@@ -2691,11 +2689,10 @@ msgid "Invalid Server Reply"
 msgstr "Zerbitzariaren erantzun baliogabea"
 
 #: src/commands/lookupcertificatescommand.cpp:511
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgctxt "@info"
 msgid "No certificates found"
-msgstr "(ez da aurkitu bat datorren ziurtagiririk)"
+msgstr "Ez da ziurtagiririk aurkitu"
 
 #: src/commands/lookupcertificatescommand.cpp:550
 #: src/commands/lookupcertificatescommand.cpp:553
@@ -2927,15 +2924,14 @@ msgstr[1] "Gainera, %1 gako berri eskuratu dira."
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
 msgstr ""
+"Eguneratzea saltatu da konfiguratutako gako-zerbitzaririk ez dagoelako."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "Eguneratzea huts egin du"
+msgstr "Eguneratzea saltatu da"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -2991,6 +2987,8 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
+"<para>Eguneratzea saltatu da konfiguratutako gako-zerbitzaririk ez dagoelako."
+"</para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376
@@ -3935,18 +3933,14 @@ msgstr[0] "Ezabatu taldea"
 msgstr[1] "Ezabatu"
 
 #: src/conf/groupsconfigwidget.cpp:473
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "The group contains keys that cannot be used for encryption. This may lead "
-#| "to unexpected results."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains certificates that cannot be used for encryption. This may "
 "lead to unexpected results."
 msgstr ""
-"Taldeak zifratzeko erabili ezin diren ziurtagiriak ditu. Horrek ustekabeko "
-"emaitzak ekar ditzake."
+"Taldeak zifratzeko erabil ezin diren ziurtagiriak ditu. Horrek ustekabeko "
+"emaitzak ekar litzake."
 
 #: src/conf/kleopageconfigdialog.cpp:85
 #, kde-format
@@ -7492,15 +7486,12 @@ msgstr ""
 "galdetuko zaizu gakoa sortzerakoan."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
+#, kde-format
 msgid "Advanced options"
-msgstr "Erakutsi aukera aurreratuak"
+msgstr "Aukera aurreratuak"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Key Material"
+#, kde-format
 msgctxt "The algorithm and strength of encryption key"
 msgid "Key Material"
 msgstr "Gakoaren materiala"
@@ -8369,19 +8360,15 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies the minimum number of days a user can choose for "
-#| "the validity period of OpenPGP certficates. It applies at key creation "
-#| "and change of validity."
+#, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
 "Ezarpen honek, erabiltzaile batek OpenPGP gako baterako aukeratu dezakeen "
-"gutxieneko baliozkotasun-epea egunetan zehazten du. Gako sorreran eta "
-"baliozkotasun aldaketetan aplikatzen da. "
+"gutxieneko baliozkotasun egun kopurua zehazten du. Gako sorreran eta "
+"baliozkotasun aldaketetan aplikatzen da."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8401,12 +8388,7 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies the maximum number of days a user can choose for "
-#| "the validity period of OpenPGP certficates. It applies at key creation "
-#| "and change of validity. If this setting is not set or is set to a "
-#| "negative value, then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
@@ -8414,9 +8396,9 @@ msgid ""
 "value, then unlimited validity is allowed."
 msgstr ""
 "Ezarpen honek, erabiltzaile batek OpenPGP gako baterako aukeratu dezakeen "
-"gehieneko baliozkotasun-epea egunetan zehazten du. Gako sorreran eta "
-"baliozkotasun aldaketetan aplikatzen da. Ezarpen hau ezarrita ez badago, edo "
-"balio negatiboa badu, baliozkotasun mugagabea baimenduta dago."
+"gehieneko baliozkotasun egun kopurua zehazten du. Gako sorreran eta "
+"baliobaliozkotasun aldaketetan aplikatzen da. Ezarpen hau ezarrita ez "
+"badago, edo negatiboa badu, baliozkotasun mugagabea baimenduta dago."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
@@ -11144,14 +11126,18 @@ msgid ""
 "para><para>Please right click the tray icon of <application>Kleopatra</"
 "application> and select 'quit' to try again.</para>"
 msgstr ""
+"<para>Ematen du dagoneko <application>Kleopatra</application> exekutatzen "
+"ari zarela, beste pribilegio batzuekin ordea.</para><para>Hori gertatzen da "
+"<application>Kleopatra</application>, nahi gabe, administratzaile "
+"pribilegioekin exekutatzen denean.</para><para>Mesedez, egin eskuineko klik "
+"<application>Kleopatra</application>ren erretiluko ikonoan eta aukeratu "
+"'irten' berriz saiatzeko.</para>"
 
 #: src/utils/kuniqueservice_win.cpp:132
-#, fuzzy, kde-kuit-format
-#| msgctxt "@action:button"
-#| msgid "&Quit <application>%1</application>"
+#, kde-kuit-format
 msgctxt "@title"
 msgid "<application>Kleopatra</application> failed to start"
-msgstr "&Irten <application>%1</application>(e)tik"
+msgstr "<application>Kleopatra</application> abiatzea huts egin du"
 
 #: src/utils/log.cpp:149
 #, kde-format

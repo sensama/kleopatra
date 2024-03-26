@@ -325,22 +325,14 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         storage = i18nc("not applicable", "n/a");
     } else if (key.subkey(0).isCardKey()) {
         if (const char *serialNo = subkey.cardSerialNumber()) {
-            storage = i18nc("smart card <serial number>", "smart card %1", QString::fromUtf8(serialNo));
+            storage = i18nc("As in 'this secret key is stored on smart card <serial number>'", "smart card %1", QString::fromUtf8(serialNo));
         } else {
-            storage = i18n("smart card");
+            storage = i18nc("As in 'this secret key is stored on a smart card'", "smart card");
         }
-    } else if (key.hasSecret() && !subkey.isSecret()) {
+    } else if (!subkey.isSecret()) {
         storage = i18nc("key is 'offline key', i.e. secret key is not stored on this computer", "offline");
-    } else if (subkey.isSecret()) {
-        storage = i18n("on this computer");
     } else {
-        storage = i18nc("unknown storage location", "unknown");
-    }
-
-    if (!key.subkey(0).isSecret()) {
-        storage = i18n("none");
-    } else if (key.subkey(0).cardSerialNumber()) {
-        storage = i18n("smart card");
+        storage = i18nc("As in 'this secret key is stored on this computer'", "on this computer");
     }
     ui.privateKeyInfoField->setValue(storage);
     if (DeVSCompliance::isCompliant()) {

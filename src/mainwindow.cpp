@@ -235,7 +235,7 @@ public:
 
     void updateSearchBarClickMessage()
     {
-        const QString shortcutStr = focusToClickSearchAction->shortcut().toString();
+        const QString shortcutStr = focusToClickSearchAction->shortcut().toString(QKeySequence::NativeText);
         ui.searchTab->searchBar()->updateClickMessage(shortcutStr);
     }
 

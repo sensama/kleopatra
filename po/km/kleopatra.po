@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-26 00:38+0000\n"
+"POT-Creation-Date: 2024-03-27 00:38+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -940,7 +940,7 @@ msgid ""
 msgstr "វិញ្ញាបនបត្រ​ដែលបាននាំចូល​ពី %1​"
 
 #: src/commands/createcsrforcardkeycommand.cpp:212
-#: src/newcertificatewizard/resultpage.cpp:251
+#: src/newcertificatewizard/resultpage.cpp:226
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -951,21 +951,21 @@ msgstr ""
 "ផ្ញើ​សំណើ​ឥឡូវ​ទៅ​កាន់ Certification Authority (CA) ។</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:215
-#: src/newcertificatewizard/resultpage.cpp:254
+#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "បាន​រក្សាទុក​សំណើ"
 
 #: src/commands/createcsrforcardkeycommand.cpp:249
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "រក្សាទុក​សំណើ"
 
 #: src/commands/createcsrforcardkeycommand.cpp:252
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "សំណើ PKCS#10 (*.p10)"
@@ -982,7 +982,7 @@ msgid ""
 msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:261
-#: src/newcertificatewizard/resultpage.cpp:247
+#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2900,14 +2900,14 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "បង្កើត​គូសោ X.509 ផ្ទាល់ខ្លួន និង​សំណើ​​បញ្ជាក់ "
 
 #: src/commands/newopenpgpcertificatecommand.cpp:161
-#: src/newcertificatewizard/keycreationpage.cpp:97
+#: src/newcertificatewizard/keycreationpage.cpp:86
 #, fuzzy, kde-format
 #| msgid "Could not start certificate creation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "មិន​អាច​ចាប់ផ្ដើម​បង្កើត​វិញ្ញាបនបត្រ ៖ %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:171
-#: src/newcertificatewizard/keycreationpage.cpp:51
+#: src/newcertificatewizard/keycreationpage.cpp:49
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -2916,7 +2916,7 @@ msgid "Creating Key Pair..."
 msgstr "កំពុង​បង្កើត​សោ..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:172
-#: src/newcertificatewizard/keycreationpage.cpp:55
+#: src/newcertificatewizard/keycreationpage.cpp:53
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5260,7 +5260,6 @@ msgid "Multiple matching certificates or groups found"
 msgstr "(ស្វែងរក​មិន​ឃើញ​ការផ្គូផ្គង​វិញ្ញាបនបត្រ​ឡើយ​​)"
 
 #: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
@@ -6443,7 +6442,7 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "ការផ្ទៀងផ្ទាត់ឆេកសាំង​​ (%2) ក្នុង​ %1"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgctxt "@title:window"
@@ -6451,7 +6450,7 @@ msgid "Advanced Settings"
 msgstr "កា​រកំណត់​កម្រិត​ខ្ពស់"
 
 #: src/dialogs/addsubkeydialog.cpp:90
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:130
 #, fuzzy, kde-format
 #| msgid "Key Material"
 msgctxt "@title:group"
@@ -6464,7 +6463,7 @@ msgid "Algorithm:"
 msgstr ""
 
 #: src/dialogs/addsubkeydialog.cpp:100
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:150
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:group"
@@ -6472,7 +6471,7 @@ msgid "Certificate Usage"
 msgstr "ការ​ប្រើប្រាស់​វិញ្ញាបនបត្រ"
 
 #: src/dialogs/addsubkeydialog.cpp:103
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:154
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgctxt "@option:check"
@@ -6480,7 +6479,7 @@ msgid "Signing"
 msgstr "ការ​ចុះហត្ថលេខា"
 
 #: src/dialogs/addsubkeydialog.cpp:106
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:159
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@option:check"
@@ -6488,7 +6487,6 @@ msgid "Encryption"
 msgstr "ការ​​អ៊ិនគ្រីប​"
 
 #: src/dialogs/addsubkeydialog.cpp:110
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@option:check"
@@ -6497,7 +6495,6 @@ msgstr "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹ
 
 #: src/dialogs/addsubkeydialog.cpp:116
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "@option:check"
@@ -6627,7 +6624,7 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:168
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6636,26 +6633,26 @@ msgstr "%1 ៖"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(required)"
 msgstr "(ត្រូវការ)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(optional)"
 msgstr "(ជម្រើស)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:483
+#: src/newcertificatewizard/enterdetailspage.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> ត្រូវ​​​បាន​ទាមទារ ប៉ុន្តែ​វា​ទទេ ។​"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:486
+#: src/newcertificatewizard/enterdetailspage.cpp:477
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6666,14 +6663,14 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:494
+#: src/newcertificatewizard/enterdetailspage.cpp:485
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> មិន​ពេញលេញ ។"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:497
+#: src/newcertificatewizard/enterdetailspage.cpp:488
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6683,14 +6680,14 @@ msgstr ""
 "<interface>%1</interface> មិន​ពេញលេញ​ ។​<nl/>ច្បាប់​គ្រប់គ្រង​មូលដ្ឋាន​ ៖​ <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:504
+#: src/newcertificatewizard/enterdetailspage.cpp:495
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> មិនត្រឹមត្រូវ​ ។"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:507
+#: src/newcertificatewizard/enterdetailspage.cpp:498
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6859,14 +6856,14 @@ msgid "unlimited"
 msgstr "គ្មាន​កំណត់"
 
 #: src/dialogs/certificatedetailswidget.cpp:325
-#: src/dialogs/subkeyswidget.cpp:372
+#: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:375
+#: src/dialogs/subkeyswidget.cpp:381
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "smart card <serial number>"
@@ -6875,14 +6872,14 @@ msgstr "​SmartCard"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
 #: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:377
+#: src/dialogs/subkeyswidget.cpp:383
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "smart card"
 msgstr "​SmartCard"
 
 #: src/dialogs/certificatedetailswidget.cpp:333
-#: src/dialogs/subkeyswidget.cpp:380
+#: src/dialogs/subkeyswidget.cpp:386
 #, fuzzy, kde-format
 #| msgctxt "history size spinbox suffix"
 #| msgid " line"
@@ -6892,7 +6889,7 @@ msgid "offline"
 msgstr " បន្ទាត់"
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:382
+#: src/dialogs/subkeyswidget.cpp:388
 #, fuzzy, kde-format
 #| msgctxt "stored..."
 #| msgid "on this computer"
@@ -6900,7 +6897,7 @@ msgid "on this computer"
 msgstr "លើកុំព្យូទ័រនេះ​"
 
 #: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:384
+#: src/dialogs/subkeyswidget.cpp:390
 #, fuzzy, kde-format
 #| msgctxt "unknown trust level"
 #| msgid "unknown"
@@ -7245,7 +7242,7 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:141
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgctxt "@title:column"
@@ -7995,7 +7992,7 @@ msgstr "ជំហាន ២ ៖​ ​កំណត់​ PIN ដំបូង​�
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "កំណត់​​ PIN ដំបូង​ (SigG)​"
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:137
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -8003,55 +8000,55 @@ msgctxt "@label"
 msgid "Subkeys"
 msgstr "សោ​រង​"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:140
 #, fuzzy, kde-format
 #| msgid "ID"
 msgctxt "@title:column"
 msgid "ID"
 msgstr "លេខ​សម្គាល់"
 
-#: src/dialogs/subkeyswidget.cpp:141
+#: src/dialogs/subkeyswidget.cpp:142
 #, fuzzy, kde-format
 #| msgid "Valid From"
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "មាន​សុពលភាព​ពី"
 
-#: src/dialogs/subkeyswidget.cpp:142
+#: src/dialogs/subkeyswidget.cpp:143
 #, fuzzy, kde-format
 #| msgid "Valid Until"
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "មាន​សុពលភាព​ដល់"
 
-#: src/dialogs/subkeyswidget.cpp:143
+#: src/dialogs/subkeyswidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Status"
 msgctxt "@title:column"
 msgid "Status"
 msgstr "ស្ថានភាព"
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:145
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:145
+#: src/dialogs/subkeyswidget.cpp:146
 #, fuzzy, kde-format
 #| msgid "Subkey Usage:"
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "កា​រ​ប្រើ​ប្រាស់​សោ​រង ៖"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:147
 #, fuzzy, kde-format
 #| msgid "Stored"
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "បាន​ទុក​"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:157
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -8059,41 +8056,41 @@ msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "សោ​រង​"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:158
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "ភាព​ត្រឹមត្រូវ"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:159
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "នាំចេញ​វិញ្ញាបនបត្រ​​សម្ងាត់​​​...​"
 
-#: src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/subkeyswidget.cpp:160
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "​SmartCard"
 
-#: src/dialogs/subkeyswidget.cpp:161
+#: src/dialogs/subkeyswidget.cpp:162
 #, fuzzy, kde-format
 #| msgid "Selected secret key:"
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "សោ​​សម្ងាត់​ដែល​បាន​ជ្រើស​ ៖​"
 
-#: src/dialogs/subkeyswidget.cpp:169 src/dialogs/useridswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
 #: src/dialogs/weboftrustwidget.cpp:134
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
@@ -8101,25 +8098,25 @@ msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "កា​រកំណត់​កម្រិត​ខ្ពស់"
 
-#: src/dialogs/subkeyswidget.cpp:265
+#: src/dialogs/subkeyswidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgid "Change validity"
 msgstr "ភាព​ត្រឹមត្រូវ"
 
-#: src/dialogs/subkeyswidget.cpp:272
+#: src/dialogs/subkeyswidget.cpp:273
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgid "Export OpenSSH key"
 msgstr "នាំចេញ​វិញ្ញាបនបត្រ​​សម្ងាត់​​​...​"
 
-#: src/dialogs/subkeyswidget.cpp:278
+#: src/dialogs/subkeyswidget.cpp:279
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "Transfer to smartcard"
 msgstr "​SmartCard"
 
-#: src/dialogs/subkeyswidget.cpp:286
+#: src/dialogs/subkeyswidget.cpp:287
 #, fuzzy, kde-format
 #| msgid "Selected secret key:"
 msgid "Export secret subkey"
@@ -9793,138 +9790,76 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "ភារកិច្ច​ផ្ទៃខាងក្រោយ​ធ្វើ​បន្ត"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:135
 #, fuzzy, kde-format
-#| msgid "RSA"
-msgctxt "@option:radio"
-msgid "RSA"
-msgstr "RSA"
+#| msgid "Subkey Strength:"
+msgctxt "@info:label"
+msgid "RSA key strength:"
+msgstr "កម្លាំង​សោ​រង ៖"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:253
-#, kde-format
-msgctxt "@option:check"
-msgid "+ RSA"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:262
-#, fuzzy, kde-format
-#| msgid "DSA"
-msgctxt "@option:radio"
-msgid "DSA"
-msgstr "DSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:270
-#, fuzzy, kde-format
-#| msgid "+ Elgamal"
-msgctxt "@option:check"
-msgid "+ Elgamal"
-msgstr "+ Elgamal"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:271
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:289
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "This subkey is required for encryption."
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:280
-#, kde-format
-msgctxt "@option:radio"
-msgid "ECDSA"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:288
-#, kde-format
-msgctxt "@option:check"
-msgid "+ ECDH"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
-#, fuzzy, kde-format
-#| msgid "Certification"
-msgctxt "@option:check"
-msgid "Certification"
-msgstr "វិញ្ញាបនបត្រ​"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:339
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:174
 #, fuzzy, kde-format
 #| msgid "Technical Details"
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "សេចក្ដី​លម្អិត​បច្ចេកទេស"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:353
-#, fuzzy, kde-format
-#| msgid "Additional User-IDs"
-msgctxt "@title:group"
-msgid "Additional User IDs"
-msgstr "លេខ​សម្គាល់​អ្នក​ប្រើ​បន្ថែម"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:361
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:188
 #, fuzzy, kde-format
 #| msgid "EMail Addresses"
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "អាសយដ្ឋាន​អ៊ីមែល"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:369
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
 #, fuzzy, kde-format
 #| msgid "DNS Names"
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "ឈ្មោះ DNS"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:377
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
 #, fuzzy, kde-format
 #| msgid "URIs"
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URIs"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:387
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:897
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:214
 #, fuzzy, kde-format
 #| msgid "Personal Details"
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "សេចក្ដី​លម្អិត​ផ្ទាល់ខ្លួន"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:414
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:232
 #, kde-format
 msgid "new email"
 msgstr "អ៊ីមែល​ថ្មី"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:415
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:233
 #, kde-format
 msgid "new dns name"
 msgstr "ឈ្មោះ dns ថ្មី"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:416
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:234
 #, kde-format
 msgid "new uri"
 msgstr "uri ថ្មី"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:739
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (%1 ប៊ីត​​)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:740
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:338
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "%1 ប៊ីត​"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:902
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Adding more than one User ID is not yet implemented."
-msgctxt "@info:tooltip"
-msgid "Adding more than one user ID is not yet implemented."
-msgstr "ការ​បន្ថែម​លេខ​សម្គាល់​អ្នកប្រើ​ច្រើនជាង​មួយ​គឺ​មិនទាន់​ត្រូវ​បាន​ប្រតិបត្តិ​ទេ ។"
 
 #: src/newcertificatewizard/enterdetailspage.cpp:66
 #, kde-format
@@ -9977,35 +9912,23 @@ msgctxt "@action"
 msgid "Create"
 msgstr "បង្កើត​សោ"
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, kde-format
 msgid "Operation canceled."
 msgstr "បាន​បោះបង់ប្រតិបត្តិការ ។"
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, fuzzy, kde-format
 #| msgid "Could not create socket: %1"
 msgid "Could not create key pair: %1"
 msgstr "មិនអាច​បង្កើត​រន្ធ ៖ %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:199
-#, fuzzy, kde-format
-#| msgid ""
-#| "Certificate created successfully.\n"
-#| "Fingerprint: %1"
-msgid ""
-"Key pair created successfully.\n"
-"Fingerprint: %1"
-msgstr ""
-"បាន​បង្កើត​វិញ្ញាបនបត្រដោយ​ជោគជ័យ ។\n"
-"ស្នាមម្រាមដៃ ៖ %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:206
+#: src/newcertificatewizard/keycreationpage.cpp:146
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "មិន​អាច​សរសេរ​​ឯកសារ​លទ្ធផល %1 ៖ %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:213
+#: src/newcertificatewizard/keycreationpage.cpp:153
 #, fuzzy, kde-format
 #| msgid "Certificate created successfully."
 msgid "Key pair created successfully."
@@ -10044,92 +9967,70 @@ msgctxt "@title:window"
 msgid "Key Pair Creation Wizard"
 msgstr "អ្នក​ជំនួយការ​បង្កើត​វិញ្ញាបនបត្រ"
 
-#: src/newcertificatewizard/resultpage.cpp:79
+#: src/newcertificatewizard/resultpage.cpp:75
 #, fuzzy, kde-format
 #| msgid "Result"
 msgctxt "@title:group"
 msgid "Result"
 msgstr "លទ្ធផល"
 
-#: src/newcertificatewizard/resultpage.cpp:89
+#: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
 "a mail."
 msgstr "អូស​រូបតំណាង​នេះ​ទៅ​កម្មវិធី​តែង​របស់​កម្មវិធី​អ៊ីមែល​របស់​អ្នក​ ដើម្បី​ភ្ជាប់​សំណើ​ទៅ​សំបុត្រ ។"
 
-#: src/newcertificatewizard/resultpage.cpp:95
+#: src/newcertificatewizard/resultpage.cpp:91
 #, kde-format
 msgid "Restart This Wizard (Keeps Your Parameters)"
 msgstr "ចាប់ផ្ដើម​អ្នកជំនួយការ​នេះ​ឡើង​វិញ (រក្សា​ប៉ារ៉ាម៉ែត្រ​របស់​អ្នក)"
 
-#: src/newcertificatewizard/resultpage.cpp:99
+#: src/newcertificatewizard/resultpage.cpp:95
 #, fuzzy, kde-format
 #| msgid "Next Steps"
 msgctxt "@title:group"
 msgid "Next Steps"
 msgstr "ជំហាន​បន្ទាប់"
 
-#: src/newcertificatewizard/resultpage.cpp:102
+#: src/newcertificatewizard/resultpage.cpp:98
 #, kde-format
 msgid "Save Certificate Request To File..."
 msgstr "រក្សា​ទុក​សំណើ​របស់​វិញ្ញាបនបត្រ​ទៅកាន់​ឯកសារ​​..."
 
-#: src/newcertificatewizard/resultpage.cpp:105
+#: src/newcertificatewizard/resultpage.cpp:101
 #, kde-format
 msgid "Send Certificate Request By EMail..."
 msgstr "ផ្ញើ​សំណើ​របស់​វិញ្ញាបនបត្រ​ដោយ​អ៊ីមែល​​..."
 
-#: src/newcertificatewizard/resultpage.cpp:108
-#, kde-format
-msgid "Make a Backup Of Your Key Pair..."
-msgstr "ធ្វើ​ការ​បម្រុង​ទុក​នៃ​គូ​សោ​របស់​អ្នក​​..."
-
-#: src/newcertificatewizard/resultpage.cpp:111
-#, fuzzy, kde-format
-#| msgid "Send Certificate By EMail..."
-msgid "Send Public Key By EMail..."
-msgstr "ផ្ញើ​វិញ្ញាបនបត្រ​​តាម​អ៊ីមែល​​..."
-
-#: src/newcertificatewizard/resultpage.cpp:114
-#, fuzzy, kde-format
-#| msgid "Upload Certificate To Directory Service..."
-msgid "Upload Public Key To Directory Service..."
-msgstr "ផ្ទុក​វិញ្ញាបនបត្រ​ទៅ​សេវា​ថត...​"
-
-#: src/newcertificatewizard/resultpage.cpp:117
-#, kde-format
-msgid "Create Revocation Request..."
-msgstr "បង្កើត​សំណើដកហូត​វិញ..."
-
-#: src/newcertificatewizard/resultpage.cpp:120
+#: src/newcertificatewizard/resultpage.cpp:104
 #, kde-format
 msgid "Create Signing Certificate With Same Parameters"
 msgstr "បង្កើត​ការ​ចុះហត្ថលេខា​​វិញ្ញាបនបត្រ​ជា​មួយ​ប៉ារ៉ាម៉ែត្រ​តែ​មួយ"
 
-#: src/newcertificatewizard/resultpage.cpp:123
+#: src/newcertificatewizard/resultpage.cpp:107
 #, kde-format
 msgid "Create Encryption Certificate With Same Parameters"
 msgstr "បង្កើត​វិញ្ញាបនបត្រ​អ៊ិនគ្រីប​ជា​មួយ​ប៉ារ៉ាម៉ែត្រ​ដូច​គ្នា"
 
-#: src/newcertificatewizard/resultpage.cpp:167
+#: src/newcertificatewizard/resultpage.cpp:147
 #, kde-format
 msgctxt "@title"
 msgid "Key Creation Failed"
 msgstr "បានបរាជ័យ​ក្នុងការ​បង្កើត​សោ"
 
-#: src/newcertificatewizard/resultpage.cpp:168
+#: src/newcertificatewizard/resultpage.cpp:148
 #, kde-format
 msgid "Key pair creation failed. Please find details about the failure below."
 msgstr "បាន​បរាជ័យ​ក្នុងកា​របង្កើត​គូសោ ។ សូម​រក​សេចក្ដី​លម្អិត​អំពី​បរាជ័យ​ដូច​ខាង​ក្រោម ។"
 
-#: src/newcertificatewizard/resultpage.cpp:170
+#: src/newcertificatewizard/resultpage.cpp:150
 #, kde-format
 msgctxt "@title"
 msgid "Key Pair Successfully Created"
 msgstr "បាន​បង្កើត​គូសោ​ដោយ​ជោគជ័យ"
 
-#: src/newcertificatewizard/resultpage.cpp:171
+#: src/newcertificatewizard/resultpage.cpp:151
 #, kde-format
 msgid ""
 "Your new key pair was created successfully. Please find details on the "
@@ -10138,7 +10039,7 @@ msgstr ""
 "គូ​សោ​ថ្មី​​របស់​អ្នក​ត្រូវ​បាន​បង្កើត​ដោយជោគជ័យ ។ សូម​រក​សេចក្ដីលម្អិត​ខាង​ក្រោម​អំពីលទ្ធផល​ និង​ជំហាន​បន្ទាប់​ដែល​"
 "បាន​ស្នើ ។"
 
-#: src/newcertificatewizard/resultpage.cpp:242
+#: src/newcertificatewizard/resultpage.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10148,12 +10049,12 @@ msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
 
-#: src/newcertificatewizard/resultpage.cpp:264
+#: src/newcertificatewizard/resultpage.cpp:236
 #, kde-format
 msgid "Please process this certificate."
 msgstr "សូម​ដំណើរការ​វិញ្ញាបនបត្រ​នេះ ។"
 
-#: src/newcertificatewizard/resultpage.cpp:265
+#: src/newcertificatewizard/resultpage.cpp:237
 #, kde-format
 msgid ""
 "Please process this certificate and inform the sender about the location to "
@@ -10165,7 +10066,7 @@ msgstr ""
 "\n"
 "សូម​អរគុណ\n"
 
-#: src/newcertificatewizard/resultpage.cpp:269
+#: src/newcertificatewizard/resultpage.cpp:241
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10183,51 +10084,13 @@ msgstr ""
 "<application>Kleopatra</application> នៅ​លើ​បង្អួច​កម្មវិធី​តែងសារ​របស់​កម្មវិធី​អ៊ីមែល​របស់​អ្នក ។"
 "</para><para>ប្រសិន​បើ​វា​មិន​ធ្វើការ រក្សាទុក​សំណើ​​ទៅ​ឯកសារ និង​បន្ទាប់​មក​ភ្ជាប់​វា ។</para>"
 
-#: src/newcertificatewizard/resultpage.cpp:274
-#: src/newcertificatewizard/resultpage.cpp:311
+#: src/newcertificatewizard/resultpage.cpp:246
 #, kde-format
 msgctxt "@title"
 msgid "Sending Mail"
 msgstr "ផ្ញើ​អ៊ីមែល"
 
-#: src/newcertificatewizard/resultpage.cpp:302
-#, fuzzy, kde-format
-#| msgid "My new OpenPGP certificate"
-msgid "My new public OpenPGP key"
-msgstr "វិញ្ញាបនបត្រ OpenPGP ថ្មី​របស់​ខ្ញុំ"
-
-#: src/newcertificatewizard/resultpage.cpp:303
-#, fuzzy, kde-format
-#| msgid "Please find attached my new OpenPGP certificate."
-msgid "Please find attached my new public OpenPGP key."
-msgstr "សូម​រក​វិញ្ញាបនបត្រ OpenPGP ថ្មី​របស់​ខ្ញុំ​ដែល​បានភ្ជាប់ជា​មួយ ។"
-
-#: src/newcertificatewizard/resultpage.cpp:307
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para><application>Kleopatra</application> tried to send a mail via your "
-#| "default mail client.</para><para>Some mail clients are known not to "
-#| "support attachments when invoked this way.</para><para>If your mail "
-#| "client does not have an attachment, then drag the <application>Kleopatra</"
-#| "application> icon and drop it on the message compose window of your mail "
-#| "client.</para><para>If that does not work, either, save the request to a "
-#| "file, and then attach that.</para>"
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then attach the file <filename>%1</filename> manually.</"
-"para>"
-msgstr ""
-"<para><application>Kleopatra</application> បាន​ព្យាយាម​ផ្ញើ​សំបុត្រ​តាមរយៈ​កម្មវិធី​អ៊ីមែល​លំនាំ​"
-"ដើម​របស់​អ្នក ។</para><para>កម្មវិធី​អ៊ីមែល​មួយ​ចំនួន​ត្រូវ​បាន​ដឹង​ថា​មិន​គាំទ្រ​ឯកសារ​ភ្ជាប់​នៅពេល​ដក​ហូត​វិធី​"
-"នេះ ។</para><para>ប្រសិន​បើ​​កម្មវិធី​អ៊ីមែល​មិន​មាន​ឯកសារ​ភ្ជាប់ បន្ទាប់​អូស​ និង​ទម្លាក់​រូបតំណាង "
-"<application>Kleopatra</application> នៅ​លើ​បង្អួច​កម្មវិធី​តែងសារ​របស់​កម្មវិធី​អ៊ីមែល​របស់​អ្នក ។"
-"</para><para>ប្រសិន​បើ​វា​មិន​ធ្វើការ រក្សាទុក​សំណើ​​ទៅ​ឯកសារ និង​បន្ទាប់​មក​ភ្ជាប់​វា ។</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:356
+#: src/newcertificatewizard/resultpage.cpp:273
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -10235,7 +10098,7 @@ msgid ""
 "you have sent or saved it before proceeding."
 msgstr "ប្រតិបត្តិការនេះ​នឹង​លុប​សំណើ​បញ្ជាក់ ។ សូម​ប្រាកដ​ថា អ្នក​បាន​ផ្ញើ ឬ​រក្សា​វា​ទុក​មុននឹង​បន្ត ។"
 
-#: src/newcertificatewizard/resultpage.cpp:358
+#: src/newcertificatewizard/resultpage.cpp:275
 #, kde-format
 msgctxt "@title"
 msgid "Certification Request About To Be Deleted"
@@ -13066,6 +12929,105 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "RSA"
+#~ msgctxt "@option:radio"
+#~ msgid "RSA"
+#~ msgstr "RSA"
+
+#, fuzzy
+#~| msgid "DSA"
+#~ msgctxt "@option:radio"
+#~ msgid "DSA"
+#~ msgstr "DSA"
+
+#, fuzzy
+#~| msgid "+ Elgamal"
+#~ msgctxt "@option:check"
+#~ msgid "+ Elgamal"
+#~ msgstr "+ Elgamal"
+
+#, fuzzy
+#~| msgid "Certification"
+#~ msgctxt "@option:check"
+#~ msgid "Certification"
+#~ msgstr "វិញ្ញាបនបត្រ​"
+
+#, fuzzy
+#~| msgid "Additional User-IDs"
+#~ msgctxt "@title:group"
+#~ msgid "Additional User IDs"
+#~ msgstr "លេខ​សម្គាល់​អ្នក​ប្រើ​បន្ថែម"
+
+#, fuzzy
+#~| msgctxt "@info:tooltip"
+#~| msgid "Adding more than one User ID is not yet implemented."
+#~ msgctxt "@info:tooltip"
+#~ msgid "Adding more than one user ID is not yet implemented."
+#~ msgstr "ការ​បន្ថែម​លេខ​សម្គាល់​អ្នកប្រើ​ច្រើនជាង​មួយ​គឺ​មិនទាន់​ត្រូវ​បាន​ប្រតិបត្តិ​ទេ ។"
+
+#, fuzzy
+#~| msgid ""
+#~| "Certificate created successfully.\n"
+#~| "Fingerprint: %1"
+#~ msgid ""
+#~ "Key pair created successfully.\n"
+#~ "Fingerprint: %1"
+#~ msgstr ""
+#~ "បាន​បង្កើត​វិញ្ញាបនបត្រដោយ​ជោគជ័យ ។\n"
+#~ "ស្នាមម្រាមដៃ ៖ %1"
+
+#~ msgid "Make a Backup Of Your Key Pair..."
+#~ msgstr "ធ្វើ​ការ​បម្រុង​ទុក​នៃ​គូ​សោ​របស់​អ្នក​​..."
+
+#, fuzzy
+#~| msgid "Send Certificate By EMail..."
+#~ msgid "Send Public Key By EMail..."
+#~ msgstr "ផ្ញើ​វិញ្ញាបនបត្រ​​តាម​អ៊ីមែល​​..."
+
+#, fuzzy
+#~| msgid "Upload Certificate To Directory Service..."
+#~ msgid "Upload Public Key To Directory Service..."
+#~ msgstr "ផ្ទុក​វិញ្ញាបនបត្រ​ទៅ​សេវា​ថត...​"
+
+#~ msgid "Create Revocation Request..."
+#~ msgstr "បង្កើត​សំណើដកហូត​វិញ..."
+
+#, fuzzy
+#~| msgid "My new OpenPGP certificate"
+#~ msgid "My new public OpenPGP key"
+#~ msgstr "វិញ្ញាបនបត្រ OpenPGP ថ្មី​របស់​ខ្ញុំ"
+
+#, fuzzy
+#~| msgid "Please find attached my new OpenPGP certificate."
+#~ msgid "Please find attached my new public OpenPGP key."
+#~ msgstr "សូម​រក​វិញ្ញាបនបត្រ OpenPGP ថ្មី​របស់​ខ្ញុំ​ដែល​បានភ្ជាប់ជា​មួយ ។"
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid ""
+#~| "<para><application>Kleopatra</application> tried to send a mail via your "
+#~| "default mail client.</para><para>Some mail clients are known not to "
+#~| "support attachments when invoked this way.</para><para>If your mail "
+#~| "client does not have an attachment, then drag the "
+#~| "<application>Kleopatra</application> icon and drop it on the message "
+#~| "compose window of your mail client.</para><para>If that does not work, "
+#~| "either, save the request to a file, and then attach that.</para>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then attach the file <filename>%1</"
+#~ "filename> manually.</para>"
+#~ msgstr ""
+#~ "<para><application>Kleopatra</application> បាន​ព្យាយាម​ផ្ញើ​សំបុត្រ​តាមរយៈ​កម្មវិធី​អ៊ីមែល​"
+#~ "លំនាំ​ដើម​របស់​អ្នក ។</para><para>កម្មវិធី​អ៊ីមែល​មួយ​ចំនួន​ត្រូវ​បាន​ដឹង​ថា​មិន​គាំទ្រ​ឯកសារ​ភ្ជាប់​នៅពេល​ដក​"
+#~ "ហូត​វិធី​នេះ ។</para><para>ប្រសិន​បើ​​កម្មវិធី​អ៊ីមែល​មិន​មាន​ឯកសារ​ភ្ជាប់ បន្ទាប់​អូស​ និង​ទម្លាក់​រូបតំណាង "
+#~ "<application>Kleopatra</application> នៅ​លើ​បង្អួច​កម្មវិធី​តែងសារ​របស់​កម្មវិធី​អ៊ីមែល​របស់​"
+#~ "អ្នក ។</para><para>ប្រសិន​បើ​វា​មិន​ធ្វើការ រក្សាទុក​សំណើ​​ទៅ​ឯកសារ និង​បន្ទាប់​មក​ភ្ជាប់​វា ។</"
+#~ "para>"
+
+#, fuzzy
 #~| msgid "Certifications"
 #~ msgctxt "@action:button"
 #~ msgid "Show Certifications"
@@ -14159,9 +14121,6 @@ msgstr ""
 
 #~ msgid "Subkey Type:"
 #~ msgstr "ប្រភេទ​សោរង ៖"
-
-#~ msgid "Subkey Strength:"
-#~ msgstr "កម្លាំង​សោ​រង ៖"
 
 #~ msgid "Subkey Usage:"
 #~ msgstr "កា​រ​ប្រើ​ប្រាស់​សោ​រង ៖"

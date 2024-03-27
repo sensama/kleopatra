@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-26 00:38+0000\n"
+"POT-Creation-Date: 2024-03-27 00:38+0000\n"
 "PO-Revision-Date: 2007-09-03 13:42+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -929,7 +929,7 @@ msgid ""
 msgstr "واردات گواهی‌نامه‌ها..."
 
 #: src/commands/createcsrforcardkeycommand.cpp:212
-#: src/newcertificatewizard/resultpage.cpp:251
+#: src/newcertificatewizard/resultpage.cpp:226
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -938,21 +938,21 @@ msgid ""
 msgstr ""
 
 #: src/commands/createcsrforcardkeycommand.cpp:215
-#: src/newcertificatewizard/resultpage.cpp:254
+#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr ""
 
 #: src/commands/createcsrforcardkeycommand.cpp:249
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr ""
 
 #: src/commands/createcsrforcardkeycommand.cpp:252
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, fuzzy, kde-format
 #| msgid "PKCS#12 Key Bundle (*.p12)"
 msgid "PKCS#10 Requests (*.p10)"
@@ -970,7 +970,7 @@ msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:261
-#: src/newcertificatewizard/resultpage.cpp:247
+#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2892,14 +2892,14 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "&تولید جفت کلید و درخواست گواهی‌نامه‌"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:161
-#: src/newcertificatewizard/keycreationpage.cpp:97
+#: src/newcertificatewizard/keycreationpage.cpp:86
 #, fuzzy, kde-format
 #| msgid "Could not start certificate generation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "تولید گواهی‌نامه را نتوانست آغاز کند: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:171
-#: src/newcertificatewizard/keycreationpage.cpp:51
+#: src/newcertificatewizard/keycreationpage.cpp:49
 #, fuzzy, kde-format
 #| msgid "Fetching keys..."
 msgctxt "@title"
@@ -2907,7 +2907,7 @@ msgid "Creating Key Pair..."
 msgstr "واکشی کلیدها..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:172
-#: src/newcertificatewizard/keycreationpage.cpp:55
+#: src/newcertificatewizard/keycreationpage.cpp:53
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5163,7 +5163,6 @@ msgid "Multiple matching certificates or groups found"
 msgstr "واکشی زنجیر گواهی‌نامه"
 
 #: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Kleopatra Error"
@@ -6336,7 +6335,7 @@ msgid "Verifying checksums (%2) in %1"
 msgstr ""
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@title:window"
@@ -6344,7 +6343,7 @@ msgid "Advanced Settings"
 msgstr "لغو‌شده."
 
 #: src/dialogs/addsubkeydialog.cpp:90
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:130
 #, fuzzy, kde-format
 #| msgid "Key Categories"
 msgctxt "@title:group"
@@ -6357,7 +6356,7 @@ msgid "Algorithm:"
 msgstr ""
 
 #: src/dialogs/addsubkeydialog.cpp:100
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:150
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:group"
@@ -6365,7 +6364,7 @@ msgid "Certificate Usage"
 msgstr "کاربرد گواهی‌نامه"
 
 #: src/dialogs/addsubkeydialog.cpp:103
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:154
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@option:check"
@@ -6373,7 +6372,7 @@ msgid "Signing"
 msgstr "لغو‌شده."
 
 #: src/dialogs/addsubkeydialog.cpp:106
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:159
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@option:check"
@@ -6381,7 +6380,6 @@ msgid "Encryption"
 msgstr "فقط برای &رمزبندی‌"
 
 #: src/dialogs/addsubkeydialog.cpp:110
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, fuzzy, kde-format
 #| msgid "Information"
 msgctxt "@option:check"
@@ -6390,7 +6388,6 @@ msgstr "اطلاعات"
 
 #: src/dialogs/addsubkeydialog.cpp:116
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, fuzzy, kde-format
 #| msgid "Validate"
 msgctxt "@option:check"
@@ -6517,7 +6514,7 @@ msgstr "%1 بیت"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:168
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:311
 #, fuzzy, kde-format
 #| msgid "%1 bit"
 #| msgid_plural "%1 bits"
@@ -6528,27 +6525,27 @@ msgstr "%1 بیت"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(required)"
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, fuzzy, kde-format
 #| msgid "Stop Operation"
 msgid "(optional)"
 msgstr "ایست عمل"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:483
+#: src/newcertificatewizard/enterdetailspage.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:486
+#: src/newcertificatewizard/enterdetailspage.cpp:477
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6557,14 +6554,14 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:494
+#: src/newcertificatewizard/enterdetailspage.cpp:485
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:497
+#: src/newcertificatewizard/enterdetailspage.cpp:488
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6573,14 +6570,14 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:504
+#: src/newcertificatewizard/enterdetailspage.cpp:495
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:507
+#: src/newcertificatewizard/enterdetailspage.cpp:498
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6741,14 +6738,14 @@ msgid "unlimited"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:325
-#: src/dialogs/subkeyswidget.cpp:372
+#: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:375
+#: src/dialogs/subkeyswidget.cpp:381
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "smart card <serial number>"
@@ -6757,27 +6754,27 @@ msgstr "برگزیدن پرونده CRL"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
 #: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:377
+#: src/dialogs/subkeyswidget.cpp:383
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgid "smart card"
 msgstr "برگزیدن پرونده CRL"
 
 #: src/dialogs/certificatedetailswidget.cpp:333
-#: src/dialogs/subkeyswidget.cpp:380
+#: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:382
+#: src/dialogs/subkeyswidget.cpp:388
 #, kde-format
 msgid "on this computer"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:384
+#: src/dialogs/subkeyswidget.cpp:390
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -7111,7 +7108,7 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:141
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgctxt "@title:column"
@@ -7822,98 +7819,98 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "زیرکلیدهای جدید:"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:140
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:141
+#: src/dialogs/subkeyswidget.cpp:142
 #, fuzzy, kde-format
 #| msgid "Valid"
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "معتبر"
 
-#: src/dialogs/subkeyswidget.cpp:142
+#: src/dialogs/subkeyswidget.cpp:143
 #, fuzzy, kde-format
 #| msgid "Validate"
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "معتبر"
 
-#: src/dialogs/subkeyswidget.cpp:143
+#: src/dialogs/subkeyswidget.cpp:144
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:145
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:145
+#: src/dialogs/subkeyswidget.cpp:146
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:147
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:157
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "زیرکلیدهای جدید:"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:158
 #, fuzzy, kde-format
 #| msgid "Valid"
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "معتبر"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:159
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "صادرات کلید سری..."
 
-#: src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/subkeyswidget.cpp:160
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:161
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:161
+#: src/dialogs/subkeyswidget.cpp:162
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "صادرات کلید سری..."
 
-#: src/dialogs/subkeyswidget.cpp:169 src/dialogs/useridswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
 #: src/dialogs/weboftrustwidget.cpp:134
 #, fuzzy, kde-format
 #| msgid "Canceled."
@@ -7921,24 +7918,24 @@ msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "لغو‌شده."
 
-#: src/dialogs/subkeyswidget.cpp:265
+#: src/dialogs/subkeyswidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Valid"
 msgid "Change validity"
 msgstr "معتبر"
 
-#: src/dialogs/subkeyswidget.cpp:272
+#: src/dialogs/subkeyswidget.cpp:273
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgid "Export OpenSSH key"
 msgstr "صادرات کلید سری..."
 
-#: src/dialogs/subkeyswidget.cpp:278
+#: src/dialogs/subkeyswidget.cpp:279
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:286
+#: src/dialogs/subkeyswidget.cpp:287
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgid "Export secret subkey"
@@ -9612,113 +9609,62 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgctxt "@option:radio"
-msgid "RSA"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:253
-#, kde-format
-msgctxt "@option:check"
-msgid "+ RSA"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:262
-#, kde-format
-msgctxt "@option:radio"
-msgid "DSA"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:270
-#, kde-format
-msgctxt "@option:check"
-msgid "+ Elgamal"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:271
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:289
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "This subkey is required for encryption."
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:280
-#, kde-format
-msgctxt "@option:radio"
-msgid "ECDSA"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:288
-#, kde-format
-msgctxt "@option:check"
-msgid "+ ECDH"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:135
 #, fuzzy, kde-format
-#| msgid "&Certificates"
-msgctxt "@option:check"
-msgid "Certification"
-msgstr "&گواهی‌نامه‌ها‌"
+#| msgid "Choose &key length:"
+msgctxt "@info:label"
+msgid "RSA key strength:"
+msgstr "انتخاب طول &کلید:‌"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:339
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:174
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "جزئیات گواهی‌نامه..."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:353
-#, fuzzy, kde-format
-#| msgid "New user IDs:"
-msgctxt "@title:group"
-msgid "Additional User IDs"
-msgstr "شناسه‌های کاربر جدید:"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:361
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:188
 #, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:369
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
 #, fuzzy, kde-format
 #| msgid "Serial Number"
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "عدد متوالی"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:377
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
 #, kde-format
 msgctxt "@title:group"
 msgid "URIs"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:387
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:897
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:214
 #, fuzzy, kde-format
 #| msgid "Your Personal Data"
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "داده شخصی شما"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:414
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:232
 #, kde-format
 msgid "new email"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:415
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:233
 #, kde-format
 msgid "new dns name"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:416
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:234
 #, kde-format
 msgid "new uri"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:739
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
 #, fuzzy, kde-format
 #| msgid "%1 bit"
 #| msgid_plural "%1 bits"
@@ -9728,7 +9674,7 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%1 بیت"
 msgstr[1] ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:740
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:338
 #, fuzzy, kde-format
 #| msgid "%1 bit"
 #| msgid_plural "%1 bits"
@@ -9737,12 +9683,6 @@ msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "%1 بیت"
 msgstr[1] ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:902
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Adding more than one user ID is not yet implemented."
-msgstr ""
 
 #: src/newcertificatewizard/enterdetailspage.cpp:66
 #, fuzzy, kde-format
@@ -9791,33 +9731,25 @@ msgctxt "@action"
 msgid "Create"
 msgstr ""
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid "Operation canceled."
 msgstr "خرابی در بارگیری گواهی‌نامه"
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not create key pair: %1"
 msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:199
-#, fuzzy, kde-format
-#| msgid "Certificate Download Failed"
-msgid ""
-"Key pair created successfully.\n"
-"Fingerprint: %1"
-msgstr "خرابی در بارگیری گواهی‌نامه"
-
-#: src/newcertificatewizard/keycreationpage.cpp:206
+#: src/newcertificatewizard/keycreationpage.cpp:146
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not write output file %1: %2"
 msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:213
+#: src/newcertificatewizard/keycreationpage.cpp:153
 #, fuzzy, kde-format
 #| msgid "CRL cache cleared successfully."
 msgid "Key pair created successfully."
@@ -9854,103 +9786,80 @@ msgctxt "@title:window"
 msgid "Key Pair Creation Wizard"
 msgstr "خرابی در حذف گواهی‌نامه‌ها"
 
-#: src/newcertificatewizard/resultpage.cpp:79
+#: src/newcertificatewizard/resultpage.cpp:75
 #, kde-format
 msgctxt "@title:group"
 msgid "Result"
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:89
+#: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
 "a mail."
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:95
+#: src/newcertificatewizard/resultpage.cpp:91
 #, kde-format
 msgid "Restart This Wizard (Keeps Your Parameters)"
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:99
+#: src/newcertificatewizard/resultpage.cpp:95
 #, kde-format
 msgctxt "@title:group"
 msgid "Next Steps"
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:102
+#: src/newcertificatewizard/resultpage.cpp:98
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Save Certificate Request To File..."
 msgstr "برگزیدن پرونده گواهی‌نامه"
 
-#: src/newcertificatewizard/resultpage.cpp:105
+#: src/newcertificatewizard/resultpage.cpp:101
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Send Certificate Request By EMail..."
 msgstr "برگزیدن پرونده گواهی‌نامه"
 
-#: src/newcertificatewizard/resultpage.cpp:108
-#, fuzzy, kde-format
-#| msgid "Import Certificates..."
-msgid "Make a Backup Of Your Key Pair..."
-msgstr "واردات گواهی‌نامه‌ها..."
-
-#: src/newcertificatewizard/resultpage.cpp:111
-#, fuzzy, kde-format
-#| msgid "Select Certificate File"
-msgid "Send Public Key By EMail..."
-msgstr "برگزیدن پرونده گواهی‌نامه"
-
-#: src/newcertificatewizard/resultpage.cpp:114
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Error"
-msgid "Upload Public Key To Directory Service..."
-msgstr "خطای مدیر گواهی‌نامه"
-
-#: src/newcertificatewizard/resultpage.cpp:117
-#, kde-format
-msgid "Create Revocation Request..."
-msgstr ""
-
-#: src/newcertificatewizard/resultpage.cpp:120
+#: src/newcertificatewizard/resultpage.cpp:104
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgid "Create Signing Certificate With Same Parameters"
 msgstr "کاربرد گواهی‌نامه"
 
-#: src/newcertificatewizard/resultpage.cpp:123
+#: src/newcertificatewizard/resultpage.cpp:107
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgid "Create Encryption Certificate With Same Parameters"
 msgstr "کاربرد گواهی‌نامه"
 
-#: src/newcertificatewizard/resultpage.cpp:167
+#: src/newcertificatewizard/resultpage.cpp:147
 #, fuzzy, kde-format
 #| msgid "Key Generation Wizard"
 msgctxt "@title"
 msgid "Key Creation Failed"
 msgstr "جادوگر تولید کلید"
 
-#: src/newcertificatewizard/resultpage.cpp:168
+#: src/newcertificatewizard/resultpage.cpp:148
 #, kde-format
 msgid "Key pair creation failed. Please find details about the failure below."
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:170
+#: src/newcertificatewizard/resultpage.cpp:150
 #, kde-format
 msgctxt "@title"
 msgid "Key Pair Successfully Created"
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:171
+#: src/newcertificatewizard/resultpage.cpp:151
 #, kde-format
 msgid ""
 "Your new key pair was created successfully. Please find details on the "
 "result and some suggested next steps below."
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:242
+#: src/newcertificatewizard/resultpage.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9958,14 +9867,14 @@ msgid ""
 "filename>: <message>%3</message>"
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:264
+#: src/newcertificatewizard/resultpage.cpp:236
 #, fuzzy, kde-format
 #| msgid "Do you really want to delete this certificate?"
 #| msgid_plural "Do you really want to delete these %1 certificates?"
 msgid "Please process this certificate."
 msgstr "واقعاً می‌خواهید این %1 گواهی‌نامه را حذف کنید؟"
 
-#: src/newcertificatewizard/resultpage.cpp:265
+#: src/newcertificatewizard/resultpage.cpp:237
 #, kde-format
 msgid ""
 "Please process this certificate and inform the sender about the location to "
@@ -9974,7 +9883,7 @@ msgid ""
 "Thanks,\n"
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:269
+#: src/newcertificatewizard/resultpage.cpp:241
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9987,37 +9896,14 @@ msgid ""
 "then attach that.</para>"
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:274
-#: src/newcertificatewizard/resultpage.cpp:311
+#: src/newcertificatewizard/resultpage.cpp:246
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@title"
 msgid "Sending Mail"
 msgstr "لغو‌شده."
 
-#: src/newcertificatewizard/resultpage.cpp:302
-#, fuzzy, kde-format
-#| msgid "&Certificates"
-msgid "My new public OpenPGP key"
-msgstr "&گواهی‌نامه‌ها‌"
-
-#: src/newcertificatewizard/resultpage.cpp:303
-#, kde-format
-msgid "Please find attached my new public OpenPGP key."
-msgstr ""
-
-#: src/newcertificatewizard/resultpage.cpp:307
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then attach the file <filename>%1</filename> manually.</"
-"para>"
-msgstr ""
-
-#: src/newcertificatewizard/resultpage.cpp:356
+#: src/newcertificatewizard/resultpage.cpp:273
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -10025,7 +9911,7 @@ msgid ""
 "you have sent or saved it before proceeding."
 msgstr ""
 
-#: src/newcertificatewizard/resultpage.cpp:358
+#: src/newcertificatewizard/resultpage.cpp:275
 #, fuzzy, kde-format
 #| msgid "Your Certificate Request is Ready to Be Sent"
 msgctxt "@title"
@@ -12789,6 +12675,45 @@ msgstr ""
 
 #, fuzzy
 #~| msgid "&Certificates"
+#~ msgctxt "@option:check"
+#~ msgid "Certification"
+#~ msgstr "&گواهی‌نامه‌ها‌"
+
+#, fuzzy
+#~| msgid "New user IDs:"
+#~ msgctxt "@title:group"
+#~ msgid "Additional User IDs"
+#~ msgstr "شناسه‌های کاربر جدید:"
+
+#, fuzzy
+#~| msgid "Certificate Download Failed"
+#~ msgid ""
+#~ "Key pair created successfully.\n"
+#~ "Fingerprint: %1"
+#~ msgstr "خرابی در بارگیری گواهی‌نامه"
+
+#, fuzzy
+#~| msgid "Import Certificates..."
+#~ msgid "Make a Backup Of Your Key Pair..."
+#~ msgstr "واردات گواهی‌نامه‌ها..."
+
+#, fuzzy
+#~| msgid "Select Certificate File"
+#~ msgid "Send Public Key By EMail..."
+#~ msgstr "برگزیدن پرونده گواهی‌نامه"
+
+#, fuzzy
+#~| msgid "Certificate Manager Error"
+#~ msgid "Upload Public Key To Directory Service..."
+#~ msgstr "خطای مدیر گواهی‌نامه"
+
+#, fuzzy
+#~| msgid "&Certificates"
+#~ msgid "My new public OpenPGP key"
+#~ msgstr "&گواهی‌نامه‌ها‌"
+
+#, fuzzy
+#~| msgid "&Certificates"
 #~ msgctxt "@action:button"
 #~ msgid "Show Certifications"
 #~ msgstr "&گواهی‌نامه‌ها‌"
@@ -14459,9 +14384,6 @@ msgstr ""
 
 #~ msgid "Cryptographic Key Length"
 #~ msgstr "طول کلید رمزنگاری"
-
-#~ msgid "Choose &key length:"
-#~ msgstr "انتخاب طول &کلید:‌"
 
 #~ msgid "For &signing only"
 #~ msgstr "فقط برای &امضا‌"

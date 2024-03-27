@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-26 00:38+0000\n"
+"POT-Creation-Date: 2024-03-27 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -838,7 +838,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:212
-#: src/newcertificatewizard/resultpage.cpp:251
+#: src/newcertificatewizard/resultpage.cpp:226
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -849,21 +849,21 @@ msgstr ""
 "(CA)에 요청을 전송하십시오.</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:215
-#: src/newcertificatewizard/resultpage.cpp:254
+#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "요청 저장됨"
 
 #: src/commands/createcsrforcardkeycommand.cpp:249
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "요청 저장"
 
 #: src/commands/createcsrforcardkeycommand.cpp:252
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "PKCS#10 요청 (*.p10)"
@@ -877,7 +877,7 @@ msgstr ""
 "<para>요청을 저장할 수 없습니다.</para><para><message>%1</message></para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:261
-#: src/newcertificatewizard/resultpage.cpp:247
+#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2666,20 +2666,20 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME 인증서 서명 요청 생성이 허용되어 있지 않습니다."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:161
-#: src/newcertificatewizard/keycreationpage.cpp:97
+#: src/newcertificatewizard/keycreationpage.cpp:86
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "키 쌍 생성을 시작할 수 없음: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:171
-#: src/newcertificatewizard/keycreationpage.cpp:51
+#: src/newcertificatewizard/keycreationpage.cpp:49
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "키 쌍 생성 중..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:172
-#: src/newcertificatewizard/keycreationpage.cpp:55
+#: src/newcertificatewizard/keycreationpage.cpp:53
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -4863,7 +4863,6 @@ msgid "Multiple matching certificates or groups found"
 msgstr "일치하는 인증서나 그룹을 여러 개 찾음"
 
 #: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -5983,14 +5982,14 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "%1에서 체크섬 확인 중(%2)"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "고급 설정"
 
 #: src/dialogs/addsubkeydialog.cpp:90
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:130
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6002,28 +6001,27 @@ msgid "Algorithm:"
 msgstr "알고리즘:"
 
 #: src/dialogs/addsubkeydialog.cpp:100
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:150
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "인증서 사용"
 
 #: src/dialogs/addsubkeydialog.cpp:103
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:154
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "서명"
 
 #: src/dialogs/addsubkeydialog.cpp:106
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:159
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "암호화"
 
 #: src/dialogs/addsubkeydialog.cpp:110
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, kde-format
 msgctxt "@option:check"
 msgid "Authentication"
@@ -6031,7 +6029,6 @@ msgstr "인증"
 
 #: src/dialogs/addsubkeydialog.cpp:116
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6154,7 +6151,7 @@ msgstr "%1(%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:168
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6163,26 +6160,26 @@ msgstr "%1:"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(required)"
 msgstr "(필요함)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(optional)"
 msgstr "(선택 사항)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:483
+#: src/newcertificatewizard/enterdetailspage.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface>이(가) 필요하지만 비어 있습니다."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:486
+#: src/newcertificatewizard/enterdetailspage.cpp:477
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6193,14 +6190,14 @@ msgstr ""
 "칙: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:494
+#: src/newcertificatewizard/enterdetailspage.cpp:485
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface>이(가) 불완전합니다."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:497
+#: src/newcertificatewizard/enterdetailspage.cpp:488
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6211,14 +6208,14 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:504
+#: src/newcertificatewizard/enterdetailspage.cpp:495
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface>이(가) 잘못되었습니다."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:507
+#: src/newcertificatewizard/enterdetailspage.cpp:498
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6376,14 +6373,14 @@ msgid "unlimited"
 msgstr "무제한"
 
 #: src/dialogs/certificatedetailswidget.cpp:325
-#: src/dialogs/subkeyswidget.cpp:372
+#: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr "없음"
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:375
+#: src/dialogs/subkeyswidget.cpp:381
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
@@ -6391,26 +6388,26 @@ msgstr "스마트카드 %1"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
 #: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:377
+#: src/dialogs/subkeyswidget.cpp:383
 #, kde-format
 msgid "smart card"
 msgstr "스마트카드"
 
 #: src/dialogs/certificatedetailswidget.cpp:333
-#: src/dialogs/subkeyswidget.cpp:380
+#: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "오프라인"
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:382
+#: src/dialogs/subkeyswidget.cpp:388
 #, kde-format
 msgid "on this computer"
 msgstr "이 컴퓨터"
 
 #: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:384
+#: src/dialogs/subkeyswidget.cpp:390
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -6739,7 +6736,7 @@ msgstr ""
 "택하십시오.<br><i>메모: 인증서와 인증서 소유자는 지문만으로 명확하게 식별할 "
 "수 있습니다.</i>"
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:141
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
@@ -7425,55 +7422,55 @@ msgstr "2단계: 인증된 서명용 인증서(\"SigG\")의 초기 PIN 설정:"
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(선택 사항) 초기 PIN(SigG) 설정"
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:137
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "하위 키"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:140
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:141
+#: src/dialogs/subkeyswidget.cpp:142
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "유효 기간 시작"
 
-#: src/dialogs/subkeyswidget.cpp:142
+#: src/dialogs/subkeyswidget.cpp:143
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "유효 기간 끝"
 
-#: src/dialogs/subkeyswidget.cpp:143
+#: src/dialogs/subkeyswidget.cpp:144
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "상태"
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:145
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr "알고리즘"
 
-#: src/dialogs/subkeyswidget.cpp:145
+#: src/dialogs/subkeyswidget.cpp:146
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "용도"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:147
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "저장소"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:157
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Add Subkey"
@@ -7481,37 +7478,37 @@ msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "하위 키 추가"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "유효 기간 변경"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:159
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "OpenSSH 키 내보내기"
 
-#: src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/subkeyswidget.cpp:160
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "인쇄된 백업 복원"
 
-#: src/dialogs/subkeyswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:161
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "스마트카드로 전송"
 
-#: src/dialogs/subkeyswidget.cpp:161
+#: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "비밀 하위 키 내보내기"
 
-#: src/dialogs/subkeyswidget.cpp:169 src/dialogs/useridswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
 #: src/dialogs/weboftrustwidget.cpp:134
 #, fuzzy, kde-format
 #| msgid "Show advanced options"
@@ -7519,22 +7516,22 @@ msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "고급 옵션 표시"
 
-#: src/dialogs/subkeyswidget.cpp:265
+#: src/dialogs/subkeyswidget.cpp:266
 #, kde-format
 msgid "Change validity"
 msgstr "유효 기간 변경"
 
-#: src/dialogs/subkeyswidget.cpp:272
+#: src/dialogs/subkeyswidget.cpp:273
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "OpenSSH 키 내보내기"
 
-#: src/dialogs/subkeyswidget.cpp:278
+#: src/dialogs/subkeyswidget.cpp:279
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "스마트카드로 전송"
 
-#: src/dialogs/subkeyswidget.cpp:286
+#: src/dialogs/subkeyswidget.cpp:287
 #, kde-format
 msgid "Export secret subkey"
 msgstr "비밀 하위 키 내보내기"
@@ -9224,126 +9221,72 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "백그라운드 작업 진행 중"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgctxt "@option:radio"
-msgid "RSA"
-msgstr "RSA"
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:135
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Strength"
+msgctxt "@info:label"
+msgid "RSA key strength:"
+msgstr "강도"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:253
-#, kde-format
-msgctxt "@option:check"
-msgid "+ RSA"
-msgstr "+ RSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:262
-#, kde-format
-msgctxt "@option:radio"
-msgid "DSA"
-msgstr "DSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:270
-#, kde-format
-msgctxt "@option:check"
-msgid "+ Elgamal"
-msgstr "+ Elgamal"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:271
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:289
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "This subkey is required for encryption."
-msgstr "암호화할 때 이 하위 키가 필요합니다."
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:280
-#, kde-format
-msgctxt "@option:radio"
-msgid "ECDSA"
-msgstr "ECDSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:288
-#, kde-format
-msgctxt "@option:check"
-msgid "+ ECDH"
-msgstr "+ ECDH"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
-#, kde-format
-msgctxt "@option:check"
-msgid "Certification"
-msgstr "자격 증명"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:339
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:174
 #, kde-format
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "기술 정보"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:353
-#, kde-format
-msgctxt "@title:group"
-msgid "Additional User IDs"
-msgstr "추가 사용자 ID"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:361
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:188
 #, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "이메일 주소"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:369
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
 #, kde-format
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS 이름"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:377
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
 #, kde-format
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:387
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:897
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:214
 #, kde-format
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "사용자 정보"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:414
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:232
 #, kde-format
 msgid "new email"
 msgstr "새 이메일"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:415
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:233
 #, kde-format
 msgid "new dns name"
 msgstr "새 DNS 이름"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:416
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:234
 #, kde-format
 msgid "new uri"
 msgstr "새 URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:739
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2(%1비트)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:740
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:338
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "%1비트"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:902
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Adding more than one user ID is not yet implemented."
-msgstr "사용자 ID를 하나 이상 추가하는 것은 구현되어 있지 않습니다."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:66
 #, kde-format
@@ -9391,31 +9334,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "생성"
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, kde-format
 msgid "Operation canceled."
 msgstr "작업이 취소되었습니다."
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "키 쌍을 생성할 수 없음: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:199
-#, kde-format
-msgid ""
-"Key pair created successfully.\n"
-"Fingerprint: %1"
-msgstr ""
-"키 쌍을 생성했습니다.\n"
-"지문: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:206
+#: src/newcertificatewizard/keycreationpage.cpp:146
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "출력 파일 %1에 쓸 수 없음: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:213
+#: src/newcertificatewizard/keycreationpage.cpp:153
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "키 쌍을 생성했습니다."
@@ -9450,13 +9384,13 @@ msgctxt "@title:window"
 msgid "Key Pair Creation Wizard"
 msgstr "키 쌍 생성 마법사"
 
-#: src/newcertificatewizard/resultpage.cpp:79
+#: src/newcertificatewizard/resultpage.cpp:75
 #, kde-format
 msgctxt "@title:group"
 msgid "Result"
 msgstr "결과"
 
-#: src/newcertificatewizard/resultpage.cpp:89
+#: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
@@ -9465,75 +9399,55 @@ msgstr ""
 "요청을 이메일에 첨부하려면 이메일 앱의 작성기로 이 아이콘을 끌어다 놓으십시"
 "오."
 
-#: src/newcertificatewizard/resultpage.cpp:95
+#: src/newcertificatewizard/resultpage.cpp:91
 #, kde-format
 msgid "Restart This Wizard (Keeps Your Parameters)"
 msgstr "이 마법사 다시 시작(입력한 인자 유지)"
 
-#: src/newcertificatewizard/resultpage.cpp:99
+#: src/newcertificatewizard/resultpage.cpp:95
 #, kde-format
 msgctxt "@title:group"
 msgid "Next Steps"
 msgstr "다음 단계"
 
-#: src/newcertificatewizard/resultpage.cpp:102
+#: src/newcertificatewizard/resultpage.cpp:98
 #, kde-format
 msgid "Save Certificate Request To File..."
 msgstr "인증 요청을 파일로 저장..."
 
-#: src/newcertificatewizard/resultpage.cpp:105
+#: src/newcertificatewizard/resultpage.cpp:101
 #, kde-format
 msgid "Send Certificate Request By EMail..."
 msgstr "인증 요청을 이메일로 전송..."
 
-#: src/newcertificatewizard/resultpage.cpp:108
-#, kde-format
-msgid "Make a Backup Of Your Key Pair..."
-msgstr "내 키 쌍 백업 생성..."
-
-#: src/newcertificatewizard/resultpage.cpp:111
-#, kde-format
-msgid "Send Public Key By EMail..."
-msgstr "공개 키를 이메일로 전송..."
-
-#: src/newcertificatewizard/resultpage.cpp:114
-#, kde-format
-msgid "Upload Public Key To Directory Service..."
-msgstr "공개 키를 디렉터리 서비스에 업로드..."
-
-#: src/newcertificatewizard/resultpage.cpp:117
-#, kde-format
-msgid "Create Revocation Request..."
-msgstr "철회 요청 생성..."
-
-#: src/newcertificatewizard/resultpage.cpp:120
+#: src/newcertificatewizard/resultpage.cpp:104
 #, kde-format
 msgid "Create Signing Certificate With Same Parameters"
 msgstr "같은 인자로 서명용 인증서 생성"
 
-#: src/newcertificatewizard/resultpage.cpp:123
+#: src/newcertificatewizard/resultpage.cpp:107
 #, kde-format
 msgid "Create Encryption Certificate With Same Parameters"
 msgstr "같은 인자로 암호화용 인증서 생성"
 
-#: src/newcertificatewizard/resultpage.cpp:167
+#: src/newcertificatewizard/resultpage.cpp:147
 #, kde-format
 msgctxt "@title"
 msgid "Key Creation Failed"
 msgstr "키 생성 실패"
 
-#: src/newcertificatewizard/resultpage.cpp:168
+#: src/newcertificatewizard/resultpage.cpp:148
 #, kde-format
 msgid "Key pair creation failed. Please find details about the failure below."
 msgstr "키 쌍 생성이 실패했습니다. 아래에서 실패 정보를 확인하십시오."
 
-#: src/newcertificatewizard/resultpage.cpp:170
+#: src/newcertificatewizard/resultpage.cpp:150
 #, kde-format
 msgctxt "@title"
 msgid "Key Pair Successfully Created"
 msgstr "키 쌍 생성됨"
 
-#: src/newcertificatewizard/resultpage.cpp:171
+#: src/newcertificatewizard/resultpage.cpp:151
 #, kde-format
 msgid ""
 "Your new key pair was created successfully. Please find details on the "
@@ -9542,7 +9456,7 @@ msgstr ""
 "새 키 쌍을 생성했습니다. 아래에서 결과와 제안된 추가 작업을 확인할 수 있습니"
 "다."
 
-#: src/newcertificatewizard/resultpage.cpp:242
+#: src/newcertificatewizard/resultpage.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9552,12 +9466,12 @@ msgstr ""
 "임시 파일 <filename>%1</filename>을(를) <filename>%2</filename>(으)로 복사할 "
 "수 없음: <message>%3</message>"
 
-#: src/newcertificatewizard/resultpage.cpp:264
+#: src/newcertificatewizard/resultpage.cpp:236
 #, kde-format
 msgid "Please process this certificate."
 msgstr "이 인증서를 처리해 주십시오."
 
-#: src/newcertificatewizard/resultpage.cpp:265
+#: src/newcertificatewizard/resultpage.cpp:237
 #, kde-format
 msgid ""
 "Please process this certificate and inform the sender about the location to "
@@ -9570,7 +9484,7 @@ msgstr ""
 "\n"
 "감사합니다.\n"
 
-#: src/newcertificatewizard/resultpage.cpp:269
+#: src/newcertificatewizard/resultpage.cpp:241
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9589,40 +9503,13 @@ msgstr ""
 "아이콘을 이메일 클라이언트의 작성기 창에 끌어다 놓으십시오.</para><para>이 방"
 "법도 작동하지 않으면 요청을 파일로 저장한 후 첨부하십시오.</para>"
 
-#: src/newcertificatewizard/resultpage.cpp:274
-#: src/newcertificatewizard/resultpage.cpp:311
+#: src/newcertificatewizard/resultpage.cpp:246
 #, kde-format
 msgctxt "@title"
 msgid "Sending Mail"
 msgstr "이메일 보내기"
 
-#: src/newcertificatewizard/resultpage.cpp:302
-#, kde-format
-msgid "My new public OpenPGP key"
-msgstr "내 새 공개 OpenPGP 키"
-
-#: src/newcertificatewizard/resultpage.cpp:303
-#, kde-format
-msgid "Please find attached my new public OpenPGP key."
-msgstr "제 새 공개 OpenPGP 키를 첨부했습니다."
-
-#: src/newcertificatewizard/resultpage.cpp:307
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then attach the file <filename>%1</filename> manually.</"
-"para>"
-msgstr ""
-"<para><application>Kleopatra</application>에서 기본 이메일 클라이언트로 이메"
-"일을 전송합니다.</para><para>일부 이메일 클라이언트는 Kleopatra가 사용하는 호"
-"출 방법으로는 첨부 파일 처리를 지원하지 않습니다.</para><para>이메일 클라이언"
-"트에 첨부 파일이 표시되어 있지 않았다면 <filename>%1</filename> 파일을 첨부하"
-"십시오.</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:356
+#: src/newcertificatewizard/resultpage.cpp:273
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -9632,7 +9519,7 @@ msgstr ""
 "이 작업을 진행하면 인증 요청을 삭제합니다. 진행하기 전에 인증 요청을 보냈거"
 "나 저장했는지 확인하십시오."
 
-#: src/newcertificatewizard/resultpage.cpp:358
+#: src/newcertificatewizard/resultpage.cpp:275
 #, kde-format
 msgctxt "@title"
 msgid "Certification Request About To Be Deleted"
@@ -12310,6 +12197,85 @@ msgstr ""
 "파일에서 인증서를 가져옵니다.<nl/>공개 키 서버에서 키를 가져오려면 "
 "<interface>서버에서 찾아보기</interface>를 사용하십시오."
 
+#~ msgctxt "@option:radio"
+#~ msgid "RSA"
+#~ msgstr "RSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ RSA"
+#~ msgstr "+ RSA"
+
+#~ msgctxt "@option:radio"
+#~ msgid "DSA"
+#~ msgstr "DSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ Elgamal"
+#~ msgstr "+ Elgamal"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "This subkey is required for encryption."
+#~ msgstr "암호화할 때 이 하위 키가 필요합니다."
+
+#~ msgctxt "@option:radio"
+#~ msgid "ECDSA"
+#~ msgstr "ECDSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ ECDH"
+#~ msgstr "+ ECDH"
+
+#~ msgctxt "@option:check"
+#~ msgid "Certification"
+#~ msgstr "자격 증명"
+
+#~ msgctxt "@title:group"
+#~ msgid "Additional User IDs"
+#~ msgstr "추가 사용자 ID"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "Adding more than one user ID is not yet implemented."
+#~ msgstr "사용자 ID를 하나 이상 추가하는 것은 구현되어 있지 않습니다."
+
+#~ msgid ""
+#~ "Key pair created successfully.\n"
+#~ "Fingerprint: %1"
+#~ msgstr ""
+#~ "키 쌍을 생성했습니다.\n"
+#~ "지문: %1"
+
+#~ msgid "Make a Backup Of Your Key Pair..."
+#~ msgstr "내 키 쌍 백업 생성..."
+
+#~ msgid "Send Public Key By EMail..."
+#~ msgstr "공개 키를 이메일로 전송..."
+
+#~ msgid "Upload Public Key To Directory Service..."
+#~ msgstr "공개 키를 디렉터리 서비스에 업로드..."
+
+#~ msgid "Create Revocation Request..."
+#~ msgstr "철회 요청 생성..."
+
+#~ msgid "My new public OpenPGP key"
+#~ msgstr "내 새 공개 OpenPGP 키"
+
+#~ msgid "Please find attached my new public OpenPGP key."
+#~ msgstr "제 새 공개 OpenPGP 키를 첨부했습니다."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then attach the file <filename>%1</"
+#~ "filename> manually.</para>"
+#~ msgstr ""
+#~ "<para><application>Kleopatra</application>에서 기본 이메일 클라이언트로 이"
+#~ "메일을 전송합니다.</para><para>일부 이메일 클라이언트는 Kleopatra가 사용하"
+#~ "는 호출 방법으로는 첨부 파일 처리를 지원하지 않습니다.</para><para>이메일 "
+#~ "클라이언트에 첨부 파일이 표시되어 있지 않았다면 <filename>%1</filename> 파"
+#~ "일을 첨부하십시오.</para>"
+
 #~ msgctxt "@action:button"
 #~ msgid "Show Certifications"
 #~ msgstr "인증 표시"
@@ -12395,10 +12361,6 @@ msgstr ""
 #~ msgctxt "@title:column"
 #~ msgid "Type"
 #~ msgstr "종류"
-
-#~ msgctxt "@title:column"
-#~ msgid "Strength"
-#~ msgstr "강도"
 
 #~ msgctxt "@title:column"
 #~ msgid "Primary"

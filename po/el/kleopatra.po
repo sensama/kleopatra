@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-26 00:38+0000\n"
+"POT-Creation-Date: 2024-03-27 00:38+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -897,7 +897,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:212
-#: src/newcertificatewizard/resultpage.cpp:251
+#: src/newcertificatewizard/resultpage.cpp:226
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -908,21 +908,21 @@ msgstr ""
 "πρέπει τώρα να στείλετε την αίτηση στην αρχή πιστοποίησης (CA).</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:215
-#: src/newcertificatewizard/resultpage.cpp:254
+#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "Η αίτηση αποθηκεύτηκε"
 
 #: src/commands/createcsrforcardkeycommand.cpp:249
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "Αποθήκευση αίτησης"
 
 #: src/commands/createcsrforcardkeycommand.cpp:252
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "Αιτήσεις PKCS#10 (*.p10)"
@@ -937,7 +937,7 @@ msgstr ""
 "para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:261
-#: src/newcertificatewizard/resultpage.cpp:247
+#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2854,20 +2854,20 @@ msgstr ""
 "Δεν σας επιτρέπεται η δημιουργία αιτημάτων υπογραφής S/MIME πιστοποιητικών."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:161
-#: src/newcertificatewizard/keycreationpage.cpp:97
+#: src/newcertificatewizard/keycreationpage.cpp:86
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Αδυναμία έναρξης της δημιουργίας ζεύγους κλειδιών: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:171
-#: src/newcertificatewizard/keycreationpage.cpp:51
+#: src/newcertificatewizard/keycreationpage.cpp:49
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Δημιουργία ζεύγους κλειδιών..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:172
-#: src/newcertificatewizard/keycreationpage.cpp:55
+#: src/newcertificatewizard/keycreationpage.cpp:53
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5159,7 +5159,6 @@ msgid "Multiple matching certificates or groups found"
 msgstr "Βρέθηκαν πολλαπλά αποτελέσματα για πιστοποιητικά ή ομάδες"
 
 #: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -6304,14 +6303,14 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "Επαλήθευση αθροισμάτων ελέγχου (%2) στο %1"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Προχωρημένες ρυθμίσεις"
 
 #: src/dialogs/addsubkeydialog.cpp:90
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:130
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6323,28 +6322,27 @@ msgid "Algorithm:"
 msgstr "Αλγόριθμος:"
 
 #: src/dialogs/addsubkeydialog.cpp:100
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:150
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Χρήση πιστοποιητικού"
 
 #: src/dialogs/addsubkeydialog.cpp:103
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:154
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Υπογραφή"
 
 #: src/dialogs/addsubkeydialog.cpp:106
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:159
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "Κρυπτογράφηση"
 
 #: src/dialogs/addsubkeydialog.cpp:110
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, kde-format
 msgctxt "@option:check"
 msgid "Authentication"
@@ -6352,7 +6350,6 @@ msgstr "Ταυτοποίηση"
 
 #: src/dialogs/addsubkeydialog.cpp:116
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6482,7 +6479,7 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:168
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6491,26 +6488,26 @@ msgstr "%1:"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(required)"
 msgstr "(απαιτείται)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(optional)"
 msgstr "(προαιρετικό)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:483
+#: src/newcertificatewizard/enterdetailspage.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "Το <interface>%1</interface> απαιτείται, αλλά είναι κενό."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:486
+#: src/newcertificatewizard/enterdetailspage.cpp:477
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6521,14 +6518,14 @@ msgstr ""
 "τοπικού διαχειριστή: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:494
+#: src/newcertificatewizard/enterdetailspage.cpp:485
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> δεν είναι πλήρες."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:497
+#: src/newcertificatewizard/enterdetailspage.cpp:488
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6539,14 +6536,14 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:504
+#: src/newcertificatewizard/enterdetailspage.cpp:495
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "To <interface>%1</interface> δεν είναι έγκυρο."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:507
+#: src/newcertificatewizard/enterdetailspage.cpp:498
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6704,14 +6701,14 @@ msgid "unlimited"
 msgstr "απεριόριστο"
 
 #: src/dialogs/certificatedetailswidget.cpp:325
-#: src/dialogs/subkeyswidget.cpp:372
+#: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:375
+#: src/dialogs/subkeyswidget.cpp:381
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
@@ -6719,26 +6716,26 @@ msgstr "έξυπνη κάρτα %1"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
 #: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:377
+#: src/dialogs/subkeyswidget.cpp:383
 #, kde-format
 msgid "smart card"
 msgstr "έξυπνη κάρτα"
 
 #: src/dialogs/certificatedetailswidget.cpp:333
-#: src/dialogs/subkeyswidget.cpp:380
+#: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "εκτός σύνδεσης"
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:382
+#: src/dialogs/subkeyswidget.cpp:388
 #, kde-format
 msgid "on this computer"
 msgstr "στον υπολογιστή αυτό"
 
 #: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:384
+#: src/dialogs/subkeyswidget.cpp:390
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -7084,7 +7081,7 @@ msgstr ""
 "πιστοποιήσετε τα αναγνωριστικά χρήστη.<br><i>Σημείωση: Μόνο το δακτυλικό "
 "αποτύπωμα ξεκάθαρα ταυτοποιεί το κλειδί και τον ιδιοκτήτη του.</i>"
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:141
 #, fuzzy, kde-format
 #| msgid "Fingerprint:"
 msgctxt "@title:column"
@@ -7816,56 +7813,56 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(προαιρετικός) Ορισμός αρχικού PIN (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:137
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Υποκλειδιά"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:140
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "Αναγνωριστικό"
 
-#: src/dialogs/subkeyswidget.cpp:141
+#: src/dialogs/subkeyswidget.cpp:142
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Έγκυρο από"
 
-#: src/dialogs/subkeyswidget.cpp:142
+#: src/dialogs/subkeyswidget.cpp:143
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Έγκυρο έως"
 
-#: src/dialogs/subkeyswidget.cpp:143
+#: src/dialogs/subkeyswidget.cpp:144
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:145
 #, fuzzy, kde-format
 #| msgid "Algorithm:"
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr "Αλγόριθμος:"
 
-#: src/dialogs/subkeyswidget.cpp:145
+#: src/dialogs/subkeyswidget.cpp:146
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Χρήση"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:147
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Αποθήκη"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:157
 #, fuzzy, kde-format
 #| msgctxt "@label"
 #| msgid "Subkeys"
@@ -7873,7 +7870,7 @@ msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "Υποκλειδιά"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:158
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Change Validity"
@@ -7881,35 +7878,35 @@ msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Αλλαγή εγκυρότητας"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:159
 #, fuzzy, kde-format
 #| msgid "Export OpenSSH key"
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Εξαγωγή OpenSSH κλειδιού"
 
-#: src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/subkeyswidget.cpp:160
 #, fuzzy, kde-format
 #| msgid "Restore printed backup"
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Επαναφορά εκτυπωμένου εφεδρικού αντιγράφου"
 
-#: src/dialogs/subkeyswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "Transfer to smartcard"
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Μεταφορά σε έξυπνη κάρτα"
 
-#: src/dialogs/subkeyswidget.cpp:161
+#: src/dialogs/subkeyswidget.cpp:162
 #, fuzzy, kde-format
 #| msgid "Export secret subkey"
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Εξαγωγή μυστικού υποκλειδιού"
 
-#: src/dialogs/subkeyswidget.cpp:169 src/dialogs/useridswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
 #: src/dialogs/weboftrustwidget.cpp:134
 #, fuzzy, kde-format
 #| msgid "Show advanced options"
@@ -7917,24 +7914,24 @@ msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "Εμφάνιση προχωρημένων ρυθμίσεων"
 
-#: src/dialogs/subkeyswidget.cpp:265
+#: src/dialogs/subkeyswidget.cpp:266
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Change Validity"
 msgid "Change validity"
 msgstr "Αλλαγή εγκυρότητας"
 
-#: src/dialogs/subkeyswidget.cpp:272
+#: src/dialogs/subkeyswidget.cpp:273
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Εξαγωγή OpenSSH κλειδιού"
 
-#: src/dialogs/subkeyswidget.cpp:278
+#: src/dialogs/subkeyswidget.cpp:279
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Μεταφορά σε έξυπνη κάρτα"
 
-#: src/dialogs/subkeyswidget.cpp:286
+#: src/dialogs/subkeyswidget.cpp:287
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Εξαγωγή μυστικού υποκλειδιού"
@@ -9687,108 +9684,59 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "Διεργασίες παρασκηνίου σε εξέλιξη"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgctxt "@option:radio"
-msgid "RSA"
-msgstr "RSA"
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:135
+#, fuzzy, kde-format
+#| msgid "Subkey Strength:"
+msgctxt "@info:label"
+msgid "RSA key strength:"
+msgstr "Δύναμη υποκλειδιού:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:253
-#, kde-format
-msgctxt "@option:check"
-msgid "+ RSA"
-msgstr "+ RSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:262
-#, kde-format
-msgctxt "@option:radio"
-msgid "DSA"
-msgstr "DSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:270
-#, kde-format
-msgctxt "@option:check"
-msgid "+ Elgamal"
-msgstr "+ Elgamal"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:271
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:289
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "This subkey is required for encryption."
-msgstr "Αυτό το υποκλειδί απαιτείται για κρυπτογράφηση."
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:280
-#, kde-format
-msgctxt "@option:radio"
-msgid "ECDSA"
-msgstr "ECDSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:288
-#, kde-format
-msgctxt "@option:check"
-msgid "+ ECDH"
-msgstr "+ ECDH"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
-#, kde-format
-msgctxt "@option:check"
-msgid "Certification"
-msgstr "Πιστοποίηση"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:339
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:174
 #, kde-format
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "Τεχνικές λεπτομέρειες"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:353
-#, kde-format
-msgctxt "@title:group"
-msgid "Additional User IDs"
-msgstr "Πρόσθετα αναγνωριστικά χρήστη"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:361
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:188
 #, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "Διευθύνσεις ηλ. αλληλογραφίας"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:369
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
 #, kde-format
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "Ονόματα DNS"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:377
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
 #, kde-format
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:387
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:897
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:214
 #, kde-format
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Προσωπικές λεπτομέρειες"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:414
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:232
 #, kde-format
 msgid "new email"
 msgstr "νέο μήνυμα"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:415
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:233
 #, kde-format
 msgid "new dns name"
 msgstr "νέο όνομα dns"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:416
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:234
 #, kde-format
 msgid "new uri"
 msgstr "νέο uri"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:739
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9796,20 +9744,13 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1 bit)"
 msgstr[1] "%2 (%1 bits)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:740
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:338
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "1 bit"
 msgstr[1] "%1 bits"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:902
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Adding more than one user ID is not yet implemented."
-msgstr ""
-"Η εισαγωγή παραπάνω του ενός αναγνωριστικού χρήστη δεν έχει ακόμη υλοποιηθεί."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:66
 #, kde-format
@@ -9857,31 +9798,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Δημιουργία"
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, kde-format
 msgid "Operation canceled."
 msgstr "Η λειτουργία ακυρώθηκε."
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Αδυναμία δημιουργίας ζεύγους κλειδιών: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:199
-#, kde-format
-msgid ""
-"Key pair created successfully.\n"
-"Fingerprint: %1"
-msgstr ""
-"Επιτυχής δημιουργία ζεύγους κλειδιών.\n"
-"Αποτύπωμα: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:206
+#: src/newcertificatewizard/keycreationpage.cpp:146
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Αδυναμία εγγραφής στο αρχείο εξόδου %1: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:213
+#: src/newcertificatewizard/keycreationpage.cpp:153
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "Επιτυχής δημιουργία ζεύγους κλειδιών."
@@ -9916,13 +9848,13 @@ msgctxt "@title:window"
 msgid "Key Pair Creation Wizard"
 msgstr "Βοηθός δημιουργίας ζεύγους κλειδιών"
 
-#: src/newcertificatewizard/resultpage.cpp:79
+#: src/newcertificatewizard/resultpage.cpp:75
 #, kde-format
 msgctxt "@title:group"
 msgid "Result"
 msgstr "Αποτέλεσμα"
 
-#: src/newcertificatewizard/resultpage.cpp:89
+#: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
@@ -9931,77 +9863,57 @@ msgstr ""
 "Μετακινήστε αυτό το εικονίδιο στον συνθέτη μηνυμάτων της εφαρμογής "
 "αλληλογραφίας σας για την επισύναψη της αίτησης σε μήνυμα."
 
-#: src/newcertificatewizard/resultpage.cpp:95
+#: src/newcertificatewizard/resultpage.cpp:91
 #, kde-format
 msgid "Restart This Wizard (Keeps Your Parameters)"
 msgstr "Επανεκκίνηση αυτού του βοηθού (διατηρεί τις παραμέτρους σας)"
 
-#: src/newcertificatewizard/resultpage.cpp:99
+#: src/newcertificatewizard/resultpage.cpp:95
 #, kde-format
 msgctxt "@title:group"
 msgid "Next Steps"
 msgstr "Επόμενα βήματα"
 
-#: src/newcertificatewizard/resultpage.cpp:102
+#: src/newcertificatewizard/resultpage.cpp:98
 #, kde-format
 msgid "Save Certificate Request To File..."
 msgstr "Αποθήκευση αίτησης πιστοποιητικού σε αρχείο..."
 
-#: src/newcertificatewizard/resultpage.cpp:105
+#: src/newcertificatewizard/resultpage.cpp:101
 #, kde-format
 msgid "Send Certificate Request By EMail..."
 msgstr "Αποστολή αίτησης πιστοποιητικού με αλληλογραφία..."
 
-#: src/newcertificatewizard/resultpage.cpp:108
-#, kde-format
-msgid "Make a Backup Of Your Key Pair..."
-msgstr "Δημιουργία εφεδρικού αντιγράφου του ζεύγους κλειδιών σας..."
-
-#: src/newcertificatewizard/resultpage.cpp:111
-#, kde-format
-msgid "Send Public Key By EMail..."
-msgstr "Αποστολή ζεύγους κλειδιών με αλληλογραφία..."
-
-#: src/newcertificatewizard/resultpage.cpp:114
-#, kde-format
-msgid "Upload Public Key To Directory Service..."
-msgstr "Αποστολή δημόσιου κλειδιού σε υπηρεσία καταλόγου..."
-
-#: src/newcertificatewizard/resultpage.cpp:117
-#, kde-format
-msgid "Create Revocation Request..."
-msgstr "Δημιουργία αίτησης ανάκλησης..."
-
-#: src/newcertificatewizard/resultpage.cpp:120
+#: src/newcertificatewizard/resultpage.cpp:104
 #, kde-format
 msgid "Create Signing Certificate With Same Parameters"
 msgstr "Δημιουργία πιστοποιητικού υπογραφής με τις ίδιες παραμέτρους"
 
-#: src/newcertificatewizard/resultpage.cpp:123
+#: src/newcertificatewizard/resultpage.cpp:107
 #, kde-format
 msgid "Create Encryption Certificate With Same Parameters"
 msgstr "Δημιουργία πιστοποιητικού κρυπτογράφησης με τις ίδιες παραμέτρους"
 
-#: src/newcertificatewizard/resultpage.cpp:167
+#: src/newcertificatewizard/resultpage.cpp:147
 #, kde-format
 msgctxt "@title"
 msgid "Key Creation Failed"
 msgstr "Αποτυχία δημιουργίας κλειδιού"
 
-#: src/newcertificatewizard/resultpage.cpp:168
+#: src/newcertificatewizard/resultpage.cpp:148
 #, kde-format
 msgid "Key pair creation failed. Please find details about the failure below."
 msgstr ""
 "Αποτυχία δημιουργίας ζεύγους κλειδιών. Παρακαλώ βρείτε λεπτομέρειες σχετικά "
 "με την αποτυχία παρακάτω."
 
-#: src/newcertificatewizard/resultpage.cpp:170
+#: src/newcertificatewizard/resultpage.cpp:150
 #, kde-format
 msgctxt "@title"
 msgid "Key Pair Successfully Created"
 msgstr "Επιτυχής δημιουργία ζεύγους κλειδιών"
 
-#: src/newcertificatewizard/resultpage.cpp:171
+#: src/newcertificatewizard/resultpage.cpp:151
 #, kde-format
 msgid ""
 "Your new key pair was created successfully. Please find details on the "
@@ -10010,7 +9922,7 @@ msgstr ""
 "Το νέο σας ζεύγος κλειδιών δημιουργήθηκε με επιτυχία. Μπορείτε παρακάτω να "
 "βρείτε λεπτομέρειες για το αποτέλεσμα καθώς και προτεινόμενα επόμενα βήματα."
 
-#: src/newcertificatewizard/resultpage.cpp:242
+#: src/newcertificatewizard/resultpage.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10020,12 +9932,12 @@ msgstr ""
 "Αδυναμία αντιγραφής προσωρινού αρχείου <filename>%1</filename> στο αρχείο "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/newcertificatewizard/resultpage.cpp:264
+#: src/newcertificatewizard/resultpage.cpp:236
 #, kde-format
 msgid "Please process this certificate."
 msgstr "Παρακαλώ επεξεργαστείτε το πιστοποιητικό."
 
-#: src/newcertificatewizard/resultpage.cpp:265
+#: src/newcertificatewizard/resultpage.cpp:237
 #, kde-format
 msgid ""
 "Please process this certificate and inform the sender about the location to "
@@ -10038,7 +9950,7 @@ msgstr ""
 "\n"
 "Ευχαριστώ,\n"
 
-#: src/newcertificatewizard/resultpage.cpp:269
+#: src/newcertificatewizard/resultpage.cpp:241
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10060,41 +9972,13 @@ msgstr ""
 "para><para>Αν δεν δουλέψει και αυτό, αποθηκεύστε την αίτηση σε ένα αρχείο "
 "και επισυνάψτε τη.</para>"
 
-#: src/newcertificatewizard/resultpage.cpp:274
-#: src/newcertificatewizard/resultpage.cpp:311
+#: src/newcertificatewizard/resultpage.cpp:246
 #, kde-format
 msgctxt "@title"
 msgid "Sending Mail"
 msgstr "Αποστολή μηνύματος"
 
-#: src/newcertificatewizard/resultpage.cpp:302
-#, kde-format
-msgid "My new public OpenPGP key"
-msgstr "Το νέο μου δημόσιο OpenPGP κλειδί"
-
-#: src/newcertificatewizard/resultpage.cpp:303
-#, kde-format
-msgid "Please find attached my new public OpenPGP key."
-msgstr "Θα βρείτε συνημμένο το νέο μου δημόσιο OpenPGP κλειδί."
-
-#: src/newcertificatewizard/resultpage.cpp:307
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then attach the file <filename>%1</filename> manually.</"
-"para>"
-msgstr ""
-"<para>Η εφαρμογή <application>Kleopatra</application> προσπάθησε να στείλει "
-"ένα μήνυμα αλληλογραφίας μέσω του προκαθορισμένου προγράμματος αλληλογραφίας."
-"</para><para>Κάποια από τα προγράμματα αλληλογραφίας δεν υποστηρίζουν "
-"συνημμένα όταν καλούνται με αυτόν τον τρόπο.</para><para>Αν το μήνυμά σας "
-"στο πρόγραμμα αλληλογραφίας δεν περιέχει συνημμένο, επισυνάψτε το αρχείο "
-"<filename>%1</filename> χειροκίνητα.</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:356
+#: src/newcertificatewizard/resultpage.cpp:273
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -10104,7 +9988,7 @@ msgstr ""
 "Αυτή η λειτουργία θα διαγράψει την αίτηση πιστοποίησης. Παρακαλώ "
 "σιγουρευτείτε ότι την έχετε στείλει ή αποθηκεύσει πριν συνεχίσετε."
 
-#: src/newcertificatewizard/resultpage.cpp:358
+#: src/newcertificatewizard/resultpage.cpp:275
 #, kde-format
 msgctxt "@title"
 msgid "Certification Request About To Be Deleted"
@@ -12866,6 +12750,88 @@ msgstr ""
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
 
+#~ msgctxt "@option:radio"
+#~ msgid "RSA"
+#~ msgstr "RSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ RSA"
+#~ msgstr "+ RSA"
+
+#~ msgctxt "@option:radio"
+#~ msgid "DSA"
+#~ msgstr "DSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ Elgamal"
+#~ msgstr "+ Elgamal"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "This subkey is required for encryption."
+#~ msgstr "Αυτό το υποκλειδί απαιτείται για κρυπτογράφηση."
+
+#~ msgctxt "@option:radio"
+#~ msgid "ECDSA"
+#~ msgstr "ECDSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ ECDH"
+#~ msgstr "+ ECDH"
+
+#~ msgctxt "@option:check"
+#~ msgid "Certification"
+#~ msgstr "Πιστοποίηση"
+
+#~ msgctxt "@title:group"
+#~ msgid "Additional User IDs"
+#~ msgstr "Πρόσθετα αναγνωριστικά χρήστη"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "Adding more than one user ID is not yet implemented."
+#~ msgstr ""
+#~ "Η εισαγωγή παραπάνω του ενός αναγνωριστικού χρήστη δεν έχει ακόμη "
+#~ "υλοποιηθεί."
+
+#~ msgid ""
+#~ "Key pair created successfully.\n"
+#~ "Fingerprint: %1"
+#~ msgstr ""
+#~ "Επιτυχής δημιουργία ζεύγους κλειδιών.\n"
+#~ "Αποτύπωμα: %1"
+
+#~ msgid "Make a Backup Of Your Key Pair..."
+#~ msgstr "Δημιουργία εφεδρικού αντιγράφου του ζεύγους κλειδιών σας..."
+
+#~ msgid "Send Public Key By EMail..."
+#~ msgstr "Αποστολή ζεύγους κλειδιών με αλληλογραφία..."
+
+#~ msgid "Upload Public Key To Directory Service..."
+#~ msgstr "Αποστολή δημόσιου κλειδιού σε υπηρεσία καταλόγου..."
+
+#~ msgid "Create Revocation Request..."
+#~ msgstr "Δημιουργία αίτησης ανάκλησης..."
+
+#~ msgid "My new public OpenPGP key"
+#~ msgstr "Το νέο μου δημόσιο OpenPGP κλειδί"
+
+#~ msgid "Please find attached my new public OpenPGP key."
+#~ msgstr "Θα βρείτε συνημμένο το νέο μου δημόσιο OpenPGP κλειδί."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then attach the file <filename>%1</"
+#~ "filename> manually.</para>"
+#~ msgstr ""
+#~ "<para>Η εφαρμογή <application>Kleopatra</application> προσπάθησε να "
+#~ "στείλει ένα μήνυμα αλληλογραφίας μέσω του προκαθορισμένου προγράμματος "
+#~ "αλληλογραφίας.</para><para>Κάποια από τα προγράμματα αλληλογραφίας δεν "
+#~ "υποστηρίζουν συνημμένα όταν καλούνται με αυτόν τον τρόπο.</para><para>Αν "
+#~ "το μήνυμά σας στο πρόγραμμα αλληλογραφίας δεν περιέχει συνημμένο, "
+#~ "επισυνάψτε το αρχείο <filename>%1</filename> χειροκίνητα.</para>"
+
 #~ msgctxt "@action:button"
 #~ msgid "Show Certifications"
 #~ msgstr "Εμφάνιση πιστοποιήσεων"
@@ -14071,9 +14037,6 @@ msgstr ""
 
 #~ msgid "Subkey Type:"
 #~ msgstr "Τύπος υποκλειδιού:"
-
-#~ msgid "Subkey Strength:"
-#~ msgstr "Δύναμη υποκλειδιού:"
 
 #~ msgid "Subkey Usage:"
 #~ msgstr "Χρήση υποκλειδιού:"

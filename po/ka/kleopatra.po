@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-26 00:38+0000\n"
-"PO-Revision-Date: 2024-03-23 05:58+0100\n"
+"POT-Creation-Date: 2024-03-27 00:38+0000\n"
+"PO-Revision-Date: 2024-03-26 05:51+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -862,7 +862,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:212
-#: src/newcertificatewizard/resultpage.cpp:251
+#: src/newcertificatewizard/resultpage.cpp:226
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -874,21 +874,21 @@ msgstr ""
 "para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:215
-#: src/newcertificatewizard/resultpage.cpp:254
+#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "მოთხოვნა შენახულია"
 
 #: src/commands/createcsrforcardkeycommand.cpp:249
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "მოთხოვნის შენახვა"
 
 #: src/commands/createcsrforcardkeycommand.cpp:252
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "PKCS#10 მოთხოვნები (*.p10)"
@@ -902,7 +902,7 @@ msgstr ""
 "<para>მოთხოვნის შენახვა ჩავარდა.</para><para><message>%1</message></para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:261
-#: src/newcertificatewizard/resultpage.cpp:247
+#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2722,20 +2722,20 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME სერტიფიკატის ხელმოწერის მოთხოვნების შექმნის უფლება არ გაქვთ."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:161
-#: src/newcertificatewizard/keycreationpage.cpp:97
+#: src/newcertificatewizard/keycreationpage.cpp:86
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "გასაღებების წყვილის შექმნის დაწყების შეცდომა: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:171
-#: src/newcertificatewizard/keycreationpage.cpp:51
+#: src/newcertificatewizard/keycreationpage.cpp:49
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "გასაღების წყვილის შექმნა..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:172
-#: src/newcertificatewizard/keycreationpage.cpp:55
+#: src/newcertificatewizard/keycreationpage.cpp:53
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -4979,7 +4979,6 @@ msgid "Multiple matching certificates or groups found"
 msgstr "აღმოჩენილია ერთზე მეტი სერტიფიკატი ან ჯგუფი, რომელიც ემთხვევა"
 
 #: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -6106,14 +6105,14 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "საკონტროლო ჯამების (%2) გადამოწმება %1-ში"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:113
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "დამატებითი პარამეტრები"
 
 #: src/dialogs/addsubkeydialog.cpp:90
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:130
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6125,28 +6124,27 @@ msgid "Algorithm:"
 msgstr "ალგორითმი:"
 
 #: src/dialogs/addsubkeydialog.cpp:100
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:150
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "სერტიფიკატის გამოყენება"
 
 #: src/dialogs/addsubkeydialog.cpp:103
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:154
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "ხელმოწერა"
 
 #: src/dialogs/addsubkeydialog.cpp:106
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:159
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "დაშიფვრა"
 
 #: src/dialogs/addsubkeydialog.cpp:110
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, kde-format
 msgctxt "@option:check"
 msgid "Authentication"
@@ -6154,7 +6152,6 @@ msgstr "ავთენტიკაცია"
 
 #: src/dialogs/addsubkeydialog.cpp:116
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6277,7 +6274,7 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:168
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6286,26 +6283,26 @@ msgstr "%1:"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(required)"
 msgstr "(სავალდებულო)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(optional)"
 msgstr "(არასავალდებულო)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:483
+#: src/newcertificatewizard/enterdetailspage.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> აუცილებელი, მაგრამ ცარიელია."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:486
+#: src/newcertificatewizard/enterdetailspage.cpp:477
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6316,14 +6313,14 @@ msgstr ""
 "წესი: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:494
+#: src/newcertificatewizard/enterdetailspage.cpp:485
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> დაუსრულებელია."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:497
+#: src/newcertificatewizard/enterdetailspage.cpp:488
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6334,14 +6331,14 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:504
+#: src/newcertificatewizard/enterdetailspage.cpp:495
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> არასწორია."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:507
+#: src/newcertificatewizard/enterdetailspage.cpp:498
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6351,10 +6348,9 @@ msgstr ""
 "icode>"
 
 #: src/dialogs/certificatedetailswidget.cpp:159
-#, fuzzy, kde-format
-#| msgid "User IDs:"
+#, kde-format
 msgid "User ID:"
-msgstr "მომხმარებლის ID-ები:"
+msgstr "მომხმარებლის ID:"
 
 #: src/dialogs/certificatedetailswidget.cpp:179
 #, kde-format
@@ -6435,15 +6431,12 @@ msgid "See certifications for details."
 msgstr "დეტალებისთვის იხილეთ სერტიფიკაციები."
 
 #: src/dialogs/certificatedetailswidget.cpp:232
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Write Key"
+#, kde-format
 msgid "Private Key:"
-msgstr "გასაღების ჩაწერა"
+msgstr "პირადი გასაღები:"
 
 #: src/dialogs/certificatedetailswidget.cpp:245
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "მომხმარებლის ID-ები"
@@ -6454,40 +6447,31 @@ msgid "Related addresses"
 msgstr "შესაბამისი მისამართები"
 
 #: src/dialogs/certificatedetailswidget.cpp:250
-#, fuzzy, kde-format
-#| msgid "Related addresses"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "შესაბამისი მისამართები"
 
 #: src/dialogs/certificatedetailswidget.cpp:253
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "ქვეგასაღებები"
 
 #: src/dialogs/certificatedetailswidget.cpp:256
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certifications"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certifications"
-msgstr "სერთიფიკატები"
+msgstr "სერთიფიკაცია"
 
 #: src/dialogs/certificatedetailswidget.cpp:259
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Trust Chain Details"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "ნდობის ჯაჭვის დეტალები"
 
 #: src/dialogs/certificatedetailswidget.cpp:262
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Dump"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "სერტიფიკატის დამპი"
@@ -6499,14 +6483,14 @@ msgid "unlimited"
 msgstr "შეუზღუდავი"
 
 #: src/dialogs/certificatedetailswidget.cpp:325
-#: src/dialogs/subkeyswidget.cpp:372
+#: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr "შეუსაბამო"
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:375
+#: src/dialogs/subkeyswidget.cpp:381
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
@@ -6514,26 +6498,26 @@ msgstr "ჭკვიანი ბარათი %1"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
 #: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:377
+#: src/dialogs/subkeyswidget.cpp:383
 #, kde-format
 msgid "smart card"
 msgstr "ჭკვიანი ბარათი"
 
 #: src/dialogs/certificatedetailswidget.cpp:333
-#: src/dialogs/subkeyswidget.cpp:380
+#: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "გათიშული"
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:382
+#: src/dialogs/subkeyswidget.cpp:388
 #, kde-format
 msgid "on this computer"
 msgstr "ამ კომპიუტერზე"
 
 #: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:384
+#: src/dialogs/subkeyswidget.cpp:390
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -6542,7 +6526,7 @@ msgstr "უცნობი"
 #: src/dialogs/certificatedetailswidget.cpp:341
 #, kde-format
 msgid "none"
-msgstr ""
+msgstr "არა"
 
 #: src/dialogs/certificatedetailswidget.cpp:457
 #: src/dialogs/useridswidget.cpp:360
@@ -6869,7 +6853,7 @@ msgstr ""
 "სერტიფიცირება.<br><i>დაიმახსოვრეთ: სერტიფიკატის და მისი მფლობელის აშკარა "
 "იდენტიფიკაცია მხოლოდ ანაბეჭდით შეიძლება.</i>"
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:141
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
@@ -7567,116 +7551,113 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(არასავალდებულო) საწყისი PIN-კოდის (SigG) დაყენება"
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:137
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "ქვეგასაღებები"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:140
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "აიდი"
 
-#: src/dialogs/subkeyswidget.cpp:141
+#: src/dialogs/subkeyswidget.cpp:142
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Ძალაშია"
 
-#: src/dialogs/subkeyswidget.cpp:142
+#: src/dialogs/subkeyswidget.cpp:143
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "ვადა"
 
-#: src/dialogs/subkeyswidget.cpp:143
+#: src/dialogs/subkeyswidget.cpp:144
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "სტატუსი"
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:145
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr "ალგორითმი"
 
-#: src/dialogs/subkeyswidget.cpp:145
+#: src/dialogs/subkeyswidget.cpp:146
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "გამოყენება"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:147
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "საცავი"
 
-#: src/dialogs/subkeyswidget.cpp:156
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Add Subkey"
+#: src/dialogs/subkeyswidget.cpp:157
+#, kde-format
 msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "ქვეგასაღების დამატება"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "სისწორის შეცვლა"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:159
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "OpenSSH გასაღების გატანა"
 
-#: src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/subkeyswidget.cpp:160
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "დაბეჭდილი მარქაფის აღდგენა"
 
-#: src/dialogs/subkeyswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:161
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "სმარტ ბარათზე გადატანა"
 
-#: src/dialogs/subkeyswidget.cpp:161
+#: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "საიდუმლო ქვეგასაღების გატანა"
 
-#: src/dialogs/subkeyswidget.cpp:169 src/dialogs/useridswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
 #: src/dialogs/weboftrustwidget.cpp:134
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show more options"
-msgstr "დამატებითი პარამეტრების ჩვენება"
+msgstr "მეტი პარამეტრის ჩვენება"
 
-#: src/dialogs/subkeyswidget.cpp:265
+#: src/dialogs/subkeyswidget.cpp:266
 #, kde-format
 msgid "Change validity"
 msgstr "სისწორის შეცვლა"
 
-#: src/dialogs/subkeyswidget.cpp:272
+#: src/dialogs/subkeyswidget.cpp:273
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "OpenSSH-ის გასაღების გატანა"
 
-#: src/dialogs/subkeyswidget.cpp:278
+#: src/dialogs/subkeyswidget.cpp:279
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "სმარტ ბარათზე გადატანა"
 
-#: src/dialogs/subkeyswidget.cpp:286
+#: src/dialogs/subkeyswidget.cpp:287
 #, kde-format
 msgid "Export secret subkey"
 msgstr "საიდუმლო ქვეგასაღების გადატანა"
@@ -7895,7 +7876,7 @@ msgstr "მომხმარებლის ID-ები და სერტი
 #, kde-format
 msgctxt "@info"
 msgid "Certifications are not available before the certificate is imported."
-msgstr ""
+msgstr "სერტიფიცირება ხელმიუწვდომელია სერტიფიკატის შემოტანამდე."
 
 #: src/dialogs/weboftrustwidget.cpp:103
 #, kde-format
@@ -9393,108 +9374,60 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "მიმდინარე ფონური ამოცანები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgctxt "@option:radio"
-msgid "RSA"
-msgstr "RSA"
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:135
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Strength"
+msgctxt "@info:label"
+msgid "RSA key strength:"
+msgstr "სიძლიერე"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:253
-#, kde-format
-msgctxt "@option:check"
-msgid "+ RSA"
-msgstr "+ RSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:262
-#, kde-format
-msgctxt "@option:radio"
-msgid "DSA"
-msgstr "DSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:270
-#, kde-format
-msgctxt "@option:check"
-msgid "+ Elgamal"
-msgstr "+ Elgamal"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:271
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:289
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "This subkey is required for encryption."
-msgstr "დაშიფვრისთვის ეს ქვეგასაღები აუცილებელია."
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:280
-#, kde-format
-msgctxt "@option:radio"
-msgid "ECDSA"
-msgstr "ECDSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:288
-#, kde-format
-msgctxt "@option:check"
-msgid "+ ECDH"
-msgstr "+ ECDH"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
-#, kde-format
-msgctxt "@option:check"
-msgid "Certification"
-msgstr "სერტიფიკაცია"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:339
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:174
 #, kde-format
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "ტექნიკური დეტალები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:353
-#, kde-format
-msgctxt "@title:group"
-msgid "Additional User IDs"
-msgstr "დამატებითი მომხმარებლის ID-ები"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:361
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:188
 #, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "ელფოსტის მისამართები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:369
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
 #, kde-format
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS სახელები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:377
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
 #, kde-format
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI-ები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:387
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:897
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:214
 #, kde-format
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "პირადი დეტალები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:414
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:232
 #, kde-format
 msgid "new email"
 msgstr "ახალი ელფოსტა"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:415
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:233
 #, kde-format
 msgid "new dns name"
 msgstr "ახალი DNS სახელი"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:416
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:234
 #, kde-format
 msgid "new uri"
 msgstr "ახალი URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:739
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9502,19 +9435,13 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1 ბიტიანი)"
 msgstr[1] "%2 (%1 ბიტიანი)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:740
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:338
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "1 ბიტი"
 msgstr[1] "%1 ბიტი"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:902
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Adding more than one user ID is not yet implemented."
-msgstr "ერთზე მეტი მომხმარებლის ID-ს დამატება ჯერ შეუძლებელია."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:66
 #, kde-format
@@ -9562,31 +9489,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "შექმნა"
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, kde-format
 msgid "Operation canceled."
 msgstr "ოპერაცია გაუქმებულია."
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "გასაღებების წყვილის შექმნის შეცდომა: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:199
-#, kde-format
-msgid ""
-"Key pair created successfully.\n"
-"Fingerprint: %1"
-msgstr ""
-"გასაღების ახალი წყვილი წარმატებით შეიქმნა.\n"
-"ანაბეჭდი: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:206
+#: src/newcertificatewizard/keycreationpage.cpp:146
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "გამოტანის ფაილში %1 ჩაწერის შეცდომა: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:213
+#: src/newcertificatewizard/keycreationpage.cpp:153
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "გასაღების ახალი წყვილი წარმატებით შეიქმნა."
@@ -9621,13 +9539,13 @@ msgctxt "@title:window"
 msgid "Key Pair Creation Wizard"
 msgstr "გასაღებების წყვილის შექმნის ოსტატი"
 
-#: src/newcertificatewizard/resultpage.cpp:79
+#: src/newcertificatewizard/resultpage.cpp:75
 #, kde-format
 msgctxt "@title:group"
 msgid "Result"
 msgstr "შედეგი"
 
-#: src/newcertificatewizard/resultpage.cpp:89
+#: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
@@ -9636,76 +9554,56 @@ msgstr ""
 "გადაათრიეთ ეს ხატულა თქვენი ელფოსტის აპლიკაციის კომპოზიტორში, რათა მოთხოვნა "
 "ელფოსტას მიაბათ."
 
-#: src/newcertificatewizard/resultpage.cpp:95
+#: src/newcertificatewizard/resultpage.cpp:91
 #, kde-format
 msgid "Restart This Wizard (Keeps Your Parameters)"
 msgstr "ოსტატის თავიდან გაშვება (თქვენი პარამეტრების შენარჩუნებით)"
 
-#: src/newcertificatewizard/resultpage.cpp:99
+#: src/newcertificatewizard/resultpage.cpp:95
 #, kde-format
 msgctxt "@title:group"
 msgid "Next Steps"
 msgstr "შემდეგი ნაბიჯები"
 
-#: src/newcertificatewizard/resultpage.cpp:102
+#: src/newcertificatewizard/resultpage.cpp:98
 #, kde-format
 msgid "Save Certificate Request To File..."
 msgstr "სერტიფიკატის მოთხოვნის ფაილში შენახვა..."
 
-#: src/newcertificatewizard/resultpage.cpp:105
+#: src/newcertificatewizard/resultpage.cpp:101
 #, kde-format
 msgid "Send Certificate Request By EMail..."
 msgstr "სერტიფიკატის მოთხოვნის ელფოსტით გაგზავნა..."
 
-#: src/newcertificatewizard/resultpage.cpp:108
-#, kde-format
-msgid "Make a Backup Of Your Key Pair..."
-msgstr "თქვენი გასაღებების წყვილის მარქაფის შექმნა..."
-
-#: src/newcertificatewizard/resultpage.cpp:111
-#, kde-format
-msgid "Send Public Key By EMail..."
-msgstr "საჯარო გასაღების ელფოსტით გაგზავნა..."
-
-#: src/newcertificatewizard/resultpage.cpp:114
-#, kde-format
-msgid "Upload Public Key To Directory Service..."
-msgstr "საჯარო გასაღებს კალატოგის სერვისზე ატვირთვა..."
-
-#: src/newcertificatewizard/resultpage.cpp:117
-#, kde-format
-msgid "Create Revocation Request..."
-msgstr "გაუქმების მოთხოვნის შექმნა..."
-
-#: src/newcertificatewizard/resultpage.cpp:120
+#: src/newcertificatewizard/resultpage.cpp:104
 #, kde-format
 msgid "Create Signing Certificate With Same Parameters"
 msgstr "იგივე პარამეტრების მქონე ხელმოწერის სერტიფიკატის შექმნა"
 
-#: src/newcertificatewizard/resultpage.cpp:123
+#: src/newcertificatewizard/resultpage.cpp:107
 #, kde-format
 msgid "Create Encryption Certificate With Same Parameters"
 msgstr "იგივე პარამეტრების მქონე დაშიფვრის სერტიფიკატის შექმნა"
 
-#: src/newcertificatewizard/resultpage.cpp:167
+#: src/newcertificatewizard/resultpage.cpp:147
 #, kde-format
 msgctxt "@title"
 msgid "Key Creation Failed"
 msgstr "გასაღების შექმნის შეცდომა"
 
-#: src/newcertificatewizard/resultpage.cpp:168
+#: src/newcertificatewizard/resultpage.cpp:148
 #, kde-format
 msgid "Key pair creation failed. Please find details about the failure below."
 msgstr ""
 "გასაღებების წყვილის შექმნა ჩავარდა. ჩავარდნის შესახებ დეტალები იხილეთ ქვემოთ."
 
-#: src/newcertificatewizard/resultpage.cpp:170
+#: src/newcertificatewizard/resultpage.cpp:150
 #, kde-format
 msgctxt "@title"
 msgid "Key Pair Successfully Created"
 msgstr "გასაღების ახალი წყვილი წარმატებით შეიქმნა"
 
-#: src/newcertificatewizard/resultpage.cpp:171
+#: src/newcertificatewizard/resultpage.cpp:151
 #, kde-format
 msgid ""
 "Your new key pair was created successfully. Please find details on the "
@@ -9714,7 +9612,7 @@ msgstr ""
 "თქვენი ახალი გასაღებების წყვილი წარმატებით შექმნა. შედეგის შესახებ დეტალები "
 "და მინიშნებები ქვემოთ, შემდეგ საფეხურებზე შეგიძლიათ იპოვოთ."
 
-#: src/newcertificatewizard/resultpage.cpp:242
+#: src/newcertificatewizard/resultpage.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9724,12 +9622,12 @@ msgstr ""
 "დროებითი ფაილის <filename>%1</filename> ფაილში <filename>%2</filename> "
 "კოპირება შეუძლებელია: <message>%3</message>"
 
-#: src/newcertificatewizard/resultpage.cpp:264
+#: src/newcertificatewizard/resultpage.cpp:236
 #, kde-format
 msgid "Please process this certificate."
 msgstr "დაამუშავეთ ეს სერტიფიკატი."
 
-#: src/newcertificatewizard/resultpage.cpp:265
+#: src/newcertificatewizard/resultpage.cpp:237
 #, kde-format
 msgid ""
 "Please process this certificate and inform the sender about the location to "
@@ -9742,7 +9640,7 @@ msgstr ""
 "\n"
 "მადლობა,\n"
 
-#: src/newcertificatewizard/resultpage.cpp:269
+#: src/newcertificatewizard/resultpage.cpp:241
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9762,40 +9660,13 @@ msgstr ""
 "კლიენტის კომპოზიტორის ფანჯარაზე.</para><para>თუ ამან არ იმუშავა, შეინახეთ "
 "მოთხოვნა ფაილში და შემდეგ მიამაგრეთ.</para>"
 
-#: src/newcertificatewizard/resultpage.cpp:274
-#: src/newcertificatewizard/resultpage.cpp:311
+#: src/newcertificatewizard/resultpage.cpp:246
 #, kde-format
 msgctxt "@title"
 msgid "Sending Mail"
 msgstr "ელფოსტის გაგზავნა"
 
-#: src/newcertificatewizard/resultpage.cpp:302
-#, kde-format
-msgid "My new public OpenPGP key"
-msgstr "ჩემი ახალი საჯარო OpenPGP გასაღები"
-
-#: src/newcertificatewizard/resultpage.cpp:303
-#, kde-format
-msgid "Please find attached my new public OpenPGP key."
-msgstr "ჩემს ახალ საჯარო OpenPGP-ის გასაღებს მიმაგრებულ ფაილებში იპოვით."
-
-#: src/newcertificatewizard/resultpage.cpp:307
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then attach the file <filename>%1</filename> manually.</"
-"para>"
-msgstr ""
-"<para><application>Kleopatra</application>-მა ელფოსტის გაგზავნა ნაგულისხმევი "
-"ელფოსტის კლიენტით სცადა.</para><para>ზოგიერთი ელფოსტის კლიენტი ცნობილია, რომ "
-"ამ ხერხით მიმაგრებულ ფაილებს არ იღებს.</para><para>თუ თქვენს ელფოსტის "
-"კლიენტს მიმაგრებული ფაილების მხარდაჭერა არ აქვს, ხელით მიამაგრეთ ფაილი "
-"<filename>%1</filename>.</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:356
+#: src/newcertificatewizard/resultpage.cpp:273
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -9805,7 +9676,7 @@ msgstr ""
 "ეს ოპერაცია სერტიფიკატის მოთხოვნას წაშლის. დარწმუნდით, რომ შეინახეთ ან "
 "გააგზავნეთ ის."
 
-#: src/newcertificatewizard/resultpage.cpp:358
+#: src/newcertificatewizard/resultpage.cpp:275
 #, kde-format
 msgctxt "@title"
 msgid "Certification Request About To Be Deleted"
@@ -12533,6 +12404,85 @@ msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
 
+#~ msgctxt "@option:radio"
+#~ msgid "RSA"
+#~ msgstr "RSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ RSA"
+#~ msgstr "+ RSA"
+
+#~ msgctxt "@option:radio"
+#~ msgid "DSA"
+#~ msgstr "DSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ Elgamal"
+#~ msgstr "+ Elgamal"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "This subkey is required for encryption."
+#~ msgstr "დაშიფვრისთვის ეს ქვეგასაღები აუცილებელია."
+
+#~ msgctxt "@option:radio"
+#~ msgid "ECDSA"
+#~ msgstr "ECDSA"
+
+#~ msgctxt "@option:check"
+#~ msgid "+ ECDH"
+#~ msgstr "+ ECDH"
+
+#~ msgctxt "@option:check"
+#~ msgid "Certification"
+#~ msgstr "სერტიფიკაცია"
+
+#~ msgctxt "@title:group"
+#~ msgid "Additional User IDs"
+#~ msgstr "დამატებითი მომხმარებლის ID-ები"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "Adding more than one user ID is not yet implemented."
+#~ msgstr "ერთზე მეტი მომხმარებლის ID-ს დამატება ჯერ შეუძლებელია."
+
+#~ msgid ""
+#~ "Key pair created successfully.\n"
+#~ "Fingerprint: %1"
+#~ msgstr ""
+#~ "გასაღების ახალი წყვილი წარმატებით შეიქმნა.\n"
+#~ "ანაბეჭდი: %1"
+
+#~ msgid "Make a Backup Of Your Key Pair..."
+#~ msgstr "თქვენი გასაღებების წყვილის მარქაფის შექმნა..."
+
+#~ msgid "Send Public Key By EMail..."
+#~ msgstr "საჯარო გასაღების ელფოსტით გაგზავნა..."
+
+#~ msgid "Upload Public Key To Directory Service..."
+#~ msgstr "საჯარო გასაღებს კალატოგის სერვისზე ატვირთვა..."
+
+#~ msgid "Create Revocation Request..."
+#~ msgstr "გაუქმების მოთხოვნის შექმნა..."
+
+#~ msgid "My new public OpenPGP key"
+#~ msgstr "ჩემი ახალი საჯარო OpenPGP გასაღები"
+
+#~ msgid "Please find attached my new public OpenPGP key."
+#~ msgstr "ჩემს ახალ საჯარო OpenPGP-ის გასაღებს მიმაგრებულ ფაილებში იპოვით."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then attach the file <filename>%1</"
+#~ "filename> manually.</para>"
+#~ msgstr ""
+#~ "<para><application>Kleopatra</application>-მა ელფოსტის გაგზავნა "
+#~ "ნაგულისხმევი ელფოსტის კლიენტით სცადა.</para><para>ზოგიერთი ელფოსტის "
+#~ "კლიენტი ცნობილია, რომ ამ ხერხით მიმაგრებულ ფაილებს არ იღებს.</"
+#~ "para><para>თუ თქვენს ელფოსტის კლიენტს მიმაგრებული ფაილების მხარდაჭერა არ "
+#~ "აქვს, ხელით მიამაგრეთ ფაილი <filename>%1</filename>.</para>"
+
 #~ msgctxt "@action:button"
 #~ msgid "Show Certifications"
 #~ msgstr "სერტიფიცირებების ჩვენება"
@@ -12621,10 +12571,6 @@ msgstr ""
 #~ msgctxt "@title:column"
 #~ msgid "Type"
 #~ msgstr "ტიპი"
-
-#~ msgctxt "@title:column"
-#~ msgid "Strength"
-#~ msgstr "სიძლიერე"
 
 #~ msgctxt "@title:column"
 #~ msgid "Primary"

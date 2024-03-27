@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-26 00:38+0000\n"
+"POT-Creation-Date: 2024-03-27 00:38+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -957,7 +957,7 @@ msgid ""
 msgstr "%1 дегеннен куәліктер импортталды"
 
 #: src/commands/createcsrforcardkeycommand.cpp:212
-#: src/newcertificatewizard/resultpage.cpp:251
+#: src/newcertificatewizard/resultpage.cpp:226
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -968,21 +968,21 @@ msgstr ""
 "оны Куәландыру орталығына жіберу керек.</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:215
-#: src/newcertificatewizard/resultpage.cpp:254
+#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "Талап сақталды"
 
 #: src/commands/createcsrforcardkeycommand.cpp:249
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "Талапты сақтау"
 
 #: src/commands/createcsrforcardkeycommand.cpp:252
-#: src/newcertificatewizard/resultpage.cpp:231
+#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "PKCS#10 талабы (*.p10)"
@@ -1001,7 +1001,7 @@ msgstr ""
 "message></para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:261
-#: src/newcertificatewizard/resultpage.cpp:247
+#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2937,14 +2937,14 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Дербес X.509 қос кілтіңізді жасау және куәландыруын сұрау "
 
 #: src/commands/newopenpgpcertificatecommand.cpp:161
-#: src/newcertificatewizard/keycreationpage.cpp:97
+#: src/newcertificatewizard/keycreationpage.cpp:86
 #, fuzzy, kde-format
 #| msgid "Could not start certificate creation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "Куәлікті жасауының бастауы болмады: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:171
-#: src/newcertificatewizard/keycreationpage.cpp:51
+#: src/newcertificatewizard/keycreationpage.cpp:49
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -2953,7 +2953,7 @@ msgid "Creating Key Pair..."
 msgstr "Кілтті жасау..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:172
-#: src/newcertificatewizard/keycreationpage.cpp:55
+#: src/newcertificatewizard/keycreationpage.cpp:53
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5315,7 +5315,6 @@ msgid "Multiple matching certificates or groups found"
 msgstr "(сәйкесті куәлік табылған жоқ)"
 
 #: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:1001
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
@@ -6496,7 +6495,7 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "%1 ішіндегі бақылау қосындысын тексеру (%2)"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:221
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:113
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgctxt "@title:window"
@@ -6504,7 +6503,7 @@ msgid "Advanced Settings"
 msgstr "Жетелеп баптау"
 
 #: src/dialogs/addsubkeydialog.cpp:90
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:237
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:130
 #, fuzzy, kde-format
 #| msgid "Key Material"
 msgctxt "@title:group"
@@ -6517,7 +6516,7 @@ msgid "Algorithm:"
 msgstr ""
 
 #: src/dialogs/addsubkeydialog.cpp:100
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:302
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:150
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:group"
@@ -6525,7 +6524,7 @@ msgid "Certificate Usage"
 msgstr "Куәлікті қолдануы"
 
 #: src/dialogs/addsubkeydialog.cpp:103
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:154
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgctxt "@option:check"
@@ -6533,7 +6532,7 @@ msgid "Signing"
 msgstr "Қолтаңбалау"
 
 #: src/dialogs/addsubkeydialog.cpp:106
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:159
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@option:check"
@@ -6541,7 +6540,6 @@ msgid "Encryption"
 msgstr "Шифрлау"
 
 #: src/dialogs/addsubkeydialog.cpp:110
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@option:check"
@@ -6550,7 +6548,6 @@ msgstr "Аутентификациялау"
 
 #: src/dialogs/addsubkeydialog.cpp:116
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "@option:check"
@@ -6680,7 +6677,7 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:168
-#: src/newcertificatewizard/enterdetailspage.cpp:312
+#: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6689,26 +6686,26 @@ msgstr "%1:"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(required)"
 msgstr "(қажетті)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:314
+#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgid "(optional)"
 msgstr "(міндетті емес)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:483
+#: src/newcertificatewizard/enterdetailspage.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> деген қажет, бірақ бос."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:486
+#: src/newcertificatewizard/enterdetailspage.cpp:477
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6719,14 +6716,14 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:494
+#: src/newcertificatewizard/enterdetailspage.cpp:485
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> толтырылмаған"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:497
+#: src/newcertificatewizard/enterdetailspage.cpp:488
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6737,14 +6734,14 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:504
+#: src/newcertificatewizard/enterdetailspage.cpp:495
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> дұрыс емес."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:507
+#: src/newcertificatewizard/enterdetailspage.cpp:498
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6913,14 +6910,14 @@ msgid "unlimited"
 msgstr "шексіз"
 
 #: src/dialogs/certificatedetailswidget.cpp:325
-#: src/dialogs/subkeyswidget.cpp:372
+#: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:375
+#: src/dialogs/subkeyswidget.cpp:381
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "smart card <serial number>"
@@ -6929,14 +6926,14 @@ msgstr "Смарт-карта"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
 #: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:377
+#: src/dialogs/subkeyswidget.cpp:383
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "smart card"
 msgstr "Смарт-карта"
 
 #: src/dialogs/certificatedetailswidget.cpp:333
-#: src/dialogs/subkeyswidget.cpp:380
+#: src/dialogs/subkeyswidget.cpp:386
 #, fuzzy, kde-format
 #| msgctxt "history size spinbox suffix"
 #| msgid " line"
@@ -6946,7 +6943,7 @@ msgid "offline"
 msgstr " жол"
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:382
+#: src/dialogs/subkeyswidget.cpp:388
 #, fuzzy, kde-format
 #| msgctxt "stored..."
 #| msgid "on this computer"
@@ -6954,7 +6951,7 @@ msgid "on this computer"
 msgstr "Осы компьютерінде"
 
 #: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:384
+#: src/dialogs/subkeyswidget.cpp:390
 #, fuzzy, kde-format
 #| msgctxt "unknown trust level"
 #| msgid "unknown"
@@ -7298,7 +7295,7 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:141
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgctxt "@title:column"
@@ -8042,7 +8039,7 @@ msgstr "2-қадам: Кепілденген (\"SigG) куәлігінің ба�
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "PIN-ің беру (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:137
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -8050,55 +8047,55 @@ msgctxt "@label"
 msgid "Subkeys"
 msgstr "Ішкі кілттер"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:140
 #, fuzzy, kde-format
 #| msgid "ID"
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:141
+#: src/dialogs/subkeyswidget.cpp:142
 #, fuzzy, kde-format
 #| msgid "Valid From"
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Жарамдылықтың басталуы"
 
-#: src/dialogs/subkeyswidget.cpp:142
+#: src/dialogs/subkeyswidget.cpp:143
 #, fuzzy, kde-format
 #| msgid "Valid Until"
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Жарамдылықтың аяқталуы"
 
-#: src/dialogs/subkeyswidget.cpp:143
+#: src/dialogs/subkeyswidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Status"
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Күйі"
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:145
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:145
+#: src/dialogs/subkeyswidget.cpp:146
 #, fuzzy, kde-format
 #| msgid "Subkey Usage:"
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Ішкі кілтті қолдануы:"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:147
 #, fuzzy, kde-format
 #| msgid "Stored"
 msgctxt "@title:column"
 msgid "Storage"
 msgstr " Қайда сақталған:"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:157
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -8106,41 +8103,41 @@ msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "Ішкі кілттер"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:158
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Жарамдылығы"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:159
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Құпия кілтін экспорттау..."
 
-#: src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/subkeyswidget.cpp:160
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Смарт-карта"
 
-#: src/dialogs/subkeyswidget.cpp:161
+#: src/dialogs/subkeyswidget.cpp:162
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Құпия кілтін экспорттау..."
 
-#: src/dialogs/subkeyswidget.cpp:169 src/dialogs/useridswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
 #: src/dialogs/weboftrustwidget.cpp:134
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
@@ -8148,25 +8145,25 @@ msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "Жетелеп баптау"
 
-#: src/dialogs/subkeyswidget.cpp:265
+#: src/dialogs/subkeyswidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgid "Change validity"
 msgstr "Жарамдылығы"
 
-#: src/dialogs/subkeyswidget.cpp:272
+#: src/dialogs/subkeyswidget.cpp:273
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgid "Export OpenSSH key"
 msgstr "Құпия кілтін экспорттау..."
 
-#: src/dialogs/subkeyswidget.cpp:278
+#: src/dialogs/subkeyswidget.cpp:279
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "Transfer to smartcard"
 msgstr "Смарт-карта"
 
-#: src/dialogs/subkeyswidget.cpp:286
+#: src/dialogs/subkeyswidget.cpp:287
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgid "Export secret subkey"
@@ -9830,138 +9827,76 @@ msgstr ""
 msgid "Ongoing Background Tasks"
 msgstr "Әлі бітпеген тапсырмалар бар"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:135
 #, fuzzy, kde-format
-#| msgid "RSA"
-msgctxt "@option:radio"
-msgid "RSA"
-msgstr "RSA"
+#| msgid "Subkey Strength:"
+msgctxt "@info:label"
+msgid "RSA key strength:"
+msgstr "Ішкі кілттің мықтылығы:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:253
-#, kde-format
-msgctxt "@option:check"
-msgid "+ RSA"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:262
-#, fuzzy, kde-format
-#| msgid "DSA"
-msgctxt "@option:radio"
-msgid "DSA"
-msgstr "DSA"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:270
-#, fuzzy, kde-format
-#| msgid "+ Elgamal"
-msgctxt "@option:check"
-msgid "+ Elgamal"
-msgstr "+ Elgamal"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:271
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:289
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "This subkey is required for encryption."
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:280
-#, kde-format
-msgctxt "@option:radio"
-msgid "ECDSA"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:288
-#, kde-format
-msgctxt "@option:check"
-msgid "+ ECDH"
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
-#, fuzzy, kde-format
-#| msgid "Certification"
-msgctxt "@option:check"
-msgid "Certification"
-msgstr "Куәландыру"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:339
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:174
 #, fuzzy, kde-format
 #| msgid "Technical Details"
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "Техникалық егжей-тегжейі"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:353
-#, fuzzy, kde-format
-#| msgid "Additional User-IDs"
-msgctxt "@title:group"
-msgid "Additional User IDs"
-msgstr "Қосымша пайдаланушы ID-лері"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:361
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:188
 #, fuzzy, kde-format
 #| msgid "EMail Addresses"
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "Эл.пошта адрестері"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:369
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
 #, fuzzy, kde-format
 #| msgid "DNS Names"
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS атаулары"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:377
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
 #, fuzzy, kde-format
 #| msgid "URIs"
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI-лері"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:387
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:897
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:214
 #, fuzzy, kde-format
 #| msgid "Personal Details"
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Дербес деректер"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:414
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:232
 #, kde-format
 msgid "new email"
 msgstr "жаңа эл.пошта"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:415
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:233
 #, kde-format
 msgid "new dns name"
 msgstr "жаңа dns атауы"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:416
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:234
 #, kde-format
 msgid "new uri"
 msgstr "жаңа uri"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:739
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (%1 бит)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:740
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:338
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "%1 бит"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:902
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Adding more than one User ID is not yet implemented."
-msgctxt "@info:tooltip"
-msgid "Adding more than one user ID is not yet implemented."
-msgstr "Бірнеше User ID қосуы әлі іске асырылмаған."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:66
 #, kde-format
@@ -10014,35 +9949,23 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Кілтті жасау"
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, kde-format
 msgid "Operation canceled."
 msgstr "Амал тоқтатылды."
 
-#: src/newcertificatewizard/keycreationpage.cpp:192
+#: src/newcertificatewizard/keycreationpage.cpp:139
 #, fuzzy, kde-format
 #| msgid "Could not create socket: %1"
 msgid "Could not create key pair: %1"
 msgstr "Сокеті құрылмады: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:199
-#, fuzzy, kde-format
-#| msgid ""
-#| "Certificate created successfully.\n"
-#| "Fingerprint: %1"
-msgid ""
-"Key pair created successfully.\n"
-"Fingerprint: %1"
-msgstr ""
-"Куәлік сәтті жасалды.\n"
-"Бақылау тізбегі: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:206
+#: src/newcertificatewizard/keycreationpage.cpp:146
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "%1 шығыс файлына жазу болмайды: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:213
+#: src/newcertificatewizard/keycreationpage.cpp:153
 #, fuzzy, kde-format
 #| msgid "Certificate created successfully."
 msgid "Key pair created successfully."
@@ -10081,14 +10004,14 @@ msgctxt "@title:window"
 msgid "Key Pair Creation Wizard"
 msgstr "Куәлікті жасау шебері"
 
-#: src/newcertificatewizard/resultpage.cpp:79
+#: src/newcertificatewizard/resultpage.cpp:75
 #, fuzzy, kde-format
 #| msgid "Result"
 msgctxt "@title:group"
 msgid "Result"
 msgstr "Нәтижесі"
 
-#: src/newcertificatewizard/resultpage.cpp:89
+#: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
@@ -10097,78 +10020,56 @@ msgstr ""
 "Сұранысын хатқа тіркемелеу үшін осы таңбашаны эл.пошта құрастыру "
 "бағдарламаның терезесіне сүйреп тастаңыз."
 
-#: src/newcertificatewizard/resultpage.cpp:95
+#: src/newcertificatewizard/resultpage.cpp:91
 #, kde-format
 msgid "Restart This Wizard (Keeps Your Parameters)"
 msgstr "Шеберді жаңадан бастау (параметрлерін сақтап)"
 
-#: src/newcertificatewizard/resultpage.cpp:99
+#: src/newcertificatewizard/resultpage.cpp:95
 #, fuzzy, kde-format
 #| msgid "Next Steps"
 msgctxt "@title:group"
 msgid "Next Steps"
 msgstr "Келесі қадамдар"
 
-#: src/newcertificatewizard/resultpage.cpp:102
+#: src/newcertificatewizard/resultpage.cpp:98
 #, kde-format
 msgid "Save Certificate Request To File..."
 msgstr "Куәлікті сұрауын файлға сақтау..."
 
-#: src/newcertificatewizard/resultpage.cpp:105
+#: src/newcertificatewizard/resultpage.cpp:101
 #, kde-format
 msgid "Send Certificate Request By EMail..."
 msgstr "Куәлік сұрауын эл.поштамен жіберу..."
 
-#: src/newcertificatewizard/resultpage.cpp:108
-#, kde-format
-msgid "Make a Backup Of Your Key Pair..."
-msgstr "Кілт сыңарыңыздың сақтық көшірмесі..."
-
-#: src/newcertificatewizard/resultpage.cpp:111
-#, fuzzy, kde-format
-#| msgid "Send Certificate By EMail..."
-msgid "Send Public Key By EMail..."
-msgstr "Куәлікті эл.поштамен жіберу..."
-
-#: src/newcertificatewizard/resultpage.cpp:114
-#, fuzzy, kde-format
-#| msgid "Upload Certificate To Directory Service..."
-msgid "Upload Public Key To Directory Service..."
-msgstr "Куәлікті каталог қызметіне жүктеу..."
-
-#: src/newcertificatewizard/resultpage.cpp:117
-#, kde-format
-msgid "Create Revocation Request..."
-msgstr "Күшін жою сұранысын құру..."
-
-#: src/newcertificatewizard/resultpage.cpp:120
+#: src/newcertificatewizard/resultpage.cpp:104
 #, kde-format
 msgid "Create Signing Certificate With Same Parameters"
 msgstr "Параметрлерін қайталап қолтаңбалау куәлігін жасау"
 
-#: src/newcertificatewizard/resultpage.cpp:123
+#: src/newcertificatewizard/resultpage.cpp:107
 #, kde-format
 msgid "Create Encryption Certificate With Same Parameters"
 msgstr "Параметрлерін қайталап шифрлау куәлігін жасау"
 
-#: src/newcertificatewizard/resultpage.cpp:167
+#: src/newcertificatewizard/resultpage.cpp:147
 #, kde-format
 msgctxt "@title"
 msgid "Key Creation Failed"
 msgstr "Кілт жасау жаңылысы"
 
-#: src/newcertificatewizard/resultpage.cpp:168
+#: src/newcertificatewizard/resultpage.cpp:148
 #, kde-format
 msgid "Key pair creation failed. Please find details about the failure below."
 msgstr "Екі сыңар кілт құру жаңылысы. Жаңылыс егжей-тегжейін төменде табасыз."
 
-#: src/newcertificatewizard/resultpage.cpp:170
+#: src/newcertificatewizard/resultpage.cpp:150
 #, kde-format
 msgctxt "@title"
 msgid "Key Pair Successfully Created"
 msgstr "Екі сыңар кілт сәтті құрылды"
 
-#: src/newcertificatewizard/resultpage.cpp:171
+#: src/newcertificatewizard/resultpage.cpp:151
 #, kde-format
 msgid ""
 "Your new key pair was created successfully. Please find details on the "
@@ -10177,7 +10078,7 @@ msgstr ""
 "Жаңа екі сыңар кілтіңіз сәтті құрылды. Нәтижесінің егжей-тегжейін және "
 "келесі қадамыңыз туралы мәліметтті төменде табасыз."
 
-#: src/newcertificatewizard/resultpage.cpp:242
+#: src/newcertificatewizard/resultpage.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10187,12 +10088,12 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/newcertificatewizard/resultpage.cpp:264
+#: src/newcertificatewizard/resultpage.cpp:236
 #, kde-format
 msgid "Please process this certificate."
 msgstr "Мынау куәлікті қарап өңдеп беріңіз."
 
-#: src/newcertificatewizard/resultpage.cpp:265
+#: src/newcertificatewizard/resultpage.cpp:237
 #, kde-format
 msgid ""
 "Please process this certificate and inform the sender about the location to "
@@ -10205,7 +10106,7 @@ msgstr ""
 "\n"
 "Рахмет,\n"
 
-#: src/newcertificatewizard/resultpage.cpp:269
+#: src/newcertificatewizard/resultpage.cpp:241
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10224,52 +10125,13 @@ msgstr ""
 "апарып көріңіз.</para><para>Нәтиже болмаса, онда талапты файлға сақтап, оны "
 "тіркеме ретінде салыңыз.</para>"
 
-#: src/newcertificatewizard/resultpage.cpp:274
-#: src/newcertificatewizard/resultpage.cpp:311
+#: src/newcertificatewizard/resultpage.cpp:246
 #, kde-format
 msgctxt "@title"
 msgid "Sending Mail"
 msgstr "Поштаны жіберу"
 
-#: src/newcertificatewizard/resultpage.cpp:302
-#, fuzzy, kde-format
-#| msgid "My new OpenPGP certificate"
-msgid "My new public OpenPGP key"
-msgstr "Жаңа OpenPGP куәлігім"
-
-#: src/newcertificatewizard/resultpage.cpp:303
-#, fuzzy, kde-format
-#| msgid "Please find attached my new OpenPGP certificate."
-msgid "Please find attached my new public OpenPGP key."
-msgstr "Тіркемеде жаңа OpenPGP куәлігім."
-
-#: src/newcertificatewizard/resultpage.cpp:307
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para><application>Kleopatra</application> tried to send a mail via your "
-#| "default mail client.</para><para>Some mail clients are known not to "
-#| "support attachments when invoked this way.</para><para>If your mail "
-#| "client does not have an attachment, then drag the <application>Kleopatra</"
-#| "application> icon and drop it on the message compose window of your mail "
-#| "client.</para><para>If that does not work, either, save the request to a "
-#| "file, and then attach that.</para>"
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then attach the file <filename>%1</filename> manually.</"
-"para>"
-msgstr ""
-"<para><application>Kleopatra</application> бағдарламасы хатты әдетті эл."
-"пошта клиентіңіз арқылы жіберіп көреді.</para><para>Кейбір пошта клиенттер "
-"бұл әдісімен поштаны жібере алмайды.</para><para>Пошта клиенттің хат "
-"құрастыру терезесіне <application>Kleopatra</application> таңбашасын сүйреп "
-"апарып көріңіз.</para><para>Нәтиже болмаса, онда талапты файлға сақтап, оны "
-"тіркеме ретінде салыңыз.</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:356
+#: src/newcertificatewizard/resultpage.cpp:273
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -10279,7 +10141,7 @@ msgstr ""
 "Бұл амалдан куәландыру талабы өшіріледі. Істеудін алдында ол жіберілген не "
 "сақталғанына көз жеткізіңіз."
 
-#: src/newcertificatewizard/resultpage.cpp:358
+#: src/newcertificatewizard/resultpage.cpp:275
 #, kde-format
 msgctxt "@title"
 msgid "Certification Request About To Be Deleted"
@@ -13130,6 +12992,105 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "RSA"
+#~ msgctxt "@option:radio"
+#~ msgid "RSA"
+#~ msgstr "RSA"
+
+#, fuzzy
+#~| msgid "DSA"
+#~ msgctxt "@option:radio"
+#~ msgid "DSA"
+#~ msgstr "DSA"
+
+#, fuzzy
+#~| msgid "+ Elgamal"
+#~ msgctxt "@option:check"
+#~ msgid "+ Elgamal"
+#~ msgstr "+ Elgamal"
+
+#, fuzzy
+#~| msgid "Certification"
+#~ msgctxt "@option:check"
+#~ msgid "Certification"
+#~ msgstr "Куәландыру"
+
+#, fuzzy
+#~| msgid "Additional User-IDs"
+#~ msgctxt "@title:group"
+#~ msgid "Additional User IDs"
+#~ msgstr "Қосымша пайдаланушы ID-лері"
+
+#, fuzzy
+#~| msgctxt "@info:tooltip"
+#~| msgid "Adding more than one User ID is not yet implemented."
+#~ msgctxt "@info:tooltip"
+#~ msgid "Adding more than one user ID is not yet implemented."
+#~ msgstr "Бірнеше User ID қосуы әлі іске асырылмаған."
+
+#, fuzzy
+#~| msgid ""
+#~| "Certificate created successfully.\n"
+#~| "Fingerprint: %1"
+#~ msgid ""
+#~ "Key pair created successfully.\n"
+#~ "Fingerprint: %1"
+#~ msgstr ""
+#~ "Куәлік сәтті жасалды.\n"
+#~ "Бақылау тізбегі: %1"
+
+#~ msgid "Make a Backup Of Your Key Pair..."
+#~ msgstr "Кілт сыңарыңыздың сақтық көшірмесі..."
+
+#, fuzzy
+#~| msgid "Send Certificate By EMail..."
+#~ msgid "Send Public Key By EMail..."
+#~ msgstr "Куәлікті эл.поштамен жіберу..."
+
+#, fuzzy
+#~| msgid "Upload Certificate To Directory Service..."
+#~ msgid "Upload Public Key To Directory Service..."
+#~ msgstr "Куәлікті каталог қызметіне жүктеу..."
+
+#~ msgid "Create Revocation Request..."
+#~ msgstr "Күшін жою сұранысын құру..."
+
+#, fuzzy
+#~| msgid "My new OpenPGP certificate"
+#~ msgid "My new public OpenPGP key"
+#~ msgstr "Жаңа OpenPGP куәлігім"
+
+#, fuzzy
+#~| msgid "Please find attached my new OpenPGP certificate."
+#~ msgid "Please find attached my new public OpenPGP key."
+#~ msgstr "Тіркемеде жаңа OpenPGP куәлігім."
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid ""
+#~| "<para><application>Kleopatra</application> tried to send a mail via your "
+#~| "default mail client.</para><para>Some mail clients are known not to "
+#~| "support attachments when invoked this way.</para><para>If your mail "
+#~| "client does not have an attachment, then drag the "
+#~| "<application>Kleopatra</application> icon and drop it on the message "
+#~| "compose window of your mail client.</para><para>If that does not work, "
+#~| "either, save the request to a file, and then attach that.</para>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then attach the file <filename>%1</"
+#~ "filename> manually.</para>"
+#~ msgstr ""
+#~ "<para><application>Kleopatra</application> бағдарламасы хатты әдетті эл."
+#~ "пошта клиентіңіз арқылы жіберіп көреді.</para><para>Кейбір пошта "
+#~ "клиенттер бұл әдісімен поштаны жібере алмайды.</para><para>Пошта "
+#~ "клиенттің хат құрастыру терезесіне <application>Kleopatra</application> "
+#~ "таңбашасын сүйреп апарып көріңіз.</para><para>Нәтиже болмаса, онда "
+#~ "талапты файлға сақтап, оны тіркеме ретінде салыңыз.</para>"
+
+#, fuzzy
 #~| msgid "Certifications"
 #~ msgctxt "@action:button"
 #~ msgid "Show Certifications"
@@ -14247,9 +14208,6 @@ msgstr ""
 
 #~ msgid "Subkey Type:"
 #~ msgstr "Ішкі кілттің түрі:"
-
-#~ msgid "Subkey Strength:"
-#~ msgstr "Ішкі кілттің мықтылығы:"
 
 #~ msgid "Subkey Usage:"
 #~ msgstr "Ішкі кілтті қолдануы:"

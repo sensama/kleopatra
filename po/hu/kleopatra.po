@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-27 00:38+0000\n"
+"POT-Creation-Date: 2024-03-28 00:39+0000\n"
 "PO-Revision-Date: 2024-03-21 13:10+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -6935,18 +6935,16 @@ msgid "n/a"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:381
 #, fuzzy, kde-format
 #| msgid "SmartCard"
-msgctxt "smart card <serial number>"
+msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "Intelligens kártya"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
-#: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:383
 #, fuzzy, kde-format
 #| msgid "SmartCard"
+msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "Intelligens kártya"
 
@@ -6961,68 +6959,54 @@ msgid "offline"
 msgstr " sor"
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:388
 #, fuzzy, kde-format
 #| msgctxt "stored..."
 #| msgid "on this computer"
+msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "ezen a számítógépen"
 
-#: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:390
-#, fuzzy, kde-format
-#| msgctxt "unknown trust level"
-#| msgid "unknown"
-msgctxt "unknown storage location"
-msgid "unknown"
-msgstr "ismeretlen"
-
-#: src/dialogs/certificatedetailswidget.cpp:341
-#, kde-format
-msgid "none"
-msgstr ""
-
-#: src/dialogs/certificatedetailswidget.cpp:457
+#: src/dialogs/certificatedetailswidget.cpp:449
 #: src/dialogs/useridswidget.cpp:360
 #, fuzzy, kde-format
 #| msgid "Export"
 msgid "Updating..."
 msgstr "Exportálás"
 
-#: src/dialogs/certificatedetailswidget.cpp:529
+#: src/dialogs/certificatedetailswidget.cpp:521
 #, kde-format
 msgid "Common Name"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:530
+#: src/dialogs/certificatedetailswidget.cpp:522
 #, fuzzy, kde-format
 #| msgid "Animations"
 msgid "Organization"
 msgstr "Animációk"
 
-#: src/dialogs/certificatedetailswidget.cpp:531
+#: src/dialogs/certificatedetailswidget.cpp:523
 #, fuzzy, kde-format
 #| msgid "Strength"
 msgid "Street"
 msgstr "Erősség"
 
-#: src/dialogs/certificatedetailswidget.cpp:532
+#: src/dialogs/certificatedetailswidget.cpp:524
 #, kde-format
 msgid "City"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:525
 #, fuzzy, kde-format
 #| msgid "Status"
 msgid "State"
 msgstr "Állapot"
 
-#: src/dialogs/certificatedetailswidget.cpp:534
+#: src/dialogs/certificatedetailswidget.cpp:526
 #, kde-format
 msgid "Country"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:581
+#: src/dialogs/certificatedetailswidget.cpp:573
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgid "The issuer certificate could not be found locally."
@@ -8197,6 +8181,34 @@ msgstr "Intelligens kártya"
 #| msgid "Selected secret key:"
 msgid "Export secret subkey"
 msgstr "A kijelölt titkos kulcsok:"
+
+#: src/dialogs/subkeyswidget.cpp:381
+#, fuzzy, kde-format
+#| msgid "SmartCard"
+msgctxt "smart card <serial number>"
+msgid "smart card %1"
+msgstr "Intelligens kártya"
+
+#: src/dialogs/subkeyswidget.cpp:383
+#, fuzzy, kde-format
+#| msgid "SmartCard"
+msgid "smart card"
+msgstr "Intelligens kártya"
+
+#: src/dialogs/subkeyswidget.cpp:388
+#, fuzzy, kde-format
+#| msgctxt "stored..."
+#| msgid "on this computer"
+msgid "on this computer"
+msgstr "ezen a számítógépen"
+
+#: src/dialogs/subkeyswidget.cpp:390
+#, fuzzy, kde-format
+#| msgctxt "unknown trust level"
+#| msgid "unknown"
+msgctxt "unknown storage location"
+msgid "unknown"
+msgstr "ismeretlen"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-27 00:38+0000\n"
+"POT-Creation-Date: 2024-03-28 00:39+0000\n"
 "PO-Revision-Date: 2007-05-25 13:03+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -6370,18 +6370,16 @@ msgid "n/a"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:381
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
-msgctxt "smart card <serial number>"
+msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "Змяніць колер &фона..."
 
 #: src/dialogs/certificatedetailswidget.cpp:330
-#: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:383
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
+msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "Змяніць колер &фона..."
 
@@ -6393,61 +6391,49 @@ msgid "offline"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:388
 #, kde-format
+msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:390
-#, kde-format
-msgctxt "unknown storage location"
-msgid "unknown"
-msgstr ""
-
-#: src/dialogs/certificatedetailswidget.cpp:341
-#, kde-format
-msgid "none"
-msgstr ""
-
-#: src/dialogs/certificatedetailswidget.cpp:457
+#: src/dialogs/certificatedetailswidget.cpp:449
 #: src/dialogs/useridswidget.cpp:360
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Updating..."
 msgstr "Скасавана."
 
-#: src/dialogs/certificatedetailswidget.cpp:529
+#: src/dialogs/certificatedetailswidget.cpp:521
 #, kde-format
 msgid "Common Name"
 msgstr "Звычайнае імя"
 
-#: src/dialogs/certificatedetailswidget.cpp:530
+#: src/dialogs/certificatedetailswidget.cpp:522
 #, kde-format
 msgid "Organization"
 msgstr "Арганізацыя"
 
-#: src/dialogs/certificatedetailswidget.cpp:531
+#: src/dialogs/certificatedetailswidget.cpp:523
 #, kde-format
 msgid "Street"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:532
+#: src/dialogs/certificatedetailswidget.cpp:524
 #, kde-format
 msgid "City"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:525
 #, kde-format
 msgid "State"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:534
+#: src/dialogs/certificatedetailswidget.cpp:526
 #, kde-format
 msgid "Country"
 msgstr "Краіна"
 
-#: src/dialogs/certificatedetailswidget.cpp:581
+#: src/dialogs/certificatedetailswidget.cpp:573
 #, fuzzy, kde-format
 #| msgid "Overwrite File?"
 msgid "The issuer certificate could not be found locally."
@@ -7540,6 +7526,30 @@ msgstr ""
 #| msgid "Set &Background Color..."
 msgid "Export secret subkey"
 msgstr "Змяніць колер &фона..."
+
+#: src/dialogs/subkeyswidget.cpp:381
+#, fuzzy, kde-format
+#| msgid "Set &Background Color..."
+msgctxt "smart card <serial number>"
+msgid "smart card %1"
+msgstr "Змяніць колер &фона..."
+
+#: src/dialogs/subkeyswidget.cpp:383
+#, fuzzy, kde-format
+#| msgid "Set &Background Color..."
+msgid "smart card"
+msgstr "Змяніць колер &фона..."
+
+#: src/dialogs/subkeyswidget.cpp:388
+#, kde-format
+msgid "on this computer"
+msgstr ""
+
+#: src/dialogs/subkeyswidget.cpp:390
+#, kde-format
+msgctxt "unknown storage location"
+msgid "unknown"
+msgstr ""
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, fuzzy, kde-format

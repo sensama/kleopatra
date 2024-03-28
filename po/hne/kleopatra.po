@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-27 00:38+0000\n"
+"POT-Creation-Date: 2024-03-28 00:39+0000\n"
 "PO-Revision-Date: 2009-02-27 21:59+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -6636,18 +6636,16 @@ msgid "n/a"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:328
-#: src/dialogs/subkeyswidget.cpp:381
 #, fuzzy, kde-format
 #| msgid "Select All"
-msgctxt "smart card <serial number>"
+msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "सब्बो चुनव"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
-#: src/dialogs/certificatedetailswidget.cpp:343
-#: src/dialogs/subkeyswidget.cpp:383
 #, fuzzy, kde-format
 #| msgid "Select All"
+msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "सब्बो चुनव"
 
@@ -6661,65 +6659,51 @@ msgid "offline"
 msgstr "पंक्तियाँ"
 
 #: src/dialogs/certificatedetailswidget.cpp:335
-#: src/dialogs/subkeyswidget.cpp:388
 #, kde-format
+msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:390
-#, fuzzy, kde-format
-#| msgctxt "unknown trust level"
-#| msgid "unknown"
-msgctxt "unknown storage location"
-msgid "unknown"
-msgstr "अग्यात"
-
-#: src/dialogs/certificatedetailswidget.cpp:341
-#, kde-format
-msgid "none"
-msgstr ""
-
-#: src/dialogs/certificatedetailswidget.cpp:457
+#: src/dialogs/certificatedetailswidget.cpp:449
 #: src/dialogs/useridswidget.cpp:360
 #, fuzzy, kde-format
 #| msgid "Export"
 msgid "Updating..."
 msgstr "निर्यात"
 
-#: src/dialogs/certificatedetailswidget.cpp:529
+#: src/dialogs/certificatedetailswidget.cpp:521
 #, kde-format
 msgid "Common Name"
 msgstr "सामान्य नाम"
 
-#: src/dialogs/certificatedetailswidget.cpp:530
+#: src/dialogs/certificatedetailswidget.cpp:522
 #, kde-format
 msgid "Organization"
 msgstr "संगठन "
 
-#: src/dialogs/certificatedetailswidget.cpp:531
+#: src/dialogs/certificatedetailswidget.cpp:523
 #, fuzzy, kde-format
 #| msgid "Strength"
 msgid "Street"
 msgstr "सामर्थ्य"
 
-#: src/dialogs/certificatedetailswidget.cpp:532
+#: src/dialogs/certificatedetailswidget.cpp:524
 #, kde-format
 msgid "City"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:533
+#: src/dialogs/certificatedetailswidget.cpp:525
 #, fuzzy, kde-format
 #| msgid "Status"
 msgid "State"
 msgstr "स्थिति"
 
-#: src/dialogs/certificatedetailswidget.cpp:534
+#: src/dialogs/certificatedetailswidget.cpp:526
 #, kde-format
 msgid "Country"
 msgstr "देस"
 
-#: src/dialogs/certificatedetailswidget.cpp:581
+#: src/dialogs/certificatedetailswidget.cpp:573
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgid "The issuer certificate could not be found locally."
@@ -7831,6 +7815,32 @@ msgstr ""
 #| msgid "Exporting secret key..."
 msgid "Export secret subkey"
 msgstr "गोपनीय कुंजी निर्यात करत हे ..."
+
+#: src/dialogs/subkeyswidget.cpp:381
+#, fuzzy, kde-format
+#| msgid "Select All"
+msgctxt "smart card <serial number>"
+msgid "smart card %1"
+msgstr "सब्बो चुनव"
+
+#: src/dialogs/subkeyswidget.cpp:383
+#, fuzzy, kde-format
+#| msgid "Select All"
+msgid "smart card"
+msgstr "सब्बो चुनव"
+
+#: src/dialogs/subkeyswidget.cpp:388
+#, kde-format
+msgid "on this computer"
+msgstr ""
+
+#: src/dialogs/subkeyswidget.cpp:390
+#, fuzzy, kde-format
+#| msgctxt "unknown trust level"
+#| msgid "unknown"
+msgctxt "unknown storage location"
+msgid "unknown"
+msgstr "अग्यात"
 
 #: src/dialogs/trustchainwidget.cpp:64
 #, kde-format

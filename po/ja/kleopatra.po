@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-28 00:39+0000\n"
+"POT-Creation-Date: 2024-03-29 00:38+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -6280,6 +6280,87 @@ msgstr ""
 "<div>新しいユーザ ID は証明書にこのように保存されます:</div><center><strong>"
 "%1</strong></center>"
 
+#: src/dialogs/cardinfotab.cpp:59
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Subkeys"
+msgid "Subkeys"
+msgstr "副鍵"
+
+#: src/dialogs/cardinfotab.cpp:65
+#, kde-format
+msgctxt "@title:column"
+msgid "Keygrip"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:66
+#, kde-format
+msgctxt "@title:column"
+msgid "Token"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:67
+#, kde-format
+msgctxt "@title:column"
+msgid "Type"
+msgstr "タイプ"
+
+#: src/dialogs/cardinfotab.cpp:68
+#, fuzzy, kde-format
+#| msgid "Serial number:"
+msgctxt "@title:column"
+msgid "Serial Number"
+msgstr "シリアル番号:"
+
+#: src/dialogs/cardinfotab.cpp:69
+#, kde-format
+msgctxt "@title:column"
+msgid "Owner"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:74
+#, kde-format
+msgctxt "@info"
+msgid "Smartcard information is only available for your own certificates."
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:84
+#, fuzzy, kde-format
+#| msgid "Reload"
+msgctxt "@action:button"
+msgid "Reload"
+msgstr "再読み込み"
+
+#: src/dialogs/cardinfotab.cpp:135
+#, kde-format
+msgctxt "Unknown <type> <version> (card)"
+msgid "Unknown %1 v%2"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:137
+#, fuzzy, kde-format
+#| msgctxt ""
+#| "@title:tab smartcard application - name of card holder - serial number of "
+#| "smartcard"
+#| msgid "%1 - %2 - %3"
+msgctxt "<Manufacturer> <type> <version>"
+msgid "%1 %2 v%3"
+msgstr "%1 - %2 - %3"
+
+#: src/dialogs/cardinfotab.cpp:144
+#, fuzzy, kde-format
+#| msgctxt "unknown storage location"
+#| msgid "unknown"
+msgctxt "unknown cardholder"
+msgid "unknown"
+msgstr "不明"
+
+#: src/dialogs/cardinfotab.cpp:147 src/dialogs/cardinfotab.cpp:151
+#: src/dialogs/cardinfotab.cpp:153
+#, kde-format
+msgid "n/a"
+msgstr ""
+
 #: src/dialogs/certificatedetailsdialog.cpp:62
 #, kde-format
 msgctxt "@action:button"
@@ -6341,7 +6422,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:168
+#: src/dialogs/certificatedetailswidget.cpp:170
 #: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6415,117 +6496,117 @@ msgstr ""
 "<interface>%1</interface> が無効です。<nl/>ローカル管理者ルール: <icode>%2</"
 "icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:159
+#: src/dialogs/certificatedetailswidget.cpp:161
 #, fuzzy, kde-format
 #| msgid "User IDs:"
 msgid "User ID:"
 msgstr "ユーザ ID:"
 
-#: src/dialogs/certificatedetailswidget.cpp:179
+#: src/dialogs/certificatedetailswidget.cpp:181
 #, kde-format
 msgid "Trust level:"
 msgstr "信頼レベル:"
 
-#: src/dialogs/certificatedetailswidget.cpp:184
+#: src/dialogs/certificatedetailswidget.cpp:186
 #, kde-format
 msgid "Valid from:"
 msgstr "有効期間開始:"
 
-#: src/dialogs/certificatedetailswidget.cpp:189
+#: src/dialogs/certificatedetailswidget.cpp:191
 #: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "有効期間期限:"
 
-#: src/dialogs/certificatedetailswidget.cpp:192
+#: src/dialogs/certificatedetailswidget.cpp:194
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "有効期間の終了を変更"
 
-#: src/dialogs/certificatedetailswidget.cpp:193
+#: src/dialogs/certificatedetailswidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "有効期間の変更"
 
-#: src/dialogs/certificatedetailswidget.cpp:199
+#: src/dialogs/certificatedetailswidget.cpp:201
 #: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
 msgstr "フィンガープリント:"
 
-#: src/dialogs/certificatedetailswidget.cpp:203
+#: src/dialogs/certificatedetailswidget.cpp:205
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "フィンガープリントをクリップボードにコピー"
 
-#: src/dialogs/certificatedetailswidget.cpp:204
+#: src/dialogs/certificatedetailswidget.cpp:206
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "フィンガープリントをコピー"
 
-#: src/dialogs/certificatedetailswidget.cpp:211
+#: src/dialogs/certificatedetailswidget.cpp:213
 #, kde-format
 msgid "Issuer:"
 msgstr "発行者:"
 
-#: src/dialogs/certificatedetailswidget.cpp:214
+#: src/dialogs/certificatedetailswidget.cpp:216
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "発行者の証明書を表示"
 
-#: src/dialogs/certificatedetailswidget.cpp:215
+#: src/dialogs/certificatedetailswidget.cpp:217
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "証明書を表示する"
 
-#: src/dialogs/certificatedetailswidget.cpp:221
+#: src/dialogs/certificatedetailswidget.cpp:223
 #, kde-format
 msgid "Compliance:"
 msgstr "コンプライアンス:"
 
-#: src/dialogs/certificatedetailswidget.cpp:226
+#: src/dialogs/certificatedetailswidget.cpp:228
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "以下のための信頼できる紹介者:"
 
-#: src/dialogs/certificatedetailswidget.cpp:228
+#: src/dialogs/certificatedetailswidget.cpp:230
 #, kde-format
 msgid "See certifications for details."
 msgstr "保証の詳細を表示する。"
 
-#: src/dialogs/certificatedetailswidget.cpp:232
+#: src/dialogs/certificatedetailswidget.cpp:234
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Write Key"
 msgid "Private Key:"
 msgstr "鍵を書き込む"
 
-#: src/dialogs/certificatedetailswidget.cpp:245
+#: src/dialogs/certificatedetailswidget.cpp:247
 #, fuzzy, kde-format
 #| msgid "User IDs"
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "ユーザ ID"
 
-#: src/dialogs/certificatedetailswidget.cpp:247
+#: src/dialogs/certificatedetailswidget.cpp:249
 #, kde-format
 msgid "Related addresses"
 msgstr "関連するアドレス"
 
-#: src/dialogs/certificatedetailswidget.cpp:250
+#: src/dialogs/certificatedetailswidget.cpp:252
 #, fuzzy, kde-format
 #| msgid "Related addresses"
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "関連するアドレス"
 
-#: src/dialogs/certificatedetailswidget.cpp:253
+#: src/dialogs/certificatedetailswidget.cpp:255
 #, fuzzy, kde-format
 #| msgctxt "@label"
 #| msgid "Subkeys"
@@ -6534,7 +6615,7 @@ msgid "Subkeys"
 msgstr "副鍵"
 
 # 証明書に署名
-#: src/dialogs/certificatedetailswidget.cpp:256
+#: src/dialogs/certificatedetailswidget.cpp:258
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certifications"
@@ -6542,7 +6623,7 @@ msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "保証"
 
-#: src/dialogs/certificatedetailswidget.cpp:259
+#: src/dialogs/certificatedetailswidget.cpp:261
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Trust Chain Details"
@@ -6550,7 +6631,15 @@ msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "信頼のチェインの詳細"
 
-#: src/dialogs/certificatedetailswidget.cpp:262
+#: src/dialogs/certificatedetailswidget.cpp:264
+#, fuzzy, kde-format
+#| msgctxt "@action show smartcard management view"
+#| msgid "Smartcards"
+msgctxt "@title:tab"
+msgid "Smartcard"
+msgstr "スマートカード"
+
+#: src/dialogs/certificatedetailswidget.cpp:267
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certificate Dump"
@@ -6558,20 +6647,20 @@ msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "証明書のダンプ"
 
-#: src/dialogs/certificatedetailswidget.cpp:319
+#: src/dialogs/certificatedetailswidget.cpp:324
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "無期限"
 
-#: src/dialogs/certificatedetailswidget.cpp:325
+#: src/dialogs/certificatedetailswidget.cpp:330
 #: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:328
+#: src/dialogs/certificatedetailswidget.cpp:333
 #, fuzzy, kde-format
 #| msgctxt "smart card <serial number>"
 #| msgid "smart card %1"
@@ -6579,64 +6668,64 @@ msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "スマートカード %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:330
+#: src/dialogs/certificatedetailswidget.cpp:335
 #, fuzzy, kde-format
 #| msgid "smart card"
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "スマートカード"
 
-#: src/dialogs/certificatedetailswidget.cpp:333
+#: src/dialogs/certificatedetailswidget.cpp:338
 #: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "オフライン"
 
-#: src/dialogs/certificatedetailswidget.cpp:335
+#: src/dialogs/certificatedetailswidget.cpp:340
 #, fuzzy, kde-format
 #| msgid "on this computer"
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "このコンピュータ"
 
-#: src/dialogs/certificatedetailswidget.cpp:449
+#: src/dialogs/certificatedetailswidget.cpp:455
 #: src/dialogs/useridswidget.cpp:360
 #, kde-format
 msgid "Updating..."
 msgstr "更新..."
 
-#: src/dialogs/certificatedetailswidget.cpp:521
+#: src/dialogs/certificatedetailswidget.cpp:527
 #, kde-format
 msgid "Common Name"
 msgstr "コモン・ネーム"
 
-#: src/dialogs/certificatedetailswidget.cpp:522
+#: src/dialogs/certificatedetailswidget.cpp:528
 #, kde-format
 msgid "Organization"
 msgstr "組織"
 
-#: src/dialogs/certificatedetailswidget.cpp:523
+#: src/dialogs/certificatedetailswidget.cpp:529
 #, kde-format
 msgid "Street"
 msgstr "番地"
 
-#: src/dialogs/certificatedetailswidget.cpp:524
+#: src/dialogs/certificatedetailswidget.cpp:530
 #, kde-format
 msgid "City"
 msgstr "市"
 
-#: src/dialogs/certificatedetailswidget.cpp:525
+#: src/dialogs/certificatedetailswidget.cpp:531
 #, kde-format
 msgid "State"
 msgstr "州"
 
-#: src/dialogs/certificatedetailswidget.cpp:526
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Country"
 msgstr "国"
 
-#: src/dialogs/certificatedetailswidget.cpp:573
+#: src/dialogs/certificatedetailswidget.cpp:579
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "この発行者証明書はローカルで見つかりませんでした。"
@@ -7907,7 +7996,7 @@ msgstr "最後のメッセージ"
 msgid "Message count"
 msgstr "メッセージ数"
 
-#: src/dialogs/useridswidget.cpp:325 src/smartcard/openpgpcard.cpp:101
+#: src/dialogs/useridswidget.cpp:325 src/smartcard/openpgpcard.cpp:102
 #, kde-format
 msgid "Encryption"
 msgstr "暗号化"
@@ -10178,62 +10267,62 @@ msgstr ""
 "これ以外の <application>Kleopatra</application> のインスタンスをすべて終了し"
 "てください。"
 
-#: src/smartcard/openpgpcard.cpp:100
+#: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Signature"
 msgstr "署名"
 
-#: src/smartcard/openpgpcard.cpp:102
+#: src/smartcard/openpgpcard.cpp:103
 #, kde-format
 msgid "Authentication"
 msgstr "認証"
 
-#: src/smartcard/pivcard.cpp:85
+#: src/smartcard/pivcard.cpp:86
 #, kde-format
 msgid "PIV Authentication Key"
 msgstr "PIV 認証鍵"
 
-#: src/smartcard/pivcard.cpp:86
+#: src/smartcard/pivcard.cpp:87
 #, kde-format
 msgid "Card Authentication Key"
 msgstr "カード認証鍵"
 
-#: src/smartcard/pivcard.cpp:87
+#: src/smartcard/pivcard.cpp:88
 #, kde-format
 msgid "Digital Signature Key"
 msgstr "電子署名鍵"
 
-#: src/smartcard/pivcard.cpp:88
+#: src/smartcard/pivcard.cpp:89
 #, kde-format
 msgid "Key Management Key"
 msgstr "鍵の管理鍵"
 
-#: src/smartcard/pivcard.cpp:99
+#: src/smartcard/pivcard.cpp:100
 #, kde-format
 msgid "RSA key transport (2048 bits)"
 msgstr "RSA 鍵トランスポート (2048ビット)"
 
-#: src/smartcard/pivcard.cpp:100
+#: src/smartcard/pivcard.cpp:101
 #, kde-format
 msgid "ECDH (Curve P-256)"
 msgstr "ECDH (Curve P-256)"
 
-#: src/smartcard/pivcard.cpp:101
+#: src/smartcard/pivcard.cpp:102
 #, kde-format
 msgid "ECDH (Curve P-384)"
 msgstr "ECDH (Curve P-384)"
 
-#: src/smartcard/pivcard.cpp:105 src/smartcard/pivcard.cpp:113
+#: src/smartcard/pivcard.cpp:106 src/smartcard/pivcard.cpp:114
 #, kde-format
 msgid "RSA (2048 bits)"
 msgstr "RSA (2048 ビット)"
 
-#: src/smartcard/pivcard.cpp:106 src/smartcard/pivcard.cpp:114
+#: src/smartcard/pivcard.cpp:107 src/smartcard/pivcard.cpp:115
 #, kde-format
 msgid "ECDSA (Curve P-256)"
 msgstr "ECDSA (Curve P-256)"
 
-#: src/smartcard/pivcard.cpp:107
+#: src/smartcard/pivcard.cpp:108
 #, kde-format
 msgid "ECDSA (Curve P-384)"
 msgstr "ECDSA (Curve P-384)"
@@ -12662,10 +12751,6 @@ msgstr ""
 #~ msgctxt "@action"
 #~ msgid "Load Certificates"
 #~ msgstr "証明書をロード"
-
-#~ msgctxt "@title:column"
-#~ msgid "Type"
-#~ msgstr "タイプ"
 
 #~ msgctxt "@title:column"
 #~ msgid "Primary"

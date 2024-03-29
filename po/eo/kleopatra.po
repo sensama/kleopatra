@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-28 00:39+0000\n"
-"PO-Revision-Date: 2024-03-27 09:18+0100\n"
+"POT-Creation-Date: 2024-03-29 00:38+0000\n"
+"PO-Revision-Date: 2024-03-28 10:37+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -6220,6 +6220,91 @@ msgstr ""
 "<div>Jen kiel la nova uzantidentigilo estos konservita en la atestilo:</"
 "div><center><strong>%1</strong></center>"
 
+#: src/dialogs/cardinfotab.cpp:59
+#, fuzzy, kde-format
+#| msgctxt "@title:tab"
+#| msgid "Subkeys"
+msgid "Subkeys"
+msgstr "Subŝlosiloj"
+
+#: src/dialogs/cardinfotab.cpp:65
+#, kde-format
+msgctxt "@title:column"
+msgid "Keygrip"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:66
+#, kde-format
+msgctxt "@title:column"
+msgid "Token"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:67
+#, kde-format
+msgctxt "@title:column"
+msgid "Type"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:68
+#, fuzzy, kde-format
+#| msgid "Serial number:"
+msgctxt "@title:column"
+msgid "Serial Number"
+msgstr "Seria numero:"
+
+#: src/dialogs/cardinfotab.cpp:69
+#, kde-format
+msgctxt "@title:column"
+msgid "Owner"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:74
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Certifications are not available before the certificate is imported."
+msgctxt "@info"
+msgid "Smartcard information is only available for your own certificates."
+msgstr "Atestoj ne haveblas antaŭ la importo de la atestilo."
+
+#: src/dialogs/cardinfotab.cpp:84
+#, fuzzy, kde-format
+#| msgid "Reload"
+msgctxt "@action:button"
+msgid "Reload"
+msgstr "Reŝargi"
+
+#: src/dialogs/cardinfotab.cpp:135
+#, kde-format
+msgctxt "Unknown <type> <version> (card)"
+msgid "Unknown %1 v%2"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:137
+#, fuzzy, kde-format
+#| msgctxt ""
+#| "@title:tab smartcard application - name of card holder - serial number of "
+#| "smartcard"
+#| msgid "%1 - %2 - %3"
+msgctxt "<Manufacturer> <type> <version>"
+msgid "%1 %2 v%3"
+msgstr "%1 - %2 - %3"
+
+#: src/dialogs/cardinfotab.cpp:144
+#, fuzzy, kde-format
+#| msgctxt "unknown storage location"
+#| msgid "unknown"
+msgctxt "unknown cardholder"
+msgid "unknown"
+msgstr "nekonata"
+
+#: src/dialogs/cardinfotab.cpp:147 src/dialogs/cardinfotab.cpp:151
+#: src/dialogs/cardinfotab.cpp:153
+#, fuzzy, kde-format
+#| msgctxt "not applicable"
+#| msgid "n/a"
+msgid "n/a"
+msgstr "n/a"
+
 #: src/dialogs/certificatedetailsdialog.cpp:62
 #, kde-format
 msgctxt "@action:button"
@@ -6281,7 +6366,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:168
+#: src/dialogs/certificatedetailswidget.cpp:170
 #: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6355,214 +6440,218 @@ msgstr ""
 "<interface>%1</interface> nevalidas.<nl/>Regulo de Loka Administranto: "
 "<icode>%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:159
+#: src/dialogs/certificatedetailswidget.cpp:161
 #, kde-format
 msgid "User ID:"
 msgstr "Uzant-ID:"
 
-#: src/dialogs/certificatedetailswidget.cpp:179
+#: src/dialogs/certificatedetailswidget.cpp:181
 #, kde-format
 msgid "Trust level:"
 msgstr "Fidonivelo:"
 
-#: src/dialogs/certificatedetailswidget.cpp:184
+#: src/dialogs/certificatedetailswidget.cpp:186
 #, kde-format
 msgid "Valid from:"
 msgstr "Valida de:"
 
-#: src/dialogs/certificatedetailswidget.cpp:189
+#: src/dialogs/certificatedetailswidget.cpp:191
 #: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Valida ĝis:"
 
-#: src/dialogs/certificatedetailswidget.cpp:192
+#: src/dialogs/certificatedetailswidget.cpp:194
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "Ŝanĝi la finon de la valideca periodo"
 
-#: src/dialogs/certificatedetailswidget.cpp:193
+#: src/dialogs/certificatedetailswidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "Ŝanĝi Validecon"
 
-#: src/dialogs/certificatedetailswidget.cpp:199
+#: src/dialogs/certificatedetailswidget.cpp:201
 #: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Fingrosigno:"
 
-#: src/dialogs/certificatedetailswidget.cpp:203
+#: src/dialogs/certificatedetailswidget.cpp:205
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "Kopii la fingrospuron al la tondujo"
 
-#: src/dialogs/certificatedetailswidget.cpp:204
+#: src/dialogs/certificatedetailswidget.cpp:206
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "Kopii fingrospuron"
 
-#: src/dialogs/certificatedetailswidget.cpp:211
+#: src/dialogs/certificatedetailswidget.cpp:213
 #, kde-format
 msgid "Issuer:"
 msgstr "Eldonanto:"
 
-#: src/dialogs/certificatedetailswidget.cpp:214
+#: src/dialogs/certificatedetailswidget.cpp:216
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "Montri la atestilon de eldonanto"
 
-#: src/dialogs/certificatedetailswidget.cpp:215
+#: src/dialogs/certificatedetailswidget.cpp:217
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Montri atestilon"
 
-#: src/dialogs/certificatedetailswidget.cpp:221
+#: src/dialogs/certificatedetailswidget.cpp:223
 #, kde-format
 msgid "Compliance:"
 msgstr "Konformeco:"
 
-#: src/dialogs/certificatedetailswidget.cpp:226
+#: src/dialogs/certificatedetailswidget.cpp:228
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "Fidinda prezentisto por:"
 
-#: src/dialogs/certificatedetailswidget.cpp:228
+#: src/dialogs/certificatedetailswidget.cpp:230
 #, kde-format
 msgid "See certifications for details."
 msgstr "Vidu atestojn por detaloj."
 
-#: src/dialogs/certificatedetailswidget.cpp:232
+#: src/dialogs/certificatedetailswidget.cpp:234
 #, kde-format
 msgid "Private Key:"
 msgstr "Privata Ŝlosilo:"
 
-#: src/dialogs/certificatedetailswidget.cpp:245
+#: src/dialogs/certificatedetailswidget.cpp:247
 #, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "ID-oj de uzantoj"
 
-#: src/dialogs/certificatedetailswidget.cpp:247
+#: src/dialogs/certificatedetailswidget.cpp:249
 #, kde-format
 msgid "Related addresses"
 msgstr "Rilataj adresoj"
 
-#: src/dialogs/certificatedetailswidget.cpp:250
+#: src/dialogs/certificatedetailswidget.cpp:252
 #, kde-format
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "Rilataj Adresoj"
 
-#: src/dialogs/certificatedetailswidget.cpp:253
+#: src/dialogs/certificatedetailswidget.cpp:255
 #, kde-format
 msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "Subŝlosiloj"
 
-#: src/dialogs/certificatedetailswidget.cpp:256
+#: src/dialogs/certificatedetailswidget.cpp:258
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "Atestoj"
 
-#: src/dialogs/certificatedetailswidget.cpp:259
+#: src/dialogs/certificatedetailswidget.cpp:261
 #, kde-format
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "Detaloj de Fida Ĉeno"
 
-#: src/dialogs/certificatedetailswidget.cpp:262
+#: src/dialogs/certificatedetailswidget.cpp:264
+#, fuzzy, kde-format
+#| msgctxt "@action show smartcard management view"
+#| msgid "Smartcards"
+msgctxt "@title:tab"
+msgid "Smartcard"
+msgstr "Smartkartoj"
+
+#: src/dialogs/certificatedetailswidget.cpp:267
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "Atestil-Elĵeto"
 
-#: src/dialogs/certificatedetailswidget.cpp:319
+#: src/dialogs/certificatedetailswidget.cpp:324
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "senlima"
 
-#: src/dialogs/certificatedetailswidget.cpp:325
+#: src/dialogs/certificatedetailswidget.cpp:330
 #: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr "n/a"
 
-#: src/dialogs/certificatedetailswidget.cpp:328
-#, fuzzy, kde-format
-#| msgctxt "smart card <serial number>"
-#| msgid "smart card %1"
+#: src/dialogs/certificatedetailswidget.cpp:333
+#, kde-format
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "inteligenta karto %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:330
-#, fuzzy, kde-format
-#| msgid "smart card"
+#: src/dialogs/certificatedetailswidget.cpp:335
+#, kde-format
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
-msgstr "inteligenta karto"
+msgstr "inteligenta memorkarto"
 
-#: src/dialogs/certificatedetailswidget.cpp:333
+#: src/dialogs/certificatedetailswidget.cpp:338
 #: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "eksterrete"
 
-#: src/dialogs/certificatedetailswidget.cpp:335
-#, fuzzy, kde-format
-#| msgid "on this computer"
+#: src/dialogs/certificatedetailswidget.cpp:340
+#, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "sur ĉi tiu komputilo"
 
-#: src/dialogs/certificatedetailswidget.cpp:449
+#: src/dialogs/certificatedetailswidget.cpp:455
 #: src/dialogs/useridswidget.cpp:360
 #, kde-format
 msgid "Updating..."
 msgstr "Ĝisdatigante..."
 
-#: src/dialogs/certificatedetailswidget.cpp:521
+#: src/dialogs/certificatedetailswidget.cpp:527
 #, kde-format
 msgid "Common Name"
 msgstr "Komuna Nomo"
 
-#: src/dialogs/certificatedetailswidget.cpp:522
+#: src/dialogs/certificatedetailswidget.cpp:528
 #, kde-format
 msgid "Organization"
 msgstr "Organizo"
 
-#: src/dialogs/certificatedetailswidget.cpp:523
+#: src/dialogs/certificatedetailswidget.cpp:529
 #, kde-format
 msgid "Street"
 msgstr "strato"
 
-#: src/dialogs/certificatedetailswidget.cpp:524
+#: src/dialogs/certificatedetailswidget.cpp:530
 #, kde-format
 msgid "City"
 msgstr "Urbo"
 
-#: src/dialogs/certificatedetailswidget.cpp:525
+#: src/dialogs/certificatedetailswidget.cpp:531
 #, kde-format
 msgid "State"
 msgstr "Ŝtato"
 
-#: src/dialogs/certificatedetailswidget.cpp:526
+#: src/dialogs/certificatedetailswidget.cpp:532
 #, kde-format
 msgid "Country"
 msgstr "Lando"
 
-#: src/dialogs/certificatedetailswidget.cpp:573
+#: src/dialogs/certificatedetailswidget.cpp:579
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "La atestilo de eldonanto ne troviĝis loke."
@@ -7825,7 +7914,7 @@ msgstr "Lasta mesaĝo"
 msgid "Message count"
 msgstr "Nombro de mesaĝoj"
 
-#: src/dialogs/useridswidget.cpp:325 src/smartcard/openpgpcard.cpp:101
+#: src/dialogs/useridswidget.cpp:325 src/smartcard/openpgpcard.cpp:102
 #, kde-format
 msgid "Encryption"
 msgstr "Ĉifrado"
@@ -10087,62 +10176,62 @@ msgstr ""
 "Forlasu iujn aliajn kurantajn okazojn de <application>Kleopatra</"
 "application>."
 
-#: src/smartcard/openpgpcard.cpp:100
+#: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Signature"
 msgstr "Subskribo"
 
-#: src/smartcard/openpgpcard.cpp:102
+#: src/smartcard/openpgpcard.cpp:103
 #, kde-format
 msgid "Authentication"
 msgstr "Aŭtentigo"
 
-#: src/smartcard/pivcard.cpp:85
+#: src/smartcard/pivcard.cpp:86
 #, kde-format
 msgid "PIV Authentication Key"
 msgstr "PIV-Aŭtentikiga Ŝlosilo"
 
-#: src/smartcard/pivcard.cpp:86
+#: src/smartcard/pivcard.cpp:87
 #, kde-format
 msgid "Card Authentication Key"
 msgstr "Ŝlosilo de Karto de Aŭtentigo"
 
-#: src/smartcard/pivcard.cpp:87
+#: src/smartcard/pivcard.cpp:88
 #, kde-format
 msgid "Digital Signature Key"
 msgstr "Ŝlosilo de Cifereca Subskribo"
 
-#: src/smartcard/pivcard.cpp:88
+#: src/smartcard/pivcard.cpp:89
 #, kde-format
 msgid "Key Management Key"
 msgstr "Ŝlosilo Administrado"
 
-#: src/smartcard/pivcard.cpp:99
+#: src/smartcard/pivcard.cpp:100
 #, kde-format
 msgid "RSA key transport (2048 bits)"
 msgstr "RSA-ŝlosila transporto (2048 bitoj)"
 
-#: src/smartcard/pivcard.cpp:100
+#: src/smartcard/pivcard.cpp:101
 #, kde-format
 msgid "ECDH (Curve P-256)"
 msgstr "ECDH (Kurbo P-256)"
 
-#: src/smartcard/pivcard.cpp:101
+#: src/smartcard/pivcard.cpp:102
 #, kde-format
 msgid "ECDH (Curve P-384)"
 msgstr "ECDH (Kurbo P-384)"
 
-#: src/smartcard/pivcard.cpp:105 src/smartcard/pivcard.cpp:113
+#: src/smartcard/pivcard.cpp:106 src/smartcard/pivcard.cpp:114
 #, kde-format
 msgid "RSA (2048 bits)"
 msgstr "RSA (2048 bitoj)"
 
-#: src/smartcard/pivcard.cpp:106 src/smartcard/pivcard.cpp:114
+#: src/smartcard/pivcard.cpp:107 src/smartcard/pivcard.cpp:115
 #, kde-format
 msgid "ECDSA (Curve P-256)"
 msgstr "ECDSA (Kurbo P-256)"
 
-#: src/smartcard/pivcard.cpp:107
+#: src/smartcard/pivcard.cpp:108
 #, kde-format
 msgid "ECDSA (Curve P-384)"
 msgstr "ECDSA (Kurbo P-384)"
@@ -12416,6 +12505,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgid "none"
-#~ msgstr "neniuj"

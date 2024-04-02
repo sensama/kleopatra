@@ -59,6 +59,14 @@ using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace QGpgME;
 
+namespace
+{
+struct KeyWithOrigin {
+    Key key;
+    Key::Origin origin;
+};
+}
+
 class LookupCertificatesCommand::Private : public ImportCertificatesCommand::Private
 {
     friend class ::Kleo::Commands::LookupCertificatesCommand;
@@ -135,7 +143,7 @@ private:
         QPointer<Job> wkdJob;
         QString pattern;
         KeyListResult result;
-        std::vector<Key> keys;
+        std::vector<KeyWithOrigin> keys;
         int numKeysWithoutUserId = 0;
         std::set<std::string> wkdKeyFingerprints;
         QByteArray wkdKeyData;
@@ -287,7 +295,7 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     if (dialog) { // thus test
         dialog->setOverlayText({});
         dialog->setPassive(true);
-        dialog->setCertificates(std::vector<Key>());
+        dialog->setCertificates(std::vector<Key>(), {});
     }
 
     keyListing.reset();
@@ -385,7 +393,7 @@ void LookupCertificatesCommand::Private::slotNextKey(const Key &key)
         keyListing.numKeysWithoutUserId++;
     } else {
         qCDebug(KLEOPATRA_LOG) << __func__ << "got key" << key;
-        keyListing.keys.push_back(key);
+        keyListing.keys.push_back({key, Key::OriginKS});
     }
 }
 
@@ -435,7 +443,9 @@ void LookupCertificatesCommand::Private::slotWKDLookupResult(const WKDLookupResu
     if (!keys.empty()) {
         keyListing.wkdKeyData = QByteArray::fromStdString(result.keyData().toString());
         keyListing.wkdSource = QString::fromStdString(result.source());
-        std::copy(std::begin(keys), std::end(keys), std::back_inserter(keyListing.keys));
+        for (const auto &key : keys) {
+            keyListing.keys.push_back({key, Key::OriginWKD});
+        }
         // remember the keys retrieved via WKD for import
         std::transform(std::begin(keys),
                        std::end(keys),
@@ -506,7 +516,16 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
 
     if (dialog) {
         dialog->setPassive(false);
-        dialog->setCertificates(keyListing.keys);
+
+        std::sort(keyListing.keys.begin(), keyListing.keys.end(), [](const auto &lhs, const auto &rhs) {
+            return qstricmp(lhs.key.primaryFingerprint(), rhs.key.primaryFingerprint());
+        });
+        std::vector<Key> keys;
+        std::vector<Key::Origin> origins;
+        for (const auto &pair : keyListing.keys) {
+            keys.push_back(pair.key), origins.push_back(pair.origin);
+        }
+        dialog->setCertificates(keys, origins);
         if (keyListing.keys.size() == 0) {
             dialog->setOverlayText(i18nc("@info", "No certificates found"));
         }

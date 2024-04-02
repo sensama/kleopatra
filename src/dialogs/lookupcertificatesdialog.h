@@ -15,10 +15,7 @@
 
 #include <vector>
 
-namespace GpgME
-{
-class Key;
-}
+#include <gpgme++/key.h>
 
 namespace Kleo
 {
@@ -40,7 +37,7 @@ public:
     void setQueryMode(QueryMode mode);
     QueryMode queryMode() const;
 
-    void setCertificates(const std::vector<GpgME::Key> &certs);
+    void setCertificates(const std::vector<GpgME::Key> &certs, const std::vector<GpgME::Key::Origin> &origins);
     std::vector<GpgME::Key> selectedCertificates() const;
 
     void setPassive(bool passive);

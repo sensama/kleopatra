@@ -68,7 +68,9 @@ public:
     void setFlatModel(AbstractKeyListModel *model);
     void setHierarchicalModel(AbstractKeyListModel *model);
 
-    void setKeys(const std::vector<GpgME::Key> &keys);
+    // extraOrigins contains additional origin information for the keys. It must be in the same order as the keys themselves.
+    // For this reason, setKeys will NOT perform any sorting and filtering if extraOrigins is not empty.
+    void setKeys(const std::vector<GpgME::Key> &keys, const std::vector<GpgME::Key::Origin> &extraOrigins = {});
     const std::vector<GpgME::Key> &keys() const
     {
         return m_keys;

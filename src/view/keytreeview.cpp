@@ -535,17 +535,20 @@ void KeyTreeView::setHierarchicalView(bool on)
     Q_EMIT hierarchicalChanged(on);
 }
 
-void KeyTreeView::setKeys(const std::vector<Key> &keys)
+void KeyTreeView::setKeys(const std::vector<Key> &keys, const std::vector<Key::Origin> &extraOrigins)
 {
     std::vector<Key> sorted = keys;
-    _detail::sort_by_fpr(sorted);
-    _detail::remove_duplicates_by_fpr(sorted);
+
+    if (extraOrigins.empty()) {
+        _detail::sort_by_fpr(sorted);
+        _detail::remove_duplicates_by_fpr(sorted);
+    }
     m_keys = sorted;
     if (m_flatModel) {
-        m_flatModel->setKeys(sorted);
+        m_flatModel->setKeys(sorted, extraOrigins);
     }
     if (m_hierarchicalModel) {
-        m_hierarchicalModel->setKeys(sorted);
+        m_hierarchicalModel->setKeys(sorted, extraOrigins);
     }
 }
 

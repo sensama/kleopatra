@@ -330,10 +330,10 @@ LookupCertificatesDialog::QueryMode LookupCertificatesDialog::queryMode() const
     return d->queryMode;
 }
 
-void LookupCertificatesDialog::setCertificates(const std::vector<Key> &certs)
+void LookupCertificatesDialog::setCertificates(const std::vector<Key> &certs, const std::vector<Key::Origin> &origins)
 {
     d->ui.resultTV->view()->setFocus();
-    d->ui.resultTV->setKeys(certs);
+    d->ui.resultTV->setKeys(certs, origins);
     if (certs.size() == 1) {
         d->ui.resultTV->view()->setCurrentIndex(d->ui.resultTV->view()->model()->index(0, 0));
     }

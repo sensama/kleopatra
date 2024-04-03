@@ -119,8 +119,16 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     // OpenPGP keyserver
     int row = 0;
     {
+        auto groupBox = new QGroupBox{i18nc("@title", "OpenPGP Keyserver")};
+        groupBox->setFlat(true);
+        auto groupBoxLayout = new QVBoxLayout{groupBox};
+        groupBoxLayout->setContentsMargins({});
+
         auto l = new QHBoxLayout{};
         l->setContentsMargins(0, 0, 0, 0);
+
+        groupBoxLayout->addLayout(l);
+        groupBoxLayout->addWidget(new QLabel(i18n("Please note that only one OpenPGP keyserver can be configured.")));
 
         mOpenPGPKeyserverEdit.createWidgets(q);
         mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
@@ -135,7 +143,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         l->addWidget(mOpenPGPKeyserverEdit.label());
         l->addWidget(mOpenPGPKeyserverEdit.widget());
 
-        glay->addLayout(l, row, 0, 1, 3);
+        glay->addWidget(groupBox, row, 0, 1, 3);
         connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, q, &DirectoryServicesConfigurationPage::changed);
     }
 

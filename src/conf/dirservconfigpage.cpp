@@ -103,6 +103,7 @@ private:
     Kleo::LabelledWidget<QSpinBox> mMaxItems;
     QCheckBox *mFetchMissingSignerKeysCB = nullptr;
     QCheckBox *mQueryWKDsForAllUserIDsCB = nullptr;
+    QCheckBox *mUseKeyServerCheckBox = nullptr;
 
     QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
     QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
@@ -124,25 +125,42 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         auto groupBoxLayout = new QVBoxLayout{groupBox};
         groupBoxLayout->setContentsMargins({});
 
-        auto l = new QHBoxLayout{};
-        l->setContentsMargins(0, 0, 0, 0);
-
-        groupBoxLayout->addLayout(l);
         groupBoxLayout->addWidget(new QLabel(i18n("Please note that only one OpenPGP keyserver can be configured.")));
 
-        mOpenPGPKeyserverEdit.createWidgets(q);
-        mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
-        if (engineIsVersion(2, 4, 4) //
-            || (engineIsVersion(2, 2, 42) && !engineIsVersion(2, 3, 0))) {
-            mOpenPGPKeyserverEdit.widget()->setToolTip( //
-                xi18nc("@info:tooltip",
-                       "Enter the address of the keyserver to use when searching for OpenPGP certificates and "
-                       "when uploading OpenPGP certificates. If you do not enter an address then an internal "
-                       "default will be used. To disable the use of an OpenPGP keyserver enter the special value <emphasis>none</emphasis>."));
+        {
+            mUseKeyServerCheckBox = new QCheckBox(i18nc("@label:checkbox", "Use OpenPGP keyserver"));
+            groupBoxLayout->addWidget(mUseKeyServerCheckBox);
         }
-        l->addWidget(mOpenPGPKeyserverEdit.label());
-        l->addWidget(mOpenPGPKeyserverEdit.widget());
+        {
+            auto l = new QHBoxLayout{};
+            l->setContentsMargins(0, 0, 0, 0);
 
+            groupBoxLayout->addLayout(l);
+
+            mOpenPGPKeyserverEdit.createWidgets(q);
+            mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
+            if (engineIsVersion(2, 4, 4) //
+                || (engineIsVersion(2, 2, 42) && !engineIsVersion(2, 3, 0))) {
+                mOpenPGPKeyserverEdit.widget()->setToolTip( //
+                    xi18nc("@info:tooltip",
+                           "Enter the address of the keyserver to use when searching for OpenPGP certificates and "
+                           "when uploading OpenPGP certificates. If you do not enter an address then an internal "
+                           "default will be used. To disable the use of an OpenPGP keyserver enter the special value <emphasis>none</emphasis>."));
+            }
+            l->addWidget(mOpenPGPKeyserverEdit.label());
+            l->addWidget(mOpenPGPKeyserverEdit.widget());
+        }
+
+        connect(mUseKeyServerCheckBox, &QCheckBox::toggled, mOpenPGPKeyserverEdit.widget(), &QLineEdit::setEnabled);
+        connect(mUseKeyServerCheckBox, &QCheckBox::toggled, q, [this, q]() {
+            if (!mUseKeyServerCheckBox->isChecked()) {
+                mOpenPGPKeyserverEdit.widget()->setText(QStringLiteral("none"));
+                q->changed();
+            } else if (mOpenPGPKeyserverEdit.widget()->text() == QStringLiteral("none")) {
+                mOpenPGPKeyserverEdit.widget()->setText({});
+                q->changed();
+            }
+        });
         glay->addWidget(groupBox, row, 0, 1, 3);
         connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, q, &DirectoryServicesConfigurationPage::changed);
     }
@@ -269,7 +287,9 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
         }
 
         mOpenPGPKeyserverEdit.widget()->setText(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isSet() ? mOpenPGPServiceEntry->stringValue() : QString());
-        mOpenPGPKeyserverEdit.setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
+        mUseKeyServerCheckBox->setChecked(mOpenPGPKeyserverEdit.widget()->text() != QStringLiteral("none"));
+        mUseKeyServerCheckBox->setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
+        mOpenPGPKeyserverEdit.setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly() && mUseKeyServerCheckBox->isChecked());
         if (newEntry && !newEntry->defaultValue().isNull()) {
             mOpenPGPKeyserverEdit.widget()->setPlaceholderText(newEntry->defaultValue().toString());
         } else {

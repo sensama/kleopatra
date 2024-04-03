@@ -133,6 +133,7 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
         i18n("Help"),
         i18nc("Only available in German and English. Leave to English for other languages.", "handout_group-feature_gnupg_en.pdf"),
         QStringLiteral("../share/doc/gnupg-vsd"),
+        QUrl(),
         this);
     if (helpAction->isEnabled()) {
         auto helpButton = buttonBox->addButton(QDialogButtonBox::Help);

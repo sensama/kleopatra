@@ -214,24 +214,29 @@ std::vector<int> KeyTreeView::columnSizes() const
 
 void KeyTreeView::restoreLayout(const KConfigGroup &group)
 {
-    if (!group.isValid() || !m_view->restoreColumnLayout(group.name())) {
-        // if config is empty then use default settings
-        // The numbers have to be in line with the order in
-        // setsSourceColumns above
-        m_view->hideColumn(5);
+    QMetaObject::invokeMethod(
+        this,
+        [this, group]() {
+            if (!group.isValid() || !m_view->restoreColumnLayout(group.name())) {
+                // if config is empty then use default settings
+                // The numbers have to be in line with the order in
+                // setsSourceColumns above
+                m_view->hideColumn(5);
 
-        for (int i = 7; i < m_view->model()->columnCount(); ++i) {
-            m_view->hideColumn(i);
-        }
-        if (KeyCache::instance()->initialized()) {
-            QTimer::singleShot(0, this, &KeyTreeView::resizeColumns);
-        }
-    } else {
-        m_onceResized = true;
-    }
-    if (!m_view->isColumnHidden(tagsColumn)) {
-        Tags::enableTags();
-    }
+                for (int i = 7; i < m_view->model()->columnCount(); ++i) {
+                    m_view->hideColumn(i);
+                }
+                if (KeyCache::instance()->initialized()) {
+                    QTimer::singleShot(0, this, &KeyTreeView::resizeColumns);
+                }
+            } else {
+                m_onceResized = true;
+            }
+            if (!m_view->isColumnHidden(tagsColumn)) {
+                Tags::enableTags();
+            }
+        },
+        Qt::QueuedConnection);
 }
 
 void KeyTreeView::init()

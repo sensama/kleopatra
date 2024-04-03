@@ -685,7 +685,9 @@ void MainWindow::Private::setupActions()
                                                 "at this point (24.7.2017) in german and english."
                                                 "Please check with Gpg4win before translating this filename.",
                                                 "gpg4win-compendium-en.pdf"),
-                                          QStringLiteral("../share/gpg4win"));
+                                          QStringLiteral("../share/gpg4win"),
+                                          QUrl(),
+                                          coll);
     coll->addAction(QStringLiteral("help_doc_compendium"), compendium);
 
     /* Documentation centered around the german approved VS-NfD mode for official
@@ -695,20 +697,26 @@ void MainWindow::Private::setupActions()
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                       i18n("&Quickguide"),
                       i18nc("Only available in German and English. Leave to English for other languages.", "encrypt_and_sign_gnupgvsd_en.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"));
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      QUrl(),
+                      coll);
     coll->addAction(QStringLiteral("help_doc_quickguide"), quickguide);
 
     const auto symguide =
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                       i18n("&Password-based encryption"),
                       i18nc("Only available in German and English. Leave to English for other languages.", "symmetric_encryption_gnupgvsd_en.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"));
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      QUrl(),
+                      coll);
     coll->addAction(QStringLiteral("help_doc_symenc"), symguide);
 
     const auto groups = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                                       i18n("&Group configuration"),
                                       i18nc("Only available in German and English. Leave to English for other languages.", "groupfeature_gnupgvsd_en.pdf"),
-                                      QStringLiteral("../share/doc/gnupg-vsd"));
+                                      QStringLiteral("../share/doc/gnupg-vsd"),
+                                      QUrl(),
+                                      coll);
     coll->addAction(QStringLiteral("help_doc_groups"), groups);
 
 #ifdef Q_OS_WIN
@@ -716,7 +724,9 @@ void MainWindow::Private::setupActions()
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                       i18n("&Mail encryption in Outlook"),
                       i18nc("Only available in German and English. Leave to English for other languages. Only shown on Windows.", "gpgol_outlook_addin_en.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"));
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      QUrl(),
+                      coll);
     coll->addAction(QStringLiteral("help_doc_gpgol"), gpgol);
 #endif
 
@@ -725,20 +735,26 @@ void MainWindow::Private::setupActions()
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                       i18n("&Certification Management"),
                       i18nc("Only available in German and English. Leave to English for other languages.", "certification_management_gnupgvsd_en.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"));
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      QUrl(),
+                      coll);
     coll->addAction(QStringLiteral("help_doc_cert_management"), certmngmnt);
 
     const auto smartcard =
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                       i18n("&Smartcard setup"),
                       i18nc("Only available in German and English. Leave to English for other languages.", "smartcard_setup_gnupgvsd_en.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"));
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      QUrl(),
+                      coll);
     coll->addAction(QStringLiteral("help_doc_smartcard"), smartcard);
 
     const auto man_gnupg = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                                          i18n("GnuPG Command&line"),
                                          QStringLiteral("gnupg_manual_en.pdf"),
-                                         QStringLiteral("../share/doc/gnupg-vsd"));
+                                         QStringLiteral("../share/doc/gnupg-vsd"),
+                                         QUrl(QStringLiteral("https://gnupg.org/documentation/manuals/gnupg/")),
+                                         coll);
     coll->addAction(QStringLiteral("help_doc_gnupg"), man_gnupg);
 
     /* The secops */
@@ -747,19 +763,26 @@ void MainWindow::Private::setupActions()
                       i18n("Manual for VS-NfD approval (German)"),
                       i18nc("Only available in German. Keep German file name for all languages", "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"),
                       QStringLiteral("../share/doc/gnupg-vsd"),
+                      QUrl(),
                       coll);
     coll->addAction(QStringLiteral("help_doc_approval_manual"), approvalmanual);
 
-    const auto vsa10573 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
-                                        i18n("SecOps VSA-10573"),
-                                        i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10573-ENG_secops.pdf"),
-                                        QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto vsa10573 =
+        new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
+                      i18n("SecOps VSA-10573"),
+                      i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10573-ENG_secops-20220207.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      QUrl(),
+                      coll);
     coll->addAction(QStringLiteral("help_doc_vsa10573"), vsa10573);
 
-    const auto vsa10584 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
-                                        i18n("SecOps VSA-10584"),
-                                        i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10584-ENG_secops.pdf"),
-                                        QStringLiteral("../share/doc/gnupg-vsd"));
+    const auto vsa10584 =
+        new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
+                      i18n("SecOps VSA-10584"),
+                      i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10584-ENG_secops-20220207.pdf"),
+                      QStringLiteral("../share/doc/gnupg-vsd"),
+                      QUrl(),
+                      coll);
     coll->addAction(QStringLiteral("help_doc_vsa10584"), vsa10584);
 
     q->setStandardToolBarMenuEnabled(true);

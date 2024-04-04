@@ -104,15 +104,18 @@ private:
     QCheckBox *mFetchMissingSignerKeysCB = nullptr;
     QCheckBox *mQueryWKDsForAllUserIDsCB = nullptr;
     QCheckBox *mUseKeyServerCheckBox = nullptr;
+    QCheckBox *mRetrieveKeysCheckBox = nullptr;
 
     QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
     QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
     QGpgME::CryptoConfigEntry *mMaxItemsConfigEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mRetrieveKeysEntry = nullptr;
 
     QGpgME::CryptoConfig *mConfig = nullptr;
 };
 
-DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurationPage *q)
+DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurationPage *qq)
+    : q{qq}
 {
     mConfig = QGpgME::cryptoConfig();
     auto glay = new QGridLayout(q);
@@ -152,7 +155,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         }
 
         connect(mUseKeyServerCheckBox, &QCheckBox::toggled, mOpenPGPKeyserverEdit.widget(), &QLineEdit::setEnabled);
-        connect(mUseKeyServerCheckBox, &QCheckBox::toggled, q, [this, q]() {
+        connect(mUseKeyServerCheckBox, &QCheckBox::toggled, q, [this]() {
             if (!mUseKeyServerCheckBox->isChecked()) {
                 mOpenPGPKeyserverEdit.widget()->setText(QStringLiteral("none"));
                 q->changed();
@@ -161,6 +164,17 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
                 q->changed();
             }
         });
+
+        {
+            mRetrieveKeysCheckBox = new QCheckBox(i18nc("@label:checkbox", "Search missing keys when verifying a signature"));
+            groupBoxLayout->addWidget(mRetrieveKeysCheckBox);
+            mRetrieveKeysEntry = configEntry("gpg", "auto-key-retrieve", CryptoConfigEntry::ArgType_None, SingleValue, DoNotShowError);
+            mRetrieveKeysCheckBox->setEnabled(!mRetrieveKeysEntry->isReadOnly());
+            connect(mRetrieveKeysCheckBox, &QCheckBox::toggled, q, [this]() {
+                q->changed();
+            });
+        }
+
         glay->addWidget(groupBox, row, 0, 1, 3);
         connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, q, &DirectoryServicesConfigurationPage::changed);
     }
@@ -267,6 +281,7 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
 
             mDirectoryServices->setDisabled(true);
         }
+        mRetrieveKeysCheckBox->setChecked(mRetrieveKeysEntry->boolValue());
     }
 
     {
@@ -409,6 +424,7 @@ void DirectoryServicesConfigurationPage::Private::save()
             const auto keyserverUrl = keyserver.contains(QLatin1StringView{"://"}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
             mOpenPGPServiceEntry->setStringValue(keyserverUrl);
         }
+        mRetrieveKeysEntry->setBoolValue(mRetrieveKeysCheckBox->isChecked());
     }
 
     const QTime time{mTimeout.widget()->time()};
@@ -439,6 +455,9 @@ void DirectoryServicesConfigurationPage::Private::defaults()
     }
     if (mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly()) {
         mMaxItemsConfigEntry->resetToDefault();
+    }
+    if (mRetrieveKeysEntry && !mRetrieveKeysEntry->isReadOnly()) {
+        mRetrieveKeysEntry->resetToDefault();
     }
 
     Settings settings;

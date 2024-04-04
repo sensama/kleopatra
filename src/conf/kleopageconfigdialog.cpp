@@ -26,6 +26,7 @@
 
 #include <QDesktopServices>
 #include <QDialogButtonBox>
+#include <QLocale>
 #include <QProcess>
 #include <QPushButton>
 #include <QUrl>

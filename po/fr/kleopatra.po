@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-29 00:38+0000\n"
+"POT-Creation-Date: 2024-04-05 00:38+0000\n"
 "PO-Revision-Date: 2024-03-30 09:11+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -2713,13 +2713,13 @@ msgstr ""
 "<para>Il a été impossible de copier la clé sur la carte :</"
 "para><para><message>%1</message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:317
+#: src/commands/lookupcertificatescommand.cpp:325
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
 msgstr "Recherche de certificats correspondants ..."
 
-#: src/commands/lookupcertificatescommand.cpp:462
+#: src/commands/lookupcertificatescommand.cpp:472
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2735,7 +2735,7 @@ msgstr ""
 "para><para>Vous pouvez vouloir configurer un service d'annuaire « X.509 » "
 "différent dans la boîte de dialogue de configuration.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:469
+#: src/commands/lookupcertificatescommand.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2750,26 +2750,26 @@ msgstr ""
 "para><para>Vous pouvez vouloir configurer un serveur de clés « OpenPGP » "
 "différent dans la boîte de dialogue de configuration.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:475
+#: src/commands/lookupcertificatescommand.cpp:485
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Réponse non valable du serveur"
 
-#: src/commands/lookupcertificatescommand.cpp:511
+#: src/commands/lookupcertificatescommand.cpp:530
 #, kde-format
 msgctxt "@info"
 msgid "No certificates found"
 msgstr "Aucun certificat trouvé"
 
-#: src/commands/lookupcertificatescommand.cpp:550
-#: src/commands/lookupcertificatescommand.cpp:553
+#: src/commands/lookupcertificatescommand.cpp:569
+#: src/commands/lookupcertificatescommand.cpp:572
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Serveur de certificats %1"
 
-#: src/commands/lookupcertificatescommand.cpp:608
+#: src/commands/lookupcertificatescommand.cpp:627
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2780,7 +2780,7 @@ msgstr ""
 "était :\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:616
+#: src/commands/lookupcertificatescommand.cpp:635
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2795,14 +2795,14 @@ msgstr ""
 "la limite locale dans la configuration, mais si les serveurs ont défini leur "
 "propre limite, vous devrez alors affiner votre recherche.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:624
+#: src/commands/lookupcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Résultat tronqué"
 
 # unreviewed-context
-#: src/commands/lookupcertificatescommand.cpp:634
+#: src/commands/lookupcertificatescommand.cpp:653
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2816,7 +2816,7 @@ msgstr ""
 "configurer les serveurs d'annuaire ici : <interface>Configuration / "
 "Configurer Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:639
+#: src/commands/lookupcertificatescommand.cpp:658
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3813,11 +3813,30 @@ msgid "Archive command to use when archiving files:"
 msgstr "Commande d'archivage à utiliser lors de l'archivage des fichiers :"
 
 #: src/conf/dirservconfigpage.cpp:126
+#, fuzzy, kde-format
+#| msgid "OpenPGP keyserver:"
+msgctxt "@title"
+msgid "OpenPGP Keyserver"
+msgstr "Serveur de clés « OpenPGP » :"
+
+#: src/conf/dirservconfigpage.cpp:131
+#, kde-format
+msgid "Please note that only one OpenPGP keyserver can be configured."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:134
+#, fuzzy, kde-format
+#| msgid "OpenPGP keyserver:"
+msgctxt "@label:checkbox"
+msgid "Use OpenPGP keyserver"
+msgstr "Serveur de clés « OpenPGP » :"
+
+#: src/conf/dirservconfigpage.cpp:144
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "Serveur de clés « OpenPGP » :"
 
-#: src/conf/dirservconfigpage.cpp:131
+#: src/conf/dirservconfigpage.cpp:149
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3832,12 +3851,18 @@ msgstr ""
 "défaut sera utilisée. Pour désactiver l’utilisation d’un serveur de clés "
 "« OpenPGP », veuillez saisir la valeur spéciale <emphasis>None</emphasis>."
 
-#: src/conf/dirservconfigpage.cpp:145
+#: src/conf/dirservconfigpage.cpp:169
+#, kde-format
+msgctxt "@label:checkbox"
+msgid "Search missing keys when verifying a signature"
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:185
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "Services d'annuaire « X.509 »"
 
-#: src/conf/dirservconfigpage.cpp:160
+#: src/conf/dirservconfigpage.cpp:200
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3846,17 +3871,17 @@ msgstr ""
 "La configuration des services d'annuaire est impossible car les "
 "bibliothèques « gpgme » utilisées sont trop anciennes."
 
-#: src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:211
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "&Délai maximal LDAP (minutes:secondes) :"
 
-#: src/conf/dirservconfigpage.cpp:180
+#: src/conf/dirservconfigpage.cpp:220
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "Nombre &maximal d'éléments retournés par requête :"
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:228
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
@@ -3864,7 +3889,7 @@ msgstr ""
 "Rechercher les clés de certification manquantes lors de l'importation de "
 "nouvelles clés"
 
-#: src/conf/dirservconfigpage.cpp:190
+#: src/conf/dirservconfigpage.cpp:230
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3875,7 +3900,7 @@ msgstr ""
 "retrouver les clés ayant été utilisées pour certifier les identifiants de "
 "l'utilisateur pour les clés « OpenPGP » nouvellement importées."
 
-#: src/conf/dirservconfigpage.cpp:197
+#: src/conf/dirservconfigpage.cpp:237
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
@@ -3883,7 +3908,7 @@ msgstr ""
 "Interroger les dossiers de certificats des fournisseurs pour tous les "
 "identifiants utilisateur"
 
-#: src/conf/dirservconfigpage.cpp:199
+#: src/conf/dirservconfigpage.cpp:239
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3898,14 +3923,14 @@ msgstr ""
 "« OpenPGP ». Si cette option est activée, alors, Kleopatra interrogera les "
 "WKD pour tous les identifiants utilisateur."
 
-#: src/conf/dirservconfigpage.cpp:435
+#: src/conf/dirservconfigpage.cpp:482
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr ""
 "Erreur du moteur de traitement : gpgconf ne semble pas connaître l'entrée "
 "pour %1 / %2"
 
-#: src/conf/dirservconfigpage.cpp:442
+#: src/conf/dirservconfigpage.cpp:489
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr ""
@@ -3976,7 +4001,7 @@ msgid "Edit"
 msgstr "Modifier"
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/deletecertificatesdialog.cpp:151
+#: src/dialogs/deletecertificatesdialog.cpp:185
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -4047,7 +4072,7 @@ msgstr ""
 "Le groupe contient des certificats ne pouvant être utilisés pour le "
 "chiffrement. Cela peut entraîner des résultats inattendus."
 
-#: src/conf/kleopageconfigdialog.cpp:85
+#: src/conf/kleopageconfigdialog.cpp:86
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
@@ -4056,7 +4081,7 @@ msgstr ""
 "Les réglages du module courant ont été modifié.\n"
 "Voulez-vous appliquer les modifications ou les abandonner ?"
 
-#: src/conf/kleopageconfigdialog.cpp:87
+#: src/conf/kleopageconfigdialog.cpp:88
 #, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
@@ -7185,30 +7210,43 @@ msgid "Owner trust set successfully."
 msgstr ""
 "Modification du niveau de confiance du propriétaire effectuée avec succès."
 
-#: src/dialogs/deletecertificatesdialog.cpp:110
-#, kde-format
-msgid "These are the certificates you have selected for deletion:"
-msgstr "Voici les certificats sélectionnés pour une suppression :"
-
-#: src/dialogs/deletecertificatesdialog.cpp:112
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:122
+#, fuzzy, kde-format
+#| msgid ""
+#| "These certificates are part of groups. Deleting them may cause receivers "
+#| "to be unable to decrypt messages:"
 msgid ""
-"These certificates will be deleted even though you did <b>not</b> explicitly "
-"select them (<a href=\"whatsthis://\">Why?</a>):"
-msgstr ""
-"Ces certificats seront supprimés même si vous ne les avez <b>pas</b> "
-"explicitement sélectionnés (<a href=\"whatsthis://\">Pourquoi ? </a>) :"
-
-#: src/dialogs/deletecertificatesdialog.cpp:116
-#, kde-format
-msgid ""
-"These certificates are part of groups. Deleting them may cause receivers to "
-"be unable to decrypt messages:"
-msgstr ""
+"The certificate is part of a group. Deleting it may prevent this recipient "
+"from decrypting messages to:"
+msgid_plural ""
+"The certificates are part of a group. Deleting them may prevent these "
+"recipients from decrypting messages to:"
+msgstr[0] ""
+"Ces certificats font partie de groupes. Leur suppression peut empêcher les "
+"destinataires de déchiffrer les messages :"
+msgstr[1] ""
 "Ces certificats font partie de groupes. Leur suppression peut empêcher les "
 "destinataires de déchiffrer les messages :"
 
-#: src/dialogs/deletecertificatesdialog.cpp:139
+#: src/dialogs/deletecertificatesdialog.cpp:126
+#, fuzzy, kde-format
+#| msgid ""
+#| "These certificates are part of groups. Deleting them may cause receivers "
+#| "to be unable to decrypt messages:"
+msgid ""
+"The certificate is part of several groups. Deleting it may prevent the "
+"recipient from decrypting messages to:"
+msgid_plural ""
+"The certificates are part of several groups. Deleting them may prevent the "
+"recipients from decrypting messages to:"
+msgstr[0] ""
+"Ces certificats font partie de groupes. Leur suppression peut empêcher les "
+"destinataires de déchiffrer les messages :"
+msgstr[1] ""
+"Ces certificats font partie de groupes. Leur suppression peut empêcher les "
+"destinataires de déchiffrer les messages :"
+
+#: src/dialogs/deletecertificatesdialog.cpp:174
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -7231,7 +7269,33 @@ msgstr ""
 "suppression d'un dossier occasionne également la disparition de son contenu."
 "</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:223
+#: src/dialogs/deletecertificatesdialog.cpp:218
+#, fuzzy, kde-format
+#| msgid "These are the certificates you have selected for deletion:"
+msgid "The following certificate was selected for deletion:"
+msgid_plural "The following certificates were selected for deletion:"
+msgstr[0] "Voici les certificats sélectionnés pour une suppression :"
+msgstr[1] "Voici les certificats sélectionnés pour une suppression :"
+
+#: src/dialogs/deletecertificatesdialog.cpp:231
+#, fuzzy, kde-format
+#| msgid ""
+#| "These certificates will be deleted even though you did <b>not</b> "
+#| "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+msgid ""
+"The following certificate will be deleted even though you did <b>not</b> "
+"explicitly select it (<a href=\"whatsthis://\">Why?</a>):"
+msgid_plural ""
+"The following certificates will be deleted even though you did <b>not</b> "
+"explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+msgstr[0] ""
+"Ces certificats seront supprimés même si vous ne les avez <b>pas</b> "
+"explicitement sélectionnés (<a href=\"whatsthis://\">Pourquoi ? </a>) :"
+msgstr[1] ""
+"Ces certificats seront supprimés même si vous ne les avez <b>pas</b> "
+"explicitement sélectionnés (<a href=\"whatsthis://\">Pourquoi ? </a>) :"
+
+#: src/dialogs/deletecertificatesdialog.cpp:262
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7251,7 +7315,7 @@ msgstr[1] ""
 "par le passé avec ce certificat. En conséquence, ils ne peuvent pas être "
 "supprimés."
 
-#: src/dialogs/deletecertificatesdialog.cpp:237
+#: src/dialogs/deletecertificatesdialog.cpp:276
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7271,7 +7335,7 @@ msgstr[1] ""
 "par le passé avec ces certificats. En conséquence, ils ne peuvent pas être "
 "supprimés."
 
-#: src/dialogs/deletecertificatesdialog.cpp:252
+#: src/dialogs/deletecertificatesdialog.cpp:291
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"

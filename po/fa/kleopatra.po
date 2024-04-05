@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-29 00:38+0000\n"
+"POT-Creation-Date: 2024-04-05 00:38+0000\n"
 "PO-Revision-Date: 2007-09-03 13:42+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -2783,14 +2783,14 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/lookupcertificatescommand.cpp:317
+#: src/commands/lookupcertificatescommand.cpp:325
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
 msgstr "ذخیره گواهی‌نامه"
 
-#: src/commands/lookupcertificatescommand.cpp:462
+#: src/commands/lookupcertificatescommand.cpp:472
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2801,7 +2801,7 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:469
+#: src/commands/lookupcertificatescommand.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2811,28 +2811,28 @@ msgid ""
 "different OpenPGP keyserver in the configuration dialog.</para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:475
+#: src/commands/lookupcertificatescommand.cpp:485
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:511
+#: src/commands/lookupcertificatescommand.cpp:530
 #, fuzzy, kde-format
 #| msgid "Fetching Certificate Chain"
 msgctxt "@info"
 msgid "No certificates found"
 msgstr "واکشی زنجیر گواهی‌نامه"
 
-#: src/commands/lookupcertificatescommand.cpp:550
-#: src/commands/lookupcertificatescommand.cpp:553
+#: src/commands/lookupcertificatescommand.cpp:569
+#: src/commands/lookupcertificatescommand.cpp:572
 #, fuzzy, kde-format
 #| msgid "Export Certificates..."
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "صادرات گواهی‌نامه‌ها..."
 
-#: src/commands/lookupcertificatescommand.cpp:608
+#: src/commands/lookupcertificatescommand.cpp:627
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2840,7 +2840,7 @@ msgid ""
 "%1"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:616
+#: src/commands/lookupcertificatescommand.cpp:635
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The query result has been truncated.\n"
@@ -2862,13 +2862,13 @@ msgstr ""
 "می‌توانید حد محلی را در محاوره پیکربندی افزایش دهید، اما اگر یکی از کارسازهای "
 "پیکربندی‌شده عامل محدود است، باید جستجوی خود را پالایش کنید."
 
-#: src/commands/lookupcertificatescommand.cpp:624
+#: src/commands/lookupcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:634
+#: src/commands/lookupcertificatescommand.cpp:653
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2878,7 +2878,7 @@ msgid ""
 "Kleopatra</interface>.</para>"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:639
+#: src/commands/lookupcertificatescommand.cpp:658
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3882,10 +3882,29 @@ msgstr ""
 #: src/conf/dirservconfigpage.cpp:126
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
-msgid "OpenPGP keyserver:"
+msgctxt "@title"
+msgid "OpenPGP Keyserver"
 msgstr "خطای مدیر گواهی‌نامه"
 
 #: src/conf/dirservconfigpage.cpp:131
+#, kde-format
+msgid "Please note that only one OpenPGP keyserver can be configured."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:134
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@label:checkbox"
+msgid "Use OpenPGP keyserver"
+msgstr "خطای مدیر گواهی‌نامه"
+
+#: src/conf/dirservconfigpage.cpp:144
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgid "OpenPGP keyserver:"
+msgstr "خطای مدیر گواهی‌نامه"
+
+#: src/conf/dirservconfigpage.cpp:149
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3895,35 +3914,41 @@ msgid ""
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:145
+#: src/conf/dirservconfigpage.cpp:169
+#, kde-format
+msgctxt "@label:checkbox"
+msgid "Search missing keys when verifying a signature"
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:185
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:160
+#: src/conf/dirservconfigpage.cpp:200
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
 "libraries are too old."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:211
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "&اتمام وقت LDAP )دقیقه:ثانیه(‌:"
 
-#: src/conf/dirservconfigpage.cpp:180
+#: src/conf/dirservconfigpage.cpp:220
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "تعداد &بیشینه فقره‌های بازگشتی از طریق پرس‌وجو‌:"
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:228
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:190
+#: src/conf/dirservconfigpage.cpp:230
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3931,13 +3956,13 @@ msgid ""
 "were used to certify the user IDs of newly imported OpenPGP keys."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:197
+#: src/conf/dirservconfigpage.cpp:237
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:199
+#: src/conf/dirservconfigpage.cpp:239
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3947,7 +3972,7 @@ msgid ""
 "WKDs for all user IDs."
 msgstr ""
 
-#: src/conf/dirservconfigpage.cpp:435
+#: src/conf/dirservconfigpage.cpp:482
 #, fuzzy, kde-format
 #| msgid "Backend error: gpgconf does not seem to know the entry for %1/%2/%3"
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
@@ -3955,7 +3980,7 @@ msgstr ""
 "خطای پایانه پشتیبانی: به نظر نمی‌رسد که gpgconf  پرس‌وجو برای %1/%2/%3 را "
 "بشناسد"
 
-#: src/conf/dirservconfigpage.cpp:442
+#: src/conf/dirservconfigpage.cpp:489
 #, fuzzy, kde-format
 #| msgid "Backend error: gpgconf has wrong type for %1/%2/%3: %4 %5"
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
@@ -4030,7 +4055,7 @@ msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/deletecertificatesdialog.cpp:151
+#: src/dialogs/deletecertificatesdialog.cpp:185
 #, fuzzy, kde-format
 #| msgid "Delete"
 msgctxt "@action:button"
@@ -4103,14 +4128,14 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/conf/kleopageconfigdialog.cpp:85
+#: src/conf/kleopageconfigdialog.cpp:86
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
 "Do you want to apply the changes or discard them?"
 msgstr ""
 
-#: src/conf/kleopageconfigdialog.cpp:87
+#: src/conf/kleopageconfigdialog.cpp:88
 #, fuzzy, kde-format
 #| msgid "Location"
 msgctxt "@title:window"
@@ -7223,26 +7248,29 @@ msgstr "خرابی در بارگیری گواهی‌نامه"
 msgid "Owner trust set successfully."
 msgstr "خرابی در بارگیری گواهی‌نامه"
 
-#: src/dialogs/deletecertificatesdialog.cpp:110
-#, kde-format
-msgid "These are the certificates you have selected for deletion:"
-msgstr ""
-
-#: src/dialogs/deletecertificatesdialog.cpp:112
+#: src/dialogs/deletecertificatesdialog.cpp:122
 #, kde-format
 msgid ""
-"These certificates will be deleted even though you did <b>not</b> explicitly "
-"select them (<a href=\"whatsthis://\">Why?</a>):"
-msgstr ""
+"The certificate is part of a group. Deleting it may prevent this recipient "
+"from decrypting messages to:"
+msgid_plural ""
+"The certificates are part of a group. Deleting them may prevent these "
+"recipients from decrypting messages to:"
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:116
+#: src/dialogs/deletecertificatesdialog.cpp:126
 #, kde-format
 msgid ""
-"These certificates are part of groups. Deleting them may cause receivers to "
-"be unable to decrypt messages:"
-msgstr ""
+"The certificate is part of several groups. Deleting it may prevent the "
+"recipient from decrypting messages to:"
+msgid_plural ""
+"The certificates are part of several groups. Deleting them may prevent the "
+"recipients from decrypting messages to:"
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:139
+#: src/dialogs/deletecertificatesdialog.cpp:174
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -7256,7 +7284,26 @@ msgid ""
 "contents, too.</para>"
 msgstr ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:223
+#: src/dialogs/deletecertificatesdialog.cpp:218
+#, fuzzy, kde-format
+#| msgid "Issuer certificate not found ( %1)"
+msgid "The following certificate was selected for deletion:"
+msgid_plural "The following certificates were selected for deletion:"
+msgstr[0] "گواهی‌نامه فرستنده یافت نشد )%1 ("
+msgstr[1] "گواهی‌نامه فرستنده یافت نشد )%1 ("
+
+#: src/dialogs/deletecertificatesdialog.cpp:231
+#, kde-format
+msgid ""
+"The following certificate will be deleted even though you did <b>not</b> "
+"explicitly select it (<a href=\"whatsthis://\">Why?</a>):"
+msgid_plural ""
+"The following certificates will be deleted even though you did <b>not</b> "
+"explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/dialogs/deletecertificatesdialog.cpp:262
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7269,7 +7316,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:237
+#: src/dialogs/deletecertificatesdialog.cpp:276
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7282,7 +7329,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:252
+#: src/dialogs/deletecertificatesdialog.cpp:291
 #, fuzzy, kde-format
 #| msgid "Secret Key Export"
 msgctxt "@title:window"

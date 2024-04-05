@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-29 00:38+0000\n"
+"POT-Creation-Date: 2024-04-05 00:38+0000\n"
 "PO-Revision-Date: 2024-03-29 07:34+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -2652,13 +2652,13 @@ msgstr ""
 "<para>Kopiranje ključa na kartico ni uspelo.</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/lookupcertificatescommand.cpp:317
+#: src/commands/lookupcertificatescommand.cpp:325
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
 msgstr "Iskanje ustreznih potrdil …"
 
-#: src/commands/lookupcertificatescommand.cpp:462
+#: src/commands/lookupcertificatescommand.cpp:472
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2673,7 +2673,7 @@ msgstr ""
 "edinstveni določilniki za potrdila.</para><para>Morda želite postaviti drugo "
 "storitev imenika X.509 v pogovornem oknu nastavitev.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:469
+#: src/commands/lookupcertificatescommand.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2687,26 +2687,26 @@ msgstr ""
 "določilniki za potrdila.</para><para>Morda želite postaviti drugega "
 "strežnika ključev OpenPGP v pogovornem oknu nastavitev.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:475
+#: src/commands/lookupcertificatescommand.cpp:485
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Neveljaven odgovor strežnika"
 
-#: src/commands/lookupcertificatescommand.cpp:511
+#: src/commands/lookupcertificatescommand.cpp:530
 #, kde-format
 msgctxt "@info"
 msgid "No certificates found"
 msgstr "Ni najdenih potrdil"
 
-#: src/commands/lookupcertificatescommand.cpp:550
-#: src/commands/lookupcertificatescommand.cpp:553
+#: src/commands/lookupcertificatescommand.cpp:569
+#: src/commands/lookupcertificatescommand.cpp:572
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 strežnik za potrdila"
 
-#: src/commands/lookupcertificatescommand.cpp:608
+#: src/commands/lookupcertificatescommand.cpp:627
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2716,7 +2716,7 @@ msgstr ""
 "Iskanje potrdil na strežniku ni uspelo. Vrnjena napaka je bila:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:616
+#: src/commands/lookupcertificatescommand.cpp:635
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2732,13 +2732,13 @@ msgstr ""
 "če pa je omejitev na strani strežnika, boste morali prilagoditi svoje "
 "iskanje.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:624
+#: src/commands/lookupcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Rezultat je skrajšan"
 
-#: src/commands/lookupcertificatescommand.cpp:634
+#: src/commands/lookupcertificatescommand.cpp:653
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2752,7 +2752,7 @@ msgstr ""
 "iskalo.</para><para>Imeniške strežnike lahko nastavite v "
 "<interface>Nastavitve → Nastavi Kleopatro</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:639
+#: src/commands/lookupcertificatescommand.cpp:658
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3732,11 +3732,30 @@ msgid "Archive command to use when archiving files:"
 msgstr "Ukaz za arhiviranje, ki se uporablja pri arhiviranju datotek:"
 
 #: src/conf/dirservconfigpage.cpp:126
+#, fuzzy, kde-format
+#| msgid "OpenPGP keyserver:"
+msgctxt "@title"
+msgid "OpenPGP Keyserver"
+msgstr "Strežnik ključev OpenPGP:"
+
+#: src/conf/dirservconfigpage.cpp:131
+#, kde-format
+msgid "Please note that only one OpenPGP keyserver can be configured."
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:134
+#, fuzzy, kde-format
+#| msgid "OpenPGP keyserver:"
+msgctxt "@label:checkbox"
+msgid "Use OpenPGP keyserver"
+msgstr "Strežnik ključev OpenPGP:"
+
+#: src/conf/dirservconfigpage.cpp:144
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "Strežnik ključev OpenPGP:"
 
-#: src/conf/dirservconfigpage.cpp:131
+#: src/conf/dirservconfigpage.cpp:149
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3750,12 +3769,18 @@ msgstr ""
 "uporabljen interni privzeti naslov. Če želite onemogočiti rabo strežnika "
 "ključev OpenPGP vnesite posebno vrednost <emphasis>none</emphasis>."
 
-#: src/conf/dirservconfigpage.cpp:145
+#: src/conf/dirservconfigpage.cpp:169
+#, kde-format
+msgctxt "@label:checkbox"
+msgid "Search missing keys when verifying a signature"
+msgstr ""
+
+#: src/conf/dirservconfigpage.cpp:185
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "Imeniške storitve X.509"
 
-#: src/conf/dirservconfigpage.cpp:160
+#: src/conf/dirservconfigpage.cpp:200
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3764,23 +3789,23 @@ msgstr ""
 "Nastavitev imeniških storitev ni mogoča, ker so uporabljene prestare "
 "knjižnice gpgme."
 
-#: src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:211
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "Časovna omeji&tev LDAP (minute:sekunde):"
 
-#: src/conf/dirservconfigpage.cpp:180
+#: src/conf/dirservconfigpage.cpp:220
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "Največje število zadetkov, ki jih vrne poizvedba:"
 
-#: src/conf/dirservconfigpage.cpp:188
+#: src/conf/dirservconfigpage.cpp:228
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr "Pridobivanje manjkajočih potrditvenih ključev pri uvozu novih ključev"
 
-#: src/conf/dirservconfigpage.cpp:190
+#: src/conf/dirservconfigpage.cpp:230
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3791,13 +3816,13 @@ msgstr ""
 "bili uporabljeni za potrjevanje uporabniških določil novo uvoženih ključev "
 "OpenPGP."
 
-#: src/conf/dirservconfigpage.cpp:197
+#: src/conf/dirservconfigpage.cpp:237
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
 msgstr "Poiščite imenike potrdil ponudnikov za vse določilnike uporabnikov"
 
-#: src/conf/dirservconfigpage.cpp:199
+#: src/conf/dirservconfigpage.cpp:239
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3811,12 +3836,12 @@ msgstr ""
 "posodobite potrdilo OpenPGP. Če je ta možnost omogočena, bo Kleopatra "
 "poizvedovala po WKD za vse določilnike uporabnikov."
 
-#: src/conf/dirservconfigpage.cpp:435
+#: src/conf/dirservconfigpage.cpp:482
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr "Napaka zaledja: gpgconf verjetno ne pozna vnosa za %1/%2"
 
-#: src/conf/dirservconfigpage.cpp:442
+#: src/conf/dirservconfigpage.cpp:489
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr "Napaka zaledja: gpgconf ima napačno vrsto za %1/%2: %3 %4"
@@ -3885,7 +3910,7 @@ msgid "Edit"
 msgstr "Uredi"
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/deletecertificatesdialog.cpp:151
+#: src/dialogs/deletecertificatesdialog.cpp:185
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -3962,7 +3987,7 @@ msgstr ""
 "Grupa vsebuje potrdila, ki jih ni mogoče uporabiti za šifriranje. To lahko "
 "vodi do nepričakovanih rezultatov."
 
-#: src/conf/kleopageconfigdialog.cpp:85
+#: src/conf/kleopageconfigdialog.cpp:86
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
@@ -3971,7 +3996,7 @@ msgstr ""
 "Nastavitve trenutnega modula so se spremenjene.\n"
 "Ali želite spremembe uveljaviti ali zavreči?"
 
-#: src/conf/kleopageconfigdialog.cpp:87
+#: src/conf/kleopageconfigdialog.cpp:88
 #, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
@@ -7036,30 +7061,55 @@ msgstr "Sprememba zaupanja v potrdilo ni uspela"
 msgid "Owner trust set successfully."
 msgstr "Zaupanje lastnika je bilo uspešno nastavljeno."
 
-#: src/dialogs/deletecertificatesdialog.cpp:110
-#, kde-format
-msgid "These are the certificates you have selected for deletion:"
-msgstr "Za izbris ste izbrali naslednja potrdila:"
-
-#: src/dialogs/deletecertificatesdialog.cpp:112
-#, kde-format
+#: src/dialogs/deletecertificatesdialog.cpp:122
+#, fuzzy, kde-format
+#| msgid ""
+#| "These certificates are part of groups. Deleting them may cause receivers "
+#| "to be unable to decrypt messages:"
 msgid ""
-"These certificates will be deleted even though you did <b>not</b> explicitly "
-"select them (<a href=\"whatsthis://\">Why?</a>):"
-msgstr ""
-"Ta potrdila bodo Izbrisana, čeprav jih<nl/><emphasis>niste</emphasis> "
-"izrecno izbrali. (<a href=\"whatsthis://\">Zakaj?</a>):"
-
-#: src/dialogs/deletecertificatesdialog.cpp:116
-#, kde-format
-msgid ""
-"These certificates are part of groups. Deleting them may cause receivers to "
-"be unable to decrypt messages:"
-msgstr ""
+"The certificate is part of a group. Deleting it may prevent this recipient "
+"from decrypting messages to:"
+msgid_plural ""
+"The certificates are part of a group. Deleting them may prevent these "
+"recipients from decrypting messages to:"
+msgstr[0] ""
+"Ta potrdila so del grup. Če jih izbrišete, lahko prejemniki ne bodo mogli "
+"dešifrirati sporočil:"
+msgstr[1] ""
+"Ta potrdila so del grup. Če jih izbrišete, lahko prejemniki ne bodo mogli "
+"dešifrirati sporočil:"
+msgstr[2] ""
+"Ta potrdila so del grup. Če jih izbrišete, lahko prejemniki ne bodo mogli "
+"dešifrirati sporočil:"
+msgstr[3] ""
 "Ta potrdila so del grup. Če jih izbrišete, lahko prejemniki ne bodo mogli "
 "dešifrirati sporočil:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:139
+#: src/dialogs/deletecertificatesdialog.cpp:126
+#, fuzzy, kde-format
+#| msgid ""
+#| "These certificates are part of groups. Deleting them may cause receivers "
+#| "to be unable to decrypt messages:"
+msgid ""
+"The certificate is part of several groups. Deleting it may prevent the "
+"recipient from decrypting messages to:"
+msgid_plural ""
+"The certificates are part of several groups. Deleting them may prevent the "
+"recipients from decrypting messages to:"
+msgstr[0] ""
+"Ta potrdila so del grup. Če jih izbrišete, lahko prejemniki ne bodo mogli "
+"dešifrirati sporočil:"
+msgstr[1] ""
+"Ta potrdila so del grup. Če jih izbrišete, lahko prejemniki ne bodo mogli "
+"dešifrirati sporočil:"
+msgstr[2] ""
+"Ta potrdila so del grup. Če jih izbrišete, lahko prejemniki ne bodo mogli "
+"dešifrirati sporočil:"
+msgstr[3] ""
+"Ta potrdila so del grup. Če jih izbrišete, lahko prejemniki ne bodo mogli "
+"dešifrirati sporočil:"
+
+#: src/dialogs/deletecertificatesdialog.cpp:174
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -7081,7 +7131,41 @@ msgstr ""
 "overiteljev si lahko zamišljate kot mape, ki vsebujejo druga potrdila. Ko "
 "izbrišete mapo, izbrišete tudi njeno vsebino.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:223
+#: src/dialogs/deletecertificatesdialog.cpp:218
+#, fuzzy, kde-format
+#| msgid "These are the certificates you have selected for deletion:"
+msgid "The following certificate was selected for deletion:"
+msgid_plural "The following certificates were selected for deletion:"
+msgstr[0] "Za izbris ste izbrali naslednja potrdila:"
+msgstr[1] "Za izbris ste izbrali naslednja potrdila:"
+msgstr[2] "Za izbris ste izbrali naslednja potrdila:"
+msgstr[3] "Za izbris ste izbrali naslednja potrdila:"
+
+#: src/dialogs/deletecertificatesdialog.cpp:231
+#, fuzzy, kde-format
+#| msgid ""
+#| "These certificates will be deleted even though you did <b>not</b> "
+#| "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+msgid ""
+"The following certificate will be deleted even though you did <b>not</b> "
+"explicitly select it (<a href=\"whatsthis://\">Why?</a>):"
+msgid_plural ""
+"The following certificates will be deleted even though you did <b>not</b> "
+"explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+msgstr[0] ""
+"Ta potrdila bodo Izbrisana, čeprav jih<nl/><emphasis>niste</emphasis> "
+"izrecno izbrali. (<a href=\"whatsthis://\">Zakaj?</a>):"
+msgstr[1] ""
+"Ta potrdila bodo Izbrisana, čeprav jih<nl/><emphasis>niste</emphasis> "
+"izrecno izbrali. (<a href=\"whatsthis://\">Zakaj?</a>):"
+msgstr[2] ""
+"Ta potrdila bodo Izbrisana, čeprav jih<nl/><emphasis>niste</emphasis> "
+"izrecno izbrali. (<a href=\"whatsthis://\">Zakaj?</a>):"
+msgstr[3] ""
+"Ta potrdila bodo Izbrisana, čeprav jih<nl/><emphasis>niste</emphasis> "
+"izrecno izbrali. (<a href=\"whatsthis://\">Zakaj?</a>):"
+
+#: src/dialogs/deletecertificatesdialog.cpp:262
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7108,7 +7192,7 @@ msgstr[3] ""
 "dešifriranje pretekle komunikacije, ki je bila šifrirana za ta potrdila, in "
 "jih zato ni dobro izbrisati."
 
-#: src/dialogs/deletecertificatesdialog.cpp:237
+#: src/dialogs/deletecertificatesdialog.cpp:276
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7135,7 +7219,7 @@ msgstr[3] ""
 "zahtevan za dešifriranje pretekle komunikacije, ki je bila šifrirana za ta "
 "potrdila, in jih zato ni dobro izbrisati."
 
-#: src/dialogs/deletecertificatesdialog.cpp:252
+#: src/dialogs/deletecertificatesdialog.cpp:291
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"

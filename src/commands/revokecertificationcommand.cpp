@@ -50,11 +50,17 @@ enum class InputType {
 struct CertificationData {
     UserID userId;
     Key certificationKey;
+    UserID::Signature signature;
 };
 
-static std::vector<Key> getCertificationKeys(const GpgME::UserID &userId)
+struct KeyAndSignature {
+    Key key;
+    UserID::Signature signature;
+};
+
+static std::vector<KeyAndSignature> getCertificationKeys(const GpgME::UserID &userId)
 {
-    std::vector<Key> keys;
+    std::vector<KeyAndSignature> keys;
     if (userId.numSignatures() == 0) {
         qCWarning(KLEOPATRA_LOG) << __func__ << "- Error: Signatures of user ID" << QString::fromUtf8(userId.id()) << "not available";
         return keys;
@@ -64,7 +70,7 @@ static std::vector<Key> getCertificationKeys(const GpgME::UserID &userId)
         return userCanRevokeCertification(certification) == CertificationCanBeRevoked;
     });
     Kleo::transform(revokableCertifications, std::back_inserter(keys), [](const auto &certification) {
-        return KeyCache::instance()->findByKeyIDOrFingerprint(certification.signerKeyID());
+        return KeyAndSignature{KeyCache::instance()->findByKeyIDOrFingerprint(certification.signerKeyID()), certification};
     });
     return keys;
 }
@@ -73,7 +79,7 @@ static bool confirmRevocations(QWidget *parent, const std::vector<CertificationD
 {
     KMessageBox::ButtonCode answer;
     if (certifications.size() == 1) {
-        const auto [userId, certificationKey] = certifications.front();
+        const auto [userId, certificationKey, signature] = certifications.front();
         const auto message = xi18nc("@info",
                                     "<para>You are about to revoke the certification of user ID<nl/>%1<nl/>made with the key<nl/>%2.</para>",
                                     QString::fromUtf8(userId.id()),
@@ -175,7 +181,7 @@ std::vector<CertificationData> RevokeCertificationCommand::Private::getCertifica
         const auto userIDsToConsider = (inputType == InputType::Key) ? certificationTarget.userIDs() : uids;
         for (const auto &userId : userIDsToConsider) {
             Kleo::transform(getCertificationKeys(userId), std::back_inserter(certificationsToRevoke), [userId](const auto &k) {
-                return CertificationData{userId, k};
+                return CertificationData{userId, k.key, k.signature};
             });
         }
     }
@@ -199,24 +205,28 @@ void RevokeCertificationCommand::Private::scheduleNextRevocation()
         }
         job->startRevokeSignature(certificationTarget, nextCertification.certificationKey, {nextCertification.userId});
     } else {
-        const auto message = xi18ncp("@info",
-                                     "<para>The certification has been revoked successfully.</para>"
-                                     "<para>Do you want to publish the revocation?</para>",
-                                     "<para>%1 certifications have been revoked successfully.</para>"
-                                     "<para>Do you want to publish the revocations?</para>",
-                                     completedRevocations.size());
-        const auto yesButton = KGuiItem{i18ncp("@action:button", "Publish Revocation", "Publish Revocations", completedRevocations.size()),
-                                        QIcon::fromTheme(QStringLiteral("view-certificate-export-server"))};
-        const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
-                                                            message,
-                                                            i18nc("@title:window", "Confirm Publication"),
-                                                            yesButton,
-                                                            KStandardGuiItem::cancel(),
-                                                            {},
-                                                            KMessageBox::Notify | KMessageBox::Dangerous);
-        if (answer == KMessageBox::ButtonCode::PrimaryAction) {
-            const auto cmd = new ExportOpenPGPCertsToServerCommand{certificationTarget};
-            cmd->start();
+        if (std::any_of(completedRevocations.begin(), completedRevocations.end(), [](const auto &revocation) {
+                return revocation.signature.isExportable();
+            })) {
+            const auto message = xi18ncp("@info",
+                                         "<para>The certification has been revoked successfully.</para>"
+                                         "<para>Do you want to publish the revocation?</para>",
+                                         "<para>%1 certifications have been revoked successfully.</para>"
+                                         "<para>Do you want to publish the revocations?</para>",
+                                         completedRevocations.size());
+            const auto yesButton = KGuiItem{i18ncp("@action:button", "Publish Revocation", "Publish Revocations", completedRevocations.size()),
+                                            QIcon::fromTheme(QStringLiteral("view-certificate-export-server"))};
+            const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
+                                                                message,
+                                                                i18nc("@title:window", "Confirm Publication"),
+                                                                yesButton,
+                                                                KStandardGuiItem::cancel(),
+                                                                {},
+                                                                KMessageBox::Notify | KMessageBox::Dangerous);
+            if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+                const auto cmd = new ExportOpenPGPCertsToServerCommand{certificationTarget};
+                cmd->start();
+            }
         }
         finished();
     }
@@ -290,7 +300,7 @@ RevokeCertificationCommand::RevokeCertificationCommand(const GpgME::UserID::Sign
 {
     if (!signature.isNull()) {
         const Key certificationKey = KeyCache::instance()->findByKeyIDOrFingerprint(signature.signerKeyID());
-        d->certificationsToRevoke = {{signature.parent(), certificationKey}};
+        d->certificationsToRevoke = {{signature.parent(), certificationKey, signature}};
     }
     d->init();
 }

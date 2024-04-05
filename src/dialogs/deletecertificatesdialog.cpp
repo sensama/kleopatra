@@ -11,7 +11,6 @@
 
 #include "deletecertificatesdialog.h"
 
-#include <utils/accessibility.h>
 #include <view/keytreeview.h>
 
 #include <Libkleo/Algorithm>
@@ -71,15 +70,6 @@ public:
         : q(qq)
         , ui(q)
     {
-    }
-
-    void slotWhatsThisRequested()
-    {
-        qCDebug(KLEOPATRA_LOG);
-        if (QWidget *const widget = qobject_cast<QWidget *>(q->sender()))
-            if (!widget->whatsThis().isEmpty()) {
-                showToolTip(QCursor::pos(), widget->whatsThis(), widget);
-            }
     }
 
     void readConfig()
@@ -171,21 +161,21 @@ private:
             vlay.addWidget(groupsList, 1);
             vlay.addWidget(&buttonBox);
 
-            const QString unselectedWhatsThis = xi18nc("@info:whatsthis",
-                                                       "<title>Why do you want to delete more certificates than I selected?</title>"
-                                                       "<para>When you delete CA certificates (both root CAs and intermediate CAs), "
-                                                       "the certificates issued by them will also be deleted.</para>"
-                                                       "<para>This can be nicely seen in <application>Kleopatra</application>'s "
-                                                       "hierarchical view mode: In this mode, if you delete a certificate that has "
-                                                       "children, those children will also be deleted. Think of CA certificates as "
-                                                       "folders containing other certificates: When you delete the folder, you "
-                                                       "delete its contents, too.</para>");
             unselectedLB.setContextMenuPolicy(Qt::NoContextMenu);
-            unselectedLB.setWhatsThis(unselectedWhatsThis);
 
             buttonBox.button(QDialogButtonBox::Ok)->setText(i18nc("@action:button", "Delete"));
 
-            connect(&unselectedLB, SIGNAL(linkActivated(QString)), qq, SLOT(slotWhatsThisRequested()));
+            connect(&unselectedLB, &QLabel::linkActivated, qq, [qq]() {
+                KMessageBox::information(qq,
+                                         xi18nc("@info",
+                                                "<para>When you delete CA certificates (both root CAs and intermediate CAs), "
+                                                "the certificates issued by them will also be deleted.</para>"
+                                                "<para>This can be nicely seen in <application>Kleopatra</application>'s "
+                                                "hierarchical view mode: In this mode, if you delete a certificate that has "
+                                                "children, those children will also be deleted. Think of CA certificates as "
+                                                "folders containing other certificates: When you delete the folder, you "
+                                                "delete its contents, too.</para>"));
+            });
 
             groupsLB.setVisible(false);
             unselectedList->setVisible(false);

@@ -80,14 +80,6 @@ QString requiredText();
 void selectLabelText(QLabel *label);
 
 /**
- * Shows \p text as a tool tip, with the global position \p pos as the point of interest.
- * Additionally to QToolTip::showText, it takes care of notifying accessibility clients
- * about the tool tip.
- * \sa QToolTip::showText
- */
-void showToolTip(const QPoint &pos, const QString &text, QWidget *w);
-
-/**
  * Simple helper that sets the focus policy of the associated labels
  * to \c Qt::StrongFocus if an assistive tool is active.
  */

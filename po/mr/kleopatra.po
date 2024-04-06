@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
+"POT-Creation-Date: 2024-04-06 00:38+0000\n"
 "PO-Revision-Date: 2013-03-05 17:34+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -3559,7 +3559,7 @@ msgid "Edit"
 msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/deletecertificatesdialog.cpp:185
+#: src/dialogs/deletecertificatesdialog.cpp:166
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -6561,7 +6561,7 @@ msgstr "प्रमाणपत्र"
 msgid "Owner trust set successfully."
 msgstr "प्रमाणपत्र"
 
-#: src/dialogs/deletecertificatesdialog.cpp:122
+#: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-format
 msgid ""
 "The certificate is part of a group. Deleting it may prevent this recipient "
@@ -6572,7 +6572,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
+#: src/dialogs/deletecertificatesdialog.cpp:117
 #, kde-format
 msgid ""
 "The certificate is part of several groups. Deleting it may prevent the "
@@ -6583,28 +6583,27 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:174
+#: src/dialogs/deletecertificatesdialog.cpp:171
 #, kde-kuit-format
-msgctxt "@info:whatsthis"
+msgctxt "@info"
 msgid ""
-"<title>Why do you want to delete more certificates than I selected?</"
-"title><para>When you delete CA certificates (both root CAs and intermediate "
-"CAs), the certificates issued by them will also be deleted.</para><para>This "
-"can be nicely seen in <application>Kleopatra</application>'s hierarchical "
-"view mode: In this mode, if you delete a certificate that has children, "
-"those children will also be deleted. Think of CA certificates as folders "
+"<para>When you delete CA certificates (both root CAs and intermediate CAs), "
+"the certificates issued by them will also be deleted.</para><para>This can "
+"be nicely seen in <application>Kleopatra</application>'s hierarchical view "
+"mode: In this mode, if you delete a certificate that has children, those "
+"children will also be deleted. Think of CA certificates as folders "
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:218
+#: src/dialogs/deletecertificatesdialog.cpp:209
 #, fuzzy, kde-format
 msgid "The following certificate was selected for deletion:"
 msgid_plural "The following certificates were selected for deletion:"
 msgstr[0] "प्रमाणपत्र"
 msgstr[1] "प्रमाणपत्र"
 
-#: src/dialogs/deletecertificatesdialog.cpp:231
+#: src/dialogs/deletecertificatesdialog.cpp:222
 #, kde-format
 msgid ""
 "The following certificate will be deleted even though you did <b>not</b> "
@@ -6615,7 +6614,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:262
+#: src/dialogs/deletecertificatesdialog.cpp:253
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -6628,7 +6627,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:276
+#: src/dialogs/deletecertificatesdialog.cpp:267
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -6641,7 +6640,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:291
+#: src/dialogs/deletecertificatesdialog.cpp:282
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
@@ -10131,7 +10130,7 @@ msgid ""
 "bug."
 msgstr ""
 
-#: src/utils/accessibility.cpp:94
+#: src/utils/accessibility.cpp:89
 #, fuzzy, kde-format
 #| msgid "Selection"
 msgctxt ""
@@ -10140,7 +10139,7 @@ msgctxt ""
 msgid "invalid entry"
 msgstr "निवड"
 
-#: src/utils/accessibility.cpp:102
+#: src/utils/accessibility.cpp:97
 #, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "

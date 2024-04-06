@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
-"PO-Revision-Date: 2024-04-02 03:29+0200\n"
+"POT-Creation-Date: 2024-04-06 00:38+0000\n"
+"PO-Revision-Date: 2024-04-05 08:38+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -3718,23 +3718,21 @@ msgid "Archive command to use when archiving files:"
 msgstr "Fitxategiak artxibatzeko erabili beharreko komandoa:"
 
 #: src/conf/dirservconfigpage.cpp:126
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@title"
 msgid "OpenPGP Keyserver"
-msgstr "OpenPGP gako-zerbitzaria:"
+msgstr "OpenPGP gako-zerbitzaria"
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-format
 msgid "Please note that only one OpenPGP keyserver can be configured."
-msgstr ""
+msgstr "Kontuan izan OpenPGP gako-zerbitzari bakarra konfigura daitekeela."
 
 #: src/conf/dirservconfigpage.cpp:134
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Use OpenPGP keyserver"
-msgstr "OpenPGP gako-zerbitzaria:"
+msgstr "Erabili OpenPGP gako-zerbitzaria"
 
 #: src/conf/dirservconfigpage.cpp:144
 #, kde-format
@@ -3759,7 +3757,7 @@ msgstr ""
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Search missing keys when verifying a signature"
-msgstr ""
+msgstr "Sinadura egiaztatzean, falta diren gakoak bilatu"
 
 #: src/conf/dirservconfigpage.cpp:185
 #, kde-format
@@ -3898,7 +3896,7 @@ msgid "Edit"
 msgstr "Editatu"
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/deletecertificatesdialog.cpp:185
+#: src/dialogs/deletecertificatesdialog.cpp:166
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -7053,11 +7051,9 @@ msgstr "Ziurtapenaren konfiantza aldatzea huts egin du"
 msgid "Owner trust set successfully."
 msgstr "Jabearen konfiantza ondo ezarri da."
 
-#: src/dialogs/deletecertificatesdialog.cpp:122
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates are part of groups. Deleting them may cause receivers "
-#| "to be unable to decrypt messages:"
+# (*) xalba 2024-04-05 or. Egiaztatu itzulpena zuzena den!
+#: src/dialogs/deletecertificatesdialog.cpp:113
+#, kde-format
 msgid ""
 "The certificate is part of a group. Deleting it may prevent this recipient "
 "from decrypting messages to:"
@@ -7065,17 +7061,15 @@ msgid_plural ""
 "The certificates are part of a group. Deleting them may prevent these "
 "recipients from decrypting messages to:"
 msgstr[0] ""
-"Ziurtagiri horiek taldeen zati dira. Haiek ezabatzea, hartzaileak mezuak "
-"deszifratzeko gai ez izatea eragin dezake:"
+"Ziurtagiria talde baten zati da. Hura ezabatzea, hartzaile honek ondokora "
+"bideratutako mezuak deszifratzeko gai ez izatea eragin dezake:"
 msgstr[1] ""
-"Ziurtagiri horiek taldeen zati dira. Haiek ezabatzea, hartzaileak mezuak "
-"deszifratzeko gai ez izatea eragin dezake:"
+"Ziurtagiriak talde baten zati dira. Haiek ezabatzea, hartzaileek ondokora "
+"bideratutako mezuak deszifratzeko gai ez izatea eragin dezake:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates are part of groups. Deleting them may cause receivers "
-#| "to be unable to decrypt messages:"
+# (*) xalba 2024-04-05 or. Egiaztatu itzulpena zuzena den!
+#: src/dialogs/deletecertificatesdialog.cpp:117
+#, kde-format
 msgid ""
 "The certificate is part of several groups. Deleting it may prevent the "
 "recipient from decrypting messages to:"
@@ -7083,22 +7077,31 @@ msgid_plural ""
 "The certificates are part of several groups. Deleting them may prevent the "
 "recipients from decrypting messages to:"
 msgstr[0] ""
-"Ziurtagiri horiek taldeen zati dira. Haiek ezabatzea, hartzaileak mezuak "
-"deszifratzeko gai ez izatea eragin dezake:"
+"Ziurtagiria hainbat talderen zati da. Haiek ezabatzea, hartzaileak ondokora "
+"bideratutako mezuak deszifratzeko gai ez izatea eragin dezake:"
 msgstr[1] ""
-"Ziurtagiri horiek taldeen zati dira. Haiek ezabatzea, hartzaileak mezuak "
-"deszifratzeko gai ez izatea eragin dezake:"
+"Ziurtagiriak hainbat talderen zati dira. Haiek ezabatzea, hartzaileak "
+"ondokora bideratutako mezuak deszifratzeko gai ez izatea eragin dezake:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:174
-#, kde-kuit-format
-msgctxt "@info:whatsthis"
+#: src/dialogs/deletecertificatesdialog.cpp:171
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info:whatsthis"
+#| msgid ""
+#| "<title>Why do you want to delete more certificates than I selected?</"
+#| "title><para>When you delete CA certificates (both root CAs and "
+#| "intermediate CAs), the certificates issued by them will also be deleted.</"
+#| "para><para>This can be nicely seen in <application>Kleopatra</"
+#| "application>'s hierarchical view mode: In this mode, if you delete a "
+#| "certificate that has children, those children will also be deleted. Think "
+#| "of CA certificates as folders containing other certificates: When you "
+#| "delete the folder, you delete its contents, too.</para>"
+msgctxt "@info"
 msgid ""
-"<title>Why do you want to delete more certificates than I selected?</"
-"title><para>When you delete CA certificates (both root CAs and intermediate "
-"CAs), the certificates issued by them will also be deleted.</para><para>This "
-"can be nicely seen in <application>Kleopatra</application>'s hierarchical "
-"view mode: In this mode, if you delete a certificate that has children, "
-"those children will also be deleted. Think of CA certificates as folders "
+"<para>When you delete CA certificates (both root CAs and intermediate CAs), "
+"the certificates issued by them will also be deleted.</para><para>This can "
+"be nicely seen in <application>Kleopatra</application>'s hierarchical view "
+"mode: In this mode, if you delete a certificate that has children, those "
+"children will also be deleted. Think of CA certificates as folders "
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
@@ -7111,19 +7114,15 @@ msgstr ""
 "beste ziurtagiriak dituzten karpetak bailiran: Karpeta ezabatzen duzunean, "
 "haren edukia ere ezabatzen duzu.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "These are the certificates you have selected for deletion:"
+#: src/dialogs/deletecertificatesdialog.cpp:209
+#, kde-format
 msgid "The following certificate was selected for deletion:"
 msgid_plural "The following certificates were selected for deletion:"
-msgstr[0] "Horiek dira ezabatzeko hautatu dituzun ziurtagiriak:"
-msgstr[1] "Horiek dira ezabatzeko hautatu dituzun ziurtagiriak:"
+msgstr[0] "Ondoko ziurtagiria ezabatzeko hautatu da:"
+msgstr[1] "Ondoko ziurtagiriak ezabatzeko hautatu dira:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:231
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates will be deleted even though you did <b>not</b> "
-#| "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+#: src/dialogs/deletecertificatesdialog.cpp:222
+#, kde-format
 msgid ""
 "The following certificate will be deleted even though you did <b>not</b> "
 "explicitly select it (<a href=\"whatsthis://\">Why?</a>):"
@@ -7131,13 +7130,13 @@ msgid_plural ""
 "The following certificates will be deleted even though you did <b>not</b> "
 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr[0] ""
-"Ziurtagiri horiek ezabatuko dira, haiek esplizituki hautatu <b>ez</b> "
-"zenituen arren (<a href=\"whatsthis://\">Zergatik?</a>):"
+"Ondoko ziurtagiria ezabatu egingo da, esplizituki hautatu <b>ez</b> baduzu "
+"ere (<a href=\"whatsthis://\">Zergatik?</a>)"
 msgstr[1] ""
-"Ziurtagiri horiek ezabatuko dira, haiek esplizituki hautatu <b>ez</b> "
-"zenituen arren (<a href=\"whatsthis://\">Zergatik?</a>):"
+"Ondoko ziurtagiriak ezabatu egingo dira, esplizituki hautatu <b>ez</b> "
+"badituzu ere (<a href=\"whatsthis://\">Zergatik?</a>)"
 
-#: src/dialogs/deletecertificatesdialog.cpp:262
+#: src/dialogs/deletecertificatesdialog.cpp:253
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7156,7 +7155,7 @@ msgstr[1] ""
 "materiala dute, ziurtagirietarako zifratutako iraganeko komunikazioak "
 "deszifratzeko beharrezkoak, eta beraz ez lirateke ezabatu behar."
 
-#: src/dialogs/deletecertificatesdialog.cpp:276
+#: src/dialogs/deletecertificatesdialog.cpp:267
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7176,7 +7175,7 @@ msgstr[1] ""
 "komunikazioak deszifratzeko beharrezkoak, eta beraz ez lirateke ezabatu "
 "behar."
 
-#: src/dialogs/deletecertificatesdialog.cpp:291
+#: src/dialogs/deletecertificatesdialog.cpp:282
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
@@ -10951,7 +10950,7 @@ msgstr ""
 "Ezin izan dio hargunea «Qt»ri pasatu: %1. Hori ez litzateke gertatu behar, "
 "mesedez eman akats honen berri."
 
-#: src/utils/accessibility.cpp:94
+#: src/utils/accessibility.cpp:89
 #, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "
@@ -10959,7 +10958,7 @@ msgctxt ""
 msgid "invalid entry"
 msgstr "sarrera baliogabea"
 
-#: src/utils/accessibility.cpp:102
+#: src/utils/accessibility.cpp:97
 #, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "

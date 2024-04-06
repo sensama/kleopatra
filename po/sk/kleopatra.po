@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
+"POT-Creation-Date: 2024-04-06 00:38+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -4094,7 +4094,7 @@ msgid "Edit"
 msgstr "Upraviť"
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/deletecertificatesdialog.cpp:185
+#: src/dialogs/deletecertificatesdialog.cpp:166
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -7381,7 +7381,7 @@ msgstr "Zmena dôveryhodnosti certifikátu úspešná"
 msgid "Owner trust set successfully."
 msgstr "Úspešne nastavený PIN."
 
-#: src/dialogs/deletecertificatesdialog.cpp:122
+#: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-format
 msgid ""
 "The certificate is part of a group. Deleting it may prevent this recipient "
@@ -7393,7 +7393,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
+#: src/dialogs/deletecertificatesdialog.cpp:117
 #, kde-format
 msgid ""
 "The certificate is part of several groups. Deleting it may prevent the "
@@ -7405,16 +7405,25 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/dialogs/deletecertificatesdialog.cpp:174
-#, kde-kuit-format
-msgctxt "@info:whatsthis"
+#: src/dialogs/deletecertificatesdialog.cpp:171
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info:whatsthis"
+#| msgid ""
+#| "<title>Why do you want to delete more certificates than I selected?</"
+#| "title><para>When you delete CA certificates (both root CAs and "
+#| "intermediate CAs), the certificates issued by them will also be deleted.</"
+#| "para><para>This can be nicely seen in <application>Kleopatra</"
+#| "application>'s hierarchical view mode: In this mode, if you delete a "
+#| "certificate that has children, those children will also be deleted. Think "
+#| "of CA certificates as folders containing other certificates: When you "
+#| "delete the folder, you delete its contents, too.</para>"
+msgctxt "@info"
 msgid ""
-"<title>Why do you want to delete more certificates than I selected?</"
-"title><para>When you delete CA certificates (both root CAs and intermediate "
-"CAs), the certificates issued by them will also be deleted.</para><para>This "
-"can be nicely seen in <application>Kleopatra</application>'s hierarchical "
-"view mode: In this mode, if you delete a certificate that has children, "
-"those children will also be deleted. Think of CA certificates as folders "
+"<para>When you delete CA certificates (both root CAs and intermediate CAs), "
+"the certificates issued by them will also be deleted.</para><para>This can "
+"be nicely seen in <application>Kleopatra</application>'s hierarchical view "
+"mode: In this mode, if you delete a certificate that has children, those "
+"children will also be deleted. Think of CA certificates as folders "
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
@@ -7427,7 +7436,7 @@ msgstr ""
 "ďalšie certifikáty: Keď odstránite priečinok, odstránite tiež jeho obsah.</"
 "para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:218
+#: src/dialogs/deletecertificatesdialog.cpp:209
 #, fuzzy, kde-format
 #| msgid "These are the certificates you have selected for deletion:"
 msgid "The following certificate was selected for deletion:"
@@ -7436,7 +7445,7 @@ msgstr[0] "Tieto sú certifikáty, ktoré ste vybrali na vymazanie:"
 msgstr[1] "Tieto sú certifikáty, ktoré ste vybrali na vymazanie:"
 msgstr[2] "Tieto sú certifikáty, ktoré ste vybrali na vymazanie:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:231
+#: src/dialogs/deletecertificatesdialog.cpp:222
 #, fuzzy, kde-format
 #| msgid ""
 #| "These certificates will be deleted even though you did <emphasis>not</"
@@ -7457,7 +7466,7 @@ msgstr[2] ""
 "Tieto certifikáty budú odstránené, aj keď ste ich <emphasis>nevybrali</"
 "emphasis><nl/> explicitne (<a href=\"whatsthis://\">Why?</a>):"
 
-#: src/dialogs/deletecertificatesdialog.cpp:262
+#: src/dialogs/deletecertificatesdialog.cpp:253
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7480,7 +7489,7 @@ msgstr[2] ""
 "materiál súkromného kľúča, ktorý je potrebný na dešifrovanie komunikácie z "
 "minulosti šifrovanej s certifikátom a preto by nemali byť vymazané."
 
-#: src/dialogs/deletecertificatesdialog.cpp:276
+#: src/dialogs/deletecertificatesdialog.cpp:267
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7503,7 +7512,7 @@ msgstr[2] ""
 "materiál súkromného kľúča, ktorý je potrebný na dešifrovanie komunikácie z "
 "minulosti šifrovanej s certifikátom a preto by nemali byť vymazané."
 
-#: src/dialogs/deletecertificatesdialog.cpp:291
+#: src/dialogs/deletecertificatesdialog.cpp:282
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
@@ -11270,7 +11279,7 @@ msgstr ""
 "Nemožno preniesť soket na Qt: %1. To by sa nemalo stať, prosím, oznámte túto "
 "chybu."
 
-#: src/utils/accessibility.cpp:94
+#: src/utils/accessibility.cpp:89
 #, fuzzy, kde-format
 #| msgid "Selection"
 msgctxt ""
@@ -11279,7 +11288,7 @@ msgctxt ""
 msgid "invalid entry"
 msgstr "Výber"
 
-#: src/utils/accessibility.cpp:102
+#: src/utils/accessibility.cpp:97
 #, fuzzy, kde-format
 #| msgid "(required)"
 msgctxt ""

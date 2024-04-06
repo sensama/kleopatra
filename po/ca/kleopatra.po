@@ -2,23 +2,24 @@
 # Copyright (C) 2004-2024 This_file_is_part_of_KDE
 #
 # SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Antoni Bella Pérez <antonibella5@yahoo.com>
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
 # Albert Astals Cid <aacid@kde.org>, 2004, 2005.
 # Sebastià Pla i Sanz <sps@sastia.com>, 2004, 2006.
 # Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009, 2010, 2011.
-# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
+# Josep M. Ferrer <txemaq@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-05 00:38+0000\n"
-"PO-Revision-Date: 2024-03-29 10:24+0100\n"
+"POT-Creation-Date: 2024-04-06 00:38+0000\n"
+"PO-Revision-Date: 2024-04-05 11:11+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.02.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -3736,23 +3737,22 @@ msgid "Archive command to use when archiving files:"
 msgstr "Ordre d'arxivat a usar quan s'arxivin fitxers:"
 
 #: src/conf/dirservconfigpage.cpp:126
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@title"
 msgid "OpenPGP Keyserver"
-msgstr "Servidor de claus OpenPGP:"
+msgstr "Servidor de claus OpenPGP"
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-format
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr ""
+"Tingueu en compte que només es pot configurar un servidor de claus OpenPGP."
 
 #: src/conf/dirservconfigpage.cpp:134
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Use OpenPGP keyserver"
-msgstr "Servidor de claus OpenPGP:"
+msgstr "Usa un servidor de claus OpenPGP"
 
 #: src/conf/dirservconfigpage.cpp:144
 #, kde-format
@@ -3778,7 +3778,7 @@ msgstr ""
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Search missing keys when verifying a signature"
-msgstr ""
+msgstr "Cerca les claus que manquin en verificar una signatura"
 
 #: src/conf/dirservconfigpage.cpp:185
 #, kde-format
@@ -3918,7 +3918,7 @@ msgid "Edit"
 msgstr "Edita"
 
 #: src/conf/groupsconfigwidget.cpp:198
-#: src/dialogs/deletecertificatesdialog.cpp:185
+#: src/dialogs/deletecertificatesdialog.cpp:166
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
@@ -7085,11 +7085,8 @@ msgstr "Ha fallat en canviar la confiança de la certificació"
 msgid "Owner trust set successfully."
 msgstr "S'ha establert correctament la confiança del propietari."
 
-#: src/dialogs/deletecertificatesdialog.cpp:122
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates are part of groups. Deleting them may cause receivers "
-#| "to be unable to decrypt messages:"
+#: src/dialogs/deletecertificatesdialog.cpp:113
+#, kde-format
 msgid ""
 "The certificate is part of a group. Deleting it may prevent this recipient "
 "from decrypting messages to:"
@@ -7097,17 +7094,14 @@ msgid_plural ""
 "The certificates are part of a group. Deleting them may prevent these "
 "recipients from decrypting messages to:"
 msgstr[0] ""
-"Aquests certificats formen part de grups. Eliminar-los pot fer que els "
-"receptors no puguin desencriptar els missatges:"
+"El certificat forma part d'un grup. Eliminar-lo pot fer que aquest "
+"destinatari no pugui desencriptar els missatges a:"
 msgstr[1] ""
-"Aquests certificats formen part de grups. Eliminar-los pot fer que els "
-"receptors no puguin desencriptar els missatges:"
+"Els certificats formen part d'un grup. Eliminar-los pot fer que aquests "
+"destinataris no puguin desencriptar els missatges a:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:126
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates are part of groups. Deleting them may cause receivers "
-#| "to be unable to decrypt messages:"
+#: src/dialogs/deletecertificatesdialog.cpp:117
+#, kde-format
 msgid ""
 "The certificate is part of several groups. Deleting it may prevent the "
 "recipient from decrypting messages to:"
@@ -7115,22 +7109,31 @@ msgid_plural ""
 "The certificates are part of several groups. Deleting them may prevent the "
 "recipients from decrypting messages to:"
 msgstr[0] ""
-"Aquests certificats formen part de grups. Eliminar-los pot fer que els "
-"receptors no puguin desencriptar els missatges:"
+"El certificat forma part de diversos grups. Eliminar-lo pot fer que el "
+"destinatari no pugui desencriptar els missatges a:"
 msgstr[1] ""
-"Aquests certificats formen part de grups. Eliminar-los pot fer que els "
-"receptors no puguin desencriptar els missatges:"
+"Els certificats formen part de diversos grups. Eliminar-los pot fer que els "
+"destinataris no puguin desencriptar els missatges a:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:174
-#, kde-kuit-format
-msgctxt "@info:whatsthis"
+#: src/dialogs/deletecertificatesdialog.cpp:171
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info:whatsthis"
+#| msgid ""
+#| "<title>Why do you want to delete more certificates than I selected?</"
+#| "title><para>When you delete CA certificates (both root CAs and "
+#| "intermediate CAs), the certificates issued by them will also be deleted.</"
+#| "para><para>This can be nicely seen in <application>Kleopatra</"
+#| "application>'s hierarchical view mode: In this mode, if you delete a "
+#| "certificate that has children, those children will also be deleted. Think "
+#| "of CA certificates as folders containing other certificates: When you "
+#| "delete the folder, you delete its contents, too.</para>"
+msgctxt "@info"
 msgid ""
-"<title>Why do you want to delete more certificates than I selected?</"
-"title><para>When you delete CA certificates (both root CAs and intermediate "
-"CAs), the certificates issued by them will also be deleted.</para><para>This "
-"can be nicely seen in <application>Kleopatra</application>'s hierarchical "
-"view mode: In this mode, if you delete a certificate that has children, "
-"those children will also be deleted. Think of CA certificates as folders "
+"<para>When you delete CA certificates (both root CAs and intermediate CAs), "
+"the certificates issued by them will also be deleted.</para><para>This can "
+"be nicely seen in <application>Kleopatra</application>'s hierarchical view "
+"mode: In this mode, if you delete a certificate that has children, those "
+"children will also be deleted. Think of CA certificates as folders "
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
@@ -7143,19 +7146,15 @@ msgstr ""
 "certificats de la CA com en carpetes que contenen altres certificats: En "
 "eliminar la carpeta, també s'eliminarà el contingut.</para>"
 
-#: src/dialogs/deletecertificatesdialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "These are the certificates you have selected for deletion:"
+#: src/dialogs/deletecertificatesdialog.cpp:209
+#, kde-format
 msgid "The following certificate was selected for deletion:"
 msgid_plural "The following certificates were selected for deletion:"
-msgstr[0] "Aquests són els certificats que heu seleccionat per a suprimir:"
-msgstr[1] "Aquests són els certificats que heu seleccionat per a suprimir:"
+msgstr[0] "El certificat següent s'ha seleccionat per a suprimir:"
+msgstr[1] "Els certificats següents s'han seleccionat per a suprimir:"
 
-#: src/dialogs/deletecertificatesdialog.cpp:231
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates will be deleted even though you did <b>not</b> "
-#| "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+#: src/dialogs/deletecertificatesdialog.cpp:222
+#, kde-format
 msgid ""
 "The following certificate will be deleted even though you did <b>not</b> "
 "explicitly select it (<a href=\"whatsthis://\">Why?</a>):"
@@ -7163,13 +7162,13 @@ msgid_plural ""
 "The following certificates will be deleted even though you did <b>not</b> "
 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr[0] ""
-"Aquests certificats seran eliminats encara que <b>no</b> els hàgiu "
-"seleccionat explícitament (<a href=\"whatsthis://\">Per què?</a>):"
+"El certificat següent se suprimirà encara que <b>no</b> l'heu seleccionat "
+"explícitament (<a href=\"whatsthis://\">Per què?</a>):"
 msgstr[1] ""
-"Aquests certificats seran eliminats encara que <b>no</b> els hàgiu "
+"Els certificats següents se suprimiran encara que <b>no</b> els hàgiu "
 "seleccionat explícitament (<a href=\"whatsthis://\">Per què?</a>):"
 
-#: src/dialogs/deletecertificatesdialog.cpp:262
+#: src/dialogs/deletecertificatesdialog.cpp:253
 #, kde-format
 msgid ""
 "The certificate to be deleted is your own. It contains private key material, "
@@ -7188,7 +7187,7 @@ msgstr[1] ""
 "clau privada, el qual es necessita per a desencriptar comunicacions antigues "
 "encriptades amb els certificats i, per tant, no es poden suprimir."
 
-#: src/dialogs/deletecertificatesdialog.cpp:276
+#: src/dialogs/deletecertificatesdialog.cpp:267
 #, kde-format
 msgid ""
 "One of the certificates to be deleted is your own. It contains private key "
@@ -7207,7 +7206,7 @@ msgstr[1] ""
 "de clau privada, el qual es necessita per a desencriptar comunicacions "
 "antigues encriptades amb els certificats i, per tant, no es poden suprimir."
 
-#: src/dialogs/deletecertificatesdialog.cpp:291
+#: src/dialogs/deletecertificatesdialog.cpp:282
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
@@ -11016,7 +11015,7 @@ msgstr ""
 "No s'ha pogut passar el sòcol a les Qt: %1. Això no hauria de passar. "
 "Informeu d'aquest error."
 
-#: src/utils/accessibility.cpp:94
+#: src/utils/accessibility.cpp:89
 #, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "
@@ -11024,7 +11023,7 @@ msgctxt ""
 msgid "invalid entry"
 msgstr "entrada no vàlida"
 
-#: src/utils/accessibility.cpp:102
+#: src/utils/accessibility.cpp:97
 #, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "

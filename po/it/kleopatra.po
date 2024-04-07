@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-06 00:38+0000\n"
-"PO-Revision-Date: 2024-04-01 12:58+0200\n"
+"PO-Revision-Date: 2024-04-06 20:00+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -1776,7 +1776,7 @@ msgid ""
 "declare that a key shall not anymore be used.  It is not possible\n"
 "to retract such a revocation certificate once it has been published."
 msgstr ""
-"Un certificato di revoca è una sorta di \"interruttore di emergenza\" per\n"
+"Un certificato di revoca è una sorta di «interruttore di emergenza» per\n"
 "dichiarare pubblicamente che una certa chiave non deve essere più usata.\n"
 "Non è possibile ritirare un certificato di revoca una volta che è stato\n"
 "pubblicato."
@@ -3739,23 +3739,21 @@ msgid "Archive command to use when archiving files:"
 msgstr "Comando di archiviazione da usare quando vengono archiviati i file:"
 
 #: src/conf/dirservconfigpage.cpp:126
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@title"
 msgid "OpenPGP Keyserver"
-msgstr "Server delle chiavi OpenPGP:"
+msgstr "Server delle chiavi OpenPGP"
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-format
 msgid "Please note that only one OpenPGP keyserver can be configured."
-msgstr ""
+msgstr "Nota che è possibile configurare un solo server di chiavi OpenPGP."
 
 #: src/conf/dirservconfigpage.cpp:134
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Use OpenPGP keyserver"
-msgstr "Server delle chiavi OpenPGP:"
+msgstr "Utilizza server delle chiavi OpenPGP"
 
 #: src/conf/dirservconfigpage.cpp:144
 #, kde-format
@@ -3781,7 +3779,7 @@ msgstr ""
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Search missing keys when verifying a signature"
-msgstr ""
+msgstr "Cerca le chiavi mancanti durante la verifica di una firma"
 
 #: src/conf/dirservconfigpage.cpp:185
 #, kde-format
@@ -7076,10 +7074,7 @@ msgid "Owner trust set successfully."
 msgstr "Fiducia nel proprietario impostata correttamente."
 
 #: src/dialogs/deletecertificatesdialog.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates are part of groups. Deleting them may cause receivers "
-#| "to be unable to decrypt messages:"
+#, kde-format
 msgid ""
 "The certificate is part of a group. Deleting it may prevent this recipient "
 "from decrypting messages to:"
@@ -7087,17 +7082,14 @@ msgid_plural ""
 "The certificates are part of a group. Deleting them may prevent these "
 "recipients from decrypting messages to:"
 msgstr[0] ""
-"Questi certificati fanno parte di gruppi. La loro eliminazione potrebbe "
-"impedire ai destinatari di decifrare i messaggi:"
+"Il certificato fa parte di un gruppo. La sua eliminazione potrebbe impedire "
+"a questo destinatario di decifrare i messaggi:"
 msgstr[1] ""
-"Questi certificati fanno parte di gruppi. La loro eliminazione potrebbe "
-"impedire ai destinatari di decifrare i messaggi:"
+"I certificati fanno parte di un gruppo. La loro eliminazione potrebbe "
+"impedire a questi destinatari di decifrare i messaggi:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates are part of groups. Deleting them may cause receivers "
-#| "to be unable to decrypt messages:"
+#, kde-format
 msgid ""
 "The certificate is part of several groups. Deleting it may prevent the "
 "recipient from decrypting messages to:"
@@ -7105,24 +7097,14 @@ msgid_plural ""
 "The certificates are part of several groups. Deleting them may prevent the "
 "recipients from decrypting messages to:"
 msgstr[0] ""
-"Questi certificati fanno parte di gruppi. La loro eliminazione potrebbe "
-"impedire ai destinatari di decifrare i messaggi:"
+"Il certificato fa parte di diversi gruppi. La sua eliminazione potrebbe "
+"impedire al destinatario di decifrare i messaggi:"
 msgstr[1] ""
-"Questi certificati fanno parte di gruppi. La loro eliminazione potrebbe "
-"impedire ai destinatari di decifrare i messaggi:"
+"I certificati fanno parte di gruppi. La loro eliminazione potrebbe impedire "
+"ai destinatari di decifrare i messaggi:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:171
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<title>Why do you want to delete more certificates than I selected?</"
-#| "title><para>When you delete CA certificates (both root CAs and "
-#| "intermediate CAs), the certificates issued by them will also be deleted.</"
-#| "para><para>This can be nicely seen in <application>Kleopatra</"
-#| "application>'s hierarchical view mode: In this mode, if you delete a "
-#| "certificate that has children, those children will also be deleted. Think "
-#| "of CA certificates as folders containing other certificates: When you "
-#| "delete the folder, you delete its contents, too.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>When you delete CA certificates (both root CAs and intermediate CAs), "
@@ -7133,28 +7115,23 @@ msgid ""
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
-"<title>Perché vuoi eliminare più certificati di quelli che ho selezionato?</"
-"title><para>Quando elimini certificati di CA (sia CA radice che CA "
-"intermedi), saranno eliminati anche i certificati da loro emessi.</"
-"para><para>Ciò si può vedere bene dalla vista gerarchica di "
-"<application>Kleopatra</application>: In questa modalità, se elimini un "
-"certificato che ha dei figli, anche i figli verranno eliminati. Pensa ai "
-"certificati delle CA come cartelle contenenti altri certificati: eliminando "
-"la cartella, elimini anche tutti i suoi contenuti.</para>"
+"<para>Quando elimini i certificati CA (sia CA radice che CA intermedie), "
+"saranno eliminati anche i certificati da essi emessi.</para><para>Questo può "
+"essere visto chiaramente nella pagina di <application>Kleopatra</"
+"application> modalità di visualizzazione gerarchica: in questa modalità, se "
+"elimini un certificato che ha figli, anche questi figli saranno eliminati. "
+"Pensa ai certificati CA come a cartelle contenenti altri certificati: quando "
+"elimini la cartella, elimini anche il suo contenuto.</para>"
 
 #: src/dialogs/deletecertificatesdialog.cpp:209
-#, fuzzy, kde-format
-#| msgid "These are the certificates you have selected for deletion:"
+#, kde-format
 msgid "The following certificate was selected for deletion:"
 msgid_plural "The following certificates were selected for deletion:"
-msgstr[0] "Questi sono i certificati che hai selezionato per eliminarli:"
-msgstr[1] "Questi sono i certificati che hai selezionato per eliminarli:"
+msgstr[0] "Il seguente certificato è stato selezionato per l'eliminazione:"
+msgstr[1] "I seguenti certificati sono stati selezionati per l'eliminazione:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates will be deleted even though you did <b>not</b> "
-#| "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+#, kde-format
 msgid ""
 "The following certificate will be deleted even though you did <b>not</b> "
 "explicitly select it (<a href=\"whatsthis://\">Why?</a>):"
@@ -7162,10 +7139,10 @@ msgid_plural ""
 "The following certificates will be deleted even though you did <b>not</b> "
 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr[0] ""
-"Questi certificati verranno eliminati anche se <b>non</b> li selezioni "
+"Il seguente certificato sarò eliminato anche se <b>non</b> lo selezioni "
 "esplicitamente (<a href=\"whatsthis://\">Perché?</a>):"
 msgstr[1] ""
-"Questi certificati verranno eliminati anche se <b>non</b> li selezioni "
+"I seguenti certificati saranno eliminati anche se <b>non</b> li selezioni "
 "esplicitamente (<a href=\"whatsthis://\">Perché?</a>):"
 
 #: src/dialogs/deletecertificatesdialog.cpp:253

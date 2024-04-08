@@ -15,11 +15,11 @@ class QLabel;
 
 namespace Kleo
 {
+class CardKeysView;
 class OpenPGPKeyCardWidget;
 
 namespace SmartCard
 {
-struct KeyPairInfo;
 class P15Card;
 }
 
@@ -37,11 +37,13 @@ private:
 
 private:
     std::string mCardSerialNumber;
+
     QLabel *mVersionLabel = nullptr;
     QLabel *mSerialNumber = nullptr;
     QLabel *mStatusLabel = nullptr;
     QWidget *mOpenPGPKeysSection = nullptr;
     OpenPGPKeyCardWidget *mOpenPGPKeysWidget = nullptr;
+    CardKeysView *mCardKeysView = nullptr;
 };
 
 }

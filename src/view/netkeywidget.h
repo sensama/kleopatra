@@ -21,22 +21,15 @@ class QLabel;
 class QPushButton;
 class QScrollArea;
 
-namespace GpgME
-{
-class Key;
-class KeyListResult;
-}
-
 namespace Kleo
 {
 class NullPinWidget;
-class KeyTreeView;
-class ProgressOverlay;
+class CardKeysView;
 
 namespace SmartCard
 {
 class NetKeyCard;
-} // namespace SmartCard
+}
 
 class NetKeyWidget : public QWidget
 {
@@ -48,21 +41,12 @@ public:
     void setCard(const SmartCard::NetKeyCard *card);
 
 private:
-    void loadCertificates();
-    void ensureCertificatesAreValidated();
-    void startCertificateValidation(const std::vector<GpgME::Key> &certificates);
-    void certificateValidationDone(const GpgME::KeyListResult &result, const std::vector<GpgME::Key> &keys);
-    void learnCard();
     void doChangePin(const std::string &keyRef);
     void createKeyFromCardKeys();
     void createCSR();
 
 private:
     std::string mSerialNumber;
-    std::vector<GpgME::Key> mCertificates;
-
-    using KeySet = std::set<GpgME::Key, _detail::ByFingerprint<std::less>>;
-    KeySet mValidatedCertificates;
 
     QLabel *mSerialNumberLabel = nullptr;
     QLabel *mVersionLabel = nullptr;
@@ -72,8 +56,7 @@ private:
     QPushButton *mCreateCSRButton = nullptr;
     QPushButton *mChangeNKSPINBtn = nullptr;
     QPushButton *mChangeSigGPINBtn = nullptr;
-    KeyTreeView *mTreeView = nullptr;
-    ProgressOverlay *mTreeViewOverlay = nullptr;
+    CardKeysView *mCardKeysView = nullptr;
     QScrollArea *mArea = nullptr;
 };
 } // namespace Kleo

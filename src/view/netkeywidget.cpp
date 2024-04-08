@@ -7,7 +7,7 @@
 */
 #include "netkeywidget.h"
 
-#include "keytreeview.h"
+#include "cardkeysview.h"
 #include "kleopatraapplication.h"
 #include "nullpinwidget.h"
 #include "systrayicon.h"
@@ -20,9 +20,6 @@
 #include "commands/changepincommand.h"
 #include "commands/createcsrforcardkeycommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
-#include "commands/detailscommand.h"
-#include "utils/qt-cxx20-compat.h"
-#include "view/progressoverlay.h"
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
@@ -31,26 +28,18 @@
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 
-#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSeparator>
-#include <KSharedConfig>
-
-#include <QGpgME/KeyListJob>
-#include <QGpgME/Protocol>
 
 #include <QHBoxLayout>
 #include <QInputDialog>
 #include <QLabel>
 #include <QPushButton>
 #include <QScrollArea>
-#include <QTreeView>
 #include <QVBoxLayout>
 
-#include <gpgme++/context.h>
 #include <gpgme++/engineinfo.h>
-#include <gpgme++/keylistresult.h>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -64,7 +53,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     , mNullPinWidget(new NullPinWidget(this))
     , mChangeNKSPINBtn(new QPushButton(this))
     , mChangeSigGPINBtn(new QPushButton(this))
-    , mTreeView(new KeyTreeView(this))
+    , mCardKeysView{new CardKeysView{this}}
     , mArea(new QScrollArea)
 {
     auto vLay = new QVBoxLayout;
@@ -93,30 +82,11 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
 
     vLay->addWidget(mNullPinWidget);
 
-    vLay->addWidget(new KSeparator(Qt::Horizontal));
-    vLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Certificates:"))), 0, Qt::AlignLeft);
-
     mErrorLabel->setVisible(false);
     vLay->addWidget(mErrorLabel);
 
-    // The certificate view
-    mTreeView->setHierarchicalModel(AbstractKeyListModel::createHierarchicalKeyListModel(mTreeView));
-    mTreeView->setHierarchicalView(true);
-
-    connect(mTreeView->view(), &QAbstractItemView::doubleClicked, this, [this](const QModelIndex &idx) {
-        const auto klm = dynamic_cast<KeyListModelInterface *>(mTreeView->view()->model());
-        if (!klm) {
-            qCDebug(KLEOPATRA_LOG) << "Unhandled Model: " << mTreeView->view()->model()->metaObject()->className();
-            return;
-        }
-        auto cmd = new DetailsCommand(klm->key(idx));
-        cmd->setParentWidget(this);
-        cmd->start();
-    });
-    vLay->addWidget(mTreeView);
-
-    mTreeViewOverlay = new ProgressOverlay{mTreeView, this};
-    mTreeViewOverlay->hide();
+    vLay->addWidget(new KSeparator(Qt::Horizontal));
+    vLay->addWidget(mCardKeysView);
 
     // The action area
     vLay->addWidget(new KSeparator(Qt::Horizontal));
@@ -159,11 +129,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
 
     vLay->addLayout(actionLayout);
     vLay->addStretch(1);
-
-    const KConfigGroup configGroup(KSharedConfig::openConfig(), "NetKeyCardView");
-    mTreeView->restoreLayout(configGroup);
-
-    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, &NetKeyWidget::loadCertificates);
 }
 
 NetKeyWidget::~NetKeyWidget() = default;
@@ -230,109 +195,7 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mCreateCSRButton->setEnabled(!getKeysSuitableForCSRCreation(card).empty());
     }
 
-    loadCertificates();
-    if (mCertificates.size() != card->keyInfos().size()) {
-        // the card contains keys we don't know; try to learn them from the card
-        learnCard();
-    }
-}
-
-void NetKeyWidget::loadCertificates()
-{
-    qCDebug(KLEOPATRA_LOG) << __func__;
-    if (mSerialNumber.empty()) {
-        // ignore KeyCache::keysMayHaveChanged signal until the card has been set
-        return;
-    }
-
-    const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
-    if (!netKeyCard) {
-        qCDebug(KLEOPATRA_LOG) << "Failed to find the smartcard with the serial number:" << mSerialNumber;
-        return;
-    }
-
-    const auto cardKeyInfos = netKeyCard->keyInfos();
-    mCertificates.clear();
-    mCertificates.reserve(cardKeyInfos.size());
-
-    // try to get the certificates from the key cache
-    for (const auto &cardKeyInfo : cardKeyInfos) {
-        const auto certificate = KeyCache::instance()->findSubkeyByKeyGrip(cardKeyInfo.grip, GpgME::CMS).parent();
-        if (!certificate.isNull()) {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "Found certificate for card key" << cardKeyInfo.grip << "in cache:" << certificate;
-            mCertificates.push_back(certificate);
-        } else {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "Did not find certificate for card key" << cardKeyInfo.grip << "in cache";
-        }
-    }
-    mTreeView->setKeys(mCertificates);
-
-    ensureCertificatesAreValidated();
-}
-
-void NetKeyWidget::ensureCertificatesAreValidated()
-{
-    if (mCertificates.empty()) {
-        return;
-    }
-
-    std::vector<GpgME::Key> certificatesToValidate;
-    certificatesToValidate.reserve(mCertificates.size());
-    Kleo::copy_if(mCertificates, std::back_inserter(certificatesToValidate), [this](const auto &cert) {
-        // don't bother validating certificates that have expired or are otherwise invalid
-        return !cert.isBad() && !mValidatedCertificates.contains(cert);
-    });
-    if (!certificatesToValidate.empty()) {
-        startCertificateValidation(certificatesToValidate);
-        mValidatedCertificates.insert(certificatesToValidate.cbegin(), certificatesToValidate.cend());
-    }
-}
-
-void NetKeyWidget::startCertificateValidation(const std::vector<GpgME::Key> &certificates)
-{
-    qCDebug(KLEOPATRA_LOG) << __func__ << "Validating certificates" << certificates;
-    auto job = std::unique_ptr<QGpgME::KeyListJob>{QGpgME::smime()->keyListJob(false, true, true)};
-    auto ctx = QGpgME::Job::context(job.get());
-    ctx->addKeyListMode(GpgME::WithSecret);
-
-    connect(job.get(), &QGpgME::KeyListJob::result, this, &NetKeyWidget::certificateValidationDone);
-
-    job->start(Kleo::getFingerprints(certificates));
-    job.release();
-}
-
-void NetKeyWidget::certificateValidationDone(const GpgME::KeyListResult &result, const std::vector<GpgME::Key> &validatedCertificates)
-{
-    qCDebug(KLEOPATRA_LOG) << __func__ << "certificates:" << validatedCertificates;
-    if (result.error()) {
-        qCDebug(KLEOPATRA_LOG) << __func__ << "Validating certificates failed:" << result.error();
-        return;
-    }
-    // replace the current certificates with the validated certificates
-    for (const auto &validatedCert : validatedCertificates) {
-        const auto fpr = validatedCert.primaryFingerprint();
-        const auto it = std::find_if(mCertificates.begin(), mCertificates.end(), [fpr](const auto &cert) {
-            return !qstrcmp(fpr, cert.primaryFingerprint());
-        });
-        if (it != mCertificates.end()) {
-            *it = validatedCert;
-        } else {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "Didn't find validated certificate in certificate list:" << validatedCert;
-        }
-    }
-    mTreeView->setKeys(mCertificates);
-}
-
-void NetKeyWidget::learnCard()
-{
-    qCDebug(KLEOPATRA_LOG) << __func__;
-    mTreeViewOverlay->setText(i18nc("@info", "Reading certificates from smart card ..."));
-    mTreeViewOverlay->showOverlay();
-    ReaderStatus::mutableInstance()->learnCards(GpgME::CMS);
-    connect(ReaderStatus::instance(), &ReaderStatus::cardsLearned, this, [this]() {
-        qCDebug(KLEOPATRA_LOG) << "ReaderStatus::cardsLearned";
-        mTreeViewOverlay->hideOverlay();
-    });
+    mCardKeysView->setCard(card, NetKeyCard::AppName);
 }
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)

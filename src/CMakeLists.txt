@@ -481,6 +481,8 @@ set(_kleopatra_SRCS
   utils/wsastarter.h
   view/anchorcache.cpp
   view/anchorcache_p.h
+  view/cardkeysview.cpp
+  view/cardkeysview.h
   view/errorlabel.cpp
   view/errorlabel.h
   view/formtextinput.cpp

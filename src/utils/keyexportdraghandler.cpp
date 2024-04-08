@@ -148,7 +148,7 @@ QMimeData *KeyExportDragHandler::mimeData(const QModelIndexList &indexes) const
     mimeData->file->open();
     auto path = mimeData->file->fileName().remove(QRegularExpression(QStringLiteral("\\.[^.]+$")));
 
-    if (QFileInfo(path).exists()) {
+    if (QFileInfo::exists(path)) {
         path = suggestFileName(path);
     }
     mimeData->file->rename(path);

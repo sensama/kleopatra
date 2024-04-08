@@ -713,7 +713,15 @@ void ImportCertificatesCommand::Private::processResults()
 
     handleOwnerTrust(results, parentWidgetOrView());
 
-    showDetails(results, importedGroups);
+    auto hasError = std::ranges::any_of(results, [](const auto &result) {
+        return importFailed(result);
+    });
+    auto allAreIrrelevant = std::ranges::all_of(results, [](const auto &result) {
+        return result.result.numConsidered() == 0 || (importFailed(result) && result.result.numConsidered() == 1);
+    });
+    if (!(hasError && allAreIrrelevant)) {
+        showDetails(results, importedGroups);
+    }
 
     auto tv = dynamic_cast<QTreeView *>(view());
     if (!tv) {

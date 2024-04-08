@@ -47,18 +47,12 @@ using namespace Kleo::Commands;
 
 NetKeyWidget::NetKeyWidget(QWidget *parent)
     : QWidget(parent)
-    , mSerialNumberLabel(new QLabel(this))
-    , mVersionLabel(new QLabel(this))
-    , mErrorLabel(new QLabel(this))
-    , mNullPinWidget(new NullPinWidget(this))
-    , mChangeNKSPINBtn(new QPushButton(this))
-    , mChangeSigGPINBtn(new QPushButton(this))
-    , mCardKeysView{new CardKeysView{this}}
-    , mArea(new QScrollArea)
 {
     auto vLay = new QVBoxLayout;
 
     // Set up the scroll are
+    mArea = new QScrollArea{this};
+    mArea->setFocusPolicy(Qt::NoFocus);
     mArea->setFrameShape(QFrame::NoFrame);
     mArea->setWidgetResizable(true);
     auto mAreaWidget = new QWidget;
@@ -69,23 +63,32 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     scrollLay->addWidget(mArea);
 
     // Add general widgets
+    mVersionLabel = new QLabel{this};
     mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     vLay->addWidget(mVersionLabel, 0, Qt::AlignLeft);
 
-    mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    {
+        auto hLay1 = new QHBoxLayout;
+        auto label = new QLabel(i18nc("@label", "Serial number:"));
+        mSerialNumberLabel = new QLabel{this};
+        mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        label->setBuddy(mSerialNumberLabel);
+        hLay1->addWidget(label);
+        hLay1->addWidget(mSerialNumberLabel);
+        hLay1->addStretch(1);
+        vLay->addLayout(hLay1);
+    }
 
-    auto hLay1 = new QHBoxLayout;
-    hLay1->addWidget(new QLabel(i18n("Serial number:")));
-    hLay1->addWidget(mSerialNumberLabel);
-    hLay1->addStretch(1);
-    vLay->addLayout(hLay1);
-
+    mNullPinWidget = new NullPinWidget{this};
     vLay->addWidget(mNullPinWidget);
 
+    mErrorLabel = new QLabel{this};
     mErrorLabel->setVisible(false);
     vLay->addWidget(mErrorLabel);
 
     vLay->addWidget(new KSeparator(Qt::Horizontal));
+
+    mCardKeysView = new CardKeysView{this};
     vLay->addWidget(mCardKeysView);
 
     // The action area
@@ -113,8 +116,10 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
         });
     }
 
-    mChangeNKSPINBtn->setText(i18nc("NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
-    mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
+    mChangeNKSPINBtn = new QPushButton{this};
+    mChangeNKSPINBtn->setText(i18nc("@action:button NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
+    mChangeSigGPINBtn = new QPushButton{this};
+    mChangeSigGPINBtn->setText(i18nc("@action:button SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
 
     connect(mChangeNKSPINBtn, &QPushButton::clicked, this, [this]() {
         doChangePin(NetKeyCard::nksPinKeyRef());

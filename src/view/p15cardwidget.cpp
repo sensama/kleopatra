@@ -10,6 +10,7 @@
 
 #include "p15cardwidget.h"
 
+#include "cardkeysview.h"
 #include "openpgpkeycardwidget.h"
 
 #include "settings.h"
@@ -53,6 +54,7 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     , mStatusLabel{new QLabel{this}}
     , mOpenPGPKeysSection{new QWidget{this}}
     , mOpenPGPKeysWidget{new OpenPGPKeyCardWidget{this}}
+    , mCardKeysView{new CardKeysView{this}}
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
@@ -98,6 +100,9 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     }
     mOpenPGPKeysSection->setVisible(false);
     areaVLay->addWidget(mOpenPGPKeysSection);
+
+    mCardKeysView->setVisible(false);
+    areaVLay->addWidget(mCardKeysView);
 
     areaVLay->addStretch(1);
 }
@@ -174,16 +179,6 @@ void P15CardWidget::setCard(const P15Card *card)
     if (!Settings().autoLoadP15Certs()) {
         return;
     }
-    for (const auto &info : card->keyInfos()) {
-        const auto key = KeyCache::instance()->findSubkeyByKeyGrip(info.grip);
-        if (key.isNull()) {
-            qCDebug(KLEOPATRA_LOG) << "Did not find:" << info.grip.c_str() << "Starting gpgsm --learn.";
-            ReaderStatus::mutableInstance()->learnCards(GpgME::CMS);
-            connect(ReaderStatus::instance(), &ReaderStatus::cardsLearned, this, []() {
-                qCDebug(KLEOPATRA_LOG) << "Learn command finished.";
-            });
-            return;
-        }
-    }
-    qCDebug(KLEOPATRA_LOG) << "All certificates from card cached - Not learning.";
+    mCardKeysView->setVisible(true);
+    mCardKeysView->setCard(card, P15Card::AppName);
 }

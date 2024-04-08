@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-06 00:38+0000\n"
-"PO-Revision-Date: 2024-03-30 09:11+0100\n"
+"PO-Revision-Date: 2024-04-06 14:42+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -3813,23 +3813,22 @@ msgid "Archive command to use when archiving files:"
 msgstr "Commande d'archivage à utiliser lors de l'archivage des fichiers :"
 
 #: src/conf/dirservconfigpage.cpp:126
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@title"
 msgid "OpenPGP Keyserver"
-msgstr "Serveur de clés « OpenPGP » :"
+msgstr "Serveur de clés « OpenPGP »"
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-format
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr ""
+"Veuillez noter qu’un seul serveur de clés « OpenPGP » peut être configuré."
 
 #: src/conf/dirservconfigpage.cpp:134
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Use OpenPGP keyserver"
-msgstr "Serveur de clés « OpenPGP » :"
+msgstr "Utiliser le serveur de clés « OpenPGP »"
 
 #: src/conf/dirservconfigpage.cpp:144
 #, kde-format
@@ -3855,7 +3854,7 @@ msgstr ""
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Search missing keys when verifying a signature"
-msgstr ""
+msgstr "Rechercher les clés manquantes lors de la vérification d’une signature"
 
 #: src/conf/dirservconfigpage.cpp:185
 #, kde-format
@@ -4365,7 +4364,7 @@ msgstr ""
 "d'utiliser un mandataire différent pour GpgSM, veuillez saisir son "
 "emplacement ici.</p><p>Il sera utilisé pour toutes les requêtes HTTP "
 "relatives à S/MIME.</p><p>La syntaxe est la suivante « machine:port », par "
-"exemple « monproxy.quelquepart.com:3128 ».</p>"
+"exemple « mon-proxy.quelque-part.com:3128 ».</p>"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabLDAP)
 #: src/conf/smimevalidationconfigurationwidget.ui:246
@@ -7211,10 +7210,7 @@ msgstr ""
 "Modification du niveau de confiance du propriétaire effectuée avec succès."
 
 #: src/dialogs/deletecertificatesdialog.cpp:113
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates are part of groups. Deleting them may cause receivers "
-#| "to be unable to decrypt messages:"
+#, kde-format
 msgid ""
 "The certificate is part of a group. Deleting it may prevent this recipient "
 "from decrypting messages to:"
@@ -7222,17 +7218,14 @@ msgid_plural ""
 "The certificates are part of a group. Deleting them may prevent these "
 "recipients from decrypting messages to:"
 msgstr[0] ""
-"Ces certificats font partie de groupes. Leur suppression peut empêcher les "
-"destinataires de déchiffrer les messages :"
+"Le certificat fait partie d'un groupe. Sa suppression pourrait empêcher le "
+"destinataire de déchiffrer les messages pour :"
 msgstr[1] ""
-"Ces certificats font partie de groupes. Leur suppression peut empêcher les "
-"destinataires de déchiffrer les messages :"
+"Les certificats font partie d'un groupe. Leurs suppressions pourraient "
+"empêcher les destinataires de déchiffrer les messages pour :"
 
 #: src/dialogs/deletecertificatesdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates are part of groups. Deleting them may cause receivers "
-#| "to be unable to decrypt messages:"
+#, kde-format
 msgid ""
 "The certificate is part of several groups. Deleting it may prevent the "
 "recipient from decrypting messages to:"
@@ -7240,11 +7233,11 @@ msgid_plural ""
 "The certificates are part of several groups. Deleting them may prevent the "
 "recipients from decrypting messages to:"
 msgstr[0] ""
-"Ces certificats font partie de groupes. Leur suppression peut empêcher les "
-"destinataires de déchiffrer les messages :"
+"Le certificat fait partie de plusieurs groupes. Sa suppression pourrait "
+"empêcher le destinataire de déchiffrer les messages pour :"
 msgstr[1] ""
-"Ces certificats font partie de groupes. Leur suppression peut empêcher les "
-"destinataires de déchiffrer les messages :"
+"Les certificats font partie de plusieurs groupes. Leurs suppressions "
+"pourraient empêcher le destinataire de déchiffrer les messages pour :"
 
 #: src/dialogs/deletecertificatesdialog.cpp:171
 #, fuzzy, kde-kuit-format
@@ -7279,18 +7272,14 @@ msgstr ""
 "</para>"
 
 #: src/dialogs/deletecertificatesdialog.cpp:209
-#, fuzzy, kde-format
-#| msgid "These are the certificates you have selected for deletion:"
+#, kde-format
 msgid "The following certificate was selected for deletion:"
 msgid_plural "The following certificates were selected for deletion:"
-msgstr[0] "Voici les certificats sélectionnés pour une suppression :"
-msgstr[1] "Voici les certificats sélectionnés pour une suppression :"
+msgstr[0] "Le certificat suivant a été sélectionné pour suppression :"
+msgstr[1] "Les certificats suivants ont été sélectionnés pour suppression :"
 
 #: src/dialogs/deletecertificatesdialog.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates will be deleted even though you did <b>not</b> "
-#| "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+#, kde-format
 msgid ""
 "The following certificate will be deleted even though you did <b>not</b> "
 "explicitly select it (<a href=\"whatsthis://\">Why?</a>):"
@@ -7298,11 +7287,11 @@ msgid_plural ""
 "The following certificates will be deleted even though you did <b>not</b> "
 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr[0] ""
-"Ces certificats seront supprimés même si vous ne les avez <b>pas</b> "
-"explicitement sélectionnés (<a href=\"whatsthis://\">Pourquoi ? </a>) :"
+"Le certificat suivant sera supprimé même si vous ne l'avez <b>pas</b> "
+"explicitement sélectionné (<a href=\"whatsthis://\">Pourquoi ? </a>) :"
 msgstr[1] ""
-"Ces certificats seront supprimés même si vous ne les avez <b>pas</b> "
-"explicitement sélectionnés (<a href=\"whatsthis://\">Pourquoi ? </a>) :"
+"Les certificats suivants seront supprimés même si vous ne les avez <b>pas</"
+"b> explicitement sélectionné (<a href=\"whatsthis://\">Pourquoi ? </a>) :"
 
 #: src/dialogs/deletecertificatesdialog.cpp:253
 #, kde-format
@@ -8050,7 +8039,7 @@ msgstr "Exporter une clé « OpenSSH »"
 #: src/dialogs/subkeyswidget.cpp:279
 #, kde-format
 msgid "Transfer to smartcard"
-msgstr "Transférer vers la SmartCard"
+msgstr "Transférer vers la carte mémoire"
 
 #: src/dialogs/subkeyswidget.cpp:287
 #, kde-format
@@ -9545,11 +9534,11 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 "<para><application>L'application Kleopatra</application> ne peut être lancée "
-"en tant que superutilisateur sans casser les permissions de fichiers dans le "
-"dossier de données de « GnuPG ».</para><para> Pour gérer les clés pour "
-"d'autres utilisateurs, veuillez les gérer en tant qu'un utilisateur standard "
-"et les copier dans le dossier <filename>AppData\\Roaming\\gnupg</filename> "
-"avec les permissions appropriées.</para>"
+"en tant que administrateur sans compromettre les permissions de fichiers "
+"dans le dossier de données de « GnuPG ».</para><para> Pour gérer les clés "
+"pour d'autres utilisateurs, veuillez les gérer en tant qu'un utilisateur "
+"standard et les copier dans le dossier <filename>AppData\\Roaming\\gnupg</"
+"filename> avec les permissions appropriées.</para>"
 
 #: src/main.cpp:164
 #, kde-kuit-format
@@ -9560,7 +9549,7 @@ msgstr "<para>Voulez-vous vraiment continuer ?</para>"
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
-msgstr "En cours d'exécution comme superutilisateur"
+msgstr "En cours d'exécution comme administrateur"
 
 #: src/main.cpp:235
 #, kde-format
@@ -9692,7 +9681,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
-msgstr "SmartCards"
+msgstr "Cartes mémoire"
 
 #: src/mainwindow.cpp:615
 #, kde-format
@@ -10357,7 +10346,7 @@ msgstr "<para>Consulter « %1 » ci-dessus.</para>"
 #, kde-format
 msgctxt "@title"
 msgid "Gpg-Agent Connectivity"
-msgstr "Connectivité à l'agent GPG"
+msgstr "Connectivité à l'agent « GPG »"
 
 #: src/selftest/gpgagentcheck.cpp:43
 #, kde-format
@@ -10373,7 +10362,7 @@ msgid ""
 msgstr ""
 "Soit la bibliothèque GpgME est elle-même trop ancienne, soit la bibliothèque "
 "GpgME++ a été compilée avec un vieil GpgME ne gérant pas la connexion à "
-"l'agent GPG."
+"l'agent « GPG »."
 
 #: src/selftest/gpgagentcheck.cpp:49
 #, kde-kuit-format
@@ -12759,7 +12748,7 @@ msgstr "Kleopatra prend actuellement en charge les types de cartes suivants :"
 #: src/view/smartcardwidget.cpp:118
 #, kde-format
 msgid "Smartcard Management"
-msgstr "Gestionnaire de SmartCard"
+msgstr "Gestionnaire de cartes mémoire"
 
 #: src/view/smartcardwidget.cpp:165
 #, kde-format

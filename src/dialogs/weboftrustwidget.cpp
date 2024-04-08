@@ -135,7 +135,7 @@ public:
         moreButton = new QPushButton(QIcon::fromTheme(QStringLiteral("application-menu")), {});
         moreButton->setToolTip(i18nc("@info:tooltip", "Show more options"));
         bbox->addWidget(moreButton);
-        connect(moreButton, &QPushButton::clicked, q, [=]() {
+        connect(moreButton, &QPushButton::clicked, q, [this]() {
             auto menu = new QMenu(q);
             menu->addAction(detailsAction);
             menu->addAction(fetchAction);

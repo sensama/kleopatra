@@ -11,17 +11,27 @@
 #include <config-kleopatra.h>
 
 #include "command_p.h"
+#include "commands/exportopenpgpcertstoservercommand.h"
 #include "dialogs/revokekeydialog.h"
+#include "kleopatra_debug.h"
 #include "revokekeycommand.h"
 
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
+#include <Libkleo/KeyCache>
 
-#include <KLocalizedString>
-
+#include <QGpgME/ExportJob>
+#include <QGpgME/Protocol>
 #include <QGpgME/RevokeKeyJob>
 
-#include "kleopatra_debug.h"
-#include <QGpgME/Protocol>
+#include <gpgme.h>
+
+#include <KFileUtils>
+#include <KLocalizedString>
+
+#include <QFile>
+#include <QFileInfo>
+#include <QStandardPaths>
 
 using namespace Kleo;
 using namespace GpgME;
@@ -41,6 +51,11 @@ public:
     void start();
     void cancel();
 
+    enum UploadStatus {
+        Uploaded,
+        NotUploaded,
+    };
+
 private:
     void ensureDialogCreated();
     void onDialogAccepted();
@@ -49,11 +64,14 @@ private:
     std::unique_ptr<QGpgME::RevokeKeyJob> startJob();
     void onJobResult(const Error &err);
     void showError(const Error &err);
+    void exportFinished(const Error &error, const QByteArray &data);
+    void showSuccess(UploadStatus status, const QString &path);
 
 private:
     Key key;
     QPointer<RevokeKeyDialog> dialog;
     QPointer<QGpgME::RevokeKeyJob> job;
+    bool upload = false;
 };
 
 RevokeKeyCommand::Private *RevokeKeyCommand::d_func()
@@ -185,6 +203,7 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
     connect(revokeJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 
     const auto description = descriptionToLines(dialog->description());
+    upload = dialog->uploadToKeyserver();
     const GpgME::Error err = revokeJob->start(key, dialog->reason(), description);
     if (err) {
         showError(err);
@@ -197,16 +216,24 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
 
 void RevokeKeyCommand::Private::onJobResult(const Error &err)
 {
+    if (err.isCanceled()) {
+        finished();
+        return;
+    }
+
     if (err) {
         showError(err);
         finished();
         return;
     }
 
-    if (!err.isCanceled()) {
-        information(i18nc("@info", "The key was revoked successfully."), i18nc("@title:window", "Key Revoked"));
-    }
-    finished();
+    auto job = QGpgME::openpgp()->publicKeyExportJob(true);
+    job->setExportFlags(GPGME_EXPORT_MODE_MINIMAL);
+
+    connect(job, &QGpgME::ExportJob::result, q, [this](const auto &error, const auto &data) {
+        exportFinished(error, data);
+    });
+    job->start({QString::fromLatin1(key.primaryFingerprint())});
 }
 
 void RevokeKeyCommand::Private::showError(const Error &err)
@@ -238,6 +265,85 @@ void RevokeKeyCommand::doStart()
 void RevokeKeyCommand::doCancel()
 {
     d->cancel();
+}
+
+void RevokeKeyCommand::Private::exportFinished(const Error &error, const QByteArray &data)
+{
+    if (error.isCanceled()) {
+        finished();
+        return;
+    }
+
+    if (error) {
+        information(i18nc("@info", "The certificate was revoked successfully."));
+        finished();
+        return;
+    }
+
+    auto name = Formatting::prettyName(key);
+    if (name.isEmpty()) {
+        name = Formatting::prettyEMail(key);
+    }
+
+    auto filename = QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.shortKeyID()));
+    const auto dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    if (QFileInfo::exists(QStringLiteral("%1/%2").arg(dir, filename))) {
+        filename = KFileUtils::suggestName(QUrl::fromLocalFile(dir), filename);
+    }
+    const auto path = QStringLiteral("%1/%2").arg(dir, filename);
+    QFile file(path);
+    if (!file.open(QIODevice::WriteOnly)) {
+        information(i18nc("@info", "The certificate was revoked successfully."));
+        finished();
+        return;
+    }
+    file.write(data);
+    file.close();
+
+    if (upload) {
+        auto const cmd = new Commands::ExportOpenPGPCertsToServerCommand(key);
+        cmd->setInteractive(false);
+        cmd->start();
+        connect(cmd, &Command::finished, q, [cmd, path, this]() {
+            if (cmd->success()) {
+                showSuccess(Uploaded, path);
+            } else {
+                showSuccess(NotUploaded, path);
+            }
+            finished();
+        });
+    } else {
+        showSuccess(NotUploaded, path);
+        finished();
+    }
+}
+
+void RevokeKeyCommand::Private::showSuccess(UploadStatus status, const QString &path)
+{
+    if (status == Uploaded) {
+        if (keyserver().startsWith(QStringLiteral("ldap://")) || keyserver().startsWith(QStringLiteral("ldaps://"))) {
+            information(xi18nc("@info",
+                               "<para>The certificate was revoked successfully and uploaded to the internal directory.</para><para>The revoked "
+                               "certificate was saved to "
+                               "<filename>%1</filename>.</para><para>You should send this file to your communication partners with the instruction to import "
+                               "it.</para>",
+                               path));
+        } else {
+            information(xi18nc("@info",
+                               "<para>The certificate was revoked successfully and uploaded to %1.</para><para>The revoked "
+                               "certificate was saved to "
+                               "<filename>%2</filename>.</para><para>You should send this file to your communication partners with the instruction to import "
+                               "it.</para>",
+                               keyserver(),
+                               path));
+        }
+    } else {
+        information(xi18nc("@info",
+                           "<para>The certificate was revoked successfully.</para><para>The revoked certificate was saved to "
+                           "<filename>%1</filename></para><para>You should send this file to your communication partners with the instruction to import "
+                           "it.</para>",
+                           path));
+    }
 }
 
 #undef d

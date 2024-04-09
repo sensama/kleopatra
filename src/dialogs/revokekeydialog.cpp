@@ -10,10 +10,12 @@
 
 #include "revokekeydialog.h"
 
+#include "dialogs/animatedexpander.h"
 #include "utils/accessibility.h"
 #include "view/errorlabel.h"
 
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -22,6 +24,7 @@
 
 #include <QApplication>
 #include <QButtonGroup>
+#include <QCheckBox>
 #include <QDialogButtonBox>
 #include <QFocusEvent>
 #include <QGroupBox>
@@ -61,6 +64,14 @@ protected:
 
         QTextEdit::focusOutEvent(event);
     }
+    QSize minimumSizeHint() const override
+    {
+        return {0, fontMetrics().height() * 3};
+    }
+    QSize sizeHint() const override
+    {
+        return {0, fontMetrics().height() * 3};
+    }
 };
 }
 
@@ -75,6 +86,7 @@ class RevokeKeyDialog::Private
         TextEdit *description = nullptr;
         ErrorLabel *descriptionError = nullptr;
         QDialogButtonBox *buttonBox = nullptr;
+        QCheckBox *keyserverCheckbox = nullptr;
     } ui;
 
     Key key;
@@ -86,29 +98,47 @@ public:
     Private(RevokeKeyDialog *qq)
         : q(qq)
     {
-        q->setWindowTitle(i18nc("title:window", "Revoke Key"));
+        q->setWindowTitle(i18nc("title:window", "Revoke Certificate"));
 
         auto mainLayout = new QVBoxLayout{q};
 
         ui.infoLabel = new QLabel{q};
+
         mainLayout->addWidget(ui.infoLabel);
 
-        auto groupBox = new QGroupBox{i18nc("@title:group", "Reason for revocation"), q};
-
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "No reason specified"), q}, static_cast<int>(RevocationReason::Unspecified));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key is superseded"), q}, static_cast<int>(RevocationReason::Superseded));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key is no longer used"), q}, static_cast<int>(RevocationReason::NoLongerUsed));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is superseded"), q}, static_cast<int>(RevocationReason::Superseded));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is no longer used"), q}, static_cast<int>(RevocationReason::NoLongerUsed));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "For a different reason"), q}, static_cast<int>(RevocationReason::Unspecified));
         reasonGroup.button(static_cast<int>(RevocationReason::Unspecified))->setChecked(true);
 
-        {
-            auto boxLayout = new QVBoxLayout{groupBox};
-            for (auto radio : reasonGroup.buttons()) {
-                boxLayout->addWidget(radio);
-            }
-        }
+        auto reasonLayout = new QVBoxLayout;
+        reasonLayout->setContentsMargins({});
+        auto expander = new AnimatedExpander(i18nc("@title", "Reason for Revocation (optional)"));
+        connect(expander, &AnimatedExpander::startExpanding, q, [this, expander]() {
+            q->resize(q->size().width(), std::max(q->sizeHint().height() + expander->contentHeight() + 20, q->size().height()));
+        });
+        expander->setContentLayout(reasonLayout);
 
-        mainLayout->addWidget(groupBox);
+        ui.keyserverCheckbox = new QCheckBox({});
+        if (!haveKeyserverConfigured()) {
+            ui.keyserverCheckbox->setVisible(false);
+        } else if (keyserver().startsWith(QStringLiteral("ldap://")) || keyserver().startsWith(QStringLiteral("ldaps://"))) {
+            ui.keyserverCheckbox->setText(i18nc("@option:check", "Upload revoked certificate to internal directory"));
+        } else {
+            ui.keyserverCheckbox->setText(i18nc("@option:check", "Upload revoked certificate to %1", keyserver()));
+        }
+        ui.keyserverCheckbox->setEnabled(haveKeyserverConfigured());
+        ui.keyserverCheckbox->setChecked(keyserver().startsWith(QStringLiteral("ldap://")) || keyserver().startsWith(QStringLiteral("ldaps://")));
+        mainLayout->addWidget(ui.keyserverCheckbox);
+
+        mainLayout->addWidget(expander);
+
+        mainLayout->addStretch(1);
+
+        for (auto radio : reasonGroup.buttons()) {
+            reasonLayout->addWidget(radio);
+        }
 
         {
             ui.descriptionLabel = new QLabel{i18nc("@label:textbox", "Description (optional):"), q};
@@ -121,9 +151,9 @@ public:
             ui.descriptionError = new ErrorLabel{q};
             ui.descriptionError->setVisible(false);
 
-            mainLayout->addWidget(ui.descriptionLabel);
-            mainLayout->addWidget(ui.description);
-            mainLayout->addWidget(ui.descriptionError);
+            reasonLayout->addWidget(ui.descriptionLabel);
+            reasonLayout->addWidget(ui.description);
+            reasonLayout->addWidget(ui.descriptionError);
         }
 
         connect(ui.description, &TextEdit::editingFinished, q, [this]() {
@@ -135,7 +165,7 @@ public:
 
         ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
         auto okButton = ui.buttonBox->button(QDialogButtonBox::Ok);
-        okButton->setText(i18nc("@action:button", "Revoke Key"));
+        okButton->setText(i18nc("@action:button", "Revoke Certificate"));
         okButton->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete-remove")));
 
         mainLayout->addWidget(ui.buttonBox);
@@ -167,6 +197,8 @@ private:
         const QSize size = cfgGroup.readEntry("Size", defaultSize);
         if (size.isValid()) {
             q->resize(size);
+        } else {
+            q->resize(q->minimumSizeHint());
         }
     }
 
@@ -268,7 +300,20 @@ RevokeKeyDialog::~RevokeKeyDialog() = default;
 void RevokeKeyDialog::setKey(const GpgME::Key &key)
 {
     d->key = key;
-    d->ui.infoLabel->setText(xi18n("<para>You are about to revoke the following key:<nl/>%1</para>").arg(Formatting::summaryLine(key)));
+    auto formattedKey =
+        QStringLiteral("%1 (%2, created %3)")
+            .arg(Formatting::nameAndEmailForSummaryLine(key), Formatting::prettyID(key.subkey(0).fingerprint()), Formatting::creationDateString(key))
+            .toHtmlEscaped();
+    d->ui.infoLabel->setText(
+        xi18nc("@info",
+               "<para>You are about to revoke the following certificate:</para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
+               "strong='true'>The revocation will take effect immediately and cannot be reverted.</emphasis></para><para>Consequences: <list>"
+               "<item>You can still decrypt everything encrypted for this certificate.</item>"
+               "<item>You cannot sign anything with this certificate anymore.</item>"
+               "<item>You cannot certify other certificates with it anymore.</item>"
+               "<item>Other people can no longer encrypt with it after receiving the revocation.</item></list></para>")
+
+            .arg(formattedKey));
 }
 
 GpgME::RevocationReason RevokeKeyDialog::reason() const
@@ -281,6 +326,11 @@ QString RevokeKeyDialog::description() const
     static const QRegularExpression whitespaceAtEndOfLine{QStringLiteral(R"([ \t\r]+\n)")};
     static const QRegularExpression trailingWhitespace{QStringLiteral(R"(\s*$)")};
     return d->ui.description->toPlainText().remove(whitespaceAtEndOfLine).remove(trailingWhitespace);
+}
+
+bool RevokeKeyDialog::uploadToKeyserver() const
+{
+    return d->ui.keyserverCheckbox->isChecked();
 }
 
 #include "revokekeydialog.moc"

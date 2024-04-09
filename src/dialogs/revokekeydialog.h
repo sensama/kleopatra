@@ -36,6 +36,7 @@ public:
 
     GpgME::RevocationReason reason() const;
     QString description() const;
+    bool uploadToKeyserver() const;
 
 private:
     class Private;

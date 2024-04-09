@@ -33,6 +33,9 @@ protected:
 public:
     QDialog *dialog() const;
     void setShowsOutputWindow(bool show);
+    bool success() const;
+    void setInteractive(bool interactive);
+    bool interactive() const;
 
 private:
     virtual bool preStartHook(QWidget *parentWidget) const;

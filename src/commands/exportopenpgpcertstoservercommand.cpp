@@ -106,11 +106,11 @@ bool ExportOpenPGPCertsToServerCommand::preStartHook(QWidget *parent) const
                         d->keys().size()));
         return false;
     }
-    if (!confirmExport(d->keys(), parent)) {
+    if (interactive() && !confirmExport(d->keys(), parent)) {
         return false;
     }
 
-    return keyserver().startsWith(QLatin1String("ldap"))
+    return !interactive() || keyserver().startsWith(QLatin1String("ldap"))
         || KMessageBox::warningContinueCancel(
                parent,
                xi18nc("@info",

@@ -162,6 +162,8 @@ private:
     bool ignoresSuccessOrFailure;
     bool showsOutputWindow;
     bool canceled;
+    bool success = false;
+    bool interactive = true;
 };
 
 GnuPGProcessCommand::Private *GnuPGProcessCommand::d_func()
@@ -295,25 +297,29 @@ void GnuPGProcessCommand::Private::slotProcessFinished(int code, QProcess::ExitS
 {
     if (!canceled) {
         if (status == QProcess::CrashExit) {
+            success = false;
             const QString msg = q->crashExitMessage(arguments);
             if (!msg.isEmpty()) {
                 error(msg, q->errorCaption());
             }
         } else if (ignoresSuccessOrFailure) {
-            if (dialog) {
+            success = true;
+            if (dialog && interactive) {
                 message(i18n("Process finished"));
             } else {
                 ;
             }
         } else if (code) {
+            success = false;
             const QString msg = q->errorExitMessage(arguments);
             if (!msg.isEmpty()) {
                 error(q->errorExitMessage(arguments), q->errorCaption());
             }
         } else {
+            success = true;
             q->postSuccessHook(parentWidgetOrView());
             const QString successMessage = q->successMessage(arguments);
-            if (!successMessage.isNull()) {
+            if (!successMessage.isNull() && interactive) {
                 if (dialog) {
                     message(successMessage);
                 } else {
@@ -389,6 +395,21 @@ QString GnuPGProcessCommand::successMessage(const QStringList &args) const
 {
     Q_UNUSED(args)
     return QString();
+}
+
+bool GnuPGProcessCommand::success() const
+{
+    return d->success;
+}
+
+void GnuPGProcessCommand::setInteractive(bool interactive)
+{
+    d->interactive = interactive;
+}
+
+bool GnuPGProcessCommand::interactive() const
+{
+    return d->interactive;
 }
 
 #undef d

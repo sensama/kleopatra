@@ -73,8 +73,8 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
     mainLayout.addWidget(&contentArea, row, 0, 1, 3);
     setLayout(&mainLayout);
     connect(&toggleButton, &QToolButton::toggled, this, [this](const bool checked) {
-        Q_EMIT startExpanding();
         if (checked) {
+            Q_EMIT startExpanding();
             // make the content visible when expanding starts
             contentArea.setVisible(true);
         }

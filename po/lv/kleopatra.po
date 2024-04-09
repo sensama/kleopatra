@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:38+0000\n"
+"POT-Creation-Date: 2024-04-09 00:38+0000\n"
 "PO-Revision-Date: 2011-08-24 09:59+0300\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian\n"
@@ -675,7 +675,7 @@ msgstr "Paroles frāzes maiņa veiksmīga"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
+#: src/view/netkeywidget.cpp:210 src/view/netkeywidget.cpp:262
 #, fuzzy, kde-format
 #| msgctxt "stored..."
 #| msgid "on SmartCard with serial no. %1"
@@ -3379,7 +3379,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "X.509 sertifikāti veiksmīgi atsvaidzināti."
 
-#: src/commands/revokecertificationcommand.cpp:78
+#: src/commands/revokecertificationcommand.cpp:84
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3393,26 +3393,26 @@ msgstr ""
 "<para>Radās kļūda, mēģinot pievienot lietotāja id: <message>%1</message></"
 "para>"
 
-#: src/commands/revokecertificationcommand.cpp:83
-#: src/commands/revokecertificationcommand.cpp:97
+#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:103
 #: src/dialogs/useridswidget.cpp:431
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr ""
 
-#: src/commands/revokecertificationcommand.cpp:84
+#: src/commands/revokecertificationcommand.cpp:90
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "Revoke Certification"
 msgstr "Sertifikācija"
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:95
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr ""
 
-#: src/commands/revokecertificationcommand.cpp:91
+#: src/commands/revokecertificationcommand.cpp:97
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "You are about to revoke the following certification:"
@@ -3421,13 +3421,13 @@ msgstr[0] "Lūdzu, izvēlieties vienu no sekojošajiem sertifikātiem:"
 msgstr[1] "Lūdzu, izvēlieties vienu no sekojošajiem sertifikātiem:"
 msgstr[2] "Lūdzu, izvēlieties vienu no sekojošajiem sertifikātiem:"
 
-#: src/commands/revokecertificationcommand.cpp:98
+#: src/commands/revokecertificationcommand.cpp:104
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "Revoke Certifications"
 msgstr "Sertifikācija"
 
-#: src/commands/revokecertificationcommand.cpp:203
+#: src/commands/revokecertificationcommand.cpp:212
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3440,7 +3440,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/commands/revokecertificationcommand.cpp:208
+#: src/commands/revokecertificationcommand.cpp:217
 #, fuzzy, kde-format
 #| msgid "Lookup Certificates on Server..."
 msgctxt "@action:button"
@@ -3450,13 +3450,13 @@ msgstr[0] "Sameklēt sertifikātus uz servera..."
 msgstr[1] "Sameklēt sertifikātus uz servera..."
 msgstr[2] "Sameklēt sertifikātus uz servera..."
 
-#: src/commands/revokecertificationcommand.cpp:212
+#: src/commands/revokecertificationcommand.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr ""
 
-#: src/commands/revokecertificationcommand.cpp:235
+#: src/commands/revokecertificationcommand.cpp:245
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3469,7 +3469,7 @@ msgid ""
 msgstr ""
 "<para>Radās kļūda, ielādējot sertifikācijas: <message>%1</message></para>"
 
-#: src/commands/revokecertificationcommand.cpp:326
+#: src/commands/revokecertificationcommand.cpp:336
 #, fuzzy, kde-format
 #| msgid ""
 #| "This certificate was new to your keystore. The secret key is available."
@@ -3478,7 +3478,7 @@ msgstr ""
 "Šis sertifikāts bija jaunums jūsu atslēgu glabātuvē. Slepenā atslēga ir "
 "pieejama."
 
-#: src/commands/revokecertificationcommand.cpp:329
+#: src/commands/revokecertificationcommand.cpp:339
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgid "You cannot revoke any certifications of this user ID."
@@ -3487,7 +3487,7 @@ msgstr[0] "Paraksta derīgumu nevar apstiprināt."
 msgstr[1] "Paraksta derīgumu nevar apstiprināt."
 msgstr[2] "Paraksta derīgumu nevar apstiprināt."
 
-#: src/commands/revokecertificationcommand.cpp:334
+#: src/commands/revokecertificationcommand.cpp:344
 #, fuzzy, kde-format
 #| msgid ""
 #| "This certificate was new to your keystore. The secret key is available."
@@ -11976,6 +11976,20 @@ msgstr "Neizdevās dzēst mapi %1"
 msgid "Cannot remove file %1: %2"
 msgstr "Neizdevās dzēst failu %1: %2"
 
+#: src/view/cardkeysview.cpp:54
+#, fuzzy, kde-format
+#| msgid "Certificates"
+msgctxt "@label:listbox"
+msgid "Certificates:"
+msgstr "Sertifikāti"
+
+#: src/view/cardkeysview.cpp:188
+#, fuzzy, kde-format
+#| msgid "Loading certificate cache..."
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr "Ielādē sertifikātu kešatmiņu..."
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12295,33 +12309,27 @@ msgstr "Hierarhisks sertifikātu saraksts"
 msgid "List of certificates"
 msgstr "Saraksts ar publiskajiem X.509 sertifikātiem"
 
-#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
-#: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
+#: src/view/netkeywidget.cpp:72
 #, fuzzy, kde-format
 #| msgid "Serial number"
+msgctxt "@label"
 msgid "Serial number:"
 msgstr "Sērijas numurs"
 
-#: src/view/netkeywidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Certificates"
-msgid "Certificates:"
-msgstr "Sertifikāti"
-
-#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
 #, fuzzy, kde-format
 #| msgid "Actions"
 msgid "Actions:"
 msgstr "Darbības"
 
-#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Create a personal OpenPGP key pair"
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Izveidot personīgo OpenPGP atslēgu pāri"
 
-#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
@@ -12329,7 +12337,7 @@ msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Importētie sertifikāti no %1"
 
-#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, fuzzy, kde-format
 #| msgctxt "@action"
@@ -12338,66 +12346,68 @@ msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "Izveidot atslēgu"
 
-#: src/view/netkeywidget.cpp:137
+#: src/view/netkeywidget.cpp:111
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
 msgstr "Izveidot personīgo X.509 atslēgu pāri un sertificēšanas pieprasījumu "
 
-#: src/view/netkeywidget.cpp:145
+#: src/view/netkeywidget.cpp:120
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
-msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+msgctxt ""
+"@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Mainīt paroles frāzi..."
 
-#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
+#: src/view/netkeywidget.cpp:122
+#, fuzzy, kde-format
+#| msgid "Change Passphrase..."
+msgctxt ""
+"@action:button SigG is an identifier for a type of keys on a NetKey card"
+msgid "Change SigG PIN"
+msgstr "Mainīt paroles frāzi..."
+
+#: src/view/netkeywidget.cpp:168
+#, kde-format
+msgctxt "1 is a Version number"
+msgid "NetKey v%1 Card"
+msgstr ""
+
+#: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
+#, kde-format
+msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+msgid "Set SigG PIN"
+msgstr ""
+
+#: src/view/netkeywidget.cpp:183
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Mainīt paroles frāzi..."
 
-#: src/view/netkeywidget.cpp:197
-#, kde-format
-msgctxt "1 is a Version number"
-msgid "NetKey v%1 Card"
-msgstr ""
-
-#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
-#, kde-format
-msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-msgid "Set SigG PIN"
-msgstr ""
-
-#: src/view/netkeywidget.cpp:217
+#: src/view/netkeywidget.cpp:188
 #, fuzzy, kde-format
 #| msgid "Error"
 msgid "Error"
 msgstr "Kļūda"
 
-#: src/view/netkeywidget.cpp:328
-#, fuzzy, kde-format
-#| msgid "Loading certificate cache..."
-msgctxt "@info"
-msgid "Reading certificates from smart card ..."
-msgstr "Ielādē sertifikātu kešatmiņu..."
-
-#: src/view/netkeywidget.cpp:379
+#: src/view/netkeywidget.cpp:248
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgid "Select Key"
 msgstr "Izvēlieties failu"
 
-#: src/view/netkeywidget.cpp:380
+#: src/view/netkeywidget.cpp:249
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
 msgstr "Izveidot personīgo X.509 atslēgu pāri un sertificēšanas pieprasījumu "
 
-#: src/view/netkeywidget.cpp:398
+#: src/view/netkeywidget.cpp:267
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -12526,34 +12536,41 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:94
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/pivcardwidget.cpp:112
+#, fuzzy, kde-format
+#| msgid "Serial number"
+msgid "Serial number:"
+msgstr "Sērijas numurs"
+
+#: src/view/p15cardwidget.cpp:96
 #, fuzzy, kde-format
 #| msgid "OpenPGP"
 msgid "OpenPGP keys:"
 msgstr "OpenPGP"
 
-#: src/view/p15cardwidget.cpp:115
+#: src/view/p15cardwidget.cpp:120
 #, fuzzy, kde-format
 #| msgid "Scanning directories..."
 msgid "Searching in directory service..."
 msgstr "Skenē mapes..."
 
-#: src/view/p15cardwidget.cpp:130
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Automatic import finished."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:138
+#: src/view/p15cardwidget.cpp:143
 #, kde-format
 msgid "Key not found in directory service."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:147
+#: src/view/p15cardwidget.cpp:152
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"

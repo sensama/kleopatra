@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:38+0000\n"
+"POT-Creation-Date: 2024-04-09 00:38+0000\n"
 "PO-Revision-Date: 2009-02-27 21:59+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -663,7 +663,7 @@ msgstr "सीआरएल कैस साफ करना पूरा"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
+#: src/view/netkeywidget.cpp:210 src/view/netkeywidget.cpp:262
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -3202,7 +3202,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "प्रमानपत्र सफलता से बनाय गिस"
 
-#: src/commands/revokecertificationcommand.cpp:78
+#: src/commands/revokecertificationcommand.cpp:84
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to export the secret key:</p><p><b>"
@@ -3215,8 +3215,8 @@ msgstr ""
 "<qt><p>गोपनीय कुंजी:</p><p><b>%1</b></p> ल निर्यात करे के कोसिसों के समय एक गलती "
 "होइस</qt>"
 
-#: src/commands/revokecertificationcommand.cpp:83
-#: src/commands/revokecertificationcommand.cpp:97
+#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:103
 #: src/dialogs/useridswidget.cpp:431
 #, fuzzy, kde-format
 #| msgid "Information"
@@ -3224,31 +3224,31 @@ msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr "जानकारी"
 
-#: src/commands/revokecertificationcommand.cpp:84
+#: src/commands/revokecertificationcommand.cpp:90
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "Revoke Certification"
 msgstr "प्रमानपत्र"
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:95
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr ""
 
-#: src/commands/revokecertificationcommand.cpp:91
+#: src/commands/revokecertificationcommand.cpp:97
 #, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/commands/revokecertificationcommand.cpp:98
+#: src/commands/revokecertificationcommand.cpp:104
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "Revoke Certifications"
 msgstr "प्रमानपत्र"
 
-#: src/commands/revokecertificationcommand.cpp:203
+#: src/commands/revokecertificationcommand.cpp:212
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3260,7 +3260,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/commands/revokecertificationcommand.cpp:208
+#: src/commands/revokecertificationcommand.cpp:217
 #, fuzzy, kde-format
 #| msgid "Information"
 msgctxt "@action:button"
@@ -3269,14 +3269,14 @@ msgid_plural "Publish Revocations"
 msgstr[0] "जानकारी"
 msgstr[1] "जानकारी"
 
-#: src/commands/revokecertificationcommand.cpp:212
+#: src/commands/revokecertificationcommand.cpp:221
 #, fuzzy, kde-format
 #| msgid "Information"
 msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr "जानकारी"
 
-#: src/commands/revokecertificationcommand.cpp:235
+#: src/commands/revokecertificationcommand.cpp:245
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -3289,13 +3289,13 @@ msgstr ""
 "<qt><p>प्रमानपत्र:</p><p><b>%1</b></p> निर्यात करे के कोसिसों के समय एक गलती हो "
 "गिस</qt>"
 
-#: src/commands/revokecertificationcommand.cpp:326
+#: src/commands/revokecertificationcommand.cpp:336
 #, fuzzy, kde-format
 #| msgid "Certifying other Certificates"
 msgid "You cannot revoke any certifications of this key."
 msgstr "दूसर प्रमानपत्र प्रमानित करत हे"
 
-#: src/commands/revokecertificationcommand.cpp:329
+#: src/commands/revokecertificationcommand.cpp:339
 #, fuzzy, kde-format
 #| msgid "Certifying other Certificates"
 msgid "You cannot revoke any certifications of this user ID."
@@ -3303,7 +3303,7 @@ msgid_plural "You cannot revoke any certifications of these user IDs."
 msgstr[0] "दूसर प्रमानपत्र प्रमानित करत हे"
 msgstr[1] "दूसर प्रमानपत्र प्रमानित करत हे"
 
-#: src/commands/revokecertificationcommand.cpp:334
+#: src/commands/revokecertificationcommand.cpp:344
 #, fuzzy, kde-format
 #| msgid "Certifying other Certificates"
 msgid "You cannot revoke this certification."
@@ -11294,6 +11294,20 @@ msgstr "फाइल ल सहेज नइ सकिस %1: %2"
 msgid "Cannot remove file %1: %2"
 msgstr "फाइल ल सहेज नइ सकिस %1: %2"
 
+#: src/view/cardkeysview.cpp:54
+#, fuzzy, kde-format
+#| msgid "Certificates"
+msgctxt "@label:listbox"
+msgid "Certificates:"
+msgstr "प्रमानपत्र"
+
+#: src/view/cardkeysview.cpp:188
+#, fuzzy, kde-format
+#| msgid "Imported Certificates"
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr "आयात करे गे प्रमानपत्र"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -11600,39 +11614,33 @@ msgstr "हियरार्चिकल प्रमानपत्र सू�
 msgid "List of certificates"
 msgstr "ए मोर प्रमानपत्र हे"
 
-#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
-#: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
+#: src/view/netkeywidget.cpp:72
 #, fuzzy, kde-format
 #| msgid "Serial number"
+msgctxt "@label"
 msgid "Serial number:"
 msgstr "सीरियल नंबर"
 
-#: src/view/netkeywidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Certificates"
-msgid "Certificates:"
-msgstr "प्रमानपत्र"
-
-#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
 #, fuzzy, kde-format
 #| msgid "Actions"
 msgid "Actions:"
 msgstr "काम"
 
-#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr ""
 
-#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
 #, fuzzy, kde-format
 #| msgid "Imported Certificates"
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "आयात करे गे प्रमानपत्र"
 
-#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, fuzzy, kde-format
 #| msgctxt "@action"
@@ -11641,66 +11649,68 @@ msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "कुंजी बनाव"
 
-#: src/view/netkeywidget.cpp:137
+#: src/view/netkeywidget.cpp:111
 #, fuzzy, kde-format
 #| msgid "&Generate Key Pair && Certificate Request"
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
 msgstr "कुंजी युगल अउ प्रमानपत्र निवेदन बनाव (&G)"
 
-#: src/view/netkeywidget.cpp:145
+#: src/view/netkeywidget.cpp:120
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
-msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+msgctxt ""
+"@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "बिन बदले:"
 
-#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
+#: src/view/netkeywidget.cpp:122
+#, fuzzy, kde-format
+#| msgid "Unchanged:"
+msgctxt ""
+"@action:button SigG is an identifier for a type of keys on a NetKey card"
+msgid "Change SigG PIN"
+msgstr "बिन बदले:"
+
+#: src/view/netkeywidget.cpp:168
+#, kde-format
+msgctxt "1 is a Version number"
+msgid "NetKey v%1 Card"
+msgstr ""
+
+#: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
+#, kde-format
+msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+msgid "Set SigG PIN"
+msgstr ""
+
+#: src/view/netkeywidget.cpp:183
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "बिन बदले:"
 
-#: src/view/netkeywidget.cpp:197
-#, kde-format
-msgctxt "1 is a Version number"
-msgid "NetKey v%1 Card"
-msgstr ""
-
-#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
-#, kde-format
-msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-msgid "Set SigG PIN"
-msgstr ""
-
-#: src/view/netkeywidget.cpp:217
+#: src/view/netkeywidget.cpp:188
 #, fuzzy, kde-format
 #| msgid "Error"
 msgid "Error"
 msgstr "गलती"
 
-#: src/view/netkeywidget.cpp:328
-#, fuzzy, kde-format
-#| msgid "Imported Certificates"
-msgctxt "@info"
-msgid "Reading certificates from smart card ..."
-msgstr "आयात करे गे प्रमानपत्र"
-
-#: src/view/netkeywidget.cpp:379
+#: src/view/netkeywidget.cpp:248
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgid "Select Key"
 msgstr "फाइल चुनव"
 
-#: src/view/netkeywidget.cpp:380
+#: src/view/netkeywidget.cpp:249
 #, fuzzy, kde-format
 #| msgid "&Generate Key Pair && Certificate Request"
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
 msgstr "कुंजी युगल अउ प्रमानपत्र निवेदन बनाव (&G)"
 
-#: src/view/netkeywidget.cpp:398
+#: src/view/netkeywidget.cpp:267
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -11823,34 +11833,41 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:94
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/pivcardwidget.cpp:112
+#, fuzzy, kde-format
+#| msgid "Serial number"
+msgid "Serial number:"
+msgstr "सीरियल नंबर"
+
+#: src/view/p15cardwidget.cpp:96
 #, fuzzy, kde-format
 #| msgid "OpenPGP"
 msgid "OpenPGP keys:"
 msgstr "ओपनपीजीपी"
 
-#: src/view/p15cardwidget.cpp:115
+#: src/view/p15cardwidget.cpp:120
 #, fuzzy, kde-format
 #| msgid "Fetching certificate from server..."
 msgid "Searching in directory service..."
 msgstr "सर्वर से प्रमानपत्र प्राप्त करत हे..."
 
-#: src/view/p15cardwidget.cpp:130
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Automatic import finished."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:138
+#: src/view/p15cardwidget.cpp:143
 #, kde-format
 msgid "Key not found in directory service."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:147
+#: src/view/p15cardwidget.cpp:152
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"

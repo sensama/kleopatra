@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:38+0000\n"
+"POT-Creation-Date: 2024-04-09 00:38+0000\n"
 "PO-Revision-Date: 2024-04-06 11:09+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -618,7 +618,7 @@ msgstr "Frase de pas canviada correctament"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
+#: src/view/netkeywidget.cpp:210 src/view/netkeywidget.cpp:262
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr ""
@@ -3167,7 +3167,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "Els certificats X.509 s'han actualitzat correctament."
 
-#: src/commands/revokecertificationcommand.cpp:78
+#: src/commands/revokecertificationcommand.cpp:84
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3177,37 +3177,37 @@ msgstr ""
 "<para>Esteu a punt de revocar la certificació de l'ID de l'usuari<nl/>%1<nl/"
 ">efectuada amb la clau<nl/>%2.</para>"
 
-#: src/commands/revokecertificationcommand.cpp:83
-#: src/commands/revokecertificationcommand.cpp:97
+#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:103
 #: src/dialogs/useridswidget.cpp:431
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr "Confirmació de la revocació"
 
-#: src/commands/revokecertificationcommand.cpp:84
+#: src/commands/revokecertificationcommand.cpp:90
 #, kde-format
 msgid "Revoke Certification"
 msgstr "Revocació de la certificació"
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:95
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr "ID de l'usuari «%1» certificada amb la clau %2"
 
-#: src/commands/revokecertificationcommand.cpp:91
+#: src/commands/revokecertificationcommand.cpp:97
 #, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] "Esteu a punt de revocar la certificació següent:"
 msgstr[1] "Esteu a punt de revocar les %1 certificacions següents:"
 
-#: src/commands/revokecertificationcommand.cpp:98
+#: src/commands/revokecertificationcommand.cpp:104
 #, kde-format
 msgid "Revoke Certifications"
 msgstr "Revoca les certificacions"
 
-#: src/commands/revokecertificationcommand.cpp:203
+#: src/commands/revokecertificationcommand.cpp:212
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3223,7 +3223,7 @@ msgstr[1] ""
 "<para>Les %1 certificacions s'han revocat correctament.</para><para>Voleu "
 "publicar les revocacions?</para>"
 
-#: src/commands/revokecertificationcommand.cpp:208
+#: src/commands/revokecertificationcommand.cpp:217
 #, kde-format
 msgctxt "@action:button"
 msgid "Publish Revocation"
@@ -3231,13 +3231,13 @@ msgid_plural "Publish Revocations"
 msgstr[0] "Publica la revocació"
 msgstr[1] "Publica les revocacions"
 
-#: src/commands/revokecertificationcommand.cpp:212
+#: src/commands/revokecertificationcommand.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr "Confirmació de la publicació"
 
-#: src/commands/revokecertificationcommand.cpp:235
+#: src/commands/revokecertificationcommand.cpp:245
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3247,19 +3247,19 @@ msgstr ""
 "<para>Ha fallat la revocació de la certificació de l'ID de l'usuari<nl/>"
 "%1<nl/>feta amb la clau<nl/>%2<nl/>:</para><para><message>%3</message></para>"
 
-#: src/commands/revokecertificationcommand.cpp:326
+#: src/commands/revokecertificationcommand.cpp:336
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
 msgstr "No podeu revocar cap certificació d'esta clau."
 
-#: src/commands/revokecertificationcommand.cpp:329
+#: src/commands/revokecertificationcommand.cpp:339
 #, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
 msgstr[0] "No podeu revocar cap certificació d'este ID d'usuari."
 msgstr[1] "No podeu revocar cap certificació d'estos ID d'usuari."
 
-#: src/commands/revokecertificationcommand.cpp:334
+#: src/commands/revokecertificationcommand.cpp:344
 #, kde-format
 msgid "You cannot revoke this certification."
 msgstr "No podeu revocar esta certificació."
@@ -11431,6 +11431,19 @@ msgstr "No s'ha pogut eliminar el directori %1"
 msgid "Cannot remove file %1: %2"
 msgstr "No s'ha pogut eliminar el fitxer %1: %2"
 
+#: src/view/cardkeysview.cpp:54
+#, fuzzy, kde-format
+#| msgid "Certificates:"
+msgctxt "@label:listbox"
+msgid "Certificates:"
+msgstr "Certificats:"
+
+#: src/view/cardkeysview.cpp:188
+#, kde-format
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr "S'estan llegint els certificats de la targeta intel·ligent..."
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -11712,42 +11725,38 @@ msgstr "Llista jeràrquica de certificats"
 msgid "List of certificates"
 msgstr "Llista de certificats"
 
-#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
-#: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
-#, kde-format
+#: src/view/netkeywidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Serial number:"
+msgctxt "@label"
 msgid "Serial number:"
 msgstr "Número de sèrie:"
 
-#: src/view/netkeywidget.cpp:96
-#, kde-format
-msgid "Certificates:"
-msgstr "Certificats:"
-
-#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
 #, kde-format
 msgid "Actions:"
 msgstr "Accions:"
 
-#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Crea una clau OpenPGP"
 
-#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Crea una clau OpenPGP per a les claus emmagatzemades en la targeta."
 
-#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "Crea una CSR"
 
-#: src/view/netkeywidget.cpp:137
+#: src/view/netkeywidget.cpp:111
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
@@ -11755,47 +11764,53 @@ msgstr ""
 "Crea una sol·licitud per a signar el certificat per a una clau emmagatzemada "
 "en la targeta."
 
-#: src/view/netkeywidget.cpp:145
-#, kde-format
-msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#: src/view/netkeywidget.cpp:120
+#, fuzzy, kde-format
+#| msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#| msgid "Change NKS PIN"
+msgctxt ""
+"@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Canvia el PIN de NKS"
 
-#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
-#, kde-format
-msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#: src/view/netkeywidget.cpp:122
+#, fuzzy, kde-format
+#| msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#| msgid "Change SigG PIN"
+msgctxt ""
+"@action:button SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Canvia el PIN de SigG"
 
-#: src/view/netkeywidget.cpp:197
+#: src/view/netkeywidget.cpp:168
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "Targeta NetKey v%1"
 
-#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "Establix el PIN de SigG"
 
-#: src/view/netkeywidget.cpp:217
+#: src/view/netkeywidget.cpp:183
+#, kde-format
+msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+msgid "Change SigG PIN"
+msgstr "Canvia el PIN de SigG"
+
+#: src/view/netkeywidget.cpp:188
 #, kde-format
 msgid "Error"
 msgstr "S'ha produït un error"
 
-#: src/view/netkeywidget.cpp:328
-#, kde-format
-msgctxt "@info"
-msgid "Reading certificates from smart card ..."
-msgstr "S'estan llegint els certificats de la targeta intel·ligent..."
-
-#: src/view/netkeywidget.cpp:379
+#: src/view/netkeywidget.cpp:248
 #, kde-format
 msgid "Select Key"
 msgstr "Selecciona una clau"
 
-#: src/view/netkeywidget.cpp:380
+#: src/view/netkeywidget.cpp:249
 #, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
@@ -11803,7 +11818,7 @@ msgstr ""
 "Seleccioneu la clau amb la qual voleu crear una sol·licitud per a signar el "
 "certificat:"
 
-#: src/view/netkeywidget.cpp:398
+#: src/view/netkeywidget.cpp:267
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -11928,32 +11943,38 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "Ho sentim, no s'ha pogut trobar la clau amb l'empremta digital %1."
 
-#: src/view/p15cardwidget.cpp:94
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/pivcardwidget.cpp:112
+#, kde-format
+msgid "Serial number:"
+msgstr "Número de sèrie:"
+
+#: src/view/p15cardwidget.cpp:96
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "Claus OpenPGP:"
 
-#: src/view/p15cardwidget.cpp:115
+#: src/view/p15cardwidget.cpp:120
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "S'està buscant en el servei de directori..."
 
-#: src/view/p15cardwidget.cpp:130
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Automatic import finished."
 msgstr "S'ha finalitzat la importació automàtica."
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "S'ha produït un error de múltiples claus trobades en el servidor."
 
-#: src/view/p15cardwidget.cpp:138
+#: src/view/p15cardwidget.cpp:143
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "No s'ha trobat la clau en el servei de directori."
 
-#: src/view/p15cardwidget.cpp:147
+#: src/view/p15cardwidget.cpp:152
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"

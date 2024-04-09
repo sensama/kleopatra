@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:38+0000\n"
+"POT-Creation-Date: 2024-04-09 00:38+0000\n"
 "PO-Revision-Date: 2024-04-06 15:01+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -621,7 +621,7 @@ msgstr "Успішна зміна пароля"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
+#: src/view/netkeywidget.cpp:210 src/view/netkeywidget.cpp:262
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Не вдалося знайти смарт-картку із таким серійним номером: %1"
@@ -3176,7 +3176,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "Сертифікати X.509 успішно освіжено."
 
-#: src/commands/revokecertificationcommand.cpp:78
+#: src/commands/revokecertificationcommand.cpp:84
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3186,25 +3186,25 @@ msgstr ""
 "<para>Ви маєте намір відкликати сертифікацію ідентифікатора користувача<nl/>"
 "%1,<nl/>яку виконано за допомогою ключа<nl/>%2.</para>"
 
-#: src/commands/revokecertificationcommand.cpp:83
-#: src/commands/revokecertificationcommand.cpp:97
+#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:103
 #: src/dialogs/useridswidget.cpp:431
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr "Підтвердження відкликання"
 
-#: src/commands/revokecertificationcommand.cpp:84
+#: src/commands/revokecertificationcommand.cpp:90
 #, kde-format
 msgid "Revoke Certification"
 msgstr "Відкликати сертифікацію"
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:95
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr "Ідентифікатор користувача «%1» сертифіковано ключем %2"
 
-#: src/commands/revokecertificationcommand.cpp:91
+#: src/commands/revokecertificationcommand.cpp:97
 #, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
@@ -3213,12 +3213,12 @@ msgstr[1] "Ви наказали програмі відкликати такі 
 msgstr[2] "Ви наказали програмі відкликати такі %1 сертифікацій:"
 msgstr[3] "Ви наказали програмі відкликати таку сертифікацію:"
 
-#: src/commands/revokecertificationcommand.cpp:98
+#: src/commands/revokecertificationcommand.cpp:104
 #, kde-format
 msgid "Revoke Certifications"
 msgstr "Відкликати сертифікації"
 
-#: src/commands/revokecertificationcommand.cpp:203
+#: src/commands/revokecertificationcommand.cpp:212
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3240,7 +3240,7 @@ msgstr[3] ""
 "<para>Сертифікацію було успішно відкликано.</para><para>Хочете оприлюднити "
 "відкликання?</para>"
 
-#: src/commands/revokecertificationcommand.cpp:208
+#: src/commands/revokecertificationcommand.cpp:217
 #, kde-format
 msgctxt "@action:button"
 msgid "Publish Revocation"
@@ -3250,13 +3250,13 @@ msgstr[1] "Оприлюднити відкликання"
 msgstr[2] "Оприлюднити відкликання"
 msgstr[3] "Оприлюднити відкликання"
 
-#: src/commands/revokecertificationcommand.cpp:212
+#: src/commands/revokecertificationcommand.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr "Підтвердження оприлюднення"
 
-#: src/commands/revokecertificationcommand.cpp:235
+#: src/commands/revokecertificationcommand.cpp:245
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3267,12 +3267,12 @@ msgstr ""
 "користувача<nl/>%1,<nl/>яку виконано за допомогою ключа<nl/>%2<nl/>Причина:</"
 "para><para><message>%3</message></para>"
 
-#: src/commands/revokecertificationcommand.cpp:326
+#: src/commands/revokecertificationcommand.cpp:336
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
 msgstr "Ви не можете відкликати жодної сертифікації цього ключа."
 
-#: src/commands/revokecertificationcommand.cpp:329
+#: src/commands/revokecertificationcommand.cpp:339
 #, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
@@ -3285,7 +3285,7 @@ msgstr[2] ""
 msgstr[3] ""
 "Ви не можете відкликати жодної сертифікації цього ідентифікатора користувача."
 
-#: src/commands/revokecertificationcommand.cpp:334
+#: src/commands/revokecertificationcommand.cpp:344
 #, kde-format
 msgid "You cannot revoke this certification."
 msgstr "Не можна відкликати цю сертифікацію."
@@ -11492,6 +11492,19 @@ msgstr "Не вдалося вилучити каталог %1"
 msgid "Cannot remove file %1: %2"
 msgstr "Не вдалося вилучити файл %1: %2"
 
+#: src/view/cardkeysview.cpp:54
+#, fuzzy, kde-format
+#| msgid "Certificates:"
+msgctxt "@label:listbox"
+msgid "Certificates:"
+msgstr "Сертифікати:"
+
+#: src/view/cardkeysview.cpp:188
+#, kde-format
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr "Читаємо сертифікати зі смарт-картки…"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -11775,42 +11788,38 @@ msgstr "Ієрархічний список сертифікатів"
 msgid "List of certificates"
 msgstr "Список сертифікатів"
 
-#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
-#: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
-#, kde-format
+#: src/view/netkeywidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Serial number:"
+msgctxt "@label"
 msgid "Serial number:"
 msgstr "Серійний номер:"
 
-#: src/view/netkeywidget.cpp:96
-#, kde-format
-msgid "Certificates:"
-msgstr "Сертифікати:"
-
-#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
 #, kde-format
 msgid "Actions:"
 msgstr "Дії:"
 
-#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Створити ключ OpenPGP"
 
-#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Створити ключ OpenPGP для ключів, які зберігаються на картці."
 
-#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "Створити ЗПС"
 
-#: src/view/netkeywidget.cpp:137
+#: src/view/netkeywidget.cpp:111
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
@@ -11818,47 +11827,53 @@ msgstr ""
 "Створити запит на підписування сертифіката для ключа, який зберігається на "
 "картці."
 
-#: src/view/netkeywidget.cpp:145
-#, kde-format
-msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#: src/view/netkeywidget.cpp:120
+#, fuzzy, kde-format
+#| msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#| msgid "Change NKS PIN"
+msgctxt ""
+"@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Змінити пінкод NKS"
 
-#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
-#, kde-format
-msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#: src/view/netkeywidget.cpp:122
+#, fuzzy, kde-format
+#| msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#| msgid "Change SigG PIN"
+msgctxt ""
+"@action:button SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Змінити пінкод SigG"
 
-#: src/view/netkeywidget.cpp:197
+#: src/view/netkeywidget.cpp:168
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "Картка NetKey v%1"
 
-#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "Встановити пінкод SigG"
 
-#: src/view/netkeywidget.cpp:217
+#: src/view/netkeywidget.cpp:183
+#, kde-format
+msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+msgid "Change SigG PIN"
+msgstr "Змінити пінкод SigG"
+
+#: src/view/netkeywidget.cpp:188
 #, kde-format
 msgid "Error"
 msgstr "Помилка"
 
-#: src/view/netkeywidget.cpp:328
-#, kde-format
-msgctxt "@info"
-msgid "Reading certificates from smart card ..."
-msgstr "Читаємо сертифікати зі смарт-картки…"
-
-#: src/view/netkeywidget.cpp:379
+#: src/view/netkeywidget.cpp:248
 #, kde-format
 msgid "Select Key"
 msgstr "Виберіть ключ"
 
-#: src/view/netkeywidget.cpp:380
+#: src/view/netkeywidget.cpp:249
 #, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
@@ -11866,7 +11881,7 @@ msgstr ""
 "Будь ласка, виберіть ключ, для якого ви хочете створити запит щодо "
 "підписування сертифіката:"
 
-#: src/view/netkeywidget.cpp:398
+#: src/view/netkeywidget.cpp:267
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -11990,32 +12005,38 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "Вибачте, не вдалося знайти ключа із відбитком %1."
 
-#: src/view/p15cardwidget.cpp:94
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/pivcardwidget.cpp:112
+#, kde-format
+msgid "Serial number:"
+msgstr "Серійний номер:"
+
+#: src/view/p15cardwidget.cpp:96
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "Ключі OpenPGP:"
 
-#: src/view/p15cardwidget.cpp:115
+#: src/view/p15cardwidget.cpp:120
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "Шукаємо у службі каталогів…"
 
-#: src/view/p15cardwidget.cpp:130
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Automatic import finished."
 msgstr "Автоматичне імпортування завершено."
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "Помилка: на сервері знайдено декілька ключів."
 
-#: src/view/p15cardwidget.cpp:138
+#: src/view/p15cardwidget.cpp:143
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "У службі каталогів ключ не знайдено."
 
-#: src/view/p15cardwidget.cpp:147
+#: src/view/p15cardwidget.cpp:152
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"

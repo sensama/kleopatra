@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:38+0000\n"
-"PO-Revision-Date: 2024-04-07 14:29\n"
+"POT-Creation-Date: 2024-04-09 00:38+0000\n"
+"PO-Revision-Date: 2024-04-08 19:11\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -582,7 +582,7 @@ msgstr "密码句更改成功"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
+#: src/view/netkeywidget.cpp:210 src/view/netkeywidget.cpp:262
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "未能找到此序列号的智能卡：%1"
@@ -2962,7 +2962,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "X.509 证书刷新成功。"
 
-#: src/commands/revokecertificationcommand.cpp:78
+#: src/commands/revokecertificationcommand.cpp:84
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2970,36 +2970,36 @@ msgid ""
 "with the key<nl/>%2.</para>"
 msgstr "<para>您正在吊销用户ID<nl/>%1<nl/>使用密钥<nl/>%2签发的认证。</para>"
 
-#: src/commands/revokecertificationcommand.cpp:83
-#: src/commands/revokecertificationcommand.cpp:97
+#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:103
 #: src/dialogs/useridswidget.cpp:431
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr "确认吊销"
 
-#: src/commands/revokecertificationcommand.cpp:84
+#: src/commands/revokecertificationcommand.cpp:90
 #, kde-format
 msgid "Revoke Certification"
 msgstr "吊销证书"
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:95
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr "用户 ID%1被密钥 %2认证"
 
-#: src/commands/revokecertificationcommand.cpp:91
+#: src/commands/revokecertificationcommand.cpp:97
 #, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] "您正在撤销以下 %1 张证书："
 
-#: src/commands/revokecertificationcommand.cpp:98
+#: src/commands/revokecertificationcommand.cpp:104
 #, kde-format
 msgid "Revoke Certifications"
 msgstr "吊销证书"
 
-#: src/commands/revokecertificationcommand.cpp:203
+#: src/commands/revokecertificationcommand.cpp:212
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3011,20 +3011,20 @@ msgid_plural ""
 msgstr[0] ""
 "<para>%1 证书已成功吊销。</para><para>您想要发布撤销到服务器吗？</para>"
 
-#: src/commands/revokecertificationcommand.cpp:208
+#: src/commands/revokecertificationcommand.cpp:217
 #, kde-format
 msgctxt "@action:button"
 msgid "Publish Revocation"
 msgid_plural "Publish Revocations"
 msgstr[0] "发布"
 
-#: src/commands/revokecertificationcommand.cpp:212
+#: src/commands/revokecertificationcommand.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr "确认发布"
 
-#: src/commands/revokecertificationcommand.cpp:235
+#: src/commands/revokecertificationcommand.cpp:245
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3034,18 +3034,18 @@ msgstr ""
 "无法使用密钥<nl/>%2<nl/><para>吊销证书<nl/>%1<nl/>：</para><para><message>"
 "%3</message></para>"
 
-#: src/commands/revokecertificationcommand.cpp:326
+#: src/commands/revokecertificationcommand.cpp:336
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
 msgstr "您不能吊销此密钥的任何认证。"
 
-#: src/commands/revokecertificationcommand.cpp:329
+#: src/commands/revokecertificationcommand.cpp:339
 #, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
 msgstr[0] "您不能吊销此ID的任何认证。"
 
-#: src/commands/revokecertificationcommand.cpp:334
+#: src/commands/revokecertificationcommand.cpp:344
 #, kde-format
 msgid "You cannot revoke this certification."
 msgstr "您不能吊销此证书。"
@@ -10721,6 +10721,19 @@ msgstr "无法删除目录 %1"
 msgid "Cannot remove file %1: %2"
 msgstr "无法删除文件 %1：%2"
 
+#: src/view/cardkeysview.cpp:54
+#, fuzzy, kde-format
+#| msgid "Certificates:"
+msgctxt "@label:listbox"
+msgid "Certificates:"
+msgstr "证书："
+
+#: src/view/cardkeysview.cpp:188
+#, kde-format
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr ""
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -10998,94 +11011,96 @@ msgstr "证书分类列表"
 msgid "List of certificates"
 msgstr "证书列表"
 
-#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
-#: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
-#, kde-format
+#: src/view/netkeywidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Serial number:"
+msgctxt "@label"
 msgid "Serial number:"
 msgstr "序列号："
 
-#: src/view/netkeywidget.cpp:96
-#, kde-format
-msgid "Certificates:"
-msgstr "证书："
-
-#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
 #, kde-format
 msgid "Actions:"
 msgstr "操作："
 
-#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "创建 OpenPGP 密钥"
 
-#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "为存储在卡片上的密钥创建一个 OpenPGP 密钥。"
 
-#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "创建 CSR"
 
-#: src/view/netkeywidget.cpp:137
+#: src/view/netkeywidget.cpp:111
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
 msgstr "为存储在卡片上的密钥创建证书签名请求。"
 
-#: src/view/netkeywidget.cpp:145
-#, kde-format
-msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#: src/view/netkeywidget.cpp:120
+#, fuzzy, kde-format
+#| msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#| msgid "Change NKS PIN"
+msgctxt ""
+"@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "更改 NKS PIN"
 
-#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
-#, kde-format
-msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#: src/view/netkeywidget.cpp:122
+#, fuzzy, kde-format
+#| msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#| msgid "Change SigG PIN"
+msgctxt ""
+"@action:button SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "更改 SigG PIN"
 
-#: src/view/netkeywidget.cpp:197
+#: src/view/netkeywidget.cpp:168
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "NetKey v%1 卡"
 
-#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "设置 SigG 卡 PIN 码"
 
-#: src/view/netkeywidget.cpp:217
+#: src/view/netkeywidget.cpp:183
+#, kde-format
+msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+msgid "Change SigG PIN"
+msgstr "更改 SigG PIN"
+
+#: src/view/netkeywidget.cpp:188
 #, kde-format
 msgid "Error"
 msgstr "误差"
 
-#: src/view/netkeywidget.cpp:328
-#, kde-format
-msgctxt "@info"
-msgid "Reading certificates from smart card ..."
-msgstr ""
-
-#: src/view/netkeywidget.cpp:379
+#: src/view/netkeywidget.cpp:248
 #, kde-format
 msgid "Select Key"
 msgstr "选择密钥"
 
-#: src/view/netkeywidget.cpp:380
+#: src/view/netkeywidget.cpp:249
 #, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
 msgstr "请选择您想要创建证书签名请求（CSR）的密钥："
 
-#: src/view/netkeywidget.cpp:398
+#: src/view/netkeywidget.cpp:267
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -11202,32 +11217,38 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "抱歉，本程序无法找到指纹为 %1 的密钥。"
 
-#: src/view/p15cardwidget.cpp:94
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/pivcardwidget.cpp:112
+#, kde-format
+msgid "Serial number:"
+msgstr "序列号："
+
+#: src/view/p15cardwidget.cpp:96
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "OpenPGP 密钥:"
 
-#: src/view/p15cardwidget.cpp:115
+#: src/view/p15cardwidget.cpp:120
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "正在目录服务中搜索..."
 
-#: src/view/p15cardwidget.cpp:130
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Automatic import finished."
 msgstr "自动导入完成。"
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "在服务器上发现多个密钥时出错。"
 
-#: src/view/p15cardwidget.cpp:138
+#: src/view/p15cardwidget.cpp:143
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "在目录服务中找不到密钥。"
 
-#: src/view/p15cardwidget.cpp:147
+#: src/view/p15cardwidget.cpp:152
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"

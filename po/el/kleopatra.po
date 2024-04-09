@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:38+0000\n"
+"POT-Creation-Date: 2024-04-09 00:38+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -643,7 +643,7 @@ msgstr "Η τροποποίηση συνθηματικού ήταν επιτυχ
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:341 src/view/netkeywidget.cpp:393
+#: src/view/netkeywidget.cpp:210 src/view/netkeywidget.cpp:262
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Αποτυχία εύρεσης της έξυπνης κάρτας με το σειραϊκό αριθμό: %1"
@@ -3243,7 +3243,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "Τα πιστοποιητικά X.509 ανανεώθηκαν με επιτυχία."
 
-#: src/commands/revokecertificationcommand.cpp:78
+#: src/commands/revokecertificationcommand.cpp:84
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3253,37 +3253,37 @@ msgstr ""
 "<para>Πρόκειται να κάνετε ανάκληση της πιστοποίησης του αναγνωριστικού "
 "χρήστη<nl/>%1<nl/>η οποία έγινε με το κλειδί<nl/>%2.</para>"
 
-#: src/commands/revokecertificationcommand.cpp:83
-#: src/commands/revokecertificationcommand.cpp:97
+#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:103
 #: src/dialogs/useridswidget.cpp:431
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr "Επιβεβαίωση ανάκλησης"
 
-#: src/commands/revokecertificationcommand.cpp:84
+#: src/commands/revokecertificationcommand.cpp:90
 #, kde-format
 msgid "Revoke Certification"
 msgstr "Ανάκληση πιστοποίησης"
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:95
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr "Ο χρήστης με αναγνωριστικό '%1' πιστοποιήθηκε με το κλειδί %2"
 
-#: src/commands/revokecertificationcommand.cpp:91
+#: src/commands/revokecertificationcommand.cpp:97
 #, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] "Πρόκειται να ανακαλέσετε την παρακάτω πιστοποίηση:"
 msgstr[1] "Πρόκειται να ανακαλέσετε τις παρακάτω %1 πιστοποιήσεις:"
 
-#: src/commands/revokecertificationcommand.cpp:98
+#: src/commands/revokecertificationcommand.cpp:104
 #, kde-format
 msgid "Revoke Certifications"
 msgstr "Ανάκληση πιστοποιήσεων"
 
-#: src/commands/revokecertificationcommand.cpp:203
+#: src/commands/revokecertificationcommand.cpp:212
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3299,7 +3299,7 @@ msgstr[1] ""
 "<para>%1 πιστοποιητικά έχουν ανακληθεί επιτυχώς.</para><para>Θέλετε να "
 "δημοσιεύσετε αυτές τις ανακλήσεις;</para>"
 
-#: src/commands/revokecertificationcommand.cpp:208
+#: src/commands/revokecertificationcommand.cpp:217
 #, kde-format
 msgctxt "@action:button"
 msgid "Publish Revocation"
@@ -3307,13 +3307,13 @@ msgid_plural "Publish Revocations"
 msgstr[0] "Δημοσίευση ανάκλησης"
 msgstr[1] "Δημοσίευση ανακλήσεων"
 
-#: src/commands/revokecertificationcommand.cpp:212
+#: src/commands/revokecertificationcommand.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr "Επιβεβαίωση δημοσίευσης"
 
-#: src/commands/revokecertificationcommand.cpp:235
+#: src/commands/revokecertificationcommand.cpp:245
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3324,12 +3324,12 @@ msgstr ""
 "έγινε με το κλειδί<nl/>%2<nl/>απέτυχε:</para><para><message>%3</message></"
 "para>"
 
-#: src/commands/revokecertificationcommand.cpp:326
+#: src/commands/revokecertificationcommand.cpp:336
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
 msgstr "Δεν μπορείτε να ανακαλέσετε πιστοποιήσεις αυτού του κλειδιού."
 
-#: src/commands/revokecertificationcommand.cpp:329
+#: src/commands/revokecertificationcommand.cpp:339
 #, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
@@ -3338,7 +3338,7 @@ msgstr[0] ""
 msgstr[1] ""
 "Δεν μπορείτε να ανακαλέσετε πιστοποιήσεις αυτών των αναγνωριστικών χρηστών."
 
-#: src/commands/revokecertificationcommand.cpp:334
+#: src/commands/revokecertificationcommand.cpp:344
 #, kde-format
 msgid "You cannot revoke this certification."
 msgstr "Δεν μπορείτε να ανακαλέσετε αυτήν την πιστοποίηση."
@@ -11609,6 +11609,20 @@ msgstr "Αδυναμία αφαίρεσης του καταλόγου %1"
 msgid "Cannot remove file %1: %2"
 msgstr "Αδυναμία αφαίρεσης του αρχείου %1: %2"
 
+#: src/view/cardkeysview.cpp:54
+#, fuzzy, kde-format
+#| msgid "Certificates:"
+msgctxt "@label:listbox"
+msgid "Certificates:"
+msgstr "Πιστοποιητικά:"
+
+#: src/view/cardkeysview.cpp:188
+#, fuzzy, kde-format
+#| msgid "Loading certificate cache..."
+msgctxt "@info"
+msgid "Reading certificates from smart card ..."
+msgstr "Φόρτωση λανθάνουσας μνήμης πιστοποιητικού..."
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -11895,43 +11909,39 @@ msgstr "Ιεραρχική λίστα πιστοποιητικών"
 msgid "List of certificates"
 msgstr "Λίστα πιστοποιητικών"
 
-#: src/view/netkeywidget.cpp:88 src/view/p15cardwidget.cpp:79
-#: src/view/pgpcardwidget.cpp:173 src/view/pivcardwidget.cpp:112
-#, kde-format
+#: src/view/netkeywidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Serial number:"
+msgctxt "@label"
 msgid "Serial number:"
 msgstr "Σειριακός αριθμός:"
 
-#: src/view/netkeywidget.cpp:96
-#, kde-format
-msgid "Certificates:"
-msgstr "Πιστοποιητικά:"
-
-#: src/view/netkeywidget.cpp:122 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
 #, kde-format
 msgid "Actions:"
 msgstr "Ενέργειες:"
 
-#: src/view/netkeywidget.cpp:128 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Δημιουργία OpenPGP κλειδιού"
 
-#: src/view/netkeywidget.cpp:129 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr ""
 "Δημιουργία OpenPGP κλειδιού για τα κλειδιά που αποθηκεύτηκαν στην κάρτα."
 
-#: src/view/netkeywidget.cpp:136 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "Δημιουργία CSR"
 
-#: src/view/netkeywidget.cpp:137
+#: src/view/netkeywidget.cpp:111
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
@@ -11939,48 +11949,53 @@ msgstr ""
 "Δημιουργία αίτησης υπογραφής πιστοποιητικού για κλειδί που αποθηκεύτηκε στην "
 "κάρτα."
 
-#: src/view/netkeywidget.cpp:145
-#, kde-format
-msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#: src/view/netkeywidget.cpp:120
+#, fuzzy, kde-format
+#| msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#| msgid "Change NKS PIN"
+msgctxt ""
+"@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Τροποποίηση NKS PIN"
 
-#: src/view/netkeywidget.cpp:146 src/view/netkeywidget.cpp:212
-#, kde-format
-msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#: src/view/netkeywidget.cpp:122
+#, fuzzy, kde-format
+#| msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#| msgid "Change SigG PIN"
+msgctxt ""
+"@action:button SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Τροποποίηση SigG PIN"
 
-#: src/view/netkeywidget.cpp:197
+#: src/view/netkeywidget.cpp:168
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "Κάρτα NetKey %1"
 
-#: src/view/netkeywidget.cpp:210 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "Ρύθμιση SigG PIN"
 
-#: src/view/netkeywidget.cpp:217
+#: src/view/netkeywidget.cpp:183
+#, kde-format
+msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+msgid "Change SigG PIN"
+msgstr "Τροποποίηση SigG PIN"
+
+#: src/view/netkeywidget.cpp:188
 #, kde-format
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: src/view/netkeywidget.cpp:328
-#, fuzzy, kde-format
-#| msgid "Loading certificate cache..."
-msgctxt "@info"
-msgid "Reading certificates from smart card ..."
-msgstr "Φόρτωση λανθάνουσας μνήμης πιστοποιητικού..."
-
-#: src/view/netkeywidget.cpp:379
+#: src/view/netkeywidget.cpp:248
 #, kde-format
 msgid "Select Key"
 msgstr "Επιλογή κλειδιού"
 
-#: src/view/netkeywidget.cpp:380
+#: src/view/netkeywidget.cpp:249
 #, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
@@ -11988,7 +12003,7 @@ msgstr ""
 "Επιλέξτε το κλειδί για το οποίο θέλετε να δημιουργηθεί μία αίτηση υπογραφής "
 "πιστοποιητικού:"
 
-#: src/view/netkeywidget.cpp:398
+#: src/view/netkeywidget.cpp:267
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -12113,32 +12128,38 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "Λυπάμαι. Δεν κατάφερα να βρω το κλειδί με αποτύπωμα %1."
 
-#: src/view/p15cardwidget.cpp:94
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/pivcardwidget.cpp:112
+#, kde-format
+msgid "Serial number:"
+msgstr "Σειριακός αριθμός:"
+
+#: src/view/p15cardwidget.cpp:96
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "OpenPGP κλειδιά:"
 
-#: src/view/p15cardwidget.cpp:115
+#: src/view/p15cardwidget.cpp:120
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "Αναζήτηση στην υπηρεσία καταλόγου..."
 
-#: src/view/p15cardwidget.cpp:130
+#: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Automatic import finished."
 msgstr "Η αυτόματη εισαγωγή ολοκληρώθηκε."
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "Σφάλματα σε πολλά κλειδιά βρέθηκαν στον εξυπηρετητή."
 
-#: src/view/p15cardwidget.cpp:138
+#: src/view/p15cardwidget.cpp:143
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "Δεν βρέθηκε κλειδί στην υπηρεσία καταλόγου."
 
-#: src/view/p15cardwidget.cpp:147
+#: src/view/p15cardwidget.cpp:152
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"

@@ -76,8 +76,14 @@ CardKeysView::CardKeysView(QWidget *parent)
 
     mainLayout->addStretch(1);
 
-    const KConfigGroup configGroup{KSharedConfig::openConfig(), u"CardKeysView"_s};
-    mTreeView->restoreLayout(configGroup);
+    QMetaObject::invokeMethod(
+        this,
+        [this]() {
+            // delay restoring the column layout until the widget tree has been set up
+            const KConfigGroup configGroup{KSharedConfig::openConfig(), u"CardKeysView"_s};
+            mTreeView->restoreLayout(configGroup);
+        },
+        Qt::QueuedConnection);
 
     connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, &CardKeysView::loadCertificates);
 }

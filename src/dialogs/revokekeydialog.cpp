@@ -61,6 +61,10 @@ protected:
 
         QTextEdit::focusOutEvent(event);
     }
+    QSize minimumSizeHint() const override
+    {
+        return {0, fontMetrics().height() * 3};
+    }
 };
 }
 
@@ -86,19 +90,24 @@ public:
     Private(RevokeKeyDialog *qq)
         : q(qq)
     {
-        q->setWindowTitle(i18nc("title:window", "Revoke Key"));
+        q->setWindowTitle(i18nc("title:window", "Revoke Certificate"));
 
         auto mainLayout = new QVBoxLayout{q};
 
         ui.infoLabel = new QLabel{q};
-        mainLayout->addWidget(ui.infoLabel);
+
+        auto infoGroupBox = new QGroupBox{i18nc("@title:group", "Information")};
+        auto infoLayout = new QVBoxLayout;
+        infoGroupBox->setLayout(infoLayout);
+        infoLayout->addWidget(ui.infoLabel);
+        mainLayout->addWidget(infoGroupBox);
 
         auto groupBox = new QGroupBox{i18nc("@title:group", "Reason for revocation"), q};
 
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "No reason specified"), q}, static_cast<int>(RevocationReason::Unspecified));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key is superseded"), q}, static_cast<int>(RevocationReason::Superseded));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Key is no longer used"), q}, static_cast<int>(RevocationReason::NoLongerUsed));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is superseded"), q}, static_cast<int>(RevocationReason::Superseded));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is no longer used"), q}, static_cast<int>(RevocationReason::NoLongerUsed));
         reasonGroup.button(static_cast<int>(RevocationReason::Unspecified))->setChecked(true);
 
         {
@@ -135,7 +144,7 @@ public:
 
         ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
         auto okButton = ui.buttonBox->button(QDialogButtonBox::Ok);
-        okButton->setText(i18nc("@action:button", "Revoke Key"));
+        okButton->setText(i18nc("@action:button", "Revoke Certificate"));
         okButton->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete-remove")));
 
         mainLayout->addWidget(ui.buttonBox);
@@ -167,6 +176,8 @@ private:
         const QSize size = cfgGroup.readEntry("Size", defaultSize);
         if (size.isValid()) {
             q->resize(size);
+        } else {
+            q->resize(q->minimumSizeHint());
         }
     }
 
@@ -268,7 +279,12 @@ RevokeKeyDialog::~RevokeKeyDialog() = default;
 void RevokeKeyDialog::setKey(const GpgME::Key &key)
 {
     d->key = key;
-    d->ui.infoLabel->setText(xi18n("<para>You are about to revoke the following key:<nl/>%1</para>").arg(Formatting::summaryLine(key)));
+    d->ui.infoLabel->setText(
+        xi18nc("@info",
+               "<para>You are about to revoke the following certificate:</para><para>%1</para><para><emphasis>The revocation will take effect immediately and "
+               "cannot be reverted.</emphasis></para><para>It will no longer be possible to sign using this certificate.<nl/>It will still be possible to "
+               "decrypt using this certificate.<nl/>Other people will no longer be able to encrypt for this certificate after receiving the revocation.</para>")
+            .arg(Formatting::summaryLine(key)));
 }
 
 GpgME::RevocationReason RevokeKeyDialog::reason() const

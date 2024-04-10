@@ -63,16 +63,6 @@ public:
             if (column == tagsColumn) {
                 Tags::enableTags();
             }
-            auto tv = qobject_cast<KeyTreeView *>(this->parent());
-            if (tv) {
-                tv->resizeColumns();
-            }
-        });
-        connect(this, &TreeView::columnDisabled, this, [this]() {
-            auto tv = qobject_cast<KeyTreeView *>(this->parent());
-            if (tv) {
-                tv->resizeColumns();
-            }
         });
     }
 

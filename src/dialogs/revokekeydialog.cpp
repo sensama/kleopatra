@@ -97,12 +97,14 @@ public:
         ui.infoLabel = new QLabel{q};
 
         auto infoGroupBox = new QGroupBox{i18nc("@title:group", "Information")};
+        infoGroupBox->setFlat(true);
         auto infoLayout = new QVBoxLayout;
         infoGroupBox->setLayout(infoLayout);
         infoLayout->addWidget(ui.infoLabel);
         mainLayout->addWidget(infoGroupBox);
 
         auto groupBox = new QGroupBox{i18nc("@title:group", "Reason for revocation"), q};
+        groupBox->setFlat(true);
 
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "No reason specified"), q}, static_cast<int>(RevocationReason::Unspecified));
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));

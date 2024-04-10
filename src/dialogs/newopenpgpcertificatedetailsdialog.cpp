@@ -215,12 +215,6 @@ public:
 
         Kleo::setUpExpirationDateComboBox(ui.expiryDE);
         ui.expiryCB->setEnabled(true);
-        if (settings.validityPeriodInDaysMax() != -1) {
-            ui.expiryDE->setMaximumDate(QDate::currentDate().addDays(settings.validityPeriodInDaysMax()));
-        }
-        if (settings.validityPeriodInDaysMin() != -1) {
-            ui.expiryDE->setMinimumDate(QDate::currentDate().addDays(settings.validityPeriodInDaysMin()));
-        }
         setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
         if (unlimitedValidityIsAllowed()) {
             ui.expiryDE->setEnabled(ui.expiryCB->isChecked());

@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include <commands/gnupgprocesscommand.h>
+#include <commands/command.h>
 
 #include <QProcess>
 #include <QString>
@@ -22,7 +22,7 @@ namespace Kleo
 namespace Commands
 {
 
-class ExportPaperKeyCommand : public GnuPGProcessCommand
+class ExportPaperKeyCommand : public Command
 {
     Q_OBJECT
 
@@ -34,21 +34,12 @@ public:
         return OnlyOneKey | NeedSecretKeyData | MustBeOpenPGP;
     }
 
-protected Q_SLOTS:
-    void pkProcFinished(int code, QProcess::ExitStatus status);
-
 private:
-    QStringList arguments() const override;
-    bool preStartHook(QWidget *parentWidget) const override;
-
-    QString errorCaption() const override;
-
-    QString crashExitMessage(const QStringList &) const override;
-    QString errorExitMessage(const QStringList &) const override;
-
-private:
-    QWidget *const mParent;
-    QProcess mPkProc;
+    class Private;
+    inline Private *d_func();
+    inline const Private *d_func() const;
+    void doStart() override;
+    void doCancel() override;
 };
 
 }

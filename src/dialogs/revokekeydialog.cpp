@@ -286,8 +286,10 @@ void RevokeKeyDialog::setKey(const GpgME::Key &key)
                "<para>You are about to revoke the following certificate:</para><para>&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis strong='true'>The "
                "revocation will take effect "
                "immediately and "
-               "cannot be reverted.</emphasis></para><para>It will no longer be possible to sign using this certificate.<nl/>It will still be possible to "
-               "decrypt using this certificate.<nl/>Other people will no longer be able to encrypt for this certificate after receiving the revocation.</para>")
+               "cannot be reverted.</emphasis></para><para>Consequences: <list><item>It will no longer be possible to sign using this "
+               "certificate.</item><item>It will still be possible to "
+               "decrypt using this certificate.</item><item>Other people will no longer be able to encrypt for this certificate after receiving the "
+               "revocation.</item></list></para>")
             .arg(Formatting::summaryLine(key)));
 }
 

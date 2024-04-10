@@ -10,18 +10,26 @@
 
 #include <config-kleopatra.h>
 
+#include "kleopatra_debug.h"
+
 #include "command_p.h"
+#include "commands/exportopenpgpcertstoservercommand.h"
 #include "dialogs/revokekeydialog.h"
 #include "revokekeycommand.h"
 
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
+#include <Libkleo/KeyCache>
 
+#include <KFileUtils>
 #include <KLocalizedString>
 
 #include <QGpgME/RevokeKeyJob>
 
-#include "kleopatra_debug.h"
+#include <QFile>
+#include <QGpgME/ExportJob>
 #include <QGpgME/Protocol>
+#include <QStandardPaths>
 
 using namespace Kleo;
 using namespace GpgME;
@@ -203,8 +211,51 @@ void RevokeKeyCommand::Private::onJobResult(const Error &err)
         return;
     }
 
+    auto revokedKey = KeyCache::instance()->findByFingerprint(key.primaryFingerprint());
+
+    auto job = QGpgME::openpgp()->publicKeyExportJob(true);
+    QByteArray data;
+    auto exportError = job->exec({QString::fromLatin1(revokedKey.primaryFingerprint())}, data);
+    if (exportError) {
+        showError(exportError);
+        finished();
+        return;
+    }
+
+    auto name = Formatting::prettyName(key);
+    if (name.isEmpty()) {
+        name = Formatting::prettyEMail(key);
+    }
+    const auto dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    const auto filename = KFileUtils::suggestName(QUrl(dir), QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.shortKeyID())));
+    const auto path = QStringLiteral("%1/%2").arg(dir, filename);
+    QFile file(path);
+    file.open(QIODevice::WriteOnly);
+    file.write(data);
+    file.close();
+
     if (!err.isCanceled()) {
-        information(i18nc("@info", "The key was revoked successfully."), i18nc("@title:window", "Key Revoked"));
+        if (haveKeyserverConfigured()) {
+            const auto code = KMessageBox::questionTwoActions(
+                parentWidgetOrView(),
+                xi18nc("@info",
+                       "<para>The certificate was revoked successfully.</para><para>The revoked certificate was exported to "
+                       "<filename>%1</filename></para><para>To make sure that your contacts receive the revoked certificate, "
+                       "you can also upload it to a keyserver now.</para>",
+                       path),
+                i18nc("@title:window", "Key Revoked"),
+                KGuiItem(i18nc("@action:button Publish a certificate", "Publish"), QIcon::fromTheme(QStringLiteral("view-certificate-export-server"))),
+                KStandardGuiItem::close());
+            if (code == KMessageBox::PrimaryAction) {
+                auto const cmd = new Commands::ExportOpenPGPCertsToServerCommand(revokedKey);
+                cmd->start();
+            }
+        } else {
+            information(xi18nc("@info",
+                               "<para>The certificate was revoked successfully.</para><para>The revoked certificate was exported to "
+                               "<filename>%1</filename></para>",
+                               path));
+        }
     }
     finished();
 }

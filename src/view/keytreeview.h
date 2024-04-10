@@ -115,7 +115,6 @@ public:
 
     void disconnectSearchBar();
     bool connectSearchBar(const SearchBar *bar);
-    void resizeColumns();
     void restoreLayout(const KConfigGroup &group);
 
 public Q_SLOTS:
@@ -133,6 +132,7 @@ protected:
 
 private:
     void init();
+    void initializeColumnSizes();
     void addKeysImpl(const std::vector<GpgME::Key> &, bool);
     void restoreExpandState();
     void setUpTagKeys();

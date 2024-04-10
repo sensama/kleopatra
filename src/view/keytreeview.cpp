@@ -214,7 +214,7 @@ void KeyTreeView::restoreLayout(const KConfigGroup &group)
             m_view->hideColumn(i);
         }
         if (KeyCache::instance()->initialized()) {
-            QTimer::singleShot(0, this, &KeyTreeView::resizeColumns);
+            QTimer::singleShot(0, this, &KeyTreeView::initializeColumnSizes);
         }
     } else {
         m_onceResized = true;
@@ -627,8 +627,12 @@ bool KeyTreeView::connectSearchBar(const SearchBar *bar)
     });
 }
 
-void KeyTreeView::resizeColumns()
+void KeyTreeView::initializeColumnSizes()
 {
+    if (m_onceResized || m_view->model()->rowCount() == 0) {
+        return;
+    }
+    m_onceResized = true;
     m_view->setColumnWidth(KeyList::PrettyName, 260);
     m_view->setColumnWidth(KeyList::PrettyEMail, 260);
 
@@ -657,8 +661,5 @@ void KeyTreeView::restoreStateAfterModelChange()
     }
 
     setUpTagKeys();
-    if (!m_onceResized) {
-        m_onceResized = true;
-        resizeColumns();
-    }
+    initializeColumnSizes();
 }

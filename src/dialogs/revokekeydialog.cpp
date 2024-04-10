@@ -40,34 +40,6 @@
 using namespace Kleo;
 using namespace GpgME;
 
-namespace
-{
-class TextEdit : public QTextEdit
-{
-    Q_OBJECT
-public:
-    using QTextEdit::QTextEdit;
-
-Q_SIGNALS:
-    void editingFinished();
-
-protected:
-    void focusOutEvent(QFocusEvent *event) override
-    {
-        Qt::FocusReason reason = event->reason();
-        if (reason != Qt::PopupFocusReason || !(QApplication::activePopupWidget() && QApplication::activePopupWidget()->parentWidget() == this)) {
-            Q_EMIT editingFinished();
-        }
-
-        QTextEdit::focusOutEvent(event);
-    }
-    QSize minimumSizeHint() const override
-    {
-        return {0, fontMetrics().height() * 3};
-    }
-};
-}
-
 class RevokeKeyDialog::Private
 {
     friend class ::Kleo::RevokeKeyDialog;
@@ -75,16 +47,10 @@ class RevokeKeyDialog::Private
 
     struct {
         QLabel *infoLabel = nullptr;
-        QLabel *descriptionLabel = nullptr;
-        TextEdit *description = nullptr;
-        ErrorLabel *descriptionError = nullptr;
         QDialogButtonBox *buttonBox = nullptr;
     } ui;
 
     Key key;
-    QButtonGroup reasonGroup;
-    bool descriptionEditingInProgress = false;
-    QString descriptionAccessibleName;
 
 public:
     Private(RevokeKeyDialog *qq)
@@ -96,53 +62,7 @@ public:
 
         ui.infoLabel = new QLabel{q};
 
-        auto infoGroupBox = new QGroupBox{i18nc("@title:group", "Information")};
-        infoGroupBox->setFlat(true);
-        auto infoLayout = new QVBoxLayout;
-        infoGroupBox->setLayout(infoLayout);
-        infoLayout->addWidget(ui.infoLabel);
-        mainLayout->addWidget(infoGroupBox);
-
-        auto groupBox = new QGroupBox{i18nc("@title:group", "Reason for revocation"), q};
-        groupBox->setFlat(true);
-
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "No reason specified"), q}, static_cast<int>(RevocationReason::Unspecified));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is superseded"), q}, static_cast<int>(RevocationReason::Superseded));
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is no longer used"), q}, static_cast<int>(RevocationReason::NoLongerUsed));
-        reasonGroup.button(static_cast<int>(RevocationReason::Unspecified))->setChecked(true);
-
-        {
-            auto boxLayout = new QVBoxLayout{groupBox};
-            for (auto radio : reasonGroup.buttons()) {
-                boxLayout->addWidget(radio);
-            }
-        }
-
-        mainLayout->addWidget(groupBox);
-
-        {
-            ui.descriptionLabel = new QLabel{i18nc("@label:textbox", "Description (optional):"), q};
-            ui.description = new TextEdit{q};
-            ui.description->setAcceptRichText(false);
-            // do not accept Tab as input; this is better for accessibility and
-            // tabulators are not really that useful in the description
-            ui.description->setTabChangesFocus(true);
-            ui.descriptionLabel->setBuddy(ui.description);
-            ui.descriptionError = new ErrorLabel{q};
-            ui.descriptionError->setVisible(false);
-
-            mainLayout->addWidget(ui.descriptionLabel);
-            mainLayout->addWidget(ui.description);
-            mainLayout->addWidget(ui.descriptionError);
-        }
-
-        connect(ui.description, &TextEdit::editingFinished, q, [this]() {
-            onDescriptionEditingFinished();
-        });
-        connect(ui.description, &TextEdit::textChanged, q, [this]() {
-            onDescriptionTextChanged();
-        });
+        mainLayout->addWidget(ui.infoLabel);
 
         ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
         auto okButton = ui.buttonBox->button(QDialogButtonBox::Ok);
@@ -185,88 +105,7 @@ private:
 
     void checkAccept()
     {
-        if (!descriptionHasAcceptableInput()) {
-            KMessageBox::error(q, descriptionErrorMessage());
-        } else {
-            q->accept();
-        }
-    }
-
-    bool descriptionHasAcceptableInput() const
-    {
-        return !q->description().contains(QLatin1StringView{"\n\n"});
-    }
-
-    QString descriptionErrorMessage() const
-    {
-        QString message;
-
-        if (!descriptionHasAcceptableInput()) {
-            message = i18n("Error: The description must not contain empty lines.");
-        }
-        return message;
-    }
-
-    void updateDescriptionError()
-    {
-        const auto currentErrorMessage = ui.descriptionError->text();
-        const auto newErrorMessage = descriptionErrorMessage();
-        if (newErrorMessage == currentErrorMessage) {
-            return;
-        }
-        if (currentErrorMessage.isEmpty() && descriptionEditingInProgress) {
-            // delay showing the error message until editing is finished, so that we
-            // do not annoy the user with an error message while they are still
-            // entering the recipient;
-            // on the other hand, we clear the error message immediately if it does
-            // not apply anymore and we update the error message immediately if it
-            // changed
-            return;
-        }
-        ui.descriptionError->setVisible(!newErrorMessage.isEmpty());
-        ui.descriptionError->setText(newErrorMessage);
-        updateAccessibleNameAndDescription();
-    }
-
-    void updateAccessibleNameAndDescription()
-    {
-        // fall back to default accessible name if accessible name wasn't set explicitly
-        if (descriptionAccessibleName.isEmpty()) {
-            descriptionAccessibleName = getAccessibleName(ui.description);
-        }
-        const bool errorShown = ui.descriptionError->isVisible();
-
-        // Qt does not support "described-by" relations (like WCAG's "aria-describedby" relationship attribute);
-        // emulate this by setting the error message as accessible description of the input field
-        const auto description = errorShown ? ui.descriptionError->text() : QString{};
-        if (ui.description->accessibleDescription() != description) {
-            ui.description->setAccessibleDescription(description);
-        }
-
-        // Qt does not support IA2's "invalid entry" state (like WCAG's "aria-invalid" state attribute);
-        // screen readers say something like "invalid entry" if this state is set;
-        // emulate this by adding "invalid entry" to the accessible name of the input field
-        // and its label
-        const auto name = errorShown ? descriptionAccessibleName + QLatin1StringView{", "} + invalidEntryText() //
-                                     : descriptionAccessibleName;
-        if (ui.descriptionLabel->accessibleName() != name) {
-            ui.descriptionLabel->setAccessibleName(name);
-        }
-        if (ui.description->accessibleName() != name) {
-            ui.description->setAccessibleName(name);
-        }
-    }
-
-    void onDescriptionTextChanged()
-    {
-        descriptionEditingInProgress = true;
-        updateDescriptionError();
-    }
-
-    void onDescriptionEditingFinished()
-    {
-        descriptionEditingInProgress = false;
-        updateDescriptionError();
+        q->accept();
     }
 };
 
@@ -293,19 +132,5 @@ void RevokeKeyDialog::setKey(const GpgME::Key &key)
                "revocation.</item></list></para>")
             .arg(Formatting::summaryLine(key)));
 }
-
-GpgME::RevocationReason RevokeKeyDialog::reason() const
-{
-    return static_cast<RevocationReason>(d->reasonGroup.checkedId());
-}
-
-QString RevokeKeyDialog::description() const
-{
-    static const QRegularExpression whitespaceAtEndOfLine{QStringLiteral(R"([ \t\r]+\n)")};
-    static const QRegularExpression trailingWhitespace{QStringLiteral(R"(\s*$)")};
-    return d->ui.description->toPlainText().remove(whitespaceAtEndOfLine).remove(trailingWhitespace);
-}
-
-#include "revokekeydialog.moc"
 
 #include "moc_revokekeydialog.cpp"

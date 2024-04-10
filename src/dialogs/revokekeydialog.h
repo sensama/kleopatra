@@ -19,7 +19,6 @@
 namespace GpgME
 {
 class Key;
-enum class RevocationReason;
 }
 
 namespace Kleo
@@ -33,9 +32,6 @@ public:
     ~RevokeKeyDialog() override;
 
     void setKey(const GpgME::Key &key);
-
-    GpgME::RevocationReason reason() const;
-    QString description() const;
 
 private:
     class Private;

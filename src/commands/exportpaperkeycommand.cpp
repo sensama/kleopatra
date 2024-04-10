@@ -12,7 +12,11 @@
 
 #include "exportpaperkeycommand.h"
 
+#include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
+
+#include <QGpgME/ExportJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/key.h>
 
@@ -31,98 +35,148 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
+class ExportPaperKeyCommand::Private : public Command::Private
+{
+    friend class ::ExportPaperKeyCommand;
+    ExportPaperKeyCommand *q_func() const
+    {
+        return static_cast<ExportPaperKeyCommand *>(q);
+    }
+
+public:
+    explicit Private(ExportPaperKeyCommand *qq, KeyListController *c);
+    ~Private() override;
+
+    void startPaperKey(const QByteArray &data);
+
+private:
+    QProcess pkProc;
+    QPointer<QGpgME::ExportJob> job;
+};
+
+ExportPaperKeyCommand::Private::Private(ExportPaperKeyCommand *qq, KeyListController *c)
+    : Command::Private(qq, c)
+{
+}
+
+ExportPaperKeyCommand::Private::~Private()
+{
+}
+
+ExportPaperKeyCommand::Private *ExportPaperKeyCommand::d_func()
+{
+    return static_cast<Private *>(d.get());
+}
+const ExportPaperKeyCommand::Private *ExportPaperKeyCommand::d_func() const
+{
+    return static_cast<const Private *>(d.get());
+}
+
+#define d d_func()
+#define q q_func()
+
 ExportPaperKeyCommand::ExportPaperKeyCommand(QAbstractItemView *v, KeyListController *c)
-    : GnuPGProcessCommand(v, c)
-    , mParent(v)
+    : Command(v, new Private(this, c))
 {
-    connect(&mPkProc, &QProcess::finished, this, &ExportPaperKeyCommand::pkProcFinished);
-    mPkProc.setProgram(paperKeyInstallPath());
-    mPkProc.setArguments(QStringList() << QStringLiteral("--output-type=base16"));
-
-    process()->setStandardOutputProcess(&mPkProc);
-    qCDebug(KLEOPATRA_LOG) << "Starting PaperKey process.";
-    mPkProc.start();
-    setAutoDelete(false);
 }
 
-QStringList ExportPaperKeyCommand::arguments() const
-{
-    const Key key = d->key();
-    QStringList result;
-
-    result << gpgPath() << QStringLiteral("--batch");
-    result << QStringLiteral("--export-secret-key");
-    result << QLatin1StringView(key.primaryFingerprint());
-
-    return result;
-}
-
-bool ExportPaperKeyCommand::preStartHook(QWidget *parent) const
+void ExportPaperKeyCommand::doStart()
 {
     if (paperKeyInstallPath().isNull()) {
-        KMessageBox::error(parent,
+        KMessageBox::error(d->parentWidgetOrView(),
                            xi18nc("@info",
                                   "<para><application>Kleopatra</application> uses "
                                   "<application>PaperKey</application> to create a minimized and"
                                   " printable version of your secret key.</para>"
                                   "<para>Please make sure it is installed.</para>"),
                            i18nc("@title", "Failed to find PaperKey executable."));
-        return false;
+        finished();
+        return;
     }
-    return true;
+    const auto key = d->key();
+
+    if (key.isNull()) {
+        finished();
+        return;
+    }
+
+    std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->secretKeyExportJob(false)};
+    connect(exportJob.get(), &QGpgME::ExportJob::result, this, [this](const GpgME::Error &err, const QByteArray &keyData) {
+        if (err.isCanceled()) {
+            finished();
+            return;
+        }
+
+        if (err) {
+            d->error(xi18nc("@info",
+                            "<para>An error occurred during export of the secret key:</para>"
+                            "<para><message>%1</message></para>",
+                            Formatting::errorAsString(err)));
+            finished();
+            return;
+        }
+        d->startPaperKey(keyData);
+    });
+
+    const GpgME::Error err = exportJob->start({QLatin1StringView{key.primaryFingerprint()}});
+    if (err) {
+        d->error(xi18nc("@info",
+                        "<para>An error occurred during export of the secret key:</para>"
+                        "<para><message>%1</message></para>",
+                        Formatting::errorAsString(err)));
+        finished();
+        return;
+    }
+    d->job = exportJob.release();
 }
 
-void ExportPaperKeyCommand::pkProcFinished(int code, QProcess::ExitStatus status)
+void ExportPaperKeyCommand::Private::startPaperKey(const QByteArray &data)
 {
-    qCDebug(KLEOPATRA_LOG) << "Paperkey export finished: " << code << "status: " << status;
+    pkProc.setProgram(paperKeyInstallPath());
+    pkProc.setArguments({QStringLiteral("--output-type=base16")});
 
-    if (status == QProcess::CrashExit || code) {
-        qCDebug(KLEOPATRA_LOG) << "Aborting because paperkey failed";
-        deleteLater();
+    qCDebug(KLEOPATRA_LOG) << "Starting PaperKey process.";
+    pkProc.start();
+    pkProc.write(data);
+    pkProc.closeWriteChannel();
+    pkProc.waitForFinished();
+
+    qCDebug(KLEOPATRA_LOG) << "Paperkey export finished: " << pkProc.exitCode() << "status: " << pkProc.exitStatus();
+
+    if (pkProc.exitStatus() == QProcess::CrashExit || pkProc.exitCode()) {
+        error(xi18nc("@info",
+                     "<para><application>PaperKey</application> failed with error</para>"
+                     "<para><message>%1</message></para>",
+                     pkProc.errorString()));
+        finished();
         return;
     }
 
     QPrinter printer;
 
-    const Key key = d->key();
+    const auto key = this->key();
     printer.setDocName(QStringLiteral("0x%1-sec").arg(QString::fromLatin1(key.shortKeyID())));
-    QPrintDialog printDialog(&printer, mParent);
+    QPrintDialog printDialog(&printer, parentWidgetOrView());
     printDialog.setWindowTitle(i18nc("@title:window", "Print Secret Key"));
 
     if (printDialog.exec() != QDialog::Accepted) {
         qCDebug(KLEOPATRA_LOG) << "Printing aborted.";
-        deleteLater();
+        finished();
         return;
     }
 
-    QTextDocument doc(QString::fromLatin1(mPkProc.readAllStandardOutput()));
+    QTextDocument doc(QString::fromLatin1(pkProc.readAllStandardOutput()));
     doc.setDefaultFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     doc.print(&printer);
-
-    deleteLater();
+    finished();
 }
 
-QString ExportPaperKeyCommand::errorCaption() const
+void ExportPaperKeyCommand::doCancel()
 {
-    return i18nc("@title:window", "Error printing secret key");
-}
-
-QString ExportPaperKeyCommand::crashExitMessage(const QStringList &args) const
-{
-    return xi18nc("@info",
-                  "<para>The GPG process that tried to export the secret key "
-                  "ended prematurely because of an unexpected error.</para>"
-                  "<para>Please check the output of <icode>%1</icode> for details.</para>",
-                  args.join(QLatin1Char(' ')));
-}
-
-QString ExportPaperKeyCommand::errorExitMessage(const QStringList &args) const
-{
-    return xi18nc("@info",
-                  "<para>An error occurred while trying to export the secret key.</para> "
-                  "<para>The output from <command>%1</command> was: <message>%2</message></para>",
-                  args[0],
-                  errorString());
+    if (d->job) {
+        d->job->slotCancel();
+    }
+    d->job.clear();
 }
 
 #include "moc_exportpaperkeycommand.cpp"

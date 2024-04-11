@@ -22,7 +22,6 @@
 
 #include "kleopatra_debug.h"
 #include <QGpgME/Protocol>
-#include <global.h>
 
 using namespace Kleo;
 using namespace GpgME;
@@ -155,6 +154,26 @@ void RevokeKeyCommand::Private::onDialogRejected()
     canceled();
 }
 
+namespace
+{
+std::vector<std::string> toStdStrings(const QStringList &l)
+{
+    std::vector<std::string> v;
+    v.reserve(l.size());
+    std::transform(std::begin(l), std::end(l), std::back_inserter(v), std::mem_fn(&QString::toStdString));
+    return v;
+}
+
+auto descriptionToLines(const QString &description)
+{
+    std::vector<std::string> lines;
+    if (!description.isEmpty()) {
+        lines = toStdStrings(description.split(QLatin1Char('\n')));
+    }
+    return lines;
+}
+}
+
 std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
 {
     std::unique_ptr<QGpgME::RevokeKeyJob> revokeJob{QGpgME::openpgp()->revokeKeyJob()};
@@ -165,7 +184,8 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
     });
     connect(revokeJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 
-    const GpgME::Error err = revokeJob->start(key, GpgME::RevocationReason::Unspecified, {});
+    const auto description = descriptionToLines(dialog->description());
+    const GpgME::Error err = revokeJob->start(key, dialog->reason(), description);
     if (err) {
         showError(err);
         return {};

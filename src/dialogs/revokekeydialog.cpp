@@ -106,10 +106,10 @@ public:
         auto groupBox = new QGroupBox{i18nc("@title:group", "Reason for revocation"), q};
         groupBox->setFlat(true);
 
-        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "No reason specified"), q}, static_cast<int>(RevocationReason::Unspecified));
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is superseded"), q}, static_cast<int>(RevocationReason::Superseded));
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is no longer used"), q}, static_cast<int>(RevocationReason::NoLongerUsed));
+        reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "For a different reason"), q}, static_cast<int>(RevocationReason::Unspecified));
         reasonGroup.button(static_cast<int>(RevocationReason::Unspecified))->setChecked(true);
 
         {
@@ -288,8 +288,9 @@ void RevokeKeyDialog::setKey(const GpgME::Key &key)
                "revocation will take effect "
                "immediately and "
                "cannot be reverted.</emphasis></para><para>Consequences: <list><item>You cannot sign anything anymore with this certificate.</item><item>You "
+               "cannot certify other certificates anymore with this certificate.</item><item>You "
                "can still decrypt everything encrypted for this certificate.</item><item>Other people can no longer encrypt for this certificate after "
-               "receiving the revocation.</item><item>You cannot certify other certificates anymore with this certificate.</item></list></para>")
+               "receiving the revocation.</item></list></para>")
             .arg(Formatting::summaryLine(key)));
 }
 

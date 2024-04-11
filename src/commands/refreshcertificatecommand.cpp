@@ -336,7 +336,18 @@ void RefreshCertificateCommand::Private::showOpenPGPResult()
             if (receiveKeysResult.error().code() == GPG_ERR_USER_1) {
                 information(i18nc("@info", "The update was skipped because no keyserver is configured."), i18nc("@title:window", "Update Skipped"));
             } else {
-                showError(receiveKeysResult.error());
+                if (receiveKeysResult.error().code() == GPG_ERR_NO_DATA) {
+                    information(i18nc("@info", "The certificate was not found on keyserver %1.", keyserver()));
+                } else if (receiveKeysResult.error().code() == GPG_ERR_EHOSTUNREACH) {
+                    error(xi18nc("@info",
+                                 "<para>Keyserver %1 is not reachable.</para>"
+                                 "<para><message>%2</message></para>",
+                                 keyserver(),
+                                 Formatting::errorAsString(receiveKeysResult.error())),
+                          i18nc("@title:window", "Update Failed"));
+                } else {
+                    showError(receiveKeysResult.error());
+                }
             }
         } else {
             information(informationOnChanges(receiveKeysResult), i18nc("@title:window", "Key Updated"));

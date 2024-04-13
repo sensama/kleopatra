@@ -114,3 +114,5 @@ void CreateGroupCommand::doStart()
     }
     d->finished();
 }
+
+#include "moc_creategroupcommand.cpp"

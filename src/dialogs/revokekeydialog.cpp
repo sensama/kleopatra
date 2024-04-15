@@ -10,6 +10,7 @@
 
 #include "revokekeydialog.h"
 
+#include "dialogs/animatedexpander.h"
 #include "utils/accessibility.h"
 #include "view/errorlabel.h"
 
@@ -103,23 +104,26 @@ public:
         infoLayout->addWidget(ui.infoLabel);
         mainLayout->addWidget(infoGroupBox);
 
-        auto groupBox = new QGroupBox{i18nc("@title:group", "Reason for revocation"), q};
-        groupBox->setFlat(true);
-
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate has been compromised"), q}, static_cast<int>(RevocationReason::Compromised));
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is superseded"), q}, static_cast<int>(RevocationReason::Superseded));
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "Certificate is no longer used"), q}, static_cast<int>(RevocationReason::NoLongerUsed));
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "For a different reason"), q}, static_cast<int>(RevocationReason::Unspecified));
         reasonGroup.button(static_cast<int>(RevocationReason::Unspecified))->setChecked(true);
 
-        {
-            auto boxLayout = new QVBoxLayout{groupBox};
-            for (auto radio : reasonGroup.buttons()) {
-                boxLayout->addWidget(radio);
-            }
-        }
+        auto reasonLayout = new QVBoxLayout;
+        auto expander = new AnimatedExpander(i18nc("@title", "Reason for Revocation (optional)"));
+        connect(expander, &AnimatedExpander::startExpanding, q, [this, expander]() {
+            q->resize(q->size().width(), std::max(q->sizeHint().height() + expander->contentHeight() + 20, q->size().height()));
+        });
+        expander->setContentLayout(reasonLayout);
 
-        mainLayout->addWidget(groupBox);
+        mainLayout->addWidget(expander);
+
+        mainLayout->addStretch(1);
+
+        for (auto radio : reasonGroup.buttons()) {
+            reasonLayout->addWidget(radio);
+        }
 
         {
             ui.descriptionLabel = new QLabel{i18nc("@label:textbox", "Description (optional):"), q};
@@ -132,9 +136,9 @@ public:
             ui.descriptionError = new ErrorLabel{q};
             ui.descriptionError->setVisible(false);
 
-            mainLayout->addWidget(ui.descriptionLabel);
-            mainLayout->addWidget(ui.description);
-            mainLayout->addWidget(ui.descriptionError);
+            reasonLayout->addWidget(ui.descriptionLabel);
+            reasonLayout->addWidget(ui.description);
+            reasonLayout->addWidget(ui.descriptionError);
         }
 
         connect(ui.description, &TextEdit::editingFinished, q, [this]() {

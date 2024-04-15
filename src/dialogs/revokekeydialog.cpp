@@ -288,13 +288,12 @@ void RevokeKeyDialog::setKey(const GpgME::Key &key)
     d->ui.infoLabel->setText(
         xi18nc("@info",
                "<para>You are about to revoke the following certificate:</para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-               "strong='true'>The "
-               "revocation will take effect "
-               "immediately and "
-               "cannot be reverted.</emphasis></para><para>Consequences: <list><item>You cannot sign anything anymore with this certificate.</item><item>You "
-               "cannot certify other certificates anymore with this certificate.</item><item>You "
-               "can still decrypt everything encrypted for this certificate.</item><item>Other people can no longer encrypt for this certificate after "
-               "receiving the revocation.</item></list></para>")
+               "strong='true'>The revocation will take effect immediately and cannot be reverted.</emphasis></para><para>Consequences: <list>"
+               "<item>You can still decrypt everything encrypted for this certificate.</item>"
+               "<item>All signatures made with it will become invalid.</item>"
+               "<item>You cannot sign anything with this certificate anymore.</item>"
+               "<item>You cannot certify other certificates with it anymore.</item>"
+               "<item>Other people can no longer encrypt with it after receiving the revocation.</item></list></para>")
             .arg(Formatting::summaryLine(key)));
 }
 

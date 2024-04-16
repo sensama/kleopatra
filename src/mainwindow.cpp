@@ -47,6 +47,7 @@
 #include <gpgme.h>
 
 #include "kleopatra_debug.h"
+#include <KAboutApplicationDialog>
 #include <KAboutData>
 #include <KActionCollection>
 #include <KActionMenu>
@@ -54,6 +55,7 @@
 #include <KConfigDialog>
 #include <KConfigGroup>
 #include <KEditToolBar>
+#include <KHelpMenu>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KShortcutsDialog>
@@ -372,6 +374,24 @@ public:
         Kleo::restartGpgAgent();
     }
 
+    void showAboutDialog()
+    {
+        // we show the About dialog ourselves so that we can pass up-to-date about data to it;
+        // KXmlGuiWindow takes a copy of the about data on creation and this copy might not
+        // contain the backend version information that's set by a background thread
+        if (!aboutDialog) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Creating About dialog";
+            aboutDialog = new KAboutApplicationDialog(KAboutData::applicationData(), q);
+            aboutDialog->setAttribute(Qt::WA_DeleteOnClose);
+        }
+        if (aboutDialog->isMinimized()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Unminimizing About dialog";
+            aboutDialog->setWindowState((aboutDialog->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+        }
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Showing About dialog";
+        aboutDialog->show();
+    }
+
 private:
     void setupActions();
 
@@ -402,6 +422,7 @@ private:
     } ui;
     QAction *focusToClickSearchAction = nullptr;
     ClipboardMenu *clipboadMenu = nullptr;
+    QPointer<KAboutApplicationDialog> aboutDialog;
 };
 
 MainWindow::Private::UI::UI(MainWindow *q)
@@ -467,6 +488,13 @@ MainWindow::Private::Private(MainWindow *qq)
     });
 
     q->createGUI(QStringLiteral("kleopatra.rc"));
+
+    if (auto helpMenu = q->findChild<KHelpMenu *>()) {
+        qCDebug(KLEOPATRA_LOG) << "Hook into the help menu to show the About dialog ourselves";
+        connect(helpMenu, &KHelpMenu::showAboutApplication, q, [this]() {
+            showAboutDialog();
+        });
+    }
 
     // make toolbar buttons accessible by keyboard
     auto toolbar = q->findChild<KToolBar *>();

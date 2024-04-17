@@ -137,6 +137,7 @@ private:
         std::unique_ptr<InfoField> trustedIntroducerField;
         std::unique_ptr<InfoField> primaryUserIdField;
         std::unique_ptr<InfoField> privateKeyInfoField;
+        std::unique_ptr<InfoField> statusField;
 
         QListWidget *smimeAddressList = nullptr;
 
@@ -196,6 +197,11 @@ private:
                 expiresField->setAction(changeExpirationAction);
                 gridLayout->addWidget(expiresField->label(), row, 0);
                 gridLayout->addLayout(expiresField->layout(), row, 1);
+
+                row++;
+                statusField = std::make_unique<InfoField>(i18n("Status:"), parent);
+                gridLayout->addWidget(statusField->label(), row, 0);
+                gridLayout->addLayout(statusField->layout(), row, 1);
 
                 row++;
                 fingerprintField = std::make_unique<InfoField>(i18n("Fingerprint:"), parent);
@@ -323,6 +329,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.validFromField->setValue(Formatting::creationDateString(key), Formatting::accessibleCreationDate(key));
     ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Valid until:", "unlimited")), Formatting::accessibleExpirationDate(key));
     ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()), Formatting::accessibleHexID(key.primaryFingerprint()));
+    ui.statusField->setValue(Formatting::complianceStringShort(key));
 
     QString storage;
     const auto &subkey = key.subkey(0);

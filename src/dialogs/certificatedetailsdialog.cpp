@@ -10,7 +10,7 @@
 #include "commands/changepassphrasecommand.h"
 #include "commands/dumpcertificatecommand.h"
 #include "commands/genrevokecommand.h"
-#include "commands/refreshcertificatecommand.h"
+#include "commands/refreshcertificatescommand.h"
 #include "exportdialog.h"
 
 #include <Libkleo/KeyHelpers>
@@ -164,8 +164,8 @@ void CertificateDetailsDialog::Private::exportClicked()
 
 void CertificateDetailsDialog::Private::refreshCertificate()
 {
-    auto cmd = new Kleo::RefreshCertificateCommand(q->key());
-    QObject::connect(cmd, &Kleo::RefreshCertificateCommand::finished, q, [this]() {
+    auto cmd = new Kleo::RefreshCertificatesCommand(q->key());
+    QObject::connect(cmd, &Kleo::RefreshCertificatesCommand::finished, q, [this]() {
         refreshBtn->setEnabled(true);
     });
     refreshBtn->setEnabled(false);

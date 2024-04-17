@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/refreshcertificatecommand.h
+    commands/refreshcertificatescommand.h
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2022 g10 Code GmbH
@@ -14,12 +14,18 @@
 
 namespace Kleo
 {
-class RefreshCertificateCommand : public Command
+class RefreshCertificatesCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit RefreshCertificateCommand(const GpgME::Key &key);
-    ~RefreshCertificateCommand() override;
+    explicit RefreshCertificatesCommand(QAbstractItemView *view, KeyListController *parent);
+    explicit RefreshCertificatesCommand(const GpgME::Key &key);
+    ~RefreshCertificatesCommand() override;
+
+    /* reimp */ static Restrictions restrictions()
+    {
+        return NeedSelection;
+    }
 
 private:
     void doStart() override;

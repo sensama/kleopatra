@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-16 00:38+0000\n"
+"POT-Creation-Date: 2024-04-17 00:38+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1614,7 +1614,7 @@ msgstr ""
 "<para>鍵を公開するメールの作成時にエラーが発生しました:</para><message>%1</"
 "message>"
 
-#: src/commands/exportpaperkeycommand.cpp:65
+#: src/commands/exportpaperkeycommand.cpp:88
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1626,47 +1626,45 @@ msgstr ""
 "application>を使って、あなたの最小化した印刷可能な秘密鍵を作成します。</"
 "para><para>それがインストールされていることを確実にしてください。</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:69
+#: src/commands/exportpaperkeycommand.cpp:92
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "PaperKey 実行ファイルが見つかりませんでした"
 
-#: src/commands/exportpaperkeycommand.cpp:90
+#: src/commands/exportpaperkeycommand.cpp:112
+#: src/commands/exportpaperkeycommand.cpp:124
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred during the backup of the secret key:</"
+#| "para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred during export of the secret key:</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>秘密鍵のバックアップの際にエラーが発生しました:</para><para><message>"
+"%1</message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:148
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para><application>PaperKey</application> failed with error</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>要求の保存に失敗しました。</para><para><message>%1</message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "秘密鍵を印刷する"
-
-#: src/commands/exportpaperkeycommand.cpp:107
-#, kde-format
-msgctxt "@title:window"
-msgid "Error printing secret key"
-msgstr "秘密鍵を印刷するエラー"
-
-#: src/commands/exportpaperkeycommand.cpp:113
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The GPG process that tried to export the secret key ended prematurely "
-"because of an unexpected error.</para><para>Please check the output of "
-"<icode>%1</icode> for details.</para>"
-msgstr ""
-"<para>秘密鍵をエクスポートしようとした GPG プロセスは、予期しないエラーにより"
-"途中で終了しました。</para><para>詳細については <icode>%1</icode> の出力を確"
-"認してください。</para>"
-
-#: src/commands/exportpaperkeycommand.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>An error occurred while trying to export the secret key.</para> "
-"<para>The output from <command>%1</command> was: <message>%2</message></para>"
-msgstr ""
-"<para>秘密鍵をエクスポートしようとしていたときにエラーが発生しました。</"
-"para><para><command>%1</command> からの出力は以下のとおりです: <message>%2</"
-"message></para>"
 
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
@@ -1896,8 +1894,8 @@ msgstr "プロセスは終了しました"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:897
-#: src/commands/importcertificatescommand.cpp:947
+#: src/commands/importcertificatescommand.cpp:905
+#: src/commands/importcertificatescommand.cpp:955
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "証明書のインポートに失敗"
@@ -2245,7 +2243,7 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "いいえ、わたしのではありません"
 
-#: src/commands/importcertificatescommand.cpp:797
+#: src/commands/importcertificatescommand.cpp:805
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2259,14 +2257,14 @@ msgid ""
 msgstr ""
 "<para>このユーザ ID を本当に取消しますか<nl/><emphasis>%1</emphasis></para>?"
 
-#: src/commands/importcertificatescommand.cpp:861
+#: src/commands/importcertificatescommand.cpp:869
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "署名者の鍵 %1件を取り込み... (時間がかかる場合があります)"
 
-#: src/commands/importcertificatescommand.cpp:896
-#: src/commands/importcertificatescommand.cpp:946
+#: src/commands/importcertificatescommand.cpp:904
+#: src/commands/importcertificatescommand.cpp:954
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -12660,6 +12658,30 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#~ msgctxt "@title:window"
+#~ msgid "Error printing secret key"
+#~ msgstr "秘密鍵を印刷するエラー"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The GPG process that tried to export the secret key ended "
+#~ "prematurely because of an unexpected error.</para><para>Please check the "
+#~ "output of <icode>%1</icode> for details.</para>"
+#~ msgstr ""
+#~ "<para>秘密鍵をエクスポートしようとした GPG プロセスは、予期しないエラーに"
+#~ "より途中で終了しました。</para><para>詳細については <icode>%1</icode> の出"
+#~ "力を確認してください。</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>An error occurred while trying to export the secret key.</para> "
+#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
+#~ "para>"
+#~ msgstr ""
+#~ "<para>秘密鍵をエクスポートしようとしていたときにエラーが発生しました。</"
+#~ "para><para><command>%1</command> からの出力は以下のとおりです: <message>"
+#~ "%2</message></para>"
 
 #~ msgctxt "@option:radio"
 #~ msgid "RSA"

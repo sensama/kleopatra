@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-16 00:38+0000\n"
+"POT-Creation-Date: 2024-04-17 00:38+0000\n"
 "PO-Revision-Date: 2024-04-09 09:12+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -1576,7 +1576,7 @@ msgstr ""
 "<para>При създаването на ключа за публикуване на поща възникна грешка:</"
 "para><message>%1</message>"
 
-#: src/commands/exportpaperkeycommand.cpp:65
+#: src/commands/exportpaperkeycommand.cpp:88
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1588,47 +1588,46 @@ msgstr ""
 "PaperKey </application> за създаване на минимизирана версия за печат на "
 "вашия секретен ключ.</para><para> Моля, уверете се, че е инсталиран. </para>"
 
-#: src/commands/exportpaperkeycommand.cpp:69
+#: src/commands/exportpaperkeycommand.cpp:92
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "Неуспешно изпълнение на PaperKey."
 
-#: src/commands/exportpaperkeycommand.cpp:90
+#: src/commands/exportpaperkeycommand.cpp:112
+#: src/commands/exportpaperkeycommand.cpp:124
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred during the backup of the secret key:</"
+#| "para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred during export of the secret key:</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>По време на архивирането на секретния ключ възникна грешка:</"
+"para><para><message>%1</message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:148
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para><application>PaperKey</application> failed with error</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>Записването на заявката е неуспешно.</para><para><message>%1</"
+"message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "Печат на секретен ключ"
-
-#: src/commands/exportpaperkeycommand.cpp:107
-#, kde-format
-msgctxt "@title:window"
-msgid "Error printing secret key"
-msgstr "Грешка при отпечатването на секретен ключ"
-
-#: src/commands/exportpaperkeycommand.cpp:113
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The GPG process that tried to export the secret key ended prematurely "
-"because of an unexpected error.</para><para>Please check the output of "
-"<icode>%1</icode> for details.</para>"
-msgstr ""
-"<para> Процесът на GPG, който се опита да експортира секретния ключ, "
-"приключи преждевременно поради неочаквана грешка. </para><para> Моля, "
-"проверете изходните данни на<icode> %1 </icode> за подробности. </para>"
-
-#: src/commands/exportpaperkeycommand.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>An error occurred while trying to export the secret key.</para> "
-"<para>The output from <command>%1</command> was: <message>%2</message></para>"
-msgstr ""
-"<para> Възникна грешка при опит за експортиране на секретния ключ. </"
-"para><para> Резултатът от <command> %1 </command> беше: <message>%2</"
-"message> </para>"
 
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
@@ -1864,8 +1863,8 @@ msgstr "Процесът завърши"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:897
-#: src/commands/importcertificatescommand.cpp:947
+#: src/commands/importcertificatescommand.cpp:905
+#: src/commands/importcertificatescommand.cpp:955
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Грешка при импортиране на удостоверение"
@@ -2213,7 +2212,7 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Не, не е мой"
 
-#: src/commands/importcertificatescommand.cpp:797
+#: src/commands/importcertificatescommand.cpp:805
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2225,7 +2224,7 @@ msgstr ""
 "para><para>съдържа сертификати, които не могат да се използват за "
 "криптиране. Това може да доведе до неочаквани резултати.</para>"
 
-#: src/commands/importcertificatescommand.cpp:861
+#: src/commands/importcertificatescommand.cpp:869
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2234,8 +2233,8 @@ msgstr[0] ""
 msgstr[1] ""
 "Извличане на %1 подписващи ключа... (това може да отнеме известно време)"
 
-#: src/commands/importcertificatescommand.cpp:896
-#: src/commands/importcertificatescommand.cpp:946
+#: src/commands/importcertificatescommand.cpp:904
+#: src/commands/importcertificatescommand.cpp:954
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -12689,6 +12688,30 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgctxt "@title:window"
+#~ msgid "Error printing secret key"
+#~ msgstr "Грешка при отпечатването на секретен ключ"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The GPG process that tried to export the secret key ended "
+#~ "prematurely because of an unexpected error.</para><para>Please check the "
+#~ "output of <icode>%1</icode> for details.</para>"
+#~ msgstr ""
+#~ "<para> Процесът на GPG, който се опита да експортира секретния ключ, "
+#~ "приключи преждевременно поради неочаквана грешка. </para><para> Моля, "
+#~ "проверете изходните данни на<icode> %1 </icode> за подробности. </para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>An error occurred while trying to export the secret key.</para> "
+#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
+#~ "para>"
+#~ msgstr ""
+#~ "<para> Възникна грешка при опит за експортиране на секретния ключ. </"
+#~ "para><para> Резултатът от <command> %1 </command> беше: <message>%2</"
+#~ "message> </para>"
 
 #~ msgid "none"
 #~ msgstr "без"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-16 00:38+0000\n"
+"POT-Creation-Date: 2024-04-17 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1523,7 +1523,7 @@ msgstr ""
 "<para>키를 내보낼 이메일을 생성하는 중 오류 발생:</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/exportpaperkeycommand.cpp:65
+#: src/commands/exportpaperkeycommand.cpp:88
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1535,46 +1535,45 @@ msgstr ""
 "한 버전을 만들 때 <application>PaperKey</application>를 사용합니다.</"
 "para><para>설치 상태를 확인하십시오.</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:69
+#: src/commands/exportpaperkeycommand.cpp:92
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "PaperKey 실행 파일을 찾을 수 없습니다."
 
-#: src/commands/exportpaperkeycommand.cpp:90
+#: src/commands/exportpaperkeycommand.cpp:112
+#: src/commands/exportpaperkeycommand.cpp:124
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred during the backup of the secret key:</"
+#| "para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred during export of the secret key:</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>비밀 키 백업을 실행 중 오류 발생:</para><para><message>%1</message></"
+"para>"
+
+#: src/commands/exportpaperkeycommand.cpp:148
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para><application>PaperKey</application> failed with error</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>요청을 저장할 수 없습니다.</para><para><message>%1</message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "비밀 키 인쇄"
-
-#: src/commands/exportpaperkeycommand.cpp:107
-#, kde-format
-msgctxt "@title:window"
-msgid "Error printing secret key"
-msgstr "비밀 키 인쇄 오류"
-
-#: src/commands/exportpaperkeycommand.cpp:113
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The GPG process that tried to export the secret key ended prematurely "
-"because of an unexpected error.</para><para>Please check the output of "
-"<icode>%1</icode> for details.</para>"
-msgstr ""
-"<para>예상하지 못한 오류로 비밀 키를 내보내려고 했던 GPG 프로세스가 비정상 종"
-"료되었습니다.</para><para>자세한 사항은 <icode>%1</icode>의 출력을 참조하십시"
-"오.</para>"
-
-#: src/commands/exportpaperkeycommand.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>An error occurred while trying to export the secret key.</para> "
-"<para>The output from <command>%1</command> was: <message>%2</message></para>"
-msgstr ""
-"<para>비밀 키를 내보내는 중 오류가 발생했습니다.</para><para><command>%1</"
-"command> 출력: <message>%2</message></para>"
 
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
@@ -1803,8 +1802,8 @@ msgstr "프로세스 완료됨"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:897
-#: src/commands/importcertificatescommand.cpp:947
+#: src/commands/importcertificatescommand.cpp:905
+#: src/commands/importcertificatescommand.cpp:955
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "인증서 가져오기 실패"
@@ -2145,7 +2144,7 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "아니요, 내 인증서가 아닙니다"
 
-#: src/commands/importcertificatescommand.cpp:797
+#: src/commands/importcertificatescommand.cpp:805
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2157,14 +2156,14 @@ msgstr ""
 "에 사용할 수 없는 인증서가 포함되어 있습니다. 예상하지 못한 결과를 가져올 수"
 "도 있습니다.</para>"
 
-#: src/commands/importcertificatescommand.cpp:861
+#: src/commands/importcertificatescommand.cpp:869
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "서명자 키 %1개 가져오는 중...(시간이 걸릴 수 있습니다)"
 
-#: src/commands/importcertificatescommand.cpp:896
-#: src/commands/importcertificatescommand.cpp:946
+#: src/commands/importcertificatescommand.cpp:904
+#: src/commands/importcertificatescommand.cpp:954
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -12384,6 +12383,29 @@ msgid ""
 msgstr ""
 "파일에서 인증서를 가져옵니다.<nl/>공개 키 서버에서 키를 가져오려면 "
 "<interface>서버에서 찾아보기</interface>를 사용하십시오."
+
+#~ msgctxt "@title:window"
+#~ msgid "Error printing secret key"
+#~ msgstr "비밀 키 인쇄 오류"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The GPG process that tried to export the secret key ended "
+#~ "prematurely because of an unexpected error.</para><para>Please check the "
+#~ "output of <icode>%1</icode> for details.</para>"
+#~ msgstr ""
+#~ "<para>예상하지 못한 오류로 비밀 키를 내보내려고 했던 GPG 프로세스가 비정"
+#~ "상 종료되었습니다.</para><para>자세한 사항은 <icode>%1</icode>의 출력을 참"
+#~ "조하십시오.</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>An error occurred while trying to export the secret key.</para> "
+#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
+#~ "para>"
+#~ msgstr ""
+#~ "<para>비밀 키를 내보내는 중 오류가 발생했습니다.</para><para><command>%1</"
+#~ "command> 출력: <message>%2</message></para>"
 
 #~ msgctxt "@option:radio"
 #~ msgid "RSA"

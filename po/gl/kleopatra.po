@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-16 00:38+0000\n"
+"POT-Creation-Date: 2024-04-17 00:38+0000\n"
 "PO-Revision-Date: 2024-03-29 10:58+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -1582,7 +1582,7 @@ msgstr ""
 "<para>Produciuse un erro ao crear a mensaxe para publicar a chave:</"
 "para><message>%1</message>"
 
-#: src/commands/exportpaperkeycommand.cpp:65
+#: src/commands/exportpaperkeycommand.cpp:88
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1595,46 +1595,46 @@ msgstr ""
 "secreta.</para> <para>Asegúrese de que ten <application>PaperKey</"
 "application> instalado.</para>"
 
-#: src/commands/exportpaperkeycommand.cpp:69
+#: src/commands/exportpaperkeycommand.cpp:92
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "Non foi posíbel atopar o executábel de PaperKey."
 
-#: src/commands/exportpaperkeycommand.cpp:90
+#: src/commands/exportpaperkeycommand.cpp:112
+#: src/commands/exportpaperkeycommand.cpp:124
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred during the backup of the secret key:</"
+#| "para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred during export of the secret key:</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>Produciuse un erro durante a salvagarda da chave secreta:</"
+"para><para><message>%1</message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:148
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para><application>PaperKey</application> failed with error</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>Non foi posíbel gardar a solicitude.</para><para><message>%1</"
+"message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "Imprimir a chave secreta"
-
-#: src/commands/exportpaperkeycommand.cpp:107
-#, kde-format
-msgctxt "@title:window"
-msgid "Error printing secret key"
-msgstr "Erro ao imprimir a chave secreta"
-
-#: src/commands/exportpaperkeycommand.cpp:113
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>The GPG process that tried to export the secret key ended prematurely "
-"because of an unexpected error.</para><para>Please check the output of "
-"<icode>%1</icode> for details.</para>"
-msgstr ""
-"<para>O proceso GPG que intentaba exportar a chave secreta rematou "
-"prematuramente por causa dun erro inesperado.</para><para>Comprobe a saída "
-"de <icode>%1</icode> para máis detalles.</para>"
-
-#: src/commands/exportpaperkeycommand.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>An error occurred while trying to export the secret key.</para> "
-"<para>The output from <command>%1</command> was: <message>%2</message></para>"
-msgstr ""
-"<para>Produciuse un erro ao intentar exportar a chave secreta.</para> "
-"<para>A saída de <command>%1</command> foi: <message>%2</message></para>"
 
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
@@ -1871,8 +1871,8 @@ msgstr "Rematou o proceso"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:897
-#: src/commands/importcertificatescommand.cpp:947
+#: src/commands/importcertificatescommand.cpp:905
+#: src/commands/importcertificatescommand.cpp:955
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Fallou a importación do certificado"
@@ -2219,7 +2219,7 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Non é meu, non"
 
-#: src/commands/importcertificatescommand.cpp:797
+#: src/commands/importcertificatescommand.cpp:805
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2231,15 +2231,15 @@ msgstr ""
 "para><para>contén certificados que non se poden usar para cifrar. Isto pode "
 "dar resultados inesperados.</para>"
 
-#: src/commands/importcertificatescommand.cpp:861
+#: src/commands/importcertificatescommand.cpp:869
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Obtendo 1 chave de asinante… (pode levar un anaco)"
 msgstr[1] "Obtendo %1 chaves de asinante… (pode levar un anaco)"
 
-#: src/commands/importcertificatescommand.cpp:896
-#: src/commands/importcertificatescommand.cpp:946
+#: src/commands/importcertificatescommand.cpp:904
+#: src/commands/importcertificatescommand.cpp:954
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -12702,6 +12702,29 @@ msgid ""
 msgstr ""
 "Importar o certificado dun ficheiro.<nl/>Para importar dun servidor de "
 "chaves público use <interface>Buscar no servidor</interface> no seu lugar."
+
+#~ msgctxt "@title:window"
+#~ msgid "Error printing secret key"
+#~ msgstr "Erro ao imprimir a chave secreta"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The GPG process that tried to export the secret key ended "
+#~ "prematurely because of an unexpected error.</para><para>Please check the "
+#~ "output of <icode>%1</icode> for details.</para>"
+#~ msgstr ""
+#~ "<para>O proceso GPG que intentaba exportar a chave secreta rematou "
+#~ "prematuramente por causa dun erro inesperado.</para><para>Comprobe a "
+#~ "saída de <icode>%1</icode> para máis detalles.</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>An error occurred while trying to export the secret key.</para> "
+#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
+#~ "para>"
+#~ msgstr ""
+#~ "<para>Produciuse un erro ao intentar exportar a chave secreta.</para> "
+#~ "<para>A saída de <command>%1</command> foi: <message>%2</message></para>"
 
 #~ msgctxt "@option:radio"
 #~ msgid "RSA"

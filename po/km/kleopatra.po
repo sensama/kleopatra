@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-16 00:38+0000\n"
+"POT-Creation-Date: 2024-04-17 00:38+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -1658,7 +1658,7 @@ msgid ""
 "para><message>%1</message>"
 msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
-#: src/commands/exportpaperkeycommand.cpp:65
+#: src/commands/exportpaperkeycommand.cpp:88
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1667,7 +1667,7 @@ msgid ""
 "</para><para>Please make sure it is installed.</para>"
 msgstr ""
 
-#: src/commands/exportpaperkeycommand.cpp:69
+#: src/commands/exportpaperkeycommand.cpp:92
 #: src/commands/importpaperkeycommand.cpp:156
 #, fuzzy, kde-format
 #| msgid "Could not find gpgconf executable"
@@ -1675,47 +1675,37 @@ msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "មិន​អាច​ស្វែងរក​ឯកសារ​ប្រតិបត្តិ​ gpgconf បាន​ឡើយ​"
 
-#: src/commands/exportpaperkeycommand.cpp:90
+#: src/commands/exportpaperkeycommand.cpp:112
+#: src/commands/exportpaperkeycommand.cpp:124
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred during export of the secret key:</"
+"para><para><message>%1</message></para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:148
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para><application>PaperKey</application> failed with error</"
+"para><para><message>%1</message></para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
+
+#: src/commands/exportpaperkeycommand.cpp:160
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgctxt "@title:window"
 msgid "Print Secret Key"
 msgstr "នាំចេញ​វិញ្ញាបនបត្រ​​សម្ងាត់​​​...​"
-
-#: src/commands/exportpaperkeycommand.cpp:107
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Error Deleting Registry Key"
-msgctxt "@title:window"
-msgid "Error printing secret key"
-msgstr "កំហុស​ក្នុង​ការ​លុប​សោ​ចុះបញ្ជី"
-
-#: src/commands/exportpaperkeycommand.cpp:113
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#| "prematurely because of an unexpected error.</para><para>Please check the "
-#| "output of <icode>%1</icode> for details.</para>"
-msgctxt "@info"
-msgid ""
-"<para>The GPG process that tried to export the secret key ended prematurely "
-"because of an unexpected error.</para><para>Please check the output of "
-"<icode>%1</icode> for details.</para>"
-msgstr ""
-"<para>​ដំណើរការ​ GPG ឬ​ GpgSM ដែល​បាន​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ត្រូវ​បាន​បញ្ចប់​មុន​ពេល ​ដោយសារតែ​កំហុស​"
-"មិន​រំពឹង ។​</para><para>សូម​ពិនិត្យ​មើល​លទ្ធផល​របស់​​ <icode>%1</icode> សម្រាប់​សេចក្ដី​លម្អិត​ ។​</"
-"para>"
-
-#: src/commands/exportpaperkeycommand.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>An error occurred while trying to export the secret key.</para> "
-"<para>The output from <command>%1</command> was: <message>%2</message></para>"
-msgstr ""
-"<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ <command>"
-"%1</command> គឺ​ ៖​ <message>%2</message></para>"
 
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
@@ -1973,8 +1963,8 @@ msgstr "បាន​បញ្ចប់​ដំណើរការ​"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:897
-#: src/commands/importcertificatescommand.cpp:947
+#: src/commands/importcertificatescommand.cpp:905
+#: src/commands/importcertificatescommand.cpp:955
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "ការ​នាំចូល​វិញ្ញាបនបត្រ​បាន​បរាជ័យ​"
@@ -2326,7 +2316,7 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:797
+#: src/commands/importcertificatescommand.cpp:805
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2341,15 +2331,15 @@ msgstr ""
 "<para>កំហុស​មួយ​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​បន្ថែម​លេខ​សម្គាល់​​​អ្នក​ប្រើ ៖ <message>%1</message></"
 "para>"
 
-#: src/commands/importcertificatescommand.cpp:861
+#: src/commands/importcertificatescommand.cpp:869
 #, fuzzy, kde-format
 #| msgid "Load Certifications (may take a while)"
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "ផ្ទុក​ការ​បញ្ជាក់ (អាច​ចំណាយ​ពេល​មួយ​រយៈ)"
 
-#: src/commands/importcertificatescommand.cpp:896
-#: src/commands/importcertificatescommand.cpp:946
+#: src/commands/importcertificatescommand.cpp:904
+#: src/commands/importcertificatescommand.cpp:954
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -13099,6 +13089,38 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgctxt "@title"
+#~| msgid "Error Deleting Registry Key"
+#~ msgctxt "@title:window"
+#~ msgid "Error printing secret key"
+#~ msgstr "កំហុស​ក្នុង​ការ​លុប​សោ​ចុះបញ្ជី"
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid ""
+#~| "<para>The GPG or GpgSM process that tried to export the secret key ended "
+#~| "prematurely because of an unexpected error.</para><para>Please check the "
+#~| "output of <icode>%1</icode> for details.</para>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>The GPG process that tried to export the secret key ended "
+#~ "prematurely because of an unexpected error.</para><para>Please check the "
+#~ "output of <icode>%1</icode> for details.</para>"
+#~ msgstr ""
+#~ "<para>​ដំណើរការ​ GPG ឬ​ GpgSM ដែល​បាន​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ត្រូវ​បាន​បញ្ចប់​មុន​ពេល ​ដោយសារតែ​"
+#~ "កំហុស​មិន​រំពឹង ។​</para><para>សូម​ពិនិត្យ​មើល​លទ្ធផល​របស់​​ <icode>%1</icode> សម្រាប់​សេចក្ដី​លម្អិត​ "
+#~ "។​</para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>An error occurred while trying to export the secret key.</para> "
+#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
+#~ "para>"
+#~ msgstr ""
+#~ "<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ "
+#~ "<command>%1</command> គឺ​ ៖​ <message>%2</message></para>"
 
 #, fuzzy
 #~| msgid "RSA"

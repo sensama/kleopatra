@@ -59,8 +59,7 @@ public:
     SignCertificateFilter(GpgME::Protocol proto)
         : DefaultKeyFilter()
     {
-        setRevoked(DefaultKeyFilter::NotSet);
-        setExpired(DefaultKeyFilter::NotSet);
+        setIsBad(DefaultKeyFilter::NotSet);
         setHasSecret(DefaultKeyFilter::Set);
         setCanSign(DefaultKeyFilter::Set);
         setValidIfSMIME(DefaultKeyFilter::Set);
@@ -78,8 +77,7 @@ public:
     EncryptCertificateFilter(GpgME::Protocol proto)
         : DefaultKeyFilter()
     {
-        setRevoked(DefaultKeyFilter::NotSet);
-        setExpired(DefaultKeyFilter::NotSet);
+        setIsBad(DefaultKeyFilter::NotSet);
         setCanEncrypt(DefaultKeyFilter::Set);
         setValidIfSMIME(DefaultKeyFilter::Set);
 

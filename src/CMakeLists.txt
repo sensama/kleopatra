@@ -177,8 +177,8 @@ set(_kleopatra_SRCS
   commands/openpgpgeneratecardkeycommand.h
   commands/pivgeneratecardkeycommand.cpp
   commands/pivgeneratecardkeycommand.h
-  commands/refreshcertificatecommand.cpp
-  commands/refreshcertificatecommand.h
+  commands/refreshcertificatescommand.cpp
+  commands/refreshcertificatescommand.h
   commands/refreshopenpgpcertscommand.cpp
   commands/refreshopenpgpcertscommand.h
   commands/refreshx509certscommand.cpp

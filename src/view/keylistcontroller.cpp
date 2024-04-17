@@ -47,6 +47,7 @@
 #include "commands/lookupcertificatescommand.h"
 #include "commands/newcertificatesigningrequestcommand.h"
 #include "commands/newopenpgpcertificatecommand.h"
+#include "commands/refreshcertificatescommand.h"
 #include "commands/refreshopenpgpcertscommand.h"
 #include "commands/refreshx509certscommand.h"
 #include "commands/reloadkeyscommand.h"
@@ -489,6 +490,15 @@ void KeyListController::createActions(KActionCollection *coll)
             QStringLiteral("Delete"),
         },
         {
+            "certificates_refresh",
+            i18n("Update Certificates"),
+            i18n("Update selected certificates"),
+            "view-refresh",
+            nullptr,
+            nullptr,
+            QString(),
+        },
+        {
             "certificates_certify_certificate",
             i18n("Certify..."),
             i18n("Certify the validity of the selected certificate"),
@@ -703,6 +713,8 @@ void KeyListController::createActions(KActionCollection *coll)
     //---
     registerActionForCommand<RevokeKeyCommand>(coll->action(QStringLiteral("certificates_revoke")));
     registerActionForCommand<DeleteCertificatesCommand>(coll->action(QStringLiteral("certificates_delete")));
+    //---
+    registerActionForCommand<RefreshCertificatesCommand>(coll->action(QStringLiteral("certificates_refresh")));
     //---
     registerActionForCommand<DumpCertificateCommand>(coll->action(QStringLiteral("certificates_dump_certificate")));
 

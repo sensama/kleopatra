@@ -21,14 +21,17 @@
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 
+#include <QGpgME/ExportJob>
+#include <QGpgME/Protocol>
+#include <QGpgME/RevokeKeyJob>
+
+#include <gpgme.h>
+
 #include <KFileUtils>
 #include <KLocalizedString>
 
-#include <QGpgME/RevokeKeyJob>
-
 #include <QFile>
-#include <QGpgME/ExportJob>
-#include <QGpgME/Protocol>
+#include <QFileInfo>
 #include <QStandardPaths>
 
 using namespace Kleo;
@@ -205,49 +208,61 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
 
 void RevokeKeyCommand::Private::onJobResult(const Error &err)
 {
+    if (err.isCanceled()) {
+        finished();
+        return;
+    }
+
     if (err) {
         showError(err);
         finished();
         return;
     }
 
-    auto revokedKey = KeyCache::instance()->findByFingerprint(key.primaryFingerprint());
-
     auto job = QGpgME::openpgp()->publicKeyExportJob(true);
-    QByteArray data;
-    auto exportError = job->exec({QString::fromLatin1(revokedKey.primaryFingerprint())}, data);
-    if (exportError) {
-        showError(exportError);
-        finished();
-        return;
-    }
+    job->setExportFlags(GPGME_EXPORT_MODE_MINIMAL);
 
-    auto name = Formatting::prettyName(key);
-    if (name.isEmpty()) {
-        name = Formatting::prettyEMail(key);
-    }
-    const auto dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    const auto filename = KFileUtils::suggestName(QUrl(dir), QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.shortKeyID())));
-    const auto path = QStringLiteral("%1/%2").arg(dir, filename);
-    QFile file(path);
-    file.open(QIODevice::WriteOnly);
-    file.write(data);
-    file.close();
+    connect(job, &QGpgME::ExportJob::result, q, [this](const auto &error, const auto &data) {
+        if (error.isCanceled()) {
+            finished();
+            return;
+        }
 
-    if (!err.isCanceled()) {
+        if (error) {
+            information(i18nc("@info", "<para>The certificate was revoked successfully."));
+            finished();
+            return;
+        }
+
+        auto name = Formatting::prettyName(key);
+        if (name.isEmpty()) {
+            name = Formatting::prettyEMail(key);
+        }
+
+        auto filename = QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.shortKeyID()));
+        const auto dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+        if (QFileInfo::exists(QStringLiteral("%1/%2").arg(dir, filename))) {
+            filename = KFileUtils::suggestName(QUrl::fromLocalFile(dir), filename);
+        }
+        const auto path = QStringLiteral("%1/%2").arg(dir, filename);
+        QFile file(path);
+        file.open(QIODevice::WriteOnly);
+        file.write(data);
+        file.close();
+
         if (haveKeyserverConfigured()) {
             const auto code = KMessageBox::questionTwoActions(
                 parentWidgetOrView(),
                 xi18nc("@info",
                        "<para>The certificate was revoked successfully.</para><para>The revoked certificate was exported to "
                        "<filename>%1</filename></para><para>To make sure that your contacts receive the revoked certificate, "
-                       "you can also upload it to a keyserver now.</para>",
+                       "you can upload it to a keyserver now.</para>",
                        path),
                 i18nc("@title:window", "Key Revoked"),
-                KGuiItem(i18nc("@action:button Publish a certificate", "Publish"), QIcon::fromTheme(QStringLiteral("view-certificate-export-server"))),
+                KGuiItem(i18nc("@action:button Upload a certificate", "Upload"), QIcon::fromTheme(QStringLiteral("view-certificate-export-server"))),
                 KStandardGuiItem::close());
             if (code == KMessageBox::PrimaryAction) {
-                auto const cmd = new Commands::ExportOpenPGPCertsToServerCommand(revokedKey);
+                auto const cmd = new Commands::ExportOpenPGPCertsToServerCommand(key);
                 cmd->start();
             }
         } else {
@@ -256,8 +271,9 @@ void RevokeKeyCommand::Private::onJobResult(const Error &err)
                                "<filename>%1</filename></para>",
                                path));
         }
-    }
-    finished();
+        finished();
+    });
+    job->start({QString::fromLatin1(key.primaryFingerprint())});
 }
 
 void RevokeKeyCommand::Private::showError(const Error &err)

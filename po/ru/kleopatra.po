@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-18 00:38+0000\n"
+"POT-Creation-Date: 2024-04-19 00:38+0000\n"
 "PO-Revision-Date: 2024-02-20 16:32+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -5823,34 +5823,34 @@ msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 "Здесь отображаются состояние и ход выполнения криптографических операций."
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:170
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Доказательство подлинности (подпись)"
 
-#: src/crypto/gui/signencryptwidget.cpp:173
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, kde-format
 msgid "Sign as:"
 msgstr "Сертификат подписи:"
 
-#: src/crypto/gui/signencryptwidget.cpp:203
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Шифрование"
 
-#: src/crypto/gui/signencryptwidget.cpp:209
+#: src/crypto/gui/signencryptwidget.cpp:207
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Зашифровать для себя:"
 
-#: src/crypto/gui/signencryptwidget.cpp:223
+#: src/crypto/gui/signencryptwidget.cpp:221
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Зашифровать для других:"
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:256
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5858,7 +5858,7 @@ msgstr ""
 "Зашифровать, используя пароль. Каждый, кто знает пароль, сможет прочитать "
 "данные."
 
-#: src/crypto/gui/signencryptwidget.cpp:260
+#: src/crypto/gui/signencryptwidget.cpp:258
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5873,25 +5873,25 @@ msgstr ""
 "сложного, <b>менее безопасно</b>, чем использование шифрования на основе "
 "открытых ключей."
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:359
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ключ получателя"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:595
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Срок действия этого сертификата истёк."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:598
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Срок действия этого сертификата истекает сегодня."
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5901,24 +5901,24 @@ msgstr[1] "Срок действия этого сертификата исте�
 msgstr[2] "Срок действия этого сертификата истекает через %1 дней."
 msgstr[3] "Срок действия этого сертификата истекает завтра."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:605
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Этот сертификат нельзя использовать для шифрования."
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Этот сертификат нельзя использовать для создания подписи."
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:838
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Не удалось найти ключ для следующих получателей:"
 
-#: src/crypto/gui/signencryptwidget.cpp:842
+#: src/crypto/gui/signencryptwidget.cpp:840
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
@@ -6510,7 +6510,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:170
+#: src/dialogs/certificatedetailswidget.cpp:171
 #: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6584,117 +6584,124 @@ msgstr ""
 "<interface>%1</interface> содержит недопустимое значение.<nl/>Локальное "
 "административное правило: <icode>%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:161
+#: src/dialogs/certificatedetailswidget.cpp:162
 #, fuzzy, kde-format
 #| msgid "User IDs:"
 msgid "User ID:"
 msgstr "Идентификаторы пользователей:"
 
-#: src/dialogs/certificatedetailswidget.cpp:181
+#: src/dialogs/certificatedetailswidget.cpp:182
 #, kde-format
 msgid "Trust level:"
 msgstr "Уровень доверия:"
 
-#: src/dialogs/certificatedetailswidget.cpp:186
+#: src/dialogs/certificatedetailswidget.cpp:187
 #, kde-format
 msgid "Valid from:"
 msgstr "Действителен с:"
 
-#: src/dialogs/certificatedetailswidget.cpp:191
+#: src/dialogs/certificatedetailswidget.cpp:192
 #: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Срок действия:"
 
-#: src/dialogs/certificatedetailswidget.cpp:194
+#: src/dialogs/certificatedetailswidget.cpp:195
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "Изменить окончание периода действия"
 
-#: src/dialogs/certificatedetailswidget.cpp:195
+#: src/dialogs/certificatedetailswidget.cpp:196
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "Изменить действительность"
 
-#: src/dialogs/certificatedetailswidget.cpp:201
+#: src/dialogs/certificatedetailswidget.cpp:202
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Status"
+msgid "Status:"
+msgstr "Состояние"
+
+#: src/dialogs/certificatedetailswidget.cpp:207
 #: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Отпечаток:"
 
-#: src/dialogs/certificatedetailswidget.cpp:205
+#: src/dialogs/certificatedetailswidget.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "Копировать отпечаток в буфер обмена"
 
-#: src/dialogs/certificatedetailswidget.cpp:206
+#: src/dialogs/certificatedetailswidget.cpp:212
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "Копировать отпечаток"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:219
 #, kde-format
 msgid "Issuer:"
 msgstr "Кем выпущен:"
 
-#: src/dialogs/certificatedetailswidget.cpp:216
+#: src/dialogs/certificatedetailswidget.cpp:222
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "Показать сертификат центра выдачи"
 
-#: src/dialogs/certificatedetailswidget.cpp:217
+#: src/dialogs/certificatedetailswidget.cpp:223
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Показать сертификат"
 
-#: src/dialogs/certificatedetailswidget.cpp:223
+#: src/dialogs/certificatedetailswidget.cpp:229
 #, kde-format
 msgid "Compliance:"
 msgstr "Соответствие:"
 
-#: src/dialogs/certificatedetailswidget.cpp:228
+#: src/dialogs/certificatedetailswidget.cpp:234
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "Доверенный представитель для:"
 
-#: src/dialogs/certificatedetailswidget.cpp:230
+#: src/dialogs/certificatedetailswidget.cpp:236
 #, kde-format
 msgid "See certifications for details."
 msgstr "Дополнительные сведения содержатся в меню «Сертификаты»"
 
-#: src/dialogs/certificatedetailswidget.cpp:234
+#: src/dialogs/certificatedetailswidget.cpp:240
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Write Key"
 msgid "Private Key:"
 msgstr "Записать ключ"
 
-#: src/dialogs/certificatedetailswidget.cpp:247
+#: src/dialogs/certificatedetailswidget.cpp:253
 #, fuzzy, kde-format
 #| msgid "User IDs"
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "Идентификаторы пользователей"
 
-#: src/dialogs/certificatedetailswidget.cpp:249
+#: src/dialogs/certificatedetailswidget.cpp:255
 #, kde-format
 msgid "Related addresses"
 msgstr "Связанные адреса"
 
-#: src/dialogs/certificatedetailswidget.cpp:252
+#: src/dialogs/certificatedetailswidget.cpp:258
 #, fuzzy, kde-format
 #| msgid "Related addresses"
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "Связанные адреса"
 
-#: src/dialogs/certificatedetailswidget.cpp:255
+#: src/dialogs/certificatedetailswidget.cpp:261
 #, fuzzy, kde-format
 #| msgctxt "@label"
 #| msgid "Subkeys"
@@ -6702,7 +6709,7 @@ msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "Подключи"
 
-#: src/dialogs/certificatedetailswidget.cpp:258
+#: src/dialogs/certificatedetailswidget.cpp:264
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certifications"
@@ -6710,7 +6717,7 @@ msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "Сертификаты"
 
-#: src/dialogs/certificatedetailswidget.cpp:261
+#: src/dialogs/certificatedetailswidget.cpp:267
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Trust Chain Details"
@@ -6718,7 +6725,7 @@ msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "Подробные сведения о цепочке доверия"
 
-#: src/dialogs/certificatedetailswidget.cpp:264
+#: src/dialogs/certificatedetailswidget.cpp:270
 #, fuzzy, kde-format
 #| msgctxt "@action show smartcard management view"
 #| msgid "Smartcards"
@@ -6726,7 +6733,7 @@ msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr "Смарт-карты"
 
-#: src/dialogs/certificatedetailswidget.cpp:267
+#: src/dialogs/certificatedetailswidget.cpp:273
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certificate Dump"
@@ -6734,20 +6741,20 @@ msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "Снимок сертификата"
 
-#: src/dialogs/certificatedetailswidget.cpp:324
+#: src/dialogs/certificatedetailswidget.cpp:330
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "неограниченно"
 
-#: src/dialogs/certificatedetailswidget.cpp:330
+#: src/dialogs/certificatedetailswidget.cpp:337
 #: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:333
+#: src/dialogs/certificatedetailswidget.cpp:340
 #, fuzzy, kde-format
 #| msgctxt "smart card <serial number>"
 #| msgid "smart card %1"
@@ -6755,64 +6762,64 @@ msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "смарт-карта %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:335
+#: src/dialogs/certificatedetailswidget.cpp:342
 #, fuzzy, kde-format
 #| msgid "smart card"
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "смарт-карта"
 
-#: src/dialogs/certificatedetailswidget.cpp:338
+#: src/dialogs/certificatedetailswidget.cpp:345
 #: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "автономный"
 
-#: src/dialogs/certificatedetailswidget.cpp:340
+#: src/dialogs/certificatedetailswidget.cpp:347
 #, fuzzy, kde-format
 #| msgid "on this computer"
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "на этом компьютере"
 
-#: src/dialogs/certificatedetailswidget.cpp:455
+#: src/dialogs/certificatedetailswidget.cpp:462
 #: src/dialogs/useridswidget.cpp:360
 #, kde-format
 msgid "Updating..."
 msgstr "Обновление…"
 
-#: src/dialogs/certificatedetailswidget.cpp:527
+#: src/dialogs/certificatedetailswidget.cpp:534
 #, kde-format
 msgid "Common Name"
 msgstr "Общее имя"
 
-#: src/dialogs/certificatedetailswidget.cpp:528
+#: src/dialogs/certificatedetailswidget.cpp:535
 #, kde-format
 msgid "Organization"
 msgstr "Организация"
 
-#: src/dialogs/certificatedetailswidget.cpp:529
+#: src/dialogs/certificatedetailswidget.cpp:536
 #, kde-format
 msgid "Street"
 msgstr "Улица"
 
-#: src/dialogs/certificatedetailswidget.cpp:530
+#: src/dialogs/certificatedetailswidget.cpp:537
 #, kde-format
 msgid "City"
 msgstr "Город"
 
-#: src/dialogs/certificatedetailswidget.cpp:531
+#: src/dialogs/certificatedetailswidget.cpp:538
 #, kde-format
 msgid "State"
 msgstr "Штат / регион"
 
-#: src/dialogs/certificatedetailswidget.cpp:532
+#: src/dialogs/certificatedetailswidget.cpp:539
 #, kde-format
 msgid "Country"
 msgstr "Страна"
 
-#: src/dialogs/certificatedetailswidget.cpp:579
+#: src/dialogs/certificatedetailswidget.cpp:586
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "Не удалось найти локальный экземпляр сертификата центра выдачи."

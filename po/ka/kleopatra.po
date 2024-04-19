@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-18 00:38+0000\n"
+"POT-Creation-Date: 2024-04-19 00:38+0000\n"
 "PO-Revision-Date: 2024-04-17 05:10+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -5703,41 +5703,41 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "კრიპტოგრაფიული ოპერაციების სტატუსი და მიმდინარეობა აქ გამოჩნდება."
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:170
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "სინამდვილის დამტკიცება (ხელმოწერა)"
 
-#: src/crypto/gui/signencryptwidget.cpp:173
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, kde-format
 msgid "Sign as:"
 msgstr "ხელმოწერა, როგორც:"
 
-#: src/crypto/gui/signencryptwidget.cpp:203
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "დაშიფრვა"
 
-#: src/crypto/gui/signencryptwidget.cpp:209
+#: src/crypto/gui/signencryptwidget.cpp:207
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "ჩემთვის დაშიფვრა:"
 
-#: src/crypto/gui/signencryptwidget.cpp:223
+#: src/crypto/gui/signencryptwidget.cpp:221
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "სხვებისთვის დაშიფვრა:"
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:256
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "პაროლით დაშიფვრა. ყველას, ვისაც პაროლი აქვს, შეუძლია წაიკითხოს მონაცემები."
 
-#: src/crypto/gui/signencryptwidget.cpp:260
+#: src/crypto/gui/signencryptwidget.cpp:258
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5751,25 +5751,25 @@ msgstr ""
 "წაიკითხოს ის. პაროლის გამოყენება, საჯარო გასაღების გამოყენებაზე <b>ნაკლებად "
 "დაცულია</b>."
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:359
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "მიმღების გასაღბი"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:595
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "სერტიფიკატი ვადაგასულია."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:598
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "სერტიფიკატს ვადა დღეს გასდის."
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5777,24 +5777,24 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "სერტიფიკატს ვადა ხვალ გასდის."
 msgstr[1] "სერტიფიკატს ვადა %1 დღეში გასდის."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:605
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "ამ სერტიფიკატის დაშიფვრისთვის გამოყენება შეუძლებელია."
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "ამ სერტიფიკატის ხელმოსაწერად გამოყენება შეუძლებელია."
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:838
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "გასაღები აღმოჩენილი არაა შემდეგი მიმღებებისთვის:"
 
-#: src/crypto/gui/signencryptwidget.cpp:842
+#: src/crypto/gui/signencryptwidget.cpp:840
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
@@ -6364,7 +6364,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:170
+#: src/dialogs/certificatedetailswidget.cpp:171
 #: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6438,216 +6438,223 @@ msgstr ""
 "<interface>%1</interface> არასწორია.<nl/>ლოკალური ადმინის წესი: <icode>%2</"
 "icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:161
+#: src/dialogs/certificatedetailswidget.cpp:162
 #, kde-format
 msgid "User ID:"
 msgstr "მომხმარებლის ID:"
 
-#: src/dialogs/certificatedetailswidget.cpp:181
+#: src/dialogs/certificatedetailswidget.cpp:182
 #, kde-format
 msgid "Trust level:"
 msgstr "ნდობის დონე:"
 
-#: src/dialogs/certificatedetailswidget.cpp:186
+#: src/dialogs/certificatedetailswidget.cpp:187
 #, kde-format
 msgid "Valid from:"
 msgstr "ძალაშია:"
 
-#: src/dialogs/certificatedetailswidget.cpp:191
+#: src/dialogs/certificatedetailswidget.cpp:192
 #: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "ვადა:"
 
-#: src/dialogs/certificatedetailswidget.cpp:194
+#: src/dialogs/certificatedetailswidget.cpp:195
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "მოქმედების პერიოდის ბოლოს შეცვლა"
 
-#: src/dialogs/certificatedetailswidget.cpp:195
+#: src/dialogs/certificatedetailswidget.cpp:196
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "სისწორის შეცვლა"
 
-#: src/dialogs/certificatedetailswidget.cpp:201
+#: src/dialogs/certificatedetailswidget.cpp:202
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Status"
+msgid "Status:"
+msgstr "სტატუსი"
+
+#: src/dialogs/certificatedetailswidget.cpp:207
 #: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
 msgstr "ანაბეჭდი:"
 
-#: src/dialogs/certificatedetailswidget.cpp:205
+#: src/dialogs/certificatedetailswidget.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "ანაბეჭდის ბუფერში კოპირება"
 
-#: src/dialogs/certificatedetailswidget.cpp:206
+#: src/dialogs/certificatedetailswidget.cpp:212
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "ანაბეჭდის კოპირება"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:219
 #, kde-format
 msgid "Issuer:"
 msgstr "გამომცემელი:"
 
-#: src/dialogs/certificatedetailswidget.cpp:216
+#: src/dialogs/certificatedetailswidget.cpp:222
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "გამომცემლის სერტიფიკატის ჩენება"
 
-#: src/dialogs/certificatedetailswidget.cpp:217
+#: src/dialogs/certificatedetailswidget.cpp:223
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "სერტიფიკატის ჩვენება"
 
-#: src/dialogs/certificatedetailswidget.cpp:223
+#: src/dialogs/certificatedetailswidget.cpp:229
 #, kde-format
 msgid "Compliance:"
 msgstr "შესაბამისობა:"
 
-#: src/dialogs/certificatedetailswidget.cpp:228
+#: src/dialogs/certificatedetailswidget.cpp:234
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "სანდო წარმომდგენი ვისთვის:"
 
-#: src/dialogs/certificatedetailswidget.cpp:230
+#: src/dialogs/certificatedetailswidget.cpp:236
 #, kde-format
 msgid "See certifications for details."
 msgstr "დეტალებისთვის იხილეთ სერტიფიკაციები."
 
-#: src/dialogs/certificatedetailswidget.cpp:234
+#: src/dialogs/certificatedetailswidget.cpp:240
 #, kde-format
 msgid "Private Key:"
 msgstr "პირადი გასაღები:"
 
-#: src/dialogs/certificatedetailswidget.cpp:247
+#: src/dialogs/certificatedetailswidget.cpp:253
 #, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "მომხმარებლის ID-ები"
 
-#: src/dialogs/certificatedetailswidget.cpp:249
+#: src/dialogs/certificatedetailswidget.cpp:255
 #, kde-format
 msgid "Related addresses"
 msgstr "შესაბამისი მისამართები"
 
-#: src/dialogs/certificatedetailswidget.cpp:252
+#: src/dialogs/certificatedetailswidget.cpp:258
 #, kde-format
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "შესაბამისი მისამართები"
 
-#: src/dialogs/certificatedetailswidget.cpp:255
+#: src/dialogs/certificatedetailswidget.cpp:261
 #, kde-format
 msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "ქვეგასაღებები"
 
-#: src/dialogs/certificatedetailswidget.cpp:258
+#: src/dialogs/certificatedetailswidget.cpp:264
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "სერთიფიკაცია"
 
-#: src/dialogs/certificatedetailswidget.cpp:261
+#: src/dialogs/certificatedetailswidget.cpp:267
 #, kde-format
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "ნდობის ჯაჭვის დეტალები"
 
-#: src/dialogs/certificatedetailswidget.cpp:264
+#: src/dialogs/certificatedetailswidget.cpp:270
 #, kde-format
 msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr "Smart ბარათი"
 
-#: src/dialogs/certificatedetailswidget.cpp:267
+#: src/dialogs/certificatedetailswidget.cpp:273
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "სერტიფიკატის დამპი"
 
-#: src/dialogs/certificatedetailswidget.cpp:324
+#: src/dialogs/certificatedetailswidget.cpp:330
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "შეუზღუდავი"
 
-#: src/dialogs/certificatedetailswidget.cpp:330
+#: src/dialogs/certificatedetailswidget.cpp:337
 #: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr "შეუსაბამო"
 
-#: src/dialogs/certificatedetailswidget.cpp:333
+#: src/dialogs/certificatedetailswidget.cpp:340
 #, kde-format
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "ჭკვიანი ბარათი %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:335
+#: src/dialogs/certificatedetailswidget.cpp:342
 #, kde-format
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "ჭკვიანი ბარათი"
 
-#: src/dialogs/certificatedetailswidget.cpp:338
+#: src/dialogs/certificatedetailswidget.cpp:345
 #: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "გათიშული"
 
-#: src/dialogs/certificatedetailswidget.cpp:340
+#: src/dialogs/certificatedetailswidget.cpp:347
 #, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "ამ კომპიუტერზე"
 
-#: src/dialogs/certificatedetailswidget.cpp:455
+#: src/dialogs/certificatedetailswidget.cpp:462
 #: src/dialogs/useridswidget.cpp:360
 #, kde-format
 msgid "Updating..."
 msgstr "განახლება..."
 
-#: src/dialogs/certificatedetailswidget.cpp:527
+#: src/dialogs/certificatedetailswidget.cpp:534
 #, kde-format
 msgid "Common Name"
 msgstr "სახელი"
 
-#: src/dialogs/certificatedetailswidget.cpp:528
+#: src/dialogs/certificatedetailswidget.cpp:535
 #, kde-format
 msgid "Organization"
 msgstr "ორგანიზაცია"
 
-#: src/dialogs/certificatedetailswidget.cpp:529
+#: src/dialogs/certificatedetailswidget.cpp:536
 #, kde-format
 msgid "Street"
 msgstr "ქუჩა"
 
-#: src/dialogs/certificatedetailswidget.cpp:530
+#: src/dialogs/certificatedetailswidget.cpp:537
 #, kde-format
 msgid "City"
 msgstr "ქალაქი"
 
-#: src/dialogs/certificatedetailswidget.cpp:531
+#: src/dialogs/certificatedetailswidget.cpp:538
 #, kde-format
 msgid "State"
 msgstr "State"
 
-#: src/dialogs/certificatedetailswidget.cpp:532
+#: src/dialogs/certificatedetailswidget.cpp:539
 #, kde-format
 msgid "Country"
 msgstr "ქვეყანა"
 
-#: src/dialogs/certificatedetailswidget.cpp:579
+#: src/dialogs/certificatedetailswidget.cpp:586
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "გამომცემლის სერტიფიკატის ლოკალურად პოვნა შეუძლებელია."

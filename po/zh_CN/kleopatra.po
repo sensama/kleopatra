@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-18 00:38+0000\n"
-"PO-Revision-Date: 2024-04-16 13:59\n"
+"POT-Creation-Date: 2024-04-19 00:38+0000\n"
+"PO-Revision-Date: 2024-04-18 19:50\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -1508,29 +1508,20 @@ msgstr "找不到 PaperKey 可执行文件"
 
 #: src/commands/exportpaperkeycommand.cpp:112
 #: src/commands/exportpaperkeycommand.cpp:124
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred during the backup of the secret key:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during export of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>备份私钥的过程中发生了一个错误：</para><para><message>%1</message></"
-"para>"
 
 #: src/commands/exportpaperkeycommand.cpp:148
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para><application>PaperKey</application> failed with error</"
 "para><para><message>%1</message></para>"
-msgstr "<para>保存请求失败。</para><para><message>%1</message></para>"
+msgstr ""
 
 #: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
@@ -5434,40 +5425,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "在此显示的是加密操作的状态和进度。"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:170
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "证明真实性 (签名)"
 
-#: src/crypto/gui/signencryptwidget.cpp:173
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, kde-format
 msgid "Sign as:"
 msgstr "签名身份："
 
-#: src/crypto/gui/signencryptwidget.cpp:203
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "加密"
 
-#: src/crypto/gui/signencryptwidget.cpp:209
+#: src/crypto/gui/signencryptwidget.cpp:207
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "为我加密："
 
-#: src/crypto/gui/signencryptwidget.cpp:223
+#: src/crypto/gui/signencryptwidget.cpp:221
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "为他人加密："
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:256
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "使用密码加密。任何知道密码的人都可以读取数据。"
 
-#: src/crypto/gui/signencryptwidget.cpp:260
+#: src/crypto/gui/signencryptwidget.cpp:258
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5480,49 +5471,49 @@ msgstr ""
 "何密钥的情况下读取数据。 即使您选择了一个非常强大的密码，使用密码的安全性也"
 "<b>不如</b>公钥加密系统。"
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:359
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "接收者密钥"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:595
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "证书已过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:598
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "该证书于今天过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "该证书在 %1 天后过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:605
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "此证书不能用于加密。"
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "此证书不能用于签名。"
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:838
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "找不到以下收件人的密钥："
 
-#: src/crypto/gui/signencryptwidget.cpp:842
+#: src/crypto/gui/signencryptwidget.cpp:840
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
@@ -6087,7 +6078,7 @@ msgid "%1 (%2)"
 msgstr "%1(%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:170
+#: src/dialogs/certificatedetailswidget.cpp:171
 #: src/newcertificatewizard/enterdetailspage.cpp:311
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6157,216 +6148,223 @@ msgid ""
 "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
 msgstr "<interface>%1</interface>无效。<nl/>本地管理规则：<icode>%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:161
+#: src/dialogs/certificatedetailswidget.cpp:162
 #, kde-format
 msgid "User ID:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:181
+#: src/dialogs/certificatedetailswidget.cpp:182
 #, kde-format
 msgid "Trust level:"
 msgstr "信任等级："
 
-#: src/dialogs/certificatedetailswidget.cpp:186
+#: src/dialogs/certificatedetailswidget.cpp:187
 #, kde-format
 msgid "Valid from:"
 msgstr "生效日期："
 
-#: src/dialogs/certificatedetailswidget.cpp:191
+#: src/dialogs/certificatedetailswidget.cpp:192
 #: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "有效期至："
 
-#: src/dialogs/certificatedetailswidget.cpp:194
+#: src/dialogs/certificatedetailswidget.cpp:195
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "更改有效期"
 
-#: src/dialogs/certificatedetailswidget.cpp:195
+#: src/dialogs/certificatedetailswidget.cpp:196
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "更改有效性"
 
-#: src/dialogs/certificatedetailswidget.cpp:201
+#: src/dialogs/certificatedetailswidget.cpp:202
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Status"
+msgid "Status:"
+msgstr "状态"
+
+#: src/dialogs/certificatedetailswidget.cpp:207
 #: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
 msgstr "指纹："
 
-#: src/dialogs/certificatedetailswidget.cpp:205
+#: src/dialogs/certificatedetailswidget.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "复制指纹"
 
-#: src/dialogs/certificatedetailswidget.cpp:206
+#: src/dialogs/certificatedetailswidget.cpp:212
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "复制指纹"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:219
 #, kde-format
 msgid "Issuer:"
 msgstr "颁发者："
 
-#: src/dialogs/certificatedetailswidget.cpp:216
+#: src/dialogs/certificatedetailswidget.cpp:222
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "显示发行者证书"
 
-#: src/dialogs/certificatedetailswidget.cpp:217
+#: src/dialogs/certificatedetailswidget.cpp:223
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "显示证书"
 
-#: src/dialogs/certificatedetailswidget.cpp:223
+#: src/dialogs/certificatedetailswidget.cpp:229
 #, kde-format
 msgid "Compliance:"
 msgstr "法规遵从性："
 
-#: src/dialogs/certificatedetailswidget.cpp:228
+#: src/dialogs/certificatedetailswidget.cpp:234
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "信任的介绍人："
 
-#: src/dialogs/certificatedetailswidget.cpp:230
+#: src/dialogs/certificatedetailswidget.cpp:236
 #, kde-format
 msgid "See certifications for details."
 msgstr "有关详细信息，请参阅认证。"
 
-#: src/dialogs/certificatedetailswidget.cpp:234
+#: src/dialogs/certificatedetailswidget.cpp:240
 #, kde-format
 msgid "Private Key:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:247
+#: src/dialogs/certificatedetailswidget.cpp:253
 #, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "用户 ID"
 
-#: src/dialogs/certificatedetailswidget.cpp:249
+#: src/dialogs/certificatedetailswidget.cpp:255
 #, kde-format
 msgid "Related addresses"
 msgstr "相关地址"
 
-#: src/dialogs/certificatedetailswidget.cpp:252
+#: src/dialogs/certificatedetailswidget.cpp:258
 #, kde-format
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:255
+#: src/dialogs/certificatedetailswidget.cpp:261
 #, kde-format
 msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "子密钥"
 
-#: src/dialogs/certificatedetailswidget.cpp:258
+#: src/dialogs/certificatedetailswidget.cpp:264
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "证书"
 
-#: src/dialogs/certificatedetailswidget.cpp:261
+#: src/dialogs/certificatedetailswidget.cpp:267
 #, kde-format
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "信任链详情"
 
-#: src/dialogs/certificatedetailswidget.cpp:264
+#: src/dialogs/certificatedetailswidget.cpp:270
 #, kde-format
 msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:267
+#: src/dialogs/certificatedetailswidget.cpp:273
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "证书转储"
 
-#: src/dialogs/certificatedetailswidget.cpp:324
+#: src/dialogs/certificatedetailswidget.cpp:330
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "无限制"
 
-#: src/dialogs/certificatedetailswidget.cpp:330
+#: src/dialogs/certificatedetailswidget.cpp:337
 #: src/dialogs/subkeyswidget.cpp:378
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:333
+#: src/dialogs/certificatedetailswidget.cpp:340
 #, kde-format
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "智能卡 %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:335
+#: src/dialogs/certificatedetailswidget.cpp:342
 #, kde-format
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "智能卡"
 
-#: src/dialogs/certificatedetailswidget.cpp:338
+#: src/dialogs/certificatedetailswidget.cpp:345
 #: src/dialogs/subkeyswidget.cpp:386
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "离线"
 
-#: src/dialogs/certificatedetailswidget.cpp:340
+#: src/dialogs/certificatedetailswidget.cpp:347
 #, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "在此电脑上"
 
-#: src/dialogs/certificatedetailswidget.cpp:455
+#: src/dialogs/certificatedetailswidget.cpp:462
 #: src/dialogs/useridswidget.cpp:360
 #, kde-format
 msgid "Updating..."
 msgstr "正在更新..."
 
-#: src/dialogs/certificatedetailswidget.cpp:527
+#: src/dialogs/certificatedetailswidget.cpp:534
 #, kde-format
 msgid "Common Name"
 msgstr "通用名称"
 
-#: src/dialogs/certificatedetailswidget.cpp:528
+#: src/dialogs/certificatedetailswidget.cpp:535
 #, kde-format
 msgid "Organization"
 msgstr "组织"
 
-#: src/dialogs/certificatedetailswidget.cpp:529
+#: src/dialogs/certificatedetailswidget.cpp:536
 #, kde-format
 msgid "Street"
 msgstr "街道"
 
-#: src/dialogs/certificatedetailswidget.cpp:530
+#: src/dialogs/certificatedetailswidget.cpp:537
 #, kde-format
 msgid "City"
 msgstr "城市"
 
-#: src/dialogs/certificatedetailswidget.cpp:531
+#: src/dialogs/certificatedetailswidget.cpp:538
 #, kde-format
 msgid "State"
 msgstr "州/省"
 
-#: src/dialogs/certificatedetailswidget.cpp:532
+#: src/dialogs/certificatedetailswidget.cpp:539
 #, kde-format
 msgid "Country"
 msgstr "国家"
 
-#: src/dialogs/certificatedetailswidget.cpp:579
+#: src/dialogs/certificatedetailswidget.cpp:586
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "无法在本地找到发行者证书。"
@@ -11992,25 +11990,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "打印私钥失败"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG 或 GpgSM 进程在尝试导出私钥时，因非预期错误而提前结束。</"
-#~ "para><para>请检查 <icode>%1</icode> 的输出了解详情。</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>尝试导出私钥时出错。</para><para><command>%1</command> 的输出为："
-#~ "<message>%2</message></para>"

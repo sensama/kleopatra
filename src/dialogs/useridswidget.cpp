@@ -246,7 +246,7 @@ void UserIdsWidget::Private::setUpUserIDTable()
 {
     userIDTable->clear();
 
-    QStringList headers = {i18n("Email"), i18n("Name"), i18n("Trust Level"), i18n("Tags")};
+    QStringList headers = {i18n("Email"), i18n("Name"), i18n("Trust Level"), i18n("Tags"), i18n("Origin")};
     userIDTable->setColumnCount(headers.count());
     userIDTable->setColumnWidth(0, 200);
     userIDTable->setColumnWidth(1, 200);
@@ -285,6 +285,7 @@ void UserIdsWidget::Private::setUpUserIDTable()
         item->setData(3, Qt::DisplayRole, tags);
         item->setData(3, Qt::ToolTipRole, toolTip);
 
+        item->setData(4, Qt::DisplayRole, Formatting::origin(uid.origin()));
         userIDTable->addTopLevelItem(item);
     }
     userIDTable->restoreColumnLayout(QStringLiteral("UserIDTable"));

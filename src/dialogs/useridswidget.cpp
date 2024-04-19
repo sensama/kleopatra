@@ -142,6 +142,7 @@ UserIdsWidget::UserIdsWidget(QWidget *parent)
     userIDsLayout->addWidget(separator);
 
     d->buttonRow = new QHBoxLayout;
+    d->buttonRow->setSpacing(parent->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
 
     d->addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
     d->buttonRow->addWidget(d->addUserIDBtn);

@@ -128,6 +128,7 @@ public:
         vLay->addWidget(separator);
 
         auto bbox = new QHBoxLayout;
+        bbox->setSpacing(q->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
 
         addActionButton(bbox, certifyAction);
         addActionButton(bbox, revokeAction);

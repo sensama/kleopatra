@@ -153,6 +153,7 @@ public:
 
             {
                 auto buttonRow = new QHBoxLayout;
+                buttonRow->setSpacing(widget->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
 
                 addSubkeyAction = new QAction({}, i18nc("@action:button", "Add subkey"));
                 changeValidityAction = new QAction({}, i18nc("@action:button", "Change validity"), widget);

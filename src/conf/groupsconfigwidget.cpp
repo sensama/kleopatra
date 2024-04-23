@@ -52,6 +52,7 @@ public:
     using QListView::QListView;
 
 protected:
+#if QT_VERSION < QT_VERSION_CHECK(6, 6, 2)
     void currentChanged(const QModelIndex &current, const QModelIndex &previous) override
     {
         // workaround bug in QListView::currentChanged which sends an accessible focus event
@@ -63,6 +64,7 @@ protected:
             QAbstractItemView::currentChanged(current, previous);
         }
     }
+#endif
 
     void focusInEvent(QFocusEvent *event) override
     {

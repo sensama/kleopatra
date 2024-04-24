@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-19 00:38+0000\n"
-"PO-Revision-Date: 2024-04-06 20:00+0200\n"
+"POT-Creation-Date: 2024-04-24 00:39+0000\n"
+"PO-Revision-Date: 2024-04-19 18:50+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.02.1\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -932,13 +932,13 @@ msgstr ""
 "Alcuni dei certificati selezionati non possono essere utilizzati per la "
 "cifratura. Questi non saranno aggiunti al gruppo."
 
-#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:328
+#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:330
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "Nuovo gruppo"
 
-#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:331
+#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:333
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
@@ -1603,31 +1603,24 @@ msgstr "Impossibile trovare l'eseguibile di PaperKey."
 
 #: src/commands/exportpaperkeycommand.cpp:112
 #: src/commands/exportpaperkeycommand.cpp:124
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred during the backup of the secret key:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during export of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Si è verificato un errore durante la creazione del della copia di "
-"sicurezza della chiave segreta:</para><para><message>%1</message></para>"
+"<para>Si è verificato un errore durante l'esportazione della chiave segreta:"
+"</para><para><message>%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp:148
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para><application>PaperKey</application> failed with error</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Salvataggio della richiesta non riuscito.</para><para><message>%1</"
-"message></para>"
+"<para><application>PaperKey</application> terminato con errore</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
@@ -1706,7 +1699,7 @@ msgid ""
 "<para>An error occurred during the backup of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Si è verificato un errore durante la creazione del della copia di "
+"<para>Si è verificato un errore durante la creazione della copia di "
 "sicurezza della chiave segreta:</para><para><message>%1</message></para>"
 
 #: src/commands/exportsecretsubkeycommand.cpp:64
@@ -2144,7 +2137,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr "Hai importato un nuovo certificato (chiave pubblica)"
 
 #: src/commands/importcertificatescommand.cpp:414
-#: src/conf/groupsconfigwidget.cpp:202
+#: src/conf/groupsconfigwidget.cpp:204
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
@@ -3872,79 +3865,79 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:156 src/dialogs/editgroupdialog.cpp:175
+#: src/conf/groupsconfigwidget.cpp:158 src/dialogs/editgroupdialog.cpp:175
 #: src/dialogs/editgroupdialog.cpp:235
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
 msgstr "Cerca:"
 
-#: src/conf/groupsconfigwidget.cpp:157 src/conf/groupsconfigwidget.cpp:163
+#: src/conf/groupsconfigwidget.cpp:159 src/conf/groupsconfigwidget.cpp:165
 #, kde-format
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Cerca gruppi"
 
-#: src/conf/groupsconfigwidget.cpp:158 src/conf/groupsconfigwidget.cpp:164
+#: src/conf/groupsconfigwidget.cpp:160 src/conf/groupsconfigwidget.cpp:166
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "Cerca nell'elenco i gruppi che corrispondono al termine di ricerca."
 
-#: src/conf/groupsconfigwidget.cpp:165 src/dialogs/editgroupdialog.cpp:184
+#: src/conf/groupsconfigwidget.cpp:167 src/dialogs/editgroupdialog.cpp:184
 #: src/dialogs/editgroupdialog.cpp:244
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "Inserisci un termine di ricerca"
 
-#: src/conf/groupsconfigwidget.cpp:182
+#: src/conf/groupsconfigwidget.cpp:184
 #, kde-format
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "gruppi"
 
-#: src/conf/groupsconfigwidget.cpp:191
+#: src/conf/groupsconfigwidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Nuovo"
 
-#: src/conf/groupsconfigwidget.cpp:194 src/view/pgpcardwidget.cpp:185
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
 #: src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr "Modifica"
 
-#: src/conf/groupsconfigwidget.cpp:198
+#: src/conf/groupsconfigwidget.cpp:200
 #: src/dialogs/deletecertificatesdialog.cpp:166
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
 msgstr "Elimina"
 
-#: src/conf/groupsconfigwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:205
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
 msgstr ""
 "Avvia il processo di certificazione per tutti i certificati nel gruppo."
 
-#: src/conf/groupsconfigwidget.cpp:207
+#: src/conf/groupsconfigwidget.cpp:209
 #: src/dialogs/certificatedetailsdialog.cpp:65
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Esporta"
 
-#: src/conf/groupsconfigwidget.cpp:368
+#: src/conf/groupsconfigwidget.cpp:370
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Modifica gruppo"
 
-#: src/conf/groupsconfigwidget.cpp:399
+#: src/conf/groupsconfigwidget.cpp:401
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3955,7 +3948,7 @@ msgstr ""
 "emphasis></para><para>Una volta eliminato, non può essere ripristinato.</"
 "para>"
 
-#: src/conf/groupsconfigwidget.cpp:405
+#: src/conf/groupsconfigwidget.cpp:407
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3971,7 +3964,7 @@ msgstr[1] ""
 "<para>Vuoi davvero eliminare questi %1 gruppi?</para><para>Una volta "
 "eliminati, non potranno essere ripristinati.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:417
+#: src/conf/groupsconfigwidget.cpp:419
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
@@ -3979,7 +3972,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Elimina gruppo"
 msgstr[1] "Elimina gruppi"
 
-#: src/conf/groupsconfigwidget.cpp:473
+#: src/conf/groupsconfigwidget.cpp:475
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6561,11 +6554,9 @@ msgid "Change Validity"
 msgstr "Cambia validità"
 
 #: src/dialogs/certificatedetailswidget.cpp:202
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Status"
+#, kde-format
 msgid "Status:"
-msgstr "Stato"
+msgstr "Stato:"
 
 #: src/dialogs/certificatedetailswidget.cpp:207
 #: src/dialogs/certifywidget.cpp:192
@@ -11412,8 +11403,7 @@ msgid "Cannot remove file %1: %2"
 msgstr "Impossibile eliminare il file %1: %2"
 
 #: src/view/cardkeysview.cpp:54
-#, fuzzy, kde-format
-#| msgid "Certificates:"
+#, kde-format
 msgctxt "@label:listbox"
 msgid "Certificates:"
 msgstr "Certificati:"
@@ -11707,8 +11697,7 @@ msgid "List of certificates"
 msgstr "Elenco dei certificati"
 
 #: src/view/netkeywidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Serial number:"
+#, kde-format
 msgctxt "@label"
 msgid "Serial number:"
 msgstr "Numero di serie:"
@@ -11746,18 +11735,14 @@ msgstr ""
 "scheda."
 
 #: src/view/netkeywidget.cpp:120
-#, fuzzy, kde-format
-#| msgctxt "NKS is an identifier for a type of keys on a NetKey card"
-#| msgid "Change NKS PIN"
+#, kde-format
 msgctxt ""
 "@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Cambia PIN NKS"
 
 #: src/view/netkeywidget.cpp:122
-#, fuzzy, kde-format
-#| msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#| msgid "Change SigG PIN"
+#, kde-format
 msgctxt ""
 "@action:button SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"

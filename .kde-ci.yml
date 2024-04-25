@@ -29,3 +29,4 @@ Options:
   require-passing-tests-on: ['Linux', 'FreeBSD']
   xml-validate-include:
    - src/kleopatra.w32-manifest.in
+  cppcheck-arguments: '--enable=warning,style,performance -DKDAB_SYNCHRONIZED -DKLEOPATRA_VERSION_STRING="1.2.3" --suppress-xml=cppcheck-suppressions.xml'

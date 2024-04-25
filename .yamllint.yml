@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: 2024 KDE e.V.
+
+extends: default
+
+ignore-from-file:
+  - .gitignore
+  - .yamlignore
+
+rules:
+  # don't require a document start marker
+  document-start: disable
+  indentation:
+    # allow less strict, but still consistent indentation of lists
+    indent-sequences: consistent
+  # allow longer lines; warn about even longer ones
+  line-length:
+    max: 120
+    level: warning

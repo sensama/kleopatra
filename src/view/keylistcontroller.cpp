@@ -112,15 +112,15 @@ public:
     {
         view->disconnect(q);
         view->selectionModel()->disconnect(q);
-        views.erase(std::remove(views.begin(), views.end(), view), views.end());
+        std::erase(views, view);
     }
 
 public:
     void slotDestroyed(QObject *o)
     {
         qCDebug(KLEOPATRA_LOG) << (void *)o;
-        views.erase(std::remove(views.begin(), views.end(), o), views.end());
-        commands.erase(std::remove(commands.begin(), commands.end(), o), commands.end());
+        std::erase(views, o);
+        std::erase(commands, o);
     }
     void slotDoubleClicked(const QModelIndex &idx);
     void slotActivated(const QModelIndex &idx);

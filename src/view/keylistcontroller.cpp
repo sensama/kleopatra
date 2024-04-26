@@ -101,12 +101,12 @@ public:
     void addCommand(Command *cmd)
     {
         connectCommand(cmd);
-        commands.insert(std::lower_bound(commands.begin(), commands.end(), cmd), cmd);
+        commands.insert(ranges::lower_bound(commands, cmd), cmd);
     }
     void addView(QAbstractItemView *view)
     {
         connectView(view);
-        views.insert(std::lower_bound(views.begin(), views.end(), view), view);
+        views.insert(ranges::lower_bound(views, view), view);
     }
     void removeView(QAbstractItemView *view)
     {
@@ -130,7 +130,7 @@ public:
     void slotActionTriggered(QAction *action);
     void slotCurrentViewChanged(QAbstractItemView *view)
     {
-        if (view && !std::binary_search(views.cbegin(), views.cend(), view)) {
+        if (view && !ranges::binary_search(views, view)) {
             qCDebug(KLEOPATRA_LOG) << "you need to register view" << view << "before trying to set it as the current view!";
             addView(view);
         }
@@ -188,7 +188,7 @@ KeyListController::~KeyListController()
 
 void KeyListController::addView(QAbstractItemView *view)
 {
-    if (!view || std::binary_search(d->views.cbegin(), d->views.cend(), view)) {
+    if (!view || ranges::binary_search(d->views, view)) {
         return;
     }
     d->addView(view);
@@ -196,7 +196,7 @@ void KeyListController::addView(QAbstractItemView *view)
 
 void KeyListController::removeView(QAbstractItemView *view)
 {
-    if (!view || !std::binary_search(d->views.cbegin(), d->views.cend(), view)) {
+    if (!view || !ranges::binary_search(d->views, view)) {
         return;
     }
     d->removeView(view);
@@ -269,7 +269,7 @@ void KeyListController::Private::connectTabWidget()
         return;
     }
     const auto views = tabWidget->views();
-    std::for_each(views.cbegin(), views.cend(), [this](QAbstractItemView *view) {
+    ranges::for_each(views, [this](QAbstractItemView *view) {
         addView(view);
     });
 
@@ -292,7 +292,7 @@ void KeyListController::Private::disconnectTabWidget()
     m_connections.clear();
 
     const auto views = tabWidget->views();
-    std::for_each(views.cbegin(), views.cend(), [this](QAbstractItemView *view) {
+    ranges::for_each(views, [this](QAbstractItemView *view) {
         removeView(view);
     });
 }
@@ -655,7 +655,7 @@ void KeyListController::createActions(KActionCollection *coll)
             action_data.push_back(cms_create_csr_action_data);
         }
         action_data.reserve(action_data.size() + cms_action_data.size());
-        std::copy(std::begin(cms_action_data), std::end(cms_action_data), std::back_inserter(action_data));
+        ranges::copy(cms_action_data, std::back_inserter(action_data));
     }
 
     make_actions_from_data(action_data, coll);
@@ -736,7 +736,7 @@ void KeyListController::registerAction(QAction *action, Command::Restrictions re
 
 void KeyListController::registerCommand(Command *cmd)
 {
-    if (!cmd || std::binary_search(d->commands.cbegin(), d->commands.cend(), cmd)) {
+    if (!cmd || ranges::binary_search(d->commands, cmd)) {
         return;
     }
     d->addCommand(cmd);
@@ -753,13 +753,13 @@ bool KeyListController::hasRunningCommands() const
 
 bool KeyListController::shutdownWarningRequired() const
 {
-    return std::any_of(d->commands.cbegin(), d->commands.cend(), std::mem_fn(&Command::warnWhenRunningAtShutdown));
+    return ranges::any_of(d->commands, std::mem_fn(&Command::warnWhenRunningAtShutdown));
 }
 
 // slot
 void KeyListController::cancelCommands()
 {
-    std::for_each(d->commands.begin(), d->commands.end(), std::mem_fn(&Command::cancel));
+    ranges::for_each(d->commands, std::mem_fn(&Command::cancel));
 }
 
 void KeyListController::Private::connectView(QAbstractItemView *view)
@@ -801,7 +801,7 @@ void KeyListController::Private::connectCommand(Command *cmd)
 void KeyListController::Private::slotDoubleClicked(const QModelIndex &idx)
 {
     QAbstractItemView *const view = qobject_cast<QAbstractItemView *>(q->sender());
-    if (!view || !std::binary_search(views.cbegin(), views.cend(), view)) {
+    if (!view || !ranges::binary_search(views, view)) {
         return;
     }
 
@@ -816,7 +816,7 @@ void KeyListController::Private::slotActivated(const QModelIndex &idx)
 {
     Q_UNUSED(idx)
     QAbstractItemView *const view = qobject_cast<QAbstractItemView *>(q->sender());
-    if (!view || !std::binary_search(views.cbegin(), views.cend(), view)) {
+    if (!view || !ranges::binary_search(views, view)) {
         return;
     }
 }
@@ -836,7 +836,7 @@ void KeyListController::Private::slotSelectionChanged(const QItemSelection &old,
 void KeyListController::Private::slotContextMenu(const QPoint &p)
 {
     QAbstractItemView *const view = qobject_cast<QAbstractItemView *>(q->sender());
-    if (view && std::binary_search(views.cbegin(), views.cend(), view)) {
+    if (view && ranges::binary_search(views, view)) {
         Q_EMIT q->contextMenuRequested(view, view->viewport()->mapToGlobal(p));
     } else {
         qCDebug(KLEOPATRA_LOG) << "sender is not a QAbstractItemView*!";
@@ -846,7 +846,7 @@ void KeyListController::Private::slotContextMenu(const QPoint &p)
 void KeyListController::Private::slotCommandFinished()
 {
     Command *const cmd = qobject_cast<Command *>(q->sender());
-    if (!cmd || !std::binary_search(commands.cbegin(), commands.cend(), cmd)) {
+    if (!cmd || !ranges::binary_search(commands, cmd)) {
         return;
     }
     qCDebug(KLEOPATRA_LOG) << (void *)cmd;
@@ -937,7 +937,7 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         return k.subkey(0).isSecret() || k.subkey(0).isCardKey();
     };
 #endif
-    if (std::all_of(keys.cbegin(), keys.cend(), primaryKeyCanBeUsedForSecretKeyOperations)) {
+    if (ranges::all_of(keys, primaryKeyCanBeUsedForSecretKeyOperations)) {
         result |= Command::NeedSecretKey;
     }
 
@@ -952,11 +952,11 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         result |= Command::NeedSecretPrimaryKeyData;
     }
 
-    if (std::all_of(keys.cbegin(), keys.cend(), [](const Key &key) {
+    if (ranges::all_of(keys, [](const Key &key) {
             return key.protocol() == OpenPGP;
         })) {
         result |= Command::MustBeOpenPGP;
-    } else if (std::all_of(keys.cbegin(), keys.cend(), [](const Key &key) {
+    } else if (ranges::all_of(keys, [](const Key &key) {
                    return key.protocol() == CMS;
                })) {
         result |= Command::MustBeCMS;
@@ -985,7 +985,7 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
 
 void KeyListController::Private::slotActionTriggered(QAction *sender)
 {
-    const auto it = std::find_if(actions.cbegin(), actions.cend(), [sender](const action_item &item) {
+    const auto it = ranges::find_if(actions, [sender](const action_item &item) {
         return item.action == sender;
     });
     if (it != actions.end())

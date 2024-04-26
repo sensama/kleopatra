@@ -11,8 +11,8 @@
 
 #include <KAboutData>
 
-class AboutData : public KAboutData
+class AboutDataWatchGnupg : public KAboutData
 {
 public:
-    AboutData();
+    AboutDataWatchGnupg();
 };

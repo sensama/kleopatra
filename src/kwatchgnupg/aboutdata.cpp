@@ -26,7 +26,7 @@ static const about_data authors[] = {
     {kli18n("Steffen Hansen"), kli18n("Original Author"), "hansen@kde.org", nullptr},
 };
 
-AboutData::AboutData()
+AboutDataWatchGnupg::AboutDataWatchGnupg()
     : KAboutData(QStringLiteral("kwatchgnupg"),
                  i18n("KWatchGnuPG"),
                  QStringLiteral(KWATCHGNUPG_VERSION_STRING),

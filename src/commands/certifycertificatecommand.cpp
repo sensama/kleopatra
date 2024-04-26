@@ -253,7 +253,7 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
     userIdIndexes.reserve(selectedUserIds.size());
     for (unsigned int i = 0, numUserIds = target.numUserIDs(); i < numUserIds; ++i) {
         const auto userId = target.userID(i);
-        const bool userIdIsSelected = Kleo::any_of(selectedUserIds, [userId](const auto &uid) {
+        const bool userIdIsSelected = std::ranges::any_of(selectedUserIds, [userId](const auto &uid) {
             return Kleo::userIDsAreEqual(userId, uid);
         });
         if (userIdIsSelected) {

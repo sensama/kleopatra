@@ -713,7 +713,7 @@ bool cardSupportsKeyAlgorithm(const std::shared_ptr<const Card> &card, const std
     if (card->appName() == OpenPGPCard::AppName) {
         const auto pgpCard = static_cast<const OpenPGPCard *>(card.get());
         const auto cardAlgos = pgpCard->supportedAlgorithms();
-        return Kleo::any_of(cardAlgos, [keyAlgo](const auto &algo) {
+        return std::ranges::any_of(cardAlgos, [keyAlgo](const auto &algo) {
             return (keyAlgo == algo.id) //
                 || (keyAlgo == OpenPGPCard::getAlgorithmName(algo.id, OpenPGPCard::pgpEncKeyRef()))
                 || (keyAlgo == OpenPGPCard::getAlgorithmName(algo.id, OpenPGPCard::pgpSigKeyRef()));

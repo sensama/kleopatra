@@ -399,7 +399,7 @@ void EditGroupDialog::Private::updateFromKeyCache()
 
     const auto oldGroupKeys = q->groupKeys();
     const auto wasGroupKey = [oldGroupKeys](const Key &key) {
-        return Kleo::any_of(oldGroupKeys, [key](const auto &k) {
+        return std::ranges::any_of(oldGroupKeys, [key](const auto &k) {
             return _detail::ByFingerprint<std::equal_to>()(k, key);
         });
     };
@@ -455,7 +455,7 @@ void EditGroupDialog::setGroupKeys(const std::vector<Key> &groupKeys)
 
     // update the keys in the "available keys" list
     const auto isGroupKey = [groupKeys](const Key &key) {
-        return Kleo::any_of(groupKeys, [key](const auto &k) {
+        return std::ranges::any_of(groupKeys, [key](const auto &k) {
             return _detail::ByFingerprint<std::equal_to>()(k, key);
         });
     };

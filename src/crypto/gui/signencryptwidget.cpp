@@ -793,7 +793,7 @@ static bool recipientIsOkay(const CertificateLineEdit *edit)
         return Kleo::canBeUsedForEncryption(key);
     }
     if (const auto group = edit->group(); !group.isNull()) {
-        return Kleo::all_of(group.keys(), Kleo::canBeUsedForEncryption);
+        return std::ranges::all_of(group.keys(), Kleo::canBeUsedForEncryption);
     }
     // we should never reach this point
     return false;
@@ -811,7 +811,7 @@ bool SignEncryptWidget::isComplete() const
         if (!selfKey().isNull() && !Kleo::canBeUsedForEncryption(selfKey())) {
             return false;
         }
-        const bool allOtherRecipientsAreOkay = Kleo::all_of(d->mRecpWidgets, [](const auto &r) {
+        const bool allOtherRecipientsAreOkay = std::ranges::all_of(d->mRecpWidgets, [](const auto &r) {
             return recipientIsOkay(r.edit);
         });
         if (!allOtherRecipientsAreOkay) {

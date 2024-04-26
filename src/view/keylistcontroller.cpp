@@ -952,7 +952,7 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         result |= Command::MustBeCMS;
     }
 
-    if (Kleo::all_of(keys, [](const auto &key) {
+    if (ranges::all_of(keys, [](const auto &key) {
             return !key.isBad();
         })) {
         result |= Command::MustBeValid;

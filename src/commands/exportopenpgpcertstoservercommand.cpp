@@ -52,7 +52,7 @@ ExportOpenPGPCertsToServerCommand::~ExportOpenPGPCertsToServerCommand() = defaul
 static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget)
 {
     auto notCertifiedKeys = std::accumulate(pgpKeys.cbegin(), pgpKeys.cend(), QStringList{}, [](auto keyNames, const auto &key) {
-        const bool allValidUserIDsAreCertifiedByUser = Kleo::all_of(key.userIDs(), [](const UserID &userId) {
+        const bool allValidUserIDsAreCertifiedByUser = std::ranges::all_of(key.userIDs(), [](const UserID &userId) {
             return userId.isBad() || Kleo::userIDIsCertifiedByUser(userId);
         });
         if (!allValidUserIDsAreCertifiedByUser) {

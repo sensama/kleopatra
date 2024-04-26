@@ -642,7 +642,7 @@ public:
             return true;
         }
 
-        const auto allTagsAreLoaded = Kleo::all_of(mKeys, [](const auto &key) {
+        const auto allTagsAreLoaded = std::ranges::all_of(mKeys, [](const auto &key) {
             return (key.protocol() != GpgME::OpenPGP) || (key.keyListMode() & GpgME::SignatureNotations);
         });
         if (allTagsAreLoaded) {
@@ -677,7 +677,7 @@ public:
             updateTrustSignatureDomain();
         } else {
             // check for certificates that cannot be certified
-            const auto haveBadCertificates = Kleo::any_of(mKeys, [](const auto &key) {
+            const auto haveBadCertificates = std::ranges::any_of(mKeys, [](const auto &key) {
                 const auto &uid = key.userID(0);
                 return (key.protocol() != OpenPGP) || uid.isInvalid() || Kleo::isRevokedOrExpired(uid);
             });
@@ -727,7 +727,7 @@ public:
         for (int i = 0, end = userIdListView->topLevelItemCount(); i < end; ++i) {
             const auto uidItem = userIdListView->topLevelItem(i);
             const auto itemUserId = getUserId(uidItem);
-            const bool userIdIsInList = Kleo::any_of(uids, [itemUserId](const auto &uid) {
+            const bool userIdIsInList = std::ranges::any_of(uids, [itemUserId](const auto &uid) {
                 return Kleo::userIDsAreEqual(itemUserId, uid);
             });
             uidItem->setCheckState(0, userIdIsInList ? Qt::Checked : Qt::Unchecked);

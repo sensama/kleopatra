@@ -166,7 +166,7 @@ void ExportCertificateCommand::doStart()
 bool ExportCertificateCommand::Private::confirmExport(const std::vector<Key> &pgpKeys)
 {
     auto notCertifiedKeys = std::accumulate(pgpKeys.cbegin(), pgpKeys.cend(), QStringList{}, [](auto keyNames, const auto &key) {
-        const bool allValidUserIDsAreCertifiedByUser = Kleo::all_of(key.userIDs(), [](const UserID &userId) {
+        const bool allValidUserIDsAreCertifiedByUser = std::ranges::all_of(key.userIDs(), [](const UserID &userId) {
             return userId.isBad() || Kleo::userIDIsCertifiedByUser(userId);
         });
         if (!allValidUserIDsAreCertifiedByUser) {

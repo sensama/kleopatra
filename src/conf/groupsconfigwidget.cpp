@@ -467,7 +467,7 @@ private:
             return;
         }
 
-        if (Kleo::any_of(selectedGroups[0].keys(), [](const auto &key) {
+        if (std::ranges::any_of(selectedGroups[0].keys(), [](const auto &key) {
                 return !Kleo::keyHasEncrypt(key);
             })) {
             KMessageBox::information(

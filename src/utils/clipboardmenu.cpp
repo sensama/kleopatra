@@ -127,7 +127,7 @@ bool hasSigningKeys(GpgME::Protocol protocol)
     if (!KeyCache::instance()->initialized()) {
         return false;
     }
-    return Kleo::any_of(KeyCache::instance()->keys(), [protocol](const auto &k) {
+    return std::ranges::any_of(KeyCache::instance()->keys(), [protocol](const auto &k) {
         return k.hasSecret() && Kleo::keyHasSign(k) && (k.protocol() == protocol);
     });
 }

@@ -181,7 +181,7 @@ void ExportGroupsCommand::Private::start()
 bool ExportGroupsCommand::Private::confirmExport()
 {
     auto notFullyCertifiedGroups = std::accumulate(groups.cbegin(), groups.cend(), QStringList{}, [](auto groupNames, const auto &group) {
-        const bool allOpenPGPKeysAreCertifiedByUser = Kleo::all_of(group.keys(), [](const Key &key) {
+        const bool allOpenPGPKeysAreCertifiedByUser = std::ranges::all_of(group.keys(), [](const Key &key) {
             // we only check the primary user ID of OpenPGP keys because currently group certification only certifies the primary user ID
             return key.protocol() != GpgME::OpenPGP || Kleo::userIDIsCertifiedByUser(key.userID(0));
         });

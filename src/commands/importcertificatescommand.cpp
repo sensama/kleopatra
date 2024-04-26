@@ -797,7 +797,7 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
 
 static ImportedGroup storeGroup(const KeyGroup &group, const QString &id, QWidget *parent)
 {
-    if (Kleo::any_of(group.keys(), [](const auto &key) {
+    if (std::ranges::any_of(group.keys(), [](const auto &key) {
             return !Kleo::keyHasEncrypt(key);
         })) {
         KMessageBox::information(parent,

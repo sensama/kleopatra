@@ -323,7 +323,7 @@ void RevokeCertificationCommand::doStart()
         return;
     }
 
-    if (!Kleo::all_of(d->uids, userIDBelongsToKey(d->certificationTarget))) {
+    if (!std::ranges::all_of(d->uids, userIDBelongsToKey(d->certificationTarget))) {
         qCWarning(KLEOPATRA_LOG) << this << "User ID <-> Key mismatch!";
         d->finished();
         return;

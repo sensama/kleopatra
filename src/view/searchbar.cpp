@@ -108,7 +108,7 @@ private:
         }
         const auto filter = KeyFilterManager::instance()->keyFilterByID(notCertifiedKeysFilterId());
         if (filter) {
-            if (Kleo::any_of(KeyCache::instance()->keys(), [filter](const auto &key) {
+            if (std::ranges::any_of(KeyCache::instance()->keys(), [filter](const auto &key) {
                     return filter->matches(key, KeyFilter::Filtering);
                 })) {
                 certifyButton->show();

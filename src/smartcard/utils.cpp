@@ -52,7 +52,7 @@ std::vector<AlgorithmInfo> Kleo::SmartCard::getAllowedAlgorithms(const std::vect
 std::string Kleo::SmartCard::getPreferredAlgorithm(const std::vector<AlgorithmInfo> &allowedAlgorithms)
 {
     const auto isAllowedAlgorithm = [&allowedAlgorithms](const std::string &algoId) {
-        return Kleo::any_of(allowedAlgorithms, [&algoId](const auto &algoInfo) {
+        return std::ranges::any_of(allowedAlgorithms, [&algoId](const auto &algoInfo) {
             return algoInfo.id == algoId;
         });
     };

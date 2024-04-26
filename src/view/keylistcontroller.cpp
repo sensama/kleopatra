@@ -81,6 +81,8 @@ using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 
+namespace ranges = std::ranges;
+
 class KeyListController::Private
 {
     friend class ::Kleo::KeyListController;
@@ -897,6 +899,11 @@ Command::Restrictions find_root_restrictions(const std::vector<Key> &keys)
     }
 }
 
+static bool secretSubkeyDataAvailable(const Subkey &subkey)
+{
+    return subkey.isSecret() && !subkey.isCardKey();
+};
+
 Command::Restrictions KeyListController::Private::calculateRestrictionsMask(const QItemSelectionModel *sm)
 {
     if (!sm) {
@@ -934,10 +941,15 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         result |= Command::NeedSecretKey;
     }
 
-    if (std::all_of(std::begin(keys), std::end(keys), [](const auto &k) {
-            return k.subkey(0).isSecret() && !k.subkey(0).isCardKey();
+    if (ranges::all_of(keys, [](const auto &k) {
+            return ranges::any_of(k.subkeys(), &secretSubkeyDataAvailable);
         })) {
-        result |= Command::NeedSecretKeyData;
+        result |= Command::NeedSecretSubkeyData;
+    }
+    if ((result & Command::NeedSecretSubkeyData) && ranges::all_of(keys, [](const auto &k) {
+            return secretSubkeyDataAvailable(k.subkey(0));
+        })) {
+        result |= Command::NeedSecretPrimaryKeyData;
     }
 
     if (std::all_of(keys.cbegin(), keys.cend(), [](const Key &key) {

@@ -27,7 +27,7 @@ public:
 
     /* reimp */ static Restrictions restrictions()
     {
-        return OnlyOneKey | NeedSecretKeyData;
+        return OnlyOneKey | NeedSecretSubkeyData;
     }
 
 private:

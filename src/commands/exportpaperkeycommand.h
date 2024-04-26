@@ -31,7 +31,7 @@ public:
 
     static Restrictions restrictions()
     {
-        return OnlyOneKey | NeedSecretKeyData | MustBeOpenPGP;
+        return OnlyOneKey | NeedSecretPrimaryKeyData | MustBeOpenPGP;
     }
 
 private:

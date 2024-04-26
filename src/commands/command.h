@@ -50,9 +50,8 @@ public:
         NeedSelection      = 0x0001,
         OnlyOneKey         = 0x0002,
         NeedSecretKey      = 0x0004, //< command performs secret key operations
-        NeedSecretKeyData  = 0x0008, //< command needs access to the secret key data
-        MustBeOpenPGP      = 0x0010,
-        MustBeCMS          = 0x0020,
+        NeedSecretPrimaryKeyData  = 0x0008, //< command needs access to the secret key data of the primary key
+        NeedSecretSubkeyData      = 0x0010, //< command needs access to the secret key data of one or more subkeys
 
         // esoteric:
         MayOnlyBeSecretKeyIfOwnerTrustIsNotYetUltimate = 0x0040, // for set-owner-trust
@@ -64,6 +63,8 @@ public:
         MustBeUntrustedRoot = 0x0800 | MustBeRoot,
 
         MustBeValid         = 0x1000, //< key is neither revoked nor expired nor otherwise "bad"
+        MustBeOpenPGP       = 0x2000,
+        MustBeCMS           = 0x4000,
 
         _AllRestrictions_Helper,
         AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1,

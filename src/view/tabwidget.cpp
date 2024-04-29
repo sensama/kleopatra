@@ -495,7 +495,7 @@ TabWidget::Private::Private(TabWidget *qq)
     newTabButton = new QToolButton{q};
 
     tabWidget = new QTabWidget{q};
-    KDAB_SET_OBJECT_NAME(tabWidget);
+    Q_SET_OBJECT_NAME(tabWidget);
 
     layout->addWidget(tabWidget);
 

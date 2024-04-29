@@ -85,7 +85,7 @@ SystemTrayIcon::Private::Private(SystemTrayIcon *qq)
     , mainWindow()
     , attentionWindow()
 {
-    KDAB_SET_OBJECT_NAME(attentionAnimationTimer);
+    Q_SET_OBJECT_NAME(attentionAnimationTimer);
 
     attentionAnimationTimer.setSingleShot(false);
     attentionAnimationTimer.setInterval(1000 * ATTENTION_ANIMATION_FRAMES_PER_SEC / 2);

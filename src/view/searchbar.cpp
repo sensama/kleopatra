@@ -159,10 +159,10 @@ SearchBar::Private::Private(SearchBar *qq)
     proxyModel->sort(0, Qt::AscendingOrder);
     combo->setModel(proxyModel);
 
-    KDAB_SET_OBJECT_NAME(layout);
-    KDAB_SET_OBJECT_NAME(lineEdit);
-    KDAB_SET_OBJECT_NAME(combo);
-    KDAB_SET_OBJECT_NAME(certifyButton);
+    Q_SET_OBJECT_NAME(layout);
+    Q_SET_OBJECT_NAME(lineEdit);
+    Q_SET_OBJECT_NAME(combo);
+    Q_SET_OBJECT_NAME(certifyButton);
 
     connect(lineEdit, &QLineEdit::textChanged, q, &SearchBar::stringFilterChanged);
     connect(combo, qOverload<int>(&QComboBox::currentIndexChanged), q, [this](int index) {

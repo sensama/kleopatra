@@ -131,14 +131,14 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     q->setNormalIcon(QIcon::fromTheme(QStringLiteral("kleopatra")));
     q->setAttentionIcon(QIcon::fromTheme(QStringLiteral("auth-sim-locked")));
 
-    KDAB_SET_OBJECT_NAME(menu);
-    KDAB_SET_OBJECT_NAME(openCertificateManagerAction);
-    KDAB_SET_OBJECT_NAME(configureAction);
-    KDAB_SET_OBJECT_NAME(aboutAction);
-    KDAB_SET_OBJECT_NAME(quitAction);
-    KDAB_SET_OBJECT_NAME(clipboardMenu);
-    KDAB_SET_OBJECT_NAME(cardMenu);
-    KDAB_SET_OBJECT_NAME(setInitialPinAction);
+    Q_SET_OBJECT_NAME(menu);
+    Q_SET_OBJECT_NAME(openCertificateManagerAction);
+    Q_SET_OBJECT_NAME(configureAction);
+    Q_SET_OBJECT_NAME(aboutAction);
+    Q_SET_OBJECT_NAME(quitAction);
+    Q_SET_OBJECT_NAME(clipboardMenu);
+    Q_SET_OBJECT_NAME(cardMenu);
+    Q_SET_OBJECT_NAME(setInitialPinAction);
 
     connect(&openCertificateManagerAction, SIGNAL(triggered()), qApp, SLOT(openOrRaiseMainWindow()));
     connect(&configureAction, SIGNAL(triggered()), qApp, SLOT(openOrRaiseConfigDialog()));

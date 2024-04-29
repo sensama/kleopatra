@@ -146,9 +146,9 @@ struct BaseWidget {
         , label(parent)
         , view(parent)
     {
-        KDAB_SET_OBJECT_NAME(proxy);
-        KDAB_SET_OBJECT_NAME(label);
-        KDAB_SET_OBJECT_NAME(view);
+        Q_SET_OBJECT_NAME(proxy);
+        Q_SET_OBJECT_NAME(label);
+        Q_SET_OBJECT_NAME(view);
 
         const int row = find_layout_item(*vlay);
         vlay->insertWidget(row, &label);
@@ -256,14 +256,14 @@ private:
             , buttonBox(QDialogButtonBox::Close, Qt::Horizontal, q)
             , vlay(q)
         {
-            KDAB_SET_OBJECT_NAME(progressLabel);
-            KDAB_SET_OBJECT_NAME(progressBar);
-            KDAB_SET_OBJECT_NAME(errorLabel);
-            KDAB_SET_OBJECT_NAME(errorButton);
-            KDAB_SET_OBJECT_NAME(buttonBox);
-            KDAB_SET_OBJECT_NAME(vlay);
-            KDAB_SET_OBJECT_NAME(hlay[0]);
-            KDAB_SET_OBJECT_NAME(hlay[1]);
+            Q_SET_OBJECT_NAME(progressLabel);
+            Q_SET_OBJECT_NAME(progressBar);
+            Q_SET_OBJECT_NAME(errorLabel);
+            Q_SET_OBJECT_NAME(errorButton);
+            Q_SET_OBJECT_NAME(buttonBox);
+            Q_SET_OBJECT_NAME(vlay);
+            Q_SET_OBJECT_NAME(hlay[0]);
+            Q_SET_OBJECT_NAME(hlay[1]);
 
             errorButton.setAutoDefault(false);
 

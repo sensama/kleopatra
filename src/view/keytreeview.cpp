@@ -226,8 +226,8 @@ void KeyTreeView::restoreLayout(const KConfigGroup &group)
 
 void KeyTreeView::init()
 {
-    KDAB_SET_OBJECT_NAME(m_proxy);
-    KDAB_SET_OBJECT_NAME(m_view);
+    Q_SET_OBJECT_NAME(m_proxy);
+    Q_SET_OBJECT_NAME(m_view);
 
     if (m_group.isValid()) {
         // Reopen as non const
@@ -236,15 +236,15 @@ void KeyTreeView::init()
     }
 
     if (m_additionalProxy && m_additionalProxy->objectName().isEmpty()) {
-        KDAB_SET_OBJECT_NAME(m_additionalProxy);
+        Q_SET_OBJECT_NAME(m_additionalProxy);
     }
     QLayout *layout = new QVBoxLayout(this);
-    KDAB_SET_OBJECT_NAME(layout);
+    Q_SET_OBJECT_NAME(layout);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_view);
 
     auto headerView = new HeaderView(Qt::Horizontal);
-    KDAB_SET_OBJECT_NAME(headerView);
+    Q_SET_OBJECT_NAME(headerView);
     headerView->installEventFilter(m_view);
     headerView->setSectionsMovable(true);
     m_view->setHeader(headerView);

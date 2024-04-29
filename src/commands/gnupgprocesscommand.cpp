@@ -48,9 +48,9 @@ public:
         , logTextWidget(this)
         , buttonBox(QDialogButtonBox::Cancel | QDialogButtonBox::Close, Qt::Horizontal, this)
     {
-        KDAB_SET_OBJECT_NAME(vlay);
-        KDAB_SET_OBJECT_NAME(logTextWidget);
-        KDAB_SET_OBJECT_NAME(buttonBox);
+        Q_SET_OBJECT_NAME(vlay);
+        Q_SET_OBJECT_NAME(logTextWidget);
+        Q_SET_OBJECT_NAME(buttonBox);
 
         logTextWidget.setReadOnly(true);
 

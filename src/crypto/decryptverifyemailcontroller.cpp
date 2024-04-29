@@ -53,7 +53,7 @@ public:
         : QWizard(parent, f)
         , m_resultPage(this)
     {
-        KDAB_SET_OBJECT_NAME(m_resultPage);
+        Q_SET_OBJECT_NAME(m_resultPage);
 
         m_resultPage.setSubTitle(i18n("Status and progress of the crypto operations is shown here."));
 

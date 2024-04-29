@@ -454,13 +454,13 @@ MainWindow::Private::Private(MainWindow *qq)
     , firstShow(true)
     , ui(q)
 {
-    KDAB_SET_OBJECT_NAME(controller);
+    Q_SET_OBJECT_NAME(controller);
 
     AbstractKeyListModel *flatModel = AbstractKeyListModel::createFlatKeyListModel(q);
     AbstractKeyListModel *hierarchicalModel = AbstractKeyListModel::createHierarchicalKeyListModel(q);
 
-    KDAB_SET_OBJECT_NAME(flatModel);
-    KDAB_SET_OBJECT_NAME(hierarchicalModel);
+    Q_SET_OBJECT_NAME(flatModel);
+    Q_SET_OBJECT_NAME(hierarchicalModel);
 
 #if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
     auto keyExportDragHandler = std::make_shared<KeyExportDragHandler>();

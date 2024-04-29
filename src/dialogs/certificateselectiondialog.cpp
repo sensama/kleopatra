@@ -147,10 +147,10 @@ private:
 
     void setUpUI(CertificateSelectionDialog *q)
     {
-        KDAB_SET_OBJECT_NAME(ui.label);
-        KDAB_SET_OBJECT_NAME(ui.searchBar);
-        KDAB_SET_OBJECT_NAME(ui.tabWidget);
-        KDAB_SET_OBJECT_NAME(ui.buttonBox);
+        Q_SET_OBJECT_NAME(ui.label);
+        Q_SET_OBJECT_NAME(ui.searchBar);
+        Q_SET_OBJECT_NAME(ui.tabWidget);
+        Q_SET_OBJECT_NAME(ui.buttonBox);
 
         auto vlay = new QVBoxLayout(q);
         vlay->addWidget(&ui.label);

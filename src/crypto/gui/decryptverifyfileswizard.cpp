@@ -223,13 +223,13 @@ OperationsWidget::UI::UI(OperationsWidget *q)
     , vlay(q)
     , hlay()
 {
-    KDAB_SET_OBJECT_NAME(useOutputDirectoryCB);
-    KDAB_SET_OBJECT_NAME(outputDirectoryLB);
-    KDAB_SET_OBJECT_NAME(outputDirectoryFNR);
-    KDAB_SET_OBJECT_NAME(scrollArea);
+    Q_SET_OBJECT_NAME(useOutputDirectoryCB);
+    Q_SET_OBJECT_NAME(outputDirectoryLB);
+    Q_SET_OBJECT_NAME(outputDirectoryFNR);
+    Q_SET_OBJECT_NAME(scrollArea);
 
-    KDAB_SET_OBJECT_NAME(vlay);
-    KDAB_SET_OBJECT_NAME(hlay);
+    Q_SET_OBJECT_NAME(vlay);
+    Q_SET_OBJECT_NAME(hlay);
 
     outputDirectoryFNR.setFilter(QDir::Dirs);
 

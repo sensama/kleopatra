@@ -107,11 +107,11 @@ private:
             , hlay()
         {
             KGuiItem::assign(&closeButton, KStandardGuiItem::close());
-            KDAB_SET_OBJECT_NAME(logTextWidget);
-            KDAB_SET_OBJECT_NAME(updateButton);
-            KDAB_SET_OBJECT_NAME(closeButton);
-            KDAB_SET_OBJECT_NAME(vlay);
-            KDAB_SET_OBJECT_NAME(hlay);
+            Q_SET_OBJECT_NAME(logTextWidget);
+            Q_SET_OBJECT_NAME(updateButton);
+            Q_SET_OBJECT_NAME(closeButton);
+            Q_SET_OBJECT_NAME(vlay);
+            Q_SET_OBJECT_NAME(hlay);
 
             logTextWidget.setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
             logTextWidget.setReadOnly(true);

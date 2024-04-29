@@ -40,7 +40,10 @@ private:
         }
 
         auto dlg = new CertificateDetailsDialog;
-        applyWindowID(dlg);
+
+        // We're deliberately not setting the parent, since we want the dialog
+        // to be usable independently of the main window.
+        // applyWindowID(dlg);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         connect(dlg, &QDialog::finished, q_func(), [this](int) {
             slotDialogClosed();

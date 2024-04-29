@@ -14,7 +14,7 @@
 
 #ifndef QT_NO_DIRMODEL
 
-#include <utils/pimpl_ptr.h>
+#include <memory>
 
 namespace Kleo
 {
@@ -52,7 +52,7 @@ Q_SIGNALS:
 private:
     Q_PRIVATE_SLOT(d, void slotErrorButtonClicked())
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 }
 }

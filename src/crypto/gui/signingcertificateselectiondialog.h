@@ -12,8 +12,6 @@
 
 #include <gpgme++/key.h>
 
-#include <utils/pimpl_ptr.h>
-
 #include <set>
 
 template<typename K, typename U>

@@ -13,9 +13,9 @@
 
 #include <qwindowdefs.h> // for WId
 
-#include <utils/pimpl_ptr.h>
 #include <utils/types.h> // for ExecutionContext
 
+#include <memory>
 #include <vector>
 
 class QModelIndex;
@@ -126,7 +126,7 @@ protected:
 
 protected:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 
 protected:
     explicit Command(Private *pp);

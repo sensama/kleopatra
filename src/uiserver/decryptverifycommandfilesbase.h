@@ -11,8 +11,9 @@
 
 #include "assuancommand.h"
 
-#include <utils/pimpl_ptr.h>
 #include <utils/types.h>
+
+#include <memory>
 
 namespace Kleo
 {
@@ -54,6 +55,6 @@ public:
     class Private;
 
 private:
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 }

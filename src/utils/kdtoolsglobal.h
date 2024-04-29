@@ -9,52 +9,7 @@
 
 #pragma once
 
-#include <QPointer>
-#include <qglobal.h>
-
-#define KDAB_DISABLE_COPY(x)                                                                                                                                   \
-private:                                                                                                                                                       \
-    x(const x &);                                                                                                                                              \
-    x &operator=(const x &)
-
-#ifdef DOXYGEN_RUN
-#define KDAB_IMPLEMENT_SAFE_BOOL_OPERATOR(func)                                                                                                                \
-    operator unspecified_bool_type() const                                                                                                                     \
-    {                                                                                                                                                          \
-        return func;                                                                                                                                           \
-    }
-#else
-#define KDAB_IMPLEMENT_SAFE_BOOL_OPERATOR(func)                                                                                                                \
-private:                                                                                                                                                       \
-    struct __safe_bool_dummy__ {                                                                                                                               \
-        void nonnull();                                                                                                                                        \
-    };                                                                                                                                                         \
-    typedef void (__safe_bool_dummy__::*unspecified_bool_type)();                                                                                              \
-                                                                                                                                                               \
-public:                                                                                                                                                        \
-    operator unspecified_bool_type() const                                                                                                                     \
-    {                                                                                                                                                          \
-        return (func) ? &__safe_bool_dummy__::nonnull : 0;                                                                                                     \
-    }
-#endif
-
-#define KDTOOLS_MAKE_RELATION_OPERATORS(Class, linkage)                                                                                                        \
-    linkage bool operator>(const Class &lhs, const Class &rhs)                                                                                                 \
-    {                                                                                                                                                          \
-        return operator<(lhs, rhs);                                                                                                                            \
-    }                                                                                                                                                          \
-    linkage bool operator!=(const Class &lhs, const Class &rhs)                                                                                                \
-    {                                                                                                                                                          \
-        return !operator==(lhs, rhs);                                                                                                                          \
-    }                                                                                                                                                          \
-    linkage bool operator<=(const Class &lhs, const Class &rhs)                                                                                                \
-    {                                                                                                                                                          \
-        return !operator>(lhs, rhs);                                                                                                                           \
-    }                                                                                                                                                          \
-    linkage bool operator>=(const Class &lhs, const Class &rhs)                                                                                                \
-    {                                                                                                                                                          \
-        return !operator<(lhs, rhs);                                                                                                                           \
-    }
+#include <QMutexLocker>
 
 template<typename T>
 inline T &__kdtools__dereference_for_methodcall(T &o)

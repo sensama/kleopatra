@@ -13,8 +13,6 @@
 
 #include <crypto/gui/signerresolvepage.h>
 
-#include <utils/pimpl_ptr.h>
-
 #include <KMime/Types>
 #include <gpgme++/global.h>
 
@@ -130,7 +128,7 @@ protected:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

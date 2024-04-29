@@ -11,8 +11,6 @@
 
 #include <QObject>
 
-#include <utils/pimpl_ptr.h>
-
 #include <cstdio>
 #include <memory>
 
@@ -53,7 +51,7 @@ Q_SIGNALS:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

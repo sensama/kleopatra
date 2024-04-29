@@ -11,8 +11,6 @@
 
 #include <crypto/controller.h>
 
-#include <utils/pimpl_ptr.h>
-
 #include <gpgme++/global.h>
 
 #include <memory>
@@ -78,7 +76,7 @@ private:
     void doTaskDone(const Task *task, const std::shared_ptr<const Kleo::Crypto::Task::Result> &) override;
 
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 } // Crypto

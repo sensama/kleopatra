@@ -16,9 +16,9 @@
 #include <QCommandLineParser>
 #include <QElapsedTimer>
 
-#include <utils/pimpl_ptr.h>
-
 #include <gpgme++/global.h>
+
+#include <memory>
 
 extern QElapsedTimer startupTimer;
 #define STARTUP_TIMING qCDebug(KLEOPATRA_LOG) << "Startup timing:" << startupTimer.elapsed() << "ms:"
@@ -113,5 +113,5 @@ private Q_SLOTS:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };

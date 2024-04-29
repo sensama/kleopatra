@@ -11,8 +11,6 @@
 
 #include <crypto/task.h>
 
-#include <utils/pimpl_ptr.h>
-
 #include <gpgme++/global.h>
 
 #include <memory>
@@ -73,7 +71,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotResult(const GpgME::SigningResult &))
     Q_PRIVATE_SLOT(d, void slotResult(const GpgME::SigningResult &, const GpgME::EncryptionResult &))
     Q_PRIVATE_SLOT(d, void slotResult(const GpgME::EncryptionResult &))

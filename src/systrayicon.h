@@ -12,7 +12,7 @@
 #include <utils/systemtrayicon.h>
 #ifndef QT_NO_SYSTEMTRAYICON
 
-#include <utils/pimpl_ptr.h>
+#include <memory>
 
 class MainWindow;
 class QDialog;
@@ -36,7 +36,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotAbout())
     Q_PRIVATE_SLOT(d, void slotSetInitialPin())
 };

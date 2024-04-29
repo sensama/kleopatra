@@ -12,8 +12,6 @@
 
 #pragma once
 
-#include <utils/pimpl_ptr.h>
-
 #include <gpgme++/global.h>
 
 #include <QWizard>

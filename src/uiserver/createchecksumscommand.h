@@ -12,7 +12,7 @@
 #include "assuancommand.h"
 #include <QObject>
 
-#include <utils/pimpl_ptr.h>
+#include <memory>
 
 namespace Kleo
 {
@@ -41,7 +41,7 @@ private Q_SLOTS:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <utils/pimpl_ptr.h>
+#include <QtLogging>
 
 #include <memory>
 
@@ -51,7 +51,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 
     Q_DISABLE_COPY(Log)
 };

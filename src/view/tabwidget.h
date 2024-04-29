@@ -16,8 +16,6 @@
 #include <memory>
 #include <vector>
 
-#include <utils/pimpl_ptr.h>
-
 class QAbstractItemView;
 
 class KConfigGroup;
@@ -88,7 +86,7 @@ Q_SIGNALS:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

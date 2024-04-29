@@ -11,8 +11,6 @@
 
 #include <QDialog>
 
-#include <utils/pimpl_ptr.h>
-
 #include <gpgme++/global.h>
 
 #include <memory>
@@ -95,7 +93,7 @@ protected:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

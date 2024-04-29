@@ -9,8 +9,6 @@
 
 #pragma once
 
-#include <utils/pimpl_ptr.h>
-
 #include <memory>
 
 class QWidget;
@@ -62,7 +60,7 @@ protected:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

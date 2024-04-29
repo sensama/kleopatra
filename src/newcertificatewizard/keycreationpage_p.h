@@ -17,6 +17,8 @@
 
 #include "utils/emptypassphraseprovider.h"
 
+#include <QPointer>
+
 namespace GpgME
 {
 class KeyGenerationResult;

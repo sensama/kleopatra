@@ -11,8 +11,7 @@
 
 #include <QDialog>
 
-#include <utils/pimpl_ptr.h>
-
+#include <memory>
 #include <vector>
 
 #include <gpgme++/key.h>
@@ -59,7 +58,7 @@ public Q_SLOTS:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotSearchTextChanged())
     Q_PRIVATE_SLOT(d, void slotSearchClicked())
     Q_PRIVATE_SLOT(d, void slotSelectionChanged())

@@ -33,7 +33,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotCommandFinished())
     Q_PRIVATE_SLOT(d, void slotCommandCanceled())
 };

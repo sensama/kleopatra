@@ -11,8 +11,6 @@
 
 #include <assuan.h> // for assuan_fd_t
 
-#include <utils/pimpl_ptr.h>
-
 #include <QString>
 #include <QStringList>
 
@@ -53,7 +51,7 @@ public:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 class Output

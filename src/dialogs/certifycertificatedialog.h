@@ -15,8 +15,6 @@
 
 #include <gpgme++/key.h>
 
-#include <utils/pimpl_ptr.h>
-
 namespace Kleo
 {
 

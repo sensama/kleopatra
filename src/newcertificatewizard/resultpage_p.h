@@ -15,6 +15,8 @@
 
 #include "wizardpage_p.h"
 
+#include <QPointer>
+
 namespace GpgME
 {
 class Key;

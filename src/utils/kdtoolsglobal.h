@@ -68,28 +68,6 @@ inline T &__kdtools__dereference_for_methodcall(T *o)
     return *o;
 }
 
-template<typename T>
-inline void __kleotools__set_object_name(T &o, const QString &s)
-{
-    o.setObjectName(s);
-}
-
-template<typename T>
-inline void __kleotools__set_object_name(T *o, const QString &s)
-{
-    if (o) {
-        o->setObjectName(s);
-    }
-}
-
-template<typename T>
-inline void __kleotools__set_object_name(QPointer<T> &o, const QString &s)
-{
-    __kleotools__set_object_name(o.data(), s);
-}
-
-#define KDAB_SET_OBJECT_NAME(x) __kleotools__set_object_name(x, QStringLiteral(#x))
-
 #define KDAB_SYNCHRONIZED(mutex)                                                                                                                               \
     if (bool __counter_##__LINE__ = false) {                                                                                                                   \
     } else                                                                                                                                                     \

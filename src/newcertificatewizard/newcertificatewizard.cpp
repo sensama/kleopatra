@@ -54,9 +54,9 @@ private:
             , keyCreationPage(q)
             , resultPage(q)
         {
-            KDAB_SET_OBJECT_NAME(enterDetailsPage);
-            KDAB_SET_OBJECT_NAME(keyCreationPage);
-            KDAB_SET_OBJECT_NAME(resultPage);
+            Q_SET_OBJECT_NAME(enterDetailsPage);
+            Q_SET_OBJECT_NAME(keyCreationPage);
+            Q_SET_OBJECT_NAME(resultPage);
 
             q->setOptions(NoBackButtonOnStartPage | DisabledBackButtonOnLastPage);
 

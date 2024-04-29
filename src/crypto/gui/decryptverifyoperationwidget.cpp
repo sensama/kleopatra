@@ -80,19 +80,19 @@ DecryptVerifyOperationWidget::Private::UI::UI(DecryptVerifyOperationWidget *q)
     , archiveCB(i18n("&Input file is an archive; unpack with:"), q)
     , archivesCB(q)
 {
-    KDAB_SET_OBJECT_NAME(glay);
-    KDAB_SET_OBJECT_NAME(inputLB);
-    KDAB_SET_OBJECT_NAME(inputStack);
-    KDAB_SET_OBJECT_NAME(inputFileNameLB);
-    KDAB_SET_OBJECT_NAME(inputFileNameRQ);
-    KDAB_SET_OBJECT_NAME(verifyDetachedCB);
-    KDAB_SET_OBJECT_NAME(signedDataLB);
-    KDAB_SET_OBJECT_NAME(signedDataStack);
-    KDAB_SET_OBJECT_NAME(signedDataFileNameLB);
-    KDAB_SET_OBJECT_NAME(signedDataFileNameRQ);
-    KDAB_SET_OBJECT_NAME(hlay);
-    KDAB_SET_OBJECT_NAME(archiveCB);
-    KDAB_SET_OBJECT_NAME(archivesCB);
+    Q_SET_OBJECT_NAME(glay);
+    Q_SET_OBJECT_NAME(inputLB);
+    Q_SET_OBJECT_NAME(inputStack);
+    Q_SET_OBJECT_NAME(inputFileNameLB);
+    Q_SET_OBJECT_NAME(inputFileNameRQ);
+    Q_SET_OBJECT_NAME(verifyDetachedCB);
+    Q_SET_OBJECT_NAME(signedDataLB);
+    Q_SET_OBJECT_NAME(signedDataStack);
+    Q_SET_OBJECT_NAME(signedDataFileNameLB);
+    Q_SET_OBJECT_NAME(signedDataFileNameRQ);
+    Q_SET_OBJECT_NAME(hlay);
+    Q_SET_OBJECT_NAME(archiveCB);
+    Q_SET_OBJECT_NAME(archivesCB);
 
     inputStack.setContentsMargins(0, 0, 0, 0);
     signedDataStack.setContentsMargins(0, 0, 0, 0);

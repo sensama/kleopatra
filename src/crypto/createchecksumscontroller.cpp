@@ -69,12 +69,12 @@ public:
         , buttonBox(QDialogButtonBox::Ok, Qt::Horizontal, this)
         , vlay(this)
     {
-        KDAB_SET_OBJECT_NAME(createdLB);
-        KDAB_SET_OBJECT_NAME(createdLW);
-        KDAB_SET_OBJECT_NAME(errorsLB);
-        KDAB_SET_OBJECT_NAME(errorsLW);
-        KDAB_SET_OBJECT_NAME(buttonBox);
-        KDAB_SET_OBJECT_NAME(vlay);
+        Q_SET_OBJECT_NAME(createdLB);
+        Q_SET_OBJECT_NAME(createdLW);
+        Q_SET_OBJECT_NAME(errorsLB);
+        Q_SET_OBJECT_NAME(errorsLW);
+        Q_SET_OBJECT_NAME(buttonBox);
+        Q_SET_OBJECT_NAME(vlay);
 
         createdLW.addItems(created);
         QRect r;

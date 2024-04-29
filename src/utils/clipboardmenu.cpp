@@ -49,12 +49,12 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
     mOpenPGPSignClipboardAction = new QAction(i18n("OpenPGP-Sign..."), this);
     mDecryptVerifyClipboardAction = new QAction(i18n("Decrypt/Verify..."), this);
 
-    KDAB_SET_OBJECT_NAME(mClipboardMenu);
-    KDAB_SET_OBJECT_NAME(mImportClipboardAction);
-    KDAB_SET_OBJECT_NAME(mEncryptClipboardAction);
-    KDAB_SET_OBJECT_NAME(mSmimeSignClipboardAction);
-    KDAB_SET_OBJECT_NAME(mOpenPGPSignClipboardAction);
-    KDAB_SET_OBJECT_NAME(mDecryptVerifyClipboardAction);
+    Q_SET_OBJECT_NAME(mClipboardMenu);
+    Q_SET_OBJECT_NAME(mImportClipboardAction);
+    Q_SET_OBJECT_NAME(mEncryptClipboardAction);
+    Q_SET_OBJECT_NAME(mSmimeSignClipboardAction);
+    Q_SET_OBJECT_NAME(mOpenPGPSignClipboardAction);
+    Q_SET_OBJECT_NAME(mDecryptVerifyClipboardAction);
 
     connect(mImportClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotImportClipboard);
     connect(mEncryptClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotEncryptClipboard);

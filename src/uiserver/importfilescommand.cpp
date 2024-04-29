@@ -34,7 +34,7 @@ public:
         : q(qq)
         , command(nullptr)
     {
-        KDAB_SET_OBJECT_NAME(command);
+        Q_SET_OBJECT_NAME(command);
         command.setAutoDelete(false);
 
         connect(&command, SIGNAL(finished()), q, SLOT(slotCommandFinished()));

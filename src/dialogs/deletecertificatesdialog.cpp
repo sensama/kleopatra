@@ -144,14 +144,14 @@ private:
             , buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel)
             , vlay(qq)
         {
-            KDAB_SET_OBJECT_NAME(selectedLB);
-            KDAB_SET_OBJECT_NAME(selectedList);
-            KDAB_SET_OBJECT_NAME(unselectedLB);
-            KDAB_SET_OBJECT_NAME(unselectedList);
-            KDAB_SET_OBJECT_NAME(groupsLB);
-            KDAB_SET_OBJECT_NAME(groupsList);
-            KDAB_SET_OBJECT_NAME(buttonBox);
-            KDAB_SET_OBJECT_NAME(vlay);
+            Q_SET_OBJECT_NAME(selectedLB);
+            Q_SET_OBJECT_NAME(selectedList);
+            Q_SET_OBJECT_NAME(unselectedLB);
+            Q_SET_OBJECT_NAME(unselectedList);
+            Q_SET_OBJECT_NAME(groupsLB);
+            Q_SET_OBJECT_NAME(groupsList);
+            Q_SET_OBJECT_NAME(buttonBox);
+            Q_SET_OBJECT_NAME(vlay);
 
             vlay.addWidget(&selectedLB);
             vlay.addWidget(selectedList, 1);

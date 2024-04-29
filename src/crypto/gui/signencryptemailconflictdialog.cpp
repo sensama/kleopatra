@@ -366,18 +366,18 @@ private:
             , signers()
             , recipients()
         {
-            KDAB_SET_OBJECT_NAME(conflictTopLB);
-            KDAB_SET_OBJECT_NAME(quickModeTopLB);
-            KDAB_SET_OBJECT_NAME(showAllRecipientsCB);
-            KDAB_SET_OBJECT_NAME(pgpRB);
-            KDAB_SET_OBJECT_NAME(cmsRB);
-            KDAB_SET_OBJECT_NAME(selectSigningCertificatesGB);
-            KDAB_SET_OBJECT_NAME(selectEncryptionCertificatesGB);
-            KDAB_SET_OBJECT_NAME(quickModeCB);
-            KDAB_SET_OBJECT_NAME(buttonBox);
-            KDAB_SET_OBJECT_NAME(hlay);
-            KDAB_SET_OBJECT_NAME(glay);
-            KDAB_SET_OBJECT_NAME(vlay);
+            Q_SET_OBJECT_NAME(conflictTopLB);
+            Q_SET_OBJECT_NAME(quickModeTopLB);
+            Q_SET_OBJECT_NAME(showAllRecipientsCB);
+            Q_SET_OBJECT_NAME(pgpRB);
+            Q_SET_OBJECT_NAME(cmsRB);
+            Q_SET_OBJECT_NAME(selectSigningCertificatesGB);
+            Q_SET_OBJECT_NAME(selectEncryptionCertificatesGB);
+            Q_SET_OBJECT_NAME(quickModeCB);
+            Q_SET_OBJECT_NAME(buttonBox);
+            Q_SET_OBJECT_NAME(hlay);
+            Q_SET_OBJECT_NAME(glay);
+            Q_SET_OBJECT_NAME(vlay);
 
             q->setWindowTitle(i18nc("@title:window", "Select Certificates for Message"));
 

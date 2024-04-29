@@ -1053,7 +1053,7 @@ public:
         , q(qq)
         , watcher()
     {
-        KDAB_SET_OBJECT_NAME(watcher);
+        Q_SET_OBJECT_NAME(watcher);
 
         qRegisterMetaType<Card::Status>("Kleo::SmartCard::Card::Status");
         qRegisterMetaType<GpgME::Error>("GpgME::Error");

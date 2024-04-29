@@ -85,7 +85,6 @@ public:
         certificationsModel.enableRemarks(Tags::tagsEnabled());
         auto vLay = new QVBoxLayout(q);
         vLay->setContentsMargins({});
-        vLay->setSpacing(0);
 
         certificationsTV = new TreeView{q};
         certificationsTV->setAccessibleName(i18n("User IDs and certifications"));
@@ -124,11 +123,8 @@ public:
         connect(fetchAction, &QAction::triggered, q, [this]() {
             fetchMissingKeys();
         });
-        auto separator = new KSeparator(q);
-        vLay->addWidget(separator);
 
         auto bbox = new QHBoxLayout;
-        bbox->setSpacing(q->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
 
         addActionButton(bbox, certifyAction);
         addActionButton(bbox, revokeAction);
@@ -146,6 +142,7 @@ public:
         bbox->addStretch(1);
 
         vLay->addLayout(bbox);
+
         connect(certificationsTV, &QAbstractItemView::doubleClicked, q, [this]() {
             certificationDblClicked();
         });

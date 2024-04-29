@@ -123,7 +123,6 @@ UserIdsWidget::UserIdsWidget(QWidget *parent)
 {
     auto userIDsLayout = new QVBoxLayout{this};
     userIDsLayout->setContentsMargins({});
-    userIDsLayout->setSpacing(0);
 
     d->userIDTable = new TreeWidget{parent};
     d->userIDTable->setAccessibleName(i18n("User IDs"));
@@ -138,11 +137,7 @@ UserIdsWidget::UserIdsWidget(QWidget *parent)
 
     userIDsLayout->addWidget(d->userIDTable);
 
-    auto separator = new KSeparator(parent);
-    userIDsLayout->addWidget(separator);
-
     d->buttonRow = new QHBoxLayout;
-    d->buttonRow->setSpacing(parent->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
 
     d->addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
     d->buttonRow->addWidget(d->addUserIDBtn);

@@ -131,7 +131,6 @@ public:
         {
             mainLayout = new QVBoxLayout{widget};
             mainLayout->setContentsMargins({});
-            mainLayout->setSpacing(0);
 
             subkeysTree = new TreeWidget{widget};
             subkeysTree->setAccessibleName(i18nc("@label", "Subkeys"));
@@ -148,12 +147,8 @@ public:
             });
             mainLayout->addWidget(subkeysTree);
 
-            auto separator = new KSeparator(widget);
-            mainLayout->addWidget(separator);
-
             {
                 auto buttonRow = new QHBoxLayout;
-                buttonRow->setSpacing(widget->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
 
                 addSubkeyAction = new QAction({}, i18nc("@action:button", "Add subkey"));
                 changeValidityAction = new QAction({}, i18nc("@action:button", "Change validity"), widget);

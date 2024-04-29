@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:38+0000\n"
-"PO-Revision-Date: 2024-04-13 11:51+0100\n"
+"PO-Revision-Date: 2024-04-21 17:45+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -1147,7 +1147,7 @@ msgstr "CRL Cache Dump"
 #: src/commands/dumpcrlcachecommand.cpp:317
 #, kde-format
 msgid "Dump CRL Cache Error"
-msgstr "Eraro pri CRL Kaŝmemor-Elĵeto"
+msgstr "Elĵeti CRL-Kaŝmemoran Eraron"
 
 #: src/commands/dumpcrlcachecommand.cpp:340
 #, kde-format
@@ -1574,31 +1574,24 @@ msgstr "Malsukcesis trovi PaperKey efektivigebla."
 
 #: src/commands/exportpaperkeycommand.cpp:112
 #: src/commands/exportpaperkeycommand.cpp:124
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred during the backup of the secret key:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during export of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Eraro okazis dum la sekurkopio de la sekreta ŝlosilo:</"
-"para><para><message>%1</message></para>"
+"<para>Eraro okazis dum elportado de la sekreta ŝlosilo:</para><para><message>"
+"%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp:148
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para><application>PaperKey</application> failed with error</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Konservado de la peto malsukcesis.</para><para><message>%1</message></"
-"para>"
+"<para><application>PaperKey</application> malsukcesis kun eraro</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
@@ -3658,7 +3651,7 @@ msgstr "Uzi nur simetrian ĉifradon."
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
-msgstr "Agordu ĉi tiun opcion por malŝalti publik-ŝlosilan ĉifradon."
+msgstr "Agordi ĉi tiun opcion por malŝalti publikan ŝlosilan ĉifradon."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:84
 #, kde-format
@@ -6483,17 +6476,15 @@ msgid "Change Validity"
 msgstr "Ŝanĝi Validecon"
 
 #: src/dialogs/certificatedetailswidget.cpp:202
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Status"
+#, kde-format
 msgid "Status:"
-msgstr "Stato"
+msgstr "Statuso:"
 
 #: src/dialogs/certificatedetailswidget.cpp:207
 #: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgid "Fingerprint:"
-msgstr "Fingrosigno:"
+msgstr "Fingrospuro:"
 
 #: src/dialogs/certificatedetailswidget.cpp:211
 #, kde-format
@@ -6548,7 +6539,7 @@ msgstr "Privata Ŝlosilo:"
 #, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
-msgstr "ID-oj de uzantoj"
+msgstr "Uzantidentigiloj"
 
 #: src/dialogs/certificatedetailswidget.cpp:255
 #, kde-format
@@ -6614,7 +6605,7 @@ msgstr "inteligenta karto %1"
 #, kde-format
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
-msgstr "inteligenta memorkarto"
+msgstr "inteligenta karto"
 
 #: src/dialogs/certificatedetailswidget.cpp:345
 #: src/dialogs/subkeyswidget.cpp:386
@@ -7105,7 +7096,7 @@ msgstr[1] ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
-msgstr "Forigo de Sekreta Ŝlosilo"
+msgstr "Sekreta Ŝlosilo Forigo"
 
 #: src/dialogs/editgroupdialog.cpp:83
 #, kde-format
@@ -7737,7 +7728,7 @@ msgstr "Aldoni subŝlosilon"
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
-msgstr "Ŝanĝi validecon"
+msgstr "Ŝanĝi Validecon"
 
 #: src/dialogs/subkeyswidget.cpp:159
 #, kde-format
@@ -7755,7 +7746,7 @@ msgstr "Restaŭri presitan sekurkopion"
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
-msgstr "Transdoni al smartcard"
+msgstr "Transigi al smartcard"
 
 #: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
@@ -11573,7 +11564,7 @@ msgstr "Krei OpenPGP-Ŝlosilon"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr "Krei OpenPGP-ŝlosilon por la ŝlosiloj konservitaj sur la karto."
+msgstr "Kreu OpenPGP-ŝlosilon por la ŝlosiloj konservitaj sur la karto."
 
 #: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:195
@@ -12561,27 +12552,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "Eraro dum presado de sekreta ŝlosilo"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>La GPG-procezo kiu provis eksporti la sekretan ŝlosilon finiĝis "
-#~ "antaŭtempe pro neatendita eraro.</para><para>Bonvolu kontroli la eliron "
-#~ "de <icode>%1</icode> por detaloj.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Okazis eraro dum provado eksporti la sekretan ŝlosilon.</para> "
-#~ "<para>La eligo de <command>%1</command> estis: <message>%2</message></"
-#~ "para>"

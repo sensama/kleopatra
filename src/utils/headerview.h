@@ -11,8 +11,7 @@
 
 #include <QHeaderView>
 
-#include <utils/pimpl_ptr.h>
-
+#include <memory>
 #include <vector>
 
 namespace Kleo
@@ -35,7 +34,7 @@ private:
     //@}
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

@@ -11,9 +11,9 @@
 
 #include <crypto/gui/wizardpage.h>
 
-#include <utils/pimpl_ptr.h>
-
 #include <QStringList>
+
+#include <memory>
 
 namespace Kleo
 {
@@ -35,7 +35,7 @@ public:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void add())
     Q_PRIVATE_SLOT(d, void remove())
     Q_PRIVATE_SLOT(d, void listSelectionChanged())

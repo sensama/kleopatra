@@ -11,8 +11,6 @@
 
 #include "assuancommand.h"
 
-#include <utils/pimpl_ptr.h>
-
 namespace Kleo
 {
 class VerifyCommand : public AssuanCommandMixin<VerifyCommand, DecryptVerifyCommandEMailBase>

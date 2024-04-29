@@ -13,8 +13,6 @@
 
 #include <assuan.h> // for assuan_fd_t
 
-#include <utils/pimpl_ptr.h>
-
 #include <memory>
 #include <string>
 #include <vector>
@@ -43,7 +41,7 @@ public:
     class Private;
 
 private:
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

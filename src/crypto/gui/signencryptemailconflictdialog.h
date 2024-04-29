@@ -11,10 +11,9 @@
 
 #include <QDialog>
 
-#include <utils/pimpl_ptr.h>
-
 #include <gpgme++/global.h>
 
+#include <memory>
 #include <vector>
 
 namespace GpgME
@@ -80,7 +79,7 @@ private:
     Q_PRIVATE_SLOT(d, void slotProtocolChanged())
     Q_PRIVATE_SLOT(d, void slotCertificateSelectionDialogRequested())
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 }

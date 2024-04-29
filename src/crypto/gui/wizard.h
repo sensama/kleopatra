@@ -9,8 +9,7 @@
 
 #pragma once
 
-#include <utils/pimpl_ptr.h>
-
+#include <memory>
 #include <vector>
 
 #include <QDialog>
@@ -66,7 +65,7 @@ protected:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void updateButtonStates())
     Q_PRIVATE_SLOT(d, void updateHeader())
 };

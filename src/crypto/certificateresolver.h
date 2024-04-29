@@ -9,12 +9,12 @@
 
 #pragma once
 
-#include <utils/pimpl_ptr.h>
-
 #include <KMime/HeaderParsing>
 #include <gpgme++/key.h>
 
 #include <KSharedConfig>
+
+#include <memory>
 
 class KConfig;
 
@@ -59,7 +59,7 @@ public:
 private:
     Q_DISABLE_COPY(KConfigBasedRecipientPreferences)
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 class KConfigBasedSigningPreferences : public SigningPreferences
@@ -73,7 +73,7 @@ public:
 private:
     Q_DISABLE_COPY(KConfigBasedSigningPreferences)
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 }
 }

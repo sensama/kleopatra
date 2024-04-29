@@ -12,8 +12,6 @@
 #include <crypto/gui/wizardpage.h>
 #include <crypto/task.h>
 
-#include <utils/pimpl_ptr.h>
-
 #include <memory>
 
 namespace Kleo
@@ -43,7 +41,7 @@ public:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void result(std::shared_ptr<const Kleo::Crypto::Task::Result>))
     Q_PRIVATE_SLOT(d, void started(std::shared_ptr<Kleo::Crypto::Task>))
     Q_PRIVATE_SLOT(d, void allDone())

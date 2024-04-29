@@ -11,8 +11,6 @@
 
 #include <crypto/gui/signencryptwizard.h>
 
-#include <utils/pimpl_ptr.h>
-
 namespace Kleo
 {
 namespace Crypto

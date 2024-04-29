@@ -11,8 +11,6 @@
 
 #include <crypto/gui/wizardpage.h>
 
-#include <utils/pimpl_ptr.h>
-
 #include <KMime/HeaderParsing>
 #include <gpgme++/global.h>
 
@@ -112,7 +110,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 
     Q_PRIVATE_SLOT(d, void operationButtonClicked(int))
     Q_PRIVATE_SLOT(d, void selectCertificates())

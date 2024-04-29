@@ -12,11 +12,10 @@
 #include <QObject>
 #include <QString>
 
-#include <utils/pimpl_ptr.h>
-
 #include <gpgme++/global.h>
 
 #include <QPointer>
+
 #include <memory>
 
 namespace Kleo
@@ -81,7 +80,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 class Task::Result
@@ -134,7 +133,7 @@ protected:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 }
 }

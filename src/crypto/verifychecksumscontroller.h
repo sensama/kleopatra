@@ -13,8 +13,6 @@
 
 #ifndef QT_NO_DIRMODEL
 
-#include <utils/pimpl_ptr.h>
-
 #include <gpgme++/global.h>
 
 #include <memory>
@@ -42,7 +40,7 @@ public Q_SLOTS:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotOperationFinished())
 };
 

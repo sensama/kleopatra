@@ -13,8 +13,6 @@
 
 #include <QWidget>
 
-#include <utils/pimpl_ptr.h>
-
 class QCheckBox;
 class QComboBox;
 class QBoxLayout;

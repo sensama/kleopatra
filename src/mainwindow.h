@@ -14,7 +14,7 @@
 
 #include <KXmlGuiWindow>
 
-#include <utils/pimpl_ptr.h>
+#include <memory>
 
 namespace Kleo
 {
@@ -46,7 +46,7 @@ protected:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void closeAndQuit())
     Q_PRIVATE_SLOT(d, void configureToolbars())
     Q_PRIVATE_SLOT(d, void editKeybindings())

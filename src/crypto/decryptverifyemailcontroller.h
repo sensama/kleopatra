@@ -79,7 +79,7 @@ private:
     void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result) override;
 
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotWizardCanceled())
     Q_PRIVATE_SLOT(d, void schedule())
 };

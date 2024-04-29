@@ -90,7 +90,7 @@ public:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 
 class DecryptTask : public AbstractDecryptVerifyTask
@@ -119,7 +119,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotResult(GpgME::DecryptionResult, QByteArray))
 };
 
@@ -152,7 +152,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotResult(GpgME::VerificationResult))
 };
 
@@ -188,7 +188,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotResult(GpgME::VerificationResult, QByteArray))
 };
 
@@ -226,7 +226,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotResult(GpgME::DecryptionResult, GpgME::VerificationResult, QByteArray))
 };
 
@@ -270,7 +270,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    const std::unique_ptr<Private> d;
 };
 }
 }

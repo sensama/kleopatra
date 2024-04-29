@@ -40,9 +40,10 @@ public:
         {
             mainLayout = new QVBoxLayout{widget};
             mainLayout->setContentsMargins({});
-            mainLayout->setSpacing(0);
 
             textEdit = new QTextEdit(widget);
+            // Breeze draws no frame for scroll areas that are the only widget in a layout...unless we force it
+            textEdit->setProperty("_breeze_force_frame", true);
             textEdit->setReadOnly(true);
             textEdit->setFontFamily(QStringLiteral("monospace"));
             mainLayout->addWidget(textEdit);

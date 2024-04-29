@@ -4,14 +4,16 @@
 */
 
 #include "trustchainwidget.h"
-#include "ui_trustchainwidget.h"
 
 #include "kleopatra_debug.h"
+
+#include <KLocalizedString>
 
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
+#include <QVBoxLayout>
 
 #include <gpgme++/key.h>
 
@@ -20,25 +22,39 @@
 
 class TrustChainWidget::Private
 {
+    TrustChainWidget *const q;
+
 public:
     Private(TrustChainWidget *qq)
         : q(qq)
+        , ui{qq}
     {
-        Q_UNUSED(q);
     }
 
     GpgME::Key key;
-    Ui::TrustChainWidget ui;
 
-private:
-    TrustChainWidget *const q;
+    struct UI {
+        QTreeWidget *treeWidget;
+
+        UI(QWidget *widget)
+        {
+            auto mainLayout = new QVBoxLayout{widget};
+            mainLayout->setContentsMargins({});
+
+            treeWidget = new QTreeWidget{widget};
+            // Breeze draws no frame for scroll areas that are the only widget in a layout...unless we force it
+            treeWidget->setProperty("_breeze_force_frame", true);
+            treeWidget->setHeaderHidden(true);
+
+            mainLayout->addWidget(treeWidget);
+        }
+    } ui;
 };
 
 TrustChainWidget::TrustChainWidget(QWidget *parent)
     : QWidget(parent)
     , d(new Private(this))
 {
-    d->ui.setupUi(this);
 }
 
 TrustChainWidget::~TrustChainWidget()

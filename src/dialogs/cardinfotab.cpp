@@ -53,7 +53,6 @@ public:
     {
         auto vLay = new QVBoxLayout(q);
         vLay->setContentsMargins({});
-        vLay->setSpacing(0);
 
         subkeysTree = new TreeWidget{q};
         subkeysTree->setAccessibleName(i18n("Subkeys"));
@@ -75,9 +74,6 @@ public:
         placeholderLabel->setVisible(false);
         placeholderLabel->setAlignment(Qt::AlignHCenter);
         vLay->addWidget(placeholderLabel);
-
-        auto separator = new KSeparator(q);
-        vLay->addWidget(separator);
 
         auto bbox = new QHBoxLayout;
 

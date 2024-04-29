@@ -60,6 +60,7 @@
 #include <QLocale>
 #include <QMenu>
 #include <QPushButton>
+#include <QStackedWidget>
 #include <QStringBuilder>
 #include <QTreeWidget>
 #include <QVBoxLayout>
@@ -245,6 +246,8 @@ private:
             }
 
             tabWidget = new QTabWidget(parent);
+            tabWidget->setDocumentMode(true); // we don't want a frame around the page widgets
+            tabWidget->tabBar()->setDrawBase(false); // only draw the tabs
 
             mainLayout->addWidget(tabWidget);
 
@@ -252,6 +255,8 @@ private:
 
             tabWidget->addTab(userIDs, i18nc("@title:tab", "User IDs"));
             smimeAddressList = new QListWidget{parent};
+            // Breeze draws no frame for scroll areas that are the only widget in a layout...unless we force it
+            smimeAddressList->setProperty("_breeze_force_frame", true);
             smimeAddressList->setAccessibleName(i18n("Related addresses"));
             smimeAddressList->setEditTriggers(QAbstractItemView::NoEditTriggers);
             smimeAddressList->setSelectionMode(QAbstractItemView::SingleSelection);

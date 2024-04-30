@@ -87,6 +87,8 @@ set(_kleopatra_SRCS
   commands/authenticatepivcardapplicationcommand.h
   commands/cardcommand.cpp
   commands/cardcommand.h
+  commands/certificatetocardcommand.cpp
+  commands/certificatetocardcommand.h
   commands/certificatetopivcardcommand.cpp
   commands/certificatetopivcardcommand.h
   commands/certifycertificatecommand.cpp
@@ -325,6 +327,8 @@ set(_kleopatra_SRCS
   dialogs/certifywidget.h
   dialogs/createcsrforcardkeydialog.cpp
   dialogs/createcsrforcardkeydialog.h
+  dialogs/copytosmartcarddialog.cpp
+  dialogs/copytosmartcarddialog.h
   dialogs/deletecertificatesdialog.cpp
   dialogs/deletecertificatesdialog.h
   dialogs/editgroupdialog.cpp

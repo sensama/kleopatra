@@ -28,11 +28,14 @@ class ExportPaperKeyCommand : public Command
 
 public:
     explicit ExportPaperKeyCommand(QAbstractItemView *view, KeyListController *parent);
+    explicit ExportPaperKeyCommand(const GpgME::Key &key);
 
     static Restrictions restrictions()
     {
         return OnlyOneKey | NeedSecretPrimaryKeyData | MustBeOpenPGP;
     }
+
+    bool success() const;
 
 private:
     class Private;

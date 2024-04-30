@@ -44,7 +44,7 @@ class ExportPaperKeyCommand::Private : public Command::Private
     }
 
 public:
-    explicit Private(ExportPaperKeyCommand *qq, KeyListController *c);
+    explicit Private(ExportPaperKeyCommand *qq, KeyListController *c = nullptr);
     ~Private() override;
 
     void startPaperKey(const QByteArray &data);
@@ -52,6 +52,7 @@ public:
 private:
     QProcess pkProc;
     QPointer<QGpgME::ExportJob> job;
+    bool success = false;
 };
 
 ExportPaperKeyCommand::Private::Private(ExportPaperKeyCommand *qq, KeyListController *c)
@@ -77,6 +78,11 @@ const ExportPaperKeyCommand::Private *ExportPaperKeyCommand::d_func() const
 
 ExportPaperKeyCommand::ExportPaperKeyCommand(QAbstractItemView *v, KeyListController *c)
     : Command(v, new Private(this, c))
+{
+}
+
+ExportPaperKeyCommand::ExportPaperKeyCommand(const GpgME::Key &key)
+    : Command(key, new Private(this))
 {
 }
 
@@ -168,6 +174,7 @@ void ExportPaperKeyCommand::Private::startPaperKey(const QByteArray &data)
     QTextDocument doc(QString::fromLatin1(pkProc.readAllStandardOutput()));
     doc.setDefaultFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     doc.print(&printer);
+    success = true;
     finished();
 }
 
@@ -177,6 +184,11 @@ void ExportPaperKeyCommand::doCancel()
         d->job->slotCancel();
     }
     d->job.clear();
+}
+
+bool ExportPaperKeyCommand::success() const
+{
+    return d->success;
 }
 
 #include "moc_exportpaperkeycommand.cpp"

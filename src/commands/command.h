@@ -57,6 +57,7 @@ public:
         MayOnlyBeSecretKeyIfOwnerTrustIsNotYetUltimate = 0x0040, // for set-owner-trust
 
         AnyCardHasNullPin   = 0x0080,
+        SuitableForCard     = 0x0100,
 
         MustBeRoot          = 0x0200,
         MustBeTrustedRoot   = 0x0400 | MustBeRoot,

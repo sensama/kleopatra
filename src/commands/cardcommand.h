@@ -31,7 +31,7 @@ protected:
     inline const Private *d_func() const;
 
 protected:
-    explicit CardCommand(Private *pp);
+    explicit CardCommand(Private *pp, QAbstractItemView *view = nullptr);
 };
 
 } // namespace Kleo

@@ -146,6 +146,8 @@ private:
 private:
     QString filename;
     QPointer<QGpgME::ExportJob> job;
+    bool interactive = true;
+    bool success = false;
 };
 
 ExportSecretKeyCommand::Private *ExportSecretKeyCommand::d_func()
@@ -176,7 +178,9 @@ void ExportSecretKeyCommand::Private::start()
         return;
     }
 
-    filename = requestFilename(key, proposeFilename(key), parentWidgetOrView());
+    if (filename.isEmpty()) {
+        filename = requestFilename(key, proposeFilename(key), parentWidgetOrView());
+    }
     if (filename.isEmpty()) {
         canceled();
         return;
@@ -258,7 +262,11 @@ void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const 
         return;
     }
 
-    information(i18nc("@info", "The backup of the secret key was created successfully."), i18nc("@title:window", "Secret Key Backup"));
+    if (interactive) {
+        information(i18nc("@info", "The backup of the secret key was created successfully."), i18nc("@title:window", "Secret Key Backup"));
+    }
+
+    success = true;
     finished();
 }
 
@@ -291,6 +299,21 @@ void ExportSecretKeyCommand::doStart()
 void ExportSecretKeyCommand::doCancel()
 {
     d->cancel();
+}
+
+void ExportSecretKeyCommand::setInteractive(bool interactive)
+{
+    d->interactive = interactive;
+}
+
+void ExportSecretKeyCommand::setFileName(const QString &fileName)
+{
+    d->filename = fileName;
+}
+
+bool ExportSecretKeyCommand::success() const
+{
+    return d->success;
 }
 
 #undef d

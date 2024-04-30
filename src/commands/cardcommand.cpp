@@ -51,8 +51,8 @@ CardCommand::CardCommand(const std::string &serialNumber, QWidget *parent)
 {
 }
 
-CardCommand::CardCommand(Private *pp)
-    : Command(pp)
+CardCommand::CardCommand(Private *pp, QAbstractItemView *view)
+    : Command(view, pp)
 {
 }
 

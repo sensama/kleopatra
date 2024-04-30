@@ -30,6 +30,10 @@ public:
         return OnlyOneKey | NeedSecretPrimaryKeyData;
     }
 
+    void setInteractive(bool interactive);
+    void setFileName(const QString &fileName);
+    bool success() const;
+
 private:
     void doStart() override;
     void doCancel() override;

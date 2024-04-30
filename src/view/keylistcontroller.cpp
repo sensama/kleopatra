@@ -26,6 +26,7 @@
 #include "commands/exportopenpgpcerttoprovidercommand.h"
 #endif // MAILAKONADI_ENABLED
 #include "commands/adduseridcommand.h"
+#include "commands/certificatetocardcommand.h"
 #include "commands/certifycertificatecommand.h"
 #include "commands/changeexpirycommand.h"
 #include "commands/changeownertrustcommand.h"
@@ -561,6 +562,15 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             QString(),
         },
+        {
+            "certificate_to_card",
+            i18nc("@action:inmenu", "Copy to Card"),
+            i18nc("@info:tooltip", "Copy the selected certificate to a smartcard"),
+            "auth-sim-locked",
+            nullptr,
+            nullptr,
+            QString(),
+        },
         // Tools menu
         {
             "tools_refresh_openpgp_certificates",
@@ -685,6 +695,7 @@ void KeyListController::createActions(KActionCollection *coll)
 #ifdef MAILAKONADI_ENABLED
     registerActionForCommand<ExportOpenPGPCertToProviderCommand>(coll->action(QStringLiteral("file_export_certificate_to_provider")));
 #endif // MAILAKONADI_ENABLED
+    registerActionForCommand<CertificateToCardCommand>(coll->action(QStringLiteral("certificate_to_card")));
     //---
     registerActionForCommand<DecryptVerifyFilesCommand>(coll->action(QStringLiteral("file_decrypt_verify_files")));
     registerActionForCommand<SignEncryptFilesCommand>(coll->action(QStringLiteral("file_sign_encrypt_files")));
@@ -979,6 +990,49 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
     if (const ReaderStatus *rs = ReaderStatus::instance()) {
         if (!rs->firstCardWithNullPin().empty()) {
             result |= Command::AnyCardHasNullPin;
+        }
+    }
+
+    {
+        if (keys.size() > 0) {
+            bool hasSignCertify = false;
+            bool hasEncrypt = false;
+            bool hasAuthenticate = false;
+            bool invalid = false;
+            for (const auto &subkey : keys[0].subkeys()) {
+                if (subkey.isCardKey()) {
+                    invalid = true;
+                    break;
+                }
+                if (subkey.canCertify() && subkey.canSign()) {
+                    if (hasSignCertify) {
+                        invalid = true;
+                        break;
+                    } else {
+                        hasSignCertify = true;
+                    }
+                } else if (subkey.canEncrypt()) {
+                    if (hasEncrypt) {
+                        invalid = true;
+                        break;
+                    } else {
+                        hasEncrypt = true;
+                    }
+                } else if (subkey.canAuthenticate()) {
+                    if (hasAuthenticate) {
+                        invalid = true;
+                        break;
+                    } else {
+                        hasAuthenticate = true;
+                    }
+                } else {
+                    invalid = true;
+                    break;
+                }
+            }
+            if (hasSignCertify && hasEncrypt && !invalid) {
+                result |= Command::SuitableForCard;
+            }
         }
     }
 

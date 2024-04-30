@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-27 00:38+0000\n"
+"POT-Creation-Date: 2024-04-30 00:39+0000\n"
 "PO-Revision-Date: 2024-04-19 16:48+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -2882,50 +2882,56 @@ msgstr ""
 "Створити ключ на цій смарт-картці не можна, оскільки на ній не передбачено "
 "підтримки жодного сумісного алгоритму."
 
-#: src/commands/refreshcertificatecommand.cpp:166
-#: src/commands/refreshcertificatecommand.cpp:224
+#: src/commands/refreshcertificatescommand.cpp:180
+#: src/commands/refreshcertificatescommand.cpp:246
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Оновлення ключа…"
 
-#: src/commands/refreshcertificatecommand.cpp:186
+#: src/commands/refreshcertificatescommand.cpp:197
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Оновлення сертифіката…"
 
-#: src/commands/refreshcertificatecommand.cpp:244
-#, kde-format
-msgid "The key hasn't changed."
-msgstr "Ключ не було змінено."
+#: src/commands/refreshcertificatescommand.cpp:266
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The certificate has been updated."
+msgid "The certificate has not changed."
+msgstr "Сертифікат оновлено."
 
-#: src/commands/refreshcertificatecommand.cpp:248
-#, kde-format
-msgid "The key has been revoked."
-msgstr "Ключ було відкликано."
+#: src/commands/refreshcertificatescommand.cpp:270
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The certificate has been updated."
+msgid "The certificate has been revoked."
+msgstr "Сертифікат оновлено."
 
-#: src/commands/refreshcertificatecommand.cpp:251
-#, kde-format
-msgid "The key has been updated."
-msgstr "Ключ було оновлено."
+#: src/commands/refreshcertificatescommand.cpp:273
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The certificate has been updated."
+msgid "The certificate has been updated."
+msgstr "Сертифікат оновлено."
 
-#: src/commands/refreshcertificatecommand.cpp:255
+#: src/commands/refreshcertificatescommand.cpp:277
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Нові ід. користувачів: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:258
+#: src/commands/refreshcertificatescommand.cpp:280
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Нові підключі: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:261
+#: src/commands/refreshcertificatescommand.cpp:283
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Нові підписи: %1"
 
-#: src/commands/refreshcertificatecommand.cpp:271
+#: src/commands/refreshcertificatescommand.cpp:293
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
@@ -2934,99 +2940,95 @@ msgstr[1] "Крім того, отримано %1 нових ключі."
 msgstr[2] "Крім того, отримано %1 нових ключів."
 msgstr[3] "Крім того, отримано новий ключ."
 
-#: src/commands/refreshcertificatecommand.cpp:299
-#: src/commands/refreshcertificatecommand.cpp:337
-#, kde-format
-msgctxt "@info"
-msgid "The update was skipped because no keyserver is configured."
-msgstr ""
-"Оновлення було пропущено, оскільки не налаштовано жодного сервера ключів."
-
-#: src/commands/refreshcertificatecommand.cpp:299
-#: src/commands/refreshcertificatecommand.cpp:337
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Skipped"
-msgstr "Оновлення пропущено"
-
-#: src/commands/refreshcertificatecommand.cpp:304
-#: src/commands/refreshcertificatecommand.cpp:342
-#: src/commands/refreshcertificatecommand.cpp:381
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Updated"
-msgstr "Ключ оновлено"
-
-#: src/commands/refreshcertificatecommand.cpp:327
-#, kde-format
-msgctxt "@info"
-msgid "The certificate has been updated."
-msgstr "Сертифікат оновлено."
-
-#: src/commands/refreshcertificatecommand.cpp:327
-#, kde-format
-msgctxt "@title:window"
-msgid "Certificate Updated"
-msgstr "Сертифікат оновлено"
-
-#: src/commands/refreshcertificatecommand.cpp:350
-#, kde-kuit-format
+#: src/commands/refreshcertificatescommand.cpp:389
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Result of update from keyserver, LDAP server, or Active Directory"
 msgctxt "@info"
 msgid ""
-"<para>Updating the certificate from a keyserver, an LDAP server, or Active "
-"Directory failed:</para><para><message>%1</message></para><para>Updating the "
-"certificate via Web Key Directory failed:</para><para><message>%2</message></"
-"para>"
-msgstr ""
-"<para>Не вдалося оновити сертифікат з сервера ключів, сервера LDAP або "
-"Active Directory:</para><para><message>%1</message></para><para>Спроба "
-"оновлення сертифіката за допомогою Web Key Directory зазнала невдачі:</"
-"para><para><message>%2</message></para>"
-
-#: src/commands/refreshcertificatecommand.cpp:356
-#: src/commands/refreshcertificatecommand.cpp:392
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Помилка оновлення"
-
-#: src/commands/refreshcertificatecommand.cpp:363
-#, kde-format
-msgctxt "@info"
-msgid "Result of update from keyserver, LDAP server, or Active Directory"
+"Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
+"Directory"
 msgstr ""
 "Результат оновлення з сервера ключів, сервера LDAP або Active Directory"
 
-#: src/commands/refreshcertificatecommand.cpp:366
-#, kde-kuit-format
+#: src/commands/refreshcertificatescommand.cpp:392
+#: src/commands/refreshcertificatescommand.cpp:409
+#: src/commands/refreshcertificatescommand.cpp:419
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
 msgctxt "@info"
-msgid "<para>The update was skipped because no keyserver is configured.</para>"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>Під час спроби зберегти запит сталася помилка.</para><para><message>"
+"%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp:394
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The update was skipped because no keyserver is configured.</para>"
+msgctxt "@info"
+msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
 "<para>Оновлення було пропущено, оскільки не налаштовано жодного сервера "
 "ключів.</para>"
 
-#: src/commands/refreshcertificatecommand.cpp:368
-#: src/commands/refreshcertificatecommand.cpp:376
-#, kde-kuit-format
+#: src/commands/refreshcertificatescommand.cpp:396
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "The certificate has been updated."
 msgctxt "@info"
-msgid "<para>The update failed: <message>%1</message></para>"
-msgstr "<para>Не вдалося оновити: <message>%1</message></para>"
+msgid "<para>The certificate was not found.</para>"
+msgstr "Сертифікат оновлено."
 
-#: src/commands/refreshcertificatecommand.cpp:374
-#, kde-format
+#: src/commands/refreshcertificatescommand.cpp:399
+#: src/commands/refreshcertificatescommand.cpp:412
+#: src/commands/refreshcertificatescommand.cpp:422
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "The certificate has been updated."
 msgctxt "@info"
-msgid "Result of update via Web Key Directory"
+msgid "<para>The certificate was updated.</para>"
+msgid_plural "<para>The certificates were updated.</para>"
+msgstr[0] "Сертифікат оновлено."
+msgstr[1] "Сертифікат оновлено."
+msgstr[2] "Сертифікат оновлено."
+msgstr[3] "Сертифікат оновлено."
+
+#: src/commands/refreshcertificatescommand.cpp:407
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Result of update via Web Key Directory"
+msgctxt "@info"
+msgid "Result of update from Web Key Directory"
 msgstr "Результат оновлення за допомогою Web Key Directory"
 
-#: src/commands/refreshcertificatecommand.cpp:389
-#, kde-kuit-format
+#: src/commands/refreshcertificatescommand.cpp:417
+#, fuzzy, kde-format
+#| msgid "Allow S/MIME certificate creation"
 msgctxt "@info"
-msgid ""
-"<para>An error occurred while updating the certificate:</para><para><message>"
-"%1</message></para>"
-msgstr ""
-"<para>Під час спроби оновити сертифікат сталася помилка:</"
-"para><para><message>%1</message></para>"
+msgid "Result of S/MIME certificate update"
+msgstr "Дозволити створення сертифікатів S/MIME"
+
+#: src/commands/refreshcertificatescommand.cpp:427
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Certificate Updated"
+msgctxt "@title:window"
+msgid "Certificate Updated"
+msgid_plural "Certificates Updated"
+msgstr[0] "Сертифікат оновлено"
+msgstr[1] "Сертифікат оновлено"
+msgstr[2] "Сертифікат оновлено"
+msgstr[3] "Сертифікат оновлено"
+
+#: src/commands/refreshcertificatescommand.cpp:427
+#, kde-format
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "Помилка оновлення"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:44
 #, kde-format
@@ -3180,7 +3182,7 @@ msgstr ""
 
 #: src/commands/revokecertificationcommand.cpp:89
 #: src/commands/revokecertificationcommand.cpp:103
-#: src/dialogs/useridswidget.cpp:431
+#: src/dialogs/useridswidget.cpp:433
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -6720,7 +6722,7 @@ msgid "unlimited"
 msgstr "без обмежень"
 
 #: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:378
+#: src/dialogs/subkeyswidget.cpp:379
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
@@ -6739,7 +6741,7 @@ msgid "smart card"
 msgstr "картка пам'яті"
 
 #: src/dialogs/certificatedetailswidget.cpp:345
-#: src/dialogs/subkeyswidget.cpp:386
+#: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
@@ -6752,7 +6754,7 @@ msgid "on this computer"
 msgstr "на цьому комп'ютері"
 
 #: src/dialogs/certificatedetailswidget.cpp:462
-#: src/dialogs/useridswidget.cpp:360
+#: src/dialogs/useridswidget.cpp:362
 #, kde-format
 msgid "Updating..."
 msgstr "Оновлення…"
@@ -6815,7 +6817,7 @@ msgid "Refresh certificate list"
 msgstr "Освіжити список сертифікатів"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:389 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Імпортувати…"
@@ -7910,86 +7912,86 @@ msgctxt "@title:column"
 msgid "Storage"
 msgstr "Сховище даних"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "Додати підключ"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:159
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Змінити чинність"
 
-#: src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/subkeyswidget.cpp:160
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Експортувати ключ OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:161
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Відновити із роздрукованої резервної копії"
 
-#: src/dialogs/subkeyswidget.cpp:161
+#: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Перенести на картку пам'яті"
 
-#: src/dialogs/subkeyswidget.cpp:162
+#: src/dialogs/subkeyswidget.cpp:163
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Експортувати закритий підключ"
 
-#: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
-#: src/dialogs/weboftrustwidget.cpp:134
+#: src/dialogs/subkeyswidget.cpp:171 src/dialogs/useridswidget.cpp:161
+#: src/dialogs/weboftrustwidget.cpp:135
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "Показати увесь список"
 
-#: src/dialogs/subkeyswidget.cpp:266
+#: src/dialogs/subkeyswidget.cpp:267
 #, kde-format
 msgid "Change validity"
 msgstr "Змінити чинність"
 
-#: src/dialogs/subkeyswidget.cpp:273
+#: src/dialogs/subkeyswidget.cpp:274
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Експортувати ключ OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:279
+#: src/dialogs/subkeyswidget.cpp:280
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Перенести на картку пам'яті"
 
-#: src/dialogs/subkeyswidget.cpp:287
+#: src/dialogs/subkeyswidget.cpp:288
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Експортувати закритий підключ"
 
-#: src/dialogs/subkeyswidget.cpp:381
+#: src/dialogs/subkeyswidget.cpp:382
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "картка пам'яті %1"
 
-#: src/dialogs/subkeyswidget.cpp:383
+#: src/dialogs/subkeyswidget.cpp:384
 #, kde-format
 msgid "smart card"
 msgstr "картка пам'яті"
 
-#: src/dialogs/subkeyswidget.cpp:388
+#: src/dialogs/subkeyswidget.cpp:389
 #, kde-format
 msgid "on this computer"
 msgstr "на цьому комп'ютері"
 
-#: src/dialogs/subkeyswidget.cpp:390
+#: src/dialogs/subkeyswidget.cpp:391
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -8049,25 +8051,25 @@ msgstr "Показувати це сповіщення для майбутніх
 msgid "&Get update"
 msgstr "&Отримати оновлення"
 
-#: src/dialogs/useridswidget.cpp:144
+#: src/dialogs/useridswidget.cpp:145
 #, kde-format
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "Додати ідентифікатор користувача"
 
-#: src/dialogs/useridswidget.cpp:147 src/dialogs/useridswidget.cpp:427
+#: src/dialogs/useridswidget.cpp:148 src/dialogs/useridswidget.cpp:429
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr "Відкликати ідентифікатор користувача"
 
-#: src/dialogs/useridswidget.cpp:150
+#: src/dialogs/useridswidget.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr "Позначити як основний"
 
-#: src/dialogs/useridswidget.cpp:151
+#: src/dialogs/useridswidget.cpp:152
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
@@ -8075,76 +8077,81 @@ msgstr ""
 "Позначити вибраний ідентифікатор користувача як основний ідентифікатор "
 "користувача цього ключа."
 
-#: src/dialogs/useridswidget.cpp:153
+#: src/dialogs/useridswidget.cpp:154
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "Сертифікувати ідентифікатори користувачів"
 
-#: src/dialogs/useridswidget.cpp:154
+#: src/dialogs/useridswidget.cpp:155
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "Відкликати сертифікації"
 
-#: src/dialogs/useridswidget.cpp:247
+#: src/dialogs/useridswidget.cpp:248
 #, kde-format
 msgid "Email"
 msgstr "Ел. пошта"
 
-#: src/dialogs/useridswidget.cpp:247
+#: src/dialogs/useridswidget.cpp:248
 #: src/newcertificatewizard/enterdetailspage.cpp:63
 #, kde-format
 msgid "Name"
 msgstr "Ім'я"
 
-#: src/dialogs/useridswidget.cpp:247
+#: src/dialogs/useridswidget.cpp:248
 #, kde-format
 msgid "Trust Level"
 msgstr "Рівень надійності"
 
-#: src/dialogs/useridswidget.cpp:247
+#: src/dialogs/useridswidget.cpp:248
 #, kde-format
 msgid "Tags"
 msgstr "Мітки"
 
-#: src/dialogs/useridswidget.cpp:265
+#: src/dialogs/useridswidget.cpp:248
+#, kde-format
+msgid "Origin"
+msgstr ""
+
+#: src/dialogs/useridswidget.cpp:266
 #, kde-format
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "немає адреси ел.пошти"
 
-#: src/dialogs/useridswidget.cpp:319
+#: src/dialogs/useridswidget.cpp:321
 #, kde-format
 msgid "never"
 msgstr "ніколи"
 
-#: src/dialogs/useridswidget.cpp:321
+#: src/dialogs/useridswidget.cpp:323
 #, kde-format
 msgid "Signing"
 msgstr "Підписування"
 
-#: src/dialogs/useridswidget.cpp:322 src/dialogs/useridswidget.cpp:326
+#: src/dialogs/useridswidget.cpp:324 src/dialogs/useridswidget.cpp:328
 #, kde-format
 msgid "First message"
 msgstr "Перше повідомлення"
 
-#: src/dialogs/useridswidget.cpp:323 src/dialogs/useridswidget.cpp:327
+#: src/dialogs/useridswidget.cpp:325 src/dialogs/useridswidget.cpp:329
 #, kde-format
 msgid "Last message"
 msgstr "Останнє повідомлення"
 
-#: src/dialogs/useridswidget.cpp:324 src/dialogs/useridswidget.cpp:328
+#: src/dialogs/useridswidget.cpp:326 src/dialogs/useridswidget.cpp:330
 #, kde-format
 msgid "Message count"
 msgstr "Кількість повідомлень"
 
-#: src/dialogs/useridswidget.cpp:325 src/smartcard/openpgpcard.cpp:102
+#: src/dialogs/useridswidget.cpp:327 src/smartcard/openpgpcard.cpp:102
 #, kde-format
 msgid "Encryption"
 msgstr "Шифрування"
 
-#: src/dialogs/useridswidget.cpp:425
+#: src/dialogs/useridswidget.cpp:427
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8154,19 +8161,19 @@ msgstr ""
 "<para>Ви справді хочете відкликати ідентифікатор користувача<nl/><emphasis>"
 "%1</emphasis> ?</para>"
 
-#: src/dialogs/useridswidget.cpp:473
+#: src/dialogs/useridswidget.cpp:475
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr "Позначити як основний ідентифікатор користувача"
 
-#: src/dialogs/useridswidget.cpp:482
+#: src/dialogs/useridswidget.cpp:484
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "Сертифікувати ідентифікатори користувачів…"
 
-#: src/dialogs/useridswidget.cpp:483
+#: src/dialogs/useridswidget.cpp:485
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
@@ -8176,13 +8183,13 @@ msgstr[1] "Сертифікувати ідентифікатори корист�
 msgstr[2] "Сертифікувати ідентифікатори користувачів"
 msgstr[3] "Сертифікувати ідентифікатор користувача"
 
-#: src/dialogs/useridswidget.cpp:490
+#: src/dialogs/useridswidget.cpp:492
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "Відкликати сертифікації…"
 
-#: src/dialogs/useridswidget.cpp:491
+#: src/dialogs/useridswidget.cpp:493
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
@@ -8192,13 +8199,13 @@ msgstr[1] "Відкликати сертифікації…"
 msgstr[2] "Відкликати сертифікації…"
 msgstr[3] "Відкликати сертифікацію…"
 
-#: src/dialogs/useridswidget.cpp:500
+#: src/dialogs/useridswidget.cpp:502
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "Оприлюднити на сервері надавача послуг ел. пошти…"
 
-#: src/dialogs/useridswidget.cpp:515
+#: src/dialogs/useridswidget.cpp:517
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
@@ -8249,7 +8256,7 @@ msgstr ""
 "Знайти та імпортувати усі ключі, які було використано для сертифікації "
 "ідентифікаторів користувачів цього ключа"
 
-#: src/dialogs/weboftrustwidget.cpp:266
+#: src/dialogs/weboftrustwidget.cpp:267
 #, kde-format
 msgid ""
 "You cannot revoke this certification because it wasn't made with one of your "
@@ -8259,13 +8266,13 @@ msgstr ""
 "допомогою одного з ваших ключів (або у програми немає доступу до потрібного "
 "закритого ключа)."
 
-#: src/dialogs/weboftrustwidget.cpp:269
+#: src/dialogs/weboftrustwidget.cpp:270
 #, kde-format
 msgid "Revocation of self-certifications is currently not possible."
 msgstr ""
 "У поточній версії не передбачено можливості відкликання самосертифікацій."
 
-#: src/dialogs/weboftrustwidget.cpp:272
+#: src/dialogs/weboftrustwidget.cpp:273
 #, kde-format
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
@@ -8274,17 +8281,17 @@ msgstr ""
 "Не можна відкликати цю сертифікацію відкликання. (Втім, ви можете повторно "
 "сертифікувати відповідний ідентифікатор користувача.)"
 
-#: src/dialogs/weboftrustwidget.cpp:275
+#: src/dialogs/weboftrustwidget.cpp:276
 #, kde-format
 msgid "You cannot revoke this expired certification."
 msgstr "Не можна відкликати цю сертифікацію, строк дії якої вичерпано."
 
-#: src/dialogs/weboftrustwidget.cpp:278
+#: src/dialogs/weboftrustwidget.cpp:279
 #, kde-format
 msgid "You cannot revoke this invalid certification."
 msgstr "Не можна відкликати цю некоректну сертифікацію."
 
-#: src/dialogs/weboftrustwidget.cpp:281
+#: src/dialogs/weboftrustwidget.cpp:282
 #, kde-format
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
@@ -8293,7 +8300,7 @@ msgstr ""
 "Цей сертифікат не можна відкликати, оскільки у програми немає доступу до "
 "потрібного закритого ключа."
 
-#: src/dialogs/weboftrustwidget.cpp:289
+#: src/dialogs/weboftrustwidget.cpp:290
 #, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
@@ -8302,7 +8309,7 @@ msgstr ""
 "Ви не можете відкликати сертифікації для цього ідентифікатора користувача. "
 "Виберіть якусь із сертифікацій, щоб переглянути подробиці."
 
-#: src/dialogs/weboftrustwidget.cpp:424
+#: src/dialogs/weboftrustwidget.cpp:425
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8312,7 +8319,7 @@ msgstr ""
 "<para>Під час спроби завантаження посвідчень сталася помилка: <message>%1</"
 "message></para>"
 
-#: src/dialogs/weboftrustwidget.cpp:427
+#: src/dialogs/weboftrustwidget.cpp:428
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -9131,43 +9138,43 @@ msgstr "&Перегляд"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:133
+#: src/kleopatra.rc:44 src/kleopatra.rc:135
 #, kde-format
 msgid "&Certificates"
 msgstr "&Сертифікати"
 
 #. i18n: ectx: Menu (tools)
-#: src/kleopatra.rc:62
+#: src/kleopatra.rc:64
 #, kde-format
 msgid "&Tools"
 msgstr "&Інструменти"
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:78
+#: src/kleopatra.rc:80
 #, kde-format
 msgid "&Settings"
 msgstr "П&араметри"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:83
+#: src/kleopatra.rc:85
 #, kde-format
 msgid "&Window"
 msgstr "&Вікно"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:94
+#: src/kleopatra.rc:96
 #, kde-format
 msgid "&Help"
 msgstr "&Довідка"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:100
+#: src/kleopatra.rc:102
 #, kde-format
 msgid "&More documentation"
 msgstr "Д&одаткова документація"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:116 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:118 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Головна панель"
@@ -11151,7 +11158,7 @@ msgstr "S/MIME-Підпис…"
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-Підпис…"
 
-#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:397
+#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:398
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Розшифрувати/Перевірити"
@@ -11522,44 +11529,44 @@ msgstr "%1 (обов'язкове)"
 msgid "Loading certificate cache..."
 msgstr "Завантаження кешу сертифікатів…"
 
-#: src/view/keylistcontroller.cpp:323
+#: src/view/keylistcontroller.cpp:324
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "Створити пару ключів OpenPGP…"
 
-#: src/view/keylistcontroller.cpp:324
+#: src/view/keylistcontroller.cpp:325
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Створити сертифікат OpenPGP"
 
-#: src/view/keylistcontroller.cpp:332
+#: src/view/keylistcontroller.cpp:333
 #, kde-format
 msgid "Export..."
 msgstr "Експортувати…"
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "Експортувати позначений сертифікат (відкритий ключ) до файла"
 
-#: src/view/keylistcontroller.cpp:341
+#: src/view/keylistcontroller.cpp:342
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Оприлюднити на сервері…"
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr ""
 "Оприлюднити позначений сертифікат (відкритий ключ) на загальнодоступному "
 "сервері ключів"
 
-#: src/view/keylistcontroller.cpp:351
+#: src/view/keylistcontroller.cpp:352
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Оприлюднити на сервері надавача послуг ел. пошти…"
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11568,208 +11575,221 @@ msgstr ""
 "Оприлюднити позначений сертифікат (відкритий ключ) у каталозі вебключів "
 "надавача послуг електронної пошти, якщо такий існує"
 
-#: src/view/keylistcontroller.cpp:361
+#: src/view/keylistcontroller.cpp:362
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Створити резервну копію закритих ключів…"
 
-#: src/view/keylistcontroller.cpp:370
+#: src/view/keylistcontroller.cpp:371
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Надрукувати закритий ключ…"
 
-#: src/view/keylistcontroller.cpp:379
+#: src/view/keylistcontroller.cpp:380
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Шукати на сервері…"
 
-#: src/view/keylistcontroller.cpp:380
+#: src/view/keylistcontroller.cpp:381
 #, kde-format
 msgid "Search for certificates online using a public keyserver"
 msgstr ""
 "Шукати сертифікати у інтернеті за допомогою загальнодоступного сервера ключів"
 
-#: src/view/keylistcontroller.cpp:389
+#: src/view/keylistcontroller.cpp:390
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Імпортувати сертифікат з файла"
 
-#: src/view/keylistcontroller.cpp:398
+#: src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Розшифрувати і/або перевірити файли"
 
-#: src/view/keylistcontroller.cpp:406
+#: src/view/keylistcontroller.cpp:407
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Підписати/зашифрувати…"
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:408
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Зашифрувати і/або підписати файли"
 
-#: src/view/keylistcontroller.cpp:415
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Підписати/зашифрувати теку…"
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:417
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Зашифрувати і/або підписати теки"
 
-#: src/view/keylistcontroller.cpp:424
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Створити файли контрольних сум…"
 
-#: src/view/keylistcontroller.cpp:433
+#: src/view/keylistcontroller.cpp:434
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Перевірити файли контрольних сум…"
 
-#: src/view/keylistcontroller.cpp:443
+#: src/view/keylistcontroller.cpp:444
 #, kde-format
 msgid "Redisplay"
 msgstr "Показати повторно"
 
-#: src/view/keylistcontroller.cpp:452
+#: src/view/keylistcontroller.cpp:453
 #, kde-format
 msgid "Stop Operation"
 msgstr "Зупинити операцію"
 
-#: src/view/keylistcontroller.cpp:465
+#: src/view/keylistcontroller.cpp:466
 #, kde-format
 msgid "Details"
 msgstr "Подробиці"
 
-#: src/view/keylistcontroller.cpp:475
+#: src/view/keylistcontroller.cpp:476
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Відкликати сертифікат…"
 
-#: src/view/keylistcontroller.cpp:476
+#: src/view/keylistcontroller.cpp:477
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Відкликати вибраний сертифікат OpenPGP"
 
-#: src/view/keylistcontroller.cpp:484
+#: src/view/keylistcontroller.cpp:485
 #, kde-format
 msgid "Delete"
 msgstr "Вилучити"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Вилучити позначені сертифікати"
 
-#: src/view/keylistcontroller.cpp:493
+#: src/view/keylistcontroller.cpp:494
+#, fuzzy, kde-format
+#| msgctxt "@title:tab"
+#| msgid "Imported Certificates"
+msgid "Update Certificates"
+msgstr "Імпортовані сертифікати"
+
+#: src/view/keylistcontroller.cpp:495
+#, fuzzy, kde-format
+#| msgid "Delete selected certificates"
+msgid "Update selected certificates"
+msgstr "Вилучити позначені сертифікати"
+
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Certify..."
 msgstr "Сертифікувати…"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:504
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Сертифікувати чинність позначеного сертифіката"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:512
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Відкликати сертифікацію…"
 
-#: src/view/keylistcontroller.cpp:503
+#: src/view/keylistcontroller.cpp:513
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Відкликати сертифікацію позначено сертифіката"
 
-#: src/view/keylistcontroller.cpp:511
+#: src/view/keylistcontroller.cpp:521
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Змінити кінець строку дії…"
 
-#: src/view/keylistcontroller.cpp:520
+#: src/view/keylistcontroller.cpp:530
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Змінити доступ до сертифікації…"
 
-#: src/view/keylistcontroller.cpp:521
+#: src/view/keylistcontroller.cpp:531
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr ""
 "Надати або відкликати доступ до сертифікації для позначеного сертифіката"
 
-#: src/view/keylistcontroller.cpp:529
+#: src/view/keylistcontroller.cpp:539
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Поміняти пароль…"
 
-#: src/view/keylistcontroller.cpp:538
+#: src/view/keylistcontroller.cpp:548
 #, kde-format
 msgid "Add User ID..."
 msgstr "Додати ідентифікатор користувача…"
 
-#: src/view/keylistcontroller.cpp:547
+#: src/view/keylistcontroller.cpp:557
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Створити групу…"
 
-#: src/view/keylistcontroller.cpp:548
+#: src/view/keylistcontroller.cpp:558
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Створити групу з позначених сертифікатів"
 
-#: src/view/keylistcontroller.cpp:557
+#: src/view/keylistcontroller.cpp:567
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Освіжити сертифікати OpenPGP"
 
-#: src/view/keylistcontroller.cpp:572
+#: src/view/keylistcontroller.cpp:582
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Створити запит щодо сертифікації S/MIME…"
 
-#: src/view/keylistcontroller.cpp:573
+#: src/view/keylistcontroller.cpp:583
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Створити запит щодо підписування сертифіката S/MIME (CSR)"
 
-#: src/view/keylistcontroller.cpp:584
+#: src/view/keylistcontroller.cpp:594
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Встановити надійність кореневого сертифіката"
 
-#: src/view/keylistcontroller.cpp:593
+#: src/view/keylistcontroller.cpp:603
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Скасувати надійність кореневого сертифіката"
 
-#: src/view/keylistcontroller.cpp:602
+#: src/view/keylistcontroller.cpp:612
 #, kde-format
 msgid "Technical Details"
 msgstr "Технічні відомості"
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:622
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "Освіжити сертифікати S/MIME"
 
-#: src/view/keylistcontroller.cpp:621
+#: src/view/keylistcontroller.cpp:631
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Спорожнити кеш CRL"
 
-#: src/view/keylistcontroller.cpp:630
+#: src/view/keylistcontroller.cpp:640
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Скинути кеш CRL"
 
-#: src/view/keylistcontroller.cpp:639
+#: src/view/keylistcontroller.cpp:649
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Імпортувати CRL з файла…"
@@ -12799,6 +12819,52 @@ msgid ""
 msgstr ""
 "Імпортувати сертифікат з файла.<nl/>Щоб імпортувати дані з сервера відкритих "
 "ключів, скористайтеся пунктом <interface>Шукати на сервері</interface>."
+
+#~ msgid "The key hasn't changed."
+#~ msgstr "Ключ не було змінено."
+
+#~ msgid "The key has been revoked."
+#~ msgstr "Ключ було відкликано."
+
+#~ msgid "The key has been updated."
+#~ msgstr "Ключ було оновлено."
+
+#~ msgctxt "@info"
+#~ msgid "The update was skipped because no keyserver is configured."
+#~ msgstr ""
+#~ "Оновлення було пропущено, оскільки не налаштовано жодного сервера ключів."
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Skipped"
+#~ msgstr "Оновлення пропущено"
+
+#~ msgctxt "@title:window"
+#~ msgid "Key Updated"
+#~ msgstr "Ключ оновлено"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>Updating the certificate from a keyserver, an LDAP server, or "
+#~ "Active Directory failed:</para><para><message>%1</message></"
+#~ "para><para>Updating the certificate via Web Key Directory failed:</"
+#~ "para><para><message>%2</message></para>"
+#~ msgstr ""
+#~ "<para>Не вдалося оновити сертифікат з сервера ключів, сервера LDAP або "
+#~ "Active Directory:</para><para><message>%1</message></para><para>Спроба "
+#~ "оновлення сертифіката за допомогою Web Key Directory зазнала невдачі:</"
+#~ "para><para><message>%2</message></para>"
+
+#~ msgctxt "@info"
+#~ msgid "<para>The update failed: <message>%1</message></para>"
+#~ msgstr "<para>Не вдалося оновити: <message>%1</message></para>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>An error occurred while updating the certificate:</"
+#~ "para><para><message>%1</message></para>"
+#~ msgstr ""
+#~ "<para>Під час спроби оновити сертифікат сталася помилка:</"
+#~ "para><para><message>%1</message></para>"
 
 #~ msgctxt "@title:window"
 #~ msgid "Error printing secret key"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-27 00:38+0000\n"
+"POT-Creation-Date: 2024-04-30 00:39+0000\n"
 "PO-Revision-Date: 2005-03-16 02:05-0800\n"
 "Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
 "Language-Team:  <ta@li.org>\n"
@@ -2978,159 +2978,136 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:166
-#: src/commands/refreshcertificatecommand.cpp:224
+#: src/commands/refreshcertificatescommand.cpp:180
+#: src/commands/refreshcertificatescommand.cpp:246
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "மறையாக்கத்திற்கு மட்டுமே"
 
-#: src/commands/refreshcertificatecommand.cpp:186
+#: src/commands/refreshcertificatescommand.cpp:197
 #, fuzzy, kde-format
 #| msgid "Importing certificates..."
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "சான்றிதழ்களை இறக்குமதி செய்கிறது..."
 
-#: src/commands/refreshcertificatecommand.cpp:244
+#: src/commands/refreshcertificatescommand.cpp:266
 #, fuzzy, kde-format
-#| msgid "Secret keys unchanged:"
-msgid "The key hasn't changed."
-msgstr "இரகசிய விசைகள் மாற்றப்படாதது"
+#| msgid "Fetching certificate from server..."
+msgid "The certificate has not changed."
+msgstr "சான்றிதழ் சேவையகத்திடமிருந்து கொணரப்படுகிறது"
 
-#: src/commands/refreshcertificatecommand.cpp:248
+#: src/commands/refreshcertificatescommand.cpp:270
 #, fuzzy, kde-format
-#| msgid "CRL cache cleared successfully."
-msgid "The key has been revoked."
-msgstr "CRL நினைவகம் வெற்றிகரமாக காலிசெய்யப்பட்டது."
+#| msgid "Fetching certificate from server..."
+msgid "The certificate has been revoked."
+msgstr "சான்றிதழ் சேவையகத்திடமிருந்து கொணரப்படுகிறது"
 
-#: src/commands/refreshcertificatecommand.cpp:251
-#, kde-format
-msgid "The key has been updated."
-msgstr ""
+#: src/commands/refreshcertificatescommand.cpp:273
+#, fuzzy, kde-format
+#| msgid "Fetching certificate from server..."
+msgid "The certificate has been updated."
+msgstr "சான்றிதழ் சேவையகத்திடமிருந்து கொணரப்படுகிறது"
 
-#: src/commands/refreshcertificatecommand.cpp:255
+#: src/commands/refreshcertificatescommand.cpp:277
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgid "New user IDs: %1"
 msgstr "புதிய பயனர் அடையாளம்:"
 
-#: src/commands/refreshcertificatecommand.cpp:258
+#: src/commands/refreshcertificatescommand.cpp:280
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgid "New subkeys: %1"
 msgstr "புதிய துணை விசைகள்:"
 
-#: src/commands/refreshcertificatecommand.cpp:261
+#: src/commands/refreshcertificatescommand.cpp:283
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New signatures: %1"
 msgstr "புதிய கையெழுத்துக்கள்"
 
-#: src/commands/refreshcertificatecommand.cpp:271
+#: src/commands/refreshcertificatescommand.cpp:293
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/commands/refreshcertificatecommand.cpp:299
-#: src/commands/refreshcertificatecommand.cpp:337
+#: src/commands/refreshcertificatescommand.cpp:389
 #, kde-format
 msgctxt "@info"
-msgid "The update was skipped because no keyserver is configured."
+msgid ""
+"Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
+"Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:299
-#: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgid "Certificate Export Failed"
-msgctxt "@title:window"
-msgid "Update Skipped"
-msgstr "சான்றிதழை ஏற்றுமதி செய்ய முடியவில்லை"
+#: src/commands/refreshcertificatescommand.cpp:392
+#: src/commands/refreshcertificatescommand.cpp:409
+#: src/commands/refreshcertificatescommand.cpp:419
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/refreshcertificatecommand.cpp:304
-#: src/commands/refreshcertificatecommand.cpp:342
-#: src/commands/refreshcertificatecommand.cpp:381
-#, fuzzy, kde-format
-#| msgid "Key Categories"
-msgctxt "@title:window"
-msgid "Key Updated"
-msgstr "விசை வகைகள்"
+#: src/commands/refreshcertificatescommand.cpp:394
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+msgstr ""
 
-#: src/commands/refreshcertificatecommand.cpp:327
-#, fuzzy, kde-format
+#: src/commands/refreshcertificatescommand.cpp:396
+#, fuzzy, kde-kuit-format
 #| msgid "Fetching certificate from server..."
 msgctxt "@info"
-msgid "The certificate has been updated."
+msgid "<para>The certificate was not found.</para>"
 msgstr "சான்றிதழ் சேவையகத்திடமிருந்து கொணரப்படுகிறது"
 
-#: src/commands/refreshcertificatecommand.cpp:327
+#: src/commands/refreshcertificatescommand.cpp:399
+#: src/commands/refreshcertificatescommand.cpp:412
+#: src/commands/refreshcertificatescommand.cpp:422
+#, fuzzy, kde-kuit-format
+#| msgid "Fetching certificate from server..."
+msgctxt "@info"
+msgid "<para>The certificate was updated.</para>"
+msgid_plural "<para>The certificates were updated.</para>"
+msgstr[0] "சான்றிதழ் சேவையகத்திடமிருந்து கொணரப்படுகிறது"
+msgstr[1] "சான்றிதழ் சேவையகத்திடமிருந்து கொணரப்படுகிறது"
+
+#: src/commands/refreshcertificatescommand.cpp:407
+#, kde-format
+msgctxt "@info"
+msgid "Result of update from Web Key Directory"
+msgstr ""
+
+#: src/commands/refreshcertificatescommand.cpp:417
+#, fuzzy, kde-format
+#| msgid "ASCII Armored Certificate Bundles (*.pem)"
+msgctxt "@info"
+msgid "Result of S/MIME certificate update"
+msgstr "ஆஸ்க்கியால் பாதுகாக்கப்பட்ட சான்றிதழ் கட்டுகள்(*.பீஎம்) "
+
+#: src/commands/refreshcertificatescommand.cpp:427
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:window"
 msgid "Certificate Updated"
-msgstr "சான்றிதழ் பயன்பாடு"
+msgid_plural "Certificates Updated"
+msgstr[0] "சான்றிதழ் பயன்பாடு"
+msgstr[1] "சான்றிதழ் பயன்பாடு"
 
-#: src/commands/refreshcertificatecommand.cpp:350
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Updating the certificate from a keyserver, an LDAP server, or Active "
-"Directory failed:</para><para><message>%1</message></para><para>Updating the "
-"certificate via Web Key Directory failed:</para><para><message>%2</message></"
-"para>"
-msgstr ""
-
-#: src/commands/refreshcertificatecommand.cpp:356
-#: src/commands/refreshcertificatecommand.cpp:392
+#: src/commands/refreshcertificatescommand.cpp:427
 #, fuzzy, kde-format
 #| msgid "Certificate Export Failed"
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "சான்றிதழை ஏற்றுமதி செய்ய முடியவில்லை"
-
-#: src/commands/refreshcertificatecommand.cpp:363
-#, kde-format
-msgctxt "@info"
-msgid "Result of update from keyserver, LDAP server, or Active Directory"
-msgstr ""
-
-#: src/commands/refreshcertificatecommand.cpp:366
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<para>The update was skipped because no keyserver is configured.</para>"
-msgstr ""
-
-#: src/commands/refreshcertificatecommand.cpp:368
-#: src/commands/refreshcertificatecommand.cpp:376
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificates:</"
-#| "p><p><b>%1</b></p></qt>"
-msgctxt "@info"
-msgid "<para>The update failed: <message>%1</message></para>"
-msgstr ""
-"<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
-
-#: src/commands/refreshcertificatecommand.cpp:374
-#, kde-format
-msgctxt "@info"
-msgid "Result of update via Web Key Directory"
-msgstr ""
-
-#: src/commands/refreshcertificatecommand.cpp:389
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificates:</"
-#| "p><p><b>%1</b></p></qt>"
-msgctxt "@info"
-msgid ""
-"<para>An error occurred while updating the certificate:</para><para><message>"
-"%1</message></para>"
-msgstr ""
-"<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:44
 #, kde-format
@@ -3293,7 +3270,7 @@ msgstr ""
 
 #: src/commands/revokecertificationcommand.cpp:89
 #: src/commands/revokecertificationcommand.cpp:103
-#: src/dialogs/useridswidget.cpp:431
+#: src/dialogs/useridswidget.cpp:433
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -6821,7 +6798,7 @@ msgid "unlimited"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:337
-#: src/dialogs/subkeyswidget.cpp:378
+#: src/dialogs/subkeyswidget.cpp:379
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
@@ -6842,7 +6819,7 @@ msgid "smart card"
 msgstr "சிஆர்எல் கோப்பினை தேர்ந்தெடு"
 
 #: src/dialogs/certificatedetailswidget.cpp:345
-#: src/dialogs/subkeyswidget.cpp:386
+#: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
@@ -6855,7 +6832,7 @@ msgid "on this computer"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:462
-#: src/dialogs/useridswidget.cpp:360
+#: src/dialogs/useridswidget.cpp:362
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "Updating..."
@@ -6921,7 +6898,7 @@ msgid "Refresh certificate list"
 msgstr "&சான்றிதழ்கள்"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:388 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:389 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Imported:"
 msgid "Import..."
@@ -7956,96 +7933,96 @@ msgctxt "@title:column"
 msgid "Storage"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:158
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "புதிய துணை விசைகள்:"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:159
 #, fuzzy, kde-format
 #| msgid "Valid"
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "முறையான"
 
-#: src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/subkeyswidget.cpp:160
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "இரகசிய விசையை ஏற்றுமதி செய்.... "
 
-#: src/dialogs/subkeyswidget.cpp:160
+#: src/dialogs/subkeyswidget.cpp:161
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:161
+#: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:162
+#: src/dialogs/subkeyswidget.cpp:163
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "இரகசிய விசையை ஏற்றுமதி செய்யப்படுகின்றன"
 
-#: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
-#: src/dialogs/weboftrustwidget.cpp:134
+#: src/dialogs/subkeyswidget.cpp:171 src/dialogs/useridswidget.cpp:161
+#: src/dialogs/weboftrustwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "ரத்தானது"
 
-#: src/dialogs/subkeyswidget.cpp:266
+#: src/dialogs/subkeyswidget.cpp:267
 #, fuzzy, kde-format
 #| msgid "Valid"
 msgid "Change validity"
 msgstr "முறையான"
 
-#: src/dialogs/subkeyswidget.cpp:273
+#: src/dialogs/subkeyswidget.cpp:274
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgid "Export OpenSSH key"
 msgstr "இரகசிய விசையை ஏற்றுமதி செய்.... "
 
-#: src/dialogs/subkeyswidget.cpp:279
+#: src/dialogs/subkeyswidget.cpp:280
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:287
+#: src/dialogs/subkeyswidget.cpp:288
 #, fuzzy, kde-format
 #| msgid "Exporting secret key..."
 msgid "Export secret subkey"
 msgstr "இரகசிய விசையை ஏற்றுமதி செய்யப்படுகின்றன"
 
-#: src/dialogs/subkeyswidget.cpp:381
+#: src/dialogs/subkeyswidget.cpp:382
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "சிஆர்எல் கோப்பினை தேர்ந்தெடு"
 
-#: src/dialogs/subkeyswidget.cpp:383
+#: src/dialogs/subkeyswidget.cpp:384
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgid "smart card"
 msgstr "சிஆர்எல் கோப்பினை தேர்ந்தெடு"
 
-#: src/dialogs/subkeyswidget.cpp:388
+#: src/dialogs/subkeyswidget.cpp:389
 #, kde-format
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:390
+#: src/dialogs/subkeyswidget.cpp:391
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -8104,69 +8081,74 @@ msgstr ""
 msgid "&Get update"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:144
+#: src/dialogs/useridswidget.cpp:145
 #, fuzzy, kde-format
 #| msgid "A.k.a."
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "ஏ.கே.ஏ"
 
-#: src/dialogs/useridswidget.cpp:147 src/dialogs/useridswidget.cpp:427
+#: src/dialogs/useridswidget.cpp:148 src/dialogs/useridswidget.cpp:429
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr "புதிய பயனர் அடையாளம்:"
 
-#: src/dialogs/useridswidget.cpp:150
+#: src/dialogs/useridswidget.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:151
+#: src/dialogs/useridswidget.cpp:152
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:153
+#: src/dialogs/useridswidget.cpp:154
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "புதிய பயனர் அடையாளம்:"
 
-#: src/dialogs/useridswidget.cpp:154
+#: src/dialogs/useridswidget.cpp:155
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "&சான்றிதழ்கள்"
 
-#: src/dialogs/useridswidget.cpp:247
+#: src/dialogs/useridswidget.cpp:248
 #, kde-format
 msgid "Email"
 msgstr "மின்னஞ்சல்"
 
-#: src/dialogs/useridswidget.cpp:247
+#: src/dialogs/useridswidget.cpp:248
 #: src/newcertificatewizard/enterdetailspage.cpp:63
 #, kde-format
 msgid "Name"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:247
+#: src/dialogs/useridswidget.cpp:248
 #, fuzzy, kde-format
 #| msgid "Newly revoked:"
 msgid "Trust Level"
 msgstr "புதியதாக நிறுத்தப்பட்டது"
 
-#: src/dialogs/useridswidget.cpp:247
+#: src/dialogs/useridswidget.cpp:248
 #, kde-format
 msgid "Tags"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:265
+#: src/dialogs/useridswidget.cpp:248
+#, kde-format
+msgid "Origin"
+msgstr ""
+
+#: src/dialogs/useridswidget.cpp:266
 #, fuzzy, kde-format
 #| msgctxt "EMAIL OF TRANSLATORS"
 #| msgid "Your emails"
@@ -8174,39 +8156,39 @@ msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "tamilpc@ambalam.com"
 
-#: src/dialogs/useridswidget.cpp:319
+#: src/dialogs/useridswidget.cpp:321
 #, kde-format
 msgid "never"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:321
+#: src/dialogs/useridswidget.cpp:323
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Signing"
 msgstr "ரத்தானது"
 
-#: src/dialogs/useridswidget.cpp:322 src/dialogs/useridswidget.cpp:326
+#: src/dialogs/useridswidget.cpp:324 src/dialogs/useridswidget.cpp:328
 #, kde-format
 msgid "First message"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:323 src/dialogs/useridswidget.cpp:327
+#: src/dialogs/useridswidget.cpp:325 src/dialogs/useridswidget.cpp:329
 #, kde-format
 msgid "Last message"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:324 src/dialogs/useridswidget.cpp:328
+#: src/dialogs/useridswidget.cpp:326 src/dialogs/useridswidget.cpp:330
 #, kde-format
 msgid "Message count"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:325 src/smartcard/openpgpcard.cpp:102
+#: src/dialogs/useridswidget.cpp:327 src/smartcard/openpgpcard.cpp:102
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "Encryption"
 msgstr "மறையாக்கத்திற்கு மட்டுமே"
 
-#: src/dialogs/useridswidget.cpp:425
+#: src/dialogs/useridswidget.cpp:427
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -8218,20 +8200,20 @@ msgid ""
 msgstr ""
 "<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
 
-#: src/dialogs/useridswidget.cpp:473
+#: src/dialogs/useridswidget.cpp:475
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr ""
 
-#: src/dialogs/useridswidget.cpp:482
+#: src/dialogs/useridswidget.cpp:484
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "புதிய பயனர் அடையாளம்:"
 
-#: src/dialogs/useridswidget.cpp:483
+#: src/dialogs/useridswidget.cpp:485
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:inmenu"
@@ -8240,14 +8222,14 @@ msgid_plural "Certify User IDs..."
 msgstr[0] "புதிய பயனர் அடையாளம்:"
 msgstr[1] "புதிய பயனர் அடையாளம்:"
 
-#: src/dialogs/useridswidget.cpp:490
+#: src/dialogs/useridswidget.cpp:492
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "சான்றிதழை சேமி"
 
-#: src/dialogs/useridswidget.cpp:491
+#: src/dialogs/useridswidget.cpp:493
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@action:inmenu"
@@ -8256,14 +8238,14 @@ msgid_plural "Revoke Certifications..."
 msgstr[0] "சான்றிதழை சேமி"
 msgstr[1] "சான்றிதழை சேமி"
 
-#: src/dialogs/useridswidget.cpp:500
+#: src/dialogs/useridswidget.cpp:502
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "சான்றிதழ் மேலாளர் பிழை"
 
-#: src/dialogs/useridswidget.cpp:515
+#: src/dialogs/useridswidget.cpp:517
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
 msgctxt "@action:inmenu"
@@ -8318,44 +8300,44 @@ msgid ""
 "key"
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:266
+#: src/dialogs/weboftrustwidget.cpp:267
 #, kde-format
 msgid ""
 "You cannot revoke this certification because it wasn't made with one of your "
 "keys (or the required secret key is missing)."
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:269
+#: src/dialogs/weboftrustwidget.cpp:270
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "சான்றிதழ் ஏற்றுமதி செய்யப்படுகின்றன.."
 
-#: src/dialogs/weboftrustwidget.cpp:272
+#: src/dialogs/weboftrustwidget.cpp:273
 #, kde-format
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:275
+#: src/dialogs/weboftrustwidget.cpp:276
 #, kde-format
 msgid "You cannot revoke this expired certification."
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:278
+#: src/dialogs/weboftrustwidget.cpp:279
 #, kde-format
 msgid "You cannot revoke this invalid certification."
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:281
+#: src/dialogs/weboftrustwidget.cpp:282
 #, kde-format
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:289
+#: src/dialogs/weboftrustwidget.cpp:290
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgid ""
@@ -8363,7 +8345,7 @@ msgid ""
 "the certifications for details."
 msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
-#: src/dialogs/weboftrustwidget.cpp:424
+#: src/dialogs/weboftrustwidget.cpp:425
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -8375,7 +8357,7 @@ msgid ""
 msgstr ""
 "<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
 
-#: src/dialogs/weboftrustwidget.cpp:427
+#: src/dialogs/weboftrustwidget.cpp:428
 #, fuzzy, kde-format
 #| msgid "Certificate Listing Failed"
 msgctxt "@title"
@@ -9082,43 +9064,43 @@ msgstr ""
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:133
+#: src/kleopatra.rc:44 src/kleopatra.rc:135
 #, kde-format
 msgid "&Certificates"
 msgstr "&சான்றிதழ்கள்"
 
 #. i18n: ectx: Menu (tools)
-#: src/kleopatra.rc:62
+#: src/kleopatra.rc:64
 #, kde-format
 msgid "&Tools"
 msgstr ""
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:78
+#: src/kleopatra.rc:80
 #, kde-format
 msgid "&Settings"
 msgstr ""
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:83
+#: src/kleopatra.rc:85
 #, kde-format
 msgid "&Window"
 msgstr ""
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:94
+#: src/kleopatra.rc:96
 #, kde-format
 msgid "&Help"
 msgstr ""
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:100
+#: src/kleopatra.rc:102
 #, kde-format
 msgid "&More documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:116 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:118 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, fuzzy, kde-format
 #| msgid "Search Toolbar"
 msgid "Main Toolbar"
@@ -11053,7 +11035,7 @@ msgstr ""
 msgid "OpenPGP-Sign..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:397
+#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:398
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Decrypt/Verify..."
@@ -11438,284 +11420,296 @@ msgstr ""
 msgid "Loading certificate cache..."
 msgstr "சான்றிதழ் ஏற்றுமதி செய்யப்படுகின்றன.."
 
-#: src/view/keylistcontroller.cpp:323
+#: src/view/keylistcontroller.cpp:324
 #, fuzzy, kde-format
 #| msgid "New Key Pair..."
 msgid "New OpenPGP Key Pair..."
 msgstr "புதிய விசை ஜோடி..."
 
-#: src/view/keylistcontroller.cpp:324
+#: src/view/keylistcontroller.cpp:325
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Create a new OpenPGP certificate"
 msgstr "சான்றிதழ் மேலாளர் பிழை"
 
-#: src/view/keylistcontroller.cpp:332
+#: src/view/keylistcontroller.cpp:333
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "Export..."
 msgstr "மறையாக்கத்திற்கு மட்டுமே"
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:341
+#: src/view/keylistcontroller.cpp:342
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Publish on Server..."
 msgstr "சான்றிதழ் மேலாளர் பிழை"
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:351
+#: src/view/keylistcontroller.cpp:352
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Publish at Mail Provider..."
 msgstr "சான்றிதழ் மேலாளர் பிழை"
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:361
+#: src/view/keylistcontroller.cpp:362
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgid "Backup Secret Keys..."
 msgstr "இரகசிய விசையை ஏற்றுமதி செய்.... "
 
-#: src/view/keylistcontroller.cpp:370
+#: src/view/keylistcontroller.cpp:371
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgid "Print Secret Key..."
 msgstr "இரகசிய விசையை ஏற்றுமதி செய்.... "
 
-#: src/view/keylistcontroller.cpp:379
+#: src/view/keylistcontroller.cpp:380
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Lookup on Server..."
 msgstr "சான்றிதழ் மேலாளர் பிழை"
 
-#: src/view/keylistcontroller.cpp:380
+#: src/view/keylistcontroller.cpp:381
 #, fuzzy, kde-format
 #| msgid "Search for external certificates initially"
 msgid "Search for certificates online using a public keyserver"
 msgstr "ஆரம்பத்தில் வெளியார்ந்த சான்றிதழ்களைத் தேடு"
 
-#: src/view/keylistcontroller.cpp:389
+#: src/view/keylistcontroller.cpp:390
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "Import a certificate from a file"
 msgstr "சான்றிதழ்களை இறக்குமதி செய்...."
 
-#: src/view/keylistcontroller.cpp:398
+#: src/view/keylistcontroller.cpp:399
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Decrypt and/or verify files"
 msgstr "விசைகள் அழிக்கப்படுகின்றன..."
 
-#: src/view/keylistcontroller.cpp:406
+#: src/view/keylistcontroller.cpp:407
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:408
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Encrypt and/or sign files"
 msgstr "விசைகள் அழிக்கப்படுகின்றன..."
 
-#: src/view/keylistcontroller.cpp:415
+#: src/view/keylistcontroller.cpp:416
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "Sign/Encrypt Folder..."
 msgstr "மறையாக்கத்திற்கு மட்டுமே"
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:417
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Encrypt and/or sign folders"
 msgstr "விசைகள் அழிக்கப்படுகின்றன..."
 
-#: src/view/keylistcontroller.cpp:424
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:433
+#: src/view/keylistcontroller.cpp:434
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Verify Checksum Files..."
 msgstr "விசைகள் அழிக்கப்படுகின்றன..."
 
-#: src/view/keylistcontroller.cpp:443
+#: src/view/keylistcontroller.cpp:444
 #, kde-format
 msgid "Redisplay"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:452
+#: src/view/keylistcontroller.cpp:453
 #, kde-format
 msgid "Stop Operation"
 msgstr "செயலை நிறுத்து"
 
-#: src/view/keylistcontroller.cpp:465
+#: src/view/keylistcontroller.cpp:466
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Details"
 msgstr "&விவரங்கள்"
 
-#: src/view/keylistcontroller.cpp:475
+#: src/view/keylistcontroller.cpp:476
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgid "Revoke Certificate..."
 msgstr "சான்றிதழை சேமி"
 
-#: src/view/keylistcontroller.cpp:476
+#: src/view/keylistcontroller.cpp:477
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "சான்றிதழ்களை அழி"
 
-#: src/view/keylistcontroller.cpp:484
+#: src/view/keylistcontroller.cpp:485
 #, kde-format
 msgid "Delete"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgid "Delete selected certificates"
 msgstr "சான்றிதழ்களை அழி"
 
-#: src/view/keylistcontroller.cpp:493
+#: src/view/keylistcontroller.cpp:494
+#, fuzzy, kde-format
+#| msgid "Save Certificate"
+msgid "Update Certificates"
+msgstr "சான்றிதழை சேமி"
+
+#: src/view/keylistcontroller.cpp:495
+#, fuzzy, kde-format
+#| msgid "Delete Certificates"
+msgid "Update selected certificates"
+msgstr "சான்றிதழ்களை அழி"
+
+#: src/view/keylistcontroller.cpp:503
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Certify..."
 msgstr "விசைகள் அழிக்கப்படுகின்றன..."
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:504
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgid "Certify the validity of the selected certificate"
 msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:512
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgid "Revoke Certification..."
 msgstr "சான்றிதழை சேமி"
 
-#: src/view/keylistcontroller.cpp:503
+#: src/view/keylistcontroller.cpp:513
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgid "Revoke the certification of the selected certificate"
 msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
-#: src/view/keylistcontroller.cpp:511
+#: src/view/keylistcontroller.cpp:521
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:520
+#: src/view/keylistcontroller.cpp:530
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "சான்றிதழை சேமி"
 
-#: src/view/keylistcontroller.cpp:521
+#: src/view/keylistcontroller.cpp:531
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
-#: src/view/keylistcontroller.cpp:529
+#: src/view/keylistcontroller.cpp:539
 #, kde-format
 msgid "Change Passphrase..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:538
+#: src/view/keylistcontroller.cpp:548
 #, fuzzy, kde-format
 #| msgid "A.k.a."
 msgid "Add User ID..."
 msgstr "ஏ.கே.ஏ"
 
-#: src/view/keylistcontroller.cpp:547
+#: src/view/keylistcontroller.cpp:557
 #, fuzzy, kde-format
 #| msgid "Configure &GpgME Backend"
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "&GpgME பின்நிலையை கட்டமை\" "
 
-#: src/view/keylistcontroller.cpp:548
+#: src/view/keylistcontroller.cpp:558
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
-#: src/view/keylistcontroller.cpp:557
+#: src/view/keylistcontroller.cpp:567
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "Refresh OpenPGP Certificates"
 msgstr "&சான்றிதழ்கள்"
 
-#: src/view/keylistcontroller.cpp:572
+#: src/view/keylistcontroller.cpp:582
 #, fuzzy, kde-format
 #| msgid "ASCII Armored Certificate Bundles (*.pem)"
 msgid "New S/MIME Certification Request..."
 msgstr "ஆஸ்க்கியால் பாதுகாக்கப்பட்ட சான்றிதழ் கட்டுகள்(*.பீஎம்) "
 
-#: src/view/keylistcontroller.cpp:573
+#: src/view/keylistcontroller.cpp:583
 #, fuzzy, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "&விசை ஜோடி மற்றும் சான்றிதழ் வேண்டுகோளை உருவாக்கு"
 
-#: src/view/keylistcontroller.cpp:584
+#: src/view/keylistcontroller.cpp:594
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "Trust Root Certificate"
 msgstr "சான்றிதழ்களை இறக்குமதி செய்...."
 
-#: src/view/keylistcontroller.cpp:593
+#: src/view/keylistcontroller.cpp:603
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "Distrust Root Certificate"
 msgstr "சான்றிதழ்களை இறக்குமதி செய்...."
 
-#: src/view/keylistcontroller.cpp:602
+#: src/view/keylistcontroller.cpp:612
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
 msgid "Technical Details"
 msgstr "சான்றிதழ் விவரங்கள்..."
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:622
 #, fuzzy, kde-format
 #| msgid "ASCII Armored Certificate Bundles (*.pem)"
 msgid "Refresh S/MIME Certificates"
 msgstr "ஆஸ்க்கியால் பாதுகாக்கப்பட்ட சான்றிதழ் கட்டுகள்(*.பீஎம்) "
 
-#: src/view/keylistcontroller.cpp:621
+#: src/view/keylistcontroller.cpp:631
 #, fuzzy, kde-format
 #| msgid "Clear CRL Cache..."
 msgid "Clear CRL Cache"
 msgstr "CRL இடைமாற்றியை துடை..."
 
-#: src/view/keylistcontroller.cpp:630
+#: src/view/keylistcontroller.cpp:640
 #, fuzzy, kde-format
 #| msgid "Dump CRL Cache..."
 msgid "Dump CRL Cache"
 msgstr "சிஆர்எல் இடைமாற்றியைத் திணி..."
 
-#: src/view/keylistcontroller.cpp:639
+#: src/view/keylistcontroller.cpp:649
 #, fuzzy, kde-format
 #| msgid "Import CRLs..."
 msgid "Import CRL From File..."
@@ -12775,6 +12769,50 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Secret keys unchanged:"
+#~ msgid "The key hasn't changed."
+#~ msgstr "இரகசிய விசைகள் மாற்றப்படாதது"
+
+#, fuzzy
+#~| msgid "CRL cache cleared successfully."
+#~ msgid "The key has been revoked."
+#~ msgstr "CRL நினைவகம் வெற்றிகரமாக காலிசெய்யப்பட்டது."
+
+#, fuzzy
+#~| msgid "Certificate Export Failed"
+#~ msgctxt "@title:window"
+#~ msgid "Update Skipped"
+#~ msgstr "சான்றிதழை ஏற்றுமதி செய்ய முடியவில்லை"
+
+#, fuzzy
+#~| msgid "Key Categories"
+#~ msgctxt "@title:window"
+#~ msgid "Key Updated"
+#~ msgstr "விசை வகைகள்"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>An error occurred while trying to delete the certificates:</"
+#~| "p><p><b>%1</b></p></qt>"
+#~ msgctxt "@info"
+#~ msgid "<para>The update failed: <message>%1</message></para>"
+#~ msgstr ""
+#~ "<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></"
+#~ "qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>An error occurred while trying to delete the certificates:</"
+#~| "p><p><b>%1</b></p></qt>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>An error occurred while updating the certificate:</"
+#~ "para><para><message>%1</message></para>"
+#~ msgstr ""
+#~ "<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></"
+#~ "qt>"
 
 #, fuzzy
 #~| msgid "Exporting secret key..."
@@ -14411,9 +14449,6 @@ msgstr ""
 
 #~ msgid "ASCII Armored Certificate Bundles (*.pem)"
 #~ msgstr "ஆஸ்க்கியால் பாதுகாக்கப்பட்ட சான்றிதழ் கட்டுகள்(*.பீஎம்) "
-
-#~ msgid "Save Certificate"
-#~ msgstr "சான்றிதழை சேமி"
 
 #~ msgid ""
 #~ "Select the secret key to export (<b>Warning: The PKCS#12 format is "

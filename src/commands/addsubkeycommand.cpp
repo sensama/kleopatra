@@ -51,7 +51,7 @@ public:
 
     QPointer<AddSubkeyDialog> dialog;
     QPointer<QuickJob> job;
-    QString algo;
+    QByteArray algo;
 };
 
 AddSubkeyCommand::Private *AddSubkeyCommand::d_func()
@@ -90,17 +90,18 @@ void AddSubkeyCommand::Private::slotDialogAccepted()
         flags |= GPGME_CREATE_AUTH;
         usage = QLatin1String("auth");
     }
-    algo = dialog->algo();
-    if (algo.startsWith(QLatin1String("curve"))) {
+    QString algoString = dialog->algo();
+    if (algoString.startsWith(QLatin1String("curve"))) {
         if (dialog->usage().canEncrypt()) {
-            algo.replace(QLatin1String("curve"), QLatin1String("cv"));
+            algoString.replace(QLatin1String("curve"), QLatin1String("cv"));
         } else {
-            algo.replace(QLatin1String("curve"), QLatin1String("ed"));
+            algoString.replace(QLatin1String("curve"), QLatin1String("ed"));
         }
-    } else if (algo != QLatin1String("default")) {
-        algo = QLatin1String("%1/%2").arg(algo, usage);
+    } else if (algoString != QLatin1String("default")) {
+        algoString = QLatin1String("%1/%2").arg(algoString, usage);
     }
-    job->startAddSubkey(key(), algo.toLatin1().data(), QDateTime(dialog->expires(), QTime()), flags);
+    algo = algoString.toLatin1();
+    job->startAddSubkey(key(), algo.data(), QDateTime(dialog->expires(), QTime()), flags);
 }
 
 void AddSubkeyCommand::Private::slotDialogRejected()

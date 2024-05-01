@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-30 00:39+0000\n"
-"PO-Revision-Date: 2024-04-19 06:46+0200\n"
+"POT-Creation-Date: 2024-05-01 00:38+0000\n"
+"PO-Revision-Date: 2024-04-30 06:22+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -149,7 +149,7 @@ msgstr "(c) 2016-2018 Intevation GmbH"
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 razvijalci Kleopatre, g10 Code GmbH"
 
-#: src/commands/addsubkeycommand.cpp:167
+#: src/commands/addsubkeycommand.cpp:168
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
@@ -158,7 +158,7 @@ msgstr ""
 "<p>Prišlo je do napake pri poskusu dodajanju novega podključa do <b>%1</b>:</"
 "p><p>%2</p>"
 
-#: src/commands/addsubkeycommand.cpp:175
+#: src/commands/addsubkeycommand.cpp:176
 #, kde-format
 msgid "Subkey added successfully."
 msgstr "Podključ uspešno dodan."
@@ -2879,23 +2879,17 @@ msgid "Updating certificate..."
 msgstr "Osveževanje potrdila…"
 
 #: src/commands/refreshcertificatescommand.cpp:266
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has not changed."
-msgstr "Potrdilo je bilo posodobljeno."
+msgstr "Potrdilo se ni spremenilo."
 
 #: src/commands/refreshcertificatescommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been revoked."
-msgstr "Potrdilo je bilo posodobljeno."
+msgstr "Potrdilo je bilo preklicano."
 
 #: src/commands/refreshcertificatescommand.cpp:273
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been updated."
 msgstr "Potrdilo je bilo posodobljeno."
 
@@ -2924,89 +2918,71 @@ msgstr[2] "Dodatno sta bila pridobljena %1 nova ključa."
 msgstr[3] "Dodatno so bili pridobljeni %1 novi ključi."
 
 #: src/commands/refreshcertificatescommand.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update from keyserver, LDAP server, or Active Directory"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
 "Directory"
 msgstr ""
-"Rezultat posodobitve s strežnika ključev, strežnika LDAP ali imenika Active "
-"Directory"
+"Rezultat posodobitve potrdila OpenPGP s strežnika ključev, strežnika LDAP "
+"ali imenika Active Directory"
 
 #: src/commands/refreshcertificatescommand.cpp:392
 #: src/commands/refreshcertificatescommand.cpp:409
 #: src/commands/refreshcertificatescommand.cpp:419
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>Shranjevanje zahtevka ni uspelo.</para><para><message>%1</message></"
-"para>"
+"<para>Posodabljanje ni uspelo.</para><para><message>%1</message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp:394
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The update was skipped because no keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
 "<para>Posodobitev je bila preskočena, ker ni konfiguriran niti en strežnik "
-"ključev.</para>"
+"ključev OpenPGP.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:396
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "Potrdilo je bilo posodobljeno."
+msgstr "<para>Potrdila ni bilo mogoče najti.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:399
 #: src/commands/refreshcertificatescommand.cpp:412
 #: src/commands/refreshcertificatescommand.cpp:422
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
-msgstr[0] "Potrdilo je bilo posodobljeno."
+msgstr[0] "Potrdila so bila posodobljena."
 msgstr[1] "Potrdilo je bilo posodobljeno."
-msgstr[2] "Potrdilo je bilo posodobljeno."
-msgstr[3] "Potrdilo je bilo posodobljeno."
+msgstr[2] "Potrdili sta bilu posodobljeni."
+msgstr[3] "Potrdila so bila posodobljena."
 
 #: src/commands/refreshcertificatescommand.cpp:407
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update via Web Key Directory"
+#, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "Rezultat posodobitve prek imenika spletnih ključev"
 
 #: src/commands/refreshcertificatescommand.cpp:417
-#, fuzzy, kde-format
-#| msgid "Allow S/MIME certificate creation"
+#, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
-msgstr "Dovoli kreiranje potrdila S/MIME"
+msgstr "Rezultat posodobitve potrdila S/MIME"
 
 #: src/commands/refreshcertificatescommand.cpp:427
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Updated"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgid_plural "Certificates Updated"
-msgstr[0] "Potrdilo posodobljeno"
+msgstr[0] "Potrdila posodobljena"
 msgstr[1] "Potrdilo posodobljeno"
-msgstr[2] "Potrdilo posodobljeno"
-msgstr[3] "Potrdilo posodobljeno"
+msgstr[2] "Potrdili posodobljeni"
+msgstr[3] "Potrdila posodobljena"
 
 #: src/commands/refreshcertificatescommand.cpp:427
 #, kde-format
@@ -8028,7 +8004,7 @@ msgstr "Značke"
 #: src/dialogs/useridswidget.cpp:248
 #, kde-format
 msgid "Origin"
-msgstr ""
+msgstr "Izvirnik"
 
 #: src/dialogs/useridswidget.cpp:266
 #, kde-format
@@ -11546,17 +11522,14 @@ msgid "Delete selected certificates"
 msgstr "Izbriši izbrana potrdila"
 
 #: src/view/keylistcontroller.cpp:494
-#, fuzzy, kde-format
-#| msgctxt "@title:tab"
-#| msgid "Imported Certificates"
+#, kde-format
 msgid "Update Certificates"
-msgstr "Uvožena potrdila"
+msgstr "Posodobi potrdila"
 
 #: src/view/keylistcontroller.cpp:495
-#, fuzzy, kde-format
-#| msgid "Delete selected certificates"
+#, kde-format
 msgid "Update selected certificates"
-msgstr "Izbriši izbrana potrdila"
+msgstr "Posodobi izbrana potrdila"
 
 #: src/view/keylistcontroller.cpp:503
 #, kde-format

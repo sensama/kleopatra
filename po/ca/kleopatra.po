@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-30 00:39+0000\n"
-"PO-Revision-Date: 2024-04-19 08:50+0200\n"
+"POT-Creation-Date: 2024-05-01 00:38+0000\n"
+"PO-Revision-Date: 2024-04-30 12:32+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -148,7 +148,7 @@ msgstr "(c) 2016-2018 Intevation GmbH"
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 
-#: src/commands/addsubkeycommand.cpp:167
+#: src/commands/addsubkeycommand.cpp:168
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
@@ -157,7 +157,7 @@ msgstr ""
 "<p>S'ha produït un error en provar d'afegir una subclau nova a <b>%1</b>:</"
 "p> <p>%2</p>"
 
-#: src/commands/addsubkeycommand.cpp:175
+#: src/commands/addsubkeycommand.cpp:176
 #, kde-format
 msgid "Subkey added successfully."
 msgstr "La subclau s'ha afegit correctament."
@@ -2887,23 +2887,17 @@ msgid "Updating certificate..."
 msgstr "S'està actualitzant el certificat..."
 
 #: src/commands/refreshcertificatescommand.cpp:266
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has not changed."
-msgstr "El certificat s'ha actualitzat."
+msgstr "El certificat no ha canviat."
 
 #: src/commands/refreshcertificatescommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been revoked."
-msgstr "El certificat s'ha actualitzat."
+msgstr "El certificat ha estat revocat."
 
 #: src/commands/refreshcertificatescommand.cpp:273
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been updated."
 msgstr "El certificat s'ha actualitzat."
 
@@ -2930,85 +2924,67 @@ msgstr[0] "A més, s'ha recuperat una clau nova."
 msgstr[1] "A més, s'han recuperat %1 claus noves."
 
 #: src/commands/refreshcertificatescommand.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update from keyserver, LDAP server, or Active Directory"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
 "Directory"
 msgstr ""
-"Resultat de l'actualització des d'un servidor de claus, un servidor LDAP o "
-"un Active Directory"
+"Resultat de l'actualització del certificat OpenPGP des d'un servidor de "
+"claus, un servidor LDAP o un Active Directory"
 
 #: src/commands/refreshcertificatescommand.cpp:392
 #: src/commands/refreshcertificatescommand.cpp:409
 #: src/commands/refreshcertificatescommand.cpp:419
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>Ha fallat la sol·licitud de desament.</para><para><message>%1</"
-"message></para>"
+"<para>L'actualització ha fallat:</para><para><message>%1</message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp:394
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The update was skipped because no keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
 "<para>S'ha omès l'actualització perquè no hi ha cap servidor de claus "
-"configurat.</para>"
+"OpenPGP configurat.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:396
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "El certificat s'ha actualitzat."
+msgstr "<para>No s'ha trobat el certificat.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:399
 #: src/commands/refreshcertificatescommand.cpp:412
 #: src/commands/refreshcertificatescommand.cpp:422
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
-msgstr[0] "El certificat s'ha actualitzat."
-msgstr[1] "El certificat s'ha actualitzat."
+msgstr[0] "<para>El certificat estava actualitzat.</para>"
+msgstr[1] "<para>Els certificats estaven actualitzats.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:407
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update via Web Key Directory"
+#, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "Resultat de l'actualització des d'un directori de claus web"
 
 #: src/commands/refreshcertificatescommand.cpp:417
-#, fuzzy, kde-format
-#| msgid "Allow S/MIME certificate creation"
+#, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
-msgstr "Permet la creació del certificat S/MIME"
+msgstr "Resultat de l'actualització del certificat S/MIME"
 
 #: src/commands/refreshcertificatescommand.cpp:427
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Updated"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgid_plural "Certificates Updated"
 msgstr[0] "Certificat actualitzat"
-msgstr[1] "Certificat actualitzat"
+msgstr[1] "Certificats actualitzats"
 
 #: src/commands/refreshcertificatescommand.cpp:427
 #, kde-format
@@ -8030,7 +8006,7 @@ msgstr "Etiquetes"
 #: src/dialogs/useridswidget.cpp:248
 #, kde-format
 msgid "Origin"
-msgstr ""
+msgstr "Origen"
 
 #: src/dialogs/useridswidget.cpp:266
 #, kde-format
@@ -11601,17 +11577,14 @@ msgid "Delete selected certificates"
 msgstr "Suprimeix els certificats seleccionats"
 
 #: src/view/keylistcontroller.cpp:494
-#, fuzzy, kde-format
-#| msgctxt "@title:tab"
-#| msgid "Imported Certificates"
+#, kde-format
 msgid "Update Certificates"
-msgstr "Certificats importats"
+msgstr "Actualitza els certificats"
 
 #: src/view/keylistcontroller.cpp:495
-#, fuzzy, kde-format
-#| msgid "Delete selected certificates"
+#, kde-format
 msgid "Update selected certificates"
-msgstr "Suprimeix els certificats seleccionats"
+msgstr "Actualitza els certificats seleccionats"
 
 #: src/view/keylistcontroller.cpp:503
 #, kde-format

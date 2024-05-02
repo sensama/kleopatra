@@ -40,6 +40,7 @@
 
 #include <Libkleo/GnuPG>
 
+#include "dialogs/debugdialog.h"
 #include "dialogs/updatenotification.h"
 
 // needed for GPGME_VERSION_NUMBER
@@ -589,6 +590,19 @@ void MainWindow::Private::setupActions()
             QString(),
         },
 #endif
+        {
+            "tools_debug_view",
+            i18n("Debug View"),
+            QString(),
+            "",
+            q,
+            [this](bool) {
+                auto dialog = new DebugDialog(q);
+                dialog->setAttribute(Qt::WA_DeleteOnClose);
+                dialog->open();
+            },
+            QString(),
+        },
         {
             "tools_restart_backend",
             i18nc("@action:inmenu", "Restart Background Processes"),

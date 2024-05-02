@@ -329,6 +329,8 @@ set(_kleopatra_SRCS
   dialogs/createcsrforcardkeydialog.h
   dialogs/copytosmartcarddialog.cpp
   dialogs/copytosmartcarddialog.h
+  dialogs/debugdialog.cpp
+  dialogs/debugdialog.h
   dialogs/deletecertificatesdialog.cpp
   dialogs/deletecertificatesdialog.h
   dialogs/editgroupdialog.cpp

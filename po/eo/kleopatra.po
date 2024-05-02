@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-01 00:38+0000\n"
-"PO-Revision-Date: 2024-04-21 17:45+0100\n"
+"PO-Revision-Date: 2024-05-01 17:30+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -2839,23 +2839,17 @@ msgid "Updating certificate..."
 msgstr "Ĝisdatigante atestilon..."
 
 #: src/commands/refreshcertificatescommand.cpp:266
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has not changed."
-msgstr "La atestilo estis ĝisdatigita."
+msgstr "La atestilo ne ŝanĝiĝis."
 
 #: src/commands/refreshcertificatescommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been revoked."
-msgstr "La atestilo estis ĝisdatigita."
+msgstr "La atestilo estis revokita."
 
 #: src/commands/refreshcertificatescommand.cpp:273
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been updated."
 msgstr "La atestilo estis ĝisdatigita."
 
@@ -2882,23 +2876,19 @@ msgstr[0] "Plue, unu nova ŝlosilo estis ricevita."
 msgstr[1] "Plue, %1 novaj ŝlosiloj estis ricevitaj."
 
 #: src/commands/refreshcertificatescommand.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update from keyserver, LDAP server, or Active Directory"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
 "Directory"
 msgstr ""
-"Rezulto de ĝisdatigo de ŝlosilservilo, LDAP-servilo aŭ Active Directory"
+"Rezulto de OpenPGP-atestila ĝisdatigo el ŝlosilservilo, LDAP-servilo aŭ "
+"Active Directory"
 
 #: src/commands/refreshcertificatescommand.cpp:392
 #: src/commands/refreshcertificatescommand.cpp:409
 #: src/commands/refreshcertificatescommand.cpp:419
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr ""
@@ -2906,60 +2896,48 @@ msgstr ""
 "para>"
 
 #: src/commands/refreshcertificatescommand.cpp:394
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The update was skipped because no keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
-"<para>La ĝisdatigo estis preterlasita ĉar neniu ŝlosilservilo estas agordita."
+"<para>Ĝisdatigo preterlasita ĉar neniu OpenPGP-ŝlosilservilo estas agordita."
 "</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:396
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "La atestilo estis ĝisdatigita."
+msgstr "<para>La atestilo ne estis trovita.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:399
 #: src/commands/refreshcertificatescommand.cpp:412
 #: src/commands/refreshcertificatescommand.cpp:422
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
-msgstr[0] "La atestilo estis ĝisdatigita."
-msgstr[1] "La atestilo estis ĝisdatigita."
+msgstr[0] "<para>La atestilo estis ĝisdatigita.</para>"
+msgstr[1] "<para>La atestiloj estis ĝisdatigitaj.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:407
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update via Web Key Directory"
+#, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "Rezulto de ĝisdatigo per Web Key Directory"
 
 #: src/commands/refreshcertificatescommand.cpp:417
-#, fuzzy, kde-format
-#| msgid "Allow S/MIME certificate creation"
+#, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
-msgstr "Permesi kreadon de atestilo S/MIME"
+msgstr "Rezulto de ĝisdatigo de atestilo S/MIME"
 
 #: src/commands/refreshcertificatescommand.cpp:427
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Updated"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgid_plural "Certificates Updated"
 msgstr[0] "Atestilo Ĝisdatigita"
-msgstr[1] "Atestilo Ĝisdatigita"
+msgstr[1] "Atestiloj Ĝisdatigitaj"
 
 #: src/commands/refreshcertificatescommand.cpp:427
 #, kde-format
@@ -7916,7 +7894,7 @@ msgstr "Etikedoj"
 #: src/dialogs/useridswidget.cpp:248
 #, kde-format
 msgid "Origin"
-msgstr ""
+msgstr "Origino"
 
 #: src/dialogs/useridswidget.cpp:266
 #, kde-format
@@ -11428,22 +11406,19 @@ msgid "Delete selected certificates"
 msgstr "Forigi elektitajn atestojn"
 
 #: src/view/keylistcontroller.cpp:494
-#, fuzzy, kde-format
-#| msgctxt "@title:tab"
-#| msgid "Imported Certificates"
+#, kde-format
 msgid "Update Certificates"
-msgstr "Importitaj Atestiloj"
+msgstr "Ĝisdatigi Atestilojn"
 
 #: src/view/keylistcontroller.cpp:495
-#, fuzzy, kde-format
-#| msgid "Delete selected certificates"
+#, kde-format
 msgid "Update selected certificates"
-msgstr "Forigi elektitajn atestojn"
+msgstr "Ĝisdatigi elektitajn atestilojn"
 
 #: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Certify..."
-msgstr "Certigu..."
+msgstr "Atesti..."
 
 #: src/view/keylistcontroller.cpp:504
 #, kde-format
@@ -12568,49 +12543,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgid "The key hasn't changed."
-#~ msgstr "La ŝlosilo ne ŝanĝiĝis."
-
-#~ msgid "The key has been revoked."
-#~ msgstr "La ŝlosilo estis revokita."
-
-#~ msgid "The key has been updated."
-#~ msgstr "La ŝlosilo estis ĝisdatigita."
-
-#~ msgctxt "@info"
-#~ msgid "The update was skipped because no keyserver is configured."
-#~ msgstr ""
-#~ "La ĝisdatigo estis preterlasita ĉar neniu ŝlosilservilo estas agordita."
-
-#~ msgctxt "@title:window"
-#~ msgid "Update Skipped"
-#~ msgstr "Ĝisdatigo Preterlasiĝis"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Updated"
-#~ msgstr "Ŝlosilo Ĝisdatigita"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Updating the certificate from a keyserver, an LDAP server, or "
-#~ "Active Directory failed:</para><para><message>%1</message></"
-#~ "para><para>Updating the certificate via Web Key Directory failed:</"
-#~ "para><para><message>%2</message></para>"
-#~ msgstr ""
-#~ "<para>Ĝisdatigado de la atestilo per ŝlosilservilo, LDAP-servilo aŭ "
-#~ "Active Directory malsukcesis:</para><para><message>%1</message></"
-#~ "para><para> Ĝisdatigado de la atestilo per Web Key Directory malsukcesis:"
-#~ "</para><para><message>%2</message></para>"
-
-#~ msgctxt "@info"
-#~ msgid "<para>The update failed: <message>%1</message></para>"
-#~ msgstr "<para>La ĝisdatigo malsukcesis: <message>%1</message></para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while updating the certificate:</"
-#~ "para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>Okazis eraro dum la ĝisdatigo de la atestilo:</para><para><message>"
-#~ "%1</message></para>"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-03 00:39+0000\n"
-"PO-Revision-Date: 2024-04-19 18:50+0200\n"
+"PO-Revision-Date: 2024-05-01 13:37+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -2883,23 +2883,17 @@ msgid "Updating certificate..."
 msgstr "Aggiornamento del certificato..."
 
 #: src/commands/refreshcertificatescommand.cpp:266
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has not changed."
-msgstr "Il certificato è stato aggiornato."
+msgstr "Il certificato non è cambiato."
 
 #: src/commands/refreshcertificatescommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been revoked."
-msgstr "Il certificato è stato aggiornato."
+msgstr "Il certificato è stato revocato."
 
 #: src/commands/refreshcertificatescommand.cpp:273
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been updated."
 msgstr "Il certificato è stato aggiornato."
 
@@ -2926,80 +2920,62 @@ msgstr[0] "Inoltre, è stata recuperata una nuova chiave."
 msgstr[1] "Inoltre, sono state recuperate %1 nuove chiavi."
 
 #: src/commands/refreshcertificatescommand.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update from keyserver, LDAP server, or Active Directory"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
 "Directory"
 msgstr ""
-"Risultato dell'aggiornamento dal server delle chiavi, dal server LDAP o da "
-"Active Directory"
+"Risultato dell'aggiornamento del certificato OpenPGP dal server delle "
+"chiavi, dal server LDAP o da Active Directory"
 
 #: src/commands/refreshcertificatescommand.cpp:392
 #: src/commands/refreshcertificatescommand.cpp:409
 #: src/commands/refreshcertificatescommand.cpp:419
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>Salvataggio della richiesta non riuscito.</para><para><message>%1</"
-"message></para>"
+"<para>Aggiornamento non riuscito:</para><para><message>%1</message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp:394
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The update was skipped because no keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
 "<para>L'aggiornamento è stato saltato perché non è configurato alcun server "
-"delle chiavi.</para>"
+"delle chiavi OpenPGP.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:396
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "Il certificato è stato aggiornato."
+msgstr "<para>Il certificato non è stato trovato.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:399
 #: src/commands/refreshcertificatescommand.cpp:412
 #: src/commands/refreshcertificatescommand.cpp:422
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
-msgstr[0] "Il certificato è stato aggiornato."
-msgstr[1] "Il certificato è stato aggiornato."
+msgstr[0] "<para>Il certificato è stato aggiornato.</para>"
+msgstr[1] "<para>I certificati sono stati aggiornati.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:407
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update via Web Key Directory"
+#, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
-msgstr "Risultato dell'aggiornamento tramite Web Key Directory"
+msgstr "Risultato dell'aggiornamento da Web Key Directory"
 
 #: src/commands/refreshcertificatescommand.cpp:417
-#, fuzzy, kde-format
-#| msgid "Allow S/MIME certificate creation"
+#, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
-msgstr "Consenti la creazione del certificato S/MIME"
+msgstr "Risultato dell'aggiornamento del certificato S/MIME"
 
 #: src/commands/refreshcertificatescommand.cpp:427
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Updated"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgid_plural "Certificates Updated"
@@ -8017,7 +7993,7 @@ msgstr "Etichette"
 #: src/dialogs/useridswidget.cpp:243
 #, kde-format
 msgid "Origin"
-msgstr ""
+msgstr "Origine"
 
 #: src/dialogs/useridswidget.cpp:261
 #, kde-format
@@ -11579,17 +11555,14 @@ msgid "Delete selected certificates"
 msgstr "Elimina i certificati selezionati"
 
 #: src/view/keylistcontroller.cpp:494
-#, fuzzy, kde-format
-#| msgctxt "@title:tab"
-#| msgid "Imported Certificates"
+#, kde-format
 msgid "Update Certificates"
-msgstr "Certificati importati"
+msgstr "Aggiorna certificati"
 
 #: src/view/keylistcontroller.cpp:495
-#, fuzzy, kde-format
-#| msgid "Delete selected certificates"
+#, kde-format
 msgid "Update selected certificates"
-msgstr "Elimina i certificati selezionati"
+msgstr "Aggiorna i certificati selezionati"
 
 #: src/view/keylistcontroller.cpp:503
 #, kde-format

@@ -5,4 +5,4 @@
 namespace Migration
 {
 void migrate();
-};
+}

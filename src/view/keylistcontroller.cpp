@@ -911,7 +911,7 @@ Command::Restrictions find_root_restrictions(const std::vector<Key> &keys)
 static bool secretSubkeyDataAvailable(const Subkey &subkey)
 {
     return subkey.isSecret() && !subkey.isCardKey();
-};
+}
 
 Command::Restrictions KeyListController::Private::calculateRestrictionsMask(const QItemSelectionModel *sm)
 {

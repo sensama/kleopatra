@@ -18,7 +18,6 @@
 #include "kleopatra_debug.h"
 
 #include "commands/createcsrforcardkeycommand.h"
-#include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/openpgpgeneratecardkeycommand.h"
 
 #include "smartcard/algorithminfo.h"
@@ -265,14 +264,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         });
     }
 
-    if (CreateOpenPGPKeyFromCardKeysCommand::isSupported()) {
-        mKeyForCardKeysButton = new QPushButton(this);
-        mKeyForCardKeysButton->setText(i18n("Create OpenPGP Key"));
-        mKeyForCardKeysButton->setToolTip(i18n("Create an OpenPGP key for the keys stored on the card."));
-        actionLayout->addWidget(mKeyForCardKeysButton);
-        connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &PGPCardWidget::createKeyFromCardKeys);
-    }
-
     actionLayout->addStretch(-1);
     areaVLay->addLayout(actionLayout);
 
@@ -304,13 +295,6 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 
     mCardIsEmpty = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty() && card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty()
         && card->keyFingerprint(OpenPGPCard::pgpAuthKeyRef()).empty();
-
-    if (mKeyForCardKeysButton) {
-        mKeyForCardKeysButton->setEnabled(card->hasSigningKey() //
-                                          && card->hasEncryptionKey() //
-                                          && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
-                                          && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
-    }
 }
 
 void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
@@ -516,16 +500,6 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
         KMessageBox::information(this, i18nc("@info", "URL successfully changed."), i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();
     }
-}
-
-void PGPCardWidget::createKeyFromCardKeys()
-{
-    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mRealSerial, OpenPGPCard::AppName, this);
-    this->setEnabled(false);
-    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished, this, [this]() {
-        this->setEnabled(true);
-    });
-    cmd->start();
 }
 
 void PGPCardWidget::createCSR(const std::string &keyref)

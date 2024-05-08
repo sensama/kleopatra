@@ -723,7 +723,7 @@ void MainWindow::Private::setupActions()
      * the focus on official communications. */
     const auto quickguide =
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
-                      i18n("&Quickguide"),
+                      i18n("&Quick Guide Encrypt and Sign"),
                       i18nc("Only available in German and English. Leave to English for other languages.", "encrypt_and_sign_gnupgvsd_en.pdf"),
                       QStringLiteral("../share/doc/gnupg-vsd"),
                       QUrl(),
@@ -732,7 +732,7 @@ void MainWindow::Private::setupActions()
 
     const auto symguide =
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
-                      i18n("&Password-based encryption"),
+                      i18n("&Password-based Encryption"),
                       i18nc("Only available in German and English. Leave to English for other languages.", "symmetric_encryption_gnupgvsd_en.pdf"),
                       QStringLiteral("../share/doc/gnupg-vsd"),
                       QUrl(),
@@ -740,7 +740,7 @@ void MainWindow::Private::setupActions()
     coll->addAction(QStringLiteral("help_doc_symenc"), symguide);
 
     const auto groups = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
-                                      i18n("&Group configuration"),
+                                      i18n("Certificate &Groups"),
                                       i18nc("Only available in German and English. Leave to English for other languages.", "groupfeature_gnupgvsd_en.pdf"),
                                       QStringLiteral("../share/doc/gnupg-vsd"),
                                       QUrl(),
@@ -750,7 +750,7 @@ void MainWindow::Private::setupActions()
 #ifdef Q_OS_WIN
     const auto gpgol =
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
-                      i18n("&Mail encryption in Outlook"),
+                      i18n("&Mail Encryption in Outlook"),
                       i18nc("Only available in German and English. Leave to English for other languages. Only shown on Windows.", "gpgol_outlook_addin_en.pdf"),
                       QStringLiteral("../share/doc/gnupg-vsd"),
                       QUrl(),
@@ -770,7 +770,7 @@ void MainWindow::Private::setupActions()
 
     const auto smartcard =
         new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
-                      i18n("&Smartcard setup"),
+                      i18n("&Smartcard Setup"),
                       i18nc("Only available in German and English. Leave to English for other languages.", "smartcard_setup_gnupgvsd_en.pdf"),
                       QStringLiteral("../share/doc/gnupg-vsd"),
                       QUrl(),
@@ -788,7 +788,7 @@ void MainWindow::Private::setupActions()
     /* The secops */
     const auto approvalmanual =
         new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
-                      i18n("Manual for VS-NfD approval (German)"),
+                      i18n("Manual for VS-NfD Approval (German)"),
                       i18nc("Only available in German. Keep German file name for all languages", "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"),
                       QStringLiteral("../share/doc/gnupg-vsd"),
                       QUrl(),

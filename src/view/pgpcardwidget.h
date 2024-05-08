@@ -19,7 +19,6 @@
 #include <string>
 
 class QLabel;
-class QPushButton;
 
 namespace Kleo
 {
@@ -48,7 +47,6 @@ public Q_SLOTS:
     void changeNameResult(const GpgME::Error &err);
     void changeUrlRequested();
     void changeUrlResult(const GpgME::Error &err);
-    void createKeyFromCardKeys();
     void createCSR(const std::string &keyref);
     void generateKey(const std::string &keyref);
 
@@ -60,7 +58,6 @@ private:
     QLabel *mCardHolderLabel = nullptr;
     QLabel *mVersionLabel = nullptr;
     QLabel *mUrlLabel = nullptr;
-    QPushButton *mKeyForCardKeysButton = nullptr;
     OpenPGPKeyCardWidget *mKeysWidget = nullptr;
     QString mUrl;
     bool mCardIsEmpty = false;

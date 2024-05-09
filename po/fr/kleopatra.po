@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-19 00:38+0000\n"
-"PO-Revision-Date: 2024-05-02 16:20+0200\n"
+"PO-Revision-Date: 2024-05-07 10:21+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -2709,7 +2709,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
-msgstr "Recherche de certificats correspondants ..."
+msgstr "Recherche de certificats correspondants..."
 
 #: src/commands/lookupcertificatescommand.cpp:472
 #, kde-kuit-format
@@ -2987,7 +2987,7 @@ msgstr[1] "De façon supplémentaire, %1 nouvelles clés ont été retrouvées."
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
 msgstr ""
-"La mise à jour a été ignorée car aucun serveur de clés n’est configuré."
+"La mise à jour a été ignorée car aucun serveur de clés n'est configuré."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
@@ -3011,12 +3011,10 @@ msgid "The certificate has been updated."
 msgstr "Le certificat a été mis à jour."
 
 #: src/commands/refreshcertificatecommand.cpp:327
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Updated"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
-msgstr "Mise à jour du certificat"
+msgstr "Certificat mis à jour"
 
 #: src/commands/refreshcertificatecommand.cpp:350
 #, kde-kuit-format
@@ -3052,7 +3050,7 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
-"<para>La mise à jour a été ignorée car aucun serveur de clés n’est configuré."
+"<para>La mise à jour a été ignorée car aucun serveur de clés n'est configuré."
 "</para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
@@ -3816,7 +3814,7 @@ msgstr "Serveur de clés « OpenPGP »"
 #, kde-format
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr ""
-"Veuillez noter qu’un seul serveur de clés « OpenPGP » peut être configuré."
+"Veuillez noter qu'un seul serveur de clés « OpenPGP » peut être configuré."
 
 #: src/conf/dirservconfigpage.cpp:134
 #, kde-format
@@ -3838,17 +3836,17 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
-"Saisissez l’adresse du serveur de clés à utiliser lors de la recherche de "
+"Saisissez l'adresse du serveur de clés à utiliser lors de la recherche de "
 "certificats « OpenPGP » et lors du téléchargement de certificats "
 "« OpenPGP ». Si vous ne saisissez aucune adresse, une valeur interne par "
-"défaut sera utilisée. Pour désactiver l’utilisation d’un serveur de clés "
+"défaut sera utilisée. Pour désactiver l'utilisation d'un serveur de clés "
 "« OpenPGP », veuillez saisir la valeur spéciale <emphasis>None</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:169
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Search missing keys when verifying a signature"
-msgstr "Rechercher les clés manquantes lors de la vérification d’une signature"
+msgstr "Rechercher les clés manquantes lors de la vérification d'une signature"
 
 #: src/conf/dirservconfigpage.cpp:185
 #, kde-format
@@ -7059,7 +7057,7 @@ msgid ""
 "uncheck it."
 msgstr ""
 "Sélectionnez cette option si vous souhaitez partager vos certifications avec "
-"d’autres. Si vous voulez simplement marquer les certificats comme certifiés "
+"d'autres. Si vous voulez simplement marquer les certificats comme certifiés "
 "pour vous-même, alors vous pouvez la dé-sélectionner."
 
 #: src/dialogs/certifywidget.cpp:259
@@ -7853,7 +7851,7 @@ msgid ""
 "No NullPin found. <warning>If this PIN was not set by you personally, the "
 "card might have been tampered with.</warning>"
 msgstr ""
-"Aucun Null-Pin trouvé.<warning>Si ce PIN n'a pas été défini personnellement "
+"Aucun NULL-Pin trouvé.<warning>Si ce PIN n'a pas été défini personnellement "
 "par vous, la carte a peut-être été trafiquée avec lui.</warning>"
 
 #: src/dialogs/setinitialpindialog.cpp:75
@@ -8683,7 +8681,7 @@ msgid ""
 "keys in days."
 msgstr ""
 "Spécifie la période minimale de validité autorisées en jours, pour les "
-"nouvelles clés « OpenPGP » ou celles prolongées ."
+"nouvelles clés « OpenPGP » ou celles prolongées."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
@@ -8693,9 +8691,9 @@ msgid ""
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"Ce paramètre spécifie le nombre minimal de jours qu’un utilisateur peut "
+"Ce paramètre spécifie le nombre minimal de jours qu'un utilisateur peut "
 "choisir comme période de validité pour des certificats « OpenPGP ». Il "
-"s’applique à partir de la création de la clé et à la modification de sa "
+"s'applique à partir de la création de la clé et à la modification de sa "
 "validité."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -8712,7 +8710,7 @@ msgid ""
 "keys in days."
 msgstr ""
 "Spécifie la période maximale de validité autorisées en jours, pour les "
-"nouvelles clés « OpenPGP » ou celles prolongées ."
+"nouvelles clés « OpenPGP » ou celles prolongées."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
@@ -8723,10 +8721,10 @@ msgid ""
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Ce paramètre spécifie le nombre maximal de jours qu’un utilisateur peut "
+"Ce paramètre spécifie le nombre maximal de jours qu'un utilisateur peut "
 "choisir comme période de validité pour des certificats « OpenPGP ». Il "
-"s’applique à partir de la création de la clé et à la modification de sa "
-"validité. Si ce paramètre n’est pas défini ou est défini à une valeur "
+"s'applique à partir de la création de la clé et à la modification de sa "
+"validité. Si ce paramètre n'est pas défini ou est défini à une valeur "
 "négative, alors la validité illimitée est autorisée."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -8755,7 +8753,7 @@ msgstr ""
 "indique que la personne désignée pour la révocation est une information "
 "sensible. Seules les clés V4 peuvent être des personnes désignées pour la "
 "révocation. La version 2.4.4 de GNUPG est nécessaire pour ajouter des "
-"personnes désignées pour la révocation en tant qu'informations sensibles ."
+"personnes désignées pour la révocation en tant qu'informations sensibles."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:75
@@ -9606,13 +9604,13 @@ msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr ""
-"Impossible de démarrer l'afficheur de journaux « GnuPG » (KWatchgnupg). "
+"Impossible de démarrer l'afficheur de journaux « GnuPG » (KWatchGnuPG). "
 "Veuillez vérifier votre installation."
 
 #: src/mainwindow.cpp:313
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
-msgstr "Erreur lors du lancement de KWatchgnupg"
+msgstr "Erreur lors du lancement de KWatchGnuPG"
 
 #: src/mainwindow.cpp:582
 #, kde-format
@@ -12006,7 +12004,7 @@ msgctxt ""
 "NullPIN is a word that is used all over in the netkey documentation and "
 "should be understandable by Netkey cardholders"
 msgid "The NullPIN is still active on this card."
-msgstr "L'option « NullPIN » est toujours active sur cette carte."
+msgstr "L'option « NULL-PIN » est toujours active sur cette carte."
 
 #: src/view/nullpinwidget.cpp:36
 #, kde-format

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:39+0000\n"
+"POT-Creation-Date: 2024-05-09 00:39+0000\n"
 "PO-Revision-Date: 2024-05-05 11:49+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -2308,8 +2308,8 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:386 src/view/pgpcardwidget.cpp:452
-#: src/view/pgpcardwidget.cpp:499
+#: src/view/pgpcardwidget.cpp:370 src/view/pgpcardwidget.cpp:436
+#: src/view/pgpcardwidget.cpp:483
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr ""
@@ -2322,7 +2322,7 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:395
+#: src/view/pgpcardwidget.cpp:379
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -3631,8 +3631,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "חדש"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
-#: src/view/pgpcardwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:184
+#: src/view/pgpcardwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -8420,8 +8420,9 @@ msgstr "ע&זרה"
 
 #. i18n: ectx: Menu (help_more)
 #: src/kleopatra.rc:102
-#, kde-format
-msgid "&More documentation"
+#, fuzzy, kde-format
+#| msgid "&More documentation"
+msgid "&More Documentation"
 msgstr "תיעוד &נוסף"
 
 #. i18n: ectx: ToolBar (mainToolBar)
@@ -8844,7 +8845,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:734
 #, kde-format
-msgid "&Quickguide"
+msgid "&Quick Guide Encrypt and Sign"
 msgstr ""
 
 #: src/mainwindow.cpp:735
@@ -8855,8 +8856,9 @@ msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:743
-#, kde-format
-msgid "&Password-based encryption"
+#, fuzzy, kde-format
+#| msgid "&Password-based encryption"
+msgid "&Password-based Encryption"
 msgstr "הצפנה מבוססת &סיסמה"
 
 #: src/mainwindow.cpp:744
@@ -8867,9 +8869,10 @@ msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:751
-#, kde-format
-msgid "&Group configuration"
-msgstr "הגדרת &קבוצות"
+#, fuzzy, kde-format
+#| msgid "Certificate Groups"
+msgid "Certificate &Groups"
+msgstr "קבוצות אישורים"
 
 #: src/mainwindow.cpp:752
 #, kde-format
@@ -8880,7 +8883,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:761
 #, kde-format
-msgid "&Mail encryption in Outlook"
+msgid "&Mail Encryption in Outlook"
 msgstr ""
 
 #: src/mainwindow.cpp:762
@@ -8904,8 +8907,9 @@ msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:781
-#, kde-format
-msgid "&Smartcard setup"
+#, fuzzy, kde-format
+#| msgid "&Smartcard setup"
+msgid "&Smartcard Setup"
 msgstr "ה&גדרת כרטיס חכם"
 
 #: src/mainwindow.cpp:782
@@ -8922,7 +8926,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:799
 #, kde-format
-msgid "Manual for VS-NfD approval (German)"
+msgid "Manual for VS-NfD Approval (German)"
 msgstr ""
 
 #: src/mainwindow.cpp:800
@@ -10915,7 +10919,7 @@ msgctxt "@label"
 msgid "Serial number:"
 msgstr "מספר סידורי:"
 
-#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:224
 #, kde-format
 msgid "Actions:"
 msgstr "פעולות:"
@@ -11114,7 +11118,7 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
 #: src/view/pivcardwidget.cpp:112
 #, kde-format
 msgid "Serial number:"
@@ -11265,18 +11269,18 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "חתימה / הצפנה של מחברת"
 
-#: src/view/pgpcardwidget.cpp:179
+#: src/view/pgpcardwidget.cpp:178
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
+#: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgid "Change"
 msgstr "החלפה"
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:194
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -11284,148 +11288,138 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "כתובת מפתח ציבורי:"
 
-#: src/view/pgpcardwidget.cpp:216 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:215 src/view/pivcardwidget.cpp:122
 #, kde-format
 msgid "Keys:"
 msgstr "מפתחות:"
 
-#: src/view/pgpcardwidget.cpp:230
+#: src/view/pgpcardwidget.cpp:229
 #, kde-format
 msgid "Generate New Keys"
 msgstr "יצירת מפתחות חדשים"
 
-#: src/view/pgpcardwidget.cpp:231
+#: src/view/pgpcardwidget.cpp:230
 #, kde-format
 msgid "Create a new primary key and generate subkeys on the card."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:236
+#: src/view/pgpcardwidget.cpp:235
 #, kde-format
 msgid "Change PIN"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:237
+#: src/view/pgpcardwidget.cpp:236
 #, kde-format
 msgid "Change the PIN required for using the keys on the smartcard."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:244
+#: src/view/pgpcardwidget.cpp:243
 #, kde-format
 msgid "Unblock Card"
 msgstr "שחרור חסימת כרטיס"
 
-#: src/view/pgpcardwidget.cpp:245
+#: src/view/pgpcardwidget.cpp:244
 #, kde-format
 msgid "Unblock the smartcard and set a new PIN."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:252
+#: src/view/pgpcardwidget.cpp:251
 #, kde-format
 msgid "Change Admin PIN"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:253
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgid "Change the PIN required for administrative operations."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:260
+#: src/view/pgpcardwidget.cpp:259
 #, kde-format
 msgid "Change Reset Code"
 msgstr "החלפת קוד איפוס"
 
-#: src/view/pgpcardwidget.cpp:261
+#: src/view/pgpcardwidget.cpp:260
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:270
-#, kde-format
-msgid "Create OpenPGP Key"
-msgstr "יצירת מפתח OpenPGP"
-
-#: src/view/pgpcardwidget.cpp:271
-#, kde-format
-msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr ""
-
-#: src/view/pgpcardwidget.cpp:291
+#: src/view/pgpcardwidget.cpp:282
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:292
+#: src/view/pgpcardwidget.cpp:283
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:298 src/view/pgpcardwidget.cpp:300
+#: src/view/pgpcardwidget.cpp:289 src/view/pgpcardwidget.cpp:291
 #, kde-format
 msgid "not set"
 msgstr "לא הוגדר"
 
-#: src/view/pgpcardwidget.cpp:344
+#: src/view/pgpcardwidget.cpp:328
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "נוצרים מפתחות"
 
-#: src/view/pgpcardwidget.cpp:345
+#: src/view/pgpcardwidget.cpp:329
 #, kde-format
 msgid "This may take several minutes..."
 msgstr "פעולה זו יכולה לארוך כמה דקות…"
 
-#: src/view/pgpcardwidget.cpp:360
+#: src/view/pgpcardwidget.cpp:344
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "יצירת מפתח חדש נכשלה: %1"
 
-#: src/view/pgpcardwidget.cpp:370
+#: src/view/pgpcardwidget.cpp:354
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "שמירת גיבוי של מפתח ההצפנה"
 
-#: src/view/pgpcardwidget.cpp:370
+#: src/view/pgpcardwidget.cpp:354
 #, kde-format
 msgid "Backup Key"
 msgstr "מפתח גיבוי"
 
-#: src/view/pgpcardwidget.cpp:372
+#: src/view/pgpcardwidget.cpp:356
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr "העברת הגיבוי נכשלה. מפתח הגיבוי עדיין מאוחסן תחת: %1"
 
-#: src/view/pgpcardwidget.cpp:378
+#: src/view/pgpcardwidget.cpp:362
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "מפתח חדש נוצר בהצלחה לכרטיס זה."
 
-#: src/view/pgpcardwidget.cpp:378 src/view/pgpcardwidget.cpp:469
-#: src/view/pgpcardwidget.cpp:516
+#: src/view/pgpcardwidget.cpp:362 src/view/pgpcardwidget.cpp:453
+#: src/view/pgpcardwidget.cpp:500
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "הצלחה"
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:376
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr "המפתחות הקיימים בכרטיס הזה <b>יימחקו</b> ויוחלפו במפתחות חדשים."
 
-#: src/view/pgpcardwidget.cpp:397
+#: src/view/pgpcardwidget.cpp:381
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "מחיקת מפתח סודי"
 
-#: src/view/pgpcardwidget.cpp:411
+#: src/view/pgpcardwidget.cpp:395
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -11435,69 +11429,69 @@ msgstr ""
 "אי אפשר לייצר מפתחות חדשים על הכרטיס החכם הזה כיוון שהוא לא תומך באף אחד "
 "מהאלגוריתמים הנתמכים."
 
-#: src/view/pgpcardwidget.cpp:428
+#: src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgid "Change cardholder"
 msgstr "החלפת בעלי הכרטיס"
 
-#: src/view/pgpcardwidget.cpp:428
+#: src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgid "New name:"
 msgstr "שם חדש:"
 
-#: src/view/pgpcardwidget.cpp:434
+#: src/view/pgpcardwidget.cpp:418
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "אי אפשר להשתמש בתו „<”"
 
-#: src/view/pgpcardwidget.cpp:438
+#: src/view/pgpcardwidget.cpp:422
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "אסור להשתמש ברווחים כפולים"
 
-#: src/view/pgpcardwidget.cpp:442
+#: src/view/pgpcardwidget.cpp:426
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "גודל השם לא יכול לחרוג מ־38 תווים."
 
-#: src/view/pgpcardwidget.cpp:465
+#: src/view/pgpcardwidget.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "שינוי השם נכשל: %1"
 
-#: src/view/pgpcardwidget.cpp:469
+#: src/view/pgpcardwidget.cpp:453
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "השם נערך בהצלחה."
 
-#: src/view/pgpcardwidget.cpp:480
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "להחליף את הכתובת בה ניתן למצוא את המפתח הציבורי"
 
-#: src/view/pgpcardwidget.cpp:481
+#: src/view/pgpcardwidget.cpp:465
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "כתובת חדשה למפתח ציבורי:"
 
-#: src/view/pgpcardwidget.cpp:492
+#: src/view/pgpcardwidget.cpp:476
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "גודל הכתובת לא יכול לחרוג מ־254 תווים."
 
-#: src/view/pgpcardwidget.cpp:512
+#: src/view/pgpcardwidget.cpp:496
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "החלפת הכתובת נכשלה: %1"
 
-#: src/view/pgpcardwidget.cpp:516
+#: src/view/pgpcardwidget.cpp:500
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
@@ -11889,6 +11883,12 @@ msgid ""
 msgstr ""
 "ייבוא אישור מקובץ.<nl/>כדי לייבא משרת מפתחות ציבורי יש להשתמש באפשרות "
 "<interface>איתור בשרת</interface> במקום."
+
+#~ msgid "&Group configuration"
+#~ msgstr "הגדרת &קבוצות"
+
+#~ msgid "Create OpenPGP Key"
+#~ msgstr "יצירת מפתח OpenPGP"
 
 #~ msgid "The key hasn't changed."
 #~ msgstr "המפתח לא השתנה."

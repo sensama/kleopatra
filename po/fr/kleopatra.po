@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:39+0000\n"
-"PO-Revision-Date: 2024-05-02 16:20+0200\n"
+"POT-Creation-Date: 2024-05-09 00:39+0000\n"
+"PO-Revision-Date: 2024-05-07 10:21+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -2489,8 +2489,8 @@ msgstr "Veuillez sélectionner l'emplacement où la clé doit être enregistrée
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:386 src/view/pgpcardwidget.cpp:452
-#: src/view/pgpcardwidget.cpp:499
+#: src/view/pgpcardwidget.cpp:370 src/view/pgpcardwidget.cpp:436
+#: src/view/pgpcardwidget.cpp:483
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr ""
@@ -2506,7 +2506,7 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:395
+#: src/view/pgpcardwidget.cpp:379
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -2709,7 +2709,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
-msgstr "Recherche de certificats correspondants ..."
+msgstr "Recherche de certificats correspondants..."
 
 #: src/commands/lookupcertificatescommand.cpp:472
 #, kde-kuit-format
@@ -2945,23 +2945,17 @@ msgid "Updating certificate..."
 msgstr "Mise à jour du certificat en cours..."
 
 #: src/commands/refreshcertificatescommand.cpp:266
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has not changed."
-msgstr "Le certificat a été mis à jour."
+msgstr "Le certificat n'a pas été modifié."
 
 #: src/commands/refreshcertificatescommand.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been revoked."
-msgstr "Le certificat a été mis à jour."
+msgstr "Le certificat a été révoqué."
 
 #: src/commands/refreshcertificatescommand.cpp:273
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-format
 msgid "The certificate has been updated."
 msgstr "Le certificat a été mis à jour."
 
@@ -2988,85 +2982,67 @@ msgstr[0] "De façon supplémentaire, une nouvelle clé a été retrouvée."
 msgstr[1] "De façon supplémentaire, %1 nouvelles clés ont été retrouvées."
 
 #: src/commands/refreshcertificatescommand.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update from keyserver, LDAP server, or Active Directory"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
 "Directory"
 msgstr ""
-"Résultat de la mise à jour grâce au serveur de clés, le serveur « LDAP » ou "
-"« Active Directory »"
+"Résultat de la mise à jour des certificats « OpenPGP » à partir du serveur "
+"de clés, du serveur « LDAP » ou « Active Directory »"
 
 #: src/commands/refreshcertificatescommand.cpp:392
 #: src/commands/refreshcertificatescommand.cpp:409
 #: src/commands/refreshcertificatescommand.cpp:419
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>L'enregistrement de la requête a échoué.</para><para><message>%1</"
-"message></para>"
+"<para>La mise à jour a échoué :</para><para><message>%1</message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp:394
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The update was skipped because no keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
-"<para>La mise à jour a été ignorée car aucun serveur de clés n’est configuré."
-"</para>"
+"<para>La mise à jour a été ignorée car aucun serveur « OpenPGP » n'est "
+"configuré.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:396
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "Le certificat a été mis à jour."
+msgstr "<para>Il a été impossible de trouver le certificat.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:399
 #: src/commands/refreshcertificatescommand.cpp:412
 #: src/commands/refreshcertificatescommand.cpp:422
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The certificate has been updated."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
-msgstr[0] "Le certificat a été mis à jour."
-msgstr[1] "Le certificat a été mis à jour."
+msgstr[0] "<para>Le certificat a été mis à jour.</para>"
+msgstr[1] "<para>Les certificats ont été mis à jour.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:407
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Result of update via Web Key Directory"
+#, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
-msgstr "Résultat de la mise à jour grâce au dossier des clés Internet"
+msgstr "Résultat de la mise à jour à partir du dossier de clés Internet"
 
 #: src/commands/refreshcertificatescommand.cpp:417
-#, fuzzy, kde-format
-#| msgid "Allow S/MIME certificate creation"
+#, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
-msgstr "Permettre la création de certificats « S/MIME »."
+msgstr "Résultat de la mise à jour des certificats « S/MIME »."
 
 #: src/commands/refreshcertificatescommand.cpp:427
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Updated"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgid_plural "Certificates Updated"
-msgstr[0] "Mise à jour du certificat"
-msgstr[1] "Mise à jour du certificat"
+msgstr[0] "Certificat mis à jour"
+msgstr[1] "Certificats mis à jour"
 
 #: src/commands/refreshcertificatescommand.cpp:427
 #, kde-format
@@ -3810,7 +3786,7 @@ msgstr "Serveur de clés « OpenPGP »"
 #, kde-format
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr ""
-"Veuillez noter qu’un seul serveur de clés « OpenPGP » peut être configuré."
+"Veuillez noter qu'un seul serveur de clés « OpenPGP » peut être configuré."
 
 #: src/conf/dirservconfigpage.cpp:134
 #, kde-format
@@ -3832,17 +3808,17 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
-"Saisissez l’adresse du serveur de clés à utiliser lors de la recherche de "
+"Saisissez l'adresse du serveur de clés à utiliser lors de la recherche de "
 "certificats « OpenPGP » et lors du téléchargement de certificats "
 "« OpenPGP ». Si vous ne saisissez aucune adresse, une valeur interne par "
-"défaut sera utilisée. Pour désactiver l’utilisation d’un serveur de clés "
+"défaut sera utilisée. Pour désactiver l'utilisation d'un serveur de clés "
 "« OpenPGP », veuillez saisir la valeur spéciale <emphasis>None</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:169
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Search missing keys when verifying a signature"
-msgstr "Rechercher les clés manquantes lors de la vérification d’une signature"
+msgstr "Rechercher les clés manquantes lors de la vérification d'une signature"
 
 #: src/conf/dirservconfigpage.cpp:185
 #, kde-format
@@ -3980,8 +3956,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "Nouveau"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
-#: src/view/pgpcardwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:184
+#: src/view/pgpcardwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -7053,7 +7029,7 @@ msgid ""
 "uncheck it."
 msgstr ""
 "Sélectionnez cette option si vous souhaitez partager vos certifications avec "
-"d’autres. Si vous voulez simplement marquer les certificats comme certifiés "
+"d'autres. Si vous voulez simplement marquer les certificats comme certifiés "
 "pour vous-même, alors vous pouvez la dé-sélectionner."
 
 #: src/dialogs/certifywidget.cpp:259
@@ -7847,7 +7823,7 @@ msgid ""
 "No NullPin found. <warning>If this PIN was not set by you personally, the "
 "card might have been tampered with.</warning>"
 msgstr ""
-"Aucun Null-Pin trouvé.<warning>Si ce PIN n'a pas été défini personnellement "
+"Aucun NULL-Pin trouvé.<warning>Si ce PIN n'a pas été défini personnellement "
 "par vous, la carte a peut-être été trafiquée avec lui.</warning>"
 
 #: src/dialogs/setinitialpindialog.cpp:75
@@ -8168,7 +8144,7 @@ msgstr "Étiquettes"
 #: src/dialogs/useridswidget.cpp:243
 #, kde-format
 msgid "Origin"
-msgstr ""
+msgstr "Origine"
 
 #: src/dialogs/useridswidget.cpp:261
 #, kde-format
@@ -8682,7 +8658,7 @@ msgid ""
 "keys in days."
 msgstr ""
 "Spécifie la période minimale de validité autorisées en jours, pour les "
-"nouvelles clés « OpenPGP » ou celles prolongées ."
+"nouvelles clés « OpenPGP » ou celles prolongées."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
@@ -8692,9 +8668,9 @@ msgid ""
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"Ce paramètre spécifie le nombre minimal de jours qu’un utilisateur peut "
+"Ce paramètre spécifie le nombre minimal de jours qu'un utilisateur peut "
 "choisir comme période de validité pour des certificats « OpenPGP ». Il "
-"s’applique à partir de la création de la clé et à la modification de sa "
+"s'applique à partir de la création de la clé et à la modification de sa "
 "validité."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -8711,7 +8687,7 @@ msgid ""
 "keys in days."
 msgstr ""
 "Spécifie la période maximale de validité autorisées en jours, pour les "
-"nouvelles clés « OpenPGP » ou celles prolongées ."
+"nouvelles clés « OpenPGP » ou celles prolongées."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
@@ -8722,10 +8698,10 @@ msgid ""
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Ce paramètre spécifie le nombre maximal de jours qu’un utilisateur peut "
+"Ce paramètre spécifie le nombre maximal de jours qu'un utilisateur peut "
 "choisir comme période de validité pour des certificats « OpenPGP ». Il "
-"s’applique à partir de la création de la clé et à la modification de sa "
-"validité. Si ce paramètre n’est pas défini ou est défini à une valeur "
+"s'applique à partir de la création de la clé et à la modification de sa "
+"validité. Si ce paramètre n'est pas défini ou est défini à une valeur "
 "négative, alors la validité illimitée est autorisée."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -8754,7 +8730,7 @@ msgstr ""
 "indique que la personne désignée pour la révocation est une information "
 "sensible. Seules les clés V4 peuvent être des personnes désignées pour la "
 "révocation. La version 2.4.4 de GNUPG est nécessaire pour ajouter des "
-"personnes désignées pour la révocation en tant qu'informations sensibles ."
+"personnes désignées pour la révocation en tant qu'informations sensibles."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:75
@@ -9249,8 +9225,9 @@ msgstr "&Aide"
 
 #. i18n: ectx: Menu (help_more)
 #: src/kleopatra.rc:102
-#, kde-format
-msgid "&More documentation"
+#, fuzzy, kde-format
+#| msgid "&More documentation"
+msgid "&More Documentation"
 msgstr "Plus de docu&mentations"
 
 #. i18n: ectx: ToolBar (mainToolBar)
@@ -9605,13 +9582,13 @@ msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr ""
-"Impossible de démarrer l'afficheur de journaux « GnuPG » (KWatchgnupg). "
+"Impossible de démarrer l'afficheur de journaux « GnuPG » (KWatchGnuPG). "
 "Veuillez vérifier votre installation."
 
 #: src/mainwindow.cpp:313
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
-msgstr "Erreur lors du lancement de KWatchgnupg"
+msgstr "Erreur lors du lancement de KWatchGnuPG"
 
 #: src/mainwindow.cpp:582
 #, kde-format
@@ -9711,9 +9688,10 @@ msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
 #: src/mainwindow.cpp:734
-#, kde-format
-msgid "&Quickguide"
-msgstr "&Guide rapide"
+#, fuzzy, kde-format
+#| msgid "Quick Encrypt EMail"
+msgid "&Quick Guide Encrypt and Sign"
+msgstr "Chiffrement rapide des courriels"
 
 #: src/mainwindow.cpp:735
 #, kde-format
@@ -9723,8 +9701,9 @@ msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:743
-#, kde-format
-msgid "&Password-based encryption"
+#, fuzzy, kde-format
+#| msgid "&Password-based encryption"
+msgid "&Password-based Encryption"
 msgstr "Chiffrement à partir d'un mot de &passe"
 
 #: src/mainwindow.cpp:744
@@ -9735,9 +9714,10 @@ msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:751
-#, kde-format
-msgid "&Group configuration"
-msgstr "Configuration du &groupe"
+#, fuzzy, kde-format
+#| msgid "Certificate Groups"
+msgid "Certificate &Groups"
+msgstr "Groupes de certificats"
 
 #: src/mainwindow.cpp:752
 #, kde-format
@@ -9747,8 +9727,9 @@ msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:761
-#, kde-format
-msgid "&Mail encryption in Outlook"
+#, fuzzy, kde-format
+#| msgid "&Mail encryption in Outlook"
+msgid "&Mail Encryption in Outlook"
 msgstr "Chiffrement des courriels dans Outlook"
 
 #: src/mainwindow.cpp:762
@@ -9772,8 +9753,9 @@ msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:781
-#, kde-format
-msgid "&Smartcard setup"
+#, fuzzy, kde-format
+#| msgid "&Smartcard setup"
+msgid "&Smartcard Setup"
 msgstr "Configuration de cartes de mémoire"
 
 #: src/mainwindow.cpp:782
@@ -9789,8 +9771,9 @@ msgid "GnuPG Command&line"
 msgstr "Ligne de commandes pour GnuPG"
 
 #: src/mainwindow.cpp:799
-#, kde-format
-msgid "Manual for VS-NfD approval (German)"
+#, fuzzy, kde-format
+#| msgid "Manual for VS-NfD approval (German)"
+msgid "Manual for VS-NfD Approval (German)"
 msgstr "Manuel pour l'approbation de « VS-NfD » (En Allemand)"
 
 #: src/mainwindow.cpp:800
@@ -11781,17 +11764,14 @@ msgid "Delete selected certificates"
 msgstr "Supprimer les certificats sélectionnés"
 
 #: src/view/keylistcontroller.cpp:494
-#, fuzzy, kde-format
-#| msgctxt "@title:tab"
-#| msgid "Imported Certificates"
+#, kde-format
 msgid "Update Certificates"
-msgstr "Certificats importés"
+msgstr "Mettre à jour les certificats"
 
 #: src/view/keylistcontroller.cpp:495
-#, fuzzy, kde-format
-#| msgid "Delete selected certificates"
+#, kde-format
 msgid "Update selected certificates"
-msgstr "Supprimer les certificats sélectionnés"
+msgstr "Mettre à jour les certificats sélectionnés"
 
 #: src/view/keylistcontroller.cpp:503
 #, kde-format
@@ -11921,7 +11901,7 @@ msgctxt "@label"
 msgid "Serial number:"
 msgstr "Numéro de série :"
 
-#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:224
 #, kde-format
 msgid "Actions:"
 msgstr "Actions :"
@@ -12018,7 +11998,7 @@ msgctxt ""
 "NullPIN is a word that is used all over in the netkey documentation and "
 "should be understandable by Netkey cardholders"
 msgid "The NullPIN is still active on this card."
-msgstr "L'option « NullPIN » est toujours active sur cette carte."
+msgstr "L'option « NULL-PIN » est toujours active sur cette carte."
 
 #: src/view/nullpinwidget.cpp:36
 #, kde-format
@@ -12130,7 +12110,7 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "Désolé, mais impossible de trouver une clé avec la signature %1."
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
 #: src/view/pivcardwidget.cpp:112
 #, kde-format
 msgid "Serial number:"
@@ -12293,18 +12273,18 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Signature / Chiffrement en cours du bloc-notes"
 
-#: src/view/pgpcardwidget.cpp:179
+#: src/view/pgpcardwidget.cpp:178
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Possesseur de la carte :"
 
-#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
+#: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgid "Change"
 msgstr "Modifier"
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:194
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -12312,121 +12292,111 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "URL de clé publique :"
 
-#: src/view/pgpcardwidget.cpp:216 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:215 src/view/pivcardwidget.cpp:122
 #, kde-format
 msgid "Keys:"
 msgstr "Clés :"
 
-#: src/view/pgpcardwidget.cpp:230
+#: src/view/pgpcardwidget.cpp:229
 #, kde-format
 msgid "Generate New Keys"
 msgstr "Générer de nouvelles clés"
 
-#: src/view/pgpcardwidget.cpp:231
+#: src/view/pgpcardwidget.cpp:230
 #, kde-format
 msgid "Create a new primary key and generate subkeys on the card."
 msgstr "Créer une nouvelle clé primaire et générer des sous-clés sur la carte."
 
-#: src/view/pgpcardwidget.cpp:236
+#: src/view/pgpcardwidget.cpp:235
 #, kde-format
 msgid "Change PIN"
 msgstr "Modifier le code PIN"
 
-#: src/view/pgpcardwidget.cpp:237
+#: src/view/pgpcardwidget.cpp:236
 #, kde-format
 msgid "Change the PIN required for using the keys on the smartcard."
 msgstr ""
 "Modifier le code « PIN » nécessaire pour l'utilisation des clés sur la carte."
 
-#: src/view/pgpcardwidget.cpp:244
+#: src/view/pgpcardwidget.cpp:243
 #, kde-format
 msgid "Unblock Card"
 msgstr "Déverrouiller une carte"
 
-#: src/view/pgpcardwidget.cpp:245
+#: src/view/pgpcardwidget.cpp:244
 #, kde-format
 msgid "Unblock the smartcard and set a new PIN."
 msgstr "Débloquer la carte et définir un nouveau code « PIN »."
 
-#: src/view/pgpcardwidget.cpp:252
+#: src/view/pgpcardwidget.cpp:251
 #, kde-format
 msgid "Change Admin PIN"
 msgstr "Modifier le code PIN d'administration"
 
-#: src/view/pgpcardwidget.cpp:253
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgid "Change the PIN required for administrative operations."
 msgstr ""
 "Modifier le code « PIN » nécessaire pour les opérations administratives."
 
-#: src/view/pgpcardwidget.cpp:260
+#: src/view/pgpcardwidget.cpp:259
 #, kde-format
 msgid "Change Reset Code"
 msgstr "Modifier le code de ré-initialisation"
 
-#: src/view/pgpcardwidget.cpp:261
+#: src/view/pgpcardwidget.cpp:260
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgstr ""
 "Modifier le code « PIN » nécessaire pour déverrouiller la carte et définir "
 "un nouveau code « PIN »."
 
-#: src/view/pgpcardwidget.cpp:270
-#, kde-format
-msgid "Create OpenPGP Key"
-msgstr "Créer une clé « OpenPGP »"
-
-#: src/view/pgpcardwidget.cpp:271
-#, kde-format
-msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr "Créer une clé « OpenPGP » pour les clés enregistrées sur la carte."
-
-#: src/view/pgpcardwidget.cpp:291
+#: src/view/pgpcardwidget.cpp:282
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "Carte v%1 « OpenPGP » inconnue"
 
-#: src/view/pgpcardwidget.cpp:292
+#: src/view/pgpcardwidget.cpp:283
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "Carte %1 OpenPGP v%2"
 
-#: src/view/pgpcardwidget.cpp:298 src/view/pgpcardwidget.cpp:300
+#: src/view/pgpcardwidget.cpp:289 src/view/pgpcardwidget.cpp:291
 #, kde-format
 msgid "not set"
 msgstr "non défini"
 
-#: src/view/pgpcardwidget.cpp:344
+#: src/view/pgpcardwidget.cpp:328
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "Génération de clés"
 
-#: src/view/pgpcardwidget.cpp:345
+#: src/view/pgpcardwidget.cpp:329
 #, kde-format
 msgid "This may take several minutes..."
 msgstr "Ceci peut prendre plusieurs minutes…"
 
-#: src/view/pgpcardwidget.cpp:360
+#: src/view/pgpcardwidget.cpp:344
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "Échec à la génération de la nouvelle clé : %1"
 
-#: src/view/pgpcardwidget.cpp:370
+#: src/view/pgpcardwidget.cpp:354
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "Enregistrer une sauvegarde de la clé de chiffrement"
 
-#: src/view/pgpcardwidget.cpp:370
+#: src/view/pgpcardwidget.cpp:354
 #, kde-format
 msgid "Backup Key"
 msgstr "Sauvegarde de la clé"
 
-#: src/view/pgpcardwidget.cpp:372
+#: src/view/pgpcardwidget.cpp:356
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
@@ -12434,20 +12404,20 @@ msgstr ""
 "Échec lors du déplacement de la sauvegarde. La clé de sauvegarde est "
 "toujours stockée sous : %1"
 
-#: src/view/pgpcardwidget.cpp:378
+#: src/view/pgpcardwidget.cpp:362
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "Une nouvelle clé a été générée avec succès pour cette carte."
 
-#: src/view/pgpcardwidget.cpp:378 src/view/pgpcardwidget.cpp:469
-#: src/view/pgpcardwidget.cpp:516
+#: src/view/pgpcardwidget.cpp:362 src/view/pgpcardwidget.cpp:453
+#: src/view/pgpcardwidget.cpp:500
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "Réussi"
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:376
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
@@ -12456,12 +12426,12 @@ msgstr ""
 "Les clés existantes sur cette carte seront <b>supprimées</b> et remplacées "
 "par les nouvelles clés."
 
-#: src/view/pgpcardwidget.cpp:397
+#: src/view/pgpcardwidget.cpp:381
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "Suppression de clé privée"
 
-#: src/view/pgpcardwidget.cpp:411
+#: src/view/pgpcardwidget.cpp:395
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -12471,69 +12441,69 @@ msgstr ""
 "Il vous est impossible de générer des clés sur cette carte mémoire car elle "
 "ne prend en charge aucun des algorithmes conformes."
 
-#: src/view/pgpcardwidget.cpp:428
+#: src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgid "Change cardholder"
 msgstr "Modifier le possesseur de la carte"
 
-#: src/view/pgpcardwidget.cpp:428
+#: src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgid "New name:"
 msgstr "Nouveau nom :"
 
-#: src/view/pgpcardwidget.cpp:434
+#: src/view/pgpcardwidget.cpp:418
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "Le caractère « < » ne peut être utilisé."
 
-#: src/view/pgpcardwidget.cpp:438
+#: src/view/pgpcardwidget.cpp:422
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "Les espaces doubles ne sont pas autorisés"
 
-#: src/view/pgpcardwidget.cpp:442
+#: src/view/pgpcardwidget.cpp:426
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "La taille du nom ne peut excéder 38 caractères."
 
-#: src/view/pgpcardwidget.cpp:465
+#: src/view/pgpcardwidget.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "Échec du changement de nom : %1"
 
-#: src/view/pgpcardwidget.cpp:469
+#: src/view/pgpcardwidget.cpp:453
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "Nom modifié avec succès."
 
-#: src/view/pgpcardwidget.cpp:480
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "Changer l'URL à laquelle on peut trouver la clé publique"
 
-#: src/view/pgpcardwidget.cpp:481
+#: src/view/pgpcardwidget.cpp:465
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "Nouvelle URL de clé publique :"
 
-#: src/view/pgpcardwidget.cpp:492
+#: src/view/pgpcardwidget.cpp:476
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "La taille de l'URL ne peut excéder 254 caractères."
 
-#: src/view/pgpcardwidget.cpp:512
+#: src/view/pgpcardwidget.cpp:496
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "Échec du changement d'URL : %1"
 
-#: src/view/pgpcardwidget.cpp:516
+#: src/view/pgpcardwidget.cpp:500
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
@@ -12945,6 +12915,18 @@ msgstr ""
 "Importer un certificat à partir d'un fichier. <nl/>Pour importer à partir "
 "d'un serveur de clés publiques, veuillez plutôt utiliser "
 "<interface>Rechercher sur le serveur</interface>."
+
+#~ msgid "&Quickguide"
+#~ msgstr "&Guide rapide"
+
+#~ msgid "&Group configuration"
+#~ msgstr "Configuration du &groupe"
+
+#~ msgid "Create OpenPGP Key"
+#~ msgstr "Créer une clé « OpenPGP »"
+
+#~ msgid "Create an OpenPGP key for the keys stored on the card."
+#~ msgstr "Créer une clé « OpenPGP » pour les clés enregistrées sur la carte."
 
 #~ msgid "The key hasn't changed."
 #~ msgstr "La clé n'a pas été modifiée."
@@ -13571,9 +13553,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Minimise le nombre d'étapes lors de la signature des courriels, utilise "
 #~ "les réglages prédéfinis par défaut tant qu'il n'y a pas de problèmes."
-
-#~ msgid "Quick Encrypt EMail"
-#~ msgstr "Chiffrement rapide des courriels"
 
 #~ msgid ""
 #~ "Minimize the number of steps when encrypting emails, use preset defaults "

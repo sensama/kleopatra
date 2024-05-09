@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:39+0000\n"
+"POT-Creation-Date: 2024-05-09 00:39+0000\n"
 "PO-Revision-Date: 2024-03-08 23:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -2330,8 +2330,8 @@ msgstr "請選擇金鑰要寫入到哪個卡片欄位："
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:386 src/view/pgpcardwidget.cpp:452
-#: src/view/pgpcardwidget.cpp:499
+#: src/view/pgpcardwidget.cpp:370 src/view/pgpcardwidget.cpp:436
+#: src/view/pgpcardwidget.cpp:483
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "找不到符合以下序號的 OpenPGP 卡片：%1"
@@ -2344,7 +2344,7 @@ msgstr "抱歉！這個金鑰無法被移轉到 OpenPGP 卡片上。"
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:395
+#: src/view/pgpcardwidget.cpp:379
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -3692,8 +3692,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "新增"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
-#: src/view/pgpcardwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:184
+#: src/view/pgpcardwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -8626,8 +8626,9 @@ msgstr "說明(&H)"
 
 #. i18n: ectx: Menu (help_more)
 #: src/kleopatra.rc:102
-#, kde-format
-msgid "&More documentation"
+#, fuzzy, kde-format
+#| msgid "&More documentation"
+msgid "&More Documentation"
 msgstr "更多說明文件(&M)"
 
 #. i18n: ectx: ToolBar (mainToolBar)
@@ -9053,9 +9054,10 @@ msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
 #: src/mainwindow.cpp:734
-#, kde-format
-msgid "&Quickguide"
-msgstr "快速指南(&Q)"
+#, fuzzy, kde-format
+#| msgid "Quick Encrypt EMail"
+msgid "&Quick Guide Encrypt and Sign"
+msgstr "快速加密電子郵件"
 
 #: src/mainwindow.cpp:735
 #, kde-format
@@ -9065,8 +9067,9 @@ msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:743
-#, kde-format
-msgid "&Password-based encryption"
+#, fuzzy, kde-format
+#| msgid "&Password-based encryption"
+msgid "&Password-based Encryption"
 msgstr "基於密碼的加密(&P)"
 
 #: src/mainwindow.cpp:744
@@ -9077,9 +9080,10 @@ msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:751
-#, kde-format
-msgid "&Group configuration"
-msgstr "群組設定(&G)"
+#, fuzzy, kde-format
+#| msgid "Certificate Groups"
+msgid "Certificate &Groups"
+msgstr "憑證群組"
 
 #: src/mainwindow.cpp:752
 #, kde-format
@@ -9089,8 +9093,9 @@ msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:761
-#, kde-format
-msgid "&Mail encryption in Outlook"
+#, fuzzy, kde-format
+#| msgid "&Mail encryption in Outlook"
+msgid "&Mail Encryption in Outlook"
 msgstr "Outlook 中的郵件加密(&M)"
 
 #: src/mainwindow.cpp:762
@@ -9114,8 +9119,9 @@ msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:781
-#, kde-format
-msgid "&Smartcard setup"
+#, fuzzy, kde-format
+#| msgid "&Smartcard setup"
+msgid "&Smartcard Setup"
 msgstr "智慧卡設定(&S)"
 
 #: src/mainwindow.cpp:782
@@ -9132,7 +9138,7 @@ msgstr "GnuPG 指令列(&L)"
 
 #: src/mainwindow.cpp:799
 #, kde-format
-msgid "Manual for VS-NfD approval (German)"
+msgid "Manual for VS-NfD Approval (German)"
 msgstr ""
 
 #: src/mainwindow.cpp:800
@@ -11165,7 +11171,7 @@ msgctxt "@label"
 msgid "Serial number:"
 msgstr "序號："
 
-#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:224
 #, kde-format
 msgid "Actions:"
 msgstr "動作："
@@ -11364,7 +11370,7 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "抱歉，我找不到指紋為 %1 的金鑰。"
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
 #: src/view/pivcardwidget.cpp:112
 #, kde-format
 msgid "Serial number:"
@@ -11521,18 +11527,18 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "簽署/加密筆記本"
 
-#: src/view/pgpcardwidget.cpp:179
+#: src/view/pgpcardwidget.cpp:178
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "卡片持有者："
 
-#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
+#: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgid "Change"
 msgstr "變更"
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:194
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -11540,148 +11546,138 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "公鑰網址："
 
-#: src/view/pgpcardwidget.cpp:216 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:215 src/view/pivcardwidget.cpp:122
 #, kde-format
 msgid "Keys:"
 msgstr "金鑰："
 
-#: src/view/pgpcardwidget.cpp:230
+#: src/view/pgpcardwidget.cpp:229
 #, kde-format
 msgid "Generate New Keys"
 msgstr "產生新的金鑰"
 
-#: src/view/pgpcardwidget.cpp:231
+#: src/view/pgpcardwidget.cpp:230
 #, kde-format
 msgid "Create a new primary key and generate subkeys on the card."
 msgstr "在卡片上建立新的主金鑰並產生子金鑰。"
 
-#: src/view/pgpcardwidget.cpp:236
+#: src/view/pgpcardwidget.cpp:235
 #, kde-format
 msgid "Change PIN"
 msgstr "變更 PIN 碼"
 
-#: src/view/pgpcardwidget.cpp:237
+#: src/view/pgpcardwidget.cpp:236
 #, kde-format
 msgid "Change the PIN required for using the keys on the smartcard."
 msgstr "變更要使用智慧卡上的金鑰前所需要的 PIN 碼。"
 
-#: src/view/pgpcardwidget.cpp:244
+#: src/view/pgpcardwidget.cpp:243
 #, kde-format
 msgid "Unblock Card"
 msgstr "解除鎖定卡片"
 
-#: src/view/pgpcardwidget.cpp:245
+#: src/view/pgpcardwidget.cpp:244
 #, kde-format
 msgid "Unblock the smartcard and set a new PIN."
 msgstr "解鎖智慧卡並設定新的 PIN 碼。"
 
-#: src/view/pgpcardwidget.cpp:252
+#: src/view/pgpcardwidget.cpp:251
 #, kde-format
 msgid "Change Admin PIN"
 msgstr "變更 Admin PIN 碼"
 
-#: src/view/pgpcardwidget.cpp:253
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgid "Change the PIN required for administrative operations."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:260
+#: src/view/pgpcardwidget.cpp:259
 #, kde-format
 msgid "Change Reset Code"
 msgstr "變更重設碼"
 
-#: src/view/pgpcardwidget.cpp:261
+#: src/view/pgpcardwidget.cpp:260
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgstr "變更需要用來解鎖智慧卡的 PIN 碼並設定新 PIN 碼。"
 
-#: src/view/pgpcardwidget.cpp:270
-#, kde-format
-msgid "Create OpenPGP Key"
-msgstr "建立 OpenPGP 金鑰"
-
-#: src/view/pgpcardwidget.cpp:271
-#, kde-format
-msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr "為卡片上儲存的金鑰建立一個 OpenPGP 金鑰。"
-
-#: src/view/pgpcardwidget.cpp:291
+#: src/view/pgpcardwidget.cpp:282
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "未知的 OpenPGP v%1 卡片"
 
-#: src/view/pgpcardwidget.cpp:292
+#: src/view/pgpcardwidget.cpp:283
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 卡片"
 
-#: src/view/pgpcardwidget.cpp:298 src/view/pgpcardwidget.cpp:300
+#: src/view/pgpcardwidget.cpp:289 src/view/pgpcardwidget.cpp:291
 #, kde-format
 msgid "not set"
 msgstr "未設定"
 
-#: src/view/pgpcardwidget.cpp:344
+#: src/view/pgpcardwidget.cpp:328
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "正在產生金鑰"
 
-#: src/view/pgpcardwidget.cpp:345
+#: src/view/pgpcardwidget.cpp:329
 #, kde-format
 msgid "This may take several minutes..."
 msgstr "這可能會花幾分鐘..."
 
-#: src/view/pgpcardwidget.cpp:360
+#: src/view/pgpcardwidget.cpp:344
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "產生新金鑰時失敗：%1"
 
-#: src/view/pgpcardwidget.cpp:370
+#: src/view/pgpcardwidget.cpp:354
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "儲存加密金鑰備份"
 
-#: src/view/pgpcardwidget.cpp:370
+#: src/view/pgpcardwidget.cpp:354
 #, kde-format
 msgid "Backup Key"
 msgstr "備份金鑰"
 
-#: src/view/pgpcardwidget.cpp:372
+#: src/view/pgpcardwidget.cpp:356
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr "移動備份失敗。備份金鑰仍然儲存於：%1"
 
-#: src/view/pgpcardwidget.cpp:378
+#: src/view/pgpcardwidget.cpp:362
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "已成功為這張卡片產生新金鑰。"
 
-#: src/view/pgpcardwidget.cpp:378 src/view/pgpcardwidget.cpp:469
-#: src/view/pgpcardwidget.cpp:516
+#: src/view/pgpcardwidget.cpp:362 src/view/pgpcardwidget.cpp:453
+#: src/view/pgpcardwidget.cpp:500
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "成功"
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:376
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr "這張卡片上現有的金鑰將被<b>刪除</b>並替換為新的金鑰。"
 
-#: src/view/pgpcardwidget.cpp:397
+#: src/view/pgpcardwidget.cpp:381
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "刪除私密金鑰"
 
-#: src/view/pgpcardwidget.cpp:411
+#: src/view/pgpcardwidget.cpp:395
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -11689,69 +11685,69 @@ msgid ""
 "of the compliant algorithms."
 msgstr "您無法在這張智慧卡上產生金鑰，因為它不支援任何合規的演算法。"
 
-#: src/view/pgpcardwidget.cpp:428
+#: src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgid "Change cardholder"
 msgstr "變更卡片持有者"
 
-#: src/view/pgpcardwidget.cpp:428
+#: src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgid "New name:"
 msgstr "新名稱："
 
-#: src/view/pgpcardwidget.cpp:434
+#: src/view/pgpcardwidget.cpp:418
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "不能使用 \"<\" 字元"
 
-#: src/view/pgpcardwidget.cpp:438
+#: src/view/pgpcardwidget.cpp:422
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "不允許雙重空白"
 
-#: src/view/pgpcardwidget.cpp:442
+#: src/view/pgpcardwidget.cpp:426
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "名稱大小不能超過 38 個字元。"
 
-#: src/view/pgpcardwidget.cpp:465
+#: src/view/pgpcardwidget.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "名稱變更失敗：%1"
 
-#: src/view/pgpcardwidget.cpp:469
+#: src/view/pgpcardwidget.cpp:453
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "名稱已成功變更。"
 
-#: src/view/pgpcardwidget.cpp:480
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "變更可以找到公鑰的網址"
 
-#: src/view/pgpcardwidget.cpp:481
+#: src/view/pgpcardwidget.cpp:465
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "新的公鑰網址："
 
-#: src/view/pgpcardwidget.cpp:492
+#: src/view/pgpcardwidget.cpp:476
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "網址大小不能超過 254 個字元。"
 
-#: src/view/pgpcardwidget.cpp:512
+#: src/view/pgpcardwidget.cpp:496
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "網址變更失敗：%1"
 
-#: src/view/pgpcardwidget.cpp:516
+#: src/view/pgpcardwidget.cpp:500
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
@@ -12146,6 +12142,18 @@ msgid ""
 msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
+
+#~ msgid "&Quickguide"
+#~ msgstr "快速指南(&Q)"
+
+#~ msgid "&Group configuration"
+#~ msgstr "群組設定(&G)"
+
+#~ msgid "Create OpenPGP Key"
+#~ msgstr "建立 OpenPGP 金鑰"
+
+#~ msgid "Create an OpenPGP key for the keys stored on the card."
+#~ msgstr "為卡片上儲存的金鑰建立一個 OpenPGP 金鑰。"
 
 #~ msgid "The key hasn't changed."
 #~ msgstr "此金鑰未變更。"
@@ -12681,9 +12689,6 @@ msgstr ""
 #~ "Minimize the number of steps when signing emails, use preset defaults "
 #~ "unless problems occur."
 #~ msgstr "將簽署電子郵件的步驟縮到最少，大部份都使用預設值，除非遇到問題"
-
-#~ msgid "Quick Encrypt EMail"
-#~ msgstr "快速加密電子郵件"
 
 #~ msgid ""
 #~ "Minimize the number of steps when encrypting emails, use preset defaults "

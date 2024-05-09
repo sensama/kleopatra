@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:39+0000\n"
+"POT-Creation-Date: 2024-05-09 00:39+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -2631,8 +2631,8 @@ msgstr "Söök bitte een vun disse Zertifikaten ut:"
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:386 src/view/pgpcardwidget.cpp:452
-#: src/view/pgpcardwidget.cpp:499
+#: src/view/pgpcardwidget.cpp:370 src/view/pgpcardwidget.cpp:436
+#: src/view/pgpcardwidget.cpp:483
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr ""
@@ -2645,7 +2645,7 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:395
+#: src/view/pgpcardwidget.cpp:379
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -4135,8 +4135,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "Nieg..."
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
-#: src/view/pgpcardwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:184
+#: src/view/pgpcardwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -9498,7 +9498,7 @@ msgstr "&Hülp"
 #. i18n: ectx: Menu (help_more)
 #: src/kleopatra.rc:102
 #, kde-format
-msgid "&More documentation"
+msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
@@ -9950,9 +9950,10 @@ msgid "gpg4win-compendium-en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:734
-#, kde-format
-msgid "&Quickguide"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Quick Encrypt EMail"
+msgid "&Quick Guide Encrypt and Sign"
+msgstr "Nettpost gau verslöteln"
 
 #: src/mainwindow.cpp:735
 #, kde-format
@@ -9964,7 +9965,7 @@ msgstr ""
 #: src/mainwindow.cpp:743
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
-msgid "&Password-based encryption"
+msgid "&Password-based Encryption"
 msgstr "Bloots för't &Verslöteln"
 
 #: src/mainwindow.cpp:744
@@ -9976,9 +9977,9 @@ msgstr ""
 
 #: src/mainwindow.cpp:751
 #, fuzzy, kde-format
-#| msgid "Show owner information"
-msgid "&Group configuration"
-msgstr "Eegner-Informatschonen wiesen"
+#| msgid "Certificate Dump"
+msgid "Certificate &Groups"
+msgstr "Zertifikaat-Utgaav"
 
 #: src/mainwindow.cpp:752
 #, kde-format
@@ -9988,9 +9989,10 @@ msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:761
-#, kde-format
-msgid "&Mail encryption in Outlook"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Encryption Options"
+msgid "&Mail Encryption in Outlook"
+msgstr "Verslöteloptschonen"
 
 #: src/mainwindow.cpp:762
 #, kde-format
@@ -10016,7 +10018,7 @@ msgstr ""
 #: src/mainwindow.cpp:781
 #, fuzzy, kde-format
 #| msgid "SmartCard"
-msgid "&Smartcard setup"
+msgid "&Smartcard Setup"
 msgstr "SmartKoort"
 
 #: src/mainwindow.cpp:782
@@ -10033,7 +10035,7 @@ msgstr ""
 
 #: src/mainwindow.cpp:799
 #, kde-format
-msgid "Manual for VS-NfD approval (German)"
+msgid "Manual for VS-NfD Approval (German)"
 msgstr ""
 
 #: src/mainwindow.cpp:800
@@ -12230,7 +12232,7 @@ msgctxt "@label"
 msgid "Serial number:"
 msgstr "Reegnummer"
 
-#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:225
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:224
 #, fuzzy, kde-format
 #| msgid "Actions"
 msgid "Actions:"
@@ -12450,7 +12452,7 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
 #: src/view/pivcardwidget.cpp:112
 #, fuzzy, kde-format
 #| msgid "Serial number"
@@ -12623,19 +12625,19 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Ünnerschrieven && verslöteln"
 
-#: src/view/pgpcardwidget.cpp:179
+#: src/view/pgpcardwidget.cpp:178
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
+#: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
 msgid "Change"
 msgstr "Slötelsatz ännern..."
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:194
 #, fuzzy, kde-format
 #| msgid "Subkey Usage:"
 msgctxt ""
@@ -12644,158 +12646,147 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "Ünnerslötel-Bruuk:"
 
-#: src/view/pgpcardwidget.cpp:216 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:215 src/view/pivcardwidget.cpp:122
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
 msgid "Keys:"
 msgstr "Ünnerslötels"
 
-#: src/view/pgpcardwidget.cpp:230
+#: src/view/pgpcardwidget.cpp:229
 #, fuzzy, kde-format
 #| msgid "Generating key"
 msgid "Generate New Keys"
 msgstr "Slötel warrt opstellt"
 
-#: src/view/pgpcardwidget.cpp:231
+#: src/view/pgpcardwidget.cpp:230
 #, kde-format
 msgid "Create a new primary key and generate subkeys on the card."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:236
+#: src/view/pgpcardwidget.cpp:235
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
 msgid "Change PIN"
 msgstr "Slötelsatz ännern..."
 
-#: src/view/pgpcardwidget.cpp:237
+#: src/view/pgpcardwidget.cpp:236
 #, kde-format
 msgid "Change the PIN required for using the keys on the smartcard."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:244
+#: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "Unblock Card"
 msgstr "All utsöken"
 
-#: src/view/pgpcardwidget.cpp:245
+#: src/view/pgpcardwidget.cpp:244
 #, kde-format
 msgid "Unblock the smartcard and set a new PIN."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:252
+#: src/view/pgpcardwidget.cpp:251
 #, kde-format
 msgid "Change Admin PIN"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:253
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgid "Change the PIN required for administrative operations."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:260
+#: src/view/pgpcardwidget.cpp:259
 #, kde-format
 msgid "Change Reset Code"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:261
+#: src/view/pgpcardwidget.cpp:260
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:270
-#, fuzzy, kde-format
-#| msgid "Create a personal OpenPGP key pair"
-msgid "Create OpenPGP Key"
-msgstr "En persöönlich OpenPGP-Slötelpoor opstellen"
-
-#: src/view/pgpcardwidget.cpp:271
-#, kde-format
-msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr ""
-
-#: src/view/pgpcardwidget.cpp:291
+#: src/view/pgpcardwidget.cpp:282
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:292
+#: src/view/pgpcardwidget.cpp:283
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:298 src/view/pgpcardwidget.cpp:300
+#: src/view/pgpcardwidget.cpp:289 src/view/pgpcardwidget.cpp:291
 #, fuzzy, kde-format
 #| msgid "Cannot send data"
 msgid "not set"
 msgstr "Daten laat sik nich loosstüern"
 
-#: src/view/pgpcardwidget.cpp:344
+#: src/view/pgpcardwidget.cpp:328
 #, fuzzy, kde-format
 #| msgid "Generating key"
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "Slötel warrt opstellt"
 
-#: src/view/pgpcardwidget.cpp:345
+#: src/view/pgpcardwidget.cpp:329
 #, kde-format
 msgid "This may take several minutes..."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:360
+#: src/view/pgpcardwidget.cpp:344
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "%1 lett sik nich utföhren: %2"
 
-#: src/view/pgpcardwidget.cpp:370
+#: src/view/pgpcardwidget.cpp:354
 #, fuzzy, kde-format
 #| msgid "Can be used for encryption"
 msgid "Save backup of encryption key"
 msgstr "För't Verslöteln to bruken"
 
-#: src/view/pgpcardwidget.cpp:370
+#: src/view/pgpcardwidget.cpp:354
 #, kde-format
 msgid "Backup Key"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:372
+#: src/view/pgpcardwidget.cpp:356
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:378
+#: src/view/pgpcardwidget.cpp:362
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:378 src/view/pgpcardwidget.cpp:469
-#: src/view/pgpcardwidget.cpp:516
+#: src/view/pgpcardwidget.cpp:362 src/view/pgpcardwidget.cpp:453
+#: src/view/pgpcardwidget.cpp:500
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:376
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:397
+#: src/view/pgpcardwidget.cpp:381
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "Privaatslötel wegdoon"
 
-#: src/view/pgpcardwidget.cpp:411
+#: src/view/pgpcardwidget.cpp:395
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -12803,44 +12794,44 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:428
+#: src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgid "Change cardholder"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:428
+#: src/view/pgpcardwidget.cpp:412
 #, fuzzy, kde-format
 #| msgid "Real name:"
 msgid "New name:"
 msgstr "Rejell Naam:"
 
-#: src/view/pgpcardwidget.cpp:434
+#: src/view/pgpcardwidget.cpp:418
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:438
+#: src/view/pgpcardwidget.cpp:422
 #, fuzzy, kde-format
 #| msgid "Only absolute file paths are allowed"
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "Bloots afsoluut Dateipadden tolaten"
 
-#: src/view/pgpcardwidget.cpp:442
+#: src/view/pgpcardwidget.cpp:426
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:465
+#: src/view/pgpcardwidget.cpp:449
 #, fuzzy, kde-format
 #| msgid "Verification failed: %1."
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "Pröven fehlslaan: %1"
 
-#: src/view/pgpcardwidget.cpp:469
+#: src/view/pgpcardwidget.cpp:453
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "User-ID successfully added."
@@ -12848,31 +12839,31 @@ msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "Bruker-ID mit Spood toföögt."
 
-#: src/view/pgpcardwidget.cpp:480
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:481
+#: src/view/pgpcardwidget.cpp:465
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgid "New pubkey URL:"
 msgstr "Nieg Ünnerslötels:"
 
-#: src/view/pgpcardwidget.cpp:492
+#: src/view/pgpcardwidget.cpp:476
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:512
+#: src/view/pgpcardwidget.cpp:496
 #, fuzzy, kde-format
 #| msgid "Signing failed: %1"
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "Ünnerschrieven fehlslaan: %1"
 
-#: src/view/pgpcardwidget.cpp:516
+#: src/view/pgpcardwidget.cpp:500
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "User-ID successfully added."
@@ -13286,6 +13277,16 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Show owner information"
+#~ msgid "&Group configuration"
+#~ msgstr "Eegner-Informatschonen wiesen"
+
+#, fuzzy
+#~| msgid "Create a personal OpenPGP key pair"
+#~ msgid "Create OpenPGP Key"
+#~ msgstr "En persöönlich OpenPGP-Slötelpoor opstellen"
 
 #, fuzzy
 #~| msgid "Secret keys unchanged:"
@@ -13863,9 +13864,6 @@ msgstr ""
 #~ msgstr ""
 #~ "De Tall vun Schreed bi't Ünnerschrieven vun Nettbreven so lütt as "
 #~ "mööglich maken; Vörinstellen bruken, utbenahmen dat gifft Problemen"
-
-#~ msgid "Quick Encrypt EMail"
-#~ msgstr "Nettpost gau verslöteln"
 
 #~ msgid ""
 #~ "Minimize the number of steps when encrypting emails, use preset defaults "

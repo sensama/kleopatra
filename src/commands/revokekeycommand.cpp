@@ -10,11 +10,10 @@
 
 #include <config-kleopatra.h>
 
-#include "kleopatra_debug.h"
-
 #include "command_p.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
 #include "dialogs/revokekeydialog.h"
+#include "kleopatra_debug.h"
 #include "revokekeycommand.h"
 
 #include <Libkleo/Formatting>
@@ -60,11 +59,13 @@ private:
     std::unique_ptr<QGpgME::RevokeKeyJob> startJob();
     void onJobResult(const Error &err);
     void showError(const Error &err);
+    void exportFinished(const Error &error, const QByteArray &data);
 
 private:
     Key key;
     QPointer<RevokeKeyDialog> dialog;
     QPointer<QGpgME::RevokeKeyJob> job;
+    bool upload = false;
 };
 
 RevokeKeyCommand::Private *RevokeKeyCommand::d_func()
@@ -196,6 +197,7 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
     connect(revokeJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 
     const auto description = descriptionToLines(dialog->description());
+    upload = dialog->uploadToKeyserver();
     const GpgME::Error err = revokeJob->start(key, dialog->reason(), description);
     if (err) {
         showError(err);
@@ -223,55 +225,7 @@ void RevokeKeyCommand::Private::onJobResult(const Error &err)
     job->setExportFlags(GPGME_EXPORT_MODE_MINIMAL);
 
     connect(job, &QGpgME::ExportJob::result, q, [this](const auto &error, const auto &data) {
-        if (error.isCanceled()) {
-            finished();
-            return;
-        }
-
-        if (error) {
-            information(i18nc("@info", "<para>The certificate was revoked successfully."));
-            finished();
-            return;
-        }
-
-        auto name = Formatting::prettyName(key);
-        if (name.isEmpty()) {
-            name = Formatting::prettyEMail(key);
-        }
-
-        auto filename = QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.shortKeyID()));
-        const auto dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-        if (QFileInfo::exists(QStringLiteral("%1/%2").arg(dir, filename))) {
-            filename = KFileUtils::suggestName(QUrl::fromLocalFile(dir), filename);
-        }
-        const auto path = QStringLiteral("%1/%2").arg(dir, filename);
-        QFile file(path);
-        file.open(QIODevice::WriteOnly);
-        file.write(data);
-        file.close();
-
-        if (haveKeyserverConfigured()) {
-            const auto code = KMessageBox::questionTwoActions(
-                parentWidgetOrView(),
-                xi18nc("@info",
-                       "<para>The certificate was revoked successfully.</para><para>The revoked certificate was exported to "
-                       "<filename>%1</filename></para><para>To make sure that your contacts receive the revoked certificate, "
-                       "you can upload it to a keyserver now.</para>",
-                       path),
-                i18nc("@title:window", "Key Revoked"),
-                KGuiItem(i18nc("@action:button Upload a certificate", "Upload"), QIcon::fromTheme(QStringLiteral("view-certificate-export-server"))),
-                KStandardGuiItem::close());
-            if (code == KMessageBox::PrimaryAction) {
-                auto const cmd = new Commands::ExportOpenPGPCertsToServerCommand(key);
-                cmd->start();
-            }
-        } else {
-            information(xi18nc("@info",
-                               "<para>The certificate was revoked successfully.</para><para>The revoked certificate was exported to "
-                               "<filename>%1</filename></para>",
-                               path));
-        }
-        finished();
+        exportFinished(error, data);
     });
     job->start({QString::fromLatin1(key.primaryFingerprint())});
 }
@@ -305,6 +259,71 @@ void RevokeKeyCommand::doStart()
 void RevokeKeyCommand::doCancel()
 {
     d->cancel();
+}
+
+void RevokeKeyCommand::Private::exportFinished(const Error &error, const QByteArray &data)
+{
+    if (error.isCanceled()) {
+        finished();
+        return;
+    }
+
+    if (error) {
+        information(i18nc("@info", "The certificate was revoked successfully."));
+        finished();
+        return;
+    }
+
+    auto name = Formatting::prettyName(key);
+    if (name.isEmpty()) {
+        name = Formatting::prettyEMail(key);
+    }
+
+    auto filename = QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.shortKeyID()));
+    const auto dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    if (QFileInfo::exists(QStringLiteral("%1/%2").arg(dir, filename))) {
+        filename = KFileUtils::suggestName(QUrl::fromLocalFile(dir), filename);
+    }
+    const auto path = QStringLiteral("%1/%2").arg(dir, filename);
+    QFile file(path);
+    if (!file.open(QIODevice::WriteOnly)) {
+        information(i18nc("@info", "The certificate was revoked successfully."));
+        finished();
+        return;
+    }
+    file.write(data);
+    file.close();
+
+    if (upload) {
+        auto const cmd = new Commands::ExportOpenPGPCertsToServerCommand(key);
+        cmd->setInteractive(false);
+        cmd->start();
+        connect(cmd, &Command::finished, q, [cmd, path, this]() {
+            if (cmd->success()) {
+                information(xi18nc("@info",
+                                   "<para>The certificate was revoked successfully and uploaded to the configured keyserver.</para><para>The revoked "
+                                   "certificate was exported to "
+                                   "<filename>%1</filename>.</para><para>You can send this file to your communication partners with the instruction to import "
+                                   "it. Usually, you would send it together with your new certificate.</para>",
+                                   path));
+            } else {
+                information(xi18nc("@info",
+                                   "<para>The certificate was revoked successfully.</para><para>The revoked certificate was exported to "
+                                   "<filename>%1</filename></para><para>You can send this file to your communication partners with the instruction to import "
+                                   "it. Usually, you would send it together with your new certificate.</para>",
+                                   path));
+            }
+
+            finished();
+        });
+    } else {
+        information(xi18nc("@info",
+                           "<para>The certificate was revoked successfully.</para><para>The revoked certificate was exported to "
+                           "<filename>%1</filename></para><para>You can send this file to your communication partners with the instruction to import it. "
+                           "Usually, you would send it together with your new certificate.</para>",
+                           path));
+        finished();
+    }
 }
 
 #undef d

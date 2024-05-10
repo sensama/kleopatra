@@ -15,6 +15,7 @@
 #include "view/errorlabel.h"
 
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -23,6 +24,7 @@
 
 #include <QApplication>
 #include <QButtonGroup>
+#include <QCheckBox>
 #include <QDialogButtonBox>
 #include <QFocusEvent>
 #include <QGroupBox>
@@ -80,6 +82,7 @@ class RevokeKeyDialog::Private
         TextEdit *description = nullptr;
         ErrorLabel *descriptionError = nullptr;
         QDialogButtonBox *buttonBox = nullptr;
+        QCheckBox *keyserverCheckbox = nullptr;
     } ui;
 
     Key key;
@@ -116,6 +119,10 @@ public:
             q->resize(q->size().width(), std::max(q->sizeHint().height() + expander->contentHeight() + 20, q->size().height()));
         });
         expander->setContentLayout(reasonLayout);
+
+        ui.keyserverCheckbox = new QCheckBox(i18nc("@option:check", "Upload revoked certificate to keyserver"));
+        ui.keyserverCheckbox->setEnabled(haveKeyserverConfigured());
+        mainLayout->addWidget(ui.keyserverCheckbox);
 
         mainLayout->addWidget(expander);
 
@@ -307,6 +314,11 @@ QString RevokeKeyDialog::description() const
     static const QRegularExpression whitespaceAtEndOfLine{QStringLiteral(R"([ \t\r]+\n)")};
     static const QRegularExpression trailingWhitespace{QStringLiteral(R"(\s*$)")};
     return d->ui.description->toPlainText().remove(whitespaceAtEndOfLine).remove(trailingWhitespace);
+}
+
+bool RevokeKeyDialog::uploadToKeyserver() const
+{
+    return d->ui.keyserverCheckbox->isChecked();
 }
 
 #include "revokekeydialog.moc"

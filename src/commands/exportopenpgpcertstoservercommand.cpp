@@ -106,10 +106,11 @@ bool ExportOpenPGPCertsToServerCommand::preStartHook(QWidget *parent) const
                         d->keys().size()));
         return false;
     }
-    if (!confirmExport(d->keys(), parent)) {
+    if (interactive() && !confirmExport(d->keys(), parent)) {
         return false;
     }
-    return KMessageBox::warningContinueCancel(parent,
+    return !interactive()
+        || KMessageBox::warningContinueCancel(parent,
                                               xi18nc("@info",
                                                      "<para>When OpenPGP certificates have been exported to a public directory server, "
                                                      "it is nearly impossible to remove them again.</para>"

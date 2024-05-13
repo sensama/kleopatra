@@ -164,6 +164,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
     const bool havePublicKeys = !KeyCache::instance()->keys().empty();
     const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
+    const bool publicKeyOnly = FileOperationsPreferences().publicKeyEncryptionOnly();
 
     /* The signature selection */
     {
@@ -258,7 +259,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
                                         "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                         "Anyone who has the password can read the data without any secret key. "
                                         "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
-        d->mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
+        d->mSymmetric->setChecked((symmetricOnly || !havePublicKeys) && !publicKeyOnly);
+        d->mSymmetric->setEnabled(!publicKeyOnly);
         encBoxLay->addWidget(d->mSymmetric);
 
         // Connect it
@@ -739,9 +741,10 @@ void SignEncryptWidget::setEncryptionChecked(bool checked)
         const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
         const bool havePublicKeys = !KeyCache::instance()->keys().empty();
         const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
+        const bool publicKeyOnly = FileOperationsPreferences().publicKeyEncryptionOnly();
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
         d->mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
-        d->mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
+        d->mSymmetric->setChecked((symmetricOnly || !havePublicKeys) && !publicKeyOnly);
     } else {
         d->mEncSelfChk->setChecked(false);
         d->mEncOtherChk->setChecked(false);

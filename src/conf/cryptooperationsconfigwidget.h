@@ -54,6 +54,7 @@ private:
     QCheckBox *mASCIIArmorCB = nullptr;
     QCheckBox *mTmpDirCB = nullptr;
     QCheckBox *mSymmetricOnlyCB = nullptr;
+    QCheckBox *mPublicKeyOnlyCB = nullptr;
     Kleo::LabelledWidget<QComboBox> mChecksumDefinitionCB;
     Kleo::LabelledWidget<QComboBox> mArchiveDefinitionCB;
     QPushButton *mApplyBtn = nullptr;

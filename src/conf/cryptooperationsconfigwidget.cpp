@@ -69,6 +69,20 @@ void CryptoOperationsConfigWidget::setupGui()
     mTmpDirCB->setToolTip(i18nc("@info", "Set this option to avoid using the users temporary directory."));
     mSymmetricOnlyCB = new QCheckBox(i18n("Use symmetric encryption only."));
     mSymmetricOnlyCB->setToolTip(i18nc("@info", "Set this option to disable public key encryption."));
+    mPublicKeyOnlyCB = new QCheckBox(i18n("Use public-key encryption only."));
+    mPublicKeyOnlyCB->setToolTip(i18nc("@info", "Set this option to disable password-based encryption."));
+
+    connect(mSymmetricOnlyCB, &QCheckBox::toggled, this, [this]() {
+        if (mSymmetricOnlyCB->isChecked()) {
+            mPublicKeyOnlyCB->setChecked(false);
+        }
+    });
+
+    connect(mPublicKeyOnlyCB, &QCheckBox::toggled, this, [this]() {
+        if (mPublicKeyOnlyCB->isChecked()) {
+            mSymmetricOnlyCB->setChecked(false);
+        }
+    });
 
     baseLay->addWidget(mPGPFileExtCB);
     baseLay->addWidget(mTreatP7mEmailCB);
@@ -77,6 +91,7 @@ void CryptoOperationsConfigWidget::setupGui()
     baseLay->addWidget(mASCIIArmorCB);
     baseLay->addWidget(mTmpDirCB);
     baseLay->addWidget(mSymmetricOnlyCB);
+    baseLay->addWidget(mPublicKeyOnlyCB);
 
     auto comboLay = new QGridLayout;
 
@@ -114,6 +129,7 @@ void CryptoOperationsConfigWidget::defaults()
     filePrefs.setAddASCIIArmor(filePrefs.findItem(QStringLiteral("AddASCIIArmor"))->getDefault().toBool());
     filePrefs.setDontUseTmpDir(filePrefs.findItem(QStringLiteral("DontUseTmpDir"))->getDefault().toBool());
     filePrefs.setSymmetricEncryptionOnly(filePrefs.findItem(QStringLiteral("SymmetricEncryptionOnly"))->getDefault().toBool());
+    filePrefs.setPublicKeyEncryptionOnly(filePrefs.findItem(QStringLiteral("PublicKeyEncryptionOnly"))->getDefault().toBool());
     filePrefs.setArchiveCommand(filePrefs.findItem(QStringLiteral("ArchiveCommand"))->getDefault().toString());
 
     ClassifyConfig classifyConfig;
@@ -141,6 +157,8 @@ void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &f
     mTmpDirCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("DontUseTmpDir")));
     mSymmetricOnlyCB->setChecked(filePrefs.symmetricEncryptionOnly());
     mSymmetricOnlyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("SymmetricEncryptionOnly")));
+    mPublicKeyOnlyCB->setChecked(filePrefs.publicKeyEncryptionOnly());
+    mPublicKeyOnlyCB->setEnabled(!filePrefs.isPublicKeyEncryptionOnlyImmutable());
     mTreatP7mEmailCB->setChecked(classifyConfig.p7mWithoutExtensionAreEmail());
     mTreatP7mEmailCB->setEnabled(!classifyConfig.isP7mWithoutExtensionAreEmailImmutable());
 
@@ -201,6 +219,7 @@ void CryptoOperationsConfigWidget::save()
     filePrefs.setAddASCIIArmor(mASCIIArmorCB->isChecked());
     filePrefs.setDontUseTmpDir(mTmpDirCB->isChecked());
     filePrefs.setSymmetricEncryptionOnly(mSymmetricOnlyCB->isChecked());
+    filePrefs.setPublicKeyEncryptionOnly(mPublicKeyOnlyCB->isChecked());
 
     Settings settings;
     const int idx = mChecksumDefinitionCB.widget()->currentIndex();

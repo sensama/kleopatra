@@ -26,6 +26,9 @@
 #include <commands/reloadkeyscommand.h>
 #include <commands/selftestcommand.h>
 
+#ifdef Q_OS_WIN
+#include "conf/kmessageboxdontaskagainstorage.h"
+#endif
 #include "utils/kuniqueservice.h"
 #include "utils/userinfo.h"
 #include <Libkleo/GnuPG>
@@ -289,6 +292,11 @@ int main(int argc, char **argv)
         }
         STARTUP_TIMING << "new instance created";
     }
+
+#ifdef Q_OS_WIN
+    auto messageBoxConfigStorage = std::make_unique<KMessageBoxDontAskAgainConfigStorage>();
+    KMessageBox::setDontShowAgainInterface(messageBoxConfigStorage.get());
+#endif
 
     rc = app.exec();
 

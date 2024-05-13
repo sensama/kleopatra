@@ -543,9 +543,14 @@ set(_kleopatra_SRCS
 
 if(WIN32)
   configure_file (versioninfo.rc.in versioninfo.rc)
-  set(_kleopatra_SRCS ${CMAKE_CURRENT_BINARY_DIR}/versioninfo.rc ${_kleopatra_SRCS})
   configure_file (kleopatra.w32-manifest.in kleopatra.w32-manifest)
-  set(_kleopatra_SRCS ${CMAKE_CURRENT_BINARY_DIR}/kleopatra.w32-manifest ${_kleopatra_SRCS})
+  set(_kleopatra_SRCS
+    ${CMAKE_CURRENT_BINARY_DIR}/kleopatra.w32-manifest
+    ${CMAKE_CURRENT_BINARY_DIR}/versioninfo.rc
+    conf/kmessageboxdontaskagainstorage.cpp
+    conf/kmessageboxdontaskagainstorage.h
+    ${_kleopatra_SRCS}
+  )
 endif()
 
 set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp conf/kleopageconfigdialog.h ${_kleopatra_SRCS})

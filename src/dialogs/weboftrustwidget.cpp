@@ -19,11 +19,13 @@
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/TreeView>
 #include <Libkleo/UserIDListModel>
+#include <Libkleo/UserIDListProxyModel>
 
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSeparator>
 
+#include <QCheckBox>
 #include <QDialogButtonBox>
 #include <QHeaderView>
 #include <QLabel>
@@ -67,6 +69,7 @@ class WebOfTrustWidget::Private
 private:
     GpgME::Key key;
     UserIDListModel certificationsModel;
+    UserIDListProxyModel proxyModel;
     QGpgME::KeyListJob *keyListJob = nullptr;
     TreeView *certificationsTV = nullptr;
     QAction *detailsAction = nullptr;
@@ -75,6 +78,7 @@ private:
     QAction *fetchAction = nullptr;
     QLabel *notAvailableLabel = nullptr;
     QPushButton *moreButton = nullptr;
+    QCheckBox *showOnlyOwnCheck = nullptr;
 
 public:
     Private(WebOfTrustWidget *qq)
@@ -84,9 +88,11 @@ public:
         auto vLay = new QVBoxLayout(q);
         vLay->setContentsMargins({});
 
+        proxyModel.setSourceModel(&certificationsModel);
+
         certificationsTV = new TreeView{q};
         certificationsTV->setAccessibleName(i18n("User IDs and certifications"));
-        certificationsTV->setModel(&certificationsModel);
+        certificationsTV->setModel(&proxyModel);
         certificationsTV->setAllColumnsShowFocus(false);
         certificationsTV->setSelectionMode(QAbstractItemView::SingleSelection);
         if (!Tags::tagsEnabled()) {
@@ -137,6 +143,10 @@ public:
             menu->popup(moreButton->mapToGlobal(QPoint()));
         });
 
+        showOnlyOwnCheck = new QCheckBox(i18nc("label:checkbox", "Show only my own certifications"));
+        bbox->addWidget(showOnlyOwnCheck);
+        connect(showOnlyOwnCheck, &QCheckBox::toggled, &proxyModel, &UserIDListProxyModel::setShowOnlyOwnCertifications);
+
         bbox->addStretch(1);
 
         vLay->addLayout(bbox);
@@ -156,12 +166,12 @@ public:
 
     GpgME::UserID selectedUserID()
     {
-        return certificationsModel.userID(certificationsTV->currentIndex());
+        return proxyModel.userID(certificationsTV->currentIndex());
     }
 
     GpgME::UserID::Signature selectedCertification()
     {
-        return certificationsModel.signature(certificationsTV->currentIndex());
+        return proxyModel.signature(certificationsTV->currentIndex());
     }
 
     void certificationDblClicked()
@@ -295,9 +305,8 @@ public:
 
     void contextMenuRequested(const QPoint &p)
     {
-        const auto index = certificationsTV->indexAt(p);
-        const auto userID = certificationsModel.userID(index);
-        const auto signature = certificationsModel.signature(index);
+        const auto userID = proxyModel.userID(certificationsTV->indexAt(p));
+        const auto signature = proxyModel.signature(certificationsTV->indexAt(p));
 
         if (userID.isNull() && signature.isNull()) {
             return;

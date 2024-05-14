@@ -1,0 +1,4004 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kleopatra "<application
+>Kleopatra</application
+>">
+  <!ENTITY uiserver "UiServer">
+  <!ENTITY kwatchgnupg "<application
+>KWatchGnuPG</application
+>">
+  <!ENTITY gpgsm "<application
+>GpgSM</application
+>">
+  <!ENTITY gnupg "<application
+>GnuPG</application
+>">
+  <!ENTITY gpg "<application
+>GPG</application
+>">
+  <!ENTITY gpgme "<application
+>GpgME</application
+>"
+> <!--### there's no <library
+>-->
+  <!ENTITY gpgconf "<application
+>GpgConf</application
+>">
+  <!ENTITY gpgagent "<application
+>GpgAgent</application
+>">
+  <!ENTITY dirmngr "<application
+>DirMngr</application
+>">
+  <!ENTITY scdaemon "<application
+>SCDaemon</application
+>">
+  <!ENTITY pinentry "<application
+>PinEntry</application
+>">
+  <!ENTITY kappname "&kleopatra;">
+  <!ENTITY package "kdepim">
+  <!ENTITY ldap "<acronym
+>LDAP</acronym
+>">
+  <!ENTITY ldaps "<acronym
+>LDAPS</acronym
+>">
+  <!ENTITY http "<acronym
+>HTTP</acronym
+>">
+  <!ENTITY smime "<acronym
+>S/MIME</acronym
+>">
+  <!ENTITY openpgp "<acronym
+>OpenPGP</acronym
+>">
+  <!ENTITY ascii "<acronym
+>ASCII</acronym
+>">
+  <!ENTITY der "<acronym
+>DER</acronym
+>">
+  <!ENTITY ssl "<acronym
+>SSL</acronym
+>">
+  <!ENTITY x509 "<acronym
+>X.509</acronym
+>">
+  <!ENTITY crl "<acronym
+>CRL</acronym
+>">
+  <!ENTITY ocsp "<acronym
+>OCSP</acronym
+>">
+  <!ENTITY NA "<acronym
+>N/A</acronym
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % French "INCLUDE">
+
+  <!ENTITY dn "<acronym
+>DN</acronym
+>">
+  <!ENTITY ca "<acronym
+>CA</acronym
+>">
+]>
+
+<book id="kleopatra" lang="&language;">
+
+<bookinfo id="kleopatrainfo">
+<title
+>Manuel de &kleopatra;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+><email
+>marc@kdab.net</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <contrib
+>Développeur</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <affiliation
+> <address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+<contrib
+>Développeur</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Matthias Kalle</firstname
+> <surname
+>Dalheimer</surname
+> <contrib
+>Développeur</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Jesper</firstname
+> <surname
+>Pedersen</surname
+> <affiliation
+> <address
+>&Jesper.Pedersen.mail;</address>
+</affiliation>
+<contrib
+>Développeur</contrib>
+</othercredit>
+<othercredit role="developer"
+><firstname
+>Daniel</firstname
+> <surname
+>Molkentin</surname
+> <affiliation
+> <address
+>&Daniel.Molkentin.mail;</address>
+</affiliation>
+<contrib
+>Développeur</contrib>
+</othercredit>
+
+&traducteurJoelleCornavin; &traducteurRobinGuitton; 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>27/04/2010</date>
+<releaseinfo
+>2.1.1 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+<para
+>&kleopatra; est un outil pour gérer les certificats <ulink url="http://fr.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> et <ulink url="http://fr.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+>. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Kapp</keyword>
+<keyword
+>X509</keyword>
+<keyword
+>OpenPGP</keyword>
+<keyword
+>PGP</keyword>
+<keyword
+>LDAP</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>certificat</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Introduction</title>
+
+<para
+>&kleopatra; est l'outil de &kde; permettant la gestion des certificats <ulink url="http://fr.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> et <ulink url="http://fr.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+> dans les trousseaux <ulink url="http://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+>&gpgsm;</ulink
+> et <ulink url="http://fr.wikipedia.org/wiki/GNU_Privacy_Guard"
+>&gpg;</ulink
+>. Il permet aussi de recevoir les certificats depuis &ldap; et d'autres serveurs de certificats.</para>
+
+<para
+>Vous pouvez démarrer &kleopatra; depuis le menu <menuchoice
+><guimenu
+>Outils</guimenu
+> <guimenuitem
+>Gestionnaire des certificats</guimenuitem
+></menuchoice
+> de &kmail; aussi bien qu'en ligne de commande. L'exécutable &kleopatra; est appelé <userinput
+><command
+>kleopatra</command
+></userinput
+>.</para>
+
+<note
+><para
+>Ce programme tire son nom de Cléopâtre, une célèbre pharaonne égyptienne qui vivait du temps de Jules César avec qui elle eu un enfant, Caeserion, non reconnu comme son héritier.</para>
+
+<para
+>Le nom de ce programme a été choisi car provenant des <ulink url="http://www.gnupg.org/aegypten2/"
+>Projets « &Auml;gypten » </ulink
+> (&Auml;gypten signifie « Égypte » en Allemand). &kleopatra; est l'orthographe allemande de Cléopâtre.</para
+></note>
+
+</chapter>
+
+<chapter id="functions"
+><title
+>Fonctions principales</title>
+
+<sect1 id="functions-view"
+><title
+>Afficher le trousseau local</title>
+
+<!-- Viewing and Refreshing, also Validation -->
+
+<para
+>La fonction principale de &kleopatra; est d'afficher et de modifier le contenu du trousseau local, similaire au concept des trousseaux de clés de &gpg;, quoiqu'il ne faille pas trop forcer l'analogie.</para>
+
+<para
+>La fenêtre principale se compose de la grande zone de listage des clés se composant de plusieurs onglets, la barre de menus et la <link linkend="functions-search"
+>barre de recherche</link
+> en haut, ainsi que d'une barre d'état en bas.</para>
+
+<para
+>Chaque ligne de la liste des clés correspond à un certificat, identifié par ce qu'on appelle le <guilabel
+>&dn; du sujet</guilabel
+>. &dn; est un acronyme pour « Nom Distinct » (<foreignphrase
+>Distinguished Name</foreignphrase
+>), un identifiant hiérarchique, tout comme l'emplacement d'un système de fichiers avec une syntaxe inhabituelle, censé identifier globalement et de façon unique un certificat donné.</para>
+
+<para
+>Pour être valables, donc utilisables, les clés (publiques) doivent être signées par une &ca; (Autorité de certification, <foreignphrase
+>Certification Authority</foreignphrase
+>). Ces signatures sont appelées certificats, mais d'ordinaire les termes <quote
+>certificat</quote
+> et <quote
+>clé (publique)</quote
+> s'utilisent de manière interchangeable : en conséquence, nous ne ferons pas de distinction entre elles dans ce manuel, sauf indication explicite.</para>
+
+<para
+>Les &ca;s doivent à leur tour être signées par d'autres &ca;s pour être valables. Naturellement, l'opération doit prendre fin quelque part, de façon que le &ca; de premier niveau (&ca; racine) signe sa clé avec elle-même (on parle alors d'auto-signature). Il faut donc affecter manuellement une validité (communément dénommée « confiance ») aux certificats racines, &pex; après avoir comparé l'empreinte numérique avec celle se trouvant sur le site Internet de la &ca;. Cette tâche est généralement dévolue à l'administrateur système ou au fabricant d'un produit faisant intervenir des certificats, mais peut être effectuée par l'utilisateur au moyen de l'interface en ligne de commande de &gpgsm;.</para>
+
+<para
+>Pour voir lesquels des certificats sont des certificats racines, passez en mode liste de clés hiérarchique avec <xref linkend="view-hierarchical-key-list"/>.</para>
+
+<para
+>Vous pouvez voir les détails d'un certificat donné en double-cliquant dessus ou à l'aide de <xref linkend="view-certificate-details"/>. Une boîte de dialogue s'ouvre, qui affiche les propriétés les plus courantes du certificat, sa chaîne de certificats (&cad; la chaîne des émetteurs jusqu'à la &ca; racine) ainsi qu'un cliché de toutes les informations que le moteur est en mesure d'extraire du certificat.</para>
+
+<para
+>Si vous changez le trousseau sans faire appel à &kleopatra; (&pex; à l'aide de l'interface en ligne de commande de &gpgsm;), vous pouvez rafraîchir la vue avec <xref linkend="view-redisplay"/>.</para>
+
+<!-- no longer in kde 4
+para
+>Since validating a key may take some time (&eg; CRLs might need
+to be fetched), the normal keylisting does not attempt to check the
+validity of keys. For this, <link linkend="certificates-validate">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo>
+</shortcut
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Validate</guimenuitem
+></menuchoice
+></link
+>,
+a special variant of <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, is provided. It
+either checks the selected certificates, or all keys if none are
+selected.</para-->
+
+</sect1>
+
+<sect1 id="functions-search"
+><title
+>Rechercher et importer des certificats</title>
+
+<para
+>La plupart du temps, vous obtiendrez de nouveaux certificats en vérifiant les signatures dans les courriels, lorsque les certificats sont intégrés dans les signatures créées, le plus souvent, en les utilisant. Cependant, si vous devez envoyer un message à une personne avec qui vous n'avez pas encore eu de contact, il vous faut aller chercher le certificat dans un dossier &ldap; (Bien que <ulink url="http://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+> &gpgsm;</ulink
+> puisse le faire automatiquement) ou depuis un fichier. Vous devez également importer votre propre certificat après avoir reçu la réponse de &ca; à votre demande de certification.</para>
+
+<para
+>Pour rechercher un certificat dans une annuaire &ldap;; sélectionner <menuchoice
+><guimenu
+>Fichier</guimenu
+><guimenuitem
+>Rechercher des certificats sur le serveur</guimenuitem
+></menuchoice
+> et saisissez du texte (&pex; le nom de la personne à qui vous voulez le certificat) dans le champ de la boîte de dialogue <guilabel
+>Recherche de certificat sur le serveur de certificats</guilabel
+>. Cliquez alors sur le bouton <guilabel
+>Rechercher</guilabel
+>. Les résultats seront affichés dans la liste de clés sous la barre de recherche, où vous pouvez sélectionner des certificats pour les étudier en cliquant sur le bouton <guibutton
+>Détails</guibutton
+> ou bien les télécharger dans la trousseau locale avec <guibutton
+>Importer</guibutton
+>.</para>
+<!--
+Note that you can also download the certificate from the
+details dialog, using the <guilabel
+>Import to Local</guilabel>
+button.</para>
+not found in 4.2
+-->
+
+<para
+>Vous pouvez configurer la liste des serveurs &ldap; pour rechercher dans la page <link linkend="configuration-directory-services"
+><guilabel
+>Services d'annuaire</guilabel
+></link
+> de la <link linkend="configuration"
+>boîte de dialogue de configuration</link
+> de &kleopatra;.</para>
+
+<para
+>Si vous avez reçu le certificat sous la forme d'un fichier, essayez <xref linkend="file-import-certificates"/>. &gpgsm; doit comprendre le format du fichier de certificat : reportez-vous au manuel de &gpgsm; pour obtenir une liste des formats de fichiers pris en charge.</para>
+
+<para
+>Si vous n'avez pas <link linkend="functions-newkey"
+>créé votre paire de clés avec &gpgsm;</link
+>, vous devez également importer manuellement la clé publique (ainsi que la clé secrète) à partir du fichier PKCS#12 que vous avez obtenu de la &ca;. Utilisez pour ce faire la ligne de commande avec <link linkend="commandline-option-import-certificate"
+><userinput
+><command
+>kleopatra <option
+>--import-certificate</option
+> <filename
+>nom-du-fichier</filename
+></command
+></userinput
+></link
+> ou dans &kleopatra; avec <xref linkend="file-import-certificates"/>, tout comme vous le feriez pour les certificats <quote
+>normaux</quote
+>.</para>
+
+</sect1>
+
+<sect1 id="functions-newkey"
+><title
+>Créer de nouvelles paires de clés</title>
+
+<para
+>L'élément de menu <xref linkend="file-new-key-pair"/> démarre l'<guilabel
+>Assistant de création de paires de certificats</guilabel
+>. Ce dernier vous guidera à travers un certain nombre d'étapes pour créer une demande de certificat.</para>
+<para
+>Chaque fois que vous avez terminé une étape dans l'assistant, cliquez sur <guibutton
+>Suivant</guibutton
+> pour passer à la suivante (ou sur <guibutton
+>Précédent</guibutton
+> pour revoir les étapes déjà achevées). La création de demande de certificat peut être annulée à tout moment en cliquant sur le bouton<guibutton
+>Annuler</guibutton
+>. </para>
+<para
+>Sur la première page de l'assistant, choisissez quel type de certificat vous voulez créer : </para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Créer une paire de clés personnelles OpenPGP</guilabel
+></term>
+<listitem
+><para
+>Les paires de clés &openpgp; sont créées localement et sont certifiées par vos amis et connaissances. Il n'y a pas d'autorité de certification centralisée ; chaque individu crée un réseau de confiance personnel en certifiant les clés des autres utilisateurs avec son propre certificat.</para>
+<para
+>Vous devez saisir un <guilabel
+>Nom</guilabel
+>, une <guilabel
+>Adresse électronique</guilabel
+> et facultativement un <guilabel
+>Commentaire</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Créer une paire de clés X.509 personnelle et une demande de certification</guilabel
+></term>
+<listitem>
+<para
+>Les paires de clés &x509; sont créées localement mais sont certifiées de manière centralisée par une autorité de certification (&ca;). Les &ca; peuvent certifier d'autres &ca;, créant ainsi une chaîne de confiance hiérarchisée et centralisée.</para>
+<para
+>L'étape suivante de l'assistant vous demande de saisir vos données personnelles pour le certificat. Les champs à renseigner sont : <itemizedlist>
+<listitem>
+<para
+><guilabel
+>Nom d'usage (CN) :</guilabel
+> Votre nom ; </para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Adresse électronique (EMAIL) :</guilabel
+> Votre adresse électronique. Prenez soin de la saisir correctement &mdash; Ce sera l'adresse à laquelle vos correspondants enverront le courriel lorsqu'ils utilisent votre certificat.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Localité (L) :</guilabel
+> La ville où vous habitez ;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Unité organisationnelle (OU) :</guilabel
+> L'unité organisationnelle dans laquelle vous êtes (&pex;, « Logistique ») ; </para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Organisation (O) :</guilabel
+> L'organisation que vous représentez (&pex;, l'entreprise dans laquelle vous travaillez) ;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Indicatif du pays (C) :</guilabel
+> Le code à deux lettres du pays dans lequel vous résidez (&pex;, « FR » pour la France) ;</para>
+</listitem>
+</itemizedlist>
+</para
+><para
+>Dans l'étape suivante, l'assistant vous demande de choisir s'il doit enregistrer le certificat dans un fichier ou l'envoyer directement à une &ca;. Vous devrez spécifier le nom du fichier ou l'adresse électronique à laquelle envoyer la demande de certificat. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<!--FIXME modified copy from kgpg-->
+<sect2 id="key-revoke">
+<title
+>Révoquer une clé</title>
+
+<para
+>Une paire de clés qui a expirée peu être remise dans un état opérationnel tant que vous avez accès à la clé privée et à la phrase secrète. Pour rendre une clé inutilisable de façon sûre, vous devez la révoquer. Révoquer une clé est fait en ajoutant une signature de révocation spéciale à la clé.</para>
+
+<para
+>Cette signature de révocation est stockée dans un fichier séparé. Ce fichier peut être importer ultérieurement dans le trousseau de clés et est alors attaché à la clé, la rendant inutilisable. Veuillez noter que pour importer cette signature à la clé, aucun mot de passe n'est requis. Vous devez donc stocker cette signature de révocation dans un endroit sûr, habituellement dans un endroit différent de celui de votre paire de clés. Il est conseillé d'utiliser un emplacement qui est détaché de votre ordinateur, c'est-à-dire soit de le copier sur un périphérique de stockage externe comme une clé USB ou de l'imprimer.</para>
+
+<para
+>&kleopatra; ne fournit pas de fonction de création de telles signatures de révocation n'importe quand, mais vous pouvez le faire depuis l'application &kde; &kgpg; en choisissant <menuchoice
+><guimenu
+>Clés</guimenu
+> <guimenuitem
+>Révoquer une clé</guimenuitem
+></menuchoice
+> et en important si vous le désirez la signature de révocation dans le trousseau de clé directement.</para>
+
+<para
+>Une autre façon de générer un certificat de révocation est d'utiliser &gpg; directement à partir de la ligne de commandes : <userinput
+>gpg --output <replaceable
+>revocation_certificate</replaceable
+>.asc --gen-revoke <replaceable
+>votre-clé</replaceable
+></userinput
+>. L'argument <replaceable
+>votre-clé</replaceable
+> doit être un spécificateur de clé, soit l'identifiant de clé de votre paire de clés primaires, soit toute partie d'un identifiant utilisateur, référençant votre paire de clés.</para>
+
+</sect2>
+
+</sect1>
+
+
+<!-- hopelessly outdated
+<sect1 id="functions-keybox-management"
+><title
+>Keybox Management</title>
+
+<para
+>In addition to <link linkend="functions-view"
+>list and
+validate</link
+>, <link linkend="functions-search"
+>search and
+import</link
+> certificates and <link
+linkend="functions-newkey"
+>creating new ones</link
+>, &kleopatra; also
+has some less often used functions that help you manage your local
+keybox.</para>
+
+<para
+>These functions include deleting certificates from the local
+keybox with <xref linkend="certificates-delete"/>, as well
+as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
+<xref linkend="crls-clear-crl-cache"/>, <xref linkend="crls-dump-crl-cache"/>).
+</para>
+
+</sect1>
+-->
+
+</chapter>
+
+<chapter id="menu"
+><title
+>Liste des menus</title>
+
+<sect1 id="menufile"
+><title
+>Menu Fichier</title>
+
+<variablelist>
+
+<varlistentry id="file-new-key-pair">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fichier</guimenu
+><guimenuitem
+>Nouveau certificat...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Créé une nouvelle paire de clés (publique et privée)</action
+> et permet d'envoyer la partie publique à une autorité de certification (&ca;) pour sa signature. Le certificat qui en résulte vous est ensuite renvoyé ou enregistré sur un serveur &ldap; pour que vous le téléchargiez dans votre trousseau local, dans lequel vous pouvez vous en servir pour signer et déchiffrer des messages.</para>
+
+<para
+>Ce mode de fonctionnement est appelé <quote
+>génération décentralisée des clés</quote
+> du fait que toutes les clés sont créées localement. &kleopatra; (et &gpgsm;) ne gèrent pas la <quote
+>génération décentralisée des clés</quote
+> directement, mais vous pouvez importer le lot de clés publiques/secrètes que vous recevez de la &ca; au format PKCS#12 via <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+        <varlistentry id="file-lookup-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fichier</guimenu
+><guimenuitem
+>Rechercher des certificats sur le serveur...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Recherche et importe des certificats depuis des serveurs de certificats dans le trousseau local.</action
+> Voir <xref linkend="functions-search"/> pour plus de détails. </para>
+            <para
+>Vous devez avoir des serveurs de clés configurés pour cette tâche. Voir <xref linkend="configuration-directory-services"/> pour plus de détails. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fichier</guimenu
+><guimenuitem
+>Importer des certificats...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Importe des certificats et/ou des clés secrètes depuis des fichiers dans le trousseau local.</action
+> Voir <xref linkend="functions-search"/> pour plus de détails. </para>
+            <para
+>Le format du fichier certifié doit être géré par &gpgsm;/&gpg;. Reportez-vous au manuel de &gpgsm; et de &gpg; pour obtenir une liste des formats pris en charge. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fichier</guimenu
+><guimenuitem
+>Exporter des certificats...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Exporte les certificats sélectionnés dans un fichier.</action>
+            </para>
+            <para
+>L'extension du nom de fichier que vous choisissez pour exporter le fichier détermine le format du fichier exporté :  </para>
+            <itemizedlist>
+              <listitem>
+                <para
+>Pour les certificats &openpgp;, les extensions <filename class="extension"
+>gpg</filename
+> et <filename class="extension"
+>pgp</filename
+> auront comme résultat un fichier binaire, tandis que l'extension <filename class="extension"
+>asc</filename
+> produira un fichier &ascii; blindé. </para>
+              </listitem>
+              <listitem>
+                <para
+>Pour les certificats &smime;, l'extension <filename class="extension"
+>der</filename
+> aura comme résultat un fichier binaire encodé en &der;, alors que l'extension <filename class="extension"
+>pem</filename
+> produira un fichier &ascii; blindé. </para>
+              </listitem>
+            </itemizedlist>
+            <para
+>À moins que plusieurs certificats ne soient sélectionnés, &kleopatra; proposera <filename
+><replaceable
+>empreinte-numérique</replaceable
+>.{asc,pem}</filename
+> comme nom de fichier exporté. </para>
+            <para
+>Cette fonction est disponible seulement quand un ou plusieurs certificats ont été sélectionné. </para>
+            <note>
+              <para
+>Cette fonction n'exporte que les clés publiques, même si la clé secrète est disponible. Veuillez utiliser <xref linkend="file-export-secret-key"/> pour exporter les clés privées dans un fichier. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-secret-key">
+          <term>
+            <menuchoice
+><guimenu
+>Fichier</guimenu
+><guimenuitem
+>Exporter le certificat secret...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Exporte la clé secrète dans un fichier.</action>
+            </para>
+            <para
+>Dans la boîte de dialogue s'affichant, vous pouvez choisir de créer un fichier binaire ou un fichier d'exportation chiffré en &ascii; (<guilabel
+>chiffrement « ASCII » </guilabel
+>). Ensuite, veuillez cliquer sur l'icône du dossier sur le coté droit de la boîte de dialogue de saisie <guilabel
+>Fichier de sortie</guilabel
+> et sélectionner le dossier et le nom du fichier d'exportation. Lors de l'exportation de clés secrètes &smime;, vous pouvez aussi sélectionner le <guilabel
+>Jeu de caractères de la phrase secrète</guilabel
+>. Veuillez prendre connaissance de la discussion concernant l'option <option
+>--p12-charset&nbsp;<replaceable
+>charset</replaceable
+></option
+> dans le manuel de &gpgsm; pour plus de détails.  </para>
+            <para
+>Cette fonction n'est disponible que si exactement un certificat a été sélectionné et que la clé secrète pour ce certificat est disponible. </para>
+            <warning>
+              <para
+>L'utilisation de cette fonction devrait être rarement nécessaire, mais s'il faut l'envisager, la prudence est de mise. Planifier la migration d'une clé secrète implique le choix des média de transport et, entre autres choses, une suppression sécurisée des données-clés présentes sur l'ancienne machine, ainsi que sur le moyen de transport. </para>
+            </warning>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fichier</guimenu
+><guimenuitem
+>Exporter des certificats vers le serveur...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Exporte les certificats sélectionnés sur un serveur de clés</action
+> (seulement pour &openpgp;).. </para>
+            <para
+>Le certificat est envoyé au serveur de certificats configuré pour &openpgp; (cf.&nbsp;<xref linkend="configuration-directory-services"/>), si déterminé, ou sinon à <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+            <para
+>Cette fonction n'est disponible que si au moins un certificat &openpgp; (et non &smime;) a été sélectionné. </para>
+            <note>
+              <!-- also appears in message box in -->
+              <!-- commands/exportopenpgpcertificatestoserver.cpp -->
+              <para
+>Quand les certificats &openpgp; ont été exporté vers un serveur d'annuaire publique, il est quasiment impossible de les y supprimer. Avant d'exporter votre certificat vers un serveur d'annuaire publique, assurez vous donc d'avoir créé un certificat de révocation afin de pouvoir révoquer le certificat ultérieurement si besoin. </para>
+            </note>
+            <note>
+              <para
+>La plupart des serveurs de certificats &openpgp; synchronise les certificats entre eux, il est donc vain d'en envoyer plus d'un. </para>
+              <para
+>Il peut arriver qu'une recherche sur un serveur de certificat ne retourne aucun résultat bien que vous veniez d'y envoyer votre certificat. Cela s'explique par le fait que la plupart des adresses de serveur de clés publique utilise la technique du <acronym
+>DNS</acronym
+> round-robin pour répartir la charge sur plusieurs machines. Ces machines se synchronisent les une avec les autres mais, généralement, seulement toutes les 24 heures voire plus. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Fichier</guimenu
+><guimenuitem
+>Déchiffrer/Vérifier des fichiers...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Déchiffre des fichiers et/ou vérifie des signatures</action
+> sur des fichier. </para>
+<!--
+            <para>
+              See <xref linkend="function-decrypt-verify-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Fichier</guimenu
+><guimenuitem
+>Signer/Chiffrer des fichiers...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Signe et/ou chiffre des fichiers.</action>
+            </para>
+<!--
+            <para>
+              See <xref linkend="function-sign-encrypt-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+<!--
+Create Checksum Files...
+Verify Checksum Files...
+  missing-->
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fichier</guimenu
+><guimenuitem
+>Fermer</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Ferme la fenêtre principale de &kleopatra;.</action
+> Vous pouvez la restaurer depuis la boîte à miniatures à n'importe quel moment. </para>
+          </listitem>
+        </varlistentry>
+
+<varlistentry id="file-quit">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fichier</guimenu
+><guimenuitem
+>Quitter</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Met fin à &kleopatra;.</action
+></para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1
+> <!-- File Menu -->
+
+
+
+<sect1 id="menuview"
+><title
+>Menu Affichage</title>
+
+      <variablelist>
+
+        <varlistentry id="view-redisplay">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Affichage</guimenu
+><guimenuitem
+>Actualiser</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Rafraîchit la liste des certificats.</action>
+            </para>
+            <para
+>L'utilisation de cette fonction n'est généralement pas nécessaire, puisque &kleopatra; surveille les modifications du système de fichiers et rafraîchit automatiquement la liste des certificats lorsque cela est nécessaire. </para>
+          </listitem>
+        </varlistentry>
+
+
+        <varlistentry id="view-stop-operation">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Echap;</keycombo
+></shortcut
+> <guimenu
+>Affichage</guimenu
+><guimenuitem
+>Arrêter l'opération</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Arrête (annule) toutes les opérations en attente</action
+>, &pex; une recherche, un listage des clés ou un téléchargement. </para>
+            <para
+>Cette fonction n'est disponible que si au moins une opération est en cours. </para>
+            <note>
+              <para
+>À cause de limitations du moteur, des opérations se bloquent parfois de telle façon que cette fonction ne sera capable de les annuler instantanément, voir pas du tout. </para>
+              <para
+>Dans de tels cas, la seule façon de rétablir l'ordre est de terminer, dans cet ordre, les processus de &scdaemon;, &dirmngr;, &gpgsm; et &gpg; grâce aux outils du système d'exploitation (<command
+>top</command
+>, Gestionnaire des tâches de Windows, &etc;), jusqu'à ce que l'opération se débloque. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+
+<varlistentry id="view-certificate-details">
+<term
+><menuchoice
+><guimenu
+>Affichage</guimenu
+><guimenuitem
+>Détails du certificat</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Affiche les détails du certificat actuellement sélectionné.</action
+></para>
+
+<para
+>Cette fonction est disponible seulement si exactement un certificat est sélectionné.</para>
+
+<para
+>Cette fonction est également accessible en double-cliquant directement sur l'élément correspondant dans l'affichage en liste.</para>
+
+<!--FIXME: link to the dialog's help, but where do we put _that_?-->
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-hierarchical-key-list">
+<term
+><menuchoice
+><guimenu
+>Affichage</guimenu
+><guimenuitem
+>Liste hiérarchique des certificats</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Bascule entre les modes liste hiérarchique et à plat des certificats. </action
+></para>
+
+<para
+>En mode hiérarchique, les certificats sont organisés dans une relation émetteur/sujet, de telle sorte qu'il est facile de voir à quelle hiérarchie de certification un certificat donné appartient. Cependant, ce dernier est ainsi initialement plus difficile à trouver (bien que vous disposiez de la <link linkend="functions-search"
+>barre de recherche</link
+>).</para>
+
+<para
+>En mode à plat, tous les certificats sont affichés dans une liste étendu, triés par ordre alphabétique. Dans ce mode, un certificat donné est facile à trouver, mais il n'est pas évident de savoir directement à quel certificat racine il appartient.</para>
+
+            <para
+>Cette fonction bascule vers le mode hiérarchique par onglet, &cad; que chaque onglet a son propre état hiérarchique. Vous pouvez donc disposer à la fois d'un listage à plat et hiérarchique, chacun dans leur onglet respectif. </para>
+
+            <note>
+              <para
+>L'affichage hiérarchique est actuellement seulement implémenté pour les certificats &smime;. Il y a un désaccord parmi l'équipe de développement sur la façon convenable d'afficher les certificats &openpgp; hiérarchiquement (fondamentalement, <quote
+>parent &equals; signataire</quote
+> ou <quote
+>parent &equals; signataire</quote
+>). </para>
+            </note>
+
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-expand-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Affichage</guimenu
+><guimenuitem
+>Tout développer</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Développe tous les éléments de la liste dans l'affichage par liste des certificats</action
+>, &cad; rend tous les éléments visibles.</para>
+
+<para
+>C'est le comportement par défaut lorsqu'on entre en mode liste de clés hiérarchique.</para>
+
+<para
+>Vous pouvez, naturellement, encore développer et réduire chaque élément individuellement.</para>
+
+<para
+>Cette fonction est disponible seulement quand <xref linkend="view-hierarchical-key-list"/> est activé.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry id="view-collapse-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>, </keycap
+> </keycombo
+></shortcut
+><guimenu
+>Affichage</guimenu
+><guimenuitem
+>Tout réduire</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Réduit tous les éléments de la liste dans l'affichage en liste des certificats</action
+>, &cad; masque tout sauf les éléments de premier niveau.</para>
+
+<para
+>Vous pouvez, naturellement, encore développer et réduire chaque élément individuellement.</para>
+
+<para
+>Cette fonction est disponible seulement quand <xref linkend="view-hierarchical-key-list"/> est activé.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menucertificates"
+><title
+>Menu Certificats</title>
+
+      <variablelist>
+
+        <varlistentry id="certificates-change-owner-trust">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Changer le niveau de confiance...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Affiche le niveau de confiance du certificat &openpgp; actuellement sélectionné.</action>
+<!--
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Cette fonction est disponible seulement quand exactement un certificat &openpgp; est sélectionné. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-trust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Certificat racine de confiance</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Marque ce certificat racine (&smime;) comme de confiance.</action>
+            </para>
+            <para
+>D'une certaine façon, c'est l'équivalent de <xref linkend="certificates-change-owner-trust"/> pour les certificats racines &smime;. Vous pouvez cependant seulement choisir &mdash; Dans les termes de &openpgp; &mdash; Entre confiance <quote
+>absolue</quote
+> et <quote
+>aucune confiance</quote
+>. </para>
+            <note>
+              <para
+>Le moteur (par l'intermédiaire de &gpgagent;) demandera, au moment de l'importation de certificats racines, s'il faut faire confiance au certificat racine importé. Toutefois, cette fonction doit être explicitement activée dans la configuration du moteur (<option
+>allow-mark-trusted</option
+> dans <filename
+>gpg-agent.conf</filename
+>, ou sinon <menuchoice
+><guimenu
+>GnuPG&nbsp;Système</guimenu
+> <guisubmenu
+>GPG&nbsp;Agent</guisubmenu
+> <guimenuitem
+>Autoriser les clients à marquer les clés comme « de confiance » </guimenuitem
+></menuchoice
+> ou <link linkend="configuration-smime-validation-allow-mark-trusted"
+><menuchoice
+><guimenu
+>S/MIME&nbsp;Validation</guimenu
+> <guimenuitem
+>Autorisé le marquage de confiance de certificats racines </guimenuitem
+></menuchoice
+></link
+> dans <xref linkend="configuration"/>). </para>
+              <para
+>Activer cette fonctionnalité dans le moteur peut vous amenez à être dérangé par des menus contextuels venant de &pinentry; à des moments inopportuns (&cad; à la vérification des signatures), et peut ainsi bloquer le traitement des courriers électroniques laissé sans surveillance. Pour cette raison, et parce qu'il est souhaitable d'être en mesure de <emphasis
+> ne plus faire confiance </emphasis
+> à un certificat racine de confiance de nouveau, &kleopatra; permet le réglage manuel du niveau de confiance. </para>
+            </note>
+            <warning>
+              <para
+>À cause d'un manque de prise en charge du moteur pour cette fonction, &kleopatra; a besoin de travailler directement sur une base de données de confiance &gpgsm; (<filename
+>trustlist.txt</filename
+>). Quand vous utilisez cette fonction, soyez sûr qu'aucune autre opération de cryptographie n'est en cours, qui pourrait concurrencer &kleopatra; dans la modification de cette base de données. </para>
+            </warning>
+            <para
+>Cette fonction est disponible seulement quand exactement un certificat racine &smime; est sélectionné et que ce certificat n'est pas encore de confiance. </para>
+            <para
+>Utilisez <xref linkend="certificates-distrust-root"/> pour annuler cette fonction. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-distrust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Certificat racine de méfiance</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Marque ce certificat racine (&smime;) comme de méfiance.</action>
+            </para>
+            <para
+>Cette fonction est disponible seulement quand exactement un certificat racine &smime; est sélectionné, et que ce certificat est actuellement de confiance. </para>
+            <para
+>Utiliser <xref linkend="certificates-trust-root"/> pour annuler. Voir là-bas pour plus de détails. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-certify">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Certifier le certificat...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Vous permet de certifier un autre certificat &openpgp;.</action>
+<!-- ### xref
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Cette fonction est disponible seulement quand exactement un certificat &openpgp; est sélectionné. </para>
+          </listitem>
+        </varlistentry>
+
+
+<!--no longer in kde4
+<para
+>This is similar to <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, but
+performs a validation of the (selected) keys. Validation here means
+that all relevant CRLs are fetched, and the certificate chain is
+checked for correctness. As a result, invalid or expired keys will be
+marked according to your color and font preferences set in the <link
+linkend="configuration-appearance-certificate-filters"
+><guilabel
+>Appearance</guilabel>
+page</link
+> of &kleopatra;'s <link linkend="configuration"
+>configure
+dialog</link
+>.</para>
+
+<warning
+><para
+>You can only rely on information from validated keys,
+and, since any of them may be revoked at any time, even validation is
+only ever a snapshot of the current state of the local keyring. This
+is why the backend normally performs such checks whenever the keys
+are used (&eg; for signing, signature verification, encryption or
+decryption).</para
+></warning>
+</listitem>
+</varlistentry>
+-->
+<!--not in 4.2
+varlistentry id="certificates-refresh-crls">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Refresh CRLs</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fetches the current CRLs for all selected keys,</action>
+even though they would normally not be fetched when using the
+key.</para>
+
+<para
+>This function only has an effect on certificates which define a
+&crl; distribution point. Depending on the backend used, certificates
+configured to perform checks using &ocsp; will not be updated.</para>
+
+<para
+>You may use this &eg; if you have sideband knowledge that a key
+has been revoked, and you want the backend to reflect this
+<emphasis
+>now</emphasis
+> instead of relying on this to automatically
+happen at the next scheduled &crl; update.</para>
+
+<warning
+><para
+>Excessive use of this function might put a high load on
+your provider's or company's network, since CRLs of large
+organizations can be surprisingly big (several megabytes are not
+uncommon).</para>
+
+<para
+>Use this function scarcely.</para
+></warning>
+</listitem>
+</varlistentry-->
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Changer la date d'expiration...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Vous permet de changer la date d'expiration de votre certificat &openpgp;.</action>
+            </para>
+            <para
+>Utilisez cette fonction pour prolonger la durée du vie de vos certificats &openpgp; et comme alternative à la création d'un nouveau, ou définissez une durée de vie illimitée (<quote
+>n'expire jamais</quote
+>). </para>
+            <para
+>Cette fonction est disponible seulement si exactement un certificat &openpgp; est sélectionné et que la clé secrète est disponible pour ce certificat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Changer la phrase secrète...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Permet de changer la phrase secrète de votre clé secrète</action>
+            </para>
+            <para
+>Cette fonction est disponible seulement si exactement un seul certificat est sélectionné et que la clé secrète est disponible pour ce certificat. Elle requiert un moteur très récent, puisque nous avons changé l'implémentation d'un appel directe de &gpg; et &gpgsm; vers un appel s'appuyant sur &gpgme;. </para>
+            <note>
+              <para
+>Pour des raisons de sécurité, à la fois l'ancienne ainsi que la nouvelle phrase secrète est demandée par &pinentry;, un processus séparé. Dépendant de la plate-forme sur laquelle vous tournez et de la qualité de l'implémentation de &pinentry; sur cette plate-forme, il peut arriver que la fenêtre de &pinentry; se lance en arrière plan. En conséquence, si vous sélectionnez cette fonction et que rien ne se passe, vérifiez la barre des tâche de votre système d'exploitation au cas où la fenêtre de &pinentry; se serait ouverte en arrière plan. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Ajouter un identifiant utilisateur...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Permet l'ajout d'un nouvel identifiant utilisateur à votre certificat &openpgp;.</action>
+            </para>
+            <para
+>Utilisez cette fonction pour ajouter une nouvelle identité à un certificat existant et comme alternative à la création d'une nouvelle paire de clé. Un identifiant d'utilisateur &openpgp; à la forme suivante :  </para>
+            <programlisting
+><replaceable
+>Nom réel</replaceable
+>&nbsp;<optional
+>(<replaceable
+>Commentaire</replaceable
+>)</optional
+>&nbsp;&lt;<replaceable
+>Adresse de courriel</replaceable
+>&gt;</programlisting>
+            <para
+>Dans la boîte de dialogue qui apparaît quand vous sélectionnez cette fonction, &kleopatra; vous demandera chacun des trois paramètres séparément (<replaceable
+>Nom réel</replaceable
+>, <replaceable
+>Commentaire</replaceable
+> et <replaceable
+>Adresse de courriel</replaceable
+>) et affichera un aperçu des résultats. </para>
+            <note>
+              <para
+>Ces paramètres sont sujets aux mêmes restrictions de l'administrateur que dans les nouveaux certificats. Voir <xref linkend="functions-newkey"/> et <xref linkend="admin-certificate-request-wizard"/> pour plus de détails. </para>
+            </note>
+            <para
+>Cette fonction est disponible seulement si exactement un certificat &openpgp; est sélectionné, et que la clé secrète est disponible pour ce certificat.  </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-delete">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Suppr</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Certificats</guimenu
+><guimenuitem
+>Supprimer</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Supprime les certificats sélectionnés</action
+> du trousseau de clés local. </para>
+            <para
+>Cette fonction sert à supprimer des clés inutilisées de votre trousseau local. Toutefois, comme les certificats sont généralement attachés à des courriers électroniques signés, la vérification d'un courriel peut faire réapparaître dans le trousseau local la clé qui vient d'être supprimée. Il est donc certainement préférable d'éviter de faire appel à cette fonction autant que faire se peut. Si vous êtes perdu, utilisez la <link linkend="functions-search"
+>barre de recherche</link
+> ou la fonction <xref linkend="view-hierarchical-key-list"/> pour retrouver le contrôle sur l'ensemble des certificats. </para>
+            <warning>
+              <para
+>Il y a une exception à ce qui vient d'être dit : quand vous supprimez un de vos propre certificat, vous supprimez du même coup la clé secrète. Cela implique que vous ne serez plus à même de lire d'anciennes communications chiffrées utilisant ce certificat, à moins que vous ne les ayez sauvegardées quelque part. </para>
+              <para
+>&kleopatra; vous alertera quand vous tenterez de supprimer une clé secrète. </para>
+            </warning>
+            <para
+>À cause de la nature hiérarchique des certificats &smime;, si jamais vous supprimez un émetteur de certificat &smime; (&ca; certificat), tous les sujets seront également supprimés.<footnote
+><para
+>Ce comportement est identique à celui d'un système de fichiers : quand vous supprimez un dossier, tous les dossiers et fichiers qu'il contient sont également supprimés.</para
+></footnote>
+            </para>
+            <para
+>Bien entendu, cette fonction n'est disponible que si vous sélectionnez au moins un certificat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-dump-certificate">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Copie (Dump) du certificat</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Affiche toutes les informations que &gpgsm; possède au sujet du certificat (&smime;) sélectionné.</action>
+            </para>
+            <para
+>Voir l'explication au sujet de <option
+>--dump-key&nbsp;<replaceable
+>key</replaceable
+></option
+> dans le manuel de &gpgsm; pour plus de détails sur cette sortie. </para>
+          </listitem>
+        </varlistentry>
+
+<!--not in 4.2
+varlistentry id="certificates-download">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Download</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Downloads the selected certificate(s) from the &ldap; to the local keybox.</action
+></para>
+</listitem>
+</varlistentry-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menutools"
+><title
+>Menu Outils</title>
+
+<variablelist>
+
+        <varlistentry id="tools-gnupg-log-viewer">
+          <term>
+            <menuchoice
+><guimenu
+>Outils</guimenu
+><guimenuitem
+>Afficheur de journaux GnuPG...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Démarre <ulink url="help:/kwatchgnupg/index.html"
+>&kwatchgnupg;</ulink
+></action
+>, un outil qui présente la sortie de débogage des applications &gnupg;. Si la signature, le chiffrement ou la vérification s'arrête mystérieusement de fonctionner, vous pourriez trouver pourquoi en regardant à l'intérieur du journal. </para>
+            <para
+>Cette fonction n'est pas disponible sous &Windows;, étant donné que les mécanismes sous-jacents ne sont pas implémentés dans le moteur sur cette plate-forme. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-openpgp">
+          <term>
+            <menuchoice
+><guimenu
+>Outils</guimenu
+><guimenuitem
+>Rafraîchir les certificats « OpenPGP »</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Rafraîchit tous les certificats &openpgp;</action
+> en exécutant <programlisting
+><command
+>gpg&nbsp;<option
+>--refresh-keys</option
+></command
+></programlisting
+>. Après l'exécution réussi de la commande, votre trousseau local répercutera tous les derniers changements concernant la validité des certificats &openpgp;. </para>
+            <para
+>Voir les notes de <xref linkend="certificates-refresh-x509"/> pour quelques mises en garde. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-x509">
+          <term>
+            <menuchoice
+><guimenu
+>Outils</guimenu
+><guimenuitem
+>Rafraîchir les certificats « X.509 »</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Rafraîchie tous les certificats &smime;</action
+> en exécutant <programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
+>-k</option
+>&nbsp;<!--
+                  --><option
+>--with-validation</option
+>&nbsp;<!--
+                  --><option
+>--force-crl-refresh</option
+>&nbsp;<!--
+                  --><option
+>--enable-crl-checks</option
+><!--
+                  --></command
+></programlisting
+> Après l'exécution réussi de la commande, votre trousseau local répercutera tous les derniers changements concernant la validité des certificats &smime;. </para>
+            <note>
+              <para
+>Rafraîchir les certificats &x509; et &openpgp; implique le téléchargement de tous les certificats &crl;s afin de vérifier qu'aucun d'entre eux n'a été révoqué pendant ce temps. </para>
+              <para
+>Ceci peut mettre à rude épreuve vos propres connexions réseaux ainsi que celles des autres personnes, et peut prendre jusqu'à une heure ou plus à s'achever en fonction de votre connexion réseau et du nombre de certificats à vérifier. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-crls">
+          <term>
+            <menuchoice
+><guimenu
+>Outils</guimenu
+><guimenuitem
+>Importer des LRC depuis un fichier...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Permet d'importer manuellement des &crl; depuis des fichiers.</action>
+            </para>
+            <para
+>Normalement, les &crl; (<foreignphrase
+>Certificate Revocation Lists</foreignphrase
+>, liste de révocation des certificats) sont gérées de manière transparente par le moteur, mais il peut parfois s'avérer utile d'importer une &crl; manuellement dans le cache local des &crl;. </para>
+            <note>
+              <para
+>Pour que l'importation des &crl; fonctionne, l'outil &dirmngr; doit être dans le <varname
+>PATH</varname
+> de recherche. Si l'élément de menu est désactivé, vous devrez contacter l'administrateur système et lui demander d'installer &dirmngr;. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+<!-- no longer provided
+that is wrong
+"Clear CRL Cache"+"Dump CRL Cache" are still in the gui of 4.5 + trunk
+-->
+<varlistentry id="crls-clear-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Outils</guimenu
+><guimenuitem
+>Effacer le cache des LRC</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Efface le cache &crl; de &gpgsm;.</action
+></para>
+
+<para
+>Vous n'aurez probablement jamais besoin de ceci. Vous pouvez forcer un rafraîchissement du cache des &crl; en sélectionnant tous les certificats et en utilisant <xref linkend="certificates-refresh-x509"/> à la place.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="crls-dump-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Outils</guimenu
+><guimenuitem
+>Copie (dump) du cache des LRC</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Affiche le contenu détaillé du cache &crl; de &gpgsm;.</action
+></para>
+</listitem>
+</varlistentry>
+<!-- no longer provided
+<varlistentry id="settings-configure-gpgme-backend">
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guimenuitem
+>Configure GnuPG Backend...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Opens a dialog that allows you to configure every aspect of
+&gpgsm; and other backend modules.</action
+></para>
+
+<para
+>This dialog is dynamically built from the output of the
+&gpgconf; utility and may thus change when backend modules are
+updated.</para>
+</listitem>
+</varlistentry>
+-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menusettings"
+><title
+>Menu Configuration</title>
+
+<para
+>&kleopatra; possède par défaut le menu <guimenu
+>Configuration</guimenu
+> de &kde;, tel que décrit dans les <ulink url="help:/fundamentals/menus.html#menus-help"
+>Fondamentaux de &kde;</ulink
+>, avec une entrée supplémentaire.</para>
+
+      <variablelist>
+
+        <varlistentry id="settings-self-test">
+          <term>
+            <menuchoice
+><guimenu
+>Configuration</guimenu
+><guimenuitem
+>Effectuer un contrôle automatique</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Effectue une série de tests automatiques et présente leur résultat.</action>
+            </para>
+            <para
+>C'est la même série de tests que celle lancée par défaut au démarrage. Si vous avez désactivé les tests automatiques effectués au démarrage, vous pouvez les réactivez ici. </para>
+<!-- ### xref
+            <para>
+              See <xref linkend="function-selftest"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect1
+> <!-- Settings Menu -->
+
+<sect1 id="menuwindow"
+><title
+>Menu Fenêtre</title>
+<para
+>Le menu <guimenu
+>Fenêtre</guimenu
+> vous permet de gérer les onglets. En utilisant les éléments de ce menu, vous pouvez renommer un onglet, en ajouter un nouveau, dupliquer l'onglet courant et le déplacer vers la gauche ou la droite.</para>
+
+<para
+>En cliquant avec le bouton droit de la souris sur un onglet, vous ouvrez un menu contextuel d'où vous pouvez également sélectionner les même actions.</para>
+</sect1>
+
+<sect1 id="menuhelp"
+><title
+>Menu Aide</title>
+
+<para
+>&kleopatra; possède par défaut le menu <guimenu
+>Aide</guimenu
+> de &kde;, tel que décrit dans les <ulink url="help:/fundamentals/menus.html#menus-help"
+>Fondamentaux de &kde;</ulink
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commandline-options"
+><title
+>Liste des options de la ligne de commande</title>
+
+<para
+>Seules les options spécifiques à &kleopatra; sont répertoriées ici. Comme pour toutes les applications de &kde;, vous pouvez obtenir une liste complète des options à l'aide de la commande <userinput
+><command
+>kleopatra <option
+>--help</option
+></command
+></userinput
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><option
+>--uiserver-socket</option
+> <replaceable
+>argument</replaceable
+></term>
+<listitem>
+<para
+>Emplacement du socket que le serveur d'interface utilisateur écoute.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--daemon</option
+></term>
+<listitem>
+<para
+>Lance uniquement le serveur d'interfaces, cache la fenêtre principale</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-p</option
+> <option
+>--openpgp</option
+></term>
+<listitem>
+<para
+>Utilise &openpgp; pour l'opération suivante</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-c</option
+> <option
+>--cms</option
+></term>
+<listitem>
+<para
+>Utiliser CMS (&x509;, S / &MIME;) pour l'opération suivante</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="commandline-option-import-certificate">
+<term
+><option
+>-i</option
+> <option
+>--import-certificate</option
+></term>
+<listitem>
+<para
+><action
+>Spécifie un fichier ou une &URL; depuis laquelle importer des certificats (ou des clés secrètes).</action
+></para>
+
+<para
+>C'est la ligne de commande équivalente à <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-e</option
+> <option
+>--encrypt</option
+></term>
+<listitem>
+<para
+>Chiffre le(s) fichier(s)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-s</option
+> <option
+>--sign</option
+></term>
+<listitem>
+<para
+>Signe le(s) fichier(s)</para>
+</listitem>
+</varlistentry>
+<!-- comment for 4.5-->
+<varlistentry>
+<term
+><option
+>-E</option
+> <option
+>--encrypt-sign</option
+></term>
+<listitem>
+<para
+>Chiffre et/ou signe le(s) fichier(s). Identique à <option
+>--sign-encrypt</option
+>, ne pas utiliser.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-d</option
+> <option
+>--decrypt</option
+></term>
+<listitem>
+<para
+>Déchiffre le(s) fichier(s)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-V</option
+> <option
+>--verify</option
+></term>
+<listitem>
+<para
+>Vérification du fichier et de la signature</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-D</option
+> <option
+>--decrypt-verify</option
+></term>
+<listitem>
+<para
+>Déchiffre et/ou vérifie le(s) fichier(s)</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+  <chapter id="configuration">
+    <title
+>Configurer &kleopatra;</title>
+
+    <para
+>La boîte de dialogue de configuration de &kleopatra; est accessible via <guimenu
+>Configuration</guimenu
+><guimenuitem
+>Configurer &kleopatra;...</guimenuitem
+> </para>
+    <para
+>Chacune des pages qu'elle contient est décrite dans les sections ci-dessous. </para>
+
+    <sect1 id="configuration-directory-services">
+      <title
+>Configurer les services d'annuaire (<foreignphrase
+>Directory Services</foreignphrase
+>)</title>
+
+      <para
+>Sur cette page, vous pouvez configurer quelles serveurs &ldap; utiliser pour les recherches de certificats &smime; et quelles serveurs de clés utiliser pour les recherches de certificats &openpgp;. </para>
+      <note>
+        <para
+>C'est simplement une version plus conviviale de la même configuration que vous pouvez aussi trouver dans la section <xref linkend="configuration-gnupg-system"/>. Tout ce que vous pouvez configurer ici, vous pouvez le faire également là-bas. </para>
+      </note>
+      <note>
+        <title
+>Note concernant la configuration de serveurs mandataires</title>
+        <para
+>La configuration de serveurs mandataires pour le &http; et le &ldap; peut être effectuée dans <xref linkend="configuration-smime-validation"/>, mais seulement pour &gpgsm;. Dans le cas de &gpg;, à cause de la complexité des options de serveurs de clés dans celui-ci et du manque de prise en charge correct pour eux dans &gpgconf;, vous aurez actuellement besoin de modifier le fichier de configuration <filename
+>gpg.conf</filename
+> directement. Veuillez vous référez au manuel de &gpg; pour plus de détails. &kleopatra; conservera cette configuration, mais n'autorise pas encore leur modification depuis le &GUI;.  </para>
+      </note>
+      <para
+>La table des <guilabel
+>Services d'annuaire</guilabel
+> affiche quels serveurs sont actuellement configurés. Double-cliquez sur une cellule de la table pour modifier les paramètres des entrées de serveurs existants. </para>
+      <para
+>La signification de chaque colonne est la suivante :  </para>
+      <variablelist>
+        <varlistentry id="configuration-directory-services-scheme">
+          <term
+><guilabel
+>Schéma</guilabel
+></term
+> <!-- linebreak here'd show up in xref text :/ -->
+          <listitem>
+            <para
+>Détermine le protocole utilisé pour accéder au serveur. Les schémas les plus souvent utilisées sont <guilabel
+>LDAP</guilabel
+> (Et son frère <guilabel
+>LDAPS</guilabel
+> sécurisé avec &ssl;) pour les serveurs &ldap; (protocole courant pour &smime;; le seul pris en charge par &gpgsm;) et <guilabel
+>HKP</guilabel
+>, <foreignphrase
+>Horowitz Keyserver Protocol</foreignphrase
+>, aujourd'hui habituellement appelé protocole &http; Keyserver, un protocole fondé sur &http; prenant en charge littéralement tous les serveurs de clés &openpgp; publiques. </para>
+            <para
+>Reportez-vous aux manuels de &gpg; et de &gpgsm; pour obtenir une liste des schémas pris en charge. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-name">
+          <term
+><guilabel
+>Nom de serveur</guilabel
+></term>
+          <listitem>
+            <para
+>Le nom de domaine du serveur, &pex; <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-port">
+          <term
+><guilabel
+>Port du serveur</guilabel
+></term>
+          <listitem>
+            <para
+>Le port réseau que le serveur écoute. </para>
+            <para
+>Lorsque vous changez le <xref linkend="configuration-directory-services-scheme"/>, le port par défaut est automatiquement affecté, à moins qu'il n'ai été fixé de débuter à un port non standard. Si vous aviez changer le port par défaut et n'arrivez pas à le rétablir, essayez de configurer <xref linkend="configuration-directory-services-scheme"/> vers <userinput
+>http</userinput
+> et <xref linkend="configuration-directory-services-server-port"/> vers <userinput
+>80</userinput
+> (celui par défaut pour le &http;), puis repartez à partir de là. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-base-dn">
+          <term
+><guilabel
+>ND de base</guilabel
+></term>
+          <listitem>
+            <para
+>Le ND de base (seulement pour &ldap; et &ldaps;), &cad; la racine de la hiérarchie &ldap; à laquelle débuter. Il est souvent également appelé <quote
+>racine de recherche</quote
+> ou <quote
+>base de recherche</quote
+>. </para>
+            <para
+>Cela ressemble généralement à <userinput
+>c=de,o=Foo</userinput
+>, donné comme faisant partie de l'&URL; &ldap;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-user-name">
+          <term
+><guilabel
+>Nom d'utilisateur</guilabel
+></term>
+          <listitem>
+            <para
+>Le nom d'utilisateur, s'il y en a un, utilisé pour se connecter au serveur. </para>
+            <para
+>Cette colonne est affichée seulement si l'option <guilabel
+>Afficher le nom d'utilisateur et le mot de passe</guilabel
+> (sous la table) est cochée. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-password">
+          <term
+><guilabel
+>Mot de passe</guilabel
+></term>
+          <listitem>
+            <para
+>Le mot de passe, s'il y en a un, utilisé pour se connecter au serveur </para>
+            <para
+>Cette colonne est affichée seulement si l'option <guilabel
+>Afficher le nom d'utilisateur et le mot de passe</guilabel
+> (sous la table) est cochée. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-x509">
+          <term
+><guilabel
+>X.509</guilabel
+></term>
+          <listitem>
+            <para
+>Cochez cette colonne si cette entrée devrait être utilisée pour les recherches de certificats &x509; (&smime;). </para>
+            <para
+>Seuls les serveurs &ldap; (et &ldaps;) sont gérés par &smime;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-openpgp">
+          <term
+><guilabel
+>OpenPGP</guilabel
+></term>
+          <listitem>
+            <para
+>Cochez cette colonne si cette entrée devrait être utilisée pour les recherches de certificats &openpgp;. </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para
+>Vous pouvez configurer autant de serveurs &smime; (&x509;) que vous le désirez, mais un seul serveur OpenGPG seulement à la fois est autorisé. Le &GUI; fera respecter cela. </para>
+      <para
+>Pour ajouter un nouveau serveur, cliquez sur le bouton <guibutton
+>Nouveau</guibutton
+>. Cela dupliquera l'entrée sélectionnée, s'il y en a une, ou sinon ajoutera un serveur &openpgp; de défaut. Vous pouvez alors régler le <xref linkend="configuration-directory-services-server-name"/>, le <xref linkend="configuration-directory-services-server-port"/>, le <xref linkend="configuration-directory-services-base-dn"/>, et les habituelles <xref linkend="configuration-directory-services-password"/> et <xref linkend="configuration-directory-services-user-name"/>, qui tous deux ne sont nécessaires que si le serveur requiert une authentification. </para>
+      <para
+>Pour ajouter directement une entrée pour un certificat &x509;, utilisez <menuchoice
+><guimenu
+>Nouveau</guimenu
+><guimenuitem
+>X.509</guimenuitem
+></menuchoice
+> ; utilisez <menuchoice
+><guimenu
+>Nouveau</guimenu
+><guimenuitem
+>OpenPGP</guimenuitem
+></menuchoice
+> pour &openpgp;. </para>
+      <para
+>Pour supprimer un serveur de la liste de recherche, sélectionnez-le dans la liste et appuyez sur le bouton <guilabel
+>Supprimer</guilabel
+>. </para>
+<!-- not in 4.2
+<para
+>To change the relative search order of servers, select one of
+them and move it up or down with the arrow buttons right next to the
+list.</para>
+-->
+      <para
+>Pour fixer le délai maximal &ldap;, &cad; la durée maximale durant laquelle le moteur attendra une réponse d'un serveur, renseignez simplement le champ de saisie intitulé <guilabel
+>Délai maximal LDAP (minutes:secondes)</guilabel
+>. </para>
+      <para
+>Si un de vos serveurs comporte une base de données si volumineuse que même des recherches raisonnables comme <userinput
+>Dupont</userinput
+> renvoient le <guilabel
+>nombre maximal d'éléments retournés par la requête</guilabel
+>, vous pourriez être amené à augmenter cette limite. Vous apprendrez aisément si vous atteignez la limite pendant une recherche, car dans pareil cas apparaît une boîte de dialogue qui vous prévient que les résultats ont été tronqués. </para>
+      <note>
+        <para
+>Certains serveurs sont susceptibles d'imposer leurs propres limites sur le nombre d'éléments retournés à partir d'une recherche. Dans ce cas, le fait d'augmenter la limite ici ne donnera pas davantage d'éléments retournés. </para>
+      </note>
+    </sect1>
+
+    <sect1 id="configuration-appearance">
+      <title
+>Configurer l'Apparence</title>
+
+      <sect2 id="configuration-appearance-tooltips">
+          <title
+>Configurer les <guilabel
+>Infobulles</guilabel
+></title>
+
+        <para
+>Dans la principale liste de certificats, &kleopatra; peut afficher des détails sur un certificats à l'intérieur d'une infobulle. L'information affichée est la même que dans l'onglet <guilabel
+>Vue d'ensemble</guilabel
+> de la boîte de dialogue <guilabel
+>Détails du certificat</guilabel
+>. Les infobulles peuvent cependant être limitées à l'affichage d'une fraction d'information pour éviter les redondances. </para>
+        <note>
+          <para
+>L'<guilabel
+>ID de clé</guilabel
+> est <emphasis
+>toujours</emphasis
+> affiché afin de s'assurer que, en fin de compte, les infobulles pour différents certificats diffèrent (cela est spécialement important si seulement <xref linkend="tooltips-validity"/> a été sélectionné. </para>
+        </note>
+        <para
+>Vous pouvez activer ou désactiver indépendamment les réglages suivants :  </para>
+        <variablelist>
+          <varlistentry id="tooltips-validity">
+            <term
+><guilabel
+>Afficher la validité</guilabel
+></term>
+            <listitem>
+              <para
+>Affiche des informations sur la validité du certificat : son état actuel, son &dn; d'émetteur (&smime; seulement), ses dates d'expirations (s'il y en a) et ses drapeaux d'utilisation du certificat. </para>
+              <para
+>Exemple :  <programlisting
+><!--
+                  -->Ce certificat est actuellement valable.
+<!--              -->Émetteur :            CN=Test-ZS 7,O=Intevation GmbH,C=DE
+<!--              -->Validité :          De 25.08.2009 10:42 à 19.10.2010 10:42
+<!--              -->Utilisation du certificat : signe des courriels et des fichiers, Chiffre des courriels et des fichiers
+<!--              -->Empreinte numérique :            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-owner">
+            <term
+><guilabel
+>Afficher les informations sur le propriétaire</guilabel
+></term>
+            <listitem>
+              <para
+>Affiche des informations sur le propriétaire du certificat : &dn; du sujet (&smime; uniquement), identifiants utilisateurs (dont les adresses électroniques) et la confiance envers le propriétaire (&openpgp; seulement). </para>
+              <para
+>Exemple &openpgp; : <programlisting
+><!--
+                  -->ID utilisateur :           Gpg4winUserA &lt;gpg4winusera@test.hq&gt;
+<!--              -->ID de clé :            C6BF6664
+<!--              -->Confiance envers le propriétaire :        absolu<!--
+                  --></programlisting
+> Exemple &smime; :  <programlisting
+><!--
+                  -->Sujet :           CN=Gpg4winTestuserA,OU=Testlab,O=Gpg4win Project,C=DE
+<!--              -->Alias :            Gpg4winUserA@test.hq
+<!--              -->ID de clé :            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-details">
+            <term
+><guilabel
+>Afficher les détails techniques</guilabel
+></term>
+            <listitem>
+              <para
+>Affiche des informations techniques sur le certificat : numéro de série (&smime; uniquement), type, empreinte numérique et emplacement de stockage. </para>
+              <para
+>Exemple :  <programlisting
+><!--
+                  -->Numéro de série :     27
+<!--              -->Type du certificat :  1,024-bit RSA (certificat secret disponible)
+<!--              -->Key-ID :            DC9D9E43
+<!--              -->Empreinte numérique :       854F62EEEBB41BFDD3BE05D124971E09DC9D9E43
+<!--              -->Conservé :            sur cet ordinateur<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-appearance-certificate-filters">
+        <title
+>Configurer les <guilabel
+>Catégories de certificat</guilabel
+>.</title>
+
+        <para
+>&kleopatra; vous permet de personnaliser l'apparence des certificats dans l'affichage en liste. Cela inclut l'affichage d'une petite icône mais permet également la modification des couleurs d'avant-plan (texte) et d'arrière-plan, ainsi que des polices. </para>
+        <para
+>Chaque catégorie de certificat de la liste se voit affecter un ensemble de couleurs, une icône (facultative) et une police dans laquelle sont affichés les certificats appartenant à cette catégorie. La catégorie agit aussi comme un aperçu des paramètres. Les catégories peuvent être définis librement par l'administrateur ou l'utilisateur doté de privilèges : reportez-vous à la section <xref linkend="admin-key-filters"/> dans <xref linkend="admin"/>. </para>
+        <para
+>Pour définir ou changer l'icône d'une catégorie, sélectionnez-la dans la liste et cliquez sur le bouton <guilabel
+>Définir l'icône...</guilabel
+>. La boîte de dialogue de sélection standard des couleurs de &kde; apparaît, dans laquelle vous pouvez choisir une icône existante de la collection de &kde; ou en charger une personnalisée. </para>
+        <para
+>Pour revenir à l'icône standard, cliquez sur le bouton <guilabel
+>Apparence par défaut</guilabel
+>. </para>
+        <para
+>Pour changer la couleur du texte (&cad; de l'avant-plan) d'une catégorie, sélectionnez-la dans le liste et cliquez sur le bouton <guilabel
+>Définir la couleur du texte...</guilabel
+>. La boîte de dialogue de sélection standard des couleurs de &kde; apparaît, dans laquelle vous pouvez choisir une couleur existante ou en créer une nouvelle. </para>
+        <para
+>Le changement de couleur de l'arrière-plan s'effectue de la même manière. Cliquez simplement à la place sur <guilabel
+>Définir la couleur d'arrière-plan...</guilabel
+>. </para>
+        <para
+>Pour changer la police, deux options vous sont offertes : </para>
+        <orderedlist>
+          <listitem>
+            <para
+>Modifier la police standard utilisée pour tous les affichages en liste dans &kde;. </para>
+          </listitem>
+          <listitem>
+            <para
+>Utiliser une police personnalisée. </para>
+          </listitem>
+        </orderedlist>
+        <para
+>La première option présente l'avantage que la police suivra le style que vous choisissez pour l'ensemble de &kde;, quel qu'il soit, alors que la seconde vous donne l'entier contrôle sur la police à employer. Ce choix vous appartient. </para>
+        <para
+>Pour utiliser la police standard modifiée, choisissez la catégorie dans la liste, puis cochez ou décochez les modificateurs de police <guilabel
+>Italique</guilabel
+>, <guilabel
+>Gras</guilabel
+> et/ou <guilabel
+>Barrée</guilabel
+>. Vous pouvez immédiatement voir l'effet sur la police dans la liste des catégories. </para>
+        <para
+>Pour utiliser une police personnalisée, cliquez sur le bouton <guilabel
+>Définir la police...</guilabel
+>. La boîte de dialogue standard de sélection des polices de &kde; apparaît, dans laquelle vous pouvez sélectionner la nouvelle police. </para>
+        <note>
+          <para
+>Notez que vous pouvez encore vous servir des modificateurs de polices pour changer la police personnalisée, simplement comme pour la modification de la police standard. </para>
+        </note>
+        <para
+>Pour revenir à la police standard, cliquez sur le bouton <guilabel
+>Apparence par défaut</guilabel
+>. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-dn-order">
+        <title
+>Configurer l'<guilabel
+>ordre des attributs DN</guilabel
+></title>
+
+<para
+>Bien que les &dn;s soient hiérarchiques, l'ordre des composants individuels (appelés « &dn; relatifs » (DNR) ou « attributs &dn; ») n'est pas défini. L'ordre dans lequel les attributs sont affichés est ainsi une affaire de goût personnel ou de politique d'entreprise, ce qui explique pourquoi il est configurable dans &kleopatra;.</para>
+
+<note
+><para
+>Ce réglage ne s'applique pas seulement à &kleopatra;, mais à toutes les applications qui utilisent la technologie &kleopatra;. Au moment de la rédaction de ce document, sont concernés &kmail;, &kaddressbook;, ainsi que &kleopatra; lui-même naturellement.</para
+></note>
+
+<para
+>Cette page de configuration se compose de deux listes : une pour les attributs connus (<guilabel
+>Attributs disponibles</guilabel
+>) et une décrivant l'<guilabel
+>Ordre actuel des attributs</guilabel
+>.</para>
+
+<para
+>Les deux listes contiennent les entrées décrites par la forme abrégée de l'attribut (&pex; <guilabel
+>CN</guilabel
+>) ainsi que par la forme développée (<guilabel
+>Nom d'usage</guilabel
+>).</para>
+
+<para
+>La liste <guilabel
+>Attributs disponibles</guilabel
+> est toujours triée par ordre alphabétique, alors que l'ordre de la liste <guilabel
+>Ordre actuel des attributs</guilabel
+> reflète l'ordre des attributs &dn; configurés : le premier attribut de la liste est aussi celui qui est affiché le premier.</para>
+
+<para
+>Seuls les attributs explicitement répertoriés dans la liste <guilabel
+>Ordre actuel des attributs</guilabel
+> sont affichés entièrement. Le reste est masqué par défaut.</para>
+
+<para
+>Cependant, si l'élément fictif <guilabel
+>_X_</guilabel
+> (<guilabel
+>Tous les autres</guilabel
+>) est dans la liste « actuelle », tous les attributs non répertoriés (qu'ils soient connus ou non), sont insérés au niveau de <guilabel
+>_X_</guilabel
+> dans leur ordre relatif d'origine.</para>
+
+<para
+>Un petit exemple vous éclairera davantage :</para>
+
+<informalexample>
+<para
+>Étant donné le &dn;</para>
+<blockquote>
+<para
+>O=&kde;, C=US, CN=Dave Devel, X-BAR=foo, OU=&kleopatra;, X-FOO=bar, </para>
+</blockquote>
+<para
+>L'ordre attribué par défaut de <quote
+>CN, L, _X_, OU, O, C</quote
+> générera le &dn; formaté suivant :</para>
+<blockquote>
+<para
+>CN=Dave Devel, X-BAR=foo, X-FOO=bar, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+<para
+>alors que <quote
+>CN, L, OU, O, C</quote
+> générera</para>
+<blockquote>
+<para
+>CN=Dave Devel, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+</informalexample>
+
+<para
+>Pour ajouter un attribut à la liste d'ordre d'affichage, sélectionnez-le dans la liste <guilabel
+>Attributs disponibles</guilabel
+> et cliquez sur le bouton <guilabel
+>Ajouter à l'ordre actuel des attributs</guilabel
+>.</para>
+
+<para
+>Pour supprimer un attribut de la liste d'ordre d'affichage, sélectionnez-le dans la liste <guilabel
+>Attributs disponibles</guilabel
+> et cliquez sur le bouton <guilabel
+>Supprimer de l'ordre actuel des attributs</guilabel
+>.</para>
+
+<para
+>Pour déplacer un attribut au début (à la fin), sélectionnez-le dans la liste <guilabel
+>Ordre actuel des attributs</guilabel
+> et cliquez sur le bouton <guilabel
+>Déplacer vers le haut</guilabel
+> (<guilabel
+>Déplacer vers le bas</guilabel
+>).</para>
+
+<para
+>Pour déplacer un attribut vers le haut (le bas) d'un niveau seulement, sélectionnez-le dans la liste <guilabel
+>Ordre actuel des attributs</guilabel
+> et cliquez sur le bouton <guilabel
+>Remonter</guilabel
+> (<guilabel
+>Redescendre</guilabel
+>).</para>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-crypto-operations">
+      <title
+>Configurer les opérations de chiffrement</title>
+
+      <sect2 id="configuration-crypto-operations-email">
+        <title
+>Configurer les <guilabel
+>Opérations de courriel</guilabel
+></title>
+
+        <para
+>Vous pouvez configurer ici certains aspects des opérations de courriel du serveur d'interfaces de &kleopatra;. Actuellement, vous pouvez seulement configurer si vous voulez ou non utiliser le <quote
+>Mode rapide</quote
+> pour, respectivement, signer et chiffrer des courriels. </para>
+        <para
+>Quand le <quote
+>Mode rapide</quote
+> est activé, aucune boîte de dialogue n'est affichée lorsque vous signez (ou chiffrez) des courriels, à moins qu'il n'apparaisse un conflit nécessitant une intervention manuelle. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-crypto-operations-file">
+        <title
+>Configurer les <guilabel
+>Opérations de fichiers</guilabel
+></title>
+
+        <para
+>Vous pouvez configurer ici certains aspects des opérations de fichiers du serveur d'interfaces de &kleopatra;. Vous pouvez actuellement choisir le programme de contrôle à utiliser pour <command
+>CHECKSUM_CREATE_FILES</command
+>. </para>
+        <para
+>Servez vous de <guilabel
+>Programme de somme de contrôle à utiliser</guilabel
+> pour choisir quel programme doit être utilisé lors de la création de fichier de somme de contrôle parmi les programmes configurés. </para>
+        <para
+>Lors de la vérification des sommes de contrôle, le programme à utiliser est automatiquement détecté, grâce aux noms des fichiers de contrôle trouvés. </para>
+        <note>
+          <para
+>L'administrateur et l'utilisateur doté de privilèges peuvent entièrement définir quels programmes rendre disponible pour &kleopatra; à travers les dénommées <quote
+>Définitions de la somme de contrôle</quote
+> dans le fichier de configuration. Voir <xref linkend="admin-checksum-definitions"/> dans <xref linkend="admin"/> pour plus de détails. </para>
+        </note>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-smime-validation">
+    <!-- keep in sync with section configure-security-smime-validation from kmail configure.docbook
+    both apps have the same page in settings-->
+      <title
+>Configuration des aspects de la validation « S / MIME »</title>
+
+      <para
+>Sur cette page, vous pouvez configurer certains aspects de la validation des certificats &smime;. </para>
+      <note>
+        <para
+>C'est simplement, en grande partie, une version plus conviviale des mêmes réglages que vous pouvez aussi trouver dans <xref linkend="configuration-gnupg-system"/>. Tout ce que vous pouvez configurer ici, vous pouvez également le faire là-bas, à l'exception de <xref linkend="configuration-smime-validation-refresh-interval"/> qui est spécifique à &kleopatra;. </para>
+      </note>
+      <para
+>La signification de chacune des options est la suivante :  </para>
+
+      <sect2 id="configuration-smime-validation-interval-checking">
+        <title
+>Configurer la vérification périodique des certificats</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-refresh-interval">
+            <term
+><guilabel
+>Vérifie la validité des certificats toutes les <replaceable
+>N</replaceable
+> heures.</guilabel
+></term>
+            <listitem>
+              <para
+>Cette option active la vérification périodique de la validité des certificats. L'effet de la vérification périodique est le même que <xref linkend="view-redisplay"/> ; la programmation périodique de <xref linkend="certificates-refresh-openpgp"/> ou <xref linkend="certificates-refresh-x509"/> n'est pas prévu. </para>
+              <note>
+                <para
+>La validation est effectuée implicitement à chaque fois que des fichiers significatifs sont modifiés dans <filename
+>~/.gnupg</filename
+>. Cette option, comme <xref linkend="certificates-refresh-openpgp"/> et <xref linkend="certificates-refresh-x509"/>, affecte donc seulement les facteurs externes de la validité des certificats. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-method">
+        <title
+>Configurer la méthode de validation</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-use-crls">
+            <term
+><guilabel
+>Valider les certificats en utilisant des LRC</guilabel
+></term>
+            <listitem>
+              <para
+>Si cette option est sélectionnée, les certificats &smime; sont validés en utilisant les Listes de Révocations de Certificats (LRC). </para>
+              <para
+>Voir <xref linkend="configuration-smime-validation-use-ocsp"/> pour obtenir des méthodes alternatives de vérification de validité de certificat. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-use-ocsp">
+            <term
+><guilabel
+>Valider les certificats en ligne (OCSP)</guilabel
+></term>
+            <listitem>
+              <para
+>Si cette option est sélectionnée, les certificats &smime; sont validés en ligne en utilisant le protocole de vérification en ligne de certificat (<foreignphrase
+>Online Certificates Status Protocol</foreignphrase
+>, &ocsp;). </para>
+              <warning>
+                <para
+>Quand vous choisissez cette méthode, une requête est envoyée au serveur de la &ca; plus ou moins à chaque fois que vous envoyez ou recevez un message chiffré, permettant théoriquement à l'agence de certification émettrice de localiser celui avec qui vous échangez des (&pex;) courriels. </para>
+              </warning>
+              <para
+>Pour utilisez cette méthode, vous aurez besoin de saisir l'&URL; du serveur &ocsp; dans <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+              <para
+>Voir <xref linkend="configuration-smime-validation-use-ocsp"/> pour obtenir une méthode plus traditionnelle de vérification de validité de certificat qui ne divulgue pas d'informations sur celui avec qui vous échangez des courriels. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-url">
+            <term
+><guilabel
+>URL du serveur OCSP</guilabel
+></term>
+            <listitem>
+              <para
+>Saisissez ici l'adresse du serveur pour la validation en ligne des certificats (du serveur &ocsp;). L'&URL; commence habituellement par <literal
+>http://</literal
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-signature">
+            <term
+><guilabel
+>Signature du serveur OCSP :</guilabel
+></term>
+            <listitem>
+              <para
+>Sélectionnez ici le certificat avec lequel le serveur &ocsp; signe ses réponses. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-ignore-service-url">
+            <term
+><guilabel
+>Ignorer l'URL de service des certificats</guilabel
+></term>
+            <listitem>
+              <para
+>Chaque certificat &smime; contient généralement l'&URL; de son serveur &ocsp; de l'émetteur (<xref linkend="certificates-dump-certificate"/> révélera si un certificat donné en contient une). </para>
+              <para
+>Cochez cette option fais ignorer ces &URL; par &gpgsm; et seulement prendre en compte celle configurée au-dessus. </para>
+              <para
+>Utiliser cela pour, &pex;, imposer l'utilisation d'un serveur mandataire &ocsp; à travers toute une société. </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-options">
+        <title
+>Configurer les options de validation</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-dont-check-cert-policy">
+            <term
+><guilabel
+>Ne pas vérifier les règles de certificat</guilabel
+></term>
+            <listitem>
+              <para
+>Par défaut, &gpgsm; utilise le fichier <filename
+>~/.gnupg/policies.txt</filename
+> pour vérifier si une règle de certificat est permise. Si cette option est sélectionnée, les règles ne sont pas vérifiées. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-never-consult-crl">
+            <term
+><guilabel
+>Ne jamais consulter une LRC</guilabel
+></term>
+            <listitem>
+              <para
+>Si cette option est activée, les listes de révocation de certificats ne sont jamais utilisées pour valider les certificats &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-allow-mark-trusted">
+            <term
+><guilabel
+>Autoriser le marquage de confiance des certificats racines </guilabel
+></term>
+            <listitem>
+            <para
+>Si cette option est activée lorsque le certificat &ca; racine est importé, il vous sera demandé de confirmer son empreinte numérique et si vous considérez ou non sa signature comme de confiance. </para>
+              <para
+>Un certificat racine a besoin d'être de confiance avant de pouvoir considérer les certificats qui en proviennent comme de confiance également. Mais avoir confiance en des certificats racines trop facilement peut abaisser la sécurité générale du système. </para>
+              <note>
+                <para
+>Activer cette fonctionnalité dans le moteur peut vous amenez à être dérangé par des menus contextuels de &pinentry; à des moments inopportuns (&cad; à la vérification des signatures), et peut ainsi bloquer le traitement des courriels laissé sans surveillance. Pour cette raison, et parce qu'il est souhaitable d'être en mesure de <emphasis
+>ne plus faire confiance</emphasis
+> à un certificat racine de confiance à nouveau, &kleopatra; permet le réglage manuel du niveau de confiance en utilisant <xref linkend="certificates-trust-root"/> et <xref linkend="certificates-distrust-root"/>. </para>
+                <para
+>Les réglages ici n'influencent pas la fonction de &kleopatra;. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-fetch-missing-issuers">
+            <term
+><guilabel
+>Recevoir les certificats sans émetteur</guilabel
+></term>
+            <listitem>
+              <para
+>Si cette option est activée, les certificats sans émetteur sont reçus lorsque nécessaire (cela s'applique aux deux méthodes de validation, par LRC et par OCSP). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-http-options">
+        <title
+>Configurer les options des requêtes &http;</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-http">
+            <term
+><guilabel
+>N'effectuer aucune requête HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>Désactiver totalement l'utilisation de &http; pour &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-http-dp">
+            <term
+><guilabel
+>Ignorer le point de distribution de LRC HTTP des certificats</guilabel
+></term>
+            <listitem>
+              <para
+>Lorsque l'emplacement d'une LRC est recherché, le certificat à tester contient généralement des entrées connues comme le <quote
+>point de distribution de LRC</quote
+> (<acronym
+>DP</acronym
+>, <foreignphrase
+>&crl; Distribution Point</foreignphrase
+>) qui sont des &URL;s décrivant le moyen d'accéder aux LRC. La première entrée <acronym
+>DP</acronym
+> trouvée est utilisée. </para>
+              <para
+>Avec cette option, toutes les entrées utilisant le protocole &http; sont ignorées lors de la recherche d'un DP adéquat. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-honor-http-proxy">
+            <term
+><guilabel
+>Utiliser le serveur mandataire HTTP du système</guilabel
+></term>
+            <listitem>
+              <para
+>Si cette option est sélectionnée, le serveur mandataire &http; affiché à droite (Correspondant à la variable d'environnement <envar
+>http_proxy</envar
+>) sera utilisé pour toute requête &http;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-http-proxy">
+            <term
+><guilabel
+>Utiliser ce serveur mandataire pour les requêtes HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>Si aucun système de serveur mandataire n'est défini, ou si vous avez besoin d'utiliser un serveur mandataire différent pour &gpgsm;, veuillez saisir son emplacement ici. </para>
+              <para
+>Il sera utilisé pour toutes les requêtes &HTTP; relatives à « S / &MIME; ». </para>
+              <para
+>La syntaxe est <userinput
+><replaceable
+>machine</replaceable
+><literal
+>:</literal
+><replaceable
+>port</replaceable
+></userinput
+>, &cad; <userinput
+>mon-proxy.quelque-part.com:3128</userinput
+>. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-ldap-options">
+        <title
+>Configurer les options des requêtes &ldap;</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-ldap">
+            <term
+><guilabel
+>N'effectuer aucune requête LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>Désactive totalement l'utilisation de &ldap; pour &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-ldap-dp">
+            <term
+><guilabel
+>Ignorer le point de distribution des LRC LDAP des certificats</guilabel
+></term>
+            <listitem>
+              <para
+>Lorsque l'emplacement d'une LRC est recherché, le certificat à tester contient généralement des entrées connues comme « point de distribution de LRC » (<acronym
+>DP</acronym
+>) qui sont des &URL;s décrivant un moyen d'accès. La première entrée <acronym
+>DP</acronym
+> trouvée est utilisée. </para>
+              <para
+>Avec cette option, toutes les entrées utilisant le protocole &ldap; sont ignorées lors de la recherche d'un <acronym
+>DP</acronym
+> adéquat. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-ldap-proxy">
+            <term
+><guilabel
+>Hôte primaire pour les requêtes LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>Indiquer un serveur &ldap; ici fera passer toutes les requêtes &ldap; d'abord par ce serveur. Plus précisément, ce réglage prend le pas sur tout <replaceable
+>hôte</replaceable
+> et <replaceable
+>port</replaceable
+> spécifié dans une &URL; &ldap; et sera également utilisé si l'<replaceable
+>hôte </replaceable
+> et le <replaceable
+>port </replaceable
+> ont été omis dans l'&URL;. </para>
+              <para
+>Les autres serveurs &ldap; seront utilisés uniquement si la connexion au <quote
+>serveur mandataire</quote
+> échoue. La syntaxe est <userinput
+><replaceable
+>hôte</replaceable
+></userinput
+> ou <userinput
+><replaceable
+>hôte</replaceable
+><literal
+>:</literal
+><replaceable
+>port</replaceable
+></userinput
+>. Si <replaceable
+>port</replaceable
+> est omis le port 389 (port standard &ldap;) sera utilisé. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-gnupg-system">
+    <!-- kleopatra + kmail have the this page in settings-->
+
+      <title
+>Configurer le système &gnupg;</title>
+
+      <para
+>Cette partie de la boîte de dialogue est générée automatiquement depuis la sortie de <command
+>gpgconf <option
+>--list-components</option
+></command
+> et, pour tout <replaceable
+>composant</replaceable
+> que la commande ci-dessus retourne, la sortie de <command
+>gpgconf <option
+>--list-options</option
+> <replaceable
+>composant</replaceable
+></command
+>. </para>
+      <note>
+        <para
+>La plus utile de ces options a été dupliqué en pages séparées dans la boîte de dialogue de configuration de &kleopatra;. Reportez vous à <xref linkend="configuration-directory-services"/> et <xref linkend="configuration-smime-validation"/> pour les deux pages qui contiennent des options sélectionnées depuis cette section de la boîte de dialogue. </para>
+      </note>
+      <para
+>Le contenu exact de cette section de la boîte de dialogue dépend de la version du moteur &gnupg; que vous avez installé et, potentiellement, de la plate-forme sur laquelle vous tournez. Ainsi, allons nous discuter seulement la présentation générale de la boîte de dialogue, notamment les correspondances permettant de passer des options de &gpgconf; aux actions du &GUI; de &kleopatra;.  </para>
+      <para
+>&gpgconf; retourne des informations de configuration pour plusieurs composants. À l'intérieur de chaque composant, les options individuelles sont réunies en groupes. </para>
+      <para
+>&kleopatra; affiche un onglet par composant rapporté par &gpgconf;; les groupes sont intitulés par une ligne horizontale affichant le nom du groupe comme retourné par &gpgconf;. </para>
+      <para
+>Chaque option de &gpgconf; a un type. Excepté pour certaines options bien connues que &kleopatra; accompagne avec des réglages spécialisés pour une meilleure expérience utilisateur, les correspondances permettant de passer des types &gpgconf; aux actions du &GUI; de &kleopatra; sont comme suivant :  </para>
+      <table id="table-gpgconf-types">
+	<title
+>Correspondance entre les options de &gpgconf; et les actions du &GUI; de &kleopatra;</title>
+	<tgroup cols="3">
+          <colspec colname="type"/>
+	  <colspec colname="lists" align="center"/>
+          <colspec colname="non-lists" align="center"/>
+	  <thead>
+	    <row>
+	      <entry morerows="1"
+>type &gpgconf;</entry>
+              <entry namest="lists" nameend="non-lists"
+>Action de &kleopatra;</entry>
+            </row>
+            <row>
+	      <entry
+>pour les listes</entry>
+	      <entry
+>pour les non-listes</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><literal
+>aucun</literal
+></entry>
+	      <entry
+>Compteur</entry>
+	      <entry
+>Case à cocher</entry>
+	    </row>
+            <row>
+              <entry
+><literal
+>chaîne</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>édition de ligne</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>int32</literal
+></entry>
+              <entry morerows="1"
+>édition de ligne (non formatée)</entry>
+              <entry morerows="1"
+>Compteur</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>uint32</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>nom de l'emplacement</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>action spécialisée</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>serveur LDAP</literal
+></entry>
+              <entry
+>action spécialisée</entry>
+              <entry
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>empreinte clé</literal
+></entry>
+              <entry morerows="3" namest="lists" nameend="non-lists"
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>clé publique</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>clé secrète</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>liste des alias</literal
+></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para
+>Voir le manuel de &gpgconf; pour des informations supplémentaires sur ce que vous pouvez configurer ici et comment. </para>
+
+    </sect1>
+
+</chapter>
+
+<chapter id="admin"
+><title
+>Guide de l'administrateur</title>
+
+<para
+>Le guide l'administrateur décrit les différents moyens permettant de personnaliser &kleopatra; qui ne sont pas accessibles par l'intermédiaire de l'interface graphique utilisateur, mais uniquement au travers des fichiers de configuration.</para>
+
+<para
+>Il part du principe que le lecteur connaît déjà la technologie utilisée pour la configuration des applications &kde;, y compris la structure, l'emplacement du système de fichiers et l'implantation en cascade des fichiers de configuration de &kde;, sans oublier l'infrastructure KIOSK.</para>
+
+<sect1 id="admin-certificate-request-wizard"
+><title
+>Personnalisation de l'assistant de création des certificats</title>
+
+<sect2 id="admin-certificate-request-wizard-dn"
+><title
+>Personnaliser les champs &dn;</title>
+
+<para
+>&kleopatra; vous permet de personnaliser les champs que l'utilisateur pourra renseigner afin de créer des certificats.</para>
+
+<para
+>Créez un groupe appelé <literal
+>CertificateCreationWizard</literal
+> dans le fichier <filename
+>kleopatrarc</filename
+> pour tout le système. Si vous souhaitez avoir un ordre personnalisé des attributs ou ne voir apparaître que certains éléments, créez une clé appelée <varname
+>DNAttributeOrder</varname
+>. Le ou les arguments sont à choisir parmi <varname
+>CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
+>. Pour initialiser des champs avec une valeur donnée, écrivez quelque chose comme « Attribut=valeur ». Pour que l'attribut soit considéré comme un attribut requis, ajoutez-y à la fin un point d'exclamation (&pex;, <varname
+>CN !,L,OU,O !,C !,EMAIL !</varname
+>, ce qui s'avère justement être la configuration par défaut).</para>
+
+<para
+>L'utilisation du modificateur de mode <acronym
+>KIOSK</acronym
+> <varname
+>$e</varname
+> vous permet d'extraire les valeurs issues des variables d'environnement, d'un script ou d'un binaire évalué. Pour en plus désactiver l'édition du champ respectif, faites appel au modificateur <varname
+>$i</varname
+>. Pour interdire l'utilisation du bouton <guibutton
+>Insérer mon adresse</guibutton
+>, réglez <varname
+>ShowSetWhoAmI</varname
+> à « False ».</para>
+
+<tip
+><para
+>En raison de la nature de l'infrastructure <acronym
+>KIOSK</acronym
+> de &kde;, l'emploi du drapeau immuable (<varname
+>$i</varname
+>) interdit à l'utilisateur de ne pas tenir compte du drapeau. C'est un comportement intentionnel. <varname
+>$i</varname
+> et <varname
+>$e</varname
+> peuvent aussi bien être utilisés avec toutes les autres clés de configuration dans les applications &kde;.</para
+></tip>
+
+<para
+>L'exemple suivant donne un aperçu des personnalisations possibles :</para>
+
+<para>
+<programlisting
+>[CertificateCreationWizard]
+ ; interdit de copier des données personnelles provenant du carnet d'adresses, ne pas autoriser la prise de contrôle locale
+ShowSetWhoAmI[$i]=false
+
+ ; définit le nom de l'utilisateur à $UTILISATEUR
+CN[$e]=$UTILISATEUR
+
+ ; définit le nom de l'entreprise à « Mon Entreprise », interdit l'édition
+O[$i]=Mon Entreprise
+
+ ; définit le nom du département à une valeur retournée par un script
+OU[$ei]=$(lookup_dept_from_ip)
+
+ ; définit le pays à FR, mais autorise des changements par l'utilisateur
+C=FR
+</programlisting>
+</para>
+
+</sect2>
+
+      <sect2 id="admin-certificate-request-wizard-keys">
+
+        <title
+>Restreindre les types de clés qu'un utilisateur est autorisé à créer</title>
+
+        <para
+>&kleopatra; permet aussi de restreindre les types de certificats qu'un utilisateur est autorisé à créer. Notez tout de même qu'un moyen facile de contourner ces restrictions est de simplement en créer un à l'aide de la ligne de commande. </para>
+
+        <sect3 id="admin-certificate-request-wizard-keys-type">
+
+          <title
+>Algorithme à clés publiques</title>
+
+          <para
+>Pour contrôler l'algorithme à clés publiques à utiliser, veuillez ajouter la clé de configuration <varname
+>PGPKeyType</varname
+> (Et <varname
+>CMSKeyType</varname
+>, mais seulement <acronym
+>RSA</acronym
+> est géré pour <acronym
+>CMS</acronym
+> de toute façon) à la section <literal
+>CertificateCreationWizard</literal
+> de <filename
+>kleopatrarc</filename
+>. </para>
+
+          <para
+>Les valeurs autorisées sont<literal
+>RSA</literal
+> pour des clés <acronym
+>RSA</acronym
+>, <literal
+>DAS</literal
+> pour les clés (Pour signer uniquement) <acronym
+>DSA</acronym
+>, et <literal
+>DSA + ELG</literal
+> pour une clé (pour signer uniquement) <acronym
+>DSA</acronym
+> avec une sous-clé ElGamal pour le chiffrement. </para>
+
+          <para
+>La configuration par défaut est lu depuis &gpgconf; ou sinon depuis <literal
+>RSA</literal
+>, si &gpgconf; n'en fournit pas. </para>
+
+        </sect3>
+
+        <sect3 id="admin-certificate-request-wizard-keys-size">
+
+          <title
+>Taille des Clés Publiques</title>
+
+          <para
+>Pour restreindre les tailles de clés disponibles pour un algorithme publique, ajouter la clé de configuration <varname
+><replaceable
+>&lt;ALG&gt;</replaceable
+>Tailles-clé</varname
+> (où <replaceable
+>ALG</replaceable
+> peut être <literal
+>RSA</literal
+>, <literal
+>DSA</literal
+> ou <literal
+>ELG</literal
+>) par la <literal
+>CertificateCreationWizard</literal
+> section de <filename
+>kleopatrarc</filename
+>, contenant une liste de taille de clé (en bits) séparées par des virgules. Une taille de clé par défaut peut être indiquée en la faisant précéder par un trait d'union (<literal
+>-</literal
+>). </para>
+
+          <para>
+            <programlisting
+>RSAKeySizes = 1536,-2048,3072
+            </programlisting>
+          </para>
+
+
+          <para
+>L'exemple ci-dessus restreindra les tailles de clé <acronym
+>RSA</acronym
+> autorisées à 1536, 2048 et 3072, avec 2048 par défaut. </para>
+
+          <para
+>En plus des tailles elles-même, vous pouvez aussi spécifier une étiquette pour chacune des tailles. Il suffit de fixer la configuration de clé <varname
+><replaceable
+>ALG</replaceable
+> KeySizeLabels</varname
+> à une liste d'étiquettes séparées par des virgules. </para>
+
+          <para>
+            <programlisting
+>RSAKeySizeLabels = faible,normal,fort
+            </programlisting>
+          </para>
+
+          <para
+>Celui de dessus, en liaison avec l'exemple précédent, écrirait quelque chose comme les options suivantes pour la sélection :  <programlisting
+>faible (1536 bits)
+              normal (2048 bits)
+              fort (3072 bits)
+            </programlisting>
+          </para>
+
+          <para
+>Ceux par défaut sont comme si le suivant avait effet :  <programlisting
+>RSAKeySizes = 1536,-2048,3072,4096
+              RSAKeySizeLabels =
+              DSAKeySizes = -1024,2048
+              DSAKeySizeLabels = v1,v2
+              ELGKeySizes = 1536,-2048,3072,4096
+            </programlisting>
+          </para>
+
+        </sect3>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="admin-key-filters">
+
+      <title
+>Créer et éditer des catégories de clés</title>
+
+      <para
+>&kleopatra; permet à l'utilisateur de configurer l'<link linkend="configuration-appearance"
+>apparence visuelle</link
+> des clés en se basant sur un concept appelé <guilabel
+>Catégories de clés</guilabel
+>. Les <guilabel
+>Catégories de clés</guilabel
+> sont aussi utilisées pour filtrer la liste des certificats. Cette section décrit de quelle manière il est possible d'éditer les catégories disponibles et d'en ajouter de nouvelles. </para>
+
+      <para
+>Lorsqu'on essaie de trouver la catégorie à laquelle une clé appartient, &kleopatra; tente de faire correspondre une clé à une séquence de filtres de clés, configurée dans le fichier <filename
+>libkleopatrarc</filename
+>. Le premier à correspondre définit la catégorie, en s'appuyant sur un concept de <emphasis
+>spécificité</emphasis
+>, expliqué plus loin. </para>
+
+      <para
+>Chaque filtre de clés est défini dans un groupe de configuration nommé <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>, où <replaceable
+>n</replaceable
+> est un nombre à partir de <literal
+>0</literal
+>. </para>
+
+      <para
+>Les seules clés obligatoires dans un groupe <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+> sont <varname
+>Name</varname
+>, qui contient le nom de la catégorie tel qu'il est affiché dans la <link linkend="configuration-appearance"
+>boîte de dialogue de configuration</link
+>, et <varname
+>id</varname
+>, qui est utilisé comme référence pour le filtre dans d'autres sections de configuration (comme <literal
+>Vue #<replaceable
+>n</replaceable
+></literal
+>). </para>
+
+      <para
+><xref linkend="table-key-filters-appearance"/> répertorie toutes les clés qui définissent les propriétés d'affichage des clés appartenant à cette catégorie (&cad; les clés qui peuvent être ajustées dans la <link linkend="configuration-appearance-certificate-filters"
+>boîte de dialogue de configuration</link
+>), alors que <xref linkend="table-key-filters-criteria"/> dresse la liste de toutes les clés qui définissent les critères par rapport auxquels le filtre correspond aux clés. </para>
+
+      <table id="table-key-filters-appearance">
+	<title
+>Clés de configuration des filtres de clés définissant les propriétés d'affichage</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Clé de configuration</entry>
+	      <entry
+>Type</entry>
+	      <entry
+>Description</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>couleur d'arrière-plan</varname
+></entry>
+	      <entry
+>couleur</entry>
+	      <entry
+>La couleur d'arrière-plan à utiliser. Si elle est absente, sera par défaut celle définie globalement pour les affichages en liste. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>couleur d'avant-plan</varname
+></entry>
+	      <entry
+>couleur</entry>
+	      <entry
+>La couleur d'avant-plan à utiliser. Si elle est absente, sera par défaut celle définie globalement pour les affichages en liste. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>police</varname
+></entry>
+	      <entry
+>police</entry>
+	      <entry
+>La police par défaut à utiliser. La police sera mise à l'échelle de façon à correspondre à la taille configurée pour les affichages en liste, et tout attribut de police (voir ci-dessous) sera appliqué. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-bold</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>Si défini à <literal
+>True</literal
+> et si <varname
+>font</varname
+> n'est pas défini, utilise la police par défaut de l'affichage en liste avec ajout du style de police Gras (si disponible). Ignoré si <varname
+>font</varname
+> est également présent. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-italic</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>Analogue à <varname
+>font-bold</varname
+>, mais pour les polices de type italique au lieu de gras. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>police-barrée</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>Si <literal
+>True</literal
+>, trace une ligne au centre de la police. Appliqué même si <varname
+>font</varname
+> est défini. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>icône</varname
+></entry>
+	      <entry
+>texte</entry>
+	      <entry
+>Le nom d'une icône à afficher dans la première colonne. N'est pas encore mis en œuvre. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table id="table-key-filters-criteria">
+	<title
+>Clés de configuration des filtres de clés définissant les critères du filtre</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Clé de configuration</entry>
+	      <entry
+>Type</entry>
+	      <entry
+>Si spécifié, le filtre correspond quand...</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>is-revoked</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé a été révoquée.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>match-context</varname
+></entry>
+	      <entry
+>contexte<footnote
+> <para
+>Le contexte est un listage des valeurs autorisées suivantes : <literal
+>appearance</literal
+>, <literal
+>filtering</literal
+> et <literal
+>any</literal
+>.</para>
+                </footnote>
+              </entry>
+	      <entry
+>le contexte auquel le filtre correspond.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-expired</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé a expiré.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-disabled</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé a été désactivée (marquée afin de ne pas être utilisée) par l'utilisateur. Ignoré pour les clés &smime;. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-root-certificate</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé est un certificat racine. Ignoré pour les clés &openpgp;. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-encrypt</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé peut servir pour le chiffrement. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-sign</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé peut servir pour signer. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-certify</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé peut servir pour signer (certifier) d'autres clés. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-authenticate</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé peut servir pour l'authentification (&pex; comme certificat de client <acronym
+>TLS</acronym
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-qualified</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé peut être utilisée pour faire des Signatures Qualifiées (comme définie par la loi allemande sur la signature numérique). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-cardkey</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>le matériel clé est stockée sur une carte à puce (et non sur l'ordinateur). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>has-secret-key</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé secrète de cette paire de clés est disponible. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-openpgp-key</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé est une clé &openpgp; (<literal
+>True</literal
+>) ou une clé &smime; (<literal
+>False</literal
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>was-validated</varname
+></entry>
+	      <entry
+>booléen</entry>
+	      <entry
+>la clé a été validée. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+></entry>
+	      <entry
+>validité<footnote
+> <para
+>La validité est un listage (ordonnée) des valeurs autorisées suivantes : <literal
+>unknown</literal
+>, <literal
+>undefined</literal
+>, <literal
+>never</literal
+>, <literal
+>marginal</literal
+>, <literal
+>full</literal
+>, <literal
+>ultimate</literal
+>. Reportez-vous aux manuels de &gpg; et &gpgsm; pour une explication détaillée.</para>
+		</footnote>
+	      </entry>
+	      <entry
+>la clé a exactement (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is</literal
+>), n'a rien sauf (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-not</literal
+>), a au moins (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-least</literal
+>) ou a au plus (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-most</literal
+>) la confiance du propriétaire en question comme valeur pour la clé de configuration. Si plusieurs clés <varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+> (avec des valeurs <replaceable
+>prefix</replaceable
+> différentes) sont présentes dans un seul groupe, le comportement est indéfini. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefix</replaceable
+>-validity</varname
+></entry>
+	      <entry
+>validité</entry>
+	      <entry
+>Analogue à <varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+>, mais pour la validité des clés au lieu de la confiance du propriétaire. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <note>
+	<para
+>Quelques-uns des critères les plus intéressants, comme <varname
+>is-revoked</varname
+> ou <varname
+>is-expired</varname
+> ne fonctionneront que sur des clés <emphasis
+>validées</emphasis
+>, ce qui explique pourquoi par défaut, la révocation et l'expiration n'est vérifiée que pour les clés validées, bien que vous soyez libre de supprimer ces contrôles supplémentaires. </para>
+      </note>
+
+      <para
+>En plus de la liste des clés configurées ci-dessous, un filtre de clés peut aussi avoir un <varname
+>id</varname
+> et un <varname
+>match-contexts</varname
+>. </para>
+
+      <para
+>En utilisant l'<varname
+>id</varname
+> du filtre, qui est par défaut le nom du groupe de configuration du filtre s'il n'est pas donné ou vide, vous pouvez indiquer le filtre de clés autre part dans la configuration, &pex; dans l'affichage de la configuration de &kleopatra;. L'<varname
+>id</varname
+> n'est pas interprété par &kleopatra;, vous pouvez donc utiliser n'importe quelle chaîne, tant quelle reste unique.  </para>
+
+      <para
+><varname
+>match-contexts</varname
+> limite la pertinence du filtre. Deux contexte sont actuellement définis : le contexte d'<literal
+>appearance</literal
+> est utilisé lors de la définition des couleurs et des propriétés de la police pour la vue. Le contexte <literal
+>filtering</literal
+> est utilisé pour inclure (et exclure) sélectivement des certificats de la vue. <literal
+>any</literal
+> peuvent être utilisé pour désigner tous les contextes définis actuellement, et c'est celui par défaut si <varname
+>match-contexts</varname
+> n'est pas donné, ou sinon ne produit aucun contexte. Cela assure qu'aucun filtre de clés ne se retrouve <quote
+>mort</quote
+>, &cad; avec aucun contexte à lui appliquer. </para>
+
+      <para
+>Le format de l'entrée est une liste d'identificateurs, séparés par des caractères qui ne sont pas des mots. Chacun de ces identificateurs peut être précédé par un point d'exclamation (<literal
+>!</literal
+>), indiquant la négation. Les identificateurs agissent dans l'ordre sur une liste externe de contextes, qui débute vide. Le mieux est de l'expliquer par un exemple : <literal
+>tous !appearance</literal
+> est le même que <literal
+>filtering</literal
+> et <literal
+>appearance !appearance</literal
+> produit un groupe vide, comme l'est <literal
+>!any</literal
+>. Cependant, les deux derniers seront remplacés en interne par <literal
+>any</literal
+>, car ils ne produisent aucun contexte du tout. </para>
+
+      <para
+>En général, les critères non spécifiés (&cad; dont l'élément de configuration n'est pas défini) ne sont pas vérifiés. Si un critère est indiqué, il est déceler et doit correspondre au filtre comme un ensemble pour convenir, &cad; que les critères sont « combinés en ET » (<foreignphrase
+>AND'ed together</foreignphrase
+>). </para>
+
+      <para
+>Chaque filtre a une <quote
+>spécificité</quote
+> tacite qui est utilisée pour classer tous les filtres correspondants. Le filtre le plus spécifique l'emporte sur les filtres les moins spécifiques. Si deux filtres ont la même spécificité, celui qui vient en premier dans le fichier de configuration l'emporte. La spécificité du filtre est proportionnelle au nombre de critère qu'il contient. </para>
+
+      <example>
+	<title
+>Exemples de filtres de clés</title>
+	<para
+>Pour vérifier tous les certificats racines arrivés à expiration mais non révoqués, vous devriez utiliser un filtre de clés défini comme suit : </para>
+<!-- isn't there a better way to not indent this in the output??? -->
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=expired, mais pas révoqué
+was-validated=true
+is-expired=true
+is-revoked=false
+is-root-certificate=true
+ ; ( specificity 4 )<!--
+     --></screen>
+	<para
+>Pour vérifier toutes les clés &openpgp; désactivées (&kleopatra; ne le gère pas encore) ayant au moins la confiance « minimale » du propriétaire, vous devriez utilisez : </para>
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=clés OpenPGP désactivées ayant la confiance minimale ou d'un niveau plus élevé du propriétaire
+is-openpgp=true
+is-disabled=true
+is-at-least-ownertrust=marginal
+ ; ( specificity 3 )<!--
+     --></screen>
+      </example>
+
+    </sect1>
+
+    <sect1 id="admin-archive-definitions">
+
+      <title
+>Configurer les gestionnaires d'archives pour être utilisés avec les fichiers signés/chiffrés.</title>
+
+      <para
+>&kleopatra; permet à l'administrateur (et à l'utilisateur doté de privilèges) de configurer la liste des gestionnaires d'archives qui sont présentés dans la boîte de dialogue Signer/chiffrer des fichiers. </para>
+
+      <para
+>Chaque gestionnaire d'archives est définit dans <filename
+>libkleopatrarc</filename
+> comme un groupe d'<literal
+>Archive&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+> séparé, avec les clés obligatoires suivantes :  </para>
+
+      <variablelist>
+
+        <varlistentry id="archive-definition-extensions">
+          <term
+><literal
+>extensions</literal
+></term>
+          <listitem>
+            <para
+>Une liste d'extensions de nom de fichiers séparés par des virgules qui indique généralement ce format d'archive. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Un identifiant unique pour identifier ce gestionnaire d'archives en interne. Si vous n'êtes pas sûr, utilisez le nom de la commande. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-Name">
+          <term
+><literal
+>Name</literal
+> (traduit)</term>
+          <listitem>
+            <para
+>Le nom d'utilisateur visible de ce gestionnaire d'archives, comme affiché dans le menu déroulant de la boîte de dialogue Signer/Chiffrer des fichiers. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-pack-command">
+          <term
+><literal
+>pack-command</literal
+></term>
+          <listitem>
+            <para
+>La commande actuelle pour archiver des fichiers. Vous pouvez utiliser n'importe quelle commande, tant qu'aucun shell n'est requis pour l'exécuter. Le fichier du programme est recherché en utilisant la variable d'environnement <envar
+>PATH</envar
+>, à moins que vous n'utilisiez un emplacement de fichier absolu. La citation est prise en charge comme si un shell était utilisé :  <programlisting
+>pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <note id="backslashes-in-config-keys">
+        <para
+>Depuis que l'anti-slash (<literal
+>\</literal
+>) est un caractère d'échappement dans les fichiers de configuration de &kde;, vous devez les doubler lors de leurs apparitions dans les noms d'emplacement : <programlisting
+>pack-command=C:\\Programs\\GNU\\tar\\gtar.exe&nbsp;...</programlisting
+>. Toutefois, pour la commande en elle-même (Par opposition à ses arguments), vous pourriez peut-être utilisez simplement des slashes (<literal
+>/</literal
+>) comme séparateur d'emplacement sur toutes les plate-formes : <programlisting
+>pack-command=C:/Programs/GNU/tar/gtar.exe&nbsp;...</programlisting
+>. Ceci n'est pas pris en charge dans les arguments comme la plupart des programmes sous &Windows; utilise le slash pour les options. Par exemple, la commande suivante ne fonctionnera pas puisque <literal
+>C:/myarchivescript.bat</literal
+> est un argument de <command
+>cmd.exe</command
+> et <literal
+>/</literal
+> n'est pas converti en <literal
+>\</literal
+> dans les arguments, uniquement les commandes : <programlisting
+>pack-command=cmd.exe C:/myarchivescript.bat</programlisting
+>. Celle-ci doit plutôt être écrite comme ci :  <programlisting
+>pack-command=cmd.exe C:\\myarchivescript.bat</programlisting>
+        </para>
+      </note>
+
+      <sect2 id="admin-archive-definitions-filename-passing">
+
+      <title
+>Nom de fichier d'entrée passé pour <literal
+>pack-command</literal
+></title>
+
+      <para
+>Il y a trois façons de passer des nom de fichiers à la commande de compression. Pour chacune d'elles, <literal
+>pack-command</literal
+> prévoie une syntaxe particulière :  </para>
+
+      <orderedlist>
+
+        <listitem>
+          <para
+>Comme argument de la ligne de commande.</para>
+            <para
+>Exemple (tar) : <programlisting
+>pack-command=tar cf -</programlisting
+> Exemple (zip) : <programlisting
+>pack-command=zip -r - %f</programlisting
+> Dans ce cas, les noms de fichier sont passés dans la ligne de commande, comme ce que vous feriez en utilisant l'invite de commande. &kleopatra; n'utilise pas un shell pour exécuter la commande. En conséquence, c'est un moyen sûr de passer des noms de fichier, mais il pourrait survenir des restrictions au sujet de la longueur de la ligne de commande sur certaines plate-formes. Un textuel <literal
+>%f</literal
+>, si présent, est remplacé par le noms des fichiers à archiver. Sinon, les noms de fichiers sont ajoutés à la ligne de commande. Ainsi, l'exemple zip ci-dessus pourrait aussi s'écrire comme ceci :  <programlisting
+>pack-command=zip -r -</programlisting>
+            </para>
+        </listitem>
+
+        <listitem>
+          <para
+>Via l'entrée standard, séparé par des sauts de ligne : prepend <literal
+>|</literal
+>.</para>
+            <para
+>Exemple (Archive « tar » de &GNU;) : <programlisting
+>pack-command=|gtar cf - -T-</programlisting
+>. Exemple (ZIP) : <programlisting
+>pack-command=|zip -@ -</programlisting
+>. Dans ce cas, les noms de fichiers sont passés au gestionnaire d'archives sur <acronym
+>stdin</acronym
+>, un par ligne. Ceci évite les problèmes sur les plates-formes définissant une limite basse au nombre d'arguments des lignes de commandes autorisés. Mais, cela ne fonctionne pas lorsque les noms de fichiers contiennent des retours à la ligne. </para>
+            <note>
+              <para
+>&kleopatra; gère actuellement seulement <acronym
+>LF</acronym
+> comme séparateur de saut de ligne, et non <acronym
+>CRLF</acronym
+>. Cela pourrait changer dans de futures versions, en s'appuyant sur les retours utilisateurs. </para>
+            </note>
+        </listitem>
+
+        <listitem>
+          <para
+>Via l'entrée standard, séparé par des octets NUL : prepend <literal
+>0|</literal
+>.</para>
+            <para
+>Exemple (Archive « tar » de &GNU;) : <programlisting
+>pack-command=0|gtar cf - -T- --null</programlisting
+>. Celui-ci est le même que ci-dessus, excepté que les octets « NULL » sont utilisés pour séparer les noms de fichiers. Depuis que les octets « NULL » sont interdits dans les noms de fichiers, ceci est la façon la plus robuste pour transmettre des noms de fichier, mais tous les gestionnaires d'archives ne le gèrent pas. </para>
+        </listitem>
+
+      </orderedlist>
+
+      </sect2
+> <!-- Input Filename Passing for pack-command -->
+
+    </sect1
+> <!-- Archive Definitions -->
+
+    <sect1 id="admin-checksum-definitions">
+
+      <title
+>Configurer les programmes de sommes de contrôle pour être utilisés avec Créer/Vérifier des sommes de contrôle</title>
+
+      <para
+>&kleopatra; permet à l'administrateur (et à l'utilisateur doté de privilèges) de configurer la liste des programmes de sommes de contrôle que l'utilisateur peut choisir depuis la boîte de dialogue et que &kleopatra; est capable d'auto-détecter quand demandé pour vérifier une somme de contrôle d'un fichier donné. </para>
+
+      <note>
+        <para
+>Pour être utilisable par &kleopatra;, la sortie du programme de contrôle (à la fois le fichier de somme de contrôle écrit ainsi que la sortie sur <acronym
+>stdout</acronym
+> lors de la vérification des sommes de contrôle) doit être compatible avec la commande <command
+>md5sum</command
+> et <command
+>sha1sum</command
+> de &GNU;. </para>
+
+        <para
+>En particulier, le fichier de somme de contrôle doit être fondé sur des lignes, chaque ligne ayant le format suivant : <programlisting
+><replaceable
+>SOMME-DE-CONTRÔLE</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>NOM-DE-FICHIER</replaceable
+></programlisting
+> où <replaceable
+>SOMME-DE-CONTRÔLE</replaceable
+> est constitué seulement de caractères hexadécimaux. Si <replaceable
+>NOM-DE-FICHIER</replaceable
+> contient un caractère de saut de ligne, la ligne doit plutôt être lue <programlisting
+>\<replaceable
+>SOMME-DE-CONTRÔLE</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>NOM-DE-FICHIER-DE-SECOURS</replaceable
+></programlisting
+> où <replaceable
+>NOM-DE-FICHIER-DE-SECOURS</replaceable
+> est le nom de fichier avec les sauts de ligne remplacés par des <literal
+>\n</literal
+>s, et des antislashes doubles (<literal
+>\</literal
+>&#x21A6;<literal
+>\\</literal
+>). </para>
+
+        <para
+>De même, la sortie de <xref linkend="checksum-definition-verify-command"/> doit être de la forme <programlisting
+><replaceable
+>NOM-DE-FICHIER</replaceable
+> ( « : Ok » | « : ÉCHEC » )</programlisting
+> séparés par des sauts de ligne. Les sauts de ligne et autres caractères <emphasis
+>ne sont pas</emphasis
+> soustraits de la sortie. <footnote
+> <para
+>Effectivement, ces programmes n'ont pas été écrit avec des interfaces graphiques à l'esprit, et &kleopatra; ne parviendra pas à analyser correctement les noms de fichiers pathologiques qui contiennent de multiples « :&nbsp;Ok » et sauts de ligne. </para>
+          </footnote>
+        </para>
+      </note>
+
+      <para
+>Chaque programme de contrôle est définie dans <filename
+>libkleopatrarc</filename
+> comme un groupe <literal
+>Checksum&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+> distinct, avec les clés obligatoires suivantes :  </para>
+
+      <variablelist>
+
+        <varlistentry id="checksum-definition-file-patterns">
+          <term
+><literal
+>file-patterns</literal
+></term>
+          <listitem>
+            <para
+>Une liste d'expressions rationnelles décrivant les fichiers qui doivent être considérés comme des fichiers de sommes de contrôle pour ce programme de calcul de sommes de contrôle. La syntaxe est celle utilisée pour les listes de chaînes dans les fichiers de configuration de &kde;. <note
+> <para
+> Comme les expressions rationnelles contiennent généralement des anti-slashes, veuillez prendre soin de bien les supprimer du fichier de configuration. L'utilisation d'un outil d'édition de fichier de configuration est recommandée. </para
+> </note
+> La plate-forme définit si les motifs sont traités en prenant en compte ou non la casse. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-output-file">
+          <term
+><literal
+>output-file</literal
+></term>
+          <listitem>
+            <para
+>Le nom du fichier de sortie caractéristique de ce programme de somme de contrôle (doit, évidemment, correspondre à un des <xref linkend="checksum-definition-file-patterns"/>). C'est celui que &kleopatra; utilisera comme nom de fichier de sortie quand il créera des fichiers de somme de contrôle de ce type. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Un identifiant unique utilisé pour identifier ce programme de somme de contrôle en interne. Si vous n'êtes pas sûr, utilisez le nom de la commande. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-Name">
+          <term
+><literal
+>Name</literal
+> (traduit)</term>
+          <listitem>
+            <para
+>Le nom du programme de somme de contrôle visible par l'utilisateur, comme affiché dans le menu déroulant de la boîte de configuration de &kleopatra;. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-create-command">
+          <term
+><literal
+>create-command</literal
+></term>
+          <listitem>
+            <para
+>La commande actuelle avec laquelle créer des fichiers de sommes de contrôle. La syntaxe, les restrictions et les options de passage des arguments sont les mêmes que décrits pour <xref linkend="archive-definition-pack-command"/> dans <xref linkend="admin-archive-definitions"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-verify-command">
+          <term
+><literal
+>verify-command</literal
+></term>
+          <listitem>
+            <para
+>Pareil que <xref linkend="checksum-definition-create-command"/>, mais pour la vérification de sommes de contrôle. </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para
+>Voici un exemple complet :  <programlisting
+>[Checksum Definition #1]
+          file-patterns=sha1sum.txt
+          output-file=sha1sum.txt
+          id=sha1sum-gnu
+          Name=sha1sum (GNU)
+          Name[de]=sha1sum (GNU)
+          ...
+          create-command=sha1sum -- %f
+          verify-command=sha1sum -c -- %f
+        </programlisting>
+      </para>
+
+    </sect1
+> <!-- Checksum Definition -->
+
+  </chapter
+> <!-- Administrator's Guide -->
+
+<chapter id="credits-and-license">
+<title
+>Remerciements et licence</title>
+
+<para
+>&kleopatra; copyright 2002 &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; et &Jesper.Pedersen;., copyright 2004 &Daniel.Molkentin;, copyright 2004, 2007, 2008, 2009, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<para
+>Documentation copyright 2002 &Steffen.Hansen;, copyright 2004 &Daniel.Molkentin;, copyright 2004, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>Contributeurs</title>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Matthias.Kalle.Dalheimer; &Matthias.Kalle.Dalheimer.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Jesper.Pedersen; &Jesper.Pedersen.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Daniel.Molkentin; &Daniel.Molkentin.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Traduction française par &JoelleCornavin; et &RobinGuitton;.</para
+> &underFDL; &underGPL;  </chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:2
+sgml-indent-data:t
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

@@ -27,6 +27,7 @@
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
+#include <Libkleo/KleoSharedConfig>
 
 static const QString templ = QStringLiteral(
     "<h3>%1</h3>" // Welcome
@@ -156,7 +157,7 @@ public:
         mGenerateBtn->setToolTip(generateBtnDescription.toString());
         mGenerateBtn->setAccessibleDescription(generateBtnDescription.toString(Kuit::PlainText));
 
-        KConfigGroup restrictions(KSharedConfig::openConfig(), QStringLiteral("KDE Action Restrictions"));
+        KConfigGroup restrictions(Kleo::SharedConfig::openConfig(), QStringLiteral("KDE Action Restrictions"));
         mGenerateBtn->setEnabled(restrictions.readEntry("action/file_new_certificate", true));
 
         mImportBtn = new ToolButton{q};

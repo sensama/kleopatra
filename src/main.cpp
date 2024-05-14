@@ -49,10 +49,12 @@
 #include <uiserver/verifyfilescommand.h>
 
 #include <Libkleo/ChecksumDefinition>
+#include <Libkleo/KleoSharedConfig>
 
 #include "kleopatra_debug.h"
 #include "kleopatra_options.h"
 
+#include <KConfigGroup>
 #include <KCrash>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -127,6 +129,11 @@ int main(int argc, char **argv)
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
 
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("kleopatra"));
+
+    auto config = Kleo::SharedConfig::openConfig();
+    KConfigGroup restrictions(Kleo::SharedConfig::openConfig(), QStringLiteral("Test"));
+    qWarning() << restrictions.readEntry("test", QStringLiteral("fallback"));
+    qWarning() << restrictions.readEntry("test2", QStringLiteral("fallback"));
 
     // Initialize GpgME
     {

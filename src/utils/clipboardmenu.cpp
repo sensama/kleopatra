@@ -40,14 +40,14 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
     : QObject{parent}
 {
     mClipboardMenu = new KActionMenu(i18n("Clipboard"), this);
-    mImportClipboardAction = new QAction(i18n("Certificate Import"), this);
-    mEncryptClipboardAction = new QAction(i18n("Encrypt..."), this);
+    mImportClipboardAction = new QAction(i18nc("@action", "Certificate Import"), this);
+    mEncryptClipboardAction = new QAction(i18nc("@action", "Encrypt..."), this);
     const Kleo::Settings settings{};
     if (settings.cmsEnabled() && settings.cmsSigningAllowed()) {
-        mSmimeSignClipboardAction = new QAction(i18n("S/MIME-Sign..."), this);
+        mSmimeSignClipboardAction = new QAction(i18nc("@action", "S/MIME-Sign..."), this);
     }
-    mOpenPGPSignClipboardAction = new QAction(i18n("OpenPGP-Sign..."), this);
-    mDecryptVerifyClipboardAction = new QAction(i18n("Decrypt/Verify..."), this);
+    mOpenPGPSignClipboardAction = new QAction(i18nc("@action", "OpenPGP-Sign..."), this);
+    mDecryptVerifyClipboardAction = new QAction(i18nc("@action", "Decrypt/Verify..."), this);
 
     Q_SET_OBJECT_NAME(mClipboardMenu);
     Q_SET_OBJECT_NAME(mImportClipboardAction);

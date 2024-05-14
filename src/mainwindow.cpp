@@ -704,7 +704,7 @@ void MainWindow::Private::setupActions()
     KStandardAction::keyBindings(q, SLOT(editKeybindings()), coll);
     KStandardAction::preferences(qApp, SLOT(openOrRaiseConfigDialog()), coll);
 
-    focusToClickSearchAction = new QAction(i18n("Set Focus to Quick Search"), q);
+    focusToClickSearchAction = new QAction(i18nc("@action", "Set Focus to Quick Search"), q);
     coll->addAction(QStringLiteral("focus_to_quickseach"), focusToClickSearchAction);
     coll->setDefaultShortcut(focusToClickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     connect(focusToClickSearchAction, SIGNAL(triggered(bool)), q, SLOT(slotFocusQuickSearch()));

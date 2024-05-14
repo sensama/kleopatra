@@ -32,6 +32,7 @@
 #include <Libkleo/Algorithm>
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/KeySelectionCombo>
@@ -256,11 +257,16 @@ public:
             auto layout = new QHBoxLayout;
 
             mPublishCB = new QCheckBox{q};
-            mPublishCB->setText(i18n("Publish on keyserver afterwards"));
+            if (keyserver().startsWith(QLatin1StringView("ldap:")) || keyserver().startsWith(QLatin1StringView("ldaps:"))) {
+                mPublishCB->setText(i18nc("@label:checkbox", "Publish in internal directory"));
+            } else {
+                mPublishCB->setText(i18nc("@label:checkbox", "Publish to %1", keyserver()));
+            }
             mPublishCB->setToolTip(xi18nc("@info:tooltip",
-                                          "Check this option, if you want to upload your certifications to a certificate "
+                                          "Check this option if you want to upload your certifications to a certificate "
                                           "directory after successful certification."));
-            mPublishCB->setEnabled(mExportCB->isChecked());
+            mPublishCB->setEnabled(mExportCB->isChecked() && haveKeyserverConfigured());
+            mPublishCB->setVisible(haveKeyserverConfigured());
 
             layout->addSpacing(checkBoxSize(mExportCB).width());
             layout->addWidget(mPublishCB);
@@ -349,7 +355,7 @@ public:
         });
 
         connect(mExportCB, &QCheckBox::toggled, q, [this](bool on) {
-            mPublishCB->setEnabled(on);
+            mPublishCB->setEnabled(on && haveKeyserverConfigured());
         });
 
         connect(mSecKeySelect, &KeySelectionCombo::currentKeyChanged, q, [this](const GpgME::Key &) {
@@ -396,13 +402,13 @@ public:
         switch (mMode) {
         case SingleCertification: {
             mExportCB->setChecked(conf.readEntry("ExportCheckState", false));
-            mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
+            mPublishCB->setChecked(conf.readEntry("PublishCheckState", false) && haveKeyserverConfigured());
             mAdvancedOptionsExpander->setExpanded(conf.readEntry("AdvancedOptionsExpanded", false));
             break;
         }
         case BulkCertification: {
             mExportCB->setChecked(conf.readEntry("BulkExportCheckState", true));
-            mPublishCB->setChecked(conf.readEntry("BulkPublishCheckState", false));
+            mPublishCB->setChecked(conf.readEntry("BulkPublishCheckState", false) && haveKeyserverConfigured());
             mAdvancedOptionsExpander->setExpanded(conf.readEntry("BulkAdvancedOptionsExpanded", true));
             break;
         }

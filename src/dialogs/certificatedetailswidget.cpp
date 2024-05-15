@@ -139,6 +139,7 @@ private:
         std::unique_ptr<InfoField> primaryUserIdField;
         std::unique_ptr<InfoField> privateKeyInfoField;
         std::unique_ptr<InfoField> statusField;
+        std::unique_ptr<InfoField> usageField;
 
         QListWidget *smimeAddressList = nullptr;
 
@@ -230,6 +231,11 @@ private:
                 complianceField = std::make_unique<InfoField>(i18n("Compliance:"), parent);
                 gridLayout->addWidget(complianceField->label(), row, 0);
                 gridLayout->addLayout(complianceField->layout(), row, 1);
+
+                row++;
+                usageField = std::make_unique<InfoField>(i18n("Usage:"), parent);
+                gridLayout->addWidget(usageField->label(), row, 0);
+                gridLayout->addLayout(usageField->layout(), row, 1);
 
                 row++;
                 trustedIntroducerField = std::make_unique<InfoField>(i18n("Trusted introducer for:"), parent);
@@ -360,6 +366,28 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     if (DeVSCompliance::isCompliant()) {
         ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
+
+    ui.usageField->setVisible(key.protocol() == GpgME::CMS);
+
+    QStringList usage;
+
+    if (subkey.canEncrypt()) {
+        usage += i18n("encryption");
+    }
+    if (subkey.canSign()) {
+        usage += i18n("signing");
+    }
+    if (subkey.canCertify()) {
+        usage += i18n("certification");
+    }
+    if (subkey.canAuthenticate()) {
+        usage += i18n("authentication");
+    }
+    if (subkey.isQualified()) {
+        usage += i18nc("as in: can be used for ...", "qualified signatures");
+    }
+
+    ui.usageField->setValue(usage.join(i18nc("Separator between words in a list", ", ")));
     ui.cardInfoTab->setKey(key);
 }
 

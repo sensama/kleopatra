@@ -208,7 +208,7 @@ OperationsWidget::OperationsWidget(QWidget *p)
         i18n("Here you can check and, if needed, override "
              "the operations Kleopatra detected for the input given."));
     setCommitPage(true);
-    setCustomNextButton(KGuiItem(i18n("&Decrypt/Verify")));
+    setCustomNextButton(KGuiItem(i18nc("@action:button", "&Decrypt/Verify")));
 }
 
 OperationsWidget::~OperationsWidget()

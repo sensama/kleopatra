@@ -74,7 +74,7 @@ Wizard::Private::Private(Wizard *qq)
     nextPageTimer = new QTimer(q);
     nextPageTimer->setInterval(0);
     connect(nextPageTimer, &QTimer::timeout, q, &Wizard::next);
-    nextItem = KGuiItem(i18n("&Next"));
+    nextItem = KGuiItem(i18nc("@action:button", "&Next"));
     finishItem = KStandardGuiItem::ok();
     auto const top = new QVBoxLayout(q);
     top->setContentsMargins(0, 0, 0, 0);

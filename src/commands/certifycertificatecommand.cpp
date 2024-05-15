@@ -174,7 +174,7 @@ void CertifyCertificateCommand::doStart()
                                             xi18nc("@info", "To certify other certificates, you first need to create an OpenPGP certificate for yourself.")
                                                 + QStringLiteral("<br><br>") + i18n("Do you wish to create one now?"),
                                             i18nc("@title:window", "Certification Not Possible"),
-                                            KGuiItem(i18n("Create")),
+                                            KGuiItem(i18nc("@action:button", "Create")),
                                             KStandardGuiItem::cancel());
         if (sel == KMessageBox::ButtonCode::PrimaryAction) {
             QEventLoop loop;

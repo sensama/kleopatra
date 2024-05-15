@@ -175,8 +175,8 @@ void KWatchGnuPGMainWindow::slotWatcherExited(int, QProcess::ExitStatus)
     if (KMessageBox::questionTwoActions(this,
                                         i18n("The watchgnupg logging process died.\nDo you want to try to restart it?"),
                                         QString(),
-                                        KGuiItem(i18n("Try Restart")),
-                                        KGuiItem(i18n("Do Not Try")))
+                                        KGuiItem(i18nc("@action:button", "Try Restart")),
+                                        KGuiItem(i18nc("@action:button", "Do Not Try")))
         == KMessageBox::ButtonCode::PrimaryAction) {
         mCentralWidget->append(i18n("====== Restarting logging process ====="));
         mCentralWidget->ensureCursorVisible();

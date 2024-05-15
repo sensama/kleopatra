@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-09 00:39+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2024-05-13 19:09+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -212,6 +212,119 @@ msgid ""
 msgstr ""
 "Моля, въведете администрация ключ за приложения за PIV карти в "
 "шестнадесетичен кодирана форма."
+
+#: src/commands/certificatetocardcommand.cpp:70
+#: src/commands/keytocardcommand.cpp:59
+#, kde-format
+msgctxt "smartcard application - serial number of smartcard"
+msgid "%1 - %2"
+msgstr "%1 - %2"
+
+#: src/commands/certificatetocardcommand.cpp:166
+#, kde-format
+msgctxt "@info"
+msgid "No empty smart card was found."
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:255
+#: src/commands/certificatetocardcommand.cpp:315
+#: src/commands/certificatetocardcommand.cpp:374
+#: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:657
+#, kde-format
+msgid "Failed to find the card with the serial number: %1"
+msgstr "Неуспешно намиране на картата със сериен номер: %1"
+
+#: src/commands/certificatetocardcommand.cpp:265
+#, fuzzy, kde-format
+#| msgid "Change the PIN required for using the keys on the smartcard."
+msgctxt "@info"
+msgid "No slot found for subkey %1 on the smart card."
+msgstr ""
+"Променете ПИН кода, необходим за използване на ключовете на смарт картата."
+
+#: src/commands/certificatetocardcommand.cpp:287
+#: src/commands/keytocardcommand.cpp:262
+#: src/commands/openpgpgeneratecardkeycommand.cpp:136
+#: src/commands/openpgpgeneratecardkeycommand.cpp:173
+#: src/view/pgpcardwidget.cpp:381 src/view/pgpcardwidget.cpp:447
+#: src/view/pgpcardwidget.cpp:494
+#, kde-format
+msgid "Failed to find the OpenPGP card with the serial number: %1"
+msgstr "Неуспешно намиране на OpenPGP картата със сериен номер: %1"
+
+#: src/commands/certificatetocardcommand.cpp:324
+#: src/commands/keytocardcommand.cpp:479
+#, kde-format
+msgctxt "@info"
+msgid "Copying the key to the card failed."
+msgstr "Копирането на ключа в картата е неуспешно."
+
+#: src/commands/certificatetocardcommand.cpp:336
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The certificate was updated.</para>"
+#| msgid_plural "<para>The certificates were updated.</para>"
+msgctxt "@info"
+msgid "<para>The key was copied to the smart card.</para>"
+msgstr "<para>Сертификатът е актуализиран.</para>"
+
+#: src/commands/certificatetocardcommand.cpp:339
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Copying the key to the card failed:</para><para><message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The key was copied to the smart card.</para><para>A backup was "
+"exported to <filename>%1</filename></para>"
+msgstr ""
+"<para>Копирането на ключа върху картата е неуспешно:</para><para><message>"
+"%1</message></para>"
+
+#: src/commands/certificatetocardcommand.cpp:353
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"Do you really want to delete the copy of the secret key stored on this "
+"computer?"
+msgstr "Наистина ли искате да изтриете локалното копие на ключа?"
+
+#: src/commands/certificatetocardcommand.cpp:354
+#: src/commands/keytocardcommand.cpp:665
+#, kde-format
+msgctxt "@title:window"
+msgid "Confirm Deletion"
+msgstr "Потвърждение на изтриването"
+
+#: src/commands/certificatetocardcommand.cpp:400
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to delete the copy of the key stored on this computer:</"
+#| "para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to delete the copy of the secret key stored on this computer:</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>Неуспешно изтриване на копието на ключа, запазено на този компютър : </"
+"para><para><message>%1</message></para>"
+
+#: src/commands/certificatetocardcommand.cpp:426
+#: src/commands/keytocardcommand.cpp:750
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Copying the key to the card failed:</para><para><message>%1</message></"
+"para>"
+msgstr ""
+"<para>Копирането на ключа върху картата е неуспешно:</para><para><message>"
+"%1</message></para>"
 
 #: src/commands/certificatetopivcardcommand.cpp:129
 #: src/commands/keytocardcommand.cpp:350
@@ -1228,7 +1341,7 @@ msgstr "Потвърждаване на експортирането на сер
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#: src/commands/exportopenpgpcertstoservercommand.cpp:120
+#: src/commands/exportopenpgpcertstoservercommand.cpp:123
 #, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
@@ -1440,15 +1553,24 @@ msgstr[1] ""
 "Експортирането на сертификати към сървър за ключове не е възможно, защото "
 "използването на ключови сървъри е изрично забранено."
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:114
-#, kde-kuit-format
+#: src/commands/exportopenpgpcertstoservercommand.cpp:117
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>When OpenPGP certificates have been exported to a public directory "
+#| "server, it is nearly impossible to remove them again.</para><para>Before "
+#| "exporting your certificate to a public directory server, make sure that "
+#| "you have created a revocation certificate so you can revoke the "
+#| "certificate if needed later.</para><para>Are you sure you want to "
+#| "continue?</para>"
 msgctxt "@info"
 msgid ""
 "<para>When OpenPGP certificates have been exported to a public directory "
 "server, it is nearly impossible to remove them again.</para><para>Before "
 "exporting your certificate to a public directory server, make sure that you "
 "have created a revocation certificate so you can revoke the certificate if "
-"needed later.</para><para>Are you sure you want to continue?</para>"
+"it is compromised, lost, or you forgot the passphrase.</para><para>Are you "
+"sure you want to continue?</para>"
 msgstr ""
 "<para> Когато сертификатите на OpenPGP са експортирани в публична директория "
 "на сървър, почти е невъзможно да ги премахнете отново. </para><para> Преди "
@@ -1457,7 +1579,7 @@ msgstr ""
 "ако е необходим по-късно. </para><para> Наистина ли искате да продължите? </"
 "para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:119
+#: src/commands/exportopenpgpcertstoservercommand.cpp:122
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
@@ -1467,19 +1589,19 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export"
 msgstr "OpenPGP сертификат за експортиране"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:140
+#: src/commands/exportopenpgpcertstoservercommand.cpp:143
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Грешка при експортиране на сертификат OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:145
+#: src/commands/exportopenpgpcertstoservercommand.cpp:148
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr "Извършен е експортът на сертификат OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:151
+#: src/commands/exportopenpgpcertstoservercommand.cpp:154
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1491,13 +1613,13 @@ msgstr ""
 "приключи преждевременно поради неочаквана грешка. </para><para> Моля, "
 "проверете изходните данни на <icode> %1 </icode> за подробности. </para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:162
+#: src/commands/exportopenpgpcertstoservercommand.cpp:165
 #: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:163
+#: src/commands/exportopenpgpcertstoservercommand.cpp:166
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1505,7 +1627,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr "%1<nl />%2"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:168
+#: src/commands/exportopenpgpcertstoservercommand.cpp:171
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1517,7 +1639,7 @@ msgstr ""
 "para><para> Резултатът от <command> %1 </command> беше: <message>%2</"
 "message> </para>"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:176
+#: src/commands/exportopenpgpcertstoservercommand.cpp:179
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -1576,7 +1698,7 @@ msgstr ""
 "<para>При създаването на ключа за публикуване на поща възникна грешка:</"
 "para><message>%1</message>"
 
-#: src/commands/exportpaperkeycommand.cpp:88
+#: src/commands/exportpaperkeycommand.cpp:94
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1588,15 +1710,15 @@ msgstr ""
 "PaperKey </application> за създаване на минимизирана версия за печат на "
 "вашия секретен ключ.</para><para> Моля, уверете се, че е инсталиран. </para>"
 
-#: src/commands/exportpaperkeycommand.cpp:92
+#: src/commands/exportpaperkeycommand.cpp:98
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr "Неуспешно изпълнение на PaperKey."
 
-#: src/commands/exportpaperkeycommand.cpp:112
-#: src/commands/exportpaperkeycommand.cpp:124
+#: src/commands/exportpaperkeycommand.cpp:118
+#: src/commands/exportpaperkeycommand.cpp:130
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1606,7 +1728,7 @@ msgstr ""
 "<para>По време на експортирането на секретния ключ възникна грешка:</"
 "para><para><message>%1</message></para>"
 
-#: src/commands/exportpaperkeycommand.cpp:148
+#: src/commands/exportpaperkeycommand.cpp:154
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1616,7 +1738,7 @@ msgstr ""
 "<para><application>PaperKey</application> не успя. Грешка</"
 "para><para><message>%1</message></para>"
 
-#: src/commands/exportpaperkeycommand.cpp:160
+#: src/commands/exportpaperkeycommand.cpp:166
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
@@ -1637,7 +1759,7 @@ msgid "All Files"
 msgstr "Всички файлове"
 
 #: src/commands/exportsecretkeycommand.cpp:103
-#: src/commands/exportsecretkeycommand.cpp:261
+#: src/commands/exportsecretkeycommand.cpp:266
 #: src/commands/exportsecretsubkeycommand.cpp:238
 #, kde-format
 msgctxt "@title:window"
@@ -1650,13 +1772,13 @@ msgctxt "@title:window"
 msgid "Secret Key Backup Error"
 msgstr "Грешка при създаване на резервно копие на секретния ключ"
 
-#: src/commands/exportsecretkeycommand.cpp:223
+#: src/commands/exportsecretkeycommand.cpp:227
 #, kde-format
 msgctxt "@info:status"
 msgid "Backing up secret key..."
 msgstr "Архивиране на секретния ключ..."
 
-#: src/commands/exportsecretkeycommand.cpp:242
+#: src/commands/exportsecretkeycommand.cpp:246
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1665,26 +1787,26 @@ msgid ""
 msgstr ""
 "Резултатът от архива е празен. Може би ще влезе празна или грешна парола."
 
-#: src/commands/exportsecretkeycommand.cpp:249
+#: src/commands/exportsecretkeycommand.cpp:253
 #: src/commands/exportsecretsubkeycommand.cpp:220
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "Не може да се отвори файл <filename>%1</filename> за запис."
 
-#: src/commands/exportsecretkeycommand.cpp:256
+#: src/commands/exportsecretkeycommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing key to file <filename>%1</filename> failed."
 msgstr "Записването на ключ във файл <filename>%1</filename> е неуспешно."
 
-#: src/commands/exportsecretkeycommand.cpp:261
+#: src/commands/exportsecretkeycommand.cpp:266
 #, kde-format
 msgctxt "@info"
 msgid "The backup of the secret key was created successfully."
 msgstr "Резервното копие на секретния ключ е създадено успешно."
 
-#: src/commands/exportsecretkeycommand.cpp:268
+#: src/commands/exportsecretkeycommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2364,12 +2486,6 @@ msgstr ""
 "para><para> Резултатът от <command> %1 </command> беше: </para><para> "
 "<съобщение> %2 </съобщение> </para>"
 
-#: src/commands/keytocardcommand.cpp:59
-#, kde-format
-msgctxt "smartcard application - serial number of smartcard"
-msgid "%1 - %2"
-msgstr "%1 - %2"
-
 #: src/commands/keytocardcommand.cpp:159
 #, kde-format
 msgid "Select Card"
@@ -2379,12 +2495,6 @@ msgstr "Избиране на карта"
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "Моля, изберете картата, на която трябва да се запише ключът:"
-
-#: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
-#: src/commands/keytocardcommand.cpp:657
-#, kde-format
-msgid "Failed to find the card with the serial number: %1"
-msgstr "Неуспешно намиране на картата със сериен номер: %1"
 
 #: src/commands/keytocardcommand.cpp:199
 #, kde-kuit-format
@@ -2424,15 +2534,6 @@ msgid "Please select the card slot the key should be written to:"
 msgstr ""
 "Моля, изберете слота на картата, на който трябва да бъде записан ключът:"
 
-#: src/commands/keytocardcommand.cpp:262
-#: src/commands/openpgpgeneratecardkeycommand.cpp:136
-#: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:370 src/view/pgpcardwidget.cpp:436
-#: src/view/pgpcardwidget.cpp:483
-#, kde-format
-msgid "Failed to find the OpenPGP card with the serial number: %1"
-msgstr "Неуспешно намиране на OpenPGP картата със сериен номер: %1"
-
 #: src/commands/keytocardcommand.cpp:272
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
@@ -2441,7 +2542,7 @@ msgstr "Съжалявам! Този ключ не може да бъде пре
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:379
+#: src/view/pgpcardwidget.cpp:390
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -2512,12 +2613,6 @@ msgstr ""
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "Съществуващата ключът има ключова хватка:"
-
-#: src/commands/keytocardcommand.cpp:479
-#, kde-format
-msgctxt "@info"
-msgid "Copying the key to the card failed."
-msgstr "Копирането на ключа в картата е неуспешно."
 
 #: src/commands/keytocardcommand.cpp:490
 #, kde-kuit-format
@@ -2604,12 +2699,6 @@ msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
 msgstr "Наистина ли искате да изтриете локалното копие на ключа?"
 
-#: src/commands/keytocardcommand.cpp:665
-#, kde-format
-msgctxt "@title:window"
-msgid "Confirm Deletion"
-msgstr "Потвърждение на изтриването"
-
 #: src/commands/keytocardcommand.cpp:686
 #, kde-kuit-format
 msgctxt "@info"
@@ -2625,16 +2714,6 @@ msgstr ""
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
 msgstr "Успешно изтриване на копието на ключа, съхраняван на този компютър."
-
-#: src/commands/keytocardcommand.cpp:750
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Copying the key to the card failed:</para><para><message>%1</message></"
-"para>"
-msgstr ""
-"<para>Копирането на ключа върху картата е неуспешно:</para><para><message>"
-"%1</message></para>"
 
 #: src/commands/lookupcertificatescommand.cpp:325
 #, kde-format
@@ -6729,7 +6808,7 @@ msgid "Refresh certificate list"
 msgstr "Опресняване на списъка със сертификати"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:389 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Импортиране..."
@@ -7034,6 +7113,78 @@ msgstr "Промяна на удостоверението за надеждно
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Надеждността на собственика е зададено успешно."
+
+#: src/dialogs/copytosmartcarddialog.cpp:56
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Delete copy on disk"
+msgctxt "@option:radio"
+msgid "Delete secret key from disk."
+msgstr "Изтриване на копието от диска"
+
+#: src/dialogs/copytosmartcarddialog.cpp:57
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Keep copy on disk"
+msgctxt "@option:radio"
+msgid "Keep secret key on disk."
+msgstr "Запазване на копието на диска"
+
+#: src/dialogs/copytosmartcarddialog.cpp:64
+#, fuzzy, kde-format
+#| msgid "Backup the encryption key in a file."
+msgctxt "@option:radio"
+msgid "Make a backup of the secret key to a file."
+msgstr "Архивиране на ключа за шифроване във файл."
+
+#: src/dialogs/copytosmartcarddialog.cpp:65
+#, fuzzy, kde-format
+#| msgid "Save backup of encryption key"
+msgctxt "@option:radio"
+msgid "Make a printed backup of the secret key."
+msgstr "Запазване на архива на ключа за шифроване"
+
+#: src/dialogs/copytosmartcarddialog.cpp:66
+#, fuzzy, kde-format
+#| msgid "Save backup of encryption key"
+msgctxt "@option:radio"
+msgid "I already have a backup of the secret key."
+msgstr "Запазване на архива на ключа за шифроване"
+
+#: src/dialogs/copytosmartcarddialog.cpp:103
+#, kde-format
+msgctxt "@action:button"
+msgid "Copy to Card"
+msgstr ""
+
+#: src/dialogs/copytosmartcarddialog.cpp:124
+#, fuzzy, kde-format
+#| msgid "Transfer to smartcard"
+msgctxt "@title:dialog"
+msgid "Copy Key to Smartcard"
+msgstr "Прехвърляне към смарт карта"
+
+#: src/dialogs/copytosmartcarddialog.cpp:143
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Selected Key: <emphasis>%1</emphasis></para><para>Selected Smartcard: "
+"<emphasis>%2</emphasis></para><para>Choose one of the following options to "
+"continue:</para>"
+msgstr ""
+
+#: src/dialogs/debugdialog.cpp:82
+#, fuzzy, kde-format
+#| msgid "Clipboard"
+msgctxt "@action:button"
+msgid "Copy to Clipboard"
+msgstr "Клипборд"
+
+#: src/dialogs/debugdialog.cpp:111
+#, kde-format
+msgctxt "@info"
+msgid "Exit code: %1"
+msgstr ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-format
@@ -8994,43 +9145,43 @@ msgstr "&Изглед"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:135
+#: src/kleopatra.rc:44 src/kleopatra.rc:138
 #, kde-format
 msgid "&Certificates"
 msgstr "&Удостоверения"
 
 #. i18n: ectx: Menu (tools)
-#: src/kleopatra.rc:64
+#: src/kleopatra.rc:66
 #, kde-format
 msgid "&Tools"
 msgstr "&Инструменти"
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:80
+#: src/kleopatra.rc:83
 #, kde-format
 msgid "&Settings"
 msgstr "&Настройки"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:85
+#: src/kleopatra.rc:88
 #, kde-format
 msgid "&Window"
 msgstr "&Прозорец"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:96
+#: src/kleopatra.rc:99
 #, kde-format
 msgid "&Help"
 msgstr "&Помощ"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:102
+#: src/kleopatra.rc:105
 #, kde-format
 msgid "&More Documentation"
 msgstr "&Допълнителна документация"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:118 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Основна лента с инструменти"
@@ -9261,7 +9412,7 @@ msgstr "Грешка на Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Възникна грешка при свързване с Клеопатра: %1"
 
-#: src/main.cpp:134
+#: src/main.cpp:137
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9277,13 +9428,13 @@ msgstr ""
 "тази настройка. </para><para> Моля, обърнете се към вашия администратор за "
 "помощ при разрешаването на този проблем. </para>"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME твърде стар"
 
-#: src/main.cpp:160
+#: src/main.cpp:163
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9299,23 +9450,23 @@ msgstr ""
 "управлявайте ги като нормален потребител и копирайте директорията "
 "<filename>AppData\\Roaming\\gnupg</filename> с подходящи разрешения.</para>"
 
-#: src/main.cpp:164
+#: src/main.cpp:167
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Сигурни ли сте, че искате да продължите?</para>"
 
-#: src/main.cpp:165
+#: src/main.cpp:168
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Изпълняване като администратор"
 
-#: src/main.cpp:235
+#: src/main.cpp:238
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Грешка в GPG UI сървъра"
 
-#: src/main.cpp:239
+#: src/main.cpp:242
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9334,24 +9485,24 @@ msgstr ""
 "администратор заподдръжка.<br/> Можете да опитате да продължите да "
 "използвате Kleopatra, но може да имадруги проблеми. </qt>"
 
-#: src/main.cpp:269
+#: src/main.cpp:272
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Невалидни аргументи: %1"
 
-#: src/mainwindow.cpp:114
+#: src/mainwindow.cpp:115
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "&Quit <application>%1</application>"
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:122
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Само и затвори прозореца"
 
-#: src/mainwindow.cpp:221
+#: src/mainwindow.cpp:222
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9362,13 +9513,13 @@ msgstr ""
 "услуга.<nl/>Може вместо това да искате да затворите този прозорец, без да "
 "излизате от <application>%1</application>."
 
-#: src/mainwindow.cpp:224
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Наистина ли да се откажа?"
 
-#: src/mainwindow.cpp:311
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9377,23 +9528,28 @@ msgstr ""
 "Не можа да се стартира GnuPG Log Viewer (kwatchgnupg). Моля, проверете "
 "вашата инсталация."
 
-#: src/mainwindow.cpp:313
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Грешка при стартиране на KWatchGnuPG"
 
-#: src/mainwindow.cpp:582
+#: src/mainwindow.cpp:583
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG Log Viewer"
 
-#: src/mainwindow.cpp:594
+#: src/mainwindow.cpp:595
+#, kde-format
+msgid "Debug View"
+msgstr ""
+
+#: src/mainwindow.cpp:608
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Процеси в заден план"
 
-#: src/mainwindow.cpp:595
+#: src/mainwindow.cpp:609
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9403,23 +9559,23 @@ msgstr ""
 "Рестартиране на фоновите процеси, напр. след извършване на промени в "
 "конфигурацията."
 
-#: src/mainwindow.cpp:607
+#: src/mainwindow.cpp:621
 #, kde-format
 msgid "Check for updates"
 msgstr "Провери за актуализации"
 
-#: src/mainwindow.cpp:620
+#: src/mainwindow.cpp:634
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Сертификати"
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:635
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Преглед на сертификатите"
 
-#: src/mainwindow.cpp:631
+#: src/mainwindow.cpp:645
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9427,50 +9583,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Бележник"
 
-#: src/mainwindow.cpp:632
+#: src/mainwindow.cpp:646
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Показване на подложка за шифроване/дешифроване и подписване/проверка на текст"
 
-#: src/mainwindow.cpp:642
+#: src/mainwindow.cpp:656
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Смарт карти"
 
-#: src/mainwindow.cpp:643
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Показване на управлението на смарт карти"
 
-#: src/mainwindow.cpp:654
+#: src/mainwindow.cpp:668
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Извършване на самопроверка"
 
-#: src/mainwindow.cpp:665
+#: src/mainwindow.cpp:679
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Конфигуриране на групите..."
 
-#: src/mainwindow.cpp:677
+#: src/mainwindow.cpp:691
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Групи"
 
-#: src/mainwindow.cpp:707
-#, kde-format
+#: src/mainwindow.cpp:721
+#, fuzzy, kde-format
+#| msgid "Set Focus to Quick Search"
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Фокусиране на бързо търсене"
 
-#: src/mainwindow.cpp:719
+#: src/mainwindow.cpp:733
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Компендиум Gpg4win"
 
-#: src/mainwindow.cpp:723
+#: src/mainwindow.cpp:737
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9478,48 +9636,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:748
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Бързо ръководство Криптиране и подписване"
 
-#: src/mainwindow.cpp:735
+#: src/mainwindow.cpp:749
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:743
+#: src/mainwindow.cpp:757
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&Шифроване с парола"
 
-#: src/mainwindow.cpp:744
+#: src/mainwindow.cpp:758
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:751
+#: src/mainwindow.cpp:765
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "Сертификатни групи"
 
-#: src/mainwindow.cpp:752
+#: src/mainwindow.cpp:766
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:761
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "&Шифриране на поща в Outlook"
 
-#: src/mainwindow.cpp:762
+#: src/mainwindow.cpp:776
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9527,71 +9685,71 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:772
+#: src/mainwindow.cpp:786
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Управление на сертификации"
 
-#: src/mainwindow.cpp:773
+#: src/mainwindow.cpp:787
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:795
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "&Настройки на Смарт карти"
 
-#: src/mainwindow.cpp:782
+#: src/mainwindow.cpp:796
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:789
+#: src/mainwindow.cpp:803
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Команден &ред за GnuPG"
 
-#: src/mainwindow.cpp:799
+#: src/mainwindow.cpp:813
 #, kde-format
 msgid "Manual for VS-NfD Approval (German)"
 msgstr "Manual for VS-NfD approval (German)"
 
-#: src/mainwindow.cpp:800
+#: src/mainwindow.cpp:814
 #, kde-format
 msgctxt "Only available in German. Keep German file name for all languages"
 msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
 msgstr "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
 
-#: src/mainwindow.cpp:808
+#: src/mainwindow.cpp:822
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:809
+#: src/mainwindow.cpp:823
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:817
+#: src/mainwindow.cpp:831
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:818
+#: src/mainwindow.cpp:832
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:845
+#: src/mainwindow.cpp:859
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9600,7 +9758,7 @@ msgstr ""
 "Все още има някои текущи операции. Те ще бъдат прекратени при затваряне на "
 "прозореца. Продължавате ли?"
 
-#: src/mainwindow.cpp:848
+#: src/mainwindow.cpp:862
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Текущи фонови задачи"
@@ -10996,27 +11154,37 @@ msgid "Caught unknown exception in group %1"
 msgstr "Уловено неизвестно изключение в група %1"
 
 #: src/utils/clipboardmenu.cpp:43
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certificate Import"
+msgctxt "@action"
 msgid "Certificate Import"
 msgstr "Импортиране на сертификат"
 
 #: src/utils/clipboardmenu.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Encrypt..."
+msgctxt "@action"
 msgid "Encrypt..."
 msgstr "Шифроване..."
 
 #: src/utils/clipboardmenu.cpp:47
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "S/MIME-Sign..."
+msgctxt "@action"
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-Sign..."
 
 #: src/utils/clipboardmenu.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "OpenPGP-Sign..."
+msgctxt "@action"
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-Sign..."
 
-#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:398
-#, kde-format
+#: src/utils/clipboardmenu.cpp:50
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify..."
+msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Дешифриране/потвърждаване..."
 
@@ -11387,44 +11555,44 @@ msgstr "%1 (задължителен)"
 msgid "Loading certificate cache..."
 msgstr "Зарежда се кешът на сертификата..."
 
-#: src/view/keylistcontroller.cpp:324
+#: src/view/keylistcontroller.cpp:325
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "Нова двойка ключове OpenPGP..."
 
-#: src/view/keylistcontroller.cpp:325
+#: src/view/keylistcontroller.cpp:326
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Създаване на нов OpenPGP сертификат"
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, kde-format
 msgid "Export..."
 msgstr "Експортиране..."
 
-#: src/view/keylistcontroller.cpp:334
+#: src/view/keylistcontroller.cpp:335
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "Експортиране на избрания сертификат (публичен ключ) във файл"
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Публикуване на сървър..."
 
-#: src/view/keylistcontroller.cpp:343
+#: src/view/keylistcontroller.cpp:344
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr ""
 "Публикуване на избрания сертификат (публичен ключ) на публичен сървър на "
 "ключове"
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Публикуване в доставчика на поща..."
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:354
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11433,166 +11601,171 @@ msgstr ""
 "Публикуване на избрания сертификат (публичен ключ) в директорията за уеб "
 "ключове на доставчика на поща, ако се предлага"
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:363
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Създаване на резервни копия на секретни ключове..."
 
-#: src/view/keylistcontroller.cpp:371
+#: src/view/keylistcontroller.cpp:372
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Печат на секретен ключ..."
 
-#: src/view/keylistcontroller.cpp:380
+#: src/view/keylistcontroller.cpp:381
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Търсене на сървър..."
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:382
 #, kde-format
 msgid "Search for certificates online using a public keyserver"
 msgstr "Търсене на сертификати онлайн с помощта на публичен сървър на ключове"
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Импортиране на сертификат от файл"
 
 #: src/view/keylistcontroller.cpp:399
 #, kde-format
+msgid "Decrypt/Verify..."
+msgstr "Дешифриране/потвърждаване..."
+
+#: src/view/keylistcontroller.cpp:400
+#, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Дешифриране и/или проверка на файлове"
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:408
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Подпис/шифроване..."
 
-#: src/view/keylistcontroller.cpp:408
+#: src/view/keylistcontroller.cpp:409
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Шифроване и/или подписване на файлове"
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:417
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Подписване/шифроване на папка..."
 
-#: src/view/keylistcontroller.cpp:417
+#: src/view/keylistcontroller.cpp:418
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Шифроване и/или подписване на папки"
 
-#: src/view/keylistcontroller.cpp:425
+#: src/view/keylistcontroller.cpp:426
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Създаване на файлове с контролна сума..."
 
-#: src/view/keylistcontroller.cpp:434
+#: src/view/keylistcontroller.cpp:435
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Проверка на файловете с контролна сума..."
 
-#: src/view/keylistcontroller.cpp:444
+#: src/view/keylistcontroller.cpp:445
 #, kde-format
 msgid "Redisplay"
 msgstr "Повторно показване"
 
-#: src/view/keylistcontroller.cpp:453
+#: src/view/keylistcontroller.cpp:454
 #, kde-format
 msgid "Stop Operation"
 msgstr "Прекъсване на операцията"
 
-#: src/view/keylistcontroller.cpp:466
+#: src/view/keylistcontroller.cpp:467
 #, kde-format
 msgid "Details"
 msgstr "Подробности"
 
-#: src/view/keylistcontroller.cpp:476
+#: src/view/keylistcontroller.cpp:477
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Отмяна на сертификат..."
 
-#: src/view/keylistcontroller.cpp:477
+#: src/view/keylistcontroller.cpp:478
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Отмяна на избрания OpenPGP сертификат"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, kde-format
 msgid "Delete"
 msgstr "Изтриване"
 
-#: src/view/keylistcontroller.cpp:486
+#: src/view/keylistcontroller.cpp:487
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Изтриване на избраните сертификати"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, kde-format
 msgid "Update Certificates"
 msgstr "Актуализиране на сертификати"
 
-#: src/view/keylistcontroller.cpp:495
+#: src/view/keylistcontroller.cpp:496
 #, kde-format
 msgid "Update selected certificates"
 msgstr "Актуализиране на избраните сертификати"
 
-#: src/view/keylistcontroller.cpp:503
+#: src/view/keylistcontroller.cpp:504
 #, kde-format
 msgid "Certify..."
 msgstr "Удостоверяване..."
 
-#: src/view/keylistcontroller.cpp:504
+#: src/view/keylistcontroller.cpp:505
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Удостоверяване на валидността на избрания сертификат"
 
-#: src/view/keylistcontroller.cpp:512
+#: src/view/keylistcontroller.cpp:513
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Отмяна на сертификация..."
 
-#: src/view/keylistcontroller.cpp:513
+#: src/view/keylistcontroller.cpp:514
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Отмяна на избраната сертификация"
 
-#: src/view/keylistcontroller.cpp:521
+#: src/view/keylistcontroller.cpp:522
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Промяна на срока на валидност..."
 
-#: src/view/keylistcontroller.cpp:530
+#: src/view/keylistcontroller.cpp:531
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Промяна на правата за сертифициране..."
 
-#: src/view/keylistcontroller.cpp:531
+#: src/view/keylistcontroller.cpp:532
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr ""
 "Предоставяне или отнемане на право за сертифициране на избрания сертификат"
 
-#: src/view/keylistcontroller.cpp:539
+#: src/view/keylistcontroller.cpp:540
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Промяна на паролната фраза..."
 
-#: src/view/keylistcontroller.cpp:548
+#: src/view/keylistcontroller.cpp:549
 #, kde-format
 msgid "Add User ID..."
 msgstr "Добавяне на потребителски идентификатор..."
 
-#: src/view/keylistcontroller.cpp:557
+#: src/view/keylistcontroller.cpp:558
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Създаване на група..."
 
-#: src/view/keylistcontroller.cpp:558
+#: src/view/keylistcontroller.cpp:559
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
@@ -11600,50 +11773,63 @@ msgstr "Създаване на група от избраните сертиф�
 
 #: src/view/keylistcontroller.cpp:567
 #, kde-format
+msgctxt "@action:inmenu"
+msgid "Copy to Card"
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:568
+#, fuzzy, kde-format
+#| msgid "Update selected certificates"
+msgctxt "@info:tooltip"
+msgid "Copy the selected certificate to a smartcard"
+msgstr "Актуализиране на избраните сертификати"
+
+#: src/view/keylistcontroller.cpp:577
+#, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Обновяване на OpenPGP сертификати"
 
-#: src/view/keylistcontroller.cpp:582
+#: src/view/keylistcontroller.cpp:592
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Заявка за нова S/MIME сертификация..."
 
-#: src/view/keylistcontroller.cpp:583
+#: src/view/keylistcontroller.cpp:593
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Създаване на нова заявка за подписване на сертификат S/MIME (CSR)"
 
-#: src/view/keylistcontroller.cpp:594
+#: src/view/keylistcontroller.cpp:604
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Trust Root Certificate"
 
-#: src/view/keylistcontroller.cpp:603
+#: src/view/keylistcontroller.cpp:613
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Коренно удостоверение за недоверие"
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:622
 #, kde-format
 msgid "Technical Details"
 msgstr "Технически подробности"
 
-#: src/view/keylistcontroller.cpp:622
+#: src/view/keylistcontroller.cpp:632
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "Опресняване на S/MIME сертификати"
 
-#: src/view/keylistcontroller.cpp:631
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Изчистване на кеша на CRL"
 
-#: src/view/keylistcontroller.cpp:640
+#: src/view/keylistcontroller.cpp:650
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Изхвърляне на кеша на CRL"
 
-#: src/view/keylistcontroller.cpp:649
+#: src/view/keylistcontroller.cpp:659
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Импортиране на CRL от файл..."
@@ -12056,100 +12242,121 @@ msgstr "Ключове:"
 msgid "Generate New Keys"
 msgstr "Генериране на нови ключове"
 
-#: src/view/pgpcardwidget.cpp:230
-#, kde-format
-msgid "Create a new primary key and generate subkeys on the card."
-msgstr "Създаване на нов първичен ключ и генериране на подключове на картата."
+#: src/view/pgpcardwidget.cpp:231
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"<para>Generate three new keys on the smart card and create a new OpenPGP "
+"certificate with those keys. Optionally, the encryption key is generated off-"
+"card and a backup is created so that you can still access data encrypted "
+"with this key in case the card is lost or damaged.</para><para><emphasis "
+"strong='true'>Existing keys on the smart card will be overwritten.</"
+"emphasis></para>"
+msgstr ""
 
-#: src/view/pgpcardwidget.cpp:235
+#: src/view/pgpcardwidget.cpp:242
 #, kde-format
 msgid "Change PIN"
 msgstr "Промяна на ПИН"
 
-#: src/view/pgpcardwidget.cpp:236
-#, kde-format
-msgid "Change the PIN required for using the keys on the smartcard."
+#: src/view/pgpcardwidget.cpp:244
+#, fuzzy, kde-format
+#| msgid "Change the PIN required for using the keys on the smartcard."
+msgctxt "@info:tooltip"
+msgid ""
+"Change the PIN required for using the keys on the smart card. The PIN must "
+"contain at least six characters."
 msgstr ""
 "Променете ПИН кода, необходим за използване на ключовете на смарт картата."
 
-#: src/view/pgpcardwidget.cpp:243
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgid "Unblock Card"
 msgstr "Отблокиране на карта"
 
-#: src/view/pgpcardwidget.cpp:244
-#, kde-format
-msgid "Unblock the smartcard and set a new PIN."
+#: src/view/pgpcardwidget.cpp:253
+#, fuzzy, kde-format
+#| msgid "Unblock the smartcard and set a new PIN."
+msgctxt "@info:tooltip"
+msgid "Unblock the smart card with the PUK."
 msgstr "Отблокиране на смарткартата и задаване на нов ПИН код."
 
-#: src/view/pgpcardwidget.cpp:251
+#: src/view/pgpcardwidget.cpp:260
 #, kde-format
 msgid "Change Admin PIN"
 msgstr "Промяна на ПИН за администратор"
 
-#: src/view/pgpcardwidget.cpp:252
-#, kde-format
+#: src/view/pgpcardwidget.cpp:261
+#, fuzzy, kde-format
+#| msgid "Change the PIN required for administrative operations."
+msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "Променете ПИН кода, необходим за административните операции."
 
-#: src/view/pgpcardwidget.cpp:259
-#, kde-format
-msgid "Change Reset Code"
-msgstr "Промяна на кода за нулиране"
+#: src/view/pgpcardwidget.cpp:268
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change PUK"
+msgid "Change PUK"
+msgstr "Промяна на ПУК"
 
-#: src/view/pgpcardwidget.cpp:260
-#, kde-format
-msgid "Change the PIN required to unblock the smartcard and set a new PIN."
+#: src/view/pgpcardwidget.cpp:270
+#, fuzzy, kde-format
+#| msgid "Change the PIN required to unblock the smartcard and set a new PIN."
+msgctxt "@info:tooltip"
+msgid ""
+"Set or change the PUK required to unblock the smart card. The PUK must "
+"contain at least eight characters."
 msgstr ""
 "Промяна на ПИН, необходим за деблокиране на смарткартата, и задаване на нов "
 "ПИН."
 
-#: src/view/pgpcardwidget.cpp:282
+#: src/view/pgpcardwidget.cpp:293
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "Неизвестна OpenPGP v%1 карта"
 
-#: src/view/pgpcardwidget.cpp:283
+#: src/view/pgpcardwidget.cpp:294
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 карта"
 
-#: src/view/pgpcardwidget.cpp:289 src/view/pgpcardwidget.cpp:291
+#: src/view/pgpcardwidget.cpp:300 src/view/pgpcardwidget.cpp:302
 #, kde-format
 msgid "not set"
 msgstr "не е зададено"
 
-#: src/view/pgpcardwidget.cpp:328
+#: src/view/pgpcardwidget.cpp:339
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "Генериране на ключове"
 
-#: src/view/pgpcardwidget.cpp:329
+#: src/view/pgpcardwidget.cpp:340
 #, kde-format
 msgid "This may take several minutes..."
 msgstr "Това може да отнеме няколко минути..."
 
-#: src/view/pgpcardwidget.cpp:344
+#: src/view/pgpcardwidget.cpp:355
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "Неуспешно генериране на нов ключ: %1"
 
-#: src/view/pgpcardwidget.cpp:354
+#: src/view/pgpcardwidget.cpp:365
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "Запазване на архива на ключа за шифроване"
 
-#: src/view/pgpcardwidget.cpp:354
+#: src/view/pgpcardwidget.cpp:365
 #, kde-format
 msgid "Backup Key"
 msgstr "Резервен ключ"
 
-#: src/view/pgpcardwidget.cpp:356
+#: src/view/pgpcardwidget.cpp:367
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
@@ -12157,20 +12364,20 @@ msgstr ""
 "Неуспешно преместване на резервно копие. Резервният ключ все още се "
 "съхранява под: %1"
 
-#: src/view/pgpcardwidget.cpp:362
+#: src/view/pgpcardwidget.cpp:373
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "Успешно генериран нов ключ за тази карта."
 
-#: src/view/pgpcardwidget.cpp:362 src/view/pgpcardwidget.cpp:453
-#: src/view/pgpcardwidget.cpp:500
+#: src/view/pgpcardwidget.cpp:373 src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:511
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "Успех"
 
-#: src/view/pgpcardwidget.cpp:376
+#: src/view/pgpcardwidget.cpp:387
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
@@ -12179,12 +12386,12 @@ msgstr ""
 "Съществуващите ключове на тази карта ще бъдат <b> изтрити </b> и заменени с "
 "нови ключове."
 
-#: src/view/pgpcardwidget.cpp:381
+#: src/view/pgpcardwidget.cpp:392
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "Изтриване на секретен ключ"
 
-#: src/view/pgpcardwidget.cpp:395
+#: src/view/pgpcardwidget.cpp:406
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -12194,69 +12401,69 @@ msgstr ""
 "Не можете да генерирате ключове на тази смарт карта, защото тя не поддържа "
 "никой от съвместимите алгоритми."
 
-#: src/view/pgpcardwidget.cpp:412
+#: src/view/pgpcardwidget.cpp:423
 #, kde-format
 msgid "Change cardholder"
 msgstr "Промяна на притежателя на картата"
 
-#: src/view/pgpcardwidget.cpp:412
+#: src/view/pgpcardwidget.cpp:423
 #, kde-format
 msgid "New name:"
 msgstr "Ново име:"
 
-#: src/view/pgpcardwidget.cpp:418
+#: src/view/pgpcardwidget.cpp:429
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "Символът \" <\"може да не се използва."
 
-#: src/view/pgpcardwidget.cpp:422
+#: src/view/pgpcardwidget.cpp:433
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "Не се допускат двойни интервали"
 
-#: src/view/pgpcardwidget.cpp:426
+#: src/view/pgpcardwidget.cpp:437
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "Размерът на името не може да надвишава 38 знака."
 
-#: src/view/pgpcardwidget.cpp:449
+#: src/view/pgpcardwidget.cpp:460
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "Промяната на името не бе успешна: %1"
 
-#: src/view/pgpcardwidget.cpp:453
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "Името бе успешно променено."
 
-#: src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:475
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "Промяна на URL адреса, където може да се намери pubkey"
 
-#: src/view/pgpcardwidget.cpp:465
+#: src/view/pgpcardwidget.cpp:476
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "Нов URL адрес на pubkey:"
 
-#: src/view/pgpcardwidget.cpp:476
+#: src/view/pgpcardwidget.cpp:487
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "Размерът на URL адреса не може да надвишава 254 знака."
 
-#: src/view/pgpcardwidget.cpp:496
+#: src/view/pgpcardwidget.cpp:507
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "Неуспешна промяна на URL адреса: %1"
 
-#: src/view/pgpcardwidget.cpp:500
+#: src/view/pgpcardwidget.cpp:511
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
@@ -12667,6 +12874,13 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgid "Create a new primary key and generate subkeys on the card."
+#~ msgstr ""
+#~ "Създаване на нов първичен ключ и генериране на подключове на картата."
+
+#~ msgid "Change Reset Code"
+#~ msgstr "Промяна на кода за нулиране"
 
 #~ msgid "&Quickguide"
 #~ msgstr "&Бързо ръководство"

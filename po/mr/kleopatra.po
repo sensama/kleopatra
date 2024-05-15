@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-09 00:39+0000\n"
+"POT-Creation-Date: 2024-05-15 00:39+0000\n"
 "PO-Revision-Date: 2013-03-05 17:34+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -199,6 +199,97 @@ msgstr ""
 #, kde-format
 msgid ""
 "Please enter the PIV Card Application Administration Key in hex-encoded form."
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:70
+#: src/commands/keytocardcommand.cpp:59
+#, kde-format
+msgctxt "smartcard application - serial number of smartcard"
+msgid "%1 - %2"
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:166
+#, kde-format
+msgctxt "@info"
+msgid "No empty smart card was found."
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:255
+#: src/commands/certificatetocardcommand.cpp:315
+#: src/commands/certificatetocardcommand.cpp:374
+#: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:657
+#, kde-format
+msgid "Failed to find the card with the serial number: %1"
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:265
+#, kde-format
+msgctxt "@info"
+msgid "No slot found for subkey %1 on the smart card."
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:287
+#: src/commands/keytocardcommand.cpp:262
+#: src/commands/openpgpgeneratecardkeycommand.cpp:136
+#: src/commands/openpgpgeneratecardkeycommand.cpp:173
+#: src/view/pgpcardwidget.cpp:381 src/view/pgpcardwidget.cpp:447
+#: src/view/pgpcardwidget.cpp:494
+#, kde-format
+msgid "Failed to find the OpenPGP card with the serial number: %1"
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:324
+#: src/commands/keytocardcommand.cpp:479
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Copying the key to the card failed."
+msgstr "प्रमाणपत्र"
+
+#: src/commands/certificatetocardcommand.cpp:336
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key was copied to the smart card.</para>"
+msgstr "प्रमाणपत्र"
+
+#: src/commands/certificatetocardcommand.cpp:339
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The key was copied to the smart card.</para><para>A backup was "
+"exported to <filename>%1</filename></para>"
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:353
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Do you really want to delete the copy of the secret key stored on this "
+"computer?"
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:354
+#: src/commands/keytocardcommand.cpp:665
+#, kde-format
+msgctxt "@title:window"
+msgid "Confirm Deletion"
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:400
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to delete the copy of the secret key stored on this computer:</"
+"para><para><message>%1</message></para>"
+msgstr ""
+
+#: src/commands/certificatetocardcommand.cpp:426
+#: src/commands/keytocardcommand.cpp:750
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Copying the key to the card failed:</para><para><message>%1</message></"
+"para>"
 msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:129
@@ -1139,7 +1230,7 @@ msgstr "प्रमाणपत्र"
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
-#: src/commands/exportopenpgpcertstoservercommand.cpp:120
+#: src/commands/exportopenpgpcertstoservercommand.cpp:123
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
@@ -1331,7 +1422,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:114
+#: src/commands/exportopenpgpcertstoservercommand.cpp:117
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1339,10 +1430,11 @@ msgid ""
 "server, it is nearly impossible to remove them again.</para><para>Before "
 "exporting your certificate to a public directory server, make sure that you "
 "have created a revocation certificate so you can revoke the certificate if "
-"needed later.</para><para>Are you sure you want to continue?</para>"
+"it is compromised, lost, or you forgot the passphrase.</para><para>Are you "
+"sure you want to continue?</para>"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:119
+#: src/commands/exportopenpgpcertstoservercommand.cpp:122
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:95
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:124
@@ -1352,19 +1444,19 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:140
+#: src/commands/exportopenpgpcertstoservercommand.cpp:143
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:145
+#: src/commands/exportopenpgpcertstoservercommand.cpp:148
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Finished"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:151
+#: src/commands/exportopenpgpcertstoservercommand.cpp:154
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1373,13 +1465,13 @@ msgid ""
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:162
+#: src/commands/exportopenpgpcertstoservercommand.cpp:165
 #: src/commands/importcertificatescommand.cpp:627
 #, kde-format
 msgid " "
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:163
+#: src/commands/exportopenpgpcertstoservercommand.cpp:166
 #, kde-kuit-format
 msgctxt ""
 "@info used for concatenating multiple lines of text with line breaks; most "
@@ -1387,7 +1479,7 @@ msgctxt ""
 msgid "%1<nl />%2"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:168
+#: src/commands/exportopenpgpcertstoservercommand.cpp:171
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1396,7 +1488,7 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:176
+#: src/commands/exportopenpgpcertstoservercommand.cpp:179
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates exported successfully."
@@ -1440,7 +1532,7 @@ msgid ""
 "para><message>%1</message>"
 msgstr ""
 
-#: src/commands/exportpaperkeycommand.cpp:88
+#: src/commands/exportpaperkeycommand.cpp:94
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1449,15 +1541,15 @@ msgid ""
 "</para><para>Please make sure it is installed.</para>"
 msgstr ""
 
-#: src/commands/exportpaperkeycommand.cpp:92
+#: src/commands/exportpaperkeycommand.cpp:98
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
 msgctxt "@title"
 msgid "Failed to find PaperKey executable."
 msgstr ""
 
-#: src/commands/exportpaperkeycommand.cpp:112
-#: src/commands/exportpaperkeycommand.cpp:124
+#: src/commands/exportpaperkeycommand.cpp:118
+#: src/commands/exportpaperkeycommand.cpp:130
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1465,7 +1557,7 @@ msgid ""
 "para><para><message>%1</message></para>"
 msgstr ""
 
-#: src/commands/exportpaperkeycommand.cpp:148
+#: src/commands/exportpaperkeycommand.cpp:154
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1473,7 +1565,7 @@ msgid ""
 "para><para><message>%1</message></para>"
 msgstr ""
 
-#: src/commands/exportpaperkeycommand.cpp:160
+#: src/commands/exportpaperkeycommand.cpp:166
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Secret Key"
@@ -1495,7 +1587,7 @@ msgid "All Files"
 msgstr "फाईल"
 
 #: src/commands/exportsecretkeycommand.cpp:103
-#: src/commands/exportsecretkeycommand.cpp:261
+#: src/commands/exportsecretkeycommand.cpp:266
 #: src/commands/exportsecretsubkeycommand.cpp:238
 #, fuzzy, kde-format
 msgctxt "@title:window"
@@ -1508,13 +1600,13 @@ msgctxt "@title:window"
 msgid "Secret Key Backup Error"
 msgstr ""
 
-#: src/commands/exportsecretkeycommand.cpp:223
+#: src/commands/exportsecretkeycommand.cpp:227
 #, kde-format
 msgctxt "@info:status"
 msgid "Backing up secret key..."
 msgstr ""
 
-#: src/commands/exportsecretkeycommand.cpp:242
+#: src/commands/exportsecretkeycommand.cpp:246
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1522,26 +1614,26 @@ msgid ""
 "passphrase."
 msgstr ""
 
-#: src/commands/exportsecretkeycommand.cpp:249
+#: src/commands/exportsecretkeycommand.cpp:253
 #: src/commands/exportsecretsubkeycommand.cpp:220
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr ""
 
-#: src/commands/exportsecretkeycommand.cpp:256
+#: src/commands/exportsecretkeycommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing key to file <filename>%1</filename> failed."
 msgstr ""
 
-#: src/commands/exportsecretkeycommand.cpp:261
+#: src/commands/exportsecretkeycommand.cpp:266
 #, kde-format
 msgctxt "@info"
 msgid "The backup of the secret key was created successfully."
 msgstr ""
 
-#: src/commands/exportsecretkeycommand.cpp:268
+#: src/commands/exportsecretkeycommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2170,12 +2262,6 @@ msgid ""
 "message></para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:59
-#, kde-format
-msgctxt "smartcard application - serial number of smartcard"
-msgid "%1 - %2"
-msgstr ""
-
 #: src/commands/keytocardcommand.cpp:159
 #, fuzzy, kde-format
 msgid "Select Card"
@@ -2184,12 +2270,6 @@ msgstr "सर्व निवडा"
 #: src/commands/keytocardcommand.cpp:160
 #, kde-format
 msgid "Please select the card the key should be written to:"
-msgstr ""
-
-#: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
-#: src/commands/keytocardcommand.cpp:657
-#, kde-format
-msgid "Failed to find the card with the serial number: %1"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:199
@@ -2229,15 +2309,6 @@ msgstr "सर्व निवडा"
 msgid "Please select the card slot the key should be written to:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:262
-#: src/commands/openpgpgeneratecardkeycommand.cpp:136
-#: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:370 src/view/pgpcardwidget.cpp:436
-#: src/view/pgpcardwidget.cpp:483
-#, kde-format
-msgid "Failed to find the OpenPGP card with the serial number: %1"
-msgstr ""
-
 #: src/commands/keytocardcommand.cpp:272
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
@@ -2246,7 +2317,7 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:379
+#: src/view/pgpcardwidget.cpp:390
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -2310,12 +2381,6 @@ msgstr ""
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr ""
-
-#: src/commands/keytocardcommand.cpp:479
-#, fuzzy, kde-format
-msgctxt "@info"
-msgid "Copying the key to the card failed."
-msgstr "प्रमाणपत्र"
 
 #: src/commands/keytocardcommand.cpp:490
 #, kde-kuit-format
@@ -2392,12 +2457,6 @@ msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:665
-#, kde-format
-msgctxt "@title:window"
-msgid "Confirm Deletion"
-msgstr ""
-
 #: src/commands/keytocardcommand.cpp:686
 #, kde-kuit-format
 msgctxt "@info"
@@ -2410,14 +2469,6 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr ""
-
-#: src/commands/keytocardcommand.cpp:750
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Copying the key to the card failed:</para><para><message>%1</message></"
-"para>"
 msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp:325
@@ -6261,7 +6312,7 @@ msgid "Refresh certificate list"
 msgstr ""
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:389 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 msgid "Import..."
 msgstr "आयात"
@@ -6539,6 +6590,70 @@ msgstr "प्रमाणपत्र"
 #, fuzzy, kde-format
 msgid "Owner trust set successfully."
 msgstr "प्रमाणपत्र"
+
+#: src/dialogs/copytosmartcarddialog.cpp:56
+#, kde-format
+msgctxt "@option:radio"
+msgid "Delete secret key from disk."
+msgstr ""
+
+#: src/dialogs/copytosmartcarddialog.cpp:57
+#, kde-format
+msgctxt "@option:radio"
+msgid "Keep secret key on disk."
+msgstr ""
+
+#: src/dialogs/copytosmartcarddialog.cpp:64
+#, kde-format
+msgctxt "@option:radio"
+msgid "Make a backup of the secret key to a file."
+msgstr ""
+
+#: src/dialogs/copytosmartcarddialog.cpp:65
+#, kde-format
+msgctxt "@option:radio"
+msgid "Make a printed backup of the secret key."
+msgstr ""
+
+#: src/dialogs/copytosmartcarddialog.cpp:66
+#, kde-format
+msgctxt "@option:radio"
+msgid "I already have a backup of the secret key."
+msgstr ""
+
+#: src/dialogs/copytosmartcarddialog.cpp:103
+#, kde-format
+msgctxt "@action:button"
+msgid "Copy to Card"
+msgstr ""
+
+#: src/dialogs/copytosmartcarddialog.cpp:124
+#, kde-format
+msgctxt "@title:dialog"
+msgid "Copy Key to Smartcard"
+msgstr ""
+
+#: src/dialogs/copytosmartcarddialog.cpp:143
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Selected Key: <emphasis>%1</emphasis></para><para>Selected Smartcard: "
+"<emphasis>%2</emphasis></para><para>Choose one of the following options to "
+"continue:</para>"
+msgstr ""
+
+#: src/dialogs/debugdialog.cpp:82
+#, fuzzy, kde-format
+#| msgid "Clipboard"
+msgctxt "@action:button"
+msgid "Copy to Clipboard"
+msgstr "क्लिपबोर्ड"
+
+#: src/dialogs/debugdialog.cpp:111
+#, kde-format
+msgctxt "@info"
+msgid "Exit code: %1"
+msgstr ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-format
@@ -8317,43 +8432,43 @@ msgstr "दृश्य (&V)"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:135
+#: src/kleopatra.rc:44 src/kleopatra.rc:138
 #, kde-format
 msgid "&Certificates"
 msgstr ""
 
 #. i18n: ectx: Menu (tools)
-#: src/kleopatra.rc:64
+#: src/kleopatra.rc:66
 #, kde-format
 msgid "&Tools"
 msgstr "साधने (&T)"
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:80
+#: src/kleopatra.rc:83
 #, fuzzy, kde-format
 msgid "&Settings"
 msgstr "संयोजना (&S)"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:85
+#: src/kleopatra.rc:88
 #, kde-format
 msgid "&Window"
 msgstr "चौकट (&W)"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:96
+#: src/kleopatra.rc:99
 #, fuzzy, kde-format
 msgid "&Help"
 msgstr "मदत (&H)"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:102
+#: src/kleopatra.rc:105
 #, kde-format
 msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:118 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, fuzzy, kde-format
 msgid "Main Toolbar"
 msgstr "मुख्य साधनपट्टी"
@@ -8575,7 +8690,7 @@ msgstr "क्लिओपात्रा"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:134
+#: src/main.cpp:137
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8586,13 +8701,13 @@ msgid ""
 "administrator for help in resolving this issue.</para>"
 msgstr ""
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr ""
 
-#: src/main.cpp:160
+#: src/main.cpp:163
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8603,23 +8718,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:164
+#: src/main.cpp:167
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:165
+#: src/main.cpp:168
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:235
+#: src/main.cpp:238
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr ""
 
-#: src/main.cpp:239
+#: src/main.cpp:242
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8633,24 +8748,24 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:269
+#: src/main.cpp:272
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr ""
 
-#: src/mainwindow.cpp:114
+#: src/mainwindow.cpp:115
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr ""
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:122
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr ""
 
-#: src/mainwindow.cpp:221
+#: src/mainwindow.cpp:222
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -8658,36 +8773,41 @@ msgid ""
 "%1</application>."
 msgstr ""
 
-#: src/mainwindow.cpp:224
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr ""
 
-#: src/mainwindow.cpp:311
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr ""
 
-#: src/mainwindow.cpp:313
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr ""
 
-#: src/mainwindow.cpp:582
+#: src/mainwindow.cpp:583
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr ""
 
-#: src/mainwindow.cpp:594
+#: src/mainwindow.cpp:595
+#, kde-format
+msgid "Debug View"
+msgstr ""
+
+#: src/mainwindow.cpp:608
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:595
+#: src/mainwindow.cpp:609
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8695,23 +8815,23 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:607
+#: src/mainwindow.cpp:621
 #, kde-format
 msgid "Check for updates"
 msgstr ""
 
-#: src/mainwindow.cpp:620
+#: src/mainwindow.cpp:634
 #, fuzzy, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "प्रमाणपत्र"
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:635
 #, fuzzy, kde-format
 msgid "Show certificate overview"
 msgstr "प्रमाणपत्र"
 
-#: src/mainwindow.cpp:631
+#: src/mainwindow.cpp:645
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -8719,51 +8839,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr ""
 
-#: src/mainwindow.cpp:632
+#: src/mainwindow.cpp:646
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:642
+#: src/mainwindow.cpp:656
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr ""
 
-#: src/mainwindow.cpp:643
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid "Show smartcard management"
 msgstr ""
 
-#: src/mainwindow.cpp:654
+#: src/mainwindow.cpp:668
 #, kde-format
 msgid "Perform Self-Test"
 msgstr ""
 
-#: src/mainwindow.cpp:665
+#: src/mainwindow.cpp:679
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgid "Configure Groups..."
 msgstr "%1 संयोजीत करा (&C)..."
 
-#: src/mainwindow.cpp:677
+#: src/mainwindow.cpp:691
 #, fuzzy, kde-format
 #| msgid "Details"
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "तपशील"
 
-#: src/mainwindow.cpp:707
+#: src/mainwindow.cpp:721
 #, kde-format
+msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/mainwindow.cpp:719
+#: src/mainwindow.cpp:733
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr ""
 
-#: src/mainwindow.cpp:723
+#: src/mainwindow.cpp:737
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -8771,49 +8892,49 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:748
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr ""
 
-#: src/mainwindow.cpp:735
+#: src/mainwindow.cpp:749
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:743
+#: src/mainwindow.cpp:757
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgid "&Password-based Encryption"
 msgstr "कुटलिपी"
 
-#: src/mainwindow.cpp:744
+#: src/mainwindow.cpp:758
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:751
+#: src/mainwindow.cpp:765
 #, fuzzy, kde-format
 msgid "Certificate &Groups"
 msgstr "प्रमाणपत्र"
 
-#: src/mainwindow.cpp:752
+#: src/mainwindow.cpp:766
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:761
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr ""
 
-#: src/mainwindow.cpp:762
+#: src/mainwindow.cpp:776
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -8821,78 +8942,78 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:772
+#: src/mainwindow.cpp:786
 #, fuzzy, kde-format
 msgid "&Certification Management"
 msgstr "प्रमाणपत्र"
 
-#: src/mainwindow.cpp:773
+#: src/mainwindow.cpp:787
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:795
 #, fuzzy, kde-format
 msgid "&Smartcard Setup"
 msgstr "सर्व निवडा"
 
-#: src/mainwindow.cpp:782
+#: src/mainwindow.cpp:796
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:789
+#: src/mainwindow.cpp:803
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:799
+#: src/mainwindow.cpp:813
 #, kde-format
 msgid "Manual for VS-NfD Approval (German)"
 msgstr ""
 
-#: src/mainwindow.cpp:800
+#: src/mainwindow.cpp:814
 #, kde-format
 msgctxt "Only available in German. Keep German file name for all languages"
 msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:808
+#: src/mainwindow.cpp:822
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr ""
 
-#: src/mainwindow.cpp:809
+#: src/mainwindow.cpp:823
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:817
+#: src/mainwindow.cpp:831
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr ""
 
-#: src/mainwindow.cpp:818
+#: src/mainwindow.cpp:832
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:845
+#: src/mainwindow.cpp:859
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
 msgstr ""
 
-#: src/mainwindow.cpp:848
+#: src/mainwindow.cpp:862
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr ""
@@ -10173,29 +10294,37 @@ msgid "Caught unknown exception in group %1"
 msgstr ""
 
 #: src/utils/clipboardmenu.cpp:43
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@action"
 msgid "Certificate Import"
-msgstr ""
+msgstr "प्रमाणपत्र"
 
 #: src/utils/clipboardmenu.cpp:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgctxt "@action"
 msgid "Encrypt..."
-msgstr ""
+msgstr "कुटलिपी"
 
 #: src/utils/clipboardmenu.cpp:47
 #, kde-format
+msgctxt "@action"
 msgid "S/MIME-Sign..."
 msgstr ""
 
 #: src/utils/clipboardmenu.cpp:49
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Open"
+msgctxt "@action"
 msgid "OpenPGP-Sign..."
-msgstr ""
+msgstr "उघडा"
 
-#: src/utils/clipboardmenu.cpp:50 src/view/keylistcontroller.cpp:398
-#, kde-format
+#: src/utils/clipboardmenu.cpp:50
+#, fuzzy, kde-format
+#| msgid "Overwrite File"
+msgctxt "@action"
 msgid "Decrypt/Verify..."
-msgstr ""
+msgstr "फाईल खोडून पुन्हा लिहा"
 
 #: src/utils/expiration.cpp:104
 #, fuzzy, kde-format
@@ -10554,209 +10683,214 @@ msgstr ""
 msgid "Loading certificate cache..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:324
+#: src/view/keylistcontroller.cpp:325
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:325
+#: src/view/keylistcontroller.cpp:326
 #, fuzzy, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, fuzzy, kde-format
 msgid "Export..."
 msgstr "निर्यात"
 
-#: src/view/keylistcontroller.cpp:334
+#: src/view/keylistcontroller.cpp:335
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Publish on Server..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:343
+#: src/view/keylistcontroller.cpp:344
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:354
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:363
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:371
+#: src/view/keylistcontroller.cpp:372
 #, kde-format
 msgid "Print Secret Key..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:380
+#: src/view/keylistcontroller.cpp:381
 #, fuzzy, kde-format
 msgid "Lookup on Server..."
 msgstr "शोधा (&L)"
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:382
 #, kde-format
 msgid "Search for certificates online using a public keyserver"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr ""
 
 #: src/view/keylistcontroller.cpp:399
 #, kde-format
+msgid "Decrypt/Verify..."
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:400
+#, kde-format
 msgid "Decrypt and/or verify files"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:408
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:408
+#: src/view/keylistcontroller.cpp:409
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgid "Encrypt and/or sign files"
 msgstr "कुटलिपी"
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:417
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:417
+#: src/view/keylistcontroller.cpp:418
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:425
+#: src/view/keylistcontroller.cpp:426
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:434
+#: src/view/keylistcontroller.cpp:435
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:444
+#: src/view/keylistcontroller.cpp:445
 #, fuzzy, kde-format
 msgid "Redisplay"
 msgstr "पुन्हा प्रदर्शन (&R)"
 
-#: src/view/keylistcontroller.cpp:453
+#: src/view/keylistcontroller.cpp:454
 #, kde-format
 msgid "Stop Operation"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:466
+#: src/view/keylistcontroller.cpp:467
 #, kde-format
 msgid "Details"
 msgstr "तपशील"
 
-#: src/view/keylistcontroller.cpp:476
+#: src/view/keylistcontroller.cpp:477
 #, fuzzy, kde-format
 msgid "Revoke Certificate..."
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:477
+#: src/view/keylistcontroller.cpp:478
 #, fuzzy, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, fuzzy, kde-format
 msgid "Delete"
 msgstr "काढून टाका"
 
-#: src/view/keylistcontroller.cpp:486
+#: src/view/keylistcontroller.cpp:487
 #, fuzzy, kde-format
 msgid "Delete selected certificates"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, fuzzy, kde-format
 msgid "Update Certificates"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:495
+#: src/view/keylistcontroller.cpp:496
 #, fuzzy, kde-format
 msgid "Update selected certificates"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:503
+#: src/view/keylistcontroller.cpp:504
 #, kde-format
 msgid "Certify..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:504
+#: src/view/keylistcontroller.cpp:505
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:512
+#: src/view/keylistcontroller.cpp:513
 #, fuzzy, kde-format
 msgid "Revoke Certification..."
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:513
+#: src/view/keylistcontroller.cpp:514
 #, fuzzy, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:521
+#: src/view/keylistcontroller.cpp:522
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:530
+#: src/view/keylistcontroller.cpp:531
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:531
+#: src/view/keylistcontroller.cpp:532
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:539
+#: src/view/keylistcontroller.cpp:540
 #, kde-format
 msgid "Change Passphrase..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:548
+#: src/view/keylistcontroller.cpp:549
 #, kde-format
 msgid "Add User ID..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:557
+#: src/view/keylistcontroller.cpp:558
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "%1 संयोजीत करा (&C)..."
 
-#: src/view/keylistcontroller.cpp:558
+#: src/view/keylistcontroller.cpp:559
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
@@ -10764,50 +10898,62 @@ msgstr "प्रमाणपत्र"
 
 #: src/view/keylistcontroller.cpp:567
 #, kde-format
+msgctxt "@action:inmenu"
+msgid "Copy to Card"
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:568
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
+msgid "Copy the selected certificate to a smartcard"
+msgstr "प्रमाणपत्र"
+
+#: src/view/keylistcontroller.cpp:577
+#, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:582
+#: src/view/keylistcontroller.cpp:592
 #, fuzzy, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:583
+#: src/view/keylistcontroller.cpp:593
 #, fuzzy, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:594
+#: src/view/keylistcontroller.cpp:604
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:603
+#: src/view/keylistcontroller.cpp:613
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:622
 #, kde-format
 msgid "Technical Details"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:622
+#: src/view/keylistcontroller.cpp:632
 #, fuzzy, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "प्रमाणपत्र"
 
-#: src/view/keylistcontroller.cpp:631
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:640
+#: src/view/keylistcontroller.cpp:650
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:649
+#: src/view/keylistcontroller.cpp:659
 #, kde-format
 msgid "Import CRL From File..."
 msgstr ""
@@ -11213,130 +11359,145 @@ msgstr ""
 msgid "Generate New Keys"
 msgstr "फाईलच्या क्रिया"
 
-#: src/view/pgpcardwidget.cpp:230
-#, kde-format
-msgid "Create a new primary key and generate subkeys on the card."
+#: src/view/pgpcardwidget.cpp:231
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"<para>Generate three new keys on the smart card and create a new OpenPGP "
+"certificate with those keys. Optionally, the encryption key is generated off-"
+"card and a backup is created so that you can still access data encrypted "
+"with this key in case the card is lost or damaged.</para><para><emphasis "
+"strong='true'>Existing keys on the smart card will be overwritten.</"
+"emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:235
+#: src/view/pgpcardwidget.cpp:242
 #, fuzzy, kde-format
 msgid "Change PIN"
 msgstr "न बदललेले"
 
-#: src/view/pgpcardwidget.cpp:236
+#: src/view/pgpcardwidget.cpp:244
 #, kde-format
-msgid "Change the PIN required for using the keys on the smartcard."
+msgctxt "@info:tooltip"
+msgid ""
+"Change the PIN required for using the keys on the smart card. The PIN must "
+"contain at least six characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:243
+#: src/view/pgpcardwidget.cpp:252
 #, fuzzy, kde-format
 msgid "Unblock Card"
 msgstr "सर्व निवडा"
 
-#: src/view/pgpcardwidget.cpp:244
+#: src/view/pgpcardwidget.cpp:253
 #, kde-format
-msgid "Unblock the smartcard and set a new PIN."
-msgstr ""
-
-#: src/view/pgpcardwidget.cpp:251
-#, kde-format
-msgid "Change Admin PIN"
-msgstr ""
-
-#: src/view/pgpcardwidget.cpp:252
-#, kde-format
-msgid "Change the PIN required for administrative operations."
-msgstr ""
-
-#: src/view/pgpcardwidget.cpp:259
-#, kde-format
-msgid "Change Reset Code"
+msgctxt "@info:tooltip"
+msgid "Unblock the smart card with the PUK."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:260
 #, kde-format
-msgid "Change the PIN required to unblock the smartcard and set a new PIN."
+msgid "Change Admin PIN"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:282
+#: src/view/pgpcardwidget.cpp:261
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Change the PIN required for administrative operations."
+msgstr ""
+
+#: src/view/pgpcardwidget.cpp:268
+#, fuzzy, kde-format
+msgid "Change PUK"
+msgstr "न बदललेले"
+
+#: src/view/pgpcardwidget.cpp:270
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Set or change the PUK required to unblock the smart card. The PUK must "
+"contain at least eight characters."
+msgstr ""
+
+#: src/view/pgpcardwidget.cpp:293
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:283
+#: src/view/pgpcardwidget.cpp:294
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:289 src/view/pgpcardwidget.cpp:291
+#: src/view/pgpcardwidget.cpp:300 src/view/pgpcardwidget.cpp:302
 #, fuzzy, kde-format
 #| msgid "not supported"
 msgid "not set"
 msgstr "समर्थीत नाही"
 
-#: src/view/pgpcardwidget.cpp:328
+#: src/view/pgpcardwidget.cpp:339
 #, fuzzy, kde-format
 #| msgid "File Operations"
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "फाईलच्या क्रिया"
 
-#: src/view/pgpcardwidget.cpp:329
+#: src/view/pgpcardwidget.cpp:340
 #, kde-format
 msgid "This may take several minutes..."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:344
+#: src/view/pgpcardwidget.cpp:355
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:354
+#: src/view/pgpcardwidget.cpp:365
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:354
+#: src/view/pgpcardwidget.cpp:365
 #, kde-format
 msgid "Backup Key"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:356
+#: src/view/pgpcardwidget.cpp:367
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:362
+#: src/view/pgpcardwidget.cpp:373
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:362 src/view/pgpcardwidget.cpp:453
-#: src/view/pgpcardwidget.cpp:500
+#: src/view/pgpcardwidget.cpp:373 src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:511
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:376
+#: src/view/pgpcardwidget.cpp:387
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:381
+#: src/view/pgpcardwidget.cpp:392
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:395
+#: src/view/pgpcardwidget.cpp:406
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -11344,69 +11505,69 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:412
+#: src/view/pgpcardwidget.cpp:423
 #, kde-format
 msgid "Change cardholder"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:412
+#: src/view/pgpcardwidget.cpp:423
 #, fuzzy, kde-format
 msgid "New name:"
 msgstr "खरे नाव (&R):"
 
-#: src/view/pgpcardwidget.cpp:418
+#: src/view/pgpcardwidget.cpp:429
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:422
+#: src/view/pgpcardwidget.cpp:433
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:426
+#: src/view/pgpcardwidget.cpp:437
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:449
+#: src/view/pgpcardwidget.cpp:460
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:453
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:475
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:465
+#: src/view/pgpcardwidget.cpp:476
 #, kde-format
 msgid "New pubkey URL:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:476
+#: src/view/pgpcardwidget.cpp:487
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:496
+#: src/view/pgpcardwidget.cpp:507
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:500
+#: src/view/pgpcardwidget.cpp:511
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."

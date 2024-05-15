@@ -7,7 +7,11 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 
+#if KWIDGETSADDONS_BUILD_DEPRECATED_SINCE(5, 100)
+bool KMessageBoxDontAskAgainConfigStorage::shouldBeShownYesNo(const QString &dontShowAgainName, KMessageBox::ButtonCode &result)
+#else
 bool KMessageBoxDontAskAgainConfigStorage::shouldBeShownTwoActions(const QString &dontShowAgainName, KMessageBox::ButtonCode &result)
+#endif
 {
     KConfigGroup cg(KMessageBox_againConfig ? KMessageBox_againConfig : KSharedConfig::openConfig().data(), QStringLiteral("Notification Messages"));
     const QString dontAsk = cg.readEntry(dontShowAgainName, QString()).toLower();
@@ -28,7 +32,11 @@ bool KMessageBoxDontAskAgainConfigStorage::shouldBeShownContinue(const QString &
     return cg.readEntry(dontShowAgainName, true);
 }
 
+#if KWIDGETSADDONS_BUILD_DEPRECATED_SINCE(5, 100)
+void KMessageBoxDontAskAgainConfigStorage::saveDontShowAgainYesNo(const QString &dontShowAgainName, KMessageBox::ButtonCode result)
+#else
 void KMessageBoxDontAskAgainConfigStorage::saveDontShowAgainTwoActions(const QString &dontShowAgainName, KMessageBox::ButtonCode result)
+#endif
 {
     KConfigGroup::WriteConfigFlags flags = KConfig::Persistent;
     if (dontShowAgainName[0] == QLatin1Char(':')) {

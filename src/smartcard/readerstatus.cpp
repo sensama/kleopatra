@@ -59,6 +59,7 @@ static ReaderStatus *self = nullptr;
 #define xtoi_2(p) ((xtoi_1(p) * 16) + xtoi_1((p) + 1))
 
 Q_DECLARE_METATYPE(GpgME::Error)
+Q_DECLARE_METATYPE(GpgME::Protocol)
 
 namespace
 {
@@ -1059,6 +1060,7 @@ public:
 
         qRegisterMetaType<Card::Status>("Kleo::SmartCard::Card::Status");
         qRegisterMetaType<GpgME::Error>("GpgME::Error");
+        qRegisterMetaType<GpgME::Protocol>();
 
         connect(this, &::ReaderStatusThread::cardAdded, q, &ReaderStatus::cardAdded);
         connect(this, &::ReaderStatusThread::cardChanged, q, &ReaderStatus::cardChanged);

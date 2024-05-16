@@ -147,13 +147,14 @@ static QString errorMessage(const std::string &keyRef, ChangePinCommand::ChangeP
         return i18nc("@info", "Changing the PUK failed: %1", errorText);
     }
     if (keyRef == OpenPGPCard::resetCodeKeyRef()) {
-        return i18nc("@info", "Unblocking the PIN failed: %1", errorText);
+        if (mode == ChangePinCommand::ResetMode) {
+            return i18nc("@info", "Changing the PUK failed: %1", errorText);
+        } else {
+            return i18nc("@info", "Unblocking the PIN failed: %1", errorText);
+        }
     }
     if (keyRef == OpenPGPCard::adminPinKeyRef()) {
         return i18nc("@info", "Changing the Admin PIN failed: %1", errorText);
-    }
-    if (keyRef == OpenPGPCard::resetCodeKeyRef() && mode == ChangePinCommand::ResetMode) {
-        return i18nc("@info", "Changing the Reset Code failed: %1", errorText);
     }
     if (keyRef == NetKeyCard::nksPinKeyRef()) {
         if (mode == ChangePinCommand::NullPinMode) {
@@ -176,16 +177,17 @@ static QString successMessage(const std::string &keyRef, ChangePinCommand::Chang
 {
     // see cmd_passwd() in gpg-card.c
     if (keyRef == PIVCard::pukKeyRef()) {
-        return i18nc("@info", "PUK successfully changed.");
+        return i18nc("@info", "PUK changed successfully.");
     }
     if (keyRef == OpenPGPCard::resetCodeKeyRef()) {
-        return i18nc("@info", "Unblocked and set a new PIN successfully.");
+        if (mode == ChangePinCommand::ResetMode) {
+            return i18nc("@info", "PUK changed successfully.");
+        } else {
+            return i18nc("@info", "Unblocked and set a new PIN successfully.");
+        }
     }
     if (keyRef == OpenPGPCard::adminPinKeyRef()) {
         return i18nc("@info", "Admin PIN changed successfully.");
-    }
-    if (keyRef == OpenPGPCard::resetCodeKeyRef() && mode == ChangePinCommand::ResetMode) {
-        return i18nc("@info", "Reset Code changed successfully.");
     }
     if (keyRef == NetKeyCard::nksPinKeyRef()) {
         if (mode == ChangePinCommand::NullPinMode) {

@@ -137,7 +137,12 @@ DeviceInfoWatcher::~DeviceInfoWatcher()
 // static
 bool DeviceInfoWatcher::isSupported()
 {
-    return engineInfo(GpgEngine).engineVersion() >= "2.4.0";
+#ifdef Q_OS_WIN
+    // "SCD DEVINFO --watch" does not seem to work on Windows; see https://dev.gnupg.org/T5359
+    return false;
+#else
+    return engineInfo(GpgEngine).engineVersion() >= "2.3.0";
+#endif
 }
 
 void DeviceInfoWatcher::start()

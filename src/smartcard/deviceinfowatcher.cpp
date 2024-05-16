@@ -10,6 +10,9 @@
 #include "deviceinfowatcher.h"
 #include "deviceinfowatcher_p.h"
 
+#include <KConfigGroup>
+#include <KSharedConfig>
+
 #include <QGpgME/Debug>
 
 #include <gpgme++/context.h>
@@ -138,8 +141,10 @@ DeviceInfoWatcher::~DeviceInfoWatcher()
 bool DeviceInfoWatcher::isSupported()
 {
 #ifdef Q_OS_WIN
-    // "SCD DEVINFO --watch" does not seem to work on Windows; see https://dev.gnupg.org/T5359
-    return false;
+    // "SCD DEVINFO --watch" seems to cause problems on Windows, e.g. https://dev.gnupg.org/T6688
+    // only enable it if a "secret" config option is set
+    const KConfigGroup config{KSharedConfig::openConfig(), QLatin1StringView("__Experimental__")};
+    return config.readEntry("UseDeviceInfoWatcher", false);
 #else
     return engineInfo(GpgEngine).engineVersion() >= "2.3.0";
 #endif

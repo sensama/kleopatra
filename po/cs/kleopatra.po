@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
+"POT-Creation-Date: 2024-05-16 00:39+0000\n"
 "PO-Revision-Date: 2024-04-26 11:01+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -279,18 +279,12 @@ msgid "Confirm Deletion"
 msgstr "Potvrdit smazání"
 
 #: src/commands/certificatetocardcommand.cpp:400
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-#| "para><para><message>%3</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the secret key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Selhalo přesunutí  <filename>%1</filename> do <filename>%2</filename>."
-"</para><para><message>%3</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:426
 #: src/commands/keytocardcommand.cpp:750
@@ -398,7 +392,9 @@ msgid "Certification Not Possible"
 msgstr "Certifikace není možná"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create"
+msgctxt "@action:button"
 msgid "Create"
 msgstr "Vytvořit"
 
@@ -4812,7 +4808,9 @@ msgid ""
 msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Decrypt/Verify"
+msgctxt "@action:button"
 msgid "&Decrypt/Verify"
 msgstr "&Dešifrovat/ověřit"
 
@@ -5586,7 +5584,9 @@ msgid "Show"
 msgstr "Zobrazit"
 
 #: src/crypto/gui/wizard.cpp:77
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Next"
+msgctxt "@action:button"
 msgid "&Next"
 msgstr "&Následující"
 
@@ -6599,25 +6599,22 @@ msgid "Keep secret key on disk."
 msgstr ""
 
 #: src/dialogs/copytosmartcarddialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a backup of the secret key to a file."
-msgstr "Zálohovat šifrovací klíč do souboru."
+msgstr ""
 
 #: src/dialogs/copytosmartcarddialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a printed backup of the secret key."
-msgstr "Uložit zálohu šifrovacího klíče"
+msgstr ""
 
 #: src/dialogs/copytosmartcarddialog.cpp:66
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "I already have a backup of the secret key."
-msgstr "Uložit zálohu šifrovacího klíče"
+msgstr ""
 
 #: src/dialogs/copytosmartcarddialog.cpp:103
 #, kde-format
@@ -6641,11 +6638,10 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/debugdialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Clipboard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
-msgstr "Schránka"
+msgstr "Zkopírovat do schránky"
 
 #: src/dialogs/debugdialog.cpp:111
 #, kde-format
@@ -8453,10 +8449,9 @@ msgstr "&Nápověda"
 
 #. i18n: ectx: Menu (help_more)
 #: src/kleopatra.rc:105
-#, fuzzy, kde-format
-#| msgid "&More documentation"
+#, kde-format
 msgid "&More Documentation"
-msgstr "Další doku&mentace"
+msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
@@ -8789,7 +8784,7 @@ msgstr "Prohlížeč záznamů GnuPG"
 #: src/mainwindow.cpp:595
 #, kde-format
 msgid "Debug View"
-msgstr ""
+msgstr "Ladicí pohled"
 
 #: src/mainwindow.cpp:608
 #, kde-format
@@ -8862,11 +8857,10 @@ msgid "Groups"
 msgstr ""
 
 #: src/mainwindow.cpp:721
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
-msgstr "Přejít do rychlého vyhledávání"
+msgstr ""
 
 #: src/mainwindow.cpp:733
 #, kde-format
@@ -8894,10 +8888,9 @@ msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:757
-#, fuzzy, kde-format
-#| msgid "&Password-based encryption"
+#, kde-format
 msgid "&Password-based Encryption"
-msgstr "Šifrování &heslem"
+msgstr ""
 
 #: src/mainwindow.cpp:758
 #, kde-format
@@ -8907,10 +8900,9 @@ msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:765
-#, fuzzy, kde-format
-#| msgid "Certificate Groups"
+#, kde-format
 msgid "Certificate &Groups"
-msgstr "Skupiny certifikátů"
+msgstr ""
 
 #: src/mainwindow.cpp:766
 #, kde-format
@@ -8920,10 +8912,9 @@ msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:775
-#, fuzzy, kde-format
-#| msgid "&Mail encryption in Outlook"
+#, kde-format
 msgid "&Mail Encryption in Outlook"
-msgstr "Ši&frování pošty v Outlooku"
+msgstr ""
 
 #: src/mainwindow.cpp:776
 #, kde-format
@@ -8946,10 +8937,9 @@ msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:795
-#, fuzzy, kde-format
-#| msgid "&Smartcard setup"
+#, kde-format
 msgid "&Smartcard Setup"
-msgstr "Nastavení Čipové &karty"
+msgstr ""
 
 #: src/mainwindow.cpp:796
 #, kde-format
@@ -10288,39 +10278,34 @@ msgid "Caught unknown exception in group %1"
 msgstr "Zachycena neznámá výjimka ve skupině %1"
 
 #: src/utils/clipboardmenu.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certificate Import"
+#, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
-msgstr "Import certifikátu"
+msgstr ""
 
 #: src/utils/clipboardmenu.cpp:44
-#, fuzzy, kde-format
-#| msgid "Encrypt..."
+#, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
-msgstr "Šifrovat..."
+msgstr ""
 
 #: src/utils/clipboardmenu.cpp:47
-#, fuzzy, kde-format
-#| msgid "S/MIME-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "S/MIME-Sign..."
-msgstr "Podepsat S/MIME..."
+msgstr ""
 
 #: src/utils/clipboardmenu.cpp:49
-#, fuzzy, kde-format
-#| msgid "OpenPGP-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
-msgstr "Podepsat OpenPGP..."
+msgstr ""
 
 #: src/utils/clipboardmenu.cpp:50
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify..."
+#, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
-msgstr "Dešifrovat/ověřit..."
+msgstr ""
 
 #: src/utils/expiration.cpp:104
 #, kde-format
@@ -10894,11 +10879,10 @@ msgid "Copy to Card"
 msgstr ""
 
 #: src/view/keylistcontroller.cpp:568
-#, fuzzy, kde-format
-#| msgid "Delete selected certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
-msgstr "Smazat vybrané soubory"
+msgstr ""
 
 #: src/view/keylistcontroller.cpp:577
 #, kde-format
@@ -11389,11 +11373,9 @@ msgid "Change the PIN required for administrative operations."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:268
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change PUK"
+#, kde-format
 msgid "Change PUK"
-msgstr "Změnit PUK"
+msgstr ""
 
 #: src/view/pgpcardwidget.cpp:270
 #, kde-format
@@ -11936,12 +11918,3 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-
-#~ msgid "&Quickguide"
-#~ msgstr "Rychlý &průvodce"
-
-#~ msgid "&Group configuration"
-#~ msgstr "Nastavení skupin&y"
-
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "Vytvořit klíč OpenPGP"

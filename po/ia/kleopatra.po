@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
-"PO-Revision-Date: 2024-05-09 10:58+0200\n"
+"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"PO-Revision-Date: 2024-05-15 10:05+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -223,12 +223,11 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr ""
 
 #: src/commands/certificatetocardcommand.cpp:265
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info"
 msgid "No slot found for subkey %1 on the smart card."
 msgstr ""
-"Cambia le PIN requirite per usar le clave sur le smartcard (carta "
+"Nulle fissura (slot) trovate per subclave %1 sur le smartcard (carta "
 "intelligente)."
 
 #: src/commands/certificatetocardcommand.cpp:287
@@ -249,38 +248,30 @@ msgid "Copying the key to the card failed."
 msgstr "Copiar le clave al carta fallev."
 
 #: src/commands/certificatetocardcommand.cpp:336
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was updated.</para>"
-#| msgid_plural "<para>The certificates were updated.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
-msgstr "<para>Le certificato esseva actualisate.</para>"
+msgstr "<para>Le clave esseva copiate al carta intelligente</para>"
 
 #: src/commands/certificatetocardcommand.cpp:339
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Copying the key to the card failed:</para><para><message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key was copied to the smart card.</para><para>A backup was "
 "exported to <filename>%1</filename></para>"
 msgstr ""
-"<para>Copiar le clave al carta falleva:</para><para><message>%1</message></"
-"para>"
+"<para>Le clave esseva copiate al carta intelligente.</para><para>Un copia de "
+"secutitate esseva exportate a <filename>%1</filename></para>"
 
 #: src/commands/certificatetocardcommand.cpp:353
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Successfully deleted the copy of the key stored on this computer."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the secret key stored on this "
 "computer?"
 msgstr ""
-"Delite con successo le copia de clave immagazimate sur iste computator."
+"Tu vermente vole deler le copia del clave secrete immagazimate  sur iste "
+"computator?"
 
 #: src/commands/certificatetocardcommand.cpp:354
 #: src/commands/keytocardcommand.cpp:665
@@ -290,18 +281,14 @@ msgid "Confirm Deletion"
 msgstr "Confirma deletion"
 
 #: src/commands/certificatetocardcommand.cpp:400
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the copy of the key stored on this computer:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the secret key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Il falleva deler le copia del clave immagazinate sur iste computator: "
-"</para><para><message>%1</message></para>"
+"<para>Il falleva a deler le copia del clave secrete immagazinate sur iste "
+"computator: </para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:426
 #: src/commands/keytocardcommand.cpp:750
@@ -409,7 +396,9 @@ msgid "Certification Not Possible"
 msgstr "Certification non possibile"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create"
+msgctxt "@action:button"
 msgid "Create"
 msgstr "Crea"
 
@@ -4812,7 +4801,9 @@ msgid ""
 msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Decrypt/Verify"
+msgctxt "@action:button"
 msgid "&Decrypt/Verify"
 msgstr "&Decrypta/verifica"
 
@@ -5598,7 +5589,9 @@ msgid "Show"
 msgstr "Monstra"
 
 #: src/crypto/gui/wizard.cpp:77
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Next"
+msgctxt "@action:button"
 msgid "&Next"
 msgstr "Seque&nte"
 
@@ -6609,25 +6602,22 @@ msgid "Keep secret key on disk."
 msgstr ""
 
 #: src/dialogs/copytosmartcarddialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a backup of the secret key to a file."
-msgstr "Retrocopia le clave de cryptation in un file."
+msgstr "Face un retrocopia (copia de securitate) del clave secrete a un file."
 
 #: src/dialogs/copytosmartcarddialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a printed backup of the secret key."
-msgstr "Salveguarda copia de securitate de clave de cryptation"
+msgstr "Face un copia de securitate imprimite de clave secrete."
 
 #: src/dialogs/copytosmartcarddialog.cpp:66
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "I already have a backup of the secret key."
-msgstr "Salveguarda copia de securitate de clave de cryptation"
+msgstr "Io ja ha un copia de securitate del clave secrete."
 
 #: src/dialogs/copytosmartcarddialog.cpp:103
 #, kde-format
@@ -6636,11 +6626,10 @@ msgid "Copy to Card"
 msgstr ""
 
 #: src/dialogs/copytosmartcarddialog.cpp:124
-#, fuzzy, kde-format
-#| msgid "SmartCard"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Copy Key to Smartcard"
-msgstr "Smartcard (carta intelligente)"
+msgstr "Copia Clave a Smartcard (carta intelligente)"
 
 #: src/dialogs/copytosmartcarddialog.cpp:143
 #, kde-kuit-format
@@ -6652,11 +6641,10 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/debugdialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Clipboard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
-msgstr "Area de transferentia"
+msgstr "Copia in area de transferentia"
 
 #: src/dialogs/debugdialog.cpp:111
 #, kde-format
@@ -8784,7 +8772,7 @@ msgstr "Visor de registro GnuPG"
 #: src/mainwindow.cpp:595
 #, kde-format
 msgid "Debug View"
-msgstr ""
+msgstr "Vista de cribrar"
 
 #: src/mainwindow.cpp:608
 #, kde-format
@@ -8857,8 +8845,7 @@ msgid "Groups"
 msgstr "Gruppos"
 
 #: src/mainwindow.cpp:721
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Fixa foco a Cerca rapide"
@@ -10270,37 +10257,31 @@ msgid "Caught unknown exception in group %1"
 msgstr ""
 
 #: src/utils/clipboardmenu.cpp:43
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Dump"
+#, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
-msgstr "Dump de Certificato"
+msgstr "Importation de Certificato"
 
 #: src/utils/clipboardmenu.cpp:44
-#, fuzzy, kde-format
-#| msgid "Encrypt..."
+#, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
 msgstr "Crypta..."
 
 #: src/utils/clipboardmenu.cpp:47
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@action"
 msgid "S/MIME-Sign..."
-msgstr "S/MIME"
+msgstr "S/MIME-Sign..."
 
 #: src/utils/clipboardmenu.cpp:49
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
-msgstr "OpenPGP"
+msgstr "OpenPGP-Sign..."
 
 #: src/utils/clipboardmenu.cpp:50
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify..."
+#, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Decrypta/verifica..."
@@ -10877,11 +10858,10 @@ msgid "Copy to Card"
 msgstr ""
 
 #: src/view/keylistcontroller.cpp:568
-#, fuzzy, kde-format
-#| msgid "Update selected certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
-msgstr "Actualisa certificatos selegite"
+msgstr "Copia le certificato selegite a carta intelligente"
 
 #: src/view/keylistcontroller.cpp:577
 #, kde-format
@@ -11344,15 +11324,14 @@ msgid "Change PIN"
 msgstr "Modifica PIN"
 
 #: src/view/pgpcardwidget.cpp:244
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Change the PIN required for using the keys on the smart card. The PIN must "
 "contain at least six characters."
 msgstr ""
-"Cambia le PIN requirite per usar le clave sur le smartcard (carta "
-"intelligente)."
+"Cambia le PIN requirite per usar le claves sur le smartcard (carta "
+"intelligente). Le PIN debe continer al minus sex characteres."
 
 #: src/view/pgpcardwidget.cpp:252
 #, kde-format
@@ -11360,11 +11339,10 @@ msgid "Unblock Card"
 msgstr "Disbloca carta"
 
 #: src/view/pgpcardwidget.cpp:253
-#, fuzzy, kde-format
-#| msgid "Unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK."
-msgstr "Disbloca le smartcard e assigna un nove PIN."
+msgstr "Disbloca le smartcard (carta intelligente) con le PUK."
 
 #: src/view/pgpcardwidget.cpp:260
 #, kde-format
@@ -11372,18 +11350,13 @@ msgid "Change Admin PIN"
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:261
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
-msgstr ""
-"Cambia le PIN requirite per usar le clave sur le smartcard (carta "
-"intelligente)."
+msgstr "Cambia le PIN requirite per operationes administrative. "
 
 #: src/view/pgpcardwidget.cpp:268
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change PUK"
+#, kde-format
 msgid "Change PUK"
 msgstr "Modifica PUK"
 

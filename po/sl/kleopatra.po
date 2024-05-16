@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
-"PO-Revision-Date: 2024-05-09 07:04+0200\n"
+"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"PO-Revision-Date: 2024-05-15 09:29+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -228,7 +228,7 @@ msgstr "%1 - %2"
 #, kde-format
 msgctxt "@info"
 msgid "No empty smart card was found."
-msgstr ""
+msgstr "Nobene prazne pametne kartice ni bilo najdene."
 
 #: src/commands/certificatetocardcommand.cpp:255
 #: src/commands/certificatetocardcommand.cpp:315
@@ -240,11 +240,10 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr "Ni bilo mogoče najti kartice s serijsko številko: %1"
 
 #: src/commands/certificatetocardcommand.cpp:265
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info"
 msgid "No slot found for subkey %1 on the smart card."
-msgstr "Spremeni kodo PIN potrebno za uporabo ključev na pametni kartici."
+msgstr "Ni prostora za podključ %1 na pametni kartici."
 
 #: src/commands/certificatetocardcommand.cpp:287
 #: src/commands/keytocardcommand.cpp:262
@@ -264,39 +263,30 @@ msgid "Copying the key to the card failed."
 msgstr "Kopiranje ključa na kartico ni uspelo."
 
 #: src/commands/certificatetocardcommand.cpp:336
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was updated.</para>"
-#| msgid_plural "<para>The certificates were updated.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
-msgstr "<para>Potrdila so bila posodobljena.</para>"
+msgstr "<para>Ključ je bil prekopiran na pametno kartico.</para>"
 
 #: src/commands/certificatetocardcommand.cpp:339
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Copying the key to the card failed:</para><para><message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key was copied to the smart card.</para><para>A backup was "
 "exported to <filename>%1</filename></para>"
 msgstr ""
-"<para>Kopiranje ključa na kartico ni uspelo.</para><para><message>%1</"
-"message></para>"
+"<para>Ključ je bil prekopiran na pametno kartico.</para><para>Varnostna "
+"kopija je bila izvožena v <filename>%1</filename></para>"
 
 #: src/commands/certificatetocardcommand.cpp:353
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Do you really want to delete the copy of the key stored on this computer?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the secret key stored on this "
 "computer?"
 msgstr ""
-"Ali res želite izbrisati kopijo ključa, shranjenega na tem računalniku?"
+"Ali res želite izbrisati kopijo skrivnega ključa, shranjenega na tem "
+"računalniku?"
 
 #: src/commands/certificatetocardcommand.cpp:354
 #: src/commands/keytocardcommand.cpp:665
@@ -306,18 +296,14 @@ msgid "Confirm Deletion"
 msgstr "Potrdite brisanje"
 
 #: src/commands/certificatetocardcommand.cpp:400
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the copy of the key stored on this computer:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the secret key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Brisanje kopije ključa shranjenega na tem računalniku ni uspelo:</"
-"para><para><message>%1</message></para>"
+"<para>Brisanje kopije skrivnega ključa, shranjenega v tem računalniku, ni "
+"uspelo:</para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:426
 #: src/commands/keytocardcommand.cpp:750
@@ -431,7 +417,9 @@ msgid "Certification Not Possible"
 msgstr "Potrjevanje ni mogoče"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create"
+msgctxt "@action:button"
 msgid "Create"
 msgstr "Ustvari"
 
@@ -1563,15 +1551,7 @@ msgstr[3] ""
 "ključev izrecno onemogočena."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:117
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>When OpenPGP certificates have been exported to a public directory "
-#| "server, it is nearly impossible to remove them again.</para><para>Before "
-#| "exporting your certificate to a public directory server, make sure that "
-#| "you have created a revocation certificate so you can revoke the "
-#| "certificate if needed later.</para><para>Are you sure you want to "
-#| "continue?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>When OpenPGP certificates have been exported to a public directory "
@@ -1584,8 +1564,8 @@ msgstr ""
 "<para>Ko so potrdila OpenPGP izvožena na javni imeniški strežnik, jih je od "
 "tam skoraj nemogoče odstraniti.</para><para>Preden svoje potrdilo izvozite "
 "na javni imeniški strežnik ustvarite preklicno potrdilo, ki vam omogoča, da "
-"lahko kasneje po potrebi potrdilo prekličete.</para><para>Ali res želite "
-"nadaljevati?</para>"
+"lahko kasneje po potrdilo prekličete, če je bil kompromitirano, izgubljeno "
+"ali ste pozabili geslo zanj.</para><para>Ali res želite nadaljevati?</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:122
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
@@ -5261,7 +5241,9 @@ msgstr ""
 "Kleopatra zaznal za dani vhod."
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Decrypt/Verify"
+msgctxt "@action:button"
 msgid "&Decrypt/Verify"
 msgstr "&Dešifriraj/preveri"
 
@@ -6072,7 +6054,9 @@ msgid "Show"
 msgstr "Pokaži"
 
 #: src/crypto/gui/wizard.cpp:77
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Next"
+msgctxt "@action:button"
 msgid "&Next"
 msgstr "&Naslednji"
 
@@ -7115,54 +7099,46 @@ msgid "Owner trust set successfully."
 msgstr "Zaupanje lastnika je bilo uspešno nastavljeno."
 
 #: src/dialogs/copytosmartcarddialog.cpp:56
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Delete copy on disk"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Delete secret key from disk."
-msgstr "Izbriši kopijo na disku"
+msgstr "Izbriši skrivni ključ z diska."
 
 #: src/dialogs/copytosmartcarddialog.cpp:57
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Keep copy on disk"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Keep secret key on disk."
-msgstr "Ohranjaj kopijo na disku"
+msgstr "Ohrani skrivni ključ na disku."
 
 #: src/dialogs/copytosmartcarddialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a backup of the secret key to a file."
-msgstr "Varovalna kopija ključa šifriranja v datoteki."
+msgstr "Izdelaj varovalno kopijo skrivnega ključa na datoteko."
 
 #: src/dialogs/copytosmartcarddialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a printed backup of the secret key."
-msgstr "Shrani varovalno kopijo ključa šifriranja"
+msgstr "Izdelaj natisnjeno varovalno kopijo skrivnega ključa."
 
 #: src/dialogs/copytosmartcarddialog.cpp:66
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "I already have a backup of the secret key."
-msgstr "Shrani varovalno kopijo ključa šifriranja"
+msgstr "Že imam varnostno kopijo skrivnega ključa."
 
 #: src/dialogs/copytosmartcarddialog.cpp:103
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Card"
-msgstr ""
+msgstr "Kopiraj na kartico"
 
 #: src/dialogs/copytosmartcarddialog.cpp:124
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Copy Key to Smartcard"
-msgstr "Prenesi na pametno kartico"
+msgstr "Kopiraj ključ na pametno kartico"
 
 #: src/dialogs/copytosmartcarddialog.cpp:143
 #, kde-kuit-format
@@ -7172,19 +7148,21 @@ msgid ""
 "<emphasis>%2</emphasis></para><para>Choose one of the following options to "
 "continue:</para>"
 msgstr ""
+"<para>Izbrani ključ: <emphasis>%1</emphasis></para><para>Izbrana pametna "
+"kartica: <emphasis>%2</emphasis></para><para>Za nadaljevanje izberite eno od "
+"naslednjih možnosti: </para>"
 
 #: src/dialogs/debugdialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Clipboard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
-msgstr "Odložišče"
+msgstr "Kopiraj na odložišče"
 
 #: src/dialogs/debugdialog.cpp:111
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
-msgstr ""
+msgstr "Izhodna koda: %1"
 
 #: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-format
@@ -9553,7 +9531,7 @@ msgstr "Pregledovalnik dnevnikov GnuPG"
 #: src/mainwindow.cpp:595
 #, kde-format
 msgid "Debug View"
-msgstr ""
+msgstr "Pogled razhroščevanja"
 
 #: src/mainwindow.cpp:608
 #, kde-format
@@ -9628,8 +9606,7 @@ msgid "Groups"
 msgstr "Grupe"
 
 #: src/mainwindow.cpp:721
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Postavi žarišče na hitro iskanje"
@@ -11150,39 +11127,34 @@ msgid "Caught unknown exception in group %1"
 msgstr "Ujeta neznana izjema v grupi %1"
 
 #: src/utils/clipboardmenu.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certificate Import"
+#, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
-msgstr "Uvoz potrdil"
+msgstr "Uvoz potrdila"
 
 #: src/utils/clipboardmenu.cpp:44
-#, fuzzy, kde-format
-#| msgid "Encrypt..."
+#, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
-msgstr "Šifriraj …"
+msgstr "Šifriraj..."
 
 #: src/utils/clipboardmenu.cpp:47
-#, fuzzy, kde-format
-#| msgid "S/MIME-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "S/MIME-Sign..."
-msgstr "Podpiši z S/MIME…"
+msgstr "Podpiši z S/MIME..."
 
 #: src/utils/clipboardmenu.cpp:49
-#, fuzzy, kde-format
-#| msgid "OpenPGP-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
-msgstr "Podpiši z OpenPGP…"
+msgstr "Podpiši z OpenPGP..."
 
 #: src/utils/clipboardmenu.cpp:50
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify..."
+#, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
-msgstr "Dešifriraj/preveri…"
+msgstr "Dešifriraj/preveri..."
 
 #: src/utils/expiration.cpp:104
 #, kde-format
@@ -11767,14 +11739,13 @@ msgstr "Ustvarite grupo iz izbranih potrdil"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
-msgstr ""
+msgstr "Kopiraj na kartico"
 
 #: src/view/keylistcontroller.cpp:568
-#, fuzzy, kde-format
-#| msgid "Update selected certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
-msgstr "Posodobi izbrana potrdila"
+msgstr "Kopiraj izbrano potrdilo na pametno kartico"
 
 #: src/view/keylistcontroller.cpp:577
 #, kde-format
@@ -12243,6 +12214,12 @@ msgid ""
 "strong='true'>Existing keys on the smart card will be overwritten.</"
 "emphasis></para>"
 msgstr ""
+"<para>Generiraj tri nove ključe na pametni kartici in ustvari novo potrdilo "
+"OpenPGP s temi ključi. Po želji se šifrirni ključ ustvari zunaj kartice in "
+"ustvari varnostna kopija, tako da lahko še vedno dostopate do podatkov, "
+"šifriranih s tem ključem, če je kartica izgubljena ali poškodovana.</"
+"para><para><emphasis strong='true'> Obstoječi ključi na pametni kartici bodo "
+"prepisani.</emphasis></para>"
 
 #: src/view/pgpcardwidget.cpp:242
 #, kde-format
@@ -12250,13 +12227,14 @@ msgid "Change PIN"
 msgstr "Spremeni PIN"
 
 #: src/view/pgpcardwidget.cpp:244
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Change the PIN required for using the keys on the smart card. The PIN must "
 "contain at least six characters."
-msgstr "Spremeni kodo PIN potrebno za uporabo ključev na pametni kartici."
+msgstr ""
+"Spremeni kodo PIN potrebno za uporabo ključev na pametni kartici. PIN mora "
+"vsebovati vsaj šest znakov."
 
 #: src/view/pgpcardwidget.cpp:252
 #, kde-format
@@ -12264,11 +12242,10 @@ msgid "Unblock Card"
 msgstr "Deblokiraj kartico"
 
 #: src/view/pgpcardwidget.cpp:253
-#, fuzzy, kde-format
-#| msgid "Unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK."
-msgstr "Deblokiraj pametno kartico in nastavi nov PIN."
+msgstr "Deblokiraj pametno kartico s kodo PUK."
 
 #: src/view/pgpcardwidget.cpp:260
 #, kde-format
@@ -12276,29 +12253,25 @@ msgid "Change Admin PIN"
 msgstr "Zamenjajte administrativni PIN"
 
 #: src/view/pgpcardwidget.cpp:261
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for administrative operations."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
-msgstr "Spremeni kodo PIN potrebno za adminitrativne operacije."
+msgstr "Spremeni kodo PIN potrebno za skrbniške operacije."
 
 #: src/view/pgpcardwidget.cpp:268
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change PUK"
+#, kde-format
 msgid "Change PUK"
 msgstr "Zamenjaj PUK"
 
 #: src/view/pgpcardwidget.cpp:270
-#, fuzzy, kde-format
-#| msgid "Change the PIN required to unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Set or change the PUK required to unblock the smart card. The PUK must "
 "contain at least eight characters."
 msgstr ""
-"Spremeni kodo PIN, potrebno za deblokiranje pametne kartice in nastavitev "
-"novega PINa."
+"Nastavi ali zamenjaj kodo PUK potrebno za deblokiranje pametne kartice. PUK "
+"mora vsebovati vsak osem znakov."
 
 #: src/view/pgpcardwidget.cpp:293
 #, kde-format

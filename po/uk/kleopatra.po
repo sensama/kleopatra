@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-15 00:39+0000\n"
-"PO-Revision-Date: 2024-05-09 09:44+0300\n"
+"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"PO-Revision-Date: 2024-05-15 12:50+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -228,7 +228,7 @@ msgstr "%1 – %2"
 #, kde-format
 msgctxt "@info"
 msgid "No empty smart card was found."
-msgstr ""
+msgstr "Не знайдено порожньої смарт-картки."
 
 #: src/commands/certificatetocardcommand.cpp:255
 #: src/commands/certificatetocardcommand.cpp:315
@@ -240,11 +240,10 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr "Не вдалося знайти картку із таким серійним номером: %1"
 
 #: src/commands/certificatetocardcommand.cpp:265
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info"
 msgid "No slot found for subkey %1 on the smart card."
-msgstr "Змінити пінкод, який потрібен для використання ключів зі смарткартки."
+msgstr "На смарт-картці не виявлено слоту для підключа %1."
 
 #: src/commands/certificatetocardcommand.cpp:287
 #: src/commands/keytocardcommand.cpp:262
@@ -264,39 +263,30 @@ msgid "Copying the key to the card failed."
 msgstr "Не вдалося скопіювати ключ на картку."
 
 #: src/commands/certificatetocardcommand.cpp:336
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was updated.</para>"
-#| msgid_plural "<para>The certificates were updated.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
-msgstr "<para>Сертифікати оновлено.</para>"
+msgstr "<para>Ключ скопійовано на смарт-картку.</para>"
 
 #: src/commands/certificatetocardcommand.cpp:339
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Copying the key to the card failed:</para><para><message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key was copied to the smart card.</para><para>A backup was "
 "exported to <filename>%1</filename></para>"
 msgstr ""
-"<para>Не вдалося скопіювати ключ на картку:</para><para><message>%1</"
-"message></para>"
+"<para>Ключ скопійовано на смарт-картку.</para><para>Резервну копію "
+"експортовано до <filename>%1</filename></para>"
 
 #: src/commands/certificatetocardcommand.cpp:353
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Do you really want to delete the copy of the key stored on this computer?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the secret key stored on this "
 "computer?"
 msgstr ""
-"Ви справді хочете вилучити копію ключа, що зберігається на цьому комп'ютері?"
+"Ви справді хочете вилучити копію закритого ключа, що зберігається на цьому "
+"комп'ютері?"
 
 #: src/commands/certificatetocardcommand.cpp:354
 #: src/commands/keytocardcommand.cpp:665
@@ -306,18 +296,14 @@ msgid "Confirm Deletion"
 msgstr "Підтвердження вилучення"
 
 #: src/commands/certificatetocardcommand.cpp:400
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the copy of the key stored on this computer:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the secret key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Не вдалося вилучити копію ключа, що зберігається на цьому комп'ютері:</"
-"para><para><message>%1</message></para>"
+"<para>Не вдалося вилучити копію закритого ключа, що зберігається на цьому "
+"комп'ютері:</para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:426
 #: src/commands/keytocardcommand.cpp:750
@@ -431,7 +417,9 @@ msgid "Certification Not Possible"
 msgstr "Виконання посвідчення неможливе"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create"
+msgctxt "@action:button"
 msgid "Create"
 msgstr "Створити"
 
@@ -1568,15 +1556,7 @@ msgstr[3] ""
 "використання серверів ключів було явним чином вимкнено."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:117
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>When OpenPGP certificates have been exported to a public directory "
-#| "server, it is nearly impossible to remove them again.</para><para>Before "
-#| "exporting your certificate to a public directory server, make sure that "
-#| "you have created a revocation certificate so you can revoke the "
-#| "certificate if needed later.</para><para>Are you sure you want to "
-#| "continue?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>When OpenPGP certificates have been exported to a public directory "
@@ -1590,8 +1570,9 @@ msgstr ""
 "загальнодоступний сервер каталогів, стане майже неможливо вилучити їх звідти."
 "</para><para>Перш ніж експортувати ваш сертифікат на загальнодоступний "
 "сервер каталогів переконайтеся, що ви створили сертифікат для відкликання, "
-"отже, що ви зможете відкликати сертифікат пізніше у разі потреби.</"
-"para><para>Ви справді бажаєте продовжувати?</para>"
+"отже, що ви зможете відкликати сертифікат, якщо сертифікат скомпрометовано, "
+"втрачено або ви забули пароль.</para><para>Ви справді бажаєте продовжувати?</"
+"para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:122
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
@@ -4086,7 +4067,7 @@ msgstr "Застосування параметрів"
 #: src/conf/smartcardconfigpage.cpp:66
 #, kde-format
 msgid "Smart card reader to use:"
-msgstr "Зчитувачі смарткарток:"
+msgstr "Зчитувачі смарт-карток:"
 
 #: src/conf/smartcardconfigpage.cpp:90
 #, kde-format
@@ -5307,7 +5288,9 @@ msgstr ""
 "визначила для заданої вхідної інформації."
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Decrypt/Verify"
+msgctxt "@action:button"
 msgid "&Decrypt/Verify"
 msgstr "&Розшифрувати/Перевірити"
 
@@ -6126,7 +6109,9 @@ msgid "Show"
 msgstr "Показати"
 
 #: src/crypto/gui/wizard.cpp:77
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Next"
+msgctxt "@action:button"
 msgid "&Next"
 msgstr "&Далі"
 
@@ -7181,54 +7166,46 @@ msgid "Owner trust set successfully."
 msgstr "Довіру до власника успішно встановлено."
 
 #: src/dialogs/copytosmartcarddialog.cpp:56
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Delete copy on disk"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Delete secret key from disk."
-msgstr "Вилучити копію на диску"
+msgstr "Вилучити закритий ключ з диска. "
 
 #: src/dialogs/copytosmartcarddialog.cpp:57
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Keep copy on disk"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Keep secret key on disk."
-msgstr "Зберегти копію на диску"
+msgstr "Зберегти закритий ключ на диску."
 
 #: src/dialogs/copytosmartcarddialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a backup of the secret key to a file."
-msgstr "Створити резервну копію ключа у файлі."
+msgstr "Створити резервну копію закритого ключа у файлі."
 
 #: src/dialogs/copytosmartcarddialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a printed backup of the secret key."
-msgstr "Зберегти резервну копію ключа шифрування"
+msgstr "Створити друковану резервну копію закритого ключа."
 
 #: src/dialogs/copytosmartcarddialog.cpp:66
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "I already have a backup of the secret key."
-msgstr "Зберегти резервну копію ключа шифрування"
+msgstr "У мене вже є резервна копію закритого ключа."
 
 #: src/dialogs/copytosmartcarddialog.cpp:103
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Card"
-msgstr ""
+msgstr "Скопіювати на картку"
 
 #: src/dialogs/copytosmartcarddialog.cpp:124
-#, fuzzy, kde-format
-#| msgid "Transfer to Smartcard"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Copy Key to Smartcard"
-msgstr "Перенести на картку пам'яті"
+msgstr "Скопіювати ключ на смарт-картку"
 
 #: src/dialogs/copytosmartcarddialog.cpp:143
 #, kde-kuit-format
@@ -7238,19 +7215,21 @@ msgid ""
 "<emphasis>%2</emphasis></para><para>Choose one of the following options to "
 "continue:</para>"
 msgstr ""
+"<para>Вибраний ключ: <emphasis>%1</emphasis></para><para>Вибрана смарт-"
+"картка: <emphasis>%2</emphasis></para><para>Виберіть один з таких варіантів "
+"для продовження:</para>"
 
 #: src/dialogs/debugdialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Clipboard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
-msgstr "Буфер"
+msgstr "Скопіювати до буфера"
 
 #: src/dialogs/debugdialog.cpp:111
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
-msgstr ""
+msgstr "Код виходу: %1"
 
 #: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-format
@@ -8994,7 +8973,7 @@ msgstr "Показати налаштування системи GnuPG"
 #: src/kcfg/settings.kcfg:144
 #, kde-format
 msgid "Show smart cards configuration"
-msgstr "Показати налаштування смарткарток"
+msgstr "Показати налаштування смарт-карток"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:148
@@ -9138,14 +9117,14 @@ msgstr ""
 #: src/kcfg/settings.kcfg:208
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
-msgstr "Спробувати завантажити сертифікати S/MIME зі смарткарток PKCS#15"
+msgstr "Спробувати завантажити сертифікати S/MIME зі смарт-карток PKCS#15"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:209
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
-"Автоматично завантажувати сертифікати S/MIME зі смарткарток PKCS#15 (CardOS)"
+"Автоматично завантажувати сертифікати S/MIME зі смарт-карток PKCS#15 (CardOS)"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:210
@@ -9156,8 +9135,8 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 "Якщо має значення «true», Kleopatra викликатиме gpgsm --learn, якщо буде "
-"вставлено смарткартку PKCS#15 із невідомими сертифікатами. Процедура "
-"розпізнання може бути тривалою. Протягом її виконання смарткартку буде "
+"вставлено смарт-картку PKCS#15 із невідомими сертифікатами. Процедура "
+"розпізнання може бути тривалою. Протягом її виконання смарт-картку буде "
 "заблоковано."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
@@ -9661,7 +9640,7 @@ msgstr "Переглядач журналу GnuPG"
 #: src/mainwindow.cpp:595
 #, kde-format
 msgid "Debug View"
-msgstr ""
+msgstr "Панель діагностики"
 
 #: src/mainwindow.cpp:608
 #, kde-format
@@ -9737,8 +9716,7 @@ msgid "Groups"
 msgstr "Групи"
 
 #: src/mainwindow.cpp:721
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Перевести фокус до поля швидкого пошуку"
@@ -9820,7 +9798,7 @@ msgstr "certification_management_gnupgvsd_en.pdf"
 #: src/mainwindow.cpp:795
 #, kde-format
 msgid "&Smartcard Setup"
-msgstr "Налаштування с&март-карток"
+msgstr "Налаштування с&марткарток"
 
 #: src/mainwindow.cpp:796
 #, kde-format
@@ -11273,39 +11251,34 @@ msgid "Caught unknown exception in group %1"
 msgstr "Виявлено невідому помилку у групі %1"
 
 #: src/utils/clipboardmenu.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certificate Import"
+#, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
 msgstr "Імпортувати сертифікат"
 
 #: src/utils/clipboardmenu.cpp:44
-#, fuzzy, kde-format
-#| msgid "Encrypt..."
+#, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
 msgstr "Зашифрувати…"
 
 #: src/utils/clipboardmenu.cpp:47
-#, fuzzy, kde-format
-#| msgid "S/MIME-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "S/MIME-Sign..."
-msgstr "S/MIME-Підпис…"
+msgstr "S/MIME-підпис…"
 
 #: src/utils/clipboardmenu.cpp:49
-#, fuzzy, kde-format
-#| msgid "OpenPGP-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
-msgstr "OpenPGP-Підпис…"
+msgstr "OpenPGP-підпис…"
 
 #: src/utils/clipboardmenu.cpp:50
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify..."
+#, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
-msgstr "Розшифрувати/Перевірити"
+msgstr "Розшифрувати/Перевірити…"
 
 #: src/utils/expiration.cpp:104
 #, kde-format
@@ -11894,14 +11867,13 @@ msgstr "Створити групу з позначених сертифікат
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
-msgstr ""
+msgstr "Скопіювати на картку"
 
 #: src/view/keylistcontroller.cpp:568
-#, fuzzy, kde-format
-#| msgid "Update selected certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
-msgstr "Оновити позначені сертифікати"
+msgstr "Скопіювати позначений сертифікат на смарт-картку"
 
 #: src/view/keylistcontroller.cpp:577
 #, kde-format
@@ -12057,7 +12029,7 @@ msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
 "the smartcard."
 msgstr ""
-"Вибачте. На смарткартці немає ключів, які б можна було використати для "
+"Вибачте. На смарт-картці немає ключів, які б можна було використати для "
 "створення запиту щодо підписування сертифіката."
 
 #: src/view/nullpinwidget.cpp:35
@@ -12374,6 +12346,12 @@ msgid ""
 "strong='true'>Existing keys on the smart card will be overwritten.</"
 "emphasis></para>"
 msgstr ""
+"<para>Створити три нових ключі на смарт-картці і створити сертифікат OpenPGP "
+"за допомогою цих ключів. Крім того, поза карткою буде створено ключ "
+"шифрування та резервну копію, щоб ви не втратили доступу до даних, "
+"зашифрованих ключем, якщо картку буде втрачено або пошкоджено.</"
+"para><para><emphasis strong='true'>Наявні на смарт-картці ключі буде "
+"перезаписано.</emphasis></para>"
 
 #: src/view/pgpcardwidget.cpp:242
 #, kde-format
@@ -12381,13 +12359,14 @@ msgid "Change PIN"
 msgstr "Змінити пінкод"
 
 #: src/view/pgpcardwidget.cpp:244
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Change the PIN required for using the keys on the smart card. The PIN must "
 "contain at least six characters."
-msgstr "Змінити пінкод, який потрібен для використання ключів зі смарткартки."
+msgstr ""
+"Змінити PIN-код, потрібний для використання ключів на смарт-картці. PIN-код "
+"має складатися з принаймні шести символів."
 
 #: src/view/pgpcardwidget.cpp:252
 #, kde-format
@@ -12395,11 +12374,10 @@ msgid "Unblock Card"
 msgstr "Розблокувати картку"
 
 #: src/view/pgpcardwidget.cpp:253
-#, fuzzy, kde-format
-#| msgid "Unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK."
-msgstr "Розблоквати смарткартку і встановити новий пінкод."
+msgstr "Розблокувати смарт-картку за допомогою PUK."
 
 #: src/view/pgpcardwidget.cpp:260
 #, kde-format
@@ -12407,29 +12385,25 @@ msgid "Change Admin PIN"
 msgstr "Зміни адміністративний пінкод"
 
 #: src/view/pgpcardwidget.cpp:261
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for administrative operations."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "Для виконання адміністративних дій слід змінити пінкод."
 
 #: src/view/pgpcardwidget.cpp:268
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change PUK"
+#, kde-format
 msgid "Change PUK"
 msgstr "Змінити PUK"
 
 #: src/view/pgpcardwidget.cpp:270
-#, fuzzy, kde-format
-#| msgid "Change the PIN required to unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Set or change the PUK required to unblock the smart card. The PUK must "
 "contain at least eight characters."
 msgstr ""
-"Змінити код, який потрібен для розблоковування картки пам'яті і встановити "
-"новий пінкод."
+"Встановити або змінити PUK, потрібний для розблокування смарт-картки. PUK "
+"має складатися з принаймні восьми символів."
 
 #: src/view/pgpcardwidget.cpp:293
 #, kde-format

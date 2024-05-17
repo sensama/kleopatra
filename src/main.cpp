@@ -53,6 +53,7 @@
 #include "kleopatra_debug.h"
 #include "kleopatra_options.h"
 
+#include <KConfig>
 #include <KCrash>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -105,6 +106,9 @@ int main(int argc, char **argv)
     qputenv("QT_QPA_PLATFORM", "windows:darkmode=2");
 #endif
 
+#if KCONFIG_VERSION > QT_VERSION_CHECK(6, 2, 0)
+    KConfig::setConfigBaseDirectory(Kleo::gnupgHomeDirectory() + QStringLiteral("/kleopatra"));
+#endif
     KleopatraApplication app(argc, argv);
     // Set OrganizationDomain early as this is used to generate the service
     // name that will be registered on the bus.

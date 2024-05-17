@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -759,109 +759,99 @@ msgstr "Η τροποποίηση συνθηματικού ήταν επιτυχ
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Αποτυχία εύρεσης της έξυπνης κάρτας με το σειραϊκό αριθμό: %1"
 
-#: src/commands/changepincommand.cpp:147
+#: src/commands/changepincommand.cpp:147 src/commands/changepincommand.cpp:151
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
 msgstr "Αποτυχία αλλαγής του PUK: %1"
 
-#: src/commands/changepincommand.cpp:150
+#: src/commands/changepincommand.cpp:153
 #, kde-format
 msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
 msgstr "Αποτυχία απεμπλοκής του PIN: %1"
 
-#: src/commands/changepincommand.cpp:153
+#: src/commands/changepincommand.cpp:157
 #, kde-format
 msgctxt "@info"
 msgid "Changing the Admin PIN failed: %1"
 msgstr "Αποτυχία αλλαγής κωδικού του διαχειριστή: %1"
 
-#: src/commands/changepincommand.cpp:156
-#, kde-format
-msgctxt "@info"
-msgid "Changing the Reset Code failed: %1"
-msgstr "Αποτυχία αλλαγής του κώδικα επαναφοράς: %1"
-
-#: src/commands/changepincommand.cpp:160
+#: src/commands/changepincommand.cpp:161
 #, kde-format
 msgctxt "@info"
 msgid "Setting the NKS PIN failed: %1"
 msgstr "Αποτυχία ρύθμισης του NKS PIN: %1"
 
-#: src/commands/changepincommand.cpp:162
+#: src/commands/changepincommand.cpp:163
 #, kde-format
 msgctxt "@info"
 msgid "Changing the NKS PIN failed: %1"
 msgstr "Αποτυχία αλλαγής του NKS PIN: %1"
 
-#: src/commands/changepincommand.cpp:167
+#: src/commands/changepincommand.cpp:168
 #, kde-format
 msgctxt "@info"
 msgid "Setting the SigG PIN failed: %1"
 msgstr "Αποτυχία ρύθμισης του SigG PIN: %1"
 
-#: src/commands/changepincommand.cpp:169
+#: src/commands/changepincommand.cpp:170
 #, kde-format
 msgctxt "@info"
 msgid "Changing the SigG PIN failed: %1"
 msgstr "Αποτυχία αλλαγής του SigG PIN: %1"
 
-#: src/commands/changepincommand.cpp:172
+#: src/commands/changepincommand.cpp:173
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PIN failed: %1"
 msgstr "Αποτυχία αλλαγής του PIN: %1"
 
-#: src/commands/changepincommand.cpp:179
-#, kde-format
+#: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "PIN changed successfully."
 msgctxt "@info"
-msgid "PUK successfully changed."
+msgid "PUK changed successfully."
 msgstr "Το PIN άλλαξε επιτυχώς."
 
-#: src/commands/changepincommand.cpp:182
+#: src/commands/changepincommand.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
 msgstr "Επιτυχής απεμπλοκή και ρύθμιση νέου PIN."
 
-#: src/commands/changepincommand.cpp:185
+#: src/commands/changepincommand.cpp:190
 #, kde-format
 msgctxt "@info"
 msgid "Admin PIN changed successfully."
 msgstr "Επιτυχία αλλαγής του PIN του διαχειριστή."
 
-#: src/commands/changepincommand.cpp:188
-#, kde-format
-msgctxt "@info"
-msgid "Reset Code changed successfully."
-msgstr "Επιτυχία αλλαγής του κώδικα επαναφοράς."
-
-#: src/commands/changepincommand.cpp:192
+#: src/commands/changepincommand.cpp:194
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN set successfully."
 msgstr "Το NKS PIN ορίστηκε επιτυχώς."
 
-#: src/commands/changepincommand.cpp:194
+#: src/commands/changepincommand.cpp:196
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN changed successfully."
 msgstr "Το NKS PIN άλλαξε επιτυχώς."
 
-#: src/commands/changepincommand.cpp:199
+#: src/commands/changepincommand.cpp:201
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN set successfully."
 msgstr "Το SigG PIN ορίστηκε επιτυχώς."
 
-#: src/commands/changepincommand.cpp:201
+#: src/commands/changepincommand.cpp:203
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN changed successfully."
 msgstr "Το SigG PIN άλλαξε επιτυχώς."
 
-#: src/commands/changepincommand.cpp:204
+#: src/commands/changepincommand.cpp:206
 #, kde-format
 msgctxt "@info"
 msgid "PIN changed successfully."
@@ -13147,6 +13137,18 @@ msgstr ""
 "Εισαγωγή πιστοποιητικού από αρχείο.<nl/>Για να εισάγετε από ένα δημόσιο "
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
+
+#~ msgctxt "@info"
+#~ msgid "Changing the Reset Code failed: %1"
+#~ msgstr "Αποτυχία αλλαγής του κώδικα επαναφοράς: %1"
+
+#~ msgctxt "@info"
+#~ msgid "PUK successfully changed."
+#~ msgstr "Το PIN άλλαξε επιτυχώς."
+
+#~ msgctxt "@info"
+#~ msgid "Reset Code changed successfully."
+#~ msgstr "Επιτυχία αλλαγής του κώδικα επαναφοράς."
 
 #~ msgid "Create a new primary key and generate subkeys on the card."
 #~ msgstr ""

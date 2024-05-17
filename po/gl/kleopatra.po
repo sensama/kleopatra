@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2024-05-09 19:30+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -735,109 +735,99 @@ msgstr "Cambiouse a frase de paso"
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Non foi posíbel atopar a tarxeta intelixente co número de serie: %1"
 
-#: src/commands/changepincommand.cpp:147
+#: src/commands/changepincommand.cpp:147 src/commands/changepincommand.cpp:151
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
 msgstr "Non foi posíbel cambiar o PUK: %1"
 
-#: src/commands/changepincommand.cpp:150
+#: src/commands/changepincommand.cpp:153
 #, kde-format
 msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
 msgstr "Non foi posíbel desbloquear o PIN: %1"
 
-#: src/commands/changepincommand.cpp:153
+#: src/commands/changepincommand.cpp:157
 #, kde-format
 msgctxt "@info"
 msgid "Changing the Admin PIN failed: %1"
 msgstr "Non foi posíbel cambiar o PIN de administración: %1"
 
-#: src/commands/changepincommand.cpp:156
-#, kde-format
-msgctxt "@info"
-msgid "Changing the Reset Code failed: %1"
-msgstr "Non foi posíbel cambiar o código de restabelecemento: %1"
-
-#: src/commands/changepincommand.cpp:160
+#: src/commands/changepincommand.cpp:161
 #, kde-format
 msgctxt "@info"
 msgid "Setting the NKS PIN failed: %1"
 msgstr "Non foi posíbel configurar o PIN NKS: %1"
 
-#: src/commands/changepincommand.cpp:162
+#: src/commands/changepincommand.cpp:163
 #, kde-format
 msgctxt "@info"
 msgid "Changing the NKS PIN failed: %1"
 msgstr "Non foi posíbel cambiar o PIN NKS: %1"
 
-#: src/commands/changepincommand.cpp:167
+#: src/commands/changepincommand.cpp:168
 #, kde-format
 msgctxt "@info"
 msgid "Setting the SigG PIN failed: %1"
 msgstr "Non foi posíbel configurar o PIN SigG: %1"
 
-#: src/commands/changepincommand.cpp:169
+#: src/commands/changepincommand.cpp:170
 #, kde-format
 msgctxt "@info"
 msgid "Changing the SigG PIN failed: %1"
 msgstr "Non foi posíbel cambiar o PIN SigG: %1"
 
-#: src/commands/changepincommand.cpp:172
+#: src/commands/changepincommand.cpp:173
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PIN failed: %1"
 msgstr "Non foi posíbel cambiar o PIN: %1"
 
-#: src/commands/changepincommand.cpp:179
-#, kde-format
+#: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "PIN changed successfully."
 msgctxt "@info"
-msgid "PUK successfully changed."
-msgstr "Cambiouse o PUK."
+msgid "PUK changed successfully."
+msgstr "Cambiouse o PIN."
 
-#: src/commands/changepincommand.cpp:182
+#: src/commands/changepincommand.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
 msgstr "Desbloqueouse e definiuse un novo PIN."
 
-#: src/commands/changepincommand.cpp:185
+#: src/commands/changepincommand.cpp:190
 #, kde-format
 msgctxt "@info"
 msgid "Admin PIN changed successfully."
 msgstr "Cambiouse o PIN de administración."
 
-#: src/commands/changepincommand.cpp:188
-#, kde-format
-msgctxt "@info"
-msgid "Reset Code changed successfully."
-msgstr "Cambiouse o código de restabelecemento."
-
-#: src/commands/changepincommand.cpp:192
+#: src/commands/changepincommand.cpp:194
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN set successfully."
 msgstr "Definiuse o PIN NKS."
 
-#: src/commands/changepincommand.cpp:194
+#: src/commands/changepincommand.cpp:196
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN changed successfully."
 msgstr "Cambiouse o PIN NKS."
 
-#: src/commands/changepincommand.cpp:199
+#: src/commands/changepincommand.cpp:201
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN set successfully."
 msgstr "Definiuse o PIN SigG."
 
-#: src/commands/changepincommand.cpp:201
+#: src/commands/changepincommand.cpp:203
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN changed successfully."
 msgstr "Cambiouse o PIN SigG."
 
-#: src/commands/changepincommand.cpp:204
+#: src/commands/changepincommand.cpp:206
 #, kde-format
 msgctxt "@info"
 msgid "PIN changed successfully."
@@ -12860,6 +12850,18 @@ msgid ""
 msgstr ""
 "Importar o certificado dun ficheiro.<nl/>Para importar dun servidor de "
 "chaves público use <interface>Buscar no servidor</interface> no seu lugar."
+
+#~ msgctxt "@info"
+#~ msgid "Changing the Reset Code failed: %1"
+#~ msgstr "Non foi posíbel cambiar o código de restabelecemento: %1"
+
+#~ msgctxt "@info"
+#~ msgid "PUK successfully changed."
+#~ msgstr "Cambiouse o PUK."
+
+#~ msgctxt "@info"
+#~ msgid "Reset Code changed successfully."
+#~ msgstr "Cambiouse o código de restabelecemento."
 
 #~ msgid "Create a new primary key and generate subkeys on the card."
 #~ msgstr "Crear unha nova chave principal e xerar subchaves nesta tarxeta."

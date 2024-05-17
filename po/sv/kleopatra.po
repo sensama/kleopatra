@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2023-09-12 21:35+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -742,109 +742,99 @@ msgstr "Ändring av lösenordsfras lyckades"
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Misslyckades finna smartkortet med serienummer: %1"
 
-#: src/commands/changepincommand.cpp:147
+#: src/commands/changepincommand.cpp:147 src/commands/changepincommand.cpp:151
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
 msgstr "Ändring av PUK misslyckades: %1"
 
-#: src/commands/changepincommand.cpp:150
+#: src/commands/changepincommand.cpp:153
 #, kde-format
 msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
 msgstr "Ta bort blockering av PIN-kod misslyckades: %1"
 
-#: src/commands/changepincommand.cpp:153
+#: src/commands/changepincommand.cpp:157
 #, kde-format
 msgctxt "@info"
 msgid "Changing the Admin PIN failed: %1"
 msgstr "Ändring av administrativ PIN-kod misslyckades: %1"
 
-#: src/commands/changepincommand.cpp:156
-#, kde-format
-msgctxt "@info"
-msgid "Changing the Reset Code failed: %1"
-msgstr "Ändring av nollställningskod misslyckades: %1"
-
-#: src/commands/changepincommand.cpp:160
+#: src/commands/changepincommand.cpp:161
 #, kde-format
 msgctxt "@info"
 msgid "Setting the NKS PIN failed: %1"
 msgstr "Inställning av NKS PIN-kod misslyckades: %1"
 
-#: src/commands/changepincommand.cpp:162
+#: src/commands/changepincommand.cpp:163
 #, kde-format
 msgctxt "@info"
 msgid "Changing the NKS PIN failed: %1"
 msgstr "Ändring av NKS PIN-kod misslyckades: %1"
 
-#: src/commands/changepincommand.cpp:167
+#: src/commands/changepincommand.cpp:168
 #, kde-format
 msgctxt "@info"
 msgid "Setting the SigG PIN failed: %1"
 msgstr "Ändring av SigG PIN-kod misslyckades: %1"
 
-#: src/commands/changepincommand.cpp:169
+#: src/commands/changepincommand.cpp:170
 #, kde-format
 msgctxt "@info"
 msgid "Changing the SigG PIN failed: %1"
 msgstr "Ändring av SigG PIN-kod misslyckades: %1"
 
-#: src/commands/changepincommand.cpp:172
+#: src/commands/changepincommand.cpp:173
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PIN failed: %1"
 msgstr "Ändring av PIN-kod misslyckades: %1"
 
-#: src/commands/changepincommand.cpp:179
-#, kde-format
+#: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "PIN changed successfully."
 msgctxt "@info"
-msgid "PUK successfully changed."
-msgstr "PUK ändrad med lyckat resultat."
+msgid "PUK changed successfully."
+msgstr "PIN-kod ändrades med lyckat resultat."
 
-#: src/commands/changepincommand.cpp:182
+#: src/commands/changepincommand.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
 msgstr "Tog bort blockering och ställde in en ny PIN-kod med lyckat resultat."
 
-#: src/commands/changepincommand.cpp:185
+#: src/commands/changepincommand.cpp:190
 #, kde-format
 msgctxt "@info"
 msgid "Admin PIN changed successfully."
 msgstr "Administrativ PIN-kod ändrades med lyckat resultat."
 
-#: src/commands/changepincommand.cpp:188
-#, kde-format
-msgctxt "@info"
-msgid "Reset Code changed successfully."
-msgstr "Nollställningskod ändrades med lyckat resultat."
-
-#: src/commands/changepincommand.cpp:192
+#: src/commands/changepincommand.cpp:194
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN set successfully."
 msgstr "NKS PIN-kod angiven med lyckat resultat."
 
-#: src/commands/changepincommand.cpp:194
+#: src/commands/changepincommand.cpp:196
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN changed successfully."
 msgstr "NKS PIN-kod ändrades med lyckat resultat."
 
-#: src/commands/changepincommand.cpp:199
+#: src/commands/changepincommand.cpp:201
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN set successfully."
 msgstr "SigG PIN-kod angiven med lyckat resultat."
 
-#: src/commands/changepincommand.cpp:201
+#: src/commands/changepincommand.cpp:203
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN changed successfully."
 msgstr "SigG PIN-kod ändrades med lyckat resultat."
 
-#: src/commands/changepincommand.cpp:204
+#: src/commands/changepincommand.cpp:206
 #, kde-format
 msgctxt "@info"
 msgid "PIN changed successfully."
@@ -12966,6 +12956,18 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
+
+#~ msgctxt "@info"
+#~ msgid "Changing the Reset Code failed: %1"
+#~ msgstr "Ändring av nollställningskod misslyckades: %1"
+
+#~ msgctxt "@info"
+#~ msgid "PUK successfully changed."
+#~ msgstr "PUK ändrad med lyckat resultat."
+
+#~ msgctxt "@info"
+#~ msgid "Reset Code changed successfully."
+#~ msgstr "Nollställningskod ändrades med lyckat resultat."
 
 #~ msgid "Create a new primary key and generate subkeys on the card."
 #~ msgstr "Skapa en ny primär nyckel och skapa delnycklar på kortet."

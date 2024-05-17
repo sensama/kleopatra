@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:39+0000\n"
-"PO-Revision-Date: 2024-05-15 09:29+0200\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"PO-Revision-Date: 2024-05-16 07:39+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -417,8 +417,7 @@ msgid "Certification Not Possible"
 msgstr "Potrjevanje ni mogoče"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, fuzzy, kde-format
-#| msgid "Create"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create"
 msgstr "Ustvari"
@@ -724,109 +723,99 @@ msgstr "Sprememba geselne fraze uspela"
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Ni bilo mogoče najti pametne kartice s serijsko številko: %1"
 
-#: src/commands/changepincommand.cpp:147
+#: src/commands/changepincommand.cpp:147 src/commands/changepincommand.cpp:151
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
 msgstr "Sprememba PUKa ni uspela: %1"
 
-#: src/commands/changepincommand.cpp:150
+#: src/commands/changepincommand.cpp:153
 #, kde-format
 msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
 msgstr "Deblokiranje PINa ni uspelo: %1"
 
-#: src/commands/changepincommand.cpp:153
+#: src/commands/changepincommand.cpp:157
 #, kde-format
 msgctxt "@info"
 msgid "Changing the Admin PIN failed: %1"
 msgstr "Zamenjava skrbniškega PINa ni uspela: %1"
 
-#: src/commands/changepincommand.cpp:156
-#, kde-format
-msgctxt "@info"
-msgid "Changing the Reset Code failed: %1"
-msgstr "Sprememba kode ponovne nastavitve ni uspela: %1"
-
-#: src/commands/changepincommand.cpp:160
+#: src/commands/changepincommand.cpp:161
 #, kde-format
 msgctxt "@info"
 msgid "Setting the NKS PIN failed: %1"
 msgstr "Nastavitev NKS PINa ni uspela: %1"
 
-#: src/commands/changepincommand.cpp:162
+#: src/commands/changepincommand.cpp:163
 #, kde-format
 msgctxt "@info"
 msgid "Changing the NKS PIN failed: %1"
 msgstr "Sprememba NKS PINa ni uspela: %1"
 
-#: src/commands/changepincommand.cpp:167
+#: src/commands/changepincommand.cpp:168
 #, kde-format
 msgctxt "@info"
 msgid "Setting the SigG PIN failed: %1"
 msgstr "Nastavitev SigN PINa ni uspela: %1"
 
-#: src/commands/changepincommand.cpp:169
+#: src/commands/changepincommand.cpp:170
 #, kde-format
 msgctxt "@info"
 msgid "Changing the SigG PIN failed: %1"
 msgstr "Sprememba SigG PINa ni uspela: %1"
 
-#: src/commands/changepincommand.cpp:172
+#: src/commands/changepincommand.cpp:173
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PIN failed: %1"
 msgstr "Sprememba PINa ni uspela: %1"
 
-#: src/commands/changepincommand.cpp:179
-#, kde-format
+#: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "PIN changed successfully."
 msgctxt "@info"
-msgid "PUK successfully changed."
-msgstr "PUK je bil uspešno spremenjen."
+msgid "PUK changed successfully."
+msgstr "Sprememba PINa je bil uspešna."
 
-#: src/commands/changepincommand.cpp:182
+#: src/commands/changepincommand.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
 msgstr "Deblokiranje in nastavitev novega PINa je bila uspešna."
 
-#: src/commands/changepincommand.cpp:185
+#: src/commands/changepincommand.cpp:190
 #, kde-format
 msgctxt "@info"
 msgid "Admin PIN changed successfully."
 msgstr "Skrbniški PIN je bil uspešno spremenjen."
 
-#: src/commands/changepincommand.cpp:188
-#, kde-format
-msgctxt "@info"
-msgid "Reset Code changed successfully."
-msgstr "Sprememba kode ponovne nastavitve je bil uspešno spremenjen."
-
-#: src/commands/changepincommand.cpp:192
+#: src/commands/changepincommand.cpp:194
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN set successfully."
 msgstr "NKS PIN je bil nastavljen uspešno."
 
-#: src/commands/changepincommand.cpp:194
+#: src/commands/changepincommand.cpp:196
 #, kde-format
 msgctxt "@info"
 msgid "NKS PIN changed successfully."
 msgstr "Sprememba NKS PINa je bil uspešna."
 
-#: src/commands/changepincommand.cpp:199
+#: src/commands/changepincommand.cpp:201
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN set successfully."
 msgstr "SigG PIN je bil nastavljen uspešno."
 
-#: src/commands/changepincommand.cpp:201
+#: src/commands/changepincommand.cpp:203
 #, kde-format
 msgctxt "@info"
 msgid "SigG PIN changed successfully."
 msgstr "Sprememba SigG PINa je bil uspešna."
 
-#: src/commands/changepincommand.cpp:204
+#: src/commands/changepincommand.cpp:206
 #, kde-format
 msgctxt "@info"
 msgid "PIN changed successfully."
@@ -5241,8 +5230,7 @@ msgstr ""
 "Kleopatra zaznal za dani vhod."
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
-#, fuzzy, kde-format
-#| msgid "&Decrypt/Verify"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Decrypt/Verify"
 msgstr "&Dešifriraj/preveri"
@@ -6054,8 +6042,7 @@ msgid "Show"
 msgstr "Pokaži"
 
 #: src/crypto/gui/wizard.cpp:77
-#, fuzzy, kde-format
-#| msgid "&Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Next"
 msgstr "&Naslednji"
@@ -12832,6 +12819,18 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgctxt "@info"
+#~ msgid "Changing the Reset Code failed: %1"
+#~ msgstr "Sprememba kode ponovne nastavitve ni uspela: %1"
+
+#~ msgctxt "@info"
+#~ msgid "PUK successfully changed."
+#~ msgstr "PUK je bil uspešno spremenjen."
+
+#~ msgctxt "@info"
+#~ msgid "Reset Code changed successfully."
+#~ msgstr "Sprememba kode ponovne nastavitve je bil uspešno spremenjen."
 
 #~ msgid "Create a new primary key and generate subkeys on the card."
 #~ msgstr "Ustvarite nov primarni ključ in ustvarite podključe na kartici."

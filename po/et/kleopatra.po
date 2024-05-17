@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -769,13 +769,13 @@ msgstr "Paroolifraasi muutmine õnnestus"
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Sellise seerianumbriga kiipkaarti ei leitud: %1"
 
-#: src/commands/changepincommand.cpp:147
+#: src/commands/changepincommand.cpp:147 src/commands/changepincommand.cpp:151
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
 msgstr "PUK-i muutmine nurjus: %1"
 
-#: src/commands/changepincommand.cpp:150
+#: src/commands/changepincommand.cpp:153
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Changing the PIN failed: %1"
@@ -783,19 +783,13 @@ msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
 msgstr "PIN-i muutmine nurjus: %1"
 
-#: src/commands/changepincommand.cpp:153
+#: src/commands/changepincommand.cpp:157
 #, kde-format
 msgctxt "@info"
 msgid "Changing the Admin PIN failed: %1"
 msgstr "Halduri PIN-i muutmine nurjus: %1"
 
-#: src/commands/changepincommand.cpp:156
-#, kde-format
-msgctxt "@info"
-msgid "Changing the Reset Code failed: %1"
-msgstr "Lähtestamise koodi muutmine nurjus: %1"
-
-#: src/commands/changepincommand.cpp:160
+#: src/commands/changepincommand.cpp:161
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Changing the PIN failed: %1"
@@ -803,7 +797,7 @@ msgctxt "@info"
 msgid "Setting the NKS PIN failed: %1"
 msgstr "PIN-i muutmine nurjus: %1"
 
-#: src/commands/changepincommand.cpp:162
+#: src/commands/changepincommand.cpp:163
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Changing the PIN failed: %1"
@@ -811,7 +805,7 @@ msgctxt "@info"
 msgid "Changing the NKS PIN failed: %1"
 msgstr "PIN-i muutmine nurjus: %1"
 
-#: src/commands/changepincommand.cpp:167
+#: src/commands/changepincommand.cpp:168
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Changing the PIN failed: %1"
@@ -819,7 +813,7 @@ msgctxt "@info"
 msgid "Setting the SigG PIN failed: %1"
 msgstr "PIN-i muutmine nurjus: %1"
 
-#: src/commands/changepincommand.cpp:169
+#: src/commands/changepincommand.cpp:170
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Changing the PIN failed: %1"
@@ -827,19 +821,21 @@ msgctxt "@info"
 msgid "Changing the SigG PIN failed: %1"
 msgstr "PIN-i muutmine nurjus: %1"
 
-#: src/commands/changepincommand.cpp:172
+#: src/commands/changepincommand.cpp:173
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PIN failed: %1"
 msgstr "PIN-i muutmine nurjus: %1"
 
-#: src/commands/changepincommand.cpp:179
-#, kde-format
+#: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "PIN changed successfully."
 msgctxt "@info"
-msgid "PUK successfully changed."
-msgstr "PUK on edukalt muudetud."
+msgid "PUK changed successfully."
+msgstr "PIN on edukalt muudetud."
 
-#: src/commands/changepincommand.cpp:182
+#: src/commands/changepincommand.cpp:186
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Reset Code changed successfully."
@@ -847,19 +843,13 @@ msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
 msgstr "Lähtestamise kood on edukalt muudetud."
 
-#: src/commands/changepincommand.cpp:185
+#: src/commands/changepincommand.cpp:190
 #, kde-format
 msgctxt "@info"
 msgid "Admin PIN changed successfully."
 msgstr "Halduri PIN on edukalt muudetud."
 
-#: src/commands/changepincommand.cpp:188
-#, kde-format
-msgctxt "@info"
-msgid "Reset Code changed successfully."
-msgstr "Lähtestamise kood on edukalt muudetud."
-
-#: src/commands/changepincommand.cpp:192
+#: src/commands/changepincommand.cpp:194
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -867,7 +857,7 @@ msgctxt "@info"
 msgid "NKS PIN set successfully."
 msgstr "PIN on edukalt määratud."
 
-#: src/commands/changepincommand.cpp:194
+#: src/commands/changepincommand.cpp:196
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN changed successfully."
@@ -875,7 +865,7 @@ msgctxt "@info"
 msgid "NKS PIN changed successfully."
 msgstr "PIN on edukalt muudetud."
 
-#: src/commands/changepincommand.cpp:199
+#: src/commands/changepincommand.cpp:201
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -883,7 +873,7 @@ msgctxt "@info"
 msgid "SigG PIN set successfully."
 msgstr "PIN on edukalt määratud."
 
-#: src/commands/changepincommand.cpp:201
+#: src/commands/changepincommand.cpp:203
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN changed successfully."
@@ -891,7 +881,7 @@ msgctxt "@info"
 msgid "SigG PIN changed successfully."
 msgstr "PIN on edukalt muudetud."
 
-#: src/commands/changepincommand.cpp:204
+#: src/commands/changepincommand.cpp:206
 #, kde-format
 msgctxt "@info"
 msgid "PIN changed successfully."
@@ -13236,6 +13226,18 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
+
+#~ msgctxt "@info"
+#~ msgid "Changing the Reset Code failed: %1"
+#~ msgstr "Lähtestamise koodi muutmine nurjus: %1"
+
+#~ msgctxt "@info"
+#~ msgid "PUK successfully changed."
+#~ msgstr "PUK on edukalt muudetud."
+
+#~ msgctxt "@info"
+#~ msgid "Reset Code changed successfully."
+#~ msgstr "Lähtestamise kood on edukalt muudetud."
 
 #~ msgid "Create a new primary key and generate subkeys on the card."
 #~ msgstr "Uue primaarvõtme loomine ja alamvõtmete genereerimine kaardil."

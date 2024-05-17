@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -788,14 +788,14 @@ msgstr "Zmena hesla úspešná"
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Zlyhalo nájdenie karty so sériovým číslom: %1"
 
-#: src/commands/changepincommand.cpp:147
+#: src/commands/changepincommand.cpp:147 src/commands/changepincommand.cpp:151
 #, fuzzy, kde-format
 #| msgid "Signing failed: %1"
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
 msgstr "Podpis zlyhal: %1"
 
-#: src/commands/changepincommand.cpp:150
+#: src/commands/changepincommand.cpp:153
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN change failed: %1"
@@ -803,21 +803,14 @@ msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
 msgstr "Zmena PINu zlyhala: %1"
 
-#: src/commands/changepincommand.cpp:153
+#: src/commands/changepincommand.cpp:157
 #, fuzzy, kde-format
 #| msgid "Change Admin PIN"
 msgctxt "@info"
 msgid "Changing the Admin PIN failed: %1"
 msgstr "Zmeniť PIN admina"
 
-#: src/commands/changepincommand.cpp:156
-#, fuzzy, kde-format
-#| msgid "Change Reset Code"
-msgctxt "@info"
-msgid "Changing the Reset Code failed: %1"
-msgstr "Zmeniť resetovací kód"
-
-#: src/commands/changepincommand.cpp:160
+#: src/commands/changepincommand.cpp:161
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN change failed: %1"
@@ -825,7 +818,7 @@ msgctxt "@info"
 msgid "Setting the NKS PIN failed: %1"
 msgstr "Zmena PINu zlyhala: %1"
 
-#: src/commands/changepincommand.cpp:162
+#: src/commands/changepincommand.cpp:163
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN change failed: %1"
@@ -833,7 +826,7 @@ msgctxt "@info"
 msgid "Changing the NKS PIN failed: %1"
 msgstr "Zmena PINu zlyhala: %1"
 
-#: src/commands/changepincommand.cpp:167
+#: src/commands/changepincommand.cpp:168
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN change failed: %1"
@@ -841,7 +834,7 @@ msgctxt "@info"
 msgid "Setting the SigG PIN failed: %1"
 msgstr "Zmena PINu zlyhala: %1"
 
-#: src/commands/changepincommand.cpp:169
+#: src/commands/changepincommand.cpp:170
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN change failed: %1"
@@ -849,7 +842,7 @@ msgctxt "@info"
 msgid "Changing the SigG PIN failed: %1"
 msgstr "Zmena PINu zlyhala: %1"
 
-#: src/commands/changepincommand.cpp:172
+#: src/commands/changepincommand.cpp:173
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN change failed: %1"
@@ -857,36 +850,29 @@ msgctxt "@info"
 msgid "Changing the PIN failed: %1"
 msgstr "Zmena PINu zlyhala: %1"
 
-#: src/commands/changepincommand.cpp:179
+#: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
 #, fuzzy, kde-format
 #| msgctxt "@info"
-#| msgid "URL successfully changed."
+#| msgid "PIN set successfully."
 msgctxt "@info"
-msgid "PUK successfully changed."
-msgstr "URL adresa úspešne zmenená."
+msgid "PUK changed successfully."
+msgstr "Úspešne nastavený PIN."
 
-#: src/commands/changepincommand.cpp:182
+#: src/commands/changepincommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Expiry date changed successfully."
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
 msgstr "Dátum vypršania úspešne zmenený."
 
-#: src/commands/changepincommand.cpp:185
+#: src/commands/changepincommand.cpp:190
 #, fuzzy, kde-format
 #| msgid "Expiry date changed successfully."
 msgctxt "@info"
 msgid "Admin PIN changed successfully."
 msgstr "Dátum vypršania úspešne zmenený."
 
-#: src/commands/changepincommand.cpp:188
-#, fuzzy, kde-format
-#| msgid "Expiry date changed successfully."
-msgctxt "@info"
-msgid "Reset Code changed successfully."
-msgstr "Dátum vypršania úspešne zmenený."
-
-#: src/commands/changepincommand.cpp:192
+#: src/commands/changepincommand.cpp:194
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -894,7 +880,7 @@ msgctxt "@info"
 msgid "NKS PIN set successfully."
 msgstr "Úspešne nastavený PIN."
 
-#: src/commands/changepincommand.cpp:194
+#: src/commands/changepincommand.cpp:196
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -902,7 +888,7 @@ msgctxt "@info"
 msgid "NKS PIN changed successfully."
 msgstr "Úspešne nastavený PIN."
 
-#: src/commands/changepincommand.cpp:199
+#: src/commands/changepincommand.cpp:201
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -910,7 +896,7 @@ msgctxt "@info"
 msgid "SigG PIN set successfully."
 msgstr "Úspešne nastavený PIN."
 
-#: src/commands/changepincommand.cpp:201
+#: src/commands/changepincommand.cpp:203
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -918,7 +904,7 @@ msgctxt "@info"
 msgid "SigG PIN changed successfully."
 msgstr "Úspešne nastavený PIN."
 
-#: src/commands/changepincommand.cpp:204
+#: src/commands/changepincommand.cpp:206
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -13256,6 +13242,25 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\"."
+
+#, fuzzy
+#~| msgid "Change Reset Code"
+#~ msgctxt "@info"
+#~ msgid "Changing the Reset Code failed: %1"
+#~ msgstr "Zmeniť resetovací kód"
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid "URL successfully changed."
+#~ msgctxt "@info"
+#~ msgid "PUK successfully changed."
+#~ msgstr "URL adresa úspešne zmenená."
+
+#, fuzzy
+#~| msgid "Expiry date changed successfully."
+#~ msgctxt "@info"
+#~ msgid "Reset Code changed successfully."
+#~ msgstr "Dátum vypršania úspešne zmenený."
 
 #~ msgid "Create a new primary key and generate subkeys on the card."
 #~ msgstr "Vytvoriť nový primárny kľúč a vygenerovať podkľúče na karte."

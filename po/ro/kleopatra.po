@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-16 00:39+0000\n"
+"POT-Creation-Date: 2024-05-17 00:39+0000\n"
 "PO-Revision-Date: 2024-03-02 15:46+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -703,122 +703,109 @@ msgstr "Eroare de parcurgere"
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr ""
 
-#: src/commands/changepincommand.cpp:147
+#: src/commands/changepincommand.cpp:147 src/commands/changepincommand.cpp:151
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PUK failed: %1"
 msgstr ""
 
-#: src/commands/changepincommand.cpp:150
+#: src/commands/changepincommand.cpp:153
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info"
 msgid "Unblocking the PIN failed: %1"
 msgstr "Certificat implicit"
 
-#: src/commands/changepincommand.cpp:153
+#: src/commands/changepincommand.cpp:157
 #, kde-format
 msgctxt "@info"
 msgid "Changing the Admin PIN failed: %1"
 msgstr ""
 
-#: src/commands/changepincommand.cpp:156
-#, kde-format
-msgctxt "@info"
-msgid "Changing the Reset Code failed: %1"
-msgstr ""
-
-#: src/commands/changepincommand.cpp:160
+#: src/commands/changepincommand.cpp:161
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info"
 msgid "Setting the NKS PIN failed: %1"
 msgstr "Certificat implicit"
 
-#: src/commands/changepincommand.cpp:162
+#: src/commands/changepincommand.cpp:163
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info"
 msgid "Changing the NKS PIN failed: %1"
 msgstr "Certificat implicit"
 
-#: src/commands/changepincommand.cpp:167
+#: src/commands/changepincommand.cpp:168
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info"
 msgid "Setting the SigG PIN failed: %1"
 msgstr "Certificat implicit"
 
-#: src/commands/changepincommand.cpp:169
+#: src/commands/changepincommand.cpp:170
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info"
 msgid "Changing the SigG PIN failed: %1"
 msgstr "Certificat implicit"
 
-#: src/commands/changepincommand.cpp:172
+#: src/commands/changepincommand.cpp:173
 #, kde-format
 msgctxt "@info"
 msgid "Changing the PIN failed: %1"
 msgstr ""
 
-#: src/commands/changepincommand.cpp:179
+#: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
 #, fuzzy, kde-format
-#| msgid "This certificate has expired."
+#| msgid "Parsing Error"
 msgctxt "@info"
-msgid "PUK successfully changed."
-msgstr "Acest certificat a expirat."
+msgid "PUK changed successfully."
+msgstr "Eroare de parcurgere"
 
-#: src/commands/changepincommand.cpp:182
+#: src/commands/changepincommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Parsing Error"
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
 msgstr "Eroare de parcurgere"
 
-#: src/commands/changepincommand.cpp:185
+#: src/commands/changepincommand.cpp:190
 #, fuzzy, kde-format
 #| msgid "Parsing Error"
 msgctxt "@info"
 msgid "Admin PIN changed successfully."
 msgstr "Eroare de parcurgere"
 
-#: src/commands/changepincommand.cpp:188
-#, fuzzy, kde-format
-#| msgid "Parsing Error"
-msgctxt "@info"
-msgid "Reset Code changed successfully."
-msgstr "Eroare de parcurgere"
-
-#: src/commands/changepincommand.cpp:192
+#: src/commands/changepincommand.cpp:194
 #, fuzzy, kde-format
 #| msgid "Parsing Error"
 msgctxt "@info"
 msgid "NKS PIN set successfully."
 msgstr "Eroare de parcurgere"
 
-#: src/commands/changepincommand.cpp:194
+#: src/commands/changepincommand.cpp:196
 #, fuzzy, kde-format
 #| msgid "Parsing Error"
 msgctxt "@info"
 msgid "NKS PIN changed successfully."
 msgstr "Eroare de parcurgere"
 
-#: src/commands/changepincommand.cpp:199
+#: src/commands/changepincommand.cpp:201
 #, fuzzy, kde-format
 #| msgid "Parsing Error"
 msgctxt "@info"
 msgid "SigG PIN set successfully."
 msgstr "Eroare de parcurgere"
 
-#: src/commands/changepincommand.cpp:201
+#: src/commands/changepincommand.cpp:203
 #, fuzzy, kde-format
 #| msgid "Parsing Error"
 msgctxt "@info"
 msgid "SigG PIN changed successfully."
 msgstr "Eroare de parcurgere"
 
-#: src/commands/changepincommand.cpp:204
+#: src/commands/changepincommand.cpp:206
 #, fuzzy, kde-format
 #| msgid "Parsing Error"
 msgctxt "@info"
@@ -12416,6 +12403,18 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "This certificate has expired."
+#~ msgctxt "@info"
+#~ msgid "PUK successfully changed."
+#~ msgstr "Acest certificat a expirat."
+
+#, fuzzy
+#~| msgid "Parsing Error"
+#~ msgctxt "@info"
+#~ msgid "Reset Code changed successfully."
+#~ msgstr "Eroare de parcurgere"
 
 #, fuzzy
 #~| msgid "Certificate usage"

@@ -87,7 +87,7 @@ Recipient::Recipient(const Mailbox &mb)
 
 void Recipient::detach()
 {
-    if (d && !d.unique()) {
+    if (d && d.use_count() != 1) {
         d.reset(new Private(*d));
     }
 }

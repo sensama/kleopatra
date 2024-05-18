@@ -93,7 +93,7 @@ Sender::Sender(const Mailbox &mb)
 
 void Sender::detach()
 {
-    if (d && !d.unique()) {
+    if (d && d.use_count() != 1) {
         d.reset(new Private(*d));
     }
 }

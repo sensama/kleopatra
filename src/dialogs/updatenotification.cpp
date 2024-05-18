@@ -204,7 +204,7 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version)
     chk->setChecked(!updatecfg.readEntry("NeverShow", false));
 
     const auto bb = new QDialogButtonBox();
-    const auto b = bb->addButton(i18n("&Get update"), QDialogButtonBox::AcceptRole);
+    const auto b = bb->addButton(i18nc("@action:button", "&Get update"), QDialogButtonBox::AcceptRole);
     b->setDefault(true);
     b->setIcon(QIcon::fromTheme(QStringLiteral("arrow-down")));
     bb->addButton(QDialogButtonBox::Cancel);

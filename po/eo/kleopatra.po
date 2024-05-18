@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-17 00:39+0000\n"
-"PO-Revision-Date: 2024-05-09 22:01+0100\n"
+"PO-Revision-Date: 2024-05-17 06:24+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -230,11 +230,10 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr "Malsukcesis trovi la karton kun la seria numero: %1"
 
 #: src/commands/certificatetocardcommand.cpp:265
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info"
 msgid "No slot found for subkey %1 on the smart card."
-msgstr "Ŝanĝu la PIN necesan por uzi la ŝlosilojn sur la inteligenta karto."
+msgstr "Ne trovis kartingon por subŝlosilo %1 sur la inteligenta karto."
 
 #: src/commands/certificatetocardcommand.cpp:287
 #: src/commands/keytocardcommand.cpp:262
@@ -254,39 +253,30 @@ msgid "Copying the key to the card failed."
 msgstr "Kopiado de la ŝlosilo al la karto malsukcesis."
 
 #: src/commands/certificatetocardcommand.cpp:336
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was updated.</para>"
-#| msgid_plural "<para>The certificates were updated.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
-msgstr "<para>La atestilo estis ĝisdatigita.</para>"
+msgstr "<para>La ŝlosilo estis kopiita al la karto.</para>"
 
 #: src/commands/certificatetocardcommand.cpp:339
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Copying the key to the card failed:</para><para><message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key was copied to the smart card.</para><para>A backup was "
 "exported to <filename>%1</filename></para>"
 msgstr ""
-"<para>Kopiado de la ŝlosilo al la karto malsukcesis:</para><para><message>"
-"%1</message></para>"
+"<para>La ŝlosilo estis kopiita al la karto.</para><para>Sekurkopio estis "
+"elportita al <filename>%1</filename></para>"
 
 #: src/commands/certificatetocardcommand.cpp:353
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Do you really want to delete the copy of the key stored on this computer?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the secret key stored on this "
 "computer?"
 msgstr ""
-"Ĉu vi vere volas forigi la kopion de la ŝlosilo konservita en ĉi komputilo?"
+"Ĉu vi vere volas forigi la kopion de la sekreta ŝlosilo konservita en ĉi "
+"komputilo?"
 
 #: src/commands/certificatetocardcommand.cpp:354
 #: src/commands/keytocardcommand.cpp:665
@@ -296,18 +286,14 @@ msgid "Confirm Deletion"
 msgstr "Konfirmi Forigon"
 
 #: src/commands/certificatetocardcommand.cpp:400
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the copy of the key stored on this computer:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the secret key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Malsukcesis forigi la kopion de la ŝlosilo konservita en ĉi komputilo:"
-"</para><para><message>%1</message></para>"
+"<para>Malsukcesis forigi la kopion de la sekreta ŝlosilo konservita en ĉi "
+"tiu komputilo:</para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:426
 #: src/commands/keytocardcommand.cpp:750
@@ -419,8 +405,7 @@ msgid "Certification Not Possible"
 msgstr "Atestado Ne Eblas"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, fuzzy, kde-format
-#| msgid "Create"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create"
 msgstr "Krei"
@@ -773,12 +758,10 @@ msgid "Changing the PIN failed: %1"
 msgstr "Ŝanĝi la PIN malsukcesis: %1"
 
 #: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "PIN changed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "PUK changed successfully."
-msgstr "PIN ŝanĝiĝis sukcese."
+msgstr "PUK estis ŝanĝita sukcese."
 
 #: src/commands/changepincommand.cpp:186
 #, kde-format
@@ -892,7 +875,7 @@ msgstr "Elekti Unu aŭ Pli da Dosieroj por Krei Kontrolsumojn"
 #: src/commands/checksumverifyfilescommand.cpp:150
 #, kde-format
 msgid "Verify Checksum Files Error"
-msgstr "Eraro pri Kontrolo de Kontrolsum-Dosieroj"
+msgstr "Eraro pri Konfirmo de Kontrolsum-Dosieroj"
 
 #: src/commands/checksumverifyfilescommand.cpp:163
 #, kde-format
@@ -1081,23 +1064,23 @@ msgstr "La tondujo ŝajnas ne enhavi subskribon aŭ ĉifritan tekston."
 #: src/commands/decryptverifyclipboardcommand.cpp:155
 #, kde-format
 msgid "Decrypt/Verify Clipboard Error"
-msgstr "Eraro pri Malĉifri/Kontroli Tondujon"
+msgstr "Eraro pri Malĉifri/Konfirmi Tondujon"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
-msgstr "Malĉifri/Kontroli Malsukcesis"
+msgstr "Malĉifri/Konfirmi Malsukcesis"
 
 #: src/commands/decryptverifyfilescommand.cpp:206
 #, kde-format
 msgid "Decrypt/Verify Files Error"
-msgstr "Malĉifri/Kontroli Dosierajn Eraron"
+msgstr "Malĉifri/Konfirmi Dosierajn Eraron"
 
 #: src/commands/decryptverifyfilescommand.cpp:219
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
-msgstr "Elekti Unu aŭ Pli da Dosieroj por Malĉifri kaj/aŭ Kontroli"
+msgstr "Elekti Unu aŭ Pli da Dosieroj por Malĉifri kaj/aŭ Konfirmi"
 
 #: src/commands/deletecertificatescommand.cpp:80
 #, kde-format
@@ -1300,7 +1283,7 @@ msgid ""
 "export?</para>"
 msgstr ""
 "<para>Vi ne atestis ĉiujn uzant-identigilojn de ĉi atestilo per eksportebla "
-"atestado. Homoj fidantaj je viaj atestadoj eble ne povos kontroli la "
+"atestado. Homoj fidantaj je viaj atestadoj eble ne povos konfirmi la "
 "atestilon.</para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
@@ -1336,7 +1319,7 @@ msgid ""
 msgstr ""
 "<para>Vi ne atestis ĉiujn uzant-identigilojn de la atestiloj listigitaj sube "
 "kun eksporteblaj atestadoj.</para><para>Homoj fidantaj je viaj atestadoj "
-"eble ne povos kontroli la atestilojn.</para><para>Ĉu vi volas daŭrigi la "
+"eble ne povos konfirmi la atestilojn.</para><para>Ĉu vi volas daŭrigi la "
 "eksporton?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
@@ -1446,7 +1429,7 @@ msgid ""
 "export?</para>"
 msgstr ""
 "<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en ĉi tiu grupo per eksportebla "
-"atestado. Homoj fidantaj je viaj atestadoj eble ne povos kontroli la "
+"atestado. Homoj fidantaj je viaj atestadoj eble ne povos konfirmi la "
 "atestilojn.</para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
@@ -1473,7 +1456,7 @@ msgid ""
 msgstr ""
 "<para>Vi ne atestis ĉiujn OpenPGP-atestilojn en la grupoj listigitaj sube "
 "per eksporteblaj atestadoj. Homoj fidantaj je viaj atestadoj eble ne povos "
-"kontroli la atestilojn.</para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
+"konfirmi la atestilojn.</para><para>Ĉu vi volas daŭrigi la eksporton?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
@@ -1526,15 +1509,7 @@ msgstr[1] ""
 "serviloj estis malŝaltita eksplicite."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:117
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>When OpenPGP certificates have been exported to a public directory "
-#| "server, it is nearly impossible to remove them again.</para><para>Before "
-#| "exporting your certificate to a public directory server, make sure that "
-#| "you have created a revocation certificate so you can revoke the "
-#| "certificate if needed later.</para><para>Are you sure you want to "
-#| "continue?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>When OpenPGP certificates have been exported to a public directory "
@@ -1547,8 +1522,9 @@ msgstr ""
 "<para>Kiam OpenPGP-atestiloj estas eksportitaj al publika adresara servilo, "
 "estas preskaŭ neeble forigi ilin denove.</para><para>Antaŭ ol eksporti vian "
 "atestilon al publika adresara servilo, certigu, ke vi kreis nuligan "
-"atestilon. do vi povas revoki la atestilon se necese poste.</para><para>Ĉu "
-"vi certas, ke vi volas daŭrigi?</para>"
+"atestilon por ke vi povas revoki la atestilon se ĝi estis kompromitita, "
+"perdita, aŭ vi forgesis la pasfrazon.</para><para>Ĉu vi certas, ke vi volas "
+"daŭrigi?</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:122
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
@@ -3648,7 +3624,7 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
-"Agordu ĉi tiun opcion por kodi ĉifritajn aŭ subskribitajn dosierojn kiel "
+"Agordu ĉi tiun elekteblon por kodi ĉifritajn aŭ subskribitajn dosierojn kiel "
 "bazo64 kodita teksto. Por ke ili estu malfermitaj per redaktilo aŭ senditaj "
 "en poŝta korpo. Ĉi tio pliigos dosiergrandecon je unu triono."
 
@@ -3664,7 +3640,7 @@ msgstr "Pritrakti .p7m-dosierojn sen finaĵoj kiel poŝtojn."
 #, kde-format
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
-msgstr "Aŭtomate ekfunkciigi surbaze de eniga detekto por deĉifri/kontroli."
+msgstr "Aŭtomate ekfunkciigi surbaze de eniga detekto por deĉifri/konfirmi."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
@@ -3685,7 +3661,7 @@ msgstr ""
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
-"Agordu ĉi tiun opcion por eviti uzi la provizoran dosierujon de uzantoj."
+"Agordu ĉi tiun elekteblon por eviti uzi la provizoran dosierujon de uzantoj."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
@@ -3698,7 +3674,7 @@ msgstr "Uzi nur simetrian ĉifradon."
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
-msgstr "Agordu ĉi tiun opcion por malŝalti publik-ŝlosilan ĉifradon."
+msgstr "Agordu ĉi tiun elekteblon por malŝalti publik-ŝlosilan ĉifradon."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:84
 #, kde-format
@@ -3810,8 +3786,8 @@ msgid ""
 msgstr ""
 "Defaŭlte, Kleopatra nur pridemandas la atestildosierujojn de provizantoj "
 "(WKD) por uzantidentigiloj kiuj estis origine prenitaj de WKD kiam vi "
-"ĝisdatigas OpenPGP-atestilo. Se ĉi tiu opcio estas ŝaltita, tiam Kleopatra "
-"demandos WKD-ojn por ĉiuj uzantidentigiloj."
+"ĝisdatigas OpenPGP-atestilo. Se ĉi tiu elekteblo estas ŝaltita, tiam "
+"Kleopatra demandos WKD-ojn por ĉiuj uzantidentigiloj."
 
 #: src/conf/dirservconfigpage.cpp:482
 #, kde-format
@@ -3984,7 +3960,7 @@ msgstr "Ne povas esti agordita kun Kleopatra"
 #: src/conf/smimevalidationconfigurationwidget.cpp:120
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
-msgstr "Ĉi tiu opcio postulas dirmngr >= 0.9.0"
+msgstr "Ĉi tiu elekteblo postulas dirmngr >= 0.9.0"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
 #: src/conf/smimevalidationconfigurationwidget.cpp:274
@@ -4011,10 +3987,10 @@ msgid ""
 "implicitly whenever significant files in ~/.gnupg change. This option "
 "therefore only affects external factors of certificate validity."
 msgstr ""
-"Ĉi tiu opcio ebligas intervalkontroladon de atestilvalideco. Vi ankaŭ povas "
-"elekti la kontrolan intervalon (en horoj). Notu, ke validumado estas farita "
-"implicite kiam ajn signifaj dosieroj en ~/.gnupg ŝanĝiĝas. Ĉi tiu opcio do "
-"nur influas eksterajn faktorojn de valideco de atestilo."
+"Ĉi tiu elekteblo ebligas intervalkontroladon de atestilvalideco. Vi ankaŭ "
+"povas elekti la kontrolan intervalon (en horoj). Notu, ke validumado estas "
+"farita implicite kiam ajn signifaj dosieroj en ~/.gnupg ŝanĝiĝas. Ĉi tiu "
+"opcio do nur influas eksterajn faktorojn de valideco de atestilo."
 
 #. i18n: ectx: property (text), widget (QCheckBox, intervalRefreshCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:21
@@ -4050,13 +4026,13 @@ msgstr ""
 #: src/conf/smimevalidationconfigurationwidget.ui:71
 #, kde-format
 msgid "Validate certificates online (OCSP)"
-msgstr "Kontroli rete atestilojn"
+msgstr "Konfirmi atestilojn enrete (OCSP)"
 
 #. i18n: ectx: property (title), widget (QGroupBox, OCSPGroupBox)
 #: src/conf/smimevalidationconfigurationwidget.ui:81
 #, kde-format
 msgid "Online Certificate Validation"
-msgstr "Reta atestilkontrolo"
+msgstr "Reta atestilkonfirmo"
 
 #. i18n: ectx: property (text), widget (QLabel, OCSPResponderURLLabel)
 #: src/conf/smimevalidationconfigurationwidget.ui:87
@@ -4071,7 +4047,7 @@ msgid ""
 "Enter here the address of the server for online validation of certificates "
 "(OCSP responder). The URL is usually starting with http://."
 msgstr ""
-"Enigu la serviladreso por reta kontrolo de atestiloj (RASPa respondilo). La "
+"Enigu la serviladreso por reta konfirmo de atestiloj (RASPa respondilo). La "
 "URLo normale komencas kun http://."
 
 #. i18n: ectx: property (text), widget (QLabel, OCSPResponderSignatureLabel)
@@ -4120,8 +4096,8 @@ msgid ""
 "If this option is checked, Certificate Revocation Lists are never used to "
 "validate S/MIME certificates."
 msgstr ""
-"Se la opcio estas markita, atestilaj nevalidiglistoj neniam estas uzataj por "
-"kontroli S/MIME-atestilojn."
+"Se la elekteblo estas markita, atestilaj nevalidiglistoj neniam estas uzataj "
+"por kontroli S/MIME-atestilojn."
 
 #. i18n: ectx: property (text), widget (QCheckBox, neverConsultCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:144
@@ -4140,10 +4116,10 @@ msgid ""
 "allowing trusted root certificates into your certificate store will "
 "undermine the security of the system."
 msgstr ""
-"Se ĉi tiu opcio estas kontrolita dum radika CA-atestilo estas importita, oni "
-"petos vin konfirmi ĝian fingrospuron kaj deklari ĉu aŭ ne vi konsideras ĉi "
-"tiun radikan atestilon fidinda. Radika atestilo devas esti fidinda antaŭ ol "
-"la atestiloj kiujn ĝi atestis fariĝos fidindaj, sed malpeze permesi "
+"Se ĉi tiu elekteblo estas markita dum radika CA-atestilo estas importita, "
+"oni petos vin konfirmi ĝian fingrospuron kaj deklari ĉu aŭ ne vi konsideras "
+"ĉi tiun radikan atestilon fidinda. Radika atestilo devas esti fidinda antaŭ "
+"ol la atestiloj kiujn ĝi atestis fariĝos fidindaj, sed malpeze permesi "
 "fidindajn radikajn atestojn en vian atestilbutikon subfosos la sekurecon de "
 "la sistemo."
 
@@ -4200,8 +4176,8 @@ msgstr ""
 "Kiam vi serĉas la lokon de CRL, la testota atestilo kutime enhavas tion, kio "
 "estas konataj kiel \"CRL Distribution Point\" (DP), enskriboj, kiuj estas "
 "URL-oj priskribantaj la manieron aliri la CRL. La unua trovita DP-eniro "
-"estas uzata. Kun ĉi tiu opcio, ĉiuj enskriboj uzantaj la HTTP-skemon estas "
-"ignorataj kiam oni serĉas taŭgan DP."
+"estas uzata. Kun ĉi tiu elekteblo, ĉiuj enskriboj uzantaj la HTTP-skemon "
+"estas ignorataj kiam oni serĉas taŭgan DP."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreHTTPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:191
@@ -4278,8 +4254,8 @@ msgstr ""
 "Kiam vi serĉas la lokon de CRL, la testota atestilo kutime enhavas tion, kio "
 "estas konataj kiel \"CRL Distribution Point\" (DP), enskriboj, kiuj estas "
 "URL-oj priskribantaj la manieron aliri la CRL. La unua trovita DP-eniro "
-"estas uzata. Kun ĉi tiu opcio, ĉiuj enskriboj uzantaj la LDAP-skemon estas "
-"ignorataj kiam oni serĉas taŭgan DP."
+"estas uzata. Kun ĉi tiu elekteblo, ĉiuj enskriboj uzantaj la LDAP-skemon "
+"estas ignorataj kiam oni serĉas taŭgan DP."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreLDAPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:265
@@ -4386,13 +4362,13 @@ msgid ""
 "decrypted or verified."
 msgstr ""
 "La dosiero <filename>%1</filename> enhavas atestilojn kaj ne povas esti "
-"deĉifrita aŭ kontrolita."
+"deĉifrita aŭ konfirmita."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:402
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
-"Elektu la dosieron por kontroli per la subskribo <filename>%1</filename>"
+"Elektu la dosieron por konfirmi per la subskribo <filename>%1</filename>"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format
@@ -4442,7 +4418,7 @@ msgstr "Komencante..."
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Checksum Progress"
-msgstr "Krei Kontrolsumon Progreson"
+msgstr "Krei Kontrolsuman Progreson"
 
 #: src/crypto/createchecksumscontroller.cpp:487
 #: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
@@ -4482,7 +4458,7 @@ msgstr "Kalkulante totalan grandecon..."
 #: src/crypto/createchecksumscontroller.cpp:565
 #, kde-format
 msgid "Checksumming (%2) in %1"
-msgstr "Kontrolsumo (%2) en %1"
+msgstr "Kontrolsumado (%2) en %1"
 
 #: src/crypto/createchecksumscontroller.cpp:578
 #: src/crypto/verifychecksumscontroller.cpp:556
@@ -4504,7 +4480,7 @@ msgstr "Uzanto nuligita"
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify E-Mail"
-msgstr "Malĉifri/Kontroli Retpoŝton"
+msgstr "Malĉifri/Konfirmi Retpoŝton"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:250
 #, kde-format
@@ -4562,7 +4538,7 @@ msgstr "Malĉifri/Konfirmi dosierojn"
 #: src/crypto/decryptverifytask.cpp:187
 #, kde-format
 msgid "Error: Signature not verified"
-msgstr "Eraro: subskribo ne kontrolata"
+msgstr "Eraro: subskribo ne konfirmata"
 
 #: src/crypto/decryptverifytask.cpp:189
 #, kde-format
@@ -4727,8 +4703,8 @@ msgstr[1] "<b>%1 nenvalidaj signaturoj.</b>"
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
-msgstr[0] "<b>Ne eblis kontroli la datenojn.</b>"
-msgstr[1] "<b>Ne eblis kontroli %1 signaturojn.</b>"
+msgstr[0] "<b>Ne eblis konfirmi la datenojn.</b>"
+msgstr[1] "<b>Ne eblis konfirmi %1 signaturojn.</b>"
 
 #: src/crypto/decryptverifytask.cpp:464
 #, kde-format
@@ -4971,7 +4947,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1609
 #, kde-format
 msgid "Verifying %1..."
-msgstr "Kontrolante %1..."
+msgstr "Konfirmante %1..."
 
 #: src/crypto/decryptverifytask.cpp:1870
 #, kde-kuit-format
@@ -5087,7 +5063,7 @@ msgstr "&Eliga dosierujo:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
-msgstr "Kontroli dosierojn"
+msgstr "Konfirmi dosierojn"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:122
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
@@ -5180,8 +5156,7 @@ msgstr ""
 "Kleopatra por la donita enigo."
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
-#, fuzzy, kde-format
-#| msgid "&Decrypt/Verify"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Decrypt/Verify"
 msgstr "&Malĉifri/Konfirmi"
@@ -5410,13 +5385,13 @@ msgid ""
 "Please verify that correct certificates have been selected for each "
 "recipient:"
 msgstr ""
-"Bonvolu kontroli, ke ĝustaj atestiloj estas elektitaj por ĉiu ricevanto:"
+"Bonvolu konfirmi, ke ĝustaj atestiloj estas elektitaj por ĉiu ricevanto:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:109
 #, kde-format
 msgid ""
 "Please verify that the correct certificate has been selected for the sender:"
-msgstr "Bonvolu kontroli, ke la ĝusta atestilo estas elektita por la sendinto:"
+msgstr "Bonvolu konfirmi, ke la ĝusta atestilo estas elektita por la sendinto:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:356
 #, kde-format
@@ -5884,7 +5859,7 @@ msgstr "Subskribi nur"
 #: src/crypto/gui/signerresolvepage.cpp:307
 #, kde-format
 msgid "Encryption Options"
-msgstr "Ĉifrada Opcioj"
+msgstr "Ĉifradaj Elektebloj"
 
 #: src/crypto/gui/signerresolvepage.cpp:310
 #, kde-format
@@ -5894,7 +5869,7 @@ msgstr "Teksta eligo (ASCII-kiraso)"
 #: src/crypto/gui/signerresolvepage.cpp:315
 #, kde-format
 msgid "Signing Options"
-msgstr "Subskribaj Opcioj"
+msgstr "Subskribaj Elektebloj"
 
 #: src/crypto/gui/signerresolvepage.cpp:320
 #, kde-format
@@ -5993,8 +5968,7 @@ msgid "Show"
 msgstr "Montri"
 
 #: src/crypto/gui/wizard.cpp:77
-#, fuzzy, kde-format
-#| msgid "&Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Next"
 msgstr "Sek&va"
@@ -6167,17 +6141,17 @@ msgstr "Nekonata escepto en Task::start()"
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Checksum Results"
-msgstr "Kontroli Kontrolsumajn Rezultojn"
+msgstr "Konfirmi Kontrolsumajn Rezultojn"
 
 #: src/crypto/verifychecksumscontroller.cpp:359
 #, kde-format
 msgid "Cannot find checksums file for file %1"
-msgstr "Ne povas trovi kontrolon-dosieron por dosiero %1"
+msgstr "Ne povas trovi kontrolsum-dosieron por dosiero %1"
 
 #: src/crypto/verifychecksumscontroller.cpp:545
 #, kde-format
 msgid "Verifying checksums (%2) in %1"
-msgstr "Kontrolante kontrolsumojn (%2) en %1"
+msgstr "Konfirmante kontrolsumojn (%2) en %1"
 
 #: src/dialogs/addsubkeydialog.cpp:76
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:113
@@ -6403,7 +6377,7 @@ msgstr "Atestilo S/MIME"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
-msgstr "Ĝisdatigi la CRL-ojn kaj faru plenan kontroladon de la atestilo."
+msgstr "Ĝisdatigi la CRL-ojn kaj fari plenan konfirmadon de la atestilo."
 
 #: src/dialogs/certificatedetailsdialog.cpp:145
 #, kde-format
@@ -6760,12 +6734,12 @@ msgstr "Adrestrovilo..."
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
-msgstr "Kontroli atestilon sur servilo"
+msgstr "Elserĉi atestilon sur servilo"
 
 #: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgid "Look up certificate"
-msgstr "Kontroli atestilon"
+msgstr "Elserĉi atestilon"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
 #, kde-format
@@ -6829,7 +6803,7 @@ msgid ""
 "the key you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
-"Kontrolu la fingrospuron, marku la uzantidentigilojn, kiujn vi volas atesti, "
+"Konfirmu la fingrospuron, marku la uzantidentigilojn, kiujn vi volas atesti, "
 "kaj elektu la ŝlosilon per kiu vi volas atesti la uzantidentigilojn."
 "<br><i>Noto: Nur la fingrospuro klare identigas la ŝlosilon kaj ĝian "
 "posedanton.</i>"
@@ -6881,7 +6855,7 @@ msgstr "Altnivelaj"
 #: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgid "Show advanced options"
-msgstr "Montri altnivelajn opciojn"
+msgstr "Montri altnivelajn elekteblojn"
 
 #: src/dialogs/certifywidget.cpp:249
 #, kde-format
@@ -6896,8 +6870,9 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
-"Marku ĉi tiun opcion se vi volas dividi viajn atestojn kun aliaj. Se vi nur "
-"volas marki atestilojn kiel atestitaj por vi mem, tiam vi povas malmarki ĝin."
+"Marku ĉi tiun elekteblon se vi volas dividi viajn atestojn kun aliaj. Se vi "
+"nur volas marki atestilojn kiel atestitaj por vi mem, tiam vi povas malmarki "
+"ĝin."
 
 #: src/dialogs/certifywidget.cpp:259
 #, kde-format
@@ -6911,7 +6886,7 @@ msgid ""
 "Check this option, if you want to upload your certifications to a "
 "certificate directory after successful certification."
 msgstr ""
-"Marku ĉi tiun opcion se vi volas alŝuti viajn atestojn al a atestila "
+"Marku ĉi tiun elekteblon se vi volas alŝuti viajn atestojn al a atestila "
 "dosierujo post sukcesa atestado."
 
 #: src/dialogs/certifywidget.cpp:274
@@ -6987,7 +6962,7 @@ msgid ""
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
-"Kontrolu la fingrospurojn, marku la uzantidentigilojn kiujn vi volas atesti, "
+"Konfirmu la fingrospurojn, marku la uzantidentigilojn kiujn vi volas atesti, "
 "kaj elektu la atestilon per kiu vi volas atesti la uzantidentigilojn."
 "<br><i>Rimarku: Nur la fingrospuroj klare identigas la atestilon kaj ĝian "
 "posedanton.</i>"
@@ -7034,54 +7009,46 @@ msgid "Owner trust set successfully."
 msgstr "Fido de posedanto sukcese fiksita."
 
 #: src/dialogs/copytosmartcarddialog.cpp:56
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Delete copy on disk"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Delete secret key from disk."
-msgstr "Forigi kopion surdiske"
+msgstr "Forigi sekretan ŝlosilon el disko."
 
 #: src/dialogs/copytosmartcarddialog.cpp:57
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Keep copy on disk"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Keep secret key on disk."
-msgstr "Konservi kopion surdiske"
+msgstr "Konservi sekretan ŝlosilon surdiske."
 
 #: src/dialogs/copytosmartcarddialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a backup of the secret key to a file."
-msgstr "Rezervi la ĉifradan ŝlosilon en dosiero."
+msgstr "Fari sekurkopion de la sekreta ŝlosilo al dosiero."
 
 #: src/dialogs/copytosmartcarddialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a printed backup of the secret key."
-msgstr "Konservi sekurkopion de ĉifrada ŝlosilo"
+msgstr "Fari presitan sekurkopion de la sekreta ŝlosilo."
 
 #: src/dialogs/copytosmartcarddialog.cpp:66
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "I already have a backup of the secret key."
-msgstr "Konservi sekurkopion de ĉifrada ŝlosilo"
+msgstr "Mi jam havas sekurkopion de la sekreta ŝlosilo."
 
 #: src/dialogs/copytosmartcarddialog.cpp:103
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Card"
-msgstr ""
+msgstr "Kopii al Karto"
 
 #: src/dialogs/copytosmartcarddialog.cpp:124
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Copy Key to Smartcard"
-msgstr "Transigi al smartcard"
+msgstr "Kopii Ŝlosilon al Karto"
 
 #: src/dialogs/copytosmartcarddialog.cpp:143
 #, kde-kuit-format
@@ -7091,19 +7058,21 @@ msgid ""
 "<emphasis>%2</emphasis></para><para>Choose one of the following options to "
 "continue:</para>"
 msgstr ""
+"<para>Elektita Ŝlosilo: <emphasis>%1</emphasis></para><para>Elektita Karto: "
+"<emphasis>%2</emphasis></para><para>Elektu unu el la sekvaj opcioj por "
+"daŭrigi:</para>"
 
 #: src/dialogs/debugdialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Clipboard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
-msgstr "Tondujo"
+msgstr "Kopii al Tondujo"
 
 #: src/dialogs/debugdialog.cpp:111
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
-msgstr ""
+msgstr "Elirkodo: %1"
 
 #: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-format
@@ -8177,7 +8146,7 @@ msgid ""
 "Look up and import all keys that were used to certify the user IDs of this "
 "key"
 msgstr ""
-"Kontrolu kaj importu ĉiujn ŝlosilojn, kiuj estis uzataj por atesti la "
+"Elserĉi kaj enporti ĉiujn ŝlosilojn, kiuj estis uzataj por atesti la "
 "uzantidentojn de ĉi tiu ŝlosilo"
 
 #: src/dialogs/weboftrustwidget.cpp:264
@@ -8250,7 +8219,7 @@ msgstr "Atestiloj Malsukcesis"
 #: src/kcfg/emailoperationspreferences.kcfg:10
 #, kde-format
 msgid "Decrypt/Verify Popup Geometry"
-msgstr "Malĉifri/Kontroli Popup-Geometrion"
+msgstr "Malĉifri/Konfirmi Popup-Geometrion"
 
 #. i18n: ectx: whatsthis, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
 #: src/kcfg/emailoperationspreferences.kcfg:11
@@ -8287,7 +8256,7 @@ msgid ""
 "input files but instead automatically starts the operations it detects as "
 "applicable to the input."
 msgstr ""
-"Kun ĉi tiu opcio agordita Kleopatra ne plu demandas al vi kion vi volas fari "
+"Kun ĉi tiu opcio ŝaltita, Kleopatra ne plu demandas al vi kion vi volas fari "
 "kun enigdosieroj sed anstataŭe aŭtomate komencas la operaciojn kiujn ĝi "
 "detektas kiel aplikeblaj al la enigo."
 
@@ -8304,7 +8273,7 @@ msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
 "after decryption."
 msgstr ""
-"Se ĉi tiu opcio estas agordita, tiam Kleopatra aŭtomate ĉerpas "
+"Se ĉi tiu elekteblo estas ŝaltita, tiam Kleopatra aŭtomate ĉerpas "
 "dosierarkivojn post deĉifrado."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
@@ -8331,7 +8300,7 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
-"Agordu ĉi tiun opcion por kodi ĉifritajn aŭ subskribitajn dosierojn kiel "
+"Ŝaltu ĉi tiun elekteblon por kodi ĉifritajn aŭ subskribitajn dosierojn kiel "
 "bazo64 kodita teksto. Por ke ili estu malfermitaj per redaktilo aŭ senditaj "
 "en poŝta korpo. Ĉi tio pliigos dosiergrandecon je unu triono."
 
@@ -8340,13 +8309,13 @@ msgstr ""
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
-"Agordu ĉi tiun opcion por eviti uzi la provizoran dosierujon de uzantoj."
+"Agordu ĉi tiun elekteblon por eviti uzi la provizoran dosierujon de uzantoj."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
-msgstr "Agordi ĉi tiun opcion por malŝalti publikan ŝlosilan ĉifradon."
+msgstr "Agordi ĉi tiun elekteblon por malŝalti publikan ŝlosilan ĉifradon."
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:9
@@ -8845,8 +8814,8 @@ msgstr ""
 "(WKD)\n"
 "         por uzantidentigiloj kiuj estis origine prenitaj de WKD kiam vi "
 "ĝisdatigas OpenPGP-atestilon.\n"
-"         Se ĉi opcio estas ŝaltita, tiam Kleopatra demandos WKD-ojn por ĉiuj "
-"uzantidentigiloj."
+"         Se ĉi elekteblo estas ŝaltita, tiam Kleopatra demandos WKD-ojn por "
+"ĉiuj uzantidentigiloj."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:185
@@ -9133,12 +9102,12 @@ msgstr "Malĉifri dosiero(j)"
 #: src/kleopatra_options.h:30
 #, kde-format
 msgid "Verify file/signature"
-msgstr "Kontroli dosieron/subskribon"
+msgstr "Konfirmi dosieron/subskribon"
 
 #: src/kleopatra_options.h:31
 #, kde-format
 msgid "Decrypt and/or verify file(s)"
-msgstr "Malĉifri kaj/aŭ kontroli dosieron(j)"
+msgstr "Malĉifri kaj/aŭ konfirmi dosieron(j)"
 
 #: src/kleopatra_options.h:32
 #, kde-format
@@ -9148,7 +9117,7 @@ msgstr "Serĉi atestilon en ŝlosilservilo"
 #: src/kleopatra_options.h:33
 #, kde-format
 msgid "Create or check a checksum file"
-msgstr "Krei aŭ kontrolu kontrolsuman dosieron"
+msgstr "Krei aŭ kontroli kontrolsuman dosieron"
 
 #: src/kleopatra_options.h:37
 #, kde-format
@@ -9447,7 +9416,7 @@ msgstr "Rekomenci la fonajn procezojn, ekz. post fari ŝanĝojn al la agordo."
 #: src/mainwindow.cpp:621
 #, kde-format
 msgid "Check for updates"
-msgstr "Kontroli ĝisdatigojn"
+msgstr "Kontroli pri ĝisdatigoj"
 
 #: src/mainwindow.cpp:634
 #, kde-format
@@ -9471,7 +9440,7 @@ msgstr "Notepad"
 #: src/mainwindow.cpp:646
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
-msgstr "Montri kuseneton por ĉifri/malĉifri kaj subskribi/kontroli tekston"
+msgstr "Montri kuseneton por ĉifri/malĉifri kaj subskribi/konfirmi tekston"
 
 #: src/mainwindow.cpp:656
 #, kde-format
@@ -9501,8 +9470,7 @@ msgid "Groups"
 msgstr "Grupoj"
 
 #: src/mainwindow.cpp:721
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Agordi Fokuso al Rapida Serĉo"
@@ -9751,8 +9719,8 @@ msgid ""
 "Please enter your personal details below. If you want more control over the "
 "parameters, click on the Advanced Settings button."
 msgstr ""
-"Bonvolu enigi viajn personajn detalojn sube. Se vi volas pli da kontrolo "
-"super la parametroj, alklaku la butonon Altnivelaj Agordoj."
+"Bonvolu enigi viajn personajn detalojn sube. Se vi volas pli da kontrolo pri "
+"la parametroj, alklaku la butonon Altnivelaj Agordoj."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:221
 #, kde-format
@@ -11026,36 +10994,31 @@ msgid "Caught unknown exception in group %1"
 msgstr "Kaptis nekonatan escepton en grupo %1"
 
 #: src/utils/clipboardmenu.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certificate Import"
+#, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
 msgstr "Atestilo Importo"
 
 #: src/utils/clipboardmenu.cpp:44
-#, fuzzy, kde-format
-#| msgid "Encrypt..."
+#, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
 msgstr "Ĉifri..."
 
 #: src/utils/clipboardmenu.cpp:47
-#, fuzzy, kde-format
-#| msgid "S/MIME-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-Signo..."
 
 #: src/utils/clipboardmenu.cpp:49
-#, fuzzy, kde-format
-#| msgid "OpenPGP-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-Signo..."
 
 #: src/utils/clipboardmenu.cpp:50
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify..."
+#, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Malĉifri/Konfirmi..."
@@ -11507,7 +11470,7 @@ msgstr "Malĉifri/Konfirmi..."
 #: src/view/keylistcontroller.cpp:400
 #, kde-format
 msgid "Decrypt and/or verify files"
-msgstr "Malĉifri kaj/aŭ kontroli dosierojn"
+msgstr "Malĉifri kaj/aŭ konfirmi dosierojn"
 
 #: src/view/keylistcontroller.cpp:408
 #, kde-format
@@ -11537,7 +11500,7 @@ msgstr "Krei Kontrolsumajn dosierojn..."
 #: src/view/keylistcontroller.cpp:435
 #, kde-format
 msgid "Verify Checksum Files..."
-msgstr "Kontroli kontrolsumajn dosierojn..."
+msgstr "Konfirmi kontrolsumajn dosierojn..."
 
 #: src/view/keylistcontroller.cpp:445
 #, kde-format
@@ -11650,11 +11613,10 @@ msgid "Copy to Card"
 msgstr ""
 
 #: src/view/keylistcontroller.cpp:568
-#, fuzzy, kde-format
-#| msgid "Update selected certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
-msgstr "Ĝisdatigi elektitajn atestilojn"
+msgstr "Kopii la elektitan atestilon al la karto"
 
 #: src/view/keylistcontroller.cpp:577
 #, kde-format
@@ -11970,7 +11932,7 @@ msgstr "Subskribi / Ĉifri Notepad"
 #: src/view/padwidget.cpp:84
 #, kde-format
 msgid "Decrypt / Verify Notepad"
-msgstr "Malĉifri / Kontroli Notepad"
+msgstr "Malĉifri / Konfirmi Notepad"
 
 #: src/view/padwidget.cpp:85
 #, kde-format
@@ -12129,13 +12091,14 @@ msgid "Change PIN"
 msgstr "Ŝanĝi PIN"
 
 #: src/view/pgpcardwidget.cpp:244
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Change the PIN required for using the keys on the smart card. The PIN must "
 "contain at least six characters."
-msgstr "Ŝanĝu la PIN necesan por uzi la ŝlosilojn sur la inteligenta karto."
+msgstr ""
+"Ŝanĝu la PIN necesan por uzi la ŝlosilojn sur la inteligenta karto. La PIN "
+"devas enhavi almenaŭ ses signojn."
 
 #: src/view/pgpcardwidget.cpp:252
 #, kde-format
@@ -12143,11 +12106,10 @@ msgid "Unblock Card"
 msgstr "Malbloki Karton"
 
 #: src/view/pgpcardwidget.cpp:253
-#, fuzzy, kde-format
-#| msgid "Unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK."
-msgstr "Malŝlosu la saĝkarton kaj starigu novan PIN."
+msgstr "Malŝlosu la karton per la PUK."
 
 #: src/view/pgpcardwidget.cpp:260
 #, kde-format
@@ -12155,29 +12117,25 @@ msgid "Change Admin PIN"
 msgstr "Ŝanĝi Admin PIN"
 
 #: src/view/pgpcardwidget.cpp:261
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for administrative operations."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "Ŝanĝu la PIN necesan por administraj operacioj."
 
 #: src/view/pgpcardwidget.cpp:268
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change PUK"
+#, kde-format
 msgid "Change PUK"
 msgstr "Ŝanĝi PUK"
 
 #: src/view/pgpcardwidget.cpp:270
-#, fuzzy, kde-format
-#| msgid "Change the PIN required to unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Set or change the PUK required to unblock the smart card. The PUK must "
 "contain at least eight characters."
 msgstr ""
-"Ŝanĝu la PIN necesan por malŝlosi la inteligentan karton kaj agordi novan "
-"PIN."
+"Ŝaltu aŭ ŝanĝu la PUK necesan por malŝlosi la inteligentan karton. La PUK "
+"devas enhavi almenaŭ ok signojn."
 
 #: src/view/pgpcardwidget.cpp:293
 #, kde-format
@@ -12693,7 +12651,7 @@ msgid ""
 "The public key can be used by others to verify your identity or encrypt to "
 "you."
 msgstr ""
-"La publika ŝlosilo povas esti uzata de aliaj por kontroli vian identecon aŭ "
+"La publika ŝlosilo povas esti uzata de aliaj por konfirmi vian identecon aŭ "
 "ĉifri al vi."
 
 #: src/view/welcomewidget.cpp:124
@@ -12736,21 +12694,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgctxt "@info"
-#~ msgid "Changing the Reset Code failed: %1"
-#~ msgstr "Ŝanĝi la Restarigi Kodon malsukcesis: %1"
-
-#~ msgctxt "@info"
-#~ msgid "PUK successfully changed."
-#~ msgstr "PUK sukcese ŝanĝiĝis."
-
-#~ msgctxt "@info"
-#~ msgid "Reset Code changed successfully."
-#~ msgstr "Restarigi Kodon sukcese ŝanĝita."
-
-#~ msgid "Create a new primary key and generate subkeys on the card."
-#~ msgstr "Krei novan ĉefan ŝlosilon kaj generu subŝlosilojn sur la karto."
-
-#~ msgid "Change Reset Code"
-#~ msgstr "Ŝanĝi Restarigi Kodon"

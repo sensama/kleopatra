@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-05-14 19:32+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -6009,6 +6009,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6393,12 +6394,6 @@ msgstr ""
 msgid "Please select one of the following certificates:"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr ""
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6406,8 +6401,9 @@ msgid "Refresh certificate list"
 msgstr "רענון רשימת אישורים"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "ייבוא…"
 
@@ -6423,9 +6419,11 @@ msgid "Import certificate"
 msgstr "ייבוא אישור"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup on Server..."
+msgctxt "@action:button"
 msgid "Lookup..."
-msgstr ""
+msgstr "איתור בשרת…"
 
 #: src/dialogs/certificateselectiondialog.cpp:168
 #, kde-format
@@ -6439,7 +6437,9 @@ msgid "Look up certificate"
 msgstr "חיפוש אישור"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "חדש…"
 
@@ -6455,7 +6455,9 @@ msgid "Create certificate"
 msgstr "יצירת אישור"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "קבוצות…"
 
@@ -7574,9 +7576,12 @@ msgid "Show this notification for future updates."
 msgstr "להציג את ההתראה הזאת לעדכונים עתידיים."
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Key Updated"
+msgctxt "@action:button"
 msgid "&Get update"
-msgstr ""
+msgstr "המפתח עודכן"
 
 #: src/dialogs/useridswidget.cpp:140
 #, kde-format
@@ -10852,6 +10857,11 @@ msgstr "איתור בשרת…"
 msgid "Search for certificates online using a public keyserver"
 msgstr "חיפוש אישורים באינטרנט באמצעות שרת מפתחות ציבורי"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "ייבוא…"
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -11882,6 +11892,11 @@ msgstr "נא להכניס כרטיס חכם תואם."
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra תומכת כרגע בסוגי הכרטיסים הבאים:"
 
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr ""
+
 #: src/view/smartcardwidget.cpp:118
 #, kde-format
 msgid "Smartcard Management"
@@ -12089,10 +12104,6 @@ msgstr ""
 #~ msgctxt "@title:window"
 #~ msgid "Update Skipped"
 #~ msgstr "העדכון דולג"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Updated"
-#~ msgstr "המפתח עודכן"
 
 #~ msgctxt "@info"
 #~ msgid "<para>The update failed: <message>%1</message></para>"

@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-05-18 01:13+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -6393,6 +6393,7 @@ msgstr ""
 "certificados."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6789,12 +6790,6 @@ msgstr "Seleccione uno o más de los siguientes certificados:"
 msgid "Please select one of the following certificates:"
 msgstr "Seleccione uno de los siguientes certificados:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Volver a cargar"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6802,8 +6797,9 @@ msgid "Refresh certificate list"
 msgstr "Actualizar la lista de certificados"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Importar..."
 
@@ -6819,7 +6815,9 @@ msgid "Import certificate"
 msgstr "Importar certificado"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Búsqueda..."
 
@@ -6835,7 +6833,9 @@ msgid "Look up certificate"
 msgstr "Buscar certificado"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Nuevo..."
 
@@ -6851,7 +6851,9 @@ msgid "Create certificate"
 msgstr "Crear certificado"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Grupos..."
 
@@ -8060,7 +8062,9 @@ msgid "Show this notification for future updates."
 msgstr "Mostrar esta notificación en futuras actualizaciones."
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Get update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "Obtener actuali&zación"
 
@@ -11611,6 +11615,11 @@ msgstr "Búsqueda en el servidor..."
 msgid "Search for certificates online using a public keyserver"
 msgstr "Buscar certificados en línea usando un servidor público de claves"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "Importar..."
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -12680,6 +12689,11 @@ msgstr "Inserte una tarjeta inteligente compatible."
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra admite actualmente los siguientes tipos de tarjetas:"
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Volver a cargar"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

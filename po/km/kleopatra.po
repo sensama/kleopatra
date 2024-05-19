@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -6659,6 +6659,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "ការ​បញ្ជាក់​នឹង​​ត្រូវ​បាន​អនុវត្ត​ដោយ​ប្រើ​វិញ្ញាបនបត្រ %1 ។"
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -7099,12 +7100,6 @@ msgstr "សូម​ជ្រើស​វិញ្ញាបនបត្រ​ខ
 msgid "Please select one of the following certificates:"
 msgstr "សូម​ជ្រើស​វិញ្ញាបនបត្រ​ខាងក្រោម​មួយ ៖"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "ផ្ទុកឡើងវិញ"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -7112,9 +7107,9 @@ msgid "Refresh certificate list"
 msgstr "ធ្វើ​ឲ្យ​បញ្ជី​​​វិញ្ញាបនបត្រ​ស្រស់"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "នាំចូល"
 
@@ -7133,7 +7128,9 @@ msgid "Import certificate"
 msgstr "នាំចូល​វិញ្ញាបនបត្រ​"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "រក​មើល..."
 
@@ -7153,7 +7150,9 @@ msgid "Look up certificate"
 msgstr "រកមើល​វិញ្ញាបនបត្រ​លើ​ម៉ាស៊ីន​បម្រើ"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "ថ្មី..."
 
@@ -7174,6 +7173,7 @@ msgstr "បង្កើត​វិញ្ញាបនបត្រ​ថ្មី
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "Show Details"
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "បង្ហាញ​សេចក្ដី​លម្អិត"
 
@@ -8430,6 +8430,7 @@ msgstr ""
 #: src/dialogs/updatenotification.cpp:207
 #, fuzzy, kde-format
 #| msgid "&Update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "ធ្វើ​បច្ចុប្បន្នភាព"
 
@@ -11937,6 +11938,12 @@ msgstr ""
 "វិញ្ញាបនបត្រ​ ៖​​ %1\n"
 "ស្នាម​ម្រាមដៃ ​៖​ %2"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, fuzzy, kde-format
+#| msgid "Import"
+msgid "Import..."
+msgstr "នាំចូល"
+
 #: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
@@ -13081,6 +13088,11 @@ msgstr "សូម​ជ្រើស​វិញ្ញាបនបត្រ​"
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "ផ្ទុកឡើងវិញ"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

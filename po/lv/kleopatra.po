@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2011-08-24 09:59+0300\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian\n"
@@ -6836,6 +6836,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "Sertifikācija tiks izpildīta, izmantojot sertifikātu %1."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -7278,12 +7279,6 @@ msgstr "Lūdzu, izvēlieties vienu vai vairākus no sekojošajiem sertifikātiem
 msgid "Please select one of the following certificates:"
 msgstr "Lūdzu, izvēlieties vienu no sekojošajiem sertifikātiem:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Pārlādēt"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -7291,9 +7286,9 @@ msgid "Refresh certificate list"
 msgstr "Atsvaidzināt sertifikātu sarakstu"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Importēt"
 
@@ -7312,7 +7307,9 @@ msgid "Import certificate"
 msgstr "Importēt sertifikātus"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Sameklēt..."
 
@@ -7332,7 +7329,9 @@ msgid "Look up certificate"
 msgstr "Sameklēt sertifikātus uz servera"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Jauns..."
 
@@ -7353,6 +7352,7 @@ msgstr "Izveidot jaunu sertifikātu"
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "Show Details"
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Rādīt detaļas"
 
@@ -8642,6 +8642,7 @@ msgstr ""
 #: src/dialogs/updatenotification.cpp:207
 #, fuzzy, kde-format
 #| msgid "&Update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "Atja&unināt"
 
@@ -12214,6 +12215,12 @@ msgstr ""
 "Sertifikāts veiksmīgi izveidots.\n"
 "Nospiedums: %1"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, fuzzy, kde-format
+#| msgid "Import"
+msgid "Import..."
+msgstr "Importēt"
+
 #: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
@@ -13363,6 +13370,11 @@ msgstr "Lūdzu, izvēlieties sertifikātu"
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Pārlādēt"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-01-31 17:47+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -6384,6 +6384,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "Varmentaminen tapahtuu varmenteella %1."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -6807,12 +6808,6 @@ msgstr "Valitse yksi tai useampia seuraavista varmenteista:"
 msgid "Please select one of the following certificates:"
 msgstr "Valitse yksi seuraavista varmenteista:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Päivitä"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6820,8 +6815,9 @@ msgid "Refresh certificate list"
 msgstr "Päivitä varmenneluettelo"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Tuo…"
 
@@ -6837,7 +6833,9 @@ msgid "Import certificate"
 msgstr "Tuo varmenne"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Etsi…"
 
@@ -6853,7 +6851,9 @@ msgid "Look up certificate"
 msgstr "Etsi varmennetta"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Uusi…"
 
@@ -6869,7 +6869,9 @@ msgid "Create certificate"
 msgstr "Luo varmenne"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Ryhmät…"
 
@@ -8070,7 +8072,9 @@ msgid "Show this notification for future updates."
 msgstr "Näytä tämä ilmoitus myöhemmistäkin päivityksistä."
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Get update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "&Päivitä"
 
@@ -11605,6 +11609,11 @@ msgstr "Etsi palvelimesta…"
 msgid "Search for certificates online using a public keyserver"
 msgstr "Etsi varmenteita verkosta julkisesta avainpalvelimesta"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "Tuo…"
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -12669,6 +12678,11 @@ msgstr "Kytke yhteensopiva älykortti."
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra tukee nykyisellään seuraavia korttityyppejä:"
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Päivitä"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

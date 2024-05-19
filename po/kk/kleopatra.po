@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -6717,6 +6717,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "%1 куәлігімен куәландырылады."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -7157,12 +7158,6 @@ msgstr "Келесі куәліктерінің кемінде біреуін т
 msgid "Please select one of the following certificates:"
 msgstr "Келесі куәліктерінің біреуін таңдаңыз:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Қайта жүктеу"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -7170,9 +7165,9 @@ msgid "Refresh certificate list"
 msgstr "Куәліктер тізімін жаңарту"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "импорт"
 
@@ -7191,7 +7186,9 @@ msgid "Import certificate"
 msgstr "Куәліктерді импорттау"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Қарастыру..."
 
@@ -7211,7 +7208,9 @@ msgid "Look up certificate"
 msgstr "Серверде куәліктеді қарастыру"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Жаңа..."
 
@@ -7232,6 +7231,7 @@ msgstr "Жаңа куәлікті жасау"
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "Show Details"
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Егжей-тегжейлерін көрсету"
 
@@ -8485,6 +8485,7 @@ msgstr ""
 #: src/dialogs/updatenotification.cpp:207
 #, fuzzy, kde-format
 #| msgid "&Update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "&Жаңарту"
 
@@ -12014,6 +12015,12 @@ msgstr "Серверінде куәліктерді қарастыру..."
 msgid "Search for certificates online using a public keyserver"
 msgstr "Куәлікті бақылу тізбегінен іздеу"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, fuzzy, kde-format
+#| msgid "Import"
+msgid "Import..."
+msgstr "импорт"
+
 #: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
@@ -13152,6 +13159,11 @@ msgstr "Куәлікті таңдаңыз"
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Қайта жүктеу"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

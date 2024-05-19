@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-03-21 13:10+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -6742,6 +6742,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "Az ellenőrzés ezzel a tanúsítvánnyal történik: %1."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -7184,12 +7185,6 @@ msgstr "Válasszon ki egy vagy több tanúsítványt:"
 msgid "Please select one of the following certificates:"
 msgstr "Válasszon egyet az alábbi tanúsítványok közül:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Újratöltés"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -7197,9 +7192,9 @@ msgid "Refresh certificate list"
 msgstr "A tanúsítványlista frissítése"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Importálás"
 
@@ -7218,7 +7213,9 @@ msgid "Import certificate"
 msgstr "Tanúsítványok importálása"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Lekérdezés..."
 
@@ -7238,7 +7235,9 @@ msgid "Look up certificate"
 msgstr "Tanúsítványok lekérdezése kiszolgálóról"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Új…"
 
@@ -7259,6 +7258,7 @@ msgstr "Új tanúsítvány"
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "Show Details"
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "A részletek megjelenítése"
 
@@ -8526,6 +8526,7 @@ msgstr ""
 #: src/dialogs/updatenotification.cpp:207
 #, fuzzy, kde-format
 #| msgid "&Update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "&Frissítés"
 
@@ -12070,6 +12071,12 @@ msgstr "Tanúsítvány keresése a kiszolgálón…"
 msgid "Search for certificates online using a public keyserver"
 msgstr "Tanúsítvány keresése ujjlenyomat szerint"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, fuzzy, kde-format
+#| msgid "Import"
+msgid "Import..."
+msgstr "Importálás"
+
 #: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
@@ -13210,6 +13217,11 @@ msgstr "Kérjük válasszon egy tanúsítványt"
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Újratöltés"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

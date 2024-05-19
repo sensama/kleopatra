@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-05-17 16:44+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -6434,6 +6434,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "Дані картки пам'яті доступні лише для ваших власних сертифікатів."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6829,12 +6830,6 @@ msgstr "Будь ласка, виберіть один або декілька �
 msgid "Please select one of the following certificates:"
 msgstr "Будь ласка, виберіть один з таких сертифікатів:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Перезавантажити"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6842,8 +6837,9 @@ msgid "Refresh certificate list"
 msgstr "Освіжити список сертифікатів"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Імпортувати…"
 
@@ -6859,7 +6855,9 @@ msgid "Import certificate"
 msgstr "Імпортувати сертифікат"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Пошук…"
 
@@ -6875,7 +6873,9 @@ msgid "Look up certificate"
 msgstr "Пошук сертифіката"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Створити…"
 
@@ -6891,7 +6891,9 @@ msgid "Create certificate"
 msgstr "Створити сертифікат"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Групи…"
 
@@ -8138,7 +8140,9 @@ msgid "Show this notification for future updates."
 msgstr "Показувати це сповіщення для майбутніх оновлень."
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Get update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "&Отримати оновлення"
 
@@ -11698,6 +11702,11 @@ msgid "Search for certificates online using a public keyserver"
 msgstr ""
 "Шукати сертифікати у інтернеті за допомогою загальнодоступного сервера ключів"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "Імпортувати…"
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -12765,6 +12774,11 @@ msgstr "Будь ласка, вставте сумісну картку пам'�
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "У поточній версії Kleopatra передбачено підтримку таких типів карток:"
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Перезавантажити"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

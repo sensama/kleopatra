@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2022-02-26 11:47+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: Hindi <kde-l10n-hi@kde.org>\n"
@@ -6403,6 +6403,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6813,12 +6814,6 @@ msgstr ""
 msgid "Please select one of the following certificates:"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr ""
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, fuzzy, kde-format
 #| msgid "&Certificates"
@@ -6827,9 +6822,9 @@ msgid "Refresh certificate list"
 msgstr "प्रमाणपत्र (&C)"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Imported:"
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "आयातित:"
 
@@ -6847,9 +6842,10 @@ msgid "Import certificate"
 msgstr "प्रमाणपत्र आयात करें..."
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "Lookup..."
-msgstr ""
+msgstr "प्रमाणपत्र प्रबंधक त्रुटि"
 
 #: src/dialogs/certificateselectiondialog.cpp:168
 #, fuzzy, kde-format
@@ -6865,6 +6861,7 @@ msgstr "प्रमाणपत्र प्रबंधक त्रुटि"
 #: src/dialogs/certificateselectiondialog.cpp:170
 #, fuzzy, kde-format
 #| msgid "A.k.a."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "A.k.a."
 
@@ -6883,6 +6880,7 @@ msgstr "प्रमाणपत्र मिटाएँ"
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "&Details"
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "विवरण (&D) "
 
@@ -8064,6 +8062,7 @@ msgstr ""
 #: src/dialogs/updatenotification.cpp:207
 #, fuzzy, kde-format
 #| msgid "&Update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "अद्यतन (&U)"
 
@@ -11476,6 +11475,12 @@ msgstr "प्रमाणपत्र प्रबंधक त्रुटि"
 msgid "Search for certificates online using a public keyserver"
 msgstr "शुरू में बाहरी प्रमाणपत्रों के लिए ढूंढें"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, fuzzy, kde-format
+#| msgid "Imported:"
+msgid "Import..."
+msgstr "आयातित:"
+
 #: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
@@ -12600,6 +12605,11 @@ msgstr "प्रमाणपत्र मिटाएँ"
 #: src/view/smartcardwidget.cpp:60
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
 msgstr ""
 
 #: src/view/smartcardwidget.cpp:118

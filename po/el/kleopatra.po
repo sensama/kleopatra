@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -6547,6 +6547,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "Η πιστοποίηση θα εκτελεστεί με τη χρήση του πιστοποιητικού %1."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -6969,12 +6970,6 @@ msgstr "Παρακαλώ επιλέξτε ένα ή περισσότερα απ�
 msgid "Please select one of the following certificates:"
 msgstr "Παρακαλώ επιλέξτε ένα από τα παρακάτω πιστοποιητικά:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Επαναφόρτωση"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6982,8 +6977,9 @@ msgid "Refresh certificate list"
 msgstr "Ανανέωση λίστας πιστοποιητικών"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Εισαγωγή..."
 
@@ -6999,7 +6995,9 @@ msgid "Import certificate"
 msgstr "Εισαγωγή πιστοποιητικού"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Αναζήτηση..."
 
@@ -7015,7 +7013,9 @@ msgid "Look up certificate"
 msgstr "Αναζήτηση πιστοποιητικού"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Νέο..."
 
@@ -7031,7 +7031,9 @@ msgid "Create certificate"
 msgstr "Δημιουργία πιστοποιητικού"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Ομάδες..."
 
@@ -8285,7 +8287,9 @@ msgid "Show this notification for future updates."
 msgstr "Να εμφανίζεται αυτή η ειδοποίηση για μελλοντικές ενημερώσεις."
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Get update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "Α&νάκτηση ενημερώσεων"
 
@@ -11874,6 +11878,11 @@ msgstr "Αναζήτηση στον εξυπηρετητή..."
 msgid "Search for certificates online using a public keyserver"
 msgstr "Αναζήτηση για πιστοποιητικά με χρήση δημόσιου εξυπηρετητή κλειδιών"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "Εισαγωγή..."
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -12952,6 +12961,11 @@ msgstr "Εισαγάγετε μια συμβατή κάρτα."
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Η Kleopatra προς το παρόν υποστηρίζει τους ακόλουθους τύπους καρτών:"
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Επαναφόρτωση"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

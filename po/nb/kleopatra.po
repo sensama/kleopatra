@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2014-09-13 09:02+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -6145,6 +6145,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -6543,12 +6544,6 @@ msgstr "Velg ett eller fler av følgende sertifikat:"
 msgid "Please select one of the following certificates:"
 msgstr "Velg ett av følgende sertifikat:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Last på nytt"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6556,8 +6551,9 @@ msgid "Refresh certificate list"
 msgstr "Oppdater sertifikatliste"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Importer …"
 
@@ -6573,7 +6569,9 @@ msgid "Import certificate"
 msgstr ""
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Slå opp …"
 
@@ -6589,7 +6587,9 @@ msgid "Look up certificate"
 msgstr ""
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Ny …"
 
@@ -6605,9 +6605,11 @@ msgid "Create certificate"
 msgstr ""
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import CRL Error"
+msgctxt "@action:button"
 msgid "Groups..."
-msgstr ""
+msgstr "Feil ved import av CRL-er"
 
 #: src/dialogs/certificateselectiondialog.cpp:174
 #, kde-format
@@ -7753,9 +7755,12 @@ msgid "Show this notification for future updates."
 msgstr ""
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action:button Update the log text widget"
+#| msgid "&Update"
+msgctxt "@action:button"
 msgid "&Get update"
-msgstr ""
+msgstr "&Oppdater"
 
 #: src/dialogs/useridswidget.cpp:140
 #, kde-format
@@ -11126,6 +11131,11 @@ msgstr ""
 msgid "Search for certificates online using a public keyserver"
 msgstr ""
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "Importer …"
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -12160,6 +12170,11 @@ msgstr ""
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Last på nytt"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

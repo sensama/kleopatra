@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2008-11-24 22:51+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -6506,6 +6506,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6922,12 +6923,6 @@ msgstr ""
 msgid "Please select one of the following certificates:"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr ""
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, fuzzy, kde-format
 #| msgid "&Certificates"
@@ -6936,9 +6931,9 @@ msgid "Refresh certificate list"
 msgstr "&Sijil"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Imported:"
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Diimport:"
 
@@ -6956,9 +6951,11 @@ msgid "Import certificate"
 msgstr "Import Sijil..."
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@action:button"
 msgid "Lookup..."
-msgstr ""
+msgstr "Ralat Pengurus Sijil"
 
 #: src/dialogs/certificateselectiondialog.cpp:168
 #, fuzzy, kde-format
@@ -6976,6 +6973,7 @@ msgstr "Ralat Pengurus Sijil"
 #: src/dialogs/certificateselectiondialog.cpp:170
 #, fuzzy, kde-format
 #| msgid "A.k.a."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "A.k.a."
 
@@ -6995,6 +6993,7 @@ msgstr "Hapuskan Sijil"
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "&Details"
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "&Perincian"
 
@@ -8173,9 +8172,11 @@ msgid "Show this notification for future updates."
 msgstr ""
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Key Categories"
+msgctxt "@action:button"
 msgid "&Get update"
-msgstr ""
+msgstr "Kategori Kekunci"
 
 #: src/dialogs/useridswidget.cpp:140
 #, fuzzy, kde-format
@@ -11572,6 +11573,12 @@ msgstr "Ralat Pengurus Sijil"
 msgid "Search for certificates online using a public keyserver"
 msgstr "Muat Turun Sijil Gagal"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, fuzzy, kde-format
+#| msgid "Imported:"
+msgid "Import..."
+msgstr "Diimport:"
+
 #: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
@@ -12697,6 +12704,11 @@ msgstr "Hapuskan Sijil"
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
 
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr ""
+
 #: src/view/smartcardwidget.cpp:118
 #, kde-format
 msgid "Smartcard Management"
@@ -12903,12 +12915,6 @@ msgstr ""
 #~ msgctxt "@title:window"
 #~ msgid "Update Skipped"
 #~ msgstr "Gagal Eksport Sijil"
-
-#, fuzzy
-#~| msgid "Key Categories"
-#~ msgctxt "@title:window"
-#~ msgid "Key Updated"
-#~ msgstr "Kategori Kekunci"
 
 #, fuzzy
 #~| msgid ""

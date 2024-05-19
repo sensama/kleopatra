@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -6008,6 +6008,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6396,12 +6397,6 @@ msgstr "请从下面选择一个或多个证书："
 msgid "Please select one of the following certificates:"
 msgstr "请从下面选择一个证书："
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "重新加载"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6409,8 +6404,9 @@ msgid "Refresh certificate list"
 msgstr "刷新证书列表"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "导入..."
 
@@ -6426,7 +6422,9 @@ msgid "Import certificate"
 msgstr "导入证书"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "查询..."
 
@@ -6442,7 +6440,9 @@ msgid "Look up certificate"
 msgstr "查找证书"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "新建..."
 
@@ -6458,7 +6458,9 @@ msgid "Create certificate"
 msgstr "创建证书"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "组..."
 
@@ -7577,7 +7579,9 @@ msgid "Show this notification for future updates."
 msgstr "显示此通知以供将来更新。"
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Get update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "获取更新(&G)"
 
@@ -10909,6 +10913,11 @@ msgstr "在服务器上查找..."
 msgid "Search for certificates online using a public keyserver"
 msgstr "使用公钥服务器在线搜索证书"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "导入..."
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -11942,6 +11951,11 @@ msgstr "请插入兼容的智能卡。"
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra 目前支持以下类型的智能卡："
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "重新加载"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

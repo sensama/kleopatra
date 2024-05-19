@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-02-20 16:32+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -6477,6 +6477,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "Удостоверение будет выполнено с использованием сертификата %1."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -6902,12 +6903,6 @@ msgstr "Выберите один или несколько из следующ�
 msgid "Please select one of the following certificates:"
 msgstr "Выберите один из следующих сертификатов:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Обновить"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6915,8 +6910,9 @@ msgid "Refresh certificate list"
 msgstr "Обновить список сертификатов"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Импорт…"
 
@@ -6932,7 +6928,9 @@ msgid "Import certificate"
 msgstr "Импортировать сертификат"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Поиск…"
 
@@ -6948,7 +6946,9 @@ msgid "Look up certificate"
 msgstr "Найти сертификат"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Создать…"
 
@@ -6964,7 +6964,9 @@ msgid "Create certificate"
 msgstr "Создать сертификат"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Группы…"
 
@@ -8217,7 +8219,9 @@ msgid "Show this notification for future updates."
 msgstr "Показывать это окно уведомлений для последующих обновлений."
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Get update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "&Обновить"
 
@@ -11780,6 +11784,11 @@ msgstr "Поиск на сервере…"
 msgid "Search for certificates online using a public keyserver"
 msgstr "Поиск сертификатов на открытом сервере ключей"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "Импорт…"
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -12855,6 +12864,11 @@ msgstr "Вставьте совместимую смарт-карту."
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "В настоящее время Kleopatra поддерживает следующие типы карт:"
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Обновить"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

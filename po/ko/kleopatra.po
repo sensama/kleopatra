@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -6224,6 +6224,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -6647,12 +6648,6 @@ msgstr "다음 인증서 중 하나 이상 선택하십시오:"
 msgid "Please select one of the following certificates:"
 msgstr "다음 인증서 중 하나를 선택하십시오:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "새로 고침"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6660,8 +6655,9 @@ msgid "Refresh certificate list"
 msgstr "인증서 목록 새로 고침"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "가져오기..."
 
@@ -6677,7 +6673,9 @@ msgid "Import certificate"
 msgstr "인증서 가져오기"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "찾아보기..."
 
@@ -6693,7 +6691,9 @@ msgid "Look up certificate"
 msgstr "인증서 찾아보기"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "새로 만들기..."
 
@@ -6709,7 +6709,9 @@ msgid "Create certificate"
 msgstr "인증서 생성"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "그룹..."
 
@@ -7896,7 +7898,9 @@ msgid "Show this notification for future updates."
 msgstr "다음 업데이트가 나왔을 때 이 알림을 표시합니다."
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Get update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "업데이트 받기(&U)"
 
@@ -11359,6 +11363,11 @@ msgstr "서버에서 찾아보기..."
 msgid "Search for certificates online using a public keyserver"
 msgstr "온라인 공개 키 서버에서 인증서 찾아보기"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "가져오기..."
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -12416,6 +12425,11 @@ msgstr "호환되는 스마트카드를 삽입하십시오."
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra에서는 다음 카드 형식을 지원합니다:"
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "새로 고침"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

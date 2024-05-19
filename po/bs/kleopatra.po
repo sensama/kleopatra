@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -6810,6 +6810,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr "Certifikacija će se obaviti koristeći certifikat %1."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action:button"
@@ -7252,12 +7253,6 @@ msgstr "Molim odaberite jedan ili više od sljedećih certifikata."
 msgid "Please select one of the following certificates:"
 msgstr "Molim odaberite jedan iod sljedećih certifikata."
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Ponovo učitaj"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -7265,9 +7260,9 @@ msgid "Refresh certificate list"
 msgstr "Osvježi listu certifikata"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Uvoz"
 
@@ -7286,7 +7281,9 @@ msgid "Import certificate"
 msgstr "Uvezi certifikate"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Pretraživanje..."
 
@@ -7306,7 +7303,9 @@ msgid "Look up certificate"
 msgstr "Pregledaj certifikate na serveru"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Nova..."
 
@@ -7327,6 +7326,7 @@ msgstr "Kreiraj novi certifikat"
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "Show Details"
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Prikaži detalje"
 
@@ -8604,6 +8604,7 @@ msgstr ""
 #: src/dialogs/updatenotification.cpp:207
 #, fuzzy, kde-format
 #| msgid "&Update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "&Ažuriraj"
 
@@ -12145,6 +12146,12 @@ msgstr "Pregled certifikata na serveru..."
 msgid "Search for certificates online using a public keyserver"
 msgstr "Potraži certifikat putem otiska prsta"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, fuzzy, kde-format
+#| msgid "Import"
+msgid "Import..."
+msgstr "Uvoz"
+
 #: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
@@ -13288,6 +13295,11 @@ msgstr "Molim odaberite certifikat"
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Ponovo učitaj"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

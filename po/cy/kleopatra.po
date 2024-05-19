@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ../cy/messages//kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -6149,6 +6149,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6558,12 +6559,6 @@ msgstr ""
 msgid "Please select one of the following certificates:"
 msgstr ""
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr ""
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, fuzzy, kde-format
 #| msgid "&Certificates"
@@ -6572,10 +6567,11 @@ msgid "Refresh certificate list"
 msgstr "&Tystysgrifau"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "In Local Certificates"
+msgctxt "@action:button"
 msgid "Import..."
-msgstr ""
+msgstr "Mewn tystysgrifau lleol"
 
 #: src/dialogs/certificateselectiondialog.cpp:165
 #, fuzzy, kde-format
@@ -6591,9 +6587,11 @@ msgid "Import certificate"
 msgstr "Mewn tystysgrifau lleol"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@action:button"
 msgid "Lookup..."
-msgstr ""
+msgstr "Gwall Rheolwr Tystysgrifau"
 
 #: src/dialogs/certificateselectiondialog.cpp:168
 #, fuzzy, kde-format
@@ -6610,6 +6608,7 @@ msgstr "Gwall Rheolwr Tystysgrifau"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
 #, kde-format
+msgctxt "@action:button"
 msgid "New..."
 msgstr ""
 
@@ -6629,6 +6628,7 @@ msgstr "&Tystysgrifau"
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, fuzzy, kde-format
 #| msgid "&Details"
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "&Manylion"
 
@@ -7805,6 +7805,7 @@ msgstr ""
 
 #: src/dialogs/updatenotification.cpp:207
 #, kde-format
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr ""
 
@@ -11166,6 +11167,11 @@ msgstr "Gwall Rheolwr Tystysgrifau"
 msgid "Search for certificates online using a public keyserver"
 msgstr "Chwilio am dystysgrifau allanol i gychwyn"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr ""
+
 #: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgid "In Local Certificates"
@@ -12272,6 +12278,11 @@ msgstr "Dewiswch Ffeil Dysysgrif"
 #: src/view/smartcardwidget.cpp:60
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
 msgstr ""
 
 #: src/view/smartcardwidget.cpp:118

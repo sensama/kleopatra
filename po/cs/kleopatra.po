@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-04-26 11:01+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -5900,6 +5900,7 @@ msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6284,12 +6285,6 @@ msgstr "Prosím, vyberte jeden nebo několik z těchto certifikátů:"
 msgid "Please select one of the following certificates:"
 msgstr "Prosím, vyberte jeden z následujících certifikátů:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "Znovu načíst"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6297,8 +6292,9 @@ msgid "Refresh certificate list"
 msgstr "Obnovit seznam certifikátů"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "Importovat..."
 
@@ -6314,7 +6310,9 @@ msgid "Import certificate"
 msgstr "Importovat certifikát"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Vyhledat..."
 
@@ -6330,7 +6328,9 @@ msgid "Look up certificate"
 msgstr ""
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "Nová..."
 
@@ -6346,7 +6346,9 @@ msgid "Create certificate"
 msgstr "Vytvořit certifikát"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Skupiny..."
 
@@ -7463,9 +7465,12 @@ msgid "Show this notification for future updates."
 msgstr ""
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action:button Update the log text widget"
+#| msgid "&Update"
+msgctxt "@action:button"
 msgid "&Get update"
-msgstr ""
+msgstr "Akt&ualizovat"
 
 #: src/dialogs/useridswidget.cpp:140
 #, kde-format
@@ -10710,6 +10715,11 @@ msgstr "Vyhledat na serveru..."
 msgid "Search for certificates online using a public keyserver"
 msgstr ""
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "Importovat..."
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -11732,6 +11742,11 @@ msgstr "Prosím, vložte kompatibilní čipovou kartu."
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra nyní podporuje následující typy karet:"
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "Znovu načíst"
 
 # 55598 AttribValues/label
 #: src/view/smartcardwidget.cpp:118

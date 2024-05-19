@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-17 00:39+0000\n"
+"POT-Creation-Date: 2024-05-19 00:39+0000\n"
 "PO-Revision-Date: 2024-05-17 04:48+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -6295,6 +6295,7 @@ msgstr ""
 "ხელმისაწვდომი."
 
 #: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
@@ -6688,12 +6689,6 @@ msgstr "აირჩიეთ ერთი ან მეტი შემდე�
 msgid "Please select one of the following certificates:"
 msgstr "აირჩიეთ შემდეგი სერტიფიკატებიდან ერთ-ერთი:"
 
-#: src/dialogs/certificateselectiondialog.cpp:162
-#: src/view/smartcardwidget.cpp:67
-#, kde-format
-msgid "Reload"
-msgstr "თავიდან ჩატვირთვა"
-
 #: src/dialogs/certificateselectiondialog.cpp:163
 #, kde-format
 msgctxt "@info:tooltip"
@@ -6701,8 +6696,9 @@ msgid "Refresh certificate list"
 msgstr "სერტიფიკატების სიის განახლება"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Import..."
+msgctxt "@action:button"
 msgid "Import..."
 msgstr "შემოტანა..."
 
@@ -6718,7 +6714,9 @@ msgid "Import certificate"
 msgstr "სერტიფიკატის შემოტანა"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Lookup..."
+msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "მოძებნა..."
 
@@ -6734,7 +6732,9 @@ msgid "Look up certificate"
 msgstr "სერტიფიკატის მოძებნა"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "New..."
+msgctxt "@action:button"
 msgid "New..."
 msgstr "ახალი..."
 
@@ -6750,7 +6750,9 @@ msgid "Create certificate"
 msgstr "სერტიფიკატის შექმნა"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Groups..."
+msgctxt "@action:button"
 msgid "Groups..."
 msgstr "ჯგუფები..."
 
@@ -7936,7 +7938,9 @@ msgid "Show this notification for future updates."
 msgstr "ამ გაფრთხილების ჩვენება მომავალი განახლებებისთვის."
 
 #: src/dialogs/updatenotification.cpp:207
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Get update"
+msgctxt "@action:button"
 msgid "&Get update"
 msgstr "განახლების &მიღება"
 
@@ -11450,6 +11454,11 @@ msgstr "სერვერზე მოძებნა..."
 msgid "Search for certificates online using a public keyserver"
 msgstr "სერტიფიკატების ძებნა საჯარო გასაღებების სერვერით"
 
+#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#, kde-format
+msgid "Import..."
+msgstr "შემოტანა..."
+
 #: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Import a certificate from a file"
@@ -12512,6 +12521,11 @@ msgstr "შეაერთეთ თავსებადი სმარტ-ბ
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra-ს, ამჟამად, შემდეგი ბარათის ტიპების მხარდაჭერა გააჩნია:"
+
+#: src/view/smartcardwidget.cpp:67
+#, kde-format
+msgid "Reload"
+msgstr "თავიდან ჩატვირთვა"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

@@ -136,7 +136,7 @@ public:
             subkeysTree->setAccessibleName(i18nc("@label", "Subkeys"));
             subkeysTree->setRootIsDecorated(false);
             subkeysTree->setHeaderLabels({
-                i18nc("@title:column", "ID"),
+                i18nc("@title:column", "Key ID"),
                 i18nc("@title:column", "Fingerprint"),
                 i18nc("@title:column", "Valid From"),
                 i18nc("@title:column", "Valid Until"),

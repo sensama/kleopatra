@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-19 00:39+0000\n"
-"PO-Revision-Date: 2024-05-17 06:24+0100\n"
+"PO-Revision-Date: 2024-05-20 13:35+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -218,7 +218,7 @@ msgstr "%1 - %2"
 #, kde-format
 msgctxt "@info"
 msgid "No empty smart card was found."
-msgstr ""
+msgstr "Ne trovis malplenan inteligentan karton."
 
 #: src/commands/certificatetocardcommand.cpp:255
 #: src/commands/certificatetocardcommand.cpp:315
@@ -455,7 +455,7 @@ msgstr "Atesti Atestilojn"
 #, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "Atestante atestilojn..."
+msgstr "Atestante atestilojn ..."
 
 #: src/commands/certifygroupcommand.cpp:244
 #, kde-kuit-format
@@ -3990,7 +3990,7 @@ msgstr ""
 "Ĉi tiu elekteblo ebligas intervalkontroladon de atestilvalideco. Vi ankaŭ "
 "povas elekti la kontrolan intervalon (en horoj). Notu, ke validumado estas "
 "farita implicite kiam ajn signifaj dosieroj en ~/.gnupg ŝanĝiĝas. Ĉi tiu "
-"opcio do nur influas eksterajn faktorojn de valideco de atestilo."
+"elekteblo do nur influas eksterajn faktorojn de valideco de atestilo."
 
 #. i18n: ectx: property (text), widget (QCheckBox, intervalRefreshCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:21
@@ -4136,8 +4136,9 @@ msgid ""
 "If this option is checked, missing issuer certificates are fetched when "
 "necessary (this applies to both validation methods, CRLs and OCSP)."
 msgstr ""
-"Se ĉi tiu opcio estas markita, mankantaj eldonantaj atestiloj estas prenitaj "
-"kiam necese (ĉi tio validas por ambaŭ validigaj metodoj, CRLoj kaj OCSP)."
+"Se ĉi tiu elekteblo estas markita, mankantaj eldonantaj atestiloj estas "
+"prenitaj kiam necese (ĉi tio validas por ambaŭ validigaj metodoj, CRLoj kaj "
+"OCSP)."
 
 #. i18n: ectx: property (text), widget (QCheckBox, fetchMissingCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:164
@@ -6704,8 +6705,7 @@ msgid "Refresh certificate list"
 msgstr "Refreŝigi atestliston"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#, fuzzy, kde-format
-#| msgid "Import..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Import..."
 msgstr "Importi..."
@@ -6722,8 +6722,7 @@ msgid "Import certificate"
 msgstr "Importa atestilo"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, fuzzy, kde-format
-#| msgid "Lookup..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Adrestrovilo..."
@@ -6740,8 +6739,7 @@ msgid "Look up certificate"
 msgstr "Elserĉi atestilon"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, fuzzy, kde-format
-#| msgid "New..."
+#, kde-format
 msgctxt "@action:button"
 msgid "New..."
 msgstr "Nova..."
@@ -6758,8 +6756,7 @@ msgid "Create certificate"
 msgstr "Krei atestilon"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, fuzzy, kde-format
-#| msgid "Groups..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Grupoj..."
@@ -7947,8 +7944,7 @@ msgid "Show this notification for future updates."
 msgstr "Montri ĉi tiun sciigon por estontaj ĝisdatigoj."
 
 #: src/dialogs/updatenotification.cpp:207
-#, fuzzy, kde-format
-#| msgid "&Get update"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Get update"
 msgstr "Preni ĝisdati&gon"
@@ -9235,7 +9231,7 @@ msgstr ""
 #: src/libkleopatraclient/core/command.cpp:625
 #, kde-format
 msgid "Failed to send critical option %1: %2"
-msgstr "Malsukcesis sendi kritikan opcion %1: %2"
+msgstr "Malsukcesis sendi kritikan elekteblon %1: %2"
 
 #: src/libkleopatraclient/core/command.cpp:634
 #, kde-format
@@ -9401,7 +9397,7 @@ msgstr "GnuPG-Protokolvidigilo"
 #: src/mainwindow.cpp:595
 #, kde-format
 msgid "Debug View"
-msgstr ""
+msgstr "Sencimig-Vido"
 
 #: src/mainwindow.cpp:608
 #, kde-format
@@ -10438,7 +10434,7 @@ msgstr "Agordi NetKey v3 Komencan PIN..."
 #: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
 msgid "No option name given"
-msgstr "Neniu opcionomo donita"
+msgstr "Neniu elekteblonomo donita"
 
 #: src/uiserver/assuanserverconnection.cpp:328
 #, kde-format
@@ -10551,12 +10547,12 @@ msgstr "nevalida reĝimo: \"%1\""
 #: src/uiserver/assuanserverconnection.cpp:1460
 #, kde-format
 msgid "Required --protocol option missing"
-msgstr "Bezonata --protokola opcio mankas"
+msgstr "Bezonata opcio --protocol mankas"
 
 #: src/uiserver/assuanserverconnection.cpp:1465
 #, kde-format
 msgid "--protocol is not allowed here"
-msgstr "--protokolo ne estas permesita ĉi tie"
+msgstr "--protocol ne estas permesita ĉi tie"
 
 #: src/uiserver/assuanserverconnection.cpp:1475
 #, kde-format
@@ -11619,7 +11615,7 @@ msgstr "Krei grupo0n el la elektitaj atestiloj"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
-msgstr ""
+msgstr "Kopii al Karto"
 
 #: src/view/keylistcontroller.cpp:568
 #, kde-format
@@ -12093,6 +12089,12 @@ msgid ""
 "strong='true'>Existing keys on the smart card will be overwritten.</"
 "emphasis></para>"
 msgstr ""
+"<para>Generi tri novajn ŝlosilojn sur la inteligenta karto kaj krei novan "
+"OpenPGP-atestilon per tiuj ŝlosiloj. Laŭvole, la ĉifrada ŝlosilo estas "
+"generita eksterkarte kaj sekurkopio estas kreita, por ke vi ankoraŭ povu "
+"aliri datumojn ĉifritajn per ĉi tiu ŝlosilo, se la karto estas perdita aŭ "
+"difektita.</para><para><emphasis strong='true'>Ekzistantaj ŝlosiloj sur la "
+"inteligenta karto estos anstataŭitaj.</emphasis></para>"
 
 #: src/view/pgpcardwidget.cpp:242
 #, kde-format

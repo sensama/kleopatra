@@ -69,6 +69,8 @@
 
 #include <QAbstractItemView>
 #include <QAction>
+#include <QClipboard>
+#include <QGuiApplication>
 #include <QItemSelectionModel>
 #include <QPointer>
 
@@ -581,6 +583,18 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             QString(),
         },
+        // Context Menu
+        {
+            "cell_copy",
+            i18nc("@action:button", "Copy"),
+            QString(),
+            "edit-copy",
+            this,
+            [this](bool) {
+                QGuiApplication::clipboard()->setText(currentView()->currentIndex().data(KeyList::ClipboardRole).toString());
+            },
+            QStringLiteral("Ctrl+C"),
+        }
         // Window menu
         // (come from TabWidget)
         // Help menu

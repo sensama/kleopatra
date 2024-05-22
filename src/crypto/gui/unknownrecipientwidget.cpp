@@ -33,7 +33,7 @@ UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid, QWidget *paren
     auto lookUpBtn = new QPushButton(i18n("Search"));
 
     lookUpBtn->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
-    lookUpBtn->setToolTip(i18n("Search on keyserver"));
+    lookUpBtn->setToolTip(i18nc("@info:tooltip", "Search on keyserver"));
     connect(lookUpBtn, &QPushButton::clicked, this, [this, lookUpBtn]() {
         lookUpBtn->setEnabled(false);
         auto cmd = new Kleo::Commands::LookupCertificatesCommand(mKeyID, nullptr);
@@ -49,7 +49,7 @@ UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid, QWidget *paren
     hLay->addWidget(lookUpBtn);
     hLay->addStretch(1);
 
-    setToolTip(i18n("The data was encrypted to this key / certificate."));
+    setToolTip(i18nc("@info:tooltip", "The data was encrypted to this key / certificate."));
 }
 
 QString UnknownRecipientWidget::keyID() const

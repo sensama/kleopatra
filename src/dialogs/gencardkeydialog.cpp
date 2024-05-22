@@ -80,7 +80,7 @@ public:
         }
         if (requiredAttributes & LocalKeyBackup) {
             mBackupCheckBox = new QCheckBox(i18n("Backup encryption key"));
-            mBackupCheckBox->setToolTip(i18n("Backup the encryption key in a file.") + QStringLiteral("<br/>")
+            mBackupCheckBox->setToolTip(i18nc("@info:tooltip", "Backup the encryption key in a file.") + QStringLiteral("<br/>")
                                         + i18n("You will be asked for a passphrase to protect that file during key generation."));
             mBackupCheckBox->setChecked(true);
 

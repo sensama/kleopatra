@@ -264,19 +264,20 @@ public:
                         i18n("You cannot revoke this certification because it wasn't made with one of your keys (or the required secret key is missing)."));
                     break;
                 case CertificationIsSelfSignature:
-                    revokeAction->setToolTip(i18n("Revocation of self-certifications is currently not possible."));
+                    revokeAction->setToolTip(i18nc("@info:tooltip", "Revocation of self-certifications is currently not possible."));
                     break;
                 case CertificationIsRevocation:
-                    revokeAction->setToolTip(i18n("You cannot revoke this revocation certification. (But you can re-certify the corresponding user ID.)"));
+                    revokeAction->setToolTip(
+                        i18nc("@info:tooltip", "You cannot revoke this revocation certification. (But you can re-certify the corresponding user ID.)"));
                     break;
                 case CertificationIsExpired:
-                    revokeAction->setToolTip(i18n("You cannot revoke this expired certification."));
+                    revokeAction->setToolTip(i18nc("@info:tooltip", "You cannot revoke this expired certification."));
                     break;
                 case CertificationIsInvalid:
-                    revokeAction->setToolTip(i18n("You cannot revoke this invalid certification."));
+                    revokeAction->setToolTip(i18nc("@info:tooltip", "You cannot revoke this invalid certification."));
                     break;
                 case CertificationKeyNotAvailable:
-                    revokeAction->setToolTip(i18n("You cannot revoke this certification because the required secret key is not available."));
+                    revokeAction->setToolTip(i18nc("@info:tooltip", "You cannot revoke this certification because the required secret key is not available."));
                     break;
                 };
             } else if (!userID.isNull()) {

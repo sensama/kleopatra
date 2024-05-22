@@ -304,7 +304,7 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     ui.lineEdit.setCompleter(mCompleter);
 
     ui.button.setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
-    ui.button.setToolTip(i18n("Show certificate list"));
+    ui.button.setToolTip(i18nc("@info:tooltip", "Show certificate list"));
     ui.button.setAccessibleName(i18n("Show certificate list"));
 
     ui.errorLabel.setVisible(false);

@@ -211,14 +211,14 @@ public:
         auto addButton = new QPushButton(q);
         addButton->setIcon(QIcon::fromTheme(QStringLiteral("arrow-down")));
         addButton->setAccessibleName(i18nc("@action:button", "Add Selected Keys"));
-        addButton->setToolTip(i18n("Add the selected keys to the group"));
+        addButton->setToolTip(i18nc("@info:tooltip", "Add the selected keys to the group"));
         addButton->setEnabled(false);
         buttonsLayout->addWidget(addButton);
 
         auto removeButton = new QPushButton(q);
         removeButton->setIcon(QIcon::fromTheme(QStringLiteral("arrow-up")));
         removeButton->setAccessibleName(i18nc("@action:button", "Remove Selected Keys"));
-        removeButton->setToolTip(i18n("Remove the selected keys from the group"));
+        removeButton->setToolTip(i18nc("@info:tooltip", "Remove the selected keys from the group"));
         removeButton->setEnabled(false);
         buttonsLayout->addWidget(removeButton);
 

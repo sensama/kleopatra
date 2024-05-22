@@ -297,7 +297,7 @@ static void kiosk_enable(QWidget *w, const QListWidgetItem *item, int allowRole)
     }
     if (item && !item->data(allowRole).toBool()) {
         w->setEnabled(false);
-        w->setToolTip(i18n("This parameter has been locked down by the system administrator."));
+        w->setToolTip(i18nc("@info:tooltip", "This parameter has been locked down by the system administrator."));
     } else {
         w->setEnabled(item);
         w->setToolTip(QString());

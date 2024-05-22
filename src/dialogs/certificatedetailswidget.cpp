@@ -234,7 +234,7 @@ private:
                 row++;
                 trustedIntroducerField = std::make_unique<InfoField>(i18n("Trusted introducer for:"), parent);
                 gridLayout->addWidget(trustedIntroducerField->label(), row, 0);
-                trustedIntroducerField->setToolTip(i18n("See certifications for details."));
+                trustedIntroducerField->setToolTip(i18nc("@info:tooltip", "See certifications for details."));
                 gridLayout->addLayout(trustedIntroducerField->layout(), row, 1);
 
                 row++;

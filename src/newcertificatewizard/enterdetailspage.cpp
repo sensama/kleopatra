@@ -140,7 +140,8 @@ struct EnterDetailsPage::UI {
 
         row++;
         withPassCB = new QCheckBox{i18n("Protect the generated key with a passphrase."), parent};
-        withPassCB->setToolTip(i18n("Encrypts the secret key with an unrecoverable passphrase. You will be asked for the passphrase during key generation."));
+        withPassCB->setToolTip(
+            i18nc("@info:tooltip", "Encrypts the secret key with an unrecoverable passphrase. You will be asked for the passphrase during key generation."));
         gridLayout->addWidget(withPassCB, row, 1, 1, 2);
 
         scrollAreaLayout->addLayout(gridLayout);

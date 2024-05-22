@@ -82,7 +82,7 @@ struct ResultPage::UI {
         resultGBLayout->addWidget(errorTB);
 
         dragQueen = new Kleo::DragQueen{resultGB};
-        dragQueen->setToolTip(i18n("Drag this icon to your mail application's composer to attach the request to a mail."));
+        dragQueen->setToolTip(i18nc("@info:tooltip", "Drag this icon to your mail application's composer to attach the request to a mail."));
         dragQueen->setAlignment(Qt::AlignCenter);
         resultGBLayout->addWidget(dragQueen);
 

@@ -182,7 +182,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
             auto button = new QPushButton;
             button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
             button->setAccessibleName(i18nc("@action:button", "Edit"));
-            button->setToolTip(i18n("Change"));
+            button->setToolTip(i18nc("@info:tooltip", "Change"));
             cardInfoGrid->addWidget(button, row, 2);
             connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeNameRequested);
         }
@@ -200,7 +200,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
             auto button = new QPushButton;
             button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
             button->setAccessibleName(i18nc("@action:button", "Edit"));
-            button->setToolTip(i18n("Change"));
+            button->setToolTip(i18nc("@info:tooltip", "Change"));
             cardInfoGrid->addWidget(button, row, 2);
             connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeUrlRequested);
         }

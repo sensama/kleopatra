@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-19 00:39+0000\n"
+"POT-Creation-Date: 2024-05-22 00:39+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -6440,7 +6440,7 @@ msgid "Status:"
 msgstr "상태"
 
 #: src/dialogs/certificatedetailswidget.cpp:208
-#: src/dialogs/certifywidget.cpp:192
+#: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgid "Fingerprint:"
 msgstr "지문:"
@@ -6749,7 +6749,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "%1 인증서 그룹 인증"
 
-#: src/dialogs/certifywidget.cpp:175
+#: src/dialogs/certifywidget.cpp:176
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6760,18 +6760,18 @@ msgstr ""
 "십시오.<br><i>메모: 키와 키 소유자는 지문만으로 명확하게 식별할 수 있습니다."
 "</i>"
 
-#: src/dialogs/certifywidget.cpp:197
+#: src/dialogs/certifywidget.cpp:198
 #, kde-format
 msgid "Certify with:"
 msgstr "다음으로 인증:"
 
-#: src/dialogs/certifywidget.cpp:209
+#: src/dialogs/certifywidget.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "소유자 신뢰 설정"
 
-#: src/dialogs/certifywidget.cpp:211
+#: src/dialogs/certifywidget.cpp:212
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6781,40 +6781,40 @@ msgstr ""
 "선택한 인증 키의 신뢰 수준을 완전히 신뢰함으로 설정하려면 클릭하십시오. 키를 "
 "소유하고 있다면 해당 수준으로 설정하십시오."
 
-#: src/dialogs/certifywidget.cpp:226
+#: src/dialogs/certifywidget.cpp:227
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "한 개 이상의 인증서를 인증할 수 없습니다."
 
-#: src/dialogs/certifywidget.cpp:232 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
 #, kde-format
 msgid "User IDs"
 msgstr "사용자 ID"
 
-#: src/dialogs/certifywidget.cpp:239 src/dialogs/certifywidget.cpp:461
-#: src/dialogs/certifywidget.cpp:475
+#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
+#: src/dialogs/certifywidget.cpp:481
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "사용자 ID"
 
-#: src/dialogs/certifywidget.cpp:243
+#: src/dialogs/certifywidget.cpp:244
 #, kde-format
 msgid "Advanced"
 msgstr "고급"
 
-#: src/dialogs/certifywidget.cpp:243
+#: src/dialogs/certifywidget.cpp:244
 #, kde-format
 msgid "Show advanced options"
 msgstr "고급 옵션 표시"
 
-#: src/dialogs/certifywidget.cpp:249
+#: src/dialogs/certifywidget.cpp:250
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "모두가 볼 수 있게 인증(내보내기 가능)"
 
-#: src/dialogs/certifywidget.cpp:251
+#: src/dialogs/certifywidget.cpp:252
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6825,32 +6825,46 @@ msgstr ""
 "이 옵션을 선택하면 다른 사람과 인증을 공유합니다. 인증서 인증을 나 자신만 사"
 "용하려면 이 옵션을 선택 해제하십시오."
 
-#: src/dialogs/certifywidget.cpp:259
-#, kde-format
-msgid "Publish on keyserver afterwards"
-msgstr "이후에 키 서버에 게시"
-
 #: src/dialogs/certifywidget.cpp:261
-#, kde-kuit-format
+#, kde-format
+msgctxt "@label:checkbox"
+msgid "Publish in internal directory"
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:263
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Publish Revocation"
+#| msgid_plural "Publish Revocations"
+msgctxt "@label:checkbox"
+msgid "Publish to %1"
+msgstr "철회 게시"
+
+#: src/dialogs/certifywidget.cpp:266
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Check this option, if you want to upload your certifications to a "
+#| "certificate directory after successful certification."
 msgctxt "@info:tooltip"
 msgid ""
-"Check this option, if you want to upload your certifications to a "
-"certificate directory after successful certification."
+"Check this option if you want to upload your certifications to a certificate "
+"directory after successful certification."
 msgstr ""
 "이 옵션을 선택하면 인증서를 인증한 후 인증서 디렉터리에 인증 결과를 업로드합"
 "니다."
 
-#: src/dialogs/certifywidget.cpp:274
+#: src/dialogs/certifywidget.cpp:280
 #, kde-format
 msgid "Tags:"
 msgstr "태그:"
 
-#: src/dialogs/certifywidget.cpp:278
+#: src/dialogs/certifywidget.cpp:284
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "인증에 추가 정보를 추가할 때 사용할 수 있습니다."
 
-#: src/dialogs/certifywidget.cpp:279
+#: src/dialogs/certifywidget.cpp:285
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6859,17 +6873,17 @@ msgstr ""
 "인증서를 완전히 신뢰하는 누군가가 생성한 태그는 키 목록에 표시되고 검색할 수 "
 "있습니다."
 
-#: src/dialogs/certifywidget.cpp:294
+#: src/dialogs/certifywidget.cpp:300
 #, kde-format
 msgid "Expiration:"
 msgstr "만료 날짜:"
 
-#: src/dialogs/certifywidget.cpp:301
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "인증 만료 날짜를 설정할 때 사용할 수 있습니다."
 
-#: src/dialogs/certifywidget.cpp:302
+#: src/dialogs/certifywidget.cpp:308
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6879,17 +6893,17 @@ msgstr ""
 "만료 날짜를 선택하면 인증 유효 기간을 지정한 시간 동안으로 제한할 수 있습니"
 "다. 만료 날짜가 지나면 더 이상 인증이 올바르지 않습니다."
 
-#: src/dialogs/certifywidget.cpp:317
+#: src/dialogs/certifywidget.cpp:323
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "신뢰할 수 있는 도입자로 인증"
 
-#: src/dialogs/certifywidget.cpp:318
+#: src/dialogs/certifywidget.cpp:324
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "도메인의 신뢰할 수 있는 도입자로 인증할 수 있습니다."
 
-#: src/dialogs/certifywidget.cpp:319
+#: src/dialogs/certifywidget.cpp:325
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6899,12 +6913,12 @@ msgstr ""
 "신뢰할 수 있는 도입자가 인증한 해당 도메인의 모든 이메일 주소는 인증된 것으"
 "로 처리합니다. 즉 신뢰할 수 있는 도입자는 도메인의 중간 CA처럼 작동합니다."
 
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:336
 #, kde-format
 msgid "Domain:"
 msgstr "도메인:"
 
-#: src/dialogs/certifywidget.cpp:443
+#: src/dialogs/certifywidget.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6916,43 +6930,43 @@ msgstr ""
 "택하십시오.<br><i>메모: 인증서와 인증서 소유자는 지문만으로 명확하게 식별할 "
 "수 있습니다.</i>"
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:481 src/dialogs/subkeyswidget.cpp:140
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "지문"
 
-#: src/dialogs/certifywidget.cpp:491 src/dialogs/certifywidget.cpp:492
+#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "S/MIME 인증서는 인증할 수 없습니다."
 
-#: src/dialogs/certifywidget.cpp:494 src/dialogs/certifywidget.cpp:495
+#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "만료되었거나 취소된 인증서는 인증할 수 없습니다."
 
-#: src/dialogs/certifywidget.cpp:806
+#: src/dialogs/certifywidget.cpp:812
 #, kde-format
 msgid "Is this your own key?"
 msgstr "키를 소유하고 있습니까?"
 
-#: src/dialogs/certifywidget.cpp:821
+#: src/dialogs/certifywidget.cpp:827
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
 "<p>키 <b>%1</b>의 자격 증명 신뢰도를 변경하는 중 오류 발생:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:824
+#: src/dialogs/certifywidget.cpp:830
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "자격 증명 신뢰 변경 실패"
 
-#: src/dialogs/certifywidget.cpp:831
+#: src/dialogs/certifywidget.cpp:837
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "소유자 신뢰를 설정했습니다."
@@ -7721,8 +7735,8 @@ msgstr "하위 키"
 #: src/dialogs/subkeyswidget.cpp:139
 #, kde-format
 msgctxt "@title:column"
-msgid "ID"
-msgstr "ID"
+msgid "Key ID"
+msgstr ""
 
 #: src/dialogs/subkeyswidget.cpp:141
 #, kde-format
@@ -12611,6 +12625,13 @@ msgid ""
 msgstr ""
 "파일에서 인증서를 가져옵니다.<nl/>공개 키 서버에서 키를 가져오려면 "
 "<interface>서버에서 찾아보기</interface>를 사용하십시오."
+
+#~ msgid "Publish on keyserver afterwards"
+#~ msgstr "이후에 키 서버에 게시"
+
+#~ msgctxt "@title:column"
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgctxt "@info"
 #~ msgid "Changing the Reset Code failed: %1"

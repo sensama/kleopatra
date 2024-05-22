@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-19 00:39+0000\n"
+"POT-Creation-Date: 2024-05-22 00:39+0000\n"
 "PO-Revision-Date: 2023-07-08 12:52+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -6781,7 +6781,7 @@ msgid "Status:"
 msgstr "Estado"
 
 #: src/dialogs/certificatedetailswidget.cpp:208
-#: src/dialogs/certifywidget.cpp:192
+#: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Impressão digital:"
@@ -7092,7 +7092,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Certificar o Certificado: %1"
 
-#: src/dialogs/certifywidget.cpp:175
+#: src/dialogs/certifywidget.cpp:176
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7104,18 +7104,18 @@ msgstr ""
 "utilizadores.<br><i>Nota: Só a impressão digital identifica de forma clara a "
 "chave e o seu dono.</i>"
 
-#: src/dialogs/certifywidget.cpp:197
+#: src/dialogs/certifywidget.cpp:198
 #, kde-format
 msgid "Certify with:"
 msgstr "Certificar com:"
 
-#: src/dialogs/certifywidget.cpp:209
+#: src/dialogs/certifywidget.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Definir a Confiança do Dono"
 
-#: src/dialogs/certifywidget.cpp:211
+#: src/dialogs/certifywidget.cpp:212
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7126,42 +7126,42 @@ msgstr ""
 "seleccionada para a confiança total. Isto é o que faria normalmente para as "
 "suas próprias chaves."
 
-#: src/dialogs/certifywidget.cpp:226
+#: src/dialogs/certifywidget.cpp:227
 #, fuzzy, kde-format
 #| msgid "In order to mark the certificate as valid it needs to be certified."
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "Para marcar o certificado como válido, terá de ser reconhecido."
 
-#: src/dialogs/certifywidget.cpp:232 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
 #, kde-format
 msgid "User IDs"
 msgstr "ID's dos Utilizadores"
 
-#: src/dialogs/certifywidget.cpp:239 src/dialogs/certifywidget.cpp:461
-#: src/dialogs/certifywidget.cpp:475
+#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
+#: src/dialogs/certifywidget.cpp:481
 #, fuzzy, kde-format
 #| msgid "User IDs"
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "ID's dos Utilizadores"
 
-#: src/dialogs/certifywidget.cpp:243
+#: src/dialogs/certifywidget.cpp:244
 #, kde-format
 msgid "Advanced"
 msgstr "Avançado"
 
-#: src/dialogs/certifywidget.cpp:243
+#: src/dialogs/certifywidget.cpp:244
 #, kde-format
 msgid "Show advanced options"
 msgstr "Mostrar as opções avançadas"
 
-#: src/dialogs/certifywidget.cpp:249
+#: src/dialogs/certifywidget.cpp:250
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certificar para todos verem (exportável)"
 
-#: src/dialogs/certifywidget.cpp:251
+#: src/dialogs/certifywidget.cpp:252
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7170,31 +7170,41 @@ msgid ""
 "uncheck it."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:259
-#, kde-format
-msgid "Publish on keyserver afterwards"
-msgstr "Publicar depois no servidor de chaves"
-
 #: src/dialogs/certifywidget.cpp:261
+#, kde-format
+msgctxt "@label:checkbox"
+msgid "Publish in internal directory"
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:263
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Publish Revocation"
+#| msgid_plural "Publish Revocations"
+msgctxt "@label:checkbox"
+msgid "Publish to %1"
+msgstr "Publicar a Revogação"
+
+#: src/dialogs/certifywidget.cpp:266
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
-"Check this option, if you want to upload your certifications to a "
-"certificate directory after successful certification."
+"Check this option if you want to upload your certifications to a certificate "
+"directory after successful certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:274
+#: src/dialogs/certifywidget.cpp:280
 #, kde-format
 msgid "Tags:"
 msgstr "Marcas:"
 
-#: src/dialogs/certifywidget.cpp:278
+#: src/dialogs/certifywidget.cpp:284
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 "Poderá usar isto para acrescentar informações adicionais a uma certificação."
 
-#: src/dialogs/certifywidget.cpp:279
+#: src/dialogs/certifywidget.cpp:285
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -7203,17 +7213,17 @@ msgstr ""
 "As marcas criadas por qualquer pessoas com confiança de certificação total "
 "são apresentadas na lista de chaves e podem ser pesquisadas."
 
-#: src/dialogs/certifywidget.cpp:294
+#: src/dialogs/certifywidget.cpp:300
 #, kde-format
 msgid "Expiration:"
 msgstr "Validade:"
 
-#: src/dialogs/certifywidget.cpp:301
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Poderá usar isto para definir uma data de validade da certificação."
 
-#: src/dialogs/certifywidget.cpp:302
+#: src/dialogs/certifywidget.cpp:308
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7224,18 +7234,18 @@ msgstr ""
 "certificação para um dado período de tempo. Assim que tiver passado o prazo "
 "de validade, a sua certificação já não é mais válida."
 
-#: src/dialogs/certifywidget.cpp:317
+#: src/dialogs/certifywidget.cpp:323
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Certificar como introdução fidedigna"
 
-#: src/dialogs/certifywidget.cpp:318
+#: src/dialogs/certifywidget.cpp:324
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Poderá usar isto para certificar uma introdução fidedigna para um domínio."
 
-#: src/dialogs/certifywidget.cpp:319
+#: src/dialogs/certifywidget.cpp:325
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7247,12 +7257,12 @@ msgstr ""
 "e., um uma introdução fidedigna funciona como uma espécie de AC intermédia "
 "para um dado domínio."
 
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:336
 #, kde-format
 msgid "Domain:"
 msgstr "Domínio:"
 
-#: src/dialogs/certifywidget.cpp:443
+#: src/dialogs/certifywidget.cpp:449
 #, fuzzy, kde-format
 #| msgid ""
 #| "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7269,14 +7279,14 @@ msgstr ""
 "utilizadores.<br><i>Nota: Só a impressão digital identifica de forma clara a "
 "chave e o seu dono.</i>"
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:481 src/dialogs/subkeyswidget.cpp:140
 #, fuzzy, kde-format
 #| msgid "Fingerprint:"
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "Impressão digital:"
 
-#: src/dialogs/certifywidget.cpp:491 src/dialogs/certifywidget.cpp:492
+#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for signing."
@@ -7284,19 +7294,19 @@ msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "Este certificado não pode ser usado para assinatura."
 
-#: src/dialogs/certifywidget.cpp:494 src/dialogs/certifywidget.cpp:495
+#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
 #, fuzzy, kde-format
 #| msgid "In order to mark the certificate as valid it needs to be certified."
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "Para marcar o certificado como válido, terá de ser reconhecido."
 
-#: src/dialogs/certifywidget.cpp:806
+#: src/dialogs/certifywidget.cpp:812
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Esta é a sua própria chave?"
 
-#: src/dialogs/certifywidget.cpp:821
+#: src/dialogs/certifywidget.cpp:827
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -7304,14 +7314,14 @@ msgstr ""
 "<p>Ocorreu um erro ao mudar a confiança de certificação da chave <b>%1</b>:</"
 "p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:824
+#: src/dialogs/certifywidget.cpp:830
 #, fuzzy, kde-format
 #| msgid "Certification Trust Change Failed"
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Falhou a Mudança da Confiança na Certificação"
 
-#: src/dialogs/certifywidget.cpp:831
+#: src/dialogs/certifywidget.cpp:837
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "A confiança do dono foi definida com sucesso."
@@ -8107,8 +8117,8 @@ msgstr "Sub-chaves"
 #: src/dialogs/subkeyswidget.cpp:139
 #, kde-format
 msgctxt "@title:column"
-msgid "ID"
-msgstr "ID"
+msgid "Key ID"
+msgstr ""
 
 #: src/dialogs/subkeyswidget.cpp:141
 #, kde-format
@@ -13162,6 +13172,13 @@ msgstr ""
 "Importa um certificado a partir de um ficheiro.<nl/>Para importar de um "
 "servidor de chaves públicas, use o <interface>Procurar num Servidor</"
 "interface> em alternativa."
+
+#~ msgid "Publish on keyserver afterwards"
+#~ msgstr "Publicar depois no servidor de chaves"
+
+#~ msgctxt "@title:column"
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #~ msgctxt "@info"
 #~ msgid "Changing the Reset Code failed: %1"

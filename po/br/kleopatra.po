@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-19 00:39+0000\n"
+"POT-Creation-Date: 2024-05-22 00:39+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: Breton <LL@li.org>\n"
@@ -6672,7 +6672,7 @@ msgid "Status:"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:208
-#: src/dialogs/certifywidget.cpp:192
+#: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgid "Fingerprint:"
 msgstr ""
@@ -6991,7 +6991,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Emaon o tistruj an testenioù"
 
-#: src/dialogs/certifywidget.cpp:175
+#: src/dialogs/certifywidget.cpp:176
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6999,19 +6999,19 @@ msgid ""
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:197
+#: src/dialogs/certifywidget.cpp:198
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgid "Certify with:"
 msgstr "Arveriadur an testeni"
 
-#: src/dialogs/certifywidget.cpp:209
+#: src/dialogs/certifywidget.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:211
+#: src/dialogs/certifywidget.cpp:212
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7019,44 +7019,44 @@ msgid ""
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:226
+#: src/dialogs/certifywidget.cpp:227
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "&Testenioù"
 
-#: src/dialogs/certifywidget.cpp:232 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid "User IDs"
 msgstr "Sac'het eo enkargañ an testeni"
 
-#: src/dialogs/certifywidget.cpp:239 src/dialogs/certifywidget.cpp:461
-#: src/dialogs/certifywidget.cpp:475
+#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
+#: src/dialogs/certifywidget.cpp:481
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Sac'het eo enkargañ an testeni"
 
-#: src/dialogs/certifywidget.cpp:243
+#: src/dialogs/certifywidget.cpp:244
 #, kde-format
 msgid "Advanced"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:243
+#: src/dialogs/certifywidget.cpp:244
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Show advanced options"
 msgstr "Nullet."
 
-#: src/dialogs/certifywidget.cpp:249
+#: src/dialogs/certifywidget.cpp:250
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:251
+#: src/dialogs/certifywidget.cpp:252
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7065,48 +7065,55 @@ msgid ""
 "uncheck it."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:259
+#: src/dialogs/certifywidget.cpp:261
+#, kde-format
+msgctxt "@label:checkbox"
+msgid "Publish in internal directory"
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:263
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
-msgid "Publish on keyserver afterwards"
+msgctxt "@label:checkbox"
+msgid "Publish to %1"
 msgstr "Fazi merour an testnioù"
 
-#: src/dialogs/certifywidget.cpp:261
+#: src/dialogs/certifywidget.cpp:266
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
-"Check this option, if you want to upload your certifications to a "
-"certificate directory after successful certification."
+"Check this option if you want to upload your certifications to a certificate "
+"directory after successful certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:274
+#: src/dialogs/certifywidget.cpp:280
 #, kde-format
 msgid "Tags:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:278
+#: src/dialogs/certifywidget.cpp:284
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:279
+#: src/dialogs/certifywidget.cpp:285
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:294
+#: src/dialogs/certifywidget.cpp:300
 #, kde-format
 msgid "Expiration:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:301
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:302
+#: src/dialogs/certifywidget.cpp:308
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7114,17 +7121,17 @@ msgid ""
 "passed, your certification is no longer valid."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:317
+#: src/dialogs/certifywidget.cpp:323
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:318
+#: src/dialogs/certifywidget.cpp:324
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:319
+#: src/dialogs/certifywidget.cpp:325
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7132,12 +7139,12 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:336
 #, kde-format
 msgid "Domain:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:443
+#: src/dialogs/certifywidget.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -7146,33 +7153,33 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:481 src/dialogs/subkeyswidget.cpp:140
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "N'hellan ket krouiñ an testeni : %1"
 
-#: src/dialogs/certifywidget.cpp:491 src/dialogs/certifywidget.cpp:492
+#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "Lemel an testenioù"
 
-#: src/dialogs/certifywidget.cpp:494 src/dialogs/certifywidget.cpp:495
+#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "&Testenioù"
 
-#: src/dialogs/certifywidget.cpp:806
+#: src/dialogs/certifywidget.cpp:812
 #, kde-format
 msgid "Is this your own key?"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:821
+#: src/dialogs/certifywidget.cpp:827
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -7183,14 +7190,14 @@ msgstr ""
 "<qt><p>Degouezhet ez eus ar fazi en ur lemel an testenioù :</p><p><b>%1</b></"
 "p></qt>"
 
-#: src/dialogs/certifywidget.cpp:824
+#: src/dialogs/certifywidget.cpp:830
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Sac'het eo enkargañ an testeni"
 
-#: src/dialogs/certifywidget.cpp:831
+#: src/dialogs/certifywidget.cpp:837
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid "Owner trust set successfully."
@@ -7955,7 +7962,7 @@ msgstr "&Munudoù"
 #: src/dialogs/subkeyswidget.cpp:139
 #, kde-format
 msgctxt "@title:column"
-msgid "ID"
+msgid "Key ID"
 msgstr ""
 
 #: src/dialogs/subkeyswidget.cpp:141
@@ -12887,6 +12894,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Certificate Manager Error"
+#~ msgid "Publish on keyserver afterwards"
+#~ msgstr "Fazi merour an testnioù"
 
 #, fuzzy
 #~| msgid "Certificate Download Failed"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-19 00:39+0000\n"
+"POT-Creation-Date: 2024-05-22 00:39+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -6891,7 +6891,7 @@ msgid "Status:"
 msgstr "Stav"
 
 #: src/dialogs/certificatedetailswidget.cpp:208
-#: src/dialogs/certifywidget.cpp:192
+#: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Odtlačok:"
@@ -7217,7 +7217,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Certifikovať certifikát: %1"
 
-#: src/dialogs/certifywidget.cpp:175
+#: src/dialogs/certifywidget.cpp:176
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7225,19 +7225,19 @@ msgid ""
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:197
+#: src/dialogs/certifywidget.cpp:198
 #, fuzzy, kde-format
 #| msgid "Certify"
 msgid "Certify with:"
 msgstr "Certifikovať"
 
-#: src/dialogs/certifywidget.cpp:209
+#: src/dialogs/certifywidget.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:211
+#: src/dialogs/certifywidget.cpp:212
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7245,7 +7245,7 @@ msgid ""
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:226
+#: src/dialogs/certifywidget.cpp:227
 #, fuzzy, kde-format
 #| msgid ""
 #| "In order to mark the certificate as valid (green) it needs to be "
@@ -7255,37 +7255,37 @@ msgid "One or more certificates cannot be certified."
 msgstr ""
 "Na označenie certifikátu ako platného (zeleného) je potrebné ho certifikovať."
 
-#: src/dialogs/certifywidget.cpp:232 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgid "User IDs"
 msgstr "ID užívateľov"
 
-#: src/dialogs/certifywidget.cpp:239 src/dialogs/certifywidget.cpp:461
-#: src/dialogs/certifywidget.cpp:475
+#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
+#: src/dialogs/certifywidget.cpp:481
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "ID užívateľa"
 
-#: src/dialogs/certifywidget.cpp:243
+#: src/dialogs/certifywidget.cpp:244
 #, kde-format
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: src/dialogs/certifywidget.cpp:243
+#: src/dialogs/certifywidget.cpp:244
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgid "Show advanced options"
 msgstr "Zobraziť po&kročilé možnosti"
 
-#: src/dialogs/certifywidget.cpp:249
+#: src/dialogs/certifywidget.cpp:250
 #, fuzzy, kde-format
 #| msgid "Certify for everyone to see"
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certifikovať pre každého viditeľného"
 
-#: src/dialogs/certifywidget.cpp:251
+#: src/dialogs/certifywidget.cpp:252
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7294,49 +7294,56 @@ msgid ""
 "uncheck it."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:259
+#: src/dialogs/certifywidget.cpp:261
+#, kde-format
+msgctxt "@label:checkbox"
+msgid "Publish in internal directory"
+msgstr ""
+
+#: src/dialogs/certifywidget.cpp:263
 #, fuzzy, kde-format
 #| msgid "Publish on Server..."
-msgid "Publish on keyserver afterwards"
+msgctxt "@label:checkbox"
+msgid "Publish to %1"
 msgstr "Publikovať na serveri..."
 
-#: src/dialogs/certifywidget.cpp:261
+#: src/dialogs/certifywidget.cpp:266
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
-"Check this option, if you want to upload your certifications to a "
-"certificate directory after successful certification."
+"Check this option if you want to upload your certifications to a certificate "
+"directory after successful certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:274
+#: src/dialogs/certifywidget.cpp:280
 #, fuzzy, kde-format
 msgid "Tags:"
 msgstr "Značky:"
 
-#: src/dialogs/certifywidget.cpp:278
+#: src/dialogs/certifywidget.cpp:284
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:279
+#: src/dialogs/certifywidget.cpp:285
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:294
+#: src/dialogs/certifywidget.cpp:300
 #, fuzzy, kde-format
 #| msgid "Option:"
 msgid "Expiration:"
 msgstr "Platnosť do:"
 
-#: src/dialogs/certifywidget.cpp:301
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:302
+#: src/dialogs/certifywidget.cpp:308
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7344,17 +7351,17 @@ msgid ""
 "passed, your certification is no longer valid."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:317
+#: src/dialogs/certifywidget.cpp:323
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:318
+#: src/dialogs/certifywidget.cpp:324
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:319
+#: src/dialogs/certifywidget.cpp:325
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7362,12 +7369,12 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:336
 #, kde-format
 msgid "Domain:"
 msgstr "Doména:"
 
-#: src/dialogs/certifywidget.cpp:443
+#: src/dialogs/certifywidget.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -7376,21 +7383,21 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:140
+#: src/dialogs/certifywidget.cpp:481 src/dialogs/subkeyswidget.cpp:140
 #, fuzzy, kde-format
 #| msgid "Fingerprint:"
 msgctxt "@title:column"
 msgid "Fingerprint"
 msgstr "Odtlačok"
 
-#: src/dialogs/certifywidget.cpp:491 src/dialogs/certifywidget.cpp:492
+#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "Tento certifikát bol zakázaný miestne."
 
-#: src/dialogs/certifywidget.cpp:494 src/dialogs/certifywidget.cpp:495
+#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
 #, fuzzy, kde-format
 #| msgid ""
 #| "In order to mark the certificate as valid (green) it needs to be "
@@ -7400,12 +7407,12 @@ msgid "Expired or revoked certificates cannot be certified."
 msgstr ""
 "Na označenie certifikátu ako platného (zeleného) je potrebné ho certifikovať."
 
-#: src/dialogs/certifywidget.cpp:806
+#: src/dialogs/certifywidget.cpp:812
 #, kde-format
 msgid "Is this your own key?"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:821
+#: src/dialogs/certifywidget.cpp:827
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the certification trust for "
@@ -7416,14 +7423,14 @@ msgstr ""
 "<p>Nastala chyba pri pokuse o zmenu dôveryhodnosti certifikátu pre <b>%1</b>:"
 "</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:824
+#: src/dialogs/certifywidget.cpp:830
 #, fuzzy, kde-format
 #| msgid "Certification Trust Change Succeeded"
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Zmena dôveryhodnosti certifikátu úspešná"
 
-#: src/dialogs/certifywidget.cpp:831
+#: src/dialogs/certifywidget.cpp:837
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -8246,8 +8253,8 @@ msgstr "Podkľúče:"
 #: src/dialogs/subkeyswidget.cpp:139
 #, kde-format
 msgctxt "@title:column"
-msgid "ID"
-msgstr "ID"
+msgid "Key ID"
+msgstr ""
 
 #: src/dialogs/subkeyswidget.cpp:141
 #, kde-format
@@ -13255,6 +13262,15 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\"."
+
+#, fuzzy
+#~| msgid "Publish on Server..."
+#~ msgid "Publish on keyserver afterwards"
+#~ msgstr "Publikovať na serveri..."
+
+#~ msgctxt "@title:column"
+#~ msgid "ID"
+#~ msgstr "ID"
 
 #, fuzzy
 #~| msgid "Change Reset Code"

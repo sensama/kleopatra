@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-22 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -3474,7 +3474,9 @@ msgid "<unnamed>"
 msgstr "<名前なし>"
 
 #: src/conf/appearanceconfigwidget.cpp:300
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "This parameter has been locked down by the system administrator."
+msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "このパラメータはシステム管理者によってロックされています。"
 
@@ -3763,12 +3765,26 @@ msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "公開鍵暗号を禁止するのにはこのオプションを設定します。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgid "Use public-key encryption only."
+msgstr "対象暗号だけを使う。"
+
+#: src/conf/cryptooperationsconfigwidget.cpp:73
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Set this option to disable public key encryption."
+msgctxt "@info"
+msgid "Set this option to disable password-based encryption."
+msgstr "公開鍵暗号を禁止するのにはこのオプションを設定します。"
+
+#: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "チェックサムを作成する際に使うチェックサムプログラム:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:104
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "アーカイブファイルを作成する際に使うアーカイブコマンド"
@@ -5082,6 +5098,12 @@ msgid "Please enter a name or email address..."
 msgstr "名前かメールアドレスを入力してください..."
 
 #: src/crypto/gui/certificatelineedit.cpp:307
+#, fuzzy, kde-format
+#| msgid "Show certificate list"
+msgctxt "@info:tooltip"
+msgid "Show certificate list"
+msgstr "証明書リストを表示"
+
 #: src/crypto/gui/certificatelineedit.cpp:308
 #, kde-format
 msgid "Show certificate list"
@@ -5815,41 +5837,41 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "ここに crypto 操作のステータスと進捗が表示されます。"
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "真偽を証明 (署名)"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgid "Sign as:"
 msgstr "署名 (名義で):"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:202
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "暗号化"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:208
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "自分自身のために暗号化:"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:222
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "他の方のために暗号化:"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:257
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "パスワードで暗号化 (パスワードを共有したすべての人がデータを読み取れます)"
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:259
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5863,27 +5885,27 @@ msgstr ""
 "スワードを使うことは公開鍵暗号<b>よりセキュアでない</b>とされます。とても強い"
 "パスワードを選んだとしてもです。"
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "受信者の鍵"
 
-#: src/crypto/gui/signencryptwidget.cpp:595
+#: src/crypto/gui/signencryptwidget.cpp:597
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:598
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:602
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
@@ -5891,26 +5913,26 @@ msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:605
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "発行者証明書が見つかりません (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:609
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "発行者証明書が見つかりません (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:838
+#: src/crypto/gui/signencryptwidget.cpp:841
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "以下の受信者の鍵を見つけられませんでした:"
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:843
 #, fuzzy, kde-format
 #| msgid "Failed to find some keys"
 msgctxt "@title:window"
@@ -6010,12 +6032,16 @@ msgid "Search"
 msgstr "検索"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search on keyserver"
+msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "鍵サーバで検索"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "The data was encrypted to this key / certificate."
+msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr "データはこの鍵/証明書宛に暗号化されました。"
 
@@ -6502,7 +6528,7 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:172
-#: src/newcertificatewizard/enterdetailspage.cpp:311
+#: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6511,26 +6537,26 @@ msgstr "%1:"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(required)"
 msgstr "(必須)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(optional)"
 msgstr "(オプション)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:474
+#: src/newcertificatewizard/enterdetailspage.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "必須の<interface>%1</interface>がありません。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:477
+#: src/newcertificatewizard/enterdetailspage.cpp:478
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6541,14 +6567,14 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:485
+#: src/newcertificatewizard/enterdetailspage.cpp:486
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface>が不完全です。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:488
+#: src/newcertificatewizard/enterdetailspage.cpp:489
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6559,14 +6585,14 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:495
+#: src/newcertificatewizard/enterdetailspage.cpp:496
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface>が無効です。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:498
+#: src/newcertificatewizard/enterdetailspage.cpp:499
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6662,7 +6688,9 @@ msgid "Trusted introducer for:"
 msgstr "以下のための信頼できる紹介者:"
 
 #: src/dialogs/certificatedetailswidget.cpp:237
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "See certifications for details."
+msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "保証の詳細を表示する。"
 
@@ -7383,7 +7411,9 @@ msgid "Add Selected Keys"
 msgstr "選択された鍵を追加"
 
 #: src/dialogs/editgroupdialog.cpp:214
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Add the selected keys to the group"
+msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "選択された鍵をグループに追加"
 
@@ -7394,7 +7424,9 @@ msgid "Remove Selected Keys"
 msgstr "選択された鍵を削除"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Remove the selected keys from the group"
+msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "選択された鍵をグループから削除"
 
@@ -7497,7 +7529,9 @@ msgid "Backup encryption key"
 msgstr "暗号鍵のバックアップ"
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup the encryption key in a file."
+msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "ファイルに暗号鍵のバックアップをする。"
 
@@ -7644,7 +7678,6 @@ msgid "Protect the generated key with a passphrase."
 msgstr "作成された鍵をパスフレーズで保護する。"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -8311,12 +8344,18 @@ msgstr ""
 "らです。もしくは、必要な秘密鍵が欠落しています。"
 
 #: src/dialogs/weboftrustwidget.cpp:267
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation of self-certifications is currently not possible."
+msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "自己証明書の取消は今のところできません。"
 
-#: src/dialogs/weboftrustwidget.cpp:270
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:271
+#, fuzzy, kde-format
+#| msgid ""
+#| "You cannot revoke this revocation certification. (But you can re-certify "
+#| "the corresponding user ID.)"
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
@@ -8324,25 +8363,33 @@ msgstr ""
 "この取消保証を取り消すことは不可能です。(対応するユーザ ID を再度保証すること"
 "は可能です。)"
 
-#: src/dialogs/weboftrustwidget.cpp:273
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:274
+#, fuzzy, kde-format
+#| msgid "You cannot revoke this expired certification."
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "失効した保証を取り消すことは不可能です。"
 
-#: src/dialogs/weboftrustwidget.cpp:276
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:277
+#, fuzzy, kde-format
+#| msgid "You cannot revoke this invalid certification."
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "この無効な保証を取り消すことは不可能です。"
 
-#: src/dialogs/weboftrustwidget.cpp:279
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:280
+#, fuzzy, kde-format
+#| msgid ""
+#| "You cannot revoke this certification because the required secret key is "
+#| "not available."
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
 msgstr ""
 "この保証を取り消すことはできません。必要な秘密鍵が利用可能でないためです。"
 
-#: src/dialogs/weboftrustwidget.cpp:287
+#: src/dialogs/weboftrustwidget.cpp:288
 #, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
@@ -8351,7 +8398,7 @@ msgstr ""
 "このユーザ ID の保証を取り消すことはできません。詳細は保証を選択して確認して"
 "ください。"
 
-#: src/dialogs/weboftrustwidget.cpp:422
+#: src/dialogs/weboftrustwidget.cpp:423
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8360,7 +8407,7 @@ msgid ""
 msgstr ""
 "<para>保証の読み込み中にエラーが発生しました: <message>%1</message></para>"
 
-#: src/dialogs/weboftrustwidget.cpp:425
+#: src/dialogs/weboftrustwidget.cpp:426
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -8464,6 +8511,20 @@ msgstr "ユーザ一時ディレクトリの使用を避けるのにこのオプ
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
+msgstr "公開鍵暗号化を禁止するのにこのオプションを使います。"
+
+#. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:45
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgid "Use public key encryption only."
+msgstr "対象暗号だけを使う。"
+
+#. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:46
+#, fuzzy, kde-format
+#| msgid "Set this option to disable public key encryption."
+msgid "Set this option to disable password-based encryption."
 msgstr "公開鍵暗号化を禁止するのにこのオプションを使います。"
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
@@ -9868,17 +9929,30 @@ msgstr "実名:"
 msgid "EMail address:"
 msgstr "メールアドレス:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:179
+#: src/newcertificatewizard/enterdetailspage.cpp:144
+#, fuzzy, kde-format
+#| msgid ""
+#| "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#| "asked for the passphrase during key generation."
+msgctxt "@info:tooltip"
+msgid ""
+"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
+"for the passphrase during key generation."
+msgstr ""
+"当てられないにくいパスフレーズで秘密鍵を暗号化する。鍵の生成時にパスフレーズ"
+"を聞かれます。"
+
+#: src/newcertificatewizard/enterdetailspage.cpp:180
 #, kde-format
 msgid "Advanced Settings..."
 msgstr "高度な設定..."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:199
+#: src/newcertificatewizard/enterdetailspage.cpp:200
 #, kde-format
 msgid "Please enter your personal details below."
 msgstr "個人の詳細を以下で入力してください。"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:201
+#: src/newcertificatewizard/enterdetailspage.cpp:202
 #, kde-format
 msgid ""
 "Please enter your personal details below. If you want more control over the "
@@ -9887,7 +9961,7 @@ msgstr ""
 "以下に個人の詳細を入力してください。証明書のパラメータをより細かく指定する場"
 "合は「高度な設定」ボタンをクリックしてください。"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:221
+#: src/newcertificatewizard/enterdetailspage.cpp:222
 #, kde-format
 msgctxt "@action"
 msgid "Create"
@@ -9950,7 +10024,11 @@ msgid "Result"
 msgstr "結果"
 
 #: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Drag this icon to your mail application's composer to attach the request "
+#| "to a mail."
+msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
 "a mail."
@@ -12228,7 +12306,9 @@ msgid "Cardholder:"
 msgstr "カード所有者:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change"
+msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "変更"
 
@@ -12614,7 +12694,9 @@ msgid "Filter certificates by text"
 msgstr "証明書をテクストでフィルタ"
 
 #: src/view/searchbar.cpp:139
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show only certificates that match the entered search term."
+msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "入力された検索語にマッチする証明書だけを表示。"
 
@@ -12624,7 +12706,9 @@ msgid "Filter certificates by category"
 msgstr "証明書をカテゴリでフィルタ"
 
 #: src/view/searchbar.cpp:143
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show only certificates that belong to the selected category."
+msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "選択されたカテゴリに属する証明書のみ表示。"
 

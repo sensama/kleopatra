@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-22 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2020-04-01 23:02+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-doc@kde.org>\n"
@@ -3501,6 +3501,7 @@ msgstr ""
 
 #: src/conf/appearanceconfigwidget.cpp:300
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr ""
 
@@ -3781,12 +3782,24 @@ msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Save backup of encryption key"
+msgid "Use public-key encryption only."
+msgstr "Įrašyti atsarginę šifravimo rakto kopiją"
+
+#: src/conf/cryptooperationsconfigwidget.cpp:73
+#, kde-format
+msgctxt "@info"
+msgid "Set this option to disable password-based encryption."
+msgstr ""
+
+#: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:104
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr ""
@@ -5128,6 +5141,11 @@ msgid "Please enter a name or email address..."
 msgstr "Įveskite vardą ar el. pašto adresą..."
 
 #: src/crypto/gui/certificatelineedit.cpp:307
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
+msgid "Show certificate list"
+msgstr "Liudijimo informacija"
+
 #: src/crypto/gui/certificatelineedit.cpp:308
 #, fuzzy, kde-format
 msgid "Show certificate list"
@@ -5860,42 +5878,42 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Čia yra rodomi kriptografinių operacijų būsena ir eiga."
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, fuzzy, kde-format
 #| msgid "Authentication:"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Tapatybės nustatymas:"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgid "Sign as:"
 msgstr "Pasirašyti kaip:"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:202
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Šifruoti"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:208
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Šifruoti sau:"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:222
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Šifruoti kitiems:"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:257
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:259
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5905,27 +5923,27 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Gavėjas"
 
-#: src/crypto/gui/signencryptwidget.cpp:595
+#: src/crypto/gui/signencryptwidget.cpp:597
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Pasirašymo liudijimas nebegalioja"
 
-#: src/crypto/gui/signencryptwidget.cpp:598
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Liudijimo informacija"
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:602
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5935,26 +5953,26 @@ msgstr[1] "Liudijimo informacija"
 msgstr[2] "Liudijimo informacija"
 msgstr[3] "Liudijimo informacija"
 
-#: src/crypto/gui/signencryptwidget.cpp:605
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Liudijimo informacija"
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:609
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Liudijimo informacija"
 
-#: src/crypto/gui/signencryptwidget.cpp:838
+#: src/crypto/gui/signencryptwidget.cpp:841
 #, fuzzy, kde-format
 #| msgctxt "%1 is user input that could not be found"
 #| msgid "Could not find a key for '%1'"
 msgid "Could not find a key for the following recipients:"
 msgstr "Nepavyko rasti rakto, skirto \"%1\"."
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:843
 #, fuzzy, kde-format
 #| msgid "Failed to find recipient"
 msgctxt "@title:window"
@@ -6054,12 +6072,15 @@ msgid "Search"
 msgstr "Ieškoti"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search on keyserver"
+msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "Ieškoti raktų serveryje"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr ""
 
@@ -6542,7 +6563,7 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:172
-#: src/newcertificatewizard/enterdetailspage.cpp:311
+#: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6551,26 +6572,26 @@ msgstr "%1:"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(required)"
 msgstr "(būtina)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(optional)"
 msgstr "(nebūtina)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:474
+#: src/newcertificatewizard/enterdetailspage.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> yra būtina, bet tuščia."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:477
+#: src/newcertificatewizard/enterdetailspage.cpp:478
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6581,14 +6602,14 @@ msgstr ""
 "administratoriaus taisyklė: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:485
+#: src/newcertificatewizard/enterdetailspage.cpp:486
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> yra nepilna."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:488
+#: src/newcertificatewizard/enterdetailspage.cpp:489
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6599,14 +6620,14 @@ msgstr ""
 "taisyklė: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:495
+#: src/newcertificatewizard/enterdetailspage.cpp:496
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:498
+#: src/newcertificatewizard/enterdetailspage.cpp:499
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6706,6 +6727,7 @@ msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:237
 #, fuzzy, kde-format
+msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Liudijimo informacija"
 
@@ -7397,6 +7419,7 @@ msgstr "Pasirinkti failą"
 
 #: src/dialogs/editgroupdialog.cpp:214
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr ""
 
@@ -7408,9 +7431,11 @@ msgid "Remove Selected Keys"
 msgstr "Pasirinkti failą"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select File"
+msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
-msgstr ""
+msgstr "Pasirinkti failą"
 
 #: src/dialogs/editgroupdialog.cpp:229
 #, fuzzy, kde-format
@@ -7518,7 +7543,9 @@ msgid "Backup encryption key"
 msgstr "Padaryti atsarginę šifravimo rakto kopiją"
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup the encryption key in a file."
+msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "Padaryti atsarginę šifravimo rakto kopiją į failą."
 
@@ -7663,7 +7690,6 @@ msgid "Protect the generated key with a passphrase."
 msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -8393,41 +8419,46 @@ msgstr ""
 #: src/dialogs/weboftrustwidget.cpp:267
 #, fuzzy, kde-format
 #| msgid "Revocation certificate created"
+msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Panaikinimo liudijimas sukurtas"
 
-#: src/dialogs/weboftrustwidget.cpp:270
+#: src/dialogs/weboftrustwidget.cpp:271
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:273
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:274
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
-msgstr ""
+msgstr "Liudijimo informacija"
 
-#: src/dialogs/weboftrustwidget.cpp:276
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:277
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
-msgstr ""
+msgstr "Liudijimo informacija"
 
-#: src/dialogs/weboftrustwidget.cpp:279
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:280
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
-msgstr ""
+msgstr "Liudijimo informacija"
 
-#: src/dialogs/weboftrustwidget.cpp:287
+#: src/dialogs/weboftrustwidget.cpp:288
 #, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
 "the certifications for details."
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:422
+#: src/dialogs/weboftrustwidget.cpp:423
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8435,7 +8466,7 @@ msgid ""
 "message></para>"
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:425
+#: src/dialogs/weboftrustwidget.cpp:426
 #, fuzzy, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -8526,6 +8557,19 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
+msgstr ""
+
+#. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:45
+#, fuzzy, kde-format
+#| msgid "Save backup of encryption key"
+msgid "Use public key encryption only."
+msgstr "Įrašyti atsarginę šifravimo rakto kopiją"
+
+#. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:46
+#, kde-format
+msgid "Set this option to disable password-based encryption."
 msgstr ""
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
@@ -9835,25 +9879,33 @@ msgstr "Tikrasis vardas:"
 msgid "EMail address:"
 msgstr "El. pašto adresas:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:179
+#: src/newcertificatewizard/enterdetailspage.cpp:144
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
+"for the passphrase during key generation."
+msgstr ""
+
+#: src/newcertificatewizard/enterdetailspage.cpp:180
 #, kde-format
 msgid "Advanced Settings..."
 msgstr ""
 
-#: src/newcertificatewizard/enterdetailspage.cpp:199
+#: src/newcertificatewizard/enterdetailspage.cpp:200
 #, fuzzy, kde-format
 #| msgid "Please enter a name or email address..."
 msgid "Please enter your personal details below."
 msgstr "Įveskite vardą ar el. pašto adresą..."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:201
+#: src/newcertificatewizard/enterdetailspage.cpp:202
 #, kde-format
 msgid ""
 "Please enter your personal details below. If you want more control over the "
 "parameters, click on the Advanced Settings button."
 msgstr ""
 
-#: src/newcertificatewizard/enterdetailspage.cpp:221
+#: src/newcertificatewizard/enterdetailspage.cpp:222
 #, kde-format
 msgctxt "@action"
 msgid "Create"
@@ -9923,6 +9975,7 @@ msgstr ""
 
 #: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
 "a mail."
@@ -12135,7 +12188,9 @@ msgid "Cardholder:"
 msgstr "Kortelės turėtojas:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change"
+msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Keisti"
 
@@ -12539,6 +12594,7 @@ msgstr ""
 
 #: src/view/searchbar.cpp:139
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr ""
 
@@ -12553,6 +12609,7 @@ msgstr ""
 
 #: src/view/searchbar.cpp:143
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr ""
 

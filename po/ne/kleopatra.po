@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-22 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2007-09-09 17:32+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -3604,6 +3604,7 @@ msgstr "<unnamed>"
 
 #: src/conf/appearanceconfigwidget.cpp:300
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr ""
 
@@ -3891,12 +3892,24 @@ msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Can be used for encryption"
+msgid "Use public-key encryption only."
+msgstr "गुप्तिकरणका लागि प्रयोग गर्न सकिन्छ"
+
+#: src/conf/cryptooperationsconfigwidget.cpp:73
+#, kde-format
+msgctxt "@info"
+msgid "Set this option to disable password-based encryption."
+msgstr ""
+
+#: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:104
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr ""
@@ -5183,6 +5196,12 @@ msgid "Please enter a name or email address..."
 msgstr ""
 
 #: src/crypto/gui/certificatelineedit.cpp:307
+#, fuzzy, kde-format
+#| msgid "Certificate Deletion Failed"
+msgctxt "@info:tooltip"
+msgid "Show certificate list"
+msgstr "प्रमाणपत्र मेट्न असफल भयो"
+
 #: src/crypto/gui/certificatelineedit.cpp:308
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
@@ -5936,45 +5955,45 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, fuzzy, kde-format
 #| msgid "Information"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "सूचना"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, fuzzy, kde-format
 #| msgid "For &signing only"
 msgid "Sign as:"
 msgstr "साइनिङका लागि मात्र"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:202
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "गुप्तिकरणका लागि मात्र"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:208
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for me:"
 msgstr "प्रमाणपत्र मेट्न असफल भयो"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:222
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for others:"
 msgstr "प्रमाणपत्र मेट्न असफल भयो"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:257
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:259
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5984,28 +6003,28 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "वर्णन"
 
-#: src/crypto/gui/signencryptwidget.cpp:595
+#: src/crypto/gui/signencryptwidget.cpp:597
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/crypto/gui/signencryptwidget.cpp:598
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:602
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@info"
@@ -6014,27 +6033,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
 msgstr[1] "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
 
-#: src/crypto/gui/signencryptwidget.cpp:605
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, fuzzy, kde-format
 #| msgid "Issuer certificate not found ( %1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "वितरक प्रमाणपत्र फेला परेन ( %1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:609
 #, fuzzy, kde-format
 #| msgid "Issuer certificate not found ( %1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "वितरक प्रमाणपत्र फेला परेन ( %1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:838
+#: src/crypto/gui/signencryptwidget.cpp:841
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:843
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -6150,11 +6169,13 @@ msgstr "खोजी गर्नुहोस्:"
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
 #, fuzzy, kde-format
 #| msgid "Search for external certificates initially"
+msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "सुरुआतमा बाह्य प्रमाणपत्रको खोजी गर्नुहोस्"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr ""
 
@@ -6640,7 +6661,7 @@ msgstr "%1 (%2):"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:172
-#: src/newcertificatewizard/enterdetailspage.cpp:311
+#: src/newcertificatewizard/enterdetailspage.cpp:312
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2):"
@@ -6651,27 +6672,27 @@ msgstr "%1 (%2):"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(required)"
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, fuzzy, kde-format
 #| msgid "Stop Operation"
 msgid "(optional)"
 msgstr "सञ्चालन रोक्नुहोस्"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:474
+#: src/newcertificatewizard/enterdetailspage.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:477
+#: src/newcertificatewizard/enterdetailspage.cpp:478
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6680,14 +6701,14 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:485
+#: src/newcertificatewizard/enterdetailspage.cpp:486
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:488
+#: src/newcertificatewizard/enterdetailspage.cpp:489
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6696,14 +6717,14 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:495
+#: src/newcertificatewizard/enterdetailspage.cpp:496
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:498
+#: src/newcertificatewizard/enterdetailspage.cpp:499
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6807,6 +6828,7 @@ msgstr ""
 #: src/dialogs/certificatedetailswidget.cpp:237
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
+msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "प्रमाणपत्रको विस्तृत विवरण..."
 
@@ -7498,6 +7520,7 @@ msgstr "CRL फाइल चयन गर्नुहोस्"
 
 #: src/dialogs/editgroupdialog.cpp:214
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr ""
 
@@ -7509,9 +7532,11 @@ msgid "Remove Selected Keys"
 msgstr "CRL फाइल चयन गर्नुहोस्"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select CRL File"
+msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
-msgstr ""
+msgstr "CRL फाइल चयन गर्नुहोस्"
 
 #: src/dialogs/editgroupdialog.cpp:229
 #, fuzzy, kde-format
@@ -7633,6 +7658,7 @@ msgstr ""
 #: src/dialogs/gencardkeydialog.cpp:83
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
+msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "CRL फाइल चयन गर्नुहोस्"
 
@@ -7779,7 +7805,6 @@ msgid "Protect the generated key with a passphrase."
 msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -8469,34 +8494,43 @@ msgstr ""
 #: src/dialogs/weboftrustwidget.cpp:267
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
+msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "प्रमाणपत्र निर्यात गर्दैछ..."
 
-#: src/dialogs/weboftrustwidget.cpp:270
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:271
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
-msgstr ""
+msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/dialogs/weboftrustwidget.cpp:273
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:274
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
-msgstr ""
+msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/dialogs/weboftrustwidget.cpp:276
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:277
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
-msgstr ""
+msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/dialogs/weboftrustwidget.cpp:279
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:280
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
-msgstr ""
+msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/dialogs/weboftrustwidget.cpp:287
+#: src/dialogs/weboftrustwidget.cpp:288
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgid ""
@@ -8504,7 +8538,7 @@ msgid ""
 "the certifications for details."
 msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/dialogs/weboftrustwidget.cpp:422
+#: src/dialogs/weboftrustwidget.cpp:423
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -8516,7 +8550,7 @@ msgid ""
 msgstr ""
 "<qt><p>प्रमाणपत्र मेट्ने प्रयास गर्दा एउटा त्रुटि उत्पन्न भयो:</p><p><b>%1</b></p></qt>"
 
-#: src/dialogs/weboftrustwidget.cpp:425
+#: src/dialogs/weboftrustwidget.cpp:426
 #, fuzzy, kde-format
 #| msgid "Certificate Listing Failed"
 msgctxt "@title"
@@ -8608,6 +8642,19 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
+msgstr ""
+
+#. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:45
+#, fuzzy, kde-format
+#| msgid "Can be used for encryption"
+msgid "Use public key encryption only."
+msgstr "गुप्तिकरणका लागि प्रयोग गर्न सकिन्छ"
+
+#. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:46
+#, kde-format
+msgid "Set this option to disable password-based encryption."
 msgstr ""
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
@@ -9960,24 +10007,32 @@ msgstr "क्रम सङ्ख्या"
 msgid "EMail address:"
 msgstr ""
 
-#: src/newcertificatewizard/enterdetailspage.cpp:179
+#: src/newcertificatewizard/enterdetailspage.cpp:144
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
+"for the passphrase during key generation."
+msgstr ""
+
+#: src/newcertificatewizard/enterdetailspage.cpp:180
 #, kde-format
 msgid "Advanced Settings..."
 msgstr ""
 
-#: src/newcertificatewizard/enterdetailspage.cpp:199
+#: src/newcertificatewizard/enterdetailspage.cpp:200
 #, kde-format
 msgid "Please enter your personal details below."
 msgstr ""
 
-#: src/newcertificatewizard/enterdetailspage.cpp:201
+#: src/newcertificatewizard/enterdetailspage.cpp:202
 #, kde-format
 msgid ""
 "Please enter your personal details below. If you want more control over the "
 "parameters, click on the Advanced Settings button."
 msgstr ""
 
-#: src/newcertificatewizard/enterdetailspage.cpp:221
+#: src/newcertificatewizard/enterdetailspage.cpp:222
 #, kde-format
 msgctxt "@action"
 msgid "Create"
@@ -10046,6 +10101,7 @@ msgstr ""
 
 #: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
 "a mail."
@@ -12332,6 +12388,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
+msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "अपरिवर्तित:"
 
@@ -12737,9 +12794,11 @@ msgid "Filter certificates by text"
 msgstr "प्रमाणपत्र"
 
 #: src/view/searchbar.cpp:139
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
-msgstr ""
+msgstr "CA प्रमाणपत्र मेट्दैछ"
 
 #: src/view/searchbar.cpp:142
 #, fuzzy, kde-format
@@ -12750,6 +12809,7 @@ msgstr "प्रमाणपत्र"
 #: src/view/searchbar.cpp:143
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
+msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "CA प्रमाणपत्र मेट्दैछ"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-22 00:39+0000\n"
-"PO-Revision-Date: 2024-05-20 12:37+0200\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"PO-Revision-Date: 2024-05-22 17:43+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 21.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3135,6 +3135,7 @@ msgstr ""
 
 #: src/conf/appearanceconfigwidget.cpp:300
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr ""
 
@@ -3399,12 +3400,24 @@ msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Save backup of encryption key"
+msgid "Use public-key encryption only."
+msgstr "Salveguarda copia de securitate de clave de cryptation"
+
+#: src/conf/cryptooperationsconfigwidget.cpp:73
+#, kde-format
+msgctxt "@info"
+msgid "Set this option to disable password-based encryption."
+msgstr ""
+
+#: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:104
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr ""
@@ -4640,6 +4653,12 @@ msgid "Please enter a name or email address..."
 msgstr ""
 
 #: src/crypto/gui/certificatelineedit.cpp:307
+#, fuzzy, kde-format
+#| msgid "Show certificate list"
+msgctxt "@info:tooltip"
+msgid "Show certificate list"
+msgstr "Monstra lista de certificato"
+
 #: src/crypto/gui/certificatelineedit.cpp:308
 #, kde-format
 msgid "Show certificate list"
@@ -5331,40 +5350,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Prova Authenticitate (signa) :"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgid "Sign as:"
 msgstr "Signa como:"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:202
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Crypta"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:208
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Crypta  per me:"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:222
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Crypta per alteres:"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:257
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:259
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5374,25 +5393,25 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "clave de destinatario"
 
-#: src/crypto/gui/signencryptwidget.cpp:595
+#: src/crypto/gui/signencryptwidget.cpp:597
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Iste certificato es expirate."
 
-#: src/crypto/gui/signencryptwidget.cpp:598
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Iste certificato expira hodie."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:602
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5400,24 +5419,24 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Iste certificato expira deman."
 msgstr[1] "Iste certificato expira in %1 dies."
 
-#: src/crypto/gui/signencryptwidget.cpp:605
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Iste certificato non pote esser usate per cryptar."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:609
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Iste certificato non pote esser usate per signar."
 
-#: src/crypto/gui/signencryptwidget.cpp:838
+#: src/crypto/gui/signencryptwidget.cpp:841
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Il non pote trovar un clave per le sequentes destinatarios:"
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:843
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
@@ -5516,12 +5535,16 @@ msgid "Search"
 msgstr "Cerca"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Search group keys"
+msgctxt "@info:tooltip"
 msgid "Search on keyserver"
-msgstr ""
+msgstr "Cerca Claves de gruppo"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr ""
 
@@ -5990,7 +6013,7 @@ msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:172
-#: src/newcertificatewizard/enterdetailspage.cpp:311
+#: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -5999,26 +6022,26 @@ msgstr ""
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(required)"
 msgstr "(requirite )"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(optional)"
 msgstr "(optional)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:474
+#: src/newcertificatewizard/enterdetailspage.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:477
+#: src/newcertificatewizard/enterdetailspage.cpp:478
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6027,14 +6050,14 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:485
+#: src/newcertificatewizard/enterdetailspage.cpp:486
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:488
+#: src/newcertificatewizard/enterdetailspage.cpp:489
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6043,14 +6066,14 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:495
+#: src/newcertificatewizard/enterdetailspage.cpp:496
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:498
+#: src/newcertificatewizard/enterdetailspage.cpp:499
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6141,7 +6164,9 @@ msgid "Trusted introducer for:"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:237
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "See certifications for details."
+msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Vide certificationes per detalios."
 
@@ -6459,13 +6484,10 @@ msgid "Publish in internal directory"
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:263
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Publish Revocation"
-#| msgid_plural "Publish Revocations"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
-msgstr "Publica Revocation"
+msgstr "Publica a %1"
 
 #: src/dialogs/certifywidget.cpp:266
 #, kde-kuit-format
@@ -6783,6 +6805,7 @@ msgstr "Adde Claves  Selectionate"
 
 #: src/dialogs/editgroupdialog.cpp:214
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr ""
 
@@ -6793,9 +6816,12 @@ msgid "Remove Selected Keys"
 msgstr "Remove Claves selectionate"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Remove Selected Keys"
+msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
-msgstr ""
+msgstr "Remove Claves selectionate"
 
 #: src/dialogs/editgroupdialog.cpp:229
 #, kde-format
@@ -6896,7 +6922,9 @@ msgid "Backup encryption key"
 msgstr ""
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup the encryption key in a file."
+msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "Retrocopia le clave de cryptation in un file."
 
@@ -7033,7 +7061,6 @@ msgid "Protect the generated key with a passphrase."
 msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -7665,35 +7692,46 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/weboftrustwidget.cpp:267
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation of self-certifications is currently not possible."
+msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Revocation de auto-certificationes non es currentemente possibile."
 
-#: src/dialogs/weboftrustwidget.cpp:270
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:271
+#, fuzzy, kde-format
+#| msgid "You cannot revoke any certifications of this user ID."
+#| msgid_plural "You cannot revoke any certifications of these user IDs."
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
-msgstr ""
+msgstr "Tu non pote revocar ulle certificationes de iste ID de usator."
 
-#: src/dialogs/weboftrustwidget.cpp:273
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:274
+#, fuzzy, kde-format
+#| msgid "You cannot revoke this certification."
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
-msgstr ""
+msgstr "Tu non pote revocar iste certification."
 
-#: src/dialogs/weboftrustwidget.cpp:276
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:277
+#, fuzzy, kde-format
+#| msgid "You cannot revoke this certification."
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
-msgstr ""
+msgstr "Tu non pote revocar iste certification."
 
-#: src/dialogs/weboftrustwidget.cpp:279
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:280
+#, fuzzy, kde-format
+#| msgid "You cannot revoke any certifications of this key."
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
-msgstr ""
+msgstr "Tu non pote revocar ulle certificationes de iste clave."
 
-#: src/dialogs/weboftrustwidget.cpp:287
+#: src/dialogs/weboftrustwidget.cpp:288
 #, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
@@ -7702,7 +7740,7 @@ msgstr ""
 "Tu non pote revocar ulle certificationes de iste ID de usator. Selige ulle "
 "certificationes per detalios."
 
-#: src/dialogs/weboftrustwidget.cpp:422
+#: src/dialogs/weboftrustwidget.cpp:423
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7710,7 +7748,7 @@ msgid ""
 "message></para>"
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:425
+#: src/dialogs/weboftrustwidget.cpp:426
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -7800,6 +7838,19 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
+msgstr ""
+
+#. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:45
+#, fuzzy, kde-format
+#| msgid "Save backup of encryption key"
+msgid "Use public key encryption only."
+msgstr "Salveguarda copia de securitate de clave de cryptation"
+
+#. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:46
+#, kde-format
+msgid "Set this option to disable password-based encryption."
 msgstr ""
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
@@ -9070,24 +9121,32 @@ msgstr "Nomine real:"
 msgid "EMail address:"
 msgstr "Adresse de E-Posta:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:179
+#: src/newcertificatewizard/enterdetailspage.cpp:144
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
+"for the passphrase during key generation."
+msgstr ""
+
+#: src/newcertificatewizard/enterdetailspage.cpp:180
 #, kde-format
 msgid "Advanced Settings..."
 msgstr "Preferentias Avantiate..."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:199
+#: src/newcertificatewizard/enterdetailspage.cpp:200
 #, kde-format
 msgid "Please enter your personal details below."
 msgstr ""
 
-#: src/newcertificatewizard/enterdetailspage.cpp:201
+#: src/newcertificatewizard/enterdetailspage.cpp:202
 #, kde-format
 msgid ""
 "Please enter your personal details below. If you want more control over the "
 "parameters, click on the Advanced Settings button."
 msgstr ""
 
-#: src/newcertificatewizard/enterdetailspage.cpp:221
+#: src/newcertificatewizard/enterdetailspage.cpp:222
 #, kde-format
 msgctxt "@action"
 msgid "Create"
@@ -9151,6 +9210,7 @@ msgstr "Resultato"
 
 #: src/newcertificatewizard/resultpage.cpp:85
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
 "a mail."
@@ -11283,7 +11343,9 @@ msgid "Cardholder:"
 msgstr "Proprietario de carta:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change"
+msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Modifica"
 
@@ -11656,9 +11718,11 @@ msgid "Filter certificates by text"
 msgstr "Filtra certificatos per texto"
 
 #: src/view/searchbar.cpp:139
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show only certificates that belong to the selected category."
+msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
-msgstr ""
+msgstr "Monstra solmente certificatos que pertine al categoria seligite"
 
 #: src/view/searchbar.cpp:142
 #, kde-format
@@ -11666,7 +11730,9 @@ msgid "Filter certificates by category"
 msgstr "Filtra  certificato per categoria"
 
 #: src/view/searchbar.cpp:143
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show only certificates that belong to the selected category."
+msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Monstra solmente certificatos que pertine al categoria seligite"
 

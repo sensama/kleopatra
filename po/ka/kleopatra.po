@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-22 00:39+0000\n"
-"PO-Revision-Date: 2024-05-19 05:35+0200\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"PO-Revision-Date: 2024-05-22 04:38+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -3393,7 +3393,9 @@ msgid "<unnamed>"
 msgstr "<უსახელო>"
 
 #: src/conf/appearanceconfigwidget.cpp:300
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "This parameter has been locked down by the system administrator."
+msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "ეს პარამეტრი დაბლოკილია თქვენი სისტემური ადმინისტრატორის მიერ."
 
@@ -3671,12 +3673,26 @@ msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "დააყენეთ ეს პარამეტრი, რათა საჯარო გასაღების დაშიფვრა გამორთოთ."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgid "Use public-key encryption only."
+msgstr "მხოლოდ სიმეტრიული დაშიფვრის გამოყენება."
+
+#: src/conf/cryptooperationsconfigwidget.cpp:73
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Set this option to disable public key encryption."
+msgctxt "@info"
+msgid "Set this option to disable password-based encryption."
+msgstr "დააყენეთ ეს პარამეტრი, რათა საჯარო გასაღების დაშიფვრა გამორთოთ."
+
+#: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "საკონტროლო ჯამების გამოთვლისას გამოყენებული პროგრამა:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:104
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "არქივის ბრძანება ფაილების დასაარქივებლად:"
@@ -4994,6 +5010,12 @@ msgid "Please enter a name or email address..."
 msgstr "შეიყვანეთ სახელი ან ელფოსტის მისამართი..."
 
 #: src/crypto/gui/certificatelineedit.cpp:307
+#, fuzzy, kde-format
+#| msgid "Show certificate list"
+msgctxt "@info:tooltip"
+msgid "Show certificate list"
+msgstr "სერტიფიკატების სიის ჩვენება"
+
 #: src/crypto/gui/certificatelineedit.cpp:308
 #, kde-format
 msgid "Show certificate list"
@@ -5723,41 +5745,41 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "კრიპტოგრაფიული ოპერაციების სტატუსი და მიმდინარეობა აქ გამოჩნდება."
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "სინამდვილის დამტკიცება (ხელმოწერა)"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgid "Sign as:"
 msgstr "ხელმოწერა, როგორც:"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:202
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "დაშიფრვა"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:208
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "ჩემთვის დაშიფვრა:"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:222
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "სხვებისთვის დაშიფვრა:"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:257
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "პაროლით დაშიფვრა. ყველას, ვისაც პაროლი აქვს, შეუძლია წაიკითხოს მონაცემები."
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:259
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5771,25 +5793,25 @@ msgstr ""
 "წაიკითხოს ის. პაროლის გამოყენება, საჯარო გასაღების გამოყენებაზე <b>ნაკლებად "
 "დაცულია</b>."
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "მიმღების გასაღბი"
 
-#: src/crypto/gui/signencryptwidget.cpp:595
+#: src/crypto/gui/signencryptwidget.cpp:597
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "სერტიფიკატი ვადაგასულია."
 
-#: src/crypto/gui/signencryptwidget.cpp:598
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "სერტიფიკატს ვადა დღეს გასდის."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:602
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5797,24 +5819,24 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "სერტიფიკატს ვადა ხვალ გასდის."
 msgstr[1] "სერტიფიკატს ვადა %1 დღეში გასდის."
 
-#: src/crypto/gui/signencryptwidget.cpp:605
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "ამ სერტიფიკატის დაშიფვრისთვის გამოყენება შეუძლებელია."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:609
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "ამ სერტიფიკატის ხელმოსაწერად გამოყენება შეუძლებელია."
 
-#: src/crypto/gui/signencryptwidget.cpp:838
+#: src/crypto/gui/signencryptwidget.cpp:841
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "გასაღები აღმოჩენილი არაა შემდეგი მიმღებებისთვის:"
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:843
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
@@ -5913,12 +5935,16 @@ msgid "Search"
 msgstr "ძებნა\\"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search on keyserver"
+msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "გასაღებების სერვერზე მოძებნა"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "The data was encrypted to this key / certificate."
+msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr "მონაცემები ამ გასაღები/სერტიფიკატითაა დაშიფრული."
 
@@ -6387,7 +6413,7 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:172
-#: src/newcertificatewizard/enterdetailspage.cpp:311
+#: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6396,26 +6422,26 @@ msgstr "%1:"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(required)"
 msgstr "(სავალდებულო)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(optional)"
 msgstr "(არასავალდებულო)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:474
+#: src/newcertificatewizard/enterdetailspage.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> აუცილებელი, მაგრამ ცარიელია."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:477
+#: src/newcertificatewizard/enterdetailspage.cpp:478
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6426,14 +6452,14 @@ msgstr ""
 "წესი: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:485
+#: src/newcertificatewizard/enterdetailspage.cpp:486
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> დაუსრულებელია."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:488
+#: src/newcertificatewizard/enterdetailspage.cpp:489
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6444,14 +6470,14 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:495
+#: src/newcertificatewizard/enterdetailspage.cpp:496
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> არასწორია."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:498
+#: src/newcertificatewizard/enterdetailspage.cpp:499
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6544,7 +6570,9 @@ msgid "Trusted introducer for:"
 msgstr "სანდო წარმომდგენი ვისთვის:"
 
 #: src/dialogs/certificatedetailswidget.cpp:237
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "See certifications for details."
+msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "დეტალებისთვის იხილეთ სერტიფიკაციები."
 
@@ -6868,23 +6896,16 @@ msgstr ""
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish in internal directory"
-msgstr ""
+msgstr "გამოქვეყნება შიდა კატალოგში"
 
 #: src/dialogs/certifywidget.cpp:263
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Publish Revocation"
-#| msgid_plural "Publish Revocations"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
-msgstr "გაუქმების გამოქვეყნება"
+msgstr "გამოქვეყნება %1-ზე"
 
 #: src/dialogs/certifywidget.cpp:266
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this option, if you want to upload your certifications to a "
-#| "certificate directory after successful certification."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this option if you want to upload your certifications to a certificate "
@@ -7249,7 +7270,9 @@ msgid "Add Selected Keys"
 msgstr "მონიშნული გასაღებების დამატება"
 
 #: src/dialogs/editgroupdialog.cpp:214
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Add the selected keys to the group"
+msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "მონიშნული გასაღებების ჯგუფში დამატება"
 
@@ -7260,7 +7283,9 @@ msgid "Remove Selected Keys"
 msgstr "მონიშნული გასაღებების წაშლა"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Remove the selected keys from the group"
+msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "მონიშნული გასაღებების წაშლა ჯგუფიდან"
 
@@ -7363,7 +7388,9 @@ msgid "Backup encryption key"
 msgstr "დაშიფვრის გასაღების მარქაფი"
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup the encryption key in a file."
+msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "დაშიფვრის გასაღების მარქაფი ფაილში."
 
@@ -7505,7 +7532,6 @@ msgid "Protect the generated key with a passphrase."
 msgstr "გენერირებული გასაღების დაცვა საკვანძო ფრაზით."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -7775,7 +7801,7 @@ msgstr "ქვეგასაღებები"
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
-msgstr ""
+msgstr "გასაღების ID"
 
 #: src/dialogs/subkeyswidget.cpp:141
 #, kde-format
@@ -8164,12 +8190,18 @@ msgstr ""
 "შექმნილა (ან საჭირო საიდუმლო გასაღები ვერ ვიპოვე)."
 
 #: src/dialogs/weboftrustwidget.cpp:267
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation of self-certifications is currently not possible."
+msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "თვით-სერტიფიცირებების გაუქმება ამჟამად შეუძლებელია."
 
-#: src/dialogs/weboftrustwidget.cpp:270
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:271
+#, fuzzy, kde-format
+#| msgid ""
+#| "You cannot revoke this revocation certification. (But you can re-certify "
+#| "the corresponding user ID.)"
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
@@ -8177,18 +8209,26 @@ msgstr ""
 "გაუქმების სერტიფიკატს ვერ გააუქმებთ. (მაგრამ, შეგიძლიათ შესაბამისი "
 "მომხმარებლის ID-ის თავიდან სერტიფიკატია)"
 
-#: src/dialogs/weboftrustwidget.cpp:273
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:274
+#, fuzzy, kde-format
+#| msgid "You cannot revoke this expired certification."
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "ამ ვადაგასული სერტიფიკაციის გაუქმება არ შეგიძლიათ."
 
-#: src/dialogs/weboftrustwidget.cpp:276
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:277
+#, fuzzy, kde-format
+#| msgid "You cannot revoke this invalid certification."
+msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "ამ არასწორი სერტიფიკაციის გაუქმება არ შეგიძლიათ."
 
-#: src/dialogs/weboftrustwidget.cpp:279
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:280
+#, fuzzy, kde-format
+#| msgid ""
+#| "You cannot revoke this certification because the required secret key is "
+#| "not available."
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
@@ -8196,7 +8236,7 @@ msgstr ""
 "ამ სერტიფიკაციის გაუქმება არ შეგიძლიათ, რადგან აუცილებელი საიდუმლო გასაღები "
 "ხელმისაწვდომი არაა."
 
-#: src/dialogs/weboftrustwidget.cpp:287
+#: src/dialogs/weboftrustwidget.cpp:288
 #, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
@@ -8205,7 +8245,7 @@ msgstr ""
 "ამ მომხმარებლის ID-სთვის სერტიფიკაციას ვერ გააუქმებთ. დეტალებისთვის მონიშნეთ "
 "სერტიფიკაცია."
 
-#: src/dialogs/weboftrustwidget.cpp:422
+#: src/dialogs/weboftrustwidget.cpp:423
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8215,7 +8255,7 @@ msgstr ""
 "<para>შეცდომა სერტიფიკაციების ჩატვირთვისას:</para><para><message>%1</"
 "message></para>"
 
-#: src/dialogs/weboftrustwidget.cpp:425
+#: src/dialogs/weboftrustwidget.cpp:426
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -8323,6 +8363,20 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
+msgstr "დააყენეთ ეს პარამეტრი, რათა საჯარო გასაღების დაშიფვრა გამორთოთ."
+
+#. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:45
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgid "Use public key encryption only."
+msgstr "მხოლოდ სიმეტრიული დაშიფვრის გამოყენება."
+
+#. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:46
+#, fuzzy, kde-format
+#| msgid "Set this option to disable public key encryption."
+msgid "Set this option to disable password-based encryption."
 msgstr "დააყენეთ ეს პარამეტრი, რათა საჯარო გასაღების დაშიფვრა გამორთოთ."
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
@@ -9710,17 +9764,30 @@ msgstr "ნამდვილი სახელი:"
 msgid "EMail address:"
 msgstr "ელფოსტის მისამართი:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:179
+#: src/newcertificatewizard/enterdetailspage.cpp:144
+#, fuzzy, kde-format
+#| msgid ""
+#| "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#| "asked for the passphrase during key generation."
+msgctxt "@info:tooltip"
+msgid ""
+"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
+"for the passphrase during key generation."
+msgstr ""
+"ამ საიდუმლო გასაღებს აღუდგენელი აკვანძო ფრაზით დაშიფრავს. ამ ფრაზას "
+"გასაღების გენერაცისას გკითხავთ."
+
+#: src/newcertificatewizard/enterdetailspage.cpp:180
 #, kde-format
 msgid "Advanced Settings..."
 msgstr "დამატებითი პარამეტრები..."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:199
+#: src/newcertificatewizard/enterdetailspage.cpp:200
 #, kde-format
 msgid "Please enter your personal details below."
 msgstr "შეიყვანეთ თქვენი პირადი დეტალები ქვემოთ."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:201
+#: src/newcertificatewizard/enterdetailspage.cpp:202
 #, kde-format
 msgid ""
 "Please enter your personal details below. If you want more control over the "
@@ -9729,7 +9796,7 @@ msgstr ""
 "შეიყვანეთ ქვემოთ თქვენი პირადი დეტალები. თუ გნებავთ, პარამეტრებზე მეტი "
 "კონტროლი გქონდეთ, დააწკაპუნეთ დამატებითი პარამეტრების ღილაკზე."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:221
+#: src/newcertificatewizard/enterdetailspage.cpp:222
 #, kde-format
 msgctxt "@action"
 msgid "Create"
@@ -9792,7 +9859,11 @@ msgid "Result"
 msgstr "შედეგი"
 
 #: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Drag this icon to your mail application's composer to attach the request "
+#| "to a mail."
+msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
 "a mail."
@@ -12062,7 +12133,9 @@ msgid "Cardholder:"
 msgstr "ბარათის მფლობელი:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change"
+msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "შეცვლა"
 
@@ -12455,7 +12528,9 @@ msgid "Filter certificates by text"
 msgstr "სერტიფიკატების გაფილტვრა ტექსტით"
 
 #: src/view/searchbar.cpp:139
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show only certificates that match the entered search term."
+msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr ""
 "მხოლოდ იმ სერტიფიკატების ჩვენება, რომლებიც შეყვანილ ძებნის პირობას ემთხვევა."
@@ -12466,7 +12541,9 @@ msgid "Filter certificates by category"
 msgstr "სერტიფიკატების გაფილტვრა კატეგორიით"
 
 #: src/view/searchbar.cpp:143
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show only certificates that belong to the selected category."
+msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "მხოლოდ იმ სერტიფიკატების ჩვენება, რომლებიც არჩეულ კატეგორიას ეკუთვნის."
 

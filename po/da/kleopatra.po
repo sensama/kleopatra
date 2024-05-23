@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-22 00:39+0000\n"
+"POT-Creation-Date: 2024-05-23 00:39+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -3692,7 +3692,9 @@ msgid "<unnamed>"
 msgstr "<unavngiven>"
 
 #: src/conf/appearanceconfigwidget.cpp:300
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "This parameter has been locked down by the system administrator."
+msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Denne parameter er blevet fastlåst af systemadministrator."
 
@@ -3993,12 +3995,27 @@ msgid "Set this option to disable public key encryption."
 msgstr ""
 "Sæt denne indstilling for at undgå at bruge brugernes midlertidige mappe."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:84
+#: src/conf/cryptooperationsconfigwidget.cpp:72
+#, fuzzy, kde-format
+#| msgid "Use 'Quick Mode' when encrypting"
+msgid "Use public-key encryption only."
+msgstr "Brug \"Kviktilstand\" ved kryptering"
+
+#: src/conf/cryptooperationsconfigwidget.cpp:73
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Set this option to avoid using the users temporary directory."
+msgctxt "@info"
+msgid "Set this option to disable password-based encryption."
+msgstr ""
+"Sæt denne indstilling for at undgå at bruge brugernes midlertidige mappe."
+
+#: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "Tjeksumprogram der skal bruges ved oprettelse af tjeksumfiler:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:89
+#: src/conf/cryptooperationsconfigwidget.cpp:104
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Arkiveringskommando som skal bruges ved arkivering af filer:"
@@ -5348,6 +5365,12 @@ msgid "Please enter a name or email address..."
 msgstr "Angiv venligst et navn eller en e-mailadresse..."
 
 #: src/crypto/gui/certificatelineedit.cpp:307
+#, fuzzy, kde-format
+#| msgid "Show certificate validity"
+msgctxt "@info:tooltip"
+msgid "Show certificate list"
+msgstr "Certifikatsletning mislykkedes"
+
 #: src/crypto/gui/certificatelineedit.cpp:308
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
@@ -6118,43 +6141,43 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Status og fremgang for kryptohandlingerne vises her."
 
-#: src/crypto/gui/signencryptwidget.cpp:170
+#: src/crypto/gui/signencryptwidget.cpp:171
 #, fuzzy, kde-format
 #| msgid "Prove authenticity (sign)"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Bevis godkendelse (signér)"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgid "Sign as:"
 msgstr "Signér som:"
 
-#: src/crypto/gui/signencryptwidget.cpp:201
+#: src/crypto/gui/signencryptwidget.cpp:202
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Kryptér"
 
-#: src/crypto/gui/signencryptwidget.cpp:207
+#: src/crypto/gui/signencryptwidget.cpp:208
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Kryptér for mig:"
 
-#: src/crypto/gui/signencryptwidget.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:222
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Kryptér for andre:"
 
-#: src/crypto/gui/signencryptwidget.cpp:256
+#: src/crypto/gui/signencryptwidget.cpp:257
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "Kryptér med adgangskode. Dem du deler adgangskoden med kan læse dataen."
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:259
 #, fuzzy, kde-format
 #| msgctxt "Tooltip information for symetric encryption"
 #| msgid ""
@@ -6174,28 +6197,28 @@ msgstr ""
 "<b>mindre sikkert</b> at bruge en adgangskode end kryptografi med offentlig "
 "nøgle. Selv hvis du vælger en meget stærk adgangskode."
 
-#: src/crypto/gui/signencryptwidget.cpp:359
+#: src/crypto/gui/signencryptwidget.cpp:361
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Modtager"
 
-#: src/crypto/gui/signencryptwidget.cpp:595
+#: src/crypto/gui/signencryptwidget.cpp:597
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Signeringscertifikat er udløbet"
 
-#: src/crypto/gui/signencryptwidget.cpp:598
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "certifikat udløbet"
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:602
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -6204,27 +6227,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Dette certifikat er nyt til dit nøglelager."
 msgstr[1] "Dette certifikat er nyt til dit nøglelager."
 
-#: src/crypto/gui/signencryptwidget.cpp:605
+#: src/crypto/gui/signencryptwidget.cpp:607
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Dette certifikat blev deaktiveret lokalt."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:609
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Dette certifikat blev deaktiveret lokalt."
 
-#: src/crypto/gui/signencryptwidget.cpp:838
+#: src/crypto/gui/signencryptwidget.cpp:841
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Kunne ikke binde til sokkel: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:840
+#: src/crypto/gui/signencryptwidget.cpp:843
 #, fuzzy, kde-format
 #| msgid "Failed to send recipient %1: %2"
 msgctxt "@title:window"
@@ -6329,11 +6352,13 @@ msgstr "Søg"
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
 #, fuzzy, kde-format
 #| msgid "Search for a certificate on a keyserver"
+msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "Søg efter et certifikat på en nøgleserver"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr ""
 
@@ -6840,7 +6865,7 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:172
-#: src/newcertificatewizard/enterdetailspage.cpp:311
+#: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
@@ -6849,26 +6874,26 @@ msgstr "%1:"
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
 #: src/newcertificatewizard/enterdetailspage.cpp:127
 #: src/newcertificatewizard/enterdetailspage.cpp:135
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(required)"
 msgstr "(kræves)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:313
+#: src/newcertificatewizard/enterdetailspage.cpp:314
 #, kde-format
 msgid "(optional)"
 msgstr "(valgfrit)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:474
+#: src/newcertificatewizard/enterdetailspage.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> er påkrævet, men er tom."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:477
+#: src/newcertificatewizard/enterdetailspage.cpp:478
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6879,14 +6904,14 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:485
+#: src/newcertificatewizard/enterdetailspage.cpp:486
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> er ufuldstændig."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:488
+#: src/newcertificatewizard/enterdetailspage.cpp:489
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6897,14 +6922,14 @@ msgstr ""
 "icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:495
+#: src/newcertificatewizard/enterdetailspage.cpp:496
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> er ugyldig."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:498
+#: src/newcertificatewizard/enterdetailspage.cpp:499
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7009,6 +7034,7 @@ msgstr "Betroet udsteder?"
 #: src/dialogs/certificatedetailswidget.cpp:237
 #, fuzzy, kde-format
 #| msgid "Show certificate details"
+msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Vis certifikatets detaljer"
 
@@ -7760,6 +7786,7 @@ msgstr "Vælg fil"
 
 #: src/dialogs/editgroupdialog.cpp:214
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr ""
 
@@ -7771,9 +7798,11 @@ msgid "Remove Selected Keys"
 msgstr "Fjern valgt"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Remove Selected"
+msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
-msgstr ""
+msgstr "Fjern valgt"
 
 #: src/dialogs/editgroupdialog.cpp:229
 #, fuzzy, kde-format
@@ -7883,7 +7912,9 @@ msgid "Backup encryption key"
 msgstr "Backup krypteringsnøgle"
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup the encryption key in a file."
+msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "Backup krypteringsnøglen i en fil."
 
@@ -8030,7 +8061,6 @@ msgid "Protect the generated key with a passphrase."
 msgstr ""
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#: src/newcertificatewizard/enterdetailspage.cpp:143
 #, kde-format
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -8758,30 +8788,44 @@ msgstr ""
 #: src/dialogs/weboftrustwidget.cpp:267
 #, fuzzy, kde-format
 #| msgid "Revocation certificate created"
+msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Tilbagekaldelse af oprettede certifikat"
 
-#: src/dialogs/weboftrustwidget.cpp:270
-#, kde-format
+#: src/dialogs/weboftrustwidget.cpp:271
+#, fuzzy, kde-format
+#| msgid "Certify the validity of the selected certificate"
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
-msgstr ""
+msgstr "Certificér gyldigheden af det valgte certifikat"
 
-#: src/dialogs/weboftrustwidget.cpp:273
-#, kde-format
-msgid "You cannot revoke this expired certification."
-msgstr ""
-
-#: src/dialogs/weboftrustwidget.cpp:276
-#, kde-format
-msgid "You cannot revoke this invalid certification."
-msgstr ""
-
-#: src/dialogs/weboftrustwidget.cpp:279
+#: src/dialogs/weboftrustwidget.cpp:274
 #, fuzzy, kde-format
 #| msgid ""
 #| "This certificate was new to your keystore. The secret key is available."
+msgctxt "@info:tooltip"
+msgid "You cannot revoke this expired certification."
+msgstr ""
+"Dette certifikat var nyt til dit nøglelager. Den hemmelige nøgle er "
+"tilgængelig."
+
+#: src/dialogs/weboftrustwidget.cpp:277
+#, fuzzy, kde-format
+#| msgid ""
+#| "This certificate was new to your keystore. The secret key is available."
+msgctxt "@info:tooltip"
+msgid "You cannot revoke this invalid certification."
+msgstr ""
+"Dette certifikat var nyt til dit nøglelager. Den hemmelige nøgle er "
+"tilgængelig."
+
+#: src/dialogs/weboftrustwidget.cpp:280
+#, fuzzy, kde-format
+#| msgid ""
+#| "This certificate was new to your keystore. The secret key is available."
+msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
@@ -8789,7 +8833,7 @@ msgstr ""
 "Dette certifikat var nyt til dit nøglelager. Den hemmelige nøgle er "
 "tilgængelig."
 
-#: src/dialogs/weboftrustwidget.cpp:287
+#: src/dialogs/weboftrustwidget.cpp:288
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
 msgid ""
@@ -8797,7 +8841,7 @@ msgid ""
 "the certifications for details."
 msgstr "Certificér gyldigheden af det valgte certifikat"
 
-#: src/dialogs/weboftrustwidget.cpp:422
+#: src/dialogs/weboftrustwidget.cpp:423
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8807,7 +8851,7 @@ msgstr ""
 "<para>En fejl opstod under indlæsning af certificeringerne: <message>%1</"
 "message></para>"
 
-#: src/dialogs/weboftrustwidget.cpp:425
+#: src/dialogs/weboftrustwidget.cpp:426
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -8912,6 +8956,22 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "Set this option to avoid using the users temporary directory."
 msgid "Set this option to disable public key encryption."
+msgstr ""
+"Sæt denne indstilling for at undgå at bruge brugernes midlertidige mappe."
+
+#. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:45
+#, fuzzy, kde-format
+#| msgid "Set this option to avoid using the users temporary directory."
+msgid "Use public key encryption only."
+msgstr ""
+"Sæt denne indstilling for at undgå at bruge brugernes midlertidige mappe."
+
+#. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:46
+#, fuzzy, kde-format
+#| msgid "Set this option to avoid using the users temporary directory."
+msgid "Set this option to disable password-based encryption."
 msgstr ""
 "Sæt denne indstilling for at undgå at bruge brugernes midlertidige mappe."
 
@@ -10256,18 +10316,26 @@ msgstr "Rigtigt navn:"
 msgid "EMail address:"
 msgstr "E-mailadresse:"
 
-#: src/newcertificatewizard/enterdetailspage.cpp:179
+#: src/newcertificatewizard/enterdetailspage.cpp:144
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
+"for the passphrase during key generation."
+msgstr ""
+
+#: src/newcertificatewizard/enterdetailspage.cpp:180
 #, kde-format
 msgid "Advanced Settings..."
 msgstr "Avancerede indstillinger..."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:199
+#: src/newcertificatewizard/enterdetailspage.cpp:200
 #, fuzzy, kde-format
 #| msgid "Please enter a name or email address..."
 msgid "Please enter your personal details below."
 msgstr "Angiv venligst et navn eller en e-mailadresse..."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:201
+#: src/newcertificatewizard/enterdetailspage.cpp:202
 #, kde-format
 msgid ""
 "Please enter your personal details below. If you want more control over the "
@@ -10276,7 +10344,7 @@ msgstr ""
 "Angiv dine personlige detaljer nedenfor. Tryk på 'Avancerede indstillinger', "
 "hvis du vil have mere kontrol over parametrene."
 
-#: src/newcertificatewizard/enterdetailspage.cpp:221
+#: src/newcertificatewizard/enterdetailspage.cpp:222
 #, kde-format
 msgctxt "@action"
 msgid "Create"
@@ -10343,7 +10411,11 @@ msgid "Result"
 msgstr "Resultat"
 
 #: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Drag this icon to your mail application's composer to attach the request "
+#| "to a mail."
+msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
 "a mail."
@@ -12707,7 +12779,9 @@ msgid "Cardholder:"
 msgstr "Kortindehaver:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change"
+msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Ændr"
 
@@ -13107,9 +13181,11 @@ msgid "Filter certificates by text"
 msgstr "Med certifikat:"
 
 #: src/view/searchbar.cpp:139
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certify the validity of the selected certificate"
+msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
-msgstr ""
+msgstr "Certificér gyldigheden af det valgte certifikat"
 
 #: src/view/searchbar.cpp:142
 #, fuzzy, kde-format
@@ -13120,6 +13196,7 @@ msgstr "Med certifikat:"
 #: src/view/searchbar.cpp:143
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
+msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Certificér gyldigheden af det valgte certifikat"
 
@@ -15544,9 +15621,6 @@ msgstr ""
 
 #~ msgid "Use 'Quick Mode' when signing"
 #~ msgstr "Brug \"Kviktilstand\" ved signering"
-
-#~ msgid "Use 'Quick Mode' when encrypting"
-#~ msgstr "Brug \"Kviktilstand\" ved kryptering"
 
 #~ msgctxt "@info:whatsthis"
 #~ msgid ""

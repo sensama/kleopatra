@@ -272,7 +272,7 @@ void KeyTreeView::init()
         }
     }
 
-    m_proxy->setFilterRegularExpression(QRegularExpression::escape(m_stringFilter));
+    m_proxy->setFilterRegularExpression(QRegularExpression::escape(m_stringFilter.trimmed()));
     m_proxy->setKeyFilter(m_keyFilter);
     m_proxy->setSortCaseSensitivity(Qt::CaseInsensitive);
 
@@ -452,7 +452,7 @@ void KeyTreeView::setStringFilter(const QString &filter)
         return;
     }
     m_stringFilter = filter;
-    m_proxy->setFilterRegularExpression(QRegularExpression::escape(filter));
+    m_proxy->setFilterRegularExpression(QRegularExpression::escape(filter.trimmed()));
     Q_EMIT stringFilterChanged(filter);
 }
 

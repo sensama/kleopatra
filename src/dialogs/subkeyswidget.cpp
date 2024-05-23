@@ -74,6 +74,18 @@ class SubKeysWidget::Private
     SubKeysWidget *const q;
 
 public:
+    enum Columns {
+        KeyId,
+        Fingerprint,
+        ValidFrom,
+        ValidUntil,
+        Status,
+        Algorithm,
+        Usage,
+        Storage,
+        Keygrip,
+    };
+
     Private(SubKeysWidget *qq)
         : q{qq}
         , ui{qq}
@@ -354,39 +366,39 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     const auto subkeys = key.subkeys();
     for (const auto &subkey : subkeys) {
         auto item = new QTreeWidgetItem;
-        item->setData(0, Qt::DisplayRole, Formatting::prettyID(subkey.keyID()));
-        item->setData(0, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.keyID()));
-        item->setData(0, Qt::UserRole, QVariant::fromValue(subkey));
-        item->setData(1, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
-        item->setData(1, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.fingerprint()));
-        item->setData(2, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
-        item->setData(2, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(subkey));
-        item->setData(3,
+        item->setData(Private::KeyId, Qt::DisplayRole, Formatting::prettyID(subkey.keyID()));
+        item->setData(Private::KeyId, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.keyID()));
+        item->setData(Private::KeyId, Qt::UserRole, QVariant::fromValue(subkey));
+        item->setData(Private::Fingerprint, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
+        item->setData(Private::Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.fingerprint()));
+        item->setData(Private::ValidFrom, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
+        item->setData(Private::ValidFrom, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(subkey));
+        item->setData(Private::ValidUntil,
                       Qt::DisplayRole,
                       subkey.neverExpires() ? Kleo::Formatting::expirationDateString(subkey.parent()) : Kleo::Formatting::expirationDateString(subkey));
-        item->setData(3,
+        item->setData(Private::ValidUntil,
                       Qt::AccessibleTextRole,
                       subkey.neverExpires() ? Kleo::Formatting::accessibleExpirationDate(subkey.parent()) : Kleo::Formatting::accessibleExpirationDate(subkey));
-        item->setData(4, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
-        item->setData(5, Qt::DisplayRole, Kleo::Formatting::prettyAlgorithmName(subkey.algoName()));
-        item->setData(6, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
+        item->setData(Private::Status, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
+        item->setData(Private::Algorithm, Qt::DisplayRole, Kleo::Formatting::prettyAlgorithmName(subkey.algoName()));
+        item->setData(Private::Usage, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
         const auto isPrimary = subkey.keyID() == key.keyID();
         if (!key.hasSecret()) {
-            item->setData(7, Qt::DisplayRole, i18nc("not applicable", "n/a"));
+            item->setData(Private::Storage, Qt::DisplayRole, i18nc("not applicable", "n/a"));
         } else if (subkey.isCardKey()) {
             if (const char *serialNo = subkey.cardSerialNumber()) {
-                item->setData(7, Qt::DisplayRole, i18nc("smart card <serial number>", "smart card %1", QString::fromUtf8(serialNo)));
+                item->setData(Private::Storage, Qt::DisplayRole, i18nc("smart card <serial number>", "smart card %1", QString::fromUtf8(serialNo)));
             } else {
-                item->setData(7, Qt::DisplayRole, i18n("smart card"));
+                item->setData(Private::Storage, Qt::DisplayRole, i18n("smart card"));
             }
         } else if (isPrimary && key.hasSecret() && !subkey.isSecret()) {
-            item->setData(7, Qt::DisplayRole, i18nc("key is 'offline key', i.e. secret key is not stored on this computer", "offline"));
+            item->setData(Private::Storage, Qt::DisplayRole, i18nc("key is 'offline key', i.e. secret key is not stored on this computer", "offline"));
         } else if (subkey.isSecret()) {
-            item->setData(7, Qt::DisplayRole, i18n("on this computer"));
+            item->setData(Private::Storage, Qt::DisplayRole, i18n("on this computer"));
         } else {
-            item->setData(7, Qt::DisplayRole, i18nc("unknown storage location", "unknown"));
+            item->setData(Private::Storage, Qt::DisplayRole, i18nc("unknown storage location", "unknown"));
         }
-        item->setData(8, Qt::DisplayRole, Formatting::prettyID(subkey.keyGrip()));
+        item->setData(Private::Keygrip, Qt::DisplayRole, Formatting::prettyID(subkey.keyGrip()));
         d->ui.subkeysTree->addTopLevelItem(item);
         if (subkey.fingerprint() == selectedKeyFingerprint) {
             d->ui.subkeysTree->setCurrentItem(item);
@@ -409,8 +421,8 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     d->updateState();
 
     if (!d->ui.subkeysTree->restoreColumnLayout(QStringLiteral("SubkeysWidget"))) {
-        d->ui.subkeysTree->hideColumn(0);
-        d->ui.subkeysTree->hideColumn(8);
+        d->ui.subkeysTree->hideColumn(Private::KeyId);
+        d->ui.subkeysTree->hideColumn(Private::Keygrip);
     }
     for (int i = 0; i < d->ui.subkeysTree->columnCount(); i++) {
         d->ui.subkeysTree->resizeColumnToContents(i);

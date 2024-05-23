@@ -349,9 +349,9 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     } else if (!subkey.isSecret()) {
         storage = i18nc("key is 'offline key', i.e. secret key is not stored on this computer", "offline");
     } else if (KeyCache::instance()->cardsForSubkey(subkey).size() > 0) {
-        storage = i18ncp("As in 'this key is stored on this computer and on smartcard(s)'",
-                         "On this computer and on a smartcard",
-                         "On this computer and on smartcards",
+        storage = i18ncp("As in 'this key is stored on this computer and on smart card(s)'",
+                         "On this computer and on a smart card",
+                         "On this computer and on %1 smart cards",
                          KeyCache::instance()->cardsForSubkey(subkey).size());
     } else {
         storage = i18nc("As in 'this secret key is stored on this computer'", "on this computer");

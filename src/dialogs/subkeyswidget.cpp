@@ -409,7 +409,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     d->updateState();
 
     if (!d->ui.subkeysTree->restoreColumnLayout(QStringLiteral("SubkeysWidget"))) {
-        d->ui.subkeysTree->hideColumn(1);
+        d->ui.subkeysTree->hideColumn(0);
         d->ui.subkeysTree->hideColumn(8);
     }
     for (int i = 0; i < d->ui.subkeysTree->columnCount(); i++) {

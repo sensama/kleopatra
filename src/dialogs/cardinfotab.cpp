@@ -41,6 +41,15 @@ class CardInfoTab::Private
 
     void loadData();
 
+    enum Columns {
+        Keygrip,
+        Fingerprint,
+        Token,
+        Type,
+        SerialNumber,
+        Owner,
+    };
+
 private:
     GpgME::Key key;
     TreeWidget *subkeysTree = nullptr;
@@ -120,14 +129,14 @@ void CardInfoTab::Private::loadData()
         for (const auto &info : cards) {
             auto availableCard = SmartCard::ReaderStatus::instance()->getCardWithKeyRef(info.serialNumber.toStdString(), info.keyRef.toStdString());
             auto item = new QTreeWidgetItem;
-            item->setData(0, Qt::DisplayRole, QString::fromLatin1(subkey.keyGrip()));
-            item->setData(1, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
-            item->setData(2, Qt::DisplayRole, info.serialNumber);
+            item->setData(Keygrip, Qt::DisplayRole, QString::fromLatin1(subkey.keyGrip()));
+            item->setData(Fingerprint, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
+            item->setData(Token, Qt::DisplayRole, info.serialNumber);
             if (availableCard) {
                 const QString manufacturer = QString::fromStdString(availableCard->manufacturer());
                 const bool manufacturerIsUnknown = manufacturer.isEmpty() || manufacturer == QLatin1String("unknown");
                 item->setData(
-                    3,
+                    Type,
                     Qt::DisplayRole,
                     manufacturerIsUnknown
                         ? i18nc("Unknown <type> <version> (card)", "Unknown %1 v%2", availableCard->displayAppName(), availableCard->displayAppVersion())
@@ -136,18 +145,18 @@ void CardInfoTab::Private::loadData()
                                 manufacturer,
                                 availableCard->displayAppName(),
                                 availableCard->displayAppVersion()));
-                item->setData(4, Qt::DisplayRole, availableCard->displaySerialNumber());
-                item->setData(5,
+                item->setData(SerialNumber, Qt::DisplayRole, availableCard->displaySerialNumber());
+                item->setData(Owner,
                               Qt::DisplayRole,
                               availableCard->cardHolder().size() > 0 ? availableCard->cardHolder() : i18nc("unknown cardholder", "unknown"));
             } else {
-                item->setData(3, Qt::DisplayRole, i18n("n/a"));
+                item->setData(Type, Qt::DisplayRole, i18n("n/a"));
                 if (!info.displaySerialNumber.isEmpty()) {
-                    item->setData(4, Qt::DisplayRole, info.displaySerialNumber);
+                    item->setData(SerialNumber, Qt::DisplayRole, info.displaySerialNumber);
                 } else {
-                    item->setData(4, Qt::DisplayRole, i18n("n/a"));
+                    item->setData(SerialNumber, Qt::DisplayRole, i18n("n/a"));
                 }
-                item->setData(5, Qt::DisplayRole, i18n("n/a"));
+                item->setData(Owner, Qt::DisplayRole, i18n("n/a"));
             }
             subkeysTree->addTopLevelItem(item);
         }
@@ -169,7 +178,7 @@ void CardInfoTab::setKey(const GpgME::Key &key)
     d->key = key;
     d->subkeysTree->header()->resizeSections(QHeaderView::ResizeToContents);
     if (d->subkeysTree->restoreColumnLayout(QStringLiteral("CardInfoTab"))) {
-        d->subkeysTree->setColumnHidden(0, true);
+        d->subkeysTree->setColumnHidden(Private::Keygrip, true);
     }
     d->loadData();
     for (int i = 0; i < d->subkeysTree->columnCount(); i++) {

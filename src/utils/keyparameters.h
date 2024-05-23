@@ -79,9 +79,6 @@ public:
     void addURI(const QString &uri);
     std::vector<QString> uris() const;
 
-    void addDesignatedRevoker(const QString &fpr);
-    std::vector<QString> designatedRevokers() const;
-
     QString toString() const;
 
 private:

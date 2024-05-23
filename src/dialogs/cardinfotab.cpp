@@ -140,7 +140,6 @@ void CardInfoTab::Private::loadData()
                 item->setData(5,
                               Qt::DisplayRole,
                               availableCard->cardHolder().size() > 0 ? availableCard->cardHolder() : i18nc("unknown cardholder", "unknown"));
-                item->setData(6, Qt::UserRole, QString::fromStdString(availableCard->appName()));
             } else {
                 item->setData(3, Qt::DisplayRole, i18n("n/a"));
                 if (!info.displaySerialNumber.isEmpty()) {

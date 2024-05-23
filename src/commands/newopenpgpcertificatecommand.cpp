@@ -145,10 +145,6 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
         keyParameters.setComment(settings->value(QStringLiteral("uidcomment"), {}).toString());
     }
 
-    if (auto settings = Settings{}; !settings.designatedRevoker().isEmpty()) {
-        keyParameters.addDesignatedRevoker(settings.designatedRevoker());
-    }
-
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
         QMetaObject::invokeMethod(
             q,

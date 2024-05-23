@@ -63,7 +63,6 @@ class KeyParameters::Private
     std::vector<QString> emailAdresses;
     std::vector<QString> domainNames;
     std::vector<QString> uris;
-    std::vector<QString> designatedRevokers;
 
     QDate expirationDate;
 
@@ -271,16 +270,6 @@ std::vector<QString> KeyParameters::uris() const
     return d->uris;
 }
 
-void KeyParameters::addDesignatedRevoker(const QString &fpr)
-{
-    d->designatedRevokers.push_back(fpr);
-}
-
-std::vector<QString> KeyParameters::designatedRevokers() const
-{
-    return d->designatedRevokers;
-}
-
 namespace
 {
 QString serialize(Subkey::PubkeyAlgo algo)
@@ -383,9 +372,6 @@ QString KeyParameters::toString() const
     });
     std::transform(std::cbegin(d->uris), std::cend(d->uris), std::back_inserter(keyParameters), [](const auto &uri) {
         return serialize("Name-URI", uri);
-    });
-    std::transform(std::cbegin(d->designatedRevokers), std::cend(d->designatedRevokers), std::back_inserter(keyParameters), [](const auto &designatedRevoker) {
-        return serialize("Revoker", designatedRevoker);
     });
 
     keyParameters.push_back(QLatin1String("</GnupgKeyParms>"));

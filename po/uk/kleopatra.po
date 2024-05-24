@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
-"PO-Revision-Date: 2024-05-22 09:01+0300\n"
+"POT-Creation-Date: 2024-05-24 00:39+0000\n"
+"PO-Revision-Date: 2024-05-23 06:21+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -2821,20 +2821,20 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
 "У вас немає прав для створення запитів щодо підписування сертифікатів S/MIME."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:161
+#: src/commands/newopenpgpcertificatecommand.cpp:157
 #: src/newcertificatewizard/keycreationpage.cpp:86
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Не вдається почати створення пари ключів: %1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:171
+#: src/commands/newopenpgpcertificatecommand.cpp:167
 #: src/newcertificatewizard/keycreationpage.cpp:49
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Створюємо пару ключів…"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:172
+#: src/commands/newopenpgpcertificatecommand.cpp:168
 #: src/newcertificatewizard/keycreationpage.cpp:53
 #, kde-format
 msgid ""
@@ -2844,7 +2844,7 @@ msgstr ""
 "Процедура створення ключа потребує значної кількості випадкових чисел. Вона "
 "може тривати декілька хвилин…"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:205
+#: src/commands/newopenpgpcertificatecommand.cpp:201
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
@@ -2853,7 +2853,7 @@ msgstr ""
 "<para>Новий сертифікат OpenPGP створено успішно.</para><para>Відбиток нового "
 "сертифіката: %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:219
+#: src/commands/newopenpgpcertificatecommand.cpp:215
 #, kde-kuit-format
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
@@ -2862,7 +2862,7 @@ msgstr ""
 "<para>Не вдалося створити сертифікат OpenPGP.</para><para>Помилка: <message>"
 "%1</message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:225
+#: src/commands/newopenpgpcertificatecommand.cpp:221
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
@@ -2872,7 +2872,7 @@ msgstr ""
 "<para>Новий сертифікат OpenPGP створено успішно, але його не було знайдено у "
 "сховищі ключів.</para><para>Відбиток нового сертифіката:<nl/>%1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:232
+#: src/commands/newopenpgpcertificatecommand.cpp:228
 #: src/crypto/newsignencryptemailcontroller.cpp:382
 #: src/crypto/newsignencryptemailcontroller.cpp:384
 #, kde-format
@@ -3479,8 +3479,7 @@ msgid "<unnamed>"
 msgstr "<без назви>"
 
 #: src/conf/appearanceconfigwidget.cpp:300
-#, fuzzy, kde-format
-#| msgid "This parameter has been locked down by the system administrator."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Зміну цього параметра було заблоковано системним адміністратором."
@@ -3645,7 +3644,7 @@ msgstr ""
 "контрастності."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:154
+#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Порядок атрибутів DN"
@@ -3768,20 +3767,15 @@ msgstr ""
 "ключа."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public-key encryption only."
-msgstr "Використовувати лише симетричне шифрування."
+msgstr "Скористатися лише шифруванням відкритим ключем."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Set this option to disable public key encryption."
+#, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
-msgstr ""
-"Встановіть цей параметр, щоб вимкнути шифрування за допомогою відкритого "
-"ключа."
+msgstr "Встановіть цей параметр, щоб вимкнути шифрування на основі пароля."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
@@ -5141,8 +5135,7 @@ msgid "Please enter a name or email address..."
 msgstr "Будь ласка, введіть ім'я або адресу електронної пошти…"
 
 #: src/crypto/gui/certificatelineedit.cpp:307
-#, fuzzy, kde-format
-#| msgid "Show certificate list"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "Показати список сертифікатів"
@@ -6072,15 +6065,13 @@ msgid "Search"
 msgstr "Пошук"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, fuzzy, kde-format
-#| msgid "Search on keyserver"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "Шукати на сервері ключів"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
-#, fuzzy, kde-format
-#| msgid "The data was encrypted to this key / certificate."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr "Дані було зашифровано до цього ключа або сертифіката."
@@ -6713,8 +6704,7 @@ msgid "Trusted introducer for:"
 msgstr "Довірений впроваджувач для:"
 
 #: src/dialogs/certificatedetailswidget.cpp:237
-#, fuzzy, kde-format
-#| msgid "See certifications for details."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Перегляньте подробиці щодо сертифікації."
@@ -7464,8 +7454,7 @@ msgid "Add Selected Keys"
 msgstr "Додати позначені ключі"
 
 #: src/dialogs/editgroupdialog.cpp:214
-#, fuzzy, kde-format
-#| msgid "Add the selected keys to the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "Додати позначені ключі до групи"
@@ -7477,8 +7466,7 @@ msgid "Remove Selected Keys"
 msgstr "Вилучити позначені ключі"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Remove the selected keys from the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "Вилучити позначені ключі з групи"
@@ -7582,8 +7570,7 @@ msgid "Backup encryption key"
 msgstr "Створити резервну копію ключа шифрування"
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "Створити резервну копію ключа у файлі."
@@ -8399,18 +8386,14 @@ msgstr ""
 "закритого ключа)."
 
 #: src/dialogs/weboftrustwidget.cpp:267
-#, fuzzy, kde-format
-#| msgid "Revocation of self-certifications is currently not possible."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr ""
 "У поточній версії не передбачено можливості відкликання самосертифікацій."
 
 #: src/dialogs/weboftrustwidget.cpp:271
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this revocation certification. (But you can re-certify "
-#| "the corresponding user ID.)"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
@@ -8420,24 +8403,19 @@ msgstr ""
 "сертифікувати відповідний ідентифікатор користувача.)"
 
 #: src/dialogs/weboftrustwidget.cpp:274
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this expired certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "Не можна відкликати цю сертифікацію, строк дії якої вичерпано."
 
 #: src/dialogs/weboftrustwidget.cpp:277
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this invalid certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "Не можна відкликати цю некоректну сертифікацію."
 
 #: src/dialogs/weboftrustwidget.cpp:280
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this certification because the required secret key is "
-#| "not available."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
@@ -8582,15 +8560,13 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:45
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public key encryption only."
 msgstr "Використовувати лише симетричне шифрування."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:46
-#, fuzzy, kde-format
-#| msgid "Set this option to disable public key encryption."
+#, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr ""
 "Встановіть цей параметр, щоб вимкнути шифрування за допомогою відкритого "
@@ -8833,36 +8809,11 @@ msgstr ""
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
 #, kde-format
-msgid "Designated revoker"
-msgstr "Визначене відкликання"
-
-#. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:71
-#, kde-format
-msgid ""
-"The fingerprint of a designated revoker to be added to each new key. Must be "
-"given in the form \"algo:fpr [sensitive]\". Algo is the public key algorithm "
-"of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the fingerprint "
-"of the designated revoker. The optional ‘sensitive’ flag marks the "
-"designated revoker as sensitive information. Only v4 keys may be designated "
-"revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
-msgstr ""
-"Відбиток визначеного відкликання, який слід додати до кожного нового ключа. "
-"Слід вказувати у формі «алгоритм:відбиток [конфіденційнийу]». Алгоритм — "
-"алгоритм відкритого ключа автора відкликання (тобто RSA=1, DSA=17 тощо). "
-"Відбиток — відбиток визначеного відкликання. Додатковий прапорець "
-"«конфіденційний» позначає запис визначеного відкликання як конфіденційні "
-"дані. Визначеними відкликаннями можуть бути лише ключі версії. Для додавання "
-"конфіденційних відкликань потрібна принаймні версія GnuPG 2.4.4."
-
-#. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:75
-#, kde-format
 msgid "Hide advanced settings"
 msgstr "Приховати додаткові параметри"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:76
+#: src/kcfg/settings.kcfg:71
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
@@ -8871,19 +8822,19 @@ msgstr ""
 "створення сертифікатів буде приховано."
 
 #. i18n: ectx: label, entry, group (Certification)
-#: src/kcfg/settings.kcfg:82
+#: src/kcfg/settings.kcfg:77
 #, kde-format
 msgid "Default certification validity"
 msgstr "Типова чинність сертифікації"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
-#: src/kcfg/settings.kcfg:83
+#: src/kcfg/settings.kcfg:78
 #, kde-format
 msgid "Specifies the default validity of certifications in days."
 msgstr "Визначає типову чинність сертифікації у днях."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
-#: src/kcfg/settings.kcfg:84
+#: src/kcfg/settings.kcfg:79
 #, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
@@ -8895,19 +8846,19 @@ msgstr ""
 "значення 0, якщо тривалість чинності не обмежено."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
-#: src/kcfg/settings.kcfg:90
+#: src/kcfg/settings.kcfg:85
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr "Програма для обробки, яка створюватиме файли контрольних сум"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:96
+#: src/kcfg/settings.kcfg:91
 #, kde-format
 msgid "Show results after signing"
 msgstr "Показувати результати після підписування"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:92
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
@@ -8916,13 +8867,13 @@ msgstr ""
 "даними буде показано результати."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:101
+#: src/kcfg/settings.kcfg:96
 #, kde-format
 msgid "Show results after encryption"
 msgstr "Показувати результати після шифрування"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:102
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -8932,19 +8883,19 @@ msgstr ""
 "даними буде показано результати."
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:108
+#: src/kcfg/settings.kcfg:103
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "Увімкнути S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:104
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "Вмикає підтримку S/MIME (CMS)."
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:110
+#: src/kcfg/settings.kcfg:105
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -8954,13 +8905,13 @@ msgstr ""
 "пропонуватиме можливостей, які пов'язано із S/MIME (CMS)."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:114
+#: src/kcfg/settings.kcfg:109
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "Дозволити створення сертифікатів S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:115
+#: src/kcfg/settings.kcfg:110
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr ""
@@ -8968,7 +8919,7 @@ msgstr ""
 "підписування."
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:116
+#: src/kcfg/settings.kcfg:111
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -8978,13 +8929,13 @@ msgstr ""
 "створення сертифікатів S/MIME для підписування."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:120
+#: src/kcfg/settings.kcfg:115
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "Дозволити підписування за допомогою сертифікатів S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:121
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr ""
@@ -8992,7 +8943,7 @@ msgstr ""
 "MIME."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:122
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -9002,73 +8953,73 @@ msgstr ""
 "можливостей для створення підписів за допомогою сертифікатів S/MIME."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:128
+#: src/kcfg/settings.kcfg:123
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "Показати налаштування вигляду"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:132
+#: src/kcfg/settings.kcfg:127
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Показати налаштування дій з шифрування"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:136
+#: src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "Показати налаштування служб каталогів"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:140
+#: src/kcfg/settings.kcfg:135
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "Показати налаштування системи GnuPG"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:144
+#: src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "Показати налаштування смарт-карток"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:148
+#: src/kcfg/settings.kcfg:143
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "Показати налаштування перевірки S/MIME"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:155
+#: src/kcfg/settings.kcfg:150
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "Визначає порядок показу атрибутів DN сертифікатів X.509."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:161
+#: src/kcfg/settings.kcfg:156
 #, kde-format
 msgid "Enable Groups"
 msgstr "Увімкнути групи"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:162
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "Увімкнути використання груп ключів."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:163
+#: src/kcfg/settings.kcfg:158
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "Увімкнути використання груп ключів для створення списків отримувачів."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:169
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "Отримати ключі підписувача після імпортування"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:172
+#: src/kcfg/settings.kcfg:167
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -9082,7 +9033,7 @@ msgstr ""
 "впроваджувачами ключів."
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:176
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
@@ -9090,7 +9041,7 @@ msgstr ""
 "користувачів"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:179
+#: src/kcfg/settings.kcfg:174
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -9107,13 +9058,13 @@ msgstr ""
 "ідентифікаторів користувачів."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:185
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "Сповіщати про завершення строку дії сертифікатів"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:187
+#: src/kcfg/settings.kcfg:182
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -9123,13 +9074,13 @@ msgstr ""
 "використанні сертифікатів, строк дії яких невдовзі завершиться."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:193
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Схеми адреси для блокування"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:195
+#: src/kcfg/settings.kcfg:190
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -9141,13 +9092,13 @@ msgstr ""
 "адрес у зовнішніх програмах."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:201
+#: src/kcfg/settings.kcfg:196
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Завжди шукати сертифікати смарт-картки на сервері ключів"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:202
+#: src/kcfg/settings.kcfg:197
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -9157,7 +9108,7 @@ msgstr ""
 "сервері ключів."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:204
+#: src/kcfg/settings.kcfg:199
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -9170,20 +9121,20 @@ msgstr ""
 "виконується лише для серверів LDAP."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:208
+#: src/kcfg/settings.kcfg:203
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "Спробувати завантажити сертифікати S/MIME зі смарт-карток PKCS#15"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:209
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
 "Автоматично завантажувати сертифікати S/MIME зі смарт-карток PKCS#15 (CardOS)"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:210
+#: src/kcfg/settings.kcfg:205
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -9196,7 +9147,7 @@ msgstr ""
 "заблоковано."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:216
+#: src/kcfg/settings.kcfg:211
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Вимкнути параметри профілю"
@@ -10010,10 +9961,7 @@ msgid "EMail address:"
 msgstr "Адреса ел. пошти:"
 
 #: src/newcertificatewizard/enterdetailspage.cpp:144
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#| "asked for the passphrase during key generation."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -10104,10 +10052,7 @@ msgid "Result"
 msgstr "Результат"
 
 #: src/newcertificatewizard/resultpage.cpp:85
-#, fuzzy, kde-format
-#| msgid ""
-#| "Drag this icon to your mail application's composer to attach the request "
-#| "to a mail."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
@@ -12391,8 +12336,7 @@ msgid "Cardholder:"
 msgstr "Власник картки:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, fuzzy, kde-format
-#| msgid "Change"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Змінити"
@@ -12785,8 +12729,7 @@ msgid "Filter certificates by text"
 msgstr "Фільтрувати сертифікати за текстом"
 
 #: src/view/searchbar.cpp:139
-#, fuzzy, kde-format
-#| msgid "Show only certificates that match the entered search term."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "Показати лише сертифікати, які відповідають введеному критерію пошуку."
@@ -12797,8 +12740,7 @@ msgid "Filter certificates by category"
 msgstr "Фільтрувати сертифікати за категоріями"
 
 #: src/view/searchbar.cpp:143
-#, fuzzy, kde-format
-#| msgid "Show only certificates that belong to the selected category."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Показати лише сертифікати, які належать до вибраної категорії."
@@ -13052,6 +12994,27 @@ msgid ""
 msgstr ""
 "Імпортувати сертифікат з файла.<nl/>Щоб імпортувати дані з сервера відкритих "
 "ключів, скористайтеся пунктом <interface>Шукати на сервері</interface>."
+
+#~ msgid "Designated revoker"
+#~ msgstr "Визначене відкликання"
+
+#~ msgid ""
+#~ "The fingerprint of a designated revoker to be added to each new key. Must "
+#~ "be given in the form \"algo:fpr [sensitive]\". Algo is the public key "
+#~ "algorithm of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the "
+#~ "fingerprint of the designated revoker. The optional ‘sensitive’ flag "
+#~ "marks the designated revoker as sensitive information. Only v4 keys may "
+#~ "be designated revokers. GnuPG 2.4.4 is required for adding sensitive "
+#~ "revokers."
+#~ msgstr ""
+#~ "Відбиток визначеного відкликання, який слід додати до кожного нового "
+#~ "ключа. Слід вказувати у формі «алгоритм:відбиток [конфіденційнийу]». "
+#~ "Алгоритм — алгоритм відкритого ключа автора відкликання (тобто RSA=1, "
+#~ "DSA=17 тощо). Відбиток — відбиток визначеного відкликання. Додатковий "
+#~ "прапорець «конфіденційний» позначає запис визначеного відкликання як "
+#~ "конфіденційні дані. Визначеними відкликаннями можуть бути лише ключі "
+#~ "версії. Для додавання конфіденційних відкликань потрібна принаймні версія "
+#~ "GnuPG 2.4.4."
 
 #~ msgid "Publish on keyserver afterwards"
 #~ msgstr "Згодом оприлюднити на сервері"

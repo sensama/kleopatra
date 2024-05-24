@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-23 00:39+0000\n"
+"POT-Creation-Date: 2024-05-24 00:39+0000\n"
 "PO-Revision-Date: 2024-04-24 00:28+0200\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -2887,20 +2887,20 @@ msgstr ""
 "Sie sind nicht berechtigt, Signieranfragen für S/MIME-Zertifikate zu "
 "erstellen."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:161
+#: src/commands/newopenpgpcertificatecommand.cpp:157
 #: src/newcertificatewizard/keycreationpage.cpp:86
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Die Schlüsselpaar-Erstellung kann nicht gestartet werden: %1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:171
+#: src/commands/newopenpgpcertificatecommand.cpp:167
 #: src/newcertificatewizard/keycreationpage.cpp:49
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Schlüsselpaar wird erstellt ..."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:172
+#: src/commands/newopenpgpcertificatecommand.cpp:168
 #: src/newcertificatewizard/keycreationpage.cpp:53
 #, kde-format
 msgid ""
@@ -2910,7 +2910,7 @@ msgstr ""
 "Die Erzeugung eines Schlüssels benötigt sehr viele Zufallszahlen. Dies kann "
 "einige Minuten dauern ..."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:205
+#: src/commands/newopenpgpcertificatecommand.cpp:201
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
@@ -2919,7 +2919,7 @@ msgstr ""
 "<para>Neues OpenPGP Zertifikat erfolgreich erstellt.</para> "
 "<para>Fingerabdruck des neuen Zertifikats: %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:219
+#: src/commands/newopenpgpcertificatecommand.cpp:215
 #, kde-kuit-format
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
@@ -2928,7 +2928,7 @@ msgstr ""
 "<para>Die Erstellung eines neuen OpenPGP-Zertifikats ist fehlgeschlagen.</"
 "para><para>Fehler: <message>%1</message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:225
+#: src/commands/newopenpgpcertificatecommand.cpp:221
 #, kde-kuit-format
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
@@ -2939,7 +2939,7 @@ msgstr ""
 "nicht im Schlüsselring gefunden.</para><para>Fingerabdruck des neuen "
 "Zertifikats:<nl/>%1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:232
+#: src/commands/newopenpgpcertificatecommand.cpp:228
 #: src/crypto/newsignencryptemailcontroller.cpp:382
 #: src/crypto/newsignencryptemailcontroller.cpp:384
 #, kde-format
@@ -3719,7 +3719,7 @@ msgstr ""
 "aktiv ist."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:154
+#: src/conf/appearanceconfigwidget.cpp:518 src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN-Attributreihenfolge"
@@ -8933,36 +8933,11 @@ msgstr ""
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
 #, kde-format
-msgid "Designated revoker"
-msgstr "Designierter Widerrufer"
-
-#. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:71
-#, kde-format
-msgid ""
-"The fingerprint of a designated revoker to be added to each new key. Must be "
-"given in the form \"algo:fpr [sensitive]\". Algo is the public key algorithm "
-"of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the fingerprint "
-"of the designated revoker. The optional ‘sensitive’ flag marks the "
-"designated revoker as sensitive information. Only v4 keys may be designated "
-"revokers. GnuPG 2.4.4 is required for adding sensitive revokers."
-msgstr ""
-"Der Fingerabdruck eines designierten Revokers, der zu jedem neu erzeugten "
-"Schlüssel hinzugefügt wird. Er muss in der Form \"algo:fpr [sensitive]\" "
-"angegeben werden. Algo ist der Algorithmus des Schlüsselpaars des "
-"designierten Revokers (z. B. RSA=1, DSA=17 usw.), fpr ist der Fingerabdruck "
-"des designierten Revokers. Das optionale \"sensitive\" kennzeichnet den "
-"designierten Revoker als vertrauliche Information, hierfür ist GnuPG 2.4.4 "
-"erforderlich. Nur v4 und v5-Schlüssel können als Revoker bestimmt werden."
-
-#. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:75
-#, kde-format
 msgid "Hide advanced settings"
 msgstr "Erweiterte Einstellungen ausblenden"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:76
+#: src/kcfg/settings.kcfg:71
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
@@ -8971,20 +8946,20 @@ msgstr ""
 "Zertifikatsassistenten ausgeblendet."
 
 #. i18n: ectx: label, entry, group (Certification)
-#: src/kcfg/settings.kcfg:82
+#: src/kcfg/settings.kcfg:77
 #, kde-format
 msgid "Default certification validity"
 msgstr "Standard Beglaubigungsgültigkeit"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
-#: src/kcfg/settings.kcfg:83
+#: src/kcfg/settings.kcfg:78
 #, kde-format
 msgid "Specifies the default validity of certifications in days."
 msgstr ""
 "Gibt die standardmäßige Gültigkeitsdauer von Beglaubigungen in Tagen an."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
-#: src/kcfg/settings.kcfg:84
+#: src/kcfg/settings.kcfg:79
 #, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
@@ -8996,19 +8971,19 @@ msgstr ""
 "ablaufen wird. Auf 0 setzen für unendlich lange gültige Beglaubigungen."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
-#: src/kcfg/settings.kcfg:90
+#: src/kcfg/settings.kcfg:85
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr "Zum Erstellen von Prüfsummen zu verwendendes Prüfsummen-Programm"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:96
+#: src/kcfg/settings.kcfg:91
 #, kde-format
 msgid "Show results after signing"
 msgstr "Ergebnis nach Signierung anzeigen"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:92
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
@@ -9017,13 +8992,13 @@ msgstr ""
 "erfolgreich signiert wurde."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:101
+#: src/kcfg/settings.kcfg:96
 #, kde-format
 msgid "Show results after encryption"
 msgstr "Ergebnis nach Verschlüsselung anzeigen"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:102
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -9033,19 +9008,19 @@ msgstr ""
 "erfolgreich verschlüsselt wurde."
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:108
+#: src/kcfg/settings.kcfg:103
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "S/MIME aktivieren"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:104
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "Aktiviert die Unterstützung für S/MIME (CMS)"
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:110
+#: src/kcfg/settings.kcfg:105
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -9055,19 +9030,19 @@ msgstr ""
 "Funktionalitäten mit Bezug zu S/MIME (CMS)."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:114
+#: src/kcfg/settings.kcfg:109
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "Erstellen von S/MIME-Zertifikaten ermöglichen"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:115
+#: src/kcfg/settings.kcfg:110
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "Ermöglicht das Erstellen von Signieranfragen für S/MIME-Zertifikate."
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:116
+#: src/kcfg/settings.kcfg:111
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -9077,20 +9052,20 @@ msgstr ""
 "Signieranfragen für S/MIME-Zertifikate."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:120
+#: src/kcfg/settings.kcfg:115
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "Signieren mit S/MIME-Zertifikaten ermöglichen"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:121
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr ""
 "Ermöglicht das Signieren von Text oder Dateien mit S/MIME-Zertifikaten."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:122
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -9100,62 +9075,62 @@ msgstr ""
 "mit S/MIME-Zertifikaten."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:128
+#: src/kcfg/settings.kcfg:123
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "Einstellungen zum Erscheinungsbild anzeigen"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:132
+#: src/kcfg/settings.kcfg:127
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Kryptografie-Aktionen anzeigen"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:136
+#: src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "Einstellungen zu Verzeichnisdiensten anzeigen"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:140
+#: src/kcfg/settings.kcfg:135
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "GnuPG-System-Einstellungen anzeigen"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:144
+#: src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "Smartcard-Einstellungen anzeigen"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:148
+#: src/kcfg/settings.kcfg:143
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "S/MIME-Prüfung-Einstellungen anzeigen"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:155
+#: src/kcfg/settings.kcfg:150
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr ""
 "Definiert die Anzeigereihenfolge der DN-Attribute von X.509-Zertifikaten."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:161
+#: src/kcfg/settings.kcfg:156
 #, kde-format
 msgid "Enable Groups"
 msgstr "Gruppen aktivieren"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:162
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "Verwendung von Gruppenschlüsseln aktivieren."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:163
+#: src/kcfg/settings.kcfg:158
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr ""
@@ -9163,13 +9138,13 @@ msgstr ""
 "erstellen."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:169
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "Signierschlüssel nach Import holen"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:172
+#: src/kcfg/settings.kcfg:167
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -9183,7 +9158,7 @@ msgstr ""
 "vertrauenswürdigen Vermittlern nützlich."
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:176
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
@@ -9191,7 +9166,7 @@ msgstr ""
 "Betreiber (WKDs)"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:179
+#: src/kcfg/settings.kcfg:174
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -9209,13 +9184,13 @@ msgstr ""
 "Benutzerkennungen ab."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:185
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "Melde anstehende Abläufe von Zertifikaten"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:187
+#: src/kcfg/settings.kcfg:182
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -9225,13 +9200,13 @@ msgstr ""
 "Zertifikate benutzt werden, die bald ablaufen werden."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:193
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Zu blockierende URL-Schemata"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:195
+#: src/kcfg/settings.kcfg:190
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -9244,13 +9219,13 @@ msgstr ""
 "für bestimmte URLs startet."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:201
+#: src/kcfg/settings.kcfg:196
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Immer nach Smartcard-Zertifikaten auf Schlüsselservern suchen"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:202
+#: src/kcfg/settings.kcfg:197
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -9260,7 +9235,7 @@ msgstr ""
 "den Smartcard-Schlüsseln gehören."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:204
+#: src/kcfg/settings.kcfg:199
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -9274,19 +9249,19 @@ msgstr ""
 "auf LDAP-Schlüsselservern zu tun."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:208
+#: src/kcfg/settings.kcfg:203
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "Versuchen, S/MIME-Zertifikate von PKCS#15-Smartcards zu lesen"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:209
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "Automatisch S/MIME-Zertifikate von PKCS#15-(CardOS)-Smartcards lesen"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:210
+#: src/kcfg/settings.kcfg:205
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -9298,7 +9273,7 @@ msgstr ""
 "blockiert die Smartcard solange wie der Befehl läuft."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:216
+#: src/kcfg/settings.kcfg:211
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Profileinstellungen deaktivieren"
@@ -13182,6 +13157,27 @@ msgid ""
 msgstr ""
 "Um ein Zertifikat von einem öffentlichen Schlüsselserver zu importieren, "
 "verwenden Sie stattdessen „Auf Server suchen“."
+
+#~ msgid "Designated revoker"
+#~ msgstr "Designierter Widerrufer"
+
+#~ msgid ""
+#~ "The fingerprint of a designated revoker to be added to each new key. Must "
+#~ "be given in the form \"algo:fpr [sensitive]\". Algo is the public key "
+#~ "algorithm of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the "
+#~ "fingerprint of the designated revoker. The optional ‘sensitive’ flag "
+#~ "marks the designated revoker as sensitive information. Only v4 keys may "
+#~ "be designated revokers. GnuPG 2.4.4 is required for adding sensitive "
+#~ "revokers."
+#~ msgstr ""
+#~ "Der Fingerabdruck eines designierten Revokers, der zu jedem neu erzeugten "
+#~ "Schlüssel hinzugefügt wird. Er muss in der Form \"algo:fpr [sensitive]\" "
+#~ "angegeben werden. Algo ist der Algorithmus des Schlüsselpaars des "
+#~ "designierten Revokers (z. B. RSA=1, DSA=17 usw.), fpr ist der "
+#~ "Fingerabdruck des designierten Revokers. Das optionale \"sensitive\" "
+#~ "kennzeichnet den designierten Revoker als vertrauliche Information, "
+#~ "hierfür ist GnuPG 2.4.4 erforderlich. Nur v4 und v5-Schlüssel können als "
+#~ "Revoker bestimmt werden."
 
 #~ msgid "Publish on keyserver afterwards"
 #~ msgstr "Auf Schlüsselserver veröffentlichen"

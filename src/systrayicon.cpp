@@ -128,7 +128,11 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     , setInitialPinAction(i18nc("@action:inmenu", "Set NetKey v3 Initial PIN..."), q)
     , aboutDialog()
 {
+#ifdef Q_OS_WIN
+    q->setNormalIcon(QIcon::fromTheme(QStringLiteral("kleopatra")));
+#else
     q->setNormalIcon(QIcon::fromTheme(QStringLiteral("kleopatra-symbolic")));
+#endif
     q->setAttentionIcon(QIcon::fromTheme(QStringLiteral("auth-sim-locked")));
 
     Q_SET_OBJECT_NAME(menu);

@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:39+0000\n"
-"PO-Revision-Date: 2024-05-14 19:32+0300\n"
+"PO-Revision-Date: 2024-05-24 11:03+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -3527,10 +3527,9 @@ msgid "Set this option to disable public key encryption."
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public-key encryption only."
-msgstr "להשתמש בהצפנה סימטרית בלבד."
+msgstr "להשתמש בהצפנת מפתח ציבורי בלבד."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
 #, kde-format
@@ -4770,8 +4769,7 @@ msgid "Please enter a name or email address..."
 msgstr "נא למלא שם או כתובת דוא״ל…"
 
 #: src/crypto/gui/certificatelineedit.cpp:307
-#, fuzzy, kde-format
-#| msgid "Show certificate list"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "הצגת רשימת אישורים"
@@ -4924,11 +4922,10 @@ msgid ""
 msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
-#, fuzzy, kde-format
-#| msgid "Decrypt / Verify"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Decrypt/Verify"
-msgstr "פענוח / אימות"
+msgstr "&פענוח/אימות"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:219
 #, kde-format
@@ -5655,8 +5652,7 @@ msgid "Search"
 msgstr ""
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, fuzzy, kde-format
-#| msgid "Search on keyserver"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "חיפוש בשרת מפתחות"
@@ -6271,8 +6267,7 @@ msgid "Trusted introducer for:"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:237
-#, fuzzy, kde-format
-#| msgid "See certifications for details."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "הצגת אישורים לקבלת פרטים."
@@ -6425,8 +6420,7 @@ msgid "Refresh certificate list"
 msgstr "רענון רשימת אישורים"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#, fuzzy, kde-format
-#| msgid "Import..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Import..."
 msgstr "ייבוא…"
@@ -6443,11 +6437,10 @@ msgid "Import certificate"
 msgstr "ייבוא אישור"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, fuzzy, kde-format
-#| msgid "Lookup on Server..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Lookup..."
-msgstr "איתור בשרת…"
+msgstr "איתור…"
 
 #: src/dialogs/certificateselectiondialog.cpp:168
 #, kde-format
@@ -6461,8 +6454,7 @@ msgid "Look up certificate"
 msgstr "חיפוש אישור"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, fuzzy, kde-format
-#| msgid "New..."
+#, kde-format
 msgctxt "@action:button"
 msgid "New..."
 msgstr "חדש…"
@@ -6479,8 +6471,7 @@ msgid "Create certificate"
 msgstr "יצירת אישור"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, fuzzy, kde-format
-#| msgid "Groups..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Groups..."
 msgstr "קבוצות…"
@@ -6595,13 +6586,10 @@ msgid "Publish in internal directory"
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:263
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Publish Revocation"
-#| msgid_plural "Publish Revocations"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
-msgstr "פרסום אישור"
+msgstr "פרסום אל %1"
 
 #: src/dialogs/certifywidget.cpp:266
 #, kde-kuit-format
@@ -6719,10 +6707,10 @@ msgid "Owner trust set successfully."
 msgstr "מהימנות הבעלים הוגדרה בהצלחה."
 
 #: src/dialogs/copytosmartcarddialog.cpp:56
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:radio"
 msgid "Delete secret key from disk."
-msgstr "&צור תעודה"
+msgstr "מחיקת המפחת הסודי מהכונן."
 
 #: src/dialogs/copytosmartcarddialog.cpp:57
 #, kde-format
@@ -6731,25 +6719,22 @@ msgid "Keep secret key on disk."
 msgstr ""
 
 #: src/dialogs/copytosmartcarddialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a backup of the secret key to a file."
-msgstr "גיבוי מפתח ההצפנה בקובץ."
+msgstr "גיבוי המפתח הסודי לקובץ."
 
 #: src/dialogs/copytosmartcarddialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a printed backup of the secret key."
-msgstr "שמירת גיבוי של מפתח ההצפנה"
+msgstr "הכנת גיבוי מודפס של המפתח הסודי."
 
 #: src/dialogs/copytosmartcarddialog.cpp:66
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "I already have a backup of the secret key."
-msgstr "שמירת גיבוי של מפתח ההצפנה"
+msgstr "כבר יש לי גיבוי של המפתח הסודי."
 
 #: src/dialogs/copytosmartcarddialog.cpp:103
 #, kde-format
@@ -6758,11 +6743,10 @@ msgid "Copy to Card"
 msgstr ""
 
 #: src/dialogs/copytosmartcarddialog.cpp:124
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Copy Key to Smartcard"
-msgstr "העברה לכרטיס חכם"
+msgstr "העתקת המפתח לכרטיס החכם"
 
 #: src/dialogs/copytosmartcarddialog.cpp:143
 #, kde-kuit-format
@@ -6774,11 +6758,10 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/debugdialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Clipboard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
-msgstr "לוח גזירים"
+msgstr "העתקה ללוח הגזירים"
 
 #: src/dialogs/debugdialog.cpp:111
 #, kde-format
@@ -6945,12 +6928,10 @@ msgid "Remove Selected Keys"
 msgstr "הסרת המפתחות הנבחרים"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Remove Selected Keys"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
-msgstr "הסרת המפתחות הנבחרים"
+msgstr "הסרת המפתחות הנבחרים מהקבוצה"
 
 #: src/dialogs/editgroupdialog.cpp:229
 #, kde-format
@@ -7051,8 +7032,7 @@ msgid "Backup encryption key"
 msgstr ""
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "גיבוי מפתח ההצפנה בקובץ."
@@ -7615,12 +7595,10 @@ msgid "Show this notification for future updates."
 msgstr "להציג את ההתראה הזאת לעדכונים עתידיים."
 
 #: src/dialogs/updatenotification.cpp:207
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Key Updated"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Get update"
-msgstr "המפתח עודכן"
+msgstr "מ&שיכת עדכון"
 
 #: src/dialogs/useridswidget.cpp:140
 #, kde-format
@@ -7979,10 +7957,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:45
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public key encryption only."
-msgstr "להשתמש בהצפנה סימטרית בלבד."
+msgstr "להשתמש בהצפנת מפתח ציבורי בלבד."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:46
@@ -9011,8 +8988,7 @@ msgid "Groups"
 msgstr "קבוצות"
 
 #: src/mainwindow.cpp:721
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "הגדרת המיקוד לחיפוש המהיר"
@@ -10467,35 +10443,31 @@ msgid "Caught unknown exception in group %1"
 msgstr ""
 
 #: src/utils/clipboardmenu.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certificate Import"
+#, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
 msgstr "ייבוא אישור"
 
 #: src/utils/clipboardmenu.cpp:44
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
-msgstr "&יצירת תעודה"
+msgstr "הצפנה…"
 
 #: src/utils/clipboardmenu.cpp:47
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@action"
 msgid "S/MIME-Sign..."
-msgstr "S/MIME"
+msgstr "חתימת S/MIME…"
 
 #: src/utils/clipboardmenu.cpp:49
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
-msgstr "OpenPGP"
+msgstr "חתימת OpenPGP…"
 
 #: src/utils/clipboardmenu.cpp:50
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify..."
+#, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "פענוח/אימות…"
@@ -10635,7 +10607,7 @@ msgstr "שגיאת יומן: אי אפשר לפתוח את קובץ היומן �
 #: src/utils/output.cpp:307
 #, kde-format
 msgid "No output device"
-msgstr ""
+msgstr "אין התקן פלט"
 
 #: src/utils/output.cpp:527
 #, kde-format
@@ -10673,13 +10645,13 @@ msgstr "לא ניתן לשנות את השם של הקובץ „%1” לשם „
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
-msgstr ""
+msgstr "קלט אל %1…"
 
 #: src/utils/output.cpp:743
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
-msgstr ""
+msgstr "קלט אל %1"
 
 #: src/utils/output.cpp:773
 #, kde-format
@@ -10689,7 +10661,7 @@ msgstr "לא ניתן לכתוב ללוח הגזירים"
 #: src/utils/output.cpp:782
 #, kde-format
 msgid "Find buffer"
-msgstr ""
+msgstr "איתור חוצץ"
 
 #: src/utils/output.cpp:784
 #, kde-format
@@ -10707,7 +10679,7 @@ msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
-msgstr ""
+msgstr "הקובץ <filename>%1</filename> כבר קיים. נא למלא שם אחר לקובץ."
 
 #: src/utils/overwritedialog.cpp:185
 #, kde-kuit-format
@@ -10775,7 +10747,7 @@ msgstr "לא לכתוב לקובץ הזה, לדלג לבא במקום."
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
-msgstr ""
+msgstr "לדלג על הכול"
 
 #: src/utils/overwritedialog.cpp:234
 #, kde-format
@@ -11072,14 +11044,13 @@ msgstr "יצירת קבוצה מהאישורים הנבחרים"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
-msgstr ""
+msgstr "העתקה לכרטיס"
 
 #: src/view/keylistcontroller.cpp:568
-#, fuzzy, kde-format
-#| msgid "Update selected certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
-msgstr "עדכון האישורים הנבחרים"
+msgstr "העתקת האישורים הנבחרים לכרטיס החכם"
 
 #: src/view/keylistcontroller.cpp:577
 #, kde-format
@@ -11169,7 +11140,7 @@ msgstr "יצירת מפתח OpenPGP למפתחות שמאוחסנים בכרטי
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
-msgstr ""
+msgstr "יצירת בקשת חתימה על אישור (CSR)"
 
 #: src/view/netkeywidget.cpp:111
 #, kde-format
@@ -11195,7 +11166,7 @@ msgstr "החלפת קוד SigG אישי"
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
-msgstr ""
+msgstr "כרטיס NetKey v%1"
 
 #: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
 #, kde-format
@@ -11231,6 +11202,7 @@ msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
 "the smartcard."
 msgstr ""
+"מחילה! לא נמצאו מפתחות שמתאימים ליצירת בקשת חתימה על אישור בכרטיס החכם."
 
 #: src/view/nullpinwidget.cpp:35
 #, kde-format
@@ -11304,19 +11276,19 @@ msgstr "יצירת בקשת חתימת אישור למפתח הזה"
 #, kde-format
 msgctxt "@info"
 msgid "<em>No key</em>"
-msgstr ""
+msgstr "<em>אין מפתח</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:176
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a key for this card slot"
-msgstr ""
+msgstr "יצירת מפתח לחריץ כרטיס זה"
 
 #: src/view/openpgpkeycardwidget.cpp:187
 #, kde-format
 msgctxt "@info"
 msgid "<em>Public key not found locally</em>"
-msgstr ""
+msgstr "<em>לא נמצא מפתח ציבורי מקומית</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:208
 #, kde-format
@@ -11361,17 +11333,17 @@ msgstr "מתבצע חיפוש בשירות ספרייה…"
 #: src/view/p15cardwidget.cpp:135
 #, kde-format
 msgid "Automatic import finished."
-msgstr ""
+msgstr "ייבוא אוטומטי הסתיים."
 
 #: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Error multiple keys found on server."
-msgstr ""
+msgstr "שגיאה מספר מפתחות שנמצאו בשרת."
 
 #: src/view/p15cardwidget.cpp:143
 #, kde-format
 msgid "Key not found in directory service."
-msgstr ""
+msgstr "המפתח לא נמצא בשירות הספרייה."
 
 #: src/view/p15cardwidget.cpp:152
 #, kde-format
@@ -11397,7 +11369,7 @@ msgstr "ייבוא מחברת"
 #: src/view/padwidget.cpp:86
 #, kde-format
 msgid "Revert"
-msgstr ""
+msgstr "הסגה"
 
 #: src/view/padwidget.cpp:114
 #, kde-format
@@ -11500,8 +11472,7 @@ msgid "Cardholder:"
 msgstr "בעלי הכרטיס:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, fuzzy, kde-format
-#| msgid "Change"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "החלפה"
@@ -11574,9 +11545,7 @@ msgid "Change the PIN required for administrative operations."
 msgstr "החלפת הקוד האישי (PIN) לפעולות ניהוליות."
 
 #: src/view/pgpcardwidget.cpp:268
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change PUK"
+#, kde-format
 msgid "Change PUK"
 msgstr "החלפת PUK"
 
@@ -11830,7 +11799,7 @@ msgstr "כתיבת צמד המפתחות של אישור לכרטיס"
 #, kde-format
 msgctxt "%1 version number"
 msgid "PIV v%1 card"
-msgstr ""
+msgstr "כרטיס PIV %1"
 
 #: src/view/pivcardwidget.cpp:269
 #, kde-format
@@ -11879,8 +11848,7 @@ msgid "Filter certificates by text"
 msgstr "סינון אישורים לפי טקסט"
 
 #: src/view/searchbar.cpp:139
-#, fuzzy, kde-format
-#| msgid "Show only certificates that match the entered search term."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "להציג רק אישורים שעונים על ביטוי החיפוש שהוקלד."
@@ -11891,8 +11859,7 @@ msgid "Filter certificates by category"
 msgstr "סינון אישורים לפי קטגוריה"
 
 #: src/view/searchbar.cpp:143
-#, fuzzy, kde-format
-#| msgid "Show only certificates that belong to the selected category."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "להציג רק אישורים ששייכים לקטגוריות הנבחרות"
@@ -11937,7 +11904,7 @@ msgstr "NetKey v3"
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
-msgstr ""
+msgstr "PIV (דורש את GnuPG 2.3 ומעלה)"
 
 #: src/view/smartcardwidget.cpp:57
 #, kde-format
@@ -11958,7 +11925,7 @@ msgstr "Kleopatra תומכת כרגע בסוגי הכרטיסים הבאים:"
 #: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgid "Reload"
-msgstr ""
+msgstr "רענון"
 
 #: src/view/smartcardwidget.cpp:118
 #, kde-format

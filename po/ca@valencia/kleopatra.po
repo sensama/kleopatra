@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:39+0000\n"
-"PO-Revision-Date: 2024-05-22 10:14+0200\n"
+"PO-Revision-Date: 2024-05-23 11:58+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 24.02.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -3456,8 +3456,7 @@ msgid "<unnamed>"
 msgstr "<sense nom>"
 
 #: src/conf/appearanceconfigwidget.cpp:300
-#, fuzzy, kde-format
-#| msgid "This parameter has been locked down by the system administrator."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Este paràmetre l'ha bloquejat l'administrador del sistema."
@@ -3743,19 +3742,15 @@ msgstr ""
 "Establir esta opció per a desactivar l'encriptació amb la clau pública."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public-key encryption only."
-msgstr "Utilitza només l'encriptació simètrica."
+msgstr "Utilitza només l'encriptació de clau pública."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Set this option to disable public key encryption."
+#, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
-msgstr ""
-"Establir esta opció per a desactivar l'encriptació amb la clau pública."
+msgstr "Establiu esta opció per a desactivar l'encriptació amb contrasenya."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
@@ -5105,8 +5100,7 @@ msgid "Please enter a name or email address..."
 msgstr "Introduïu el nom o l'adreça de correu…"
 
 #: src/crypto/gui/certificatelineedit.cpp:307
-#, fuzzy, kde-format
-#| msgid "Show certificate list"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "Mostra la llista de certificats"
@@ -6034,15 +6028,13 @@ msgid "Search"
 msgstr "Busca"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, fuzzy, kde-format
-#| msgid "Search on keyserver"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "Busca al servidor de claus"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
-#, fuzzy, kde-format
-#| msgid "The data was encrypted to this key / certificate."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr "Les dades s'han encriptat a esta clau / certificat."
@@ -6674,8 +6666,7 @@ msgid "Trusted introducer for:"
 msgstr "Presentador de confiança per a:"
 
 #: src/dialogs/certificatedetailswidget.cpp:237
-#, fuzzy, kde-format
-#| msgid "See certifications for details."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Mostra les certificacions per a obtindre més detalls."
@@ -7384,8 +7375,7 @@ msgid "Add Selected Keys"
 msgstr "Afig les claus seleccionades"
 
 #: src/dialogs/editgroupdialog.cpp:214
-#, fuzzy, kde-format
-#| msgid "Add the selected keys to the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "Afig les claus seleccionades al grup"
@@ -7397,8 +7387,7 @@ msgid "Remove Selected Keys"
 msgstr "Elimina les claus seleccionades"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Remove the selected keys from the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "Elimina les claus seleccionades del grup"
@@ -7504,8 +7493,7 @@ msgid "Backup encryption key"
 msgstr "Fes una còpia de seguretat de la clau d'encriptació"
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "Fa una còpia de seguretat de la clau d'encriptació a un fitxer."
@@ -8319,18 +8307,14 @@ msgstr ""
 "vostres claus (o falta la clau secreta requerida)."
 
 #: src/dialogs/weboftrustwidget.cpp:267
-#, fuzzy, kde-format
-#| msgid "Revocation of self-certifications is currently not possible."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Actualment, no és possible revocar les certificacions automàtiques."
 
 # skip-rule: punctuation-period-no
 #: src/dialogs/weboftrustwidget.cpp:271
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this revocation certification. (But you can re-certify "
-#| "the corresponding user ID.)"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
@@ -8340,24 +8324,19 @@ msgstr ""
 "certificar l'ID d'usuari corresponent)."
 
 #: src/dialogs/weboftrustwidget.cpp:274
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this expired certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "No podeu revocar esta certificació vençuda."
 
 #: src/dialogs/weboftrustwidget.cpp:277
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this invalid certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "No podeu revocar esta certificació no vàlida."
 
 #: src/dialogs/weboftrustwidget.cpp:280
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this certification because the required secret key is "
-#| "not available."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
@@ -8498,18 +8477,15 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:45
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public key encryption only."
-msgstr "Utilitza només l'encriptació simètrica."
+msgstr "Utilitza només l'encriptació de clau pública."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:46
-#, fuzzy, kde-format
-#| msgid "Set this option to disable public key encryption."
+#, kde-format
 msgid "Set this option to disable password-based encryption."
-msgstr ""
-"Establir esta opció per a desactivar l'encriptació amb la clau pública."
+msgstr "Establiu esta opció per a desactivar l'encriptació amb contrasenya."
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:9
@@ -9898,10 +9874,7 @@ msgid "EMail address:"
 msgstr "Adreça de correu:"
 
 #: src/newcertificatewizard/enterdetailspage.cpp:144
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#| "asked for the passphrase during key generation."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -9992,10 +9965,7 @@ msgid "Result"
 msgstr "Resultat"
 
 #: src/newcertificatewizard/resultpage.cpp:85
-#, fuzzy, kde-format
-#| msgid ""
-#| "Drag this icon to your mail application's composer to attach the request "
-#| "to a mail."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
@@ -12295,8 +12265,7 @@ msgid "Cardholder:"
 msgstr "Titular de la targeta:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, fuzzy, kde-format
-#| msgid "Change"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Canvia"
@@ -12690,8 +12659,7 @@ msgid "Filter certificates by text"
 msgstr "Filtra els certificats pel text"
 
 #: src/view/searchbar.cpp:139
-#, fuzzy, kde-format
-#| msgid "Show only certificates that match the entered search term."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr ""
@@ -12704,8 +12672,7 @@ msgid "Filter certificates by category"
 msgstr "Filtra els certificats per la categoria"
 
 #: src/view/searchbar.cpp:143
-#, fuzzy, kde-format
-#| msgid "Show only certificates that belong to the selected category."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr ""
@@ -12961,24 +12928,3 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
-
-#~ msgid "Designated revoker"
-#~ msgstr "Revocador designat"
-
-#~ msgid ""
-#~ "The fingerprint of a designated revoker to be added to each new key. Must "
-#~ "be given in the form \"algo:fpr [sensitive]\". Algo is the public key "
-#~ "algorithm of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the "
-#~ "fingerprint of the designated revoker. The optional ‘sensitive’ flag "
-#~ "marks the designated revoker as sensitive information. Only v4 keys may "
-#~ "be designated revokers. GnuPG 2.4.4 is required for adding sensitive "
-#~ "revokers."
-#~ msgstr ""
-#~ "L'empremta digital d'un revocador designat que s'afegirà a cada clau "
-#~ "nova. S'ha de donar en la forma \"algo:fpr [confidencial]\". Algo és "
-#~ "l'algorisme de clau pública del revocador designat (és a dir, RSA1,1, "
-#~ "DSA1717, etc.) fpr és l'empremta digital del revocador designat. "
-#~ "L'indicador opcional «confidencial» marca el revocador designat com a "
-#~ "informació confidencial. Només les claus v4 poden ser designades "
-#~ "revocadores. GnuPG 2.4.4 és necessari per a afegir revocadors "
-#~ "confidencials."

@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:39+0000\n"
-"PO-Revision-Date: 2024-05-24 11:03+0300\n"
+"PO-Revision-Date: 2024-05-25 07:19+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -420,8 +420,7 @@ msgid "Certification Not Possible"
 msgstr "אי אפשר להסמיך"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, fuzzy, kde-format
-#| msgid "Create"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create"
 msgstr "ליצור"
@@ -655,14 +654,14 @@ msgstr ""
 "היה: "
 
 #: src/commands/changeownertrustcommand.cpp:248
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה בשלילת כוח ההסמכה של ‚%1’.</para><para><message>%2</"
+"message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:264
 #, kde-format
@@ -832,9 +831,9 @@ msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "אי אפשר לפתוח את הקובץ „%1” לקריאה וכתיבה: %2"
 
 #: src/commands/changeroottrustcommand.cpp:295
-#, fuzzy, kde-format
+#, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
-msgstr "אין אפשרות ליצור את התעודה: %1"
+msgstr "לא ניתן להגדיר הרשאות מגבילות על הקובץ %1: %2"
 
 #: src/commands/changeroottrustcommand.cpp:355
 #, kde-format
@@ -935,12 +934,14 @@ msgstr "פרטי אישור"
 
 #: src/commands/createcsrforcardkeycommand.cpp:192
 #: src/commands/createcsrforcardkeycommand.cpp:207
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Creating a CSR for the card key failed:\n"
 "%1"
-msgstr "הארך תוקף תעודה"
+msgstr ""
+"יצירת בקשת חתימת אישור למפתח הכרטיס נכשלה:\n"
+"%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:212
 #: src/newcertificatewizard/resultpage.cpp:226
@@ -7807,44 +7808,40 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/weboftrustwidget.cpp:267
-#, fuzzy, kde-format
-#| msgid "Revocation of self-certifications is currently not possible."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "שלילת אישורים עצמאיים אינה אפשרית כרגע."
 
 #: src/dialogs/weboftrustwidget.cpp:271
-#, fuzzy, kde-format
-#| msgid "You cannot revoke any certifications of this user ID."
-#| msgid_plural "You cannot revoke any certifications of these user IDs."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
 "corresponding user ID.)"
-msgstr "אי אפשר לשלול אישורים למזהה המשתמש הזה."
+msgstr ""
+"אי אפשר לשלול את הסמכת השלילה הזאת. (אבל אפשר להסמיך את מזהה המשתמש המתאים "
+"מחדש)."
 
 #: src/dialogs/weboftrustwidget.cpp:274
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
-msgstr "אי אפשר לשלול את האישור הזה."
+msgstr "אי אפשר לשלול את האישור הזה שתוקפו פג."
 
 #: src/dialogs/weboftrustwidget.cpp:277
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
-msgstr "אי אפשר לשלול את האישור הזה."
+msgstr "אי אפשר לשלול את האישור השגוי הזה."
 
 #: src/dialogs/weboftrustwidget.cpp:280
-#, fuzzy, kde-format
-#| msgid "You cannot revoke any certifications of this key."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
-msgstr "אי אפשר לשלול אישורים כלשהם למפתח הזה."
+msgstr "אי אפשר לשלול את האישור הזה כיוון שהמפתח הסודי הנחוץ לא זמין."
 
 #: src/dialogs/weboftrustwidget.cpp:288
 #, kde-format
@@ -9796,7 +9793,7 @@ msgstr ""
 msgctxt "@info"
 msgid ""
 "Quit any other running instances of <application>Kleopatra</application>."
-msgstr ""
+msgstr "יציאה מעותקים פעילים כלשהם של <application>Kleopatra</application>."
 
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
@@ -9836,39 +9833,39 @@ msgstr ""
 #: src/smartcard/pivcard.cpp:101
 #, kde-format
 msgid "ECDH (Curve P-256)"
-msgstr ""
+msgstr "ECDH (עקום P-256)"
 
 #: src/smartcard/pivcard.cpp:102
 #, kde-format
 msgid "ECDH (Curve P-384)"
-msgstr ""
+msgstr "ECDH (עקום P-384)"
 
 #: src/smartcard/pivcard.cpp:106 src/smartcard/pivcard.cpp:114
 #, kde-format
 msgid "RSA (2048 bits)"
-msgstr ""
+msgstr "RSA (2048 סיביות)"
 
 #: src/smartcard/pivcard.cpp:107 src/smartcard/pivcard.cpp:115
 #, kde-format
 msgid "ECDSA (Curve P-256)"
-msgstr ""
+msgstr "ECDSA (עקום P-256)"
 
 #: src/smartcard/pivcard.cpp:108
 #, kde-format
 msgid "ECDSA (Curve P-384)"
-msgstr ""
+msgstr "ECDSA (עקום P-384)"
 
 #: src/smartcard/utils.cpp:32
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "NetKey"
-msgstr ""
+msgstr "NetKey"
 
 #: src/smartcard/utils.cpp:34
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "OpenPGP"
-msgstr ""
+msgstr "OpenPGP"
 
 #: src/smartcard/utils.cpp:36
 #, kde-format
@@ -10384,6 +10381,7 @@ msgid ""
 "Could not pass socket to Qt: %1. This should not happen, please report this "
 "bug."
 msgstr ""
+"לא ניתן להעביר את השקע ל־Qt‏: %1. זה לא אמור לקרוא, נא לדווח על התקלה הזאת."
 
 #: src/utils/accessibility.cpp:89
 #, kde-format
@@ -10399,17 +10397,17 @@ msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "
 "form field must be filled out"
 msgid "required"
-msgstr ""
+msgstr "חובה"
 
 #: src/utils/archivedefinition.cpp:86
 #, kde-format
 msgid "Error in archive definition %1: %2"
-msgstr ""
+msgstr "שגיאה בהגדרת ארכיון %1: %2"
 
 #: src/utils/archivedefinition.cpp:147
 #, kde-format
 msgid "Cannot use both %f and | in '%1'"
-msgstr ""
+msgstr "לא ניתן להשתמש ב־%f וגם ב־| בתוך ‚%1’"
 
 #: src/utils/archivedefinition.cpp:159
 #, kde-format
@@ -10419,13 +10417,13 @@ msgstr ""
 #: src/utils/archivedefinition.cpp:162
 #, kde-format
 msgid "'%1' too complex (would need shell)"
-msgstr ""
+msgstr "‚%1’ מורכבת מדי (צריכה מעטפת/shell)"
 
 #: src/utils/archivedefinition.cpp:166 src/utils/archivedefinition.cpp:215
 #: src/utils/archivedefinition.cpp:229 src/utils/archivedefinition.cpp:241
 #, kde-format
 msgid "'%1' entry is empty/missing"
-msgstr ""
+msgstr "הרשומה ‚%1’ ריקה/חסרה"
 
 #: src/utils/archivedefinition.cpp:175
 #, kde-format
@@ -10440,7 +10438,7 @@ msgstr ""
 #: src/utils/archivedefinition.cpp:469
 #, kde-format
 msgid "Caught unknown exception in group %1"
-msgstr ""
+msgstr "נתפסה חריגה לא מוכרת בקבוצה %1"
 
 #: src/utils/clipboardmenu.cpp:43
 #, kde-format
@@ -10482,25 +10480,25 @@ msgstr "אי אפשר לשנות את התאריך."
 #, kde-format
 msgctxt "@info ... between <a date> and <another date>."
 msgid "Enter a date between %1 and %2."
-msgstr ""
+msgstr "נא לציין תאריך בין %1 ל־%2."
 
 #: src/utils/expiration.cpp:139
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Three years from now"
-msgstr ""
+msgstr "שלוש שנים מעכשיו"
 
 #: src/utils/expiration.cpp:140
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Two years from now"
-msgstr ""
+msgstr "שנתיים מעכשיו"
 
 #: src/utils/expiration.cpp:141
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "One year from now"
-msgstr ""
+msgstr "שנה מעכשיו"
 
 #: src/utils/input.cpp:218
 #, kde-format
@@ -11561,14 +11559,14 @@ msgstr ""
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
-msgstr ""
+msgstr "כרטיס OpenPGP v%1 לא ידוע"
 
 #: src/view/pgpcardwidget.cpp:294
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
-msgstr ""
+msgstr "כרטיס OpenPGP v%2 מבית %1"
 
 #: src/view/pgpcardwidget.cpp:300 src/view/pgpcardwidget.cpp:302
 #, kde-format

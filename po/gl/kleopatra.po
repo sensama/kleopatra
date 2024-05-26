@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:39+0000\n"
-"PO-Revision-Date: 2024-05-17 21:51+0200\n"
+"PO-Revision-Date: 2024-05-25 09:34+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -3436,8 +3436,7 @@ msgid "<unnamed>"
 msgstr "<sennome>"
 
 #: src/conf/appearanceconfigwidget.cpp:300
-#, fuzzy, kde-format
-#| msgid "This parameter has been locked down by the system administrator."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "O administrador do sistema bloqueou este parámetro."
@@ -3718,18 +3717,15 @@ msgid "Set this option to disable public key encryption."
 msgstr "Marque esta opción para desactivar o cifrado da chave pública."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public-key encryption only."
-msgstr "Usar só cifrado simétrico."
+msgstr "Usar só cifrado de chave pública."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Set this option to disable public key encryption."
+#, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
-msgstr "Marque esta opción para desactivar o cifrado da chave pública."
+msgstr "Marque esta opción para desactivar o cifrado mediante contrasinal."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
@@ -5066,11 +5062,10 @@ msgid "Please enter a name or email address..."
 msgstr "Insira o nome ou enderezo de correo…"
 
 #: src/crypto/gui/certificatelineedit.cpp:307
-#, fuzzy, kde-format
-#| msgid "Show certificate list"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
-msgstr "Amosar a lista de certificados"
+msgstr "Amosar a lista de certificados."
 
 #: src/crypto/gui/certificatelineedit.cpp:308
 #, kde-format
@@ -5996,15 +5991,13 @@ msgid "Search"
 msgstr "Buscar"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, fuzzy, kde-format
-#| msgid "Search on keyserver"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Search on keyserver"
-msgstr "Buscar nun servidor de chaves"
+msgstr "Buscar nun servidor de chaves."
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
-#, fuzzy, kde-format
-#| msgid "The data was encrypted to this key / certificate."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr "Os datos cifráronse para esta chave ou certificado."
@@ -6638,8 +6631,7 @@ msgid "Trusted introducer for:"
 msgstr "Introdutora de confianza para:"
 
 #: src/dialogs/certificatedetailswidget.cpp:237
-#, fuzzy, kde-format
-#| msgid "See certifications for details."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Consulte as certificacións para máis información."
@@ -6792,8 +6784,7 @@ msgid "Refresh certificate list"
 msgstr "Anovar a lista de contactos"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#, fuzzy, kde-format
-#| msgid "Import..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Import..."
 msgstr "Importar…"
@@ -6810,8 +6801,7 @@ msgid "Import certificate"
 msgstr "Importar o certificado"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, fuzzy, kde-format
-#| msgid "Lookup..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Consultar…"
@@ -6828,8 +6818,7 @@ msgid "Look up certificate"
 msgstr "Consultar o certificado"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, fuzzy, kde-format
-#| msgid "New..."
+#, kde-format
 msgctxt "@action:button"
 msgid "New..."
 msgstr "Novo…"
@@ -6846,8 +6835,7 @@ msgid "Create certificate"
 msgstr "Crear un certificado"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, fuzzy, kde-format
-#| msgid "Groups..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Grupos…"
@@ -6968,23 +6956,16 @@ msgstr ""
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish in internal directory"
-msgstr ""
+msgstr "Publicar no directorio interno."
 
 #: src/dialogs/certifywidget.cpp:263
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Publish Revocation"
-#| msgid_plural "Publish Revocations"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
-msgstr "Publicar a revogación"
+msgstr "Publicar en %1"
 
 #: src/dialogs/certifywidget.cpp:266
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this option, if you want to upload your certifications to a "
-#| "certificate directory after successful certification."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this option if you want to upload your certifications to a certificate "
@@ -7352,11 +7333,10 @@ msgid "Add Selected Keys"
 msgstr "Engadir as chaves seleccionadas"
 
 #: src/dialogs/editgroupdialog.cpp:214
-#, fuzzy, kde-format
-#| msgid "Add the selected keys to the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
-msgstr "Engadir as chaves seleccionadas ao grupo"
+msgstr "Engadir as chaves seleccionadas ao grupo."
 
 #: src/dialogs/editgroupdialog.cpp:220
 #, kde-format
@@ -7365,11 +7345,10 @@ msgid "Remove Selected Keys"
 msgstr "Retirar as chaves seleccionadas"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Remove the selected keys from the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
-msgstr "Retiras as chaves seleccionadas do grupo"
+msgstr "Retiras as chaves seleccionadas do grupo."
 
 #: src/dialogs/editgroupdialog.cpp:229
 #, kde-format
@@ -7471,8 +7450,7 @@ msgid "Backup encryption key"
 msgstr "Facer unha salvagarda da chave de cifraxe"
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "Facer unha salvagarda da chave de cifraxe nun ficheiro."
@@ -7897,7 +7875,7 @@ msgstr "Subchaves"
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
-msgstr ""
+msgstr "Identificador de chave"
 
 #: src/dialogs/subkeyswidget.cpp:141
 #, kde-format
@@ -8071,8 +8049,7 @@ msgid "Show this notification for future updates."
 msgstr "Amosar esta notificación para actualizacións futuras."
 
 #: src/dialogs/updatenotification.cpp:207
-#, fuzzy, kde-format
-#| msgid "&Get update"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Get update"
 msgstr "&Obter a actualización"
@@ -8287,17 +8264,13 @@ msgstr ""
 "(ou falta a chave secreta necesaria)."
 
 #: src/dialogs/weboftrustwidget.cpp:267
-#, fuzzy, kde-format
-#| msgid "Revocation of self-certifications is currently not possible."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Non é posíbel revogar as auto-certificacións actualmente."
 
 #: src/dialogs/weboftrustwidget.cpp:271
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this revocation certification. (But you can re-certify "
-#| "the corresponding user ID.)"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
@@ -8307,24 +8280,19 @@ msgstr ""
 "novo o identificador de persoa usuaria correspondente."
 
 #: src/dialogs/weboftrustwidget.cpp:274
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this expired certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "Non pode revogar esta certificación caducada."
 
 #: src/dialogs/weboftrustwidget.cpp:277
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this invalid certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "Non pode revogar esta certificación non válida."
 
 #: src/dialogs/weboftrustwidget.cpp:280
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this certification because the required secret key is "
-#| "not available."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
@@ -8462,17 +8430,15 @@ msgstr "Marque esta opción para desactivar o cifrado da chave pública."
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:45
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public key encryption only."
-msgstr "Usar só cifrado simétrico."
+msgstr "Usar só cifrado de chave pública."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:46
-#, fuzzy, kde-format
-#| msgid "Set this option to disable public key encryption."
+#, kde-format
 msgid "Set this option to disable password-based encryption."
-msgstr "Marque esta opción para desactivar o cifrado da chave pública."
+msgstr "Marque esta opción para desactivar o cifrado mediante contrasinal."
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:9
@@ -9857,10 +9823,7 @@ msgid "EMail address:"
 msgstr "Enderezo de correo electrónico:"
 
 #: src/newcertificatewizard/enterdetailspage.cpp:144
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#| "asked for the passphrase during key generation."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -9951,10 +9914,7 @@ msgid "Result"
 msgstr "Resultado"
 
 #: src/newcertificatewizard/resultpage.cpp:85
-#, fuzzy, kde-format
-#| msgid ""
-#| "Drag this icon to your mail application's composer to attach the request "
-#| "to a mail."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
@@ -12239,8 +12199,7 @@ msgid "Cardholder:"
 msgstr "Dono da tarxeta:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, fuzzy, kde-format
-#| msgid "Change"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Cambiar"
@@ -12634,8 +12593,7 @@ msgid "Filter certificates by text"
 msgstr "Filtrar os certificados por texto"
 
 #: src/view/searchbar.cpp:139
-#, fuzzy, kde-format
-#| msgid "Show only certificates that match the entered search term."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "Amosar só certificados que coinciden co termo de busca."
@@ -12646,8 +12604,7 @@ msgid "Filter certificates by category"
 msgstr "Filtrar os certificados por categoría"
 
 #: src/view/searchbar.cpp:143
-#, fuzzy, kde-format
-#| msgid "Show only certificates that belong to the selected category."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Amosar só certificados que pertencen á categoría seleccionada."

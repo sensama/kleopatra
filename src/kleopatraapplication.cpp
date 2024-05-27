@@ -165,7 +165,6 @@ public:
 #ifndef QT_NO_SYSTEMTRAYICON
         , sysTray(nullptr)
 #endif
-        , groupConfig{std::make_shared<KeyGroupConfig>(QStringLiteral("kleopatragroupsrc"))}
     {
     }
     ~Private()
@@ -307,6 +306,9 @@ KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
 
 void KleopatraApplication::init()
 {
+    const QString groupConfigPath = Kleo::gnupgHomeDirectory() + QStringLiteral("/kleopatra/kleopatragroupsrc");
+    d->groupConfig = std::make_shared<KeyGroupConfig>(groupConfigPath);
+
 #ifdef Q_OS_WIN
     QWindowsWindowFunctions::setWindowActivationBehavior(QWindowsWindowFunctions::AlwaysActivateWindow);
 #endif

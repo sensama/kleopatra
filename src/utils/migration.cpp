@@ -4,11 +4,17 @@
 
 #include "utils/migration.h"
 
+#include "kleopatra_debug.h"
+
 #include <KConfigGroup>
 #include <KSharedConfig>
 
+#include <QFile>
+#include <QFileInfo>
 #include <QRegularExpression>
 #include <QUuid>
+
+#include <Libkleo/GnuPG>
 
 static const QStringList groupStateIgnoredKeys = {
     QStringLiteral("magic"),
@@ -47,5 +53,17 @@ void Migration::migrate()
         migrateGroupState(QStringLiteral("kleopatracertificateselectiondialogrc"), QStringLiteral("CertificateSelectionDialog"));
         migrations.writeEntry("01-key-list-layout", true);
         migrations.sync();
+    }
+
+    // Migrate ~/.config/kleopatragroupsrc to ~/.gnupg/kleopatra/kleopatragroupsrc
+    const QString groupConfigFilename = QStringLiteral("kleopatragroupsrc");
+    const QString oldGroupConfigPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + groupConfigFilename;
+    const QString groupConfigPath = Kleo::gnupgHomeDirectory() + QLatin1StringView("/kleopatra/") + groupConfigFilename;
+
+    if (!QFileInfo::exists(groupConfigPath) && QFileInfo::exists(oldGroupConfigPath)) {
+        const bool ok = QFile::copy(oldGroupConfigPath, groupConfigPath);
+        if (!ok) {
+            qCWarning(KLEOPATRA_LOG) << "Unable to copy the old group configuration to" << groupConfigPath;
+        }
     }
 }

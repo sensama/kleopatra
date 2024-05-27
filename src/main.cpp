@@ -186,10 +186,9 @@ int main(int argc, char **argv)
     // Delay init after KUniqueservice call as this might already
     // have terminated us and so we can avoid overhead (e.g. keycache
     // setup / systray icon).
+    Migration::migrate();
     app.init();
     STARTUP_TIMING << "Application initialized";
-
-    Migration::migrate();
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);

@@ -48,7 +48,7 @@ public:
         int row = 0;
 
         if (requiredAttributes & KeyOwnerName) {
-            auto nameLabel = new QLabel(i18n("Name:"));
+            auto nameLabel = new QLabel(i18nc("@label:textbox", "Name:"));
             mNameEdit = new QLineEdit(userFullName());
             connect(mNameEdit, &QLineEdit::textChanged, q, [this]() {
                 checkAcceptable();
@@ -58,7 +58,7 @@ public:
             grid->addWidget(mNameEdit, row++, 1);
         }
         if (requiredAttributes & KeyOwnerEmail) {
-            auto mailLabel = new QLabel(i18n("EMail:"));
+            auto mailLabel = new QLabel(i18nc("@label:textbox", "EMail:"));
             mEmailEdit = new QLineEdit(userEmailAddress());
             connect(mEmailEdit, &QLineEdit::textChanged, q, [this]() {
                 checkAcceptable();
@@ -72,7 +72,7 @@ public:
             grid->addWidget(mInvalidEmailLabel, row++, 1);
         }
         if (requiredAttributes & KeyAlgorithm) {
-            auto algorithmLabel = new QLabel(i18n("Algorithm:"));
+            auto algorithmLabel = new QLabel(i18nc("@label:textbox", "Algorithm:"));
             mAlgorithmCombo = new QComboBox;
 
             grid->addWidget(algorithmLabel, row, 0);

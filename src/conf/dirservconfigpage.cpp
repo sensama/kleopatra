@@ -128,7 +128,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         auto groupBoxLayout = new QVBoxLayout{groupBox};
         groupBoxLayout->setContentsMargins({});
 
-        groupBoxLayout->addWidget(new QLabel(i18n("Please note that only one OpenPGP keyserver can be configured.")));
+        groupBoxLayout->addWidget(new QLabel(i18nc("@label:textbox", "Please note that only one OpenPGP keyserver can be configured.")));
 
         {
             mUseKeyServerCheckBox = new QCheckBox(i18nc("@label:checkbox", "Use OpenPGP keyserver"));

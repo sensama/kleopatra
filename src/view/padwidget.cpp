@@ -147,7 +147,7 @@ public:
             recipientsVLay->addLayout(protocolSelectionLay);
         }
 
-        protocolSelectionLay->addWidget(new QLabel(i18n("<h3>Protocol:</h3>")));
+        protocolSelectionLay->addWidget(new QLabel(i18nc("@label:textbox", "<h3>Protocol:</h3>")));
         protocolSelectionLay->addStretch(-1);
         // Once S/MIME is supported add radio for S/MIME here.
 

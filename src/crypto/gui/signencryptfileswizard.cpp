@@ -161,7 +161,7 @@ public:
         auto outputGrp = new QGroupBox(i18nc("@title:group", "Output"));
         outputGrp->setLayout(mOutLayout);
 
-        mPlaceholderWidget = new QLabel(i18n("Please select an action."));
+        mPlaceholderWidget = new QLabel(i18nc("@label:textbox", "Please select an action."));
         mOutLayout->addWidget(mPlaceholderWidget);
 
         mOutputLabel = new QLabel(i18nc("@label on SignEncryptPage", "Output &files/folder:"));

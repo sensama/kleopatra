@@ -169,7 +169,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
         row++;
 
-        cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
+        cardInfoGrid->addWidget(new QLabel(i18nc("@label:textbox", "Serial number:")), row, 0);
         cardInfoGrid->addWidget(mSerialNumber, row, 1);
         mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
         row++;
@@ -337,7 +337,7 @@ void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
     progress->setModal(true);
     progress->setCancelButton(nullptr);
     progress->setWindowTitle(i18nc("@title:window", "Generating Keys"));
-    progress->setLabel(new QLabel(i18n("This may take several minutes...")));
+    progress->setLabel(new QLabel(i18nc("@label:textbox", "This may take several minutes...")));
     auto workerThread = new GenKeyThread(params, mRealSerial);
     connect(workerThread, &QThread::finished, this, [this, workerThread, progress] {
         progress->accept();

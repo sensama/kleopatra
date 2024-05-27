@@ -78,7 +78,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
 
     ++row;
     mExeED = new Kleo::FileNameRequester(group);
-    auto label = new QLabel(i18n("&Executable:"), group);
+    auto label = new QLabel(i18nc("@label:textbox", "&Executable:"), group);
     label->setBuddy(mExeED);
     glay->addWidget(label, row, 0);
     glay->addWidget(mExeED, row, 1);
@@ -87,7 +87,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
 
     ++row;
     mSocketED = new Kleo::FileNameRequester(group);
-    label = new QLabel(i18n("&Socket:"), group);
+    label = new QLabel(i18nc("@label:textbox", "&Socket:"), group);
     label->setBuddy(mSocketED);
     glay->addWidget(label, row, 0);
     glay->addWidget(mSocketED, row, 1);
@@ -101,7 +101,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     mLogLevelCB->addItem(i18n("Advanced"));
     mLogLevelCB->addItem(i18n("Expert"));
     mLogLevelCB->addItem(i18n("Guru"));
-    label = new QLabel(i18n("Default &log level:"), group);
+    label = new QLabel(i18nc("@label:textbox", "Default &log level:"), group);
     label->setBuddy(mLogLevelCB);
     glay->addWidget(label, row, 0);
     glay->addWidget(mLogLevelCB, row, 1);
@@ -123,7 +123,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     mLoglenSB->setSingleStep(100);
     mLoglenSB->setSuffix(ki18ncp("history size spinbox suffix", " line", " lines"));
     mLoglenSB->setSpecialValueText(i18n("unlimited"));
-    label = new QLabel(i18n("&History size:"), group);
+    label = new QLabel(i18nc("@label:textbox", "&History size:"), group);
     label->setBuddy(mLoglenSB);
     glay->addWidget(label, row, 0);
     glay->addWidget(mLoglenSB, row, 1);

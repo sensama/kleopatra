@@ -78,7 +78,7 @@ P15CardWidget::P15CardWidget(QWidget *parent)
         cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
         mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
 
-        cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
+        cardInfoGrid->addWidget(new QLabel(i18nc("@label:textbox", "Serial number:")), row, 0);
         cardInfoGrid->addWidget(mSerialNumber, row++, 1);
         mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
 

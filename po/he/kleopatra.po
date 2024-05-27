@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 00:39+0000\n"
-"PO-Revision-Date: 2024-05-25 07:19+0300\n"
+"PO-Revision-Date: 2024-05-25 21:17+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -7423,7 +7423,7 @@ msgstr "תת־מפתחות"
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
-msgstr ""
+msgstr "מזהה מפתח"
 
 #: src/dialogs/subkeyswidget.cpp:141
 #, kde-format
@@ -7447,7 +7447,7 @@ msgstr "מצב"
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr ""
+msgstr "אלגוריתם"
 
 #: src/dialogs/subkeyswidget.cpp:145
 #, kde-format
@@ -7617,13 +7617,13 @@ msgstr "שלילת מזהה משתמש"
 #, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
-msgstr ""
+msgstr "סימון כעיקרי"
 
 #: src/dialogs/useridswidget.cpp:147
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
-msgstr ""
+msgstr "סימון מזהה המשתמש הנבחר כמזהה המשתמש העיקרי למפתח הזה."
 
 #: src/dialogs/useridswidget.cpp:149
 #, kde-format
@@ -7646,22 +7646,22 @@ msgstr "דוא״ל"
 #: src/newcertificatewizard/enterdetailspage.cpp:63
 #, kde-format
 msgid "Name"
-msgstr ""
+msgstr "שם"
 
 #: src/dialogs/useridswidget.cpp:243
 #, kde-format
 msgid "Trust Level"
-msgstr ""
+msgstr "דרגת אמון"
 
 #: src/dialogs/useridswidget.cpp:243
 #, kde-format
 msgid "Tags"
-msgstr ""
+msgstr "תגיות"
 
 #: src/dialogs/useridswidget.cpp:243
 #, kde-format
 msgid "Origin"
-msgstr ""
+msgstr "מקור"
 
 #: src/dialogs/useridswidget.cpp:261
 #, kde-format
@@ -7672,7 +7672,7 @@ msgstr "אין דוא״ל"
 #: src/dialogs/useridswidget.cpp:316
 #, kde-format
 msgid "never"
-msgstr ""
+msgstr "אף פעם לא"
 
 #: src/dialogs/useridswidget.cpp:318
 #, kde-format
@@ -7682,17 +7682,17 @@ msgstr "חתימה"
 #: src/dialogs/useridswidget.cpp:319 src/dialogs/useridswidget.cpp:323
 #, kde-format
 msgid "First message"
-msgstr ""
+msgstr "הודעה ראשונה"
 
 #: src/dialogs/useridswidget.cpp:320 src/dialogs/useridswidget.cpp:324
 #, kde-format
 msgid "Last message"
-msgstr ""
+msgstr "הודעה אחרונה"
 
 #: src/dialogs/useridswidget.cpp:321 src/dialogs/useridswidget.cpp:325
 #, kde-format
 msgid "Message count"
-msgstr ""
+msgstr "כמות הודעות"
 
 #: src/dialogs/useridswidget.cpp:322 src/smartcard/openpgpcard.cpp:102
 #, kde-format
@@ -7711,7 +7711,7 @@ msgstr "<para>לשלול את מזהה המשתמש<nl/><emphasis>%1</emphasis> 
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
-msgstr ""
+msgstr "סימון כמזהה משתמש עיקרי"
 
 #: src/dialogs/useridswidget.cpp:479
 #, kde-format
@@ -7766,7 +7766,7 @@ msgstr "מזהי משתמשים והסמכות"
 #, kde-format
 msgctxt "@info"
 msgid "Certifications are not available before the certificate is imported."
-msgstr ""
+msgstr "אישורים לא זמינים לפני ייבוא האישור."
 
 #: src/dialogs/weboftrustwidget.cpp:102
 #, kde-format
@@ -7799,6 +7799,7 @@ msgid ""
 "Look up and import all keys that were used to certify the user IDs of this "
 "key"
 msgstr ""
+"חיפוש וייבוא כל המפתחות שנעשה בהם שימוש להסמכת מזהה המשתמש של המפתח הזה"
 
 #: src/dialogs/weboftrustwidget.cpp:264
 #, kde-format
@@ -7806,6 +7807,8 @@ msgid ""
 "You cannot revoke this certification because it wasn't made with one of your "
 "keys (or the required secret key is missing)."
 msgstr ""
+"אי אפשר לשלול את האישור הזה כיוון שלא נוצר עם אחד מהמפתחות שלך (או שהמפתח "
+"הסודי הנחוץ חסר)."
 
 #: src/dialogs/weboftrustwidget.cpp:267
 #, kde-format
@@ -7885,7 +7888,7 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:10
 #, kde-format
 msgid "Use pgp as the default extension for generated OpenPGP files"
-msgstr ""
+msgstr "להשתמש ב־pgp כסיומת ברירת המחדל לקובצי OpenPGP שנוצרים"
 
 #. i18n: ectx: whatsthis, entry (UsePGPFileExt), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:11
@@ -7893,6 +7896,8 @@ msgstr ""
 msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr ""
+"יש להגדיר את זה כדי להנחות את Kleopatra להשתמש בסיומת הקובץ pgp לקובצי "
+"OpenPGP כברירת מחדל."
 
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
@@ -7902,12 +7907,14 @@ msgid ""
 "input files but instead automatically starts the operations it detects as "
 "applicable to the input."
 msgstr ""
+"כשהאפשרות הזאת מוגדרת Kleopatra לא תשאל עוד מה לעשות עם קובצי קלט במקום "
+"להתחיל את הפעולות שמזוהות כמתאימות לקלט."
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Automatically extract archives after decryption."
-msgstr ""
+msgstr "חילוץ ארכיונים אוטומטית לאחר הפענוח."
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:21
@@ -7915,13 +7922,13 @@ msgstr ""
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
 "after decryption."
-msgstr ""
+msgstr "אם האפשרות הזאת מוגדרת, Kleopatra תחלץ קובצי ארכיונים לאחר הפענוח."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Use this command to create file archives."
-msgstr ""
+msgstr "להשתמש בפקודה הזאת כדי ליצור ארכיוני קבצים."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:26
@@ -7930,6 +7937,8 @@ msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
 "archive with this command."
 msgstr ""
+"בעת הצפנת מספר קבצים או תיקייה Kleopatra תיצור ארכיון מוצפן בעזרת הפקודה "
+"הזאת."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
@@ -7939,18 +7948,22 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
+"יש להגדיר את האפשרות הזאת כדי לקודד קבצים מוצפנים או חתומים כטקסט בקידוד "
+"base64. כדי שאפשר יהיה לפתוח אותם בעורך או לשלוח אותם בגוף הודעות. הבחירה "
+"בקידוד הזה תגדיל את הגודל בשליש."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
+"יש להגדיר את האפשרות הזאת כדי להימנע משימוש בתיקיות הזמניות של המשתמשים."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
-msgstr ""
+msgstr "יש להגדיר את האפשרות הזאת כדי להשבית הצפנת מפתח ציבורי."
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:45
@@ -7962,13 +7975,13 @@ msgstr "להשתמש בהצפנת מפתח ציבורי בלבד."
 #: src/kcfg/fileoperationspreferences.kcfg:46
 #, kde-format
 msgid "Set this option to disable password-based encryption."
-msgstr ""
+msgstr "יש להגדיר את האפשרות הזאת כדי להשבית הצפנה מבוססת סיסמה."
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:9
 #, kde-format
 msgid "Placeholder for CN"
-msgstr ""
+msgstr "ממלא מקום ל־CN (שם נפוץ)"
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:10
@@ -7976,13 +7989,13 @@ msgstr ""
 msgid ""
 "This text will be used as placeholder text for the common name (CN) field of "
 "S/MIME certificates."
-msgstr ""
+msgstr "הטקסט הזה ישמש כממלא מקום לשדה השם הנפוץ (CN) של אישורי S/MIME."
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:14
 #, kde-format
 msgid "Prefill CN automatically"
-msgstr ""
+msgstr "מילוי שם נפוץ (CN) אוטומטית"
 
 #. i18n: ectx: whatsthis, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:16
@@ -9602,7 +9615,7 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info %1: test name"
 msgid "<para>See \"%1\" above.</para>"
-msgstr ""
+msgstr "<para>נא לעיין ב־„%1” לעיל.</para>"
 
 #: src/selftest/gpgagentcheck.cpp:33
 #, kde-format
@@ -9673,7 +9686,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "%1 Configuration Check"
-msgstr ""
+msgstr "בדיקת הגדרות %1"
 
 #: src/selftest/gpgconfcheck.cpp:69
 #, kde-format
@@ -9713,12 +9726,12 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Windows Registry"
-msgstr ""
+msgstr "רישום המערכת של Windows"
 
 #: src/selftest/registrycheck.cpp:47
 #, kde-format
 msgid "Obsolete registry entries found"
-msgstr ""
+msgstr "נמצאו רשומות מיותרות ברישום המערכת"
 
 #: src/selftest/registrycheck.cpp:50
 #, kde-kuit-format
@@ -10098,12 +10111,12 @@ msgstr ""
 #: src/uiserver/decryptverifycommandemailbase.cpp:175
 #, kde-format
 msgid "No backend support for OpenPGP"
-msgstr ""
+msgstr "אין תמיכת מנגנון ב־OpenPGP"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:176
 #, kde-format
 msgid "No backend support for S/MIME"
-msgstr ""
+msgstr "אין תמיכת מנגנון ב־S/MIME"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
@@ -10139,12 +10152,12 @@ msgstr ""
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1"
-msgstr ""
+msgstr "נתפסה חריגה מפתיעה ב־SignCommand::Private::slotMicAlgDetermined:‏ %1"
 
 #: src/uiserver/echocommand.cpp:136 src/uiserver/signcommand.cpp:195
 #, kde-format
 msgid "Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"
-msgstr ""
+msgstr "נתפסה חריגה לא ידועה ב־SignCommand::Private::slotMicAlgDetermined"
 
 #: src/uiserver/encryptcommand.cpp:69
 #, kde-format
@@ -10508,17 +10521,17 @@ msgstr ""
 #: src/utils/input.cpp:247 src/utils/input.cpp:261
 #, kde-format
 msgid "Could not open file \"%1\" for reading"
-msgstr ""
+msgstr "לא ניתן לפתוח את הקובץ „%1” לקריאה"
 
 #: src/utils/input.cpp:259
 #, kde-format
 msgid "File \"%1\" is already open, but not for reading"
-msgstr ""
+msgstr "הקובץ „%1” כבר פתוח, אבל לא לקריאה"
 
 #: src/utils/input.cpp:326 src/utils/output.cpp:725
 #, kde-format
 msgid "Command not specified"
-msgstr ""
+msgstr "לא צוינה פקודה"
 
 #: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
 #, kde-format
@@ -10534,13 +10547,13 @@ msgstr "כתיבת הפלט לתהליך %1 נכשלה: %2"
 #, kde-format
 msgctxt "e.g. \"Output of tar xf - file1 ...\""
 msgid "Output of %1 ..."
-msgstr ""
+msgstr "הפלט של %1…"
 
 #: src/utils/input.cpp:357
 #, kde-format
 msgctxt "e.g. \"Output of tar xf - file\""
 msgid "Output of %1"
-msgstr ""
+msgstr "הפלט של %1"
 
 #: src/utils/input.cpp:375
 #, kde-format
@@ -10548,21 +10561,23 @@ msgid ""
 "Error while running %1:\n"
 "%2"
 msgstr ""
+"שגיאה בהרצת %1:\n"
+"%2"
 
 #: src/utils/input.cpp:415
 #, kde-format
 msgid "Could not open clipboard for reading"
-msgstr ""
+msgstr "לא ניתן לפתוח את לוח הגזירים לקריאה"
 
 #: src/utils/input.cpp:427
 #, kde-format
 msgid "Clipboard contents"
-msgstr ""
+msgstr "תוכן לוח הגזירים"
 
 #: src/utils/input.cpp:429
 #, kde-format
 msgid "FindBuffer contents"
-msgstr ""
+msgstr "תוכן חוצץ איתור (FindBuffer)"
 
 #: src/utils/input.cpp:431
 #, kde-format
@@ -10572,7 +10587,7 @@ msgstr "הבחירה הנוכחית"
 #: src/utils/input_p.h:61
 #, kde-format
 msgid "No input device"
-msgstr ""
+msgstr "אין התקני קלט"
 
 #: src/utils/keyexportdraghandler.cpp:141
 #, kde-format
@@ -10727,7 +10742,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
-msgstr ""
+msgstr "לשמור אוטומטית של כל הקבצים שדורסים קבצים קיימים בשמות שונים."
 
 #: src/utils/overwritedialog.cpp:227
 #, kde-format
@@ -10753,7 +10768,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Do not write this file and any other files that would overwrite an already "
 "existing file."
-msgstr ""
+msgstr "לא לכתוב את הקובץ הזה וכל קבצים אחרים שהם שידרסו קובץ שכבר קיים."
 
 #: src/utils/overwritedialog.cpp:238
 #, kde-format
@@ -10777,7 +10792,7 @@ msgstr "שכתוב של הכול"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
-msgstr ""
+msgstr "לדרוס את הקובץ הקיים וכל קבצים אחרים שהם שכבר קיימים."
 
 #: src/utils/path-helper.cpp:133
 #, kde-format
@@ -10840,7 +10855,7 @@ msgstr "ייצוא…"
 #: src/view/keylistcontroller.cpp:335
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
-msgstr ""
+msgstr "לייצא את האישור הנבחר (מפתח ציבורי) לקובץ"
 
 #: src/view/keylistcontroller.cpp:343
 #, kde-format
@@ -10850,7 +10865,7 @@ msgstr "פרסום בשרת…"
 #: src/view/keylistcontroller.cpp:344
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
-msgstr ""
+msgstr "פרסום האישור הנבחר (מפתח ציבורי) לשרת מפתחות ציבורי"
 
 #: src/view/keylistcontroller.cpp:353
 #, kde-format
@@ -10863,6 +10878,8 @@ msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
+"פרסום האישור הנבחר (מפתח ציבורי) בספריית המפתחות המקוונת של ספק הדוא״ל אם יש "
+"הצעה כזאת"
 
 #: src/view/keylistcontroller.cpp:363
 #, kde-format

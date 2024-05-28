@@ -30,8 +30,10 @@
 
 #include "kleopatra_debug.h"
 #include <QAction>
+#include <QClipboard>
 #include <QContextMenuEvent>
 #include <QEvent>
+#include <QGuiApplication>
 #include <QHeaderView>
 #include <QItemSelection>
 #include <QItemSelectionModel>
@@ -662,6 +664,14 @@ void KeyTreeView::restoreStateAfterModelChange()
 
     setUpTagKeys();
     initializeColumnSizes();
+}
+
+void KeyTreeView::keyPressEvent(QKeyEvent *event)
+{
+    if (event == QKeySequence::Copy) {
+        QGuiApplication::clipboard()->setText(view()->currentIndex().data(KeyList::ClipboardRole).toString());
+        event->accept();
+    }
 }
 
 #include "moc_keytreeview.cpp"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -3896,6 +3896,7 @@ msgstr "OpenPGP εξυπηρετητής:"
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr ""
 
@@ -5291,8 +5292,9 @@ msgid "..."
 msgstr "..."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:55
-#: src/crypto/gui/decryptverifyfileswizard.cpp:220
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Output folder:"
+msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "&Φάκελος εξόδου:"
 
@@ -5403,6 +5405,11 @@ msgstr "&Αποκρυπτογράφηση/επαλήθευση"
 #, kde-format
 msgid "Create all output files in a single folder"
 msgstr "Δημιουργία όλων των αρχείων εξόδου σε ένα φάκελο"
+
+#: src/crypto/gui/decryptverifyfileswizard.cpp:220
+#, kde-format
+msgid "&Output folder:"
+msgstr "&Φάκελος εξόδου:"
 
 #: src/crypto/gui/decryptverifyoperationwidget.cpp:70
 #, kde-format
@@ -5719,7 +5726,9 @@ msgid "Output"
 msgstr "Αποτέλεσμα"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:164
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Please select an action."
+msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "Επιλέξτε ενέργεια."
 
@@ -6428,7 +6437,7 @@ msgctxt "@title:group"
 msgid "Key Material"
 msgstr "Υλικό κλειδιού"
 
-#: src/dialogs/addsubkeydialog.cpp:95 src/dialogs/gencardkeydialog.cpp:75
+#: src/dialogs/addsubkeydialog.cpp:95
 #, kde-format
 msgid "Algorithm:"
 msgstr "Αλγόριθμος:"
@@ -6528,53 +6537,61 @@ msgstr ""
 "<div>Έτσι το νέο αναγνωριστικό χρήστη θα αποθηκευτεί στο πιστοποιητικό:</"
 "div><center><strong>%1</strong></center>"
 
-#: src/dialogs/cardinfotab.cpp:58
+#: src/dialogs/cardinfotab.cpp:67
 #, fuzzy, kde-format
 #| msgctxt "@label"
 #| msgid "Subkeys"
 msgid "Subkeys"
 msgstr "Υποκλειδιά"
 
-#: src/dialogs/cardinfotab.cpp:64
+#: src/dialogs/cardinfotab.cpp:73 src/dialogs/subkeyswidget.cpp:159
 #, kde-format
 msgctxt "@title:column"
 msgid "Keygrip"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:65
+#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
+#: src/dialogs/subkeyswidget.cpp:152
+#, fuzzy, kde-format
+#| msgid "Fingerprint:"
+msgctxt "@title:column"
+msgid "Fingerprint"
+msgstr "Αποτύπωμα:"
+
+#: src/dialogs/cardinfotab.cpp:75
 #, kde-format
 msgctxt "@title:column"
 msgid "Token"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:66
+#: src/dialogs/cardinfotab.cpp:76
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Τύπος"
 
-#: src/dialogs/cardinfotab.cpp:67
+#: src/dialogs/cardinfotab.cpp:77
 #, fuzzy, kde-format
 #| msgid "Serial number:"
 msgctxt "@title:column"
 msgid "Serial Number"
 msgstr "Σειριακός αριθμός:"
 
-#: src/dialogs/cardinfotab.cpp:68
+#: src/dialogs/cardinfotab.cpp:78
 #, fuzzy, kde-format
 #| msgid "Owner:"
 msgctxt "@title:column"
 msgid "Owner"
 msgstr "Ιδιοκτήτης:"
 
-#: src/dialogs/cardinfotab.cpp:73
+#: src/dialogs/cardinfotab.cpp:83
 #, fuzzy, kde-format
 #| msgid "Certification will be performed using certificate %1."
 msgctxt "@info"
 msgid "Smartcard information is only available for your own certificates."
 msgstr "Η πιστοποίηση θα εκτελεστεί με τη χρήση του πιστοποιητικού %1."
 
-#: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/cardinfotab.cpp:90
 #: src/dialogs/certificateselectiondialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Reload"
@@ -6582,7 +6599,7 @@ msgctxt "@action:button"
 msgid "Reload"
 msgstr "Επαναφόρτωση"
 
-#: src/dialogs/cardinfotab.cpp:131
+#: src/dialogs/cardinfotab.cpp:142
 #, fuzzy, kde-format
 #| msgctxt "Unknown encryption protocol"
 #| msgid "Unknown"
@@ -6590,7 +6607,7 @@ msgctxt "Unknown <type> <version> (card)"
 msgid "Unknown %1 v%2"
 msgstr "Άγνωστο"
 
-#: src/dialogs/cardinfotab.cpp:133
+#: src/dialogs/cardinfotab.cpp:144
 #, fuzzy, kde-format
 #| msgctxt "name, email, key id"
 #| msgid "%1 %2 (%3)"
@@ -6598,7 +6615,7 @@ msgctxt "<Manufacturer> <type> <version>"
 msgid "%1 %2 v%3"
 msgstr "%1 %2 (%3)"
 
-#: src/dialogs/cardinfotab.cpp:140
+#: src/dialogs/cardinfotab.cpp:151
 #, fuzzy, kde-format
 #| msgctxt "unknown storage location"
 #| msgid "unknown"
@@ -6606,8 +6623,8 @@ msgctxt "unknown cardholder"
 msgid "unknown"
 msgstr "άγνωστη"
 
-#: src/dialogs/cardinfotab.cpp:143 src/dialogs/cardinfotab.cpp:147
-#: src/dialogs/cardinfotab.cpp:149
+#: src/dialogs/cardinfotab.cpp:153 src/dialogs/cardinfotab.cpp:157
+#: src/dialogs/cardinfotab.cpp:159
 #, kde-format
 msgid "n/a"
 msgstr ""
@@ -6914,7 +6931,7 @@ msgid "unlimited"
 msgstr "απεριόριστο"
 
 #: src/dialogs/certificatedetailswidget.cpp:342
-#: src/dialogs/subkeyswidget.cpp:374
+#: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
@@ -6936,56 +6953,64 @@ msgid "smart card"
 msgstr "έξυπνη κάρτα"
 
 #: src/dialogs/certificatedetailswidget.cpp:350
-#: src/dialogs/subkeyswidget.cpp:382
+#: src/dialogs/subkeyswidget.cpp:395
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "εκτός σύνδεσης"
 
-#: src/dialogs/certificatedetailswidget.cpp:352
+#: src/dialogs/certificatedetailswidget.cpp:353
+#, kde-format
+msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
+msgid "On this computer and on a smart card"
+msgid_plural "On this computer and on %1 smart cards"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/dialogs/certificatedetailswidget.cpp:357
 #, fuzzy, kde-format
 #| msgid "on this computer"
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "στον υπολογιστή αυτό"
 
-#: src/dialogs/certificatedetailswidget.cpp:467
+#: src/dialogs/certificatedetailswidget.cpp:472
 #: src/dialogs/useridswidget.cpp:357
 #, kde-format
 msgid "Updating..."
 msgstr "Ενημέρωση..."
 
-#: src/dialogs/certificatedetailswidget.cpp:539
+#: src/dialogs/certificatedetailswidget.cpp:544
 #, kde-format
 msgid "Common Name"
 msgstr "Κοινό όνομα"
 
-#: src/dialogs/certificatedetailswidget.cpp:540
+#: src/dialogs/certificatedetailswidget.cpp:545
 #, kde-format
 msgid "Organization"
 msgstr "Οργανισμός"
 
-#: src/dialogs/certificatedetailswidget.cpp:541
+#: src/dialogs/certificatedetailswidget.cpp:546
 #, kde-format
 msgid "Street"
 msgstr "Οδός"
 
-#: src/dialogs/certificatedetailswidget.cpp:542
+#: src/dialogs/certificatedetailswidget.cpp:547
 #, kde-format
 msgid "City"
 msgstr "Πόλη"
 
-#: src/dialogs/certificatedetailswidget.cpp:543
+#: src/dialogs/certificatedetailswidget.cpp:548
 #, kde-format
 msgid "State"
 msgstr "Περιφέρεια"
 
-#: src/dialogs/certificatedetailswidget.cpp:544
+#: src/dialogs/certificatedetailswidget.cpp:549
 #, kde-format
 msgid "Country"
 msgstr "Χώρα"
 
-#: src/dialogs/certificatedetailswidget.cpp:591
+#: src/dialogs/certificatedetailswidget.cpp:596
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "Το πιστοποιητικό του εκδότη δεν βρέθηκε τοπικά."
@@ -7294,13 +7319,6 @@ msgstr ""
 "θέλετε να πιστοποιήσετε, και επιλέξτε το κλειδί με το οποίο θέλετε να "
 "πιστοποιήσετε τα αναγνωριστικά χρήστη.<br><i>Σημείωση: Μόνο το δακτυλικό "
 "αποτύπωμα ξεκάθαρα ταυτοποιεί το κλειδί και τον ιδιοκτήτη του.</i>"
-
-#: src/dialogs/certifywidget.cpp:481 src/dialogs/subkeyswidget.cpp:140
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
-msgctxt "@title:column"
-msgid "Fingerprint"
-msgstr "Αποτύπωμα:"
 
 #: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
 #, fuzzy, kde-format
@@ -7699,12 +7717,16 @@ msgid "Export"
 msgstr "Εξαγωγή"
 
 #: src/dialogs/gencardkeydialog.cpp:51
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Name:"
+msgctxt "@label:textbox"
 msgid "Name:"
 msgstr "Όνομα:"
 
 #: src/dialogs/gencardkeydialog.cpp:61
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "EMail:"
+msgctxt "@label:textbox"
 msgid "EMail:"
 msgstr "Ηλ. αλληλογραφία:"
 
@@ -7712,6 +7734,13 @@ msgstr "Ηλ. αλληλογραφία:"
 #, kde-format
 msgid "Invalid EMail"
 msgstr "Μη έγκυρο email"
+
+#: src/dialogs/gencardkeydialog.cpp:75
+#, fuzzy, kde-format
+#| msgid "Algorithm:"
+msgctxt "@label:textbox"
+msgid "Algorithm:"
+msgstr "Αλγόριθμος:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
 #, kde-format
@@ -8137,56 +8166,56 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(προαιρετικός) Ορισμός αρχικού PIN (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:148
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Υποκλειδιά"
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:151
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:141
+#: src/dialogs/subkeyswidget.cpp:153
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Έγκυρο από"
 
-#: src/dialogs/subkeyswidget.cpp:142
+#: src/dialogs/subkeyswidget.cpp:154
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Έγκυρο έως"
 
-#: src/dialogs/subkeyswidget.cpp:143
+#: src/dialogs/subkeyswidget.cpp:155
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:156
 #, fuzzy, kde-format
 #| msgid "Algorithm:"
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr "Αλγόριθμος:"
 
-#: src/dialogs/subkeyswidget.cpp:145
+#: src/dialogs/subkeyswidget.cpp:157
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Χρήση"
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Αποθήκη"
 
-#: src/dialogs/subkeyswidget.cpp:153
+#: src/dialogs/subkeyswidget.cpp:166
 #, fuzzy, kde-format
 #| msgctxt "@label"
 #| msgid "Subkeys"
@@ -8194,7 +8223,7 @@ msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "Υποκλειδιά"
 
-#: src/dialogs/subkeyswidget.cpp:154
+#: src/dialogs/subkeyswidget.cpp:167
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Change Validity"
@@ -8202,35 +8231,35 @@ msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Αλλαγή εγκυρότητας"
 
-#: src/dialogs/subkeyswidget.cpp:155
+#: src/dialogs/subkeyswidget.cpp:168
 #, fuzzy, kde-format
 #| msgid "Export OpenSSH key"
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Εξαγωγή OpenSSH κλειδιού"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:169
 #, fuzzy, kde-format
 #| msgid "Restore printed backup"
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Επαναφορά εκτυπωμένου εφεδρικού αντιγράφου"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:170
 #, fuzzy, kde-format
 #| msgid "Transfer to smartcard"
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Μεταφορά σε έξυπνη κάρτα"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:171
 #, fuzzy, kde-format
 #| msgid "Export secret subkey"
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Εξαγωγή μυστικού υποκλειδιού"
 
-#: src/dialogs/subkeyswidget.cpp:166 src/dialogs/useridswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:179 src/dialogs/useridswidget.cpp:156
 #: src/dialogs/weboftrustwidget.cpp:131
 #, fuzzy, kde-format
 #| msgid "Show advanced options"
@@ -8238,45 +8267,45 @@ msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "Εμφάνιση προχωρημένων ρυθμίσεων"
 
-#: src/dialogs/subkeyswidget.cpp:262
+#: src/dialogs/subkeyswidget.cpp:275
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Change Validity"
 msgid "Change validity"
 msgstr "Αλλαγή εγκυρότητας"
 
-#: src/dialogs/subkeyswidget.cpp:269
+#: src/dialogs/subkeyswidget.cpp:282
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Εξαγωγή OpenSSH κλειδιού"
 
-#: src/dialogs/subkeyswidget.cpp:275
+#: src/dialogs/subkeyswidget.cpp:288
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Μεταφορά σε έξυπνη κάρτα"
 
-#: src/dialogs/subkeyswidget.cpp:283
+#: src/dialogs/subkeyswidget.cpp:296
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Εξαγωγή μυστικού υποκλειδιού"
 
-#: src/dialogs/subkeyswidget.cpp:377
+#: src/dialogs/subkeyswidget.cpp:390
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "έξυπνη κάρτα %1"
 
-#: src/dialogs/subkeyswidget.cpp:379
+#: src/dialogs/subkeyswidget.cpp:392
 #, kde-format
 msgid "smart card"
 msgstr "έξυπνη κάρτα"
 
-#: src/dialogs/subkeyswidget.cpp:384
+#: src/dialogs/subkeyswidget.cpp:397
 #, kde-format
 msgid "on this computer"
 msgstr "στον υπολογιστή αυτό"
 
-#: src/dialogs/subkeyswidget.cpp:386
+#: src/dialogs/subkeyswidget.cpp:399
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -12407,7 +12436,9 @@ msgstr "Λυπάμαι. Δεν κατάφερα να βρω το κλειδί μ
 
 #: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
 #: src/view/pivcardwidget.cpp:112
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Serial number:"
+msgctxt "@label:textbox"
 msgid "Serial number:"
 msgstr "Σειριακός αριθμός:"
 
@@ -12483,7 +12514,9 @@ msgstr ""
 "<application>Kleopatra</application> δεν είναι %1.</para>"
 
 #: src/view/padwidget.cpp:150
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "<h3>Protocol:</h3>"
+msgctxt "@label:textbox"
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>Πρωτόκολλο:</h3>"
 
@@ -12686,7 +12719,9 @@ msgid "Generating Keys"
 msgstr "Δημιουργία κλειδιών"
 
 #: src/view/pgpcardwidget.cpp:340
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "This may take several minutes..."
+msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr "Αυτό ίσως διαρκέσει αρκετά λεπτά..."
 

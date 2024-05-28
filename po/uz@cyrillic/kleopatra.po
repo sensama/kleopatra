@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-24 00:39+0000\n"
+"POT-Creation-Date: 2024-05-28 00:38+0000\n"
 "PO-Revision-Date: 2006-02-12 21:29+0100\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -3575,6 +3575,7 @@ msgstr "Сертификатларни импорт қилиш..."
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr ""
 
@@ -4858,8 +4859,8 @@ msgid "..."
 msgstr ""
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:55
-#: src/crypto/gui/decryptverifyfileswizard.cpp:220
 #, kde-format
+msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr ""
 
@@ -4967,6 +4968,11 @@ msgstr "Сертификат тафсилотлари..."
 #: src/crypto/gui/decryptverifyfileswizard.cpp:219
 #, kde-format
 msgid "Create all output files in a single folder"
+msgstr ""
+
+#: src/crypto/gui/decryptverifyfileswizard.cpp:220
+#, kde-format
+msgid "&Output folder:"
 msgstr ""
 
 #: src/crypto/gui/decryptverifyoperationwidget.cpp:70
@@ -5281,6 +5287,7 @@ msgstr ""
 #: src/crypto/gui/signencryptfileswizard.cpp:164
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
+msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "Сертификатларни импорт қилиш..."
 
@@ -5992,7 +5999,7 @@ msgctxt "@title:group"
 msgid "Key Material"
 msgstr ""
 
-#: src/dialogs/addsubkeydialog.cpp:95 src/dialogs/gencardkeydialog.cpp:75
+#: src/dialogs/addsubkeydialog.cpp:95
 #, kde-format
 msgid "Algorithm:"
 msgstr ""
@@ -6089,76 +6096,83 @@ msgid ""
 "div><center><strong>%1</strong></center>"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:58
+#: src/dialogs/cardinfotab.cpp:67
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
 msgid "Subkeys"
 msgstr "Сертификат тафсилотлари..."
 
-#: src/dialogs/cardinfotab.cpp:64
+#: src/dialogs/cardinfotab.cpp:73 src/dialogs/subkeyswidget.cpp:159
 #, kde-format
 msgctxt "@title:column"
 msgid "Keygrip"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:65
+#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
+#: src/dialogs/subkeyswidget.cpp:152
+#, kde-format
+msgctxt "@title:column"
+msgid "Fingerprint"
+msgstr ""
+
+#: src/dialogs/cardinfotab.cpp:75
 #, kde-format
 msgctxt "@title:column"
 msgid "Token"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:66
+#: src/dialogs/cardinfotab.cpp:76
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:67
+#: src/dialogs/cardinfotab.cpp:77
 #, fuzzy, kde-format
 #| msgid "Serial Number"
 msgctxt "@title:column"
 msgid "Serial Number"
 msgstr "Серия рақами"
 
-#: src/dialogs/cardinfotab.cpp:68
+#: src/dialogs/cardinfotab.cpp:78
 #, kde-format
 msgctxt "@title:column"
 msgid "Owner"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:73
+#: src/dialogs/cardinfotab.cpp:83
 #, kde-format
 msgctxt "@info"
 msgid "Smartcard information is only available for your own certificates."
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:80
+#: src/dialogs/cardinfotab.cpp:90
 #: src/dialogs/certificateselectiondialog.cpp:162
 #, kde-format
 msgctxt "@action:button"
 msgid "Reload"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:131
+#: src/dialogs/cardinfotab.cpp:142
 #, kde-format
 msgctxt "Unknown <type> <version> (card)"
 msgid "Unknown %1 v%2"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:133
+#: src/dialogs/cardinfotab.cpp:144
 #, kde-format
 msgctxt "<Manufacturer> <type> <version>"
 msgid "%1 %2 v%3"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:140
+#: src/dialogs/cardinfotab.cpp:151
 #, kde-format
 msgctxt "unknown cardholder"
 msgid "unknown"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:143 src/dialogs/cardinfotab.cpp:147
-#: src/dialogs/cardinfotab.cpp:149
+#: src/dialogs/cardinfotab.cpp:153 src/dialogs/cardinfotab.cpp:157
+#: src/dialogs/cardinfotab.cpp:159
 #, kde-format
 msgid "n/a"
 msgstr ""
@@ -6454,7 +6468,7 @@ msgid "unlimited"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:342
-#: src/dialogs/subkeyswidget.cpp:374
+#: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
@@ -6475,56 +6489,63 @@ msgid "smart card"
 msgstr "Сертификатларни импорт қилиш..."
 
 #: src/dialogs/certificatedetailswidget.cpp:350
-#: src/dialogs/subkeyswidget.cpp:382
+#: src/dialogs/subkeyswidget.cpp:395
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:352
+#: src/dialogs/certificatedetailswidget.cpp:353
+#, kde-format
+msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
+msgid "On this computer and on a smart card"
+msgid_plural "On this computer and on %1 smart cards"
+msgstr[0] ""
+
+#: src/dialogs/certificatedetailswidget.cpp:357
 #, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:467
+#: src/dialogs/certificatedetailswidget.cpp:472
 #: src/dialogs/useridswidget.cpp:357
 #, fuzzy, kde-format
 #| msgid "Export Certificates..."
 msgid "Updating..."
 msgstr "Сертификатларни экспорт қилиш..."
 
-#: src/dialogs/certificatedetailswidget.cpp:539
+#: src/dialogs/certificatedetailswidget.cpp:544
 #, kde-format
 msgid "Common Name"
 msgstr "Умумий номи"
 
-#: src/dialogs/certificatedetailswidget.cpp:540
+#: src/dialogs/certificatedetailswidget.cpp:545
 #, kde-format
 msgid "Organization"
 msgstr "Ташкилот"
 
-#: src/dialogs/certificatedetailswidget.cpp:541
+#: src/dialogs/certificatedetailswidget.cpp:546
 #, kde-format
 msgid "Street"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:542
+#: src/dialogs/certificatedetailswidget.cpp:547
 #, kde-format
 msgid "City"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:543
+#: src/dialogs/certificatedetailswidget.cpp:548
 #, kde-format
 msgid "State"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:544
+#: src/dialogs/certificatedetailswidget.cpp:549
 #, kde-format
 msgid "Country"
 msgstr "Давлат"
 
-#: src/dialogs/certificatedetailswidget.cpp:591
+#: src/dialogs/certificatedetailswidget.cpp:596
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "The issuer certificate could not be found locally."
@@ -6813,12 +6834,6 @@ msgid ""
 "Verify the fingerprints, mark the user IDs you want to certify, and select "
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
-msgstr ""
-
-#: src/dialogs/certifywidget.cpp:481 src/dialogs/subkeyswidget.cpp:140
-#, kde-format
-msgctxt "@title:column"
-msgid "Fingerprint"
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
@@ -7168,18 +7183,26 @@ msgstr "Сертификатларни экспорт қилиш..."
 #: src/dialogs/gencardkeydialog.cpp:51
 #, fuzzy, kde-format
 #| msgid "Serial Number"
+msgctxt "@label:textbox"
 msgid "Name:"
 msgstr "Серия рақами"
 
 #: src/dialogs/gencardkeydialog.cpp:61
 #, fuzzy, kde-format
 #| msgid "Email"
+msgctxt "@label:textbox"
 msgid "EMail:"
 msgstr "Электрон почта"
 
 #: src/dialogs/gencardkeydialog.cpp:68
 #, kde-format
 msgid "Invalid EMail"
+msgstr ""
+
+#: src/dialogs/gencardkeydialog.cpp:75
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Algorithm:"
 msgstr ""
 
 #: src/dialogs/gencardkeydialog.cpp:82
@@ -7585,96 +7608,96 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:148
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Сертификат тафсилотлари..."
 
-#: src/dialogs/subkeyswidget.cpp:139
+#: src/dialogs/subkeyswidget.cpp:151
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:141
+#: src/dialogs/subkeyswidget.cpp:153
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:142
+#: src/dialogs/subkeyswidget.cpp:154
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:143
+#: src/dialogs/subkeyswidget.cpp:155
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:156
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:145
+#: src/dialogs/subkeyswidget.cpp:157
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:146
+#: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:153
+#: src/dialogs/subkeyswidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Certificate Details..."
 msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "Сертификат тафсилотлари..."
 
-#: src/dialogs/subkeyswidget.cpp:154
+#: src/dialogs/subkeyswidget.cpp:167
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Бекор қилинди."
 
-#: src/dialogs/subkeyswidget.cpp:155
+#: src/dialogs/subkeyswidget.cpp:168
 #, fuzzy, kde-format
 #| msgid "Export Certificates..."
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Сертификатларни экспорт қилиш..."
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:169
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:170
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:171
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Сертификатларни импорт қилиш..."
 
-#: src/dialogs/subkeyswidget.cpp:166 src/dialogs/useridswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:179 src/dialogs/useridswidget.cpp:156
 #: src/dialogs/weboftrustwidget.cpp:131
 #, fuzzy, kde-format
 #| msgid "Canceled."
@@ -7682,48 +7705,48 @@ msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "Бекор қилинди."
 
-#: src/dialogs/subkeyswidget.cpp:262
+#: src/dialogs/subkeyswidget.cpp:275
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Change validity"
 msgstr "Бекор қилинди."
 
-#: src/dialogs/subkeyswidget.cpp:269
+#: src/dialogs/subkeyswidget.cpp:282
 #, fuzzy, kde-format
 #| msgid "Export Certificates..."
 msgid "Export OpenSSH key"
 msgstr "Сертификатларни экспорт қилиш..."
 
-#: src/dialogs/subkeyswidget.cpp:275
+#: src/dialogs/subkeyswidget.cpp:288
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:283
+#: src/dialogs/subkeyswidget.cpp:296
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "Export secret subkey"
 msgstr "Сертификатларни импорт қилиш..."
 
-#: src/dialogs/subkeyswidget.cpp:377
+#: src/dialogs/subkeyswidget.cpp:390
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "Сертификатларни импорт қилиш..."
 
-#: src/dialogs/subkeyswidget.cpp:379
+#: src/dialogs/subkeyswidget.cpp:392
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "smart card"
 msgstr "Сертификатларни импорт қилиш..."
 
-#: src/dialogs/subkeyswidget.cpp:384
+#: src/dialogs/subkeyswidget.cpp:397
 #, kde-format
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/subkeyswidget.cpp:386
+#: src/dialogs/subkeyswidget.cpp:399
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -11593,6 +11616,7 @@ msgstr ""
 #: src/view/pivcardwidget.cpp:112
 #, fuzzy, kde-format
 #| msgid "Serial Number"
+msgctxt "@label:textbox"
 msgid "Serial number:"
 msgstr "Серия рақами"
 
@@ -11670,6 +11694,7 @@ msgstr ""
 
 #: src/view/padwidget.cpp:150
 #, kde-format
+msgctxt "@label:textbox"
 msgid "<h3>Protocol:</h3>"
 msgstr ""
 
@@ -11877,6 +11902,7 @@ msgstr "Жараённи тўхтатиш"
 
 #: src/view/pgpcardwidget.cpp:340
 #, kde-format
+msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr ""
 

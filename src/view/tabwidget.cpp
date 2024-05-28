@@ -68,8 +68,9 @@ public:
          AbstractKeyListSortFilterProxyModel *proxy = nullptr,
          const QString &toolTip = QString(),
          QWidget *parent = nullptr,
-         const KConfigGroup &group = KConfigGroup());
-    Page(const KConfigGroup &group, QWidget *parent = nullptr);
+         const KConfigGroup &group = KConfigGroup(),
+         KeyTreeView::Options options = KeyTreeView::Default);
+    Page(const KConfigGroup &group, KeyTreeView::Options options = KeyTreeView::Default, QWidget *parent = nullptr);
     ~Page() override;
 
     void setTemporary(bool temporary);
@@ -176,8 +177,9 @@ Page::Page(const QString &title,
            AbstractKeyListSortFilterProxyModel *proxy,
            const QString &toolTip,
            QWidget *parent,
-           const KConfigGroup &group)
-    : KeyTreeView(text, KeyFilterManager::instance()->keyFilterByID(id), proxy, parent, group)
+           const KConfigGroup &group,
+           KeyTreeView::Options options)
+    : KeyTreeView(text, KeyFilterManager::instance()->keyFilterByID(id), proxy, parent, group, options)
     , m_title(title)
     , m_toolTip(toolTip)
     , m_isTemporary(false)
@@ -199,8 +201,13 @@ static const char COLUMN_SIZES[] = "column-sizes";
 static const char SORT_COLUMN[] = "sort-column";
 static const char SORT_DESCENDING[] = "sort-descending";
 
-Page::Page(const KConfigGroup &group, QWidget *parent)
-    : KeyTreeView(group.readEntry(STRING_FILTER_ENTRY), KeyFilterManager::instance()->keyFilterByID(group.readEntry(KEY_FILTER_ENTRY)), nullptr, parent, group)
+Page::Page(const KConfigGroup &group, KeyTreeView::Options options, QWidget *parent)
+    : KeyTreeView(group.readEntry(STRING_FILTER_ENTRY),
+                  KeyFilterManager::instance()->keyFilterByID(group.readEntry(KEY_FILTER_ENTRY)),
+                  nullptr,
+                  parent,
+                  group,
+                  options)
     , m_title(group.readEntry(TITLE_ENTRY))
     , m_toolTip()
     , m_isTemporary(false)
@@ -382,7 +389,7 @@ class TabWidget::Private
     TabWidget *const q;
 
 public:
-    explicit Private(TabWidget *qq);
+    explicit Private(TabWidget *qq, KeyTreeView::Options options);
     ~Private()
     {
     }
@@ -483,10 +490,12 @@ private:
     bool actionsCreated = false;
     KSharedConfig::Ptr config;
     QString configKey;
+    KeyTreeView::Options keyTreeViewOptions;
 };
 
-TabWidget::Private::Private(TabWidget *qq)
+TabWidget::Private::Private(TabWidget *qq, KeyTreeView::Options options)
     : q{qq}
+    , keyTreeViewOptions(options)
 {
     auto layout = new QVBoxLayout{q};
     layout->setContentsMargins(0, 0, 0, 0);
@@ -637,7 +646,7 @@ void TabWidget::Private::slotPageHierarchyChanged(bool)
 void TabWidget::Private::slotNewTab()
 {
     auto group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(configKey, QUuid::createUuid().toString()));
-    Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString(), nullptr, QString(), nullptr, group);
+    Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString(), nullptr, QString(), nullptr, group, keyTreeViewOptions);
     group.writeEntry(KEY_FILTER_ENTRY, QStringLiteral("all-certificates"));
     group.sync();
     addView(page, currentPage());
@@ -731,9 +740,9 @@ void TabWidget::Private::collapseAll(Page *page)
     page->view()->collapseAll();
 }
 
-TabWidget::TabWidget(QWidget *p, Qt::WindowFlags f)
+TabWidget::TabWidget(KeyTreeView::Options options, QWidget *p, Qt::WindowFlags f)
     : QWidget(p, f)
-    , d(new Private(this))
+    , d(new Private(this, options))
 {
 }
 
@@ -1001,7 +1010,7 @@ void TabWidget::createActions(KActionCollection *coll)
 QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, const QString &text)
 {
     auto group = KSharedConfig::openStateConfig()->group(QStringLiteral("%1:View %2").arg(d->configKey, QUuid::createUuid().toString()));
-    Page *page = new Page(title, id, text, nullptr, QString(), nullptr, group);
+    Page *page = new Page(title, id, text, nullptr, QString(), nullptr, group, d->keyTreeViewOptions);
     group.writeEntry(KEY_FILTER_ENTRY, id);
     group.sync();
     return d->addView(page, d->currentPage());
@@ -1017,9 +1026,10 @@ QAbstractItemView *TabWidget::addView(const KConfigGroup &group, Options options
                         new UserIDProxyModel(this),
                         {},
                         nullptr,
-                        group);
+                        group,
+                        d->keyTreeViewOptions);
     } else {
-        page = new Page(group);
+        page = new Page(group, d->keyTreeViewOptions);
     }
     QMetaObject::invokeMethod(
         this,
@@ -1033,7 +1043,7 @@ QAbstractItemView *TabWidget::addView(const KConfigGroup &group, Options options
 QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)
 {
     const KConfigGroup group = KSharedConfig::openConfig()->group(QStringLiteral("KeyTreeView_default"));
-    Page *const page = new Page(title, QString(), QString(), proxy, tabToolTip, nullptr, group);
+    Page *const page = new Page(title, QString(), QString(), proxy, tabToolTip, nullptr, group, d->keyTreeViewOptions);
     page->setTemporary(true);
     QAbstractItemView *v = d->addView(page, d->currentPage());
     d->tabWidget->setCurrentIndex(d->tabWidget->count() - 1);

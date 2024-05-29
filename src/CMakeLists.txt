@@ -353,6 +353,8 @@ set(_kleopatra_SRCS
   dialogs/pivcardapplicationadministrationkeyinputdialog.h
   dialogs/revokekeydialog.cpp
   dialogs/revokekeydialog.h
+  dialogs/revokerswidget.cpp
+  dialogs/revokerswidget.h
   dialogs/selftestdialog.cpp
   dialogs/selftestdialog.h
   dialogs/setinitialpindialog.cpp

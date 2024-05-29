@@ -19,6 +19,7 @@
 #include "certificatedumpwidget.h"
 #include "dialogs/weboftrustwidget.h"
 #include "kleopatra_debug.h"
+#include "revokerswidget.h"
 #include "subkeyswidget.h"
 #include "trustchainwidget.h"
 #include "useridswidget.h"
@@ -45,6 +46,8 @@
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
+
+#include <gpgme.h>
 
 #include <QGpgME/Debug>
 #include <QGpgME/KeyListJob>
@@ -149,6 +152,7 @@ private:
         TrustChainWidget *trustChainWidget = nullptr;
         CertificateDumpWidget *certificateDumpWidget = nullptr;
         CardInfoTab *cardInfoTab = nullptr;
+        RevokersWidget *revokersWidget = nullptr;
 
         void setupUi(QWidget *parent)
         {
@@ -282,6 +286,12 @@ private:
 
             certificateDumpWidget = new CertificateDumpWidget(parent);
             tabWidget->addTab(certificateDumpWidget, i18nc("@title:tab", "Certificate Dump"));
+
+            revokersWidget = new RevokersWidget(parent);
+#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+            const auto index = tabWidget->addTab(revokersWidget, i18nc("@title:tab", "Revokers"));
+            tabWidget->setTabVisible(index, false);
+#endif
         }
     } ui;
 };
@@ -546,6 +556,10 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
     ui.userIDs->setKey(key);
     ui.subKeysWidget->setKey(key);
     ui.webOfTrustWidget->setKey(key);
+    ui.revokersWidget->setKey(key);
+#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+    setTabVisible(ui.revokersWidget, key.numRevocationKeys() > 0);
+#endif
 
     const auto trustDomains = accumulateTrustDomains(key.userIDs());
     ui.trustedIntroducerField->setVisible(!trustDomains.empty());

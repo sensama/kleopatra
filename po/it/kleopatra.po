@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-05-29 00:39+0000\n"
 "PO-Revision-Date: 2024-05-09 13:01+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -1961,17 +1961,17 @@ msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
 msgstr "Messaggi diagnostici dei sotto-processi"
 
-#: src/commands/gnupgprocesscommand.cpp:266
+#: src/commands/gnupgprocesscommand.cpp:268
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
 msgstr "Impossibile avviare il processo %1. Controlla l'installazione."
 
-#: src/commands/gnupgprocesscommand.cpp:273
+#: src/commands/gnupgprocesscommand.cpp:275
 #, kde-format
 msgid "Starting %1..."
 msgstr "Avvio di %1..."
 
-#: src/commands/gnupgprocesscommand.cpp:296
+#: src/commands/gnupgprocesscommand.cpp:300
 #, kde-format
 msgid "Process finished"
 msgstr "Processo completato"
@@ -3298,31 +3298,19 @@ msgstr[1] "Non puoi revocare alcuna certificazione di questi ID utente."
 msgid "You cannot revoke this certification."
 msgstr "Non puoi revocare questa certificazione."
 
-#: src/commands/revokekeycommand.cpp:104
+#: src/commands/revokekeycommand.cpp:122
 #, kde-format
 msgctxt "@info"
 msgid "This key has already been revoked."
 msgstr "Questa chiave è già stata revocata."
 
-#: src/commands/revokekeycommand.cpp:193
+#: src/commands/revokekeycommand.cpp:212
 #, kde-format
 msgctxt "@info:status"
 msgid "Revoking key..."
 msgstr "Revoca della chiave in corso..."
 
-#: src/commands/revokekeycommand.cpp:207
-#, kde-format
-msgctxt "@info"
-msgid "The key was revoked successfully."
-msgstr "La chiave è stata revocata correttamente."
-
-#: src/commands/revokekeycommand.cpp:207
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Revoked"
-msgstr "Chiave revocata"
-
-#: src/commands/revokekeycommand.cpp:215
+#: src/commands/revokekeycommand.cpp:242
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3332,12 +3320,58 @@ msgstr ""
 "<para>Si è verificato un errore durante la revoca:</para><para><message>%1</"
 "message></para>"
 
-#: src/commands/revokekeycommand.cpp:218
+#: src/commands/revokekeycommand.cpp:245
 #: src/commands/revokeuseridcommand.cpp:129
 #, kde-format
 msgctxt "@title:window"
 msgid "Revocation Failed"
 msgstr "Revoca non riuscita"
+
+#: src/commands/revokekeycommand.cpp:278 src/commands/revokekeycommand.cpp:296
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The key was revoked successfully."
+msgctxt "@info"
+msgid "The certificate was revoked successfully."
+msgstr "La chiave è stata revocata correttamente."
+
+#: src/commands/revokekeycommand.cpp:326
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully and uploaded to the internal "
+"directory.</para><para>The revoked certificate was saved to <filename>%1</"
+"filename>.</para><para>You should send this file to your communication "
+"partners with the instruction to import it.</para>"
+msgstr ""
+
+#: src/commands/revokekeycommand.cpp:333
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully and uploaded to %1.</"
+"para><para>The revoked certificate was saved to <filename>%2</filename>.</"
+"para><para>You should send this file to your communication partners with the "
+"instruction to import it.</para>"
+msgstr ""
+
+#: src/commands/revokekeycommand.cpp:342
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Successfully wrote request to <filename>%1</filename>.</"
+#| "para><para>You should now send the request to the Certification Authority "
+#| "(CA).</para>"
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully.</para><para>The revoked "
+"certificate was saved to <filename>%1</filename></para><para>You should send "
+"this file to your communication partners with the instruction to import it.</"
+"para>"
+msgstr ""
+"<para>Scritta correttamente la richiesta su <filename>%1</filename>.</"
+"para><para>Ora dovresti inviare la richiesta all'autorità di certificazione "
+"(CA).</para>"
 
 #: src/commands/revokeuseridcommand.cpp:125
 #, kde-kuit-format
@@ -7745,63 +7779,95 @@ msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 "Digita un nome e/o un indirizzo di posta da utilizzare per il certificato."
 
-#: src/dialogs/revokekeydialog.cpp:89
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:101
+#, fuzzy, kde-format
+#| msgid "Revoke Certificate..."
 msgctxt "title:window"
-msgid "Revoke Key"
-msgstr "Revoca chiave"
+msgid "Revoke Certificate"
+msgstr "Revoca certificato..."
 
-#: src/dialogs/revokekeydialog.cpp:96
-#, kde-format
-msgctxt "@title:group"
-msgid "Reason for revocation"
-msgstr "Motivo della revoca"
-
-#: src/dialogs/revokekeydialog.cpp:98
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:109
+#, fuzzy, kde-format
+#| msgctxt "@option:radio"
+#| msgid "Key has been compromised"
 msgctxt "@option:radio"
-msgid "No reason specified"
-msgstr "Nessun motivo specificato"
-
-#: src/dialogs/revokekeydialog.cpp:99
-#, kde-format
-msgctxt "@option:radio"
-msgid "Key has been compromised"
+msgid "Certificate has been compromised"
 msgstr "La chiave è stata compromessa"
 
-#: src/dialogs/revokekeydialog.cpp:100
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:110
+#, fuzzy, kde-format
+#| msgid "Certification Succeeded"
 msgctxt "@option:radio"
-msgid "Key is superseded"
-msgstr "La chiave è stata sostituita"
+msgid "Certificate is superseded"
+msgstr "Certificazione avvenuta"
 
-#: src/dialogs/revokekeydialog.cpp:101
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:111
+#, fuzzy, kde-format
+#| msgctxt "@option:radio"
+#| msgid "Key is no longer used"
 msgctxt "@option:radio"
-msgid "Key is no longer used"
+msgid "Certificate is no longer used"
 msgstr "La chiave non è più utilizzata"
 
-#: src/dialogs/revokekeydialog.cpp:114
+#: src/dialogs/revokekeydialog.cpp:112
+#, kde-format
+msgctxt "@option:radio"
+msgid "For a different reason"
+msgstr ""
+
+#: src/dialogs/revokekeydialog.cpp:117
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Reason for revocation"
+msgctxt "@title"
+msgid "Reason for Revocation (optional)"
+msgstr "Motivo della revoca"
+
+#: src/dialogs/revokekeydialog.cpp:127
+#, kde-format
+msgctxt "@option:check"
+msgid "Upload revoked certificate to internal directory"
+msgstr ""
+
+#: src/dialogs/revokekeydialog.cpp:129
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Imported Certificates from %1"
+msgctxt "@option:check"
+msgid "Upload revoked certificate to %1"
+msgstr "Certificati importati da %1"
+
+#: src/dialogs/revokekeydialog.cpp:144
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Description (optional):"
 msgstr "Descrizione (facoltativa):"
 
-#: src/dialogs/revokekeydialog.cpp:138
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:168
+#, fuzzy, kde-format
+#| msgid "Revoke Certificate..."
 msgctxt "@action:button"
-msgid "Revoke Key"
-msgstr "Revoca chiave"
+msgid "Revoke Certificate"
+msgstr "Revoca certificato..."
 
-#: src/dialogs/revokekeydialog.cpp:192
+#: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
 msgid "Error: The description must not contain empty lines."
 msgstr "Errore: la descrizione non deve contenere righe vuote."
 
-#: src/dialogs/revokekeydialog.cpp:271
+#: src/dialogs/revokekeydialog.cpp:309
 #, kde-kuit-format
-msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
-msgstr "<para>Stai per revocare la seguente chiave: <nl/>%1</para>"
+msgctxt "@info"
+msgid ""
+"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
+"strong='true'>The revocation will take effect immediately and cannot be "
+"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
+"decrypt everything encrypted for this certificate.</item><item>You cannot "
+"sign anything with this certificate anymore.</item><item>You cannot certify "
+"other certificates with it anymore.</item><item>Other people can no longer "
+"encrypt with it after receiving the revocation.</item></list></para>"
+msgstr ""
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -8056,7 +8122,7 @@ msgid "Export secret subkey"
 msgstr "Esporta sottochiave segreta"
 
 #: src/dialogs/subkeyswidget.cpp:179 src/dialogs/useridswidget.cpp:156
-#: src/dialogs/weboftrustwidget.cpp:131
+#: src/dialogs/weboftrustwidget.cpp:137
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show more options"
@@ -8314,12 +8380,12 @@ msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "Revoca identificativo utente"
 
-#: src/dialogs/weboftrustwidget.cpp:88
+#: src/dialogs/weboftrustwidget.cpp:94
 #, kde-format
 msgid "User IDs and certifications"
 msgstr "ID utente e certificazioni"
 
-#: src/dialogs/weboftrustwidget.cpp:97
+#: src/dialogs/weboftrustwidget.cpp:103
 #, kde-format
 msgctxt "@info"
 msgid "Certifications are not available before the certificate is imported."
@@ -8327,31 +8393,31 @@ msgstr ""
 "Le certificazioni non sono disponibili prima dell'importazione del "
 "certificato."
 
-#: src/dialogs/weboftrustwidget.cpp:102
+#: src/dialogs/weboftrustwidget.cpp:108
 #, kde-format
 msgctxt "@action"
 msgid "Show Certificate Details"
 msgstr "Mostra dettagli del certificato"
 
-#: src/dialogs/weboftrustwidget.cpp:107
+#: src/dialogs/weboftrustwidget.cpp:113
 #, kde-format
 msgctxt "@action"
 msgid "Add Certification"
 msgstr "Aggiungi certificazione"
 
-#: src/dialogs/weboftrustwidget.cpp:113
+#: src/dialogs/weboftrustwidget.cpp:119
 #, kde-format
 msgctxt "@action"
 msgid "Revoke Certification"
 msgstr "Revoca certificazione"
 
-#: src/dialogs/weboftrustwidget.cpp:119
+#: src/dialogs/weboftrustwidget.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Fetch Missing Keys"
 msgstr "Recupera le chiavi mancanti"
 
-#: src/dialogs/weboftrustwidget.cpp:120
+#: src/dialogs/weboftrustwidget.cpp:126
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8361,7 +8427,15 @@ msgstr ""
 "Cerca e importa tutte le chiavi utilizzate per certificare gli ID utente di "
 "questa chiave"
 
-#: src/dialogs/weboftrustwidget.cpp:264
+#: src/dialogs/weboftrustwidget.cpp:146
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Show Certifications"
+msgctxt "label:checkbox"
+msgid "Show only my own certifications"
+msgstr "Mostra certificazioni"
+
+#: src/dialogs/weboftrustwidget.cpp:274
 #, kde-format
 msgid ""
 "You cannot revoke this certification because it wasn't made with one of your "
@@ -8370,14 +8444,14 @@ msgstr ""
 "Non puoi revocare questa certificazione perché non è stata effettuata con "
 "una delle tue chiavi (o manca la chiave segreta richiesta)."
 
-#: src/dialogs/weboftrustwidget.cpp:267
+#: src/dialogs/weboftrustwidget.cpp:277
 #, fuzzy, kde-format
 #| msgid "Revocation of self-certifications is currently not possible."
 msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Al momento non è possibile la revoca delle autocertificazioni."
 
-#: src/dialogs/weboftrustwidget.cpp:271
+#: src/dialogs/weboftrustwidget.cpp:281
 #, fuzzy, kde-format
 #| msgid ""
 #| "You cannot revoke this revocation certification. (But you can re-certify "
@@ -8390,21 +8464,21 @@ msgstr ""
 "Non puoi revocare questa certificazione di revoca. (Ma puoi ri-certificare "
 "l'ID utente corrispondente.)"
 
-#: src/dialogs/weboftrustwidget.cpp:274
+#: src/dialogs/weboftrustwidget.cpp:284
 #, fuzzy, kde-format
 #| msgid "You cannot revoke this expired certification."
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "Non puoi revocare questa certificazione scaduta."
 
-#: src/dialogs/weboftrustwidget.cpp:277
+#: src/dialogs/weboftrustwidget.cpp:287
 #, fuzzy, kde-format
 #| msgid "You cannot revoke this invalid certification."
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "Non puoi revocare questa certificazione non valida."
 
-#: src/dialogs/weboftrustwidget.cpp:280
+#: src/dialogs/weboftrustwidget.cpp:290
 #, fuzzy, kde-format
 #| msgid ""
 #| "You cannot revoke this certification because the required secret key is "
@@ -8417,7 +8491,7 @@ msgstr ""
 "Non puoi revocare questa certificazione perché la chiave segreta richiesta "
 "non è disponibile."
 
-#: src/dialogs/weboftrustwidget.cpp:288
+#: src/dialogs/weboftrustwidget.cpp:298
 #, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
@@ -8426,7 +8500,7 @@ msgstr ""
 "Non puoi revocare nessuna delle certificazioni di questo ID utente. "
 "Seleziona una delle certificazioni per i dettagli."
 
-#: src/dialogs/weboftrustwidget.cpp:423
+#: src/dialogs/weboftrustwidget.cpp:432
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8436,7 +8510,7 @@ msgstr ""
 "<para>Si è verificato un errore durante il caricamento della certificazione: "
 "<message>%1</message></para>"
 
-#: src/dialogs/weboftrustwidget.cpp:426
+#: src/dialogs/weboftrustwidget.cpp:435
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -13023,6 +13097,29 @@ msgstr ""
 "Importa il certificato da un file.<nl/>Per importare da un server delle "
 "chiavi pubblico usa invece <interface>Cerca sul server</interface>."
 
+#~ msgctxt "@title:window"
+#~ msgid "Key Revoked"
+#~ msgstr "Chiave revocata"
+
+#~ msgctxt "title:window"
+#~ msgid "Revoke Key"
+#~ msgstr "Revoca chiave"
+
+#~ msgctxt "@option:radio"
+#~ msgid "No reason specified"
+#~ msgstr "Nessun motivo specificato"
+
+#~ msgctxt "@option:radio"
+#~ msgid "Key is superseded"
+#~ msgstr "La chiave è stata sostituita"
+
+#~ msgctxt "@action:button"
+#~ msgid "Revoke Key"
+#~ msgstr "Revoca chiave"
+
+#~ msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
+#~ msgstr "<para>Stai per revocare la seguente chiave: <nl/>%1</para>"
+
 #~ msgid "Designated revoker"
 #~ msgstr "Revocatore designato"
 
@@ -13230,10 +13327,6 @@ msgstr ""
 #~ "programmi di posta che non permettono di gestire allegati invocati in "
 #~ "questo modo.</para><para>Se il tuo client non ha un allegato, allega il "
 #~ "file <filename>%1</filename> manualmente.</para>"
-
-#~ msgctxt "@action:button"
-#~ msgid "Show Certifications"
-#~ msgstr "Mostra certificazioni"
 
 #~ msgid "Related addresses:"
 #~ msgstr "Indirizzo correlati:"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
+"POT-Creation-Date: 2024-05-29 00:39+0000\n"
 "PO-Revision-Date: 2024-03-02 15:46+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -1854,18 +1854,18 @@ msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
 msgstr ""
 
-#: src/commands/gnupgprocesscommand.cpp:266
+#: src/commands/gnupgprocesscommand.cpp:268
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
 msgstr ""
 
-#: src/commands/gnupgprocesscommand.cpp:273
+#: src/commands/gnupgprocesscommand.cpp:275
 #, fuzzy, kde-format
 #| msgid "String"
 msgid "Starting %1..."
 msgstr "Șir"
 
-#: src/commands/gnupgprocesscommand.cpp:296
+#: src/commands/gnupgprocesscommand.cpp:300
 #, kde-format
 msgid "Process finished"
 msgstr ""
@@ -3129,34 +3129,20 @@ msgstr[2] "Validitatea acestui certificat nu poate fi verificată momentan."
 msgid "You cannot revoke this certification."
 msgstr "Validitatea acestui certificat nu poate fi verificată momentan."
 
-#: src/commands/revokekeycommand.cpp:104
+#: src/commands/revokekeycommand.cpp:122
 #, kde-format
 msgctxt "@info"
 msgid "This key has already been revoked."
 msgstr ""
 
-#: src/commands/revokekeycommand.cpp:193
+#: src/commands/revokekeycommand.cpp:212
 #, fuzzy, kde-format
 #| msgid "Export"
 msgctxt "@info:status"
 msgid "Revoking key..."
 msgstr "Export"
 
-#: src/commands/revokekeycommand.cpp:207
-#, fuzzy, kde-format
-#| msgid "Parsing Error"
-msgctxt "@info"
-msgid "The key was revoked successfully."
-msgstr "Eroare de parcurgere"
-
-#: src/commands/revokekeycommand.cpp:207
-#, fuzzy, kde-format
-#| msgid "revoked"
-msgctxt "@title:window"
-msgid "Key Revoked"
-msgstr "revocat"
-
-#: src/commands/revokekeycommand.cpp:215
+#: src/commands/revokekeycommand.cpp:242
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3164,13 +3150,50 @@ msgid ""
 "message></para>"
 msgstr ""
 
-#: src/commands/revokekeycommand.cpp:218
+#: src/commands/revokekeycommand.cpp:245
 #: src/commands/revokeuseridcommand.cpp:129
 #, fuzzy, kde-format
 #| msgid "Parsing Error"
 msgctxt "@title:window"
 msgid "Revocation Failed"
 msgstr "Eroare de parcurgere"
+
+#: src/commands/revokekeycommand.cpp:278 src/commands/revokekeycommand.cpp:296
+#, fuzzy, kde-format
+#| msgid "Parsing Error"
+msgctxt "@info"
+msgid "The certificate was revoked successfully."
+msgstr "Eroare de parcurgere"
+
+#: src/commands/revokekeycommand.cpp:326
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully and uploaded to the internal "
+"directory.</para><para>The revoked certificate was saved to <filename>%1</"
+"filename>.</para><para>You should send this file to your communication "
+"partners with the instruction to import it.</para>"
+msgstr ""
+
+#: src/commands/revokekeycommand.cpp:333
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully and uploaded to %1.</"
+"para><para>The revoked certificate was saved to <filename>%2</filename>.</"
+"para><para>You should send this file to your communication partners with the "
+"instruction to import it.</para>"
+msgstr ""
+
+#: src/commands/revokekeycommand.cpp:342
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully.</para><para>The revoked "
+"certificate was saved to <filename>%1</filename></para><para>You should send "
+"this file to your communication partners with the instruction to import it.</"
+"para>"
+msgstr ""
 
 #: src/commands/revokeuseridcommand.cpp:125
 #, kde-kuit-format
@@ -7448,64 +7471,89 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 
-#: src/dialogs/revokekeydialog.cpp:89
+#: src/dialogs/revokekeydialog.cpp:101
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "title:window"
-msgid "Revoke Key"
+msgid "Revoke Certificate"
 msgstr "Certificat implicit"
 
-#: src/dialogs/revokekeydialog.cpp:96
-#, kde-format
-msgctxt "@title:group"
-msgid "Reason for revocation"
-msgstr ""
+#: src/dialogs/revokekeydialog.cpp:109
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@option:radio"
+msgid "Certificate has been compromised"
+msgstr "Acest certificat a fost dezactivat local."
 
-#: src/dialogs/revokekeydialog.cpp:98
+#: src/dialogs/revokekeydialog.cpp:110
+#, fuzzy, kde-format
+#| msgid "Parsing Error"
+msgctxt "@option:radio"
+msgid "Certificate is superseded"
+msgstr "Eroare de parcurgere"
+
+#: src/dialogs/revokekeydialog.cpp:111
+#, fuzzy, kde-format
+#| msgid "Certificate usage"
+msgctxt "@option:radio"
+msgid "Certificate is no longer used"
+msgstr "Utilizare certificat"
+
+#: src/dialogs/revokekeydialog.cpp:112
 #, kde-format
 msgctxt "@option:radio"
-msgid "No reason specified"
+msgid "For a different reason"
 msgstr ""
 
-#: src/dialogs/revokekeydialog.cpp:99
+#: src/dialogs/revokekeydialog.cpp:117
 #, kde-format
-msgctxt "@option:radio"
-msgid "Key has been compromised"
+msgctxt "@title"
+msgid "Reason for Revocation (optional)"
 msgstr ""
 
-#: src/dialogs/revokekeydialog.cpp:100
+#: src/dialogs/revokekeydialog.cpp:127
 #, kde-format
-msgctxt "@option:radio"
-msgid "Key is superseded"
+msgctxt "@option:check"
+msgid "Upload revoked certificate to internal directory"
 msgstr ""
 
-#: src/dialogs/revokekeydialog.cpp:101
-#, kde-format
-msgctxt "@option:radio"
-msgid "Key is no longer used"
-msgstr ""
+#: src/dialogs/revokekeydialog.cpp:129
+#, fuzzy, kde-format
+#| msgid "Default certificate"
+msgctxt "@option:check"
+msgid "Upload revoked certificate to %1"
+msgstr "Certificat implicit"
 
-#: src/dialogs/revokekeydialog.cpp:114
+#: src/dialogs/revokekeydialog.cpp:144
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Description (optional):"
 msgstr ""
 
-#: src/dialogs/revokekeydialog.cpp:138
+#: src/dialogs/revokekeydialog.cpp:168
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@action:button"
-msgid "Revoke Key"
+msgid "Revoke Certificate"
 msgstr "Certificat implicit"
 
-#: src/dialogs/revokekeydialog.cpp:192
+#: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
 msgid "Error: The description must not contain empty lines."
 msgstr ""
 
-#: src/dialogs/revokekeydialog.cpp:271
+#: src/dialogs/revokekeydialog.cpp:309
 #, kde-kuit-format
-msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
+msgctxt "@info"
+msgid ""
+"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
+"strong='true'>The revocation will take effect immediately and cannot be "
+"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
+"decrypt everything encrypted for this certificate.</item><item>You cannot "
+"sign anything with this certificate anymore.</item><item>You cannot certify "
+"other certificates with it anymore.</item><item>Other people can no longer "
+"encrypt with it after receiving the revocation.</item></list></para>"
 msgstr ""
 
 #: src/dialogs/selftestdialog.cpp:92
@@ -7758,7 +7806,7 @@ msgid "Export secret subkey"
 msgstr "Certificat implicit"
 
 #: src/dialogs/subkeyswidget.cpp:179 src/dialogs/useridswidget.cpp:156
-#: src/dialogs/weboftrustwidget.cpp:131
+#: src/dialogs/weboftrustwidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "&Settings"
 msgctxt "@info:tooltip"
@@ -8032,46 +8080,46 @@ msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "ID utilizator"
 
-#: src/dialogs/weboftrustwidget.cpp:88
+#: src/dialogs/weboftrustwidget.cpp:94
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "User IDs and certifications"
 msgstr "&Certificate"
 
-#: src/dialogs/weboftrustwidget.cpp:97
+#: src/dialogs/weboftrustwidget.cpp:103
 #, kde-format
 msgctxt "@info"
 msgid "Certifications are not available before the certificate is imported."
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:102
+#: src/dialogs/weboftrustwidget.cpp:108
 #, fuzzy, kde-format
 #| msgid "Certificate Selection"
 msgctxt "@action"
 msgid "Show Certificate Details"
 msgstr "Alegere certificat"
 
-#: src/dialogs/weboftrustwidget.cpp:107
+#: src/dialogs/weboftrustwidget.cpp:113
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@action"
 msgid "Add Certification"
 msgstr "&Certificate"
 
-#: src/dialogs/weboftrustwidget.cpp:113
+#: src/dialogs/weboftrustwidget.cpp:119
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@action"
 msgid "Revoke Certification"
 msgstr "&Certificate"
 
-#: src/dialogs/weboftrustwidget.cpp:119
+#: src/dialogs/weboftrustwidget.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Fetch Missing Keys"
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:120
+#: src/dialogs/weboftrustwidget.cpp:126
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8079,21 +8127,28 @@ msgid ""
 "key"
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:264
+#: src/dialogs/weboftrustwidget.cpp:146
+#, fuzzy, kde-format
+#| msgid "&Certificates"
+msgctxt "label:checkbox"
+msgid "Show only my own certifications"
+msgstr "&Certificate"
+
+#: src/dialogs/weboftrustwidget.cpp:274
 #, kde-format
 msgid ""
 "You cannot revoke this certification because it wasn't made with one of your "
 "keys (or the required secret key is missing)."
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:267
+#: src/dialogs/weboftrustwidget.cpp:277
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Certificat implicit"
 
-#: src/dialogs/weboftrustwidget.cpp:271
+#: src/dialogs/weboftrustwidget.cpp:281
 #, fuzzy, kde-format
 #| msgid "The validity of this certificate cannot be checked at the moment."
 msgctxt "@info:tooltip"
@@ -8102,21 +8157,21 @@ msgid ""
 "corresponding user ID.)"
 msgstr "Validitatea acestui certificat nu poate fi verificată momentan."
 
-#: src/dialogs/weboftrustwidget.cpp:274
+#: src/dialogs/weboftrustwidget.cpp:284
 #, fuzzy, kde-format
 #| msgid "The validity of this certificate cannot be checked at the moment."
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "Validitatea acestui certificat nu poate fi verificată momentan."
 
-#: src/dialogs/weboftrustwidget.cpp:277
+#: src/dialogs/weboftrustwidget.cpp:287
 #, fuzzy, kde-format
 #| msgid "The validity of this certificate cannot be checked at the moment."
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "Validitatea acestui certificat nu poate fi verificată momentan."
 
-#: src/dialogs/weboftrustwidget.cpp:280
+#: src/dialogs/weboftrustwidget.cpp:290
 #, fuzzy, kde-format
 #| msgid "The validity of this certificate cannot be checked at the moment."
 msgctxt "@info:tooltip"
@@ -8125,7 +8180,7 @@ msgid ""
 "available."
 msgstr "Validitatea acestui certificat nu poate fi verificată momentan."
 
-#: src/dialogs/weboftrustwidget.cpp:288
+#: src/dialogs/weboftrustwidget.cpp:298
 #, fuzzy, kde-format
 #| msgid "The validity of this certificate cannot be checked at the moment."
 msgid ""
@@ -8133,7 +8188,7 @@ msgid ""
 "the certifications for details."
 msgstr "Validitatea acestui certificat nu poate fi verificată momentan."
 
-#: src/dialogs/weboftrustwidget.cpp:423
+#: src/dialogs/weboftrustwidget.cpp:432
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8141,7 +8196,7 @@ msgid ""
 "message></para>"
 msgstr ""
 
-#: src/dialogs/weboftrustwidget.cpp:426
+#: src/dialogs/weboftrustwidget.cpp:435
 #, fuzzy, kde-format
 #| msgid "Certificate usage"
 msgctxt "@title"
@@ -12495,6 +12550,24 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "revoked"
+#~ msgctxt "@title:window"
+#~ msgid "Key Revoked"
+#~ msgstr "revocat"
+
+#, fuzzy
+#~| msgid "Default certificate"
+#~ msgctxt "title:window"
+#~ msgid "Revoke Key"
+#~ msgstr "Certificat implicit"
+
+#, fuzzy
+#~| msgid "Default certificate"
+#~ msgctxt "@action:button"
+#~ msgid "Revoke Key"
+#~ msgstr "Certificat implicit"
+
+#, fuzzy
 #~| msgid "This certificate has expired."
 #~ msgctxt "@info"
 #~ msgid "PUK successfully changed."
@@ -12538,12 +12611,6 @@ msgstr ""
 #~| msgid "Default certificate"
 #~ msgid "Send Public Key By EMail..."
 #~ msgstr "Certificat implicit"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Show Certifications"
-#~ msgstr "&Certificate"
 
 #, fuzzy
 #~| msgid "New..."

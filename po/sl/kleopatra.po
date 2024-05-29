@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 00:38+0000\n"
-"PO-Revision-Date: 2024-05-23 07:49+0200\n"
+"POT-Creation-Date: 2024-05-29 00:39+0000\n"
+"PO-Revision-Date: 2024-05-28 07:35+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -1939,17 +1939,17 @@ msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
 msgstr "Diagnostika pod-opravila"
 
-#: src/commands/gnupgprocesscommand.cpp:266
+#: src/commands/gnupgprocesscommand.cpp:268
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
 msgstr "Ni mogoče zagnati opravila %1. Preverite vašo namestitev."
 
-#: src/commands/gnupgprocesscommand.cpp:273
+#: src/commands/gnupgprocesscommand.cpp:275
 #, kde-format
 msgid "Starting %1..."
 msgstr "Zaganjanje %1…"
 
-#: src/commands/gnupgprocesscommand.cpp:296
+#: src/commands/gnupgprocesscommand.cpp:300
 #, kde-format
 msgid "Process finished"
 msgstr "Opravilo zaključeno"
@@ -3286,31 +3286,19 @@ msgstr[3] "Ne morete preklicati nobenih potrdil teh uporabniških ID-jev."
 msgid "You cannot revoke this certification."
 msgstr "Tega potrdila ne morete preklicati."
 
-#: src/commands/revokekeycommand.cpp:104
+#: src/commands/revokekeycommand.cpp:122
 #, kde-format
 msgctxt "@info"
 msgid "This key has already been revoked."
 msgstr "Ta ključ je že bil preklican."
 
-#: src/commands/revokekeycommand.cpp:193
+#: src/commands/revokekeycommand.cpp:212
 #, kde-format
 msgctxt "@info:status"
 msgid "Revoking key..."
 msgstr "Preklicujem ključ…"
 
-#: src/commands/revokekeycommand.cpp:207
-#, kde-format
-msgctxt "@info"
-msgid "The key was revoked successfully."
-msgstr "Ključ je bil uspešno preklican."
-
-#: src/commands/revokekeycommand.cpp:207
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Revoked"
-msgstr "Ključ preklican"
-
-#: src/commands/revokekeycommand.cpp:215
+#: src/commands/revokekeycommand.cpp:242
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3320,12 +3308,57 @@ msgstr ""
 "<para>Med preklicem je prišlo do napake: </para><para><message>%1</message></"
 "para>"
 
-#: src/commands/revokekeycommand.cpp:218
+#: src/commands/revokekeycommand.cpp:245
 #: src/commands/revokeuseridcommand.cpp:129
 #, kde-format
 msgctxt "@title:window"
 msgid "Revocation Failed"
 msgstr "Preklic ni uspel"
+
+#: src/commands/revokekeycommand.cpp:278 src/commands/revokekeycommand.cpp:296
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The key was revoked successfully."
+msgctxt "@info"
+msgid "The certificate was revoked successfully."
+msgstr "Ključ je bil uspešno preklican."
+
+#: src/commands/revokekeycommand.cpp:326
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully and uploaded to the internal "
+"directory.</para><para>The revoked certificate was saved to <filename>%1</"
+"filename>.</para><para>You should send this file to your communication "
+"partners with the instruction to import it.</para>"
+msgstr ""
+
+#: src/commands/revokekeycommand.cpp:333
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully and uploaded to %1.</"
+"para><para>The revoked certificate was saved to <filename>%2</filename>.</"
+"para><para>You should send this file to your communication partners with the "
+"instruction to import it.</para>"
+msgstr ""
+
+#: src/commands/revokekeycommand.cpp:342
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Successfully wrote request to <filename>%1</filename>.</"
+#| "para><para>You should now send the request to the Certification Authority "
+#| "(CA).</para>"
+msgctxt "@info"
+msgid ""
+"<para>The certificate was revoked successfully.</para><para>The revoked "
+"certificate was saved to <filename>%1</filename></para><para>You should send "
+"this file to your communication partners with the instruction to import it.</"
+"para>"
+msgstr ""
+"<para>Zahteva je bila uspešno zapisana v <filename>%1</filename>.</"
+"para><para>Zahtevo bi sedaj morali poslati overitelju potrdil (CA).</para>"
 
 #: src/commands/revokeuseridcommand.cpp:125
 #, kde-kuit-format
@@ -3766,8 +3799,7 @@ msgid "OpenPGP Keyserver"
 msgstr "Strežnik ključev OpenPGP"
 
 #: src/conf/dirservconfigpage.cpp:131
-#, fuzzy, kde-format
-#| msgid "Please note that only one OpenPGP keyserver can be configured."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr ""
@@ -5145,8 +5177,7 @@ msgid "..."
 msgstr "…"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:55
-#, fuzzy, kde-format
-#| msgid "&Output folder:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "Izhodna mapa:"
@@ -5568,8 +5599,7 @@ msgid "Output"
 msgstr "Output"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:164
-#, fuzzy, kde-format
-#| msgid "Please select an action."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "Izberite dejanje."
@@ -6758,10 +6788,10 @@ msgstr "nepovezano"
 msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
 msgid "On this computer and on a smart card"
 msgid_plural "On this computer and on %1 smart cards"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Na tem računalniku in %1 pametnih karticah."
+msgstr[1] "Na tem računalniku in %1 pametni kartici."
+msgstr[2] "Na tem računalniku in %1 pametnih karticah."
+msgstr[3] "Na tem računalniku in %1 pametnih karticah."
 
 #: src/dialogs/certificatedetailswidget.cpp:357
 #, kde-format
@@ -6773,7 +6803,7 @@ msgstr "na tem računalniku"
 #: src/dialogs/useridswidget.cpp:357
 #, kde-format
 msgid "Updating..."
-msgstr "Posodabljam…"
+msgstr "Posodabljanje…"
 
 #: src/dialogs/certificatedetailswidget.cpp:544
 #, kde-format
@@ -7494,15 +7524,13 @@ msgid "Export"
 msgstr "Izvoz"
 
 #: src/dialogs/gencardkeydialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Name:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Name:"
 msgstr "Ime:"
 
 #: src/dialogs/gencardkeydialog.cpp:61
-#, fuzzy, kde-format
-#| msgid "EMail:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "EMail:"
 msgstr "E-pošta:"
@@ -7513,8 +7541,7 @@ msgid "Invalid EMail"
 msgstr "Neveljavna e-pošta"
 
 #: src/dialogs/gencardkeydialog.cpp:75
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Algorithm:"
 msgstr "Algoritem:"
@@ -7706,63 +7733,95 @@ msgstr "Vnesite ime in naslov e-pošte za uporabo tega potrdila."
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr "Vnesite ime in/ali naslov e-pošte za uporabo tega potrdila."
 
-#: src/dialogs/revokekeydialog.cpp:89
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:101
+#, fuzzy, kde-format
+#| msgid "Revoke Certificate..."
 msgctxt "title:window"
-msgid "Revoke Key"
-msgstr "Prekliči ključ"
+msgid "Revoke Certificate"
+msgstr "Prekliči potrdilo…"
 
-#: src/dialogs/revokekeydialog.cpp:96
-#, kde-format
-msgctxt "@title:group"
-msgid "Reason for revocation"
-msgstr "Razlog preklica"
-
-#: src/dialogs/revokekeydialog.cpp:98
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:109
+#, fuzzy, kde-format
+#| msgctxt "@option:radio"
+#| msgid "Key has been compromised"
 msgctxt "@option:radio"
-msgid "No reason specified"
-msgstr "Razlog ni naveden"
-
-#: src/dialogs/revokekeydialog.cpp:99
-#, kde-format
-msgctxt "@option:radio"
-msgid "Key has been compromised"
+msgid "Certificate has been compromised"
 msgstr "Ključ je bil kompromitiran"
 
-#: src/dialogs/revokekeydialog.cpp:100
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:110
+#, fuzzy, kde-format
+#| msgid "Certification Succeeded"
 msgctxt "@option:radio"
-msgid "Key is superseded"
-msgstr "Ključ je nadomeščen"
+msgid "Certificate is superseded"
+msgstr "Potrditev je uspela"
 
-#: src/dialogs/revokekeydialog.cpp:101
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:111
+#, fuzzy, kde-format
+#| msgctxt "@option:radio"
+#| msgid "Key is no longer used"
 msgctxt "@option:radio"
-msgid "Key is no longer used"
+msgid "Certificate is no longer used"
 msgstr "Ključ ni več v rabi"
 
-#: src/dialogs/revokekeydialog.cpp:114
+#: src/dialogs/revokekeydialog.cpp:112
+#, kde-format
+msgctxt "@option:radio"
+msgid "For a different reason"
+msgstr ""
+
+#: src/dialogs/revokekeydialog.cpp:117
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Reason for revocation"
+msgctxt "@title"
+msgid "Reason for Revocation (optional)"
+msgstr "Razlog preklica"
+
+#: src/dialogs/revokekeydialog.cpp:127
+#, kde-format
+msgctxt "@option:check"
+msgid "Upload revoked certificate to internal directory"
+msgstr ""
+
+#: src/dialogs/revokekeydialog.cpp:129
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Imported Certificates from %1"
+msgctxt "@option:check"
+msgid "Upload revoked certificate to %1"
+msgstr "Uvožena potrdila iz %1"
+
+#: src/dialogs/revokekeydialog.cpp:144
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Description (optional):"
 msgstr "Opis (neobvezno):"
 
-#: src/dialogs/revokekeydialog.cpp:138
-#, kde-format
+#: src/dialogs/revokekeydialog.cpp:168
+#, fuzzy, kde-format
+#| msgid "Revoke Certificate..."
 msgctxt "@action:button"
-msgid "Revoke Key"
-msgstr "Prekliči ključ"
+msgid "Revoke Certificate"
+msgstr "Prekliči potrdilo…"
 
-#: src/dialogs/revokekeydialog.cpp:192
+#: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
 msgid "Error: The description must not contain empty lines."
 msgstr "Napaka: Opis ne sme vsebovati praznih vrstic."
 
-#: src/dialogs/revokekeydialog.cpp:271
+#: src/dialogs/revokekeydialog.cpp:309
 #, kde-kuit-format
-msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
-msgstr "<para>Nameravate preklicati naslednji ključ:<nl/>%1</para>"
+msgctxt "@info"
+msgid ""
+"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
+"strong='true'>The revocation will take effect immediately and cannot be "
+"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
+"decrypt everything encrypted for this certificate.</item><item>You cannot "
+"sign anything with this certificate anymore.</item><item>You cannot certify "
+"other certificates with it anymore.</item><item>Other people can no longer "
+"encrypt with it after receiving the revocation.</item></list></para>"
+msgstr ""
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -8014,7 +8073,7 @@ msgid "Export secret subkey"
 msgstr "Izvozi tajni podključ"
 
 #: src/dialogs/subkeyswidget.cpp:179 src/dialogs/useridswidget.cpp:156
-#: src/dialogs/weboftrustwidget.cpp:131
+#: src/dialogs/weboftrustwidget.cpp:137
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show more options"
@@ -8276,42 +8335,42 @@ msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "Prekliči uporabnikov določilnik"
 
-#: src/dialogs/weboftrustwidget.cpp:88
+#: src/dialogs/weboftrustwidget.cpp:94
 #, kde-format
 msgid "User IDs and certifications"
 msgstr "Uporabnikovi določilniki in potrditve"
 
-#: src/dialogs/weboftrustwidget.cpp:97
+#: src/dialogs/weboftrustwidget.cpp:103
 #, kde-format
 msgctxt "@info"
 msgid "Certifications are not available before the certificate is imported."
 msgstr "Potrjevanja niso na voljo pred uvozom potrdila."
 
-#: src/dialogs/weboftrustwidget.cpp:102
+#: src/dialogs/weboftrustwidget.cpp:108
 #, kde-format
 msgctxt "@action"
 msgid "Show Certificate Details"
 msgstr "Pokaži podrobnosti potrdila"
 
-#: src/dialogs/weboftrustwidget.cpp:107
+#: src/dialogs/weboftrustwidget.cpp:113
 #, kde-format
 msgctxt "@action"
 msgid "Add Certification"
 msgstr "Dodaj potrditev"
 
-#: src/dialogs/weboftrustwidget.cpp:113
+#: src/dialogs/weboftrustwidget.cpp:119
 #, kde-format
 msgctxt "@action"
 msgid "Revoke Certification"
 msgstr "Prekliči potrditev"
 
-#: src/dialogs/weboftrustwidget.cpp:119
+#: src/dialogs/weboftrustwidget.cpp:125
 #, kde-format
 msgctxt "@action:button"
 msgid "Fetch Missing Keys"
 msgstr "Pridobivam manjkajoče ključe"
 
-#: src/dialogs/weboftrustwidget.cpp:120
+#: src/dialogs/weboftrustwidget.cpp:126
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8321,7 +8380,15 @@ msgstr ""
 "Preglej in uvozi vse ključe, ki so bili uporabljeni za potrjevanje "
 "določilnikov uporabnika tega ključa"
 
-#: src/dialogs/weboftrustwidget.cpp:264
+#: src/dialogs/weboftrustwidget.cpp:146
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Show Certifications"
+msgctxt "label:checkbox"
+msgid "Show only my own certifications"
+msgstr "Prikaži potrditve"
+
+#: src/dialogs/weboftrustwidget.cpp:274
 #, kde-format
 msgid ""
 "You cannot revoke this certification because it wasn't made with one of your "
@@ -8330,13 +8397,13 @@ msgstr ""
 "Tega potrdila ne morete preklicati, ker ni bilo izdelano z enim od vaših "
 "ključev (ali manjka zahtevani tajni ključ)."
 
-#: src/dialogs/weboftrustwidget.cpp:267
+#: src/dialogs/weboftrustwidget.cpp:277
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Preklic samopotrditev trenutno ni mogoč."
 
-#: src/dialogs/weboftrustwidget.cpp:271
+#: src/dialogs/weboftrustwidget.cpp:281
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8346,19 +8413,19 @@ msgstr ""
 "Tega potrdila o preklicu ne morete preklicati. (Lahko pa ponovno potrdite "
 "ustrezen ID uporabnika.)"
 
-#: src/dialogs/weboftrustwidget.cpp:274
+#: src/dialogs/weboftrustwidget.cpp:284
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "Ne morete preklicati tega pretečenega potrdila."
 
-#: src/dialogs/weboftrustwidget.cpp:277
+#: src/dialogs/weboftrustwidget.cpp:287
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "Ne morete preklicati tega neveljavnega potrdila."
 
-#: src/dialogs/weboftrustwidget.cpp:280
+#: src/dialogs/weboftrustwidget.cpp:290
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8367,7 +8434,7 @@ msgid ""
 msgstr ""
 "Ne morete preklicati tega potrdila, ker zahtevani tajni ključ ni na voljo."
 
-#: src/dialogs/weboftrustwidget.cpp:288
+#: src/dialogs/weboftrustwidget.cpp:298
 #, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
@@ -8376,7 +8443,7 @@ msgstr ""
 "Ni mogoč preklic katerekoli potrditve tega uporabniškega določilnika. "
 "Izberite katerokoli potrditev  za podrobnosti."
 
-#: src/dialogs/weboftrustwidget.cpp:423
+#: src/dialogs/weboftrustwidget.cpp:432
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8386,7 +8453,7 @@ msgstr ""
 "<para>Med nalaganjem potrditev je prišlo do napake: <message>%1</message></"
 "para>"
 
-#: src/dialogs/weboftrustwidget.cpp:426
+#: src/dialogs/weboftrustwidget.cpp:435
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
@@ -12072,11 +12139,10 @@ msgstr "Oprostite, ni mogoče najti ključa s prstnim odtisom %1."
 
 #: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
 #: src/view/pivcardwidget.cpp:112
-#, fuzzy, kde-format
-#| msgid "Serial number:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Serial number:"
-msgstr "Zaporedna številka:"
+msgstr "Serijska številka:"
 
 #: src/view/p15cardwidget.cpp:96
 #, kde-format
@@ -12150,8 +12216,7 @@ msgstr ""
 "para>"
 
 #: src/view/padwidget.cpp:150
-#, fuzzy, kde-format
-#| msgid "<h3>Protocol:</h3>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>Protokol:</h3>"
@@ -12358,11 +12423,10 @@ msgid "Generating Keys"
 msgstr "Generiram ključe"
 
 #: src/view/pgpcardwidget.cpp:340
-#, fuzzy, kde-format
-#| msgid "This may take several minutes..."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
-msgstr "To lahko traja nekaj minut…"
+msgstr "To lahko traja nekaj minut..."
 
 #: src/view/pgpcardwidget.cpp:355
 #, kde-format
@@ -12902,6 +12966,29 @@ msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
 
+#~ msgctxt "@title:window"
+#~ msgid "Key Revoked"
+#~ msgstr "Ključ preklican"
+
+#~ msgctxt "title:window"
+#~ msgid "Revoke Key"
+#~ msgstr "Prekliči ključ"
+
+#~ msgctxt "@option:radio"
+#~ msgid "No reason specified"
+#~ msgstr "Razlog ni naveden"
+
+#~ msgctxt "@option:radio"
+#~ msgid "Key is superseded"
+#~ msgstr "Ključ je nadomeščen"
+
+#~ msgctxt "@action:button"
+#~ msgid "Revoke Key"
+#~ msgstr "Prekliči ključ"
+
+#~ msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
+#~ msgstr "<para>Nameravate preklicati naslednji ključ:<nl/>%1</para>"
+
 #~ msgid "Designated revoker"
 #~ msgstr "Pooblaščeni preklicatelj"
 
@@ -13112,10 +13199,6 @@ msgstr ""
 #~ "odjemalci za e-pošto ne podpirajo prilog, če jih zaženete na ta način.</"
 #~ "para><para>Če vaš odjemalec e-pošte ne vsebuje priloge, potem ročno "
 #~ "priložite <filename>%1</filename>.</para>"
-
-#~ msgctxt "@action:button"
-#~ msgid "Show Certifications"
-#~ msgstr "Prikaži potrditve"
 
 #~ msgid "Related addresses:"
 #~ msgstr "Sorodni naslovi:"

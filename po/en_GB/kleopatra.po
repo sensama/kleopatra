@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-29 00:39+0000\n"
+"POT-Creation-Date: 2024-05-30 00:38+0000\n"
 "PO-Revision-Date: 2024-05-23 19:40+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -1984,7 +1984,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Could not open file %1 for reading: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:256
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:264
 #, kde-format
 msgid "Certificates"
 msgstr "Certificates"
@@ -6458,7 +6458,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:172
+#: src/dialogs/certificatedetailswidget.cpp:173
 #: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6531,180 +6531,185 @@ msgid ""
 msgstr ""
 "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:163
+#: src/dialogs/certificatedetailswidget.cpp:164
 #, kde-format
 msgid "User ID:"
 msgstr "User ID:"
 
-#: src/dialogs/certificatedetailswidget.cpp:183
+#: src/dialogs/certificatedetailswidget.cpp:184
 #, kde-format
 msgid "Trust level:"
 msgstr "Trust level:"
 
-#: src/dialogs/certificatedetailswidget.cpp:188
+#: src/dialogs/certificatedetailswidget.cpp:189
 #, kde-format
 msgid "Valid from:"
 msgstr "Valid from:"
 
-#: src/dialogs/certificatedetailswidget.cpp:193
+#: src/dialogs/certificatedetailswidget.cpp:194
 #: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Valid until:"
 
-#: src/dialogs/certificatedetailswidget.cpp:196
+#: src/dialogs/certificatedetailswidget.cpp:197
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "Change the end of the validity period"
 
-#: src/dialogs/certificatedetailswidget.cpp:197
+#: src/dialogs/certificatedetailswidget.cpp:198
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "Change Validity"
 
-#: src/dialogs/certificatedetailswidget.cpp:203
+#: src/dialogs/certificatedetailswidget.cpp:204
 #, kde-format
 msgid "Status:"
 msgstr "Status:"
 
-#: src/dialogs/certificatedetailswidget.cpp:208
+#: src/dialogs/certificatedetailswidget.cpp:209
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Fingerprint:"
 
-#: src/dialogs/certificatedetailswidget.cpp:212
+#: src/dialogs/certificatedetailswidget.cpp:213
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "Copy the fingerprint to the clipboard"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:214
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "Copy fingerprint"
 
-#: src/dialogs/certificatedetailswidget.cpp:220
+#: src/dialogs/certificatedetailswidget.cpp:221
 #, kde-format
 msgid "Issuer:"
 msgstr "Issuer:"
 
-#: src/dialogs/certificatedetailswidget.cpp:223
+#: src/dialogs/certificatedetailswidget.cpp:224
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "Show the issuer certificate"
 
-#: src/dialogs/certificatedetailswidget.cpp:224
+#: src/dialogs/certificatedetailswidget.cpp:225
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Show certificate"
 
-#: src/dialogs/certificatedetailswidget.cpp:230
+#: src/dialogs/certificatedetailswidget.cpp:231
 #, kde-format
 msgid "Compliance:"
 msgstr "Compliance:"
 
-#: src/dialogs/certificatedetailswidget.cpp:235
+#: src/dialogs/certificatedetailswidget.cpp:236
+#, kde-format
+msgid "Usage:"
+msgstr "Usage:"
+
+#: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "Trusted introducer for:"
 
-#: src/dialogs/certificatedetailswidget.cpp:237
+#: src/dialogs/certificatedetailswidget.cpp:243
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "See certifications for details."
 
-#: src/dialogs/certificatedetailswidget.cpp:241
+#: src/dialogs/certificatedetailswidget.cpp:247
 #, kde-format
 msgid "Private Key:"
 msgstr "Private Key:"
 
-#: src/dialogs/certificatedetailswidget.cpp:256
+#: src/dialogs/certificatedetailswidget.cpp:262
 #, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "User IDs"
 
-#: src/dialogs/certificatedetailswidget.cpp:260
+#: src/dialogs/certificatedetailswidget.cpp:266
 #, kde-format
 msgid "Related addresses"
 msgstr "Related addresses"
 
-#: src/dialogs/certificatedetailswidget.cpp:263
+#: src/dialogs/certificatedetailswidget.cpp:269
 #, kde-format
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "Related Addresses"
 
-#: src/dialogs/certificatedetailswidget.cpp:266
+#: src/dialogs/certificatedetailswidget.cpp:272
 #, kde-format
 msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "Sub-keys"
 
-#: src/dialogs/certificatedetailswidget.cpp:269
+#: src/dialogs/certificatedetailswidget.cpp:275
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "Certifications"
 
-#: src/dialogs/certificatedetailswidget.cpp:272
+#: src/dialogs/certificatedetailswidget.cpp:278
 #, kde-format
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "Trust Chain Details"
 
-#: src/dialogs/certificatedetailswidget.cpp:275
+#: src/dialogs/certificatedetailswidget.cpp:281
 #, kde-format
 msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr "Smartcard"
 
-#: src/dialogs/certificatedetailswidget.cpp:278
+#: src/dialogs/certificatedetailswidget.cpp:284
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "Certificate Dump"
 
-#: src/dialogs/certificatedetailswidget.cpp:335
+#: src/dialogs/certificatedetailswidget.cpp:341
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "unlimited"
 
-#: src/dialogs/certificatedetailswidget.cpp:342
+#: src/dialogs/certificatedetailswidget.cpp:348
 #: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr "n/a"
 
-#: src/dialogs/certificatedetailswidget.cpp:345
+#: src/dialogs/certificatedetailswidget.cpp:351
 #, kde-format
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "smart card %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:347
+#: src/dialogs/certificatedetailswidget.cpp:353
 #, kde-format
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "smart card"
 
-#: src/dialogs/certificatedetailswidget.cpp:350
+#: src/dialogs/certificatedetailswidget.cpp:356
 #: src/dialogs/subkeyswidget.cpp:395
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "offline"
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:359
 #, kde-format
 msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
 msgid "On this computer and on a smart card"
@@ -6712,49 +6717,89 @@ msgid_plural "On this computer and on %1 smart cards"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/certificatedetailswidget.cpp:357
+#: src/dialogs/certificatedetailswidget.cpp:363
 #, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "on this computer"
 
-#: src/dialogs/certificatedetailswidget.cpp:472
+#: src/dialogs/certificatedetailswidget.cpp:375
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "encryption"
+msgstr "Encryption"
+
+#: src/dialogs/certificatedetailswidget.cpp:378
+#, fuzzy, kde-format
+#| msgid "Signing"
+msgid "signing"
+msgstr "Signing"
+
+#: src/dialogs/certificatedetailswidget.cpp:381
+#, fuzzy, kde-format
+#| msgctxt "@option:check"
+#| msgid "Certification"
+msgid "certification"
+msgstr "Certification"
+
+#: src/dialogs/certificatedetailswidget.cpp:384
+#, fuzzy, kde-format
+#| msgid "Authentication"
+msgid "authentication"
+msgstr "Authentication"
+
+#: src/dialogs/certificatedetailswidget.cpp:387
+#, fuzzy, kde-format
+#| msgid "Bad signature"
+msgctxt "as in: can be used for ..."
+msgid "qualified signatures"
+msgstr "Bad signature"
+
+#: src/dialogs/certificatedetailswidget.cpp:390
+#, fuzzy, kde-format
+#| msgctxt "separator for a list of e-mail addresses"
+#| msgid ", "
+msgctxt "Separator between words in a list"
+msgid ", "
+msgstr ", "
+
+#: src/dialogs/certificatedetailswidget.cpp:500
 #: src/dialogs/useridswidget.cpp:357
 #, kde-format
 msgid "Updating..."
 msgstr "Updating..."
 
-#: src/dialogs/certificatedetailswidget.cpp:544
+#: src/dialogs/certificatedetailswidget.cpp:572
 #, kde-format
 msgid "Common Name"
 msgstr "Common Name"
 
-#: src/dialogs/certificatedetailswidget.cpp:545
+#: src/dialogs/certificatedetailswidget.cpp:573
 #, kde-format
 msgid "Organization"
 msgstr "Organisation"
 
-#: src/dialogs/certificatedetailswidget.cpp:546
+#: src/dialogs/certificatedetailswidget.cpp:574
 #, kde-format
 msgid "Street"
 msgstr "Street"
 
-#: src/dialogs/certificatedetailswidget.cpp:547
+#: src/dialogs/certificatedetailswidget.cpp:575
 #, kde-format
 msgid "City"
 msgstr "City"
 
-#: src/dialogs/certificatedetailswidget.cpp:548
+#: src/dialogs/certificatedetailswidget.cpp:576
 #, kde-format
 msgid "State"
 msgstr "State"
 
-#: src/dialogs/certificatedetailswidget.cpp:549
+#: src/dialogs/certificatedetailswidget.cpp:577
 #, kde-format
 msgid "Country"
 msgstr "Country"
 
-#: src/dialogs/certificatedetailswidget.cpp:596
+#: src/dialogs/certificatedetailswidget.cpp:624
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "The issuer certificate could not be found locally."
@@ -11506,42 +11551,42 @@ msgstr "%1 (required)"
 msgid "Loading certificate cache..."
 msgstr "Loading certificate cache..."
 
-#: src/view/keylistcontroller.cpp:325
+#: src/view/keylistcontroller.cpp:327
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "New OpenPGP Key Pair..."
 
-#: src/view/keylistcontroller.cpp:326
+#: src/view/keylistcontroller.cpp:328
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Create a new OpenPGP certificate"
 
-#: src/view/keylistcontroller.cpp:334
+#: src/view/keylistcontroller.cpp:336
 #, kde-format
 msgid "Export..."
 msgstr "Export..."
 
-#: src/view/keylistcontroller.cpp:335
+#: src/view/keylistcontroller.cpp:337
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "Export the selected certificate (public key) to a file"
 
-#: src/view/keylistcontroller.cpp:343
+#: src/view/keylistcontroller.cpp:345
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Publish on Server..."
 
-#: src/view/keylistcontroller.cpp:344
+#: src/view/keylistcontroller.cpp:346
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr "Publish the selected certificate (public key) on a public keyserver"
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:355
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Publish at Mail Provider..."
 
-#: src/view/keylistcontroller.cpp:354
+#: src/view/keylistcontroller.cpp:356
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11550,248 +11595,254 @@ msgstr ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:365
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Backup Secret Keys..."
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:374
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Print Secret Key..."
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:383
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Lookup on Server..."
 
-#: src/view/keylistcontroller.cpp:382
+#: src/view/keylistcontroller.cpp:384
 #, kde-format
 msgid "Search for certificates online using a public keyserver"
 msgstr "Search for certificates online using a public keyserver"
 
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:392 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Import..."
 
-#: src/view/keylistcontroller.cpp:391
+#: src/view/keylistcontroller.cpp:393
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Import a certificate from a file"
 
-#: src/view/keylistcontroller.cpp:399
+#: src/view/keylistcontroller.cpp:401
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Decrypt/Verify..."
 
-#: src/view/keylistcontroller.cpp:400
+#: src/view/keylistcontroller.cpp:402
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Decrypt and/or verify files"
 
-#: src/view/keylistcontroller.cpp:408
+#: src/view/keylistcontroller.cpp:410
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Sign/Encrypt..."
 
-#: src/view/keylistcontroller.cpp:409
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Encrypt and/or sign files"
 
-#: src/view/keylistcontroller.cpp:417
+#: src/view/keylistcontroller.cpp:419
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Sign/Encrypt Folder..."
 
-#: src/view/keylistcontroller.cpp:418
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Encrypt and/or sign folders"
 
-#: src/view/keylistcontroller.cpp:426
+#: src/view/keylistcontroller.cpp:428
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Create Checksum Files..."
 
-#: src/view/keylistcontroller.cpp:435
+#: src/view/keylistcontroller.cpp:437
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Verify Checksum Files..."
 
-#: src/view/keylistcontroller.cpp:445
+#: src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Redisplay"
 msgstr "Redisplay"
 
-#: src/view/keylistcontroller.cpp:454
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Stop Operation"
 msgstr "Stop Operation"
 
-#: src/view/keylistcontroller.cpp:467
+#: src/view/keylistcontroller.cpp:469
 #, kde-format
 msgid "Details"
 msgstr "Details"
 
-#: src/view/keylistcontroller.cpp:477
+#: src/view/keylistcontroller.cpp:479
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Revoke Certificate..."
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:480
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Revoke the selected OpenPGP certificate"
 
-#: src/view/keylistcontroller.cpp:486
+#: src/view/keylistcontroller.cpp:488
 #, kde-format
 msgid "Delete"
 msgstr "Delete"
 
-#: src/view/keylistcontroller.cpp:487
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Delete selected certificates"
 
-#: src/view/keylistcontroller.cpp:495
+#: src/view/keylistcontroller.cpp:497
 #, kde-format
 msgid "Update Certificates"
 msgstr "Update Certificates"
 
-#: src/view/keylistcontroller.cpp:496
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Update selected certificates"
 msgstr "Update selected certificates"
 
-#: src/view/keylistcontroller.cpp:504
+#: src/view/keylistcontroller.cpp:506
 #, kde-format
 msgid "Certify..."
 msgstr "Certify..."
 
-#: src/view/keylistcontroller.cpp:505
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Certify the validity of the selected certificate"
 
-#: src/view/keylistcontroller.cpp:513
+#: src/view/keylistcontroller.cpp:515
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Revoke Certification..."
 
-#: src/view/keylistcontroller.cpp:514
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Revoke the certification of the selected certificate"
 
-#: src/view/keylistcontroller.cpp:522
+#: src/view/keylistcontroller.cpp:524
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Change End of Validity Period..."
 
-#: src/view/keylistcontroller.cpp:531
+#: src/view/keylistcontroller.cpp:533
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Change Certification Power..."
 
-#: src/view/keylistcontroller.cpp:532
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "Grant or revoke the certification power of the selected certificate"
 
-#: src/view/keylistcontroller.cpp:540
+#: src/view/keylistcontroller.cpp:542
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Change Passphrase..."
 
-#: src/view/keylistcontroller.cpp:549
+#: src/view/keylistcontroller.cpp:551
 #, kde-format
 msgid "Add User ID..."
 msgstr "Add User ID..."
 
-#: src/view/keylistcontroller.cpp:558
+#: src/view/keylistcontroller.cpp:560
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Create Group..."
 
-#: src/view/keylistcontroller.cpp:559
+#: src/view/keylistcontroller.cpp:561
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Create a group from the selected certificates"
 
-#: src/view/keylistcontroller.cpp:567
+#: src/view/keylistcontroller.cpp:569
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr "Copy to Card"
 
-#: src/view/keylistcontroller.cpp:568
+#: src/view/keylistcontroller.cpp:570
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Copy the selected certificate to a smartcard"
 
-#: src/view/keylistcontroller.cpp:577
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Refresh OpenPGP Certificates"
 
-#: src/view/keylistcontroller.cpp:592
+#: src/view/keylistcontroller.cpp:589
+#, kde-format
+msgctxt "@action:button"
+msgid "Copy"
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:606
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "New S/MIME Certification Request..."
 
-#: src/view/keylistcontroller.cpp:593
+#: src/view/keylistcontroller.cpp:607
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Create a new S/MIME certificate signing request (CSR)"
 
-#: src/view/keylistcontroller.cpp:604
+#: src/view/keylistcontroller.cpp:618
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Trust Root Certificate"
 
-#: src/view/keylistcontroller.cpp:613
+#: src/view/keylistcontroller.cpp:627
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Distrust Root Certificate"
 
-#: src/view/keylistcontroller.cpp:622
+#: src/view/keylistcontroller.cpp:636
 #, kde-format
 msgid "Technical Details"
 msgstr "Technical Details"
 
-#: src/view/keylistcontroller.cpp:632
+#: src/view/keylistcontroller.cpp:646
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "Refresh S/MIME Certificates"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:655
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Clear CRL Cache"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:664
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Dump CRL Cache"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:673
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Import CRL From File..."
 
-#: src/view/keytreeview.cpp:257 src/view/keytreeview.cpp:524
+#: src/view/keytreeview.cpp:265 src/view/keytreeview.cpp:547
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "Hierarchical list of certificates"
 
-#: src/view/keytreeview.cpp:257 src/view/keytreeview.cpp:524
+#: src/view/keytreeview.cpp:265 src/view/keytreeview.cpp:547
 #, kde-format
 msgid "List of certificates"
 msgstr "List of certificates"
@@ -12667,87 +12718,87 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/tabwidget.cpp:654
+#: src/view/tabwidget.cpp:663
 #, kde-format
 msgid "Rename Tab"
 msgstr "Rename Tab"
 
-#: src/view/tabwidget.cpp:654
+#: src/view/tabwidget.cpp:663
 #, kde-format
 msgid "New tab title:"
 msgstr "New tab title:"
 
-#: src/view/tabwidget.cpp:858
+#: src/view/tabwidget.cpp:867
 #, kde-format
 msgid "New Tab"
 msgstr "New Tab"
 
-#: src/view/tabwidget.cpp:859
+#: src/view/tabwidget.cpp:868
 #, kde-format
 msgid "Open a new tab"
 msgstr "Open a new tab"
 
-#: src/view/tabwidget.cpp:873
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Rename Tab..."
 msgstr "Rename Tab..."
 
-#: src/view/tabwidget.cpp:874
+#: src/view/tabwidget.cpp:883
 #, kde-format
 msgid "Rename this tab"
 msgstr "Rename this tab"
 
-#: src/view/tabwidget.cpp:886
+#: src/view/tabwidget.cpp:895
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "Duplicate Tab"
 
-#: src/view/tabwidget.cpp:887
+#: src/view/tabwidget.cpp:896
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "Duplicate this tab"
 
-#: src/view/tabwidget.cpp:897
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Close Tab"
 msgstr "Close Tab"
 
-#: src/view/tabwidget.cpp:898
+#: src/view/tabwidget.cpp:907
 #, kde-format
 msgid "Close this tab"
 msgstr "Close this tab"
 
-#: src/view/tabwidget.cpp:910
+#: src/view/tabwidget.cpp:919
 #, kde-format
 msgid "Move Tab Left"
 msgstr "Move Tab Left"
 
-#: src/view/tabwidget.cpp:911
+#: src/view/tabwidget.cpp:920
 #, kde-format
 msgid "Move this tab left"
 msgstr "Move this tab left"
 
-#: src/view/tabwidget.cpp:923
+#: src/view/tabwidget.cpp:932
 #, kde-format
 msgid "Move Tab Right"
 msgstr "Move Tab Right"
 
-#: src/view/tabwidget.cpp:924
+#: src/view/tabwidget.cpp:933
 #, kde-format
 msgid "Move this tab right"
 msgstr "Move this tab right"
 
-#: src/view/tabwidget.cpp:936
+#: src/view/tabwidget.cpp:945
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "Hierarchical Certificate List"
 
-#: src/view/tabwidget.cpp:949
+#: src/view/tabwidget.cpp:958
 #, kde-format
 msgid "Expand All"
 msgstr "Expand All"
 
-#: src/view/tabwidget.cpp:962
+#: src/view/tabwidget.cpp:971
 #, kde-format
 msgid "Collapse All"
 msgstr "Collapse All"
@@ -13003,10 +13054,6 @@ msgstr ""
 #~ msgctxt "@option:check"
 #~ msgid "+ ECDH"
 #~ msgstr "+ ECDH"
-
-#~ msgctxt "@option:check"
-#~ msgid "Certification"
-#~ msgstr "Certification"
 
 #~ msgctxt "@title:group"
 #~ msgid "Additional User IDs"
@@ -14263,9 +14310,6 @@ msgstr ""
 #~ msgid_plural "%1 bits"
 #~ msgstr[0] "1 bit"
 #~ msgstr[1] "%1 bits"
-
-#~ msgid "Usage:"
-#~ msgstr "Usage:"
 
 #~ msgctxt "separator for key usages"
 #~ msgid ",&nbsp;"

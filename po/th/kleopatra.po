@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-29 00:39+0000\n"
+"POT-Creation-Date: 2024-05-30 00:38+0000\n"
 "PO-Revision-Date: 2008-07-21 16:42+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -1905,7 +1905,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "ไม่สามารถเปิดแฟ้ม %1 เพื่อทำการอ่านได้"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:256
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:264
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "Certificates"
@@ -6264,7 +6264,7 @@ msgid "%1 (%2)"
 msgstr "%1: %2"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:172
+#: src/dialogs/certificatedetailswidget.cpp:173
 #: src/newcertificatewizard/enterdetailspage.cpp:312
 #, fuzzy, kde-format
 #| msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
@@ -6334,131 +6334,136 @@ msgid ""
 "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:163
+#: src/dialogs/certificatedetailswidget.cpp:164
 #, fuzzy, kde-format
 #| msgid "User-ID"
 msgid "User ID:"
 msgstr "หมายเลขผู้ใช้"
 
-#: src/dialogs/certificatedetailswidget.cpp:183
+#: src/dialogs/certificatedetailswidget.cpp:184
 #, kde-format
 msgid "Trust level:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:188
+#: src/dialogs/certificatedetailswidget.cpp:189
 #, fuzzy, kde-format
 #| msgid "Valid From"
 msgid "Valid from:"
 msgstr "ใช้ได้ตั้งแต่"
 
-#: src/dialogs/certificatedetailswidget.cpp:193
+#: src/dialogs/certificatedetailswidget.cpp:194
 #: src/dialogs/expirydialog.cpp:100
 #, fuzzy, kde-format
 #| msgid "Valid Until"
 msgid "Valid until:"
 msgstr "ใช้ได้จนถึง"
 
-#: src/dialogs/certificatedetailswidget.cpp:196
+#: src/dialogs/certificatedetailswidget.cpp:197
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:197
+#: src/dialogs/certificatedetailswidget.cpp:198
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "การใช้งานได้"
 
-#: src/dialogs/certificatedetailswidget.cpp:203
+#: src/dialogs/certificatedetailswidget.cpp:204
 #, fuzzy, kde-format
 #| msgid "Status"
 msgid "Status:"
 msgstr "สถานะ"
 
-#: src/dialogs/certificatedetailswidget.cpp:208
+#: src/dialogs/certificatedetailswidget.cpp:209
 #: src/dialogs/certifywidget.cpp:193
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgid "Fingerprint:"
 msgstr "ลายนิ้วมือ"
 
-#: src/dialogs/certificatedetailswidget.cpp:212
+#: src/dialogs/certificatedetailswidget.cpp:213
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "ลายนิ้วมือ"
 
-#: src/dialogs/certificatedetailswidget.cpp:220
+#: src/dialogs/certificatedetailswidget.cpp:221
 #, fuzzy, kde-format
 #| msgid "Issuer"
 msgid "Issuer:"
 msgstr "ผู้ออกให้"
 
-#: src/dialogs/certificatedetailswidget.cpp:223
+#: src/dialogs/certificatedetailswidget.cpp:224
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/dialogs/certificatedetailswidget.cpp:224
+#: src/dialogs/certificatedetailswidget.cpp:225
 #, fuzzy, kde-format
 #| msgid "Certificate type"
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "ประเภทของใบรับรอง"
 
-#: src/dialogs/certificatedetailswidget.cpp:230
+#: src/dialogs/certificatedetailswidget.cpp:231
 #, kde-format
 msgid "Compliance:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:235
+#: src/dialogs/certificatedetailswidget.cpp:236
+#, kde-format
+msgid "Usage:"
+msgstr ""
+
+#: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:237
+#: src/dialogs/certificatedetailswidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "เลือกแฟ้มของใบรับรอง"
 
-#: src/dialogs/certificatedetailswidget.cpp:241
+#: src/dialogs/certificatedetailswidget.cpp:247
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Private Key:"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/dialogs/certificatedetailswidget.cpp:256
+#: src/dialogs/certificatedetailswidget.cpp:262
 #, fuzzy, kde-format
 #| msgid "User-ID"
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "หมายเลขผู้ใช้"
 
-#: src/dialogs/certificatedetailswidget.cpp:260
+#: src/dialogs/certificatedetailswidget.cpp:266
 #, kde-format
 msgid "Related addresses"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:263
+#: src/dialogs/certificatedetailswidget.cpp:269
 #, kde-format
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:266
+#: src/dialogs/certificatedetailswidget.cpp:272
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -6466,121 +6471,158 @@ msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "กุญแจย่อย"
 
-#: src/dialogs/certificatedetailswidget.cpp:269
+#: src/dialogs/certificatedetailswidget.cpp:275
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "ใ&บรับรอง"
 
-#: src/dialogs/certificatedetailswidget.cpp:272
+#: src/dialogs/certificatedetailswidget.cpp:278
 #, fuzzy, kde-format
 #| msgid "..."
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "..."
 
-#: src/dialogs/certificatedetailswidget.cpp:275
+#: src/dialogs/certificatedetailswidget.cpp:281
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr "เลือกแฟ้ม"
 
-#: src/dialogs/certificatedetailswidget.cpp:278
+#: src/dialogs/certificatedetailswidget.cpp:284
 #, fuzzy, kde-format
 #| msgid "Certificate Import Failed"
 msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "การนำเข้าใบรับรองล้มเหลว"
 
-#: src/dialogs/certificatedetailswidget.cpp:335
+#: src/dialogs/certificatedetailswidget.cpp:341
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:342
+#: src/dialogs/certificatedetailswidget.cpp:348
 #: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:345
+#: src/dialogs/certificatedetailswidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "เลือกแฟ้ม"
 
-#: src/dialogs/certificatedetailswidget.cpp:347
+#: src/dialogs/certificatedetailswidget.cpp:353
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "เลือกแฟ้ม"
 
-#: src/dialogs/certificatedetailswidget.cpp:350
+#: src/dialogs/certificatedetailswidget.cpp:356
 #: src/dialogs/subkeyswidget.cpp:395
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:359
 #, kde-format
 msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
 msgid "On this computer and on a smart card"
 msgid_plural "On this computer and on %1 smart cards"
 msgstr[0] ""
 
-#: src/dialogs/certificatedetailswidget.cpp:357
+#: src/dialogs/certificatedetailswidget.cpp:363
 #, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:472
+#: src/dialogs/certificatedetailswidget.cpp:375
+#, fuzzy, kde-format
+#| msgid "Encrypt only"
+msgid "encryption"
+msgstr "เข้ารหัสเท่านั้น"
+
+#: src/dialogs/certificatedetailswidget.cpp:378
+#, fuzzy, kde-format
+#| msgid "Signer:"
+msgid "signing"
+msgstr "ผู้เซ็น:"
+
+#: src/dialogs/certificatedetailswidget.cpp:381
+#, fuzzy, kde-format
+#| msgid "&Certificates"
+msgid "certification"
+msgstr "ใ&บรับรอง"
+
+#: src/dialogs/certificatedetailswidget.cpp:384
+#, fuzzy, kde-format
+#| msgid "Animations"
+msgid "authentication"
+msgstr "ภาพเคลื่อนไหว"
+
+#: src/dialogs/certificatedetailswidget.cpp:387
+#, fuzzy, kde-format
+#| msgid "Bad signature"
+msgctxt "as in: can be used for ..."
+msgid "qualified signatures"
+msgstr "ลายเซ็นใช้ไม่ได้"
+
+#: src/dialogs/certificatedetailswidget.cpp:390
+#, kde-format
+msgctxt "Separator between words in a list"
+msgid ", "
+msgstr ""
+
+#: src/dialogs/certificatedetailswidget.cpp:500
 #: src/dialogs/useridswidget.cpp:357
 #, fuzzy, kde-format
 #| msgid "Export"
 msgid "Updating..."
 msgstr "ส่งออก"
 
-#: src/dialogs/certificatedetailswidget.cpp:544
+#: src/dialogs/certificatedetailswidget.cpp:572
 #, kde-format
 msgid "Common Name"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:545
+#: src/dialogs/certificatedetailswidget.cpp:573
 #, fuzzy, kde-format
 #| msgid "Animations"
 msgid "Organization"
 msgstr "ภาพเคลื่อนไหว"
 
-#: src/dialogs/certificatedetailswidget.cpp:546
+#: src/dialogs/certificatedetailswidget.cpp:574
 #, kde-format
 msgid "Street"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:547
+#: src/dialogs/certificatedetailswidget.cpp:575
 #, kde-format
 msgid "City"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:548
+#: src/dialogs/certificatedetailswidget.cpp:576
 #, fuzzy, kde-format
 #| msgid "Status"
 msgid "State"
 msgstr "สถานะ"
 
-#: src/dialogs/certificatedetailswidget.cpp:549
+#: src/dialogs/certificatedetailswidget.cpp:577
 #, kde-format
 msgid "Country"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:596
+#: src/dialogs/certificatedetailswidget.cpp:624
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgid "The issuer certificate could not be found locally."
@@ -11130,318 +11172,324 @@ msgstr ""
 msgid "Loading certificate cache..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:325
+#: src/view/keylistcontroller.cpp:327
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:326
+#: src/view/keylistcontroller.cpp:328
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "Create a new OpenPGP certificate"
 msgstr "ใ&บรับรอง"
 
-#: src/view/keylistcontroller.cpp:334
+#: src/view/keylistcontroller.cpp:336
 #, fuzzy, kde-format
 #| msgid "Export"
 msgid "Export..."
 msgstr "ส่งออก"
 
-#: src/view/keylistcontroller.cpp:335
+#: src/view/keylistcontroller.cpp:337
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:343
+#: src/view/keylistcontroller.cpp:345
 #, kde-format
 msgid "Publish on Server..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:344
+#: src/view/keylistcontroller.cpp:346
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:355
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:354
+#: src/view/keylistcontroller.cpp:356
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:365
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Backup Secret Keys..."
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:374
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Print Secret Key..."
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:383
 #, fuzzy, kde-format
 #| msgid "Lookup..."
 msgid "Lookup on Server..."
 msgstr "ค้นหา..."
 
-#: src/view/keylistcontroller.cpp:382
+#: src/view/keylistcontroller.cpp:384
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Search for certificates online using a public keyserver"
 msgstr "เลือกแฟ้มของใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:392 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
 msgid "Import..."
 msgstr "นำเข้า"
 
-#: src/view/keylistcontroller.cpp:391
+#: src/view/keylistcontroller.cpp:393
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Import a certificate from a file"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:399
+#: src/view/keylistcontroller.cpp:401
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:400
+#: src/view/keylistcontroller.cpp:402
 #, fuzzy, kde-format
 #| msgid "Sign and encrypt (OpenPGP only)"
 msgid "Decrypt and/or verify files"
 msgstr "เซ็นและเข้ารหัส (OpenPGP เท่านั้น)"
 
-#: src/view/keylistcontroller.cpp:408
+#: src/view/keylistcontroller.cpp:410
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:409
+#: src/view/keylistcontroller.cpp:411
 #, fuzzy, kde-format
 #| msgid "Sign and encrypt (OpenPGP only)"
 msgid "Encrypt and/or sign files"
 msgstr "เซ็นและเข้ารหัส (OpenPGP เท่านั้น)"
 
-#: src/view/keylistcontroller.cpp:417
+#: src/view/keylistcontroller.cpp:419
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:418
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:426
+#: src/view/keylistcontroller.cpp:428
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:435
+#: src/view/keylistcontroller.cpp:437
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:445
+#: src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Redisplay"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:454
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Stop Operation"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:467
+#: src/view/keylistcontroller.cpp:469
 #, kde-format
 msgid "Details"
 msgstr "รายละเอียด"
 
-#: src/view/keylistcontroller.cpp:477
+#: src/view/keylistcontroller.cpp:479
 #, fuzzy, kde-format
 #| msgid "Importing certificate..."
 msgid "Revoke Certificate..."
 msgstr "กำลังนำเข้าใบรับรอง..."
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:480
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:486
+#: src/view/keylistcontroller.cpp:488
 #, kde-format
 msgid "Delete"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:487
+#: src/view/keylistcontroller.cpp:489
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Delete selected certificates"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:495
+#: src/view/keylistcontroller.cpp:497
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Update Certificates"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:496
+#: src/view/keylistcontroller.cpp:498
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Update selected certificates"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:504
+#: src/view/keylistcontroller.cpp:506
 #, kde-format
 msgid "Certify..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:505
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:513
+#: src/view/keylistcontroller.cpp:515
 #, fuzzy, kde-format
 #| msgid "Importing certificate..."
 msgid "Revoke Certification..."
 msgstr "กำลังนำเข้าใบรับรอง..."
 
-#: src/view/keylistcontroller.cpp:514
+#: src/view/keylistcontroller.cpp:516
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Revoke the certification of the selected certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:522
+#: src/view/keylistcontroller.cpp:524
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:531
+#: src/view/keylistcontroller.cpp:533
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "เลือกแฟ้มของใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:532
+#: src/view/keylistcontroller.cpp:534
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:540
+#: src/view/keylistcontroller.cpp:542
 #, kde-format
 msgid "Change Passphrase..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:549
+#: src/view/keylistcontroller.cpp:551
 #, kde-format
 msgid "Add User ID..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:558
+#: src/view/keylistcontroller.cpp:560
 #, fuzzy, kde-format
 #| msgid "Configure"
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "ปรับแต่ง"
 
-#: src/view/keylistcontroller.cpp:559
+#: src/view/keylistcontroller.cpp:561
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:567
+#: src/view/keylistcontroller.cpp:569
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:568
+#: src/view/keylistcontroller.cpp:570
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:577
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:592
+#: src/view/keylistcontroller.cpp:589
+#, kde-format
+msgctxt "@action:button"
+msgid "Copy"
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:606
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "ใ&บรับรอง"
 
-#: src/view/keylistcontroller.cpp:593
+#: src/view/keylistcontroller.cpp:607
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:604
+#: src/view/keylistcontroller.cpp:618
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Trust Root Certificate"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:613
+#: src/view/keylistcontroller.cpp:627
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Distrust Root Certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:622
+#: src/view/keylistcontroller.cpp:636
 #, kde-format
 msgid "Technical Details"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:632
+#: src/view/keylistcontroller.cpp:646
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "ใ&บรับรอง"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:655
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:664
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:673
 #, kde-format
 msgid "Import CRL From File..."
 msgstr ""
 
-#: src/view/keytreeview.cpp:257 src/view/keytreeview.cpp:524
+#: src/view/keytreeview.cpp:265 src/view/keytreeview.cpp:547
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Hierarchical list of certificates"
 msgstr "เลือกแฟ้มของใบรับรอง"
 
-#: src/view/keytreeview.cpp:257 src/view/keytreeview.cpp:524
+#: src/view/keytreeview.cpp:265 src/view/keytreeview.cpp:547
 #, fuzzy, kde-format
 #| msgid "Signing Certificates"
 msgid "List of certificates"
@@ -12339,87 +12387,87 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr ""
 
-#: src/view/tabwidget.cpp:654
+#: src/view/tabwidget.cpp:663
 #, kde-format
 msgid "Rename Tab"
 msgstr ""
 
-#: src/view/tabwidget.cpp:654
+#: src/view/tabwidget.cpp:663
 #, kde-format
 msgid "New tab title:"
 msgstr ""
 
-#: src/view/tabwidget.cpp:858
+#: src/view/tabwidget.cpp:867
 #, kde-format
 msgid "New Tab"
 msgstr "แท็บใหม่"
 
-#: src/view/tabwidget.cpp:859
+#: src/view/tabwidget.cpp:868
 #, kde-format
 msgid "Open a new tab"
 msgstr "เปิดแท็บใหม่"
 
-#: src/view/tabwidget.cpp:873
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Rename Tab..."
 msgstr ""
 
-#: src/view/tabwidget.cpp:874
+#: src/view/tabwidget.cpp:883
 #, kde-format
 msgid "Rename this tab"
 msgstr ""
 
-#: src/view/tabwidget.cpp:886
+#: src/view/tabwidget.cpp:895
 #, kde-format
 msgid "Duplicate Tab"
 msgstr ""
 
-#: src/view/tabwidget.cpp:887
+#: src/view/tabwidget.cpp:896
 #, kde-format
 msgid "Duplicate this tab"
 msgstr ""
 
-#: src/view/tabwidget.cpp:897
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Close Tab"
 msgstr ""
 
-#: src/view/tabwidget.cpp:898
+#: src/view/tabwidget.cpp:907
 #, kde-format
 msgid "Close this tab"
 msgstr ""
 
-#: src/view/tabwidget.cpp:910
+#: src/view/tabwidget.cpp:919
 #, kde-format
 msgid "Move Tab Left"
 msgstr ""
 
-#: src/view/tabwidget.cpp:911
+#: src/view/tabwidget.cpp:920
 #, kde-format
 msgid "Move this tab left"
 msgstr ""
 
-#: src/view/tabwidget.cpp:923
+#: src/view/tabwidget.cpp:932
 #, kde-format
 msgid "Move Tab Right"
 msgstr ""
 
-#: src/view/tabwidget.cpp:924
+#: src/view/tabwidget.cpp:933
 #, kde-format
 msgid "Move this tab right"
 msgstr ""
 
-#: src/view/tabwidget.cpp:936
+#: src/view/tabwidget.cpp:945
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr ""
 
-#: src/view/tabwidget.cpp:949
+#: src/view/tabwidget.cpp:958
 #, kde-format
 msgid "Expand All"
 msgstr ""
 
-#: src/view/tabwidget.cpp:962
+#: src/view/tabwidget.cpp:971
 #, kde-format
 msgid "Collapse All"
 msgstr ""
@@ -12526,12 +12574,6 @@ msgstr ""
 #~ msgctxt "@title:window"
 #~ msgid "Update Skipped"
 #~ msgstr "ส่งออก"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@option:check"
-#~ msgid "Certification"
-#~ msgstr "ใ&บรับรอง"
 
 #, fuzzy
 #~| msgid "User-ID"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-29 00:39+0000\n"
+"POT-Creation-Date: 2024-05-30 00:38+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1875,7 +1875,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "无法打开文件 %1 进行读取：%2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:256
+#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:264
 #, kde-format
 msgid "Certificates"
 msgstr "证书"
@@ -6162,7 +6162,7 @@ msgid "%1 (%2)"
 msgstr "%1(%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:172
+#: src/dialogs/certificatedetailswidget.cpp:173
 #: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6232,229 +6232,276 @@ msgid ""
 "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
 msgstr "<interface>%1</interface>无效。<nl/>本地管理规则：<icode>%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:163
+#: src/dialogs/certificatedetailswidget.cpp:164
 #, kde-format
 msgid "User ID:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:183
+#: src/dialogs/certificatedetailswidget.cpp:184
 #, kde-format
 msgid "Trust level:"
 msgstr "信任等级："
 
-#: src/dialogs/certificatedetailswidget.cpp:188
+#: src/dialogs/certificatedetailswidget.cpp:189
 #, kde-format
 msgid "Valid from:"
 msgstr "生效日期："
 
-#: src/dialogs/certificatedetailswidget.cpp:193
+#: src/dialogs/certificatedetailswidget.cpp:194
 #: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "有效期至："
 
-#: src/dialogs/certificatedetailswidget.cpp:196
+#: src/dialogs/certificatedetailswidget.cpp:197
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "更改有效期"
 
-#: src/dialogs/certificatedetailswidget.cpp:197
+#: src/dialogs/certificatedetailswidget.cpp:198
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "更改有效性"
 
-#: src/dialogs/certificatedetailswidget.cpp:203
+#: src/dialogs/certificatedetailswidget.cpp:204
 #, kde-format
 msgid "Status:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:208
+#: src/dialogs/certificatedetailswidget.cpp:209
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgid "Fingerprint:"
 msgstr "指纹："
 
-#: src/dialogs/certificatedetailswidget.cpp:212
+#: src/dialogs/certificatedetailswidget.cpp:213
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "复制指纹"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:214
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "复制指纹"
 
-#: src/dialogs/certificatedetailswidget.cpp:220
+#: src/dialogs/certificatedetailswidget.cpp:221
 #, kde-format
 msgid "Issuer:"
 msgstr "颁发者："
 
-#: src/dialogs/certificatedetailswidget.cpp:223
+#: src/dialogs/certificatedetailswidget.cpp:224
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "显示发行者证书"
 
-#: src/dialogs/certificatedetailswidget.cpp:224
+#: src/dialogs/certificatedetailswidget.cpp:225
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "显示证书"
 
-#: src/dialogs/certificatedetailswidget.cpp:230
+#: src/dialogs/certificatedetailswidget.cpp:231
 #, kde-format
 msgid "Compliance:"
 msgstr "法规遵从性："
 
-#: src/dialogs/certificatedetailswidget.cpp:235
+#: src/dialogs/certificatedetailswidget.cpp:236
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Usage"
+msgid "Usage:"
+msgstr "用途"
+
+#: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "信任的介绍人："
 
-#: src/dialogs/certificatedetailswidget.cpp:237
+#: src/dialogs/certificatedetailswidget.cpp:243
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "有关详细信息，请参阅认证。"
 
-#: src/dialogs/certificatedetailswidget.cpp:241
+#: src/dialogs/certificatedetailswidget.cpp:247
 #, kde-format
 msgid "Private Key:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:256
+#: src/dialogs/certificatedetailswidget.cpp:262
 #, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "用户 ID"
 
-#: src/dialogs/certificatedetailswidget.cpp:260
+#: src/dialogs/certificatedetailswidget.cpp:266
 #, kde-format
 msgid "Related addresses"
 msgstr "相关地址"
 
-#: src/dialogs/certificatedetailswidget.cpp:263
+#: src/dialogs/certificatedetailswidget.cpp:269
 #, kde-format
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:266
+#: src/dialogs/certificatedetailswidget.cpp:272
 #, kde-format
 msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "子密钥"
 
-#: src/dialogs/certificatedetailswidget.cpp:269
+#: src/dialogs/certificatedetailswidget.cpp:275
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "证书"
 
-#: src/dialogs/certificatedetailswidget.cpp:272
+#: src/dialogs/certificatedetailswidget.cpp:278
 #, kde-format
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "信任链详情"
 
-#: src/dialogs/certificatedetailswidget.cpp:275
+#: src/dialogs/certificatedetailswidget.cpp:281
 #, kde-format
 msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:278
+#: src/dialogs/certificatedetailswidget.cpp:284
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "证书转储"
 
-#: src/dialogs/certificatedetailswidget.cpp:335
+#: src/dialogs/certificatedetailswidget.cpp:341
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "无限制"
 
-#: src/dialogs/certificatedetailswidget.cpp:342
+#: src/dialogs/certificatedetailswidget.cpp:348
 #: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:345
+#: src/dialogs/certificatedetailswidget.cpp:351
 #, kde-format
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "智能卡 %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:347
+#: src/dialogs/certificatedetailswidget.cpp:353
 #, kde-format
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "智能卡"
 
-#: src/dialogs/certificatedetailswidget.cpp:350
+#: src/dialogs/certificatedetailswidget.cpp:356
 #: src/dialogs/subkeyswidget.cpp:395
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "离线"
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:359
 #, kde-format
 msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
 msgid "On this computer and on a smart card"
 msgid_plural "On this computer and on %1 smart cards"
 msgstr[0] ""
 
-#: src/dialogs/certificatedetailswidget.cpp:357
+#: src/dialogs/certificatedetailswidget.cpp:363
 #, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "在此电脑上"
 
-#: src/dialogs/certificatedetailswidget.cpp:472
+#: src/dialogs/certificatedetailswidget.cpp:375
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "encryption"
+msgstr "仅加密"
+
+#: src/dialogs/certificatedetailswidget.cpp:378
+#, fuzzy, kde-format
+#| msgid "Signing"
+msgid "signing"
+msgstr "签名"
+
+#: src/dialogs/certificatedetailswidget.cpp:381
+#, fuzzy, kde-format
+#| msgctxt "@title:tab"
+#| msgid "Certifications"
+msgid "certification"
+msgstr "证书"
+
+#: src/dialogs/certificatedetailswidget.cpp:384
+#, fuzzy, kde-format
+#| msgid "Authentication"
+msgid "authentication"
+msgstr "验证"
+
+#: src/dialogs/certificatedetailswidget.cpp:387
+#, fuzzy, kde-format
+#| msgid "Bad signature"
+msgctxt "as in: can be used for ..."
+msgid "qualified signatures"
+msgstr "损坏的签名"
+
+#: src/dialogs/certificatedetailswidget.cpp:390
+#, fuzzy, kde-format
+#| msgctxt "separator for a list of e-mail addresses"
+#| msgid ", "
+msgctxt "Separator between words in a list"
+msgid ", "
+msgstr ", "
+
+#: src/dialogs/certificatedetailswidget.cpp:500
 #: src/dialogs/useridswidget.cpp:357
 #, kde-format
 msgid "Updating..."
 msgstr "正在更新..."
 
-#: src/dialogs/certificatedetailswidget.cpp:544
+#: src/dialogs/certificatedetailswidget.cpp:572
 #, kde-format
 msgid "Common Name"
 msgstr "通用名称"
 
-#: src/dialogs/certificatedetailswidget.cpp:545
+#: src/dialogs/certificatedetailswidget.cpp:573
 #, kde-format
 msgid "Organization"
 msgstr "组织"
 
-#: src/dialogs/certificatedetailswidget.cpp:546
+#: src/dialogs/certificatedetailswidget.cpp:574
 #, kde-format
 msgid "Street"
 msgstr "街道"
 
-#: src/dialogs/certificatedetailswidget.cpp:547
+#: src/dialogs/certificatedetailswidget.cpp:575
 #, kde-format
 msgid "City"
 msgstr "城市"
 
-#: src/dialogs/certificatedetailswidget.cpp:548
+#: src/dialogs/certificatedetailswidget.cpp:576
 #, kde-format
 msgid "State"
 msgstr "州/省"
 
-#: src/dialogs/certificatedetailswidget.cpp:549
+#: src/dialogs/certificatedetailswidget.cpp:577
 #, kde-format
 msgid "Country"
 msgstr "国家"
 
-#: src/dialogs/certificatedetailswidget.cpp:596
+#: src/dialogs/certificatedetailswidget.cpp:624
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "无法在本地找到发行者证书。"
@@ -10977,290 +11024,296 @@ msgstr "%1（必填）"
 msgid "Loading certificate cache..."
 msgstr "正在加载证书缓存..."
 
-#: src/view/keylistcontroller.cpp:325
+#: src/view/keylistcontroller.cpp:327
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "新建 OpenPGP 密钥对..."
 
-#: src/view/keylistcontroller.cpp:326
+#: src/view/keylistcontroller.cpp:328
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "创建新的 OpenPGP 证书"
 
-#: src/view/keylistcontroller.cpp:334
+#: src/view/keylistcontroller.cpp:336
 #, kde-format
 msgid "Export..."
 msgstr "导出..."
 
-#: src/view/keylistcontroller.cpp:335
+#: src/view/keylistcontroller.cpp:337
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "将选定的证书（公钥）导出到文件"
 
-#: src/view/keylistcontroller.cpp:343
+#: src/view/keylistcontroller.cpp:345
 #, kde-format
 msgid "Publish on Server..."
 msgstr "在服务器上发布..."
 
-#: src/view/keylistcontroller.cpp:344
+#: src/view/keylistcontroller.cpp:346
 #, kde-format
 msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr "在公钥服务器上发布选定的证书（公钥）"
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:355
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "在邮件提供商处发布..."
 
-#: src/view/keylistcontroller.cpp:354
+#: src/view/keylistcontroller.cpp:356
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr "在邮件提供者的网络密钥目录发布所选证书（公钥）"
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:365
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "备份私钥..."
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:374
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "打印私钥..."
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:383
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "在服务器上查找..."
 
-#: src/view/keylistcontroller.cpp:382
+#: src/view/keylistcontroller.cpp:384
 #, kde-format
 msgid "Search for certificates online using a public keyserver"
 msgstr "使用公钥服务器在线搜索证书"
 
-#: src/view/keylistcontroller.cpp:390 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:392 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "导入..."
 
-#: src/view/keylistcontroller.cpp:391
+#: src/view/keylistcontroller.cpp:393
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "从文件导入证书"
 
-#: src/view/keylistcontroller.cpp:399
+#: src/view/keylistcontroller.cpp:401
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "解密/校验..."
 
-#: src/view/keylistcontroller.cpp:400
+#: src/view/keylistcontroller.cpp:402
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "解密和/或校验文件"
 
-#: src/view/keylistcontroller.cpp:408
+#: src/view/keylistcontroller.cpp:410
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "签名/加密..."
 
-#: src/view/keylistcontroller.cpp:409
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "加密和/或签名文件"
 
-#: src/view/keylistcontroller.cpp:417
+#: src/view/keylistcontroller.cpp:419
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "签名/加密文件夹..."
 
-#: src/view/keylistcontroller.cpp:418
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "加密和/或签名文件夹"
 
-#: src/view/keylistcontroller.cpp:426
+#: src/view/keylistcontroller.cpp:428
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "创建校验和文件..."
 
-#: src/view/keylistcontroller.cpp:435
+#: src/view/keylistcontroller.cpp:437
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "验证校验和文件..."
 
-#: src/view/keylistcontroller.cpp:445
+#: src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Redisplay"
 msgstr "重新显示"
 
-#: src/view/keylistcontroller.cpp:454
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Stop Operation"
 msgstr "停止操作"
 
-#: src/view/keylistcontroller.cpp:467
+#: src/view/keylistcontroller.cpp:469
 #, kde-format
 msgid "Details"
 msgstr "细节"
 
-#: src/view/keylistcontroller.cpp:477
+#: src/view/keylistcontroller.cpp:479
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "吊销证书..."
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:480
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "吊销所选的 OpenPGP 证书"
 
-#: src/view/keylistcontroller.cpp:486
+#: src/view/keylistcontroller.cpp:488
 #, kde-format
 msgid "Delete"
 msgstr "删除"
 
-#: src/view/keylistcontroller.cpp:487
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "删除选中的证书"
 
-#: src/view/keylistcontroller.cpp:495
+#: src/view/keylistcontroller.cpp:497
 #, kde-format
 msgid "Update Certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:496
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Update selected certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:504
+#: src/view/keylistcontroller.cpp:506
 #, kde-format
 msgid "Certify..."
 msgstr "认证..."
 
-#: src/view/keylistcontroller.cpp:505
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "验证所选证书的有效性"
 
-#: src/view/keylistcontroller.cpp:513
+#: src/view/keylistcontroller.cpp:515
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "吊销认证..."
 
-#: src/view/keylistcontroller.cpp:514
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "撤销选定证书的认证"
 
-#: src/view/keylistcontroller.cpp:522
+#: src/view/keylistcontroller.cpp:524
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "更改有效期..."
 
-#: src/view/keylistcontroller.cpp:531
+#: src/view/keylistcontroller.cpp:533
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "更改认证权限..."
 
-#: src/view/keylistcontroller.cpp:532
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "授予或吊销所选证书的验证权限"
 
-#: src/view/keylistcontroller.cpp:540
+#: src/view/keylistcontroller.cpp:542
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "更改密码句..."
 
-#: src/view/keylistcontroller.cpp:549
+#: src/view/keylistcontroller.cpp:551
 #, kde-format
 msgid "Add User ID..."
 msgstr "添加用户 ID..."
 
-#: src/view/keylistcontroller.cpp:558
+#: src/view/keylistcontroller.cpp:560
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:559
+#: src/view/keylistcontroller.cpp:561
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:567
+#: src/view/keylistcontroller.cpp:569
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:568
+#: src/view/keylistcontroller.cpp:570
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:577
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "刷新 OpenPGP 证书"
 
-#: src/view/keylistcontroller.cpp:592
+#: src/view/keylistcontroller.cpp:589
+#, kde-format
+msgctxt "@action:button"
+msgid "Copy"
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:606
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "新建 S/MIME 认证请求..."
 
-#: src/view/keylistcontroller.cpp:593
+#: src/view/keylistcontroller.cpp:607
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "创建新的 S/MIME 证书签名请求(CSR)"
 
-#: src/view/keylistcontroller.cpp:604
+#: src/view/keylistcontroller.cpp:618
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "受信任的根证书"
 
-#: src/view/keylistcontroller.cpp:613
+#: src/view/keylistcontroller.cpp:627
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "不信任的根证书"
 
-#: src/view/keylistcontroller.cpp:622
+#: src/view/keylistcontroller.cpp:636
 #, kde-format
 msgid "Technical Details"
 msgstr "技术细节"
 
-#: src/view/keylistcontroller.cpp:632
+#: src/view/keylistcontroller.cpp:646
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "刷新 S/MIME 证书"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:655
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "清除 CRL 缓存"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:664
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "转储 CRL 缓存"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:673
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "从文件导入 CRL..."
 
-#: src/view/keytreeview.cpp:257 src/view/keytreeview.cpp:524
+#: src/view/keytreeview.cpp:265 src/view/keytreeview.cpp:547
 #, kde-format
 msgid "Hierarchical list of certificates"
 msgstr "证书分类列表"
 
-#: src/view/keytreeview.cpp:257 src/view/keytreeview.cpp:524
+#: src/view/keytreeview.cpp:265 src/view/keytreeview.cpp:547
 #, kde-format
 msgid "List of certificates"
 msgstr "证书列表"
@@ -12108,87 +12161,87 @@ msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/tabwidget.cpp:654
+#: src/view/tabwidget.cpp:663
 #, kde-format
 msgid "Rename Tab"
 msgstr "重命名标签页"
 
-#: src/view/tabwidget.cpp:654
+#: src/view/tabwidget.cpp:663
 #, kde-format
 msgid "New tab title:"
 msgstr "新标签页标题："
 
-#: src/view/tabwidget.cpp:858
+#: src/view/tabwidget.cpp:867
 #, kde-format
 msgid "New Tab"
 msgstr "新建标签页"
 
-#: src/view/tabwidget.cpp:859
+#: src/view/tabwidget.cpp:868
 #, kde-format
 msgid "Open a new tab"
 msgstr "打开新标签页"
 
-#: src/view/tabwidget.cpp:873
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Rename Tab..."
 msgstr "重命名标签页..."
 
-#: src/view/tabwidget.cpp:874
+#: src/view/tabwidget.cpp:883
 #, kde-format
 msgid "Rename this tab"
 msgstr "重命名此标签页"
 
-#: src/view/tabwidget.cpp:886
+#: src/view/tabwidget.cpp:895
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "复制标签页"
 
-#: src/view/tabwidget.cpp:887
+#: src/view/tabwidget.cpp:896
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "复制此标签页"
 
-#: src/view/tabwidget.cpp:897
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Close Tab"
 msgstr "关闭标签页"
 
-#: src/view/tabwidget.cpp:898
+#: src/view/tabwidget.cpp:907
 #, kde-format
 msgid "Close this tab"
 msgstr "关闭此标签"
 
-#: src/view/tabwidget.cpp:910
+#: src/view/tabwidget.cpp:919
 #, kde-format
 msgid "Move Tab Left"
 msgstr "左移标签页"
 
-#: src/view/tabwidget.cpp:911
+#: src/view/tabwidget.cpp:920
 #, kde-format
 msgid "Move this tab left"
 msgstr "向左移动此标签页"
 
-#: src/view/tabwidget.cpp:923
+#: src/view/tabwidget.cpp:932
 #, kde-format
 msgid "Move Tab Right"
 msgstr "右移标签页"
 
-#: src/view/tabwidget.cpp:924
+#: src/view/tabwidget.cpp:933
 #, kde-format
 msgid "Move this tab right"
 msgstr "向右移动此标签页"
 
-#: src/view/tabwidget.cpp:936
+#: src/view/tabwidget.cpp:945
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "层次证书列表"
 
-#: src/view/tabwidget.cpp:949
+#: src/view/tabwidget.cpp:958
 #, kde-format
 msgid "Expand All"
 msgstr "全部展开"
 
-#: src/view/tabwidget.cpp:962
+#: src/view/tabwidget.cpp:971
 #, kde-format
 msgid "Collapse All"
 msgstr "全部折叠"

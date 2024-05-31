@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
-"PO-Revision-Date: 2024-05-29 21:42+0200\n"
+"POT-Creation-Date: 2024-05-31 00:39+0000\n"
+"PO-Revision-Date: 2024-05-30 11:43+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -2815,7 +2815,7 @@ msgid "No Directory Servers Configured"
 msgstr "No hay servidores de directorio configurados"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:493
+#: src/kleopatraapplication.cpp:495
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "No se le permite crear solicitudes de firma de certificado S/MIME."
@@ -6824,41 +6824,33 @@ msgid "on this computer"
 msgstr "en este equipo"
 
 #: src/dialogs/certificatedetailswidget.cpp:375
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgid "encryption"
-msgstr "Cifrado"
+msgstr "cifrado"
 
 #: src/dialogs/certificatedetailswidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Signing"
+#, kde-format
 msgid "signing"
-msgstr "Firmado"
+msgstr "firma"
 
 #: src/dialogs/certificatedetailswidget.cpp:381
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Certification"
+#, kde-format
 msgid "certification"
-msgstr "Certificación"
+msgstr "certificación"
 
 #: src/dialogs/certificatedetailswidget.cpp:384
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgid "authentication"
-msgstr "Autenticación"
+msgstr "autenticación"
 
 #: src/dialogs/certificatedetailswidget.cpp:387
-#, fuzzy, kde-format
-#| msgid "Bad signature"
+#, kde-format
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
-msgstr "Firma negativa"
+msgstr "firmas cualificadas"
 
 #: src/dialogs/certificatedetailswidget.cpp:390
-#, fuzzy, kde-format
-#| msgctxt "separator for a list of e-mail addresses"
-#| msgid ", "
+#, kde-format
 msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
@@ -8002,7 +7994,7 @@ msgstr ""
 "<p>En esta tarjeta inteligente hay espacio para dos certificados:\n"
 "<ol>\n"
 "<li>Un certificado normal</li>\n"
-"<li>Un certificado especial para hacer <em>firmas calificadas</em> de "
+"<li>Un certificado especial para hacer <em>firmas cualificadas</em> de "
 "acuerdo con German Signaturgesetz</li>\n"
 "</ol>\n"
 "Debe asignar los PIN iniciales antes de usarlas.</p>"
@@ -8029,7 +8021,7 @@ msgid ""
 "\"):"
 msgstr ""
 "Paso 2: Asigne el código de acceso inicial para el certificado de firma "
-"calificada («SigG»):"
+"cualificada («SigG»):"
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
 #: src/dialogs/setinitialpindialog.ui:81
@@ -9458,47 +9450,47 @@ msgstr "Archivo(s) a procesar"
 msgid "String or Fingerprint for query and search"
 msgstr "Cadena o huella digital para consultar y buscar"
 
-#: src/kleopatraapplication.cpp:389
+#: src/kleopatraapplication.cpp:391
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Ha fallado al ejecutar la orden"
 
-#: src/kleopatraapplication.cpp:431
+#: src/kleopatraapplication.cpp:433
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Protocolo ambiguo: --openpgp y --cms"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "No se ha especificado cadena de búsqueda para --search"
 
-#: src/kleopatraapplication.cpp:476
+#: src/kleopatraapplication.cpp:478
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "No se ha especificado argumento de huella digital para --query"
 
-#: src/kleopatraapplication.cpp:537
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Órdenes ambiguas «%1» y «%2»"
 
-#: src/kleopatraapplication.cpp:544
+#: src/kleopatraapplication.cpp:546
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "No se han especificado archivos para la orden «%1»"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:560
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "No se puede leer «%1»"
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "La apertura de un enlace externo está prohibida administrativamente."
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Prohibited"
 msgstr "Prohibido"
@@ -9622,12 +9614,12 @@ msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Ejecutando como administrador"
 
-#: src/main.cpp:238
+#: src/main.cpp:237
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Error del servidor GPG UI"
 
-#: src/main.cpp:242
+#: src/main.cpp:241
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9647,7 +9639,7 @@ msgstr ""
 "intentar continuar usando Kleopatra, aunque pueden existir otros problemas.</"
 "qt>"
 
-#: src/main.cpp:272
+#: src/main.cpp:271
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Argumentos no válidos: %1"
@@ -11959,7 +11951,7 @@ msgstr "Actualizar los certificados OpenPGP"
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: src/view/keylistcontroller.cpp:606
 #, kde-format

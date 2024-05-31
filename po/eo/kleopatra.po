@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
-"PO-Revision-Date: 2024-05-29 22:04+0200\n"
+"POT-Creation-Date: 2024-05-31 00:39+0000\n"
+"PO-Revision-Date: 2024-05-30 07:49+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -2759,7 +2759,7 @@ msgid "No Directory Servers Configured"
 msgstr "Neniuj Dosierujoj Agordis"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:493
+#: src/kleopatraapplication.cpp:495
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Vi ne rajtas krei S/MIME-atestilajn petojn."
@@ -6616,11 +6616,9 @@ msgid "Compliance:"
 msgstr "Konformeco:"
 
 #: src/dialogs/certificatedetailswidget.cpp:236
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Usage"
+#, kde-format
 msgid "Usage:"
-msgstr "Uzado"
+msgstr "Uzado:"
 
 #: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
@@ -6732,41 +6730,33 @@ msgid "on this computer"
 msgstr "sur ĉi tiu komputilo"
 
 #: src/dialogs/certificatedetailswidget.cpp:375
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgid "encryption"
-msgstr "Ĉifrado"
+msgstr "ĉifrado"
 
 #: src/dialogs/certificatedetailswidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Signing"
+#, kde-format
 msgid "signing"
-msgstr "Signado"
+msgstr "signado"
 
 #: src/dialogs/certificatedetailswidget.cpp:381
-#, fuzzy, kde-format
-#| msgctxt "@title:tab"
-#| msgid "Certifications"
+#, kde-format
 msgid "certification"
-msgstr "Atestoj"
+msgstr "atestado"
 
 #: src/dialogs/certificatedetailswidget.cpp:384
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgid "authentication"
-msgstr "Aŭtentigo"
+msgstr "aŭtentigo"
 
 #: src/dialogs/certificatedetailswidget.cpp:387
-#, fuzzy, kde-format
-#| msgid "Bad signature"
+#, kde-format
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
-msgstr "Malbona subskribo"
+msgstr "kvalifikitaj subskriboj"
 
 #: src/dialogs/certificatedetailswidget.cpp:390
-#, fuzzy, kde-format
-#| msgctxt "separator for a list of e-mail addresses"
-#| msgid ", "
+#, kde-format
 msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
@@ -7751,6 +7741,14 @@ msgid ""
 "other certificates with it anymore.</item><item>Other people can no longer "
 "encrypt with it after receiving the revocation.</item></list></para>"
 msgstr ""
+"<para>Vi estas nuligonta la jenan atestilon:</para><para>&nbsp;&nbsp;&nbsp;"
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis strong='true'>La "
+"revoko efektiviĝos tuj kaj ne povas esti malfarita.</emphasis></"
+"para><para>Konsekvencoj: <list><item>Vi ankoraŭ povas malĉifri ĉion ĉifritan "
+"por ĉi tiu atestilo.</item><item>Vi ne povas subskribi ion plu per ĉi tiu "
+"atestilo.</item><item>Vi ne plu povos atesti aliajn atestilojn per ĝi.</"
+"item><item>Aliaj homoj ne plu povos ĉifri per ĝi post ricevo de la revoko.</"
+"item></list></para>"
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -9310,47 +9308,47 @@ msgstr "Dosiero(j) prilaborenda(j)."
 msgid "String or Fingerprint for query and search"
 msgstr "Ĉeno aŭ fingrospuro por konsulto kaj serĉo"
 
-#: src/kleopatraapplication.cpp:389
+#: src/kleopatraapplication.cpp:391
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Malsukcesis plenumi komandon"
 
-#: src/kleopatraapplication.cpp:431
+#: src/kleopatraapplication.cpp:433
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Ambigua protokolo: --openpgp kaj --cms"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Neniu serĉĉeno specifita por --search"
 
-#: src/kleopatraapplication.cpp:476
+#: src/kleopatraapplication.cpp:478
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Neniu fingrospura argumento specifita por --query"
 
-#: src/kleopatraapplication.cpp:537
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Ambiguaj komandoj \"%1\" kaj \"%2\""
 
-#: src/kleopatraapplication.cpp:544
+#: src/kleopatraapplication.cpp:546
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Neniuj dosieroj specifitaj por \"%1\" komando"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:560
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Ne povas legi \"%1\""
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Malfermi eksteran ligilon estas administre malpermesita."
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Prohibited"
 msgstr "Malpermesita"
@@ -9471,12 +9469,12 @@ msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Kurante kiel Administranto"
 
-#: src/main.cpp:238
+#: src/main.cpp:237
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI-Servilo-Eraro"
 
-#: src/main.cpp:242
+#: src/main.cpp:241
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9495,7 +9493,7 @@ msgstr ""
 "por subteno.<br/>Vi povas provi daŭrigi uzi Kleopatra sed eble estos aliaj "
 "problemoj.</qt>"
 
-#: src/main.cpp:272
+#: src/main.cpp:271
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Nevalidaj argumentoj: %1"
@@ -11797,7 +11795,7 @@ msgstr "Refreŝigi OpenPGP-Atestojn"
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
-msgstr ""
+msgstr "Kopii"
 
 #: src/view/keylistcontroller.cpp:606
 #, kde-format

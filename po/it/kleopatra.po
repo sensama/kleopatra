@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
-"PO-Revision-Date: 2024-05-09 13:01+0200\n"
+"POT-Creation-Date: 2024-05-31 00:39+0000\n"
+"PO-Revision-Date: 2024-05-30 16:01+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -222,7 +222,7 @@ msgstr "%1 - %2"
 #, kde-format
 msgctxt "@info"
 msgid "No empty smart card was found."
-msgstr ""
+msgstr "Non è stata trovata alcuna smart card vuota."
 
 #: src/commands/certificatetocardcommand.cpp:255
 #: src/commands/certificatetocardcommand.cpp:315
@@ -234,11 +234,10 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr "Impossibile trovare la scheda con il numero seriale: %1"
 
 #: src/commands/certificatetocardcommand.cpp:265
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info"
 msgid "No slot found for subkey %1 on the smart card."
-msgstr "Cambia il PIN richiesto per utilizzare le chiavi sulla smart card."
+msgstr "Nessuno slot trovato per la sottochiave %1 sulla smart card."
 
 #: src/commands/certificatetocardcommand.cpp:287
 #: src/commands/keytocardcommand.cpp:262
@@ -258,39 +257,30 @@ msgid "Copying the key to the card failed."
 msgstr "Copia della chiave sulla scheda non riuscita."
 
 #: src/commands/certificatetocardcommand.cpp:336
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was updated.</para>"
-#| msgid_plural "<para>The certificates were updated.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
-msgstr "<para>Il certificato è stato aggiornato.</para>"
+msgstr "<para>La chiave è stata copiata sulla smart card.</para>"
 
 #: src/commands/certificatetocardcommand.cpp:339
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Copying the key to the card failed:</para><para><message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key was copied to the smart card.</para><para>A backup was "
 "exported to <filename>%1</filename></para>"
 msgstr ""
-"<para>Copia della richiesta non riuscita.</para><para><message>%1</message></"
-"para>"
+"<para>La chiave è stata copiata sulla smart card.</para><para>Una copia di "
+"sicurezza è stata esportata in <filename>%1</filename></para>"
 
 #: src/commands/certificatetocardcommand.cpp:353
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Do you really want to delete the copy of the key stored on this computer?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the secret key stored on this "
 "computer?"
 msgstr ""
-"Vuoi davvero eliminare la copia della chiave memorizzata su questo computer?"
+"Vuoi davvero eliminare la copia della chiave segreta archiviata su questo "
+"computer?"
 
 #: src/commands/certificatetocardcommand.cpp:354
 #: src/commands/keytocardcommand.cpp:665
@@ -300,18 +290,14 @@ msgid "Confirm Deletion"
 msgstr "Conferma eliminazione"
 
 #: src/commands/certificatetocardcommand.cpp:400
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the copy of the key stored on this computer:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the secret key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Impossibile eliminare la copia della chiave memorizzata su questo "
-"computer:</para><para><message>%1</message></para>"
+"<para>Impossibile eliminare la copia della chiave segreta archiviata su "
+"questo computer:</para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:426
 #: src/commands/keytocardcommand.cpp:750
@@ -425,8 +411,7 @@ msgid "Certification Not Possible"
 msgstr "Certificazione impossibile"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, fuzzy, kde-format
-#| msgid "Create"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create"
 msgstr "Crea"
@@ -783,12 +768,10 @@ msgid "Changing the PIN failed: %1"
 msgstr "Modifica del PIN non riuscita: %1"
 
 #: src/commands/changepincommand.cpp:180 src/commands/changepincommand.cpp:184
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "PIN changed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "PUK changed successfully."
-msgstr "PIN modificato correttamente."
+msgstr "PUK modificato correttamente."
 
 #: src/commands/changepincommand.cpp:186
 #, kde-format
@@ -1551,15 +1534,7 @@ msgstr[1] ""
 "esplicitamente."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:117
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>When OpenPGP certificates have been exported to a public directory "
-#| "server, it is nearly impossible to remove them again.</para><para>Before "
-#| "exporting your certificate to a public directory server, make sure that "
-#| "you have created a revocation certificate so you can revoke the "
-#| "certificate if needed later.</para><para>Are you sure you want to "
-#| "continue?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>When OpenPGP certificates have been exported to a public directory "
@@ -1572,8 +1547,9 @@ msgstr ""
 "<para>Quando i certificati OpenPGP sono stati esportati su una directory "
 "pubblica è quasi impossibile rimuoverli.</para><para>Prima di esportare il "
 "tuo certificato su un server pubblico, assicurati di aver creato un "
-"certificato di revoca in modo da poter revocare il certificato in caso di "
-"necessità.</para><para>Vuoi davvero continuare?</para>"
+"certificato di revoca in modo da poter revocare il certificato nel caso in "
+"cui sia stato compromesso, perso o tu abbia dimenticato la frase segreta.</"
+"para><para>Sei sicuro di voler continuare?</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:122
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:77
@@ -2825,7 +2801,7 @@ msgid "No Directory Servers Configured"
 msgstr "Non sono configurati server di directory"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:493
+#: src/kleopatraapplication.cpp:495
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -3328,12 +3304,10 @@ msgid "Revocation Failed"
 msgstr "Revoca non riuscita"
 
 #: src/commands/revokekeycommand.cpp:278 src/commands/revokekeycommand.cpp:296
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The key was revoked successfully."
+#, kde-format
 msgctxt "@info"
 msgid "The certificate was revoked successfully."
-msgstr "La chiave è stata revocata correttamente."
+msgstr "Il certificato è stato revocato correttamente."
 
 #: src/commands/revokekeycommand.cpp:326
 #, kde-kuit-format
@@ -3344,6 +3318,10 @@ msgid ""
 "filename>.</para><para>You should send this file to your communication "
 "partners with the instruction to import it.</para>"
 msgstr ""
+"<para>Il certificato è stato revocato correttamente e caricato nella "
+"directory interna.</para><para>Il certificato revocato è stato salvato in "
+"<filename>%1</filename>.</para><para>Dovresti inviare questo file ai tuoi "
+"interlocutori con le istruzioni per importarlo.</para>"
 
 #: src/commands/revokekeycommand.cpp:333
 #, kde-kuit-format
@@ -3354,14 +3332,13 @@ msgid ""
 "para><para>You should send this file to your communication partners with the "
 "instruction to import it.</para>"
 msgstr ""
+"<para>Il certificato è stato revocato correttamente e caricato su %1.</"
+"para><para>Il certificato revocato è stato salvato in <filename>%2</"
+"filename>.</para><para>Dovresti inviare questo file ai tuoi interlocutori "
+"con le istruzioni per importarlo.</para>"
 
 #: src/commands/revokekeycommand.cpp:342
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Successfully wrote request to <filename>%1</filename>.</"
-#| "para><para>You should now send the request to the Certification Authority "
-#| "(CA).</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certificate was revoked successfully.</para><para>The revoked "
@@ -3369,9 +3346,10 @@ msgid ""
 "this file to your communication partners with the instruction to import it.</"
 "para>"
 msgstr ""
-"<para>Scritta correttamente la richiesta su <filename>%1</filename>.</"
-"para><para>Ora dovresti inviare la richiesta all'autorità di certificazione "
-"(CA).</para>"
+"<para>Il certificato è stato revocato correttamente.</para><para>Il "
+"certificato revocato è stato salvato in <filename>%1</filename></"
+"para><para>Dovresti inviare questo file ai tuoi interlocutori con le "
+"istruzioni per importarlo.</para>"
 
 #: src/commands/revokeuseridcommand.cpp:125
 #, kde-kuit-format
@@ -3509,8 +3487,7 @@ msgid "<unnamed>"
 msgstr "<senza nome>"
 
 #: src/conf/appearanceconfigwidget.cpp:300
-#, fuzzy, kde-format
-#| msgid "This parameter has been locked down by the system administrator."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Questo parametro è stato bloccato dall'amministratore del sistema."
@@ -3799,19 +3776,16 @@ msgstr ""
 "Imposta questa opzione per disabilitare la cifratura a chiave pubblica."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public-key encryption only."
-msgstr "Usa solo la cifratura simmetrica."
+msgstr "Utilizza solo la cifratura a chiave pubblica."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Set this option to disable public key encryption."
+#, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
 msgstr ""
-"Imposta questa opzione per disabilitare la cifratura a chiave pubblica."
+"Imposta questa opzione per disabilitare la cifratura basata su password."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
@@ -3832,8 +3806,7 @@ msgid "OpenPGP Keyserver"
 msgstr "Server delle chiavi OpenPGP"
 
 #: src/conf/dirservconfigpage.cpp:131
-#, fuzzy, kde-format
-#| msgid "Please note that only one OpenPGP keyserver can be configured."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr "Nota che è possibile configurare un solo server di chiavi OpenPGP."
@@ -5147,8 +5120,7 @@ msgid "Please enter a name or email address..."
 msgstr "Inserisci un nome o un indirizzo di posta elettronica..."
 
 #: src/crypto/gui/certificatelineedit.cpp:307
-#, fuzzy, kde-format
-#| msgid "Show certificate list"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "Mostra l'elenco dei certificati"
@@ -5203,8 +5175,7 @@ msgid "..."
 msgstr "..."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:55
-#, fuzzy, kde-format
-#| msgid "&Output folder:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "Cartella dei &risultati:"
@@ -5306,8 +5277,7 @@ msgstr ""
 "Kleopatra ha determinato per i dati forniti."
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:211
-#, fuzzy, kde-format
-#| msgid "&Decrypt/Verify"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Decrypt/Verify"
 msgstr "&Decifra/verifica"
@@ -5633,8 +5603,7 @@ msgid "Output"
 msgstr "Risultato"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:164
-#, fuzzy, kde-format
-#| msgid "Please select an action."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "Seleziona un'azione."
@@ -6086,15 +6055,13 @@ msgid "Search"
 msgstr "Cerca"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
-#, fuzzy, kde-format
-#| msgid "Search on keyserver"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Search on keyserver"
 msgstr "Cerca su un server di chiavi"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
-#, fuzzy, kde-format
-#| msgid "The data was encrypted to this key / certificate."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "The data was encrypted to this key / certificate."
 msgstr "I dati sono stati cifrati per questa chiave / certificato."
@@ -6135,8 +6102,7 @@ msgid "Show"
 msgstr "Mostra"
 
 #: src/crypto/gui/wizard.cpp:77
-#, fuzzy, kde-format
-#| msgid "&Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Next"
 msgstr "&Successivo"
@@ -6736,8 +6702,7 @@ msgid "Trusted introducer for:"
 msgstr "Introduzione attendibile per:"
 
 #: src/dialogs/certificatedetailswidget.cpp:243
-#, fuzzy, kde-format
-#| msgid "See certifications for details."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Vedi le certificazioni per i dettagli."
@@ -6786,7 +6751,7 @@ msgstr "Dettagli della catena di fiducia"
 #, kde-format
 msgctxt "@title:tab"
 msgid "Smartcard"
-msgstr "Smartcard"
+msgstr "Smart card"
 
 #: src/dialogs/certificatedetailswidget.cpp:284
 #, kde-format
@@ -6831,8 +6796,8 @@ msgstr "non in linea"
 msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
 msgid "On this computer and on a smart card"
 msgid_plural "On this computer and on %1 smart cards"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Su questo computer e su una smart card"
+msgstr[1] "Su questo computer e su %1 smart card"
 
 #: src/dialogs/certificatedetailswidget.cpp:363
 #, kde-format
@@ -6841,41 +6806,33 @@ msgid "on this computer"
 msgstr "su questo computer"
 
 #: src/dialogs/certificatedetailswidget.cpp:375
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgid "encryption"
-msgstr "Cifratura"
+msgstr "cifratura"
 
 #: src/dialogs/certificatedetailswidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Signing"
+#, kde-format
 msgid "signing"
-msgstr "Firma"
+msgstr "firma"
 
 #: src/dialogs/certificatedetailswidget.cpp:381
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Certification"
+#, kde-format
 msgid "certification"
-msgstr "Certificazione"
+msgstr "certificazione"
 
 #: src/dialogs/certificatedetailswidget.cpp:384
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgid "authentication"
-msgstr "Autenticazione"
+msgstr "autenticazione"
 
 #: src/dialogs/certificatedetailswidget.cpp:387
-#, fuzzy, kde-format
-#| msgid "Bad signature"
+#, kde-format
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
-msgstr "Firma scorretta"
+msgstr "firme qualificate"
 
 #: src/dialogs/certificatedetailswidget.cpp:390
-#, fuzzy, kde-format
-#| msgctxt "separator for a list of e-mail addresses"
-#| msgid ", "
+#, kde-format
 msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
@@ -6938,8 +6895,7 @@ msgid "Refresh certificate list"
 msgstr "Aggiorna l'elenco dei certificati"
 
 #: src/dialogs/certificateselectiondialog.cpp:164
-#, fuzzy, kde-format
-#| msgid "Import..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Import..."
 msgstr "Importa..."
@@ -6956,8 +6912,7 @@ msgid "Import certificate"
 msgstr "Importa certificato"
 
 #: src/dialogs/certificateselectiondialog.cpp:167
-#, fuzzy, kde-format
-#| msgid "Lookup..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Lookup..."
 msgstr "Cerca..."
@@ -6974,8 +6929,7 @@ msgid "Look up certificate"
 msgstr "Cerca il certificato"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
-#, fuzzy, kde-format
-#| msgid "New..."
+#, kde-format
 msgctxt "@action:button"
 msgid "New..."
 msgstr "Nuovo..."
@@ -6992,8 +6946,7 @@ msgid "Create certificate"
 msgstr "Crea certificato"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
-#, fuzzy, kde-format
-#| msgid "Groups..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Groups..."
 msgstr "Gruppi..."
@@ -7115,30 +7068,24 @@ msgstr ""
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish in internal directory"
-msgstr ""
+msgstr "Pubblica sulla directory interna"
 
 #: src/dialogs/certifywidget.cpp:263
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Publish Revocation"
-#| msgid_plural "Publish Revocations"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
-msgstr "Pubblica revoca"
+msgstr "Pubblica su %1"
 
 #: src/dialogs/certifywidget.cpp:266
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this option, if you want to upload your certifications to a "
-#| "certificate directory after successful certification."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this option if you want to upload your certifications to a certificate "
 "directory after successful certification."
 msgstr ""
 "Seleziona questa opzione se desideri caricare le tue certificazioni in una "
-"cartella di certificati dopo aver completato con successo la certificazione."
+"directory di certificati dopo aver completato correttamente la "
+"certificazione."
 
 #: src/dialogs/certifywidget.cpp:280
 #, kde-format
@@ -7262,54 +7209,46 @@ msgid "Owner trust set successfully."
 msgstr "Fiducia nel proprietario impostata correttamente."
 
 #: src/dialogs/copytosmartcarddialog.cpp:56
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Delete copy on disk"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Delete secret key from disk."
-msgstr "Elimina la copia su disco"
+msgstr "Elimina la chiave segreta dal disco."
 
 #: src/dialogs/copytosmartcarddialog.cpp:57
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Keep copy on disk"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Keep secret key on disk."
-msgstr "Conserva la copia su disco"
+msgstr "Conserva la chiave segreta sul disco."
 
 #: src/dialogs/copytosmartcarddialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a backup of the secret key to a file."
-msgstr "Crea una copia di sicurezza della chiave di cifratura in un file."
+msgstr "Crea una copia di sicurezza della chiave segreta in un file."
 
 #: src/dialogs/copytosmartcarddialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Make a printed backup of the secret key."
-msgstr "Salva una copia di sicurezza della chiave di cifratura"
+msgstr "Esegui una copia di sicurezza stampata della chiave segreta."
 
 #: src/dialogs/copytosmartcarddialog.cpp:66
-#, fuzzy, kde-format
-#| msgid "Save backup of encryption key"
+#, kde-format
 msgctxt "@option:radio"
 msgid "I already have a backup of the secret key."
-msgstr "Salva una copia di sicurezza della chiave di cifratura"
+msgstr "Ho già una copia di sicurezza della chiave segreta."
 
 #: src/dialogs/copytosmartcarddialog.cpp:103
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Card"
-msgstr ""
+msgstr "Copia su scheda"
 
 #: src/dialogs/copytosmartcarddialog.cpp:124
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Copy Key to Smartcard"
-msgstr "Trasferisci su smart card"
+msgstr "Copia la chiave sulla smart card"
 
 #: src/dialogs/copytosmartcarddialog.cpp:143
 #, kde-kuit-format
@@ -7319,19 +7258,21 @@ msgid ""
 "<emphasis>%2</emphasis></para><para>Choose one of the following options to "
 "continue:</para>"
 msgstr ""
+"<para>Chiave selezionata: <emphasis>%1</emphasis></para><para>Smart card "
+"selezionata: <emphasis>%2</emphasis></para><para>Scegli una delle seguenti "
+"opzioni per continuare: </para>"
 
 #: src/dialogs/debugdialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Clipboard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
-msgstr "Appunti di sistema"
+msgstr "Copia negli appunti"
 
 #: src/dialogs/debugdialog.cpp:111
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
-msgstr ""
+msgstr "Codice di uscita %1"
 
 #: src/dialogs/deletecertificatesdialog.cpp:113
 #, kde-format
@@ -7503,8 +7444,7 @@ msgid "Add Selected Keys"
 msgstr "Aggiungi le chiavi selezionate"
 
 #: src/dialogs/editgroupdialog.cpp:214
-#, fuzzy, kde-format
-#| msgid "Add the selected keys to the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "Aggiungi le chiavi selezionate al gruppo"
@@ -7516,8 +7456,7 @@ msgid "Remove Selected Keys"
 msgstr "Rimuovi le chiavi selezionate"
 
 #: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Remove the selected keys from the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "Rimuovi la chiave selezionata dal gruppo"
@@ -7603,15 +7542,13 @@ msgid "Export"
 msgstr "Esporta"
 
 #: src/dialogs/gencardkeydialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Name:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Name:"
 msgstr "Nome:"
 
 #: src/dialogs/gencardkeydialog.cpp:61
-#, fuzzy, kde-format
-#| msgid "EMail:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "EMail:"
 msgstr "Posta elettronica:"
@@ -7622,8 +7559,7 @@ msgid "Invalid EMail"
 msgstr "Indirizzo di posta elettronica non valido"
 
 #: src/dialogs/gencardkeydialog.cpp:75
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Algorithm:"
 msgstr "Algoritmo:"
@@ -7634,8 +7570,7 @@ msgid "Backup encryption key"
 msgstr "Salvataggio della chiave di cifratura"
 
 #: src/dialogs/gencardkeydialog.cpp:83
-#, fuzzy, kde-format
-#| msgid "Backup the encryption key in a file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
 msgstr "Crea una copia di sicurezza della chiave di cifratura in un file."
@@ -7825,62 +7760,52 @@ msgstr ""
 "Digita un nome e/o un indirizzo di posta da utilizzare per il certificato."
 
 #: src/dialogs/revokekeydialog.cpp:101
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "title:window"
 msgid "Revoke Certificate"
-msgstr "Revoca certificato..."
+msgstr "Revoca certificato"
 
 #: src/dialogs/revokekeydialog.cpp:109
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key has been compromised"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate has been compromised"
-msgstr "La chiave è stata compromessa"
+msgstr "Il certificato è stato compromesso"
 
 #: src/dialogs/revokekeydialog.cpp:110
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is superseded"
-msgstr "Certificazione avvenuta"
+msgstr "Il certificato è stato soppiantato"
 
 #: src/dialogs/revokekeydialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key is no longer used"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is no longer used"
-msgstr "La chiave non è più utilizzata"
+msgstr "Il certificato non è più utilizzato"
 
 #: src/dialogs/revokekeydialog.cpp:112
 #, kde-format
 msgctxt "@option:radio"
 msgid "For a different reason"
-msgstr ""
+msgstr "Per una ragione diversa"
 
 #: src/dialogs/revokekeydialog.cpp:117
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Reason for revocation"
+#, kde-format
 msgctxt "@title"
 msgid "Reason for Revocation (optional)"
-msgstr "Motivo della revoca"
+msgstr "Motivo della revoca (facoltativo)"
 
 #: src/dialogs/revokekeydialog.cpp:127
 #, kde-format
 msgctxt "@option:check"
 msgid "Upload revoked certificate to internal directory"
-msgstr ""
+msgstr "Carica il certificato revocato nella directory interna"
 
 #: src/dialogs/revokekeydialog.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Imported Certificates from %1"
+#, kde-format
 msgctxt "@option:check"
 msgid "Upload revoked certificate to %1"
-msgstr "Certificati importati da %1"
+msgstr "Carica il certificato revocato su %1"
 
 #: src/dialogs/revokekeydialog.cpp:144
 #, kde-format
@@ -7889,11 +7814,10 @@ msgid "Description (optional):"
 msgstr "Descrizione (facoltativa):"
 
 #: src/dialogs/revokekeydialog.cpp:168
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certificate"
-msgstr "Revoca certificato..."
+msgstr "Revoca certificato"
 
 #: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
@@ -7913,6 +7837,14 @@ msgid ""
 "other certificates with it anymore.</item><item>Other people can no longer "
 "encrypt with it after receiving the revocation.</item></list></para>"
 msgstr ""
+"<para>Stai per revocare il seguente certificato:</para><para>&nbsp;&nbsp;"
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
+"strong='true'>La revoca avrà effetto immediato e non può essere annullata.</"
+"emphasis></para><para>Conseguenze: <list><item>Puoi ancora decifrare tutto "
+"ciò che è cifrato con questo certificato.</item><item>Non puoi più firmare "
+"nulla con questo certificato.</item><item>Non puoi più certificare altri "
+"certificati con esso.</item><item>Le altre persone non possono più cifrare "
+"con esso dopo aver ricevuto la revoca.</item></list></para>"
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -8092,7 +8024,7 @@ msgstr "Sottochiavi"
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
-msgstr ""
+msgstr "ID chiave"
 
 #: src/dialogs/subkeyswidget.cpp:153
 #, kde-format
@@ -8265,8 +8197,7 @@ msgid "Show this notification for future updates."
 msgstr "Mostra questa notifica per i futuri aggiornamenti."
 
 #: src/dialogs/updatenotification.cpp:207
-#, fuzzy, kde-format
-#| msgid "&Get update"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Get update"
 msgstr "Recupera a&ggiornamento"
@@ -8473,12 +8404,10 @@ msgstr ""
 "questa chiave"
 
 #: src/dialogs/weboftrustwidget.cpp:146
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Show Certifications"
+#, kde-format
 msgctxt "label:checkbox"
 msgid "Show only my own certifications"
-msgstr "Mostra certificazioni"
+msgstr "Mostra solo le mie certificazioni"
 
 #: src/dialogs/weboftrustwidget.cpp:274
 #, kde-format
@@ -8490,17 +8419,13 @@ msgstr ""
 "una delle tue chiavi (o manca la chiave segreta richiesta)."
 
 #: src/dialogs/weboftrustwidget.cpp:277
-#, fuzzy, kde-format
-#| msgid "Revocation of self-certifications is currently not possible."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Revocation of self-certifications is currently not possible."
 msgstr "Al momento non è possibile la revoca delle autocertificazioni."
 
 #: src/dialogs/weboftrustwidget.cpp:281
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this revocation certification. (But you can re-certify "
-#| "the corresponding user ID.)"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this revocation certification. (But you can re-certify the "
@@ -8510,24 +8435,19 @@ msgstr ""
 "l'ID utente corrispondente.)"
 
 #: src/dialogs/weboftrustwidget.cpp:284
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this expired certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this expired certification."
 msgstr "Non puoi revocare questa certificazione scaduta."
 
 #: src/dialogs/weboftrustwidget.cpp:287
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this invalid certification."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "You cannot revoke this invalid certification."
 msgstr "Non puoi revocare questa certificazione non valida."
 
 #: src/dialogs/weboftrustwidget.cpp:290
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this certification because the required secret key is "
-#| "not available."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
@@ -8668,18 +8588,16 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:45
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgid "Use public key encryption only."
-msgstr "Usa solo la cifratura simmetrica."
+msgstr "Usa solo la cifratura a chiave pubblica."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:46
-#, fuzzy, kde-format
-#| msgid "Set this option to disable public key encryption."
+#, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr ""
-"Imposta questa opzione per disabilitare la cifratura a chiave pubblica."
+"Imposta questa opzione per disabilitare la cifratura basata su password."
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:9
@@ -8721,7 +8639,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr "Suggerimento pre EMAIL"
+msgstr "Suggerimento per EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
@@ -8776,7 +8694,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr "Suggerimento pre EMAIL"
+msgstr "Suggerimento per NOME"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
@@ -9248,7 +9166,7 @@ msgstr "Prova a caricare i certificati S/MIME da smart card PKCS#15"
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
-"Carica automaticamente i certificati S/MIME da smart card PKCS#15 (CARDOS)"
+"Carica automaticamente i certificati S/MIME da smart card PKCS#15 (CardOS)"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
 #: src/kcfg/settings.kcfg:205
@@ -9517,47 +9435,47 @@ msgstr "File da processare"
 msgid "String or Fingerprint for query and search"
 msgstr "Stringa o impronta digitale per interrogazioni e ricerche"
 
-#: src/kleopatraapplication.cpp:389
+#: src/kleopatraapplication.cpp:391
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Esecuzione del comando non riuscita"
 
-#: src/kleopatraapplication.cpp:431
+#: src/kleopatraapplication.cpp:433
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Protocollo ambiguo: --openpgp e --cms"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Nessuna stringa di ricerca specificata per --search"
 
-#: src/kleopatraapplication.cpp:476
+#: src/kleopatraapplication.cpp:478
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Nessun argomento di impronta digitale specificato per -query"
 
-#: src/kleopatraapplication.cpp:537
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Comandi ambigui «%1» e «%2»"
 
-#: src/kleopatraapplication.cpp:544
+#: src/kleopatraapplication.cpp:546
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Nessun file specificato per il comando «%1»"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:560
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Impossibile leggere «%1»"
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "L'apertura di un collegamento esterno è proibito amministrativamente."
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Prohibited"
 msgstr "Proibito"
@@ -9681,12 +9599,12 @@ msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Esegui come amministratore"
 
-#: src/main.cpp:238
+#: src/main.cpp:237
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Errore del server dell'UI di GPG"
 
-#: src/main.cpp:242
+#: src/main.cpp:241
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9706,7 +9624,7 @@ msgstr ""
 ">Puoi provare a continuare a utilizzare Kleopatra, ma potrebbero esserci "
 "altri problemi.</qt>"
 
-#: src/main.cpp:272
+#: src/main.cpp:271
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Argomenti non validi: %1"
@@ -9763,7 +9681,7 @@ msgstr "Visualizzatore log di GnuPG"
 #: src/mainwindow.cpp:595
 #, kde-format
 msgid "Debug View"
-msgstr ""
+msgstr "Vista di debug"
 
 #: src/mainwindow.cpp:608
 #, kde-format
@@ -9839,11 +9757,10 @@ msgid "Groups"
 msgstr "Gruppi"
 
 #: src/mainwindow.cpp:721
-#, fuzzy, kde-format
-#| msgid "Set Focus to Quick Search"
+#, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
-msgstr "Passa il fuoco alla ricerca rapida"
+msgstr "Imposta il fuoco sulla ricerca veloce"
 
 #: src/mainwindow.cpp:733
 #, kde-format
@@ -10074,10 +9991,7 @@ msgid "EMail address:"
 msgstr "Indirizzo di posta:"
 
 #: src/newcertificatewizard/enterdetailspage.cpp:144
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#| "asked for the passphrase during key generation."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
@@ -10168,10 +10082,7 @@ msgid "Result"
 msgstr "Risultato"
 
 #: src/newcertificatewizard/resultpage.cpp:85
-#, fuzzy, kde-format
-#| msgid ""
-#| "Drag this icon to your mail application's composer to attach the request "
-#| "to a mail."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Drag this icon to your mail application's composer to attach the request to "
@@ -11399,36 +11310,31 @@ msgid "Caught unknown exception in group %1"
 msgstr "Ricevuta eccezione sconosciuta nel gruppo %1"
 
 #: src/utils/clipboardmenu.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certificate Import"
+#, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
 msgstr "Importazione del certificato"
 
 #: src/utils/clipboardmenu.cpp:44
-#, fuzzy, kde-format
-#| msgid "Encrypt..."
+#, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
 msgstr "Cifra..."
 
 #: src/utils/clipboardmenu.cpp:47
-#, fuzzy, kde-format
-#| msgid "S/MIME-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "S/MIME-Sign..."
 msgstr "Firma con S/MIME..."
 
 #: src/utils/clipboardmenu.cpp:49
-#, fuzzy, kde-format
-#| msgid "OpenPGP-Sign..."
+#, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
 msgstr "Firma con OpenPGP..."
 
 #: src/utils/clipboardmenu.cpp:50
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify..."
+#, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Decifra/verifica..."
@@ -12024,14 +11930,13 @@ msgstr "Crea un gruppo dai certificati selezionati"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
-msgstr ""
+msgstr "Copia su scheda"
 
 #: src/view/keylistcontroller.cpp:570
-#, fuzzy, kde-format
-#| msgid "Update selected certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
-msgstr "Aggiorna i certificati selezionati"
+msgstr "Copia il certificato selezionato su una smart card"
 
 #: src/view/keylistcontroller.cpp:579
 #, kde-format
@@ -12042,7 +11947,7 @@ msgstr "Aggiorna i certificati OpenPGP"
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: src/view/keylistcontroller.cpp:606
 #, kde-format
@@ -12314,8 +12219,7 @@ msgstr "Spiacente, non riesco a trovare la chiave con l'impronta digitale %1."
 
 #: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
 #: src/view/pivcardwidget.cpp:112
-#, fuzzy, kde-format
-#| msgid "Serial number:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Serial number:"
 msgstr "Numero di serie:"
@@ -12391,8 +12295,7 @@ msgstr ""
 "<application>Kleopatra</application> non è %1.</para>"
 
 #: src/view/padwidget.cpp:150
-#, fuzzy, kde-format
-#| msgid "<h3>Protocol:</h3>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>Protocollo:</h3>"
@@ -12480,8 +12383,7 @@ msgid "Cardholder:"
 msgstr "Proprietario della scheda:"
 
 #: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
-#, fuzzy, kde-format
-#| msgid "Change"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Cambia"
@@ -12515,6 +12417,12 @@ msgid ""
 "strong='true'>Existing keys on the smart card will be overwritten.</"
 "emphasis></para>"
 msgstr ""
+"<para>Genera tre nuove chiavi sulla smart card e crea un nuovo certificato "
+"OpenPGP con quelle chiavi. Facoltativamente, la chiave di cifratura viene "
+"generata fuori dalla carta e viene creata una copia di sicurezza in modo da "
+"poter continuare ad accedere ai dati cifrati con questa chiave nel caso in "
+"cui la carta venga persa o danneggiata.</para><para><emphasis strong='true'> "
+"Le chiavi esistenti sulla smart card saranno sovrascritte.</emphasis></para>"
 
 #: src/view/pgpcardwidget.cpp:242
 #, kde-format
@@ -12522,13 +12430,14 @@ msgid "Change PIN"
 msgstr "Cambia PIN"
 
 #: src/view/pgpcardwidget.cpp:244
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Change the PIN required for using the keys on the smart card. The PIN must "
 "contain at least six characters."
-msgstr "Cambia il PIN richiesto per utilizzare le chiavi sulla smart card."
+msgstr ""
+"Cambia il PIN richiesto per utilizzare le chiavi sulla smart card. Il PIN "
+"deve contenere almeno sei caratteri."
 
 #: src/view/pgpcardwidget.cpp:252
 #, kde-format
@@ -12536,11 +12445,10 @@ msgid "Unblock Card"
 msgstr "Sblocca scheda"
 
 #: src/view/pgpcardwidget.cpp:253
-#, fuzzy, kde-format
-#| msgid "Unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK."
-msgstr "Sblocca la smart card e imposta un nuovo PIN."
+msgstr "Sblocca la smart card e con il PUK."
 
 #: src/view/pgpcardwidget.cpp:260
 #, kde-format
@@ -12548,29 +12456,25 @@ msgid "Change Admin PIN"
 msgstr "Cambia PIN amministrativo"
 
 #: src/view/pgpcardwidget.cpp:261
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for administrative operations."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "Cambia il PIN richiesto per le operazioni amministrative."
 
 #: src/view/pgpcardwidget.cpp:268
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change PUK"
+#, kde-format
 msgid "Change PUK"
 msgstr "Cambia PUK"
 
 #: src/view/pgpcardwidget.cpp:270
-#, fuzzy, kde-format
-#| msgid "Change the PIN required to unblock the smartcard and set a new PIN."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Set or change the PUK required to unblock the smart card. The PUK must "
 "contain at least eight characters."
 msgstr ""
-"Cambia il PIN richiesto per lo sblocco della smart card e imposta un nuovo "
-"PIN."
+"Imposta o cambia il PUK richiesto per lo sblocco della smart card. Il PUK "
+"deve contenere almeno otto caratteri."
 
 #: src/view/pgpcardwidget.cpp:293
 #, kde-format
@@ -12597,8 +12501,7 @@ msgid "Generating Keys"
 msgstr "Generazione chiavi"
 
 #: src/view/pgpcardwidget.cpp:340
-#, fuzzy, kde-format
-#| msgid "This may take several minutes..."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr "Ciò potrebbe richiedere vari minuti..."
@@ -12877,8 +12780,7 @@ msgid "Filter certificates by text"
 msgstr "Filtra i certificati per testo"
 
 #: src/view/searchbar.cpp:139
-#, fuzzy, kde-format
-#| msgid "Show only certificates that match the entered search term."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr ""
@@ -12890,8 +12792,7 @@ msgid "Filter certificates by category"
 msgstr "Filtra i certificati per categoria"
 
 #: src/view/searchbar.cpp:143
-#, fuzzy, kde-format
-#| msgid "Show only certificates that belong to the selected category."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Mostra solo i certificati che appartengono alla categoria selezionata."

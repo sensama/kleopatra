@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
+"POT-Creation-Date: 2024-05-31 00:39+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2618,7 +2618,7 @@ msgid "No Directory Servers Configured"
 msgstr "未配置目录服务器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:493
+#: src/kleopatraapplication.cpp:495
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您无权创建 S/MIME 证书签名请求。"
@@ -3083,12 +3083,10 @@ msgid "Revocation Failed"
 msgstr "吊销失败"
 
 #: src/commands/revokekeycommand.cpp:278 src/commands/revokekeycommand.cpp:296
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The key was revoked successfully."
+#, kde-format
 msgctxt "@info"
 msgid "The certificate was revoked successfully."
-msgstr "已成功吊销密钥。"
+msgstr ""
 
 #: src/commands/revokekeycommand.cpp:326
 #, kde-kuit-format
@@ -3111,12 +3109,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/revokekeycommand.cpp:342
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Successfully wrote request to <filename>%1</filename>.</"
-#| "para><para>You should now send the request to the Certification Authority "
-#| "(CA).</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certificate was revoked successfully.</para><para>The revoked "
@@ -3124,8 +3117,6 @@ msgid ""
 "this file to your communication partners with the instruction to import it.</"
 "para>"
 msgstr ""
-"<para>请求已成功写入文件 <filename>%1</filename>。</para><para>您现在应该将此"
-"请求发送到证书认证中心(CA)。</para>"
 
 #: src/commands/revokeuseridcommand.cpp:125
 #, kde-kuit-format
@@ -6311,11 +6302,9 @@ msgid "Compliance:"
 msgstr "法规遵从性："
 
 #: src/dialogs/certificatedetailswidget.cpp:236
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Usage"
+#, kde-format
 msgid "Usage:"
-msgstr "用途"
+msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
@@ -6426,41 +6415,33 @@ msgid "on this computer"
 msgstr "在此电脑上"
 
 #: src/dialogs/certificatedetailswidget.cpp:375
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgid "encryption"
-msgstr "仅加密"
+msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Signing"
+#, kde-format
 msgid "signing"
-msgstr "签名"
+msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:381
-#, fuzzy, kde-format
-#| msgctxt "@title:tab"
-#| msgid "Certifications"
+#, kde-format
 msgid "certification"
-msgstr "证书"
+msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:384
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgid "authentication"
-msgstr "验证"
+msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:387
-#, fuzzy, kde-format
-#| msgid "Bad signature"
+#, kde-format
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
-msgstr "损坏的签名"
+msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:390
-#, fuzzy, kde-format
-#| msgctxt "separator for a list of e-mail addresses"
-#| msgid ", "
+#, kde-format
 msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
@@ -7304,34 +7285,28 @@ msgid "Enter a name and/or an email address to use for the certificate."
 msgstr "输入此证书使用的名称和/或电子邮件。"
 
 #: src/dialogs/revokekeydialog.cpp:101
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "title:window"
 msgid "Revoke Certificate"
-msgstr "吊销证书..."
+msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:109
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key has been compromised"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate has been compromised"
-msgstr "密钥安全性受损"
+msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:110
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is superseded"
-msgstr "认证成功"
+msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key is no longer used"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is no longer used"
-msgstr "密钥不再继续使用"
+msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:112
 #, kde-format
@@ -7340,12 +7315,10 @@ msgid "For a different reason"
 msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:117
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Reason for revocation"
+#, kde-format
 msgctxt "@title"
 msgid "Reason for Revocation (optional)"
-msgstr "吊销原因"
+msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:127
 #, kde-format
@@ -7354,12 +7327,10 @@ msgid "Upload revoked certificate to internal directory"
 msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Imported Certificates from %1"
+#, kde-format
 msgctxt "@option:check"
 msgid "Upload revoked certificate to %1"
-msgstr "已从 %1 导入证书"
+msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:144
 #, kde-format
@@ -7368,11 +7339,10 @@ msgid "Description (optional):"
 msgstr "描述（可选）："
 
 #: src/dialogs/revokekeydialog.cpp:168
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certificate"
-msgstr "吊销证书..."
+msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
@@ -7936,12 +7906,10 @@ msgid ""
 msgstr "查找并导入所有用于验证此密钥的用户 ID 的密钥"
 
 #: src/dialogs/weboftrustwidget.cpp:146
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Show upcoming certificate expiration"
+#, kde-format
 msgctxt "label:checkbox"
 msgid "Show only my own certifications"
-msgstr "显示即将到期的证书"
+msgstr ""
 
 #: src/dialogs/weboftrustwidget.cpp:274
 #, kde-format
@@ -8861,47 +8829,47 @@ msgstr "待处理的文件"
 msgid "String or Fingerprint for query and search"
 msgstr "用于查询和搜索的字符串或指纹"
 
-#: src/kleopatraapplication.cpp:389
+#: src/kleopatraapplication.cpp:391
 #, kde-format
 msgid "Failed to execute command"
 msgstr "执行命令失败"
 
-#: src/kleopatraapplication.cpp:431
+#: src/kleopatraapplication.cpp:433
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "模糊协议：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "没有为 --search 指定搜索字符串"
 
-#: src/kleopatraapplication.cpp:476
+#: src/kleopatraapplication.cpp:478
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "没有为 --query 指定指纹参数"
 
-#: src/kleopatraapplication.cpp:537
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "模糊命令 %1 和 %2"
 
-#: src/kleopatraapplication.cpp:544
+#: src/kleopatraapplication.cpp:546
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "没有为 %1 命令指定文件"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:560
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "无法读取“%1”"
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "在行政上禁止打开外部链接。"
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Prohibited"
 msgstr "已封禁"
@@ -9019,12 +8987,12 @@ msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "作为管理员运行"
 
-#: src/main.cpp:238
+#: src/main.cpp:237
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG 界面服务器错误"
 
-#: src/main.cpp:242
+#: src/main.cpp:241
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9041,7 +9009,7 @@ msgstr ""
 "b><br/>这可能意味着您的安装有问题。 尝试重新安装或联系您的管理员以获得支持。"
 "<br/>您可以尝试继续使用 Kleopatra，但可能还有其他问题。</qt>"
 
-#: src/main.cpp:272
+#: src/main.cpp:271
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "无效的参数：%1"
@@ -12317,26 +12285,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Revoked"
-#~ msgstr "吊销密钥成功"
-
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "吊销密钥"
-
-#~ msgctxt "@option:radio"
-#~ msgid "No reason specified"
-#~ msgstr "没有明确原因"
-
-#~ msgctxt "@option:radio"
-#~ msgid "Key is superseded"
-#~ msgstr "密钥已被取代"
-
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "吊销密钥"
-
-#~ msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
-#~ msgstr "<para>您将要吊销以下密钥：<nl/>%1</para>"

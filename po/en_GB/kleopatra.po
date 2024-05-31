@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 00:38+0000\n"
-"PO-Revision-Date: 2024-05-23 19:40+0100\n"
+"POT-Creation-Date: 2024-05-31 00:39+0000\n"
+"PO-Revision-Date: 2024-05-30 16:28+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
 "Language: en_GB\n"
@@ -2768,7 +2768,7 @@ msgid "No Directory Servers Configured"
 msgstr "No Directory Servers Configured"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:493
+#: src/kleopatraapplication.cpp:495
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "You are not allowed to create S/MIME certificate signing requests."
@@ -3266,12 +3266,10 @@ msgid "Revocation Failed"
 msgstr "Revocation Failed"
 
 #: src/commands/revokekeycommand.cpp:278 src/commands/revokekeycommand.cpp:296
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The key was revoked successfully."
+#, kde-format
 msgctxt "@info"
 msgid "The certificate was revoked successfully."
-msgstr "The key was revoked successfully."
+msgstr "The certificate was revoked successfully."
 
 #: src/commands/revokekeycommand.cpp:326
 #, kde-kuit-format
@@ -3282,6 +3280,10 @@ msgid ""
 "filename>.</para><para>You should send this file to your communication "
 "partners with the instruction to import it.</para>"
 msgstr ""
+"<para>The certificate was revoked successfully and uploaded to the internal "
+"directory.</para><para>The revoked certificate was saved to <filename>%1</"
+"filename>.</para><para>You should send this file to your communication "
+"partners with the instruction to import it.</para>"
 
 #: src/commands/revokekeycommand.cpp:333
 #, kde-kuit-format
@@ -3292,14 +3294,13 @@ msgid ""
 "para><para>You should send this file to your communication partners with the "
 "instruction to import it.</para>"
 msgstr ""
+"<para>The certificate was revoked successfully and uploaded to %1.</"
+"para><para>The revoked certificate was saved to <filename>%2</filename>.</"
+"para><para>You should send this file to your communication partners with the "
+"instruction to import it.</para>"
 
 #: src/commands/revokekeycommand.cpp:342
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Successfully wrote request to <filename>%1</filename>.</"
-#| "para><para>You should now send the request to the Certification Authority "
-#| "(CA).</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certificate was revoked successfully.</para><para>The revoked "
@@ -3307,8 +3308,10 @@ msgid ""
 "this file to your communication partners with the instruction to import it.</"
 "para>"
 msgstr ""
-"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
-"should now send the request to the Certification Authority (CA).</para>"
+"<para>The certificate was revoked successfully.</para><para>The revoked "
+"certificate was saved to <filename>%1</filename></para><para>You should send "
+"this file to your communication partners with the instruction to import it.</"
+"para>"
 
 #: src/commands/revokeuseridcommand.cpp:125
 #, kde-kuit-format
@@ -3744,8 +3747,7 @@ msgid "OpenPGP Keyserver"
 msgstr "OpenPGP Keyserver"
 
 #: src/conf/dirservconfigpage.cpp:131
-#, fuzzy, kde-format
-#| msgid "Please note that only one OpenPGP keyserver can be configured."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Please note that only one OpenPGP keyserver can be configured."
 msgstr "Please note that only one OpenPGP keyserver can be configured."
@@ -5102,8 +5104,7 @@ msgid "..."
 msgstr "..."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:55
-#, fuzzy, kde-format
-#| msgid "&Output folder:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "&Output folder:"
@@ -5530,8 +5531,7 @@ msgid "Output"
 msgstr "Output"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:164
-#, fuzzy, kde-format
-#| msgid "Please select an action."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "Please select an action."
@@ -6714,8 +6714,8 @@ msgstr "offline"
 msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
 msgid "On this computer and on a smart card"
 msgid_plural "On this computer and on %1 smart cards"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "On this computer and on a smart card"
+msgstr[1] "On this computer and on %1 smart cards"
 
 #: src/dialogs/certificatedetailswidget.cpp:363
 #, kde-format
@@ -6724,41 +6724,33 @@ msgid "on this computer"
 msgstr "on this computer"
 
 #: src/dialogs/certificatedetailswidget.cpp:375
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgid "encryption"
-msgstr "Encryption"
+msgstr "encryption"
 
 #: src/dialogs/certificatedetailswidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Signing"
+#, kde-format
 msgid "signing"
-msgstr "Signing"
+msgstr "signing"
 
 #: src/dialogs/certificatedetailswidget.cpp:381
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Certification"
+#, kde-format
 msgid "certification"
-msgstr "Certification"
+msgstr "certification"
 
 #: src/dialogs/certificatedetailswidget.cpp:384
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgid "authentication"
-msgstr "Authentication"
+msgstr "authentication"
 
 #: src/dialogs/certificatedetailswidget.cpp:387
-#, fuzzy, kde-format
-#| msgid "Bad signature"
+#, kde-format
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
-msgstr "Bad signature"
+msgstr "qualified signatures"
 
 #: src/dialogs/certificatedetailswidget.cpp:390
-#, fuzzy, kde-format
-#| msgctxt "separator for a list of e-mail addresses"
-#| msgid ", "
+#, kde-format
 msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
@@ -7453,15 +7445,13 @@ msgid "Export"
 msgstr "Export"
 
 #: src/dialogs/gencardkeydialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Name:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Name:"
 msgstr "Name:"
 
 #: src/dialogs/gencardkeydialog.cpp:61
-#, fuzzy, kde-format
-#| msgid "EMail:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "EMail:"
 msgstr "EMail:"
@@ -7472,8 +7462,7 @@ msgid "Invalid EMail"
 msgstr "Invalid EMail"
 
 #: src/dialogs/gencardkeydialog.cpp:75
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Algorithm:"
 msgstr "Algorithm:"
@@ -7666,62 +7655,52 @@ msgid "Enter a name and/or an email address to use for the certificate."
 msgstr "Enter a name and/or an email address to use for the certificate."
 
 #: src/dialogs/revokekeydialog.cpp:101
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "title:window"
 msgid "Revoke Certificate"
-msgstr "Revoke Certificate..."
+msgstr "Revoke Certificate"
 
 #: src/dialogs/revokekeydialog.cpp:109
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key has been compromised"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate has been compromised"
-msgstr "Key has been compromised"
+msgstr "Certificate has been compromised"
 
 #: src/dialogs/revokekeydialog.cpp:110
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is superseded"
-msgstr "Certification Succeeded"
+msgstr "Certificate is superseded"
 
 #: src/dialogs/revokekeydialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key is no longer used"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is no longer used"
-msgstr "Key is no longer used"
+msgstr "Certificate is no longer used"
 
 #: src/dialogs/revokekeydialog.cpp:112
 #, kde-format
 msgctxt "@option:radio"
 msgid "For a different reason"
-msgstr ""
+msgstr "For a different reason"
 
 #: src/dialogs/revokekeydialog.cpp:117
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Reason for revocation"
+#, kde-format
 msgctxt "@title"
 msgid "Reason for Revocation (optional)"
-msgstr "Reason for revocation"
+msgstr "Reason for Revocation (optional)"
 
 #: src/dialogs/revokekeydialog.cpp:127
 #, kde-format
 msgctxt "@option:check"
 msgid "Upload revoked certificate to internal directory"
-msgstr ""
+msgstr "Upload revoked certificate to internal directory"
 
 #: src/dialogs/revokekeydialog.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Imported Certificates from %1"
+#, kde-format
 msgctxt "@option:check"
 msgid "Upload revoked certificate to %1"
-msgstr "Imported Certificates from %1"
+msgstr "Upload revoked certificate to %1"
 
 #: src/dialogs/revokekeydialog.cpp:144
 #, kde-format
@@ -7730,11 +7709,10 @@ msgid "Description (optional):"
 msgstr "Description (optional):"
 
 #: src/dialogs/revokekeydialog.cpp:168
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certificate"
-msgstr "Revoke Certificate..."
+msgstr "Revoke Certificate"
 
 #: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
@@ -7754,6 +7732,14 @@ msgid ""
 "other certificates with it anymore.</item><item>Other people can no longer "
 "encrypt with it after receiving the revocation.</item></list></para>"
 msgstr ""
+"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
+"strong='true'>The revocation will take effect immediately and cannot be "
+"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
+"decrypt everything encrypted for this certificate.</item><item>You cannot "
+"sign anything with this certificate anymore.</item><item>You cannot certify "
+"other certificates with it anymore.</item><item>Other people can no longer "
+"encrypt with it after receiving the revocation.</item></list></para>"
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -8308,12 +8294,10 @@ msgstr ""
 "key"
 
 #: src/dialogs/weboftrustwidget.cpp:146
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Show Certifications"
+#, kde-format
 msgctxt "label:checkbox"
 msgid "Show only my own certifications"
-msgstr "Show Certifications"
+msgstr "Show only my own certifications"
 
 #: src/dialogs/weboftrustwidget.cpp:274
 #, kde-format
@@ -9315,47 +9299,47 @@ msgstr "File(s) to process"
 msgid "String or Fingerprint for query and search"
 msgstr "String or Fingerprint for query and search"
 
-#: src/kleopatraapplication.cpp:389
+#: src/kleopatraapplication.cpp:391
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Failed to execute command"
 
-#: src/kleopatraapplication.cpp:431
+#: src/kleopatraapplication.cpp:433
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Ambiguous protocol: --openpgp and --cms"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:467
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "No search string specified for --search"
 
-#: src/kleopatraapplication.cpp:476
+#: src/kleopatraapplication.cpp:478
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "No fingerprint argument specified for --query"
 
-#: src/kleopatraapplication.cpp:537
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Ambiguous commands \"%1\" and \"%2\""
 
-#: src/kleopatraapplication.cpp:544
+#: src/kleopatraapplication.cpp:546
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "No files specified for \"%1\" command"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:560
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Cannot read \"%1\""
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Opening an external link is administratively prohibited."
 
-#: src/kleopatraapplication.cpp:849
+#: src/kleopatraapplication.cpp:851
 #, kde-format
 msgid "Prohibited"
 msgstr "Prohibited"
@@ -9476,12 +9460,12 @@ msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Running as Administrator"
 
-#: src/main.cpp:238
+#: src/main.cpp:237
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI Server Error"
 
-#: src/main.cpp:242
+#: src/main.cpp:241
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9500,7 +9484,7 @@ msgstr ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 
-#: src/main.cpp:272
+#: src/main.cpp:271
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Invalid arguments: %1"
@@ -11790,7 +11774,7 @@ msgstr "Refresh OpenPGP Certificates"
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
-msgstr ""
+msgstr "Copy"
 
 #: src/view/keylistcontroller.cpp:606
 #, kde-format
@@ -12057,8 +12041,7 @@ msgstr "Sorry, I cannot find the key with fingerprint %1."
 
 #: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
 #: src/view/pivcardwidget.cpp:112
-#, fuzzy, kde-format
-#| msgid "Serial number:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Serial number:"
 msgstr "Serial number:"
@@ -12134,8 +12117,7 @@ msgstr ""
 "<application>Kleopatra</application> is not %1.</para>"
 
 #: src/view/padwidget.cpp:150
-#, fuzzy, kde-format
-#| msgid "<h3>Protocol:</h3>"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "<h3>Protocol:</h3>"
 msgstr "<h3>Protocol:</h3>"
@@ -12341,8 +12323,7 @@ msgid "Generating Keys"
 msgstr "Generating Keys"
 
 #: src/view/pgpcardwidget.cpp:340
-#, fuzzy, kde-format
-#| msgid "This may take several minutes..."
+#, kde-format
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr "This may take several minutes..."

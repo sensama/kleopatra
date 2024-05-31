@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 02:31+0000\n"
-"PO-Revision-Date: 2024-04-22 10:10+0200\n"
+"PO-Revision-Date: 2024-05-30 18:37+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -27,7 +27,7 @@ msgstr "Милен Иванов, Минчо Кондарев"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "kerat@mail.bg"
+msgstr "kerat@mail.bg,mkondarev@yahoo.de"
 
 #: src/aboutdata.cpp:47
 msgid "Andre Heinecke"
@@ -151,7 +151,7 @@ msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p> Възникна грешка при опит за добавяне на ключ <b> %1 </b>: </p> <p>%2 </p>"
+"<p> Възникна грешка при опит за добавяне на ключ <b> %1 </b>: </p><p>%2 </p>"
 
 #: src/commands/addsubkeycommand.cpp:175
 #, kde-format
@@ -324,8 +324,8 @@ msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
 "p>"
 msgstr ""
-"<p> Възникна грешка при опит за удостоверяване <br/> <br/> <b>%1</b>:</p> <p>"
-"\t%2 </p>"
+"<p> Възникна грешка при опит за удостоверяване <br/><br/><b>%1</b>:</p><p>\t"
+"%2 </p>"
 
 #: src/commands/certifycertificatecommand.cpp:233
 #, kde-format
@@ -437,7 +437,7 @@ msgid ""
 "for <b>%1</b>:</p><p>%2</p>"
 msgstr ""
 "<p> Възникна грешка при опит за промяна на срока на валидност за <b> %1 </"
-"b>: </p> <p> %2 </p>"
+"b>: </p><p> %2 </p>"
 
 #: src/commands/changeexpirycommand.cpp:235
 #, kde-format
@@ -595,7 +595,7 @@ msgid ""
 "<p>An error occurred while trying to change the passphrase for <b>%1</b>:</"
 "p><p>%2</p>"
 msgstr ""
-"<p> Възникна грешка при опит за промяна на паролата за <b> %1 </b>: </p> <p>"
+"<p> Възникна грешка при опит за промяна на паролата за <b> %1 </b>: </p><p>"
 "%2 </p>"
 
 #: src/commands/changepassphrasecommand.cpp:183
@@ -1087,8 +1087,8 @@ msgid ""
 "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
-"<qt> <p> Възникна грешка при опит за изтриване на сертификата: </p> <p> <b> "
-"%1 </b> </p> </qt>"
+"<qt><p> Възникна грешка при опит за изтриване на сертификата: </p><p><b> %1 "
+"</b></p></qt>"
 
 #: src/commands/dumpcertificatecommand.cpp:73
 #: src/commands/dumpcrlcachecommand.cpp:104
@@ -1515,7 +1515,7 @@ msgid ""
 msgstr ""
 "<para> Възникна грешка при опит за експортиране на OpenPGP сертификати. </"
 "para><para> Резултатът от <command> %1 </command> беше: <message>%2</"
-"message> </para>"
+"message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:176
 #, kde-format
@@ -1564,7 +1564,7 @@ msgid ""
 "<para>The output from GnuPG WKS client was: <message>%1</message></para>"
 msgstr ""
 "<para>При опит за експортиране на OpenPGP сертификати възникна грешка.</"
-"para> <para>Изходът от клиента GnuPG WKS беше: <message>%1</message></para>"
+"para><para>Изходът от клиента GnuPG WKS беше: <message>%1</message></para>"
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:151
 #, kde-kuit-format
@@ -1584,9 +1584,9 @@ msgid ""
 "application> to create a minimized and printable version of your secret key."
 "</para><para>Please make sure it is installed.</para>"
 msgstr ""
-"<para> <application> Kleopatra </application> използва <application> "
-"PaperKey </application> за създаване на минимизирана версия за печат на "
-"вашия секретен ключ.</para><para> Моля, уверете се, че е инсталиран. </para>"
+"<para><application> Kleopatra </application> използва <application> PaperKey "
+"</application> за създаване на минимизирана версия за печат на вашия "
+"секретен ключ.</para><para> Моля, уверете се, че е инсталиран. </para>"
 
 #: src/commands/exportpaperkeycommand.cpp:92
 #: src/commands/importpaperkeycommand.cpp:156
@@ -1794,7 +1794,7 @@ msgid ""
 "import of the revocation<br>it is required to manually edit the "
 "certificate<br>before it can be imported."
 msgstr ""
-"Сертификатът е създаден успешно. <br> <br> Забележка: <br> За да се "
+"Сертификатът е създаден успешно. <br><br> Забележка: <br> За да се "
 "предотврати случайно импортиране на оттеглянето <br> се изисква ръчно "
 "редактиране на сертификата <br> преди да може да бъде импортиран."
 
@@ -2164,8 +2164,8 @@ msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
-"<qt> <p> Възникна грешка при опит за импортиране на сертификата: </p> <p><b> "
-"%1 </b> </p> </qt>"
+"<qt><p> Възникна грешка при опит за импортиране на сертификата: </p><p><b> "
+"%1 </b></p></qt>"
 
 #: src/commands/importcertificatescommand.cpp:513
 #, kde-format
@@ -2320,9 +2320,9 @@ msgid ""
 "application> to import your text backup.</para><para>Please make sure it is "
 "installed.</para>"
 msgstr ""
-"<para> <application> Kleopatra </application> използва <application> "
-"PaperKey </application> за импортиране на вашето текстово архивиране. </"
-"para><para> Моля, уверете се, че е инсталиран. </para>"
+"<para><application> Kleopatra </application> използва <application> PaperKey "
+"</application> за импортиране на вашето текстово архивиране. </para><para> "
+"Моля, уверете се, че е инсталиран. </para>"
 
 #: src/commands/importpaperkeycommand.cpp:161
 #, kde-format
@@ -2361,8 +2361,8 @@ msgid ""
 "message></para>"
 msgstr ""
 "<para> Възникна грешка при опит за възстановяване на секретния ключ. </"
-"para><para> Резултатът от <command> %1 </command> беше: </para><para> "
-"<съобщение> %2 </съобщение> </para>"
+"para><para> Резултатът от <command> %1 </command> беше: </"
+"para><para><message>%2</message></para>"
 
 #: src/commands/keytocardcommand.cpp:59
 #, kde-format
@@ -2459,7 +2459,7 @@ msgid ""
 "be irrecoverably lost.</p>"
 msgstr ""
 "<p> Картата  <em>%1</em>  вече съдържа ключ в този слот. Продължаването "
-"ще<b> презапише </b> този ключ. </p> <p> Ако няма резервно копие, "
+"ще<b> презапише </b> този ключ. </p><p> Ако няма резервно копие, "
 "съществуващият ключ ще бъде безвъзвратно загубен. </p>"
 
 #: src/commands/keytocardcommand.cpp:293
@@ -2834,8 +2834,8 @@ msgid ""
 "be irrecoverably lost.</p>"
 msgstr ""
 "<p> Тази карта вече съдържа ключ в този слот. Продължаването ще<b> презапише "
-"</b> този ключ. </p> <p> Ако няма резервно копие, съществуващият ключ ще "
-"бъде безвъзвратно загубен. </p>"
+"</b> този ключ. </p><p> Ако няма резервно копие, съществуващият ключ ще бъде "
+"безвъзвратно загубен. </p>"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:183
 #: src/commands/pivgeneratecardkeycommand.cpp:134
@@ -3068,7 +3068,7 @@ msgid ""
 "<para>The output from <command>%1</command> was: <bcode>%2</bcode></para>"
 msgstr ""
 "<para> Възникна грешка при опит за опресняване на OpenPGP сертификати. </"
-"para><para> Резултатът от <command> %1 </command> беше: <bcode>%2</bcode> </"
+"para><para> Резултатът от <command> %1 </command> беше: <bcode>%2</bcode></"
 "para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:101
@@ -4255,8 +4255,8 @@ msgid ""
 "myproxy.nowhere.com:3128.</p>"
 msgstr ""
 "<p> Ако не е зададен системен прокси или трябва да използвате различен "
-"прокси за GpgSM, можете да въведете местоположението му тук. </p> <p> Ще се "
-"използва за всички HTTP заявки, свързани със S/MIME. </p> <p> Синтаксисът е "
+"прокси за GpgSM, можете да въведете местоположението му тук. </p><p> Ще се "
+"използва за всички HTTP заявки, свързани със S/MIME. </p><p> Синтаксисът е "
 "например хост: порт myproxy.nowhere.com:3128. </p>"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabLDAP)
@@ -4748,8 +4748,8 @@ msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
 "for signing."
 msgstr ""
-"<br/> <b> Предупреждение: </b> Пощенският адрес на подателя не се съхранява "
-"в използвания %1за подписване."
+"<br/><b> Предупреждение: </b> Пощенският адрес на подателя не се съхранява в "
+"използвания %1за подписване."
 
 #: src/crypto/decryptverifytask.cpp:467
 #, kde-format
@@ -4769,7 +4769,7 @@ msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
 "certificates used for signing."
 msgstr ""
-"<br/> <b> Предупреждение: </b> Адресът на пощата на подателя не се съхранява "
+"<br/><b> Предупреждение: </b> Адресът на пощата на подателя не се съхранява "
 "в сертификати, използвани за подписване."
 
 #: src/crypto/decryptverifytask.cpp:483
@@ -5297,8 +5297,8 @@ msgstr "Получател (%1)"
 #, kde-format
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr ""
-"<qt> <p> Получатели, предварително дефинирани чрез настройките на GnuPG: </"
-"p> %1 </qt>"
+"<qt><p> Получатели, предварително дефинирани чрез настройките на GnuPG: </p> "
+"%1 </qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, kde-format
@@ -7618,7 +7618,7 @@ msgid ""
 "due to prior tests failing.</para>"
 msgstr ""
 "<p> Това са резултатите от пакета за самотестване на Kleopatra. Кликнете "
-"върху тест за подробности. </p> <p> Имайте предвид, че всички, освен първата "
+"върху тест за подробности. </p><p> Имайте предвид, че всички, освен първата "
 "грешка, може да се дължат на предишни неуспешни тестове. </p>"
 
 #: src/dialogs/selftestdialog.cpp:387
@@ -8192,8 +8192,8 @@ msgid ""
 "<para>An error occurred while loading the certifications: <message>%1</"
 "message></para>"
 msgstr ""
-"<para> Възникна грешка при зареждане на сертификатите: <съобщение> %1 </"
-"съобщение> </para>"
+"<para> Възникна грешка при зареждане на сертификатите: <message>%1</"
+"message></para>"
 
 #: src/dialogs/weboftrustwidget.cpp:427
 #, kde-format
@@ -9876,7 +9876,7 @@ msgid ""
 "para><para>If that does not work, either, save the request to a file, and "
 "then attach that.</para>"
 msgstr ""
-"<para> <application> Kleopatra </application> се опита да изпрати имейл чрез "
+"<para><application> Kleopatra </application> се опита да изпрати имейл чрез "
 "вашия пощенски клиент по подразбиране. </para><para> Известно е, че някои "
 "пощенски клиенти не поддържат прикачени файлове при извикване по този начин. "
 "</para><para> Ако вашият пощенски клиент няма прикачен файл, тогава плъзнете "
@@ -10066,8 +10066,8 @@ msgid ""
 "<para><application>%1</application> v%2.%3.%4 is required for this test, but "
 "only %5 is installed.</para>"
 msgstr ""
-"<para> <application> %1 </application> v %2.%3.%4 се изисква за този тест, "
-"но инсталиран е само %5.</para>"
+"<para><application> %1 </application> v %2.%3.%4 се изисква за този тест, но "
+"инсталиран е само %5.</para>"
 
 #: src/selftest/enginecheck.cpp:185
 #, kde-kuit-format
@@ -10076,7 +10076,7 @@ msgid ""
 "<para><application>%1</application> is required for this test, but does not "
 "seem available.</para><para>See tests further up for more information.</para>"
 msgstr ""
-"<para> <application> %1 </application> се изисква за този тест, но не "
+"<para><application> %1 </application> се изисква за този тест, но не "
 "изглеждат налични. </para><para> Вижте допълнителни тестове за повече "
 "информация. </para>"
 
@@ -12429,9 +12429,9 @@ msgid ""
 "certificates actually belong to the identity they claim to belong to."
 msgstr ""
 "Някои сертификати все още не са сертифицирани. Кликнете тук, за да видите "
-"списък с тези сертификати. <br/> <br/> Сертифицирането е необходимо, за да "
-"се уверите, че сертификатите всъщност принадлежат към самоличността, за "
-"която твърдят, че принадлежат."
+"списък с тези сертификати. <br/><br/> Сертифицирането е необходимо, за да се "
+"уверите, че сертификатите всъщност принадлежат към самоличността, за която "
+"твърдят, че принадлежат."
 
 #: src/view/searchbar.cpp:197
 #, kde-format
@@ -12661,229 +12661,3 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
-
-#~ msgid "Designated revoker"
-#~ msgstr "Посочен revoker"
-
-#~ msgid ""
-#~ "The fingerprint of a designated revoker to be added to each new key. Must "
-#~ "be given in the form \"algo:fpr [sensitive]\". Algo is the public key "
-#~ "algorithm of the designated revoker (i.e. RSA=1, DSA=17, etc.) fpr is the "
-#~ "fingerprint of the designated revoker. The optional ‘sensitive’ flag "
-#~ "marks the designated revoker as sensitive information. Only v4 keys may "
-#~ "be designated revokers. GnuPG 2.4.4 is required for adding sensitive "
-#~ "revokers."
-#~ msgstr ""
-#~ "Пръстовият отпечатък на определен revoker, който се добавя към всеки нов "
-#~ "ключ. Трябва да бъде зададен под формата \"algo:fpr [sensitive]\". Algo е "
-#~ "алгоритъмът на публичния ключ на посочения revoker (т.е. RSA=1, DSA=17 и "
-#~ "т.н.) fpr е пръстовият отпечатък на посочения revoker. Незадължителният "
-#~ "флаг \"чувствителен\" маркира посочения revoker като чувствителна "
-#~ "информация. Само ключове v4 могат да бъдат обозначени като revoker. За "
-#~ "добавянето на чувствителни revoker-и се изисква GnuPG 2.4.4."
-
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "Грешка при отпечатването на секретен ключ"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para> Процесът на GPG, който се опита да експортира секретния ключ, "
-#~ "приключи преждевременно поради неочаквана грешка. </para><para> Моля, "
-#~ "проверете изходните данни на<icode> %1 </icode> за подробности. </para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para> Възникна грешка при опит за експортиране на секретния ключ. </"
-#~ "para><para> Резултатът от <command> %1 </command> беше: <message>%2</"
-#~ "message> </para>"
-
-#~ msgid "none"
-#~ msgstr "без"
-
-#~ msgctxt "@option:radio"
-#~ msgid "RSA"
-#~ msgstr "RSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ RSA"
-#~ msgstr "+ RSA"
-
-#~ msgctxt "@option:radio"
-#~ msgid "DSA"
-#~ msgstr "DSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ Elgamal"
-#~ msgstr "+ Elgamal"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "This subkey is required for encryption."
-#~ msgstr "Този подключ се изисква за шифроване."
-
-#~ msgctxt "@option:radio"
-#~ msgid "ECDSA"
-#~ msgstr "ECDSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ ECDH"
-#~ msgstr "+ ECDH"
-
-#~ msgctxt "@option:check"
-#~ msgid "Certification"
-#~ msgstr "Сертифициране"
-
-#~ msgctxt "@title:group"
-#~ msgid "Additional User IDs"
-#~ msgstr "Допълнителни потребителски идентификатори"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Adding more than one user ID is not yet implemented."
-#~ msgstr ""
-#~ "Добавянето на повече от едно потребителско име все още не е реализирано."
-
-#~ msgid ""
-#~ "Key pair created successfully.\n"
-#~ "Fingerprint: %1"
-#~ msgstr ""
-#~ "Двойката ключове е създадена успешно. \n"
-#~ "Отпечатък: %1"
-
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "Направете резервно копие на вашата двойка ключове..."
-
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "Изпращане на публичен ключ по имейл..."
-
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "Качване на публичен ключ към услугата за директории..."
-
-#~ msgid "Create Revocation Request..."
-#~ msgstr "Създаване на заявка за отмяна..."
-
-#~ msgid "My new public OpenPGP key"
-#~ msgstr "Моят нов публичен ключ OpenPGP"
-
-#~ msgid "Please find attached my new public OpenPGP key."
-#~ msgstr "Моля, намерете прикачения ми нов публичен ключ OpenPGP."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then attach the file <filename>%1</"
-#~ "filename> manually.</para>"
-#~ msgstr ""
-#~ "<para> <application> Kleopatra </application> се опита да изпрати имейл "
-#~ "чрез вашия пощенски клиент по подразбиране. </para><para> Известно е, че "
-#~ "някои пощенски клиенти не поддържат прикачени файлове при извикване по "
-#~ "този начин. </para><para> Ако вашият пощенски клиент не поддържа "
-#~ "прикачени файлове, тогава прикачете файла <filename>%1</filename> ръчно.</"
-#~ "para>"
-
-#~ msgctxt "@action:button"
-#~ msgid "Show Certifications"
-#~ msgstr "Показване на сертификациите"
-
-#~ msgid "Related addresses:"
-#~ msgstr "Свързани адреси:"
-
-#~ msgctxt "@action:button"
-#~ msgid "More Details..."
-#~ msgstr "Още подробности..."
-
-#~ msgctxt "@action:button"
-#~ msgid "Manage Subkeys"
-#~ msgstr "Управление на подключове"
-
-#~ msgctxt "@action:button"
-#~ msgid "Show Subkeys"
-#~ msgstr "Подключове"
-
-#~ msgctxt "@label"
-#~ msgid "Subkeys:"
-#~ msgstr "Подключове:"
-
-#~ msgid "Restore printed backup"
-#~ msgstr "Възстановяване на отпечатаното архивиране"
-
-#~ msgctxt "@title:window"
-#~ msgid "Subkeys Details"
-#~ msgstr "Подробности за подключове"
-
-#~ msgctxt "@title:window"
-#~ msgid "Trust Chain"
-#~ msgstr "Доверителна верига"
-
-#~ msgctxt "@info"
-#~ msgid "One certificate without name and email address was ignored."
-#~ msgid_plural "%1 certificates without name and email address were ignored."
-#~ msgstr[0] "Едно удостоверение без име и имейл адрес е бил пренебрегнат."
-#~ msgstr[1] "%1 сертификати без име и имейл адрес бяха игнорирани."
-
-#~ msgid ""
-#~ "This setting specifies how many days a new OpenPGP key is valid at least, "
-#~ "or, in other words, after how many days the new key will expire at the "
-#~ "earliest."
-#~ msgstr ""
-#~ "Тази настройка определя колко дни най-малко е валиден нов OpenPGP ключ, "
-#~ "или, с други думи, след колко дни най-рано новият ключ ще изтече."
-
-#~ msgctxt "@title:window"
-#~ msgid "Error Learning SmartCard"
-#~ msgstr "Грешка при обучението на SmartCard"
-
-#~ msgctxt "@title:window"
-#~ msgid "Finished Learning SmartCard"
-#~ msgstr "Завършено обучение SmartCard"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para> Процесът GPG или GpgSM, който се опита да научи смарт картата, "
-#~ "приключи преждевременно поради неочаквана грешка. </para><para> Моля, "
-#~ "проверете изходните данни на <icode> %1 </icode> за подробности. </para>"
-
-#~ msgid "Loading certificates... (this can take a while)"
-#~ msgstr "Зареждане на сертификати... (това може да отнеме известно време)"
-
-#~ msgid "Show Details"
-#~ msgstr "Показване на детайли"
-
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "Научете сертификати за карти на NetKey v3"
-
-#~ msgid "There are unknown certificates on this card."
-#~ msgstr "На тази карта има неизвестни сертификати."
-
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "Зареждане на сертификати"
-
-#~ msgctxt "@title:column"
-#~ msgid "Primary"
-#~ msgstr "Основна"
-
-#~ msgctxt "yes, is primary key"
-#~ msgid "yes"
-#~ msgstr "да"
-
-#~ msgctxt "no, is not primary key"
-#~ msgid "no"
-#~ msgstr "не"
-
-#~ msgid "All Certificates"
-#~ msgstr "Всички сертификати"

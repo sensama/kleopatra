@@ -6,13 +6,12 @@
 # Albert Astals Cid <aacid@kde.org>, 2004, 2005.
 # Sebastià Pla i Sanz <sps@sastia.com>, 2004, 2006.
 # Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009, 2010, 2011.
-# Josep M. Ferrer <txemaq@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-31 00:39+0000\n"
-"PO-Revision-Date: 2024-05-28 13:48+0200\n"
+"PO-Revision-Date: 2024-05-30 10:15+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -3309,12 +3308,10 @@ msgid "Revocation Failed"
 msgstr "La revocació ha fallat"
 
 #: src/commands/revokekeycommand.cpp:278 src/commands/revokekeycommand.cpp:296
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The key was revoked successfully."
+#, kde-format
 msgctxt "@info"
 msgid "The certificate was revoked successfully."
-msgstr "La clau s'ha revocat correctament."
+msgstr "El certificat s'ha revocat correctament."
 
 #: src/commands/revokekeycommand.cpp:326
 #, kde-kuit-format
@@ -3325,6 +3322,10 @@ msgid ""
 "filename>.</para><para>You should send this file to your communication "
 "partners with the instruction to import it.</para>"
 msgstr ""
+"<para>El certificat s'ha revocat correctament i s'ha pujat al directori "
+"intern.</para><para>El certificat revocat s'ha guardat a <filename>%1</"
+"filename>.</para><para>Hauríeu d'enviar este fitxer als vostres destinataris "
+"de comunicació amb les instrucció per a importar-lo.</para>"
 
 #: src/commands/revokekeycommand.cpp:333
 #, kde-kuit-format
@@ -3335,14 +3336,13 @@ msgid ""
 "para><para>You should send this file to your communication partners with the "
 "instruction to import it.</para>"
 msgstr ""
+"<para>El certificat s'ha revocat correctament i s'ha pujat a %1.</"
+"para><para>El certificat revocat s'ha guardat a <filename>%2</filename>.</"
+"para><para>Hauríeu d'enviar este fitxer als vostres destinataris de "
+"comunicació amb les instrucció per a importar-lo.</para>"
 
 #: src/commands/revokekeycommand.cpp:342
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Successfully wrote request to <filename>%1</filename>.</"
-#| "para><para>You should now send the request to the Certification Authority "
-#| "(CA).</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certificate was revoked successfully.</para><para>The revoked "
@@ -3350,9 +3350,10 @@ msgid ""
 "this file to your communication partners with the instruction to import it.</"
 "para>"
 msgstr ""
-"<para>S'ha escrit correctament la sol·licitud a <filename>%1</filename>.</"
-"para><para>Ara hauríeu d'enviar la sol·licitud a l'autoritat de certificació "
-"(CA).</para>"
+"<para>El certificat s'ha revocat correctament.</para><para>El certificat "
+"revocat s'ha guardat a <filename>%1</filename>.</para><para>Hauríeu d'enviar "
+"este fitxer als vostres destinataris de comunicació amb les instrucció per a "
+"importar-lo.</para>"
 
 #: src/commands/revokeuseridcommand.cpp:125
 #, kde-kuit-format
@@ -6709,11 +6710,9 @@ msgid "Compliance:"
 msgstr "Compliment:"
 
 #: src/dialogs/certificatedetailswidget.cpp:236
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Usage"
+#, kde-format
 msgid "Usage:"
-msgstr "Ús"
+msgstr "Ús:"
 
 #: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
@@ -6825,41 +6824,33 @@ msgid "on this computer"
 msgstr "en este ordinador"
 
 #: src/dialogs/certificatedetailswidget.cpp:375
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgid "encryption"
-msgstr "Encriptació"
+msgstr "encriptació"
 
 #: src/dialogs/certificatedetailswidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Signing"
+#, kde-format
 msgid "signing"
-msgstr "Signatura"
+msgstr "signatura"
 
 #: src/dialogs/certificatedetailswidget.cpp:381
-#, fuzzy, kde-format
-#| msgctxt "@title:tab"
-#| msgid "Certifications"
+#, kde-format
 msgid "certification"
-msgstr "Certificacions"
+msgstr "certificació"
 
 #: src/dialogs/certificatedetailswidget.cpp:384
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgid "authentication"
-msgstr "Autenticació"
+msgstr "autenticació"
 
 #: src/dialogs/certificatedetailswidget.cpp:387
-#, fuzzy, kde-format
-#| msgid "Bad signature"
+#, kde-format
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
-msgstr "Signatura roïna"
+msgstr "signatures qualificades"
 
 #: src/dialogs/certificatedetailswidget.cpp:390
-#, fuzzy, kde-format
-#| msgctxt "separator for a list of e-mail addresses"
-#| msgid ", "
+#, kde-format
 msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
@@ -7788,62 +7779,52 @@ msgstr ""
 "certificat."
 
 #: src/dialogs/revokekeydialog.cpp:101
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "title:window"
 msgid "Revoke Certificate"
-msgstr "Revoca un certificat…"
+msgstr "Revocació de certificat"
 
 #: src/dialogs/revokekeydialog.cpp:109
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key has been compromised"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate has been compromised"
-msgstr "La clau ha sigut compromesa"
+msgstr "El certificat ha sigut compromés"
 
 #: src/dialogs/revokekeydialog.cpp:110
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is superseded"
-msgstr "Certificació correcta"
+msgstr "El certificat s'ha substituït"
 
 #: src/dialogs/revokekeydialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key is no longer used"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is no longer used"
-msgstr "La clau ja no s'utilitza"
+msgstr "El certificat ja no s'utilitza"
 
 #: src/dialogs/revokekeydialog.cpp:112
 #, kde-format
 msgctxt "@option:radio"
 msgid "For a different reason"
-msgstr ""
+msgstr "Per un motiu diferent"
 
 #: src/dialogs/revokekeydialog.cpp:117
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Reason for revocation"
+#, kde-format
 msgctxt "@title"
 msgid "Reason for Revocation (optional)"
-msgstr "Motiu per a la revocació"
+msgstr "Motiu de la revocació (opcional)"
 
 #: src/dialogs/revokekeydialog.cpp:127
 #, kde-format
 msgctxt "@option:check"
 msgid "Upload revoked certificate to internal directory"
-msgstr ""
+msgstr "Puja el certificat revocat al directori intern"
 
 #: src/dialogs/revokekeydialog.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Imported Certificates from %1"
+#, kde-format
 msgctxt "@option:check"
 msgid "Upload revoked certificate to %1"
-msgstr "Certificats importats des de %1"
+msgstr "Puja el certificat revocat a %1"
 
 #: src/dialogs/revokekeydialog.cpp:144
 #, kde-format
@@ -7852,11 +7833,10 @@ msgid "Description (optional):"
 msgstr "Descripció (opcional):"
 
 #: src/dialogs/revokekeydialog.cpp:168
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certificate"
-msgstr "Revoca un certificat…"
+msgstr "Revoca el certificat"
 
 #: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
@@ -7876,6 +7856,14 @@ msgid ""
 "other certificates with it anymore.</item><item>Other people can no longer "
 "encrypt with it after receiving the revocation.</item></list></para>"
 msgstr ""
+"<para>Esteu a punt de revocar el certificat següent:</para><para>&nbsp;&nbsp;"
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
+"strong='true'>La revocació tindrà efecte immediatament i no es pot revertir."
+"</emphasis></para><para>Conseqüències: <list><item>Encara podreu "
+"desencriptar tot el que s'haja xifrat amb este certificat.</item><item>Ja no "
+"podreu signar res amb este certificat.</item><item>Ja no podreu certificar "
+"altres certificats amb ell.</item><item>Altres persones ja no podran "
+"encriptar amb ell després de rebre la revocació.</item></list></para>"
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -8435,12 +8423,10 @@ msgstr ""
 "d'usuari d'esta clau"
 
 #: src/dialogs/weboftrustwidget.cpp:146
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Show upcoming certificate expiration"
+#, kde-format
 msgctxt "label:checkbox"
 msgid "Show only my own certifications"
-msgstr "Mostra el venciment pròxim del certificat"
+msgstr "Mostra només les certificacions pròpies"
 
 #: src/dialogs/weboftrustwidget.cpp:274
 #, kde-format
@@ -11982,7 +11968,7 @@ msgstr "Actualitza els certificats OpenPGP"
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: src/view/keylistcontroller.cpp:606
 #, kde-format
@@ -13082,26 +13068,3 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Revoked"
-#~ msgstr "Clau revocada"
-
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "Revocació de clau"
-
-#~ msgctxt "@option:radio"
-#~ msgid "No reason specified"
-#~ msgstr "No s'ha especificat cap motiu"
-
-#~ msgctxt "@option:radio"
-#~ msgid "Key is superseded"
-#~ msgstr "La clau ha sigut substituïda"
-
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "Revoca la clau"
-
-#~ msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
-#~ msgstr "<para>Esteu a punt de revocar la clau següent:<nl/>%1</para>"

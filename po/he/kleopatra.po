@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-31 00:39+0000\n"
-"PO-Revision-Date: 2024-05-29 09:22+0300\n"
+"PO-Revision-Date: 2024-06-02 07:45+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -235,11 +235,10 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr ""
 
 #: src/commands/certificatetocardcommand.cpp:265
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info"
 msgid "No slot found for subkey %1 on the smart card."
-msgstr "החלפת הקוד האישי (PIN) שנחוץ לשימוש במפתחות בכרטיס החכם."
+msgstr "לא נמצא חריץ לתת־המפתח %1 בכרטיס החכם."
 
 #: src/commands/certificatetocardcommand.cpp:287
 #: src/commands/keytocardcommand.cpp:262
@@ -3105,12 +3104,10 @@ msgid "Revocation Failed"
 msgstr "השלילה נכשלה"
 
 #: src/commands/revokekeycommand.cpp:278 src/commands/revokekeycommand.cpp:296
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The key was revoked successfully."
+#, kde-format
 msgctxt "@info"
 msgid "The certificate was revoked successfully."
-msgstr "המפתח נשלל בהצלחה."
+msgstr "האישור נשלל בהצלחה."
 
 #: src/commands/revokekeycommand.cpp:326
 #, kde-kuit-format
@@ -6281,11 +6278,9 @@ msgid "Compliance:"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:236
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Usage"
+#, kde-format
 msgid "Usage:"
-msgstr "שימוש"
+msgstr "שימוש:"
 
 #: src/dialogs/certificatedetailswidget.cpp:241
 #, kde-format
@@ -6399,27 +6394,22 @@ msgid "on this computer"
 msgstr "במחשב הזה"
 
 #: src/dialogs/certificatedetailswidget.cpp:375
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgid "encryption"
 msgstr "הצפנה"
 
 #: src/dialogs/certificatedetailswidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Signing"
+#, kde-format
 msgid "signing"
 msgstr "חתימה"
 
 #: src/dialogs/certificatedetailswidget.cpp:381
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Certification"
+#, kde-format
 msgid "certification"
-msgstr "אישור"
+msgstr "הסמכה"
 
 #: src/dialogs/certificatedetailswidget.cpp:384
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgid "authentication"
 msgstr "אימות"
 
@@ -7280,33 +7270,28 @@ msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:101
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "title:window"
 msgid "Revoke Certificate"
-msgstr "שלילת אישור…"
+msgstr "שלילת אישור"
 
 #: src/dialogs/revokekeydialog.cpp:109
-#, fuzzy, kde-format
-#| msgid "The certificate has been revoked."
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate has been compromised"
-msgstr "האישור נשלל."
+msgstr "האישור נפגם"
 
 #: src/dialogs/revokekeydialog.cpp:110
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is superseded"
-msgstr "ההסמכה הצליחה"
+msgstr "האישור הוחלף"
 
 #: src/dialogs/revokekeydialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "Key is no longer used"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Certificate is no longer used"
-msgstr "המפתח אינו בשימוש עוד"
+msgstr "האישור אינו בשימוש עוד"
 
 #: src/dialogs/revokekeydialog.cpp:112
 #, kde-format
@@ -7315,12 +7300,10 @@ msgid "For a different reason"
 msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:117
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Reason for revocation"
+#, kde-format
 msgctxt "@title"
 msgid "Reason for Revocation (optional)"
-msgstr "סיבת השלילה"
+msgstr "סיבת השלילה (רשות)"
 
 #: src/dialogs/revokekeydialog.cpp:127
 #, kde-format
@@ -7329,12 +7312,10 @@ msgid "Upload revoked certificate to internal directory"
 msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:129
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Imported Certificates from %1"
+#, kde-format
 msgctxt "@option:check"
 msgid "Upload revoked certificate to %1"
-msgstr "אישורים שיובאו מתוך %1"
+msgstr "העלאת האישור שנשלל אל %1"
 
 #: src/dialogs/revokekeydialog.cpp:144
 #, kde-format
@@ -7343,11 +7324,10 @@ msgid "Description (optional):"
 msgstr "תיאור (רשות):"
 
 #: src/dialogs/revokekeydialog.cpp:168
-#, fuzzy, kde-format
-#| msgid "Revoke Certificate..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certificate"
-msgstr "שלילת אישור…"
+msgstr "שלילת אישור"
 
 #: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
@@ -7908,12 +7888,10 @@ msgstr ""
 "חיפוש וייבוא כל המפתחות שנעשה בהם שימוש להסמכת מזהה המשתמש של המפתח הזה"
 
 #: src/dialogs/weboftrustwidget.cpp:146
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Show Certifications"
+#, kde-format
 msgctxt "label:checkbox"
 msgid "Show only my own certifications"
-msgstr "הצגת אישורים"
+msgstr "להציג רק את האישורים שלי"
 
 #: src/dialogs/weboftrustwidget.cpp:274
 #, kde-format
@@ -9859,19 +9837,19 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Delete registry key <resource>%1\\%2</resource>.</para>"
-msgstr ""
+msgstr "<para>מחיקת מפתח הרישום <resource>%1\\%2</resource>.</para>"
 
 #: src/selftest/registrycheck.cpp:76
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not delete the registry key <resource>%1\\%2</resource>"
-msgstr ""
+msgstr "לא ניתן למחוק את מפתח הרישום <resource>%1\\%2</resource>"
 
 #: src/selftest/registrycheck.cpp:77
 #, kde-format
 msgctxt "@title"
 msgid "Error Deleting Registry Key"
-msgstr ""
+msgstr "שגיאה במחיקת מפתח רישום"
 
 #: src/selftest/uiservercheck.cpp:33
 #, kde-format
@@ -10430,20 +10408,20 @@ msgstr ""
 #: src/uiserver/signcommand.cpp:99
 #, kde-format
 msgid "No senders given, or only with --info"
-msgstr ""
+msgstr "לא סופקו נמענים או רק עם ‎--info"
 
 #: src/uiserver/signcommand.cpp:173
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignCommand::Private::slotRecipientsResolved: "
 "%1"
-msgstr ""
+msgstr "נתפסה חריגה מפתיעה ב־SignCommand::Private::slotRecipientsResolved:‏ %1"
 
 #: src/uiserver/signcommand.cpp:175
 #, kde-format
 msgid ""
 "Caught unknown exception in SignCommand::Private::slotRecipientsResolved"
-msgstr ""
+msgstr "נתפסה חריגה לא מוכרת ב־SignCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/signencryptfilescommand.cpp:65
 #: src/uiserver/signencryptfilescommand.cpp:71
@@ -10454,7 +10432,7 @@ msgstr ""
 msgid ""
 "%1 is a filemanager mode command, connection seems to be in email mode (%2 "
 "present)"
-msgstr ""
+msgstr "%1 היא פקודת מצב מנהל קבצים, החיבור נראה במצב דוא״ל (%2 קיים)"
 
 #: src/uiserver/uiserver.cpp:235
 #, kde-format
@@ -10462,12 +10440,13 @@ msgid ""
 "Could not determine the GnuPG home directory. Consider setting the GNUPGHOME "
 "environment variable."
 msgstr ""
+"לא ניתן לאתר את תיקיית הבית של GnuPG. כדאי להגדיר את משתנה הסביבה GNUPGHOME."
 
 #: src/uiserver/uiserver.cpp:249
 #, kde-format
 msgid ""
 "Cannot determine the GnuPG home directory: %1 exists but is not a directory."
-msgstr ""
+msgstr "לא ניתן לאתר את תיקיית הבית של GnuPG:‏ %1 קיים אבל אינו תיקייה."
 
 #: src/uiserver/uiserver.cpp:257
 #, kde-format
@@ -10627,7 +10606,7 @@ msgstr "שנה מעכשיו"
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
-msgstr ""
+msgstr "לא ניתן לפתוח את ציין הקובץ %1 לקריאה"
 
 #: src/utils/input.cpp:247 src/utils/input.cpp:261
 #, kde-format
@@ -10736,7 +10715,7 @@ msgstr "אין התקן פלט"
 #: src/utils/output.cpp:527
 #, kde-format
 msgid "Could not open FD %1 for writing"
-msgstr ""
+msgstr "לא ניתן לפתוח את ציין הקובץ %1 לכתיבה"
 
 #: src/utils/output.cpp:551
 #, kde-format
@@ -11187,7 +11166,7 @@ msgstr "רענון אישורי OpenPGP"
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
-msgstr ""
+msgstr "העתקה"
 
 #: src/view/keylistcontroller.cpp:606
 #, kde-format

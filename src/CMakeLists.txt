@@ -545,6 +545,7 @@ set(_kleopatra_SRCS
   mainwindow.h
   systrayicon.cpp
   systrayicon.h
+  kleopatra_options.h
 )
 
 if(WIN32)

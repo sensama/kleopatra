@@ -704,6 +704,7 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
     auto ctx = QGpgME::Job::context(job);
     ctx->addKeyListMode(GpgME::WithTofu);
     ctx->addKeyListMode(GpgME::SignatureNotations);
+    ctx->addKeyListMode(GpgME::WithKeygrip);
     if (key.hasSecret()) {
         ctx->addKeyListMode(GpgME::WithSecret);
     }

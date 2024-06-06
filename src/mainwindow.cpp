@@ -802,30 +802,21 @@ void MainWindow::Private::setupActions()
     /* The secops */
     const auto approvalmanual =
         new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
-                      i18n("Manual for VS-NfD Approval (German)"),
-                      i18nc("Only available in German. Keep German file name for all languages", "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"),
+                      i18n("Manual for VS-NfD Approval"),
+                      i18nc("Only available in German and English. Keep the English file name for other languages.", "handbuch_zulassung_gnupgvsd_en.pdf"),
                       QStringLiteral("../share/doc/gnupg-vsd"),
                       QUrl(),
                       coll);
     coll->addAction(QStringLiteral("help_doc_approval_manual"), approvalmanual);
 
-    const auto vsa10573 =
+    const auto vsa =
         new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
-                      i18n("SecOps VSA-10573"),
-                      i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10573-ENG_secops-20220207.pdf"),
+                      i18n("SecOps for VS-NfD Approval"),
+                      i18nc("Only available in German and English. Keep the English file name for other languages.", "BSI-VSA-10867_ENG_secops.pdf"),
                       QStringLiteral("../share/doc/gnupg-vsd"),
                       QUrl(),
                       coll);
-    coll->addAction(QStringLiteral("help_doc_vsa10573"), vsa10573);
-
-    const auto vsa10584 =
-        new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")),
-                      i18n("SecOps VSA-10584"),
-                      i18nc("Only available in German and English. Leave to English for other languages.", "BSI-VSA-10584-ENG_secops-20220207.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"),
-                      QUrl(),
-                      coll);
-    coll->addAction(QStringLiteral("help_doc_vsa10584"), vsa10584);
+    coll->addAction(QStringLiteral("help_doc_vsa"), vsa);
 
     q->setStandardToolBarMenuEnabled(true);
 

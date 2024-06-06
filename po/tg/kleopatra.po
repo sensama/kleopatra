@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-31 00:39+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2019-09-27 23:59+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -9434,83 +9434,97 @@ msgstr "Лавҳаи ҷустуҷӯ"
 
 #: src/kleopatra_options.h:20
 #, kde-format
+msgctxt "@info:shell"
 msgid "Use OpenPGP for the following operation"
 msgstr ""
 
 #: src/kleopatra_options.h:21
 #, kde-format
+msgctxt "@info:shell"
 msgid "Use CMS (X.509, S/MIME) for the following operation"
-msgstr ""
-
-#: src/kleopatra_options.h:22
-#, kde-format
-msgid "Location of the socket the ui server is listening on"
 msgstr ""
 
 #: src/kleopatra_options.h:23
 #, kde-format
+msgctxt "@info:shell"
+msgid "Location of the socket the ui server is listening on"
+msgstr ""
+
+#: src/kleopatra_options.h:25
+#, kde-format
+msgctxt "@info:shell"
 msgid "Run UI server only, hide main window"
 msgstr ""
 
-#: src/kleopatra_options.h:24
+#: src/kleopatra_options.h:26
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
+msgctxt "@info:shell"
 msgid "Import certificate file(s)"
 msgstr "Воридоти сертификатҳо..."
 
-#: src/kleopatra_options.h:25
+#: src/kleopatra_options.h:27
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
+msgctxt "@info:shell"
 msgid "Encrypt file(s)"
 msgstr "Наметавонам сертификатро ҳузф кунам"
 
-#: src/kleopatra_options.h:26
+#: src/kleopatra_options.h:28
 #, fuzzy, kde-format
 #| msgid "Canceled."
+msgctxt "@info:shell"
 msgid "Sign file(s)"
 msgstr "Барҳам дода шуд."
-
-#: src/kleopatra_options.h:27
-#, fuzzy, kde-format
-#| msgid "Deleting keys..."
-msgid "Sign and/or encrypt file(s)"
-msgstr "Ҳузфи калидҳо..."
-
-#: src/kleopatra_options.h:28
-#, kde-format
-msgid "Same as --sign-encrypt, do not use"
-msgstr ""
 
 #: src/kleopatra_options.h:29
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
-msgid "Decrypt file(s)"
+msgctxt "@info:shell"
+msgid "Sign and/or encrypt file(s)"
 msgstr "Ҳузфи калидҳо..."
 
 #: src/kleopatra_options.h:30
-#, fuzzy, kde-format
-#| msgid "New signatures:"
-msgid "Verify file/signature"
-msgstr "Имзоҳои нав:"
+#, kde-format
+msgctxt "@info:shell"
+msgid "Same as --sign-encrypt, do not use"
+msgstr ""
 
 #: src/kleopatra_options.h:31
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
-msgid "Decrypt and/or verify file(s)"
+msgctxt "@info:shell"
+msgid "Decrypt file(s)"
 msgstr "Ҳузфи калидҳо..."
 
 #: src/kleopatra_options.h:32
 #, fuzzy, kde-format
+#| msgid "New signatures:"
+msgctxt "@info:shell"
+msgid "Verify file/signature"
+msgstr "Имзоҳои нав:"
+
+#: src/kleopatra_options.h:33
+#, fuzzy, kde-format
+#| msgid "Deleting keys..."
+msgctxt "@info:shell"
+msgid "Decrypt and/or verify file(s)"
+msgstr "Ҳузфи калидҳо..."
+
+#: src/kleopatra_options.h:34
+#, fuzzy, kde-format
 #| msgid "Search for external certificates initially"
+msgctxt "@info:shell"
 msgid "Search for a certificate on a keyserver"
 msgstr "Аввал дар сертификатҳои хориҷӣ ҷустуҷӯ кардан"
 
-#: src/kleopatra_options.h:33
+#: src/kleopatra_options.h:35
 #, kde-format
+msgctxt "@info:shell"
 msgid "Create or check a checksum file"
 msgstr ""
 
-#: src/kleopatra_options.h:37
+#: src/kleopatra_options.h:39
 #, kde-format
 msgctxt ""
 "If a certificate is already known it shows the certificate details dialog. "
@@ -9520,28 +9534,34 @@ msgid ""
 "fingerprint"
 msgstr ""
 
-#: src/kleopatra_options.h:38
+#: src/kleopatra_options.h:40
 #, fuzzy, kde-format
+msgctxt "@info:shell"
 msgid "Create a new key pair or certificate signing request"
 msgstr "&Эҷоди сертификат"
 
-#: src/kleopatra_options.h:39
+#: src/kleopatra_options.h:41
 #, kde-format
+msgctxt "@info:shell"
 msgid "Parent Window Id for dialogs"
 msgstr ""
 
-#: src/kleopatra_options.h:40
-#, kde-format
+#: src/kleopatra_options.h:42
+#, fuzzy, kde-format
+#| msgid "Current Maintainer"
+msgctxt "@info:shell"
 msgid "Open the config dialog"
-msgstr ""
+msgstr "Координатори ҷорӣ"
 
-#: src/kleopatra_options.h:51
+#: src/kleopatra_options.h:53
 #, kde-format
+msgctxt "@info:shell"
 msgid "File(s) to process"
 msgstr ""
 
-#: src/kleopatra_options.h:52
+#: src/kleopatra_options.h:54
 #, kde-format
+msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
@@ -13917,11 +13937,6 @@ msgstr ""
 #~| msgid "New user IDs:"
 #~ msgid "Add New User-ID"
 #~ msgstr "Идентификаторҳои нави истифодакунанда:"
-
-#, fuzzy
-#~| msgid "Current Maintainer"
-#~ msgid "Open selection dialog."
-#~ msgstr "Координатори ҷорӣ"
 
 #, fuzzy
 #~| msgid "&Details"

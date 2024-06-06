@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-31 00:39+0000\n"
+"POT-Creation-Date: 2024-06-06 00:39+0000\n"
 "PO-Revision-Date: 2024-05-30 14:30+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -9429,76 +9429,104 @@ msgid "Main Toolbar"
 msgstr "Головна панель"
 
 #: src/kleopatra_options.h:20
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use OpenPGP for the following operation"
+msgctxt "@info:shell"
 msgid "Use OpenPGP for the following operation"
 msgstr "Використовувати OpenPGP для наступної дії"
 
 #: src/kleopatra_options.h:21
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use CMS (X.509, S/MIME) for the following operation"
+msgctxt "@info:shell"
 msgid "Use CMS (X.509, S/MIME) for the following operation"
 msgstr "Використовувати CMS (X.509, S/MIME) для наступної дії"
 
-#: src/kleopatra_options.h:22
-#, kde-format
+#: src/kleopatra_options.h:23
+#, fuzzy, kde-format
+#| msgid "Location of the socket the ui server is listening on"
+msgctxt "@info:shell"
 msgid "Location of the socket the ui server is listening on"
 msgstr "Розташування сокета, на якому слухає сервер інтерфейсу користувача"
 
-#: src/kleopatra_options.h:23
-#, kde-format
+#: src/kleopatra_options.h:25
+#, fuzzy, kde-format
+#| msgid "Run UI server only, hide main window"
+msgctxt "@info:shell"
 msgid "Run UI server only, hide main window"
 msgstr "Запустити лише сервер інтерфейсу користувача, сховати головне вікно"
 
-#: src/kleopatra_options.h:24
-#, kde-format
+#: src/kleopatra_options.h:26
+#, fuzzy, kde-format
+#| msgid "Import certificate file(s)"
+msgctxt "@info:shell"
 msgid "Import certificate file(s)"
 msgstr "Імпортувати файли сертифікатів"
 
-#: src/kleopatra_options.h:25
-#, kde-format
+#: src/kleopatra_options.h:27
+#, fuzzy, kde-format
+#| msgid "Encrypt file(s)"
+msgctxt "@info:shell"
 msgid "Encrypt file(s)"
 msgstr "Зашифрувати файл(и)"
 
-#: src/kleopatra_options.h:26
-#, kde-format
+#: src/kleopatra_options.h:28
+#, fuzzy, kde-format
+#| msgid "Sign file(s)"
+msgctxt "@info:shell"
 msgid "Sign file(s)"
 msgstr "Підписати файл(и)"
 
-#: src/kleopatra_options.h:27
-#, kde-format
+#: src/kleopatra_options.h:29
+#, fuzzy, kde-format
+#| msgid "Sign and/or encrypt file(s)"
+msgctxt "@info:shell"
 msgid "Sign and/or encrypt file(s)"
 msgstr "Підписати і/або зашифрувати файли"
 
-#: src/kleopatra_options.h:28
-#, kde-format
+#: src/kleopatra_options.h:30
+#, fuzzy, kde-format
+#| msgid "Same as --sign-encrypt, do not use"
+msgctxt "@info:shell"
 msgid "Same as --sign-encrypt, do not use"
 msgstr "Те саме, що і --sign-encrypt, не використовуйте"
 
-#: src/kleopatra_options.h:29
-#, kde-format
+#: src/kleopatra_options.h:31
+#, fuzzy, kde-format
+#| msgid "Decrypt file(s)"
+msgctxt "@info:shell"
 msgid "Decrypt file(s)"
 msgstr "Розшифрувати файл(и)"
 
-#: src/kleopatra_options.h:30
-#, kde-format
+#: src/kleopatra_options.h:32
+#, fuzzy, kde-format
+#| msgid "Verify file/signature"
+msgctxt "@info:shell"
 msgid "Verify file/signature"
 msgstr "Перевірити файл або підпис"
 
-#: src/kleopatra_options.h:31
-#, kde-format
+#: src/kleopatra_options.h:33
+#, fuzzy, kde-format
+#| msgid "Decrypt and/or verify file(s)"
+msgctxt "@info:shell"
 msgid "Decrypt and/or verify file(s)"
 msgstr "Розшифрувати і/або перевірити файл(и)"
 
-#: src/kleopatra_options.h:32
-#, kde-format
+#: src/kleopatra_options.h:34
+#, fuzzy, kde-format
+#| msgid "Search for a certificate on a keyserver"
+msgctxt "@info:shell"
 msgid "Search for a certificate on a keyserver"
 msgstr "Шукати сертифікат на сервері ключів"
 
-#: src/kleopatra_options.h:33
-#, kde-format
+#: src/kleopatra_options.h:35
+#, fuzzy, kde-format
+#| msgid "Create or check a checksum file"
+msgctxt "@info:shell"
 msgid "Create or check a checksum file"
 msgstr "Створити або перевірити файл контрольних сум"
 
-#: src/kleopatra_options.h:37
+#: src/kleopatra_options.h:39
 #, kde-format
 msgctxt ""
 "If a certificate is already known it shows the certificate details dialog. "
@@ -9510,28 +9538,38 @@ msgstr ""
 "Показати дані щодо локального сертифіката або шукати його на серверів ключів "
 "за відбитком"
 
-#: src/kleopatra_options.h:38
-#, kde-format
+#: src/kleopatra_options.h:40
+#, fuzzy, kde-format
+#| msgid "Create a new key pair or certificate signing request"
+msgctxt "@info:shell"
 msgid "Create a new key pair or certificate signing request"
 msgstr "Створити пару ключів або запит щодо підписування сертифіката"
 
-#: src/kleopatra_options.h:39
-#, kde-format
+#: src/kleopatra_options.h:41
+#, fuzzy, kde-format
+#| msgid "Parent Window Id for dialogs"
+msgctxt "@info:shell"
 msgid "Parent Window Id for dialogs"
 msgstr "Ід. батьківського вікна для діалогових вікон"
 
-#: src/kleopatra_options.h:40
-#, kde-format
+#: src/kleopatra_options.h:42
+#, fuzzy, kde-format
+#| msgid "Open the config dialog"
+msgctxt "@info:shell"
 msgid "Open the config dialog"
 msgstr "Відкрити вікно налаштовування"
 
-#: src/kleopatra_options.h:51
-#, kde-format
+#: src/kleopatra_options.h:53
+#, fuzzy, kde-format
+#| msgid "File(s) to process"
+msgctxt "@info:shell"
 msgid "File(s) to process"
 msgstr "Файли, які слід обробити"
 
-#: src/kleopatra_options.h:52
-#, kde-format
+#: src/kleopatra_options.h:54
+#, fuzzy, kde-format
+#| msgid "String or Fingerprint for query and search"
+msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Рядок або відбиток для запитів і пошуку"
 

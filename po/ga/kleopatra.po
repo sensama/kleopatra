@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-07 00:39+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -6518,7 +6518,7 @@ msgid "Keygrip"
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
-#: src/dialogs/subkeyswidget.cpp:152
+#: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:152
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgctxt "@title:column"
@@ -6660,7 +6660,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:173
+#: src/dialogs/certificatedetailswidget.cpp:177
 #: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6728,141 +6728,141 @@ msgid ""
 "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:164
+#: src/dialogs/certificatedetailswidget.cpp:168
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgid "User ID:"
 msgstr "Aitheantais Úsáideora"
 
-#: src/dialogs/certificatedetailswidget.cpp:184
+#: src/dialogs/certificatedetailswidget.cpp:188
 #, kde-format
 msgid "Trust level:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:189
+#: src/dialogs/certificatedetailswidget.cpp:193
 #, fuzzy, kde-format
 #| msgid "Valid From"
 msgid "Valid from:"
 msgstr "Bailí Ó"
 
-#: src/dialogs/certificatedetailswidget.cpp:194
+#: src/dialogs/certificatedetailswidget.cpp:198
 #: src/dialogs/expirydialog.cpp:100
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgid "Valid until:"
 msgstr "Bailí go dtí:"
 
-#: src/dialogs/certificatedetailswidget.cpp:197
+#: src/dialogs/certificatedetailswidget.cpp:201
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:198
+#: src/dialogs/certificatedetailswidget.cpp:202
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "Bailíocht"
 
-#: src/dialogs/certificatedetailswidget.cpp:204
+#: src/dialogs/certificatedetailswidget.cpp:208
 #, fuzzy, kde-format
 #| msgid "Status"
 msgid "Status:"
 msgstr "Stádas"
 
-#: src/dialogs/certificatedetailswidget.cpp:209
+#: src/dialogs/certificatedetailswidget.cpp:213
 #: src/dialogs/certifywidget.cpp:193
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgid "Fingerprint:"
 msgstr "Méarlorg"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:217
 #, fuzzy, kde-format
 #| msgid "Could not write to clipboard"
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "Níorbh fhéidir scríobh sa ghearrthaisce"
 
-#: src/dialogs/certificatedetailswidget.cpp:214
+#: src/dialogs/certificatedetailswidget.cpp:218
 #, fuzzy, kde-format
 #| msgid "Fingerprint"
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "Méarlorg"
 
-#: src/dialogs/certificatedetailswidget.cpp:221
+#: src/dialogs/certificatedetailswidget.cpp:225
 #, fuzzy, kde-format
 #| msgid "Issuer"
 msgid "Issuer:"
 msgstr "Eisitheoir"
 
-#: src/dialogs/certificatedetailswidget.cpp:224
+#: src/dialogs/certificatedetailswidget.cpp:228
 #, fuzzy, kde-format
 #| msgid "Could not create certificate: %1"
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "Níorbh fhéidir teastas a chruthú: %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:225
+#: src/dialogs/certificatedetailswidget.cpp:229
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Taispeáin bailíocht an teastais"
 
-#: src/dialogs/certificatedetailswidget.cpp:231
+#: src/dialogs/certificatedetailswidget.cpp:235
 #, fuzzy, kde-format
 #| msgid "Component:"
 msgid "Compliance:"
 msgstr "Comhpháirt:"
 
-#: src/dialogs/certificatedetailswidget.cpp:236
+#: src/dialogs/certificatedetailswidget.cpp:240
 #, fuzzy, kde-format
 #| msgid "Key Usage:"
 msgid "Usage:"
 msgstr "Úsáid na hEochrach:"
 
-#: src/dialogs/certificatedetailswidget.cpp:241
+#: src/dialogs/certificatedetailswidget.cpp:245
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:243
+#: src/dialogs/certificatedetailswidget.cpp:247
 #, fuzzy, kde-format
 #| msgid "Show certificate details"
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Taispeáin mionsonraí an teastais"
 
-#: src/dialogs/certificatedetailswidget.cpp:247
+#: src/dialogs/certificatedetailswidget.cpp:251
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgid "Private Key:"
 msgstr "Easpórtáil Eochracha Rúnda..."
 
-#: src/dialogs/certificatedetailswidget.cpp:262
+#: src/dialogs/certificatedetailswidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "Aitheantais Úsáideora"
 
-#: src/dialogs/certificatedetailswidget.cpp:266
+#: src/dialogs/certificatedetailswidget.cpp:270
 #, fuzzy, kde-format
 #| msgid "EMail address:"
 msgid "Related addresses"
 msgstr "Seoladh ríomhphoist:"
 
-#: src/dialogs/certificatedetailswidget.cpp:269
+#: src/dialogs/certificatedetailswidget.cpp:273
 #, fuzzy, kde-format
 #| msgid "EMail address:"
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "Seoladh ríomhphoist:"
 
-#: src/dialogs/certificatedetailswidget.cpp:272
+#: src/dialogs/certificatedetailswidget.cpp:276
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -6870,63 +6870,70 @@ msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "Fo-eochracha"
 
-#: src/dialogs/certificatedetailswidget.cpp:275
+#: src/dialogs/certificatedetailswidget.cpp:279
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "Deimhniúchán"
 
-#: src/dialogs/certificatedetailswidget.cpp:278
+#: src/dialogs/certificatedetailswidget.cpp:282
 #, fuzzy, kde-format
 #| msgid "Details..."
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "Mionsonraí..."
 
-#: src/dialogs/certificatedetailswidget.cpp:281
+#: src/dialogs/certificatedetailswidget.cpp:285
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr "Roghnaigh Uile"
 
-#: src/dialogs/certificatedetailswidget.cpp:284
+#: src/dialogs/certificatedetailswidget.cpp:288
 #, fuzzy, kde-format
 #| msgid "Certificate Import"
 msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "Iompórtáil Teastais"
 
-#: src/dialogs/certificatedetailswidget.cpp:341
+#: src/dialogs/certificatedetailswidget.cpp:292
+#, fuzzy, kde-format
+#| msgid "Revoke..."
+msgctxt "@title:tab"
+msgid "Revokers"
+msgstr "Cúlghair..."
+
+#: src/dialogs/certificatedetailswidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "unlimited"
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "gan teorainn"
 
-#: src/dialogs/certificatedetailswidget.cpp:348
+#: src/dialogs/certificatedetailswidget.cpp:358
 #: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:351
+#: src/dialogs/certificatedetailswidget.cpp:361
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "Roghnaigh Uile"
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:363
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "Roghnaigh Uile"
 
-#: src/dialogs/certificatedetailswidget.cpp:356
+#: src/dialogs/certificatedetailswidget.cpp:366
 #: src/dialogs/subkeyswidget.cpp:395
 #, fuzzy, kde-format
 #| msgctxt "history size spinbox suffix"
@@ -6936,7 +6943,7 @@ msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr " líne"
 
-#: src/dialogs/certificatedetailswidget.cpp:359
+#: src/dialogs/certificatedetailswidget.cpp:369
 #, kde-format
 msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
 msgid "On this computer and on a smart card"
@@ -6947,44 +6954,44 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: src/dialogs/certificatedetailswidget.cpp:363
+#: src/dialogs/certificatedetailswidget.cpp:373
 #, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:375
+#: src/dialogs/certificatedetailswidget.cpp:385
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgid "encryption"
 msgstr "Criptiú"
 
-#: src/dialogs/certificatedetailswidget.cpp:378
+#: src/dialogs/certificatedetailswidget.cpp:388
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgid "signing"
 msgstr "Síniú"
 
-#: src/dialogs/certificatedetailswidget.cpp:381
+#: src/dialogs/certificatedetailswidget.cpp:391
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "certification"
 msgstr "Deimhniúchán"
 
-#: src/dialogs/certificatedetailswidget.cpp:384
+#: src/dialogs/certificatedetailswidget.cpp:394
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgid "authentication"
 msgstr "Fíordheimhniú"
 
-#: src/dialogs/certificatedetailswidget.cpp:387
+#: src/dialogs/certificatedetailswidget.cpp:397
 #, fuzzy, kde-format
 #| msgid "Bad signature"
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
 msgstr "Drochshíniú"
 
-#: src/dialogs/certificatedetailswidget.cpp:390
+#: src/dialogs/certificatedetailswidget.cpp:400
 #, fuzzy, kde-format
 #| msgctxt "separator for a list of e-mail addresses"
 #| msgid ", "
@@ -6992,46 +6999,46 @@ msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
 
-#: src/dialogs/certificatedetailswidget.cpp:500
+#: src/dialogs/certificatedetailswidget.cpp:510
 #: src/dialogs/useridswidget.cpp:357
 #, fuzzy, kde-format
 #| msgid "Export"
 msgid "Updating..."
 msgstr "Easpórtáil"
 
-#: src/dialogs/certificatedetailswidget.cpp:572
+#: src/dialogs/certificatedetailswidget.cpp:586
 #, kde-format
 msgid "Common Name"
 msgstr "Gnáthainm"
 
-#: src/dialogs/certificatedetailswidget.cpp:573
+#: src/dialogs/certificatedetailswidget.cpp:587
 #, kde-format
 msgid "Organization"
 msgstr "Eagras"
 
-#: src/dialogs/certificatedetailswidget.cpp:574
+#: src/dialogs/certificatedetailswidget.cpp:588
 #, fuzzy, kde-format
 #| msgid "Strength"
 msgid "Street"
 msgstr "Neart"
 
-#: src/dialogs/certificatedetailswidget.cpp:575
+#: src/dialogs/certificatedetailswidget.cpp:589
 #, kde-format
 msgid "City"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:576
+#: src/dialogs/certificatedetailswidget.cpp:590
 #, fuzzy, kde-format
 #| msgid "Status"
 msgid "State"
 msgstr "Stádas"
 
-#: src/dialogs/certificatedetailswidget.cpp:577
+#: src/dialogs/certificatedetailswidget.cpp:591
 #, kde-format
 msgid "Country"
 msgstr "Tír"
 
-#: src/dialogs/certificatedetailswidget.cpp:624
+#: src/dialogs/certificatedetailswidget.cpp:638
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr ""
@@ -8007,6 +8014,43 @@ msgid ""
 "other certificates with it anymore.</item><item>Other people can no longer "
 "encrypt with it after receiving the revocation.</item></list></para>"
 msgstr ""
+
+#: src/dialogs/revokerswidget.cpp:75
+#, fuzzy, kde-format
+#| msgid "Name"
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Ainm"
+
+#: src/dialogs/revokerswidget.cpp:76
+#, fuzzy, kde-format
+#| msgid "Email"
+msgctxt "@title:column"
+msgid "Email"
+msgstr "Ríomhphost"
+
+#: src/dialogs/revokerswidget.cpp:78
+#, fuzzy, kde-format
+#| msgid "Revoke..."
+msgctxt "@label"
+msgid "Revokers"
+msgstr "Cúlghair..."
+
+#: src/dialogs/revokerswidget.cpp:131
+#, fuzzy, kde-format
+#| msgctxt "unknown trust level"
+#| msgid "unknown"
+msgctxt "text for screen readers for an unknown name"
+msgid "unknown name"
+msgstr "anaithnid"
+
+#: src/dialogs/revokerswidget.cpp:132
+#, fuzzy, kde-format
+#| msgctxt "EMAIL OF TRANSLATORS"
+#| msgid "Your emails"
+msgctxt "text for screen readers for an unknown email"
+msgid "unknown email"
+msgstr "seoc@iolfree.ie,kscanne@gmail.com"
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -9369,7 +9413,7 @@ msgstr "&Amharc"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:138
+#: src/kleopatra.rc:44 src/kleopatra.rc:137
 #, kde-format
 msgid "&Certificates"
 msgstr "&Teastais"
@@ -9399,13 +9443,13 @@ msgid "&Help"
 msgstr "&Cabhair"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:105
+#: src/kleopatra.rc:106
 #, kde-format
 msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:120 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Príomhbharra Uirlisí"
@@ -9953,47 +9997,38 @@ msgstr ""
 
 #: src/mainwindow.cpp:813
 #, kde-format
-msgid "Manual for VS-NfD Approval (German)"
+msgid "Manual for VS-NfD Approval"
 msgstr ""
 
 #: src/mainwindow.cpp:814
 #, kde-format
-msgctxt "Only available in German. Keep German file name for all languages"
-msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
+msgctxt ""
+"Only available in German and English. Keep the English file name for other "
+"languages."
+msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:822
 #, kde-format
-msgid "SecOps VSA-10573"
+msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
 #: src/mainwindow.cpp:823
 #, kde-format
 msgctxt ""
-"Only available in German and English. Leave to English for other languages."
-msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
+"Only available in German and English. Keep the English file name for other "
+"languages."
+msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:831
-#, kde-format
-msgid "SecOps VSA-10584"
-msgstr ""
-
-#: src/mainwindow.cpp:832
-#, kde-format
-msgctxt ""
-"Only available in German and English. Leave to English for other languages."
-msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
-msgstr ""
-
-#: src/mainwindow.cpp:859
+#: src/mainwindow.cpp:850
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
 msgstr ""
 
-#: src/mainwindow.cpp:862
+#: src/mainwindow.cpp:853
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr ""

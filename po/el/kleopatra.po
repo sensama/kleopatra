@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-06 00:39+0000\n"
+"POT-Creation-Date: 2024-06-07 00:39+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -6584,7 +6584,7 @@ msgid "Keygrip"
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
-#: src/dialogs/subkeyswidget.cpp:152
+#: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:152
 #, fuzzy, kde-format
 #| msgid "Fingerprint:"
 msgctxt "@title:column"
@@ -6724,7 +6724,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:173
+#: src/dialogs/certificatedetailswidget.cpp:177
 #: src/newcertificatewizard/enterdetailspage.cpp:312
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6798,131 +6798,131 @@ msgstr ""
 "<interface>%1</interface> δεν είναι έγκυρο.<nl/>Κανόνας τοπικού διαχειριστή: "
 "<icode>%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:164
+#: src/dialogs/certificatedetailswidget.cpp:168
 #, fuzzy, kde-format
 #| msgid "User IDs:"
 msgid "User ID:"
 msgstr "Αναγνωριστικά χρηστών:"
 
-#: src/dialogs/certificatedetailswidget.cpp:184
+#: src/dialogs/certificatedetailswidget.cpp:188
 #, kde-format
 msgid "Trust level:"
 msgstr "Επίπεδο εμπιστοσύνης:"
 
-#: src/dialogs/certificatedetailswidget.cpp:189
+#: src/dialogs/certificatedetailswidget.cpp:193
 #, kde-format
 msgid "Valid from:"
 msgstr "Έγκυρο από:"
 
-#: src/dialogs/certificatedetailswidget.cpp:194
+#: src/dialogs/certificatedetailswidget.cpp:198
 #: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Έγκυρο έως:"
 
-#: src/dialogs/certificatedetailswidget.cpp:197
+#: src/dialogs/certificatedetailswidget.cpp:201
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "Άλλαξε το τέλος της περιόδου εγκυρότητας"
 
-#: src/dialogs/certificatedetailswidget.cpp:198
+#: src/dialogs/certificatedetailswidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "Αλλαγή εγκυρότητας"
 
-#: src/dialogs/certificatedetailswidget.cpp:204
+#: src/dialogs/certificatedetailswidget.cpp:208
 #, fuzzy, kde-format
 #| msgctxt "@title:column"
 #| msgid "Status"
 msgid "Status:"
 msgstr "Κατάσταση"
 
-#: src/dialogs/certificatedetailswidget.cpp:209
+#: src/dialogs/certificatedetailswidget.cpp:213
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Αποτύπωμα:"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:217
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "Αντιγραφή δακτυλικού αποτυπώματος στο πρόχειρο"
 
-#: src/dialogs/certificatedetailswidget.cpp:214
+#: src/dialogs/certificatedetailswidget.cpp:218
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "Αντιγραφή δακτυλικού αποτυπώματος"
 
-#: src/dialogs/certificatedetailswidget.cpp:221
+#: src/dialogs/certificatedetailswidget.cpp:225
 #, kde-format
 msgid "Issuer:"
 msgstr "Εκδότης:"
 
-#: src/dialogs/certificatedetailswidget.cpp:224
+#: src/dialogs/certificatedetailswidget.cpp:228
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "Εμφάνιση πιστοποιητικό εκδότη"
 
-#: src/dialogs/certificatedetailswidget.cpp:225
+#: src/dialogs/certificatedetailswidget.cpp:229
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Εμφάνιση πιστοποιητικού"
 
-#: src/dialogs/certificatedetailswidget.cpp:231
+#: src/dialogs/certificatedetailswidget.cpp:235
 #, kde-format
 msgid "Compliance:"
 msgstr "Συμμόρφωση:"
 
-#: src/dialogs/certificatedetailswidget.cpp:236
+#: src/dialogs/certificatedetailswidget.cpp:240
 #, kde-format
 msgid "Usage:"
 msgstr "Χρήση:"
 
-#: src/dialogs/certificatedetailswidget.cpp:241
+#: src/dialogs/certificatedetailswidget.cpp:245
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "Έμπιστος ενδιάμεσος για:"
 
-#: src/dialogs/certificatedetailswidget.cpp:243
+#: src/dialogs/certificatedetailswidget.cpp:247
 #, fuzzy, kde-format
 #| msgid "See certifications for details."
 msgctxt "@info:tooltip"
 msgid "See certifications for details."
 msgstr "Δείτε τις πιστοποιήσεις για λεπτομέρειες."
 
-#: src/dialogs/certificatedetailswidget.cpp:247
+#: src/dialogs/certificatedetailswidget.cpp:251
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Write Key"
 msgid "Private Key:"
 msgstr "Εγγραφή κλειδιού"
 
-#: src/dialogs/certificatedetailswidget.cpp:262
+#: src/dialogs/certificatedetailswidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "User IDs"
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "Αναγνωριστικά χρηστών"
 
-#: src/dialogs/certificatedetailswidget.cpp:266
+#: src/dialogs/certificatedetailswidget.cpp:270
 #, kde-format
 msgid "Related addresses"
 msgstr "Σχετικές διευθύνσεις"
 
-#: src/dialogs/certificatedetailswidget.cpp:269
+#: src/dialogs/certificatedetailswidget.cpp:273
 #, fuzzy, kde-format
 #| msgid "Related addresses"
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "Σχετικές διευθύνσεις"
 
-#: src/dialogs/certificatedetailswidget.cpp:272
+#: src/dialogs/certificatedetailswidget.cpp:276
 #, fuzzy, kde-format
 #| msgctxt "@label"
 #| msgid "Subkeys"
@@ -6930,7 +6930,7 @@ msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "Υποκλειδιά"
 
-#: src/dialogs/certificatedetailswidget.cpp:275
+#: src/dialogs/certificatedetailswidget.cpp:279
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certifications"
@@ -6938,7 +6938,7 @@ msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "Πιστοποιήσεις"
 
-#: src/dialogs/certificatedetailswidget.cpp:278
+#: src/dialogs/certificatedetailswidget.cpp:282
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Trust Chain Details"
@@ -6946,7 +6946,7 @@ msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "Λεπτομέρειες αλυσίδας αξιοπιστίας"
 
-#: src/dialogs/certificatedetailswidget.cpp:281
+#: src/dialogs/certificatedetailswidget.cpp:285
 #, fuzzy, kde-format
 #| msgctxt "@action show smartcard management view"
 #| msgid "Smartcards"
@@ -6954,7 +6954,7 @@ msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr "Έξυπνες κάρτες"
 
-#: src/dialogs/certificatedetailswidget.cpp:284
+#: src/dialogs/certificatedetailswidget.cpp:288
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certificate Dump"
@@ -6962,20 +6962,28 @@ msgctxt "@title:tab"
 msgid "Certificate Dump"
 msgstr "Αποτύπωση πιστοποιητικού"
 
-#: src/dialogs/certificatedetailswidget.cpp:341
+#: src/dialogs/certificatedetailswidget.cpp:292
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Revoke Power"
+msgctxt "@title:tab"
+msgid "Revokers"
+msgstr "Ανάκληση δυνατότητας"
+
+#: src/dialogs/certificatedetailswidget.cpp:351
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "απεριόριστο"
 
-#: src/dialogs/certificatedetailswidget.cpp:348
+#: src/dialogs/certificatedetailswidget.cpp:358
 #: src/dialogs/subkeyswidget.cpp:387
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:351
+#: src/dialogs/certificatedetailswidget.cpp:361
 #, fuzzy, kde-format
 #| msgctxt "smart card <serial number>"
 #| msgid "smart card %1"
@@ -6983,21 +6991,21 @@ msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "έξυπνη κάρτα %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:363
 #, fuzzy, kde-format
 #| msgid "smart card"
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "έξυπνη κάρτα"
 
-#: src/dialogs/certificatedetailswidget.cpp:356
+#: src/dialogs/certificatedetailswidget.cpp:366
 #: src/dialogs/subkeyswidget.cpp:395
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "εκτός σύνδεσης"
 
-#: src/dialogs/certificatedetailswidget.cpp:359
+#: src/dialogs/certificatedetailswidget.cpp:369
 #, kde-format
 msgctxt "As in 'this key is stored on this computer and on smart card(s)'"
 msgid "On this computer and on a smart card"
@@ -7005,46 +7013,46 @@ msgid_plural "On this computer and on %1 smart cards"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/certificatedetailswidget.cpp:363
+#: src/dialogs/certificatedetailswidget.cpp:373
 #, fuzzy, kde-format
 #| msgid "on this computer"
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "στον υπολογιστή αυτό"
 
-#: src/dialogs/certificatedetailswidget.cpp:375
+#: src/dialogs/certificatedetailswidget.cpp:385
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgid "encryption"
 msgstr "Κρυπτογράφηση"
 
-#: src/dialogs/certificatedetailswidget.cpp:378
+#: src/dialogs/certificatedetailswidget.cpp:388
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgid "signing"
 msgstr "Υπογραφή"
 
-#: src/dialogs/certificatedetailswidget.cpp:381
+#: src/dialogs/certificatedetailswidget.cpp:391
 #, fuzzy, kde-format
 #| msgctxt "@option:check"
 #| msgid "Certification"
 msgid "certification"
 msgstr "Πιστοποίηση"
 
-#: src/dialogs/certificatedetailswidget.cpp:384
+#: src/dialogs/certificatedetailswidget.cpp:394
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgid "authentication"
 msgstr "Ταυτοποίηση"
 
-#: src/dialogs/certificatedetailswidget.cpp:387
+#: src/dialogs/certificatedetailswidget.cpp:397
 #, fuzzy, kde-format
 #| msgid "Bad signature"
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
 msgstr "Κακή υπογραφή"
 
-#: src/dialogs/certificatedetailswidget.cpp:390
+#: src/dialogs/certificatedetailswidget.cpp:400
 #, fuzzy, kde-format
 #| msgctxt "separator for a list of e-mail addresses"
 #| msgid ", "
@@ -7052,43 +7060,43 @@ msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
 
-#: src/dialogs/certificatedetailswidget.cpp:500
+#: src/dialogs/certificatedetailswidget.cpp:510
 #: src/dialogs/useridswidget.cpp:357
 #, kde-format
 msgid "Updating..."
 msgstr "Ενημέρωση..."
 
-#: src/dialogs/certificatedetailswidget.cpp:572
+#: src/dialogs/certificatedetailswidget.cpp:586
 #, kde-format
 msgid "Common Name"
 msgstr "Κοινό όνομα"
 
-#: src/dialogs/certificatedetailswidget.cpp:573
+#: src/dialogs/certificatedetailswidget.cpp:587
 #, kde-format
 msgid "Organization"
 msgstr "Οργανισμός"
 
-#: src/dialogs/certificatedetailswidget.cpp:574
+#: src/dialogs/certificatedetailswidget.cpp:588
 #, kde-format
 msgid "Street"
 msgstr "Οδός"
 
-#: src/dialogs/certificatedetailswidget.cpp:575
+#: src/dialogs/certificatedetailswidget.cpp:589
 #, kde-format
 msgid "City"
 msgstr "Πόλη"
 
-#: src/dialogs/certificatedetailswidget.cpp:576
+#: src/dialogs/certificatedetailswidget.cpp:590
 #, kde-format
 msgid "State"
 msgstr "Περιφέρεια"
 
-#: src/dialogs/certificatedetailswidget.cpp:577
+#: src/dialogs/certificatedetailswidget.cpp:591
 #, kde-format
 msgid "Country"
 msgstr "Χώρα"
 
-#: src/dialogs/certificatedetailswidget.cpp:624
+#: src/dialogs/certificatedetailswidget.cpp:638
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "Το πιστοποιητικό του εκδότη δεν βρέθηκε τοπικά."
@@ -8109,6 +8117,44 @@ msgid ""
 "other certificates with it anymore.</item><item>Other people can no longer "
 "encrypt with it after receiving the revocation.</item></list></para>"
 msgstr ""
+
+#: src/dialogs/revokerswidget.cpp:75
+#, fuzzy, kde-format
+#| msgid "Name"
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Όνομα"
+
+#: src/dialogs/revokerswidget.cpp:76
+#, fuzzy, kde-format
+#| msgid "Email"
+msgctxt "@title:column"
+msgid "Email"
+msgstr "Email"
+
+#: src/dialogs/revokerswidget.cpp:78
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Revoke Power"
+msgctxt "@label"
+msgid "Revokers"
+msgstr "Ανάκληση δυνατότητας"
+
+#: src/dialogs/revokerswidget.cpp:131
+#, fuzzy, kde-format
+#| msgctxt "unknown storage location"
+#| msgid "unknown"
+msgctxt "text for screen readers for an unknown name"
+msgid "unknown name"
+msgstr "άγνωστη"
+
+#: src/dialogs/revokerswidget.cpp:132
+#, fuzzy, kde-format
+#| msgctxt "text for screen readers for an empty email address"
+#| msgid "no email"
+msgctxt "text for screen readers for an unknown email"
+msgid "unknown email"
+msgstr "χωρίς διεύθυνση αλληλογραφίας"
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -9588,7 +9634,7 @@ msgstr "&Προβολή"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:138
+#: src/kleopatra.rc:44 src/kleopatra.rc:137
 #, kde-format
 msgid "&Certificates"
 msgstr "&Πιστοποιητικά"
@@ -9618,14 +9664,14 @@ msgid "&Help"
 msgstr "&Βοήθεια"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:105
+#: src/kleopatra.rc:106
 #, fuzzy, kde-format
 #| msgid "&More documentation"
 msgid "&More Documentation"
 msgstr "&Περισσότερη τεκμηρίωση"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:120 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Κύρια γραμμή εργαλείων"
@@ -10200,40 +10246,39 @@ msgstr "Γραμμή εντο&λής GnuPG"
 
 #: src/mainwindow.cpp:813
 #, kde-format
-msgid "Manual for VS-NfD Approval (German)"
+msgid "Manual for VS-NfD Approval"
 msgstr ""
 
 #: src/mainwindow.cpp:814
-#, kde-format
-msgctxt "Only available in German. Keep German file name for all languages"
-msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
-msgstr ""
+#, fuzzy, kde-format
+#| msgctxt ""
+#| "Only available in German and English. Leave to English for other "
+#| "languages."
+#| msgid "encrypt_and_sign_gnupgvsd_en.pdf"
+msgctxt ""
+"Only available in German and English. Keep the English file name for other "
+"languages."
+msgid "handbuch_zulassung_gnupgvsd_en.pdf"
+msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:822
 #, kde-format
-msgid "SecOps VSA-10573"
-msgstr "SecOps VSA-10573"
+msgid "SecOps for VS-NfD Approval"
+msgstr ""
 
 #: src/mainwindow.cpp:823
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt ""
+#| "Only available in German and English. Leave to English for other "
+#| "languages."
+#| msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgctxt ""
-"Only available in German and English. Leave to English for other languages."
-msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
+"Only available in German and English. Keep the English file name for other "
+"languages."
+msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:831
-#, kde-format
-msgid "SecOps VSA-10584"
-msgstr "SecOps VSA-10584"
-
-#: src/mainwindow.cpp:832
-#, kde-format
-msgctxt ""
-"Only available in German and English. Leave to English for other languages."
-msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
-msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
-
-#: src/mainwindow.cpp:859
+#: src/mainwindow.cpp:850
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10242,7 +10287,7 @@ msgstr ""
 "Υπάρχουν ακόμη κάποιες διεργασίες παρασκηνίου σε εξέλιξη. Αυτές θα "
 "τερματιστούν κατά το κλείσιμο του παραθύρου. Θα συνεχίσετε;"
 
-#: src/mainwindow.cpp:862
+#: src/mainwindow.cpp:853
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Διεργασίες παρασκηνίου σε εξέλιξη"
@@ -13428,6 +13473,18 @@ msgstr ""
 "Εισαγωγή πιστοποιητικού από αρχείο.<nl/>Για να εισάγετε από ένα δημόσιο "
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
+
+#~ msgid "SecOps VSA-10573"
+#~ msgstr "SecOps VSA-10573"
+
+#~ msgid "SecOps VSA-10584"
+#~ msgstr "SecOps VSA-10584"
+
+#~ msgctxt ""
+#~ "Only available in German and English. Leave to English for other "
+#~ "languages."
+#~ msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
+#~ msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
 #~ msgctxt "@title:window"
 #~ msgid "Key Revoked"

@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-07 00:39+0000\n"
-"PO-Revision-Date: 2024-01-31 17:47+0200\n"
+"PO-Revision-Date: 2024-03-11 16:36+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -151,24 +151,18 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "© 2010–%1 Kleopatran kehittäjät, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:168
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p>Sattui virhe yritettäessä vaihtaa salasanaa varmenteessa <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>Sattui virhe yritettäessä lisätään uutta aliavainta avaimeen <b>%1</b>:</"
+"p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:176
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "Aliavaimen vienti onnistui."
+msgstr "Aliavaimen lisääminen onnistui."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -1027,25 +1021,21 @@ msgid "Error Saving Request"
 msgstr "Virhe tallennettaessa pyyntöä"
 
 #: src/commands/creategroupcommand.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "Tätä varmennetta ei voi käyttää salaamiseen."
+msgstr ""
+"Yhtäkään valituista varmenteista ei voi käyttää salaamiseen. Ryhmää ei luoda."
 
 #: src/commands/creategroupcommand.cpp:102
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>Varoitus:</b> Yksikään valituista varmenteista ei näytä olevan omasi. Et "
-"voi enää purkaa salattua viestiä."
+"Joitakin valituista varmenteista ei voi käyttää salaamiseen. Niitä ei voi "
+"lisätä ryhmään."
 
 #: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:330
 #, kde-format
@@ -2314,19 +2304,16 @@ msgid "No, It's Not Mine"
 msgstr "Ei, se ei ole minun"
 
 #: src/commands/importcertificatescommand.cpp:805
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
-#| "emphasis></para><para>Once deleted, it cannot be restored.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The imported group</para><para><emphasis>%1</emphasis></"
 "para><para>contains certificates that cannot be used for encryption. This "
 "may lead to unexpected results.</para>"
 msgstr ""
-"<para>Haluatko varmasti poistaa tämän ryhmän?</para><para><emphasis>%1</"
-"emphasis></para><para>Poistamisen jälkeen sitä ei voi palauttaa.</para>"
+"<para>Tuotu ryhmä</para><para><emphasis>%1</emphasis></para><para>sisältää "
+"varmenteita, joita ei voi käyttää salaukseen. Tämä voi johtaa "
+"odottamattomiin seurauksiin.</para>"
 
 #: src/commands/importcertificatescommand.cpp:869
 #, kde-format
@@ -6349,12 +6336,10 @@ msgid "Valid until:"
 msgstr "Vanhenemisaika:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Aliavaimet"
+msgstr "Lisää aliavain"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
@@ -6362,11 +6347,10 @@ msgid "Expiration of primary key: %1"
 msgstr "Ensisijainen avain vanhenee: %1"
 
 #: src/dialogs/addsubkeydialog.cpp:264
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr "oletus"
+msgstr "Oletus"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -6817,7 +6801,7 @@ msgstr "ei rajoitettu"
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
-msgstr ""
+msgstr "ei käyt."
 
 #: src/dialogs/certificatedetailswidget.cpp:361
 #, fuzzy, kde-format
@@ -7461,22 +7445,20 @@ msgid "Secret Key Deletion"
 msgstr "Salaisen avaimen poisto"
 
 #: src/dialogs/editgroupdialog.cpp:83
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Tätä varmennetta ei voi käyttää salaamiseen."
 
 #: src/dialogs/editgroupdialog.cpp:114
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "Tätä varmennetta ei voi käyttää salaamiseen."
+msgstr ""
+"Tätä varmennetta ei voi lisätä ryhmään, koska sitä ei voi käyttää "
+"salaamiseen."
 
 #: src/dialogs/editgroupdialog.cpp:157
 #, kde-format
@@ -8149,11 +8131,10 @@ msgid "Status"
 msgstr "Tila"
 
 #: src/dialogs/subkeyswidget.cpp:156
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr "Algoritmi:"
+msgstr "Algoritmi"
 
 #: src/dialogs/subkeyswidget.cpp:157
 #, kde-format
@@ -8858,23 +8839,17 @@ msgstr "Kelvollisuuden oletusaika"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
-msgstr "Asettaa päivinä OpenPGP-avainten kelvollisuuden oletusajan."
+msgstr ""
+"Asettaa uusien tai jatkettujen OpenPGP-avainten kelpoisuuden oletusajan "
+"(päivinä)."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -8884,8 +8859,9 @@ msgid ""
 "maximum validity period) by default."
 msgstr ""
 "Tämä asetus määrittää, montako päivää uusi OpenPGP-avain oletusarvoisesti "
-"kelpaa eli monessako päivässä se vanhenee. Poista vanheneminen asettamalla "
-"arvoksi 0. Ellei asetusta ole tai se on negatiivinen, uudet OpenPGP-avaimet "
+"kelpaa luomisensa tai kelpoisuusensa muutoksen jälkeen eli monessako "
+"päivässä se vanhenee. Poista vanheneminen asettamalla arvoksi 0. Ellei "
+"asetusta ole tai se on negatiivinen, uudet tai jatketut OpenPGP-avaimet "
 "kelpaavat oletusarvoisesti kolme vuotta (mitä voi rajoittaa sallittu "
 "vähimmäis- tai enimmäiskelvollisuusaika)."
 
@@ -8897,30 +8873,25 @@ msgstr "Kelvollisuuden vähimmäisaika"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
 msgstr ""
-"Asettaa (päivinä) uusien OpenPGP-avainten kelvollisuuden vähimmäissajan."
+"Asettaa uusien tai jatkettujen OpenPGP-avainten enimmäiskelpoisuusajan "
+"(päivinä)."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"Tämä asetus määrittää, montako päivää uusi OpenPGP-avain enintään kelpaa eli "
-"monessako päivässä se viimeistään vanhenee. Ellei asetusta ole tai se on "
-"negatiivinen, avaimet voivat kelvata rajattoman pitkään."
+"Tämä asettaa vähimmäismäärän päiviä, jonka käyttäjä voi valita OpenPGP-"
+"varmenteiden kelpoisuusajaksi. Tämä vaikuttaa avainten luontiin ja "
+"kelpoisuuden muuttamiseen."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8930,30 +8901,27 @@ msgstr "Kelvollisuuden enimmäisaika"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Asettaa (päivinä) uusien OpenPGP-avainten kelvollisuuden enimmäisajan."
+msgstr ""
+"Asettaa uusien tai jatkettujen OpenPGP-avainten enimmäiskelpoisuusajan "
+"(päivinä)."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Tämä asetus määrittää, montako päivää uusi OpenPGP-avain enintään kelpaa eli "
-"monessako päivässä se viimeistään vanhenee. Ellei asetusta ole tai se on "
-"negatiivinen, avaimet voivat kelvata rajattoman pitkään."
+"Tämä asetus määrittää enimmäismäärän päiviä, jonka käyttäjä voi valita "
+"OpenPGP-varmenteiden kelpoisuusajaksi. Tämä vaikuttaa avainten luomiseen ja "
+"kelpoisuuden muuttamiseen. Ellei asetusta ole tai arvo on negatiivinen, "
+"sallitaan rajoittamaton kelpoisuus."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
@@ -9887,8 +9855,7 @@ msgid "Configure Groups..."
 msgstr "Ryhmäasetukset…"
 
 #: src/mainwindow.cpp:691
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Ryhmät"
@@ -11817,11 +11784,10 @@ msgid "Certificates:"
 msgstr "Varmenteet:"
 
 #: src/view/cardkeysview.cpp:194
-#, fuzzy, kde-format
-#| msgid "Fetching certificate from server..."
+#, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
-msgstr "Noudetaan sertifikaattia palvelimelta..."
+msgstr "Luetaan varmennetta älykortilta…"
 
 #: src/view/formtextinput.cpp:28
 #, kde-format
@@ -12054,18 +12020,16 @@ msgid "Add User ID..."
 msgstr "Lisää käyttäjätunniste…"
 
 #: src/view/keylistcontroller.cpp:560
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Ryhmäasetukset…"
+msgstr "Luo ryhmä…"
 
 #: src/view/keylistcontroller.cpp:561
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "Tarkista valitun varmenteen kelvollisuus"
+msgstr "Luo valituista varmenteista ryhmä"
 
 #: src/view/keylistcontroller.cpp:569
 #, kde-format

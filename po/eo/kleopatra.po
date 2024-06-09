@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-07 00:39+0000\n"
-"PO-Revision-Date: 2024-05-30 07:49+0200\n"
+"PO-Revision-Date: 2024-06-08 10:47+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -6684,12 +6684,10 @@ msgid "Certificate Dump"
 msgstr "Atestil-Elĵeto"
 
 #: src/dialogs/certificatedetailswidget.cpp:292
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Power"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Revokers"
-msgstr "Revoki Potencon"
+msgstr "Revokantoj"
 
 #: src/dialogs/certificatedetailswidget.cpp:351
 #, kde-format
@@ -7759,42 +7757,34 @@ msgstr ""
 "item></list></para>"
 
 #: src/dialogs/revokerswidget.cpp:75
-#, fuzzy, kde-format
-#| msgid "Name"
+#, kde-format
 msgctxt "@title:column"
 msgid "Name"
 msgstr "Nomo"
 
 #: src/dialogs/revokerswidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Email"
+#, kde-format
 msgctxt "@title:column"
 msgid "Email"
 msgstr "Retpoŝto"
 
 #: src/dialogs/revokerswidget.cpp:78
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Power"
+#, kde-format
 msgctxt "@label"
 msgid "Revokers"
-msgstr "Revoki Potencon"
+msgstr "Revokantoj"
 
 #: src/dialogs/revokerswidget.cpp:131
-#, fuzzy, kde-format
-#| msgctxt "unknown cardholder"
-#| msgid "unknown"
+#, kde-format
 msgctxt "text for screen readers for an unknown name"
 msgid "unknown name"
-msgstr "nekonata"
+msgstr "nekonata nomo"
 
 #: src/dialogs/revokerswidget.cpp:132
-#, fuzzy, kde-format
-#| msgctxt "text for screen readers for an empty email address"
-#| msgid "no email"
+#, kde-format
 msgctxt "text for screen readers for an unknown email"
 msgid "unknown email"
-msgstr "neniu retpoŝto"
+msgstr "nekonata retpoŝto"
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -9248,99 +9238,85 @@ msgid "Main Toolbar"
 msgstr "Ĉefa ilobreto"
 
 #: src/kleopatra_options.h:20
-#, fuzzy, kde-format
-#| msgid "Use OpenPGP for the following operation"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Use OpenPGP for the following operation"
 msgstr "Uzi OpenPGP por la sekva operacio"
 
 #: src/kleopatra_options.h:21
-#, fuzzy, kde-format
-#| msgid "Use CMS (X.509, S/MIME) for the following operation"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Use CMS (X.509, S/MIME) for the following operation"
 msgstr "Uzi CMS (X.509, S/MIME) por la sekva operacio"
 
 #: src/kleopatra_options.h:23
-#, fuzzy, kde-format
-#| msgid "Location of the socket the ui server is listening on"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Location of the socket the ui server is listening on"
-msgstr "Loko de la ingo, sur kiu aŭskultas ui-servilo"
+msgstr "Loko de la konektingo, sur kiu aŭskultas ui-servilo"
 
 #: src/kleopatra_options.h:25
-#, fuzzy, kde-format
-#| msgid "Run UI server only, hide main window"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Run UI server only, hide main window"
 msgstr "Ruli nur UI-servilon, kaŝi la ĉefan fenestron"
 
 #: src/kleopatra_options.h:26
-#, fuzzy, kde-format
-#| msgid "Import certificate file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Import certificate file(s)"
-msgstr "Importi atestildosieron(j)"
+msgstr "Importi atestildosiero(j)n"
 
 #: src/kleopatra_options.h:27
-#, fuzzy, kde-format
-#| msgid "Encrypt file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Encrypt file(s)"
-msgstr "Ĉifri dosiero(j)"
+msgstr "Ĉifri dosiero(j)n"
 
 #: src/kleopatra_options.h:28
-#, fuzzy, kde-format
-#| msgid "Sign file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Sign file(s)"
-msgstr "Subskribi dosiero(j)"
+msgstr "Subskribi dosiero(j)n"
 
 #: src/kleopatra_options.h:29
-#, fuzzy, kde-format
-#| msgid "Sign and/or encrypt file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Sign and/or encrypt file(s)"
 msgstr "Subskribi kaj/aŭ ĉifri dosiero(j)n"
 
 #: src/kleopatra_options.h:30
-#, fuzzy, kde-format
-#| msgid "Same as --sign-encrypt, do not use"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Same as --sign-encrypt, do not use"
 msgstr "Same kiel --sign-encrypt, ne uzu"
 
 #: src/kleopatra_options.h:31
-#, fuzzy, kde-format
-#| msgid "Decrypt file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Decrypt file(s)"
-msgstr "Malĉifri dosiero(j)"
+msgstr "Malĉifri dosiero(j)n"
 
 #: src/kleopatra_options.h:32
-#, fuzzy, kde-format
-#| msgid "Verify file/signature"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Verify file/signature"
 msgstr "Konfirmi dosieron/subskribon"
 
 #: src/kleopatra_options.h:33
-#, fuzzy, kde-format
-#| msgid "Decrypt and/or verify file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Decrypt and/or verify file(s)"
-msgstr "Malĉifri kaj/aŭ konfirmi dosieron(j)"
+msgstr "Malĉifri kaj/aŭ konfirmi dosiero(j)n"
 
 #: src/kleopatra_options.h:34
-#, fuzzy, kde-format
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Search for a certificate on a keyserver"
 msgstr "Serĉi atestilon en ŝlosilservilo"
 
 #: src/kleopatra_options.h:35
-#, fuzzy, kde-format
-#| msgid "Create or check a checksum file"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Create or check a checksum file"
 msgstr "Krei aŭ kontroli kontrolsuman dosieron"
@@ -9358,39 +9334,34 @@ msgstr ""
 "fingrospuro"
 
 #: src/kleopatra_options.h:40
-#, fuzzy, kde-format
-#| msgid "Create a new key pair or certificate signing request"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Create a new key pair or certificate signing request"
-msgstr "Krei novan ŝlosilparon aŭ peton de subskribo de atestilo"
+msgstr "Krei novan ŝlosilparon aŭ atestilsubskriban alpeton"
 
 #: src/kleopatra_options.h:41
-#, fuzzy, kde-format
-#| msgid "Parent Window Id for dialogs"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Parent Window Id for dialogs"
-msgstr "Gepa Fenestra Idilo por dialogoj"
+msgstr "Gepatrofenestra Identigilo por dialogoj"
 
 #: src/kleopatra_options.h:42
-#, fuzzy, kde-format
-#| msgid "Open the config dialog"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Open the config dialog"
 msgstr "Malfermi la agordan dialogon"
 
 #: src/kleopatra_options.h:53
-#, fuzzy, kde-format
-#| msgid "File(s) to process"
+#, kde-format
 msgctxt "@info:shell"
 msgid "File(s) to process"
-msgstr "Dosiero(j) prilaborenda(j)."
+msgstr "Dosiero(j) prilaborenda(j)"
 
 #: src/kleopatra_options.h:54
-#, fuzzy, kde-format
-#| msgid "String or Fingerprint for query and search"
+#, kde-format
 msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
-msgstr "Ĉeno aŭ fingrospuro por konsulto kaj serĉo"
+msgstr "Ĉeno aŭ Fingrospuro por aldemando kaj serĉo"
 
 #: src/kleopatraapplication.cpp:391
 #, kde-format
@@ -9803,38 +9774,30 @@ msgid "GnuPG Command&line"
 msgstr "GnuPG-Komand&linio"
 
 #: src/mainwindow.cpp:813
-#, fuzzy, kde-format
-#| msgid "Manual for VS-NfD Approval (German)"
+#, kde-format
 msgid "Manual for VS-NfD Approval"
-msgstr "Manlibro por Aprobo VS-NfD (germana)"
+msgstr "Manlibro por Aprobo VS-NfD"
 
 #: src/mainwindow.cpp:814
-#, fuzzy, kde-format
-#| msgctxt "Only available in German. Keep German file name for all languages"
-#| msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
 "languages."
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
-msgstr "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
+msgstr "Handbuch-zulassung-gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:822
-#, fuzzy, kde-format
-#| msgid "Manual for VS-NfD Approval (German)"
+#, kde-format
 msgid "SecOps for VS-NfD Approval"
-msgstr "Manlibro por Aprobo VS-NfD (germana)"
+msgstr "SecOps por Aprobo VS-NfD"
 
 #: src/mainwindow.cpp:823
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
 "languages."
 msgid "BSI-VSA-10867_ENG_secops.pdf"
-msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
+msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
 #: src/mainwindow.cpp:850
 #, kde-format
@@ -12968,15 +12931,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgid "SecOps VSA-10573"
-#~ msgstr "SecOps VSA-10573"
-
-#~ msgid "SecOps VSA-10584"
-#~ msgstr "SecOps VSA-10584"
-
-#~ msgctxt ""
-#~ "Only available in German and English. Leave to English for other "
-#~ "languages."
-#~ msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
-#~ msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"

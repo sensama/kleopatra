@@ -421,8 +421,8 @@ void DirectoryServicesConfigurationPage::Private::save()
         } else if (keyserver == QLatin1StringView{"none"}) {
             mOpenPGPServiceEntry->setStringValue(keyserver);
         } else {
-            const auto keyserverUrl = keyserver.contains(QLatin1StringView{"://"}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
-            mOpenPGPServiceEntry->setStringValue(keyserverUrl);
+            const auto keyserverValue = keyserver.contains(QLatin1Char{':'}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
+            mOpenPGPServiceEntry->setStringValue(keyserverValue);
         }
         mRetrieveKeysEntry->setBoolValue(mRetrieveKeysCheckBox->isChecked());
     }

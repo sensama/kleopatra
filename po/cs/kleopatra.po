@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-07 00:39+0000\n"
-"PO-Revision-Date: 2024-04-26 11:01+0200\n"
+"PO-Revision-Date: 2024-06-05 09:22+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -148,6 +148,7 @@ msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
+"<p>Během přidávání nového podklíče do <b>%1</b> nastala chyba:</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:176
 #, kde-format
@@ -2394,7 +2395,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr ""
+msgstr "Vytvořit zálohu"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
@@ -2723,7 +2724,7 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
-msgstr ""
+msgstr "<para>Aktualizace selhala:</para><para><message>%1</message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp:394
 #, kde-kuit-format
@@ -3458,7 +3459,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "OpenPGP Keyserver"
-msgstr ""
+msgstr "Server klíčů OpenPGP"
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-format
@@ -4605,7 +4606,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1169
 #, kde-format
 msgid "Decrypting %1..."
-msgstr ""
+msgstr "Dešifrování: %1..."
 
 #: src/crypto/decryptverifytask.cpp:1447
 #, kde-format
@@ -4642,7 +4643,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1874
 #, kde-format
 msgid "Verifying signature %1..."
-msgstr ""
+msgstr "Ověřuji podpis %1..."
 
 #: src/crypto/decryptverifytask.cpp:1885
 #, kde-kuit-format
@@ -4744,7 +4745,7 @@ msgstr "..."
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
-msgstr ""
+msgstr "Výstu&pní složka:"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:98
 #, kde-format
@@ -4840,7 +4841,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "&Decrypt/Verify"
-msgstr ""
+msgstr "&Dešifrovat/ověřit"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:219
 #, kde-format
@@ -5148,7 +5149,7 @@ msgstr "Výstup"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Please select an action."
-msgstr ""
+msgstr "Prosím, vyberte činnost."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:167
 #, kde-format
@@ -5575,7 +5576,7 @@ msgstr "Hledat"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search on keyserver"
-msgstr ""
+msgstr "Hledat na serveru klíčů"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:52
 #, kde-format
@@ -5868,7 +5869,7 @@ msgstr ""
 #, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr ""
+msgstr "Výchozí"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -5909,7 +5910,7 @@ msgstr ""
 #: src/dialogs/cardinfotab.cpp:67
 #, kde-format
 msgid "Subkeys"
-msgstr ""
+msgstr "Podklíče"
 
 #: src/dialogs/cardinfotab.cpp:73 src/dialogs/subkeyswidget.cpp:159
 #, kde-format
@@ -5928,7 +5929,7 @@ msgstr "Otisk"
 #, kde-format
 msgctxt "@title:column"
 msgid "Token"
-msgstr ""
+msgstr "Výraz"
 
 #: src/dialogs/cardinfotab.cpp:76
 #, kde-format
@@ -5940,7 +5941,7 @@ msgstr "Typ"
 #, kde-format
 msgctxt "@title:column"
 msgid "Serial Number"
-msgstr ""
+msgstr "Sériové číslo"
 
 #: src/dialogs/cardinfotab.cpp:78
 #, kde-format
@@ -5971,13 +5972,13 @@ msgstr ""
 #, kde-format
 msgctxt "<Manufacturer> <type> <version>"
 msgid "%1 %2 v%3"
-msgstr ""
+msgstr "%1 %2 v%3"
 
 #: src/dialogs/cardinfotab.cpp:151
 #, kde-format
 msgctxt "unknown cardholder"
 msgid "unknown"
-msgstr ""
+msgstr "neznámý"
 
 #: src/dialogs/cardinfotab.cpp:153 src/dialogs/cardinfotab.cpp:157
 #: src/dialogs/cardinfotab.cpp:159
@@ -6214,7 +6215,7 @@ msgstr "Soukromý klíč:"
 #, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
-msgstr ""
+msgstr "ID uživatelů"
 
 #: src/dialogs/certificatedetailswidget.cpp:270
 #, kde-format
@@ -6231,13 +6232,13 @@ msgstr ""
 #, kde-format
 msgctxt "@title:tab"
 msgid "Subkeys"
-msgstr ""
+msgstr "Podklíče"
 
 #: src/dialogs/certificatedetailswidget.cpp:279
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certifications"
-msgstr ""
+msgstr "Certifikace"
 
 #: src/dialogs/certificatedetailswidget.cpp:282
 #, kde-format
@@ -6249,13 +6250,13 @@ msgstr ""
 #, kde-format
 msgctxt "@title:tab"
 msgid "Smartcard"
-msgstr ""
+msgstr "Čipová karta"
 
 #: src/dialogs/certificatedetailswidget.cpp:288
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
-msgstr ""
+msgstr "Výpis certifikátu"
 
 #: src/dialogs/certificatedetailswidget.cpp:292
 #, kde-format
@@ -6274,19 +6275,19 @@ msgstr "neomezeně"
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
-msgstr ""
+msgstr "nedostupné"
 
 #: src/dialogs/certificatedetailswidget.cpp:361
 #, kde-format
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
-msgstr ""
+msgstr "čipová karta %1"
 
 #: src/dialogs/certificatedetailswidget.cpp:363
 #, kde-format
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
-msgstr ""
+msgstr "čipová karta"
 
 #: src/dialogs/certificatedetailswidget.cpp:366
 #: src/dialogs/subkeyswidget.cpp:395
@@ -6308,27 +6309,27 @@ msgstr[2] ""
 #, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
-msgstr ""
+msgstr "na tomto počítači"
 
 #: src/dialogs/certificatedetailswidget.cpp:385
 #, kde-format
 msgid "encryption"
-msgstr ""
+msgstr "Šifrování"
 
 #: src/dialogs/certificatedetailswidget.cpp:388
 #, kde-format
 msgid "signing"
-msgstr ""
+msgstr "Podepisování"
 
 #: src/dialogs/certificatedetailswidget.cpp:391
 #, kde-format
 msgid "certification"
-msgstr ""
+msgstr "Certifikace"
 
 #: src/dialogs/certificatedetailswidget.cpp:394
 #, kde-format
 msgid "authentication"
-msgstr ""
+msgstr "Ověření"
 
 #: src/dialogs/certificatedetailswidget.cpp:397
 #, kde-format
@@ -6340,7 +6341,7 @@ msgstr ""
 #, kde-format
 msgctxt "Separator between words in a list"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: src/dialogs/certificatedetailswidget.cpp:510
 #: src/dialogs/useridswidget.cpp:357
@@ -6420,7 +6421,7 @@ msgstr "Importovat certifikát"
 #, kde-format
 msgctxt "@action:button"
 msgid "Lookup..."
-msgstr ""
+msgstr "Vyhledat..."
 
 #: src/dialogs/certificateselectiondialog.cpp:168
 #, kde-format
@@ -6454,7 +6455,7 @@ msgstr "Vytvořit certifikát"
 #, kde-format
 msgctxt "@action:button"
 msgid "Groups..."
-msgstr ""
+msgstr "Skupiny..."
 
 #: src/dialogs/certificateselectiondialog.cpp:174
 #, kde-format
@@ -6998,7 +6999,7 @@ msgstr "Název:"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "EMail:"
-msgstr ""
+msgstr "E-mail:"
 
 #: src/dialogs/gencardkeydialog.cpp:68
 #, kde-format
@@ -7009,7 +7010,7 @@ msgstr "Neplatný e-mail"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Algorithm:"
-msgstr ""
+msgstr "Algoritmus:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
 #, kde-format
@@ -7020,7 +7021,7 @@ msgstr "Zálohovat šifrovací klíč"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Backup the encryption key in a file."
-msgstr ""
+msgstr "Zálohovat šifrovací klíč do souboru."
 
 #: src/dialogs/gencardkeydialog.cpp:84
 #, kde-format
@@ -7170,7 +7171,7 @@ msgstr "Rozšířené možnosti"
 #, kde-format
 msgctxt "The algorithm and strength of encryption key"
 msgid "Key Material"
-msgstr ""
+msgstr "Typ klíčů"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
 #, kde-format
@@ -7192,7 +7193,7 @@ msgstr ""
 #, kde-format
 msgctxt "title:window"
 msgid "Revoke Certificate"
-msgstr ""
+msgstr "Odvolat certifikát"
 
 #: src/dialogs/revokekeydialog.cpp:109
 #, kde-format
@@ -7246,7 +7247,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certificate"
-msgstr ""
+msgstr "Odvolat certifikát"
 
 #: src/dialogs/revokekeydialog.cpp:224
 #, kde-format
@@ -7268,18 +7269,16 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp:75
-#, fuzzy, kde-format
-#| msgid "Name"
+#, kde-format
 msgctxt "@title:column"
 msgid "Name"
-msgstr "Jméno"
+msgstr "Název"
 
 #: src/dialogs/revokerswidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Email"
+#, kde-format
 msgctxt "@title:column"
 msgid "Email"
-msgstr "E-mail"
+msgstr ""
 
 #: src/dialogs/revokerswidget.cpp:78
 #, kde-format
@@ -7288,20 +7287,16 @@ msgid "Revokers"
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp:131
-#, fuzzy, kde-format
-#| msgctxt "unknown storage location"
-#| msgid "unknown"
+#, kde-format
 msgctxt "text for screen readers for an unknown name"
 msgid "unknown name"
-msgstr "neznámý"
+msgstr ""
 
 #: src/dialogs/revokerswidget.cpp:132
-#, fuzzy, kde-format
-#| msgctxt "text for screen readers for an empty email address"
-#| msgid "no email"
+#, kde-format
 msgctxt "text for screen readers for an unknown email"
 msgid "unknown email"
-msgstr "žádný e-mail"
+msgstr ""
 
 #: src/dialogs/selftestdialog.cpp:92
 #, kde-format
@@ -7464,7 +7459,7 @@ msgstr "Podklíče"
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
-msgstr ""
+msgstr "ID klíče"
 
 #: src/dialogs/subkeyswidget.cpp:153
 #, kde-format
@@ -7488,7 +7483,7 @@ msgstr "Stav"
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr ""
+msgstr "Algoritmus"
 
 #: src/dialogs/subkeyswidget.cpp:157
 #, kde-format
@@ -7518,7 +7513,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
-msgstr ""
+msgstr "Exportovat klíč OpenSSH"
 
 #: src/dialogs/subkeyswidget.cpp:169
 #, kde-format
@@ -7536,14 +7531,14 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
-msgstr ""
+msgstr "Exportovat tajný podklíč"
 
 #: src/dialogs/subkeyswidget.cpp:179 src/dialogs/useridswidget.cpp:156
 #: src/dialogs/weboftrustwidget.cpp:137
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show more options"
-msgstr ""
+msgstr "Zobrazit více možností"
 
 #: src/dialogs/subkeyswidget.cpp:275
 #, kde-format
@@ -8618,7 +8613,7 @@ msgstr "&Nápověda"
 #: src/kleopatra.rc:106
 #, kde-format
 msgid "&More Documentation"
-msgstr ""
+msgstr "Další doku&mentace"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/kleopatra.rc:120 src/kwatchgnupg/kwatchgnupgui.rc:13
@@ -8651,33 +8646,28 @@ msgid "Run UI server only, hide main window"
 msgstr ""
 
 #: src/kleopatra_options.h:26
-#, fuzzy, kde-format
-#| msgid "Import certificate file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Import certificate file(s)"
-msgstr "Importovat soubor(y) certifikátu"
+msgstr ""
 
 #: src/kleopatra_options.h:27
-#, fuzzy, kde-format
-#| msgid "Encrypt file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Encrypt file(s)"
-msgstr "Zašifrovat soubor(y)"
+msgstr ""
 
 #: src/kleopatra_options.h:28
-#, fuzzy, kde-format
-#| msgid "Sign file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Sign file(s)"
-msgstr "Podepsat soubor(y)"
+msgstr ""
 
 #: src/kleopatra_options.h:29
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Sign / Encrypt Files"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Sign and/or encrypt file(s)"
-msgstr "Podepsat/zašifrovat soubory"
+msgstr ""
 
 #: src/kleopatra_options.h:30
 #, kde-format
@@ -8686,39 +8676,34 @@ msgid "Same as --sign-encrypt, do not use"
 msgstr ""
 
 #: src/kleopatra_options.h:31
-#, fuzzy, kde-format
-#| msgid "Decrypt file(s)"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Decrypt file(s)"
-msgstr "Dešifrovat soubor(y)"
+msgstr ""
 
 #: src/kleopatra_options.h:32
-#, fuzzy, kde-format
-#| msgid "Verify file/signature"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Verify file/signature"
-msgstr "Ověřit soubor/podpis"
+msgstr ""
 
 #: src/kleopatra_options.h:33
-#, fuzzy, kde-format
-#| msgid "Decrypt and/or verify files"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Decrypt and/or verify file(s)"
-msgstr "Dešifrovat a/nebo ověřit soubory"
+msgstr ""
 
 #: src/kleopatra_options.h:34
-#, fuzzy, kde-format
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Search for a certificate on a keyserver"
-msgstr "Hledat certifikát na serveru klíčů"
+msgstr ""
 
 #: src/kleopatra_options.h:35
-#, fuzzy, kde-format
-#| msgid "Create or check a checksum file"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Create or check a checksum file"
-msgstr "Vytvořit nebo zkontrolovat soubor s kontrolním součtem"
+msgstr ""
 
 #: src/kleopatra_options.h:39
 #, kde-format
@@ -8731,11 +8716,10 @@ msgid ""
 msgstr ""
 
 #: src/kleopatra_options.h:40
-#, fuzzy, kde-format
-#| msgid "Create a new key pair or certificate signing request"
+#, kde-format
 msgctxt "@info:shell"
 msgid "Create a new key pair or certificate signing request"
-msgstr "Vytvořit nový pár klíčů nebo požadavek o podpis certifikátu"
+msgstr ""
 
 #: src/kleopatra_options.h:41
 #, kde-format
@@ -9051,13 +9035,13 @@ msgstr "Nastavit skupiny..."
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
-msgstr ""
+msgstr "Skupiny"
 
 #: src/mainwindow.cpp:721
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
-msgstr ""
+msgstr "Přejít do rychlého vyhledávání"
 
 #: src/mainwindow.cpp:733
 #, kde-format
@@ -9087,7 +9071,7 @@ msgstr ""
 #: src/mainwindow.cpp:757
 #, kde-format
 msgid "&Password-based Encryption"
-msgstr ""
+msgstr "Šifrování &heslem"
 
 #: src/mainwindow.cpp:758
 #, kde-format
@@ -9099,7 +9083,7 @@ msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 #: src/mainwindow.cpp:765
 #, kde-format
 msgid "Certificate &Groups"
-msgstr ""
+msgstr "&Skupiny certifikátů"
 
 #: src/mainwindow.cpp:766
 #, kde-format
@@ -9111,7 +9095,7 @@ msgstr ""
 #: src/mainwindow.cpp:775
 #, kde-format
 msgid "&Mail Encryption in Outlook"
-msgstr ""
+msgstr "Ši&frování pošty v Outlooku"
 
 #: src/mainwindow.cpp:776
 #, kde-format
@@ -10478,31 +10462,31 @@ msgstr "Zachycena neznámá výjimka ve skupině %1"
 #, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
-msgstr ""
+msgstr "Import certifikátu"
 
 #: src/utils/clipboardmenu.cpp:44
 #, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
-msgstr ""
+msgstr "Zašifrovat..."
 
 #: src/utils/clipboardmenu.cpp:47
 #, kde-format
 msgctxt "@action"
 msgid "S/MIME-Sign..."
-msgstr ""
+msgstr "Podepsat S/MIME..."
 
 #: src/utils/clipboardmenu.cpp:49
 #, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
-msgstr ""
+msgstr "Podepsat OpenPGP..."
 
 #: src/utils/clipboardmenu.cpp:50
 #, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
-msgstr ""
+msgstr "Dešifrovat/ověřit..."
 
 #: src/utils/expiration.cpp:104
 #, kde-format
@@ -10612,7 +10596,7 @@ msgstr "Žádné vstupní zařízení"
 #, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
-msgstr ""
+msgstr "certifikáty.%1"
 
 #: src/utils/kuniqueservice_win.cpp:129
 #, kde-kuit-format
@@ -10829,7 +10813,7 @@ msgstr "Nelze odstranit soubor %1: %2"
 #, kde-format
 msgctxt "@label:listbox"
 msgid "Certificates:"
-msgstr ""
+msgstr "Certifikáty:"
 
 #: src/view/cardkeysview.cpp:194
 #, kde-format
@@ -11066,7 +11050,7 @@ msgstr "Přidat uživatelské ID..."
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr ""
+msgstr "Vytvořit skupinu..."
 
 #: src/view/keylistcontroller.cpp:561
 #, kde-format
@@ -11156,7 +11140,7 @@ msgstr "Seznam certifikátů"
 #, kde-format
 msgctxt "@label"
 msgid "Serial number:"
-msgstr ""
+msgstr "Sériové číslo:"
 
 #: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:224
 #, kde-format
@@ -11193,7 +11177,7 @@ msgstr ""
 msgctxt ""
 "@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
-msgstr ""
+msgstr "Změnit NKS PIN"
 
 #: src/view/netkeywidget.cpp:122
 #, kde-format
@@ -11358,7 +11342,7 @@ msgstr ""
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Serial number:"
-msgstr ""
+msgstr "Sériové číslo:"
 
 #: src/view/p15cardwidget.cpp:96
 #, kde-format
@@ -11431,7 +11415,7 @@ msgstr ""
 #, kde-format
 msgctxt "@label:textbox"
 msgid "<h3>Protocol:</h3>"
-msgstr ""
+msgstr "<h3>Protokol:</h3>"
 
 #: src/view/padwidget.cpp:155
 #, kde-format
@@ -11586,7 +11570,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:268
 #, kde-format
 msgid "Change PUK"
-msgstr ""
+msgstr "Změnit PUK"
 
 #: src/view/pgpcardwidget.cpp:270
 #, kde-format
@@ -11624,7 +11608,7 @@ msgstr "Generování klíčů"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
-msgstr ""
+msgstr "Tohle může trvat několik minut..."
 
 #: src/view/pgpcardwidget.cpp:355
 #, kde-format

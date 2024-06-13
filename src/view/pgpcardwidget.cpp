@@ -209,9 +209,14 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
 
         // PIN counters row
         {
-            cardInfoGrid->addWidget(new QLabel(i18nc("@label", "PIN retry counters:")), row, 0);
+            cardInfoGrid->addWidget(new QLabel(i18nc("@label The number of remaining attempts to enter a PIN or PUK, as in "
+                                                     "Remaining attempts: PIN: 2, PUK: 3, Admin PIN: 3",
+                                                     "Remaining attempts:")),
+                                    row,
+                                    0);
             cardInfoGrid->addWidget(mPinCounterLabel, row, 1);
             mPinCounterLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+            mPinCounterLabel->setToolTip(xi18nc("@info:tooltip", "Shows the number of remaining attempts for entering the correct PIN or PUK."));
         }
 
         cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);

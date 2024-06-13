@@ -226,8 +226,8 @@ void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error &err)
         error(i18nc("@info", "Generating key failed: %1", Formatting::errorAsString(err)));
     } else if (!err.isCanceled()) {
         success(i18nc("@info", "Key successfully generated."));
-        ReaderStatus::mutableInstance()->updateStatus();
     }
+    ReaderStatus::mutableInstance()->updateStatus();
     finished();
 }
 

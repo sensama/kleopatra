@@ -249,9 +249,9 @@ void CertificateToPIVCardCommand::certificateToPIVCardDone(const Error &err)
         d->error(i18nc("@info", "Writing the certificate to the card failed: %1", Formatting::errorAsString(err)));
     } else if (!err.isCanceled()) {
         d->success(i18nc("@info", "Writing the certificate to the card succeeded."));
-        ReaderStatus::mutableInstance()->updateStatus();
     }
 
+    ReaderStatus::mutableInstance()->updateStatus();
     d->finished();
 }
 

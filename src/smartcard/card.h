@@ -15,6 +15,7 @@
 #include <vector>
 
 #include <QString>
+#include <QStringList>
 
 namespace Kleo
 {
@@ -108,6 +109,9 @@ public:
 
     std::string keyFingerprint(const std::string &keyRef) const;
 
+    std::vector<int> pinCounters() const;
+    QStringList pinLabels() const;
+
 protected:
     void setAppName(const std::string &name);
     void setDisplayAppName(const QString &displayAppName);
@@ -139,6 +143,8 @@ private:
     std::vector<KeyPairInfo> mKeyInfos;
     std::multimap<std::string, std::string> mCardInfo;
     QString mDisplayAppName;
+    std::vector<int> mPinCounters;
+    QStringList mPinLabels;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

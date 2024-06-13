@@ -13,6 +13,8 @@
 
 #include "kleopatra_debug.h"
 
+#include <KLocalizedString>
+
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
@@ -245,6 +247,16 @@ const KeyPairInfo &Card::keyInfo(const std::string &keyRef) const
     return nullKey;
 }
 
+std::vector<int> Card::pinCounters() const
+{
+    return mPinCounters;
+}
+
+QStringList Card::pinLabels() const
+{
+    return mPinLabels;
+}
+
 void Card::setCardInfo(const std::vector<std::pair<std::string, std::string>> &infos)
 {
     qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
@@ -263,6 +275,17 @@ static int parseHexEncodedVersionTuple(const std::string &s)
     bool ok;
     const auto version = QByteArray::fromStdString(s).toUInt(&ok, 16);
     return ok ? version : -1;
+}
+
+static auto parseIntegerValues(const std::string &s)
+{
+    const auto strings = QByteArray::fromStdString(s).simplified().split(' ');
+    std::vector<int> values;
+    values.reserve(strings.size());
+    std::ranges::transform(strings, std::back_inserter(values), [](const auto &s) {
+        return s.toInt();
+    });
+    return values;
 }
 }
 
@@ -313,8 +336,34 @@ void Card::parseCardInfo(const std::string &name, const std::string &value)
         if (startOfManufacturerName != std::string::npos) {
             addCardInfo(name, value.substr(startOfManufacturerName + 1));
         }
+    } else if (name == "CHV-STATUS") {
+        mPinCounters = parseIntegerValues(value);
+        if (mAppName == "openpgp") {
+            // for OpenPGP cards the PIN retry counters are the last 3 (of 7) integers
+            if (mPinCounters.size() == 7) {
+                mPinCounters.erase(mPinCounters.begin(), mPinCounters.begin() + 4);
+                if (mPinLabels.empty()) {
+                    mPinLabels = {
+                        i18nc("@label PIN to unlock the smart card for user operations", "PIN"),
+                        i18nc("@label PIN/Key to unblock/reset the normal PIN", "PUK"),
+                        i18nc("@label PIN to unlock the smart card for administrative operations", "Admin PIN"),
+                    };
+                }
+            } else {
+                qCDebug(KLEOPATRA_LOG) << "Invalid CHV-STATUS value. Expected 7 integers, but got" << value;
+                mPinCounters.clear();
+            }
+        }
+        qCDebug(KLEOPATRA_LOG) << "PIN counters:" << mPinCounters;
+    } else if (name == "CHV-LABEL") {
+        mPinLabels = QString::fromStdString(value).split(u' ', Qt::SkipEmptyParts);
+        qCDebug(KLEOPATRA_LOG) << "PIN labels:" << mPinLabels;
     } else {
         mCardInfo.insert({name, value});
+    }
+    if (!mPinLabels.empty() && !mPinCounters.empty() && (static_cast<int>(mPinLabels.size()) != static_cast<int>(mPinCounters.size()))) {
+        qCDebug(KLEOPATRA_LOG) << "Number of PIN labels does not match number of PIN counters. Clearing labels.";
+        mPinLabels.clear();
     }
 }
 

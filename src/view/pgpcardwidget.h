@@ -58,6 +58,7 @@ private:
     QLabel *mCardHolderLabel = nullptr;
     QLabel *mVersionLabel = nullptr;
     QLabel *mUrlLabel = nullptr;
+    QLabel *mPinCounterLabel = nullptr;
     OpenPGPKeyCardWidget *mKeysWidget = nullptr;
     QString mUrl;
     bool mCardIsEmpty = false;

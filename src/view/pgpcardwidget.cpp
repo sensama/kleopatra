@@ -144,6 +144,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
     , mCardHolderLabel(new QLabel(this))
     , mVersionLabel(new QLabel(this))
     , mUrlLabel(new QLabel(this))
+    , mPinCounterLabel(new QLabel(this))
     , mCardIsEmpty(false)
 {
     // Set up the scroll area
@@ -203,6 +204,14 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
             button->setToolTip(i18nc("@info:tooltip", "Change"));
             cardInfoGrid->addWidget(button, row, 2);
             connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeUrlRequested);
+        }
+        row++;
+
+        // PIN counters row
+        {
+            cardInfoGrid->addWidget(new QLabel(i18nc("@label", "PIN retry counters:")), row, 0);
+            cardInfoGrid->addWidget(mPinCounterLabel, row, 1);
+            mPinCounterLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
         }
 
         cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
@@ -301,6 +310,19 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     mUrl = url;
     mUrlLabel->setText(url.isEmpty() ? i18n("not set") : QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
     mUrlLabel->setOpenExternalLinks(true);
+
+    const auto pinLabels = card->pinLabels();
+    const auto pinCounters = card->pinCounters();
+    QStringList countersWithLabels;
+    countersWithLabels.reserve(pinCounters.size());
+    for (const auto &pinCounter : pinCounters) {
+        // sanity check
+        if (countersWithLabels.size() == pinLabels.size()) {
+            break;
+        }
+        countersWithLabels.push_back(i18nc("label: value", "%1: %2", pinLabels[countersWithLabels.size()], pinCounter));
+    }
+    mPinCounterLabel->setText(countersWithLabels.join(QLatin1String(", ")));
 
     mKeysWidget->update(card);
 

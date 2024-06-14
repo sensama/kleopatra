@@ -681,13 +681,14 @@ void KeyToCardCommand::Private::startDeleteSecretKeyLocally(Confirmation confirm
 
 void KeyToCardCommand::Private::deleteSecretKeyLocallyFinished(const GpgME::Error &err)
 {
+    ReaderStatus::mutableInstance()->updateStatus();
     if (err) {
         error(xi18nc("@info",
                      "<para>Failed to delete the copy of the key stored on this computer:</para><para><message>%1</message></para>",
                      Formatting::errorAsString(err)));
+    } else if (!err.isCanceled()) {
+        success(i18nc("@info", "Successfully deleted the copy of the key stored on this computer."));
     }
-    ReaderStatus::mutableInstance()->updateStatus();
-    success(i18nc("@info", "Successfully deleted the copy of the key stored on this computer."));
     finished();
 }
 

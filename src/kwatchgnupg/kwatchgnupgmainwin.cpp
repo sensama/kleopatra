@@ -223,7 +223,7 @@ void KWatchGnuPGMainWindow::slotSaveAs()
     }
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
-        QTextStream(&file) << mCentralWidget->document()->toRawText();
+        QTextStream(&file) << mCentralWidget->document()->toPlainText();
     } else
         KMessageBox::information(this, i18n("Could not save file %1: %2", filename, file.errorString()));
 }

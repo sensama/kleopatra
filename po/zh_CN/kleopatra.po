@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-07 00:39+0000\n"
+"POT-Creation-Date: 2024-06-14 00:39+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -234,8 +234,8 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:381 src/view/pgpcardwidget.cpp:447
-#: src/view/pgpcardwidget.cpp:494
+#: src/view/pgpcardwidget.cpp:408 src/view/pgpcardwidget.cpp:474
+#: src/view/pgpcardwidget.cpp:521
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "未能找到此序列号的 OpenPGP 卡片：%1"
@@ -2362,7 +2362,7 @@ msgstr "抱歉！此密钥无法传输至 OpenPGP 卡上。"
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:390
+#: src/view/pgpcardwidget.cpp:417
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -3688,8 +3688,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:184
-#: src/view/pgpcardwidget.cpp:202
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
+#: src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -9996,6 +9996,27 @@ msgid ""
 "Quit any other running instances of <application>Kleopatra</application>."
 msgstr "退出所有其他正在运行的 <application>Kleopatra</application> 实例。"
 
+#: src/smartcard/card.cpp:348
+#, fuzzy, kde-format
+#| msgctxt "proper name of a type of smartcard"
+#| msgid "PIV"
+msgctxt "@label PIN to unlock the smart card for user operations"
+msgid "PIN"
+msgstr "PIV"
+
+#: src/smartcard/card.cpp:349
+#, kde-format
+msgctxt "@label PIN/Key to unblock/reset the normal PIN"
+msgid "PUK"
+msgstr ""
+
+#: src/smartcard/card.cpp:350
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@label PIN to unlock the smart card for administrative operations"
+msgid "Admin PIN"
+msgstr "更改管理员 PIN"
+
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
 msgid "Signature"
@@ -11338,7 +11359,7 @@ msgctxt "@label"
 msgid "Serial number:"
 msgstr "序列号："
 
-#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:224
+#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:238
 #, kde-format
 msgid "Actions:"
 msgstr "操作："
@@ -11533,7 +11554,7 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "抱歉，本程序无法找到指纹为 %1 的密钥。"
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:172
+#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
 #: src/view/pivcardwidget.cpp:112
 #, kde-format
 msgctxt "@label:textbox"
@@ -11692,19 +11713,19 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "签名/加密记事本内容"
 
-#: src/view/pgpcardwidget.cpp:178
+#: src/view/pgpcardwidget.cpp:179
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "持卡人："
 
-#: src/view/pgpcardwidget.cpp:185 src/view/pgpcardwidget.cpp:203
+#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "更改"
 
-#: src/view/pgpcardwidget.cpp:194
+#: src/view/pgpcardwidget.cpp:195
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -11712,17 +11733,32 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "公钥地址："
 
-#: src/view/pgpcardwidget.cpp:215 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:214
+#, kde-format
+msgctxt ""
+"@label The number of remaining attempts to enter a PIN or PUK, as in "
+"Remaining attempts: PIN: 2, PUK: 3, Admin PIN: 3"
+msgid "Remaining attempts:"
+msgstr ""
+
+#: src/view/pgpcardwidget.cpp:219
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Shows the number of remaining attempts for entering the correct PIN or PUK."
+msgstr ""
+
+#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:122
 #, kde-format
 msgid "Keys:"
 msgstr "密钥："
 
-#: src/view/pgpcardwidget.cpp:229
+#: src/view/pgpcardwidget.cpp:243
 #, kde-format
 msgid "Generate New Keys"
 msgstr "生成新密钥"
 
-#: src/view/pgpcardwidget.cpp:231
+#: src/view/pgpcardwidget.cpp:245
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11734,12 +11770,12 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:242
+#: src/view/pgpcardwidget.cpp:256
 #, kde-format
 msgid "Change PIN"
 msgstr "更改 PIN"
 
-#: src/view/pgpcardwidget.cpp:244
+#: src/view/pgpcardwidget.cpp:258
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11747,34 +11783,34 @@ msgid ""
 "contain at least six characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:252
+#: src/view/pgpcardwidget.cpp:266
 #, kde-format
 msgid "Unblock Card"
 msgstr "解冻卡片"
 
-#: src/view/pgpcardwidget.cpp:253
+#: src/view/pgpcardwidget.cpp:267
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:260
+#: src/view/pgpcardwidget.cpp:274
 #, kde-format
 msgid "Change Admin PIN"
 msgstr "更改管理员 PIN"
 
-#: src/view/pgpcardwidget.cpp:261
+#: src/view/pgpcardwidget.cpp:275
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "更改管理操作所需的 PIN 码。"
 
-#: src/view/pgpcardwidget.cpp:268
+#: src/view/pgpcardwidget.cpp:282
 #, kde-format
 msgid "Change PUK"
 msgstr "修改解锁码"
 
-#: src/view/pgpcardwidget.cpp:270
+#: src/view/pgpcardwidget.cpp:284
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11782,84 +11818,92 @@ msgid ""
 "contain at least eight characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:293
+#: src/view/pgpcardwidget.cpp:307
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "未知 OpenPGP v%1 智能卡"
 
-#: src/view/pgpcardwidget.cpp:294
+#: src/view/pgpcardwidget.cpp:308
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 卡"
 
-#: src/view/pgpcardwidget.cpp:300 src/view/pgpcardwidget.cpp:302
+#: src/view/pgpcardwidget.cpp:314 src/view/pgpcardwidget.cpp:316
 #, kde-format
 msgid "not set"
 msgstr "未设置"
 
-#: src/view/pgpcardwidget.cpp:339
+#: src/view/pgpcardwidget.cpp:328
+#, fuzzy, kde-format
+#| msgctxt "label: result example: foo.sig: Verification failed. "
+#| msgid "%1: %2"
+msgctxt "label: value"
+msgid "%1: %2"
+msgstr "%1：%2"
+
+#: src/view/pgpcardwidget.cpp:366
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "正在生成密钥"
 
-#: src/view/pgpcardwidget.cpp:340
+#: src/view/pgpcardwidget.cpp:367
 #, kde-format
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr "这可能需要几分钟..."
 
-#: src/view/pgpcardwidget.cpp:355
+#: src/view/pgpcardwidget.cpp:382
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "生成新密钥失败：%1"
 
-#: src/view/pgpcardwidget.cpp:365
+#: src/view/pgpcardwidget.cpp:392
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "保存加密密钥的备份"
 
-#: src/view/pgpcardwidget.cpp:365
+#: src/view/pgpcardwidget.cpp:392
 #, kde-format
 msgid "Backup Key"
 msgstr "备份密钥"
 
-#: src/view/pgpcardwidget.cpp:367
+#: src/view/pgpcardwidget.cpp:394
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr "无法移动备份。备份密钥仍然保存在：%1"
 
-#: src/view/pgpcardwidget.cpp:373
+#: src/view/pgpcardwidget.cpp:400
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "已成功为智能卡生成新密钥。"
 
-#: src/view/pgpcardwidget.cpp:373 src/view/pgpcardwidget.cpp:464
-#: src/view/pgpcardwidget.cpp:511
+#: src/view/pgpcardwidget.cpp:400 src/view/pgpcardwidget.cpp:491
+#: src/view/pgpcardwidget.cpp:538
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "成功"
 
-#: src/view/pgpcardwidget.cpp:387
+#: src/view/pgpcardwidget.cpp:414
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr "智能卡上已存在的密钥将被<b>删除</b>并替换为新密钥."
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:419
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "私钥删除"
 
-#: src/view/pgpcardwidget.cpp:406
+#: src/view/pgpcardwidget.cpp:433
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -11867,69 +11911,69 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:423
+#: src/view/pgpcardwidget.cpp:450
 #, kde-format
 msgid "Change cardholder"
 msgstr "更改卡持有人"
 
-#: src/view/pgpcardwidget.cpp:423
+#: src/view/pgpcardwidget.cpp:450
 #, kde-format
 msgid "New name:"
 msgstr "新名称："
 
-#: src/view/pgpcardwidget.cpp:429
+#: src/view/pgpcardwidget.cpp:456
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "不可以使用“<”字符。"
 
-#: src/view/pgpcardwidget.cpp:433
+#: src/view/pgpcardwidget.cpp:460
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "不允许双空格"
 
-#: src/view/pgpcardwidget.cpp:437
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "姓名的长度不得超过38个字符。"
 
-#: src/view/pgpcardwidget.cpp:460
+#: src/view/pgpcardwidget.cpp:487
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "更改名称失败：%1"
 
-#: src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:491
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "成功修改了名称。"
 
-#: src/view/pgpcardwidget.cpp:475
+#: src/view/pgpcardwidget.cpp:502
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "更改可以查找公钥的 URL"
 
-#: src/view/pgpcardwidget.cpp:476
+#: src/view/pgpcardwidget.cpp:503
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "新的公钥 URL："
 
-#: src/view/pgpcardwidget.cpp:487
+#: src/view/pgpcardwidget.cpp:514
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "URL 的长度不得超过254个字符。"
 
-#: src/view/pgpcardwidget.cpp:507
+#: src/view/pgpcardwidget.cpp:534
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "URL 更改失败： %1"
 
-#: src/view/pgpcardwidget.cpp:511
+#: src/view/pgpcardwidget.cpp:538
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."

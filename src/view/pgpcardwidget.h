@@ -19,6 +19,7 @@
 #include <string>
 
 class QLabel;
+class QPushButton;
 
 namespace Kleo
 {
@@ -59,6 +60,7 @@ private:
     QLabel *mVersionLabel = nullptr;
     QLabel *mUrlLabel = nullptr;
     QLabel *mPinCounterLabel = nullptr;
+    QPushButton *mSetOrChangePUKButton = nullptr;
     OpenPGPKeyCardWidget *mKeysWidget = nullptr;
     QString mUrl;
     bool mCardIsEmpty = false;

@@ -285,12 +285,12 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         });
     }
     {
-        auto resetCodeButton = new QPushButton(i18n("Change PUK"));
-        resetCodeButton->setToolTip(i18nc("@info:tooltip",
-                                          "Set or change the PUK required to unblock the smart card. "
-                                          "The PUK must contain at least eight characters."));
-        actionLayout->addWidget(resetCodeButton);
-        connect(resetCodeButton, &QPushButton::clicked, this, [this]() {
+        mSetOrChangePUKButton = new QPushButton(i18nc("@action:button", "Set PUK"));
+        mSetOrChangePUKButton->setToolTip(i18nc("@info:tooltip",
+                                                "Set or change the PUK that can be used to unblock the smart card. "
+                                                "The PUK must contain at least eight characters."));
+        actionLayout->addWidget(mSetOrChangePUKButton);
+        connect(mSetOrChangePUKButton, &QPushButton::clicked, this, [this]() {
             doChangePin(OpenPGPCard::resetCodeKeyRef(), ChangePinCommand::ResetMode);
         });
     }
@@ -335,6 +335,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     }
     mPinCounterLabel->setText(countersWithLabels.join(QLatin1String(", ")));
     mPUKIsAvailable = (pinCounters.size() == 3) && (pinCounters[1] > 0);
+    mSetOrChangePUKButton->setText(mPUKIsAvailable ? i18nc("@action:button", "Change PUK") : i18nc("@action:button", "Set PUK"));
 
     mKeysWidget->update(card);
 

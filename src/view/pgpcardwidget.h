@@ -63,6 +63,7 @@ private:
     QString mUrl;
     bool mCardIsEmpty = false;
     bool mIs21 = false;
+    bool mPUKIsAvailable = false;
     std::string mRealSerial;
 };
 } // namespace Kleo

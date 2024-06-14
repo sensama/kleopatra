@@ -264,10 +264,16 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
     }
     {
         auto unblockButton = new QPushButton(i18n("Unblock Card"));
-        unblockButton->setToolTip(i18nc("@info:tooltip", "Unblock the smart card with the PUK."));
+        unblockButton->setToolTip(i18nc("@info:tooltip", "Unblock the smart card with the PUK (if available) or the Admin PIN."));
         actionLayout->addWidget(unblockButton);
         connect(unblockButton, &QPushButton::clicked, this, [this]() {
-            doChangePin(OpenPGPCard::resetCodeKeyRef());
+            if (mPUKIsAvailable) {
+                // unblock card with the PUK
+                doChangePin(OpenPGPCard::resetCodeKeyRef());
+            } else {
+                // unblock card with the Admin PIN
+                doChangePin(OpenPGPCard::pinKeyRef(), ChangePinCommand::ResetMode);
+            }
         });
     }
     {
@@ -328,6 +334,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
         countersWithLabels.push_back(i18nc("label: value", "%1: %2", pinLabels[countersWithLabels.size()], pinCounter));
     }
     mPinCounterLabel->setText(countersWithLabels.join(QLatin1String(", ")));
+    mPUKIsAvailable = (pinCounters.size() == 3) && (pinCounters[1] > 0);
 
     mKeysWidget->update(card);
 

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-14 00:39+0000\n"
+"POT-Creation-Date: 2024-06-15 00:39+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -252,8 +252,8 @@ msgstr "スマートカードでこの鍵を使用するために必要な PIN �
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:408 src/view/pgpcardwidget.cpp:474
-#: src/view/pgpcardwidget.cpp:521
+#: src/view/pgpcardwidget.cpp:416 src/view/pgpcardwidget.cpp:482
+#: src/view/pgpcardwidget.cpp:529
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "そのシリアル番号で OpenPGP カードが見つけられませんでした: %1"
@@ -315,7 +315,7 @@ msgid ""
 msgstr "<para>鍵の削除に失敗しました:</para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:426
-#: src/commands/keytocardcommand.cpp:750
+#: src/commands/keytocardcommand.cpp:751
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2560,7 +2560,7 @@ msgstr "すみません! この鍵は OpenPGP カードには転送できませ�
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:417
+#: src/view/pgpcardwidget.cpp:425
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -2718,7 +2718,7 @@ msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
 msgstr "本当に秘密鍵の手元のコピーを削除したいですか?"
 
-#: src/commands/keytocardcommand.cpp:686
+#: src/commands/keytocardcommand.cpp:687
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -12625,57 +12625,56 @@ msgstr "カードをアンブロック"
 #, fuzzy, kde-format
 #| msgid "Unblock the smartcard and set a new PIN."
 msgctxt "@info:tooltip"
-msgid "Unblock the smart card with the PUK."
+msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "スマートカードをアンブロックし新しい PIN を設定する"
 
-#: src/view/pgpcardwidget.cpp:274
+#: src/view/pgpcardwidget.cpp:280
 #, kde-format
 msgid "Change Admin PIN"
 msgstr "Admin PIN を変更"
 
-#: src/view/pgpcardwidget.cpp:275
+#: src/view/pgpcardwidget.cpp:281
 #, fuzzy, kde-format
 #| msgid "Change the PIN required for administrative operations."
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "管理(Admin)操作をするための PIN を変更する。"
 
-#: src/view/pgpcardwidget.cpp:282
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change PUK"
-msgid "Change PUK"
-msgstr "PUKを変更"
+#: src/view/pgpcardwidget.cpp:288 src/view/pgpcardwidget.cpp:338
+#, kde-format
+msgctxt "@action:button"
+msgid "Set PUK"
+msgstr ""
 
-#: src/view/pgpcardwidget.cpp:284
+#: src/view/pgpcardwidget.cpp:290
 #, fuzzy, kde-format
 #| msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgctxt "@info:tooltip"
 msgid ""
-"Set or change the PUK required to unblock the smart card. The PUK must "
-"contain at least eight characters."
+"Set or change the PUK that can be used to unblock the smart card. The PUK "
+"must contain at least eight characters."
 msgstr ""
 "スマートカードをアンブロックするのに必要な PIN の変更と新しい PIN の設定。"
 
-#: src/view/pgpcardwidget.cpp:307
+#: src/view/pgpcardwidget.cpp:313
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "不明な OpenPGP v%1 カード"
 
-#: src/view/pgpcardwidget.cpp:308
+#: src/view/pgpcardwidget.cpp:314
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 カード"
 
-#: src/view/pgpcardwidget.cpp:314 src/view/pgpcardwidget.cpp:316
+#: src/view/pgpcardwidget.cpp:320 src/view/pgpcardwidget.cpp:322
 #, kde-format
 msgid "not set"
 msgstr "セットできません"
 
-#: src/view/pgpcardwidget.cpp:328
+#: src/view/pgpcardwidget.cpp:334
 #, fuzzy, kde-format
 #| msgctxt "label: result example: foo.sig: Verification failed. "
 #| msgid "%1: %2"
@@ -12683,36 +12682,42 @@ msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/view/pgpcardwidget.cpp:366
+#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:154
+#, kde-format
+msgctxt "@action:button"
+msgid "Change PUK"
+msgstr "PUKを変更"
+
+#: src/view/pgpcardwidget.cpp:374
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "鍵を生成"
 
-#: src/view/pgpcardwidget.cpp:367
+#: src/view/pgpcardwidget.cpp:375
 #, fuzzy, kde-format
 #| msgid "This may take several minutes..."
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr "数分かかることがあります..."
 
-#: src/view/pgpcardwidget.cpp:382
+#: src/view/pgpcardwidget.cpp:390
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "新しい鍵の生成に失敗: %1"
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:400
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "暗号化鍵のバックアップの保存"
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:400
 #, kde-format
 msgid "Backup Key"
 msgstr "バックアップ鍵"
 
-#: src/view/pgpcardwidget.cpp:394
+#: src/view/pgpcardwidget.cpp:402
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
@@ -12720,32 +12725,32 @@ msgstr ""
 "バックアップの移動に失敗しました。バックアップ鍵は以下にまだ保管してありま"
 "す: %1"
 
-#: src/view/pgpcardwidget.cpp:400
+#: src/view/pgpcardwidget.cpp:408
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "新しい鍵をこのカードのために生成できました。"
 
-#: src/view/pgpcardwidget.cpp:400 src/view/pgpcardwidget.cpp:491
-#: src/view/pgpcardwidget.cpp:538
+#: src/view/pgpcardwidget.cpp:408 src/view/pgpcardwidget.cpp:499
+#: src/view/pgpcardwidget.cpp:546
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "成功"
 
-#: src/view/pgpcardwidget.cpp:414
+#: src/view/pgpcardwidget.cpp:422
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr "カード上の既存の鍵は<b>削除</b>され新しい鍵で置き換えられます。"
 
-#: src/view/pgpcardwidget.cpp:419
+#: src/view/pgpcardwidget.cpp:427
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "秘密鍵の削除"
 
-#: src/view/pgpcardwidget.cpp:433
+#: src/view/pgpcardwidget.cpp:441
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -12753,69 +12758,69 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:450
+#: src/view/pgpcardwidget.cpp:458
 #, kde-format
 msgid "Change cardholder"
 msgstr "カード所有者の変更"
 
-#: src/view/pgpcardwidget.cpp:450
+#: src/view/pgpcardwidget.cpp:458
 #, kde-format
 msgid "New name:"
 msgstr "新しい名前:"
 
-#: src/view/pgpcardwidget.cpp:456
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "文字 \"<\" は使えません。"
 
-#: src/view/pgpcardwidget.cpp:460
+#: src/view/pgpcardwidget.cpp:468
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "複数の空白は許されません"
 
-#: src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:472
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "名前の文字数は38文字を越えてはなりません。"
 
-#: src/view/pgpcardwidget.cpp:487
+#: src/view/pgpcardwidget.cpp:495
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "名前の変更に失敗しました: %1"
 
-#: src/view/pgpcardwidget.cpp:491
+#: src/view/pgpcardwidget.cpp:499
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "名前の変更ができました。"
 
-#: src/view/pgpcardwidget.cpp:502
+#: src/view/pgpcardwidget.cpp:510
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "公開鍵が見つかる URL を変更"
 
-#: src/view/pgpcardwidget.cpp:503
+#: src/view/pgpcardwidget.cpp:511
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "新しい公開鍵の URL:"
 
-#: src/view/pgpcardwidget.cpp:514
+#: src/view/pgpcardwidget.cpp:522
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "URL のサイズは 254 文字を越えられません。"
 
-#: src/view/pgpcardwidget.cpp:534
+#: src/view/pgpcardwidget.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "URL の変更に失敗しました: %1"
 
-#: src/view/pgpcardwidget.cpp:538
+#: src/view/pgpcardwidget.cpp:546
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
@@ -12836,12 +12841,6 @@ msgid ""
 msgstr ""
 "PIV カードを活性化し、保管された鍵を使ってプライベートの操作可能とするPIV "
 "カードのアプリケーション PIN を変更。"
-
-#: src/view/pivcardwidget.cpp:154
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PUK"
-msgstr "PUKを変更"
 
 #: src/view/pivcardwidget.cpp:155
 #, kde-format
@@ -13230,6 +13229,12 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#, fuzzy
+#~| msgctxt "@action:button"
+#~| msgid "Change PUK"
+#~ msgid "Change PUK"
+#~ msgstr "PUKを変更"
 
 #~ msgid "SecOps VSA-10573"
 #~ msgstr "SecOps VSA-10573"

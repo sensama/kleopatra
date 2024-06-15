@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-14 00:39+0000\n"
+"POT-Creation-Date: 2024-06-15 00:39+0000\n"
 "PO-Revision-Date: 2024-06-08 10:47+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -239,8 +239,8 @@ msgstr "Ne trovis kartingon por subŝlosilo %1 sur la inteligenta karto."
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:408 src/view/pgpcardwidget.cpp:474
-#: src/view/pgpcardwidget.cpp:521
+#: src/view/pgpcardwidget.cpp:416 src/view/pgpcardwidget.cpp:482
+#: src/view/pgpcardwidget.cpp:529
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Malsukcesis trovi la OpenPGP-karton kun la seria numero: %1"
@@ -296,7 +296,7 @@ msgstr ""
 "tiu komputilo:</para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:426
-#: src/commands/keytocardcommand.cpp:750
+#: src/commands/keytocardcommand.cpp:751
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2479,7 +2479,7 @@ msgstr "Pardonu! Ĉi tiu ŝlosilo ne povas esti transdonita al OpenPGP-karto."
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:417
+#: src/view/pgpcardwidget.cpp:425
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -2636,7 +2636,7 @@ msgid ""
 msgstr ""
 "Ĉu vi vere volas forigi la kopion de la ŝlosilo konservita en ĉi komputilo?"
 
-#: src/commands/keytocardcommand.cpp:686
+#: src/commands/keytocardcommand.cpp:687
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -12371,56 +12371,63 @@ msgid "Unblock Card"
 msgstr "Malbloki Karton"
 
 #: src/view/pgpcardwidget.cpp:267
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Unblock the smart card with the PUK."
 msgctxt "@info:tooltip"
-msgid "Unblock the smart card with the PUK."
+msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "Malŝlosu la karton per la PUK."
 
-#: src/view/pgpcardwidget.cpp:274
+#: src/view/pgpcardwidget.cpp:280
 #, kde-format
 msgid "Change Admin PIN"
 msgstr "Ŝanĝi Admin PIN"
 
-#: src/view/pgpcardwidget.cpp:275
+#: src/view/pgpcardwidget.cpp:281
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "Ŝanĝu la PIN necesan por administraj operacioj."
 
-#: src/view/pgpcardwidget.cpp:282
+#: src/view/pgpcardwidget.cpp:288 src/view/pgpcardwidget.cpp:338
 #, kde-format
-msgid "Change PUK"
-msgstr "Ŝanĝi PUK"
+msgctxt "@action:button"
+msgid "Set PUK"
+msgstr ""
 
-#: src/view/pgpcardwidget.cpp:284
-#, kde-format
+#: src/view/pgpcardwidget.cpp:290
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Set or change the PUK required to unblock the smart card. The PUK must "
+#| "contain at least eight characters."
 msgctxt "@info:tooltip"
 msgid ""
-"Set or change the PUK required to unblock the smart card. The PUK must "
-"contain at least eight characters."
+"Set or change the PUK that can be used to unblock the smart card. The PUK "
+"must contain at least eight characters."
 msgstr ""
 "Ŝaltu aŭ ŝanĝu la PUK necesan por malŝlosi la inteligentan karton. La PUK "
 "devas enhavi almenaŭ ok signojn."
 
-#: src/view/pgpcardwidget.cpp:307
+#: src/view/pgpcardwidget.cpp:313
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "Nekonata karto OpenPGP v%1"
 
-#: src/view/pgpcardwidget.cpp:308
+#: src/view/pgpcardwidget.cpp:314
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "Karto %1 OpenPGP v%2"
 
-#: src/view/pgpcardwidget.cpp:314 src/view/pgpcardwidget.cpp:316
+#: src/view/pgpcardwidget.cpp:320 src/view/pgpcardwidget.cpp:322
 #, kde-format
 msgid "not set"
 msgstr "ne fiksita"
 
-#: src/view/pgpcardwidget.cpp:328
+#: src/view/pgpcardwidget.cpp:334
 #, fuzzy, kde-format
 #| msgctxt "label: result example: foo.sig: Verification failed. "
 #| msgid "%1: %2"
@@ -12428,35 +12435,41 @@ msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/view/pgpcardwidget.cpp:366
+#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:154
+#, kde-format
+msgctxt "@action:button"
+msgid "Change PUK"
+msgstr "Ŝanĝi PUK"
+
+#: src/view/pgpcardwidget.cpp:374
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "Generado de Ŝlosiloj"
 
-#: src/view/pgpcardwidget.cpp:367
+#: src/view/pgpcardwidget.cpp:375
 #, kde-format
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr "Ĉi tio povas daŭri plurajn minutojn..."
 
-#: src/view/pgpcardwidget.cpp:382
+#: src/view/pgpcardwidget.cpp:390
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "Malsukcesis generi novan ŝlosilon: %1"
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:400
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "Konservi sekurkopion de ĉifrada ŝlosilo"
 
-#: src/view/pgpcardwidget.cpp:392
+#: src/view/pgpcardwidget.cpp:400
 #, kde-format
 msgid "Backup Key"
 msgstr "Rezerva Ŝlosilo"
 
-#: src/view/pgpcardwidget.cpp:394
+#: src/view/pgpcardwidget.cpp:402
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
@@ -12464,20 +12477,20 @@ msgstr ""
 "Malsukcesis movi sekurkopion. La rezerva ŝlosilo ankoraŭ estas konservita "
 "sub: %1"
 
-#: src/view/pgpcardwidget.cpp:400
+#: src/view/pgpcardwidget.cpp:408
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "Sukcese generis novan ŝlosilon por ĉi tiu karto."
 
-#: src/view/pgpcardwidget.cpp:400 src/view/pgpcardwidget.cpp:491
-#: src/view/pgpcardwidget.cpp:538
+#: src/view/pgpcardwidget.cpp:408 src/view/pgpcardwidget.cpp:499
+#: src/view/pgpcardwidget.cpp:546
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "Sukceso"
 
-#: src/view/pgpcardwidget.cpp:414
+#: src/view/pgpcardwidget.cpp:422
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
@@ -12486,12 +12499,12 @@ msgstr ""
 "La ekzistantaj ŝlosiloj sur ĉi tiu karto estos <b>forigitaj</b> kaj "
 "anstataŭigitaj per novaj ŝlosiloj."
 
-#: src/view/pgpcardwidget.cpp:419
+#: src/view/pgpcardwidget.cpp:427
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "Sekreta Ŝlosilo Forigo"
 
-#: src/view/pgpcardwidget.cpp:433
+#: src/view/pgpcardwidget.cpp:441
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -12501,69 +12514,69 @@ msgstr ""
 "Vi ne povas generi ŝlosilon sur ĉi tiu inteligenta memorkarto ĉar ĝi ne "
 "subtenas iun el la konformaj algoritmoj."
 
-#: src/view/pgpcardwidget.cpp:450
+#: src/view/pgpcardwidget.cpp:458
 #, kde-format
 msgid "Change cardholder"
 msgstr "Ŝanĝi kartposedanton"
 
-#: src/view/pgpcardwidget.cpp:450
+#: src/view/pgpcardwidget.cpp:458
 #, kde-format
 msgid "New name:"
 msgstr "Nova nomo:"
 
-#: src/view/pgpcardwidget.cpp:456
+#: src/view/pgpcardwidget.cpp:464
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "La signo \"<\" eble ne estas uzata."
 
-#: src/view/pgpcardwidget.cpp:460
+#: src/view/pgpcardwidget.cpp:468
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "Duoblaj spacoj ne estas permesitaj"
 
-#: src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:472
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "La grandeco de la nomo ne rajtas superi 38 signojn."
 
-#: src/view/pgpcardwidget.cpp:487
+#: src/view/pgpcardwidget.cpp:495
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "Nomŝanĝo malsukcesis: %1"
 
-#: src/view/pgpcardwidget.cpp:491
+#: src/view/pgpcardwidget.cpp:499
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "Nomo sukcese ŝanĝita."
 
-#: src/view/pgpcardwidget.cpp:502
+#: src/view/pgpcardwidget.cpp:510
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "Ŝanĝi la URL kie la pubkey troviĝas"
 
-#: src/view/pgpcardwidget.cpp:503
+#: src/view/pgpcardwidget.cpp:511
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "Nova pubkey URL:"
 
-#: src/view/pgpcardwidget.cpp:514
+#: src/view/pgpcardwidget.cpp:522
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "La grandeco de la URL ne rajtas superi 254 signojn."
 
-#: src/view/pgpcardwidget.cpp:534
+#: src/view/pgpcardwidget.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "URL-ŝanĝo malsukcesis: %1"
 
-#: src/view/pgpcardwidget.cpp:538
+#: src/view/pgpcardwidget.cpp:546
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
@@ -12584,12 +12597,6 @@ msgid ""
 msgstr ""
 "Ŝanĝu la PIV-Karton-Aplikan PIN kiu aktivigas la PIV-Karton kaj ebligas "
 "privatajn ŝlosiloperaciojn uzante la konservitajn ŝlosilojn."
-
-#: src/view/pivcardwidget.cpp:154
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PUK"
-msgstr "Ŝanĝi PUK"
 
 #: src/view/pivcardwidget.cpp:155
 #, kde-format
@@ -12975,3 +12982,6 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
+
+#~ msgid "Change PUK"
+#~ msgstr "Ŝanĝi PUK"

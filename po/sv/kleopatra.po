@@ -1,21 +1,21 @@
 # translation of kleopatra.po to Swedish
 # Copyright (C) 2004, 2005, 2007, 2008, 2009 Free Software Foundation, Inc.
 #
-# Stefan Asserhäll <stefan.asserhall@gmail.com>, 2004, 2005, 2007, 2008, 2009, 2010.
+# SPDX-FileCopyrightText: 2004, 2005, 2007, 2008, 2009, 2010, 2024 Stefan Asserhäll <stefan.asserhall@gmail.com>
 # Stefan Asserhall <stefan.asserhall@gmail.com>, 2005, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 02:31+0000\n"
-"PO-Revision-Date: 2023-09-12 21:35+0200\n"
-"Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
+"PO-Revision-Date: 2024-06-15 17:26+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -142,24 +142,18 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "© 2010-%1 Kleopatra-utvecklarna, g10 Code GmbH"
 
 #: src/commands/addsubkeycommand.cpp:167
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
-#| "</p><p>%2</p>"
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
 msgstr ""
-"<p>Ett fel uppstod vid försök att ändra lösenordsfrasen för <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>Ett fel uppstod vid försök att lägga till en ny delnyckel i <b>%1</b>:</"
+"p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The subkey was exported successfully."
-#| msgid_plural "%1 subkeys were exported successfully."
+#, kde-format
 msgid "Subkey added successfully."
-msgstr "Delnyckeln exporterades med lyckat resultat."
+msgstr "Delnyckel tillagd med lyckat resultat."
 
 #: src/commands/adduseridcommand.cpp:204
 #, kde-kuit-format
@@ -307,8 +301,7 @@ msgid "Do you wish to create one now?"
 msgstr "Vill du skapa en ny?"
 
 #: src/commands/certifycertificatecommand.cpp:176
-#, fuzzy, kde-format
-#| msgid "Certification Not Possible"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Not Possible"
 msgstr "Certifiering inte möjlig"
@@ -346,72 +339,60 @@ msgstr "Certifiering lyckades"
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "Grupp kan inte certifieras"
 
 #: src/commands/certifygroupcommand.cpp:117
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
-msgstr ""
+msgstr "Gruppen innehåller S/MIME-certifikat som inte kan certifieras."
 
 #: src/commands/certifygroupcommand.cpp:171
 #: src/dialogs/certifycertificatedialog.cpp:43
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr "Certifiera certifikat..."
+msgstr "Certifiera certifikat"
 
 #: src/commands/certifygroupcommand.cpp:172
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr "Certifiera certifikat..."
+msgstr "Certifierar certifikat ..."
 
 #: src/commands/certifygroupcommand.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Misslyckades skapa ett nytt OpenPGP-certifikat.</para><para>Fel: "
-"<message>%1</message></para>"
+"<para>Certifiering av certifikaten misslyckades.</para><para>Fel: <message>"
+"%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:267
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "X.509 certificates refreshed successfully."
+#, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr "X.509-certifikat uppdaterade med lyckat resultat."
+msgstr "Alla certifikat certifierades med lyckat resultat."
 
 #: src/commands/certifygroupcommand.cpp:272
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Misslyckades skapa ett nytt OpenPGP-certifikat.</para><para>Fel: "
+"<para>Certifieringen av alla certifikat misslyckades.</para><para>Fel: "
 "<message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:277
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "OpenPGP certificates exported successfully."
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "OpenPGP-certifikat exporterades med lyckat resultat."
-msgstr[1] "OpenPGP-certifikat exporterades med lyckat resultat."
+msgstr[0] "1 av %2 certifikat certifierades med lyckat resultat."
+msgstr[1] "%1 av %2 certifikat certifierades med lyckat resultat."
 
 #: src/commands/certifygroupcommand.cpp:295
 #, kde-format
@@ -420,29 +401,26 @@ msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
 msgstr ""
+"<p>Nästa steg är att ladda upp de certifierade certifikaten till den "
+"inställda certifikatkatalogen.</p>"
 
 #: src/commands/certifygroupcommand.cpp:300
-#, fuzzy, kde-format
-#| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "A user ID (an error description)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/commands/certifygroupcommand.cpp:309
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Exporting the certificate failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr "Export av certifikatet misslyckades: %1"
+msgstr ""
 
 #: src/commands/certifygroupcommand.cpp:311
-#, fuzzy, kde-format
-#| msgid "Certification Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr "Certifiering lyckades"
+msgstr ""
 
 #: src/commands/changeexpirycommand.cpp:227
 #, kde-format
@@ -925,25 +903,18 @@ msgid "Error Saving Request"
 msgstr "Fel när begäran skulle sparas"
 
 #: src/commands/creategroupcommand.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
-msgstr "Certifikatet kan inte användas för kryptering."
+msgstr ""
 
 #: src/commands/creategroupcommand.cpp:102
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Warning:</b> None of the selected certificates seem to be your own. "
-#| "You will not be able to decrypt the encrypted data again."
+#, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
-"<b>Varning:</b> Inget av de markerade certifikaten verkar vara ditt eget. Du "
-"kommer inte att kunna avkoda krypterad data igen."
 
 #: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:328
 #, kde-format
@@ -976,11 +947,10 @@ msgid "Create OpenPGP Key"
 msgstr "Skapa OpenPGP-nyckel"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:133
-#, fuzzy, kde-format
-#| msgid "Enter User ID"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter User ID"
-msgstr "Ange användaridentifikation:"
+msgstr "Ange användaridentifikation"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:179
 #, kde-format
@@ -1006,8 +976,7 @@ msgid "Decrypt/Verify Clipboard Error"
 msgstr "Fel vid avkodning och verifiering av klippbordet"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Avkodning eller verifiering misslyckades"
@@ -1141,11 +1110,10 @@ msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:335
 #: src/commands/dumpcertificatecommand.cpp:341
-#, fuzzy, kde-format
-#| msgid "Dump Certificate Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
-msgstr "Fel vid hämtning av certifikatets innehåll"
+msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp:338
 #, kde-format
@@ -1193,11 +1161,10 @@ msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:343
 #: src/commands/dumpcrlcachecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
-msgstr "Fel vid hämtning av innehåll i CRL-cache"
+msgstr ""
 
 #: src/commands/dumpcrlcachecommand.cpp:346
 #, kde-format
@@ -1218,11 +1185,7 @@ msgstr "Fel vid kryptering av klippbord"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of this certificate with an "
@@ -1230,41 +1193,31 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Certifikatet '%1' har befogenhet att markera andra certifikat som "
-"giltiga åt dig.</para><para>Vill du återkalla befogenheten?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
 #: src/commands/exportopenpgpcertstoservercommand.cpp:72
 #: src/commands/exportopenpgpcertstoservercommand.cpp:87
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Export"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr "Export av OpenPGP-certifikat"
+msgstr ""
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportcertificatecommand.cpp:202
 #: src/commands/exportopenpgpcertstoservercommand.cpp:73
 #: src/commands/exportopenpgpcertstoservercommand.cpp:88
 #: src/commands/exportopenpgpcertstoservercommand.cpp:120
-#, fuzzy, kde-format
-#| msgctxt "1 is protocol"
-#| msgid "Export %1 Certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] "Exportera %1 certifikat"
-msgstr[1] "Exportera %1 certifikat"
+msgstr[0] "Exportera certifikat"
+msgstr[1] "Exportera certifikat"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all valid user IDs of the certificates listed "
@@ -1272,8 +1225,6 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Certifikatet '%1' har befogenhet att markera andra certifikat som "
-"giltiga åt dig.</para><para>Vill du återkalla befogenheten?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1303,8 +1254,7 @@ msgid "You have to select different filenames for different protocols."
 msgstr "Du måste välja olika filnamn för olika protokoll."
 
 #: src/commands/exportcertificatecommand.cpp:279
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Error"
 msgstr "Fel vid export"
@@ -1374,11 +1324,7 @@ msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Kan inte skriva över befintlig <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp:198
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in this group with an "
@@ -1386,31 +1332,22 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
-"<para>Certifikatet '%1' har befogenhet att markera andra certifikat som "
-"giltiga åt dig.</para><para>Vill du återkalla befogenheten?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Configure Groups"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr "Anpassa grupper"
+msgstr ""
 
 #: src/commands/exportgroupscommand.cpp:203
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr "Fel vid export"
+msgstr "Exportera grupp"
 
 #: src/commands/exportgroupscommand.cpp:212
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>The certificate '%1' is empowered to mark other certificates as "
-#| "valid for you.</para><para>Do you want to revoke this power?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You haven't certified all OpenPGP certificates in the groups listed "
@@ -1418,15 +1355,12 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
-"<para>Certifikatet '%1' har befogenhet att markera andra certifikat som "
-"giltiga åt dig.</para><para>Vill du återkalla befogenheten?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
-#, fuzzy, kde-format
-#| msgid "Export Error"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr "Fel vid export"
+msgstr "Exportera grupper"
 
 #: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format
@@ -1624,30 +1558,20 @@ msgstr "Kunde inte hitta den körbara filen PaperKey."
 
 #: src/commands/exportpaperkeycommand.cpp:112
 #: src/commands/exportpaperkeycommand.cpp:124
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred during the backup of the secret key:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during export of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Ett fel uppstod vid säkerhetskopiering av den hemliga nyckeln:</"
-"para><para><message>%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp:148
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para><application>PaperKey</application> failed with error</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Misslyckades spara begäran.</para><para><message>%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
@@ -1830,8 +1754,7 @@ msgstr ""
 "redigeras manuellt<br>innan det kan importeras."
 
 #: src/commands/genrevokecommand.cpp:99
-#, fuzzy, kde-format
-#| msgid "Revocation certificate created"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation certificate created"
 msgstr "Återkallelsecertifikat skapat"
@@ -2235,19 +2158,13 @@ msgid "No, It's Not Mine"
 msgstr "Nej, det är inte mitt"
 
 #: src/commands/importcertificatescommand.cpp:805
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The imported group</para><para><emphasis>%1</emphasis></"
 "para><para>contains certificates that cannot be used for encryption. This "
 "may lead to unexpected results.</para>"
 msgstr ""
-"<para>Vill du verkligen återkalla användaridentifikation<nl/><emphasis>%1</"
-"emphasis> ?</para>"
 
 #: src/commands/importcertificatescommand.cpp:869
 #, kde-format
@@ -2546,26 +2463,19 @@ msgid "Copying the key to the card failed."
 msgstr "Misslyckades kopiera nyckeln till kortet."
 
 #: src/commands/keytocardcommand.cpp:490
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>You can now delete "
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
-"<para>Nyckeln har kopierats till kortet.</para><para>Vill du ta bort "
-"nyckelns kopia lagrad på datorn?</para>"
 
 #: src/commands/keytocardcommand.cpp:494
-#, fuzzy, kde-format
-#| msgid "Paper backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr "Säkerhetskopia på papper"
+msgstr "Skapa säkerhetskopia"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
@@ -2580,19 +2490,13 @@ msgid "Keep copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:518
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>Do you want to "
-#| "delete the copy of the key stored on this computer?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card and a backup has been written to "
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
-"<para>Nyckeln har kopierats till kortet.</para><para>Vill du ta bort "
-"nyckelns kopia lagrad på datorn?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2630,12 +2534,11 @@ msgstr ""
 "filename> misslyckades."
 
 #: src/commands/keytocardcommand.cpp:664
-#, fuzzy, kde-kuit-format
-#| msgid "Do you really want to delete the local copy of the secret key?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr "Vill du verkligen ta bort den lokala kopian av den hemliga nyckeln?"
+msgstr "Vill du verkligen ta bort kopian av nyckeln lagrad på den här datorn?"
 
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
@@ -2644,24 +2547,18 @@ msgid "Confirm Deletion"
 msgstr "Bekräfta borttagning"
 
 #: src/commands/keytocardcommand.cpp:686
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to delete the key:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Misslyckades ta bort nyckeln:</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr "Skapade ny nyckel för kortet med lyckat resultat."
+msgstr ""
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -2674,11 +2571,10 @@ msgstr ""
 "message></para>"
 
 #: src/commands/lookupcertificatescommand.cpp:325
-#, fuzzy, kde-format
-#| msgid "Certify Certificate..."
+#, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
-msgstr "Certifiera certifikat..."
+msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp:472
 #, kde-kuit-format
@@ -2716,11 +2612,10 @@ msgid "Invalid Server Reply"
 msgstr "Ogiltigt svar från servern"
 
 #: src/commands/lookupcertificatescommand.cpp:530
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgctxt "@info"
 msgid "No certificates found"
-msgstr "(inga matchande certifikat hittades)"
+msgstr "Inga certifikat hittades"
 
 #: src/commands/lookupcertificatescommand.cpp:569
 #: src/commands/lookupcertificatescommand.cpp:572
@@ -2955,12 +2850,10 @@ msgstr ""
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Update Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Skipped"
-msgstr "Uppdatering misslyckades"
+msgstr "Uppdatering hoppades över"
 
 #: src/commands/refreshcertificatecommand.cpp:304
 #: src/commands/refreshcertificatecommand.cpp:342
@@ -3683,7 +3576,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
-msgstr ""
+msgstr "Behandla .p7m-filer utan filändelse som brev."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
@@ -3740,23 +3633,21 @@ msgid "Archive command to use when archiving files:"
 msgstr "Arkiveringskommando att använda när filer arkiveras:"
 
 #: src/conf/dirservconfigpage.cpp:126
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@title"
 msgid "OpenPGP Keyserver"
-msgstr "OpenPGP-nyckelserver:"
+msgstr "OpenPGP-nyckelserver"
 
 #: src/conf/dirservconfigpage.cpp:131
 #, kde-format
 msgid "Please note that only one OpenPGP keyserver can be configured."
-msgstr ""
+msgstr "Observera att bara en OpenPGP-nyckelserver kan ställas in."
 
 #: src/conf/dirservconfigpage.cpp:134
-#, fuzzy, kde-format
-#| msgid "OpenPGP keyserver:"
+#, kde-format
 msgctxt "@label:checkbox"
 msgid "Use OpenPGP keyserver"
-msgstr "OpenPGP-nyckelserver:"
+msgstr "Använd OpenPGP-nyckelserver"
 
 #: src/conf/dirservconfigpage.cpp:144
 #, kde-format
@@ -3777,7 +3668,7 @@ msgstr ""
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Search missing keys when verifying a signature"
-msgstr ""
+msgstr "Sök efter saknade nycklar när en signatur verifieras"
 
 #: src/conf/dirservconfigpage.cpp:185
 #, kde-format
@@ -3902,9 +3793,7 @@ msgid "groups"
 msgstr "grupper"
 
 #: src/conf/groupsconfigwidget.cpp:191
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "New"
+#, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Ny"
@@ -3924,12 +3813,10 @@ msgid "Delete"
 msgstr "Ta bort"
 
 #: src/conf/groupsconfigwidget.cpp:203
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Write the key pair of a certificate to the card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr "Skriv ett certifikats nyckelpar till kortet"
+msgstr ""
 
 #: src/conf/groupsconfigwidget.cpp:207
 #: src/dialogs/certificatedetailsdialog.cpp:65
@@ -3945,18 +3832,12 @@ msgid "Edit Group"
 msgstr "Redigera grupp"
 
 #: src/conf/groupsconfigwidget.cpp:399
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
-"<para>Vill du verkligen återkalla användaridentifikation<nl/><emphasis>%1</"
-"emphasis> ?</para>"
 
 #: src/conf/groupsconfigwidget.cpp:405
 #, kde-kuit-format
@@ -3971,27 +3852,20 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/conf/groupsconfigwidget.cpp:417
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] "Ta bort"
-msgstr[1] "Ta bort"
+msgstr[0] "Ta bort grupp"
+msgstr[1] "Ta bort grupper"
 
 #: src/conf/groupsconfigwidget.cpp:473
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</"
-#| "emphasis> ?</para>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "The group contains certificates that cannot be used for encryption. This may "
 "lead to unexpected results."
 msgstr ""
-"<para>Vill du verkligen återkalla användaridentifikation<nl/><emphasis>%1</"
-"emphasis> ?</para>"
 
 #: src/conf/kleopageconfigdialog.cpp:86
 #, kde-format
@@ -4003,8 +3877,7 @@ msgstr ""
 "Vill du verkställa ändringarna eller överge dem?"
 
 #: src/conf/kleopageconfigdialog.cpp:88
-#, fuzzy, kde-format
-#| msgid "Apply Settings"
+#, kde-format
 msgctxt "@title:window"
 msgid "Apply Settings"
 msgstr "Verkställ inställningar"
@@ -4389,8 +4262,7 @@ msgstr ""
 "Ska filen sparas med det ursprungliga filnamnet <filename>%1</filename>?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:245
-#, fuzzy, kde-format
-#| msgid "Use Original File Name?"
+#, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Använd ursprungligt filnamn?"
@@ -4972,10 +4844,9 @@ msgstr ""
 "chiffertext. Kanske det varken är en chiffertext eller en signatur?"
 
 #: src/crypto/decryptverifytask.cpp:1169
-#, fuzzy, kde-format
-#| msgid "Decrypting: %1..."
+#, kde-format
 msgid "Decrypting %1..."
-msgstr "Avkodar: %1..."
+msgstr "Avkodar %1..."
 
 #: src/crypto/decryptverifytask.cpp:1447
 #, kde-format
@@ -5001,17 +4872,12 @@ msgstr ""
 "det inte är en signatur alls?"
 
 #: src/crypto/decryptverifytask.cpp:1609
-#, fuzzy, kde-format
-#| msgid "Verifying: %1..."
+#, kde-format
 msgid "Verifying %1..."
-msgstr "Verifierar: %1..."
+msgstr "Verifierar %1..."
 
 #: src/crypto/decryptverifytask.cpp:1870
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "Verification of a detached signature in progress. The first file contains "
-#| "the data.The second file is the signature file."
-#| msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
+#, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
@@ -5019,10 +4885,9 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Verifierar: <filename>%1</filename> med <filename>%2</filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1874
-#, fuzzy, kde-format
-#| msgid "Verifying signature: %1..."
+#, kde-format
 msgid "Verifying signature %1..."
-msgstr "Verifierar signatur: %1..."
+msgstr "Verifierar signatur %1..."
 
 #: src/crypto/decryptverifytask.cpp:1885
 #, kde-kuit-format
@@ -5886,8 +5751,7 @@ msgid "Could not find a key for the following recipients:"
 msgstr "Kunde inte hitta en nyckel för följande mottagare:"
 
 #: src/crypto/gui/signencryptwidget.cpp:840
-#, fuzzy, kde-format
-#| msgid "Failed to find some keys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Misslyckades hitta vissa nycklar"
@@ -6000,8 +5864,7 @@ msgid "The following errors and warnings were recorded:"
 msgstr "Följande fel och varningar lagrades:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:217
-#, fuzzy, kde-format
-#| msgid "Checksum Verification Errors"
+#, kde-format
 msgctxt "@title:window"
 msgid "Checksum Verification Errors"
 msgstr "Fel vid verifikation av checksumma"
@@ -6269,24 +6132,21 @@ msgid "Valid until:"
 msgstr "Giltigt till:"
 
 #: src/dialogs/addsubkeydialog.cpp:151
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Add Subkey"
-msgstr "Delnycklar"
+msgstr "Lägg till delnyckel"
 
 #: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "Utgångsdatum för primär nyckel: %1"
 
 #: src/dialogs/addsubkeydialog.cpp:264
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "Default Algorithm"
 msgid "Default"
-msgstr "förvald"
+msgstr "Förvald"
 
 #: src/dialogs/adduseriddialog.cpp:54
 #, kde-format
@@ -6330,9 +6190,7 @@ msgstr ""
 "div><center><strong>%1</strong></center>"
 
 #: src/dialogs/cardinfotab.cpp:59
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgid "Subkeys"
 msgstr "Delnycklar"
 
@@ -6340,13 +6198,13 @@ msgstr "Delnycklar"
 #, kde-format
 msgctxt "@title:column"
 msgid "Keygrip"
-msgstr ""
+msgstr "Nyckelgrepp"
 
 #: src/dialogs/cardinfotab.cpp:66
 #, kde-format
 msgctxt "@title:column"
 msgid "Token"
-msgstr ""
+msgstr "Symbol"
 
 #: src/dialogs/cardinfotab.cpp:67
 #, kde-format
@@ -6355,56 +6213,46 @@ msgid "Type"
 msgstr "Typ"
 
 #: src/dialogs/cardinfotab.cpp:68
-#, fuzzy, kde-format
-#| msgid "Serial number:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Serial Number"
-msgstr "Serienummer:"
+msgstr "Serienummer"
 
 #: src/dialogs/cardinfotab.cpp:69
-#, fuzzy, kde-format
-#| msgid "Owner:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Owner"
-msgstr "Ägare:"
+msgstr "Ägare"
 
 #: src/dialogs/cardinfotab.cpp:74
-#, fuzzy, kde-format
-#| msgid "Certification will be performed using certificate %1."
+#, kde-format
 msgctxt "@info"
 msgid "Smartcard information is only available for your own certificates."
-msgstr "Certifiering utförs med användning av certifikatet %1."
+msgstr "Smartkortsinformation är bara tillgänglig för dina egna certifikat."
 
 #: src/dialogs/cardinfotab.cpp:84
-#, fuzzy, kde-format
-#| msgid "Reload"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reload"
 msgstr "Uppdatera"
 
 #: src/dialogs/cardinfotab.cpp:135
-#, fuzzy, kde-format
-#| msgctxt "Unknown encryption protocol"
-#| msgid "Unknown"
+#, kde-format
 msgctxt "Unknown <type> <version> (card)"
 msgid "Unknown %1 v%2"
-msgstr "Okänd"
+msgstr "Okänd %1 v%2"
 
 #: src/dialogs/cardinfotab.cpp:137
-#, fuzzy, kde-format
-#| msgctxt "name, email, key id"
-#| msgid "%1 %2 (%3)"
+#, kde-format
 msgctxt "<Manufacturer> <type> <version>"
 msgid "%1 %2 v%3"
-msgstr "%1 %2 (%3)"
+msgstr "%1 %2 v%3"
 
 #: src/dialogs/cardinfotab.cpp:144
-#, fuzzy, kde-format
-#| msgctxt "unknown storage location"
-#| msgid "unknown"
+#, kde-format
 msgctxt "unknown cardholder"
 msgid "unknown"
-msgstr "okänt"
+msgstr "okänd"
 
 #: src/dialogs/cardinfotab.cpp:147 src/dialogs/cardinfotab.cpp:151
 #: src/dialogs/cardinfotab.cpp:153
@@ -6549,10 +6397,9 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailswidget.cpp:162
-#, fuzzy, kde-format
-#| msgid "User IDs:"
+#, kde-format
 msgid "User ID:"
-msgstr "Användaridentifikationer:"
+msgstr "Användaridentifikation:"
 
 #: src/dialogs/certificatedetailswidget.cpp:182
 #, kde-format
@@ -6583,11 +6430,9 @@ msgid "Change Validity"
 msgstr "Ändra giltighet"
 
 #: src/dialogs/certificatedetailswidget.cpp:202
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Status"
+#, kde-format
 msgid "Status:"
-msgstr "Status"
+msgstr "Status:"
 
 #: src/dialogs/certificatedetailswidget.cpp:207
 #: src/dialogs/certifywidget.cpp:192
@@ -6640,15 +6485,12 @@ msgid "See certifications for details."
 msgstr "Visa certifieringar för information."
 
 #: src/dialogs/certificatedetailswidget.cpp:240
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Write Key"
+#, kde-format
 msgid "Private Key:"
-msgstr "Skriv nyckel"
+msgstr "Privat nyckel:"
 
 #: src/dialogs/certificatedetailswidget.cpp:253
-#, fuzzy, kde-format
-#| msgid "User IDs"
+#, kde-format
 msgctxt "@title:tab"
 msgid "User IDs"
 msgstr "Användaridentifikationer"
@@ -6659,51 +6501,40 @@ msgid "Related addresses"
 msgstr "Relaterade adresser"
 
 #: src/dialogs/certificatedetailswidget.cpp:258
-#, fuzzy, kde-format
-#| msgid "Related addresses"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Related Addresses"
 msgstr "Relaterade adresser"
 
 #: src/dialogs/certificatedetailswidget.cpp:261
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Subkeys"
 msgstr "Delnycklar"
 
 #: src/dialogs/certificatedetailswidget.cpp:264
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certifications"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certifications"
 msgstr "Certifieringar"
 
 #: src/dialogs/certificatedetailswidget.cpp:267
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Trust Chain Details"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Trust Chain Details"
 msgstr "Information om pålitlighetskedja"
 
 #: src/dialogs/certificatedetailswidget.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@action show smartcard management view"
-#| msgid "Smartcards"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Smartcard"
 msgstr "Smartkort"
 
 #: src/dialogs/certificatedetailswidget.cpp:273
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certificate Dump"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
-msgstr "Hämta innehåll i certifikat"
+msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:330
 #, kde-format
@@ -6719,16 +6550,13 @@ msgid "n/a"
 msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:340
-#, fuzzy, kde-format
-#| msgctxt "smart card <serial number>"
-#| msgid "smart card %1"
+#, kde-format
 msgctxt "As in 'this secret key is stored on smart card <serial number>'"
 msgid "smart card %1"
 msgstr "smartkort %1"
 
 #: src/dialogs/certificatedetailswidget.cpp:342
-#, fuzzy, kde-format
-#| msgid "smart card"
+#, kde-format
 msgctxt "As in 'this secret key is stored on a smart card'"
 msgid "smart card"
 msgstr "smartkort "
@@ -6741,8 +6569,7 @@ msgid "offline"
 msgstr "nerkopplad"
 
 #: src/dialogs/certificatedetailswidget.cpp:347
-#, fuzzy, kde-format
-#| msgid "on this computer"
+#, kde-format
 msgctxt "As in 'this secret key is stored on this computer'"
 msgid "on this computer"
 msgstr "på den här datorn"
@@ -6893,12 +6720,10 @@ msgid "Certify Certificate: %1"
 msgstr "Certifiera certifikat: %1"
 
 #: src/dialogs/certifycertificatedialog.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "@title:window arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr "Certifiera certifikat: %1"
+msgstr "Certifiera certifikatgrupp %1"
 
 #: src/dialogs/certifywidget.cpp:175
 #, kde-format
@@ -6935,11 +6760,10 @@ msgstr ""
 "för sina egna nycklar."
 
 #: src/dialogs/certifywidget.cpp:226
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr "För att markera certifikatet som giltigt måste det certifieras."
+msgstr "Ett eller flera certifikat kan inte certifieras."
 
 #: src/dialogs/certifywidget.cpp:232 src/dialogs/useridswidget.cpp:127
 #, kde-format
@@ -7063,11 +6887,7 @@ msgid "Domain:"
 msgstr "Domän:"
 
 #: src/dialogs/certifywidget.cpp:443
-#, fuzzy, kde-format
-#| msgid ""
-#| "Verify the fingerprint, mark the user IDs you want to certify, and select "
-#| "the key you want to certify the user IDs with.<br><i>Note: Only the "
-#| "fingerprint clearly identifies the key and its owner.</i>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Verify the fingerprints, mark the user IDs you want to certify, and select "
@@ -7075,31 +6895,27 @@ msgid ""
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
 "Verifiera fingeravtrycket, markera användaridentifikationerna som ska "
-"certifieras, och välj nyckel som användaridentifikationerna ska certifieras "
-"med.<br><i>Observera: Bara fingeravtrycket identifierar klart nyckeln och "
-"dess ägare.</i>"
+"certifieras, och välj certifikat som användaridentifikationerna ska "
+"certifieras med.<br><i>Observera: Bara fingeravtrycket identifierar klart "
+"certifikatet och dess ägare.</i>"
 
 #: src/dialogs/certifywidget.cpp:475 src/dialogs/subkeyswidget.cpp:141
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr "Fingeravtryck:"
+msgstr "Fingeravtryck"
 
 #: src/dialogs/certifywidget.cpp:491 src/dialogs/certifywidget.cpp:492
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for signing."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr "Certifikatet kan inte användas för signering."
+msgstr "S/MIME-certifikat kan inte certifieras."
 
 #: src/dialogs/certifywidget.cpp:494 src/dialogs/certifywidget.cpp:495
-#, fuzzy, kde-format
-#| msgid "In order to mark the certificate as valid it needs to be certified."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr "För att markera certifikatet som giltigt måste det certifieras."
+msgstr "Utgångna eller återkallade certifikat kan inte certifieras."
 
 #: src/dialogs/certifywidget.cpp:806
 #, kde-format
@@ -7115,8 +6931,7 @@ msgstr ""
 "%2</p>"
 
 #: src/dialogs/certifywidget.cpp:824
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Failed"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Ändring av certifikatets pålitlighet misslyckades"
@@ -7149,17 +6964,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:171
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<title>Why do you want to delete more certificates than I selected?</"
-#| "title><para>When you delete CA certificates (both root CAs and "
-#| "intermediate CAs), the certificates issued by them will also be deleted.</"
-#| "para><para>This can be nicely seen in <application>Kleopatra</"
-#| "application>'s hierarchical view mode: In this mode, if you delete a "
-#| "certificate that has children, those children will also be deleted. Think "
-#| "of CA certificates as folders containing other certificates: When you "
-#| "delete the folder, you delete its contents, too.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>When you delete CA certificates (both root CAs and intermediate CAs), "
@@ -7170,8 +6975,7 @@ msgid ""
 "containing other certificates: When you delete the folder, you delete its "
 "contents, too.</para>"
 msgstr ""
-"<title>Varför behöver fler certifikat än de jag markerade tas bort?</"
-"title><para>När du tar bort certifikat från certifikatutfärdaren (både "
+"<para>När du tar bort certifikat från certifikatutfärdaren (både "
 "rotcertifikatutfärdare och intermediära certifikatutfärdare), tas också "
 "certifikaten utfärdade av dem bort.</para><para>Det kan enkelt ses i "
 "<application>Kleopatra</application>s hierarkiska vyläge. Om du tar bort ett "
@@ -7181,18 +6985,14 @@ msgstr ""
 "tar bort katalogen, tar du också bort dess innehåll.</para>"
 
 #: src/dialogs/deletecertificatesdialog.cpp:209
-#, fuzzy, kde-format
-#| msgid "These are the certificates you have selected for deletion:"
+#, kde-format
 msgid "The following certificate was selected for deletion:"
 msgid_plural "The following certificates were selected for deletion:"
-msgstr[0] "Det här är certifikaten du har valt att ta bort:"
-msgstr[1] "Det här är certifikaten du har valt att ta bort:"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates will be deleted even though you did <b>not</b> "
-#| "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+#, kde-format
 msgid ""
 "The following certificate will be deleted even though you did <b>not</b> "
 "explicitly select it (<a href=\"whatsthis://\">Why?</a>):"
@@ -7200,11 +7000,7 @@ msgid_plural ""
 "The following certificates will be deleted even though you did <b>not</b> "
 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr[0] ""
-"Dessa certifikat kommer att tas bort även om du <b>inte</b> explicit "
-"markerade dem (<a href=\"whatsthis://\">Varför?</a>):"
 msgstr[1] ""
-"Dessa certifikat kommer att tas bort även om du <b>inte</b> explicit "
-"markerade dem (<a href=\"whatsthis://\">Varför?</a>):"
 
 #: src/dialogs/deletecertificatesdialog.cpp:253
 #, kde-format
@@ -7219,11 +7015,11 @@ msgid_plural ""
 msgstr[0] ""
 "Certifikatet som ska tas bort är ditt eget. Det innehåller privat "
 "nyckelmaterial, som behövs för att avkoda tidigare kommunikation krypterad "
-"med certifikatet, och ska därför inte tas bort."
+"med certifikatet, och bör därför inte tas bort."
 msgstr[1] ""
 "Alla certifikat som ska tas bort är dina egna. De innehåller privat "
 "nyckelmaterial, som behövs för att avkoda tidigare kommunikation krypterad "
-"med certifikaten, och ska därför inte tas bort."
+"med certifikaten, och bör därför inte tas bort."
 
 #: src/dialogs/deletecertificatesdialog.cpp:267
 #, kde-format
@@ -7245,29 +7041,26 @@ msgstr[1] ""
 "med certifikaten, och ska därför inte tas bort."
 
 #: src/dialogs/deletecertificatesdialog.cpp:282
-#, fuzzy, kde-format
-#| msgid "Secret Key Deletion"
+#, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Borttagning av hemlig nyckel"
 
 #: src/dialogs/editgroupdialog.cpp:83
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Certifikatet kan inte användas för kryptering."
 
 #: src/dialogs/editgroupdialog.cpp:114
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "This certificate cannot be added to the group as it cannot be used for "
 "encryption."
-msgstr "Certifikatet kan inte användas för kryptering."
+msgstr ""
+"Certifikatet kan inte läggas till i gruppen eftersom det inte kan användas "
+"för kryptering."
 
 #: src/dialogs/editgroupdialog.cpp:157
 #, kde-format
@@ -7473,8 +7266,7 @@ msgid "Save As..."
 msgstr "Spara som..."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:200
-#, fuzzy, kde-format
-#| msgid "Lookup on Server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "Slå upp på server"
@@ -7485,18 +7277,18 @@ msgid "Import"
 msgstr "Importera"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:272
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr "Ange ett namn och en e-postadress att använda för certifikatet."
+msgstr ""
+"Ange ett sökbegrepp att använda för att söka efter motsvarande certifikat."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:274
-#, fuzzy, kde-kuit-format
-#| msgid "Enter a name and an email address to use for the certificate."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr "Ange ett namn och en e-postadress att använda för certifikatet."
+msgstr ""
+"Ange en e-postadress att använda för att söka efter motsvarande certifikat."
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7580,15 +7372,12 @@ msgstr ""
 "blir tillfrågad om en lösenordsfrasen när nyckeln skapas."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
+#, kde-format
 msgid "Advanced options"
-msgstr "Visa avancerade alternativ"
+msgstr "Avancerade alternativ"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Key Material"
+#, kde-format
 msgctxt "The algorithm and strength of encryption key"
 msgid "Key Material"
 msgstr "Nyckelmaterial"
@@ -7864,11 +7653,10 @@ msgid "Status"
 msgstr "Status"
 
 #: src/dialogs/subkeyswidget.cpp:145
-#, fuzzy, kde-format
-#| msgid "Algorithm:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
-msgstr "Algoritm:"
+msgstr "Algoritm"
 
 #: src/dialogs/subkeyswidget.cpp:146
 #, kde-format
@@ -7883,61 +7671,50 @@ msgid "Storage"
 msgstr "Lagring"
 
 #: src/dialogs/subkeyswidget.cpp:157
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Subkeys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add subkey"
-msgstr "Delnycklar"
+msgstr "Lägg till delnyckel"
 
 #: src/dialogs/subkeyswidget.cpp:158
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Ändra giltighet"
 
 #: src/dialogs/subkeyswidget.cpp:159
-#, fuzzy, kde-format
-#| msgid "Export OpenSSH key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Exportera OpenSSH-nyckel"
 
 #: src/dialogs/subkeyswidget.cpp:160
-#, fuzzy, kde-format
-#| msgid "Restore printed backup"
+#, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Återställ utskriven säkerhetskopia"
 
 #: src/dialogs/subkeyswidget.cpp:161
-#, fuzzy, kde-format
-#| msgid "Transfer to smartcard"
+#, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Överför till smartkort"
 
 #: src/dialogs/subkeyswidget.cpp:162
-#, fuzzy, kde-format
-#| msgid "Export secret subkey"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Exportera hemlig delnyckel"
 
 #: src/dialogs/subkeyswidget.cpp:170 src/dialogs/useridswidget.cpp:160
 #: src/dialogs/weboftrustwidget.cpp:134
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show more options"
-msgstr "Visa avancerade alternativ"
+msgstr "Visa fler alternativ"
 
 #: src/dialogs/subkeyswidget.cpp:266
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Validity"
+#, kde-format
 msgid "Change validity"
 msgstr "Ändra giltighet"
 
@@ -8189,11 +7966,10 @@ msgid "User IDs and certifications"
 msgstr "Användaridentifikationer och certifieringar"
 
 #: src/dialogs/weboftrustwidget.cpp:98
-#, fuzzy, kde-format
-#| msgid "Certification will be performed using certificate %1."
+#, kde-format
 msgctxt "@info"
 msgid "Certifications are not available before the certificate is imported."
-msgstr "Certifiering utförs med användning av certifikatet %1."
+msgstr ""
 
 #: src/dialogs/weboftrustwidget.cpp:103
 #, kde-format
@@ -8440,20 +8216,15 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "Tips för e-post"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the email address field of "
-#| "OpenPGP and S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
-"Texten används som platsmarkörtext för det e-postadressfältet i OpenPGP- och "
-"S/MIME-certifikat."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8477,10 +8248,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
-#, fuzzy, kde-format
-#| msgid "Placeholder for EMAIL"
+#, kde-format
 msgid "Value of EMAIL"
-msgstr "Platsmarkör för e-post"
+msgstr "Värdet på e-post"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8495,17 +8265,13 @@ msgstr ""
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "Tips för namn"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the name field of OpenPGP "
-#| "certificates."
+#, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
-"Texten används som platsmarkörtext för namnfältet i OpenPGP-certifikat."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8529,10 +8295,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
-#, fuzzy, kde-format
-#| msgid "Placeholder for NAME"
+#, kde-format
 msgid "Value of NAME"
-msgstr "Platsmarkör för namn"
+msgstr "Värdet på namn"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8551,23 +8316,16 @@ msgstr "Normal giltighetsperiod"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:53
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
 "days."
-msgstr "Anger normal giltighetsperiod för nya OpenPGP-nycklar i dagar."
+msgstr ""
+"Anger normal giltighetsperiod för nya eller utökade OpenPGP-nycklar i dagar."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for three "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
 "at creation or change of validity, or, in other words, after how many days "
@@ -8576,12 +8334,12 @@ msgid ""
 "will be valid for three years (possibly clamped to the allowed minimum or "
 "maximum validity period) by default."
 msgstr ""
-"Inställningen anger hur många dagar en ny OpenPGP-nyckel normalt är giltig, "
-"eller, med andra ord, hur många dagar det tar innan nyckeln utgår. Ställ in "
-"det till 0 för obegränsad giltighet. Om inställningen inte görs eller om den "
-"har ett negativt värde, är den nya OpenPGP-nyckeln normalt giltig i tre år "
-"(möjligen begränsad till den tillåtna minimala eller maximala "
-"giltighetstiden)."
+"Inställningen anger hur många dagar en OpenPGP-nyckel normalt är giltig när "
+"den skapas eller giltigheten ändras, eller, med andra ord, hur många dagar "
+"det tar innan nyckeln utgår. Ställ in det till 0 för obegränsad giltighet. "
+"Om inställningen inte görs eller om den har ett negativt värde, är den nya "
+"OpenPGP-nyckeln normalt giltig i tre år (möjligen begränsad till den "
+"tillåtna minimala eller maximala giltighetstiden)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:58
@@ -8591,30 +8349,25 @@ msgstr "Minimal giltighetsperiod"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
-#, fuzzy, kde-format
-#| msgid "Specifies the minimum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Anger minimal giltighetsperiod för nya OpenPGP-nycklar i dagar."
+msgstr ""
+"Anger minimalt tillåten giltighetsperiod för nya eller utökade OpenPGP-"
+"nycklar i dagar."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
-"Inställningen anger hur många dagar en ny OpenPGP-nyckel som mest är giltig, "
-"eller, med andra ord, hur många dagar det tar innan nyckeln senast utgår. Om "
-"inställningen inte görs eller om den har ett negativt värde, tillåts "
-"obegränsad giltighet."
+"Inställningen anger minimalt antal dagar en användare kan välja för OpenPGP-"
+"certifikatens giltighetsperiod. Den gäller när nyckeln skapas och vid "
+"ändring av giltighet."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
@@ -8624,31 +8377,27 @@ msgstr "Maximal giltighetsperiod"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Specifies the maximum validity period of new OpenPGP keys in days."
+#, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr "Anger maximal giltighetsperiod för nya OpenPGP-nycklar i dagar."
+msgstr ""
+"Anger maximalt tillåten giltighetsperiod för nya eller utökade OpenPGP-"
+"nycklar i dagar."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at most, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "latest. If this setting is not set or if it is set to a negative value, "
-#| "then unlimited validity is allowed."
+#, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
-"Inställningen anger hur många dagar en ny OpenPGP-nyckel som mest är giltig, "
-"eller, med andra ord, hur många dagar det tar innan nyckeln senast utgår. Om "
-"inställningen inte görs eller om den har ett negativt värde, tillåts "
-"obegränsad giltighet."
+"Inställningen anger maximalt antal dagar en användare kan välja för OpenPGP-"
+"certifikatens giltighetsperiod. Den gäller när nyckeln skapas och vid "
+"ändring av giltighet. Om inställningen inte görs eller om den har ett "
+"negativt värde, tillåts obegränsad giltighet."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
@@ -9544,8 +9293,7 @@ msgid "Configure Groups..."
 msgstr "Anpassa grupper..."
 
 #: src/mainwindow.cpp:677
-#, fuzzy, kde-format
-#| msgid "Groups"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Grupper"
@@ -9696,11 +9444,10 @@ msgid "Ongoing Background Tasks"
 msgstr "Pågående bakgrundsaktiviteter"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:135
-#, fuzzy, kde-format
-#| msgid "Subkey Strength:"
+#, kde-format
 msgctxt "@info:label"
 msgid "RSA key strength:"
-msgstr "Delnyckelstyrka:"
+msgstr "RSA-nyckelstyrka:"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:174
 #, kde-format
@@ -11200,12 +10947,10 @@ msgid "No input device"
 msgstr "Ingen inmatningsenhet"
 
 #: src/utils/keyexportdraghandler.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "A generic filename for exported certificates"
-#| msgid "certificates"
+#, kde-format
 msgctxt "A generic filename for exported certificates"
 msgid "certificates.%1"
-msgstr "certifikat"
+msgstr "certifikat.%1"
 
 #: src/utils/kuniqueservice_win.cpp:129
 #, kde-kuit-format
@@ -11219,12 +10964,10 @@ msgid ""
 msgstr ""
 
 #: src/utils/kuniqueservice_win.cpp:132
-#, fuzzy, kde-kuit-format
-#| msgctxt "@action:button"
-#| msgid "&Quit <application>%1</application>"
+#, kde-kuit-format
 msgctxt "@title"
 msgid "<application>Kleopatra</application> failed to start"
-msgstr "&Avsluta <application>%1</application>"
+msgstr "<application>Kleopatra</application> misslyckades starta"
 
 #: src/utils/log.cpp:149
 #, kde-format
@@ -11423,18 +11166,16 @@ msgid "Cannot remove file %1: %2"
 msgstr "Kunde inte ta bort filen %1: %2"
 
 #: src/view/cardkeysview.cpp:54
-#, fuzzy, kde-format
-#| msgid "Certificates:"
+#, kde-format
 msgctxt "@label:listbox"
 msgid "Certificates:"
 msgstr "Certifikat:"
 
 #: src/view/cardkeysview.cpp:194
-#, fuzzy, kde-format
-#| msgid "Loading certificate cache..."
+#, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
-msgstr "Laddar certifikatcache..."
+msgstr "Laddar certifikat från smartkort..."
 
 #: src/view/formtextinput.cpp:28
 #, kde-format
@@ -11646,18 +11387,16 @@ msgid "Add User ID..."
 msgstr "Lägg till användaridentifikation..."
 
 #: src/view/keylistcontroller.cpp:548
-#, fuzzy, kde-format
-#| msgid "Configure Groups..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
-msgstr "Anpassa grupper..."
+msgstr "Skapa grupp..."
 
 #: src/view/keylistcontroller.cpp:549
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
-msgstr "Certifiera det markerade certifikatets giltighet"
+msgstr "Skapa en grupp från de markerade certifikaten"
 
 #: src/view/keylistcontroller.cpp:558
 #, kde-format
@@ -11720,8 +11459,7 @@ msgid "List of certificates"
 msgstr "Certifikatlista"
 
 #: src/view/netkeywidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Serial number:"
+#, kde-format
 msgctxt "@label"
 msgid "Serial number:"
 msgstr "Serienummer:"
@@ -11757,18 +11495,14 @@ msgid "Create a certificate signing request for a key stored on the card."
 msgstr "Skapa begäran om certifikatsignering för en nyckel lagrad på kortet."
 
 #: src/view/netkeywidget.cpp:120
-#, fuzzy, kde-format
-#| msgctxt "NKS is an identifier for a type of keys on a NetKey card"
-#| msgid "Change NKS PIN"
+#, kde-format
 msgctxt ""
 "@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Ändra NKS PIN-kod"
 
 #: src/view/netkeywidget.cpp:122
-#, fuzzy, kde-format
-#| msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#| msgid "Change SigG PIN"
+#, kde-format
 msgctxt ""
 "@action:button SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
@@ -11862,8 +11596,7 @@ msgstr ""
 "PIN-kod skrivs in mer än två gånger."
 
 #: src/view/nullpinwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Set initial PIN"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "Ange ursprunglig PIN-kod"

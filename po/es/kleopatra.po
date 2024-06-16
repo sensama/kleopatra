@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-15 00:39+0000\n"
-"PO-Revision-Date: 2024-06-07 20:27+0200\n"
+"PO-Revision-Date: 2024-06-16 00:58+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -10672,25 +10672,22 @@ msgstr ""
 "Sale de cualquier otra instancia de <application>Kleopatra</application>."
 
 #: src/smartcard/card.cpp:348
-#, fuzzy, kde-format
-#| msgctxt "proper name of a type of smartcard"
-#| msgid "PIV"
+#, kde-format
 msgctxt "@label PIN to unlock the smart card for user operations"
 msgid "PIN"
-msgstr "PIV"
+msgstr "PIN"
 
 #: src/smartcard/card.cpp:349
 #, kde-format
 msgctxt "@label PIN/Key to unblock/reset the normal PIN"
 msgid "PUK"
-msgstr ""
+msgstr "PUK"
 
 #: src/smartcard/card.cpp:350
-#, fuzzy, kde-format
-#| msgid "Change Admin PIN"
+#, kde-format
 msgctxt "@label PIN to unlock the smart card for administrative operations"
 msgid "Admin PIN"
-msgstr "Cambiar el PIN del administrador"
+msgstr "PIN del administrador"
 
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
@@ -12472,7 +12469,7 @@ msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
 "Remaining attempts: PIN: 2, PUK: 3, Admin PIN: 3"
 msgid "Remaining attempts:"
-msgstr ""
+msgstr "Intentos restantes:"
 
 #: src/view/pgpcardwidget.cpp:219
 #, kde-kuit-format
@@ -12480,6 +12477,8 @@ msgctxt "@info:tooltip"
 msgid ""
 "Shows the number of remaining attempts for entering the correct PIN or PUK."
 msgstr ""
+"Muestra el número de los intentos restantes para introducir el PIN o el PUK "
+"correctos."
 
 #: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:122
 #, kde-format
@@ -12530,12 +12529,12 @@ msgid "Unblock Card"
 msgstr "Desbloquear la tarjeta"
 
 #: src/view/pgpcardwidget.cpp:267
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Unblock the smart card with the PUK."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
-msgstr "Desbloquear la tarjeta inteligente con el PUK."
+msgstr ""
+"Desbloquear la tarjeta inteligente con el PUK (si está disponible) o con el "
+"PIN del administrador."
 
 #: src/view/pgpcardwidget.cpp:280
 #, kde-format
@@ -12552,21 +12551,17 @@ msgstr "Cambiar el PIN necesario para las operaciones administrativas."
 #, kde-format
 msgctxt "@action:button"
 msgid "Set PUK"
-msgstr ""
+msgstr "Definir el PUK"
 
 #: src/view/pgpcardwidget.cpp:290
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Set or change the PUK required to unblock the smart card. The PUK must "
-#| "contain at least eight characters."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Set or change the PUK that can be used to unblock the smart card. The PUK "
 "must contain at least eight characters."
 msgstr ""
-"Definir o cambiar el PUK necesario para desbloquear la tarjeta inteligente. "
-"El PUK debe contener al menos ocho caracteres."
+"Definir o cambiar el PUK que se puede usar para desbloquear la tarjeta "
+"inteligente. El PUK debe contener al menos ocho caracteres."
 
 #: src/view/pgpcardwidget.cpp:313
 #, kde-format
@@ -12587,9 +12582,7 @@ msgid "not set"
 msgstr "no establecido"
 
 #: src/view/pgpcardwidget.cpp:334
-#, fuzzy, kde-format
-#| msgctxt "label: result example: foo.sig: Verification failed. "
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"

@@ -127,7 +127,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     label->setBuddy(mLoglenSB);
     glay->addWidget(label, row, 0);
     glay->addWidget(mLoglenSB, row, 1);
-    auto button = new QPushButton(i18n("Set &Unlimited"), group);
+    auto button = new QPushButton(i18nc("@action:button", "Set &Unlimited"), group);
     glay->addWidget(button, row, 2);
 
     connect(mLoglenSB, &QSpinBox::valueChanged, this, &KWatchGnuPGConfig::slotChanged);

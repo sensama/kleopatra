@@ -30,7 +30,7 @@ UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid, QWidget *paren
     auto keyIdLabel = new QLabel(mKeyID);
     keyIdLabel->setFont(QFont(QStringLiteral("Monospace")));
 
-    auto lookUpBtn = new QPushButton(i18n("Search"));
+    auto lookUpBtn = new QPushButton(i18nc("@action:button", "Search"));
 
     lookUpBtn->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
     lookUpBtn->setToolTip(i18nc("@info:tooltip", "Search on keyserver"));

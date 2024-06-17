@@ -240,7 +240,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
     auto actionLayout = new QHBoxLayout;
 
     {
-        auto generateButton = new QPushButton(i18n("Generate New Keys"));
+        auto generateButton = new QPushButton(i18nc("@action:button", "Generate New Keys"));
         generateButton->setToolTip(xi18nc("@info:tooltip",
                                           "<para>Generate three new keys on the smart card and create a new OpenPGP "
                                           "certificate with those keys. Optionally, the encryption key is generated "
@@ -253,7 +253,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         connect(generateButton, &QPushButton::clicked, this, &PGPCardWidget::genkeyRequested);
     }
     {
-        auto pinButton = new QPushButton(i18n("Change PIN"));
+        auto pinButton = new QPushButton(i18nc("@action:button", "Change PIN"));
         pinButton->setToolTip(i18nc("@info:tooltip",
                                     "Change the PIN required for using the keys on the smart card. "
                                     "The PIN must contain at least six characters."));
@@ -263,7 +263,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         });
     }
     {
-        auto unblockButton = new QPushButton(i18n("Unblock Card"));
+        auto unblockButton = new QPushButton(i18nc("@action:button", "Unblock Card"));
         unblockButton->setToolTip(i18nc("@info:tooltip", "Unblock the smart card with the PUK (if available) or the Admin PIN."));
         actionLayout->addWidget(unblockButton);
         connect(unblockButton, &QPushButton::clicked, this, [this]() {
@@ -277,7 +277,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         });
     }
     {
-        auto pukButton = new QPushButton(i18n("Change Admin PIN"));
+        auto pukButton = new QPushButton(i18nc("@action:button", "Change Admin PIN"));
         pukButton->setToolTip(i18nc("@info:tooltip", "Change the PIN required for administrative operations."));
         actionLayout->addWidget(pukButton);
         connect(pukButton, &QPushButton::clicked, this, [this]() {

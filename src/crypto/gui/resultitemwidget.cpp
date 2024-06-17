@@ -132,7 +132,7 @@ void ResultItemWidget::Private::addIgnoreMDCButton(QBoxLayout *lay)
         return;
     }
 
-    auto btn = new QPushButton(i18n("Force decryption"));
+    auto btn = new QPushButton(i18nc("@action:button", "Force decryption"));
     btn->setFixedSize(btn->sizeHint());
 
     connect(btn, &QPushButton::clicked, q, [this]() {

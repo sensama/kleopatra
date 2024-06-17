@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-24 02:31+0000\n"
-"PO-Revision-Date: 2024-06-15 17:26+0200\n"
+"PO-Revision-Date: 2024-06-16 10:32+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -414,13 +414,13 @@ msgstr "%1 (%2)"
 #, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr ""
+msgstr "<p>Certifiering av följande certifikat misslyckades:</p>"
 
 #: src/commands/certifygroupcommand.cpp:311
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr ""
+msgstr "Certifiering slutförd"
 
 #: src/commands/changeexpirycommand.cpp:227
 #, kde-format
@@ -908,6 +908,8 @@ msgid ""
 "None of the selected certificates can be used for encryption. No group will "
 "be created."
 msgstr ""
+"Inget av de valda certifikaten kan användas för kryptering. Ingen grupp "
+"skapas."
 
 #: src/commands/creategroupcommand.cpp:102
 #, kde-format
@@ -915,6 +917,8 @@ msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
 "not be added to the group."
 msgstr ""
+"Vissa av de valda certifikaten kan användas för kryptering. De läggs inte "
+"till i gruppen."
 
 #: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:328
 #, kde-format
@@ -1113,7 +1117,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Dump Certificate Error"
-msgstr ""
+msgstr "Fel vid certifikatdump"
 
 #: src/commands/dumpcertificatecommand.cpp:338
 #, kde-format
@@ -1164,7 +1168,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
-msgstr ""
+msgstr "Fel vid CRL-cachedump"
 
 #: src/commands/dumpcrlcachecommand.cpp:346
 #, kde-format
@@ -1193,6 +1197,10 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
+"<para>Du har inte certifierat alla giltiga användaridentifikationer för "
+"certifikatet med en exporterbar certifiering. Personer som förlitar sig på "
+"dina certifieringar kanske inte kan verifiera certifikatet.</para><para>Vill "
+"du fortsätta exporten?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
@@ -1201,7 +1209,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr ""
+msgstr "Bekräfta certifikatexport"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportcertificatecommand.cpp:202
@@ -1225,6 +1233,10 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
+"<para>Du har inte certifierat alla giltiga användaridentifikationer för "
+"certifikaten som anges nedan med exporterbara certifieringar. Personer som "
+"förlitar sig på dina certifikat kanske inte kan verifiera certifikaten.</"
+"para><para>Vill du fortsätta exporten?</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1332,13 +1344,17 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
+"<para>Du har inte certifierat alla OpenPGP-certifikat i den här gruppen med "
+"en exporterbar certifiering. Personer som förlitar sig på dina certifikat "
+"kanske inte kan verifiera certifikaten.</para><para>Vill du fortsätta "
+"exporten?</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr ""
+msgstr "Bekräfta gruppexport"
 
 #: src/commands/exportgroupscommand.cpp:203
 #, kde-format
@@ -1355,6 +1371,10 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
+"<para>Du har inte certifierat alla OpenPGP-certifikat i grupperna nedan med "
+"exporterbara certifieringar. Personer som förlitar sig på dina certifikat "
+"kanske inte kan verifiera certifikaten.</para><para>Vill du fortsätta "
+"exporten?</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
@@ -1400,7 +1420,11 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"Att exportera certifikatet till en nyckelserver är inte möjligt eftersom "
+"användningen av nyckelservrar har explicit inaktiverats."
 msgstr[1] ""
+"Att exportera certifikaten till en nyckelserver är inte möjligt eftersom "
+"användningen av nyckelservrar har explicit inaktiverats."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:114
 #, kde-kuit-format
@@ -1564,6 +1588,8 @@ msgid ""
 "<para>An error occurred during export of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
+"<para>Ett fel uppstod vid export av den hemliga nyckeln:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp:148
 #, kde-kuit-format
@@ -1572,6 +1598,8 @@ msgid ""
 "<para><application>PaperKey</application> failed with error</"
 "para><para><message>%1</message></para>"
 msgstr ""
+"<para><application>PaperKey</application> misslyckades med felet</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp:160
 #, kde-format
@@ -2165,6 +2193,9 @@ msgid ""
 "para><para>contains certificates that cannot be used for encryption. This "
 "may lead to unexpected results.</para>"
 msgstr ""
+"<para>Den importerade gruppen</para><para><emphasis>%1</emphasis></"
+"para><para>innehåller certifikat som inte kan användas för kryptering. Det "
+"kan leda till oväntade resultat.</para>"
 
 #: src/commands/importcertificatescommand.cpp:869
 #, kde-format
@@ -2470,6 +2501,9 @@ msgid ""
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
+"<para>Nyckeln har kopierats till kortet.</para><para>Du kan nu radera kopian "
+"av nyckeln som är lagrad på den här datorn. Alternativt kan du först skapa "
+"en säkerhetskopia av nyckeln.</para>"
 
 #: src/commands/keytocardcommand.cpp:494
 #, kde-format
@@ -2481,13 +2515,13 @@ msgstr "Skapa säkerhetskopia"
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Ta bort kopia på disk"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Behåll kopia på disk"
 
 #: src/commands/keytocardcommand.cpp:518
 #, kde-kuit-format
@@ -2497,6 +2531,9 @@ msgid ""
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
+"<para>Nyckeln har kopierats till kortet och en säkerhetskopia har skrivits "
+"till <filename>%1</filename>.</para><para>Vill du ta bort nyckelns kopia "
+"lagrad på datorn?</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2553,12 +2590,14 @@ msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
+"<para>Det gick inte att ta bort kopian av nyckeln som lagrats på den här "
+"datorn:</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:690
 #, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr ""
+msgstr "Kopian av nyckeln som lagrats på den här datorn har tagits bort."
 
 #: src/commands/keytocardcommand.cpp:750
 #, kde-kuit-format
@@ -2574,7 +2613,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
-msgstr ""
+msgstr "Söker efter matchande certifikat ..."
 
 #: src/commands/lookupcertificatescommand.cpp:472
 #, kde-kuit-format
@@ -2790,6 +2829,8 @@ msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Du kan inte generera en nyckel på smartkortet eftersom det inte stöder någon "
+"av de kompatibla algoritmerna."
 
 #: src/commands/refreshcertificatecommand.cpp:166
 #: src/commands/refreshcertificatecommand.cpp:224
@@ -2846,7 +2887,7 @@ msgstr[1] "Dessutom har %1 nya nycklar hämtats."
 #, kde-format
 msgctxt "@info"
 msgid "The update was skipped because no keyserver is configured."
-msgstr ""
+msgstr "Uppdateringen hoppades över eftersom ingen nyckelserver är inställd."
 
 #: src/commands/refreshcertificatecommand.cpp:299
 #: src/commands/refreshcertificatecommand.cpp:337
@@ -2908,6 +2949,8 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The update was skipped because no keyserver is configured.</para>"
 msgstr ""
+"<para>Uppdateringen hoppades över eftersom ingen nyckelserver är inställd.</"
+"para>"
 
 #: src/commands/refreshcertificatecommand.cpp:368
 #: src/commands/refreshcertificatecommand.cpp:376
@@ -2939,6 +2982,8 @@ msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
 msgstr ""
+"Det är inte möjligt att uppdatera OpenPGP-certifikaten eftersom användningen "
+"av nyckelservrar har explicit inaktiverats."
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3663,6 +3708,11 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"Ange adressen till nyckelservern som ska användas när du söker efter OpenPGP-"
+"certifikat och när du laddar upp OpenPGP-certifikat. Om du inte anger en "
+"adress kommer ett internt standardvärde att användas. För att inaktivera "
+"användningen av en OpenPGP-nyckelserver anger du specialvärdet "
+"<emphasis>ingen</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:169
 #, kde-format
@@ -3816,7 +3866,7 @@ msgstr "Ta bort"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr ""
+msgstr "Starta certifieringsprocessen för alla certifikat i gruppen."
 
 #: src/conf/groupsconfigwidget.cpp:207
 #: src/dialogs/certificatedetailsdialog.cpp:65
@@ -3838,6 +3888,9 @@ msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
+"<para>Vill du verkligen ta bort gruppen?</para><para><emphasis>%1</"
+"emphasis></para><para>När den väl har tagits bort kan den inte återställas.</"
+"para>"
 
 #: src/conf/groupsconfigwidget.cpp:405
 #, kde-kuit-format
@@ -3849,7 +3902,11 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Vill du verkligen ta bort gruppen?</para><para>När den väl har tagits "
+"bort kan den inte återställas.</para>"
 msgstr[1] ""
+"<para>Vill du verkligen ta bort %1 grupper?</para><para>När de väl har "
+"tagits bort kan de inte återställas.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:417
 #, kde-format
@@ -3866,6 +3923,8 @@ msgid ""
 "The group contains certificates that cannot be used for encryption. This may "
 "lead to unexpected results."
 msgstr ""
+"Gruppen innehåller certifikat som inte kan användas för kryptering. Det kan "
+"leda till oväntade resultat."
 
 #: src/conf/kleopageconfigdialog.cpp:86
 #, kde-format
@@ -6258,7 +6317,7 @@ msgstr "okänd"
 #: src/dialogs/cardinfotab.cpp:153
 #, kde-format
 msgid "n/a"
-msgstr ""
+msgstr "inte tillgänglig"
 
 #: src/dialogs/certificatedetailsdialog.cpp:62
 #, kde-format
@@ -6534,7 +6593,7 @@ msgstr "Smartkort"
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Dump"
-msgstr ""
+msgstr "Certifikatdump"
 
 #: src/dialogs/certificatedetailswidget.cpp:330
 #, kde-format
@@ -6547,7 +6606,7 @@ msgstr "obegränsad"
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
-msgstr ""
+msgstr "inte tillgänglig"
 
 #: src/dialogs/certificatedetailswidget.cpp:340
 #, kde-format
@@ -6800,6 +6859,9 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
+"Markera alternativet om du vill dela dina certifieringar med andra. Om du "
+"bara vill markera certifikat som certifierade för dig själv kan du avmarkera "
+"det."
 
 #: src/dialogs/certifywidget.cpp:259
 #, kde-format
@@ -6813,6 +6875,8 @@ msgid ""
 "Check this option, if you want to upload your certifications to a "
 "certificate directory after successful certification."
 msgstr ""
+"Markera alternativet om du vill ladda upp dina certifieringar till en "
+"certifikatkatalog efter framgångsrik certifiering."
 
 #: src/dialogs/certifywidget.cpp:274
 #, kde-format
@@ -6950,7 +7014,11 @@ msgid_plural ""
 "The certificates are part of a group. Deleting them may prevent these "
 "recipients from decrypting messages to:"
 msgstr[0] ""
+"Certifikatet ingår i en grupp. Om det tas bort kan den här mottagaren "
+"förhindras att avkoda meddelanden till:"
 msgstr[1] ""
+"Certifikaten ingår i en grupp. Om de tas bort kan de här mottagarna "
+"förhindras att avkoda meddelanden till:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:117
 #, kde-format
@@ -6961,7 +7029,11 @@ msgid_plural ""
 "The certificates are part of several groups. Deleting them may prevent the "
 "recipients from decrypting messages to:"
 msgstr[0] ""
+"Certifikatet ingår i flera grupper. Om det tas bort kan mottagaren "
+"förhindras att avkoda meddelanden till:"
 msgstr[1] ""
+"Certifikaten ingår i flera grupper. Om de tas bort kan mottagarna förhindras "
+"att avkoda meddelanden till:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:171
 #, kde-kuit-format
@@ -6988,8 +7060,8 @@ msgstr ""
 #, kde-format
 msgid "The following certificate was selected for deletion:"
 msgid_plural "The following certificates were selected for deletion:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Följande certifikat har valts för borttagning:"
+msgstr[1] "Följande certifikat har valts för borttagning:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:222
 #, kde-format
@@ -7000,7 +7072,11 @@ msgid_plural ""
 "The following certificates will be deleted even though you did <b>not</b> "
 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr[0] ""
+"Följande certifikat kommer att tas bort även om du <b>inte</b> uttryckligen "
+"valde det (<a href=\"whatsthis://\">Varför?</a>):"
 msgstr[1] ""
+"Följande certifikat kommer att tas bort även om du <b>inte</b> uttryckligen "
+"valde dem (<a href=\"whatsthis://\">Varför?</a>):"
 
 #: src/dialogs/deletecertificatesdialog.cpp:253
 #, kde-format
@@ -7970,6 +8046,7 @@ msgstr "Användaridentifikationer och certifieringar"
 msgctxt "@info"
 msgid "Certifications are not available before the certificate is imported."
 msgstr ""
+"Certifieringar är inte tillgängliga innan certifikatet har importerats."
 
 #: src/dialogs/weboftrustwidget.cpp:103
 #, kde-format
@@ -8216,7 +8293,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr "Tips för e-post"
+msgstr "Tips för EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
@@ -8225,12 +8302,14 @@ msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
+"Texten visas ovanför e-postadressfältet för OpenPGP-certifikat och som "
+"platsmarkör i det fältet för S/MIME-certifikat."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
 #, kde-format
 msgid "Prefill EMAIL automatically"
-msgstr "Fyll i e-post automatiskt"
+msgstr "Fyll i EMAIL automatiskt"
 
 #. i18n: ectx: whatsthis, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:27
@@ -8250,7 +8329,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:31
 #, kde-format
 msgid "Value of EMAIL"
-msgstr "Värdet på e-post"
+msgstr "Värdet på EMAIL"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8260,24 +8339,27 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"Förifyllt värde för e-postadressfältet för OpenPGP- och S/MIME-certifikat. "
+"Det överskrider förifyllt EMAIL. Det är användbart om inga eller olämpliga "
+"systeminställningar hittas för förifyllt EMAIL."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr "Tips för namn"
+msgstr "Tips för NAME"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
+msgstr "Texten visas ovanför OpenPGP-certifikatens namnfält."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
 #, kde-format
 msgid "Prefill NAME automatically"
-msgstr "Fyll i namn automatiskt"
+msgstr "Fyll i NAME automatiskt"
 
 #. i18n: ectx: whatsthis, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:43
@@ -8297,7 +8379,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:47
 #, kde-format
 msgid "Value of NAME"
-msgstr "Värdet på namn"
+msgstr "Värdet på NAME"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8307,6 +8389,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"Förifyllt värde för namnfältet för OpenPGP-certifikat. Det överskrider "
+"förifyllt NAME. Det är användbart om inga eller olämpliga "
+"systeminställningar hittas för förifyllt NAME."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -9397,13 +9482,13 @@ msgstr "GnuPG &kommandorad"
 #: src/mainwindow.cpp:799
 #, kde-format
 msgid "Manual for VS-NfD approval (German)"
-msgstr ""
+msgstr "Handbok för VS-NfD godkännande (tyska)"
 
 #: src/mainwindow.cpp:800
 #, kde-format
 msgctxt "Only available in German. Keep German file name for all languages"
 msgid "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
-msgstr ""
+msgstr "Handbuch-Zulassung-gnupgvsd-v3.2.pdf"
 
 #: src/mainwindow.cpp:808
 #, kde-format
@@ -10962,6 +11047,12 @@ msgid ""
 "para><para>Please right click the tray icon of <application>Kleopatra</"
 "application> and select 'quit' to try again.</para>"
 msgstr ""
+"<para>Det verkar som du redan kör <application>Kleopatra</application>, men "
+"med andra rättigheter.</para><para>Det inträffar vanligtvis om "
+"<application>Kleopatra</application> av misstag körs med "
+"administratörsrättigheter.</para ><para>Högerklicka på systembrickans ikon "
+"för <application>Kleopatra</application> och välj 'avsluta' för att försöka "
+"igen.</para>"
 
 #: src/utils/kuniqueservice_win.cpp:132
 #, kde-kuit-format
@@ -11998,6 +12089,8 @@ msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Du kan inte generera nycklar på smartkortet eftersom det inte stöder någon "
+"av de kompatibla algoritmerna."
 
 #: src/view/pgpcardwidget.cpp:428
 #, kde-format

@@ -934,6 +934,11 @@ void MainWindow::dropEvent(QDropEvent *e)
 {
     qCDebug(KLEOPATRA_LOG);
 
+    if (e->source()) {
+        // The event comes from kleopatra itself; we don't want to import in this case.
+        return;
+    }
+
     if (!can_decode_local_files(e->mimeData())) {
         return;
     }

@@ -518,7 +518,7 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
         dialog->setPassive(false);
 
         std::sort(keyListing.keys.begin(), keyListing.keys.end(), [](const auto &lhs, const auto &rhs) {
-            return qstricmp(lhs.key.primaryFingerprint(), rhs.key.primaryFingerprint());
+            return qstricmp(lhs.key.primaryFingerprint(), rhs.key.primaryFingerprint()) < 0;
         });
         std::vector<Key> keys;
         std::vector<Key::Origin> origins;

@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-15 00:39+0000\n"
-"PO-Revision-Date: 2024-06-15 08:22+0300\n"
+"PO-Revision-Date: 2024-06-15 13:54+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -518,18 +518,17 @@ msgid "Certification Completed"
 msgstr "ההסמכה הושלמה"
 
 #: src/commands/changeexpirycommand.cpp:227
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
 "for <b>%1</b>:</p><p>%2</p>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<p>אירעה שגיאה בעת הניסיון לשנות את סוף תקופת התוקף ל־<b>%1</b>:</p><p>%2</p>"
 
 #: src/commands/changeexpirycommand.cpp:235
-#, fuzzy, kde-format
+#, kde-format
 msgid "End of validity period changed successfully."
-msgstr "קובץ רשימת ביטול התעודות יובא בהצלחה."
+msgstr "סוף תקופת התוקף השתנתה בהצלחה."
 
 #: src/commands/changeownertrustcommand.cpp:103
 #, kde-kuit-format
@@ -617,24 +616,24 @@ msgid "Revoke Power"
 msgstr "שלילת כוח"
 
 #: src/commands/changeownertrustcommand.cpp:234
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while marking certificate '%1' as your certificate.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה בסימון האישור ‚%1’ כאישור שלך.</para><para><message>%2</"
+"message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:241
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"<para>אירעה שגיאה בעת הענקת כוח הסמכה לטובת ‚%1’.</para><para><message>%2</"
+"message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:248
 #, kde-kuit-format
@@ -750,10 +749,10 @@ msgid "PUK changed successfully."
 msgstr "מנהל התעודות"
 
 #: src/commands/changepincommand.cpp:186
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
-msgstr "קובץ רשימת ביטול התעודות יובא בהצלחה."
+msgstr ""
 
 #: src/commands/changepincommand.cpp:190
 #, kde-format
@@ -11747,7 +11746,7 @@ msgstr "החלפת הקוד האישי (PIN) לפעולות ניהוליות."
 #, kde-format
 msgctxt "@action:button"
 msgid "Set PUK"
-msgstr ""
+msgstr "הגדרת PUK"
 
 #: src/view/pgpcardwidget.cpp:290
 #, fuzzy, kde-format
@@ -11777,9 +11776,7 @@ msgid "not set"
 msgstr "לא הוגדר"
 
 #: src/view/pgpcardwidget.cpp:334
-#, fuzzy, kde-format
-#| msgctxt "label: result example: foo.sig: Verification failed. "
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"

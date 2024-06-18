@@ -20,7 +20,7 @@ namespace Kleo
  *
  * This dialog can be shown when you realize that a file you want to write
  * already exists and you want to offer the user the choice to either Rename,
- * Overwrite, or Skip.
+ * Overwrite, Append, or Skip.
  */
 class OverwriteDialog : public QDialog
 {
@@ -34,6 +34,7 @@ public:
         AllowSkip = 2, ///< Offer a "Skip" button, to skip other files too. Requires MultipleItems.
         MultipleItems =
             4, ///< Set if the current operation concerns multiple files, so it makes sense to offer buttons that apply the user's choice to all files/folders.
+        AllowAppend = 8, ///< Allow the user to choose Append.
     };
     /**
      * Stores a combination of #Option values.
@@ -48,6 +49,7 @@ public:
         AutoRename = 4,
         Skip = 5,
         AutoSkip = 6,
+        Append = 7,
     };
 
     /**

@@ -282,6 +282,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
                     break;
                 case OverwritePolicy::None:
                 case OverwritePolicy::Ask:
+                case OverwritePolicy::Append:
                     qCDebug(KLEOPATRA_LOG) << "Unexpected OverwritePolicy result" << policyAndPath.policy << "for" << outpath;
                 };
             }

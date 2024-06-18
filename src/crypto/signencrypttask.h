@@ -54,6 +54,7 @@ public:
     void setSign(bool sign);
     void setEncrypt(bool encrypt);
     void setDetachedSignature(bool detached);
+    bool detachedSignatureEnabled() const;
     void setEncryptSymmetric(bool symmetric);
     void setClearsign(bool clearsign);
     void setCreateArchive(bool archive);

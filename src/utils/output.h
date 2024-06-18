@@ -29,6 +29,7 @@ public:
     enum Policy {
         None, ///< indicates an error
         Ask,
+        Append,
         Overwrite,
         Rename,
         Skip,
@@ -36,7 +37,8 @@ public:
     };
 
     enum Options {
-        MultipleFiles = 1,
+        MultipleFiles = 0x01,
+        AllowAppend = 0x02,
     };
 
     struct PolicyAndFileName {
@@ -59,7 +61,7 @@ public:
     void setPolicy(Policy);
 
     /// returns the user's (or automatic) choice and the file name to write to or an empty string if overwriting was declined
-    PolicyAndFileName obtainOverwritePermission(const QString &fileName);
+    PolicyAndFileName obtainOverwritePermission(const QString &fileName, Options extraOptions = Options{});
 
 private:
     class Private;

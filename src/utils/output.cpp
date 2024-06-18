@@ -559,13 +559,14 @@ static QString suggestFileName(const QString &fileName)
     return path + QLatin1Char{'/'} + newFileName;
 }
 
-OverwritePolicy::PolicyAndFileName OverwritePolicy::obtainOverwritePermission(const QString &fileName)
+OverwritePolicy::PolicyAndFileName OverwritePolicy::obtainOverwritePermission(const QString &fileName, Options extraOptions)
 {
     switch (d->policy) {
     case OverwritePolicy::None:
         // shouldn't happen, but treat it as Ask
     case OverwritePolicy::Ask:
         break;
+    case OverwritePolicy::Append:
     case OverwritePolicy::Overwrite:
         return {d->policy, fileName};
     case OverwritePolicy::Rename: {
@@ -582,6 +583,9 @@ OverwritePolicy::PolicyAndFileName OverwritePolicy::obtainOverwritePermission(co
     if (d->options & MultipleFiles) {
         options |= OverwriteDialog::MultipleItems | OverwriteDialog::AllowSkip;
     }
+    if (extraOptions & AllowAppend) {
+        options |= OverwriteDialog::AllowAppend;
+    }
     OverwriteDialog dialog{d->parentWidget, i18nc("@title:window", "File Already Exists"), fileName, options};
     const auto result = static_cast<OverwriteDialog::Result>(dialog.exec());
     qCDebug(KLEOPATRA_LOG) << __func__ << "result:" << static_cast<int>(result);
@@ -594,6 +598,8 @@ OverwritePolicy::PolicyAndFileName OverwritePolicy::obtainOverwritePermission(co
         [[fallthrough]];
     case OverwriteDialog::Skip:
         return {OverwritePolicy::Skip, {}};
+    case OverwriteDialog::Append:
+        return {OverwritePolicy::Append, fileName};
     case OverwriteDialog::OverwriteAll:
         d->policy = OverwritePolicy::Overwrite;
         [[fallthrough]];
@@ -688,6 +694,7 @@ void FileOutput::doFinalize()
         }
         case OverwritePolicy::None:
         case OverwritePolicy::Ask:
+        case OverwritePolicy::Append:
         case OverwritePolicy::Skip:
             qCDebug(KLEOPATRA_LOG) << "Unexpected OverwritePolicy result" << policyAndFileName.policy << "for" << m_fileName;
         };

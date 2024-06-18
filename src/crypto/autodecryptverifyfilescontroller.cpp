@@ -256,24 +256,34 @@ void AutoDecryptVerifyFilesController::Private::exec()
             qCDebug(KLEOPATRA_LOG) << "Moving " << inpath << " to " << outpath;
             const QFileInfo ofi(outpath);
             if (ofi.exists()) {
-                const auto newPath = overwritePolicy.obtainOverwritePermission(outpath);
-                if (newPath.isEmpty()) {
-                    if (overwritePolicy.policy() == OverwritePolicy::Cancel) {
-                        qCDebug(KLEOPATRA_LOG) << "Overwriting canceled for: " << outpath;
-                        break;
-                    }
-                    // else Skip
+                const auto policyAndPath = overwritePolicy.obtainOverwritePermission(outpath);
+                if (policyAndPath.policy == OverwritePolicy::Cancel) {
+                    qCDebug(KLEOPATRA_LOG) << "Overwriting canceled for: " << outpath;
+                    break;
+                }
+                switch (policyAndPath.policy) {
+                case OverwritePolicy::Skip:
                     continue;
-                } else if (newPath == outpath) {
+                case OverwritePolicy::Overwrite: {
                     // overwrite existing file
                     if (!QFile::remove(outpath)) {
                         reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to delete <filename>%1</filename>.", outpath));
                         continue;
                     }
-                } else {
-                    // use new name for file
-                    outpath = newPath;
+                    break;
                 }
+                case OverwritePolicy::Rename: {
+                    // use new name for file
+                    outpath = policyAndPath.fileName;
+                    break;
+                }
+                case OverwritePolicy::Cancel:
+                    // already handled outside of switch
+                    break;
+                case OverwritePolicy::None:
+                case OverwritePolicy::Ask:
+                    qCDebug(KLEOPATRA_LOG) << "Unexpected OverwritePolicy result" << policyAndPath.policy << "for" << outpath;
+                };
             }
             if (!QFile::rename(inpath, outpath)) {
                 reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.", inpath, outpath));

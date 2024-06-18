@@ -564,19 +564,30 @@ static auto resolveFileNameConflicts(const std::vector<std::shared_ptr<SignEncry
         task->setOverwritePolicy(std::make_shared<OverwritePolicy>(OverwritePolicy::Skip));
         const auto outputFileName = task->outputFileName();
         if (QFile::exists(outputFileName)) {
-            const auto newFileName = overwritePolicy.obtainOverwritePermission(outputFileName);
-            if (newFileName.isEmpty()) {
-                if (overwritePolicy.policy() == OverwritePolicy::Cancel) {
-                    resolvedTasks.clear();
-                    break;
-                }
-                // else Skip -> do not add task to the final task list
-                continue;
-            } else if (newFileName != outputFileName) {
-                task->setOutputFileName(newFileName);
-            } else {
-                task->setOverwritePolicy(std::make_shared<OverwritePolicy>(OverwritePolicy::Overwrite));
+            const auto policyAndFileName = overwritePolicy.obtainOverwritePermission(outputFileName);
+            if (policyAndFileName.policy == OverwritePolicy::Cancel) {
+                resolvedTasks.clear();
+                break;
             }
+            switch (policyAndFileName.policy) {
+            case OverwritePolicy::Skip:
+                // do not add task to the final task list
+                continue;
+            case OverwritePolicy::Rename: {
+                task->setOutputFileName(policyAndFileName.fileName);
+                break;
+            }
+            case OverwritePolicy::Overwrite: {
+                task->setOverwritePolicy(std::make_shared<OverwritePolicy>(OverwritePolicy::Overwrite));
+                break;
+            }
+            case OverwritePolicy::Cancel:
+                // already handled outside of switch
+                break;
+            case OverwritePolicy::None:
+            case OverwritePolicy::Ask:
+                qCDebug(KLEOPATRA_LOG) << "Unexpected OverwritePolicy result" << policyAndFileName.policy << "for" << outputFileName;
+            };
         }
         resolvedTasks.push_back(task);
     }

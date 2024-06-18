@@ -48,6 +48,7 @@ public:
     void renameAllPressed();
     void skipPressed();
     void skipAllPressed();
+    void appendPressed();
     void overwritePressed();
     void overwriteAllPressed();
     void cancelPressed();
@@ -63,6 +64,7 @@ public:
     QPushButton *renameAllBtn = nullptr;
     QPushButton *skipBtn = nullptr;
     QPushButton *skipAllBtn = nullptr;
+    QPushButton *appendBtn = nullptr;
     QPushButton *overwriteBtn = nullptr;
     QPushButton *overwriteAllBtn = nullptr;
     QPushButton *cancelBtn = nullptr;
@@ -84,33 +86,37 @@ void OverwriteDialog::Private::setRenameBoxText(const QString &fileName)
     }
 }
 
+static void enableButton(QPushButton *button)
+{
+    if (button) {
+        button->setEnabled(true);
+    }
+}
+
+static void disableButton(QPushButton *button)
+{
+    if (button) {
+        button->setEnabled(false);
+    }
+}
+
 void OverwriteDialog::Private::enableRenameButton(const QString &newName)
 {
     if (!newName.isEmpty() && (newName != fileInfo.fileName())) {
         renameBtn->setEnabled(true);
         renameBtn->setDefault(true);
 
-        if (renameAllBtn) {
-            renameAllBtn->setEnabled(false);
-        }
-        if (overwriteBtn) {
-            overwriteBtn->setEnabled(false);
-        }
-        if (overwriteAllBtn) {
-            overwriteAllBtn->setEnabled(false);
-        }
+        disableButton(renameAllBtn);
+        disableButton(appendBtn);
+        disableButton(overwriteBtn);
+        disableButton(overwriteAllBtn);
     } else {
         renameBtn->setEnabled(false);
 
-        if (renameAllBtn) {
-            renameAllBtn->setEnabled(true);
-        }
-        if (overwriteBtn) {
-            overwriteBtn->setEnabled(true);
-        }
-        if (overwriteAllBtn) {
-            overwriteAllBtn->setEnabled(true);
-        }
+        enableButton(renameAllBtn);
+        enableButton(appendBtn);
+        enableButton(overwriteBtn);
+        enableButton(overwriteAllBtn);
     }
 }
 
@@ -154,6 +160,11 @@ void OverwriteDialog::Private::skipPressed()
 void OverwriteDialog::Private::skipAllPressed()
 {
     done(Result::AutoSkip);
+}
+
+void OverwriteDialog::Private::appendPressed()
+{
+    done(Result::Append);
 }
 
 void OverwriteDialog::Private::overwritePressed()
@@ -235,6 +246,13 @@ OverwriteDialog::OverwriteDialog(QWidget *parent, const QString &title, const QS
         buttonLayout->addWidget(d->skipAllBtn);
     }
 
+    if (options & AllowAppend) {
+        d->appendBtn = new QPushButton{i18nc("@action:button", "Append"), this};
+        d->appendBtn->setToolTip(i18nc("@info:tooltip", "Append the new file to the existing file."));
+        d->appendBtn->setIcon(QIcon::fromTheme(QStringLiteral("document-new")));
+        buttonLayout->addWidget(d->appendBtn);
+    }
+
     d->overwriteBtn = new QPushButton{i18nc("@action:button", "Overwrite"), this};
     d->overwriteBtn->setIcon(KStandardGuiItem::overwrite().icon());
     d->overwriteBtn->setToolTip(i18nc("@info:tooltip", "Overwrite the existing file."));
@@ -279,6 +297,11 @@ OverwriteDialog::OverwriteDialog(QWidget *parent, const QString &title, const QS
         });
         connect(d->skipAllBtn, &QAbstractButton::clicked, this, [this]() {
             d->skipAllPressed();
+        });
+    }
+    if (d->appendBtn) {
+        connect(d->appendBtn, &QAbstractButton::clicked, this, [this]() {
+            d->appendPressed();
         });
     }
     connect(d->overwriteBtn, &QAbstractButton::clicked, this, [this]() {

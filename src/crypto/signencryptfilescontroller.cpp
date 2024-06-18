@@ -564,7 +564,10 @@ static auto resolveFileNameConflicts(const std::vector<std::shared_ptr<SignEncry
         task->setOverwritePolicy(std::make_shared<OverwritePolicy>(OverwritePolicy::Skip));
         const auto outputFileName = task->outputFileName();
         if (QFile::exists(outputFileName)) {
-            const auto policyAndFileName = overwritePolicy.obtainOverwritePermission(outputFileName);
+            const auto extraOptions = ((task->protocol() == GpgME::OpenPGP && task->detachedSignatureEnabled()) //
+                                           ? OverwritePolicy::AllowAppend //
+                                           : OverwritePolicy::Options{});
+            const auto policyAndFileName = overwritePolicy.obtainOverwritePermission(outputFileName, extraOptions);
             if (policyAndFileName.policy == OverwritePolicy::Cancel) {
                 resolvedTasks.clear();
                 break;
@@ -575,6 +578,10 @@ static auto resolveFileNameConflicts(const std::vector<std::shared_ptr<SignEncry
                 continue;
             case OverwritePolicy::Rename: {
                 task->setOutputFileName(policyAndFileName.fileName);
+                break;
+            }
+            case OverwritePolicy::Append: {
+                task->setOverwritePolicy(std::make_shared<OverwritePolicy>(OverwritePolicy::Append));
                 break;
             }
             case OverwritePolicy::Overwrite: {

@@ -444,6 +444,11 @@ void SignEncryptTask::setDetachedSignature(bool detached)
     d->detached = detached;
 }
 
+bool SignEncryptTask::detachedSignatureEnabled() const
+{
+    return d->detached;
+}
+
 void SignEncryptTask::setEncryptSymmetric(bool symmetric)
 {
     kleo_assert(!d->job);
@@ -662,7 +667,9 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
             job->setInputFile(inputFileNames.front());
             job->setOutputFile(outputFileName);
             job->setSigningFlags(sigMode);
-            if (!removeExistingOutputFile()) {
+            if (QFile::exists(outputFileName) && m_overwritePolicy && (m_overwritePolicy->policy() == OverwritePolicy::Append)) {
+                job->setAppendSignature(true);
+            } else if (!removeExistingOutputFile()) {
                 return;
             }
             job->startIt();

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2004-04-20 13:24+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -5001,6 +5001,7 @@ msgstr ""
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Brisanje Certifikata Neuspješno"
 
@@ -5649,9 +5650,9 @@ msgid "Unknown Recipient:"
 msgstr "Opis"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
 #, fuzzy, kde-format
 #| msgid "Search:"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Traži:"
 
@@ -7166,6 +7167,12 @@ msgstr ""
 #| msgid "Find"
 msgid "Find:"
 msgstr "Nađi"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, fuzzy, kde-format
+#| msgid "Search:"
+msgid "Search"
+msgstr "Traži:"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, fuzzy, kde-format
@@ -11774,6 +11781,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Canceled."
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Poništeno."
 
@@ -11789,10 +11797,12 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
-#, kde-format
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
+#, fuzzy, kde-format
+#| msgid "Canceled."
+msgctxt "@action:button"
 msgid "Change PIN"
-msgstr ""
+msgstr "Poništeno."
 
 #: src/view/pgpcardwidget.cpp:258
 #, kde-format
@@ -11804,6 +11814,7 @@ msgstr ""
 
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Odaberite CRL datoteka"
 
@@ -11814,9 +11825,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Canceled."
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Poništeno."
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12009,13 +12022,6 @@ msgstr "Brisanje Certifikata Neuspješno"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Neuspješno Preuzimanje Certifikata"
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Canceled."
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Poništeno."
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format

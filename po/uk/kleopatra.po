@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-15 09:16+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -5446,7 +5446,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Отримувачі визначені за допомогою параметрів GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Примусове розшифровування"
 
@@ -6102,8 +6104,9 @@ msgid "Unknown Recipient:"
 msgstr "Невідомий отримувач:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Пошук"
 
@@ -7704,6 +7707,11 @@ msgstr "Зауваження: цю групу визначено у файлах
 #, kde-format
 msgid "Find:"
 msgstr "Знайти:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Пошук"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12580,7 +12588,9 @@ msgid "Keys:"
 msgstr "Ключі:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Створити ключі"
 
@@ -12602,8 +12612,9 @@ msgstr ""
 "para><para><emphasis strong='true'>Наявні на смарт-картці ключі буде "
 "перезаписано.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Змінити пінкод"
 
@@ -12618,7 +12629,9 @@ msgstr ""
 "має складатися з принаймні шести символів."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Розблокувати картку"
 
@@ -12631,7 +12644,9 @@ msgstr ""
 "адміністратора."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Зміни адміністративний пінкод"
 
@@ -12826,12 +12841,6 @@ msgstr "Не вдалося змінити адресу: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Адресу успішно змінено."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Змінити пінкод"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13229,6 +13238,9 @@ msgid ""
 msgstr ""
 "Імпортувати сертифікат з файла.<nl/>Щоб імпортувати дані з сервера відкритих "
 "ключів, скористайтеся пунктом <interface>Шукати на сервері</interface>."
+
+#~ msgid "Change PIN"
+#~ msgstr "Змінити пінкод"
 
 #~ msgid "Change PUK"
 #~ msgstr "Змінити PUK"

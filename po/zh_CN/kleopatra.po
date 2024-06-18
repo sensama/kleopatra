@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -5037,7 +5037,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>在 GnuPG 设置中预定义的收件人：</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "强制加密"
 
@@ -5670,8 +5672,9 @@ msgid "Unknown Recipient:"
 msgstr "未知收件人："
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "搜索"
 
@@ -7144,6 +7147,11 @@ msgstr "注意：此组由 gpg 配置文件定义。"
 #, kde-format
 msgid "Find:"
 msgstr "查找："
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "搜索"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -9997,10 +10005,10 @@ msgid ""
 msgstr "退出所有其他正在运行的 <application>Kleopatra</application> 实例。"
 
 #: src/smartcard/card.cpp:348
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label PIN to unlock the smart card for user operations"
 msgid "PIN"
-msgstr "PIV"
+msgstr ""
 
 #: src/smartcard/card.cpp:349
 #, kde-format
@@ -10009,10 +10017,10 @@ msgid "PUK"
 msgstr ""
 
 #: src/smartcard/card.cpp:350
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label PIN to unlock the smart card for administrative operations"
 msgid "Admin PIN"
-msgstr "更改管理员 PIN"
+msgstr ""
 
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
@@ -11751,7 +11759,9 @@ msgid "Keys:"
 msgstr "密钥："
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "生成新密钥"
 
@@ -11767,8 +11777,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "更改 PIN"
 
@@ -11781,7 +11792,9 @@ msgid ""
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "解冻卡片"
 
@@ -11792,7 +11805,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "更改管理员 PIN"
 
@@ -11835,7 +11850,7 @@ msgid "not set"
 msgstr "未设置"
 
 #: src/view/pgpcardwidget.cpp:334
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1：%2"
@@ -11980,12 +11995,6 @@ msgstr "URL 更改失败： %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL 已成功更改。"
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "更改 PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -12372,5 +12381,5 @@ msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
 
-#~ msgid "Change PUK"
-#~ msgstr "修改解锁码"
+#~ msgid "Change PIN"
+#~ msgstr "更改 PIN"

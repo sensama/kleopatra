@@ -1,14 +1,14 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# SPDX-FileCopyrightText: 2011, 2013, 2020, 2021, 2022, 2023 g.sora <g.sora@tiscali.it>
+# SPDX-FileCopyrightText: 2011, 2013, 2020, 2021, 2022, 2023, 2024 g.sora <g.sora@tiscali.it>
 # giovanni <g.sora@tiscali.it>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
-"PO-Revision-Date: 2024-06-14 12:23+0200\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"PO-Revision-Date: 2024-06-17 14:32+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -4945,7 +4945,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Fortia decryptation"
 
@@ -5558,8 +5560,9 @@ msgid "Unknown Recipient:"
 msgstr "Destinatario incognoscite:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Cerca"
 
@@ -7033,6 +7036,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "Trova:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Cerca"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -11532,7 +11540,9 @@ msgid "Keys:"
 msgstr "Claves:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Genera nove claves"
 
@@ -11548,8 +11558,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Modifica PIN"
 
@@ -11564,22 +11575,27 @@ msgstr ""
 "intelligente). Le PIN debe continer al minus sex characteres."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Disbloca carta"
 
 #: src/view/pgpcardwidget.cpp:267
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Unblock the smart card with the PUK."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
-msgstr "Disbloca le smartcard (carta intelligente) con le PUK."
+msgstr ""
+"Disbloca le smartcard (carta intelligente) con le PUK (si disponibile) o le "
+"OIN de Administrator."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change Admin Key"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Modifica clave de Admin (administrator)"
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -11594,18 +11610,14 @@ msgid "Set PUK"
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:290
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Change the PIN required for using the keys on the smart card. The PIN "
-#| "must contain at least six characters."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Set or change the PUK that can be used to unblock the smart card. The PUK "
 "must contain at least eight characters."
 msgstr ""
-"Cambia le PIN requirite per usar le claves sur le smartcard (carta "
-"intelligente). Le PIN debe continer al minus sex characteres."
+"Assigna o cambia le PUK que pote esser usate per disblocar  le smartcard "
+"(carta intelligente). Le PUK  debe continer al minus octo characteres."
 
 #: src/view/pgpcardwidget.cpp:313
 #, kde-format
@@ -11771,12 +11783,6 @@ msgstr "Modification de URL falleva: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr ""
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Modifica PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -12162,6 +12168,9 @@ msgid ""
 msgstr ""
 "Importa certificato ab un file.<nl/>Per importar ab un servitor de clave "
 "public usa from a public <interface>Cerca sur Servitor</interface> in loco."
+
+#~ msgid "Change PIN"
+#~ msgstr "Modifica PIN"
 
 #~ msgid "Change PUK"
 #~ msgstr "Modifica PUK"

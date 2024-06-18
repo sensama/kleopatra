@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-03-21 13:10+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -5709,6 +5709,7 @@ msgstr ""
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Encryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Titkosítás"
 
@@ -6390,8 +6391,9 @@ msgid "Unknown Recipient:"
 msgstr "1 ismeretlen címzett"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Keresés"
 
@@ -8058,6 +8060,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "Keresés:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Keresés"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -13050,6 +13057,7 @@ msgstr "Alkulcsok"
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create Key"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Új kulcs"
 
@@ -13065,9 +13073,10 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Jelszó megváltoztatása…"
 
@@ -13082,6 +13091,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Select All"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Minden kijelölése"
 
@@ -13092,9 +13102,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Expiry Date..."
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Lejárási dátum megváltoztatása…"
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -13296,13 +13308,6 @@ msgstr "Az aláírás nem sikerült: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "A felhasználóazonosító sikeresen hozzáadva."
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Change Passphrase..."
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Jelszó megváltoztatása…"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13705,6 +13710,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Change Passphrase..."
+#~ msgid "Change PIN"
+#~ msgstr "Jelszó megváltoztatása…"
 
 #, fuzzy
 #~| msgid "Change Passphrase..."

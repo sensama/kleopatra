@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-15 11:37+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -5406,7 +5406,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Destinataris predefinits via arranjament del GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Força el desencriptatge"
 
@@ -6061,8 +6063,9 @@ msgid "Unknown Recipient:"
 msgstr "Destinatari desconegut:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Cerca"
 
@@ -7617,6 +7620,11 @@ msgstr "Nota: Aquest grup està definit en els fitxers de configuració de gpg."
 #, kde-format
 msgid "Find:"
 msgstr "Cerca:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Cerca"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12501,7 +12509,9 @@ msgid "Keys:"
 msgstr "Claus:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Genera claus noves"
 
@@ -12523,8 +12533,9 @@ msgstr ""
 "perdi o es faci malbé.</para><para><emphasis strong='true'>Les claus "
 "existents a la targeta intel·ligent se sobreescriuran.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Canvia el PIN"
 
@@ -12539,7 +12550,9 @@ msgstr ""
 "que el PIN tingui sis caràcters com a mínim."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Desbloqueja la targeta"
 
@@ -12552,7 +12565,9 @@ msgstr ""
 "d'administració."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Canvia el PIN d'administració"
 
@@ -12748,12 +12763,6 @@ msgstr "Ha fallat el canvi de l'URL: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "L'URL s'ha canviat correctament."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Canvia el PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13154,6 +13163,9 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
+
+#~ msgid "Change PIN"
+#~ msgstr "Canvia el PIN"
 
 #~ msgid "Change PUK"
 #~ msgstr "Canvia el PUK"

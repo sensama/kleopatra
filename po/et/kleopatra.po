@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -5598,7 +5598,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG seadistustega määratud saajad:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Jõuga lahtikrüptimine"
 
@@ -6291,8 +6293,9 @@ msgid "Unknown Recipient:"
 msgstr "Tundmatu saaja:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Otsi"
 
@@ -7960,6 +7963,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "Otsitakse:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Otsi"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12900,6 +12908,7 @@ msgstr "Võtmed:"
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Generate new Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Genereeri uued võtmed"
 
@@ -12915,8 +12924,10 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
-#, kde-format
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
+#, fuzzy, kde-format
+#| msgid "Change PIN"
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Muuda PIN-i"
 
@@ -12932,6 +12943,7 @@ msgstr "PIN-i muutmine, mida on tarvis kiipkaardi lukustuse eemaldamiseks."
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Select All"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Vali kõik"
 
@@ -12942,7 +12954,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Muuda halduri PIN-i"
 
@@ -13140,13 +13154,6 @@ msgstr "URL-i muutmine nurjus: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL on edukalt muudetud."
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Change PIN"
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Muuda PIN-i"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13560,6 +13567,9 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
+
+#~ msgid "Change PIN"
+#~ msgstr "Muuda PIN-i"
 
 #, fuzzy
 #~| msgid "Change PIN"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2007-05-25 13:03+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -5167,6 +5167,7 @@ msgstr ""
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Description"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Апісанне"
 
@@ -5830,9 +5831,9 @@ msgid "Unknown Recipient:"
 msgstr "Апісанне"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
 #, fuzzy, kde-format
 #| msgid "Search:"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Шукаць:"
 
@@ -7395,6 +7396,12 @@ msgstr ""
 #| msgid "Find"
 msgid "Find:"
 msgstr "Знайсці"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, fuzzy, kde-format
+#| msgid "Search:"
+msgid "Search"
+msgstr "Шукаць:"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, fuzzy, kde-format
@@ -12106,6 +12113,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Canceled."
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Скасавана."
 
@@ -12121,10 +12129,12 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
-#, kde-format
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
+#, fuzzy, kde-format
+#| msgid "Canceled."
+msgctxt "@action:button"
 msgid "Change PIN"
-msgstr ""
+msgstr "Скасавана."
 
 #: src/view/pgpcardwidget.cpp:258
 #, kde-format
@@ -12137,6 +12147,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Змяніць колер &фона..."
 
@@ -12147,9 +12158,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Canceled."
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Скасавана."
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12341,13 +12354,6 @@ msgstr ""
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Перазапісаць файл?"
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Canceled."
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Скасавана."
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format

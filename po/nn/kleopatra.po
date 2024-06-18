@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2022-06-17 18:10+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -5133,9 +5133,11 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgctxt "@action:button"
 msgid "Force decryption"
-msgstr ""
+msgstr "Kryptering"
 
 #: src/crypto/gui/resultitemwidget.cpp:178
 #, kde-format
@@ -5747,8 +5749,9 @@ msgid "Unknown Recipient:"
 msgstr ""
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Søk"
 
@@ -7283,6 +7286,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "Finn:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Søk"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -11919,6 +11927,7 @@ msgstr ""
 
 #: src/view/pgpcardwidget.cpp:243
 #, kde-format
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr ""
 
@@ -11934,8 +11943,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr ""
 
@@ -11949,6 +11959,7 @@ msgstr ""
 
 #: src/view/pgpcardwidget.cpp:266
 #, kde-format
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr ""
 
@@ -11959,9 +11970,12 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Canceled setting PIN."
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Avbrote val av PIN-verdi."
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12148,12 +12162,6 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
-msgstr ""
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
 msgstr ""
 
 #: src/view/pivcardwidget.cpp:146

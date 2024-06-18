@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -5414,7 +5414,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG の設定で定義済みの受信者:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "復号を強制する"
 
@@ -6068,8 +6070,9 @@ msgid "Unknown Recipient:"
 msgstr "不明な受信者:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "検索"
 
@@ -7673,6 +7676,11 @@ msgstr "注意: gpg ファイルの設定ファイルでこのグループは定
 #, kde-format
 msgid "Find:"
 msgstr "見つける:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "検索"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12586,7 +12594,9 @@ msgid "Keys:"
 msgstr "鍵:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "新しい鍵を生成"
 
@@ -12602,8 +12612,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "PINを変更"
 
@@ -12617,7 +12628,9 @@ msgid ""
 msgstr "スマートカードでこの鍵を使用するために必要な PIN の変更。"
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "カードをアンブロック"
 
@@ -12629,7 +12642,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "スマートカードをアンブロックし新しい PIN を設定する"
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Admin PIN を変更"
 
@@ -12825,12 +12840,6 @@ msgstr "URL の変更に失敗しました: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL は変更できました。"
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "PINを変更"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13229,6 +13238,9 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#~ msgid "Change PIN"
+#~ msgstr "PINを変更"
 
 #, fuzzy
 #~| msgctxt "@action:button"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-15 08:15+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -5399,7 +5399,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Vnaprej določeni prejemniki v nastavitvah GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Prisili dešifriranje"
 
@@ -6047,8 +6049,9 @@ msgid "Unknown Recipient:"
 msgstr "Neznan prejemnik:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Poišči"
 
@@ -7627,6 +7630,11 @@ msgstr "Opomba: Ta grupa je določena v nastavitvi datotek za gpg."
 #, kde-format
 msgid "Find:"
 msgstr "Najdi:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Poišči"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12444,7 +12452,9 @@ msgid "Keys:"
 msgstr "Podključi:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Generiraj nove ključe"
 
@@ -12466,10 +12476,11 @@ msgstr ""
 "para><para><emphasis strong='true'> Obstoječi ključi na pametni kartici bodo "
 "prepisani.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
-msgstr "Spremeni PIN"
+msgstr "Zamenjaj PIN"
 
 #: src/view/pgpcardwidget.cpp:258
 #, kde-format
@@ -12482,7 +12493,9 @@ msgstr ""
 "vsebovati vsaj šest znakov."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Deblokiraj kartico"
 
@@ -12495,7 +12508,9 @@ msgstr ""
 "PINom."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Zamenjajte administrativni PIN"
 
@@ -12691,12 +12706,6 @@ msgstr "Sprememba URL-ja ni uspela: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL je bil uspešno spremenjen."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Zamenjaj PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13094,6 +13103,9 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgid "Change PIN"
+#~ msgstr "Spremeni PIN"
 
 #~ msgid "Change PUK"
 #~ msgstr "Zamenjaj PUK"

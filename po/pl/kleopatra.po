@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1682479 $
+# Version: $Revision: 1682603 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
 # Mikolaj Machowski <mikmach@wp.pl>, 2004.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-16 10:46+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -5379,7 +5379,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Odbiorcy zdefiniowani w ustawieniach GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Wymuś odszyfrowanie"
 
@@ -6026,8 +6028,9 @@ msgid "Unknown Recipient:"
 msgstr "Nieznany adresat:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Szukaj"
 
@@ -7598,6 +7601,11 @@ msgstr "Uwaga: Ta grupa jest określona w plikach ustawień gpg."
 #, kde-format
 msgid "Find:"
 msgstr "Znajdź:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Szukaj"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12415,7 +12423,9 @@ msgid "Keys:"
 msgstr "Klucze:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Utwórz nowe klucze"
 
@@ -12437,8 +12447,9 @@ msgstr ""
 "lub uszkodzisz kartę.</para><para><emphasis strong='true'>Klucze już "
 "istniejące na karcie inteligentnej zostaną zastąpione.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Zmień PIN"
 
@@ -12453,7 +12464,9 @@ msgstr ""
 "ten musi składać się z co najmniej 6 znaków."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Odblokuj kartę"
 
@@ -12466,7 +12479,9 @@ msgstr ""
 "administratora."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Zmień PIN administratora"
 
@@ -12662,12 +12677,6 @@ msgstr "Nie udała się zmiana adresu: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Pomyślnie zmieniono adres URL."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Zmień PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13067,6 +13076,9 @@ msgstr ""
 "Importowanie certyfikatu z pliku.<nl/> Aby zaimportować certyfikat z "
 "publicznego serwera kluczy wybierz <interface>Wyszukaj na serwerze</"
 "interface>."
+
+#~ msgid "Change PIN"
+#~ msgstr "Zmień PIN"
 
 #~ msgid "Change PUK"
 #~ msgstr "Zmień PUK"

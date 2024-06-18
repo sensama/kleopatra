@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -5253,7 +5253,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG 설정에서 사전에 정의한 받는 사람:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "복호화 강제"
 
@@ -5899,8 +5901,9 @@ msgid "Unknown Recipient:"
 msgstr "알 수 없는 받는 사람:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "검색"
 
@@ -7501,6 +7504,11 @@ msgstr "메모: 이 그룹은 gpg 설정 파일에 정의되어 있습니다."
 #, kde-format
 msgid "Find:"
 msgstr "검색:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "검색"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12331,7 +12339,9 @@ msgid "Keys:"
 msgstr "키:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "새 키 생성"
 
@@ -12347,8 +12357,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "PIN 변경"
 
@@ -12362,7 +12373,9 @@ msgid ""
 msgstr "스마트카드의 키를 사용할 때 필요한 PIN을 변경합니다."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "카드 차단 해제"
 
@@ -12374,7 +12387,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "스마트카드의 차단을 해제하고 새 PIN을 설정합니다."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "관리자 PIN 변경"
 
@@ -12570,12 +12585,6 @@ msgstr "URL 변경 실패: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL을 변경했습니다."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "PIN 변경"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -12971,6 +12980,9 @@ msgid ""
 msgstr ""
 "파일에서 인증서를 가져옵니다.<nl/>공개 키 서버에서 키를 가져오려면 "
 "<interface>서버에서 찾아보기</interface>를 사용하십시오."
+
+#~ msgid "Change PIN"
+#~ msgstr "PIN 변경"
 
 #, fuzzy
 #~| msgctxt "@action:button"

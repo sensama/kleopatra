@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2023-07-08 12:52+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -5571,7 +5571,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Destinatários predefinidos na configuração do GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Forçar a descodificação"
 
@@ -6236,8 +6238,9 @@ msgid "Unknown Recipient:"
 msgstr "Destinatário Desconhecido:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Procurar"
 
@@ -7872,6 +7875,11 @@ msgstr "Nota: Este grupo está definido nos ficheiros de configuração do GPG."
 #, kde-format
 msgid "Find:"
 msgstr "Procurar:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Procurar"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12878,7 +12886,9 @@ msgid "Keys:"
 msgstr "Chaves:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Gerar Novas Chaves"
 
@@ -12894,8 +12904,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Modificar o PIN"
 
@@ -12909,7 +12920,9 @@ msgid ""
 msgstr "Modificar o PIN necessário para usar as chaves no cartão."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Desbloquear o Cartão"
 
@@ -12921,7 +12934,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "Desbloquear o cartão e definir um novo PIN."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Modificar o PIN de Administração"
 
@@ -13119,12 +13134,6 @@ msgstr "A mudança de URL falhou: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "O URL foi modificado com sucesso."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Modificar o PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13526,6 +13535,9 @@ msgstr ""
 "Importa um certificado a partir de um ficheiro.<nl/>Para importar de um "
 "servidor de chaves públicas, use o <interface>Procurar num Servidor</"
 "interface> em alternativa."
+
+#~ msgid "Change PIN"
+#~ msgstr "Modificar o PIN"
 
 #, fuzzy
 #~| msgctxt "@action:button"

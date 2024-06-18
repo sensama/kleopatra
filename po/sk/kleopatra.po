@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -5632,7 +5632,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Príjemcovia preddefinovaní cez nastavenia GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Vynútiť dešifrovanie"
 
@@ -6322,8 +6324,9 @@ msgid "Unknown Recipient:"
 msgstr "Neznámy príjemca:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Hľadať"
 
@@ -7994,6 +7997,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "Nájsť:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Hľadať"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12929,6 +12937,7 @@ msgstr "Kľúče:"
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Generate new Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Generovať nové kľúče"
 
@@ -12944,8 +12953,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Zmeniť PIN"
 
@@ -12961,6 +12971,7 @@ msgstr "Zmeniť PIN vyžadovaný na odomknutie smart karty."
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Select All"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Vybrať všetko"
 
@@ -12971,7 +12982,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Zmeniť PIN admina"
 
@@ -13170,12 +13183,6 @@ msgstr "Zmena URL zlyhala: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL adresa úspešne zmenená."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Zmeniť PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13586,6 +13593,9 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\"."
+
+#~ msgid "Change PIN"
+#~ msgstr "Zmeniť PIN"
 
 #, fuzzy
 #~| msgid "Change PIN"

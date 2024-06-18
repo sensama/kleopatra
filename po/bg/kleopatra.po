@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-15 23:10+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -5383,7 +5383,9 @@ msgstr ""
 "%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Принудително дешифриране"
 
@@ -6037,8 +6039,9 @@ msgid "Unknown Recipient:"
 msgstr "Неизвестен получател:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Търсене"
 
@@ -7594,6 +7597,11 @@ msgstr "Забележка: Тази група е дефинирана в ко�
 #, kde-format
 msgid "Find:"
 msgstr "Намиране:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Търсене"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12450,7 +12458,9 @@ msgid "Keys:"
 msgstr "Ключове:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Генериране на нови ключове"
 
@@ -12472,8 +12482,9 @@ msgstr ""
 "para><para><emphasis strong='true'>Съществуващите ключове на смарт картата "
 "ще бъдат презаписани.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Промяна на ПИН"
 
@@ -12488,7 +12499,9 @@ msgstr ""
 "ПИН кодът трябва да съдържа най-малко шест знака."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Отблокиране на карта"
 
@@ -12501,7 +12514,9 @@ msgstr ""
 "ПИН."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Промяна на ПИН за администратор"
 
@@ -12697,12 +12712,6 @@ msgstr "Неуспешна промяна на URL адреса: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL адресът е успешно променен."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Промяна на ПИН"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13104,6 +13113,9 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgid "Change PIN"
+#~ msgstr "Промяна на ПИН"
 
 #~ msgid "Change PUK"
 #~ msgstr "Промяна на ПУК"

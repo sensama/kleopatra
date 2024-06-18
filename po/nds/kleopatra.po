@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -5760,6 +5760,7 @@ msgstr "<qt><p>Binnen GnuPG vörinstellt Adressaten:</p> %1</qt>"
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Bloots för't &Verslöteln"
 
@@ -6457,8 +6458,9 @@ msgid "Unknown Recipient:"
 msgstr "Een nich begäng Adressaat"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Söken"
 
@@ -8126,6 +8128,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "Söken:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Söken"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -13132,6 +13139,7 @@ msgstr "Ünnerslötels"
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Generating key"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Slötel warrt opstellt"
 
@@ -13147,9 +13155,10 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Slötelsatz ännern..."
 
@@ -13164,6 +13173,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Select All"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "All utsöken"
 
@@ -13174,9 +13184,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Expiry Date..."
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Afloopdatum ännern..."
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -13378,13 +13390,6 @@ msgstr "Ünnerschrieven fehlslaan: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Bruker-ID mit Spood toföögt."
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Change Passphrase..."
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Slötelsatz ännern..."
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13786,6 +13791,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Change Passphrase..."
+#~ msgid "Change PIN"
+#~ msgstr "Slötelsatz ännern..."
 
 #, fuzzy
 #~| msgid "Change Passphrase..."

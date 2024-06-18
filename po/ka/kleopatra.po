@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-16 05:44+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -5316,7 +5316,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG-ის პარამეტრებში წინასწარ-აღწერილი მიმღებები:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "ძალით გაშიფვრა"
 
@@ -5966,8 +5968,9 @@ msgid "Unknown Recipient:"
 msgstr "უცნობი მიმღები:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "ძებნა\\"
 
@@ -7507,6 +7510,11 @@ msgstr "შენიშვნა: ეს ჯგუფი gpg-ის კონფ
 #, kde-format
 msgid "Find:"
 msgstr "მოძებნა:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "ძებნა\\"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12318,7 +12326,9 @@ msgid "Keys:"
 msgstr "გასაღებები:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "ახალი გასაღებების გენერაცია"
 
@@ -12340,8 +12350,9 @@ msgstr ""
 "para><para><emphasis strong='true'>ჭკვიან ბარათზე არსებულ გასაღებებს თავზე "
 "გადაეწერება.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "PIN კოდის შეცვლა"
 
@@ -12356,7 +12367,9 @@ msgstr ""
 "PIN კოდი სულ ცოტა, ექვს სიმბოლოს უნდა შეიცავდეს."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "ბარათის განბლოკვა"
 
@@ -12369,7 +12382,9 @@ msgstr ""
 "PIN-კოდით."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "ადმინის PIN-ის შეცვლა"
 
@@ -12565,12 +12580,6 @@ msgstr "URL-ის შეცვლის შეცდომა: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL წარმატებით შეიცვალა."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "PIN კოდის შეცვლა"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -12968,6 +12977,9 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgid "Change PIN"
+#~ msgstr "PIN კოდის შეცვლა"
 
 #~ msgid "Change PUK"
 #~ msgstr "PUK-ის შეცვლა"

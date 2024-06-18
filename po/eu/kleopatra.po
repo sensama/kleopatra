@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-05-24 22:50+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -5376,7 +5376,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG ezarpenen bidez aurredefinitutako hartzaileak:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Behartu deszifratzea"
 
@@ -6033,8 +6035,9 @@ msgid "Unknown Recipient:"
 msgstr "Hartzaile ezezaguna:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Bilatu"
 
@@ -7597,6 +7600,11 @@ msgstr "Oharra: Talde hori «gpg» konfiguratzeko fitxategietan definituta dago.
 #, kde-format
 msgid "Find:"
 msgstr "Aurkitu:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Bilatu"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12489,7 +12497,9 @@ msgid "Keys:"
 msgstr "Gakoak:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Sortu gako berriak"
 
@@ -12511,10 +12521,11 @@ msgstr ""
 "para><para><emphasis strong='true'>Txartel-adimendunean dauden gakoak "
 "gainidatzi egingo dira.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
-msgstr "Aldatu PINa:"
+msgstr "Aldatu PINa"
 
 #: src/view/pgpcardwidget.cpp:258
 #, kde-format
@@ -12527,7 +12538,9 @@ msgstr ""
 "gutxienez sei karaktere izan behar ditu."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Desblokeatu txartela"
 
@@ -12540,7 +12553,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "Desblokeatu txartel-adimenduna PUK erabiliz."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Aldatu administratzeko PINa"
 
@@ -12743,12 +12758,6 @@ msgstr "URLa aldatzea huts egin du: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URLa ondo aldatu da."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Aldatu PINa"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13147,6 +13156,9 @@ msgid ""
 msgstr ""
 "Inportatu ziurtagiria fitxategi batetik.<nl/>Gako-zerbitzari publiko batetik "
 "inportatzeko, berriz, erabili <interface>Bilatu zerbitzarian</interface>."
+
+#~ msgid "Change PIN"
+#~ msgstr "Aldatu PINa:"
 
 #~ msgid "Change PUK"
 #~ msgstr "Aldatu PUK"

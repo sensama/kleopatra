@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -5622,6 +5622,7 @@ msgstr "<qt><p>អ្នក​ទទួល​បាន​កំណត់​ជ�
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Encryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "ការ​​អ៊ិនគ្រីប​"
 
@@ -6305,8 +6306,9 @@ msgid "Unknown Recipient:"
 msgstr "មិនស្គាល់​អ្នក​ទទួល %1"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "ស្វែងរក"
 
@@ -7960,6 +7962,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "រក ៖"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "ស្វែងរក"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12915,6 +12922,7 @@ msgstr "សោ​រង​"
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create Key"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "បង្កើត​សោ"
 
@@ -12930,9 +12938,10 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
 
@@ -12947,6 +12956,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Select All"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "ជ្រើសទាំងអស់"
 
@@ -12957,9 +12967,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Expiry Date..."
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់..."
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -13161,13 +13173,6 @@ msgstr "ការ​ចុះហត្ថលេខា​បាន​បរាជ
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "បាន​បន្ថែម​លេខ​សម្គាល់​អ្នក​ប្រើ​ដោយ​ជោគជ័យ ។"
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Change Passphrase..."
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13574,6 +13579,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Change Passphrase..."
+#~ msgid "Change PIN"
+#~ msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
 
 #, fuzzy
 #~| msgid "Change Passphrase..."

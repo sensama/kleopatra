@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-03-08 23:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -5168,7 +5168,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG 設定預先定義的收件者：</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "強制解密"
 
@@ -5800,8 +5802,9 @@ msgid "Unknown Recipient:"
 msgstr "未知的收件者："
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "搜尋"
 
@@ -7370,6 +7373,11 @@ msgstr "請注意：這個群組是在 gpg 設定檔案中所定義的。"
 #, kde-format
 msgid "Find:"
 msgstr "尋找："
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "搜尋"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12081,7 +12089,9 @@ msgid "Keys:"
 msgstr "金鑰："
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "產生新的金鑰"
 
@@ -12097,8 +12107,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "變更 PIN 碼"
 
@@ -12112,7 +12123,9 @@ msgid ""
 msgstr "變更要使用智慧卡上的金鑰前所需要的 PIN 碼。"
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "解除鎖定卡片"
 
@@ -12124,7 +12137,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "解鎖智慧卡並設定新的 PIN 碼。"
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "變更 Admin PIN 碼"
 
@@ -12317,12 +12332,6 @@ msgstr "網址變更失敗：%1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "網址已成功變更。"
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "變更 PIN 碼"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -12710,6 +12719,9 @@ msgid ""
 msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
+
+#~ msgid "Change PIN"
+#~ msgstr "變更 PIN 碼"
 
 #, fuzzy
 #~| msgctxt "@action:button"

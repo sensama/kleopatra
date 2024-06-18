@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-15 13:54+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -5039,7 +5039,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "אילוץ פענוח"
 
@@ -5654,10 +5656,12 @@ msgid "Unknown Recipient:"
 msgstr "נמען לא ידוע:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label"
+#| msgid "Search:"
+msgctxt "@action:button"
 msgid "Search"
-msgstr ""
+msgstr "חיפוש:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
 #, kde-format
@@ -7132,6 +7136,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "איתור:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr ""
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -11690,7 +11699,9 @@ msgid "Keys:"
 msgstr "מפתחות:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "יצירת מפתחות חדשים"
 
@@ -11706,10 +11717,11 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
-msgstr "החלפת קוד אישי (PIN)"
+msgstr "החלפת קוד אישי"
 
 #: src/view/pgpcardwidget.cpp:258
 #, fuzzy, kde-format
@@ -11721,7 +11733,9 @@ msgid ""
 msgstr "החלפת הקוד האישי (PIN) שנחוץ לשימוש במפתחות בכרטיס החכם."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "שחרור חסימת כרטיס"
 
@@ -11732,7 +11746,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "החלפת קוד אישי (PIN) לניהול"
 
@@ -11923,12 +11939,6 @@ msgstr "החלפת הכתובת נכשלה: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "הכתובת נערכה בהצלחה."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "החלפת קוד אישי"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -12311,6 +12321,9 @@ msgid ""
 msgstr ""
 "ייבוא אישור מקובץ.<nl/>כדי לייבא משרת מפתחות ציבורי יש להשתמש באפשרות "
 "<interface>איתור בשרת</interface> במקום."
+
+#~ msgid "Change PIN"
+#~ msgstr "החלפת קוד אישי (PIN)"
 
 #~ msgid "Change PUK"
 #~ msgstr "החלפת PUK"

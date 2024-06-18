@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2009-01-08 13:02+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -5560,6 +5560,7 @@ msgstr ""
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Само &за криптографирање"
 
@@ -6233,9 +6234,9 @@ msgid "Unknown Recipient:"
 msgstr "Опис"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
 #, fuzzy, kde-format
 #| msgid "Search:"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Барај:"
 
@@ -7823,6 +7824,12 @@ msgstr ""
 #| msgid "Find"
 msgid "Find:"
 msgstr "Најди"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, fuzzy, kde-format
+#| msgid "Search:"
+msgid "Search"
+msgstr "Барај:"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, fuzzy, kde-format
@@ -12618,6 +12625,7 @@ msgstr "Нови потклучеви:"
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Stop Operation"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Запри ја операцијата"
 
@@ -12633,9 +12641,10 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Непроменети:"
 
@@ -12650,6 +12659,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Одбери CRL-датотека"
 
@@ -12660,9 +12670,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unchanged:"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Непроменети:"
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12859,13 +12871,6 @@ msgstr ""
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Симнувањето на сертификатот не успеа"
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Unchanged:"
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Непроменети:"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13263,6 +13268,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Unchanged:"
+#~ msgid "Change PIN"
+#~ msgstr "Непроменети:"
 
 #, fuzzy
 #~| msgid "Unchanged:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2023-09-12 21:35+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -5451,7 +5451,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Mottagare fördefinierade via inställningar i GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Tvinga avkodning"
 
@@ -6103,8 +6105,9 @@ msgid "Unknown Recipient:"
 msgstr "Okänd mottagare:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Sök"
 
@@ -7744,6 +7747,11 @@ msgstr "Observera: Gruppen är definierad i inställningsfilerna för gpg."
 #, kde-format
 msgid "Find:"
 msgstr "Sök:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Sök"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12683,7 +12691,9 @@ msgid "Keys:"
 msgstr "Nycklar:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Skapa nya nycklar"
 
@@ -12699,10 +12709,11 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
-msgstr "Ändra nummer"
+msgstr "Ändra PIN-kod"
 
 #: src/view/pgpcardwidget.cpp:258
 #, fuzzy, kde-format
@@ -12714,7 +12725,9 @@ msgid ""
 msgstr "Ändra PIN-kod som krävs för att använda nycklarna på smartkortet."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Ta bort blockering av kort"
 
@@ -12726,7 +12739,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "Ta bort blockering av smartkortet och ställ in ny PIN-kod."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Ändra administrativ PIN-kod"
 
@@ -12925,12 +12940,6 @@ msgstr "Ändring av webbadress misslyckades: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Webbadress ändrad med lyckat resultat"
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Ändra PIN-kod"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13331,6 +13340,9 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
+
+#~ msgid "Change PIN"
+#~ msgstr "Ändra nummer"
 
 #, fuzzy
 #~| msgctxt "@action:button"

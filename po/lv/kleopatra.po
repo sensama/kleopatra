@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2011-08-24 09:59+0300\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian\n"
@@ -5776,6 +5776,7 @@ msgstr "<qt><p>GnuPG iestatījumos iepriekšdefinētie saņēmēji:</p>%1"
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Encryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Šifrēšana"
 
@@ -6478,8 +6479,9 @@ msgid "Unknown Recipient:"
 msgstr "%1 nezināms saņēmējs"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Meklēt"
 
@@ -8173,6 +8175,11 @@ msgstr ""
 #, kde-format
 msgid "Find:"
 msgstr "Atrast:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Meklēt"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -13201,6 +13208,7 @@ msgstr "Apakšatslēgas"
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create Key"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Izveidot atslēgu"
 
@@ -13216,9 +13224,10 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Mainīt paroles frāzi..."
 
@@ -13233,6 +13242,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Select All"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Iezīmēt visu"
 
@@ -13243,9 +13253,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Expiry Date..."
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Mainīt beigu datumu..."
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -13448,13 +13460,6 @@ msgstr "Neizdevās parakstīt: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Lietotāja ID veiksmīgi pievienots."
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Change Passphrase..."
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Mainīt paroles frāzi..."
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13861,6 +13866,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Change Passphrase..."
+#~ msgid "Change PIN"
+#~ msgstr "Mainīt paroles frāzi..."
 
 #, fuzzy
 #~| msgid "Change Passphrase..."

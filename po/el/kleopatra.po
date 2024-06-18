@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -5547,7 +5547,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Προκαθορισμένοι παραλήπτες από τις ρυθμίσεις GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Εξαναγκασμός αποκρυπτογράφησης"
 
@@ -6213,8 +6215,9 @@ msgid "Unknown Recipient:"
 msgstr "Άγνωστος παραλήπτης:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Αναζήτηση"
 
@@ -7864,6 +7867,11 @@ msgstr "Σημείωση: αυτή η ομάδα έχει οριστεί στα 
 #, kde-format
 msgid "Find:"
 msgstr "Αναζήτηση:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Αναζήτηση"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
@@ -12867,7 +12875,9 @@ msgid "Keys:"
 msgstr "Κλειδιά:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Δημιουργία νέων κλειδιών"
 
@@ -12883,10 +12893,11 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
-msgstr "Τροποποίηση PIN"
+msgstr "Αλλαγή PIN"
 
 #: src/view/pgpcardwidget.cpp:258
 #, fuzzy, kde-format
@@ -12898,7 +12909,9 @@ msgid ""
 msgstr "Απαιτείται αλλαγή του PIN για χρήση των κλειδιών στην έξυπνη κάρτα."
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unblock Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Απεμπλοκή κάρτας"
 
@@ -12910,7 +12923,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "Απεμπλοκή έξυπνης κάρτας και ρύθμιση νέου PIN."
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Αλλαγή PIN διαχειριστή"
 
@@ -13107,12 +13122,6 @@ msgstr "Αποτυχία αλλαγής URL: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Επιτυχής αλλαγή URL."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Αλλαγή PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13516,6 +13525,9 @@ msgstr ""
 "Εισαγωγή πιστοποιητικού από αρχείο.<nl/>Για να εισάγετε από ένα δημόσιο "
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
+
+#~ msgid "Change PIN"
+#~ msgstr "Τροποποίηση PIN"
 
 #, fuzzy
 #~| msgctxt "@action:button"

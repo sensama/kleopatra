@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2022-02-26 11:47+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: Hindi <kde-l10n-hi@kde.org>\n"
@@ -5379,6 +5379,7 @@ msgstr ""
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "सिर्फ एनक्रिप्टिंग के लिए (&e)"
 
@@ -6052,9 +6053,9 @@ msgid "Unknown Recipient:"
 msgstr "वर्णन"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
 #, fuzzy, kde-format
 #| msgid "Search:"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "ढूंढें:"
 
@@ -7620,6 +7621,12 @@ msgstr ""
 #, fuzzy, kde-format
 msgid "Find:"
 msgstr "ढूंढें"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, fuzzy, kde-format
+#| msgid "Search:"
+msgid "Search"
+msgstr "ढूंढें:"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, fuzzy, kde-format
@@ -12405,6 +12412,7 @@ msgstr "नए उपकुंजियाँ:"
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Generating key"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "कुंजी बनाया जा रहा है"
 
@@ -12420,9 +12428,10 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "अपरिवर्तित:"
 
@@ -12437,6 +12446,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "सीआरएल फ़ाइल चुनें"
 
@@ -12447,9 +12457,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unchanged:"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "अपरिवर्तित:"
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12649,13 +12661,6 @@ msgstr "प्रमाणपत्र मिटाना असफल"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "प्रमाणपत्र को डाउनलोड करने में असफल"
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Unchanged:"
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "अपरिवर्तित:"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13052,6 +13057,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Unchanged:"
+#~ msgid "Change PIN"
+#~ msgstr "अपरिवर्तित:"
 
 #, fuzzy
 #~| msgid "Unchanged:"

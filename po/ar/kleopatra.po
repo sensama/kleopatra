@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-05-09 10:17+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -5143,6 +5143,7 @@ msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "لـ"
 
@@ -5760,8 +5761,8 @@ msgid "Unknown Recipient:"
 msgstr "الوصف"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
 #, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "Search"
 msgstr "ابحث"
 
@@ -7258,6 +7259,11 @@ msgstr ""
 #, fuzzy, kde-format
 msgid "Find:"
 msgstr "اعثر على:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, fuzzy, kde-format
+msgid "Search"
+msgstr "ابحث"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, fuzzy, kde-format
@@ -11781,6 +11787,7 @@ msgstr "المفاتيح"
 
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "يجري توليد المفتاح"
 
@@ -11796,8 +11803,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "تغيير رمز PIN"
 
@@ -11811,6 +11819,7 @@ msgstr ""
 
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "انتقِ CRL ملف"
 
@@ -11821,9 +11830,10 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "بدون تغيير:"
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12011,12 +12021,6 @@ msgstr "شهادة حذف فشل"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "شهادة نزّل فشل"
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "تغيير رمز PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -12393,6 +12397,9 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid "Change PIN"
+#~ msgstr "تغيير رمز PIN"
 
 #, fuzzy
 #~ msgid "Change PUK"

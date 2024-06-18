@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2024-03-02 15:46+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -5132,9 +5132,11 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Certificates"
+msgctxt "@action:button"
 msgid "Force decryption"
-msgstr ""
+msgstr "&Certificate"
 
 #: src/crypto/gui/resultitemwidget.cpp:178
 #, kde-format
@@ -5789,10 +5791,11 @@ msgid "Unknown Recipient:"
 msgstr "(certificat necunoscut)"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "(unknown certificate)"
+msgctxt "@action:button"
 msgid "Search"
-msgstr ""
+msgstr "(certificat necunoscut)"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
 #, fuzzy, kde-format
@@ -7370,6 +7373,11 @@ msgstr ""
 #: src/dialogs/lookupcertificatesdialog.cpp:133
 #, kde-format
 msgid "Find:"
+msgstr ""
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
 msgstr ""
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
@@ -12062,9 +12070,11 @@ msgid "Keys:"
 msgstr "Subchei"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default certificate"
+msgctxt "@action:button"
 msgid "Generate New Keys"
-msgstr ""
+msgstr "Certificat implicit"
 
 #: src/view/pgpcardwidget.cpp:245
 #, kde-kuit-format
@@ -12078,8 +12088,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr ""
 
@@ -12094,6 +12105,7 @@ msgstr ""
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
 #| msgid "Default certificate"
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Certificat implicit"
 
@@ -12104,9 +12116,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Default certificate"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Certificat implicit"
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12296,12 +12310,6 @@ msgstr ""
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Acest certificat a expirat."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr ""
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format

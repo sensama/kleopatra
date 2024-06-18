@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
 "PO-Revision-Date: 2020-04-01 23:02+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-doc@kde.org>\n"
@@ -5442,6 +5442,7 @@ msgstr "<qt><p>Per GnuPG nuostatas iš anksto apibrėžti gavėjai:</p>%1</qt>"
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, fuzzy, kde-format
 #| msgid "Encryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Šifravimas"
 
@@ -6099,8 +6100,9 @@ msgid "Unknown Recipient:"
 msgstr "Nežinomas gavėjas:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Ieškoti"
 
@@ -7672,6 +7674,11 @@ msgstr ""
 #, fuzzy, kde-format
 msgid "Find:"
 msgstr "Ieškoti:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Ieškoti"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, fuzzy, kde-format
@@ -12456,6 +12463,7 @@ msgstr "Raktai:"
 #: src/view/pgpcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgid "Generate new Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Generuoti naujus raktus"
 
@@ -12471,8 +12479,10 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
-#, kde-format
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
+#, fuzzy, kde-format
+#| msgid "Change PIN"
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Keisti PIN kodą"
 
@@ -12486,6 +12496,7 @@ msgstr ""
 
 #: src/view/pgpcardwidget.cpp:266
 #, fuzzy, kde-format
+msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Pažymėti viską"
 
@@ -12496,9 +12507,11 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr ""
+msgstr "Keisti PIN kodą"
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12692,13 +12705,6 @@ msgstr ""
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Liudijimo informacija"
-
-#: src/view/pivcardwidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Change PIN"
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Keisti PIN kodą"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -13109,6 +13115,9 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid "Change PIN"
+#~ msgstr "Keisti PIN kodą"
 
 #, fuzzy
 #~| msgid "Change PIN"

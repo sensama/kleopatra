@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-15 00:39+0000\n"
-"PO-Revision-Date: 2024-06-05 09:22+0200\n"
+"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"PO-Revision-Date: 2024-06-17 15:31+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -3671,9 +3671,9 @@ msgstr[2] ""
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Smazat skupinu"
+msgstr[1] "Smazat skupiny"
+msgstr[2] "Smazat skupiny"
 
 #: src/conf/groupsconfigwidget.cpp:475
 #, kde-format
@@ -4630,7 +4630,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1609
 #, kde-format
 msgid "Verifying %1..."
-msgstr ""
+msgstr "Ověřuji %1..."
 
 #: src/crypto/decryptverifytask.cpp:1870
 #, kde-kuit-format
@@ -4953,7 +4953,9 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Vynutit šifrování"
 
@@ -5567,8 +5569,9 @@ msgid "Unknown Recipient:"
 msgstr "Neznámý příjemce:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#: src/dialogs/lookupcertificatesdialog.cpp:140
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search"
+msgctxt "@action:button"
 msgid "Search"
 msgstr "Hledat"
 
@@ -6335,7 +6338,7 @@ msgstr "Ověření"
 #, kde-format
 msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
-msgstr ""
+msgstr "kvalifikované podpisy"
 
 #: src/dialogs/certificatedetailswidget.cpp:400
 #, kde-format
@@ -6404,7 +6407,7 @@ msgstr "Obnovit seznam certifikátů"
 #, kde-format
 msgctxt "@action:button"
 msgid "Import..."
-msgstr ""
+msgstr "Importovat..."
 
 #: src/dialogs/certificateselectiondialog.cpp:165
 #, kde-format
@@ -7046,6 +7049,11 @@ msgstr ""
 msgid "Find:"
 msgstr "Najít:"
 
+#: src/dialogs/lookupcertificatesdialog.cpp:140
+#, kde-format
+msgid "Search"
+msgstr "Hledat"
+
 #: src/dialogs/lookupcertificatesdialog.cpp:157
 #, kde-format
 msgid "Select All"
@@ -7278,7 +7286,7 @@ msgstr "Název"
 #, kde-format
 msgctxt "@title:column"
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: src/dialogs/revokerswidget.cpp:78
 #, kde-format
@@ -7290,7 +7298,7 @@ msgstr ""
 #, kde-format
 msgctxt "text for screen readers for an unknown name"
 msgid "unknown name"
-msgstr ""
+msgstr "neznámý název"
 
 #: src/dialogs/revokerswidget.cpp:132
 #, kde-format
@@ -8655,13 +8663,13 @@ msgstr ""
 #, kde-format
 msgctxt "@info:shell"
 msgid "Encrypt file(s)"
-msgstr ""
+msgstr "Zašifrovat soubor(y)"
 
 #: src/kleopatra_options.h:28
 #, kde-format
 msgctxt "@info:shell"
 msgid "Sign file(s)"
-msgstr ""
+msgstr "Podepsat soubor(y)"
 
 #: src/kleopatra_options.h:29
 #, kde-format
@@ -8685,7 +8693,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info:shell"
 msgid "Verify file/signature"
-msgstr ""
+msgstr "Ověřit soubor/podpis"
 
 #: src/kleopatra_options.h:33
 #, kde-format
@@ -8697,13 +8705,13 @@ msgstr ""
 #, kde-format
 msgctxt "@info:shell"
 msgid "Search for a certificate on a keyserver"
-msgstr ""
+msgstr "Hledat certifikát na serveru klíčů"
 
 #: src/kleopatra_options.h:35
 #, kde-format
 msgctxt "@info:shell"
 msgid "Create or check a checksum file"
-msgstr ""
+msgstr "Vytvořit nebo zkontrolovat soubor s kontrolním součtem"
 
 #: src/kleopatra_options.h:39
 #, kde-format
@@ -8719,7 +8727,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info:shell"
 msgid "Create a new key pair or certificate signing request"
-msgstr ""
+msgstr "Vytvořit nový pár klíčů nebo požadavek o podpis certifikátu"
 
 #: src/kleopatra_options.h:41
 #, kde-format
@@ -9120,7 +9128,7 @@ msgstr ""
 #: src/mainwindow.cpp:795
 #, kde-format
 msgid "&Smartcard Setup"
-msgstr ""
+msgstr "Nastavení Čipové &karty"
 
 #: src/mainwindow.cpp:796
 #, kde-format
@@ -9808,25 +9816,22 @@ msgid ""
 msgstr ""
 
 #: src/smartcard/card.cpp:348
-#, fuzzy, kde-format
-#| msgctxt "proper name of a type of smartcard"
-#| msgid "PIV"
+#, kde-format
 msgctxt "@label PIN to unlock the smart card for user operations"
 msgid "PIN"
-msgstr "PIV"
+msgstr "PIN"
 
 #: src/smartcard/card.cpp:349
 #, kde-format
 msgctxt "@label PIN/Key to unblock/reset the normal PIN"
 msgid "PUK"
-msgstr ""
+msgstr "PUK"
 
 #: src/smartcard/card.cpp:350
-#, fuzzy, kde-format
-#| msgid "Change Admin PIN"
+#, kde-format
 msgctxt "@label PIN to unlock the smart card for administrative operations"
 msgid "Admin PIN"
-msgstr "Změnit PIN administrátora"
+msgstr ""
 
 #: src/smartcard/openpgpcard.cpp:101
 #, kde-format
@@ -11521,7 +11526,7 @@ msgstr "Držitel karty:"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
-msgstr ""
+msgstr "Změnit"
 
 #: src/view/pgpcardwidget.cpp:195
 #, kde-format
@@ -11552,7 +11557,9 @@ msgid "Keys:"
 msgstr "Klíče:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Generate New Keys"
+msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Generovat nové klíče"
 
@@ -11568,8 +11575,9 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
 #, kde-format
+msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Změnit PIN"
 
@@ -11582,9 +11590,11 @@ msgid ""
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:266
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select Card"
+msgctxt "@action:button"
 msgid "Unblock Card"
-msgstr ""
+msgstr "Vybrat kartu"
 
 #: src/view/pgpcardwidget.cpp:267
 #, kde-format
@@ -11593,7 +11603,9 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
 #: src/view/pgpcardwidget.cpp:280
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Admin PIN"
+msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Změnit PIN administrátora"
 
@@ -11636,9 +11648,7 @@ msgid "not set"
 msgstr "nenastaveno"
 
 #: src/view/pgpcardwidget.cpp:334
-#, fuzzy, kde-format
-#| msgctxt "label: result example: foo.sig: Verification failed. "
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"
@@ -11783,12 +11793,6 @@ msgstr "Změna URL selhala: %1"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL byla úspěšně změněna."
-
-#: src/view/pivcardwidget.cpp:144
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "Změnit PIN"
 
 #: src/view/pivcardwidget.cpp:146
 #, kde-format
@@ -12167,5 +12171,5 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 
-#~ msgid "Change PUK"
-#~ msgstr "Změnit PUK"
+#~ msgid "Change PIN"
+#~ msgstr "Změnit PIN"

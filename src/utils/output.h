@@ -27,6 +27,7 @@ class OverwritePolicy
 {
 public:
     enum Policy {
+        None, ///< indicates an error
         Ask,
         Overwrite,
         Rename,
@@ -38,6 +39,17 @@ public:
         MultipleFiles = 1,
     };
 
+    struct PolicyAndFileName {
+        // define explicit constructor to implicitly delete default constructor
+        PolicyAndFileName(Policy p, const QString &f)
+            : policy{p}
+            , fileName{f}
+        {
+        }
+        Policy policy;
+        QString fileName;
+    };
+
     explicit OverwritePolicy(Policy initialPolicy);
     /// creates an interactive policy, i.e. with initial policy set to Ask
     OverwritePolicy(QWidget *parent, Options options);
@@ -46,8 +58,8 @@ public:
     Policy policy() const;
     void setPolicy(Policy);
 
-    /// returns the file name to write to or an empty string if overwriting was declined
-    QString obtainOverwritePermission(const QString &fileName);
+    /// returns the user's (or automatic) choice and the file name to write to or an empty string if overwriting was declined
+    PolicyAndFileName obtainOverwritePermission(const QString &fileName);
 
 private:
     class Private;

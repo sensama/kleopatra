@@ -559,21 +559,23 @@ static QString suggestFileName(const QString &fileName)
     return path + QLatin1Char{'/'} + newFileName;
 }
 
-QString OverwritePolicy::obtainOverwritePermission(const QString &fileName)
+OverwritePolicy::PolicyAndFileName OverwritePolicy::obtainOverwritePermission(const QString &fileName)
 {
     switch (d->policy) {
+    case OverwritePolicy::None:
+        // shouldn't happen, but treat it as Ask
     case OverwritePolicy::Ask:
         break;
     case OverwritePolicy::Overwrite:
-        return fileName;
+        return {d->policy, fileName};
     case OverwritePolicy::Rename: {
-        return suggestFileName(fileName);
+        return {d->policy, suggestFileName(fileName)};
     }
     case OverwritePolicy::Skip:
-        return {};
+        return {d->policy, {}};
     case OverwritePolicy::Cancel:
         qCDebug(KLEOPATRA_LOG) << __func__ << "Error: Called although user canceled operation";
-        return {};
+        return {d->policy, {}};
     }
 
     OverwriteDialog::Options options = OverwriteDialog::AllowRename;
@@ -586,27 +588,26 @@ QString OverwritePolicy::obtainOverwritePermission(const QString &fileName)
     switch (result) {
     case OverwriteDialog::Cancel:
         d->policy = OverwritePolicy::Cancel;
-        return {};
+        return {OverwritePolicy::Cancel, {}};
     case OverwriteDialog::AutoSkip:
         d->policy = OverwritePolicy::Skip;
         [[fallthrough]];
     case OverwriteDialog::Skip:
-        return {};
+        return {OverwritePolicy::Skip, {}};
     case OverwriteDialog::OverwriteAll:
         d->policy = OverwritePolicy::Overwrite;
         [[fallthrough]];
     case OverwriteDialog::Overwrite:
-        return fileName;
+        return {OverwritePolicy::Overwrite, fileName};
     case OverwriteDialog::Rename:
-        return dialog.newFileName();
+        return {OverwritePolicy::Rename, dialog.newFileName()};
     case OverwriteDialog::AutoRename: {
         d->policy = OverwritePolicy::Rename;
-        return suggestFileName(fileName);
+        return {OverwritePolicy::Rename, suggestFileName(fileName)};
     }
-    default:
-        qCDebug(KLEOPATRA_LOG) << __func__ << "unexpected result:" << result;
     };
-    return {};
+    qCDebug(KLEOPATRA_LOG) << __func__ << "unexpected result:" << result;
+    return {OverwritePolicy::None, {}};
 }
 
 void FileOutput::doFinalize()
@@ -668,20 +669,28 @@ void FileOutput::doFinalize()
     qCDebug(KLEOPATRA_LOG) << this << "renaming failed";
 
     if (QFile::exists(m_fileName)) {
-        const auto newFileName = m_policy->obtainOverwritePermission(m_fileName);
-        if (newFileName.isEmpty()) {
+        const auto policyAndFileName = m_policy->obtainOverwritePermission(m_fileName);
+        switch (policyAndFileName.policy) {
+        case OverwritePolicy::Cancel:
             throw Exception(gpg_error(GPG_ERR_CANCELED), i18n("Overwriting declined"));
-        }
-        if (newFileName == m_fileName) {
+        case OverwritePolicy::Overwrite: {
             qCDebug(KLEOPATRA_LOG) << this << "going to remove file for overwriting" << m_fileName;
             if (!QFile::remove(m_fileName)) {
                 throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
                                 xi18nc("@info", "Could not remove file <filename>%1</filename> for overwriting.", m_fileName));
             }
             qCDebug(KLEOPATRA_LOG) << this << "removing file to overwrite succeeded";
-        } else {
-            m_fileName = newFileName;
+            break;
         }
+        case OverwritePolicy::Rename: {
+            m_fileName = policyAndFileName.fileName;
+            break;
+        }
+        case OverwritePolicy::None:
+        case OverwritePolicy::Ask:
+        case OverwritePolicy::Skip:
+            qCDebug(KLEOPATRA_LOG) << "Unexpected OverwritePolicy result" << policyAndFileName.policy << "for" << m_fileName;
+        };
     }
 
     qCDebug(KLEOPATRA_LOG) << this << "renaming" << tmpFileName << "->" << m_fileName;

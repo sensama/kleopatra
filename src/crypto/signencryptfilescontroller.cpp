@@ -554,6 +554,12 @@ static std::vector<std::shared_ptr<SignEncryptTask>> createArchiveSignEncryptTas
 
 namespace
 {
+static bool isDetachedOpenPGPSignature(const QString &fileName)
+{
+    const auto classification = Kleo::classify(fileName);
+    return Kleo::isOpenPGP(classification) && Kleo::isDetachedSignature(classification);
+}
+
 static auto resolveFileNameConflicts(const std::vector<std::shared_ptr<SignEncryptTask>> &tasks, QWidget *parent)
 {
     std::vector<std::shared_ptr<SignEncryptTask>> resolvedTasks;
@@ -564,7 +570,8 @@ static auto resolveFileNameConflicts(const std::vector<std::shared_ptr<SignEncry
         task->setOverwritePolicy(std::make_shared<OverwritePolicy>(OverwritePolicy::Skip));
         const auto outputFileName = task->outputFileName();
         if (QFile::exists(outputFileName)) {
-            const auto extraOptions = ((task->protocol() == GpgME::OpenPGP && task->detachedSignatureEnabled()) //
+            const auto isDetachedOpenPGPSigningTask = (task->protocol() == GpgME::OpenPGP) && task->detachedSignatureEnabled();
+            const auto extraOptions = (isDetachedOpenPGPSigningTask && isDetachedOpenPGPSignature(outputFileName) //
                                            ? OverwritePolicy::AllowAppend //
                                            : OverwritePolicy::Options{});
             const auto policyAndFileName = overwritePolicy.obtainOverwritePermission(outputFileName, extraOptions);

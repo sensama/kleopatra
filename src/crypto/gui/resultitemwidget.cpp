@@ -237,7 +237,7 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
 {
     const QColor color = colorForVisualCode(d->m_result->code());
     const QColor txtColor = txtColorForVisualCode(d->m_result->code());
-    const QColor linkColor = txtColor;
+    const QColor linkColor = SystemInfo::isHighContrastModeActive() ? QColor{} : txtColor;
     const QString styleSheet = SystemInfo::isHighContrastModeActive()
         ? QStringLiteral(
             "QFrame,QLabel { margin: 0px; }"

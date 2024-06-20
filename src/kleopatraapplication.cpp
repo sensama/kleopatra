@@ -53,6 +53,10 @@
 
 #include "dialogs/updatenotification.h"
 
+#ifdef Q_OS_WIN
+#include <utils/winapi-helpers.h>
+#endif
+
 #include "kleopatra_debug.h"
 #include <KColorSchemeManager>
 #include <KIconLoader>
@@ -77,6 +81,8 @@
 
 #ifdef Q_OS_WIN
 #include <QtPlatformHeaders/QWindowsWindowFunctions>
+
+#include <windows.h>
 #endif
 
 using namespace Kleo;
@@ -299,6 +305,16 @@ KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
     // because this interferes with column by column navigation that is required
     // for accessibility
     setStyleSheet(QStringLiteral("QTreeView { arrow-keys-navigate-into-children: 0; }"));
+#ifdef Q_OS_WIN
+    if (SystemInfo::isHighContrastModeActive()) {
+        // use colors specified by Windows if high-contrast mode is active
+        QPalette highContrastPalette = palette();
+        const QColor linkColor = win_getSysColor(COLOR_HOTLIGHT);
+        highContrastPalette.setColor(QPalette::All, QPalette::Link, linkColor);
+        highContrastPalette.setColor(QPalette::All, QPalette::LinkVisited, linkColor);
+        setPalette(highContrastPalette);
+    }
+#endif
     connect(this, &QApplication::focusChanged, this, [this](QWidget *, QWidget *now) {
         d->updateFocusFrame(now);
     });

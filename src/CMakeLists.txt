@@ -19,6 +19,7 @@ if(WIN32)
       selftest/registrycheck.cpp selftest/registrycheck.h
       utils/gnupg-registry.c
       utils/userinfo_win.cpp
+      utils/winapi-helpers.cpp utils/winapi-helpers.h
       utils/windowsprocessdevice.cpp utils/windowsprocessdevice.h
       versioninfo.rc kleopatra.w32-manifest
   )

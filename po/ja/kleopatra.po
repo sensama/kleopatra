@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-06-20 00:39+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -2018,7 +2018,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "クリップボードにある証明書の種類を判断できませんでした。"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:111
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:796
 #, kde-format
 msgid "Clipboard"
 msgstr "クリップボード"
@@ -2438,7 +2438,7 @@ msgid "Import CRL Finished"
 msgstr "CRL のインポート完了"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:343
+#: src/crypto/autodecryptverifyfilescontroller.cpp:354
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "ファイル <filename>%1</filename> を読み取りのために開けません。"
@@ -4484,14 +4484,14 @@ msgstr "はい、ファイル <filename>%1</filename> として保存します"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> を削除できませんでした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:279
+#: src/crypto/autodecryptverifyfilescontroller.cpp:290
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "ファイル <filename>%1</filename> を <filename>%2</filename> に移動できません"
 "でした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:351
+#: src/crypto/autodecryptverifyfilescontroller.cpp:362
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4499,7 +4499,7 @@ msgid ""
 msgstr ""
 "ファイル <filename>%1</filename> は証明書を含み、復号や検証ができません。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:402
+#: src/crypto/autodecryptverifyfilescontroller.cpp:413
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4556,14 +4556,14 @@ msgid "Create Checksum Progress"
 msgstr "チェックサム作成の進捗"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:770
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "%1 実行中にエラー: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
 #: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "%1 実行に失敗: %2"
@@ -4914,7 +4914,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:889
 #, kde-format
 msgid "Input error: %1"
 msgstr "入力エラー: %1"
@@ -6195,7 +6195,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "アーカイブ"
 
-#: src/crypto/signencryptfilescontroller.cpp:678
+#: src/crypto/signencryptfilescontroller.cpp:703
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6204,7 +6204,7 @@ msgstr ""
 "SignEncryptFilesController::Private::slotWizardOperationPrepared に予期しない"
 "例外を検出: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:680
+#: src/crypto/signencryptfilescontroller.cpp:705
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6254,18 +6254,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: %2"
 
-#: src/crypto/signencrypttask.cpp:477
+#: src/crypto/signencrypttask.cpp:482
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "タスクに使用するプロトコルを判断できません"
 
-#: src/crypto/signencrypttask.cpp:528
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6274,7 +6274,7 @@ msgstr ""
 "このファイルに共通なベースのディレクトリが見つかりません:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:760
 #, fuzzy, kde-format
 #| msgctxt "Lineedit accessible name"
 #| msgid "OpenPGP signed and encrypted file"
@@ -6282,7 +6282,7 @@ msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "OpenPGP 署名/暗号化のファイル"
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:780
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -6290,7 +6290,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "鍵ペアを作成中..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:800
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -11558,12 +11558,12 @@ msgstr "ファイル \"%1\" を読み取りのために開けませんでした"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "ファイル \"%1\" は既に開いていますが、読み取り用ではありません"
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:725
+#: src/utils/input.cpp:326 src/utils/output.cpp:741
 #, kde-format
 msgid "Command not specified"
 msgstr "コマンドが指定されてません"
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
+#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "%1 のプロセスを開始開始できませんでした: %2"
@@ -11666,61 +11666,61 @@ msgstr "FD %1 を書き込みのために開けませんでした"
 msgid "Could not create temporary file for output \"%1\""
 msgstr "出力 \"%1\" のための一時ファイルを作成できませんでした"
 
-#: src/utils/output.cpp:583
+#: src/utils/output.cpp:589
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr "ファイルがすでに存在します"
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Overwriting declined"
 msgstr "上書きが拒否されました"
 
-#: src/utils/output.cpp:679
+#: src/utils/output.cpp:686
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr "ファイル <filename>%1</filename> を上書きのために開けられませんでした"
 
-#: src/utils/output.cpp:699
+#: src/utils/output.cpp:715
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "ファイル名を \"%1\" から \"%2\" に変更できませんでした。"
 
-#: src/utils/output.cpp:741
+#: src/utils/output.cpp:757
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "%1 に入力..."
 
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:759
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "%1 に入力"
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:789
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "クリップボードに書き込めませんでした"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:798
 #, kde-format
 msgid "Find buffer"
 msgstr "検索バッファ"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:800
 #, kde-format
 msgid "Selection"
 msgstr "選択"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:813
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "クリップボードが見つかりませんでした"
 
-#: src/utils/overwritedialog.cpp:138
+#: src/utils/overwritedialog.cpp:144
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -11730,49 +11730,49 @@ msgstr ""
 "<filename>%1</filename> という名前のファイルは既に存在します。別のファイル名"
 "を入力してください。"
 
-#: src/utils/overwritedialog.cpp:185
+#: src/utils/overwritedialog.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
 msgstr "ファイル <filename>%1</filename> は既に存在します。"
 
-#: src/utils/overwritedialog.cpp:190
+#: src/utils/overwritedialog.cpp:201
 #, kde-format
 msgctxt "@label"
 msgid "Rename:"
 msgstr "名前の変更:"
 
-#: src/utils/overwritedialog.cpp:199
+#: src/utils/overwritedialog.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
 msgstr "新しい名前を提案"
 
-#: src/utils/overwritedialog.cpp:200
+#: src/utils/overwritedialog.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
 msgstr "すでに存在することのないファイル名を提案する"
 
-#: src/utils/overwritedialog.cpp:211
+#: src/utils/overwritedialog.cpp:222
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename"
 msgstr "名前の変更"
 
-#: src/utils/overwritedialog.cpp:212
+#: src/utils/overwritedialog.cpp:223
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
 msgstr "与えられた名前でファイルを保存する"
 
-#: src/utils/overwritedialog.cpp:218
+#: src/utils/overwritedialog.cpp:229
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
 msgstr "名前をすべて変更"
 
-#: src/utils/overwritedialog.cpp:221
+#: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11780,25 +11780,25 @@ msgid ""
 "with a different name."
 msgstr "自動ですでにあるファイルとは別の名前ですべてのファイルを保存する。"
 
-#: src/utils/overwritedialog.cpp:227
+#: src/utils/overwritedialog.cpp:238
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip"
 msgstr "スキップ"
 
-#: src/utils/overwritedialog.cpp:229
+#: src/utils/overwritedialog.cpp:240
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
 msgstr "このファイルは書き込まずに、次にスキップする。"
 
-#: src/utils/overwritedialog.cpp:232
+#: src/utils/overwritedialog.cpp:243
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
 msgstr "すべてスキップ"
 
-#: src/utils/overwritedialog.cpp:234
+#: src/utils/overwritedialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11806,25 +11806,40 @@ msgid ""
 "existing file."
 msgstr "すでにあるファイルについてまったく上書きしない。"
 
-#: src/utils/overwritedialog.cpp:238
+#: src/utils/overwritedialog.cpp:250
+#, fuzzy, kde-format
+#| msgid "Appearance"
+msgctxt "@action:button"
+msgid "Append"
+msgstr "外観"
+
+#: src/utils/overwritedialog.cpp:251
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Overwrite the existing file."
+msgctxt "@info:tooltip"
+msgid "Append the new file to the existing file."
+msgstr "既存のファイルを上書きします。"
+
+#: src/utils/overwritedialog.cpp:256
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
 msgstr "上書き"
 
-#: src/utils/overwritedialog.cpp:240
+#: src/utils/overwritedialog.cpp:258
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
 msgstr "既存のファイルを上書きします。"
 
-#: src/utils/overwritedialog.cpp:244
+#: src/utils/overwritedialog.cpp:262
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "すべて上書き"
 
-#: src/utils/overwritedialog.cpp:246
+#: src/utils/overwritedialog.cpp:264
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."

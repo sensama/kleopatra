@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-06-20 00:39+0000\n"
 "PO-Revision-Date: 2011-08-24 09:59+0300\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian\n"
@@ -2140,7 +2140,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Neizdevās noteikt starpliktuves satura sertifikāta tipu."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:111
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:796
 #, kde-format
 msgid "Clipboard"
 msgstr "Starpliktuve"
@@ -2583,7 +2583,7 @@ msgid "Import CRL Finished"
 msgstr "CRL importēšana pabeigta"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:343
+#: src/crypto/autodecryptverifyfilescontroller.cpp:354
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4789,7 +4789,7 @@ msgstr ""
 "Neizdevās nokopēt pagaidu failu <filename>%1</filename> uz failu <filename>"
 "%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:279
+#: src/crypto/autodecryptverifyfilescontroller.cpp:290
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4800,14 +4800,14 @@ msgstr ""
 "Neizdevās nokopēt pagaidu failu <filename>%1</filename> uz failu <filename>"
 "%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:351
+#: src/crypto/autodecryptverifyfilescontroller.cpp:362
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:402
+#: src/crypto/autodecryptverifyfilescontroller.cpp:413
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4871,14 +4871,14 @@ msgid "Create Checksum Progress"
 msgstr "Kontrolsummas izveidošanas progress"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:770
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Kļūda darbinot %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
 #: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Neizdevās izpildīt %1: %2"
@@ -5252,7 +5252,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:889
 #, fuzzy, kde-format
 #| msgid "Input file:"
 msgid "Input error: %1"
@@ -6608,7 +6608,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "arhīvs"
 
-#: src/crypto/signencryptfilescontroller.cpp:678
+#: src/crypto/signencryptfilescontroller.cpp:703
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6617,7 +6617,7 @@ msgstr ""
 "Notverts negaidīts izņēmums iekš SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:680
+#: src/crypto/signencryptfilescontroller.cpp:705
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6669,18 +6669,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:477
+#: src/crypto/signencrypttask.cpp:482
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Nevar noteikt uzdevumam vajadzīgo protokolu"
 
-#: src/crypto/signencrypttask.cpp:528
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6689,14 +6689,14 @@ msgstr ""
 "Neizdevās atrast kopīgo bāzes mapi šiem failiem:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:760
 #, fuzzy, kde-format
 #| msgid "Sign/Encrypt Files"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Parakstīt/Šifrēt failus"
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:780
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -6704,7 +6704,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Izveido atslēgu..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:800
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -12077,13 +12077,13 @@ msgstr "Neizdevās atvērt failu \"%1\" lasīšanai"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Fails \"%1\" jau atvērts, bet ne lasīšanai"
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:725
+#: src/utils/input.cpp:326 src/utils/output.cpp:741
 #, fuzzy, kde-format
 #| msgid "Command not found in filesystem"
 msgid "Command not specified"
 msgstr "Komanda failu sistēmā nav atrasta"
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
+#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Neizdevās palaist %1 procesu: %2"
@@ -12189,30 +12189,30 @@ msgstr "Neizdevās atvērt rakstīšanai FD %1"
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Neizdevās izveidot pagaidu failu izvadei \"%1\""
 
-#: src/utils/output.cpp:583
+#: src/utils/output.cpp:589
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr ""
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Pārrakstīšana noraidīta"
 
-#: src/utils/output.cpp:679
+#: src/utils/output.cpp:686
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr "Neizdevās atvērt failu \"%1\" lasīšanai"
 
-#: src/utils/output.cpp:699
+#: src/utils/output.cpp:715
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Neizdevās pārdēvēt failu \"%1\" uz \"%2\""
 
-#: src/utils/output.cpp:741
+#: src/utils/output.cpp:757
 #, fuzzy, kde-format
 #| msgctxt "e.g. \"Output of tar xf - file1 ...\""
 #| msgid "Output of %1 ..."
@@ -12220,7 +12220,7 @@ msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "%1 izvade..."
 
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:759
 #, fuzzy, kde-format
 #| msgctxt "e.g. \"Output of tar xf - file\""
 #| msgid "Output of %1"
@@ -12228,27 +12228,27 @@ msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "%1 izvade"
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:789
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Neizdevās ierakstīt starpliktuvē"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:798
 #, kde-format
 msgid "Find buffer"
 msgstr "Meklēšanas buferis"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:800
 #, kde-format
 msgid "Selection"
 msgstr "Iezīmētais"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:813
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Neizdevās atrast starpliktuvi"
 
-#: src/utils/overwritedialog.cpp:138
+#: src/utils/overwritedialog.cpp:144
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The file named \"%1\" already exists. Are you sure you want to overwrite "
@@ -12259,7 +12259,7 @@ msgid ""
 "file name."
 msgstr "Fails ar nosaukumu \"%1\" jau pastāv. Vai vēlaties to pārrakstīt?"
 
-#: src/utils/overwritedialog.cpp:185
+#: src/utils/overwritedialog.cpp:196
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The file <b>%1</b> already exists.\n"
@@ -12270,47 +12270,47 @@ msgstr ""
 "Fails <b>%1</b> jau pastāv.\n"
 "Pārrakstīt?"
 
-#: src/utils/overwritedialog.cpp:190
+#: src/utils/overwritedialog.cpp:201
 #, fuzzy, kde-format
 #| msgid "Real name:"
 msgctxt "@label"
 msgid "Rename:"
 msgstr "Īstais vārds:"
 
-#: src/utils/overwritedialog.cpp:199
+#: src/utils/overwritedialog.cpp:210
 #, fuzzy, kde-format
 #| msgid "Test Name"
 msgctxt "@action:button"
 msgid "Suggest New Name"
 msgstr "Testa nosaukums"
 
-#: src/utils/overwritedialog.cpp:200
+#: src/utils/overwritedialog.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:211
+#: src/utils/overwritedialog.cpp:222
 #, fuzzy, kde-format
 #| msgid "Rename Tab"
 msgctxt "@action:button"
 msgid "Rename"
 msgstr "Pārdēvēt cilni"
 
-#: src/utils/overwritedialog.cpp:212
+#: src/utils/overwritedialog.cpp:223
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:218
+#: src/utils/overwritedialog.cpp:229
 #, fuzzy, kde-format
 #| msgid "Rename Tab"
 msgctxt "@action:button"
 msgid "Rename All"
 msgstr "Pārdēvēt cilni"
 
-#: src/utils/overwritedialog.cpp:221
+#: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12318,26 +12318,26 @@ msgid ""
 "with a different name."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:227
+#: src/utils/overwritedialog.cpp:238
 #, fuzzy, kde-format
 #| msgid "Skipped"
 msgctxt "@action:button"
 msgid "Skip"
 msgstr "Izlaists"
 
-#: src/utils/overwritedialog.cpp:229
+#: src/utils/overwritedialog.cpp:240
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:232
+#: src/utils/overwritedialog.cpp:243
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:234
+#: src/utils/overwritedialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12345,28 +12345,42 @@ msgid ""
 "existing file."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:238
+#: src/utils/overwritedialog.cpp:250
+#, fuzzy, kde-format
+#| msgid "Default Appearance"
+msgctxt "@action:button"
+msgid "Append"
+msgstr "Noklusētais izskats"
+
+#: src/utils/overwritedialog.cpp:251
+#, fuzzy, kde-format
+#| msgid "Overwrite Existing File?"
+msgctxt "@info:tooltip"
+msgid "Append the new file to the existing file."
+msgstr "Pārrakstīt esošo failu?"
+
+#: src/utils/overwritedialog.cpp:256
 #, fuzzy, kde-format
 #| msgid "Overwrite All"
 msgctxt "@action:button"
 msgid "Overwrite"
 msgstr "Pārrakstīt visu"
 
-#: src/utils/overwritedialog.cpp:240
+#: src/utils/overwritedialog.cpp:258
 #, fuzzy, kde-format
 #| msgid "Overwrite Existing File?"
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
 msgstr "Pārrakstīt esošo failu?"
 
-#: src/utils/overwritedialog.cpp:244
+#: src/utils/overwritedialog.cpp:262
 #, fuzzy, kde-format
 #| msgid "Overwrite All"
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Pārrakstīt visu"
 
-#: src/utils/overwritedialog.cpp:246
+#: src/utils/overwritedialog.cpp:264
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-06-20 00:39+0000\n"
 "PO-Revision-Date: 2024-06-18 16:05+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -1799,7 +1799,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr ""
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:111
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:796
 #, kde-format
 msgid "Clipboard"
 msgstr "Schránka"
@@ -2204,7 +2204,7 @@ msgid "Import CRL Finished"
 msgstr "Import CRL dokončen"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:343
+#: src/crypto/autodecryptverifyfilescontroller.cpp:354
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Nelze otevřít <filename>%1</filename> pro čtení."
@@ -4061,19 +4061,19 @@ msgstr ""
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Nelze smazat soubor <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:279
+#: src/crypto/autodecryptverifyfilescontroller.cpp:290
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr "Selhalo přesunutí <filename>%1</filename> do <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:351
+#: src/crypto/autodecryptverifyfilescontroller.cpp:362
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:402
+#: src/crypto/autodecryptverifyfilescontroller.cpp:413
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4127,14 +4127,14 @@ msgid "Create Checksum Progress"
 msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:770
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Chyba při běhu %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
 #: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Nelze spustit %1: %2"
@@ -4484,7 +4484,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:889
 #, kde-format
 msgid "Input error: %1"
 msgstr ""
@@ -5688,14 +5688,14 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archivovat"
 
-#: src/crypto/signencryptfilescontroller.cpp:678
+#: src/crypto/signencryptfilescontroller.cpp:703
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 msgstr ""
 
-#: src/crypto/signencryptfilescontroller.cpp:680
+#: src/crypto/signencryptfilescontroller.cpp:705
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5745,37 +5745,37 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:477
+#: src/crypto/signencrypttask.cpp:482
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:528
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:760
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Vytváření podepsaného a zašifrovaného archivu ..."
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:780
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Vytváření zašifrovaného archivu ..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:800
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -10557,12 +10557,12 @@ msgstr "Nelze otevřít soubor \"%1\" pro čtení"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr ""
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:725
+#: src/utils/input.cpp:326 src/utils/output.cpp:741
 #, kde-format
 msgid "Command not specified"
 msgstr ""
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
+#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Nelze spustit proces %1: %2"
@@ -10659,61 +10659,61 @@ msgstr ""
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Nelze vytvořit dočasný soubor pro výstup \"%1\""
 
-#: src/utils/output.cpp:583
+#: src/utils/output.cpp:589
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr "Soubor již existuje"
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Přepis odmítnut"
 
-#: src/utils/output.cpp:679
+#: src/utils/output.cpp:686
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr "Nelze odstranit soubor <filename>%1</filename> pro přepsání."
 
-#: src/utils/output.cpp:699
+#: src/utils/output.cpp:715
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Nebylo možné přejmenovat soubor \"%1\" na \"%2\""
 
-#: src/utils/output.cpp:741
+#: src/utils/output.cpp:757
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Vstup do %1 ..."
 
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:759
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Vstup do %1"
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:789
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Není možné zapisovat do schránky"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:798
 #, kde-format
 msgid "Find buffer"
 msgstr "Najít zásobník"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:800
 #, kde-format
 msgid "Selection"
 msgstr "Výběr"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:813
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Nebylo možné nalézt schránku"
 
-#: src/utils/overwritedialog.cpp:138
+#: src/utils/overwritedialog.cpp:144
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10723,49 +10723,49 @@ msgstr ""
 "Soubor <filename>%1</filename> již existuje. Prosím, zadejte jiný název "
 "souboru."
 
-#: src/utils/overwritedialog.cpp:185
+#: src/utils/overwritedialog.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
 msgstr "Soubor <filename>%1</filename> již existuje."
 
-#: src/utils/overwritedialog.cpp:190
+#: src/utils/overwritedialog.cpp:201
 #, kde-format
 msgctxt "@label"
 msgid "Rename:"
 msgstr "Přejmenovat:"
 
-#: src/utils/overwritedialog.cpp:199
+#: src/utils/overwritedialog.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
 msgstr "Navrhnout nový název"
 
-#: src/utils/overwritedialog.cpp:200
+#: src/utils/overwritedialog.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
 msgstr "Navrhnout název souboru, jaký ještě neexistuje."
 
-#: src/utils/overwritedialog.cpp:211
+#: src/utils/overwritedialog.cpp:222
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename"
 msgstr "Přejmenovat"
 
-#: src/utils/overwritedialog.cpp:212
+#: src/utils/overwritedialog.cpp:223
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
 msgstr "Uložit soubor pod daným názvem."
 
-#: src/utils/overwritedialog.cpp:218
+#: src/utils/overwritedialog.cpp:229
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
 msgstr "Přejmenovat vše"
 
-#: src/utils/overwritedialog.cpp:221
+#: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -10773,25 +10773,25 @@ msgid ""
 "with a different name."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:227
+#: src/utils/overwritedialog.cpp:238
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip"
 msgstr "Přeskočit"
 
-#: src/utils/overwritedialog.cpp:229
+#: src/utils/overwritedialog.cpp:240
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
 msgstr "Nezapisovat do tohoto souboru. Přeskočit na další."
 
-#: src/utils/overwritedialog.cpp:232
+#: src/utils/overwritedialog.cpp:243
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
 msgstr "Přeskočit vše"
 
-#: src/utils/overwritedialog.cpp:234
+#: src/utils/overwritedialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -10799,25 +10799,40 @@ msgid ""
 "existing file."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:238
+#: src/utils/overwritedialog.cpp:250
+#, fuzzy, kde-format
+#| msgid "Appearance"
+msgctxt "@action:button"
+msgid "Append"
+msgstr "Vzhled"
+
+#: src/utils/overwritedialog.cpp:251
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Overwrite the existing file."
+msgctxt "@info:tooltip"
+msgid "Append the new file to the existing file."
+msgstr "Přepsat existující soubor."
+
+#: src/utils/overwritedialog.cpp:256
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
 msgstr "Přepsat"
 
-#: src/utils/overwritedialog.cpp:240
+#: src/utils/overwritedialog.cpp:258
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
 msgstr "Přepsat existující soubor."
 
-#: src/utils/overwritedialog.cpp:244
+#: src/utils/overwritedialog.cpp:262
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Přepsat vše"
 
-#: src/utils/overwritedialog.cpp:246
+#: src/utils/overwritedialog.cpp:264
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."

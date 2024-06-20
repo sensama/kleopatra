@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-06-20 00:39+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -2162,7 +2162,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Nije u mogućnosti da odredi tip certifikata u sadržaju međuspremnika."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:111
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:796
 #, kde-format
 msgid "Clipboard"
 msgstr "Klipbord"
@@ -2600,7 +2600,7 @@ msgid "Import CRL Finished"
 msgstr "Uvoz CRL Završen"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:343
+#: src/crypto/autodecryptverifyfilescontroller.cpp:354
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4785,7 +4785,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:279
+#: src/crypto/autodecryptverifyfilescontroller.cpp:290
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4796,14 +4796,14 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:351
+#: src/crypto/autodecryptverifyfilescontroller.cpp:362
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:402
+#: src/crypto/autodecryptverifyfilescontroller.cpp:413
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4865,14 +4865,14 @@ msgid "Create Checksum Progress"
 msgstr "Napredak kreiranja kontrolne sume"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:770
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Greška pri izvršavanju %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
 #: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Neuspjelo izvršavanje %1: %2"
@@ -5244,7 +5244,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:889
 #, kde-format
 msgid "Input error: %1"
 msgstr "Ulazna greška: %1"
@@ -6583,7 +6583,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "arhive"
 
-#: src/crypto/signencryptfilescontroller.cpp:678
+#: src/crypto/signencryptfilescontroller.cpp:703
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6592,7 +6592,7 @@ msgstr ""
 "Uhvaćen neočekivani izuzetak u SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:680
+#: src/crypto/signencryptfilescontroller.cpp:705
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6642,18 +6642,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:477
+#: src/crypto/signencrypttask.cpp:482
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Ne moze odrediti postupak za zadatak"
 
-#: src/crypto/signencrypttask.cpp:528
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6662,14 +6662,14 @@ msgstr ""
 "Ne mogu naći zajednički bazni direktorij za pve datoteke:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:760
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Potpiši i/ili šifruj datoteke"
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:780
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -6677,7 +6677,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Kreiram ključ..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:800
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -12015,12 +12015,12 @@ msgstr "Nije u mogućnosti da otvori datoteku \"%1\" za čitanje"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Datoteka \"%1\" je otvorena, ali nije za čitanje"
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:725
+#: src/utils/input.cpp:326 src/utils/output.cpp:741
 #, kde-format
 msgid "Command not specified"
 msgstr "Komanda nije navedena"
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
+#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Nije u mogućnosti da pokrene %1 proces:%2"
@@ -12126,62 +12126,62 @@ msgstr "Nije u mogućnosti da otvori FD %1 za pisanje"
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Nije u mogućnosti da napravi privremenu datoteku za izlaz %1\""
 
-#: src/utils/output.cpp:583
+#: src/utils/output.cpp:589
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr ""
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Pisanje preko odbijeno"
 
-#: src/utils/output.cpp:679
+#: src/utils/output.cpp:686
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr "Nije u mogućnosti da otvori datoteku \"%1\" za čitanje"
 
-#: src/utils/output.cpp:699
+#: src/utils/output.cpp:715
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Nije u mogućnosti da preimenuje datoteku \"%1\" to \"%2\""
 
-#: src/utils/output.cpp:741
+#: src/utils/output.cpp:757
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Ulaz na %1 ..."
 
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:759
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Ulaz na %1"
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:789
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Nije u mogućnosti da piše u međuspremnik"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:798
 #, kde-format
 msgid "Find buffer"
 msgstr "Bafer za pretragu"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:800
 #, kde-format
 msgid "Selection"
 msgstr "Izbor"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:813
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Nije u mogućnosti da nađe međuspremnik"
 
-#: src/utils/overwritedialog.cpp:138
+#: src/utils/overwritedialog.cpp:144
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The file named \"%1\" already exists. Are you sure you want to overwrite "
@@ -12194,7 +12194,7 @@ msgstr ""
 "Datoteka sa imenom „%1“ već postoji. Da li ste sigurni da želite da je "
 "želite prebrišete?"
 
-#: src/utils/overwritedialog.cpp:185
+#: src/utils/overwritedialog.cpp:196
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The file <b>%1</b> already exists.\n"
@@ -12205,47 +12205,47 @@ msgstr ""
 "Datoteka <b>%1</b> već postoji.\n"
 "Prebrisati?"
 
-#: src/utils/overwritedialog.cpp:190
+#: src/utils/overwritedialog.cpp:201
 #, fuzzy, kde-format
 #| msgid "Real name:"
 msgctxt "@label"
 msgid "Rename:"
 msgstr "Pravo ime:"
 
-#: src/utils/overwritedialog.cpp:199
+#: src/utils/overwritedialog.cpp:210
 #, fuzzy, kde-format
 #| msgid "Test Name"
 msgctxt "@action:button"
 msgid "Suggest New Name"
 msgstr "Ime testa"
 
-#: src/utils/overwritedialog.cpp:200
+#: src/utils/overwritedialog.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:211
+#: src/utils/overwritedialog.cpp:222
 #, fuzzy, kde-format
 #| msgid "Rename Tab"
 msgctxt "@action:button"
 msgid "Rename"
 msgstr "Preimenuj karticu"
 
-#: src/utils/overwritedialog.cpp:212
+#: src/utils/overwritedialog.cpp:223
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:218
+#: src/utils/overwritedialog.cpp:229
 #, fuzzy, kde-format
 #| msgid "Rename Tab"
 msgctxt "@action:button"
 msgid "Rename All"
 msgstr "Preimenuj karticu"
 
-#: src/utils/overwritedialog.cpp:221
+#: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12253,26 +12253,26 @@ msgid ""
 "with a different name."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:227
+#: src/utils/overwritedialog.cpp:238
 #, fuzzy, kde-format
 #| msgid "Skipped"
 msgctxt "@action:button"
 msgid "Skip"
 msgstr "Preskočeno"
 
-#: src/utils/overwritedialog.cpp:229
+#: src/utils/overwritedialog.cpp:240
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:232
+#: src/utils/overwritedialog.cpp:243
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:234
+#: src/utils/overwritedialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12280,28 +12280,42 @@ msgid ""
 "existing file."
 msgstr ""
 
-#: src/utils/overwritedialog.cpp:238
+#: src/utils/overwritedialog.cpp:250
+#, fuzzy, kde-format
+#| msgid "Default Appearance"
+msgctxt "@action:button"
+msgid "Append"
+msgstr "Podrazumijevani izgled"
+
+#: src/utils/overwritedialog.cpp:251
+#, fuzzy, kde-format
+#| msgid "Overwrite Existing File?"
+msgctxt "@info:tooltip"
+msgid "Append the new file to the existing file."
+msgstr "Pisati preko postojeće datoteke?"
+
+#: src/utils/overwritedialog.cpp:256
 #, fuzzy, kde-format
 #| msgid "Overwrite All"
 msgctxt "@action:button"
 msgid "Overwrite"
 msgstr "Pisati preko svega"
 
-#: src/utils/overwritedialog.cpp:240
+#: src/utils/overwritedialog.cpp:258
 #, fuzzy, kde-format
 #| msgid "Overwrite Existing File?"
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
 msgstr "Pisati preko postojeće datoteke?"
 
-#: src/utils/overwritedialog.cpp:244
+#: src/utils/overwritedialog.cpp:262
 #, fuzzy, kde-format
 #| msgid "Overwrite All"
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Pisati preko svega"
 
-#: src/utils/overwritedialog.cpp:246
+#: src/utils/overwritedialog.cpp:264
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."

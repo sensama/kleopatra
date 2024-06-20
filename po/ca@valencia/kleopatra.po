@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
-"PO-Revision-Date: 2024-06-15 11:37+0200\n"
+"POT-Creation-Date: 2024-06-20 00:39+0000\n"
+"PO-Revision-Date: 2024-06-18 17:15+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -1978,7 +1978,7 @@ msgstr ""
 "retalls."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:111
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:796
 #, kde-format
 msgid "Clipboard"
 msgstr "Porta-retalls"
@@ -2395,7 +2395,7 @@ msgid "Import CRL Finished"
 msgstr "La importació de la CRL ha acabat"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:343
+#: src/crypto/autodecryptverifyfilescontroller.cpp:354
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "No s'ha pogut obrir el fitxer <filename>%1</filename> per a lectura."
@@ -4479,12 +4479,12 @@ msgstr "Sí, guarda com a <filename>%1</filename>"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "No s'ha pogut suprimir <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:279
+#: src/crypto/autodecryptverifyfilescontroller.cpp:290
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr "No s'ha pogut moure <filename>%1</filename> a <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:351
+#: src/crypto/autodecryptverifyfilescontroller.cpp:362
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4493,7 +4493,7 @@ msgstr ""
 "El fitxer <filename>%1</filename> conté els certificats i no es pot "
 "desencriptar o verificar."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:402
+#: src/crypto/autodecryptverifyfilescontroller.cpp:413
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4552,14 +4552,14 @@ msgid "Create Checksum Progress"
 msgstr "Progrés en la creació de la suma de verificació"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:770
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "S'ha produït un error en executar %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
 #: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "No s'ha pogut executar %1: %2"
@@ -4922,7 +4922,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:889
 #, kde-format
 msgid "Input error: %1"
 msgstr "S'ha produït un error d'entrada: %1"
@@ -5411,8 +5411,7 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Destinataris predefinits via configuració de GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, fuzzy, kde-format
-#| msgid "Force decryption"
+#, kde-format
 msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Força la desencriptació"
@@ -6067,8 +6066,7 @@ msgid "Unknown Recipient:"
 msgstr "Destinatari desconegut:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#, fuzzy, kde-format
-#| msgid "Search"
+#, kde-format
 msgctxt "@action:button"
 msgid "Search"
 msgstr "Busca"
@@ -6188,7 +6186,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "arxiu"
 
-#: src/crypto/signencryptfilescontroller.cpp:678
+#: src/crypto/signencryptfilescontroller.cpp:703
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6197,7 +6195,7 @@ msgstr ""
 "S'ha detectat una excepció inesperada en SignEncryptFilesController::"
 "Private::slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:680
+#: src/crypto/signencryptfilescontroller.cpp:705
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6247,18 +6245,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:477
+#: src/crypto/signencrypttask.cpp:482
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "No es pot determinar cap protocol per a la tasca"
 
-#: src/crypto/signencrypttask.cpp:528
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1…"
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6267,19 +6265,19 @@ msgstr ""
 "No s'ha pogut trobar el directori base comú per a estos fitxers:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:760
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "S'està creant un arxiu signat i encriptat…"
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:780
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "S'està creant un arxiu encriptat…"
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:800
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -11474,12 +11472,12 @@ msgstr "No s'ha pogut obrir el fitxer «%1» per a lectura"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "El fitxer «%1» ja es troba obert, però no per a lectura"
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:725
+#: src/utils/input.cpp:326 src/utils/output.cpp:741
 #, kde-format
 msgid "Command not specified"
 msgstr "No s'ha especificat cap ordre"
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
+#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "No s'ha pogut iniciar el procés %1: %2"
@@ -11586,18 +11584,18 @@ msgstr "No s'ha pogut obrir el FD %1 per a escriptura"
 msgid "Could not create temporary file for output \"%1\""
 msgstr "No s'ha pogut crear el fitxer temporal d'eixida «%1»"
 
-#: src/utils/output.cpp:583
+#: src/utils/output.cpp:589
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr "El fitxer ja existix"
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Overwriting declined"
 msgstr "S'ha rebutjat la sobreescriptura"
 
-#: src/utils/output.cpp:679
+#: src/utils/output.cpp:686
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
@@ -11605,44 +11603,44 @@ msgstr ""
 "No s'ha pogut suprimir el fitxer <filename>%1</filename> per a "
 "sobreescriure'l."
 
-#: src/utils/output.cpp:699
+#: src/utils/output.cpp:715
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "No s'ha pogut canviar el nom del fitxer «%1» a «%2»"
 
-#: src/utils/output.cpp:741
+#: src/utils/output.cpp:757
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Entrada per a %1…"
 
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:759
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Entrada per a %1"
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:789
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "No s'ha pogut escriure a dins del porta-retalls"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:798
 #, kde-format
 msgid "Find buffer"
 msgstr "Memòria intermèdia de busca"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:800
 #, kde-format
 msgid "Selection"
 msgstr "Selecció"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:813
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "No s'ha pogut trobar en el porta-retalls"
 
-#: src/utils/overwritedialog.cpp:138
+#: src/utils/overwritedialog.cpp:144
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -11652,49 +11650,49 @@ msgstr ""
 "El fitxer <filename>%1</filename> ja existix. Introduïu un nom diferent de "
 "fitxer."
 
-#: src/utils/overwritedialog.cpp:185
+#: src/utils/overwritedialog.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
 msgstr "El fitxer <filename>%1</filename> ja existix."
 
-#: src/utils/overwritedialog.cpp:190
+#: src/utils/overwritedialog.cpp:201
 #, kde-format
 msgctxt "@label"
 msgid "Rename:"
 msgstr "Canvia el nom:"
 
-#: src/utils/overwritedialog.cpp:199
+#: src/utils/overwritedialog.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
 msgstr "Suggerix un nom nou"
 
-#: src/utils/overwritedialog.cpp:200
+#: src/utils/overwritedialog.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
 msgstr "Suggerix un nom de fitxer que encara no existisca."
 
-#: src/utils/overwritedialog.cpp:211
+#: src/utils/overwritedialog.cpp:222
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename"
 msgstr "Canvia el nom"
 
-#: src/utils/overwritedialog.cpp:212
+#: src/utils/overwritedialog.cpp:223
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
 msgstr "Guarda el fitxer amb el nom indicat."
 
-#: src/utils/overwritedialog.cpp:218
+#: src/utils/overwritedialog.cpp:229
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
 msgstr "Canvia el nom de tots"
 
-#: src/utils/overwritedialog.cpp:221
+#: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11704,25 +11702,25 @@ msgstr ""
 "Guarda automàticament tots els fitxers que sobreescriurien un fitxer ja "
 "existent amb un nom diferent."
 
-#: src/utils/overwritedialog.cpp:227
+#: src/utils/overwritedialog.cpp:238
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip"
 msgstr "Omet"
 
-#: src/utils/overwritedialog.cpp:229
+#: src/utils/overwritedialog.cpp:240
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
 msgstr "No escrigues este fitxer, en lloc d'açò salta fins al següent."
 
-#: src/utils/overwritedialog.cpp:232
+#: src/utils/overwritedialog.cpp:243
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
 msgstr "Omet-ho tot"
 
-#: src/utils/overwritedialog.cpp:234
+#: src/utils/overwritedialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11732,25 +11730,40 @@ msgstr ""
 "No escrigues este fitxer ni cap altre que sobreescriuria un fitxer ja "
 "existent."
 
-#: src/utils/overwritedialog.cpp:238
+#: src/utils/overwritedialog.cpp:250
+#, fuzzy, kde-format
+#| msgid "Appearance"
+msgctxt "@action:button"
+msgid "Append"
+msgstr "Aparença"
+
+#: src/utils/overwritedialog.cpp:251
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Overwrite the existing file."
+msgctxt "@info:tooltip"
+msgid "Append the new file to the existing file."
+msgstr "Sobreescriu el fitxer existent."
+
+#: src/utils/overwritedialog.cpp:256
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
 msgstr "Sobreescriu"
 
-#: src/utils/overwritedialog.cpp:240
+#: src/utils/overwritedialog.cpp:258
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
 msgstr "Sobreescriu el fitxer existent."
 
-#: src/utils/overwritedialog.cpp:244
+#: src/utils/overwritedialog.cpp:262
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Sobreescriure-ho tot"
 
-#: src/utils/overwritedialog.cpp:246
+#: src/utils/overwritedialog.cpp:264
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
@@ -12512,8 +12525,7 @@ msgid "Keys:"
 msgstr "Claus:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, fuzzy, kde-format
-#| msgid "Generate New Keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Genera claus noves"
@@ -12553,8 +12565,7 @@ msgstr ""
 "intel·ligent. Cal que el PIN tinga sis caràcters com a mínim."
 
 #: src/view/pgpcardwidget.cpp:266
-#, fuzzy, kde-format
-#| msgid "Unblock Card"
+#, kde-format
 msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Desbloqueja la targeta"
@@ -12568,8 +12579,7 @@ msgstr ""
 "d'administració."
 
 #: src/view/pgpcardwidget.cpp:280
-#, fuzzy, kde-format
-#| msgid "Change Admin PIN"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Canvia el PIN d'administració"
@@ -13167,6 +13177,3 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
-
-#~ msgid "Change PIN"
-#~ msgstr "Canvia el PIN"

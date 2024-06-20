@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
-"PO-Revision-Date: 2024-06-1510:04+0200\n"
+"POT-Creation-Date: 2024-06-20 00:39+0000\n"
+"PO-Revision-Date:2024-06-19 22:33+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -1939,7 +1939,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Ne eblis determini atestilspecon de enhavo de la tondujo."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:111
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:796
 #, kde-format
 msgid "Clipboard"
 msgstr "Tondujo"
@@ -2355,7 +2355,7 @@ msgid "Import CRL Finished"
 msgstr "Importo CRL Finita"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:343
+#: src/crypto/autodecryptverifyfilescontroller.cpp:354
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Ne povas malfermi <filename>%1</filename> por legado."
@@ -4399,12 +4399,12 @@ msgstr "Jes, Konservi kiel <filename>%1</filename>"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Malsukcesis forigi <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:279
+#: src/crypto/autodecryptverifyfilescontroller.cpp:290
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr "Malsukcesis movi <filename>%1</filename> al <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:351
+#: src/crypto/autodecryptverifyfilescontroller.cpp:362
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4413,7 +4413,7 @@ msgstr ""
 "La dosiero <filename>%1</filename> enhavas atestilojn kaj ne povas esti "
 "deĉifrita aŭ konfirmita."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:402
+#: src/crypto/autodecryptverifyfilescontroller.cpp:413
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4470,14 +4470,14 @@ msgid "Create Checksum Progress"
 msgstr "Krei Kontrolsuman Progreson"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:770
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Eraro dum rulado de %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
 #: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Malsukcesis plenumi %1: %2"
@@ -4838,7 +4838,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:889
 #, kde-format
 msgid "Input error: %1"
 msgstr "Eniga eraro: %1"
@@ -5327,11 +5327,10 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Ricevantoj antaŭdifinitaj per GnuPG-agordoj:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, fuzzy, kde-format
-#| msgid "Force decryption"
+#, kde-format
 msgctxt "@action:button"
 msgid "Force decryption"
-msgstr "Forto malĉifri"
+msgstr "Devigi malĉifradon"
 
 #: src/crypto/gui/resultitemwidget.cpp:178
 #, kde-format
@@ -5979,8 +5978,7 @@ msgid "Unknown Recipient:"
 msgstr "Nekonata Ricevanto:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#, fuzzy, kde-format
-#| msgid "Search"
+#, kde-format
 msgctxt "@action:button"
 msgid "Search"
 msgstr "Serĉi"
@@ -6100,7 +6098,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "arkivo"
 
-#: src/crypto/signencryptfilescontroller.cpp:678
+#: src/crypto/signencryptfilescontroller.cpp:703
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6109,7 +6107,7 @@ msgstr ""
 "Kaptis neatenditan escepton en SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:680
+#: src/crypto/signencryptfilescontroller.cpp:705
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6159,18 +6157,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:477
+#: src/crypto/signencrypttask.cpp:482
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Ne povas determini protokolon por tasko"
 
-#: src/crypto/signencrypttask.cpp:528
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6179,19 +6177,19 @@ msgstr ""
 "Ne povas trovi komunan bazan dosierujon por ĉi tiuj dosieroj:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:760
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Kreante subskribitan kaj ĉifritan arkivon..."
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:780
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Kreante ĉifritan arkivon..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:800
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -11303,12 +11301,12 @@ msgstr "Ne eblis malfermi dosieron \"%1\" por legado"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Dosiero \"%1\" jam estas malfermita, sed ne por legi"
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:725
+#: src/utils/input.cpp:326 src/utils/output.cpp:741
 #, kde-format
 msgid "Command not specified"
 msgstr "Komando ne specifita"
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
+#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Ne eblis komenci %1 procezon: %2"
@@ -11414,61 +11412,61 @@ msgstr "Ne eblis malfermi FD %1 por skribado"
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Ne eblis krei provizoran dosieron por eligo \"%1\""
 
-#: src/utils/output.cpp:583
+#: src/utils/output.cpp:589
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr "Dosiero Jam Ekzistas"
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Anstataŭado malkreskis"
 
-#: src/utils/output.cpp:679
+#: src/utils/output.cpp:686
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr "Ne eblis forigi dosieron <filename>%1</filename> por anstataŭi."
 
-#: src/utils/output.cpp:699
+#: src/utils/output.cpp:715
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Ne eblis renomi dosieron \"%1\" al \"%2\""
 
-#: src/utils/output.cpp:741
+#: src/utils/output.cpp:757
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Enigo al %1..."
 
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:759
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Enigo al %1"
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:789
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Ne eblis skribi al tondujo"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:798
 #, kde-format
 msgid "Find buffer"
 msgstr "Trovi bufron"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:800
 #, kde-format
 msgid "Selection"
 msgstr "Elektaĵo"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:813
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Ne eblis trovi tondujo"
 
-#: src/utils/overwritedialog.cpp:138
+#: src/utils/overwritedialog.cpp:144
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -11478,49 +11476,49 @@ msgstr ""
 "La dosiero <filename>%1</filename> jam ekzistas. Bonvolu enigi alian "
 "dosiernomon."
 
-#: src/utils/overwritedialog.cpp:185
+#: src/utils/overwritedialog.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
 msgstr "La dosiero <filename>%1</filename> jam ekzistas."
 
-#: src/utils/overwritedialog.cpp:190
+#: src/utils/overwritedialog.cpp:201
 #, kde-format
 msgctxt "@label"
 msgid "Rename:"
 msgstr "Alinomigi:"
 
-#: src/utils/overwritedialog.cpp:199
+#: src/utils/overwritedialog.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
 msgstr "Proponi Novan Nomon"
 
-#: src/utils/overwritedialog.cpp:200
+#: src/utils/overwritedialog.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
 msgstr "Proponi dosiernomon, kiu ne jam ekzistas."
 
-#: src/utils/overwritedialog.cpp:211
+#: src/utils/overwritedialog.cpp:222
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename"
 msgstr "Alinomi"
 
-#: src/utils/overwritedialog.cpp:212
+#: src/utils/overwritedialog.cpp:223
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
 msgstr "Konservi la dosieron kun la donita nomo."
 
-#: src/utils/overwritedialog.cpp:218
+#: src/utils/overwritedialog.cpp:229
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
 msgstr "Alinomi ĉiujn"
 
-#: src/utils/overwritedialog.cpp:221
+#: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11530,25 +11528,25 @@ msgstr ""
 "Aŭtomate konservu ĉiujn dosierojn, kiuj anstataŭus jam ekzistantan dosieron "
 "kun malsama nomo."
 
-#: src/utils/overwritedialog.cpp:227
+#: src/utils/overwritedialog.cpp:238
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip"
 msgstr "Preterlasi"
 
-#: src/utils/overwritedialog.cpp:229
+#: src/utils/overwritedialog.cpp:240
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
 msgstr "Ne skribu ĉi tiun dosieron, anstataŭe saltu al la sekva."
 
-#: src/utils/overwritedialog.cpp:232
+#: src/utils/overwritedialog.cpp:243
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
 msgstr "Preterpasi Ĉion"
 
-#: src/utils/overwritedialog.cpp:234
+#: src/utils/overwritedialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11558,25 +11556,40 @@ msgstr ""
 "Ne skribu ĉi tiun dosieron kaj aliajn dosierojn, kiuj anstataŭus jam "
 "ekzistantan dosieron."
 
-#: src/utils/overwritedialog.cpp:238
+#: src/utils/overwritedialog.cpp:250
+#, fuzzy, kde-format
+#| msgid "Appearance"
+msgctxt "@action:button"
+msgid "Append"
+msgstr "Aspekto"
+
+#: src/utils/overwritedialog.cpp:251
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Overwrite the existing file."
+msgctxt "@info:tooltip"
+msgid "Append the new file to the existing file."
+msgstr "Anstataŭigi la ekzistantan dosieron."
+
+#: src/utils/overwritedialog.cpp:256
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
 msgstr "Anstataŭigi"
 
-#: src/utils/overwritedialog.cpp:240
+#: src/utils/overwritedialog.cpp:258
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
 msgstr "Anstataŭigi la ekzistantan dosieron."
 
-#: src/utils/overwritedialog.cpp:244
+#: src/utils/overwritedialog.cpp:262
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Anstataŭigi Ĉion"
 
-#: src/utils/overwritedialog.cpp:246
+#: src/utils/overwritedialog.cpp:264
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
@@ -12333,8 +12346,7 @@ msgid "Keys:"
 msgstr "Ŝlosiloj:"
 
 #: src/view/pgpcardwidget.cpp:243
-#, fuzzy, kde-format
-#| msgid "Generate New Keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Generi Novajn Ŝlosilojn"
@@ -12374,8 +12386,7 @@ msgstr ""
 "devas enhavi almenaŭ ses signojn."
 
 #: src/view/pgpcardwidget.cpp:266
-#, fuzzy, kde-format
-#| msgid "Unblock Card"
+#, kde-format
 msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Malbloki Karton"
@@ -12387,11 +12398,10 @@ msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr "Malŝlosi la karton per la PUK (se disponebla) aŭ la Admin-PIN."
 
 #: src/view/pgpcardwidget.cpp:280
-#, fuzzy, kde-format
-#| msgid "Change Admin PIN"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change Admin PIN"
-msgstr "Ŝanĝi Admin PIN"
+msgstr "Ŝanĝi Admin-PIN"
 
 #: src/view/pgpcardwidget.cpp:281
 #, kde-format
@@ -12980,6 +12990,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgid "Change PIN"
-#~ msgstr "Ŝanĝi PIN"

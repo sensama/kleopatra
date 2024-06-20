@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 00:40+0000\n"
+"POT-Creation-Date: 2024-06-20 00:39+0000\n"
 "PO-Revision-Date: 2024-05-24 22:50+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -1967,7 +1967,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Ezin izan du arbeleko edukiaren ziurtagiri mota zehaztu."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:111
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:796
 #, kde-format
 msgid "Clipboard"
 msgstr "Arbela"
@@ -2387,7 +2387,7 @@ msgid "Import CRL Finished"
 msgstr "CRL inportatzea amaitu da"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:343
+#: src/crypto/autodecryptverifyfilescontroller.cpp:354
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Ezin du <filename>%1</filename> irakurtzeko ireki."
@@ -4444,13 +4444,13 @@ msgstr "Bai, gorde <filename>%1</filename> gisa"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> ezabatzea huts egin du."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:279
+#: src/crypto/autodecryptverifyfilescontroller.cpp:290
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename> <filename>%2</filename>(e)ra eramatea huts egin du."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:351
+#: src/crypto/autodecryptverifyfilescontroller.cpp:362
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4459,7 +4459,7 @@ msgstr ""
 "<filename>%1</filename> fitxategiak ziurtagiriak ditu eta ezin da deszifratu "
 "edo egiaztatu."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:402
+#: src/crypto/autodecryptverifyfilescontroller.cpp:413
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4517,14 +4517,14 @@ msgid "Create Checksum Progress"
 msgstr "Egiaztapen-batura sortzeko aurrerapena"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:770
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Errorea %1 exekutatzean: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
 #: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "%1 exekutatzea huts egin du: %2"
@@ -4886,7 +4886,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:882
+#: src/crypto/signencrypttask.cpp:889
 #, kde-format
 msgid "Input error: %1"
 msgstr "Sarrera-errorea: %1"
@@ -6156,7 +6156,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "artxiboa"
 
-#: src/crypto/signencryptfilescontroller.cpp:678
+#: src/crypto/signencryptfilescontroller.cpp:703
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6165,7 +6165,7 @@ msgstr ""
 "Ustekabeko salbuespen bat harrapatu da «SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared»(e)n: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:680
+#: src/crypto/signencryptfilescontroller.cpp:705
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6215,37 +6215,37 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:477
+#: src/crypto/signencrypttask.cpp:482
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Ezin du atazarako protokoloa zehaztu"
 
-#: src/crypto/signencrypttask.cpp:528
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:736 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr "Ezin du fitxategi horietarako oinarrizko direktorio komuna aurkitu: %1"
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:760
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Sinatutako eta zifratutako artxiboa sortzen..."
 
-#: src/crypto/signencrypttask.cpp:773
+#: src/crypto/signencrypttask.cpp:780
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Zifratutako artxiboa sortzen..."
 
-#: src/crypto/signencrypttask.cpp:793
+#: src/crypto/signencrypttask.cpp:800
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -11462,12 +11462,12 @@ msgstr "Ezin izan du \"%1\" fitxategia irakurtzeko ireki"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "\"%1\" fitxategia dagoeneko irekita dago, ez ordea irakurtzeko"
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:725
+#: src/utils/input.cpp:326 src/utils/output.cpp:741
 #, kde-format
 msgid "Command not specified"
 msgstr "Komandoa ez da zehaztu"
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:730
+#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Ezin izan du %1 prozesua abiatu: %2"
@@ -11573,61 +11573,61 @@ msgstr "Ezin izan du FD %1 irakurtzeko ireki"
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Ezin izan du irteerarako aldi baterako fitxategia sortu: %1"
 
-#: src/utils/output.cpp:583
+#: src/utils/output.cpp:589
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr "Fitxategia badago lehendik ere"
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Gainidazteari uko egin zaio"
 
-#: src/utils/output.cpp:679
+#: src/utils/output.cpp:686
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr "Ezin izan dau <filename>%1</filename> fitxategi gainidazteko kendu."
 
-#: src/utils/output.cpp:699
+#: src/utils/output.cpp:715
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Ezin izan du fitxategia \"%1\"(e)tik \"%2\"(e)ra berrizendatu"
 
-#: src/utils/output.cpp:741
+#: src/utils/output.cpp:757
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Sarrera hona, %1 ..."
 
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:759
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Sarrera hona, %1"
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:789
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Ezin izan du arbelean idatzi"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:798
 #, kde-format
 msgid "Find buffer"
 msgstr "Bilatu bufferra"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:800
 #, kde-format
 msgid "Selection"
 msgstr "Hautapena"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:813
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Ezin izan du arbela bilatu"
 
-#: src/utils/overwritedialog.cpp:138
+#: src/utils/overwritedialog.cpp:144
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -11637,49 +11637,49 @@ msgstr ""
 "<filename>%1</filename> fitxategia dagoeneko existitzen da. Mesedez, sartu "
 "izan ezberdin bat."
 
-#: src/utils/overwritedialog.cpp:185
+#: src/utils/overwritedialog.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
 msgstr "<filename>%1</filename> fitxategia dagoeneko existitzen da."
 
-#: src/utils/overwritedialog.cpp:190
+#: src/utils/overwritedialog.cpp:201
 #, kde-format
 msgctxt "@label"
 msgid "Rename:"
 msgstr "Berrizendatu:"
 
-#: src/utils/overwritedialog.cpp:199
+#: src/utils/overwritedialog.cpp:210
 #, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
 msgstr "Iradoki izen berria"
 
-#: src/utils/overwritedialog.cpp:200
+#: src/utils/overwritedialog.cpp:211
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
 msgstr "Iradoki dagoneko existitzen ez den fitxategi-izen bat."
 
-#: src/utils/overwritedialog.cpp:211
+#: src/utils/overwritedialog.cpp:222
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename"
 msgstr "Berrizendatu"
 
-#: src/utils/overwritedialog.cpp:212
+#: src/utils/overwritedialog.cpp:223
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
 msgstr "Gorde fitxategia emandako izenarekin."
 
-#: src/utils/overwritedialog.cpp:218
+#: src/utils/overwritedialog.cpp:229
 #, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
 msgstr "Berrizendatu dena"
 
-#: src/utils/overwritedialog.cpp:221
+#: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11689,25 +11689,25 @@ msgstr ""
 "Automatikoki gorde, aurrez dagoen fitxategi bat gainidatziko luketen "
 "fitxategi guztiak beste izen batekin."
 
-#: src/utils/overwritedialog.cpp:227
+#: src/utils/overwritedialog.cpp:238
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip"
 msgstr "Jauzi"
 
-#: src/utils/overwritedialog.cpp:229
+#: src/utils/overwritedialog.cpp:240
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
 msgstr "Ez idatzi fitxategi hori, horren ordez, jauzi hurrengora."
 
-#: src/utils/overwritedialog.cpp:232
+#: src/utils/overwritedialog.cpp:243
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
 msgstr "Jauzi denak"
 
-#: src/utils/overwritedialog.cpp:234
+#: src/utils/overwritedialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -11717,25 +11717,40 @@ msgstr ""
 "Ez idatzi fitxategi hau eta dagoneko existitzen den fitxategi bat "
 "gainidatziko lukeen beste edozein fitxategi."
 
-#: src/utils/overwritedialog.cpp:238
+#: src/utils/overwritedialog.cpp:250
+#, fuzzy, kde-format
+#| msgid "Appearance"
+msgctxt "@action:button"
+msgid "Append"
+msgstr "Itxura"
+
+#: src/utils/overwritedialog.cpp:251
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Overwrite the existing file."
+msgctxt "@info:tooltip"
+msgid "Append the new file to the existing file."
+msgstr "Gainidatzi existitzen den fitxategia."
+
+#: src/utils/overwritedialog.cpp:256
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
 msgstr "Gainidatzi"
 
-#: src/utils/overwritedialog.cpp:240
+#: src/utils/overwritedialog.cpp:258
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
 msgstr "Gainidatzi existitzen den fitxategia."
 
-#: src/utils/overwritedialog.cpp:244
+#: src/utils/overwritedialog.cpp:262
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Gainidatzi dena"
 
-#: src/utils/overwritedialog.cpp:246
+#: src/utils/overwritedialog.cpp:264
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."

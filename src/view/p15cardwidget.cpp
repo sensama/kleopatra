@@ -49,18 +49,13 @@ using namespace Kleo::SmartCard;
 
 P15CardWidget::P15CardWidget(QWidget *parent)
     : QWidget{parent}
-    , mVersionLabel{new QLabel{this}}
-    , mSerialNumber{new QLabel{this}}
-    , mStatusLabel{new QLabel{this}}
-    , mOpenPGPKeysSection{new QWidget{this}}
-    , mOpenPGPKeysWidget{new OpenPGPKeyCardWidget{this}}
-    , mCardKeysView{new CardKeysView{this}}
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
     myLayout->setContentsMargins(0, 0, 0, 0);
 
     auto area = new QScrollArea;
+    area->setFocusPolicy(Qt::NoFocus);
     area->setFrameShape(QFrame::NoFrame);
     area->setWidgetResizable(true);
     myLayout->addWidget(area);
@@ -75,25 +70,30 @@ P15CardWidget::P15CardWidget(QWidget *parent)
         int row = 0;
 
         // Version and Serialnumber
-        cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
+        mVersionLabel = new QLabel{this};
         mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
+        cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
 
         cardInfoGrid->addWidget(new QLabel(i18nc("@label:textbox", "Serial number:")), row, 0);
-        cardInfoGrid->addWidget(mSerialNumber, row++, 1);
+        mSerialNumber = new QLabel{this};
         mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
+        cardInfoGrid->addWidget(mSerialNumber, row++, 1);
 
         cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
     }
     areaVLay->addLayout(cardInfoGrid);
-    areaVLay->addWidget(mStatusLabel);
+    mStatusLabel = new QLabel{this};
     mStatusLabel->setVisible(false);
+    areaVLay->addWidget(mStatusLabel);
 
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
+    mOpenPGPKeysSection = new QWidget{this};
     {
         auto l = new QVBoxLayout{mOpenPGPKeysSection};
         l->setContentsMargins(0, 0, 0, 0);
         l->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("OpenPGP keys:"))));
+        mOpenPGPKeysWidget = new OpenPGPKeyCardWidget{this};
         mOpenPGPKeysWidget->setAllowedActions(OpenPGPKeyCardWidget::NoAction);
         l->addWidget(mOpenPGPKeysWidget);
         l->addWidget(new KSeparator(Qt::Horizontal));
@@ -101,6 +101,7 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     mOpenPGPKeysSection->setVisible(false);
     areaVLay->addWidget(mOpenPGPKeysSection);
 
+    mCardKeysView = new CardKeysView{this};
     mCardKeysView->setVisible(false);
     areaVLay->addWidget(mCardKeysView);
 

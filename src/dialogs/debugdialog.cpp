@@ -125,3 +125,5 @@ void DebugDialog::Private::runCommand()
 }
 
 DebugDialog::~DebugDialog() = default;
+
+#include "moc_debugdialog.cpp"

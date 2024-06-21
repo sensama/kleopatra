@@ -169,3 +169,5 @@ CopyToSmartcardDialog::BackupChoice CopyToSmartcardDialog::backupChoice() const
     }
     return static_cast<BackupChoice>(d->ui.backupRadios->checkedId());
 }
+
+#include "moc_copytosmartcarddialog.cpp"

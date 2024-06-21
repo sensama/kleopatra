@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-20 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2024-06-15 23:10+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -144,6 +144,45 @@ msgstr "(c) 2016-2018 Intevation GmbH"
 #, kde-format
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
+
+#: src/commands/addadskcommand.cpp:106
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
+#| "%2</p>"
+msgctxt "@info"
+msgid ""
+"<p>An error occurred while trying to add an ADSK to <b>%1</b>:</p><p>%2</p>"
+msgstr ""
+"<p> Възникна грешка при опит за добавяне на ключ <b> %1 </b>:</p><p>%2</p>"
+
+#: src/commands/addadskcommand.cpp:114
+#, fuzzy, kde-format
+#| msgid "Subkey added successfully."
+msgctxt "@info"
+msgid "ADSK added successfully."
+msgstr "Подключът е добавен успешно."
+
+#: src/commands/addadskcommand.cpp:128
+#, kde-format
+msgctxt "@info"
+msgid ""
+"By adding an ADSK to your certificate, you allow the owner of the ADSK to "
+"decrypt all new messages that are encrypted for your certificate. Do you "
+"want to add the ADSK specified in the GnuPG configuration to your "
+"certificate?"
+msgstr ""
+
+#: src/commands/addadskcommand.cpp:130
+#, kde-format
+msgctxt "@title:dialog"
+msgid "Add ADSK"
+msgstr ""
+
+#: src/commands/addadskcommand.cpp:131
+#, kde-format
+msgid "Add ADSK"
+msgstr ""
 
 #: src/commands/addsubkeycommand.cpp:168
 #, kde-format
@@ -2682,13 +2721,13 @@ msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
 msgstr "Успешно изтриване на копието на ключа, съхраняван на този компютър."
 
-#: src/commands/lookupcertificatescommand.cpp:325
+#: src/commands/lookupcertificatescommand.cpp:317
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
 msgstr "Търсене за съвпадащи сертификати..."
 
-#: src/commands/lookupcertificatescommand.cpp:472
+#: src/commands/lookupcertificatescommand.cpp:464
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2703,7 +2742,7 @@ msgstr ""
 "уникални идентификатори за сертификати.</para><para> Вие може да изберете "
 "друга услуга за X.509 директория в прозореца за конфигурация.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:479
+#: src/commands/lookupcertificatescommand.cpp:471
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2718,26 +2757,26 @@ msgstr ""
 "различен OpenPGP ключов сървър от диалоговия прозорец за конфигуриране.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:477
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Невалиден сървър на отговор"
 
-#: src/commands/lookupcertificatescommand.cpp:530
+#: src/commands/lookupcertificatescommand.cpp:518
 #, kde-format
 msgctxt "@info"
 msgid "No certificates found"
 msgstr "Няма намерени сертификати"
 
-#: src/commands/lookupcertificatescommand.cpp:569
-#: src/commands/lookupcertificatescommand.cpp:572
+#: src/commands/lookupcertificatescommand.cpp:562
+#: src/commands/lookupcertificatescommand.cpp:565
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 сървър за сертифициране"
 
-#: src/commands/lookupcertificatescommand.cpp:627
+#: src/commands/lookupcertificatescommand.cpp:620
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2747,7 +2786,7 @@ msgstr ""
 "Неуспешно търсене на сървър за сертификати. Върнатата грешка беше: \n"
 " %1"
 
-#: src/commands/lookupcertificatescommand.cpp:635
+#: src/commands/lookupcertificatescommand.cpp:628
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2763,13 +2802,13 @@ msgstr ""
 "прозорец, но ако един от конфигурираните сървъри е ограничителният фактор, "
 "вие трябва да прецизирате търсенето си. </para>"
 
-#: src/commands/lookupcertificatescommand.cpp:643
+#: src/commands/lookupcertificatescommand.cpp:636
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Прекратен резултат"
 
-#: src/commands/lookupcertificatescommand.cpp:653
+#: src/commands/lookupcertificatescommand.cpp:646
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2783,14 +2822,14 @@ msgstr ""
 "para><para> Вие може да конфигурирате сървъри на директории тук: <interface> "
 "Настройки-> Конфигуриране на Клеопатра </interface>. </para>"
 
-#: src/commands/lookupcertificatescommand.cpp:658
+#: src/commands/lookupcertificatescommand.cpp:651
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Няма конфигурирани сървъри на директории"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:495
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -6396,14 +6435,15 @@ msgstr ""
 msgid "Subkeys"
 msgstr "Подключове"
 
-#: src/dialogs/cardinfotab.cpp:73 src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/cardinfotab.cpp:73 src/dialogs/subkeyswidget.cpp:169
 #, kde-format
 msgctxt "@title:column"
 msgid "Keygrip"
 msgstr "Ключодържател"
 
 #: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
-#: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:152
+#: src/dialogs/lookupcertificatesdialog.cpp:238
+#: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
@@ -6767,7 +6807,7 @@ msgid "unlimited"
 msgstr "неограничено"
 
 #: src/dialogs/certificatedetailswidget.cpp:358
-#: src/dialogs/subkeyswidget.cpp:387
+#: src/dialogs/subkeyswidget.cpp:409
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
@@ -6786,7 +6826,7 @@ msgid "smart card"
 msgstr "смарт карта"
 
 #: src/dialogs/certificatedetailswidget.cpp:366
-#: src/dialogs/subkeyswidget.cpp:395
+#: src/dialogs/subkeyswidget.cpp:417
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
@@ -7593,58 +7633,120 @@ msgstr "Подробности за група"
 msgid "Note: This group is defined in the configuration files of gpg."
 msgstr "Забележка: Тази група е дефинирана в конфигурационните файлове на gpg."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:133
+#: src/dialogs/lookupcertificatesdialog.cpp:171
 #, kde-format
 msgid "Find:"
 msgstr "Намиране:"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:140
+#: src/dialogs/lookupcertificatesdialog.cpp:178
 #, kde-format
 msgid "Search"
 msgstr "Търсене"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:157
+#: src/dialogs/lookupcertificatesdialog.cpp:195
 #, kde-format
 msgid "Select All"
 msgstr "Маркиране на всичко"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:162
+#: src/dialogs/lookupcertificatesdialog.cpp:200
 #, kde-format
 msgid "Deselect All"
 msgstr "Размаркиране на всичко"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:169
+#: src/dialogs/lookupcertificatesdialog.cpp:207
 #, kde-format
 msgid "Details..."
 msgstr "Подробности..."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:174
+#: src/dialogs/lookupcertificatesdialog.cpp:212
 #, kde-format
 msgid "Save As..."
 msgstr "Запис като..."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:200
+#: src/dialogs/lookupcertificatesdialog.cpp:236
+#: src/dialogs/revokerswidget.cpp:75
+#, kde-format
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Име"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:237
+#: src/dialogs/revokerswidget.cpp:76
+#, kde-format
+msgctxt "@title:column"
+msgid "Email"
+msgstr "Е-поща"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:239
+#: src/dialogs/subkeyswidget.cpp:163
+#, kde-format
+msgctxt "@title:column"
+msgid "Valid From"
+msgstr "Валиден от"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:240
+#: src/dialogs/subkeyswidget.cpp:164
+#, kde-format
+msgctxt "@title:column"
+msgid "Valid Until"
+msgstr "Валиден до"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:241
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox"
+#| msgid "<h3>Protocol:</h3>"
+msgctxt "@title:column"
+msgid "Protocol"
+msgstr "<h3> Протокол: </h3>"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:242
+#: src/dialogs/subkeyswidget.cpp:161
+#, kde-format
+msgctxt "@title:column"
+msgid "Key ID"
+msgstr "Идент. номер на ключ"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:243
+#, fuzzy, kde-format
+#| msgid "Origin"
+msgctxt "@title:column"
+msgid "Origin"
+msgstr "Източник"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:264
 #, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "Търсене в сървъра"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:210
+#: src/dialogs/lookupcertificatesdialog.cpp:271
 #, kde-format
 msgid "Import"
 msgstr "Импортиране"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:272
+#: src/dialogs/lookupcertificatesdialog.cpp:333
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
 msgstr "Въведете термин за търсене, за да потърсите съответстващи сертификати."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:274
+#: src/dialogs/lookupcertificatesdialog.cpp:335
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr "Въведете имейл адрес, за да потърсите съответстващи сертификати."
+
+#: src/dialogs/lookupcertificatesdialog.cpp:416
+#, kde-format
+msgid "LDAP"
+msgstr ""
+
+#: src/dialogs/lookupcertificatesdialog.cpp:418
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "OpenPGP Keyserver"
+msgid "Keyserver"
+msgstr "Сървър на OpenPGP ключове:"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -7842,18 +7944,6 @@ msgstr ""
 "сертификати с него.</item><item>Други хора вече не могат да шифроват с него "
 "след получаване на отмяната.</item></list></para>"
 
-#: src/dialogs/revokerswidget.cpp:75
-#, kde-format
-msgctxt "@title:column"
-msgid "Name"
-msgstr "Име"
-
-#: src/dialogs/revokerswidget.cpp:76
-#, kde-format
-msgctxt "@title:column"
-msgid "Email"
-msgstr "Е-поща"
-
 #: src/dialogs/revokerswidget.cpp:78
 #, kde-format
 msgctxt "@label"
@@ -8038,134 +8128,132 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(по избор) Задаване на първоначален ПИН (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:148
+#: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Подключове"
 
-#: src/dialogs/subkeyswidget.cpp:151
-#, kde-format
-msgctxt "@title:column"
-msgid "Key ID"
-msgstr "Идент. номер на ключ"
-
-#: src/dialogs/subkeyswidget.cpp:153
-#, kde-format
-msgctxt "@title:column"
-msgid "Valid From"
-msgstr "Валиден от"
-
-#: src/dialogs/subkeyswidget.cpp:154
-#, kde-format
-msgctxt "@title:column"
-msgid "Valid Until"
-msgstr "Валиден до"
-
-#: src/dialogs/subkeyswidget.cpp:155
+#: src/dialogs/subkeyswidget.cpp:165
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Състояние"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:166
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr "Алгоритъм"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:167
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Използване"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:168
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Съхранение"
 
-#: src/dialogs/subkeyswidget.cpp:166
+#: src/dialogs/subkeyswidget.cpp:176
 #, kde-format
 msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "Добавяне на подключ"
 
-#: src/dialogs/subkeyswidget.cpp:167
+#: src/dialogs/subkeyswidget.cpp:177
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Промяна на валидност"
 
-#: src/dialogs/subkeyswidget.cpp:168
+#: src/dialogs/subkeyswidget.cpp:178
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Експортиране на OpenSSH ключ"
 
-#: src/dialogs/subkeyswidget.cpp:169
+#: src/dialogs/subkeyswidget.cpp:179
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Възстановяване на отпечатаното архивиране"
 
-#: src/dialogs/subkeyswidget.cpp:170
+#: src/dialogs/subkeyswidget.cpp:180
 #, kde-format
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Прехвърляне към смарт карта"
 
-#: src/dialogs/subkeyswidget.cpp:171
+#: src/dialogs/subkeyswidget.cpp:181
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Експортиране на секретни подключове"
 
-#: src/dialogs/subkeyswidget.cpp:179 src/dialogs/useridswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:182
+#, kde-format
+msgctxt "@action:button"
+msgid "Add ADSK"
+msgstr ""
+
+#: src/dialogs/subkeyswidget.cpp:184
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Add the ADSK specified in the GnuPG configuration to your certificate. "
+"Byadding an ADSK to your certificate, you allow the owner of the ADSK to "
+"decrypt all new messages that are encrypted for your certificate, if the "
+"client encrypting the message supports this functionality."
+msgstr ""
+
+#: src/dialogs/subkeyswidget.cpp:196 src/dialogs/useridswidget.cpp:156
 #: src/dialogs/weboftrustwidget.cpp:137
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "Показване на повече опции"
 
-#: src/dialogs/subkeyswidget.cpp:275
+#: src/dialogs/subkeyswidget.cpp:292
 #, kde-format
 msgid "Change validity"
 msgstr "Промяна на валидност"
 
-#: src/dialogs/subkeyswidget.cpp:282
+#: src/dialogs/subkeyswidget.cpp:299
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Експортране на OpenSSH ключ"
 
-#: src/dialogs/subkeyswidget.cpp:288
+#: src/dialogs/subkeyswidget.cpp:305
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Прехвърляне към смарт карта"
 
-#: src/dialogs/subkeyswidget.cpp:296
+#: src/dialogs/subkeyswidget.cpp:313
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Експортране на секретни подключове"
 
-#: src/dialogs/subkeyswidget.cpp:390
+#: src/dialogs/subkeyswidget.cpp:412
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "смарт карта %1"
 
-#: src/dialogs/subkeyswidget.cpp:392
+#: src/dialogs/subkeyswidget.cpp:414
 #, kde-format
 msgid "smart card"
 msgstr "смарт карта"
 
-#: src/dialogs/subkeyswidget.cpp:397
+#: src/dialogs/subkeyswidget.cpp:419
 #, kde-format
 msgid "on this computer"
 msgstr "на този компютър"
 
-#: src/dialogs/subkeyswidget.cpp:399
+#: src/dialogs/subkeyswidget.cpp:421
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -9475,47 +9563,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Низ или отпечатък за заявка и търсене"
 
-#: src/kleopatraapplication.cpp:391
+#: src/kleopatraapplication.cpp:407
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Неуспешно изпълнение на команда"
 
-#: src/kleopatraapplication.cpp:433
+#: src/kleopatraapplication.cpp:449
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Неясен протокол: --openpgp и --cms"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:483
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Не е посочен низ за търсене за --search"
 
-#: src/kleopatraapplication.cpp:478
+#: src/kleopatraapplication.cpp:494
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Не е посочен аргумент за пръстов отпечатък за --query"
 
-#: src/kleopatraapplication.cpp:539
+#: src/kleopatraapplication.cpp:555
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Двусмислени команди \"%1\"и \"%2\""
 
-#: src/kleopatraapplication.cpp:546
+#: src/kleopatraapplication.cpp:562
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Не са посочени файлове за командата \"%1\""
 
-#: src/kleopatraapplication.cpp:560
+#: src/kleopatraapplication.cpp:576
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Не може да се прочете \"%1\""
 
-#: src/kleopatraapplication.cpp:851
+#: src/kleopatraapplication.cpp:867
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Отварянето на външна връзка е административно забранено."
 
-#: src/kleopatraapplication.cpp:851
+#: src/kleopatraapplication.cpp:867
 #, kde-format
 msgid "Prohibited"
 msgstr "Забранено"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-20 00:39+0000\n"
+"POT-Creation-Date: 2024-06-21 00:39+0000\n"
 "PO-Revision-Date: 2023-07-08 12:52+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -193,6 +193,47 @@ msgstr "(c) 2016-2018 da Intevation GmbH"
 #, kde-format
 msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 Os programadores do Kleopatra, g10 Code GmbH"
+
+#: src/commands/addadskcommand.cpp:106
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
+#| "</p><p>%2</p>"
+msgctxt "@info"
+msgid ""
+"<p>An error occurred while trying to add an ADSK to <b>%1</b>:</p><p>%2</p>"
+msgstr ""
+"<p>Ocorreu um erro ao tentar mudar a frase-senha de <b>%1</b>:</p><p>%2</p>"
+
+#: src/commands/addadskcommand.cpp:114
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The subkey was exported successfully."
+#| msgid_plural "%1 subkeys were exported successfully."
+msgctxt "@info"
+msgid "ADSK added successfully."
+msgstr "A sub-chave foi exportada com sucesso."
+
+#: src/commands/addadskcommand.cpp:128
+#, kde-format
+msgctxt "@info"
+msgid ""
+"By adding an ADSK to your certificate, you allow the owner of the ADSK to "
+"decrypt all new messages that are encrypted for your certificate. Do you "
+"want to add the ADSK specified in the GnuPG configuration to your "
+"certificate?"
+msgstr ""
+
+#: src/commands/addadskcommand.cpp:130
+#, kde-format
+msgctxt "@title:dialog"
+msgid "Add ADSK"
+msgstr ""
+
+#: src/commands/addadskcommand.cpp:131
+#, kde-format
+msgid "Add ADSK"
+msgstr ""
 
 #: src/commands/addsubkeycommand.cpp:168
 #, fuzzy, kde-format
@@ -2836,14 +2877,14 @@ msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
 msgstr "Foi gerada com sucesso uma nova chave para este cartão."
 
-#: src/commands/lookupcertificatescommand.cpp:325
+#: src/commands/lookupcertificatescommand.cpp:317
 #, fuzzy, kde-format
 #| msgid "Exporting certificates..."
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
 msgstr "A exportar os certificados..."
 
-#: src/commands/lookupcertificatescommand.cpp:472
+#: src/commands/lookupcertificatescommand.cpp:464
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2859,7 +2900,7 @@ msgstr ""
 "para><para>Poderá querer configurar um serviço de directório X.509 diferente "
 "na janela de configuração.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:479
+#: src/commands/lookupcertificatescommand.cpp:471
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2874,27 +2915,27 @@ msgstr ""
 "para><para>Poderá querer configurar um servidor de chaves OpenPGP diferente "
 "na janela de configuração.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:485
+#: src/commands/lookupcertificatescommand.cpp:477
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Resposta Inválida do Servidor"
 
-#: src/commands/lookupcertificatescommand.cpp:530
+#: src/commands/lookupcertificatescommand.cpp:518
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgctxt "@info"
 msgid "No certificates found"
 msgstr "(sem certificados correspondentes encontrados)"
 
-#: src/commands/lookupcertificatescommand.cpp:569
-#: src/commands/lookupcertificatescommand.cpp:572
+#: src/commands/lookupcertificatescommand.cpp:562
+#: src/commands/lookupcertificatescommand.cpp:565
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Servidor de Certificados %1"
 
-#: src/commands/lookupcertificatescommand.cpp:627
+#: src/commands/lookupcertificatescommand.cpp:620
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2905,7 +2946,7 @@ msgstr ""
 "foi:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:635
+#: src/commands/lookupcertificatescommand.cpp:628
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2921,13 +2962,13 @@ msgstr ""
 "servidores configurados for o factor limitativo, tem de restringir a sua "
 "pesquisa.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:643
+#: src/commands/lookupcertificatescommand.cpp:636
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Resultado Truncado"
 
-#: src/commands/lookupcertificatescommand.cpp:653
+#: src/commands/lookupcertificatescommand.cpp:646
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2941,14 +2982,14 @@ msgstr ""
 "para><para>Poderá configurar os servidores de directório aqui: "
 "<interface>Configuração->Configurar o Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:658
+#: src/commands/lookupcertificatescommand.cpp:651
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Sem Servidores de Directório Configurados"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:495
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -6600,14 +6641,15 @@ msgstr ""
 msgid "Subkeys"
 msgstr "Sub-chaves"
 
-#: src/dialogs/cardinfotab.cpp:73 src/dialogs/subkeyswidget.cpp:159
+#: src/dialogs/cardinfotab.cpp:73 src/dialogs/subkeyswidget.cpp:169
 #, kde-format
 msgctxt "@title:column"
 msgid "Keygrip"
 msgstr ""
 
 #: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
-#: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:152
+#: src/dialogs/lookupcertificatesdialog.cpp:238
+#: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:162
 #, fuzzy, kde-format
 #| msgid "Fingerprint:"
 msgctxt "@title:column"
@@ -7000,7 +7042,7 @@ msgid "unlimited"
 msgstr "ilimitado"
 
 #: src/dialogs/certificatedetailswidget.cpp:358
-#: src/dialogs/subkeyswidget.cpp:387
+#: src/dialogs/subkeyswidget.cpp:409
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
@@ -7022,7 +7064,7 @@ msgid "smart card"
 msgstr "'smart card'"
 
 #: src/dialogs/certificatedetailswidget.cpp:366
-#: src/dialogs/subkeyswidget.cpp:395
+#: src/dialogs/subkeyswidget.cpp:417
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
@@ -7871,49 +7913,99 @@ msgstr "Detalhes do Grupo"
 msgid "Note: This group is defined in the configuration files of gpg."
 msgstr "Nota: Este grupo está definido nos ficheiros de configuração do GPG."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:133
+#: src/dialogs/lookupcertificatesdialog.cpp:171
 #, kde-format
 msgid "Find:"
 msgstr "Procurar:"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:140
+#: src/dialogs/lookupcertificatesdialog.cpp:178
 #, kde-format
 msgid "Search"
 msgstr "Procurar"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:157
+#: src/dialogs/lookupcertificatesdialog.cpp:195
 #, kde-format
 msgid "Select All"
 msgstr "Seleccionar Tudo"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:162
+#: src/dialogs/lookupcertificatesdialog.cpp:200
 #, kde-format
 msgid "Deselect All"
 msgstr "Deseleccionar Tudo"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:169
+#: src/dialogs/lookupcertificatesdialog.cpp:207
 #, kde-format
 msgid "Details..."
 msgstr "Detalhes..."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:174
+#: src/dialogs/lookupcertificatesdialog.cpp:212
 #, kde-format
 msgid "Save As..."
 msgstr "Gravar Como..."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:200
+#: src/dialogs/lookupcertificatesdialog.cpp:236
+#: src/dialogs/revokerswidget.cpp:75
+#, fuzzy, kde-format
+#| msgid "Name"
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Nome"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:237
+#: src/dialogs/revokerswidget.cpp:76
+#, fuzzy, kde-format
+#| msgid "Email"
+msgctxt "@title:column"
+msgid "Email"
+msgstr "E-mail"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:239
+#: src/dialogs/subkeyswidget.cpp:163
+#, kde-format
+msgctxt "@title:column"
+msgid "Valid From"
+msgstr "Válida De"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:240
+#: src/dialogs/subkeyswidget.cpp:164
+#, kde-format
+msgctxt "@title:column"
+msgid "Valid Until"
+msgstr "Válida Até"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:241
+#, fuzzy, kde-format
+#| msgid "<h3>Protocol:</h3>"
+msgctxt "@title:column"
+msgid "Protocol"
+msgstr "<h3>Protocolo:</h3>"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:242
+#: src/dialogs/subkeyswidget.cpp:161
+#, kde-format
+msgctxt "@title:column"
+msgid "Key ID"
+msgstr ""
+
+#: src/dialogs/lookupcertificatesdialog.cpp:243
+#, kde-format
+msgctxt "@title:column"
+msgid "Origin"
+msgstr ""
+
+#: src/dialogs/lookupcertificatesdialog.cpp:264
 #, fuzzy, kde-format
 #| msgid "Lookup on Server"
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "Procurar num Servidor"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:210
+#: src/dialogs/lookupcertificatesdialog.cpp:271
 #, kde-format
 msgid "Import"
 msgstr "Importar"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:272
+#: src/dialogs/lookupcertificatesdialog.cpp:333
 #, fuzzy, kde-kuit-format
 #| msgid "Enter a name and an email address to use for the certificate."
 msgctxt "@info"
@@ -7921,13 +8013,24 @@ msgid "Enter a search term to search for matching certificates."
 msgstr ""
 "Por favor indique um nome e um endereço de e-mail para usar no certificado."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:274
+#: src/dialogs/lookupcertificatesdialog.cpp:335
 #, fuzzy, kde-kuit-format
 #| msgid "Enter a name and an email address to use for the certificate."
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr ""
 "Por favor indique um nome e um endereço de e-mail para usar no certificado."
+
+#: src/dialogs/lookupcertificatesdialog.cpp:416
+#, kde-format
+msgid "LDAP"
+msgstr ""
+
+#: src/dialogs/lookupcertificatesdialog.cpp:418
+#, fuzzy, kde-format
+#| msgid "OpenPGP keyserver:"
+msgid "Keyserver"
+msgstr "Servidor de chaves de OpenPGP:"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8134,20 +8237,6 @@ msgid ""
 "encrypt with it after receiving the revocation.</item></list></para>"
 msgstr ""
 
-#: src/dialogs/revokerswidget.cpp:75
-#, fuzzy, kde-format
-#| msgid "Name"
-msgctxt "@title:column"
-msgid "Name"
-msgstr "Nome"
-
-#: src/dialogs/revokerswidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Email"
-msgctxt "@title:column"
-msgid "Email"
-msgstr "E-mail"
-
 #: src/dialogs/revokerswidget.cpp:78
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
@@ -8337,56 +8426,38 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(opcional) Definir o PIN Inicial (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:148
+#: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Sub-chaves"
 
-#: src/dialogs/subkeyswidget.cpp:151
-#, kde-format
-msgctxt "@title:column"
-msgid "Key ID"
-msgstr ""
-
-#: src/dialogs/subkeyswidget.cpp:153
-#, kde-format
-msgctxt "@title:column"
-msgid "Valid From"
-msgstr "Válida De"
-
-#: src/dialogs/subkeyswidget.cpp:154
-#, kde-format
-msgctxt "@title:column"
-msgid "Valid Until"
-msgstr "Válida Até"
-
-#: src/dialogs/subkeyswidget.cpp:155
+#: src/dialogs/subkeyswidget.cpp:165
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Estado"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Algorithm:"
 msgctxt "@title:column"
 msgid "Algorithm"
 msgstr "Algoritmo:"
 
-#: src/dialogs/subkeyswidget.cpp:157
+#: src/dialogs/subkeyswidget.cpp:167
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Utilização"
 
-#: src/dialogs/subkeyswidget.cpp:158
+#: src/dialogs/subkeyswidget.cpp:168
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Armazenamento"
 
-#: src/dialogs/subkeyswidget.cpp:166
+#: src/dialogs/subkeyswidget.cpp:176
 #, fuzzy, kde-format
 #| msgctxt "@label"
 #| msgid "Subkeys"
@@ -8394,7 +8465,7 @@ msgctxt "@action:button"
 msgid "Add subkey"
 msgstr "Sub-chaves"
 
-#: src/dialogs/subkeyswidget.cpp:167
+#: src/dialogs/subkeyswidget.cpp:177
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Change Validity"
@@ -8402,35 +8473,51 @@ msgctxt "@action:button"
 msgid "Change validity"
 msgstr "Modificar a Validade"
 
-#: src/dialogs/subkeyswidget.cpp:168
+#: src/dialogs/subkeyswidget.cpp:178
 #, fuzzy, kde-format
 #| msgid "Export OpenSSH key"
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
 msgstr "Exportar a chave do OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:169
+#: src/dialogs/subkeyswidget.cpp:179
 #, fuzzy, kde-format
 #| msgid "Restore printed backup"
 msgctxt "@action:button"
 msgid "Restore printed backup"
 msgstr "Repor a cópia de segurança impressa"
 
-#: src/dialogs/subkeyswidget.cpp:170
+#: src/dialogs/subkeyswidget.cpp:180
 #, fuzzy, kde-format
 #| msgid "Transfer to smartcard"
 msgctxt "@action:button"
 msgid "Transfer to smartcard"
 msgstr "Transferir para o cartão"
 
-#: src/dialogs/subkeyswidget.cpp:171
+#: src/dialogs/subkeyswidget.cpp:181
 #, fuzzy, kde-format
 #| msgid "Export secret subkey"
 msgctxt "@action:button"
 msgid "Export secret subkey"
 msgstr "Exportar a sub-chave privada"
 
-#: src/dialogs/subkeyswidget.cpp:179 src/dialogs/useridswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:182
+#, kde-format
+msgctxt "@action:button"
+msgid "Add ADSK"
+msgstr ""
+
+#: src/dialogs/subkeyswidget.cpp:184
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Add the ADSK specified in the GnuPG configuration to your certificate. "
+"Byadding an ADSK to your certificate, you allow the owner of the ADSK to "
+"decrypt all new messages that are encrypted for your certificate, if the "
+"client encrypting the message supports this functionality."
+msgstr ""
+
+#: src/dialogs/subkeyswidget.cpp:196 src/dialogs/useridswidget.cpp:156
 #: src/dialogs/weboftrustwidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Show advanced options"
@@ -8438,45 +8525,45 @@ msgctxt "@info:tooltip"
 msgid "Show more options"
 msgstr "Mostrar as opções avançadas"
 
-#: src/dialogs/subkeyswidget.cpp:275
+#: src/dialogs/subkeyswidget.cpp:292
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Change Validity"
 msgid "Change validity"
 msgstr "Modificar a Validade"
 
-#: src/dialogs/subkeyswidget.cpp:282
+#: src/dialogs/subkeyswidget.cpp:299
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Exportar a chave do OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:288
+#: src/dialogs/subkeyswidget.cpp:305
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Transferir para o cartão"
 
-#: src/dialogs/subkeyswidget.cpp:296
+#: src/dialogs/subkeyswidget.cpp:313
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Exportar a sub-chave privada"
 
-#: src/dialogs/subkeyswidget.cpp:390
+#: src/dialogs/subkeyswidget.cpp:412
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "'smart card' %1"
 
-#: src/dialogs/subkeyswidget.cpp:392
+#: src/dialogs/subkeyswidget.cpp:414
 #, kde-format
 msgid "smart card"
 msgstr "'smart card'"
 
-#: src/dialogs/subkeyswidget.cpp:397
+#: src/dialogs/subkeyswidget.cpp:419
 #, kde-format
 msgid "on this computer"
 msgstr "neste computador"
 
-#: src/dialogs/subkeyswidget.cpp:399
+#: src/dialogs/subkeyswidget.cpp:421
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
@@ -9830,47 +9917,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Texto ou Impressão Digital da pesquisa"
 
-#: src/kleopatraapplication.cpp:391
+#: src/kleopatraapplication.cpp:407
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Não foi possível executar o comando"
 
-#: src/kleopatraapplication.cpp:433
+#: src/kleopatraapplication.cpp:449
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Protocolo ambíguo: --openpgp e --cms"
 
-#: src/kleopatraapplication.cpp:467
+#: src/kleopatraapplication.cpp:483
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Não foi indicado nenhum texto a pesquisar no --search"
 
-#: src/kleopatraapplication.cpp:478
+#: src/kleopatraapplication.cpp:494
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Não foi indicado o argumento de impressão digital no --query"
 
-#: src/kleopatraapplication.cpp:539
+#: src/kleopatraapplication.cpp:555
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Os comandos \"%1\" e \"%2\" são ambíguos"
 
-#: src/kleopatraapplication.cpp:546
+#: src/kleopatraapplication.cpp:562
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Não foram indicados ficheiros no comando \"%1\""
 
-#: src/kleopatraapplication.cpp:560
+#: src/kleopatraapplication.cpp:576
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Não é possível ler o \"%1\""
 
-#: src/kleopatraapplication.cpp:851
+#: src/kleopatraapplication.cpp:867
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "A abertura de uma ligação externa é proibida a nível administrativo."
 
-#: src/kleopatraapplication.cpp:851
+#: src/kleopatraapplication.cpp:867
 #, kde-format
 msgid "Prohibited"
 msgstr "Proibido"

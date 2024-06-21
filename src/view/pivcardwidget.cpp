@@ -84,14 +84,13 @@ static int toolTipOptions()
 
 PIVCardWidget::PIVCardWidget(QWidget *parent)
     : QWidget(parent)
-    , mSerialNumber(new QLabel(this))
-    , mVersionLabel(new QLabel(this))
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
     myLayout->setContentsMargins(0, 0, 0, 0);
 
     auto area = new QScrollArea;
+    area->setFocusPolicy(Qt::NoFocus);
     area->setFrameShape(QFrame::NoFrame);
     area->setWidgetResizable(true);
     myLayout->addWidget(area);
@@ -106,12 +105,14 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
         int row = 0;
 
         // Version and Serialnumber
-        cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
+        mVersionLabel = new QLabel{this};
         mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
 
         cardInfoGrid->addWidget(new QLabel(i18nc("@label:textbox", "Serial number:")), row, 0);
-        cardInfoGrid->addWidget(mSerialNumber, row++, 1);
+        mSerialNumber = new QLabel{this};
         mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        cardInfoGrid->addWidget(mSerialNumber, row++, 1);
 
         cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
     }
@@ -119,7 +120,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
 
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
-    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))));
+    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:")), this));
 
     auto keysGrid = new QGridLayout;
     for (const auto &keyInfo : PIVCard::supportedKeys()) {
@@ -141,7 +142,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
     }
 
     {
-        auto button = new QPushButton(i18nc("@action:button", "Change PIN"));
+        auto button = new QPushButton(i18nc("@action:button", "Change PIN"), this);
         button->setToolTip(i18nc("@info:tooltip",
                                  "Change the PIV Card Application PIN that activates the PIV Card "
                                  "and enables private key operations using the stored keys."));
@@ -151,7 +152,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
         });
     }
     {
-        auto button = new QPushButton(i18nc("@action:button", "Change PUK"));
+        auto button = new QPushButton(i18nc("@action:button", "Change PUK"), this);
         button->setToolTip(i18nc("@info:tooltip", "Change the PIN Unblocking Key that enables a reset of the PIN."));
         actionLayout->addWidget(button);
         connect(button, &QPushButton::clicked, this, [this]() {
@@ -159,7 +160,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
         });
     }
     {
-        auto button = new QPushButton(i18nc("@action:button", "Change Admin Key"));
+        auto button = new QPushButton(i18nc("@action:button", "Change Admin Key"), this);
         button->setToolTip(i18nc("@info:tooltip",
                                  "Change the PIV Card Application Administration Key that is used by the "
                                  "PIV Card Application to authenticate the PIV Card Application Administrator and by the "
@@ -184,12 +185,32 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const KeyPairInfo &key
     keyWidgets.keyGrip->setTextInteractionFlags(Qt::TextBrowserInteraction);
     keyWidgets.keyAlgorithm = new QLabel(this);
     keyWidgets.keyAlgorithm->setTextInteractionFlags(Qt::TextSelectableByMouse);
-    keyWidgets.certificateInfo = new QLabel(this);
-    keyWidgets.certificateInfo->setTextInteractionFlags(Qt::TextBrowserInteraction);
     keyWidgets.generateButton = new QPushButton(i18nc("@action:button", "Generate"), this);
     keyWidgets.generateButton->setEnabled(false);
     connect(keyWidgets.generateButton, &QPushButton::clicked, this, [this, keyRef]() {
         generateKey(keyRef);
+    });
+    if (keyRef == PIVCard::cardAuthenticationKeyRef() || keyRef == PIVCard::keyManagementKeyRef()) {
+        keyWidgets.writeKeyButton = new QPushButton(i18nc("@action:button", "Write Key"), this);
+        keyWidgets.writeKeyButton->setToolTip(i18nc("@info:tooltip", "Write the key pair of a certificate to the card"));
+        keyWidgets.writeKeyButton->setEnabled(true);
+        connect(keyWidgets.writeKeyButton, &QPushButton::clicked, this, [this, keyRef]() {
+            writeKeyToCard(keyRef);
+        });
+    }
+    keyWidgets.certificateInfo = new QLabel(this);
+    keyWidgets.certificateInfo->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    keyWidgets.writeCertificateButton = new QPushButton(i18nc("@action:button", "Write Certificate"), this);
+    keyWidgets.writeCertificateButton->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
+    keyWidgets.writeCertificateButton->setEnabled(false);
+    connect(keyWidgets.writeCertificateButton, &QPushButton::clicked, this, [this, keyRef]() {
+        writeCertificateToCard(keyRef);
+    });
+    keyWidgets.importCertificateButton = new QPushButton(i18nc("@action:button", "Import Certificate"), this);
+    keyWidgets.importCertificateButton->setToolTip(i18nc("@info:tooltip", "Import the certificate stored on the card"));
+    keyWidgets.importCertificateButton->setEnabled(false);
+    connect(keyWidgets.importCertificateButton, &QPushButton::clicked, this, [this, keyRef]() {
+        importCertificateFromCard(keyRef);
     });
     if (keyInfo.canSign() || keyInfo.canEncrypt()) {
         keyWidgets.createCSRButton = new QPushButton(i18nc("@action:button", "Create CSR"), this);
@@ -197,26 +218,6 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const KeyPairInfo &key
         keyWidgets.createCSRButton->setEnabled(false);
         connect(keyWidgets.createCSRButton, &QPushButton::clicked, this, [this, keyRef]() {
             createCSR(keyRef);
-        });
-    }
-    keyWidgets.writeCertificateButton = new QPushButton(i18nc("@action:button", "Write Certificate"));
-    keyWidgets.writeCertificateButton->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
-    keyWidgets.writeCertificateButton->setEnabled(false);
-    connect(keyWidgets.writeCertificateButton, &QPushButton::clicked, this, [this, keyRef]() {
-        writeCertificateToCard(keyRef);
-    });
-    keyWidgets.importCertificateButton = new QPushButton(i18nc("@action:button", "Import Certificate"));
-    keyWidgets.importCertificateButton->setToolTip(i18nc("@info:tooltip", "Import the certificate stored on the card"));
-    keyWidgets.importCertificateButton->setEnabled(false);
-    connect(keyWidgets.importCertificateButton, &QPushButton::clicked, this, [this, keyRef]() {
-        importCertificateFromCard(keyRef);
-    });
-    if (keyRef == PIVCard::cardAuthenticationKeyRef() || keyRef == PIVCard::keyManagementKeyRef()) {
-        keyWidgets.writeKeyButton = new QPushButton(i18nc("@action:button", "Write Key"));
-        keyWidgets.writeKeyButton->setToolTip(i18nc("@info:tooltip", "Write the key pair of a certificate to the card"));
-        keyWidgets.writeKeyButton->setEnabled(true);
-        connect(keyWidgets.writeKeyButton, &QPushButton::clicked, this, [this, keyRef]() {
-            writeKeyToCard(keyRef);
         });
     }
     mKeyWidgets.insert({keyRef, keyWidgets});

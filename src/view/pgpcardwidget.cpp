@@ -142,17 +142,13 @@ private:
 
 PGPCardWidget::PGPCardWidget(QWidget *parent)
     : QWidget(parent)
-    , mSerialNumber(new QLabel(this))
-    , mCardHolderLabel(new QLabel(this))
-    , mVersionLabel(new QLabel(this))
-    , mUrlLabel(new QLabel(this))
-    , mCardIsEmpty(false)
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
     myLayout->setContentsMargins(0, 0, 0, 0);
 
     auto area = new QScrollArea;
+    area->setFocusPolicy(Qt::NoFocus);
     area->setFrameShape(QFrame::NoFrame);
     area->setWidgetResizable(true);
     myLayout->addWidget(area);
@@ -167,21 +163,24 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         int row = 0;
 
         // Version and Serialnumber
-        cardInfoGrid->addWidget(mVersionLabel, row, 0, 1, 2);
+        mVersionLabel = new QLabel{this};
         mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        cardInfoGrid->addWidget(mVersionLabel, row, 0, 1, 2);
         row++;
 
         cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
-        cardInfoGrid->addWidget(mSerialNumber, row, 1);
+        mSerialNumber = new QLabel{this};
         mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        cardInfoGrid->addWidget(mSerialNumber, row, 1);
         row++;
 
         // Cardholder Row
         cardInfoGrid->addWidget(new QLabel(i18nc("The owner of a smartcard. GnuPG refers to this as cardholder.", "Cardholder:")), row, 0);
-        cardInfoGrid->addWidget(mCardHolderLabel, row, 1);
+        mCardHolderLabel = new QLabel{this};
         mCardHolderLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        cardInfoGrid->addWidget(mCardHolderLabel, row, 1);
         {
-            auto button = new QPushButton;
+            auto button = new QPushButton{this};
             button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
             button->setAccessibleName(i18nc("@action:button", "Edit"));
             button->setToolTip(i18n("Change"));
@@ -196,10 +195,11 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
                                                  "Pubkey URL:")),
                                 row,
                                 0);
-        cardInfoGrid->addWidget(mUrlLabel, row, 1);
+        mUrlLabel = new QLabel{this};
         mUrlLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        cardInfoGrid->addWidget(mUrlLabel, row, 1);
         {
-            auto button = new QPushButton;
+            auto button = new QPushButton{this};
             button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
             button->setAccessibleName(i18nc("@action:button", "Edit"));
             button->setToolTip(i18n("Change"));
@@ -228,7 +228,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
     auto actionLayout = new QHBoxLayout;
 
     {
-        auto generateButton = new QPushButton(i18n("Generate New Keys"));
+        auto generateButton = new QPushButton(i18n("Generate New Keys"), this);
         generateButton->setToolTip(xi18nc("@info:tooltip",
                                           "<para>Generate three new keys on the smart card and create a new OpenPGP "
                                           "certificate with those keys. Optionally, the encryption key is generated "
@@ -241,7 +241,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         connect(generateButton, &QPushButton::clicked, this, &PGPCardWidget::genkeyRequested);
     }
     {
-        auto pinButton = new QPushButton(i18n("Change PIN"));
+        auto pinButton = new QPushButton(i18n("Change PIN"), this);
         pinButton->setToolTip(i18nc("@info:tooltip",
                                     "Change the PIN required for using the keys on the smart card. "
                                     "The PIN must contain at least six characters."));
@@ -251,7 +251,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         });
     }
     {
-        auto unblockButton = new QPushButton(i18n("Unblock Card"));
+        auto unblockButton = new QPushButton(i18n("Unblock Card"), this);
         unblockButton->setToolTip(i18nc("@info:tooltip", "Unblock the smart card with the PUK."));
         actionLayout->addWidget(unblockButton);
         connect(unblockButton, &QPushButton::clicked, this, [this]() {
@@ -259,7 +259,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         });
     }
     {
-        auto pukButton = new QPushButton(i18n("Change Admin PIN"));
+        auto pukButton = new QPushButton(i18n("Change Admin PIN"), this);
         pukButton->setToolTip(i18nc("@info:tooltip", "Change the PIN required for administrative operations."));
         actionLayout->addWidget(pukButton);
         connect(pukButton, &QPushButton::clicked, this, [this]() {
@@ -267,7 +267,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         });
     }
     {
-        auto resetCodeButton = new QPushButton(i18n("Change PUK"));
+        auto resetCodeButton = new QPushButton(i18n("Change PUK"), this);
         resetCodeButton->setToolTip(i18nc("@info:tooltip",
                                           "Set or change the PUK required to unblock the smart card. "
                                           "The PUK must contain at least eight characters."));

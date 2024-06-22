@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-21 00:39+0000\n"
+"POT-Creation-Date: 2024-06-22 00:39+0000\n"
 "PO-Revision-Date: 2024-03-21 13:10+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -377,7 +377,7 @@ msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:135
-#: src/view/pivcardwidget.cpp:284
+#: src/view/pivcardwidget.cpp:285
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
@@ -3033,7 +3033,7 @@ msgid "No Directory Servers Configured"
 msgstr "Nincs beállítva címtárszolgáltató"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:514
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -4243,8 +4243,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "Új…"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
-#: src/view/pgpcardwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:183
+#: src/view/pgpcardwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -8617,6 +8617,20 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "Kezdeti PIN beállítása (SigG)"
 
+#: src/dialogs/smartcardwindow.cpp:67
+#, fuzzy, kde-format
+#| msgid "SmartCard"
+msgctxt "@title:window"
+msgid "Manage Smart Cards"
+msgstr "Intelligens kártya"
+
+#: src/dialogs/smartcardwindow.cpp:81
+#, fuzzy, kde-format
+#| msgid "SmartCard"
+msgctxt "@info:tooltip"
+msgid "Reload smart cards"
+msgstr "Intelligens kártya"
+
 #: src/dialogs/subkeyswidget.cpp:158
 #, fuzzy, kde-format
 #| msgctxt "@title"
@@ -8704,8 +8718,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
-"Add the ADSK specified in the GnuPG configuration to your certificate. "
-"Byadding an ADSK to your certificate, you allow the owner of the ADSK to "
+"Add the ADSK specified in the GnuPG configuration to your certificate. By "
+"adding an ADSK to your certificate, you allow the owner of the ADSK to "
 "decrypt all new messages that are encrypted for your certificate, if the "
 "client encrypting the message supports this functionality."
 msgstr ""
@@ -10024,49 +10038,49 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:407
+#: src/kleopatraapplication.cpp:410
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to execute command"
 msgstr "Nem sikerült a(z) „%1” végrehajtása: %2"
 
-#: src/kleopatraapplication.cpp:449
+#: src/kleopatraapplication.cpp:452
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:483
+#: src/kleopatraapplication.cpp:486
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:494
+#: src/kleopatraapplication.cpp:497
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:555
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:562
+#: src/kleopatraapplication.cpp:565
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:576
+#: src/kleopatraapplication.cpp:579
 #, fuzzy, kde-format
 #| msgid "Cannot send \"%1\" status"
 msgid "Cannot read \"%1\""
 msgstr "Nem küldhető „%1” állapot"
 
-#: src/kleopatraapplication.cpp:867
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:867
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -10214,20 +10228,20 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "érvénytelen mód: \"%1\""
 
-#: src/mainwindow.cpp:115
+#: src/mainwindow.cpp:114
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr ""
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:121
 #, fuzzy, kde-format
 #| msgid "Only &Close Window"
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Csak az ablak be&zárása"
 
-#: src/mainwindow.cpp:222
+#: src/mainwindow.cpp:220
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "%1 may be used by other applications as a service.\n"
@@ -10240,14 +10254,14 @@ msgstr ""
 "Lehet, hogy egy alkalmazás még szolgáltatásként használja ezt: %1.\n"
 "Ha kívánja, zárja be ezt az ablakot %1 bezárása nélkül."
 
-#: src/mainwindow.cpp:225
+#: src/mainwindow.cpp:223
 #, fuzzy, kde-format
 #| msgid "Really Quit?"
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Biztosan ki szeretne lépni?"
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:310
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -10256,28 +10270,28 @@ msgstr ""
 "Nem sikerült elindítani a GnuPG naplómegjelenítőt (kwatchgnupg). "
 "Ellenőrizze, hogy megfelelően telepítve van-e a program."
 
-#: src/mainwindow.cpp:314
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Nem sikerült elindítani: KWatchGnuPG"
 
-#: src/mainwindow.cpp:583
+#: src/mainwindow.cpp:572
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG naplómegjelenítő"
 
-#: src/mainwindow.cpp:595
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Debug View"
 msgstr ""
 
-#: src/mainwindow.cpp:608
+#: src/mainwindow.cpp:597
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:609
+#: src/mainwindow.cpp:598
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -10285,25 +10299,25 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:610
 #, kde-format
 msgid "Check for updates"
 msgstr ""
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:623
 #, fuzzy, kde-format
 #| msgid "Certificates"
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Tanúsítványok"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:624
 #, fuzzy, kde-format
 #| msgid "Show certificate details"
 msgid "Show certificate overview"
 msgstr "A tanúsítvány részletei"
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:634
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -10311,54 +10325,54 @@ msgctxt ""
 msgid "Notepad"
 msgstr ""
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:635
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:656
+#: src/mainwindow.cpp:645
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Intelligens kártya"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:646
 #, kde-format
 msgid "Show smartcard management"
 msgstr ""
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Önteszt"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:668
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgid "Configure Groups..."
 msgstr "&Beállítások: %1…"
 
-#: src/mainwindow.cpp:691
+#: src/mainwindow.cpp:680
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "A részletek megjelenítése"
 
-#: src/mainwindow.cpp:721
+#: src/mainwindow.cpp:710
 #, fuzzy, kde-format
 #| msgid "Set Focus to Quick Search"
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Fókusz beállítása a gyors keresőre"
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:722
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr ""
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:726
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -10366,52 +10380,52 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:748
+#: src/mainwindow.cpp:737
 #, fuzzy, kde-format
 #| msgid "Quick Encrypt EMail"
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "Gyors titkosítás"
 
-#: src/mainwindow.cpp:749
+#: src/mainwindow.cpp:738
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:757
+#: src/mainwindow.cpp:746
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgid "&Password-based Encryption"
 msgstr "Titkosítás"
 
-#: src/mainwindow.cpp:758
+#: src/mainwindow.cpp:747
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:754
 #, fuzzy, kde-format
 #| msgid "Certificate Dump"
 msgid "Certificate &Groups"
 msgstr "Tanúsítványkiírás"
 
-#: src/mainwindow.cpp:766
+#: src/mainwindow.cpp:755
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:764
 #, fuzzy, kde-format
 #| msgid "Encryption Options"
 msgid "&Mail Encryption in Outlook"
 msgstr "Titkosítási beállítások"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10419,43 +10433,43 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:786
+#: src/mainwindow.cpp:775
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "&Certification Management"
 msgstr "Ellenőrzés"
 
-#: src/mainwindow.cpp:787
+#: src/mainwindow.cpp:776
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:795
+#: src/mainwindow.cpp:784
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "&Smartcard Setup"
 msgstr "Intelligens kártya"
 
-#: src/mainwindow.cpp:796
+#: src/mainwindow.cpp:785
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:792
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:813
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:814
+#: src/mainwindow.cpp:803
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10463,12 +10477,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:822
+#: src/mainwindow.cpp:811
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:823
+#: src/mainwindow.cpp:812
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10476,7 +10490,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:850
+#: src/mainwindow.cpp:839
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10485,7 +10499,7 @@ msgstr ""
 "Még folyamatban van egy háttérművelet. Az ablak becsukásakor az is be fog "
 "záródni. Folytatni szeretné?"
 
-#: src/mainwindow.cpp:853
+#: src/mainwindow.cpp:842
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Futó háttérfolyamatok"
@@ -12721,14 +12735,14 @@ msgstr "Sorozatszám"
 msgid "Actions:"
 msgstr "Műveletek"
 
-#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:138
 #, fuzzy, kde-format
 #| msgid "Create a personal OpenPGP key pair"
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Személyes OpenPGP-kulcspár létrehozása"
 
-#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:139
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
@@ -12737,7 +12751,7 @@ msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Importált tanúsítványok innen: %1"
 
 #: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
-#: src/view/pivcardwidget.cpp:195
+#: src/view/pivcardwidget.cpp:216
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create Key"
@@ -12881,7 +12895,7 @@ msgctxt "@action:button"
 msgid "Generate Key"
 msgstr "Új kulcs"
 
-#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:196
+#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:217
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgctxt "@info:tooltip"
@@ -12935,7 +12949,7 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/p15cardwidget.cpp:77 src/view/pgpcardwidget.cpp:169
 #: src/view/pivcardwidget.cpp:112
 #, fuzzy, kde-format
 #| msgid "Serial number"
@@ -12943,34 +12957,34 @@ msgctxt "@label:textbox"
 msgid "Serial number:"
 msgstr "Sorozatszám"
 
-#: src/view/p15cardwidget.cpp:96
+#: src/view/p15cardwidget.cpp:95
 #, fuzzy, kde-format
 #| msgid "OpenPGP"
 msgid "OpenPGP keys:"
 msgstr "OpenPGP"
 
-#: src/view/p15cardwidget.cpp:120
+#: src/view/p15cardwidget.cpp:121
 #, fuzzy, kde-format
 #| msgid "Scanning directories..."
 msgid "Searching in directory service..."
 msgstr "Könyvtárak pásztázása…"
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:136
 #, kde-format
 msgid "Automatic import finished."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:140
+#: src/view/p15cardwidget.cpp:141
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:143
+#: src/view/p15cardwidget.cpp:144
 #, kde-format
 msgid "Key not found in directory service."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:152
+#: src/view/p15cardwidget.cpp:153
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
@@ -13110,20 +13124,20 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Aláírás és titkosítás"
 
-#: src/view/pgpcardwidget.cpp:179
+#: src/view/pgpcardwidget.cpp:176
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
+#: src/view/pgpcardwidget.cpp:184 src/view/pgpcardwidget.cpp:203
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Jelszó megváltoztatása…"
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:193
 #, fuzzy, kde-format
 #| msgid "Subkey Usage:"
 msgctxt ""
@@ -13132,7 +13146,7 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "Alkulcshasználat:"
 
-#: src/view/pgpcardwidget.cpp:214
+#: src/view/pgpcardwidget.cpp:213
 #, kde-format
 msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
@@ -13140,14 +13154,14 @@ msgctxt ""
 msgid "Remaining attempts:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:219
+#: src/view/pgpcardwidget.cpp:217
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Shows the number of remaining attempts for entering the correct PIN or PUK."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:123
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Subkeys"
@@ -13174,7 +13188,7 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:145
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
 msgctxt "@action:button"
@@ -13256,7 +13270,7 @@ msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:154
+#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:155
 #, fuzzy, kde-format
 #| msgid "Change Passphrase..."
 msgctxt "@action:button"
@@ -13410,7 +13424,7 @@ msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "A felhasználóazonosító sikeresen hozzáadva."
 
-#: src/view/pivcardwidget.cpp:146
+#: src/view/pivcardwidget.cpp:147
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -13418,20 +13432,20 @@ msgid ""
 "private key operations using the stored keys."
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:155
+#: src/view/pivcardwidget.cpp:156
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:162
+#: src/view/pivcardwidget.cpp:163
 #, fuzzy, kde-format
 #| msgid "Change Expiry Date..."
 msgctxt "@action:button"
 msgid "Change Admin Key"
 msgstr "Lejárási dátum megváltoztatása…"
 
-#: src/view/pivcardwidget.cpp:164
+#: src/view/pivcardwidget.cpp:165
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -13441,21 +13455,35 @@ msgid ""
 "Application."
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:189 src/view/pivcardwidget.cpp:273
+#: src/view/pivcardwidget.cpp:188 src/view/pivcardwidget.cpp:274
 #, fuzzy, kde-format
 #| msgid "General"
 msgctxt "@action:button"
 msgid "Generate"
 msgstr "Általános"
 
-#: src/view/pivcardwidget.cpp:202
+#: src/view/pivcardwidget.cpp:194
+#, fuzzy, kde-format
+#| msgid "Export Secret Keys..."
+msgctxt "@action:button"
+msgid "Write Key"
+msgstr "Titkos kulcsok exportálása…"
+
+#: src/view/pivcardwidget.cpp:195
+#, fuzzy, kde-format
+#| msgid "certificate"
+msgctxt "@info:tooltip"
+msgid "Write the key pair of a certificate to the card"
+msgstr "tanúsítvány"
+
+#: src/view/pivcardwidget.cpp:203
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgctxt "@action:button"
 msgid "Write Certificate"
 msgstr "tanúsítvány"
 
-#: src/view/pivcardwidget.cpp:203
+#: src/view/pivcardwidget.cpp:204
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
@@ -13463,61 +13491,47 @@ msgctxt "@info:tooltip"
 msgid "Write the certificate corresponding to this key to the card"
 msgstr "Importált tanúsítványok innen: %1"
 
-#: src/view/pivcardwidget.cpp:208
+#: src/view/pivcardwidget.cpp:209
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgctxt "@action:button"
 msgid "Import Certificate"
 msgstr "Tanúsítványok importálása"
 
-#: src/view/pivcardwidget.cpp:209
+#: src/view/pivcardwidget.cpp:210
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgctxt "@info:tooltip"
 msgid "Import the certificate stored on the card"
 msgstr "tanúsítvány"
 
-#: src/view/pivcardwidget.cpp:215
-#, fuzzy, kde-format
-#| msgid "Export Secret Keys..."
-msgctxt "@action:button"
-msgid "Write Key"
-msgstr "Titkos kulcsok exportálása…"
-
-#: src/view/pivcardwidget.cpp:216
-#, fuzzy, kde-format
-#| msgid "certificate"
-msgctxt "@info:tooltip"
-msgid "Write the key pair of a certificate to the card"
-msgstr "tanúsítvány"
-
-#: src/view/pivcardwidget.cpp:233
+#: src/view/pivcardwidget.cpp:234
 #, kde-format
 msgctxt "%1 version number"
 msgid "PIV v%1 card"
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:269
+#: src/view/pivcardwidget.cpp:270
 #, kde-format
 msgctxt "@info"
 msgid "<em>slot empty</em>"
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:274
+#: src/view/pivcardwidget.cpp:275
 #, fuzzy, kde-format
 #| msgid "General"
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Generate %1"
 msgstr "Általános"
 
-#: src/view/pivcardwidget.cpp:291
+#: src/view/pivcardwidget.cpp:292
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgctxt "@info"
 msgid "<em>no matching certificate</em>"
 msgstr "(nem található illeszkedő tanúsítvány)"
 
-#: src/view/pivcardwidget.cpp:297
+#: src/view/pivcardwidget.cpp:298
 #, fuzzy, kde-format
 #| msgctxt "unknown trust level"
 #| msgid "unknown"
@@ -13525,14 +13539,14 @@ msgctxt "@info unknown key algorithm"
 msgid "unknown"
 msgstr "ismeretlen"
 
-#: src/view/pivcardwidget.cpp:300
+#: src/view/pivcardwidget.cpp:301
 #, fuzzy, kde-format
 #| msgid "Places"
 msgctxt "@action:button"
 msgid "Replace"
 msgstr "Helyek"
 
-#: src/view/pivcardwidget.cpp:301
+#: src/view/pivcardwidget.cpp:302
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Replace %1 with new key"
@@ -13634,12 +13648,7 @@ msgstr ""
 msgid "Reload"
 msgstr "Újratöltés"
 
-#: src/view/smartcardwidget.cpp:118
-#, kde-format
-msgid "Smartcard Management"
-msgstr ""
-
-#: src/view/smartcardwidget.cpp:165
+#: src/view/smartcardwidget.cpp:163
 #, fuzzy, kde-format
 #| msgctxt "name, email, key id"
 #| msgid "%1 %2 (%3)"
@@ -13649,7 +13658,7 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 %2 (%3)"
 
-#: src/view/smartcardwidget.cpp:170
+#: src/view/smartcardwidget.cpp:168
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
@@ -15232,11 +15241,6 @@ msgstr ""
 #~| msgid "Certify..."
 #~ msgid "Certify ..."
 #~ msgstr "Ellenőrzés..."
-
-#, fuzzy
-#~| msgid "SmartCard"
-#~ msgid "Manage Smartcards"
-#~ msgstr "Intelligens kártya"
 
 #, fuzzy
 #~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-21 00:39+0000\n"
-"PO-Revision-Date: 2024-06-20 05:11+0200\n"
+"POT-Creation-Date: 2024-06-22 00:39+0000\n"
+"PO-Revision-Date: 2024-06-21 05:57+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -143,23 +143,19 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 Kleopatra-ის პროგრამისტები, g10 Code GmbH"
 
 #: src/commands/addadskcommand.cpp:106
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-#| "%2</p>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "<p>An error occurred while trying to add an ADSK to <b>%1</b>:</p><p>%2</p>"
 msgstr ""
-"<p>აღმოჩენილია შეცდომა <b>%1</b>-სთვის ახალი ქვეგასაღების დამატების "
-"მცდელობისას:</p><p>%2</p>"
+"<p>აღმოჩენილია შეცდომა <b>%1</b>-სთვის ახალი ADSK-ის დამატების მცდელობისას:</"
+"p><p>%2</p>"
 
 #: src/commands/addadskcommand.cpp:114
-#, fuzzy, kde-format
-#| msgid "Subkey added successfully."
+#, kde-format
 msgctxt "@info"
 msgid "ADSK added successfully."
-msgstr "ქვეგასაღების დამატება წარმატებით დასრულდა."
+msgstr "ADSK წარმატებით დაემატა."
 
 #: src/commands/addadskcommand.cpp:128
 #, kde-format
@@ -170,17 +166,21 @@ msgid ""
 "want to add the ADSK specified in the GnuPG configuration to your "
 "certificate?"
 msgstr ""
+"თუ თქვენი სერტიფიკატის ფაილს ADSK-ს დაამატებთ, ამით საშუალებას მისცემთ ADSK-"
+"ის მფლობელს, გაშიფროს ყველა ახალი შეტყობინება, რომელიც თქვენი "
+"სერტიფიკატისთვისაა დაშიფრული. გნებავთ დაამატოთ ADSK, რომელიც GnuPG-ის "
+"კონფიგურაციაში მითითებული, თქვენს სერტიფიკატს?"
 
 #: src/commands/addadskcommand.cpp:130
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Add ADSK"
-msgstr ""
+msgstr "ADSK-ის დამატება"
 
 #: src/commands/addadskcommand.cpp:131
 #, kde-format
 msgid "Add ADSK"
-msgstr ""
+msgstr "ADSK-ის დამატება"
 
 #: src/commands/addsubkeycommand.cpp:168
 #, kde-format
@@ -355,7 +355,7 @@ msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr "უკაცრავად! ამ ბარათზე ჩასაწერად შესაფერისი სერტიფიკატი ვერ ვიპოვე."
 
 #: src/commands/certificatetopivcardcommand.cpp:135
-#: src/view/pivcardwidget.cpp:284
+#: src/view/pivcardwidget.cpp:285
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
@@ -2794,7 +2794,7 @@ msgid "No Directory Servers Configured"
 msgstr "Directory-ის სერვერები მორგებული არაა"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:514
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME სერტიფიკატის ხელმოწერის მოთხოვნების შექმნის უფლება არ გაქვთ."
@@ -3942,8 +3942,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "ახალი"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
-#: src/view/pgpcardwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:183
+#: src/view/pgpcardwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -7604,12 +7604,10 @@ msgid "Valid Until"
 msgstr "ვადა"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:241
-#, fuzzy, kde-format
-#| msgctxt "@label:textbox"
-#| msgid "<h3>Protocol:</h3>"
+#, kde-format
 msgctxt "@title:column"
 msgid "Protocol"
-msgstr "<h3>პროტოკოლი:</h3>"
+msgstr "პროტოკოლი"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:242
 #: src/dialogs/subkeyswidget.cpp:161
@@ -7619,8 +7617,7 @@ msgid "Key ID"
 msgstr "გასაღების ID"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:243
-#, fuzzy, kde-format
-#| msgid "Origin"
+#, kde-format
 msgctxt "@title:column"
 msgid "Origin"
 msgstr "საწყისი"
@@ -7651,14 +7648,12 @@ msgstr "შეიყვანეთ ელფოსტის მისამა�
 #: src/dialogs/lookupcertificatesdialog.cpp:416
 #, kde-format
 msgid "LDAP"
-msgstr ""
+msgstr "LDAP"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:418
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "OpenPGP Keyserver"
+#, kde-format
 msgid "Keyserver"
-msgstr "OpenPGP -ის გასაღებების სერვერი"
+msgstr "გასაღებების სერვერი"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8038,6 +8033,20 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(არასავალდებულო) საწყისი PIN-კოდის (SigG) დაყენება"
 
+#: src/dialogs/smartcardwindow.cpp:67
+#, fuzzy, kde-format
+#| msgid "Smart Cards"
+msgctxt "@title:window"
+msgid "Manage Smart Cards"
+msgstr "სმარტ ბარათები"
+
+#: src/dialogs/smartcardwindow.cpp:81
+#, fuzzy, kde-format
+#| msgid "smart card"
+msgctxt "@info:tooltip"
+msgid "Reload smart cards"
+msgstr "ჭკვიანი ბარათი"
+
 #: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@label"
@@ -8108,17 +8117,28 @@ msgstr "საიდუმლო ქვეგასაღების გატ�
 #, kde-format
 msgctxt "@action:button"
 msgid "Add ADSK"
-msgstr ""
+msgstr "ADSK-ის დამატება"
 
 #: src/dialogs/subkeyswidget.cpp:184
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Add the ADSK specified in the GnuPG configuration to your certificate. "
+#| "Byadding an ADSK to your certificate, you allow the owner of the ADSK to "
+#| "decrypt all new messages that are encrypted for your certificate, if the "
+#| "client encrypting the message supports this functionality."
 msgctxt "@info:tooltip"
 msgid ""
-"Add the ADSK specified in the GnuPG configuration to your certificate. "
-"Byadding an ADSK to your certificate, you allow the owner of the ADSK to "
+"Add the ADSK specified in the GnuPG configuration to your certificate. By "
+"adding an ADSK to your certificate, you allow the owner of the ADSK to "
 "decrypt all new messages that are encrypted for your certificate, if the "
 "client encrypting the message supports this functionality."
 msgstr ""
+"GnuPG-ის კონფიგურაციაში მითითებული ADSK-ის დამატება თქვენი სერტიფიკატისთვის. "
+"იმით, რომ სერტიფიკატს ADSK-ს დაამატებთ, ამ ADSK-ის მფლობელს საშუალებას "
+"მისცემთ, გაშიფროს ყველა ახალი შეტყობინება, რომელიც თქვენი სერტიფიკატისთვის "
+"იქნება დაშიფრული, თუ კლიენტის მიერ შეტყობინების დაშიფვრას ამის მხარდაჭერა "
+"გააჩნია."
 
 #: src/dialogs/subkeyswidget.cpp:196 src/dialogs/useridswidget.cpp:156
 #: src/dialogs/weboftrustwidget.cpp:137
@@ -9450,47 +9470,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "სტრიქონი ან ანაბეჭდი მოთხოვნისა და ძებნისთვის"
 
-#: src/kleopatraapplication.cpp:407
+#: src/kleopatraapplication.cpp:410
 #, kde-format
 msgid "Failed to execute command"
 msgstr "ბრძანების შესრულების შეცდომა"
 
-#: src/kleopatraapplication.cpp:449
+#: src/kleopatraapplication.cpp:452
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "გაურკვეველი პროტოკოლი: --openpgp და --cms"
 
-#: src/kleopatraapplication.cpp:483
+#: src/kleopatraapplication.cpp:486
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "პარამეტრისთვის --search სტრიქონი მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:494
+#: src/kleopatraapplication.cpp:497
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "პარამეტრისთვის --query ანაბეჭდის არგუმენტი მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:555
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "ბუნდოვანი ბრძანებები \"%1\" და \"%2\""
 
-#: src/kleopatraapplication.cpp:562
+#: src/kleopatraapplication.cpp:565
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "ბრძანებისთვის \"%1\" ფაილები მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:576
+#: src/kleopatraapplication.cpp:579
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\"-ის წაკითხვა შეუძლებელია"
 
-#: src/kleopatraapplication.cpp:867
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "გარე ბმული გახსნა აკრძალულია ადმინისტრაციულად."
 
-#: src/kleopatraapplication.cpp:867
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr "აკრძალულია"
@@ -9641,19 +9661,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "არასწორი არგუმენტები: %1"
 
-#: src/mainwindow.cpp:115
+#: src/mainwindow.cpp:114
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "<application>%1</application>-დან &გასვლა"
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "&მხოლოდ ფანჯრის დახურვა"
 
-#: src/mainwindow.cpp:222
+#: src/mainwindow.cpp:220
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9664,13 +9684,13 @@ msgstr ""
 "სახით იყოს გამოყენებული.<nl/>შეიძლება, ფანჯარა უბრალოდ დახუროთ, <application>"
 "%1</application>-დან გასვლის გარეშე."
 
-#: src/mainwindow.cpp:225
+#: src/mainwindow.cpp:223
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "მართლა გავიდე?"
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:310
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9679,28 +9699,28 @@ msgstr ""
 "GnuPG-ის ჟურნალის გამხსნელის (kwatchgnupg) გაშვება შეუძლებელია. შეამოწმეთ "
 "თქვენი ფაილები."
 
-#: src/mainwindow.cpp:314
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "KWatchGnuPG-ის გაშვების შეცდომა"
 
-#: src/mainwindow.cpp:583
+#: src/mainwindow.cpp:572
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG-ის ჟურნალის ნახვა"
 
-#: src/mainwindow.cpp:595
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Debug View"
 msgstr "გამართვის ხედი"
 
-#: src/mainwindow.cpp:608
+#: src/mainwindow.cpp:597
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "ფონური პროცესების გადატვირთვა"
 
-#: src/mainwindow.cpp:609
+#: src/mainwindow.cpp:598
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9708,23 +9728,23 @@ msgid ""
 "configuration."
 msgstr "ფონური პროცესების გადატვირთვა, მაგ: კონფიგურაციის ცვლილებების შემდეგ."
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:610
 #, kde-format
 msgid "Check for updates"
 msgstr "განახლებების შემოწმება"
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:623
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "სერტიფიკატები"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:624
 #, kde-format
 msgid "Show certificate overview"
 msgstr "სერტიფიკატის მიმოხილვის ჩვენება"
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:634
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9732,50 +9752,50 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Notepad"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:635
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr "ტექსტის დაშიფვრა/გაშიფვრის და ხელმოწერა/გადამოწმების ბლოკნოტის ჩვენება"
 
-#: src/mainwindow.cpp:656
+#: src/mainwindow.cpp:645
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "სმარტ ბარათები"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:646
 #, kde-format
 msgid "Show smartcard management"
 msgstr "სმარტ ბარათების მართვის ჩვენება"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "თვითტესტის შესრულება"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:668
 #, kde-format
 msgid "Configure Groups..."
 msgstr "ჯგუფების მორგება..."
 
-#: src/mainwindow.cpp:691
+#: src/mainwindow.cpp:680
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "ჯგუფები"
 
-#: src/mainwindow.cpp:721
+#: src/mainwindow.cpp:710
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "ფოკუსის სწრაფ ძებნაზე დაყენება"
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:722
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win-ის მოკლე დოკუმენტაცია"
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:726
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9783,48 +9803,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:748
+#: src/mainwindow.cpp:737
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&დაშიფვრისა და ხელმოწერის სწრაფი გიდი"
 
-#: src/mainwindow.cpp:749
+#: src/mainwindow.cpp:738
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:757
+#: src/mainwindow.cpp:746
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&პაროლზე-ბაზირებული დაშიფვრა"
 
-#: src/mainwindow.cpp:758
+#: src/mainwindow.cpp:747
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:754
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "სერტიფიკატის ჯ&გუფები"
 
-#: src/mainwindow.cpp:766
+#: src/mainwindow.cpp:755
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:764
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "&ელფოსტის დაშიფვრა Outlook-ში"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9832,41 +9852,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:786
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "&Certification Management"
 msgstr "&სერტიფიკაციის მართვა"
 
-#: src/mainwindow.cpp:787
+#: src/mainwindow.cpp:776
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:795
+#: src/mainwindow.cpp:784
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "&სმარტ ბარათების მორგება"
 
-#: src/mainwindow.cpp:796
+#: src/mainwindow.cpp:785
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:792
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG-ის &ბრძანების სტრიქონი"
 
-#: src/mainwindow.cpp:813
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "სახელმძღვანელო VS-NfD-ის დადასტურებისთვის"
 
-#: src/mainwindow.cpp:814
+#: src/mainwindow.cpp:803
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9874,12 +9894,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:822
+#: src/mainwindow.cpp:811
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "სახელმძღვანელო VS-NfD-ის დადასტურებისთვის"
 
-#: src/mainwindow.cpp:823
+#: src/mainwindow.cpp:812
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9887,7 +9907,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:850
+#: src/mainwindow.cpp:839
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9896,7 +9916,7 @@ msgstr ""
 "ფონური ოპერაციები ჯერ კიდევ გაშვებულია. ისინი გაჩერდება, თუ ფანჯარას "
 "დახურავთ. გავაგრძელო?"
 
-#: src/mainwindow.cpp:853
+#: src/mainwindow.cpp:842
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "მიმდინარე ფონური ამოცანები"
@@ -11649,7 +11669,7 @@ msgstr "ბოლოში მიწერა"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Append the new file to the existing file."
-msgstr "ახალი ფაილის არსებული ფაილისთვის ბოლოში მიწერა"
+msgstr "ახალი ფაილის არსებული ფაილისთვის ბოლოში მიწერა."
 
 #: src/utils/overwritedialog.cpp:256
 #, kde-format
@@ -12026,20 +12046,20 @@ msgstr "სერიული ნომერი:"
 msgid "Actions:"
 msgstr "ქმედებები:"
 
-#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "OpenPGP გასაღების შექმნა"
 
-#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:139
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "OpenPGP-ის გასაღების შექმნა ბარათზე შენახული გასაღებებისთვის."
 
 #: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
-#: src/view/pivcardwidget.cpp:195
+#: src/view/pivcardwidget.cpp:216
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
@@ -12175,7 +12195,7 @@ msgctxt "@action:button"
 msgid "Generate Key"
 msgstr "გასაღების გენერაცია"
 
-#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:196
+#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:217
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for this key"
@@ -12223,39 +12243,39 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "უკაცრავად, გასაღები ანაბეჭდით %1 ვერ ვიპოვე."
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/p15cardwidget.cpp:77 src/view/pgpcardwidget.cpp:169
 #: src/view/pivcardwidget.cpp:112
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Serial number:"
 msgstr "სერიული ნომერი:"
 
-#: src/view/p15cardwidget.cpp:96
+#: src/view/p15cardwidget.cpp:95
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "OpenGPG-ის გასაღებები:"
 
-#: src/view/p15cardwidget.cpp:120
+#: src/view/p15cardwidget.cpp:121
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "ძებნა კატალოგის სერვისში..."
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:136
 #, kde-format
 msgid "Automatic import finished."
 msgstr "ავტომატური შემოტანა დასრულდა."
 
-#: src/view/p15cardwidget.cpp:140
+#: src/view/p15cardwidget.cpp:141
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "შეცდომა: სერვერზე აღმოჩენილია ერთზე მეტი გასაღები."
 
-#: src/view/p15cardwidget.cpp:143
+#: src/view/p15cardwidget.cpp:144
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "კატალოგის სერვისში გასაღები აღმოჩენილი არაა."
 
-#: src/view/p15cardwidget.cpp:152
+#: src/view/p15cardwidget.cpp:153
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
@@ -12383,19 +12403,19 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "ბლოკნოტის ხელმოწერა/დაშიფვრა"
 
-#: src/view/pgpcardwidget.cpp:179
+#: src/view/pgpcardwidget.cpp:176
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "ბარათის მფლობელი:"
 
-#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
+#: src/view/pgpcardwidget.cpp:184 src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "შეცვლა"
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:193
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -12403,7 +12423,7 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "საჯარო გასაღების ბმული:"
 
-#: src/view/pgpcardwidget.cpp:214
+#: src/view/pgpcardwidget.cpp:213
 #, kde-format
 msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
@@ -12411,7 +12431,7 @@ msgctxt ""
 msgid "Remaining attempts:"
 msgstr "დარჩენილი მცდელობები:"
 
-#: src/view/pgpcardwidget.cpp:219
+#: src/view/pgpcardwidget.cpp:217
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12419,7 +12439,7 @@ msgid ""
 msgstr ""
 "აჩვენებს სწორი PIN ან PUK კოდის შეყვანის დარჩენილი მცდელობების რაოდენობას."
 
-#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:123
 #, kde-format
 msgid "Keys:"
 msgstr "გასაღებები:"
@@ -12448,7 +12468,7 @@ msgstr ""
 "para><para><emphasis strong='true'>ჭკვიან ბარათზე არსებულ გასაღებებს თავზე "
 "გადაეწერება.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:145
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PIN"
@@ -12530,7 +12550,7 @@ msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:154
+#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:155
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PUK"
@@ -12677,7 +12697,7 @@ msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL წარმატებით შეიცვალა."
 
-#: src/view/pivcardwidget.cpp:146
+#: src/view/pivcardwidget.cpp:147
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12687,20 +12707,20 @@ msgstr ""
 "შეცვალეთ PIV ბარათის აპლიკაციის PIN-კოდი, რომელიც ააქტიურებს PIV ბარათს და "
 "დამახსოვრებული გასაღებებით ოპერაციებით საშუალებას გაძლევთ."
 
-#: src/view/pivcardwidget.cpp:155
+#: src/view/pivcardwidget.cpp:156
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
 msgstr ""
 "შეცვალეთ PIN-კოდის განბლოკვის გასაღები, რომელიც PIN-კოდის შეცვლას რთავს."
 
-#: src/view/pivcardwidget.cpp:162
+#: src/view/pivcardwidget.cpp:163
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Admin Key"
 msgstr "ადმინის გასაღების შეცვლა"
 
-#: src/view/pivcardwidget.cpp:164
+#: src/view/pivcardwidget.cpp:165
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12713,85 +12733,85 @@ msgstr ""
 "ბარათის აპლიკაციის მიერ გამოიყენება PIV ბარათის ადმინისტრატორის, ან "
 "ადმინისტრატორი (მაგ: Kleopatra) PIV ბარათის აპლიკაციის ავთენტიკაციისთვის."
 
-#: src/view/pivcardwidget.cpp:189 src/view/pivcardwidget.cpp:273
+#: src/view/pivcardwidget.cpp:188 src/view/pivcardwidget.cpp:274
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate"
 msgstr "გენერაცია"
 
-#: src/view/pivcardwidget.cpp:202
-#, kde-format
-msgctxt "@action:button"
-msgid "Write Certificate"
-msgstr "სერტიფიკატის ჩაწერა"
-
-#: src/view/pivcardwidget.cpp:203
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Write the certificate corresponding to this key to the card"
-msgstr "ბარათზე ამ გასაღების შესაბამისი სერტიფიკატის ჩაწერა"
-
-#: src/view/pivcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Import Certificate"
-msgstr "სერტიფიკატის შემოტანა"
-
-#: src/view/pivcardwidget.cpp:209
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Import the certificate stored on the card"
-msgstr "ბარათზე დამახსოვრებული სერტიფიკატის შეოტანა"
-
-#: src/view/pivcardwidget.cpp:215
+#: src/view/pivcardwidget.cpp:194
 #, kde-format
 msgctxt "@action:button"
 msgid "Write Key"
 msgstr "გასაღების ჩაწერა"
 
-#: src/view/pivcardwidget.cpp:216
+#: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the key pair of a certificate to the card"
 msgstr "სერტიფიკატის გასაღებების წყვილის ბარათზე ჩაწერა"
 
-#: src/view/pivcardwidget.cpp:233
+#: src/view/pivcardwidget.cpp:203
+#, kde-format
+msgctxt "@action:button"
+msgid "Write Certificate"
+msgstr "სერტიფიკატის ჩაწერა"
+
+#: src/view/pivcardwidget.cpp:204
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Write the certificate corresponding to this key to the card"
+msgstr "ბარათზე ამ გასაღების შესაბამისი სერტიფიკატის ჩაწერა"
+
+#: src/view/pivcardwidget.cpp:209
+#, kde-format
+msgctxt "@action:button"
+msgid "Import Certificate"
+msgstr "სერტიფიკატის შემოტანა"
+
+#: src/view/pivcardwidget.cpp:210
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Import the certificate stored on the card"
+msgstr "ბარათზე დამახსოვრებული სერტიფიკატის შეოტანა"
+
+#: src/view/pivcardwidget.cpp:234
 #, kde-format
 msgctxt "%1 version number"
 msgid "PIV v%1 card"
 msgstr "PIV v%1 ბარათი"
 
-#: src/view/pivcardwidget.cpp:269
+#: src/view/pivcardwidget.cpp:270
 #, kde-format
 msgctxt "@info"
 msgid "<em>slot empty</em>"
 msgstr "<em>სლოტი ცარიელია</em>"
 
-#: src/view/pivcardwidget.cpp:274
+#: src/view/pivcardwidget.cpp:275
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Generate %1"
 msgstr "%1-ის გენერაცია"
 
-#: src/view/pivcardwidget.cpp:291
+#: src/view/pivcardwidget.cpp:292
 #, kde-format
 msgctxt "@info"
 msgid "<em>no matching certificate</em>"
 msgstr "<em>შესაბამისი სერტიფიკატის გარეშე</em>"
 
-#: src/view/pivcardwidget.cpp:297
+#: src/view/pivcardwidget.cpp:298
 #, kde-format
 msgctxt "@info unknown key algorithm"
 msgid "unknown"
 msgstr "უცნობი"
 
-#: src/view/pivcardwidget.cpp:300
+#: src/view/pivcardwidget.cpp:301
 #, kde-format
 msgctxt "@action:button"
 msgid "Replace"
 msgstr "შეცვლა"
 
-#: src/view/pivcardwidget.cpp:301
+#: src/view/pivcardwidget.cpp:302
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Replace %1 with new key"
@@ -12891,12 +12911,7 @@ msgstr "Kleopatra-ს, ამჟამად, შემდეგი ბარა
 msgid "Reload"
 msgstr "თავიდან ჩატვირთვა"
 
-#: src/view/smartcardwidget.cpp:118
-#, kde-format
-msgid "Smartcard Management"
-msgstr "სმარტ ბარათების მართვა"
-
-#: src/view/smartcardwidget.cpp:165
+#: src/view/smartcardwidget.cpp:163
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -12904,7 +12919,7 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardwidget.cpp:170
+#: src/view/smartcardwidget.cpp:168
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
@@ -13073,6 +13088,9 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgid "Smartcard Management"
+#~ msgstr "სმარტ ბარათების მართვა"
 
 #~ msgid "Change PIN"
 #~ msgstr "PIN კოდის შეცვლა"

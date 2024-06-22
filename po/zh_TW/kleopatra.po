@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-21 00:39+0000\n"
+"POT-Creation-Date: 2024-06-22 00:39+0000\n"
 "PO-Revision-Date: 2024-03-08 23:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -355,7 +355,7 @@ msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr "抱歉！沒有找到適合寫入這個卡片欄位的憑證。"
 
 #: src/commands/certificatetopivcardcommand.cpp:135
-#: src/view/pivcardwidget.cpp:284
+#: src/view/pivcardwidget.cpp:285
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
@@ -2743,7 +2743,7 @@ msgid "No Directory Servers Configured"
 msgstr "沒有設定目錄伺服器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:514
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您不被允許建立 S/MIME 憑證簽章請求。"
@@ -3843,8 +3843,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "新增"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
-#: src/view/pgpcardwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:183
+#: src/view/pgpcardwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -7902,6 +7902,20 @@ msgstr "步驟 2：設定有資格簽章憑證（\"SigG\"）的初始 PIN 碼：
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "（可選）設定初始 PIN 碼（SigG）"
 
+#: src/dialogs/smartcardwindow.cpp:67
+#, fuzzy, kde-format
+#| msgid "SmartCard"
+msgctxt "@title:window"
+msgid "Manage Smart Cards"
+msgstr "智慧卡"
+
+#: src/dialogs/smartcardwindow.cpp:81
+#, fuzzy, kde-format
+#| msgid "smart card"
+msgctxt "@info:tooltip"
+msgid "Reload smart cards"
+msgstr "智慧卡"
+
 #: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@label"
@@ -7980,8 +7994,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
-"Add the ADSK specified in the GnuPG configuration to your certificate. "
-"Byadding an ADSK to your certificate, you allow the owner of the ADSK to "
+"Add the ADSK specified in the GnuPG configuration to your certificate. By "
+"adding an ADSK to your certificate, you allow the owner of the ADSK to "
 "decrypt all new messages that are encrypted for your certificate, if the "
 "client encrypting the message supports this functionality."
 msgstr ""
@@ -9261,47 +9275,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "查詢及搜尋用的字串或指紋"
 
-#: src/kleopatraapplication.cpp:407
+#: src/kleopatraapplication.cpp:410
 #, kde-format
 msgid "Failed to execute command"
 msgstr "執行指令時失敗"
 
-#: src/kleopatraapplication.cpp:449
+#: src/kleopatraapplication.cpp:452
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "不明確的協定：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:483
+#: src/kleopatraapplication.cpp:486
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:494
+#: src/kleopatraapplication.cpp:497
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "對於 --query 沒有指定指紋參數"
 
-#: src/kleopatraapplication.cpp:555
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "不明確的指令 \"%1\" 與 \"%2\""
 
-#: src/kleopatraapplication.cpp:562
+#: src/kleopatraapplication.cpp:565
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:576
+#: src/kleopatraapplication.cpp:579
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "無法讀取 \"%1\""
 
-#: src/kleopatraapplication.cpp:867
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:867
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr "被禁止"
@@ -9439,19 +9453,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "無效參數：%1"
 
-#: src/mainwindow.cpp:115
+#: src/mainwindow.cpp:114
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "離開 <application>%1</application>(&Q)"
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "只關閉視窗(&C)"
 
-#: src/mainwindow.cpp:222
+#: src/mainwindow.cpp:220
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9461,41 +9475,41 @@ msgstr ""
 "<application>%1</application> 可能被其它應用程式做為服務使用中。<nl/>您可能會"
 "想要只關閉此視窗，而不完全關閉 <application>%1</application>。"
 
-#: src/mainwindow.cpp:225
+#: src/mainwindow.cpp:223
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "確定要離開嗎？"
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:310
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr "無法啟動 GnuPG 紀錄顯示器（kwatchgnupg）。請檢查您的安裝是否完整。"
 
-#: src/mainwindow.cpp:314
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "啟動 KWatchGnuPG 發生錯誤"
 
-#: src/mainwindow.cpp:583
+#: src/mainwindow.cpp:572
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG 紀錄檢視器"
 
-#: src/mainwindow.cpp:595
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Debug View"
 msgstr ""
 
-#: src/mainwindow.cpp:608
+#: src/mainwindow.cpp:597
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "重新啟動背景行程"
 
-#: src/mainwindow.cpp:609
+#: src/mainwindow.cpp:598
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9503,23 +9517,23 @@ msgid ""
 "configuration."
 msgstr "重新啟動背景行程，例如在變更設定之後。"
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:610
 #, kde-format
 msgid "Check for updates"
 msgstr "檢查是否有更新"
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:623
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "憑證"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:624
 #, kde-format
 msgid "Show certificate overview"
 msgstr "顯示憑證概覽"
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:634
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9527,51 +9541,51 @@ msgctxt ""
 msgid "Notepad"
 msgstr "筆記本"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:635
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:656
+#: src/mainwindow.cpp:645
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "智慧卡"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:646
 #, kde-format
 msgid "Show smartcard management"
 msgstr "顯示智慧卡管理"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "執行自我測試"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:668
 #, kde-format
 msgid "Configure Groups..."
 msgstr "設定群組..."
 
-#: src/mainwindow.cpp:691
+#: src/mainwindow.cpp:680
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "群組"
 
-#: src/mainwindow.cpp:721
+#: src/mainwindow.cpp:710
 #, fuzzy, kde-format
 #| msgid "Set Focus to Quick Search"
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "設定焦點到快速搜尋"
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:722
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr ""
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:726
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9579,52 +9593,52 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:748
+#: src/mainwindow.cpp:737
 #, fuzzy, kde-format
 #| msgid "Quick Encrypt EMail"
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "快速加密電子郵件"
 
-#: src/mainwindow.cpp:749
+#: src/mainwindow.cpp:738
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:757
+#: src/mainwindow.cpp:746
 #, fuzzy, kde-format
 #| msgid "&Password-based encryption"
 msgid "&Password-based Encryption"
 msgstr "基於密碼的加密(&P)"
 
-#: src/mainwindow.cpp:758
+#: src/mainwindow.cpp:747
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:754
 #, fuzzy, kde-format
 #| msgid "Certificate Groups"
 msgid "Certificate &Groups"
 msgstr "憑證群組"
 
-#: src/mainwindow.cpp:766
+#: src/mainwindow.cpp:755
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:764
 #, fuzzy, kde-format
 #| msgid "&Mail encryption in Outlook"
 msgid "&Mail Encryption in Outlook"
 msgstr "Outlook 中的郵件加密(&M)"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9632,42 +9646,42 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:786
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "&Certification Management"
 msgstr "憑證管理(&C)"
 
-#: src/mainwindow.cpp:787
+#: src/mainwindow.cpp:776
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:795
+#: src/mainwindow.cpp:784
 #, fuzzy, kde-format
 #| msgid "&Smartcard setup"
 msgid "&Smartcard Setup"
 msgstr "智慧卡設定(&S)"
 
-#: src/mainwindow.cpp:796
+#: src/mainwindow.cpp:785
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:792
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG 指令列(&L)"
 
-#: src/mainwindow.cpp:813
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:814
+#: src/mainwindow.cpp:803
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -9679,12 +9693,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:822
+#: src/mainwindow.cpp:811
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:823
+#: src/mainwindow.cpp:812
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -9696,7 +9710,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:850
+#: src/mainwindow.cpp:839
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9705,7 +9719,7 @@ msgstr ""
 "還有一些背景的操作正在進行中。若是關閉此視窗，這些操作都會被中止。確定要繼續"
 "嗎？"
 
-#: src/mainwindow.cpp:853
+#: src/mainwindow.cpp:842
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "還有背景工作"
@@ -11791,20 +11805,20 @@ msgstr "序號："
 msgid "Actions:"
 msgstr "動作："
 
-#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "建立 OpenPGP 金鑰"
 
-#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:139
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "為卡片上儲存的金鑰建立一個 OpenPGP 金鑰。"
 
 #: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
-#: src/view/pivcardwidget.cpp:195
+#: src/view/pivcardwidget.cpp:216
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
@@ -11937,7 +11951,7 @@ msgctxt "@action:button"
 msgid "Generate Key"
 msgstr "建立金鑰"
 
-#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:196
+#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:217
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for this key"
@@ -11985,7 +11999,7 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "抱歉，我找不到指紋為 %1 的金鑰。"
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/p15cardwidget.cpp:77 src/view/pgpcardwidget.cpp:169
 #: src/view/pivcardwidget.cpp:112
 #, fuzzy, kde-format
 #| msgid "Serial number:"
@@ -11993,32 +12007,32 @@ msgctxt "@label:textbox"
 msgid "Serial number:"
 msgstr "序號："
 
-#: src/view/p15cardwidget.cpp:96
+#: src/view/p15cardwidget.cpp:95
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "OpenPGP 金鑰："
 
-#: src/view/p15cardwidget.cpp:120
+#: src/view/p15cardwidget.cpp:121
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "正於目錄服務中搜尋..."
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:136
 #, kde-format
 msgid "Automatic import finished."
 msgstr "自動匯入已完成。"
 
-#: src/view/p15cardwidget.cpp:140
+#: src/view/p15cardwidget.cpp:141
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "錯誤，伺服器上找到多個金鑰。"
 
-#: src/view/p15cardwidget.cpp:143
+#: src/view/p15cardwidget.cpp:144
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "金鑰未於目錄服務中找到。"
 
-#: src/view/p15cardwidget.cpp:152
+#: src/view/p15cardwidget.cpp:153
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
@@ -12146,20 +12160,20 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "簽署/加密筆記本"
 
-#: src/view/pgpcardwidget.cpp:179
+#: src/view/pgpcardwidget.cpp:176
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "卡片持有者："
 
-#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
+#: src/view/pgpcardwidget.cpp:184 src/view/pgpcardwidget.cpp:203
 #, fuzzy, kde-format
 #| msgid "Change"
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "變更"
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:193
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -12167,7 +12181,7 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "公鑰網址："
 
-#: src/view/pgpcardwidget.cpp:214
+#: src/view/pgpcardwidget.cpp:213
 #, kde-format
 msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
@@ -12175,14 +12189,14 @@ msgctxt ""
 msgid "Remaining attempts:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:219
+#: src/view/pgpcardwidget.cpp:217
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Shows the number of remaining attempts for entering the correct PIN or PUK."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:123
 #, kde-format
 msgid "Keys:"
 msgstr "金鑰："
@@ -12206,7 +12220,7 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:145
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PIN"
@@ -12290,7 +12304,7 @@ msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1：%2"
 
-#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:154
+#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:155
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PUK"
@@ -12432,7 +12446,7 @@ msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "網址已成功變更。"
 
-#: src/view/pivcardwidget.cpp:146
+#: src/view/pivcardwidget.cpp:147
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12441,19 +12455,19 @@ msgid ""
 msgstr ""
 "變更啟用 PIV 卡片用的 PIV 卡片應用 PIN，並且啟用利用已儲存金鑰的私鑰操作。"
 
-#: src/view/pivcardwidget.cpp:155
+#: src/view/pivcardwidget.cpp:156
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
 msgstr "變更允許 PIN 碼重設的 PIN 碼解鎖金鑰。"
 
-#: src/view/pivcardwidget.cpp:162
+#: src/view/pivcardwidget.cpp:163
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Admin Key"
 msgstr "變更 Admin 金鑰"
 
-#: src/view/pivcardwidget.cpp:164
+#: src/view/pivcardwidget.cpp:165
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12465,85 +12479,85 @@ msgstr ""
 "變更 PIV 卡片應用管理金鑰。PIV 卡片應用使用本金鑰來認證 PIV 卡片應用管理員；"
 "管理員（即 Kleopatra）也用它來認證 PIV 卡片應用。"
 
-#: src/view/pivcardwidget.cpp:189 src/view/pivcardwidget.cpp:273
+#: src/view/pivcardwidget.cpp:188 src/view/pivcardwidget.cpp:274
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate"
 msgstr "產生"
 
-#: src/view/pivcardwidget.cpp:202
-#, kde-format
-msgctxt "@action:button"
-msgid "Write Certificate"
-msgstr "寫入憑證"
-
-#: src/view/pivcardwidget.cpp:203
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Write the certificate corresponding to this key to the card"
-msgstr "將這個金鑰對應的憑證寫入至卡片中"
-
-#: src/view/pivcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Import Certificate"
-msgstr "匯入憑證"
-
-#: src/view/pivcardwidget.cpp:209
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Import the certificate stored on the card"
-msgstr "匯入卡片上儲存的憑證"
-
-#: src/view/pivcardwidget.cpp:215
+#: src/view/pivcardwidget.cpp:194
 #, kde-format
 msgctxt "@action:button"
 msgid "Write Key"
 msgstr "寫入金鑰"
 
-#: src/view/pivcardwidget.cpp:216
+#: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the key pair of a certificate to the card"
 msgstr "將一個憑證的金鑰對寫入至卡片中"
 
-#: src/view/pivcardwidget.cpp:233
+#: src/view/pivcardwidget.cpp:203
+#, kde-format
+msgctxt "@action:button"
+msgid "Write Certificate"
+msgstr "寫入憑證"
+
+#: src/view/pivcardwidget.cpp:204
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Write the certificate corresponding to this key to the card"
+msgstr "將這個金鑰對應的憑證寫入至卡片中"
+
+#: src/view/pivcardwidget.cpp:209
+#, kde-format
+msgctxt "@action:button"
+msgid "Import Certificate"
+msgstr "匯入憑證"
+
+#: src/view/pivcardwidget.cpp:210
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Import the certificate stored on the card"
+msgstr "匯入卡片上儲存的憑證"
+
+#: src/view/pivcardwidget.cpp:234
 #, kde-format
 msgctxt "%1 version number"
 msgid "PIV v%1 card"
 msgstr "PIV v%1 卡片"
 
-#: src/view/pivcardwidget.cpp:269
+#: src/view/pivcardwidget.cpp:270
 #, kde-format
 msgctxt "@info"
 msgid "<em>slot empty</em>"
 msgstr "<em>欄位為空</em>"
 
-#: src/view/pivcardwidget.cpp:274
+#: src/view/pivcardwidget.cpp:275
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Generate %1"
 msgstr "建立 %1"
 
-#: src/view/pivcardwidget.cpp:291
+#: src/view/pivcardwidget.cpp:292
 #, kde-format
 msgctxt "@info"
 msgid "<em>no matching certificate</em>"
 msgstr "<em>沒有符合的憑證</em>"
 
-#: src/view/pivcardwidget.cpp:297
+#: src/view/pivcardwidget.cpp:298
 #, kde-format
 msgctxt "@info unknown key algorithm"
 msgid "unknown"
 msgstr "未知"
 
-#: src/view/pivcardwidget.cpp:300
+#: src/view/pivcardwidget.cpp:301
 #, kde-format
 msgctxt "@action:button"
 msgid "Replace"
 msgstr "取代"
 
-#: src/view/pivcardwidget.cpp:301
+#: src/view/pivcardwidget.cpp:302
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Replace %1 with new key"
@@ -12643,12 +12657,7 @@ msgstr "Kleopatra 目前支援以下卡片類型："
 msgid "Reload"
 msgstr "重新載入"
 
-#: src/view/smartcardwidget.cpp:118
-#, kde-format
-msgid "Smartcard Management"
-msgstr "智慧卡管理"
-
-#: src/view/smartcardwidget.cpp:165
+#: src/view/smartcardwidget.cpp:163
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -12656,7 +12665,7 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardwidget.cpp:170
+#: src/view/smartcardwidget.cpp:168
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
@@ -12818,6 +12827,9 @@ msgid ""
 msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
+
+#~ msgid "Smartcard Management"
+#~ msgstr "智慧卡管理"
 
 #~ msgid "Change PIN"
 #~ msgstr "變更 PIN 碼"
@@ -14171,11 +14183,6 @@ msgstr ""
 #~| msgid "Certify..."
 #~ msgid "Certify ..."
 #~ msgstr "保證..."
-
-#, fuzzy
-#~| msgid "SmartCard"
-#~ msgid "Manage Smartcards"
-#~ msgstr "智慧卡"
 
 #, fuzzy
 #~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"

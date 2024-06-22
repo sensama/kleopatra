@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-21 00:39+0000\n"
-"PO-Revision-Date: 2024-06-20 09:12+0300\n"
+"POT-Creation-Date: 2024-06-22 00:39+0000\n"
+"PO-Revision-Date: 2024-06-21 08:42+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -150,23 +150,18 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "© Розробники Kleopatra, g10 Code GmbH, 2010–%1"
 
 #: src/commands/addadskcommand.cpp:106
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-#| "%2</p>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "<p>An error occurred while trying to add an ADSK to <b>%1</b>:</p><p>%2</p>"
 msgstr ""
-"<p>Під час спроби додати новий підключ до <b>%1</b> сталася помилка:</p><p>"
-"%2</p>"
+"<p>Під час спроби додати ADSK до <b>%1</b> сталася помилка:</p><p>%2</p>"
 
 #: src/commands/addadskcommand.cpp:114
-#, fuzzy, kde-format
-#| msgid "Subkey added successfully."
+#, kde-format
 msgctxt "@info"
 msgid "ADSK added successfully."
-msgstr "Підключ успішно додано."
+msgstr "ADSK додано успішно."
 
 #: src/commands/addadskcommand.cpp:128
 #, kde-format
@@ -177,17 +172,21 @@ msgid ""
 "want to add the ADSK specified in the GnuPG configuration to your "
 "certificate?"
 msgstr ""
+"Якщо ви додасте ADSK до вашого сертифіката, ви дозволите власнику ADSK "
+"розшифровувати усі нові повідомлення, які зашифровано для вашого "
+"сертифіката. Хочете додати ADSK, який вказано у налаштуваннях GnuPG, до "
+"вашого сертифіката?"
 
 #: src/commands/addadskcommand.cpp:130
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Add ADSK"
-msgstr ""
+msgstr "Додати ADSK"
 
 #: src/commands/addadskcommand.cpp:131
 #, kde-format
 msgid "Add ADSK"
-msgstr ""
+msgstr "Додати ADSK"
 
 #: src/commands/addsubkeycommand.cpp:168
 #, kde-format
@@ -365,7 +364,7 @@ msgstr ""
 "картки."
 
 #: src/commands/certificatetopivcardcommand.cpp:135
-#: src/view/pivcardwidget.cpp:284
+#: src/view/pivcardwidget.cpp:285
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
@@ -2855,7 +2854,7 @@ msgid "No Directory Servers Configured"
 msgstr "Не налаштовано серверів каталогів"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:514
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -4040,8 +4039,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "Створити"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:185
-#: src/view/pgpcardwidget.cpp:203
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:183
+#: src/view/pgpcardwidget.cpp:202
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -7801,12 +7800,10 @@ msgid "Valid Until"
 msgstr "Чинний до"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:241
-#, fuzzy, kde-format
-#| msgctxt "@label:textbox"
-#| msgid "<h3>Protocol:</h3>"
+#, kde-format
 msgctxt "@title:column"
 msgid "Protocol"
-msgstr "<h3>Протокол:</h3>"
+msgstr "Протокол"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:242
 #: src/dialogs/subkeyswidget.cpp:161
@@ -7816,8 +7813,7 @@ msgid "Key ID"
 msgstr "Ід. ключа"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:243
-#, fuzzy, kde-format
-#| msgid "Origin"
+#, kde-format
 msgctxt "@title:column"
 msgid "Origin"
 msgstr "Походження"
@@ -7848,14 +7844,12 @@ msgstr "Введіть адресу електронної пошти для п�
 #: src/dialogs/lookupcertificatesdialog.cpp:416
 #, kde-format
 msgid "LDAP"
-msgstr ""
+msgstr "LDAP"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:418
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "OpenPGP Keyserver"
+#, kde-format
 msgid "Keyserver"
-msgstr "Сервер ключів OpenPGP"
+msgstr "Сервер ключів"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8245,6 +8239,20 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(необов'язкове) Встановити початковий PIN (SigG)"
 
+#: src/dialogs/smartcardwindow.cpp:67
+#, fuzzy, kde-format
+#| msgid "Manage Smartcards"
+msgctxt "@title:window"
+msgid "Manage Smart Cards"
+msgstr "Керування картками пам’яті"
+
+#: src/dialogs/smartcardwindow.cpp:81
+#, fuzzy, kde-format
+#| msgid "smart card"
+msgctxt "@info:tooltip"
+msgid "Reload smart cards"
+msgstr "картка пам'яті"
+
 #: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
 msgctxt "@label"
@@ -8315,17 +8323,28 @@ msgstr "Експортувати закритий підключ"
 #, kde-format
 msgctxt "@action:button"
 msgid "Add ADSK"
-msgstr ""
+msgstr "Додати ADSK"
 
 #: src/dialogs/subkeyswidget.cpp:184
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Add the ADSK specified in the GnuPG configuration to your certificate. "
+#| "Byadding an ADSK to your certificate, you allow the owner of the ADSK to "
+#| "decrypt all new messages that are encrypted for your certificate, if the "
+#| "client encrypting the message supports this functionality."
 msgctxt "@info:tooltip"
 msgid ""
-"Add the ADSK specified in the GnuPG configuration to your certificate. "
-"Byadding an ADSK to your certificate, you allow the owner of the ADSK to "
+"Add the ADSK specified in the GnuPG configuration to your certificate. By "
+"adding an ADSK to your certificate, you allow the owner of the ADSK to "
 "decrypt all new messages that are encrypted for your certificate, if the "
 "client encrypting the message supports this functionality."
 msgstr ""
+"Додати ADSK, який вказано у налаштуваннях GnuPG, до вашого сертифіката. Якщо "
+"ви додасте ADSK до вашого сертифіката, ви дозволите власнику ADSK "
+"розшифровувати усі нові повідомлення, які зашифровано для вашого "
+"сертифіката, якщо у клієнті, який шифрує повідомлення, передбачено підтримку "
+"цієї функціональної можливості."
 
 #: src/dialogs/subkeyswidget.cpp:196 src/dialogs/useridswidget.cpp:156
 #: src/dialogs/weboftrustwidget.cpp:137
@@ -9685,47 +9704,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Рядок або відбиток для запитів і пошуку"
 
-#: src/kleopatraapplication.cpp:407
+#: src/kleopatraapplication.cpp:410
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Не вдалося виконати команду"
 
-#: src/kleopatraapplication.cpp:449
+#: src/kleopatraapplication.cpp:452
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Двозначність протоколу: --openpgp і --cms"
 
-#: src/kleopatraapplication.cpp:483
+#: src/kleopatraapplication.cpp:486
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Не вказано рядка пошуку із --search"
 
-#: src/kleopatraapplication.cpp:494
+#: src/kleopatraapplication.cpp:497
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Не вказано аргументу з відбитком у параметрі --query"
 
-#: src/kleopatraapplication.cpp:555
+#: src/kleopatraapplication.cpp:558
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Неоднозначні команди «%1» і «%2»"
 
-#: src/kleopatraapplication.cpp:562
+#: src/kleopatraapplication.cpp:565
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Не вказано файлів для команди «%1»"
 
-#: src/kleopatraapplication.cpp:576
+#: src/kleopatraapplication.cpp:579
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Не вдалося виконати читання «%1»"
 
-#: src/kleopatraapplication.cpp:867
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Відкриття зовнішніх посилань адміністративно заборонено."
 
-#: src/kleopatraapplication.cpp:867
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr "Заборонено"
@@ -9882,19 +9901,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "Некоректні аргументи: %1"
 
-#: src/mainwindow.cpp:115
+#: src/mainwindow.cpp:114
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "Ви&йти з <application>%1</application>"
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Просто &закрити вікно"
 
-#: src/mainwindow.cpp:222
+#: src/mainwindow.cpp:220
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9905,13 +9924,13 @@ msgstr ""
 "служба.<nl/>Отже, ви можете просто закрити це вікно без виходу з "
 "<application>%1</application>."
 
-#: src/mainwindow.cpp:225
+#: src/mainwindow.cpp:223
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Справді вийти?"
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:310
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9920,28 +9939,28 @@ msgstr ""
 "Не вдалося запустити переглядач журналу GnuPG (kwatchgnupg). Будь ласка, "
 "перевірте встановлені вами компоненти."
 
-#: src/mainwindow.cpp:314
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Помилка під час запуску KWatchGnuPG"
 
-#: src/mainwindow.cpp:583
+#: src/mainwindow.cpp:572
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Переглядач журналу GnuPG"
 
-#: src/mainwindow.cpp:595
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Debug View"
 msgstr "Панель діагностики"
 
-#: src/mainwindow.cpp:608
+#: src/mainwindow.cpp:597
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Перезапустити фонові процеси"
 
-#: src/mainwindow.cpp:609
+#: src/mainwindow.cpp:598
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9950,23 +9969,23 @@ msgid ""
 msgstr ""
 "Перезапустити фонові процеси після, наприклад, внесення змін до налаштувань."
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:610
 #, kde-format
 msgid "Check for updates"
 msgstr "Перевірити наявність оновлень"
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:623
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Сертифікати"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:624
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Показувати огляд сертифіката"
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:634
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9974,52 +9993,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Нотатник"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:635
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Показувати панель нотатника для шифрування/розшифрування та підписування/"
 "перевірки тексту"
 
-#: src/mainwindow.cpp:656
+#: src/mainwindow.cpp:645
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Картки пам'яті"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:646
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Показувати панель керування картками пам'яті"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Виконати самоперевірку"
 
-#: src/mainwindow.cpp:679
+#: src/mainwindow.cpp:668
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Налаштувати групи…"
 
-#: src/mainwindow.cpp:691
+#: src/mainwindow.cpp:680
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Групи"
 
-#: src/mainwindow.cpp:721
+#: src/mainwindow.cpp:710
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Перевести фокус до поля швидкого пошуку"
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:722
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Довідник з gpg4win"
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:726
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -10027,48 +10046,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:748
+#: src/mainwindow.cpp:737
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Короткі настанови щодо шифрування і підписування"
 
-#: src/mainwindow.cpp:749
+#: src/mainwindow.cpp:738
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:757
+#: src/mainwindow.cpp:746
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&Шифрування на основі пароля"
 
-#: src/mainwindow.cpp:758
+#: src/mainwindow.cpp:747
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:754
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Групи сертифікатів"
 
-#: src/mainwindow.cpp:766
+#: src/mainwindow.cpp:755
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:764
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Ш&ифрування пошти в Outlook"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10076,41 +10095,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:786
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Керування сертифікацією"
 
-#: src/mainwindow.cpp:787
+#: src/mainwindow.cpp:776
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:795
+#: src/mainwindow.cpp:784
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Налаштування с&марткарток"
 
-#: src/mainwindow.cpp:796
+#: src/mainwindow.cpp:785
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:792
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Кома&ндний рядок GnuPG"
 
-#: src/mainwindow.cpp:813
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Підручник щодо затвердження VS-NfD"
 
-#: src/mainwindow.cpp:814
+#: src/mainwindow.cpp:803
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10118,12 +10137,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:822
+#: src/mainwindow.cpp:811
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "Безпечні дії щодо затвердження VS-NfD"
 
-#: src/mainwindow.cpp:823
+#: src/mainwindow.cpp:812
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10131,7 +10150,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:850
+#: src/mainwindow.cpp:839
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10140,7 +10159,7 @@ msgstr ""
 "Все ще виконуються деякі фонові дії. Їх буде припинено, якщо ви закриєте "
 "вікно. Продовжувати?"
 
-#: src/mainwindow.cpp:853
+#: src/mainwindow.cpp:842
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Виконуються фонові завдання"
@@ -12282,20 +12301,20 @@ msgstr "Серійний номер:"
 msgid "Actions:"
 msgstr "Дії:"
 
-#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:137
+#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:138
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Створити ключ OpenPGP"
 
-#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:139
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Створити ключ OpenPGP для ключів, які зберігаються на картці."
 
 #: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
-#: src/view/pivcardwidget.cpp:195
+#: src/view/pivcardwidget.cpp:216
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
@@ -12435,7 +12454,7 @@ msgctxt "@action:button"
 msgid "Generate Key"
 msgstr "Створити ключ"
 
-#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:196
+#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:217
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for this key"
@@ -12483,39 +12502,39 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "Вибачте, не вдалося знайти ключа із відбитком %1."
 
-#: src/view/p15cardwidget.cpp:81 src/view/pgpcardwidget.cpp:173
+#: src/view/p15cardwidget.cpp:77 src/view/pgpcardwidget.cpp:169
 #: src/view/pivcardwidget.cpp:112
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Serial number:"
 msgstr "Серійний номер:"
 
-#: src/view/p15cardwidget.cpp:96
+#: src/view/p15cardwidget.cpp:95
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "Ключі OpenPGP:"
 
-#: src/view/p15cardwidget.cpp:120
+#: src/view/p15cardwidget.cpp:121
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "Шукаємо у службі каталогів…"
 
-#: src/view/p15cardwidget.cpp:135
+#: src/view/p15cardwidget.cpp:136
 #, kde-format
 msgid "Automatic import finished."
 msgstr "Автоматичне імпортування завершено."
 
-#: src/view/p15cardwidget.cpp:140
+#: src/view/p15cardwidget.cpp:141
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "Помилка: на сервері знайдено декілька ключів."
 
-#: src/view/p15cardwidget.cpp:143
+#: src/view/p15cardwidget.cpp:144
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "У службі каталогів ключ не знайдено."
 
-#: src/view/p15cardwidget.cpp:152
+#: src/view/p15cardwidget.cpp:153
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
@@ -12644,19 +12663,19 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Підписати або зашифрувати нотатник"
 
-#: src/view/pgpcardwidget.cpp:179
+#: src/view/pgpcardwidget.cpp:176
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Власник картки:"
 
-#: src/view/pgpcardwidget.cpp:186 src/view/pgpcardwidget.cpp:204
+#: src/view/pgpcardwidget.cpp:184 src/view/pgpcardwidget.cpp:203
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Змінити"
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:193
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -12664,7 +12683,7 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "Адреса відкритого ключа:"
 
-#: src/view/pgpcardwidget.cpp:214
+#: src/view/pgpcardwidget.cpp:213
 #, kde-format
 msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
@@ -12672,7 +12691,7 @@ msgctxt ""
 msgid "Remaining attempts:"
 msgstr "Лишилося спроб:"
 
-#: src/view/pgpcardwidget.cpp:219
+#: src/view/pgpcardwidget.cpp:217
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12681,7 +12700,7 @@ msgstr ""
 "Показує кількість спроб ввести правильний пін-код або PUK, які лишилися до "
 "блокування."
 
-#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:122
+#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:123
 #, kde-format
 msgid "Keys:"
 msgstr "Ключі:"
@@ -12710,7 +12729,7 @@ msgstr ""
 "para><para><emphasis strong='true'>Наявні на смарт-картці ключі буде "
 "перезаписано.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:144
+#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:145
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PIN"
@@ -12792,7 +12811,7 @@ msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:154
+#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:155
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PUK"
@@ -12938,7 +12957,7 @@ msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Адресу успішно змінено."
 
-#: src/view/pivcardwidget.cpp:146
+#: src/view/pivcardwidget.cpp:147
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12948,19 +12967,19 @@ msgstr ""
 "Змінити пінкод застосування картки PIV, який активує картку PIV і уможливлює "
 "дії із закритим ключем за допомогою збережених ключів."
 
-#: src/view/pivcardwidget.cpp:155
+#: src/view/pivcardwidget.cpp:156
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
 msgstr "Змінити ключ розблокування PIN, який уможливлює скидання PIN."
 
-#: src/view/pivcardwidget.cpp:162
+#: src/view/pivcardwidget.cpp:163
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Admin Key"
 msgstr "Зміни адміністративний ключ"
 
-#: src/view/pivcardwidget.cpp:164
+#: src/view/pivcardwidget.cpp:165
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12974,85 +12993,85 @@ msgstr ""
 "картки PIV і адміністратором (відповідно, Kleopatra) для розпізнавання "
 "програми картки PIV."
 
-#: src/view/pivcardwidget.cpp:189 src/view/pivcardwidget.cpp:273
+#: src/view/pivcardwidget.cpp:188 src/view/pivcardwidget.cpp:274
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate"
 msgstr "Створити"
 
-#: src/view/pivcardwidget.cpp:202
-#, kde-format
-msgctxt "@action:button"
-msgid "Write Certificate"
-msgstr "Записати сертифікат"
-
-#: src/view/pivcardwidget.cpp:203
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Write the certificate corresponding to this key to the card"
-msgstr "Записати сертифікат, що відповідає цьому ключу на картку"
-
-#: src/view/pivcardwidget.cpp:208
-#, kde-format
-msgctxt "@action:button"
-msgid "Import Certificate"
-msgstr "Імпортувати сертифікат"
-
-#: src/view/pivcardwidget.cpp:209
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Import the certificate stored on the card"
-msgstr "Імпортувати сертифікат, який зберігається на картці"
-
-#: src/view/pivcardwidget.cpp:215
+#: src/view/pivcardwidget.cpp:194
 #, kde-format
 msgctxt "@action:button"
 msgid "Write Key"
 msgstr "Записати ключ"
 
-#: src/view/pivcardwidget.cpp:216
+#: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the key pair of a certificate to the card"
 msgstr "Записати парку ключів сертифіката на картку"
 
-#: src/view/pivcardwidget.cpp:233
+#: src/view/pivcardwidget.cpp:203
+#, kde-format
+msgctxt "@action:button"
+msgid "Write Certificate"
+msgstr "Записати сертифікат"
+
+#: src/view/pivcardwidget.cpp:204
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Write the certificate corresponding to this key to the card"
+msgstr "Записати сертифікат, що відповідає цьому ключу на картку"
+
+#: src/view/pivcardwidget.cpp:209
+#, kde-format
+msgctxt "@action:button"
+msgid "Import Certificate"
+msgstr "Імпортувати сертифікат"
+
+#: src/view/pivcardwidget.cpp:210
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Import the certificate stored on the card"
+msgstr "Імпортувати сертифікат, який зберігається на картці"
+
+#: src/view/pivcardwidget.cpp:234
 #, kde-format
 msgctxt "%1 version number"
 msgid "PIV v%1 card"
 msgstr "Картка PIV v%1"
 
-#: src/view/pivcardwidget.cpp:269
+#: src/view/pivcardwidget.cpp:270
 #, kde-format
 msgctxt "@info"
 msgid "<em>slot empty</em>"
 msgstr "<em>порожній слот</em>"
 
-#: src/view/pivcardwidget.cpp:274
+#: src/view/pivcardwidget.cpp:275
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Generate %1"
 msgstr "Створити %1"
 
-#: src/view/pivcardwidget.cpp:291
+#: src/view/pivcardwidget.cpp:292
 #, kde-format
 msgctxt "@info"
 msgid "<em>no matching certificate</em>"
 msgstr "<em>немає відповідних сертифікатів</em>"
 
-#: src/view/pivcardwidget.cpp:297
+#: src/view/pivcardwidget.cpp:298
 #, kde-format
 msgctxt "@info unknown key algorithm"
 msgid "unknown"
 msgstr "невідомий"
 
-#: src/view/pivcardwidget.cpp:300
+#: src/view/pivcardwidget.cpp:301
 #, kde-format
 msgctxt "@action:button"
 msgid "Replace"
 msgstr "Замінити"
 
-#: src/view/pivcardwidget.cpp:301
+#: src/view/pivcardwidget.cpp:302
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Replace %1 with new key"
@@ -13152,12 +13171,7 @@ msgstr "У поточній версії Kleopatra передбачено під
 msgid "Reload"
 msgstr "Перезавантажити"
 
-#: src/view/smartcardwidget.cpp:118
-#, kde-format
-msgid "Smartcard Management"
-msgstr "Керування картками пам'яті"
-
-#: src/view/smartcardwidget.cpp:165
+#: src/view/smartcardwidget.cpp:163
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -13165,7 +13179,7 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 – %2 – %3"
 
-#: src/view/smartcardwidget.cpp:170
+#: src/view/smartcardwidget.cpp:168
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
@@ -13334,6 +13348,9 @@ msgid ""
 msgstr ""
 "Імпортувати сертифікат з файла.<nl/>Щоб імпортувати дані з сервера відкритих "
 "ключів, скористайтеся пунктом <interface>Шукати на сервері</interface>."
+
+#~ msgid "Smartcard Management"
+#~ msgstr "Керування картками пам'яті"
 
 #~ msgid "Change PIN"
 #~ msgstr "Змінити пінкод"
@@ -14941,9 +14958,6 @@ msgstr ""
 
 #~ msgid "Switch to Pad view."
 #~ msgstr "Перемкнутися на перегляд нотатника."
-
-#~ msgid "Manage Smartcards"
-#~ msgstr "Керування картками пам’яті"
 
 #~ msgid "Edit or initialize a crypto hardware token."
 #~ msgstr "Редагувати або ініціалізувати апаратний ключ шифрування."

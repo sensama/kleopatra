@@ -18,3 +18,6 @@
 
 /* Whether the normal encrypt/decrypt/sign/verify jobs support direct file IO */
 #cmakedefine01 QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
+
+/* Whether ImportJob::setImportOptions exists */
+#cmakedefine01 QGPGME_IMPORT_JOB_SUPPORTS_IMPORT_OPTIONS

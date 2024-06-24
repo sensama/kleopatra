@@ -554,9 +554,15 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
 
     setWaitForMoreJobs(true);
     if (!wkdKeys.empty()) {
+        // set import options, so that only public keys are imported from WKD
+        const EngineInfo::Version gpgVersion = GpgME::engineInfo(GpgME::GpgEngine).engineVersion();
+        const bool onlyPubKeysSupported = (gpgVersion >= "2.5.0") //
+            || (gpgVersion >= "2.4.6" && gpgVersion < "2.5.0") //
+            || (gpgVersion >= "2.2.44" && gpgVersion < "2.3.0");
+        const QStringList importOptions = onlyPubKeysSupported ? QStringList{QStringLiteral("only-pubkeys")} : QStringList{};
         // set an import filter, so that only user IDs matching the email address used for the WKD lookup are imported
         const QString importFilter = QLatin1StringView{"keep-uid=mbox = "} + searchTextToEmailAddress(keyListing.pattern);
-        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource, {importFilter, Key::OriginWKD, keyListing.wkdSource});
+        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource, {importFilter, importOptions, Key::OriginWKD, keyListing.wkdSource});
     }
     if (!pgp.empty()) {
         startImport(OpenPGP, pgp, i18nc(R"(@title %1:"OpenPGP" or "S/MIME")", "%1 Certificate Server", Formatting::displayName(OpenPGP)));

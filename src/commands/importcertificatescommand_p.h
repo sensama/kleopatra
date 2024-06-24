@@ -80,6 +80,7 @@ struct ImportedGroup {
 
 struct ImportOptions {
     QString importFilter;
+    QStringList importOptions;
     GpgME::Key::Origin keyOrigin = GpgME::Key::OriginUnknown;
     QString keyOriginUrl;
 };

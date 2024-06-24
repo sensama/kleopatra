@@ -921,6 +921,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol,
     };
 
     job->setImportFilter(options.importFilter);
+    job->setImportOptions(options.importOptions);
     job->setKeyOrigin(options.keyOrigin, options.keyOriginUrl);
     const GpgME::Error err = job->startLater(data);
     if (err.code()) {

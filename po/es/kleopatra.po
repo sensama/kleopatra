@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-22 00:39+0000\n"
+"POT-Creation-Date: 2024-06-25 00:39+0000\n"
 "PO-Revision-Date: 2024-06-22 13:25+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -2008,7 +2008,7 @@ msgstr "Proceso finalizado"
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
 #: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:958
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "La importación del certificado ha fallado"
@@ -2380,7 +2380,7 @@ msgstr[0] "Obteniendo 1 clave de firmante... (esto puede tardar un rato)"
 msgstr[1] "Obteniendo %1 claves de firmantes... (esto puede tardar un rato)"
 
 #: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:954
+#: src/commands/importcertificatescommand.cpp:957
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2795,14 +2795,14 @@ msgctxt "@info"
 msgid "No certificates found"
 msgstr "No se han encontrado certificados"
 
-#: src/commands/lookupcertificatescommand.cpp:562
-#: src/commands/lookupcertificatescommand.cpp:565
+#: src/commands/lookupcertificatescommand.cpp:568
+#: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "Servidor de certificados %1"
 
-#: src/commands/lookupcertificatescommand.cpp:620
+#: src/commands/lookupcertificatescommand.cpp:626
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2812,7 +2812,7 @@ msgstr ""
 "Ha fallado al buscar en el servidor de certificados. El error devuelto fue:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:628
+#: src/commands/lookupcertificatescommand.cpp:634
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2828,13 +2828,13 @@ msgstr ""
 "configuración, pero si uno de los servidores configurados es el factor "
 "límite, debería ajustar su búsqueda</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:636
+#: src/commands/lookupcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Resultado truncado"
 
-#: src/commands/lookupcertificatescommand.cpp:646
+#: src/commands/lookupcertificatescommand.cpp:652
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2848,14 +2848,14 @@ msgstr ""
 "para><para>Puede configurar servidores de directorio aquí: "
 "<interface>Preferencias->Configurar Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:651
+#: src/commands/lookupcertificatescommand.cpp:657
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "No hay servidores de directorio configurados"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:514
+#: src/kleopatraapplication.cpp:524
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "No se le permite crear solicitudes de firma de certificado S/MIME."
@@ -9611,47 +9611,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Cadena o huella digital para consultar y buscar"
 
-#: src/kleopatraapplication.cpp:410
+#: src/kleopatraapplication.cpp:420
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Ha fallado al ejecutar la orden"
 
-#: src/kleopatraapplication.cpp:452
+#: src/kleopatraapplication.cpp:462
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Protocolo ambiguo: --openpgp y --cms"
 
-#: src/kleopatraapplication.cpp:486
+#: src/kleopatraapplication.cpp:496
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "No se ha especificado cadena de búsqueda para --search"
 
-#: src/kleopatraapplication.cpp:497
+#: src/kleopatraapplication.cpp:507
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "No se ha especificado argumento de huella digital para --query"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:568
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Órdenes ambiguas «%1» y «%2»"
 
-#: src/kleopatraapplication.cpp:565
+#: src/kleopatraapplication.cpp:575
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "No se han especificado archivos para la orden «%1»"
 
-#: src/kleopatraapplication.cpp:579
+#: src/kleopatraapplication.cpp:589
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "No se puede leer «%1»"
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "La apertura de un enlace externo está prohibida administrativamente."
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Prohibited"
 msgstr "Prohibido"

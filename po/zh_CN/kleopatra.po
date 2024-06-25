@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-22 00:39+0000\n"
+"POT-Creation-Date: 2024-06-25 00:39+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1861,7 +1861,7 @@ msgstr "进程完毕"
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
 #: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:958
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "证书导入失败"
@@ -2215,7 +2215,7 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "正在从服务器获取 %1 个签名密钥... (这可能需要一段时间)"
 
 #: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:954
+#: src/commands/importcertificatescommand.cpp:957
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2595,14 +2595,14 @@ msgctxt "@info"
 msgid "No certificates found"
 msgstr ""
 
-#: src/commands/lookupcertificatescommand.cpp:562
-#: src/commands/lookupcertificatescommand.cpp:565
+#: src/commands/lookupcertificatescommand.cpp:568
+#: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 证书服务器"
 
-#: src/commands/lookupcertificatescommand.cpp:620
+#: src/commands/lookupcertificatescommand.cpp:626
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2612,7 +2612,7 @@ msgstr ""
 "证书服务器搜索失败。错误信息：\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:628
+#: src/commands/lookupcertificatescommand.cpp:634
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2626,13 +2626,13 @@ msgstr ""
 "结果的最大数目限制。</para><para>您可以尝试在配置对话框里提高本地限制，但如果"
 "这是服务器端配置的问题，您只能细化搜索条件。</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:636
+#: src/commands/lookupcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "结果已被截断"
 
-#: src/commands/lookupcertificatescommand.cpp:646
+#: src/commands/lookupcertificatescommand.cpp:652
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2645,14 +2645,14 @@ msgstr ""
 "搜索。</para><para>您可以在这里配置目录服务器: <interface>设置->配置 "
 "Kleopatra</interface>。</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:651
+#: src/commands/lookupcertificatescommand.cpp:657
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "未配置目录服务器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:514
+#: src/kleopatraapplication.cpp:524
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您无权创建 S/MIME 证书签名请求。"
@@ -8982,47 +8982,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "用于查询和搜索的字符串或指纹"
 
-#: src/kleopatraapplication.cpp:410
+#: src/kleopatraapplication.cpp:420
 #, kde-format
 msgid "Failed to execute command"
 msgstr "执行命令失败"
 
-#: src/kleopatraapplication.cpp:452
+#: src/kleopatraapplication.cpp:462
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "模糊协议：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:486
+#: src/kleopatraapplication.cpp:496
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "没有为 --search 指定搜索字符串"
 
-#: src/kleopatraapplication.cpp:497
+#: src/kleopatraapplication.cpp:507
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "没有为 --query 指定指纹参数"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:568
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "模糊命令 %1 和 %2"
 
-#: src/kleopatraapplication.cpp:565
+#: src/kleopatraapplication.cpp:575
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "没有为 %1 命令指定文件"
 
-#: src/kleopatraapplication.cpp:579
+#: src/kleopatraapplication.cpp:589
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "无法读取“%1”"
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "在行政上禁止打开外部链接。"
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Prohibited"
 msgstr "已封禁"

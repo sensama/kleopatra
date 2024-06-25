@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-22 00:39+0000\n"
+"POT-Creation-Date: 2024-06-25 00:39+0000\n"
 "PO-Revision-Date: 2024-05-29 16:01+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <>\n"
@@ -2030,7 +2030,7 @@ msgstr "Prozess abgeschlossen"
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
 #: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:958
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Das Importieren des Zertifikats ist fehlgeschlagen"
@@ -2402,7 +2402,7 @@ msgstr[1] ""
 "%1 Beglaubigungszertifikate werden geholt … (dies könnte eine Weile dauern)"
 
 #: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:954
+#: src/commands/importcertificatescommand.cpp:957
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2824,14 +2824,14 @@ msgctxt "@info"
 msgid "No certificates found"
 msgstr "Es wurden keine Zertifikate gefunden"
 
-#: src/commands/lookupcertificatescommand.cpp:562
-#: src/commands/lookupcertificatescommand.cpp:565
+#: src/commands/lookupcertificatescommand.cpp:568
+#: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 Zertifikatserver"
 
-#: src/commands/lookupcertificatescommand.cpp:620
+#: src/commands/lookupcertificatescommand.cpp:626
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2841,7 +2841,7 @@ msgstr ""
 "Suche auf Zertifikatserver fehlgeschlagen. Die Fehlermeldung lautet:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:628
+#: src/commands/lookupcertificatescommand.cpp:634
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2858,13 +2858,13 @@ msgstr ""
 "bei einem der eingestellten Server, müssen Sie Ihre Suche stärker eingrenzen."
 "</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:636
+#: src/commands/lookupcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Ergebnis gekürzt"
 
-#: src/commands/lookupcertificatescommand.cpp:646
+#: src/commands/lookupcertificatescommand.cpp:652
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2879,14 +2879,14 @@ msgstr ""
 "Sie unter <interface>Einstellungen → Kleopatra einrichten …</interface> "
 "vornehmen.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:651
+#: src/commands/lookupcertificatescommand.cpp:657
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Keine Verzeichnisdienste eingerichtet"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:514
+#: src/kleopatraapplication.cpp:524
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -9740,47 +9740,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Suchbegriff oder Fingerabdruck für Abfrage und Suche"
 
-#: src/kleopatraapplication.cpp:410
+#: src/kleopatraapplication.cpp:420
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Der Befehl kann nicht ausgeführt werden"
 
-#: src/kleopatraapplication.cpp:452
+#: src/kleopatraapplication.cpp:462
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Mehrdeutiges Protokoll: --openpgp und --cms"
 
-#: src/kleopatraapplication.cpp:486
+#: src/kleopatraapplication.cpp:496
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Kein Suchbegriff angegeben mit --search"
 
-#: src/kleopatraapplication.cpp:497
+#: src/kleopatraapplication.cpp:507
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Kein Fingerabdruck angegeben mit --query"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:568
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Mehrdeutige Befehle: „%1“ und „%2“"
 
-#: src/kleopatraapplication.cpp:565
+#: src/kleopatraapplication.cpp:575
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Keine Dateien für den Befehl „%1“ angegeben"
 
-#: src/kleopatraapplication.cpp:579
+#: src/kleopatraapplication.cpp:589
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "„%1“ kann nicht gelesen werden"
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Das Öffnen externer Adressen wurde durch den Systemverwalter verboten."
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Prohibited"
 msgstr "Verboten"

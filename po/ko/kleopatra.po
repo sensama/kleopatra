@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-22 00:39+0000\n"
+"POT-Creation-Date: 2024-06-25 00:39+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1951,7 +1951,7 @@ msgstr "프로세스 완료됨"
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
 #: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:958
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "인증서 가져오기 실패"
@@ -2311,7 +2311,7 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "서명자 키 %1개 가져오는 중...(시간이 걸릴 수 있습니다)"
 
 #: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:954
+#: src/commands/importcertificatescommand.cpp:957
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2707,14 +2707,14 @@ msgctxt "@info"
 msgid "No certificates found"
 msgstr "(일치하는 인증서 찾을 수 없음)"
 
-#: src/commands/lookupcertificatescommand.cpp:562
-#: src/commands/lookupcertificatescommand.cpp:565
+#: src/commands/lookupcertificatescommand.cpp:568
+#: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 인증서 서버"
 
-#: src/commands/lookupcertificatescommand.cpp:620
+#: src/commands/lookupcertificatescommand.cpp:626
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2724,7 +2724,7 @@ msgstr ""
 "인증서를 서버에서 검색할 수 없습니다. 반환된 오류:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:628
+#: src/commands/lookupcertificatescommand.cpp:634
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2739,13 +2739,13 @@ msgstr ""
 "수 있으나, 설정된 서버에서 제한을 지정했다면 다른 방법으로 검색해야 합니다.</"
 "para>"
 
-#: src/commands/lookupcertificatescommand.cpp:636
+#: src/commands/lookupcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "결과 잘림"
 
-#: src/commands/lookupcertificatescommand.cpp:646
+#: src/commands/lookupcertificatescommand.cpp:652
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2758,14 +2758,14 @@ msgstr ""
 "소 하나는 지정해야 합니다.</para><para>다음에서 디렉터리 서버를 설정할 수 있"
 "습니다: <interface>설정->Kleopatra 설정</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:651
+#: src/commands/lookupcertificatescommand.cpp:657
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "설정한 디렉터리 서버 없음"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:514
+#: src/kleopatraapplication.cpp:524
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME 인증서 서명 요청 생성이 허용되어 있지 않습니다."
@@ -9482,47 +9482,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "질의와 검색에 사용할 문자열이나 지문"
 
-#: src/kleopatraapplication.cpp:410
+#: src/kleopatraapplication.cpp:420
 #, kde-format
 msgid "Failed to execute command"
 msgstr "명령을 실행할 수 없음"
 
-#: src/kleopatraapplication.cpp:452
+#: src/kleopatraapplication.cpp:462
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "모호한 프로토콜: --openpgp와 --cms"
 
-#: src/kleopatraapplication.cpp:486
+#: src/kleopatraapplication.cpp:496
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search에 검색 문자열을 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:497
+#: src/kleopatraapplication.cpp:507
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query에 지문 인자를 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:568
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "모호한 명령: \"%1\"와(과) \"%2\""
 
-#: src/kleopatraapplication.cpp:565
+#: src/kleopatraapplication.cpp:575
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "\"%1\" 명령에 파일을 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:579
+#: src/kleopatraapplication.cpp:589
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\"에서 읽을 수 없음"
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "관리자에 의해서 외부 링크 열기가 금지되었습니다."
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Prohibited"
 msgstr "금지됨"

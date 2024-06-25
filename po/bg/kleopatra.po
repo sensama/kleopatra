@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-22 00:39+0000\n"
+"POT-Creation-Date: 2024-06-25 00:39+0000\n"
 "PO-Revision-Date: 2024-06-15 23:10+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -1985,7 +1985,7 @@ msgstr "Процесът завърши"
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
 #: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:958
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Грешка при импортиране на удостоверение"
@@ -2355,7 +2355,7 @@ msgstr[1] ""
 "Извличане на %1 подписващи ключа... (това може да отнеме известно време)"
 
 #: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:954
+#: src/commands/importcertificatescommand.cpp:957
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2769,14 +2769,14 @@ msgctxt "@info"
 msgid "No certificates found"
 msgstr "Няма намерени сертификати"
 
-#: src/commands/lookupcertificatescommand.cpp:562
-#: src/commands/lookupcertificatescommand.cpp:565
+#: src/commands/lookupcertificatescommand.cpp:568
+#: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
 msgstr "%1 сървър за сертифициране"
 
-#: src/commands/lookupcertificatescommand.cpp:620
+#: src/commands/lookupcertificatescommand.cpp:626
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2786,7 +2786,7 @@ msgstr ""
 "Неуспешно търсене на сървър за сертификати. Върнатата грешка беше: \n"
 " %1"
 
-#: src/commands/lookupcertificatescommand.cpp:628
+#: src/commands/lookupcertificatescommand.cpp:634
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2802,13 +2802,13 @@ msgstr ""
 "прозорец, но ако един от конфигурираните сървъри е ограничителният фактор, "
 "вие трябва да прецизирате търсенето си. </para>"
 
-#: src/commands/lookupcertificatescommand.cpp:636
+#: src/commands/lookupcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Прекратен резултат"
 
-#: src/commands/lookupcertificatescommand.cpp:646
+#: src/commands/lookupcertificatescommand.cpp:652
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2822,14 +2822,14 @@ msgstr ""
 "para><para> Вие може да конфигурирате сървъри на директории тук: <interface> "
 "Настройки-> Конфигуриране на Клеопатра </interface>. </para>"
 
-#: src/commands/lookupcertificatescommand.cpp:651
+#: src/commands/lookupcertificatescommand.cpp:657
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Няма конфигурирани сървъри на директории"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:514
+#: src/kleopatraapplication.cpp:524
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -9577,47 +9577,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Низ или отпечатък за заявка и търсене"
 
-#: src/kleopatraapplication.cpp:410
+#: src/kleopatraapplication.cpp:420
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Неуспешно изпълнение на команда"
 
-#: src/kleopatraapplication.cpp:452
+#: src/kleopatraapplication.cpp:462
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Неясен протокол: --openpgp и --cms"
 
-#: src/kleopatraapplication.cpp:486
+#: src/kleopatraapplication.cpp:496
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Не е посочен низ за търсене за --search"
 
-#: src/kleopatraapplication.cpp:497
+#: src/kleopatraapplication.cpp:507
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Не е посочен аргумент за пръстов отпечатък за --query"
 
-#: src/kleopatraapplication.cpp:558
+#: src/kleopatraapplication.cpp:568
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Двусмислени команди \"%1\"и \"%2\""
 
-#: src/kleopatraapplication.cpp:565
+#: src/kleopatraapplication.cpp:575
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Не са посочени файлове за командата \"%1\""
 
-#: src/kleopatraapplication.cpp:579
+#: src/kleopatraapplication.cpp:589
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Не може да се прочете \"%1\""
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Отварянето на външна връзка е административно забранено."
 
-#: src/kleopatraapplication.cpp:879
+#: src/kleopatraapplication.cpp:873
 #, kde-format
 msgid "Prohibited"
 msgstr "Забранено"

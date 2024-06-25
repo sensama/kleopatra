@@ -790,6 +790,8 @@ Q_SIGNALS:
     void cardAdded(const std::string &serialNumber, const std::string &appName);
     void cardChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
+    void updateCardsStarted();
+    void updateCardStarted(const std::string &serialNumber, const std::string &appName);
     void updateFinished();
     void oneTransactionFinished(const GpgME::Error &err);
     void startingLearnCards(GpgME::Protocol protocol);
@@ -928,6 +930,7 @@ private:
                 bool anyError = false;
 
                 if (cardApp.serialNumber == "__all__" || cardApp.appName == "__all__") {
+                    Q_EMIT updateCardsStarted();
                     std::vector<std::shared_ptr<Card>> newCards = update_cardinfo(gpgAgent);
 
                     KDAB_SYNCHRONIZED(m_mutex)
@@ -967,6 +970,7 @@ private:
 
                     Q_EMIT firstCardWithNullPinChanged(firstCardWithNullPin);
                 } else {
+                    Q_EMIT updateCardStarted(cardApp.serialNumber, cardApp.appName);
                     auto updatedCard = get_card_status(cardApp.serialNumber, cardApp.appName, gpgAgent);
                     const auto serialNumber = updatedCard->serialNumber();
                     const auto appName = updatedCard->appName();
@@ -1061,7 +1065,9 @@ public:
         connect(this, &::ReaderStatusThread::cardAdded, q, &ReaderStatus::cardAdded);
         connect(this, &::ReaderStatusThread::cardChanged, q, &ReaderStatus::cardChanged);
         connect(this, &::ReaderStatusThread::cardRemoved, q, &ReaderStatus::cardRemoved);
-        connect(this, &::ReaderStatusThread::updateFinished, q, &ReaderStatus::updateFinished);
+        connect(this, &::ReaderStatusThread::updateCardsStarted, q, &ReaderStatus::onUpdateCardsStarted);
+        connect(this, &::ReaderStatusThread::updateCardStarted, q, &ReaderStatus::onUpdateCardStarted);
+        connect(this, &::ReaderStatusThread::updateFinished, q, &ReaderStatus::onUpdateFinished);
         connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged, q, &ReaderStatus::firstCardWithNullPinChanged);
         connect(this, &::ReaderStatusThread::startingLearnCards, q, &ReaderStatus::onStartingLearnCards);
         connect(this, &::ReaderStatusThread::cardsLearned, q, &ReaderStatus::onCardsLearned);
@@ -1102,6 +1108,7 @@ private:
     FileSystemWatcher watcher;
     DeviceInfoWatcher devInfoWatcher;
     std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
+    Action currentAction = NoAction;
     bool learnCMSTransactionScheduled = false;
 };
 
@@ -1147,6 +1154,11 @@ ReaderStatus *ReaderStatus::mutableInstance()
 const ReaderStatus *ReaderStatus::instance()
 {
     return self;
+}
+
+ReaderStatus::Action ReaderStatus::currentAction() const
+{
+    return d->currentAction;
 }
 
 Card::Status ReaderStatus::cardStatus(unsigned int slot) const
@@ -1274,9 +1286,31 @@ Error ReaderStatus::switchCardBackToOpenPGPApp(const std::string &serialNumber)
     return err;
 }
 
+void ReaderStatus::onUpdateCardsStarted()
+{
+    qCDebug(KLEOPATRA_LOG) << __func__;
+    d->currentAction = UpdateCards;
+    Q_EMIT updateCardsStarted();
+}
+
+void ReaderStatus::onUpdateCardStarted(const std::string &serialNumber, const std::string &appName)
+{
+    qCDebug(KLEOPATRA_LOG) << __func__ << serialNumber << appName;
+    d->currentAction = UpdateCards;
+    Q_EMIT updateCardStarted(serialNumber, appName);
+}
+
+void ReaderStatus::onUpdateFinished()
+{
+    qCDebug(KLEOPATRA_LOG) << __func__;
+    d->currentAction = NoAction;
+    Q_EMIT updateFinished();
+}
+
 void ReaderStatus::onStartingLearnCards(GpgME::Protocol protocol)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
+    d->currentAction = LearnCards;
     // suspend automatic refreshes of the key cache while smart card keys are learned
     d->keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
     Q_EMIT startingLearnCards(protocol);
@@ -1285,6 +1319,7 @@ void ReaderStatus::onStartingLearnCards(GpgME::Protocol protocol)
 void ReaderStatus::onCardsLearned(GpgME::Protocol protocol)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
+    d->currentAction = NoAction;
     Q_EMIT cardsLearned(protocol);
     d->learnCMSTransactionScheduled = false;
     d->keyCacheAutoRefreshSuspension.reset();

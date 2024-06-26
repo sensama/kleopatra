@@ -309,9 +309,17 @@ KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
     if (SystemInfo::isHighContrastModeActive()) {
         // use colors specified by Windows if high-contrast mode is active
         QPalette highContrastPalette = palette();
+
         const QColor linkColor = win_getSysColor(COLOR_HOTLIGHT);
         highContrastPalette.setColor(QPalette::All, QPalette::Link, linkColor);
         highContrastPalette.setColor(QPalette::All, QPalette::LinkVisited, linkColor);
+
+        const QColor disabledColor = win_getSysColor(COLOR_GRAYTEXT);
+        highContrastPalette.setColor(QPalette::Disabled, QPalette::WindowText, disabledColor);
+        highContrastPalette.setColor(QPalette::Disabled, QPalette::Text, disabledColor);
+        highContrastPalette.setColor(QPalette::Disabled, QPalette::ButtonText, disabledColor);
+        highContrastPalette.setColor(QPalette::All, QPalette::PlaceholderText, disabledColor);
+
         setPalette(highContrastPalette);
     }
 #endif

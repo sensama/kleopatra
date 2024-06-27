@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-25 00:39+0000\n"
+"POT-Creation-Date: 2024-06-27 00:39+0000\n"
 "PO-Revision-Date: 2024-03-08 23:38+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -2743,7 +2743,7 @@ msgid "No Directory Servers Configured"
 msgstr "沒有設定目錄伺服器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:524
+#: src/kleopatraapplication.cpp:532
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您不被允許建立 S/MIME 憑證簽章請求。"
@@ -7902,18 +7902,48 @@ msgstr "步驟 2：設定有資格簽章憑證（\"SigG\"）的初始 PIN 碼：
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "（可選）設定初始 PIN 碼（SigG）"
 
-#: src/dialogs/smartcardwindow.cpp:67
+#: src/dialogs/smartcardwindow.cpp:55
+#, fuzzy, kde-format
+#| msgid "Smartcard Management"
+msgid "Smart Card Management"
+msgstr "智慧卡管理"
+
+#: src/dialogs/smartcardwindow.cpp:92 src/dialogs/smartcardwindow.cpp:114
+#, fuzzy, kde-format
+#| msgid "smart card"
+msgctxt "@info:status"
+msgid "Loading smart cards..."
+msgstr "智慧卡"
+
+#: src/dialogs/smartcardwindow.cpp:97
+#, fuzzy, kde-format
+#| msgctxt "smart card <serial number>"
+#| msgid "smart card %1"
+msgctxt "@info:status"
+msgid "Updating smart card %1..."
+msgstr "智慧卡 %1"
+
+#: src/dialogs/smartcardwindow.cpp:99
+#, fuzzy, kde-format
+#| msgctxt "@info:status"
+#| msgid "Updating certificate..."
+msgctxt "@info:status"
+msgid "Updating smart card..."
+msgstr "正在更新憑證..."
+
+#: src/dialogs/smartcardwindow.cpp:106 src/dialogs/smartcardwindow.cpp:118
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Reading certificates from smart card ..."
+msgctxt "@info:status"
+msgid "Importing certificates from smart cards..."
+msgstr "從智慧卡讀取憑證中 ..."
+
+#: src/dialogs/smartcardwindow.cpp:130
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@title:window"
 msgid "Manage Smart Cards"
-msgstr "智慧卡"
-
-#: src/dialogs/smartcardwindow.cpp:81
-#, fuzzy, kde-format
-#| msgid "smart card"
-msgctxt "@info:tooltip"
-msgid "Reload smart cards"
 msgstr "智慧卡"
 
 #: src/dialogs/subkeyswidget.cpp:158
@@ -9275,47 +9305,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "查詢及搜尋用的字串或指紋"
 
-#: src/kleopatraapplication.cpp:420
+#: src/kleopatraapplication.cpp:428
 #, kde-format
 msgid "Failed to execute command"
 msgstr "執行指令時失敗"
 
-#: src/kleopatraapplication.cpp:462
+#: src/kleopatraapplication.cpp:470
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "不明確的協定：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:496
+#: src/kleopatraapplication.cpp:504
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:507
+#: src/kleopatraapplication.cpp:515
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "對於 --query 沒有指定指紋參數"
 
-#: src/kleopatraapplication.cpp:568
+#: src/kleopatraapplication.cpp:576
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "不明確的指令 \"%1\" 與 \"%2\""
 
-#: src/kleopatraapplication.cpp:575
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:589
+#: src/kleopatraapplication.cpp:597
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "無法讀取 \"%1\""
 
-#: src/kleopatraapplication.cpp:873
+#: src/kleopatraapplication.cpp:881
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:873
+#: src/kleopatraapplication.cpp:881
 #, kde-format
 msgid "Prohibited"
 msgstr "被禁止"
@@ -12612,52 +12642,52 @@ msgstr ""
 msgid "Search...<%1>"
 msgstr "搜尋...<%1>"
 
-#: src/view/smartcardwidget.cpp:53
+#: src/view/smartcardswidget.cpp:55
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 - v3.3"
 msgstr "OpenPGP v2.0 - v3.3"
 
-#: src/view/smartcardwidget.cpp:54
+#: src/view/smartcardswidget.cpp:56
 #, kde-format
 msgctxt "Gnuk is a cryptographic token for GnuPG"
 msgid "Gnuk"
 msgstr "Gnuk"
 
-#: src/view/smartcardwidget.cpp:55
+#: src/view/smartcardswidget.cpp:57
 #, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3"
 msgstr "NetKey v3"
 
-#: src/view/smartcardwidget.cpp:56
+#: src/view/smartcardswidget.cpp:58
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
 msgstr "PIV (需要 GnuPG 2.3 以上)"
 
-#: src/view/smartcardwidget.cpp:57
+#: src/view/smartcardswidget.cpp:59
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
 msgstr "CardOS 5 (各種應用程式)"
 
-#: src/view/smartcardwidget.cpp:58
+#: src/view/smartcardswidget.cpp:60
 #, kde-format
 msgid "Please insert a compatible smartcard."
 msgstr "請插入相容的智慧卡。"
 
-#: src/view/smartcardwidget.cpp:60
+#: src/view/smartcardswidget.cpp:62
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra 目前支援以下卡片類型："
 
-#: src/view/smartcardwidget.cpp:67
+#: src/view/smartcardswidget.cpp:69
 #, kde-format
 msgid "Reload"
 msgstr "重新載入"
 
-#: src/view/smartcardwidget.cpp:163
+#: src/view/smartcardswidget.cpp:171
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -12665,11 +12695,25 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardwidget.cpp:168
+#: src/view/smartcardswidget.cpp:176
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
+
+#: src/view/smartcardswidget.cpp:235
+#, fuzzy, kde-format
+#| msgid "Reload"
+msgctxt "@action"
+msgid "Reload"
+msgstr "重新載入"
+
+#: src/view/smartcardswidget.cpp:236
+#, fuzzy, kde-format
+#| msgid "smart card"
+msgctxt "@info:tooltip"
+msgid "Reload smart cards"
+msgstr "智慧卡"
 
 #: src/view/tabwidget.cpp:663
 #, kde-format
@@ -12827,9 +12871,6 @@ msgid ""
 msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
-
-#~ msgid "Smartcard Management"
-#~ msgstr "智慧卡管理"
 
 #~ msgid "Change PIN"
 #~ msgstr "變更 PIN 碼"

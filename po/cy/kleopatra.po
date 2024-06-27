@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ../cy/messages//kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-25 00:39+0000\n"
+"POT-Creation-Date: 2024-06-27 00:39+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -2711,7 +2711,7 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:524
+#: src/kleopatraapplication.cpp:532
 #, fuzzy, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "&Cynhyrchu'r Dysysgrif"
@@ -7889,18 +7889,45 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr ""
 
-#: src/dialogs/smartcardwindow.cpp:67
+#: src/dialogs/smartcardwindow.cpp:55
+#, fuzzy, kde-format
+#| msgid "Select CRL File"
+msgid "Smart Card Management"
+msgstr "Dewiswch Ffeil CRL"
+
+#: src/dialogs/smartcardwindow.cpp:92 src/dialogs/smartcardwindow.cpp:114
+#, fuzzy, kde-format
+#| msgid "Select CRL File"
+msgctxt "@info:status"
+msgid "Loading smart cards..."
+msgstr "Dewiswch Ffeil CRL"
+
+#: src/dialogs/smartcardwindow.cpp:97
+#, fuzzy, kde-format
+#| msgid "Select CRL File"
+msgctxt "@info:status"
+msgid "Updating smart card %1..."
+msgstr "Dewiswch Ffeil CRL"
+
+#: src/dialogs/smartcardwindow.cpp:99
+#, fuzzy, kde-format
+#| msgid "In Local Certificates"
+msgctxt "@info:status"
+msgid "Updating smart card..."
+msgstr "Mewn tystysgrifau lleol"
+
+#: src/dialogs/smartcardwindow.cpp:106 src/dialogs/smartcardwindow.cpp:118
+#, fuzzy, kde-format
+#| msgid "In Local Certificates"
+msgctxt "@info:status"
+msgid "Importing certificates from smart cards..."
+msgstr "Mewn tystysgrifau lleol"
+
+#: src/dialogs/smartcardwindow.cpp:130
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "@title:window"
 msgid "Manage Smart Cards"
-msgstr "Dewiswch Ffeil CRL"
-
-#: src/dialogs/smartcardwindow.cpp:81
-#, fuzzy, kde-format
-#| msgid "Select CRL File"
-msgctxt "@info:tooltip"
-msgid "Reload smart cards"
 msgstr "Dewiswch Ffeil CRL"
 
 #: src/dialogs/subkeyswidget.cpp:158
@@ -9259,48 +9286,48 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:420
+#: src/kleopatraapplication.cpp:428
 #, kde-format
 msgid "Failed to execute command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:462
+#: src/kleopatraapplication.cpp:470
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:496
+#: src/kleopatraapplication.cpp:504
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:507
+#: src/kleopatraapplication.cpp:515
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:568
+#: src/kleopatraapplication.cpp:576
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:575
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:589
+#: src/kleopatraapplication.cpp:597
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot read \"%1\""
 msgstr "Methwyd creu tysysgrif : %1"
 
-#: src/kleopatraapplication.cpp:873
+#: src/kleopatraapplication.cpp:881
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:873
+#: src/kleopatraapplication.cpp:881
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -12626,53 +12653,53 @@ msgstr ""
 msgid "Search...<%1>"
 msgstr "Chwiliad:"
 
-#: src/view/smartcardwidget.cpp:53
+#: src/view/smartcardswidget.cpp:55
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 - v3.3"
 msgstr ""
 
-#: src/view/smartcardwidget.cpp:54
+#: src/view/smartcardswidget.cpp:56
 #, kde-format
 msgctxt "Gnuk is a cryptographic token for GnuPG"
 msgid "Gnuk"
 msgstr ""
 
-#: src/view/smartcardwidget.cpp:55
+#: src/view/smartcardswidget.cpp:57
 #, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3"
 msgstr ""
 
-#: src/view/smartcardwidget.cpp:56
+#: src/view/smartcardswidget.cpp:58
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
 msgstr ""
 
-#: src/view/smartcardwidget.cpp:57
+#: src/view/smartcardswidget.cpp:59
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
 msgstr ""
 
-#: src/view/smartcardwidget.cpp:58
+#: src/view/smartcardswidget.cpp:60
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Please insert a compatible smartcard."
 msgstr "Dewiswch Ffeil Dysysgrif"
 
-#: src/view/smartcardwidget.cpp:60
+#: src/view/smartcardswidget.cpp:62
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
 
-#: src/view/smartcardwidget.cpp:67
+#: src/view/smartcardswidget.cpp:69
 #, kde-format
 msgid "Reload"
 msgstr ""
 
-#: src/view/smartcardwidget.cpp:163
+#: src/view/smartcardswidget.cpp:171
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -12680,11 +12707,24 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr ""
 
-#: src/view/smartcardwidget.cpp:168
+#: src/view/smartcardswidget.cpp:176
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr ""
+
+#: src/view/smartcardswidget.cpp:235
+#, kde-format
+msgctxt "@action"
+msgid "Reload"
+msgstr ""
+
+#: src/view/smartcardswidget.cpp:236
+#, fuzzy, kde-format
+#| msgid "Select CRL File"
+msgctxt "@info:tooltip"
+msgid "Reload smart cards"
+msgstr "Dewiswch Ffeil CRL"
 
 #: src/view/tabwidget.cpp:663
 #, kde-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-25 00:39+0000\n"
+"POT-Creation-Date: 2024-06-27 00:39+0000\n"
 "PO-Revision-Date: 2024-06-22 08:43+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -2802,7 +2802,7 @@ msgid "No Directory Servers Configured"
 msgstr "Några katalogservrar är inte inställda"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:524
+#: src/kleopatraapplication.cpp:532
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -8069,17 +8069,49 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(valfritt) Ange ursprunglig PIN-kod (SigG)"
 
-#: src/dialogs/smartcardwindow.cpp:67
+#: src/dialogs/smartcardwindow.cpp:55
+#, fuzzy, kde-format
+#| msgid "Smartcard Management"
+msgid "Smart Card Management"
+msgstr "Hantering av smartkort"
+
+#: src/dialogs/smartcardwindow.cpp:92 src/dialogs/smartcardwindow.cpp:114
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Reload smart cards"
+msgctxt "@info:status"
+msgid "Loading smart cards..."
+msgstr "Läs in smartkort igen"
+
+#: src/dialogs/smartcardwindow.cpp:97
+#, fuzzy, kde-format
+#| msgctxt "As in 'this secret key is stored on smart card <serial number>'"
+#| msgid "smart card %1"
+msgctxt "@info:status"
+msgid "Updating smart card %1..."
+msgstr "smartkort %1"
+
+#: src/dialogs/smartcardwindow.cpp:99
+#, fuzzy, kde-format
+#| msgctxt "@info:status"
+#| msgid "Updating certificate..."
+msgctxt "@info:status"
+msgid "Updating smart card..."
+msgstr "Uppdaterar certifikat..."
+
+#: src/dialogs/smartcardwindow.cpp:106 src/dialogs/smartcardwindow.cpp:118
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Reading certificates from smart card ..."
+msgctxt "@info:status"
+msgid "Importing certificates from smart cards..."
+msgstr "Laddar certifikat från smartkort..."
+
+#: src/dialogs/smartcardwindow.cpp:130
 #, kde-format
 msgctxt "@title:window"
 msgid "Manage Smart Cards"
 msgstr "Hantera smartkort"
-
-#: src/dialogs/smartcardwindow.cpp:81
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Reload smart cards"
-msgstr "Läs in smartkort igen"
 
 #: src/dialogs/subkeyswidget.cpp:158
 #, kde-format
@@ -9503,47 +9535,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Sträng eller fingeravtryck för fråga och sök"
 
-#: src/kleopatraapplication.cpp:420
+#: src/kleopatraapplication.cpp:428
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Misslyckades köra kommando"
 
-#: src/kleopatraapplication.cpp:462
+#: src/kleopatraapplication.cpp:470
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Tvetydigt protokoll: --openpgp och --cms"
 
-#: src/kleopatraapplication.cpp:496
+#: src/kleopatraapplication.cpp:504
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Ingen söksträng angiven för --search"
 
-#: src/kleopatraapplication.cpp:507
+#: src/kleopatraapplication.cpp:515
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Inget fingeravtrycksargument angivet för --query"
 
-#: src/kleopatraapplication.cpp:568
+#: src/kleopatraapplication.cpp:576
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Tvetydiga kommandon \"%1\" och \"%2\""
 
-#: src/kleopatraapplication.cpp:575
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Inga filer angivna för kommandot \"%1\""
 
-#: src/kleopatraapplication.cpp:589
+#: src/kleopatraapplication.cpp:597
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Kan inte läsa \"%1\""
 
-#: src/kleopatraapplication.cpp:873
+#: src/kleopatraapplication.cpp:881
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Att öppna en extern länk är administrativt förhindrat."
 
-#: src/kleopatraapplication.cpp:873
+#: src/kleopatraapplication.cpp:881
 #, kde-format
 msgid "Prohibited"
 msgstr "Förhindrat"
@@ -12894,52 +12926,52 @@ msgstr ""
 msgid "Search...<%1>"
 msgstr "Sök...<%1>"
 
-#: src/view/smartcardwidget.cpp:53
+#: src/view/smartcardswidget.cpp:55
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 - v3.3"
 msgstr "OpenPGP v2.0 - v3.3"
 
-#: src/view/smartcardwidget.cpp:54
+#: src/view/smartcardswidget.cpp:56
 #, kde-format
 msgctxt "Gnuk is a cryptographic token for GnuPG"
 msgid "Gnuk"
 msgstr "Gnuk"
 
-#: src/view/smartcardwidget.cpp:55
+#: src/view/smartcardswidget.cpp:57
 #, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3"
 msgstr "NetKey v3"
 
-#: src/view/smartcardwidget.cpp:56
+#: src/view/smartcardswidget.cpp:58
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
 msgstr "PIV (kräver GnuPG 2.3 eller senare)"
 
-#: src/view/smartcardwidget.cpp:57
+#: src/view/smartcardswidget.cpp:59
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
 msgstr "CardOS 5 (diverse program)"
 
-#: src/view/smartcardwidget.cpp:58
+#: src/view/smartcardswidget.cpp:60
 #, kde-format
 msgid "Please insert a compatible smartcard."
 msgstr "Mata in ett kompatibelt smartkort"
 
-#: src/view/smartcardwidget.cpp:60
+#: src/view/smartcardswidget.cpp:62
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra stöder för närvarande följande typer av kort:"
 
-#: src/view/smartcardwidget.cpp:67
+#: src/view/smartcardswidget.cpp:69
 #, kde-format
 msgid "Reload"
 msgstr "Uppdatera"
 
-#: src/view/smartcardwidget.cpp:163
+#: src/view/smartcardswidget.cpp:171
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -12947,11 +12979,24 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardwidget.cpp:168
+#: src/view/smartcardswidget.cpp:176
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
+
+#: src/view/smartcardswidget.cpp:235
+#, fuzzy, kde-format
+#| msgid "Reload"
+msgctxt "@action"
+msgid "Reload"
+msgstr "Uppdatera"
+
+#: src/view/smartcardswidget.cpp:236
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Reload smart cards"
+msgstr "Läs in smartkort igen"
 
 #: src/view/tabwidget.cpp:663
 #, kde-format
@@ -13116,9 +13161,6 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
-
-#~ msgid "Smartcard Management"
-#~ msgstr "Hantering av smartkort"
 
 #~ msgid "Change PIN"
 #~ msgstr "Ändra nummer"

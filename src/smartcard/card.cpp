@@ -49,6 +49,16 @@ Card::~Card()
 {
 }
 
+void Card::setAppType(AppType app)
+{
+    mAppType = app;
+}
+
+AppType Card::appType() const
+{
+    return mAppType;
+}
+
 void Card::setStatus(Status s)
 {
     mStatus = s;
@@ -209,7 +219,7 @@ bool Card::operator==(const Card &other) const
         && mAppVersion == other.mAppVersion && mCardType == other.mCardType && mCardVersion == other.mCardVersion && mCardHolder == other.mCardHolder
         && mSigningKeyRef == other.mSigningKeyRef && mEncryptionKeyRef == other.mEncryptionKeyRef && mAuthenticationKeyRef == other.mAuthenticationKeyRef
         && mPinStates == other.mPinStates && mErrMsg == other.mErrMsg && mKeyInfos == other.mKeyInfos && mCardInfo == other.mCardInfo
-        && mPinCounters == other.mPinCounters && mPinLabels == other.mPinLabels;
+        && mPinCounters == other.mPinCounters && mPinLabels == other.mPinLabels && mAppType == other.mAppType;
 }
 
 bool Card::operator!=(const Card &other) const

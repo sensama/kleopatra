@@ -9,6 +9,7 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QRegularExpression>
@@ -58,9 +59,14 @@ void Migration::migrate()
     // Migrate ~/.config/kleopatragroupsrc to ~/.gnupg/kleopatra/kleopatragroupsrc
     const QString groupConfigFilename = QStringLiteral("kleopatragroupsrc");
     const QString oldGroupConfigPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + groupConfigFilename;
-    const QString groupConfigPath = Kleo::gnupgHomeDirectory() + QLatin1String("/kleopatra/") + groupConfigFilename;
+    const QDir groupConfigDir{Kleo::gnupgHomeDirectory() + QLatin1String("/kleopatra")};
+    const QString groupConfigPath = groupConfigDir.absoluteFilePath(groupConfigFilename);
 
     if (!QFileInfo::exists(groupConfigPath) && QFileInfo::exists(oldGroupConfigPath)) {
+        if (!QDir{}.mkpath(groupConfigDir.absolutePath())) {
+            qCWarning(KLEOPATRA_LOG) << "Failed to create folder for group configuration:" << groupConfigDir.absolutePath();
+            return;
+        }
         const bool ok = QFile::copy(oldGroupConfigPath, groupConfigPath);
         if (!ok) {
             qCWarning(KLEOPATRA_LOG) << "Unable to copy the old group configuration to" << groupConfigPath;

@@ -154,7 +154,7 @@ public:
         recipientsVLay->addWidget(mSigEncWidget);
         tabWidget->addTab(recipientsWidget, QIcon::fromTheme(QStringLiteral("contact-new-symbolic")), i18n("Recipients"));
 
-        mEdit->setPlaceholderText(i18n("Enter a message to encrypt or decrypt..."));
+        mEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter a message to encrypt or decrypt..."));
 
         auto fixedFont = QFont(QStringLiteral("Monospace"));
         fixedFont.setStyleHint(QFont::TypeWriter);

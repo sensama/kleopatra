@@ -287,7 +287,7 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     , mShowDetailsAction{new QAction{qq}}
     , mIconProvider{usage}
 {
-    ui.lineEdit.setPlaceholderText(i18n("Please enter a name or email address..."));
+    ui.lineEdit.setPlaceholderText(i18nc("@info:placeholder", "Please enter a name or email address..."));
     ui.lineEdit.setClearButtonEnabled(true);
     ui.lineEdit.setContextMenuPolicy(Qt::CustomContextMenu);
     ui.lineEdit.addAction(mStatusAction, QLineEdit::LeadingPosition);

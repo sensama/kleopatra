@@ -55,9 +55,7 @@ private:
     void doChangePin(const std::string &keyRef, Commands::ChangePinCommand::ChangePinMode mode = Commands::ChangePinCommand::NormalMode);
 
 private:
-    QLabel *mSerialNumberLabel = nullptr;
     QLabel *mCardHolderLabel = nullptr;
-    QLabel *mVersionLabel = nullptr;
     QLabel *mUrlLabel = nullptr;
     QLabel *mPinCounterLabel = nullptr;
     QPushButton *mSetOrChangePUKButton = nullptr;

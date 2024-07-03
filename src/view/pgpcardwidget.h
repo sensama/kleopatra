@@ -10,9 +10,9 @@
 */
 #pragma once
 
-#include "commands/changepincommand.h"
+#include "smartcardwidget.h"
 
-#include <QWidget>
+#include "commands/changepincommand.h"
 
 #include <gpgme++/error.h>
 
@@ -32,7 +32,7 @@ struct KeyPairInfo;
 class OpenPGPCard;
 } // namespace SmartCard
 
-class PGPCardWidget : public QWidget
+class PGPCardWidget : public SmartCardWidget
 {
     Q_OBJECT
 public:
@@ -55,7 +55,7 @@ private:
     void doChangePin(const std::string &keyRef, Commands::ChangePinCommand::ChangePinMode mode = Commands::ChangePinCommand::NormalMode);
 
 private:
-    QLabel *mSerialNumber = nullptr;
+    QLabel *mSerialNumberLabel = nullptr;
     QLabel *mCardHolderLabel = nullptr;
     QLabel *mVersionLabel = nullptr;
     QLabel *mUrlLabel = nullptr;
@@ -66,6 +66,5 @@ private:
     bool mCardIsEmpty = false;
     bool mIs21 = false;
     bool mPUKIsAvailable = false;
-    std::string mRealSerial;
 };
 } // namespace Kleo

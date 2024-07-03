@@ -139,7 +139,7 @@ private:
 } // Namespace
 
 PGPCardWidget::PGPCardWidget(QWidget *parent)
-    : QWidget(parent)
+    : SmartCardWidget(parent)
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
@@ -167,9 +167,9 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         row++;
 
         cardInfoGrid->addWidget(new QLabel(i18nc("@label:textbox", "Serial number:")), row, 0);
-        mSerialNumber = new QLabel{this};
-        mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        cardInfoGrid->addWidget(mSerialNumber, row, 1);
+        mSerialNumberLabel = new QLabel{this};
+        mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        cardInfoGrid->addWidget(mSerialNumberLabel, row, 1);
         row++;
 
         // Cardholder Row
@@ -312,8 +312,8 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
         manufacturerIsUnknown
             ? i18nc("Placeholder is a version number", "Unknown OpenPGP v%1 card", version)
             : i18nc("First placeholder is manufacturer, second placeholder is a version number", "%1 OpenPGP v%2 card", manufacturer, version));
-    mSerialNumber->setText(card->displaySerialNumber());
-    mRealSerial = card->serialNumber();
+    mSerialNumberLabel->setText(card->displaySerialNumber());
+    mSerialNumber = card->serialNumber();
 
     const auto holder = card->cardHolder();
     const auto url = QString::fromStdString(card->pubkeyUrl());
@@ -345,7 +345,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 
 void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
 {
-    auto cmd = new ChangePinCommand(mRealSerial, OpenPGPCard::AppName, this);
+    auto cmd = new ChangePinCommand(mSerialNumber, OpenPGPCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &ChangePinCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -357,7 +357,7 @@ void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::Cha
 
 void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
 {
-    const GpgME::Error err = ReaderStatus::switchCardAndApp(mRealSerial, OpenPGPCard::AppName);
+    const GpgME::Error err = ReaderStatus::switchCardAndApp(mSerialNumber, OpenPGPCard::AppName);
     if (err) {
         return;
     }
@@ -373,7 +373,7 @@ void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
     progress->setCancelButton(nullptr);
     progress->setWindowTitle(i18nc("@title:window", "Generating Keys"));
     progress->setLabel(new QLabel(i18nc("@label:textbox", "This may take several minutes...")));
-    auto workerThread = new GenKeyThread(params, mRealSerial);
+    auto workerThread = new GenKeyThread(params, mSerialNumber);
     connect(workerThread, &QThread::finished, this, [this, workerThread, progress] {
         progress->accept();
         progress->deleteLater();
@@ -411,9 +411,9 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
 
 void PGPCardWidget::genkeyRequested()
 {
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mRealSerial);
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mSerialNumber);
     if (!pgpCard) {
-        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mRealSerial)));
+        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mSerialNumber)));
         return;
     }
 
@@ -477,9 +477,9 @@ void PGPCardWidget::changeNameRequested()
     const auto lastName = parts.takeLast();
     const QString formatted = lastName + QStringLiteral("<<") + parts.join(QLatin1Char('<'));
 
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mRealSerial);
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mSerialNumber);
     if (!pgpCard) {
-        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mRealSerial)));
+        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mSerialNumber)));
         return;
     }
 
@@ -524,9 +524,9 @@ void PGPCardWidget::changeUrlRequested()
         break;
     }
 
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mRealSerial);
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mSerialNumber);
     if (!pgpCard) {
-        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mRealSerial)));
+        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mSerialNumber)));
         return;
     }
 
@@ -550,7 +550,7 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
 
 void PGPCardWidget::createCSR(const std::string &keyref)
 {
-    auto cmd = new CreateCSRForCardKeyCommand(keyref, mRealSerial, OpenPGPCard::AppName, this);
+    auto cmd = new CreateCSRForCardKeyCommand(keyref, mSerialNumber, OpenPGPCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &CreateCSRForCardKeyCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -560,7 +560,7 @@ void PGPCardWidget::createCSR(const std::string &keyref)
 
 void PGPCardWidget::generateKey(const std::string &keyref)
 {
-    auto cmd = new OpenPGPGenerateCardKeyCommand(keyref, mRealSerial, this);
+    auto cmd = new OpenPGPGenerateCardKeyCommand(keyref, mSerialNumber, this);
     this->setEnabled(false);
     connect(cmd, &OpenPGPGenerateCardKeyCommand::finished, this, [this]() {
         this->setEnabled(true);

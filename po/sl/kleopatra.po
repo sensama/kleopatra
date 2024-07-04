@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-03 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2024-06-27 08:38+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -287,8 +287,8 @@ msgstr "Ni prostora za podključ %1 na pametni kartici."
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:416 src/view/pgpcardwidget.cpp:482
-#: src/view/pgpcardwidget.cpp:529
+#: src/view/pgpcardwidget.cpp:379 src/view/pgpcardwidget.cpp:445
+#: src/view/pgpcardwidget.cpp:492
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Kartice OpenPGP s serijsko številko ni bilo mogoče najti: %1"
@@ -363,7 +363,7 @@ msgstr ""
 "kartice."
 
 #: src/commands/certificatetopivcardcommand.cpp:135
-#: src/view/pivcardwidget.cpp:285
+#: src/view/pivcardwidget.cpp:246
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
@@ -756,7 +756,7 @@ msgstr "Sprememba geselne fraze uspela"
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:210 src/view/netkeywidget.cpp:262
+#: src/view/netkeywidget.cpp:176 src/view/netkeywidget.cpp:228
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "Ni bilo mogoče najti pametne kartice s serijsko številko: %1"
@@ -2557,7 +2557,7 @@ msgstr "Oprostite! Tega ključa ni mogoče prenesti na kartico OpenPGP."
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:425
+#: src/view/pgpcardwidget.cpp:388
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -4004,8 +4004,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "Nov"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:183
-#: src/view/pgpcardwidget.cpp:202
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:155
+#: src/view/pgpcardwidget.cpp:174
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -5158,7 +5158,9 @@ msgid "Encryption succeeded."
 msgstr "Šifriranje je uspelo."
 
 #: src/crypto/gui/certificatelineedit.cpp:290
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Please enter a name or email address..."
+msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Vnesite ime ali e-poštni naslov…"
 
@@ -7763,12 +7765,13 @@ msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr "Vnesite e-poštni naslov za iskanje ustreznih potrdil."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:416
+#: src/dialogs/lookupcertificatesdialog.cpp:415
+#: src/dialogs/lookupcertificatesdialog.cpp:418
 #, kde-format
 msgid "LDAP"
 msgstr "LDAP"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:418
+#: src/dialogs/lookupcertificatesdialog.cpp:420
 #, kde-format
 msgid "Keyserver"
 msgstr "Strežnik ključev"
@@ -12173,85 +12176,73 @@ msgstr "Hierarhičen seznam potrdil"
 msgid "List of certificates"
 msgstr "Seznam potrdil"
 
-#: src/view/netkeywidget.cpp:72
-#, kde-format
-msgctxt "@label"
-msgid "Serial number:"
-msgstr "Serijska številka:"
-
-#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:238
+#: src/view/netkeywidget.cpp:64 src/view/pgpcardwidget.cpp:209
 #, kde-format
 msgid "Actions:"
 msgstr "Dejanja:"
 
-#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:70 src/view/pivcardwidget.cpp:103
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr "Ustvari ključ OpenPGP"
 
-#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:139
+#: src/view/netkeywidget.cpp:71 src/view/pivcardwidget.cpp:104
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Ustvarite ključ OpenPGP za ključe shranjene kartici."
 
-#: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
-#: src/view/pivcardwidget.cpp:216
+#: src/view/netkeywidget.cpp:78 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/pivcardwidget.cpp:181
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
 msgstr "Ustvari CSR"
 
-#: src/view/netkeywidget.cpp:111
+#: src/view/netkeywidget.cpp:79
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
 msgstr "Ustvari zahtevek za podpis potrdila za ključ shranjen na kartici."
 
-#: src/view/netkeywidget.cpp:120
+#: src/view/netkeywidget.cpp:88
 #, kde-format
 msgctxt ""
 "@action:button NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "Zamenjaj NKS PIN"
 
-#: src/view/netkeywidget.cpp:122
+#: src/view/netkeywidget.cpp:90
 #, kde-format
 msgctxt ""
 "@action:button SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Zamenjaj SigG PIN"
 
-#: src/view/netkeywidget.cpp:168
-#, kde-format
-msgctxt "1 is a Version number"
-msgid "NetKey v%1 Card"
-msgstr "NetKey v%1 kartica"
-
-#: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:147 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "Nastavi SigG PIN"
 
-#: src/view/netkeywidget.cpp:183
+#: src/view/netkeywidget.cpp:149
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Spremeni SigG PIN"
 
-#: src/view/netkeywidget.cpp:188
+#: src/view/netkeywidget.cpp:154
 #, kde-format
 msgid "Error"
 msgstr "Napaka"
 
-#: src/view/netkeywidget.cpp:248
+#: src/view/netkeywidget.cpp:214
 #, kde-format
 msgid "Select Key"
 msgstr "Izberite ključ"
 
-#: src/view/netkeywidget.cpp:249
+#: src/view/netkeywidget.cpp:215
 #, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
@@ -12259,7 +12250,7 @@ msgstr ""
 "Izberite ključ za katerega želite ustvariti zahtevek za podpisovanje "
 "potrdila:"
 
-#: src/view/netkeywidget.cpp:267
+#: src/view/netkeywidget.cpp:233
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -12333,7 +12324,7 @@ msgctxt "@action:button"
 msgid "Generate Key"
 msgstr "Generiraj ključ"
 
-#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:217
+#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:182
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for this key"
@@ -12381,43 +12372,30 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr "Oprostite, ni mogoče najti ključa s prstnim odtisom %1."
 
-#: src/view/p15cardwidget.cpp:77 src/view/pgpcardwidget.cpp:169
-#: src/view/pivcardwidget.cpp:112
-#, kde-format
-msgctxt "@label:textbox"
-msgid "Serial number:"
-msgstr "Serijska številka:"
-
-#: src/view/p15cardwidget.cpp:95
+#: src/view/p15cardwidget.cpp:61
 #, kde-format
 msgid "OpenPGP keys:"
 msgstr "Ključi OpenPGP:"
 
-#: src/view/p15cardwidget.cpp:121
+#: src/view/p15cardwidget.cpp:87
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "Preiskovanje v storitvah map…"
 
-#: src/view/p15cardwidget.cpp:136
+#: src/view/p15cardwidget.cpp:102
 #, kde-format
 msgid "Automatic import finished."
 msgstr "Samodejni uvoz končan."
 
-#: src/view/p15cardwidget.cpp:141
+#: src/view/p15cardwidget.cpp:107
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "Napaka najdenih večkratnih ključev na strežniku."
 
-#: src/view/p15cardwidget.cpp:144
+#: src/view/p15cardwidget.cpp:110
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "Ključ ni najden v storitvah mape."
-
-#: src/view/p15cardwidget.cpp:153
-#, kde-format
-msgctxt "%1 is a smartcard manufacturer"
-msgid "%1 PKCS#15 card"
-msgstr "%1 PKCS#15 kartica"
 
 #: src/view/padwidget.cpp:83
 #, kde-format
@@ -12471,7 +12449,9 @@ msgid "Recipients"
 msgstr "Prejemniki"
 
 #: src/view/padwidget.cpp:157
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Enter a message to encrypt or decrypt..."
+msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Vnesite sporočilo za šifriranje ali dešifriranje…"
 
@@ -12542,19 +12522,19 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Podpiši / šifriraj beležnico"
 
-#: src/view/pgpcardwidget.cpp:176
+#: src/view/pgpcardwidget.cpp:148
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Imetnik kartice:"
 
-#: src/view/pgpcardwidget.cpp:184 src/view/pgpcardwidget.cpp:203
+#: src/view/pgpcardwidget.cpp:156 src/view/pgpcardwidget.cpp:175
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Spremeni"
 
-#: src/view/pgpcardwidget.cpp:193
+#: src/view/pgpcardwidget.cpp:165
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -12562,7 +12542,7 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "URL podključa:"
 
-#: src/view/pgpcardwidget.cpp:213
+#: src/view/pgpcardwidget.cpp:185
 #, kde-format
 msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
@@ -12570,25 +12550,25 @@ msgctxt ""
 msgid "Remaining attempts:"
 msgstr "Preostali poskusi:"
 
-#: src/view/pgpcardwidget.cpp:217
+#: src/view/pgpcardwidget.cpp:189
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Shows the number of remaining attempts for entering the correct PIN or PUK."
 msgstr "Prikazuje število preostalih poskusov vnosa pravilne kode PIN ali PUK."
 
-#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:123
+#: src/view/pgpcardwidget.cpp:200 src/view/pivcardwidget.cpp:88
 #, kde-format
 msgid "Keys:"
 msgstr "Podključi:"
 
-#: src/view/pgpcardwidget.cpp:243
+#: src/view/pgpcardwidget.cpp:214
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Generiraj nove ključe"
 
-#: src/view/pgpcardwidget.cpp:245
+#: src/view/pgpcardwidget.cpp:216
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12606,13 +12586,13 @@ msgstr ""
 "para><para><emphasis strong='true'> Obstoječi ključi na pametni kartici bodo "
 "prepisani.</emphasis></para>"
 
-#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:145
+#: src/view/pgpcardwidget.cpp:227 src/view/pivcardwidget.cpp:110
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Zamenjaj PIN"
 
-#: src/view/pgpcardwidget.cpp:258
+#: src/view/pgpcardwidget.cpp:229
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12622,13 +12602,13 @@ msgstr ""
 "Spremeni kodo PIN potrebno za uporabo ključev na pametni kartici. PIN mora "
 "vsebovati vsaj šest znakov."
 
-#: src/view/pgpcardwidget.cpp:266
+#: src/view/pgpcardwidget.cpp:237
 #, kde-format
 msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Deblokiraj kartico"
 
-#: src/view/pgpcardwidget.cpp:267
+#: src/view/pgpcardwidget.cpp:238
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
@@ -12636,25 +12616,25 @@ msgstr ""
 "Deblokiraj pametno kartico s kodo PUK (če je na voljo) ali s skrbniškim "
 "PINom."
 
-#: src/view/pgpcardwidget.cpp:280
+#: src/view/pgpcardwidget.cpp:251
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Zamenjaj skrbniški PIN"
 
-#: src/view/pgpcardwidget.cpp:281
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "Spremeni kodo PIN potrebno za skrbniške operacije."
 
-#: src/view/pgpcardwidget.cpp:288 src/view/pgpcardwidget.cpp:338
+#: src/view/pgpcardwidget.cpp:259 src/view/pgpcardwidget.cpp:301
 #, kde-format
 msgctxt "@action:button"
 msgid "Set PUK"
 msgstr "Nastavi PUK"
 
-#: src/view/pgpcardwidget.cpp:290
+#: src/view/pgpcardwidget.cpp:261
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12664,65 +12644,52 @@ msgstr ""
 "Nastavi ali zamenjaj kodo PUK potrebno za deblokiranje pametne kartice. PUK "
 "mora vsebovati vsak osem znakov."
 
-#: src/view/pgpcardwidget.cpp:313
-#, kde-format
-msgctxt "Placeholder is a version number"
-msgid "Unknown OpenPGP v%1 card"
-msgstr "Neznana kartica OpenPGP v%1"
-
-#: src/view/pgpcardwidget.cpp:314
-#, kde-format
-msgctxt ""
-"First placeholder is manufacturer, second placeholder is a version number"
-msgid "%1 OpenPGP v%2 card"
-msgstr "%1 OpenPGP v%2 card"
-
-#: src/view/pgpcardwidget.cpp:320 src/view/pgpcardwidget.cpp:322
+#: src/view/pgpcardwidget.cpp:283 src/view/pgpcardwidget.cpp:285
 #, kde-format
 msgid "not set"
 msgstr "ni nastavljeno"
 
-#: src/view/pgpcardwidget.cpp:334
+#: src/view/pgpcardwidget.cpp:297
 #, kde-format
 msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:155
+#: src/view/pgpcardwidget.cpp:301 src/view/pivcardwidget.cpp:120
 #, kde-format
 msgctxt "@action:button"
 msgid "Change PUK"
 msgstr "Zamenjaj PUK"
 
-#: src/view/pgpcardwidget.cpp:374
+#: src/view/pgpcardwidget.cpp:337
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "Generiram ključe"
 
-#: src/view/pgpcardwidget.cpp:375
+#: src/view/pgpcardwidget.cpp:338
 #, kde-format
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr "To lahko traja nekaj minut..."
 
-#: src/view/pgpcardwidget.cpp:390
+#: src/view/pgpcardwidget.cpp:353
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "Ni bilo mogoče ustvariti novega ključa: %1"
 
-#: src/view/pgpcardwidget.cpp:400
+#: src/view/pgpcardwidget.cpp:363
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "Shrani varovalno kopijo ključa šifriranja"
 
-#: src/view/pgpcardwidget.cpp:400
+#: src/view/pgpcardwidget.cpp:363
 #, kde-format
 msgid "Backup Key"
 msgstr "Varnostna kopija ključa"
 
-#: src/view/pgpcardwidget.cpp:402
+#: src/view/pgpcardwidget.cpp:365
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
@@ -12730,20 +12697,20 @@ msgstr ""
 "Prenos varnostne kopije ni uspel. Varnostna kopija je še vedno shranjena "
 "pod: %1"
 
-#: src/view/pgpcardwidget.cpp:408
+#: src/view/pgpcardwidget.cpp:371
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "Uspešno ustvarjen nov ključ za to pametno kartico."
 
-#: src/view/pgpcardwidget.cpp:408 src/view/pgpcardwidget.cpp:499
-#: src/view/pgpcardwidget.cpp:546
+#: src/view/pgpcardwidget.cpp:371 src/view/pgpcardwidget.cpp:462
+#: src/view/pgpcardwidget.cpp:509
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "Uspeh"
 
-#: src/view/pgpcardwidget.cpp:422
+#: src/view/pgpcardwidget.cpp:385
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
@@ -12752,12 +12719,12 @@ msgstr ""
 "Obstoječi ključi na tej kartici bodo <b>izbrisani</b> in nadomeščeni z "
 "novimi ključi."
 
-#: src/view/pgpcardwidget.cpp:427
+#: src/view/pgpcardwidget.cpp:390
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "Brisanje tajnega ključa"
 
-#: src/view/pgpcardwidget.cpp:441
+#: src/view/pgpcardwidget.cpp:404
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -12767,75 +12734,75 @@ msgstr ""
 "Na tej pametni kartici ne morete ustvarjati ključev, ker ne podpira nobenega "
 "združljivega algoritma."
 
-#: src/view/pgpcardwidget.cpp:458
+#: src/view/pgpcardwidget.cpp:421
 #, kde-format
 msgid "Change cardholder"
 msgstr "Zamenjaj imetnika kartice"
 
-#: src/view/pgpcardwidget.cpp:458
+#: src/view/pgpcardwidget.cpp:421
 #, kde-format
 msgid "New name:"
 msgstr "Novo ime:"
 
-#: src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:427
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "Znaka \"<\" ni mogoče uporabiti."
 
-#: src/view/pgpcardwidget.cpp:468
+#: src/view/pgpcardwidget.cpp:431
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "Dvojni presledki niso dovoljeni"
 
-#: src/view/pgpcardwidget.cpp:472
+#: src/view/pgpcardwidget.cpp:435
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "Velikost imena ne sme presegati 38 znakov."
 
-#: src/view/pgpcardwidget.cpp:495
+#: src/view/pgpcardwidget.cpp:458
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "Sprememba imena ni uspela: %1"
 
-#: src/view/pgpcardwidget.cpp:499
+#: src/view/pgpcardwidget.cpp:462
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "Ime je bilo uspešno spremenjeno."
 
-#: src/view/pgpcardwidget.cpp:510
+#: src/view/pgpcardwidget.cpp:473
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "Spremeni URL, kjer je mogoče najti javni ključ"
 
-#: src/view/pgpcardwidget.cpp:511
+#: src/view/pgpcardwidget.cpp:474
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "Novi URL javnega ključa:"
 
-#: src/view/pgpcardwidget.cpp:522
+#: src/view/pgpcardwidget.cpp:485
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "Dolžina URL-ja ne sme presegati 254 znakov."
 
-#: src/view/pgpcardwidget.cpp:542
+#: src/view/pgpcardwidget.cpp:505
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "Sprememba URL-ja ni uspela: %1"
 
-#: src/view/pgpcardwidget.cpp:546
+#: src/view/pgpcardwidget.cpp:509
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL je bil uspešno spremenjen."
 
-#: src/view/pivcardwidget.cpp:147
+#: src/view/pivcardwidget.cpp:112
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12845,20 +12812,20 @@ msgstr ""
 "Zamenjaj PIN aplikacije kartice PIV, ki aktivira in omogoči kartico PIV "
 "operacij zasebnih ključev s shranjenimi ključi."
 
-#: src/view/pivcardwidget.cpp:156
+#: src/view/pivcardwidget.cpp:121
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
 msgstr ""
 "Zamenjaj ključ za odklepanje kode PIN, ki omogoča ponastavitev kode PIN."
 
-#: src/view/pivcardwidget.cpp:163
+#: src/view/pivcardwidget.cpp:128
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Admin Key"
 msgstr "Zamenjaj skrbniški ključ"
 
-#: src/view/pivcardwidget.cpp:165
+#: src/view/pivcardwidget.cpp:130
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12872,92 +12839,88 @@ msgstr ""
 "kartice PIV in s strani skrbnika (oz. Kleopatra) za preverjanje pristnosti "
 "aplikacije za kartico PIV."
 
-#: src/view/pivcardwidget.cpp:188 src/view/pivcardwidget.cpp:274
+#: src/view/pivcardwidget.cpp:153 src/view/pivcardwidget.cpp:235
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate"
 msgstr "Generiraj"
 
-#: src/view/pivcardwidget.cpp:194
+#: src/view/pivcardwidget.cpp:159
 #, kde-format
 msgctxt "@action:button"
 msgid "Write Key"
 msgstr "Zapiši ključ"
 
-#: src/view/pivcardwidget.cpp:195
+#: src/view/pivcardwidget.cpp:160
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the key pair of a certificate to the card"
 msgstr "Zapiši par ključev od potrdila na kartico"
 
-#: src/view/pivcardwidget.cpp:203
+#: src/view/pivcardwidget.cpp:168
 #, kde-format
 msgctxt "@action:button"
 msgid "Write Certificate"
 msgstr "Zapiši potrdilo"
 
-#: src/view/pivcardwidget.cpp:204
+#: src/view/pivcardwidget.cpp:169
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the certificate corresponding to this key to the card"
 msgstr "Napiši potrdilo, ki ustreza temu ključu na kartico"
 
-#: src/view/pivcardwidget.cpp:209
+#: src/view/pivcardwidget.cpp:174
 #, kde-format
 msgctxt "@action:button"
 msgid "Import Certificate"
 msgstr "Uvozi potrdilo"
 
-#: src/view/pivcardwidget.cpp:210
+#: src/view/pivcardwidget.cpp:175
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import the certificate stored on the card"
 msgstr "Uvozi potrdilo shranjeno na kartici"
 
-#: src/view/pivcardwidget.cpp:234
-#, kde-format
-msgctxt "%1 version number"
-msgid "PIV v%1 card"
-msgstr "Kartica PIV v%1"
-
-#: src/view/pivcardwidget.cpp:270
+#: src/view/pivcardwidget.cpp:231
 #, kde-format
 msgctxt "@info"
 msgid "<em>slot empty</em>"
 msgstr "<em>prazna reža</em>"
 
-#: src/view/pivcardwidget.cpp:275
+#: src/view/pivcardwidget.cpp:236
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Generate %1"
 msgstr "Generiraj %1"
 
-#: src/view/pivcardwidget.cpp:292
+#: src/view/pivcardwidget.cpp:253
 #, kde-format
 msgctxt "@info"
 msgid "<em>no matching certificate</em>"
 msgstr "<em>najdeno ni bilo nobeno ustrezno potrdilo</em>"
 
-#: src/view/pivcardwidget.cpp:298
+#: src/view/pivcardwidget.cpp:259
 #, kde-format
 msgctxt "@info unknown key algorithm"
 msgid "unknown"
 msgstr "neznano"
 
-#: src/view/pivcardwidget.cpp:301
+#: src/view/pivcardwidget.cpp:262
 #, kde-format
 msgctxt "@action:button"
 msgid "Replace"
 msgstr "Zamenjaj"
 
-#: src/view/pivcardwidget.cpp:302
+#: src/view/pivcardwidget.cpp:263
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Replace %1 with new key"
 msgstr "Zamenjaj %1 z novim ključem"
 
 #: src/view/searchbar.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search..."
+msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Poišči…"
 
@@ -13001,56 +12964,58 @@ msgstr ""
 "pripadajo."
 
 #: src/view/searchbar.cpp:197
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search...<%1>"
+msgctxt "@info:placeholder"
 msgid "Search...<%1>"
 msgstr "Poišči …<%1>"
 
-#: src/view/smartcardswidget.cpp:55
+#: src/view/smartcardswidget.cpp:56
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 - v3.3"
 msgstr "OpenPGP v2.0 - v3.3"
 
-#: src/view/smartcardswidget.cpp:56
+#: src/view/smartcardswidget.cpp:57
 #, kde-format
 msgctxt "Gnuk is a cryptographic token for GnuPG"
 msgid "Gnuk"
 msgstr "Gnuk"
 
-#: src/view/smartcardswidget.cpp:57
+#: src/view/smartcardswidget.cpp:58
 #, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3"
 msgstr "NetKey v3"
 
-#: src/view/smartcardswidget.cpp:58
+#: src/view/smartcardswidget.cpp:59
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
 msgstr "PIV (zahteva GnuPG 2.3 ali novejšega)"
 
-#: src/view/smartcardswidget.cpp:59
+#: src/view/smartcardswidget.cpp:60
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
 msgstr "CardOS 5 (različne aplikacije)"
 
-#: src/view/smartcardswidget.cpp:60
+#: src/view/smartcardswidget.cpp:61
 #, kde-format
 msgid "Please insert a compatible smartcard."
 msgstr "Vstavite združljivo pametno kartico."
 
-#: src/view/smartcardswidget.cpp:62
+#: src/view/smartcardswidget.cpp:63
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra trenutno podpira naslednje vrste kartic:"
 
-#: src/view/smartcardswidget.cpp:69
+#: src/view/smartcardswidget.cpp:70
 #, kde-format
 msgid "Reload"
 msgstr "Znova naloži"
 
-#: src/view/smartcardswidget.cpp:171
+#: src/view/smartcardswidget.cpp:172
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -13058,23 +13023,66 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardswidget.cpp:176
+#: src/view/smartcardswidget.cpp:177
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/smartcardswidget.cpp:235
+#: src/view/smartcardswidget.cpp:236
 #, kde-format
 msgctxt "@action"
 msgid "Reload"
 msgstr "Znova naloži"
 
-#: src/view/smartcardswidget.cpp:236
+#: src/view/smartcardswidget.cpp:237
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Reload smart cards"
 msgstr "Ponovno naloži pametne kartice"
+
+#: src/view/smartcardwidget.cpp:30
+#, kde-format
+msgctxt "1 is a Version number"
+msgid "NetKey v%1 Card"
+msgstr "NetKey v%1 kartica"
+
+#: src/view/smartcardwidget.cpp:35
+#, kde-format
+msgctxt "Placeholder is a version number"
+msgid "Unknown OpenPGP v%1 card"
+msgstr "Neznana kartica OpenPGP v%1"
+
+#: src/view/smartcardwidget.cpp:37
+#, kde-format
+msgctxt ""
+"First placeholder is manufacturer, second placeholder is a version number"
+msgid "%1 OpenPGP v%2 card"
+msgstr "%1 OpenPGP v%2 card"
+
+#: src/view/smartcardwidget.cpp:42
+#, kde-format
+msgctxt "%1 is a smartcard manufacturer"
+msgid "%1 PKCS#15 card"
+msgstr "%1 PKCS#15 kartica"
+
+#: src/view/smartcardwidget.cpp:44
+#, kde-format
+msgctxt "%1 version number"
+msgid "PIV v%1 card"
+msgstr "Kartica PIV v%1"
+
+#: src/view/smartcardwidget.cpp:76
+#, kde-format
+msgctxt "@label"
+msgid "Card type:"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:81
+#, kde-format
+msgctxt "@label"
+msgid "Serial number:"
+msgstr "Serijska številka:"
 
 #: src/view/tabwidget.cpp:663
 #, kde-format
@@ -13238,6 +13246,10 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Serial number:"
+#~ msgstr "Serijska številka:"
 
 #~ msgid "Change PIN"
 #~ msgstr "Spremeni PIN"

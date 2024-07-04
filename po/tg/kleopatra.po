@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-03 00:39+0000\n"
+"POT-Creation-Date: 2024-07-04 00:39+0000\n"
 "PO-Revision-Date: 2019-09-27 23:59+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -298,8 +298,8 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:416 src/view/pgpcardwidget.cpp:482
-#: src/view/pgpcardwidget.cpp:529
+#: src/view/pgpcardwidget.cpp:379 src/view/pgpcardwidget.cpp:445
+#: src/view/pgpcardwidget.cpp:492
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr ""
@@ -383,7 +383,7 @@ msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:135
-#: src/view/pivcardwidget.cpp:285
+#: src/view/pivcardwidget.cpp:246
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
@@ -815,7 +815,7 @@ msgstr "Пок кардани кэши CRL..."
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:210 src/view/netkeywidget.cpp:262
+#: src/view/netkeywidget.cpp:176 src/view/netkeywidget.cpp:228
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -2721,7 +2721,7 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
 #: src/commands/openpgpgeneratecardkeycommand.cpp:184
 #: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:425
+#: src/view/pgpcardwidget.cpp:388
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -4159,8 +4159,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "A.k.a."
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:183
-#: src/view/pgpcardwidget.cpp:202
+#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:155
+#: src/view/pgpcardwidget.cpp:174
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -5275,9 +5275,11 @@ msgid "Encryption succeeded."
 msgstr ""
 
 #: src/crypto/gui/certificatelineedit.cpp:290
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Details"
+msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
-msgstr ""
+msgstr "&Ҷузъиёт"
 
 #: src/crypto/gui/certificatelineedit.cpp:307
 #, fuzzy, kde-format
@@ -7947,12 +7949,13 @@ msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr ""
 
-#: src/dialogs/lookupcertificatesdialog.cpp:416
+#: src/dialogs/lookupcertificatesdialog.cpp:415
+#: src/dialogs/lookupcertificatesdialog.cpp:418
 #, kde-format
 msgid "LDAP"
 msgstr ""
 
-#: src/dialogs/lookupcertificatesdialog.cpp:418
+#: src/dialogs/lookupcertificatesdialog.cpp:420
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Keyserver"
@@ -12318,46 +12321,39 @@ msgstr "Рӯйхати калидҳои иерархӣ"
 msgid "List of certificates"
 msgstr "&Сертификатҳо"
 
-#: src/view/netkeywidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Serial Number"
-msgctxt "@label"
-msgid "Serial number:"
-msgstr "Адади сериявӣ"
-
-#: src/view/netkeywidget.cpp:96 src/view/pgpcardwidget.cpp:238
+#: src/view/netkeywidget.cpp:64 src/view/pgpcardwidget.cpp:209
 #, fuzzy, kde-format
 #| msgid "Location"
 msgid "Actions:"
 msgstr "Ҷойгиршавӣ"
 
-#: src/view/netkeywidget.cpp:102 src/view/pivcardwidget.cpp:138
+#: src/view/netkeywidget.cpp:70 src/view/pivcardwidget.cpp:103
 #, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
 msgstr ""
 
-#: src/view/netkeywidget.cpp:103 src/view/pivcardwidget.cpp:139
+#: src/view/netkeywidget.cpp:71 src/view/pivcardwidget.cpp:104
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Воридоти сертификатҳо..."
 
-#: src/view/netkeywidget.cpp:110 src/view/openpgpkeycardwidget.cpp:59
-#: src/view/pivcardwidget.cpp:216
+#: src/view/netkeywidget.cpp:78 src/view/openpgpkeycardwidget.cpp:59
+#: src/view/pivcardwidget.cpp:181
 #, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
 msgstr ""
 
-#: src/view/netkeywidget.cpp:111
+#: src/view/netkeywidget.cpp:79
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
 msgstr "&Эҷоди сертификат"
 
-#: src/view/netkeywidget.cpp:120
+#: src/view/netkeywidget.cpp:88
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt ""
@@ -12365,7 +12361,7 @@ msgctxt ""
 msgid "Change NKS PIN"
 msgstr "Таъғир дода нашуда:"
 
-#: src/view/netkeywidget.cpp:122
+#: src/view/netkeywidget.cpp:90
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt ""
@@ -12373,44 +12369,38 @@ msgctxt ""
 msgid "Change SigG PIN"
 msgstr "Таъғир дода нашуда:"
 
-#: src/view/netkeywidget.cpp:168
-#, kde-format
-msgctxt "1 is a Version number"
-msgid "NetKey v%1 Card"
-msgstr ""
-
-#: src/view/netkeywidget.cpp:181 src/view/nullpinwidget.cpp:43
+#: src/view/netkeywidget.cpp:147 src/view/nullpinwidget.cpp:43
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr ""
 
-#: src/view/netkeywidget.cpp:183
+#: src/view/netkeywidget.cpp:149
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "Таъғир дода нашуда:"
 
-#: src/view/netkeywidget.cpp:188
+#: src/view/netkeywidget.cpp:154
 #, fuzzy, kde-format
 #| msgid "Kleopatra Error"
 msgid "Error"
 msgstr "Хатои Kleopatra"
 
-#: src/view/netkeywidget.cpp:248
+#: src/view/netkeywidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgid "Select Key"
 msgstr "Интихоби файли CRL"
 
-#: src/view/netkeywidget.cpp:249
+#: src/view/netkeywidget.cpp:215
 #, fuzzy, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
 msgstr "&Эҷоди сертификат"
 
-#: src/view/netkeywidget.cpp:267
+#: src/view/netkeywidget.cpp:233
 #, kde-format
 msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
@@ -12482,7 +12472,7 @@ msgctxt "@action:button"
 msgid "Generate Key"
 msgstr "Эҷоди калид"
 
-#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:217
+#: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:182
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for this key"
@@ -12532,45 +12522,31 @@ msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:77 src/view/pgpcardwidget.cpp:169
-#: src/view/pivcardwidget.cpp:112
-#, fuzzy, kde-format
-#| msgid "Serial Number"
-msgctxt "@label:textbox"
-msgid "Serial number:"
-msgstr "Адади сериявӣ"
-
-#: src/view/p15cardwidget.cpp:95
+#: src/view/p15cardwidget.cpp:61
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "OpenPGP keys:"
 msgstr "Хатои мудири сертификатҳо"
 
-#: src/view/p15cardwidget.cpp:121
+#: src/view/p15cardwidget.cpp:87
 #, fuzzy, kde-format
 #| msgid "Fetching certificate from server..."
 msgid "Searching in directory service..."
 msgstr "Қабул кардани сертификат аз коргузор..."
 
-#: src/view/p15cardwidget.cpp:136
+#: src/view/p15cardwidget.cpp:102
 #, kde-format
 msgid "Automatic import finished."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:141
+#: src/view/p15cardwidget.cpp:107
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr ""
 
-#: src/view/p15cardwidget.cpp:144
+#: src/view/p15cardwidget.cpp:110
 #, kde-format
 msgid "Key not found in directory service."
-msgstr ""
-
-#: src/view/p15cardwidget.cpp:153
-#, kde-format
-msgctxt "%1 is a smartcard manufacturer"
-msgid "%1 PKCS#15 card"
 msgstr ""
 
 #: src/view/padwidget.cpp:83
@@ -12627,6 +12603,7 @@ msgstr "Тасвирот"
 
 #: src/view/padwidget.cpp:157
 #, kde-format
+msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr ""
 
@@ -12702,20 +12679,20 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Танҳо барои &рамзгузорӣ"
 
-#: src/view/pgpcardwidget.cpp:176
+#: src/view/pgpcardwidget.cpp:148
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:184 src/view/pgpcardwidget.cpp:203
+#: src/view/pgpcardwidget.cpp:156 src/view/pgpcardwidget.cpp:175
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "Таъғир дода нашуда:"
 
-#: src/view/pgpcardwidget.cpp:193
+#: src/view/pgpcardwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgctxt ""
@@ -12724,7 +12701,7 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "Зеркалидҳои нав:"
 
-#: src/view/pgpcardwidget.cpp:213
+#: src/view/pgpcardwidget.cpp:185
 #, kde-format
 msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
@@ -12732,27 +12709,27 @@ msgctxt ""
 msgid "Remaining attempts:"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:217
+#: src/view/pgpcardwidget.cpp:189
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Shows the number of remaining attempts for entering the correct PIN or PUK."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:229 src/view/pivcardwidget.cpp:123
+#: src/view/pgpcardwidget.cpp:200 src/view/pivcardwidget.cpp:88
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgid "Keys:"
 msgstr "Зеркалидҳои нав:"
 
-#: src/view/pgpcardwidget.cpp:243
+#: src/view/pgpcardwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Generating key"
 msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Эҷоди калид"
 
-#: src/view/pgpcardwidget.cpp:245
+#: src/view/pgpcardwidget.cpp:216
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12764,14 +12741,14 @@ msgid ""
 "emphasis></para>"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:256 src/view/pivcardwidget.cpp:145
+#: src/view/pgpcardwidget.cpp:227 src/view/pivcardwidget.cpp:110
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "@action:button"
 msgid "Change PIN"
 msgstr "Таъғир дода нашуда:"
 
-#: src/view/pgpcardwidget.cpp:258
+#: src/view/pgpcardwidget.cpp:229
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12779,39 +12756,39 @@ msgid ""
 "contain at least six characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:266
+#: src/view/pgpcardwidget.cpp:237
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Интихоби файли CRL"
 
-#: src/view/pgpcardwidget.cpp:267
+#: src/view/pgpcardwidget.cpp:238
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:280
+#: src/view/pgpcardwidget.cpp:251
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Таъғир дода нашуда:"
 
-#: src/view/pgpcardwidget.cpp:281
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:288 src/view/pgpcardwidget.cpp:338
+#: src/view/pgpcardwidget.cpp:259 src/view/pgpcardwidget.cpp:301
 #, kde-format
 msgctxt "@action:button"
 msgid "Set PUK"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:290
+#: src/view/pgpcardwidget.cpp:261
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12819,26 +12796,13 @@ msgid ""
 "must contain at least eight characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:313
-#, kde-format
-msgctxt "Placeholder is a version number"
-msgid "Unknown OpenPGP v%1 card"
-msgstr ""
-
-#: src/view/pgpcardwidget.cpp:314
-#, kde-format
-msgctxt ""
-"First placeholder is manufacturer, second placeholder is a version number"
-msgid "%1 OpenPGP v%2 card"
-msgstr ""
-
-#: src/view/pgpcardwidget.cpp:320 src/view/pgpcardwidget.cpp:322
+#: src/view/pgpcardwidget.cpp:283 src/view/pgpcardwidget.cpp:285
 #, fuzzy, kde-format
 #| msgid "Not imported:"
 msgid "not set"
 msgstr "Ворид карда нашуда:"
 
-#: src/view/pgpcardwidget.cpp:334
+#: src/view/pgpcardwidget.cpp:297
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2):"
@@ -12846,27 +12810,27 @@ msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1 (%2):"
 
-#: src/view/pgpcardwidget.cpp:338 src/view/pivcardwidget.cpp:155
+#: src/view/pgpcardwidget.cpp:301 src/view/pivcardwidget.cpp:120
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "@action:button"
 msgid "Change PUK"
 msgstr "Таъғир дода нашуда:"
 
-#: src/view/pgpcardwidget.cpp:374
+#: src/view/pgpcardwidget.cpp:337
 #, fuzzy, kde-format
 #| msgid "Generating key"
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "Эҷоди калид"
 
-#: src/view/pgpcardwidget.cpp:375
+#: src/view/pgpcardwidget.cpp:338
 #, kde-format
 msgctxt "@label:textbox"
 msgid "This may take several minutes..."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:390
+#: src/view/pgpcardwidget.cpp:353
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -12877,50 +12841,50 @@ msgstr ""
 "Наметавонам gpgsm-ро иҷро кунам:\n"
 " %1"
 
-#: src/view/pgpcardwidget.cpp:400
+#: src/view/pgpcardwidget.cpp:363
 #, fuzzy, kde-format
 #| msgid "Can be used for encryption"
 msgid "Save backup of encryption key"
 msgstr "Метавонад барои рамзгузорӣ истифода шавад"
 
-#: src/view/pgpcardwidget.cpp:400
+#: src/view/pgpcardwidget.cpp:363
 #, kde-format
 msgid "Backup Key"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:402
+#: src/view/pgpcardwidget.cpp:365
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:408
+#: src/view/pgpcardwidget.cpp:371
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:408 src/view/pgpcardwidget.cpp:499
-#: src/view/pgpcardwidget.cpp:546
+#: src/view/pgpcardwidget.cpp:371 src/view/pgpcardwidget.cpp:462
+#: src/view/pgpcardwidget.cpp:509
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:422
+#: src/view/pgpcardwidget.cpp:385
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:427
+#: src/view/pgpcardwidget.cpp:390
 #, fuzzy, kde-format
 #| msgid "Secret Key Export"
 msgid "Secret Key Deletion"
 msgstr "Содироти калиди басташуда"
 
-#: src/view/pgpcardwidget.cpp:441
+#: src/view/pgpcardwidget.cpp:404
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -12928,81 +12892,81 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:458
+#: src/view/pgpcardwidget.cpp:421
 #, kde-format
 msgid "Change cardholder"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:458
+#: src/view/pgpcardwidget.cpp:421
 #, fuzzy, kde-format
 #| msgid "Serial Number"
 msgid "New name:"
 msgstr "Адади сериявӣ"
 
-#: src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:427
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:468
+#: src/view/pgpcardwidget.cpp:431
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:472
+#: src/view/pgpcardwidget.cpp:435
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:495
+#: src/view/pgpcardwidget.cpp:458
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "Наметавонам сертификатро ҳузф кунам"
 
-#: src/view/pgpcardwidget.cpp:499
+#: src/view/pgpcardwidget.cpp:462
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "Наметавонам сертификатро пурбор кунам."
 
-#: src/view/pgpcardwidget.cpp:510
+#: src/view/pgpcardwidget.cpp:473
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:511
+#: src/view/pgpcardwidget.cpp:474
 #, fuzzy, kde-format
 #| msgid "New subkeys:"
 msgid "New pubkey URL:"
 msgstr "Зеркалидҳои нав:"
 
-#: src/view/pgpcardwidget.cpp:522
+#: src/view/pgpcardwidget.cpp:485
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr ""
 
-#: src/view/pgpcardwidget.cpp:542
+#: src/view/pgpcardwidget.cpp:505
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "Наметавонам сертификатро ҳузф кунам"
 
-#: src/view/pgpcardwidget.cpp:546
+#: src/view/pgpcardwidget.cpp:509
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "Наметавонам сертификатро пурбор кунам."
 
-#: src/view/pivcardwidget.cpp:147
+#: src/view/pivcardwidget.cpp:112
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -13010,20 +12974,20 @@ msgid ""
 "private key operations using the stored keys."
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:156
+#: src/view/pivcardwidget.cpp:121
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:163
+#: src/view/pivcardwidget.cpp:128
 #, fuzzy, kde-format
 #| msgid "Unchanged:"
 msgctxt "@action:button"
 msgid "Change Admin Key"
 msgstr "Таъғир дода нашуда:"
 
-#: src/view/pivcardwidget.cpp:165
+#: src/view/pivcardwidget.cpp:130
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -13033,94 +12997,88 @@ msgid ""
 "Application."
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:188 src/view/pivcardwidget.cpp:274
+#: src/view/pivcardwidget.cpp:153 src/view/pivcardwidget.cpp:235
 #, fuzzy, kde-format
 #| msgid "Serial"
 msgctxt "@action:button"
 msgid "Generate"
 msgstr "Сериявӣ"
 
-#: src/view/pivcardwidget.cpp:194
+#: src/view/pivcardwidget.cpp:159
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@action:button"
 msgid "Write Key"
 msgstr "Содироти калиди баста..."
 
-#: src/view/pivcardwidget.cpp:195
+#: src/view/pivcardwidget.cpp:160
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info:tooltip"
 msgid "Write the key pair of a certificate to the card"
 msgstr "&Сертификатҳо"
 
-#: src/view/pivcardwidget.cpp:203
+#: src/view/pivcardwidget.cpp:168
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@action:button"
 msgid "Write Certificate"
 msgstr "&Сертификатҳо"
 
-#: src/view/pivcardwidget.cpp:204
+#: src/view/pivcardwidget.cpp:169
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info:tooltip"
 msgid "Write the certificate corresponding to this key to the card"
 msgstr "Воридоти сертификатҳо..."
 
-#: src/view/pivcardwidget.cpp:209
+#: src/view/pivcardwidget.cpp:174
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@action:button"
 msgid "Import Certificate"
 msgstr "Воридоти сертификатҳо..."
 
-#: src/view/pivcardwidget.cpp:210
+#: src/view/pivcardwidget.cpp:175
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info:tooltip"
 msgid "Import the certificate stored on the card"
 msgstr "&Сертификатҳо"
 
-#: src/view/pivcardwidget.cpp:234
-#, kde-format
-msgctxt "%1 version number"
-msgid "PIV v%1 card"
-msgstr ""
-
-#: src/view/pivcardwidget.cpp:270
+#: src/view/pivcardwidget.cpp:231
 #, kde-format
 msgctxt "@info"
 msgid "<em>slot empty</em>"
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:275
+#: src/view/pivcardwidget.cpp:236
 #, fuzzy, kde-format
 #| msgid "Serial"
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Generate %1"
 msgstr "Сериявӣ"
 
-#: src/view/pivcardwidget.cpp:292
+#: src/view/pivcardwidget.cpp:253
 #, fuzzy, kde-format
 #| msgid "Fetching Certificate Chain"
 msgctxt "@info"
 msgid "<em>no matching certificate</em>"
 msgstr "Пурборкунии сертификатҳои паиҳам"
 
-#: src/view/pivcardwidget.cpp:298
+#: src/view/pivcardwidget.cpp:259
 #, kde-format
 msgctxt "@info unknown key algorithm"
 msgid "unknown"
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:301
+#: src/view/pivcardwidget.cpp:262
 #, kde-format
 msgctxt "@action:button"
 msgid "Replace"
 msgstr ""
 
-#: src/view/pivcardwidget.cpp:302
+#: src/view/pivcardwidget.cpp:263
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Replace %1 with new key"
@@ -13129,6 +13087,7 @@ msgstr ""
 #: src/view/searchbar.cpp:137
 #, fuzzy, kde-format
 #| msgid "Search:"
+msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Ҷустуҷӯ:"
 
@@ -13175,56 +13134,57 @@ msgstr ""
 #: src/view/searchbar.cpp:197
 #, fuzzy, kde-format
 #| msgid "Search:"
+msgctxt "@info:placeholder"
 msgid "Search...<%1>"
 msgstr "Ҷустуҷӯ:"
 
-#: src/view/smartcardswidget.cpp:55
+#: src/view/smartcardswidget.cpp:56
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 - v3.3"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:56
+#: src/view/smartcardswidget.cpp:57
 #, kde-format
 msgctxt "Gnuk is a cryptographic token for GnuPG"
 msgid "Gnuk"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:57
+#: src/view/smartcardswidget.cpp:58
 #, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:58
+#: src/view/smartcardswidget.cpp:59
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:59
+#: src/view/smartcardswidget.cpp:60
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:60
+#: src/view/smartcardswidget.cpp:61
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgid "Please insert a compatible smartcard."
 msgstr "Ҳузфи сертификатҳо"
 
-#: src/view/smartcardswidget.cpp:62
+#: src/view/smartcardswidget.cpp:63
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:69
+#: src/view/smartcardswidget.cpp:70
 #, kde-format
 msgid "Reload"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:171
+#: src/view/smartcardswidget.cpp:172
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2):"
@@ -13234,24 +13194,68 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 (%2):"
 
-#: src/view/smartcardswidget.cpp:176
+#: src/view/smartcardswidget.cpp:177
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:235
+#: src/view/smartcardswidget.cpp:236
 #, kde-format
 msgctxt "@action"
 msgid "Reload"
 msgstr ""
 
-#: src/view/smartcardswidget.cpp:236
+#: src/view/smartcardswidget.cpp:237
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "@info:tooltip"
 msgid "Reload smart cards"
 msgstr "Интихоби файли CRL"
+
+#: src/view/smartcardwidget.cpp:30
+#, kde-format
+msgctxt "1 is a Version number"
+msgid "NetKey v%1 Card"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:35
+#, kde-format
+msgctxt "Placeholder is a version number"
+msgid "Unknown OpenPGP v%1 card"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:37
+#, kde-format
+msgctxt ""
+"First placeholder is manufacturer, second placeholder is a version number"
+msgid "%1 OpenPGP v%2 card"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:42
+#, kde-format
+msgctxt "%1 is a smartcard manufacturer"
+msgid "%1 PKCS#15 card"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:44
+#, kde-format
+msgctxt "%1 version number"
+msgid "PIV v%1 card"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:76
+#, kde-format
+msgctxt "@label"
+msgid "Card type:"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:81
+#, fuzzy, kde-format
+#| msgid "Serial Number"
+msgctxt "@label"
+msgid "Serial number:"
+msgstr "Адади сериявӣ"
 
 #: src/view/tabwidget.cpp:663
 #, kde-format
@@ -13407,6 +13411,12 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Serial Number"
+#~ msgctxt "@label:textbox"
+#~ msgid "Serial number:"
+#~ msgstr "Адади сериявӣ"
 
 #, fuzzy
 #~| msgid "Unchanged:"

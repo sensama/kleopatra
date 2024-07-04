@@ -1324,7 +1324,6 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
                 slotResult(decryptResult, verifyResult);
             });
     connect(job.get(), &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
-#if QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
     // make sure that we don't use an existing output directory
     const auto outputDirectory = ensureUniqueDirectory(m_outputDirectory);
     if (outputDirectory.isEmpty()) {
@@ -1335,11 +1334,6 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
     job->setInputFile(m_inputFilePath);
     job->setOutputDirectory(m_outputDirectory);
     const auto err = job->startIt();
-#else
-    ensureIOOpen(m_input->ioDevice().get(), nullptr);
-    job->setOutputDirectory(m_outputDirectory);
-    const auto err = job->start(m_input->ioDevice());
-#endif
     q->setJob(job.release());
     if (err) {
         q->emitResult(q->fromDecryptVerifyResult(err, {}, {}));
@@ -1720,7 +1714,6 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
         slotResult(verifyResult);
     });
     connect(job.get(), &QGpgME::DecryptVerifyArchiveJob::dataProgress, q, &VerifyOpaqueTask::setProgress);
-#if QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
     // make sure that we don't use an existing output directory
     const auto outputDirectory = ensureUniqueDirectory(m_outputDirectory);
     if (outputDirectory.isEmpty()) {
@@ -1731,11 +1724,6 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
     job->setInputFile(m_inputFilePath);
     job->setOutputDirectory(m_outputDirectory);
     const auto err = job->startIt();
-#else
-    ensureIOOpen(m_input->ioDevice().get(), nullptr);
-    job->setOutputDirectory(m_outputDirectory);
-    const auto err = job->start(m_input->ioDevice());
-#endif
     q->setJob(job.release());
     if (err) {
         q->emitResult(q->fromVerifyOpaqueResult(err, {}, {}));

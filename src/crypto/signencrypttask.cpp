@@ -734,10 +734,6 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
     kleo_assert(!input);
     kleo_assert(!output);
 
-#if !QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
-    output = Output::createFromFile(outputFileName, m_overwritePolicy);
-#endif
-
     const auto baseDirectory = heuristicBaseDirectory(inputFileNames);
     if (baseDirectory.isEmpty()) {
         throw Kleo::Exception(GPG_ERR_CONFLICT, i18n("Cannot find common base directory for these files:\n%1", inputFileNames.join(QLatin1Char('\n'))));
@@ -761,7 +757,6 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
             std::unique_ptr<QGpgME::SignEncryptArchiveJob> job = createSignEncryptArchiveJob(proto);
             kleo_assert(job.get());
             job->setBaseDirectory(baseDirectory);
-#if QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
             job->setSigners(signers);
             job->setRecipients(recipients);
             job->setInputPaths(relativePaths);
@@ -771,9 +766,6 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
                 return;
             }
             job->startIt();
-#else
-            job->start(signers, recipients, relativePaths, output->ioDevice(), flags);
-#endif
 
             this->job = job.release();
         } else {
@@ -781,7 +773,6 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
             std::unique_ptr<QGpgME::EncryptArchiveJob> job = createEncryptArchiveJob(proto);
             kleo_assert(job.get());
             job->setBaseDirectory(baseDirectory);
-#if QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
             job->setRecipients(recipients);
             job->setInputPaths(relativePaths);
             job->setOutputFile(outputFileName);
@@ -790,9 +781,6 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
                 return;
             }
             job->startIt();
-#else
-            job->start(recipients, relativePaths, output->ioDevice(), flags);
-#endif
 
             this->job = job.release();
         }
@@ -801,7 +789,6 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
         std::unique_ptr<QGpgME::SignArchiveJob> job = createSignArchiveJob(proto);
         kleo_assert(job.get());
         job->setBaseDirectory(baseDirectory);
-#if QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
         job->setSigners(signers);
         job->setInputPaths(relativePaths);
         job->setOutputFile(outputFileName);
@@ -809,9 +796,6 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
             return;
         }
         job->startIt();
-#else
-        job->start(signers, relativePaths, output->ioDevice());
-#endif
 
         this->job = job.release();
     } else {

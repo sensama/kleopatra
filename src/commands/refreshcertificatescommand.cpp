@@ -401,8 +401,8 @@ void RefreshCertificatesCommand::Private::checkFinished()
             text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(keyserverResult.error()));
         } else if (pgpSkipped) {
             text += xi18nc("@info", "<para>Update skipped because no OpenPGP keyserver is configured.</para>");
-        } else if (pgpKeyNotFound && pgpKeys.size() == 1) {
-            text += xi18nc("@info", "<para>The certificate was not found.</para>");
+        } else if (pgpKeyNotFound) {
+            text += xi18ncp("@info", "<para>The certificate was not found.</para>", "<para>The certificates were not found.</para>", pgpKeys.size());
         } else if (pgpKeys.size() > 1) {
             success = true;
             text += xi18ncp("@info", "<para>The certificate was updated.</para>", "<para>The certificates were updated.</para>", pgpKeys.size());
@@ -416,8 +416,12 @@ void RefreshCertificatesCommand::Private::checkFinished()
         text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of update from Web Key Directory") + QLatin1String{"</strong></p>"};
         if (hasWkdError) {
             text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(wkdRefreshResult.error()));
+        } else if (wkdRefreshResult.numConsidered() == 0) {
+            // explicitly use pgpKeys.size() also for WKD to avoid confusion caused by different plural forms for keyserver result and WKD result
+            text += xi18ncp("@info", "<para>The certificate was not found.</para>", "<para>The certificates were not found.</para>", pgpKeys.size());
         } else {
             success = true;
+            // explicitly use pgpKeys.size() also for WKD to avoid confusion caused by different plural forms for keyserver result and WKD result
             text += xi18ncp("@info", "<para>The certificate was updated.</para>", "<para>The certificates were updated.</para>", pgpKeys.size());
         }
     }

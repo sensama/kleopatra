@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-05 00:39+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -4600,7 +4600,7 @@ msgstr "无法认证此证书，因为它已被同一份证书认证过了。"
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:889
+#: src/crypto/signencrypttask.cpp:873
 #, kde-format
 msgid "Input error: %1"
 msgstr "输入错误：%1"
@@ -4691,17 +4691,17 @@ msgid "%1: %2"
 msgstr "%1：%2"
 
 #: src/crypto/decryptverifytask.cpp:1104 src/crypto/decryptverifytask.cpp:1309
-#: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1492
-#: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1709
-#: src/crypto/decryptverifytask.cpp:1788 src/crypto/decryptverifytask.cpp:1929
+#: src/crypto/decryptverifytask.cpp:1385 src/crypto/decryptverifytask.cpp:1486
+#: src/crypto/decryptverifytask.cpp:1538 src/crypto/decryptverifytask.cpp:1703
+#: src/crypto/decryptverifytask.cpp:1776 src/crypto/decryptverifytask.cpp:1917
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "捕捉到异常：%1"
 
 #: src/crypto/decryptverifytask.cpp:1107 src/crypto/decryptverifytask.cpp:1311
-#: src/crypto/decryptverifytask.cpp:1394 src/crypto/decryptverifytask.cpp:1494
-#: src/crypto/decryptverifytask.cpp:1547 src/crypto/decryptverifytask.cpp:1711
-#: src/crypto/decryptverifytask.cpp:1790 src/crypto/decryptverifytask.cpp:1931
+#: src/crypto/decryptverifytask.cpp:1388 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1705
+#: src/crypto/decryptverifytask.cpp:1778 src/crypto/decryptverifytask.cpp:1919
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -4721,31 +4721,31 @@ msgstr ""
 msgid "Decrypting %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1447
+#: src/crypto/decryptverifytask.cpp:1441
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr "无法判定是 S/MIME 还是 OpenPGP 加密的 - 也许它根本不是密文？"
 
-#: src/crypto/decryptverifytask.cpp:1455
+#: src/crypto/decryptverifytask.cpp:1449
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "正在解密：%1..."
 
-#: src/crypto/decryptverifytask.cpp:1601 src/crypto/decryptverifytask.cpp:1852
+#: src/crypto/decryptverifytask.cpp:1595 src/crypto/decryptverifytask.cpp:1840
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr "无法判定是 S/MIME 还是 OpenPGP 签名 - 也许它根本不是签名？"
 
-#: src/crypto/decryptverifytask.cpp:1609
+#: src/crypto/decryptverifytask.cpp:1603
 #, kde-format
 msgid "Verifying %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1870
+#: src/crypto/decryptverifytask.cpp:1858
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4753,12 +4753,12 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1874
+#: src/crypto/decryptverifytask.cpp:1862
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1885
+#: src/crypto/decryptverifytask.cpp:1873
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -4795,8 +4795,7 @@ msgid "Encryption succeeded."
 msgstr "加密成功。"
 
 #: src/crypto/gui/certificatelineedit.cpp:290
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "请输入姓名或邮件地址..."
@@ -5895,7 +5894,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:739 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5904,19 +5903,19 @@ msgstr ""
 "找不到这些文件的常见基础目录：\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:760
+#: src/crypto/signencrypttask.cpp:756
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "正在创建签名和加密的压缩文件..."
 
-#: src/crypto/signencrypttask.cpp:780
+#: src/crypto/signencrypttask.cpp:772
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "正在创建加密的压缩文件..."
 
-#: src/crypto/signencrypttask.cpp:800
+#: src/crypto/signencrypttask.cpp:788
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -11749,8 +11748,7 @@ msgid "Recipients"
 msgstr "收件人"
 
 #: src/view/padwidget.cpp:157
-#, fuzzy, kde-format
-#| msgid "Enter a message to encrypt or decrypt..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "输入欲加密或解密的消息..."
@@ -12195,8 +12193,7 @@ msgid "Replace %1 with new key"
 msgstr "用新密钥替换 %1"
 
 #: src/view/searchbar.cpp:137
-#, fuzzy, kde-format
-#| msgid "Search..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "搜索..."
@@ -12239,8 +12236,7 @@ msgstr ""
 "证书实际上属于他们声称属于的身份。"
 
 #: src/view/searchbar.cpp:197
-#, fuzzy, kde-format
-#| msgid "Search...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search...<%1>"
 msgstr "搜索...<%1>"
@@ -12515,7 +12511,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgctxt "@label:textbox"
-#~ msgid "Serial number:"
-#~ msgstr "序列号："

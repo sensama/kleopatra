@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
+"POT-Creation-Date: 2024-07-05 00:39+0000\n"
 "PO-Revision-Date: 2024-06-27 13:07+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -4962,7 +4962,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:889
+#: src/crypto/signencrypttask.cpp:873
 #, kde-format
 msgid "Input error: %1"
 msgstr "S'ha produït un error d'entrada: %1"
@@ -5063,17 +5063,17 @@ msgid "%1: %2"
 msgstr "%1: %2"
 
 #: src/crypto/decryptverifytask.cpp:1104 src/crypto/decryptverifytask.cpp:1309
-#: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1492
-#: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1709
-#: src/crypto/decryptverifytask.cpp:1788 src/crypto/decryptverifytask.cpp:1929
+#: src/crypto/decryptverifytask.cpp:1385 src/crypto/decryptverifytask.cpp:1486
+#: src/crypto/decryptverifytask.cpp:1538 src/crypto/decryptverifytask.cpp:1703
+#: src/crypto/decryptverifytask.cpp:1776 src/crypto/decryptverifytask.cpp:1917
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "S'ha detectat una excepció: %1"
 
 #: src/crypto/decryptverifytask.cpp:1107 src/crypto/decryptverifytask.cpp:1311
-#: src/crypto/decryptverifytask.cpp:1394 src/crypto/decryptverifytask.cpp:1494
-#: src/crypto/decryptverifytask.cpp:1547 src/crypto/decryptverifytask.cpp:1711
-#: src/crypto/decryptverifytask.cpp:1790 src/crypto/decryptverifytask.cpp:1931
+#: src/crypto/decryptverifytask.cpp:1388 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1705
+#: src/crypto/decryptverifytask.cpp:1778 src/crypto/decryptverifytask.cpp:1919
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -5094,7 +5094,7 @@ msgstr ""
 msgid "Decrypting %1..."
 msgstr "S'està desencriptant %1…"
 
-#: src/crypto/decryptverifytask.cpp:1447
+#: src/crypto/decryptverifytask.cpp:1441
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5103,12 +5103,12 @@ msgstr ""
 "No s'ha pogut determinar si açò és un text encriptat en S/MIME o en OpenPGP. "
 "Potser no és cap text xifrat?"
 
-#: src/crypto/decryptverifytask.cpp:1455
+#: src/crypto/decryptverifytask.cpp:1449
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "S'està desencriptant: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1601 src/crypto/decryptverifytask.cpp:1852
+#: src/crypto/decryptverifytask.cpp:1595 src/crypto/decryptverifytask.cpp:1840
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5117,12 +5117,12 @@ msgstr ""
 "No s'ha pogut determinar si açò és una signatura en S/MIME o en an OpenPGP. "
 "Potser no és cap signatura?"
 
-#: src/crypto/decryptverifytask.cpp:1609
+#: src/crypto/decryptverifytask.cpp:1603
 #, kde-format
 msgid "Verifying %1..."
 msgstr "S'està verificant %1…"
 
-#: src/crypto/decryptverifytask.cpp:1870
+#: src/crypto/decryptverifytask.cpp:1858
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5130,12 +5130,12 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "S'està verificant <filename>%1</filename> amb <filename>%2</filename>…"
 
-#: src/crypto/decryptverifytask.cpp:1874
+#: src/crypto/decryptverifytask.cpp:1862
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "S'està verificant la signatura %1…"
 
-#: src/crypto/decryptverifytask.cpp:1885
+#: src/crypto/decryptverifytask.cpp:1873
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -6298,7 +6298,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1…"
 
-#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:739 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6307,19 +6307,19 @@ msgstr ""
 "No s'ha pogut trobar el directori base comú per a estos fitxers:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:760
+#: src/crypto/signencrypttask.cpp:756
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "S'està creant un arxiu signat i encriptat…"
 
-#: src/crypto/signencrypttask.cpp:780
+#: src/crypto/signencrypttask.cpp:772
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "S'està creant un arxiu encriptat…"
 
-#: src/crypto/signencrypttask.cpp:800
+#: src/crypto/signencrypttask.cpp:788
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."

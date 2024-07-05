@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-04 00:39+0000\n"
-"PO-Revision-Date: 2024-06-27 07:48+0300\n"
-"Last-Translator: Fracture dept <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"POT-Creation-Date: 2024-07-05 00:39+0000\n"
+"PO-Revision-Date: 2024-07-04 22:09+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4988,7 +4988,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:553 src/crypto/decryptverifytask.cpp:607
 #: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:889
+#: src/crypto/signencrypttask.cpp:873
 #, kde-format
 msgid "Input error: %1"
 msgstr "Помилка введення: %1"
@@ -5095,17 +5095,17 @@ msgid "%1: %2"
 msgstr "%1: %2"
 
 #: src/crypto/decryptverifytask.cpp:1104 src/crypto/decryptverifytask.cpp:1309
-#: src/crypto/decryptverifytask.cpp:1391 src/crypto/decryptverifytask.cpp:1492
-#: src/crypto/decryptverifytask.cpp:1544 src/crypto/decryptverifytask.cpp:1709
-#: src/crypto/decryptverifytask.cpp:1788 src/crypto/decryptverifytask.cpp:1929
+#: src/crypto/decryptverifytask.cpp:1385 src/crypto/decryptverifytask.cpp:1486
+#: src/crypto/decryptverifytask.cpp:1538 src/crypto/decryptverifytask.cpp:1703
+#: src/crypto/decryptverifytask.cpp:1776 src/crypto/decryptverifytask.cpp:1917
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Отримано виключення: %1"
 
 #: src/crypto/decryptverifytask.cpp:1107 src/crypto/decryptverifytask.cpp:1311
-#: src/crypto/decryptverifytask.cpp:1394 src/crypto/decryptverifytask.cpp:1494
-#: src/crypto/decryptverifytask.cpp:1547 src/crypto/decryptverifytask.cpp:1711
-#: src/crypto/decryptverifytask.cpp:1790 src/crypto/decryptverifytask.cpp:1931
+#: src/crypto/decryptverifytask.cpp:1388 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1541 src/crypto/decryptverifytask.cpp:1705
+#: src/crypto/decryptverifytask.cpp:1778 src/crypto/decryptverifytask.cpp:1919
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
@@ -5126,7 +5126,7 @@ msgstr ""
 msgid "Decrypting %1..."
 msgstr "Розшифрування %1…"
 
-#: src/crypto/decryptverifytask.cpp:1447
+#: src/crypto/decryptverifytask.cpp:1441
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5135,12 +5135,12 @@ msgstr ""
 "Не вдалося визначити, було дані зашифровано S/MIME чи OpenPGP — можливо дані "
 "не є шифрованим текстом?"
 
-#: src/crypto/decryptverifytask.cpp:1455
+#: src/crypto/decryptverifytask.cpp:1449
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Розшифрування: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1601 src/crypto/decryptverifytask.cpp:1852
+#: src/crypto/decryptverifytask.cpp:1595 src/crypto/decryptverifytask.cpp:1840
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5149,12 +5149,12 @@ msgstr ""
 "Не вдалося визначити, є ці дані підписом S/MIME чи OpenPGP — можливо, це не "
 "підпис?"
 
-#: src/crypto/decryptverifytask.cpp:1609
+#: src/crypto/decryptverifytask.cpp:1603
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Перевірка %1…"
 
-#: src/crypto/decryptverifytask.cpp:1870
+#: src/crypto/decryptverifytask.cpp:1858
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5163,12 +5163,12 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 "Перевіряємо <filename>%1</filename> за допомогою <filename>%2</filename>…"
 
-#: src/crypto/decryptverifytask.cpp:1874
+#: src/crypto/decryptverifytask.cpp:1862
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Перевірка підпису %1…"
 
-#: src/crypto/decryptverifytask.cpp:1885
+#: src/crypto/decryptverifytask.cpp:1873
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -5206,8 +5206,7 @@ msgid "Encryption succeeded."
 msgstr "Успішне шифрування."
 
 #: src/crypto/gui/certificatelineedit.cpp:290
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Будь ласка, введіть ім'я або адресу електронної пошти…"
@@ -6336,7 +6335,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:743 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:739 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6345,19 +6344,19 @@ msgstr ""
 "Не вдалося знайти загальний базовий каталог для цих файлів:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:760
+#: src/crypto/signencrypttask.cpp:756
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Створюємо підписаний і зашифрований архів…"
 
-#: src/crypto/signencrypttask.cpp:780
+#: src/crypto/signencrypttask.cpp:772
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Створюємо зашифрований архів…"
 
-#: src/crypto/signencrypttask.cpp:800
+#: src/crypto/signencrypttask.cpp:788
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -12585,8 +12584,7 @@ msgid "Recipients"
 msgstr "Отримувачі"
 
 #: src/view/padwidget.cpp:157
-#, fuzzy, kde-format
-#| msgid "Enter a message to encrypt or decrypt..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Введіть повідомлення для шифрування або розшифровування…"
@@ -13054,8 +13052,7 @@ msgid "Replace %1 with new key"
 msgstr "Замінити %1 новим ключем"
 
 #: src/view/searchbar.cpp:137
-#, fuzzy, kde-format
-#| msgid "Search..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search..."
 msgstr "Шукати…"
@@ -13100,8 +13097,7 @@ msgstr ""
 "мають підтверджувати."
 
 #: src/view/searchbar.cpp:197
-#, fuzzy, kde-format
-#| msgid "Search...<%1>"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Search...<%1>"
 msgstr "Шукати…<%1>"
@@ -13212,7 +13208,7 @@ msgstr "Картка PIV v%1"
 #, kde-format
 msgctxt "@label"
 msgid "Card type:"
-msgstr ""
+msgstr "Тип картки:"
 
 #: src/view/smartcardwidget.cpp:81
 #, kde-format

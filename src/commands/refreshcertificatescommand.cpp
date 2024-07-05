@@ -14,6 +14,7 @@
 #include "refreshcertificatescommand.h"
 #include <settings.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyHelpers>
@@ -202,15 +203,6 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificatesCommand::Private::sta
 #if QGPGME_SUPPORTS_WKD_REFRESH_JOB
 std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificatesCommand::Private::startWKDRefreshJob()
 {
-    for (const auto &key : pgpKeys) {
-        const auto userIds = key.userIDs();
-        if (std::any_of(userIds.begin(), userIds.end(), [](const auto &userId) {
-                return !userId.isRevoked() && !userId.addrSpec().empty() && userId.origin() == Key::OriginWKD;
-            })) {
-            wkdKeys.push_back(key);
-        }
-    }
-
     std::unique_ptr<QGpgME::WKDRefreshJob> refreshJob{QGpgME::openpgp()->wkdRefreshJob()};
     Q_ASSERT(refreshJob);
 
@@ -221,26 +213,43 @@ std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificatesCommand::Private::star
     Error err;
 
     if (!Settings{}.queryWKDsForAllUserIDs()) {
-        // check if key is eligible for WKD refresh, i.e. if any user ID has WKD as origin
-        if (wkdKeys.empty()) {
-            wkdRefreshResult = ImportResult{Error::fromCode(GPG_ERR_USER_1)};
-            QMetaObject::invokeMethod(
-                q,
-                [this]() {
-                    checkFinished();
-                },
-                Qt::QueuedConnection);
-            return {};
+        // check which keys are eligible for WKD refresh, i.e. for which key a user ID has WKD as origin
+        for (const auto &key : pgpKeys) {
+            if (Kleo::any_of(key.userIDs(), [](const auto &userId) {
+                    return !userId.isRevoked() && !userId.addrSpec().empty() && userId.origin() == Key::OriginWKD;
+                })) {
+                wkdKeys.push_back(key);
+            }
         }
-        err = refreshJob->start(wkdKeys);
+        if (!wkdKeys.empty()) {
+            err = refreshJob->start(wkdKeys);
+        }
     } else {
         std::vector<UserID> userIds;
-        wkdKeys = pgpKeys;
         for (const auto &key : pgpKeys) {
-            const auto newUserIds = key.userIDs();
-            userIds.insert(userIds.end(), newUserIds.begin(), newUserIds.end());
+            bool userIdAdded = false;
+            Kleo::copy_if(key.userIDs(), std::back_inserter(userIds), [&userIdAdded](const auto &userId) {
+                const bool addUserId = !userId.isRevoked() && !userId.addrSpec().empty();
+                userIdAdded |= addUserId;
+                return addUserId;
+            });
+            if (userIdAdded) {
+                wkdKeys.push_back(key);
+            }
         }
-        err = refreshJob->start(userIds);
+        if (!userIds.empty()) {
+            err = refreshJob->start(userIds);
+        }
+    }
+    if (wkdKeys.empty()) {
+        wkdRefreshResult = ImportResult{Error::fromCode(GPG_ERR_USER_1)};
+        QMetaObject::invokeMethod(
+            q,
+            [this]() {
+                checkFinished();
+            },
+            Qt::QueuedConnection);
+        return {};
     }
 
     Q_EMIT q->info(i18nc("@info:status", "Updating key..."));

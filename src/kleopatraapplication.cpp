@@ -81,8 +81,6 @@
 #include <memory>
 
 #ifdef Q_OS_WIN
-#include <QtPlatformHeaders/QWindowsWindowFunctions>
-
 #include <windows.h>
 #endif
 
@@ -345,9 +343,6 @@ void KleopatraApplication::init()
     const QString groupConfigPath = Kleo::gnupgHomeDirectory() + QStringLiteral("/kleopatra/kleopatragroupsrc");
     d->groupConfig = std::make_shared<KeyGroupConfig>(groupConfigPath);
 
-#ifdef Q_OS_WIN
-    QWindowsWindowFunctions::setWindowActivationBehavior(QWindowsWindowFunctions::AlwaysActivateWindow);
-#endif
     const auto blockedUrlSchemes = Settings{}.blockedUrlSchemes();
     for (const auto &scheme : blockedUrlSchemes) {
         QDesktopServices::setUrlHandler(scheme, this, "blockUrl");

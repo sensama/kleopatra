@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-05 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2024-07-04 17:44+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -2845,7 +2845,7 @@ msgid "No Directory Servers Configured"
 msgstr "Geen mapserver ingesteld"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:532
+#: src/kleopatraapplication.cpp:527
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -2961,57 +2961,57 @@ msgstr ""
 "U kunt geen sleutel genereren op deze smartcard omdat deze geen enkele van "
 "de meewerkende algoritmen ondersteunt."
 
-#: src/commands/refreshcertificatescommand.cpp:180
-#: src/commands/refreshcertificatescommand.cpp:246
+#: src/commands/refreshcertificatescommand.cpp:181
+#: src/commands/refreshcertificatescommand.cpp:255
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Sleutel wordt bijgewerkt..."
 
-#: src/commands/refreshcertificatescommand.cpp:197
+#: src/commands/refreshcertificatescommand.cpp:198
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Certificaat wordt bijgewerkt..."
 
-#: src/commands/refreshcertificatescommand.cpp:266
+#: src/commands/refreshcertificatescommand.cpp:275
 #, kde-format
 msgid "The certificate has not changed."
 msgstr "Het certificaat is niet gewijzigd."
 
-#: src/commands/refreshcertificatescommand.cpp:270
+#: src/commands/refreshcertificatescommand.cpp:279
 #, kde-format
 msgid "The certificate has been revoked."
 msgstr "Het certificaat is ingetrokken."
 
-#: src/commands/refreshcertificatescommand.cpp:273
+#: src/commands/refreshcertificatescommand.cpp:282
 #, kde-format
 msgid "The certificate has been updated."
 msgstr "Het certificaat is bijgewerkt."
 
-#: src/commands/refreshcertificatescommand.cpp:277
+#: src/commands/refreshcertificatescommand.cpp:286
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Nieuwe gebruiker-id: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:280
+#: src/commands/refreshcertificatescommand.cpp:289
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Nieuwe sub-sleutels: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:283
+#: src/commands/refreshcertificatescommand.cpp:292
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Nieuwe ondertekeningen: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:293
+#: src/commands/refreshcertificatescommand.cpp:302
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "Hier naast is er één nieuw sleutel opgehaald."
 msgstr[1] "Hier naast zijn er %1 nieuwe sleutels opgehaald."
 
-#: src/commands/refreshcertificatescommand.cpp:389
+#: src/commands/refreshcertificatescommand.cpp:398
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3021,15 +3021,15 @@ msgstr ""
 "Resultaat van bijwerken van certificaat vanaf OpenPGP sleutelserver, LDAP-"
 "server of Active Directory"
 
-#: src/commands/refreshcertificatescommand.cpp:392
-#: src/commands/refreshcertificatescommand.cpp:409
-#: src/commands/refreshcertificatescommand.cpp:419
+#: src/commands/refreshcertificatescommand.cpp:401
+#: src/commands/refreshcertificatescommand.cpp:418
+#: src/commands/refreshcertificatescommand.cpp:432
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr "<para>Bijwerken is mislukt:</para><para><message>%1</message></para>"
 
-#: src/commands/refreshcertificatescommand.cpp:394
+#: src/commands/refreshcertificatescommand.cpp:403
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
@@ -3037,15 +3037,20 @@ msgstr ""
 "<para>Bijwerken is overgeslagen omdat er geen OpenPGP-sleutelserver is "
 "geconfigureerd.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:396
-#, kde-kuit-format
+#: src/commands/refreshcertificatescommand.cpp:405
+#: src/commands/refreshcertificatescommand.cpp:421
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The certificate was not found.</para>"
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "<para>Het certificaat is niet gevonden.</para>"
+msgid_plural "<para>The certificates were not found.</para>"
+msgstr[0] "<para>Het certificaat is niet gevonden.</para>"
+msgstr[1] "<para>Het certificaat is niet gevonden.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:399
-#: src/commands/refreshcertificatescommand.cpp:412
-#: src/commands/refreshcertificatescommand.cpp:422
+#: src/commands/refreshcertificatescommand.cpp:408
+#: src/commands/refreshcertificatescommand.cpp:425
+#: src/commands/refreshcertificatescommand.cpp:435
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
@@ -3053,19 +3058,19 @@ msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>Het certificaat is bijgewerkt.</para>"
 msgstr[1] "<para>De certificaten zijn bijgewerkt.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:407
+#: src/commands/refreshcertificatescommand.cpp:416
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "Resultaat van bijwerken uit Web Key Directory"
 
-#: src/commands/refreshcertificatescommand.cpp:417
+#: src/commands/refreshcertificatescommand.cpp:430
 #, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Resultaat van bijwerken van S/MIME-certificaat"
 
-#: src/commands/refreshcertificatescommand.cpp:427
+#: src/commands/refreshcertificatescommand.cpp:440
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
@@ -3073,7 +3078,7 @@ msgid_plural "Certificates Updated"
 msgstr[0] "Certificaat bijgewerkt"
 msgstr[1] "Certificaat bijgewerkt"
 
-#: src/commands/refreshcertificatescommand.cpp:427
+#: src/commands/refreshcertificatescommand.cpp:440
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -9640,47 +9645,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Tekenreeks of vingerafdruk voor query en zoeken"
 
-#: src/kleopatraapplication.cpp:428
+#: src/kleopatraapplication.cpp:423
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Uitvoeren commando is mislukt"
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Dubbelzinnig protocol: --openpgp en --cms"
 
-#: src/kleopatraapplication.cpp:504
+#: src/kleopatraapplication.cpp:499
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Geen zoektekst gespecificeerd voor --search"
 
-#: src/kleopatraapplication.cpp:515
+#: src/kleopatraapplication.cpp:510
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Geen argument met vingerafdruk gespecificeerd voor --query"
 
-#: src/kleopatraapplication.cpp:576
+#: src/kleopatraapplication.cpp:571
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Dubbelzinnige commando's \"%1\" en \"%2\""
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:578
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Geen bestanden gespecificeerd voor commando \"%1\""
 
-#: src/kleopatraapplication.cpp:597
+#: src/kleopatraapplication.cpp:592
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Kan \"%1\" niet lezen"
 
-#: src/kleopatraapplication.cpp:881
+#: src/kleopatraapplication.cpp:876
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Een externe koppeling openen is administratief verboden."
 
-#: src/kleopatraapplication.cpp:881
+#: src/kleopatraapplication.cpp:876
 #, kde-format
 msgid "Prohibited"
 msgstr "Verboden"

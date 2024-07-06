@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-05 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -2955,7 +2955,7 @@ msgid "No Directory Servers Configured"
 msgstr "Δεν διαμορφώθηκαν εξυπηρετητές καταλόγου"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:532
+#: src/kleopatraapplication.cpp:527
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -3068,63 +3068,63 @@ msgid ""
 "of the compliant algorithms."
 msgstr ""
 
-#: src/commands/refreshcertificatescommand.cpp:180
-#: src/commands/refreshcertificatescommand.cpp:246
+#: src/commands/refreshcertificatescommand.cpp:181
+#: src/commands/refreshcertificatescommand.cpp:255
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Ενημέρωση κλειδιού..."
 
-#: src/commands/refreshcertificatescommand.cpp:197
+#: src/commands/refreshcertificatescommand.cpp:198
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Ενημέρωση πιστοποιητικού..."
 
-#: src/commands/refreshcertificatescommand.cpp:266
+#: src/commands/refreshcertificatescommand.cpp:275
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
 msgid "The certificate has not changed."
 msgstr "Το πιστοποιητικό έχει ενημερωθεί."
 
-#: src/commands/refreshcertificatescommand.cpp:270
+#: src/commands/refreshcertificatescommand.cpp:279
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
 msgid "The certificate has been revoked."
 msgstr "Το πιστοποιητικό έχει ενημερωθεί."
 
-#: src/commands/refreshcertificatescommand.cpp:273
+#: src/commands/refreshcertificatescommand.cpp:282
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
 msgid "The certificate has been updated."
 msgstr "Το πιστοποιητικό έχει ενημερωθεί."
 
-#: src/commands/refreshcertificatescommand.cpp:277
+#: src/commands/refreshcertificatescommand.cpp:286
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Νέα αναγνωριστικά χρηστών: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:280
+#: src/commands/refreshcertificatescommand.cpp:289
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Νέα υποκλειδιά: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:283
+#: src/commands/refreshcertificatescommand.cpp:292
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Νέες υπογραφές: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:293
+#: src/commands/refreshcertificatescommand.cpp:302
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "Επιπρόσθετα, ένα νέο κλειδί ανακτήθηκε."
 msgstr[1] "Επιπρόσθετα, %1 νέα κλειδιά ανακτήθηκαν."
 
-#: src/commands/refreshcertificatescommand.cpp:389
+#: src/commands/refreshcertificatescommand.cpp:398
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3132,9 +3132,9 @@ msgid ""
 "Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatescommand.cpp:392
-#: src/commands/refreshcertificatescommand.cpp:409
-#: src/commands/refreshcertificatescommand.cpp:419
+#: src/commands/refreshcertificatescommand.cpp:401
+#: src/commands/refreshcertificatescommand.cpp:418
+#: src/commands/refreshcertificatescommand.cpp:432
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3145,23 +3145,26 @@ msgstr ""
 "<para>Αποτυχία αποθήκευσης της αίτησης.</para><para><message>%1</message></"
 "para>"
 
-#: src/commands/refreshcertificatescommand.cpp:394
+#: src/commands/refreshcertificatescommand.cpp:403
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
 
-#: src/commands/refreshcertificatescommand.cpp:396
+#: src/commands/refreshcertificatescommand.cpp:405
+#: src/commands/refreshcertificatescommand.cpp:421
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "Το πιστοποιητικό έχει ενημερωθεί."
+msgid_plural "<para>The certificates were not found.</para>"
+msgstr[0] "Το πιστοποιητικό έχει ενημερωθεί."
+msgstr[1] "Το πιστοποιητικό έχει ενημερωθεί."
 
-#: src/commands/refreshcertificatescommand.cpp:399
-#: src/commands/refreshcertificatescommand.cpp:412
-#: src/commands/refreshcertificatescommand.cpp:422
+#: src/commands/refreshcertificatescommand.cpp:408
+#: src/commands/refreshcertificatescommand.cpp:425
+#: src/commands/refreshcertificatescommand.cpp:435
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
@@ -3171,20 +3174,20 @@ msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "Το πιστοποιητικό έχει ενημερωθεί."
 msgstr[1] "Το πιστοποιητικό έχει ενημερωθεί."
 
-#: src/commands/refreshcertificatescommand.cpp:407
+#: src/commands/refreshcertificatescommand.cpp:416
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr ""
 
-#: src/commands/refreshcertificatescommand.cpp:417
+#: src/commands/refreshcertificatescommand.cpp:430
 #, fuzzy, kde-format
 #| msgid "Allow S/MIME certificate creation"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Επέτρεψε την δημιουργία πιστοποιητικών S/MIME"
 
-#: src/commands/refreshcertificatescommand.cpp:427
+#: src/commands/refreshcertificatescommand.cpp:440
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certificate Updated"
@@ -3194,7 +3197,7 @@ msgid_plural "Certificates Updated"
 msgstr[0] "Το πιστοποιητικό έχει ενημερωθεί"
 msgstr[1] "Το πιστοποιητικό έχει ενημερωθεί"
 
-#: src/commands/refreshcertificatescommand.cpp:427
+#: src/commands/refreshcertificatescommand.cpp:440
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -9965,47 +9968,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Συμβολοσειρά ή αποτύπωμα για ερώτηση και αναζήτηση"
 
-#: src/kleopatraapplication.cpp:428
+#: src/kleopatraapplication.cpp:423
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Αποτυχία εκτέλεσης εντολής"
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Διφορούμενο πρωτόκολλο: --openpgp και --cms"
 
-#: src/kleopatraapplication.cpp:504
+#: src/kleopatraapplication.cpp:499
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Δεν ορίστηκε συμβολοσειρά αναζήτησης για το --search"
 
-#: src/kleopatraapplication.cpp:515
+#: src/kleopatraapplication.cpp:510
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Δεν ορίστηκε όρισμα αποτυπώματος για το --query"
 
-#: src/kleopatraapplication.cpp:576
+#: src/kleopatraapplication.cpp:571
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Διφορούμενες εντολές «%1» και «%2»"
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:578
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Δεν ορίστηκαν αρχεία για την «%1» εντολή"
 
-#: src/kleopatraapplication.cpp:597
+#: src/kleopatraapplication.cpp:592
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Αδυναμία ανάγνωσης του «%1»"
 
-#: src/kleopatraapplication.cpp:881
+#: src/kleopatraapplication.cpp:876
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Το άνοιγμα εξωτερικού συνδέσμου απαγορεύεται από τον διαχειριστή."
 
-#: src/kleopatraapplication.cpp:881
+#: src/kleopatraapplication.cpp:876
 #, kde-format
 msgid "Prohibited"
 msgstr "Απαγορεύεται"

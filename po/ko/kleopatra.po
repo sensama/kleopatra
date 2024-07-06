@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-05 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2765,7 +2765,7 @@ msgid "No Directory Servers Configured"
 msgstr "설정한 디렉터리 서버 없음"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:532
+#: src/kleopatraapplication.cpp:527
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME 인증서 서명 요청 생성이 허용되어 있지 않습니다."
@@ -2877,62 +2877,62 @@ msgstr ""
 "스마트카드에서 호환되는 알고리즘을 지원하지 않아서 이 스마트카드에서 키를 생"
 "성할 수 없습니다."
 
-#: src/commands/refreshcertificatescommand.cpp:180
-#: src/commands/refreshcertificatescommand.cpp:246
+#: src/commands/refreshcertificatescommand.cpp:181
+#: src/commands/refreshcertificatescommand.cpp:255
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "키 업데이트 중..."
 
-#: src/commands/refreshcertificatescommand.cpp:197
+#: src/commands/refreshcertificatescommand.cpp:198
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "인증서 업데이트 중..."
 
-#: src/commands/refreshcertificatescommand.cpp:266
+#: src/commands/refreshcertificatescommand.cpp:275
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
 msgid "The certificate has not changed."
 msgstr "인증서가 업데이트되었습니다."
 
-#: src/commands/refreshcertificatescommand.cpp:270
+#: src/commands/refreshcertificatescommand.cpp:279
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
 msgid "The certificate has been revoked."
 msgstr "인증서가 업데이트되었습니다."
 
-#: src/commands/refreshcertificatescommand.cpp:273
+#: src/commands/refreshcertificatescommand.cpp:282
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
 msgid "The certificate has been updated."
 msgstr "인증서가 업데이트되었습니다."
 
-#: src/commands/refreshcertificatescommand.cpp:277
+#: src/commands/refreshcertificatescommand.cpp:286
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "새 사용자 ID: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:280
+#: src/commands/refreshcertificatescommand.cpp:289
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "새 하위 키: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:283
+#: src/commands/refreshcertificatescommand.cpp:292
 #, kde-format
 msgid "New signatures: %1"
 msgstr "새 서명: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:293
+#: src/commands/refreshcertificatescommand.cpp:302
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "추가로 새 키 %1개를 가져왔습니다."
 
-#: src/commands/refreshcertificatescommand.cpp:389
+#: src/commands/refreshcertificatescommand.cpp:398
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Result of update from keyserver, LDAP server, or Active Directory"
@@ -2942,9 +2942,9 @@ msgid ""
 "Directory"
 msgstr "키 서버, LDAP 서버, 액티브 디렉터리에서의 업데이트 결과"
 
-#: src/commands/refreshcertificatescommand.cpp:392
-#: src/commands/refreshcertificatescommand.cpp:409
-#: src/commands/refreshcertificatescommand.cpp:419
+#: src/commands/refreshcertificatescommand.cpp:401
+#: src/commands/refreshcertificatescommand.cpp:418
+#: src/commands/refreshcertificatescommand.cpp:432
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2954,23 +2954,25 @@ msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr ""
 "<para>요청을 저장할 수 없습니다.</para><para><message>%1</message></para>"
 
-#: src/commands/refreshcertificatescommand.cpp:394
+#: src/commands/refreshcertificatescommand.cpp:403
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
 
-#: src/commands/refreshcertificatescommand.cpp:396
+#: src/commands/refreshcertificatescommand.cpp:405
+#: src/commands/refreshcertificatescommand.cpp:421
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "인증서가 업데이트되었습니다."
+msgid_plural "<para>The certificates were not found.</para>"
+msgstr[0] "인증서가 업데이트되었습니다."
 
-#: src/commands/refreshcertificatescommand.cpp:399
-#: src/commands/refreshcertificatescommand.cpp:412
-#: src/commands/refreshcertificatescommand.cpp:422
+#: src/commands/refreshcertificatescommand.cpp:408
+#: src/commands/refreshcertificatescommand.cpp:425
+#: src/commands/refreshcertificatescommand.cpp:435
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
@@ -2979,7 +2981,7 @@ msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "인증서가 업데이트되었습니다."
 
-#: src/commands/refreshcertificatescommand.cpp:407
+#: src/commands/refreshcertificatescommand.cpp:416
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Result of update via Web Key Directory"
@@ -2987,14 +2989,14 @@ msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "웹 키 디렉터리에서의 업데이트 결과"
 
-#: src/commands/refreshcertificatescommand.cpp:417
+#: src/commands/refreshcertificatescommand.cpp:430
 #, fuzzy, kde-format
 #| msgid "Allow S/MIME certificate creation"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "S/MIME 인증서 생성 허용"
 
-#: src/commands/refreshcertificatescommand.cpp:427
+#: src/commands/refreshcertificatescommand.cpp:440
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certificate Updated"
@@ -3003,7 +3005,7 @@ msgid "Certificate Updated"
 msgid_plural "Certificates Updated"
 msgstr[0] "인증서 업데이트됨"
 
-#: src/commands/refreshcertificatescommand.cpp:427
+#: src/commands/refreshcertificatescommand.cpp:440
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -9514,47 +9516,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "질의와 검색에 사용할 문자열이나 지문"
 
-#: src/kleopatraapplication.cpp:428
+#: src/kleopatraapplication.cpp:423
 #, kde-format
 msgid "Failed to execute command"
 msgstr "명령을 실행할 수 없음"
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "모호한 프로토콜: --openpgp와 --cms"
 
-#: src/kleopatraapplication.cpp:504
+#: src/kleopatraapplication.cpp:499
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search에 검색 문자열을 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:515
+#: src/kleopatraapplication.cpp:510
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query에 지문 인자를 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:576
+#: src/kleopatraapplication.cpp:571
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "모호한 명령: \"%1\"와(과) \"%2\""
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:578
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "\"%1\" 명령에 파일을 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:597
+#: src/kleopatraapplication.cpp:592
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\"에서 읽을 수 없음"
 
-#: src/kleopatraapplication.cpp:881
+#: src/kleopatraapplication.cpp:876
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "관리자에 의해서 외부 링크 열기가 금지되었습니다."
 
-#: src/kleopatraapplication.cpp:881
+#: src/kleopatraapplication.cpp:876
 #, kde-format
 msgid "Prohibited"
 msgstr "금지됨"

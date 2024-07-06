@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-05 00:39+0000\n"
+"POT-Creation-Date: 2024-07-06 00:39+0000\n"
 "PO-Revision-Date: 2024-07-04 10:33+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -2835,7 +2835,7 @@ msgid "No Directory Servers Configured"
 msgstr "Ni nobenega nastavljenega imeniškega strežnika"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:532
+#: src/kleopatraapplication.cpp:527
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Nimate dovoljenja za kreiranje zahtevkov podpisovanja potrdil S/MIME."
@@ -2949,50 +2949,50 @@ msgstr ""
 "Na tej pametni kartici ne morete ustvariti ključa, ker ne podpira nobenega "
 "združljivega algoritma."
 
-#: src/commands/refreshcertificatescommand.cpp:180
-#: src/commands/refreshcertificatescommand.cpp:246
+#: src/commands/refreshcertificatescommand.cpp:181
+#: src/commands/refreshcertificatescommand.cpp:255
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Osvežujem ključ…"
 
-#: src/commands/refreshcertificatescommand.cpp:197
+#: src/commands/refreshcertificatescommand.cpp:198
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Osveževanje potrdila…"
 
-#: src/commands/refreshcertificatescommand.cpp:266
+#: src/commands/refreshcertificatescommand.cpp:275
 #, kde-format
 msgid "The certificate has not changed."
 msgstr "Potrdilo se ni spremenilo."
 
-#: src/commands/refreshcertificatescommand.cpp:270
+#: src/commands/refreshcertificatescommand.cpp:279
 #, kde-format
 msgid "The certificate has been revoked."
 msgstr "Potrdilo je bilo preklicano."
 
-#: src/commands/refreshcertificatescommand.cpp:273
+#: src/commands/refreshcertificatescommand.cpp:282
 #, kde-format
 msgid "The certificate has been updated."
 msgstr "Potrdilo je bilo posodobljeno."
 
-#: src/commands/refreshcertificatescommand.cpp:277
+#: src/commands/refreshcertificatescommand.cpp:286
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Določilniki novega uporabnika: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:280
+#: src/commands/refreshcertificatescommand.cpp:289
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Novi podključi: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:283
+#: src/commands/refreshcertificatescommand.cpp:292
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Novi podpisi: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:293
+#: src/commands/refreshcertificatescommand.cpp:302
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
@@ -3001,7 +3001,7 @@ msgstr[1] "Dodatno je bil pridobljen %1 nov ključ."
 msgstr[2] "Dodatno sta bila pridobljena %1 nova ključa."
 msgstr[3] "Dodatno so bili pridobljeni %1 novi ključi."
 
-#: src/commands/refreshcertificatescommand.cpp:389
+#: src/commands/refreshcertificatescommand.cpp:398
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3011,16 +3011,16 @@ msgstr ""
 "Rezultat posodobitve potrdila OpenPGP s strežnika ključev, strežnika LDAP "
 "ali imenika Active Directory"
 
-#: src/commands/refreshcertificatescommand.cpp:392
-#: src/commands/refreshcertificatescommand.cpp:409
-#: src/commands/refreshcertificatescommand.cpp:419
+#: src/commands/refreshcertificatescommand.cpp:401
+#: src/commands/refreshcertificatescommand.cpp:418
+#: src/commands/refreshcertificatescommand.cpp:432
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr ""
 "<para>Posodabljanje ni uspelo.</para><para><message>%1</message></para>"
 
-#: src/commands/refreshcertificatescommand.cpp:394
+#: src/commands/refreshcertificatescommand.cpp:403
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
@@ -3028,15 +3028,22 @@ msgstr ""
 "<para>Posodobitev je bila preskočena, ker ni konfiguriran niti en strežnik "
 "ključev OpenPGP.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:396
-#, kde-kuit-format
+#: src/commands/refreshcertificatescommand.cpp:405
+#: src/commands/refreshcertificatescommand.cpp:421
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The certificate was not found.</para>"
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
-msgstr "<para>Potrdila ni bilo mogoče najti.</para>"
+msgid_plural "<para>The certificates were not found.</para>"
+msgstr[0] "<para>Potrdila ni bilo mogoče najti.</para>"
+msgstr[1] "<para>Potrdila ni bilo mogoče najti.</para>"
+msgstr[2] "<para>Potrdila ni bilo mogoče najti.</para>"
+msgstr[3] "<para>Potrdila ni bilo mogoče najti.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:399
-#: src/commands/refreshcertificatescommand.cpp:412
-#: src/commands/refreshcertificatescommand.cpp:422
+#: src/commands/refreshcertificatescommand.cpp:408
+#: src/commands/refreshcertificatescommand.cpp:425
+#: src/commands/refreshcertificatescommand.cpp:435
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
@@ -3046,19 +3053,19 @@ msgstr[1] "<para>Potrdilo je bilo posodobljeno.</para>"
 msgstr[2] "<para>Potrdili sta bilu posodobljeni.</para>"
 msgstr[3] "<para>Potrdila so bila posodobljena.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:407
+#: src/commands/refreshcertificatescommand.cpp:416
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "Rezultat posodobitve prek imenika spletnih ključev"
 
-#: src/commands/refreshcertificatescommand.cpp:417
+#: src/commands/refreshcertificatescommand.cpp:430
 #, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Rezultat posodobitve potrdila S/MIME"
 
-#: src/commands/refreshcertificatescommand.cpp:427
+#: src/commands/refreshcertificatescommand.cpp:440
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
@@ -3068,7 +3075,7 @@ msgstr[1] "Potrdilo posodobljeno"
 msgstr[2] "Potrdili posodobljeni"
 msgstr[3] "Potrdila posodobljena"
 
-#: src/commands/refreshcertificatescommand.cpp:427
+#: src/commands/refreshcertificatescommand.cpp:440
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -9609,47 +9616,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Niz ali prstni odtis za poizvedbo in iskanje"
 
-#: src/kleopatraapplication.cpp:428
+#: src/kleopatraapplication.cpp:423
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Ni bilo mogoče izvesti ukaza"
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:465
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Dvoumni protokol: --openpgp in --cms"
 
-#: src/kleopatraapplication.cpp:504
+#: src/kleopatraapplication.cpp:499
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Za --search ni bilo navedenega iskalnega niza"
 
-#: src/kleopatraapplication.cpp:515
+#: src/kleopatraapplication.cpp:510
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Za --query ni bilo navedenega prstnega odtisa"
 
-#: src/kleopatraapplication.cpp:576
+#: src/kleopatraapplication.cpp:571
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Dvoumna ukaza \"%1\" in \"%2\""
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:578
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Za ukaz \"%1\" ni bilo podanih datotek"
 
-#: src/kleopatraapplication.cpp:597
+#: src/kleopatraapplication.cpp:592
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Ni mogoče brati \"%1\""
 
-#: src/kleopatraapplication.cpp:881
+#: src/kleopatraapplication.cpp:876
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Odpiranje zunanje povezave je administrativno prepovedano."
 
-#: src/kleopatraapplication.cpp:881
+#: src/kleopatraapplication.cpp:876
 #, kde-format
 msgid "Prohibited"
 msgstr "Prepovedano"

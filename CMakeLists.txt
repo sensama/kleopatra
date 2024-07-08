@@ -82,6 +82,7 @@ include(KDEGitCommitHooks)
 find_package(KF6 ${KF6_WANT_VERSION}
     REQUIRED COMPONENTS
     Codecs
+    ColorScheme
     Config
     CoreAddons
     Crash

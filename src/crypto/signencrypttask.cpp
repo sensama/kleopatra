@@ -862,8 +862,8 @@ void SignEncryptTask::Private::slotResult(const EncryptionResult &result)
 
 void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningResult &sresult, const EncryptionResult &eresult)
 {
-    qCDebug(KLEOPATRA_LOG) << q << __func__ << "job:" << job << "signing result:" << QGpgME::toLogString(sresult)
-                           << "encryption result:" << QGpgME::toLogString(eresult);
+    qCDebug(KLEOPATRA_LOG) << q << __func__ << "job:" << job << "signing result:" << QGpgME::toLogStringX(sresult)
+                           << "encryption result:" << QGpgME::toLogStringX(eresult);
     const AuditLogEntry auditLog = AuditLogEntry::fromJob(job);
     bool outputCreated = false;
     if (input && input->failed()) {

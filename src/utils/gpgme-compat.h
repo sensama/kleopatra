@@ -14,7 +14,7 @@
 
 #include <QGpgME/Debug>
 
-#if QGPGME_HAS_TOLOGSTRING
+#if 0
 // intentionally left blank
 #else
 #include <sstream>
@@ -22,7 +22,7 @@
 namespace QGpgME
 {
 template<class GpgMEClass>
-std::string toLogString(const GpgMEClass &object)
+std::string toLogStringX(const GpgMEClass &object)
 {
     std::stringstream stream;
     stream << object;

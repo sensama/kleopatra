@@ -1013,6 +1013,12 @@ QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, c
     Page *page = new Page(title, id, text, nullptr, QString(), nullptr, group, d->keyTreeViewOptions);
     group.writeEntry(KEY_FILTER_ENTRY, id);
     group.sync();
+    QMetaObject::invokeMethod(
+        this,
+        [page, group]() {
+            page->restoreLayout(group);
+        },
+        Qt::QueuedConnection);
     return d->addView(page, d->currentPage());
 }
 

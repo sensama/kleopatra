@@ -23,7 +23,7 @@ class PadWidget : public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
-    explicit PadWidget(QWidget *parent = Q_NULLPTR);
+    explicit PadWidget(QWidget *parent = nullptr);
 
     void focusFirstChild(Qt::FocusReason reason = Qt::OtherFocusReason) override;
 

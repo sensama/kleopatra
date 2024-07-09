@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-09 00:39+0000\n"
 "PO-Revision-Date: 2024-07-07 22:27+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -2423,7 +2423,7 @@ msgid "Import CRL Finished"
 msgstr "Импортирането на CRL завърши"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:354
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Не може да се отвори <filename> %1 </filename> за четене."
@@ -4439,7 +4439,7 @@ msgstr ""
 "(стандартният LDAP порт) се използва.Изцяло изключва използването на HTTP за "
 "S/MIME."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
+#: src/crypto/autodecryptverifyfilescontroller.cpp:152
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4451,7 +4451,21 @@ msgstr ""
 "> Ако съдържат подписани или криптирани данни, моля, докладвайте за грешка "
 "(вижте Помощ-> Докладване на грешка)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:222
+#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#, kde-kuit-format
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"Файлът <filename> %1 </filename> съдържа сертификати и не може да бъде "
+"дешифриран или проверен."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:298
+#, kde-kuit-format
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr "Изберете файла, за да го проверите с подписа <filename>%1</filename>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:612
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4461,7 +4475,7 @@ msgstr ""
 "<para>Неуспешно преместване на <filename> %1 </filename> в <filename> %2 </"
 "filename>.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:232
+#: src/crypto/autodecryptverifyfilescontroller.cpp:622
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4471,53 +4485,39 @@ msgstr ""
 "<para>Неуспешно преместване на <filename> %1 </filename> в <filename> %2 </"
 "filename>.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:634
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Да се запази ли файлът с оригиналното име <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245
+#: src/crypto/autodecryptverifyfilescontroller.cpp:635
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Да се използва ли оригиналното име на файла?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:246
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Не, запазване като <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Да, запазване като <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:270
+#: src/crypto/autodecryptverifyfilescontroller.cpp:660
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Неуспешно изтриване на <filename> %1 </filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:290
+#: src/crypto/autodecryptverifyfilescontroller.cpp:680
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Неуспешно преместване на <filename> %1 </filename> в <filename> %2 </"
 "filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:362
-#, kde-kuit-format
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"Файлът <filename> %1 </filename> съдържа сертификати и не може да бъде "
-"дешифриран или проверен."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:413
-#, kde-kuit-format
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr "Изберете файла, за да го проверите с подписа <filename>%1</filename>"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format

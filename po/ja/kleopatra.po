@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-09 00:39+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -2480,7 +2480,7 @@ msgid "Import CRL Finished"
 msgstr "CRL のインポート完了"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:354
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "ファイル <filename>%1</filename> を読み取りのために開けません。"
@@ -4467,7 +4467,7 @@ msgstr ""
 "形式は \"HOST\" または \"HOST:PORT\" です。PORT が省略された場合、標準的な "
 "LDAP ポートである 389 が使われます。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
+#: src/crypto/autodecryptverifyfilescontroller.cpp:152
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4479,7 +4479,21 @@ msgstr ""
 "イルに暗号化されたもしくは署名のデータがある場合には、バグ報告をお願いします"
 "(Help->Report Bug をごらんください)。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:222
+#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#, kde-kuit-format
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"ファイル <filename>%1</filename> は証明書を含み、復号や検証ができません。"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:298
+#, kde-kuit-format
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr ""
+"署名 <filename>%1</filename> を検証するためのファイルを選択してください"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:612
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4489,7 +4503,7 @@ msgstr ""
 "<para>ファイル <filename>%1</filename> を <filename>%2</filename> に移動でき"
 "ませんでした。</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:232
+#: src/crypto/autodecryptverifyfilescontroller.cpp:622
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -4500,54 +4514,40 @@ msgstr ""
 "ファイル <filename>%1</filename> を <filename>%2</filename> に移動できません"
 "でした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:634
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "ファイルは元のファイル名 <filename>%1</filename> に保存しますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245
+#: src/crypto/autodecryptverifyfilescontroller.cpp:635
 #, fuzzy, kde-format
 #| msgid "Use Original File Name?"
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "元のファイル名を使いますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:246
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "いいえ、ファイル <filename>%1</filename> として保存します"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "はい、ファイル <filename>%1</filename> として保存します"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:270
+#: src/crypto/autodecryptverifyfilescontroller.cpp:660
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> を削除できませんでした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:290
+#: src/crypto/autodecryptverifyfilescontroller.cpp:680
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "ファイル <filename>%1</filename> を <filename>%2</filename> に移動できません"
 "でした。"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:362
-#, kde-kuit-format
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"ファイル <filename>%1</filename> は証明書を含み、復号や検証ができません。"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:413
-#, kde-kuit-format
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
-"署名 <filename>%1</filename> を検証するためのファイルを選択してください"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format

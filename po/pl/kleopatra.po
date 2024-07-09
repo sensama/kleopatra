@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1684006 $
+# Version: $Revision: 1684319 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
 # Mikolaj Machowski <mikmach@wp.pl>, 2004.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-09 00:39+0000\n"
 "PO-Revision-Date: 2024-06-16 10:46+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2437,7 +2437,7 @@ msgid "Import CRL Finished"
 msgstr "Import listy CRL zakończony"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:354
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Nie można otworzyć <filename>%1</filename> do odczytu."
@@ -4436,7 +4436,7 @@ msgstr ""
 "Składnia to \"HOST\" lub \"HOST:PORT\". Jeśli nie podano portu, to zostanie "
 "użyta wartość 389 (standardowy port LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
+#: src/crypto/autodecryptverifyfilescontroller.cpp:152
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4448,7 +4448,21 @@ msgstr ""
 "plikami.<nl/>Jeśli zawierają one podpisane lub zaszyfrowane dane, zgłoś to "
 "jako błąd (przejdź w menu do Pomoc->Zgłoś błąd)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:222
+#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#, kde-kuit-format
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"Plik <filename>%1</filename> zawiera certyfikaty i nie można go ani "
+"odszyfrować ani sprawdzić."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:298
+#, kde-kuit-format
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr "Wybierz plik do sprawdzenia podpisem <filename>%1</filename>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:612
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4458,7 +4472,7 @@ msgstr ""
 "<para>Nie udało się przenieść <filename>%1</filename> do <filename>%2</"
 "filename>.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:232
+#: src/crypto/autodecryptverifyfilescontroller.cpp:622
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4468,52 +4482,38 @@ msgstr ""
 "<para>Nie udało się przenieść <filename>%1</filename> do <filename>%2</"
 "filename>.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:634
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Czy zapisać plik pod jego pierwotną nazwą <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245
+#: src/crypto/autodecryptverifyfilescontroller.cpp:635
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Czy użyć pierwotnej nazwy pliku?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:246
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Nie, zapisz jako <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Tak, zapisz jako <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:270
+#: src/crypto/autodecryptverifyfilescontroller.cpp:660
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Nie udało się usunąć <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:290
+#: src/crypto/autodecryptverifyfilescontroller.cpp:680
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Nie udało się przenieść <filename>%1</filename> do <filename>%2</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:362
-#, kde-kuit-format
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"Plik <filename>%1</filename> zawiera certyfikaty i nie można go ani "
-"odszyfrować ani sprawdzić."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:413
-#, kde-kuit-format
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr "Wybierz plik do sprawdzenia podpisem <filename>%1</filename>"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format

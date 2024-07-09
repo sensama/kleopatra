@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-09 00:39+0000\n"
 "PO-Revision-Date: 2011-01-01 14:02+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -2395,7 +2395,7 @@ msgid "Import CRL Finished"
 msgstr "CRL ਇੰਪੋਰਟ ਕਰਨਾ ਮੁਕੰਮਲ"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:354
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file %1 for reading: %2"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4285,7 +4285,7 @@ msgid ""
 "(standard LDAP port) is used."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
+#: src/crypto/autodecryptverifyfilescontroller.cpp:152
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4293,7 +4293,20 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:222
+#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#, kde-kuit-format
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:298
+#, fuzzy, kde-kuit-format
+#| msgid "Could not open file %1 for reading: %2"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:612
 #, fuzzy, kde-kuit-format
 #| msgid "An error occurred importing this certificate: %1"
 msgctxt "@info"
@@ -4302,7 +4315,7 @@ msgid ""
 "para><para><message>%3</message></para>"
 msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ: %1"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:232
+#: src/crypto/autodecryptverifyfilescontroller.cpp:622
 #, fuzzy, kde-kuit-format
 #| msgid "An error occurred importing this certificate: %1"
 msgctxt "@info"
@@ -4311,52 +4324,39 @@ msgid ""
 "para>"
 msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ: %1"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:634
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245
+#: src/crypto/autodecryptverifyfilescontroller.cpp:635
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:246
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file %1 for reading: %2"
 msgid "No, Save As <filename>%1</filename>"
 msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file %1 for reading: %2"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:270
+#: src/crypto/autodecryptverifyfilescontroller.cpp:660
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:290
+#: src/crypto/autodecryptverifyfilescontroller.cpp:680
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:362
-#, kde-kuit-format
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:413
-#, fuzzy, kde-kuit-format
-#| msgid "Could not open file %1 for reading: %2"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-09 00:39+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -2529,7 +2529,7 @@ msgid "Import CRL Finished"
 msgstr "Ολοκλήρωση εισαγωγής CRL"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:354
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Αδυναμία ανοίγματος του <filename>%1</filename> για ανάγνωση."
@@ -4580,7 +4580,7 @@ msgstr ""
 "Η σύνταξη είναι \"ΥΠΟΛΟΓΙΣΤΗΣ\" ή \"ΥΠΟΛΟΓΙΣΤΗΣ:ΘΥΡΑ\". Αν δεν οριστεί η "
 "ΘΥΡΑ, θα χρησιμοποιηθεί η 389 (η τυπική θύρα LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
+#: src/crypto/autodecryptverifyfilescontroller.cpp:152
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4592,7 +4592,22 @@ msgstr ""
 "με τα αρχεία<nl/>Αν περιέχουν υπογεγραμμένα ή κρυπτογραφημένα δεδομένα, "
 "κάνετε αναφορά σφάλματος (δείτε Βοήθεια->αναφορά σφάλματος)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:222
+#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#, kde-kuit-format
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"Το αρχείο <filename>%1</filename> περιέχει πιστοποιητικά και δεν μπορεί να "
+"αποκρυπτογραφηθεί ή να επαληθευθεί."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:298
+#, kde-kuit-format
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr ""
+"Επιλέξτε το αρχείο για επιβεβαίωση με την υπογραφή <filename>%1</filename>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:612
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4602,7 +4617,7 @@ msgstr ""
 "<para>Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</"
 "filename>.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:232
+#: src/crypto/autodecryptverifyfilescontroller.cpp:622
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4612,7 +4627,7 @@ msgstr ""
 "<para>Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</"
 "filename>.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:634
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4620,48 +4635,33 @@ msgstr ""
 "Να γίνει αποθήκευση του αρχείου με το αρχικό όνομα αρχείου <filename>%1</"
 "filename>;"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245
+#: src/crypto/autodecryptverifyfilescontroller.cpp:635
 #, fuzzy, kde-format
 #| msgid "Use Original File Name?"
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Χρήση αρχικού ονόματος αρχείου;"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:246
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Όχι, αποθήκευση ως <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Ναι, αποθήκευση ως <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:270
+#: src/crypto/autodecryptverifyfilescontroller.cpp:660
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:290
+#: src/crypto/autodecryptverifyfilescontroller.cpp:680
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:362
-#, kde-kuit-format
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"Το αρχείο <filename>%1</filename> περιέχει πιστοποιητικά και δεν μπορεί να "
-"αποκρυπτογραφηθεί ή να επαληθευθεί."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:413
-#, kde-kuit-format
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
-"Επιλέξτε το αρχείο για επιβεβαίωση με την υπογραφή <filename>%1</filename>"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-06 00:39+0000\n"
+"POT-Creation-Date: 2024-07-09 00:39+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -2619,7 +2619,7 @@ msgid "Import CRL Finished"
 msgstr "CRL er importeret"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:354
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Kan ikke <filename>%1</filename> til læsning."
@@ -4712,7 +4712,7 @@ msgstr ""
 "Syntaxen er \"HOST\" eller \"HOST:PORT\". Hvis PORT udelades, bruges port "
 "389 (standard LDAP-port)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
+#: src/crypto/autodecryptverifyfilescontroller.cpp:152
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4724,60 +4724,7 @@ msgstr ""
 "indeholder signerede eller krypterede data, så rapportér venligst en fejl "
 "(se Hjælp->Rapportér fejl)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:222
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:232
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr ""
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:246
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
-msgid "No, Save As <filename>%1</filename>"
-msgstr "Kunne ikke slette <filename>%1</filename>."
-
 #: src/crypto/autodecryptverifyfilescontroller.cpp:247
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr "Kunne ikke slette <filename>%1</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:270
-#, kde-kuit-format
-msgid "Failed to delete <filename>%1</filename>."
-msgstr "Kunne ikke slette <filename>%1</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:290
-#, kde-kuit-format
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:362
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4786,10 +4733,63 @@ msgstr ""
 "Filen <filename>%1</filename> indeholder certifikater og kan ikke "
 "dekrypteres eller verificeres."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:413
+#: src/crypto/autodecryptverifyfilescontroller.cpp:298
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:612
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:622
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:634
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:635
+#, kde-format
+msgctxt "@title:window"
+msgid "Use Original File Name?"
+msgstr ""
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to delete <filename>%1</filename>."
+msgid "No, Save As <filename>%1</filename>"
+msgstr "Kunne ikke slette <filename>%1</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to delete <filename>%1</filename>."
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr "Kunne ikke slette <filename>%1</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:660
+#, kde-kuit-format
+msgid "Failed to delete <filename>%1</filename>."
+msgstr "Kunne ikke slette <filename>%1</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:680
+#, kde-kuit-format
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr "Kunne ikke flytte <filename>%1</filename> til <filename>%2</filename>."
 
 #: src/crypto/createchecksumscontroller.cpp:61

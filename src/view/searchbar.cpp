@@ -134,7 +134,7 @@ SearchBar::Private::Private(SearchBar *qq)
     layout->setContentsMargins(0, 0, 0, 0);
     lineEdit = new QLineEdit(q);
     lineEdit->setClearButtonEnabled(true);
-    lineEdit->setPlaceholderText(i18nc("@info:placeholder", "Search..."));
+    lineEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter search term"));
     lineEdit->setAccessibleName(i18n("Filter certificates by text"));
     lineEdit->setToolTip(i18nc("@info:tooltip", "Show only certificates that match the entered search term."));
     layout->addWidget(lineEdit, /*stretch=*/1);
@@ -194,7 +194,7 @@ SearchBar::~SearchBar()
 
 void SearchBar::updateClickMessage(const QString &shortcutStr)
 {
-    d->lineEdit->setPlaceholderText(i18nc("@info:placeholder", "Search...<%1>", shortcutStr));
+    d->lineEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter search term <%1>", shortcutStr));
 }
 
 // slot

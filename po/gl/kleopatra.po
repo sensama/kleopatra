@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-09 00:39+0000\n"
+"POT-Creation-Date: 2024-07-12 00:39+0000\n"
 "PO-Revision-Date: 2024-07-07 10:27+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -589,7 +589,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "É «%1» o seu propio certificado?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:645
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1624,7 +1624,7 @@ msgstr ""
 "de <icode>%1</icode> para máis detalles.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:165
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-format
 msgid " "
 msgstr " "
@@ -1991,8 +1991,8 @@ msgstr "Rematou o proceso"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:958
+#: src/commands/importcertificatescommand.cpp:907
+#: src/commands/importcertificatescommand.cpp:960
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Fallou a importación do certificado"
@@ -2023,7 +2023,7 @@ msgid "Notepad"
 msgstr "Notepad"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:188
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -2042,7 +2042,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Non foi posíbel abrir o ficheiro %1 para lectura: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:264
+#: src/commands/importcertificatescommand.cpp:289 src/view/keytreeview.cpp:264
 #, kde-format
 msgid "Certificates"
 msgstr "Certificados"
@@ -2081,217 +2081,217 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Certificado da tarxeta"
 
-#: src/commands/importcertificatescommand.cpp:188
+#: src/commands/importcertificatescommand.cpp:189
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Importando os certificados… (pode levar un anaco)"
 
-#: src/commands/importcertificatescommand.cpp:243
+#: src/commands/importcertificatescommand.cpp:244
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Certificados Importados de %1"
 
-#: src/commands/importcertificatescommand.cpp:245
+#: src/commands/importcertificatescommand.cpp:246
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Certificados Importados destas fontes:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:255
+#: src/commands/importcertificatescommand.cpp:261
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Certificados importados"
 
-#: src/commands/importcertificatescommand.cpp:268
+#: src/commands/importcertificatescommand.cpp:274
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:269
+#: src/commands/importcertificatescommand.cpp:275
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:270
+#: src/commands/importcertificatescommand.cpp:276
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:284
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:330
 #, kde-format
 msgid "Total number processed:"
 msgstr "Número total procesado:"
 
-#: src/commands/importcertificatescommand.cpp:285
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "Imported:"
 msgstr "Importado:"
 
-#: src/commands/importcertificatescommand.cpp:287
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "New signatures:"
 msgstr "Novas sinaturas:"
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "New user IDs:"
 msgstr "Identificadores de usuario novos:"
 
-#: src/commands/importcertificatescommand.cpp:291
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Certificados sen identificadores de usuario:"
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "New subkeys:"
 msgstr "Novas subchaves:"
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Recentemente revogados:"
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:303
 #, kde-format
 msgid "Not imported:"
 msgstr "Sen importar:"
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:305
 #, kde-format
 msgid "Unchanged:"
 msgstr "Sen cambios:"
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:307
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Chaves secretas procesadas:"
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:309
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Chaves secretas importadas:"
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Chaves secretas <em>non</em> importadas:"
 
-#: src/commands/importcertificatescommand.cpp:309
+#: src/commands/importcertificatescommand.cpp:315
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Chaves secretas sen cambios:"
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:317
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Saltáronse as chaves obsoletas PGP-2:"
 
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:329
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Grupos de certificados"
 
-#: src/commands/importcertificatescommand.cpp:325
+#: src/commands/importcertificatescommand.cpp:331
 #, kde-format
 msgid "New groups:"
 msgstr "Novos grupos:"
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:332
 #, kde-format
 msgid "Updated groups:"
 msgstr "Grupos actualizados:"
 
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:347
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr "Non hai importacións (non debería ocorrer, informe do fallo)."
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:349
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Resultados detallados da importación de %1:"
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:350
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Resultados detallados da importación:"
 
-#: src/commands/importcertificatescommand.cpp:402
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Unha chamada telefónica á persoa."
 
-#: src/commands/importcertificatescommand.cpp:403
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgid "Using a business card."
 msgstr "Usando una tarxeta de visita."
 
-#: src/commands/importcertificatescommand.cpp:404
+#: src/commands/importcertificatescommand.cpp:410
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Confirmándoa nun sitio web de confianza."
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:414
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "Para marcar o certificado como válido hai que certificalo."
 
-#: src/commands/importcertificatescommand.cpp:409
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Certificar significa comprobar a pegada."
 
-#: src/commands/importcertificatescommand.cpp:410
+#: src/commands/importcertificatescommand.cpp:416
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Algunhas suxestións para facelo son:"
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:418
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Quere comezar o proceso agora?"
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:419
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Importou un novo certificado (chave pública)"
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:420
 #: src/conf/groupsconfigwidget.cpp:204
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Certificar"
 
-#: src/commands/importcertificatescommand.cpp:467
+#: src/commands/importcertificatescommand.cpp:473
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (importouse con %2)"
 
-#: src/commands/importcertificatescommand.cpp:471
+#: src/commands/importcertificatescommand.cpp:477
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "O rexistro de auditoría está baleiro."
 
-#: src/commands/importcertificatescommand.cpp:473
+#: src/commands/importcertificatescommand.cpp:479
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Cancelouse a importación."
 
-#: src/commands/importcertificatescommand.cpp:499
+#: src/commands/importcertificatescommand.cpp:501
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Resultado da importación de certificados"
 
-#: src/commands/importcertificatescommand.cpp:508
+#: src/commands/importcertificatescommand.cpp:510
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2300,7 +2300,7 @@ msgstr ""
 "<qt><p>Produciuse un erro ao intentar importar o certificado:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:513
+#: src/commands/importcertificatescommand.cpp:515
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2309,13 +2309,13 @@ msgstr ""
 "<qt><p>Produciuse un erro ao intentar importar o certificado %1:</p><p><b>"
 "%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:629
+#: src/commands/importcertificatescommand.cpp:631
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:633
+#: src/commands/importcertificatescommand.cpp:635
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2327,19 +2327,19 @@ msgstr ""
 "para><para>e os identificadores de persoa usuaria<list>%2</list></"
 "para><para>É o seu propio certificado?</para>"
 
-#: src/commands/importcertificatescommand.cpp:646
+#: src/commands/importcertificatescommand.cpp:648
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "É meu, si"
 
-#: src/commands/importcertificatescommand.cpp:647
+#: src/commands/importcertificatescommand.cpp:649
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Non é meu, non"
 
-#: src/commands/importcertificatescommand.cpp:805
+#: src/commands/importcertificatescommand.cpp:807
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2351,15 +2351,15 @@ msgstr ""
 "para><para>contén certificados que non se poden usar para cifrar. Isto pode "
 "dar resultados inesperados.</para>"
 
-#: src/commands/importcertificatescommand.cpp:869
+#: src/commands/importcertificatescommand.cpp:871
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Obtendo 1 chave de asinante… (pode levar un anaco)"
 msgstr[1] "Obtendo %1 chaves de asinante… (pode levar un anaco)"
 
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:957
+#: src/commands/importcertificatescommand.cpp:906
+#: src/commands/importcertificatescommand.cpp:959
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -4668,7 +4668,7 @@ msgid "No usable inputs found"
 msgstr "Non se atoparon entradas utilizábeis"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -5194,31 +5194,31 @@ msgstr "(escolla primeiro entre OpenPGP e S/MIME)"
 msgid "..."
 msgstr "…"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "Cartaf&ol de saída:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:97
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Verificar ficheiros"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:121
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Completáronse todas as operacións."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "Completáronse todas as operacións."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:145
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -5226,25 +5226,25 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operación %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:199
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Seleccione un cartafol de saída."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:199
 #, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "Non hai cartafol de saída"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:211
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5254,25 +5254,25 @@ msgstr ""
 "<para>Non foi posíbel crear o cartafol de saída <filename>%1</filename>.</"
 "para><para>Seleccione outro cartafol de saída.</para>"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "Cartafol de saída non usábel"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:218
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Seleccione un cartafol de saída distinto."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:218
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "Cartafol de saída non válido"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:223
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5584,31 +5584,31 @@ msgctxt "@title:window"
 msgid "Select Certificates for Message \"%1\""
 msgstr "Seleccionar os certificados para a mensaxe «%1»"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:146
+#: src/crypto/gui/signencryptfileswizard.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "Sign / Encrypt Files"
 msgstr "Asinar e/ou cifrar ficheiros"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:152
+#: src/crypto/gui/signencryptfileswizard.cpp:151
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "&Sign as:"
 msgstr "A&sinar como:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:153
+#: src/crypto/gui/signencryptfileswizard.cpp:152
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &me:"
 msgstr "Cifrar para &min:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:154
+#: src/crypto/gui/signencryptfileswizard.cpp:153
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &others:"
 msgstr "Cifrar para &outra xente:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:156
+#: src/crypto/gui/signencryptfileswizard.cpp:155
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid ""
@@ -5617,44 +5617,44 @@ msgstr ""
 "Cifrar cun &contrasinal. Calquera con quen comparta o contrasinal pode ler "
 "os datos."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:161
+#: src/crypto/gui/signencryptfileswizard.cpp:160
 #, kde-format
 msgctxt "@title:group"
 msgid "Output"
 msgstr "Saída"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:164
+#: src/crypto/gui/signencryptfileswizard.cpp:163
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "Seleccione unha acción."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:167
+#: src/crypto/gui/signencryptfileswizard.cpp:166
 #, kde-format
 msgctxt "@label on SignEncryptPage"
 msgid "Output &files/folder:"
 msgstr "&Ficheiros e cartafoles de saída:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:172
+#: src/crypto/gui/signencryptfileswizard.cpp:171
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt / Sign &each file separately."
 msgstr "Cifrar ou asinar c&ada ficheiro por separado."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:173
+#: src/crypto/gui/signencryptfileswizard.cpp:172
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
 msgstr ""
 "Manter cada ficheiro por separado en vez de crear un arquivo para todo."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:186
+#: src/crypto/gui/signencryptfileswizard.cpp:185
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr ""
 "A configuración de cumprimento para asinar e cifrar ficheiro non é válida."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:188
+#: src/crypto/gui/signencryptfileswizard.cpp:187
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5668,7 +5668,7 @@ msgstr ""
 "cifrar ficheiros porque o sistema <application>GnuPG</application> que usa "
 "<application>Kleopatra</application> non é %1.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:255
+#: src/crypto/gui/signencryptfileswizard.cpp:254
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5682,7 +5682,7 @@ msgstr ""
 "cifrar ficheiros porque o sistema <application>GnuPG</application> que usa "
 "<application>Kleopatra</application> non é %1.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:275
+#: src/crypto/gui/signencryptfileswizard.cpp:274
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5701,13 +5701,13 @@ msgstr ""
 "futuras de Kleopatra permitan usar tamén as sinaturas desconectadas neste "
 "caso.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:280
+#: src/crypto/gui/signencryptfileswizard.cpp:279
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusual Signature Warning"
 msgstr "Advertencia de sinatura infrecuente"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:299
+#: src/crypto/gui/signencryptfileswizard.cpp:298
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5721,164 +5721,164 @@ msgstr ""
 "vez que se cifren.</para><para>Quere continuar ou cancelar para cambiar a "
 "selección de destinatarios?</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:302
+#: src/crypto/gui/signencryptfileswizard.cpp:301
 #, kde-format
 msgctxt "@title:window"
 msgid "Encrypt-To-Self Warning"
 msgstr "Advertencia de cifrado para si mesmo"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:345
+#: src/crypto/gui/signencryptfileswizard.cpp:344
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME signature."
 msgstr "Este é o nome de ficheiro da sinatura S/MIME."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:346
+#: src/crypto/gui/signencryptfileswizard.cpp:345
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME signature file"
 msgstr "Ficheiro de sinatura S/MIME"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:347
+#: src/crypto/gui/signencryptfileswizard.cpp:346
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Signatures (*.p7s)"
 msgstr "Sinaturas S/MIME (*.p7s)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:348
+#: src/crypto/gui/signencryptfileswizard.cpp:347
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Signatures (*.p7s *.pem)"
 msgstr "Sinaturas S/MIME (*.p7s *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:353
+#: src/crypto/gui/signencryptfileswizard.cpp:352
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
 msgstr "Este é o nome de ficheiro da sinatura OpenPGP desconectada."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:354
+#: src/crypto/gui/signencryptfileswizard.cpp:353
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signature file"
 msgstr "Ficheiro de sinatura OpenPGP"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:355
+#: src/crypto/gui/signencryptfileswizard.cpp:354
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Signatures (*.sig *.pgp)"
 msgstr "Sinaturas OpenPGP (*.sig *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:356
+#: src/crypto/gui/signencryptfileswizard.cpp:355
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Signatures (*.asc *.sig)"
 msgstr "Sinaturas OpenPGP (*.asc *.sig)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:361
+#: src/crypto/gui/signencryptfileswizard.cpp:360
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP-signed and encrypted file."
 msgstr "Este é o nome de ficheiro do ficheiro asinado e cifrado con OpenPGP."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:362
+#: src/crypto/gui/signencryptfileswizard.cpp:361
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signed and encrypted file"
 msgstr "Ficheiro asinado e cifrado con OpenPGP"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:363
-#: src/crypto/gui/signencryptfileswizard.cpp:371
+#: src/crypto/gui/signencryptfileswizard.cpp:362
+#: src/crypto/gui/signencryptfileswizard.cpp:370
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Files (*.gpg *.pgp)"
 msgstr "Ficheiros OpenPGP (*.gpg *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:364
-#: src/crypto/gui/signencryptfileswizard.cpp:372
+#: src/crypto/gui/signencryptfileswizard.cpp:363
+#: src/crypto/gui/signencryptfileswizard.cpp:371
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Files (*.asc)"
 msgstr "Ficheiros OpenPGP (*.asc)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:369
+#: src/crypto/gui/signencryptfileswizard.cpp:368
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP encrypted file."
 msgstr "Este é o nome de ficheiro do ficheiro cifrado con OpenPGP."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:370
+#: src/crypto/gui/signencryptfileswizard.cpp:369
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP encrypted file"
 msgstr "Ficheiro cifrado con OpenPGP"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:377
+#: src/crypto/gui/signencryptfileswizard.cpp:376
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME encrypted file."
 msgstr "Este é o nome de ficheiro do ficheiro cifrado con S/MIME."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:378
+#: src/crypto/gui/signencryptfileswizard.cpp:377
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME encrypted file"
 msgstr "Ficheiro cifrado con S/MIME"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:379
+#: src/crypto/gui/signencryptfileswizard.cpp:378
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Files (*.p7m)"
 msgstr "Ficheiros S/MIME (*.p7m)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:380
+#: src/crypto/gui/signencryptfileswizard.cpp:379
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Files (*.p7m *.pem)"
 msgstr "Ficheiros S/MIME (*.p7m *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:385
+#: src/crypto/gui/signencryptfileswizard.cpp:384
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "The resulting files are written to this directory."
 msgstr "Os ficheiros resultantes escríbense neste cartafol."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:386
+#: src/crypto/gui/signencryptfileswizard.cpp:385
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "Output directory"
 msgstr "Cartafol de saída"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:448
+#: src/crypto/gui/signencryptfileswizard.cpp:447
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "Asinar"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:451
+#: src/crypto/gui/signencryptfileswizard.cpp:450
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "Cifrar"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:454
+#: src/crypto/gui/signencryptfileswizard.cpp:453
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "Asinar ou cifrar"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:467
+#: src/crypto/gui/signencryptfileswizard.cpp:466
 #, kde-format
 msgid "Next"
 msgstr "Seguinte"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:536
+#: src/crypto/gui/signencryptfileswizard.cpp:535
 #, kde-format
 msgctxt "@title"
 msgid "Results"
 msgstr "Resultados"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:537
+#: src/crypto/gui/signencryptfileswizard.cpp:536
 #, kde-format
 msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."

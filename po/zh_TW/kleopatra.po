@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-09 00:39+0000\n"
+"POT-Creation-Date: 2024-07-12 00:39+0000\n"
 "PO-Revision-Date: 2024-06-30 11:02+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -571,7 +571,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "'%1' 是您自己的憑證嗎？"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:645
+#: src/commands/importcertificatescommand.cpp:647
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1565,7 +1565,7 @@ msgstr ""
 "束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:165
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:629
 #, kde-format
 msgid " "
 msgstr " "
@@ -1913,8 +1913,8 @@ msgstr "行程已完成"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:958
+#: src/commands/importcertificatescommand.cpp:907
+#: src/commands/importcertificatescommand.cpp:960
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "匯入憑證失敗"
@@ -1944,7 +1944,7 @@ msgid "Notepad"
 msgstr "筆記本"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:188
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1962,7 +1962,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "無法開啟檔案 %1 以讀取：%2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:264
+#: src/commands/importcertificatescommand.cpp:289 src/view/keytreeview.cpp:264
 #, kde-format
 msgid "Certificates"
 msgstr "憑證"
@@ -1999,237 +1999,237 @@ msgstr "抱歉！沒有找到要從這個卡片欄位匯入的憑證。"
 msgid "Card Certificate"
 msgstr "卡片憑證"
 
-#: src/commands/importcertificatescommand.cpp:188
+#: src/commands/importcertificatescommand.cpp:189
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "正在匯入憑證...（這可能會花上一段時間）"
 
-#: src/commands/importcertificatescommand.cpp:243
+#: src/commands/importcertificatescommand.cpp:244
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "已從 %1 匯入憑證"
 
-#: src/commands/importcertificatescommand.cpp:245
+#: src/commands/importcertificatescommand.cpp:246
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "已從這些來源匯入憑證：<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:255
+#: src/commands/importcertificatescommand.cpp:261
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "已匯入憑證"
 
-#: src/commands/importcertificatescommand.cpp:268
+#: src/commands/importcertificatescommand.cpp:274
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:269
+#: src/commands/importcertificatescommand.cpp:275
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:270
+#: src/commands/importcertificatescommand.cpp:276
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:284
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:330
 #, kde-format
 msgid "Total number processed:"
 msgstr "已處理總數："
 
-#: src/commands/importcertificatescommand.cpp:285
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "Imported:"
 msgstr "已匯入："
 
-#: src/commands/importcertificatescommand.cpp:287
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "New signatures:"
 msgstr "新的簽章："
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "New user IDs:"
 msgstr "新的使用者 ID："
 
-#: src/commands/importcertificatescommand.cpp:291
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "沒有使用者 ID 的憑證："
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "New subkeys:"
 msgstr "新的子金鑰："
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "Newly revoked:"
 msgstr "新撤銷的："
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:303
 #, kde-format
 msgid "Not imported:"
 msgstr "未匯入："
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:305
 #, kde-format
 msgid "Unchanged:"
 msgstr "未改變的："
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:307
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "已處理的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:309
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "已匯入的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "<em>未</em>匯入的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:309
+#: src/commands/importcertificatescommand.cpp:315
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "未變更的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:317
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "由於已棄用而略過的 PGP-2 金鑰："
 
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:329
 #, kde-format
 msgid "Certificate Groups"
 msgstr "憑證群組"
 
-#: src/commands/importcertificatescommand.cpp:325
+#: src/commands/importcertificatescommand.cpp:331
 #, kde-format
 msgid "New groups:"
 msgstr "新群組："
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:332
 #, kde-format
 msgid "Updated groups:"
 msgstr "已更新群組："
 
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:347
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr "沒有匯入（不應該發生此情形，請回報此錯誤。）"
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:349
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "匯入 %1 個詳細結果："
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:350
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "匯入的詳細結果："
 
-#: src/commands/importcertificatescommand.cpp:402
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgid "A phone call to the person."
 msgstr "打電話給那個人。"
 
-#: src/commands/importcertificatescommand.cpp:403
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgid "Using a business card."
 msgstr "利用名片。"
 
-#: src/commands/importcertificatescommand.cpp:404
+#: src/commands/importcertificatescommand.cpp:410
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "在一個信任的網站上進行確認。"
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:414
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "要標記憑證為有效，它必須是被保證的。"
 
-#: src/commands/importcertificatescommand.cpp:409
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "保證代表您檢查過指紋。"
 
-#: src/commands/importcertificatescommand.cpp:410
+#: src/commands/importcertificatescommand.cpp:416
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "以下是一些這麼做的建議："
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:418
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "您要現在開始這個流程嗎？"
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:419
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "您已匯入了新的憑證（公鑰）"
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:420
 #: src/conf/groupsconfigwidget.cpp:204
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "保證"
 
-#: src/commands/importcertificatescommand.cpp:467
+#: src/commands/importcertificatescommand.cpp:473
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1（利用 %2 匯入）"
 
-#: src/commands/importcertificatescommand.cpp:471
+#: src/commands/importcertificatescommand.cpp:477
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "稽核紀錄是空的。"
 
-#: src/commands/importcertificatescommand.cpp:473
+#: src/commands/importcertificatescommand.cpp:479
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "匯入已取消。"
 
-#: src/commands/importcertificatescommand.cpp:499
+#: src/commands/importcertificatescommand.cpp:501
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "憑證匯入結果"
 
-#: src/commands/importcertificatescommand.cpp:508
+#: src/commands/importcertificatescommand.cpp:510
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證時發生錯誤：</p> <p><b>%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:513
+#: src/commands/importcertificatescommand.cpp:515
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
 "%2</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證 %1 時發生錯誤：</p> <p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:629
+#: src/commands/importcertificatescommand.cpp:631
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:633
+#: src/commands/importcertificatescommand.cpp:635
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2240,19 +2240,19 @@ msgstr ""
 "<para>您已匯入憑證，它的指紋是：</para><para><numid>%1</numid></para><para>它"
 "的使用者 ID 是：<list>%2</list></para><para>這是您自己的憑證嗎？</para>"
 
-#: src/commands/importcertificatescommand.cpp:646
+#: src/commands/importcertificatescommand.cpp:648
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "對，它是我的"
 
-#: src/commands/importcertificatescommand.cpp:647
+#: src/commands/importcertificatescommand.cpp:649
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "它不是我的"
 
-#: src/commands/importcertificatescommand.cpp:805
+#: src/commands/importcertificatescommand.cpp:807
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2266,14 +2266,14 @@ msgid ""
 msgstr ""
 "<para>您確定要撤銷這個使用者 ID 嗎？<nl/><emphasis>%1</emphasis></para>"
 
-#: src/commands/importcertificatescommand.cpp:869
+#: src/commands/importcertificatescommand.cpp:871
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "正在取得 %1 個簽署者金鑰...（這可能會花上一段時間）"
 
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:957
+#: src/commands/importcertificatescommand.cpp:906
+#: src/commands/importcertificatescommand.cpp:959
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -4464,7 +4464,7 @@ msgid "No usable inputs found"
 msgstr "沒有找到有用的輸入"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4968,31 +4968,31 @@ msgstr "（請先選取 OpenPGP 或 S/MIME）"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "輸出資料夾(&O)："
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:97
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "檢查檔案"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:121
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1：所有操作均已完成。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "所有操作均已完成。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:145
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -5000,25 +5000,25 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "操作 %1：%2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1：%2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:199
 #, kde-format
 msgid "Please select an output folder."
 msgstr "請選擇輸出資料夾。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:199
 #, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "無輸出資料夾"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:211
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5028,25 +5028,25 @@ msgstr ""
 "<para>無法建立輸出資料夾 <filename>%1</filename>。</para><para>請選擇另一個輸"
 "出資料夾。</para>"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "無法使用的輸出資料夾"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:218
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "請選擇另一個輸出資料夾。"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:218
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "無效的輸出資料夾"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:223
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5346,73 +5346,73 @@ msgctxt "@title:window"
 msgid "Select Certificates for Message \"%1\""
 msgstr "為訊息 \"%1\" 選擇憑證"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:146
+#: src/crypto/gui/signencryptfileswizard.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "Sign / Encrypt Files"
 msgstr "簽署/加密檔案"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:152
+#: src/crypto/gui/signencryptfileswizard.cpp:151
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "&Sign as:"
 msgstr "簽署名義(&S)："
 
-#: src/crypto/gui/signencryptfileswizard.cpp:153
+#: src/crypto/gui/signencryptfileswizard.cpp:152
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &me:"
 msgstr "為自己加密(&M)："
 
-#: src/crypto/gui/signencryptfileswizard.cpp:154
+#: src/crypto/gui/signencryptfileswizard.cpp:153
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &others:"
 msgstr "為別人加密(&O)："
 
-#: src/crypto/gui/signencryptfileswizard.cpp:156
+#: src/crypto/gui/signencryptfileswizard.cpp:155
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid ""
 "Encrypt with &password. Anyone you share the password with can read the data."
 msgstr "利用密碼(&P)加密。任何知道密碼的人都可以讀取資料。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:161
+#: src/crypto/gui/signencryptfileswizard.cpp:160
 #, kde-format
 msgctxt "@title:group"
 msgid "Output"
 msgstr "輸出"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:164
+#: src/crypto/gui/signencryptfileswizard.cpp:163
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "請選擇一個動作。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:167
+#: src/crypto/gui/signencryptfileswizard.cpp:166
 #, kde-format
 msgctxt "@label on SignEncryptPage"
 msgid "Output &files/folder:"
 msgstr "輸出檔案/資料夾(&F)："
 
-#: src/crypto/gui/signencryptfileswizard.cpp:172
+#: src/crypto/gui/signencryptfileswizard.cpp:171
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt / Sign &each file separately."
 msgstr "單獨加密/簽署各個檔案(&E)。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:173
+#: src/crypto/gui/signencryptfileswizard.cpp:172
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
 msgstr "讓各個檔案保持分離，而不為它們全部建立封存檔。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:186
+#: src/crypto/gui/signencryptfileswizard.cpp:185
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr ""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:188
+#: src/crypto/gui/signencryptfileswizard.cpp:187
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5426,7 +5426,7 @@ msgstr ""
 "<application>Kleopatra</application> 所用的 <application>GnuPG</application> "
 "系統不%1。</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:255
+#: src/crypto/gui/signencryptfileswizard.cpp:254
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5440,7 +5440,7 @@ msgstr ""
 "案，因為 <application>Kleopatra</application> 所用的 <application>GnuPG</"
 "application> 系統不%1。</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:275
+#: src/crypto/gui/signencryptfileswizard.cpp:274
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5457,13 +5457,13 @@ msgstr ""
 "Kleopatra 簽署。</para><para>Kleopatra 將來的版本希望能在這種狀況下支援分離式"
 "簽章。</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:280
+#: src/crypto/gui/signencryptfileswizard.cpp:279
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusual Signature Warning"
 msgstr "警告：不正常的簽章"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:299
+#: src/crypto/gui/signencryptfileswizard.cpp:298
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5475,164 +5475,164 @@ msgstr ""
 "<para>您加密的接收人沒有一個是您自己。</para> <para>這表示加密之後，您自己將"
 "無法解密。</para> <para>您要繼續，還是取消以變更收件人？</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:302
+#: src/crypto/gui/signencryptfileswizard.cpp:301
 #, kde-format
 msgctxt "@title:window"
 msgid "Encrypt-To-Self Warning"
 msgstr "加密警告"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:345
+#: src/crypto/gui/signencryptfileswizard.cpp:344
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME signature."
 msgstr "這是 S/MIME 簽章的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:346
+#: src/crypto/gui/signencryptfileswizard.cpp:345
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME signature file"
 msgstr "S/MIME 簽章檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:347
+#: src/crypto/gui/signencryptfileswizard.cpp:346
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Signatures (*.p7s)"
 msgstr "S/MIME 簽章 (*.p7s)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:348
+#: src/crypto/gui/signencryptfileswizard.cpp:347
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Signatures (*.p7s *.pem)"
 msgstr "S/MIME 簽章 (*.p7s *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:353
+#: src/crypto/gui/signencryptfileswizard.cpp:352
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
 msgstr "這是分離的 OpenPGP 簽章的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:354
+#: src/crypto/gui/signencryptfileswizard.cpp:353
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signature file"
 msgstr "OpenPGP 簽章檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:355
+#: src/crypto/gui/signencryptfileswizard.cpp:354
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Signatures (*.sig *.pgp)"
 msgstr "OpenPGP 簽章 (*.sig *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:356
+#: src/crypto/gui/signencryptfileswizard.cpp:355
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Signatures (*.asc *.sig)"
 msgstr "OpenPGP 簽章 (*.asc *.sig)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:361
+#: src/crypto/gui/signencryptfileswizard.cpp:360
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP-signed and encrypted file."
 msgstr "這是 OpenPGP 已簽署並加密的檔案的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:362
+#: src/crypto/gui/signencryptfileswizard.cpp:361
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signed and encrypted file"
 msgstr "OpenPGP 署名/加密檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:363
-#: src/crypto/gui/signencryptfileswizard.cpp:371
+#: src/crypto/gui/signencryptfileswizard.cpp:362
+#: src/crypto/gui/signencryptfileswizard.cpp:370
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Files (*.gpg *.pgp)"
 msgstr "OpenPGP 檔案 (*.gpg *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:364
-#: src/crypto/gui/signencryptfileswizard.cpp:372
+#: src/crypto/gui/signencryptfileswizard.cpp:363
+#: src/crypto/gui/signencryptfileswizard.cpp:371
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Files (*.asc)"
 msgstr "OpenPGP 檔案 (*.asc)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:369
+#: src/crypto/gui/signencryptfileswizard.cpp:368
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP encrypted file."
 msgstr "這是 OpenPGP 加密檔的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:370
+#: src/crypto/gui/signencryptfileswizard.cpp:369
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP encrypted file"
 msgstr "OpenPGP 加密檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:377
+#: src/crypto/gui/signencryptfileswizard.cpp:376
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME encrypted file."
 msgstr "這是 S/MIME 加密檔的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:378
+#: src/crypto/gui/signencryptfileswizard.cpp:377
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME encrypted file"
 msgstr "S/MIME 加密檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:379
+#: src/crypto/gui/signencryptfileswizard.cpp:378
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Files (*.p7m)"
 msgstr "S/MIME 檔案 (*.p7m)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:380
+#: src/crypto/gui/signencryptfileswizard.cpp:379
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Files (*.p7m *.pem)"
 msgstr "S/MIME 檔案 (*.p7m *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:385
+#: src/crypto/gui/signencryptfileswizard.cpp:384
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "The resulting files are written to this directory."
 msgstr "完成後的檔案會寫入至這個目錄中。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:386
+#: src/crypto/gui/signencryptfileswizard.cpp:385
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "Output directory"
 msgstr "輸出目錄"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:448
+#: src/crypto/gui/signencryptfileswizard.cpp:447
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "簽署"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:451
+#: src/crypto/gui/signencryptfileswizard.cpp:450
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "加密"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:454
+#: src/crypto/gui/signencryptfileswizard.cpp:453
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "簽署 / 加密"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:467
+#: src/crypto/gui/signencryptfileswizard.cpp:466
 #, kde-format
 msgid "Next"
 msgstr "下一個"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:536
+#: src/crypto/gui/signencryptfileswizard.cpp:535
 #, kde-format
 msgctxt "@title"
 msgid "Results"
 msgstr "結果"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:537
+#: src/crypto/gui/signencryptfileswizard.cpp:536
 #, kde-format
 msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."

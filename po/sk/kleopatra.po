@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-09 00:39+0000\n"
+"POT-Creation-Date: 2024-07-12 00:39+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -652,7 +652,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "(neznámy certifikát)"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:645
+#: src/commands/importcertificatescommand.cpp:647
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Load Certificates"
@@ -1731,7 +1731,7 @@ msgstr ""
 "z <icode>%1</icode> pre podrobnosti.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:165
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:629
 #, fuzzy, kde-format
 #| msgctxt "separator for a list of e-mail addresses"
 #| msgid ", "
@@ -2124,8 +2124,8 @@ msgstr "Proces ukončený"
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #: src/commands/importcertificatefromclipboardcommand.cpp:109
 #: src/commands/importcertificatefromfilecommand.cpp:135
-#: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:958
+#: src/commands/importcertificatescommand.cpp:907
+#: src/commands/importcertificatescommand.cpp:960
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Import certifikátu zlyhal"
@@ -2155,7 +2155,7 @@ msgid "Notepad"
 msgstr "Zápisník"
 
 #: src/commands/importcertificatefromfilecommand.cpp:127
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:188
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgctxt "@title:window"
@@ -2178,7 +2178,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Nepodarilo sa otvoriť súbor %1 na čítanie: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:283 src/view/keytreeview.cpp:264
+#: src/commands/importcertificatescommand.cpp:289 src/view/keytreeview.cpp:264
 #, kde-format
 msgid "Certificates"
 msgstr "Certifikáty"
@@ -2222,166 +2222,166 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Načítať certifikáty"
 
-#: src/commands/importcertificatescommand.cpp:188
+#: src/commands/importcertificatescommand.cpp:189
 #, fuzzy, kde-format
 #| msgid "Loading certificates... (this can take a while)"
 msgid "Importing certificates... (this can take a while)"
 msgstr "Načítavajú sa certifikáty... (môže to chvíľu trvať)"
 
-#: src/commands/importcertificatescommand.cpp:243
+#: src/commands/importcertificatescommand.cpp:244
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Certifikáty importované z %1"
 
-#: src/commands/importcertificatescommand.cpp:245
+#: src/commands/importcertificatescommand.cpp:246
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Certifikáty importované z týchto zdrojov:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:255
+#: src/commands/importcertificatescommand.cpp:261
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Importované certifikáty"
 
-#: src/commands/importcertificatescommand.cpp:268
+#: src/commands/importcertificatescommand.cpp:274
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:269
+#: src/commands/importcertificatescommand.cpp:275
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:270
+#: src/commands/importcertificatescommand.cpp:276
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:284
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:330
 #, kde-format
 msgid "Total number processed:"
 msgstr "Celkový počet spracovaných:"
 
-#: src/commands/importcertificatescommand.cpp:285
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "Imported:"
 msgstr "Importovaných:"
 
-#: src/commands/importcertificatescommand.cpp:287
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "New signatures:"
 msgstr "Nové podpisy:"
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "New user IDs:"
 msgstr "ID nových užívateľov:"
 
-#: src/commands/importcertificatescommand.cpp:291
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Certifikáty bez ID používateľov:"
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "New subkeys:"
 msgstr "Nové podkľúče:"
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Novozrušené platnosti:"
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:303
 #, kde-format
 msgid "Not imported:"
 msgstr "Neimportované:"
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:305
 #, kde-format
 msgid "Unchanged:"
 msgstr "Nezmenené:"
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:307
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Tajné kľúče spracované:"
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:309
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Tajné kľúče importované:"
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Tajné kľúče <em>ne</em>naimportované:"
 
-#: src/commands/importcertificatescommand.cpp:309
+#: src/commands/importcertificatescommand.cpp:315
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Tajné kľúče nezmenené:"
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:317
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Zastarané kľúče PGP-2 boli vynechané:"
 
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:329
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certificate Dump"
 msgid "Certificate Groups"
 msgstr "Výpis certifikátu"
 
-#: src/commands/importcertificatescommand.cpp:325
+#: src/commands/importcertificatescommand.cpp:331
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New groups:"
 msgstr "Nové podpisy:"
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:332
 #, fuzzy, kde-format
 #| msgid "Update Card Status"
 msgid "Updated groups:"
 msgstr "Aktualizovať stav karty"
 
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:347
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr "Žiadne importy (nemalo by sa stať, prosím, nahlásteť chybu)."
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:349
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:350
 #, kde-format
 msgid "Detailed results of import:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:402
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Telefonický hovor osobe."
 
-#: src/commands/importcertificatescommand.cpp:403
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgid "Using a business card."
 msgstr "Pomocou vizitky."
 
-#: src/commands/importcertificatescommand.cpp:404
+#: src/commands/importcertificatescommand.cpp:410
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Potvrdenie na doveryhodnej webstránke."
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:414
 #, fuzzy, kde-format
 #| msgid ""
 #| "In order to mark the certificate as valid (green) it needs to be "
@@ -2390,59 +2390,59 @@ msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr ""
 "Na označenie certifikátu ako platného (zeleného) je potrebné ho certifikovať."
 
-#: src/commands/importcertificatescommand.cpp:409
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Certifikácia znamená, že skontrolujete odtlačok."
 
-#: src/commands/importcertificatescommand.cpp:410
+#: src/commands/importcertificatescommand.cpp:416
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Tu sú niektoré návrhy pre toto:"
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:418
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Chcete teraz spustiť tento proces?"
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:419
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Importovali ste nový vertifikát (verejný kľúč)"
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:420
 #: src/conf/groupsconfigwidget.cpp:204
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Certifikovať"
 
-#: src/commands/importcertificatescommand.cpp:467
+#: src/commands/importcertificatescommand.cpp:473
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:471
+#: src/commands/importcertificatescommand.cpp:477
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:473
+#: src/commands/importcertificatescommand.cpp:479
 #, fuzzy, kde-format
 #| msgid "Operation canceled."
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Operácia zrušená."
 
-#: src/commands/importcertificatescommand.cpp:499
+#: src/commands/importcertificatescommand.cpp:501
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Výsledok importu certifikátu"
 
-#: src/commands/importcertificatescommand.cpp:508
+#: src/commands/importcertificatescommand.cpp:510
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2450,7 +2450,7 @@ msgid ""
 msgstr ""
 "<qt><p>Nastala chyba počas importu certifikátu:</p><p><b> %1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:513
+#: src/commands/importcertificatescommand.cpp:515
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2458,13 +2458,13 @@ msgid ""
 msgstr ""
 "<qt><p>Nastala chyba počas importu certifikátu %1:</p><p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:629
+#: src/commands/importcertificatescommand.cpp:631
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:633
+#: src/commands/importcertificatescommand.cpp:635
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2482,19 +2482,19 @@ msgstr ""
 "><numid>%1</numid></para> <para>ID používateľa:<list><item>%2</item></list></"
 "para> Je to váš kľúč? (nastaviť úroveň dôvery na najvyššiu)"
 
-#: src/commands/importcertificatescommand.cpp:646
+#: src/commands/importcertificatescommand.cpp:648
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:647
+#: src/commands/importcertificatescommand.cpp:649
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:805
+#: src/commands/importcertificatescommand.cpp:807
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2509,7 +2509,7 @@ msgstr ""
 "<para>Nastala chyba pri pokuse pridať ID používateľa:<message>%1</message></"
 "para>"
 
-#: src/commands/importcertificatescommand.cpp:869
+#: src/commands/importcertificatescommand.cpp:871
 #, fuzzy, kde-format
 #| msgid "Loading certificates... (this can take a while)"
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2518,8 +2518,8 @@ msgstr[0] "Načítavajú sa certifikáty... (môže to chvíľu trvať)"
 msgstr[1] "Načítavajú sa certifikáty... (môže to chvíľu trvať)"
 msgstr[2] "Načítavajú sa certifikáty... (môže to chvíľu trvať)"
 
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:957
+#: src/commands/importcertificatescommand.cpp:906
+#: src/commands/importcertificatescommand.cpp:959
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -4895,7 +4895,7 @@ msgid "No usable inputs found"
 msgstr "Nenájdené použiteľné vstupy"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -5454,32 +5454,32 @@ msgstr "(Prosím, zvolte si najskôr medzi OpenPGP a S/MIME)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
 #, fuzzy, kde-format
 #| msgid "&Output folder:"
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "Výstupný priečin&ok"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:97
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Overiť súbory"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:121
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Všetky operácie dokončené."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:123
 #: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "Všetky operácie dokončené."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:145
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
 #: src/crypto/gui/resultpage.cpp:108
 #, kde-format
@@ -5487,26 +5487,26 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operácia %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:147
 #: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:199
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Prosím, vyberte výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:200
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:199
 #, fuzzy, kde-format
 #| msgid "No output folder."
 msgctxt "@title:window"
 msgid "No Output Folder"
 msgstr "Žiadny výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:211
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -5515,27 +5515,27 @@ msgid ""
 "para><para>Please select a different output folder.</para>"
 msgstr "Zlyhal presun <filename>%1</filename> do <filename>%2</filename>."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:214
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:226
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:225
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
 msgstr "Neplatný výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:218
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Prosím vyberte iný výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:219
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:218
 #, fuzzy, kde-format
 #| msgid "Invalid output folder."
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
 msgstr "Neplatný výstupný priečinok."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:224
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:223
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5849,34 +5849,34 @@ msgctxt "@title:window"
 msgid "Select Certificates for Message \"%1\""
 msgstr "Vybrať certifikáty pre správu \"%1\""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:146
+#: src/crypto/gui/signencryptfileswizard.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "Sign / Encrypt Files"
 msgstr "Podpísať / Zašifrovať súbory"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:152
+#: src/crypto/gui/signencryptfileswizard.cpp:151
 #, fuzzy, kde-format
 #| msgid "Sign as:"
 msgctxt "@option:check on SignEncryptPage"
 msgid "&Sign as:"
 msgstr "Podpísať ako:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:153
+#: src/crypto/gui/signencryptfileswizard.cpp:152
 #, fuzzy, kde-format
 #| msgid "Encrypt for me:"
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &me:"
 msgstr "Šifrovať pre mňa:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:154
+#: src/crypto/gui/signencryptfileswizard.cpp:153
 #, fuzzy, kde-format
 #| msgid "Encrypt for others:"
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &others:"
 msgstr "Šifrovať pre ostatných:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:156
+#: src/crypto/gui/signencryptfileswizard.cpp:155
 #, fuzzy, kde-format
 #| msgid ""
 #| "Encrypt with password. Anyone you share the password with can read the "
@@ -5886,34 +5886,34 @@ msgid ""
 "Encrypt with &password. Anyone you share the password with can read the data."
 msgstr "Šifrovať s heslom. Ktokoľvek, kto má heslo, vie čítať údaje."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:161
+#: src/crypto/gui/signencryptfileswizard.cpp:160
 #, kde-format
 msgctxt "@title:group"
 msgid "Output"
 msgstr "Výstup"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:164
+#: src/crypto/gui/signencryptfileswizard.cpp:163
 #, fuzzy, kde-format
 #| msgid "Please select an action."
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "Vyberte prosím akciu."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:167
+#: src/crypto/gui/signencryptfileswizard.cpp:166
 #, fuzzy, kde-format
 #| msgid "&Output folder:"
 msgctxt "@label on SignEncryptPage"
 msgid "Output &files/folder:"
 msgstr "Výstupný priečin&ok"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:172
+#: src/crypto/gui/signencryptfileswizard.cpp:171
 #, fuzzy, kde-format
 #| msgid "Encrypt / Sign each file separately."
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt / Sign &each file separately."
 msgstr "Šifrovať / podpísať každý súbor oddelene."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:173
+#: src/crypto/gui/signencryptfileswizard.cpp:172
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Keep each file separate instead of creating an archive for all."
@@ -5921,12 +5921,12 @@ msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
 msgstr "Ponechať každý súbor oddelene namiesto vytvorenia archívu pre všetky."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:186
+#: src/crypto/gui/signencryptfileswizard.cpp:185
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr ""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:188
+#: src/crypto/gui/signencryptfileswizard.cpp:187
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5937,7 +5937,7 @@ msgid ""
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:255
+#: src/crypto/gui/signencryptfileswizard.cpp:254
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5948,7 +5948,7 @@ msgid ""
 "by <application>Kleopatra</application> is not %1.</para>"
 msgstr ""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:275
+#: src/crypto/gui/signencryptfileswizard.cpp:274
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5966,13 +5966,13 @@ msgstr ""
 "súbor s aplikáciou Kleopatra.</para><para>Očakáva sa, že budúce verzie "
 "Kleopatra budú tiež podporovať oddelené podpisy v tomto prípade.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:280
+#: src/crypto/gui/signencryptfileswizard.cpp:279
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusual Signature Warning"
 msgstr "Upozornenie na nezvyčajný podpis"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:299
+#: src/crypto/gui/signencryptfileswizard.cpp:298
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5986,166 +5986,166 @@ msgstr ""
 "šifrované.</para><para>Chcete pokračovať, alebo zrušiť pre zmenu výberu "
 "príjemcu?</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:302
+#: src/crypto/gui/signencryptfileswizard.cpp:301
 #, kde-format
 msgctxt "@title:window"
 msgid "Encrypt-To-Self Warning"
 msgstr "Upozornenie zašifrovania seba"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:345
+#: src/crypto/gui/signencryptfileswizard.cpp:344
 #, fuzzy, kde-format
 #| msgid "The S/MIME signature."
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME signature."
 msgstr "S/MIME podpis."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:346
+#: src/crypto/gui/signencryptfileswizard.cpp:345
 #, fuzzy, kde-format
 #| msgid "The S/MIME signature."
 msgctxt "Lineedit accessible name"
 msgid "S/MIME signature file"
 msgstr "S/MIME podpis."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:347
+#: src/crypto/gui/signencryptfileswizard.cpp:346
 #, fuzzy, kde-format
 #| msgid "The S/MIME signature."
 msgctxt "Name filter binary"
 msgid "S/MIME Signatures (*.p7s)"
 msgstr "S/MIME podpis."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:348
+#: src/crypto/gui/signencryptfileswizard.cpp:347
 #, fuzzy, kde-format
 #| msgid "The S/MIME signature."
 msgctxt "Name filter ASCII"
 msgid "S/MIME Signatures (*.p7s *.pem)"
 msgstr "S/MIME podpis."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:353
+#: src/crypto/gui/signencryptfileswizard.cpp:352
 #, fuzzy, kde-format
 #| msgid "&Input file is a detached signature"
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
 msgstr "Vstupný súbor je oddelený podp&is"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:354
+#: src/crypto/gui/signencryptfileswizard.cpp:353
 #, fuzzy, kde-format
 #| msgid " OpenPGP export file:"
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signature file"
 msgstr "Súbor exportu OpenPGP:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:355
+#: src/crypto/gui/signencryptfileswizard.cpp:354
 #, fuzzy, kde-format
 #| msgid "The S/MIME signature."
 msgctxt "Name filter binary"
 msgid "OpenPGP Signatures (*.sig *.pgp)"
 msgstr "S/MIME podpis."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:356
+#: src/crypto/gui/signencryptfileswizard.cpp:355
 #, fuzzy, kde-format
 #| msgid " OpenPGP export file:"
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Signatures (*.asc *.sig)"
 msgstr "Súbor exportu OpenPGP:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:361
+#: src/crypto/gui/signencryptfileswizard.cpp:360
 #, fuzzy, kde-format
 #| msgid "The signed and encrypted file."
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP-signed and encrypted file."
 msgstr "Podpísaný alebo šifrovaný súbor."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:362
+#: src/crypto/gui/signencryptfileswizard.cpp:361
 #, fuzzy, kde-format
 #| msgid "The signed and encrypted file."
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signed and encrypted file"
 msgstr "Podpísaný alebo šifrovaný súbor."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:363
-#: src/crypto/gui/signencryptfileswizard.cpp:371
+#: src/crypto/gui/signencryptfileswizard.cpp:362
+#: src/crypto/gui/signencryptfileswizard.cpp:370
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Files (*.gpg *.pgp)"
 msgstr ""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:364
-#: src/crypto/gui/signencryptfileswizard.cpp:372
+#: src/crypto/gui/signencryptfileswizard.cpp:363
+#: src/crypto/gui/signencryptfileswizard.cpp:371
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Files (*.asc)"
 msgstr ""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:369
+#: src/crypto/gui/signencryptfileswizard.cpp:368
 #, fuzzy, kde-format
 #| msgid "The signed and encrypted file."
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP encrypted file."
 msgstr "Podpísaný alebo šifrovaný súbor."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:370
+#: src/crypto/gui/signencryptfileswizard.cpp:369
 #, fuzzy, kde-format
 #| msgid "The encrypted file."
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP encrypted file"
 msgstr "Šifrovaný súbor."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:377
+#: src/crypto/gui/signencryptfileswizard.cpp:376
 #, fuzzy, kde-format
 #| msgid "The S/MIME encrypted file."
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME encrypted file."
 msgstr "S/MIME šifrovaný súbor."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:378
+#: src/crypto/gui/signencryptfileswizard.cpp:377
 #, fuzzy, kde-format
 #| msgid "The S/MIME encrypted file."
 msgctxt "Lineedit accessible name"
 msgid "S/MIME encrypted file"
 msgstr "S/MIME šifrovaný súbor."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:379
+#: src/crypto/gui/signencryptfileswizard.cpp:378
 #, fuzzy, kde-format
 #| msgid "The S/MIME signature."
 msgctxt "Name filter binary"
 msgid "S/MIME Files (*.p7m)"
 msgstr "S/MIME podpis."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:380
+#: src/crypto/gui/signencryptfileswizard.cpp:379
 #, fuzzy, kde-format
 #| msgid "The S/MIME signature."
 msgctxt "Name filter ASCII"
 msgid "S/MIME Files (*.p7m *.pem)"
 msgstr "S/MIME podpis."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:385
+#: src/crypto/gui/signencryptfileswizard.cpp:384
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "The resulting files are written to this directory."
 msgstr ""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:386
+#: src/crypto/gui/signencryptfileswizard.cpp:385
 #, fuzzy, kde-format
 #| msgid "Output directory."
 msgctxt "Lineedit accessible name"
 msgid "Output directory"
 msgstr "Výstupný adresár"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:448
+#: src/crypto/gui/signencryptfileswizard.cpp:447
 #, fuzzy, kde-format
 #| msgid "Sign"
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "Podpísať"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:451
+#: src/crypto/gui/signencryptfileswizard.cpp:450
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "Šifrovať"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:454
+#: src/crypto/gui/signencryptfileswizard.cpp:453
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign / Encrypt"
@@ -6153,18 +6153,18 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "Podpíš/zašifruj..."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:467
+#: src/crypto/gui/signencryptfileswizard.cpp:466
 #, kde-format
 msgid "Next"
 msgstr "Nasledujúci"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:536
+#: src/crypto/gui/signencryptfileswizard.cpp:535
 #, kde-format
 msgctxt "@title"
 msgid "Results"
 msgstr "Výsledky"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:537
+#: src/crypto/gui/signencryptfileswizard.cpp:536
 #, kde-format
 msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."

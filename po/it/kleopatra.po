@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 00:39+0000\n"
+"POT-Creation-Date: 2024-07-13 00:40+0000\n"
 "PO-Revision-Date: 2024-06-22 13:42+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -6455,7 +6455,7 @@ msgctxt "@title:column"
 msgid "Keygrip"
 msgstr "Keygrip"
 
-#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
+#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:463
 #: src/dialogs/lookupcertificatesdialog.cpp:238
 #: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:166
 #, kde-format
@@ -6701,7 +6701,7 @@ msgid "Status:"
 msgstr "Stato:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:193
+#: src/dialogs/certifywidget.cpp:175
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Impronta digitale:"
@@ -7040,7 +7040,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Certifica il gruppo di certificati %1"
 
-#: src/dialogs/certifywidget.cpp:176
+#: src/dialogs/certifywidget.cpp:158
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7052,18 +7052,18 @@ msgstr ""
 "<br><i>Nota: solo l'impronta digitale identifica chiaramente la chiave e il "
 "suo proprietario.</i>"
 
-#: src/dialogs/certifywidget.cpp:198
+#: src/dialogs/certifywidget.cpp:180
 #, kde-format
 msgid "Certify with:"
 msgstr "Certifica con:"
 
-#: src/dialogs/certifywidget.cpp:210
+#: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Cambia fiducia nel proprietario"
 
-#: src/dialogs/certifywidget.cpp:212
+#: src/dialogs/certifywidget.cpp:194
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7074,40 +7074,40 @@ msgstr ""
 "certificazione selezionata su Fiducia assoluta. Questo è ciò che di solito "
 "vuoi fare per le tue chiavi."
 
-#: src/dialogs/certifywidget.cpp:227
+#: src/dialogs/certifywidget.cpp:209
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "Non è possibile certificare uno o più certificati."
 
-#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:215 src/dialogs/useridswidget.cpp:126
 #, kde-format
 msgid "User IDs"
 msgstr "ID utente"
 
-#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
-#: src/dialogs/certifywidget.cpp:481
+#: src/dialogs/certifywidget.cpp:222 src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "ID utente"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Advanced"
 msgstr "Avanzate"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Show advanced options"
 msgstr "Mostra le opzioni avanzate"
 
-#: src/dialogs/certifywidget.cpp:250
+#: src/dialogs/certifywidget.cpp:232
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certifica in modo che tutti possano vederlo (esportabile)."
 
-#: src/dialogs/certifywidget.cpp:252
+#: src/dialogs/certifywidget.cpp:234
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7119,19 +7119,19 @@ msgstr ""
 "altri. Se desideri contrassegnare i certificati come certificati solo per te "
 "stesso, puoi deselezionarla."
 
-#: src/dialogs/certifywidget.cpp:261
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish in internal directory"
 msgstr "Pubblica sulla directory interna"
 
-#: src/dialogs/certifywidget.cpp:263
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
 msgstr "Pubblica su %1"
 
-#: src/dialogs/certifywidget.cpp:266
+#: src/dialogs/certifywidget.cpp:248
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7142,19 +7142,19 @@ msgstr ""
 "directory di certificati dopo aver completato correttamente la "
 "certificazione."
 
-#: src/dialogs/certifywidget.cpp:280
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Tags:"
 msgstr "Etichette:"
 
-#: src/dialogs/certifywidget.cpp:284
+#: src/dialogs/certifywidget.cpp:266
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 "Puoi usare questo per aggiungere ulteriori informazioni ad una "
 "certificazione."
 
-#: src/dialogs/certifywidget.cpp:285
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -7163,19 +7163,19 @@ msgstr ""
 "Le etichette create da chiunque con una fiducia di certificazione completa "
 "sono mostrate nella lista delle chiavi e possono essere ricercate."
 
-#: src/dialogs/certifywidget.cpp:300
+#: src/dialogs/certifywidget.cpp:282
 #, kde-format
 msgid "Expiration:"
 msgstr "Scadenza:"
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:289
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "Puoi utilizzare questo per impostare una data di scadenza per una "
 "certificazione."
 
-#: src/dialogs/certifywidget.cpp:308
+#: src/dialogs/certifywidget.cpp:290
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7186,18 +7186,18 @@ msgstr ""
 "certificazione per un certo periodo di tempo. Una volta che la data di "
 "scadenza è trascorsa, la tua certificazione non è più valida."
 
-#: src/dialogs/certifywidget.cpp:323
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Certifica come introduzione attendibile"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:306
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Puoi usarlo per certificare un'introduzione attendibile per un dominio."
 
-#: src/dialogs/certifywidget.cpp:325
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7209,12 +7209,12 @@ msgstr ""
 "certificati, cioè un'introduzione attendibile agisce come una sorta di CA "
 "intermedia per un dominio."
 
-#: src/dialogs/certifywidget.cpp:336
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Domain:"
 msgstr "Dominio:"
 
-#: src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -7227,24 +7227,24 @@ msgstr ""
 "<br><i>Nota: solo le impronte digitali identificano chiaramente la chiave e "
 "il suo proprietario.</i>"
 
-#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
+#: src/dialogs/certifywidget.cpp:479 src/dialogs/certifywidget.cpp:480
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "I certificati S/MIME non possono essere certificati."
 
-#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:482 src/dialogs/certifywidget.cpp:483
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "I certificati scaduti o revocati non possono essere certificati."
 
-#: src/dialogs/certifywidget.cpp:812
+#: src/dialogs/certifywidget.cpp:794
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Questa è la tua chiave?"
 
-#: src/dialogs/certifywidget.cpp:827
+#: src/dialogs/certifywidget.cpp:809
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -7252,13 +7252,13 @@ msgstr ""
 "<p>La modifica della fiducia per la chiave del certificato <b>%1</b> non è "
 "riuscita:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:830
+#: src/dialogs/certifywidget.cpp:812
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Modifica dell'attendibilità della certificazione non riuscita"
 
-#: src/dialogs/certifywidget.cpp:837
+#: src/dialogs/certifywidget.cpp:819
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Fiducia nel proprietario impostata correttamente."
@@ -12976,10 +12976,11 @@ msgstr "Sostituisci %1 con una nuova chiave"
 
 #: src/view/searchbar.cpp:137
 #, fuzzy, kde-format
-#| msgid "Search..."
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search..."
-msgstr "Cerca..."
+msgid "Enter search term"
+msgstr "Inserisci un termine di ricerca"
 
 #: src/view/searchbar.cpp:138
 #, kde-format
@@ -13023,10 +13024,11 @@ msgstr ""
 
 #: src/view/searchbar.cpp:197
 #, fuzzy, kde-format
-#| msgid "Search...<%1>"
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search...<%1>"
-msgstr "Cerca...<%1>"
+msgid "Enter search term <%1>"
+msgstr "Inserisci un termine di ricerca"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format
@@ -13073,7 +13075,7 @@ msgstr "Kleopatra supporta attualmente i seguenti tipi di schede:"
 msgid "Reload"
 msgstr "Ricarica"
 
-#: src/view/smartcardswidget.cpp:172
+#: src/view/smartcardswidget.cpp:180
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -13081,20 +13083,20 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardswidget.cpp:177
+#: src/view/smartcardswidget.cpp:185
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/smartcardswidget.cpp:236
+#: src/view/smartcardswidget.cpp:246
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action"
 msgid "Reload"
 msgstr "Ricarica"
 
-#: src/view/smartcardswidget.cpp:237
+#: src/view/smartcardswidget.cpp:247
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Reload smart cards"
@@ -13308,6 +13310,18 @@ msgid ""
 msgstr ""
 "Importa il certificato da un file.<nl/>Per importare da un server delle "
 "chiavi pubblico usa invece <interface>Cerca sul server</interface>."
+
+#, fuzzy
+#~| msgid "Search..."
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search..."
+#~ msgstr "Cerca..."
+
+#, fuzzy
+#~| msgid "Search...<%1>"
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search...<%1>"
+#~ msgstr "Cerca...<%1>"
 
 #~ msgctxt "@label:textbox"
 #~ msgid "Serial number:"

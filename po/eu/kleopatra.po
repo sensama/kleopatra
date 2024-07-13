@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 00:39+0000\n"
+"POT-Creation-Date: 2024-07-13 00:40+0000\n"
 "PO-Revision-Date: 2024-05-24 22:50+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -6440,7 +6440,7 @@ msgctxt "@title:column"
 msgid "Keygrip"
 msgstr "Gako-kontrola"
 
-#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
+#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:463
 #: src/dialogs/lookupcertificatesdialog.cpp:238
 #: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:166
 #, kde-format
@@ -6688,7 +6688,7 @@ msgid "Status:"
 msgstr "Egoera:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:193
+#: src/dialogs/certifywidget.cpp:175
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Hatz-marka:"
@@ -7039,7 +7039,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Ziurtatu %1 ziurtagiri-taldea"
 
-#: src/dialogs/certifywidget.cpp:176
+#: src/dialogs/certifywidget.cpp:158
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7050,18 +7050,18 @@ msgstr ""
 "aukeratu haiek ziurtatzeko erabili nahi duzun gakoa.<br><i>Oharra: hatz-"
 "markak bakarrik identifikatzen ditu argi eta garbi gakoa eta haren jabea.</i>"
 
-#: src/dialogs/certifywidget.cpp:198
+#: src/dialogs/certifywidget.cpp:180
 #, kde-format
 msgid "Certify with:"
 msgstr "Ziurtatu honekin:"
 
-#: src/dialogs/certifywidget.cpp:210
+#: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Ezarri jabearekiko konfiantza"
 
-#: src/dialogs/certifywidget.cpp:212
+#: src/dialogs/certifywidget.cpp:194
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7071,40 +7071,40 @@ msgstr ""
 "Egin klik, ziurtapen gakoaren konfiantza maila muturrekora ezartzeko. Hori "
 "da zure gako propioetarako normalean egin nahi duzuna."
 
-#: src/dialogs/certifywidget.cpp:227
+#: src/dialogs/certifywidget.cpp:209
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "Ziurtagiri bat edo gehiago ezin dira ziurtatu."
 
-#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:215 src/dialogs/useridswidget.cpp:126
 #, kde-format
 msgid "User IDs"
 msgstr "Erabiltzaile IDak"
 
-#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
-#: src/dialogs/certifywidget.cpp:481
+#: src/dialogs/certifywidget.cpp:222 src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Erabiltzaile ID"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Advanced"
 msgstr "Aurreratua"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Show advanced options"
 msgstr "Erakutsi aukera aurreratuak"
 
-#: src/dialogs/certifywidget.cpp:250
+#: src/dialogs/certifywidget.cpp:232
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Ziurtatu denek ikus dezaten (esportagarria)"
 
-#: src/dialogs/certifywidget.cpp:252
+#: src/dialogs/certifywidget.cpp:234
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7116,19 +7116,19 @@ msgstr ""
 "Ziurtagiriak zuretzako ziurtatu gisa bakarrik markatu nahi badituzu, markatu "
 "gabe utz dezakezu."
 
-#: src/dialogs/certifywidget.cpp:261
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish in internal directory"
 msgstr "Argitaratu barneko direktorioan"
 
-#: src/dialogs/certifywidget.cpp:263
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
 msgstr "Argitaratu %1(e)ra"
 
-#: src/dialogs/certifywidget.cpp:266
+#: src/dialogs/certifywidget.cpp:248
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7138,17 +7138,17 @@ msgstr ""
 "Markatu aukera hau, ziurtapen arrakastatsuaren ondoren, zure ziurtapenak "
 "ziurtapen-direktorio batera zama-igo nahi badituzu."
 
-#: src/dialogs/certifywidget.cpp:280
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Tags:"
 msgstr "Etiketak:"
 
-#: src/dialogs/certifywidget.cpp:284
+#: src/dialogs/certifywidget.cpp:266
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Hau, ziurtagiri bati informazio gehigarria gehitzeko erabil dezakezu."
 
-#: src/dialogs/certifywidget.cpp:285
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -7157,17 +7157,17 @@ msgstr ""
 "Ziurtapenerako konfiantza osoa duen edonork sortutako etiketakgako-zerrendan "
 "erakutsi eta bila daitezke."
 
-#: src/dialogs/certifywidget.cpp:300
+#: src/dialogs/certifywidget.cpp:282
 #, kde-format
 msgid "Expiration:"
 msgstr "Iraungitzea:"
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:289
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Hau, ziurtagiri baten iraungitze-data ezartzeko erabil dezakezu."
 
-#: src/dialogs/certifywidget.cpp:308
+#: src/dialogs/certifywidget.cpp:290
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7178,18 +7178,18 @@ msgstr ""
 "jakin batera muga dezakezu. Behin iraungitze data igarota, zure ziurtapenak "
 "ez du balioko."
 
-#: src/dialogs/certifywidget.cpp:323
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Ziurtatu konfiantzazko aurkezle gisa"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:306
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Hau erabil dezakezu domeinu baterako konfiantzazko aurkezle bat ziurtatzeko."
 
-#: src/dialogs/certifywidget.cpp:325
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7200,12 +7200,12 @@ msgstr ""
 "helbideak dituzten ziurtagiri guztiak ziurtatu gisa hartuko dira, adib. "
 "konfiantzadun aurkezle batek domeinurako tarteko CA antzeko gisa jokatzen du."
 
-#: src/dialogs/certifywidget.cpp:336
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Domain:"
 msgstr "Domeinua:"
 
-#: src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -7218,24 +7218,24 @@ msgstr ""
 "<br><i>Oharra: Hatz-markak bakarrik identifikatzen dituzte argi eta garbi "
 "ziurtagiria eta haren jabea.</i>"
 
-#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
+#: src/dialogs/certifywidget.cpp:479 src/dialogs/certifywidget.cpp:480
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "S/MIME ziurtagiriak ezin dira ziurtatu."
 
-#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:482 src/dialogs/certifywidget.cpp:483
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "Iraungitako edo indargabetutako ziurtagiriak ezin dira ziurtatu."
 
-#: src/dialogs/certifywidget.cpp:812
+#: src/dialogs/certifywidget.cpp:794
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Hori zure gako propioa da?"
 
-#: src/dialogs/certifywidget.cpp:827
+#: src/dialogs/certifywidget.cpp:809
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -7243,13 +7243,13 @@ msgstr ""
 "<p><b>%1</b> gakoaren ziurtapen konfiantza aldatzea huts egin du:</p><p>%2</"
 "p>"
 
-#: src/dialogs/certifywidget.cpp:830
+#: src/dialogs/certifywidget.cpp:812
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Ziurtapenaren konfiantza aldatzea huts egin du"
 
-#: src/dialogs/certifywidget.cpp:837
+#: src/dialogs/certifywidget.cpp:819
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Jabearen konfiantza ondo ezarri da."
@@ -12993,10 +12993,11 @@ msgstr "Ordeztu %1 gako berriarekin"
 
 #: src/view/searchbar.cpp:137
 #, fuzzy, kde-format
-#| msgid "Search..."
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search..."
-msgstr "Bilatu..."
+msgid "Enter search term"
+msgstr "Sartu bilatzeko terminoa"
 
 #: src/view/searchbar.cpp:138
 #, kde-format
@@ -13039,10 +13040,11 @@ msgstr ""
 
 #: src/view/searchbar.cpp:197
 #, fuzzy, kde-format
-#| msgid "Search...<%1>"
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search...<%1>"
-msgstr "Bilatu...<%1>"
+msgid "Enter search term <%1>"
+msgstr "Sartu bilatzeko terminoa"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format
@@ -13089,7 +13091,7 @@ msgstr "Kleopatrak ondoko txartel motak onartzen ditu:"
 msgid "Reload"
 msgstr "Birzamatu"
 
-#: src/view/smartcardswidget.cpp:172
+#: src/view/smartcardswidget.cpp:180
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -13097,20 +13099,20 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardswidget.cpp:177
+#: src/view/smartcardswidget.cpp:185
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/smartcardswidget.cpp:236
+#: src/view/smartcardswidget.cpp:246
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action"
 msgid "Reload"
 msgstr "Birzamatu"
 
-#: src/view/smartcardswidget.cpp:237
+#: src/view/smartcardswidget.cpp:247
 #, fuzzy, kde-format
 #| msgid "smart card"
 msgctxt "@info:tooltip"
@@ -13324,6 +13326,18 @@ msgid ""
 msgstr ""
 "Inportatu ziurtagiria fitxategi batetik.<nl/>Gako-zerbitzari publiko batetik "
 "inportatzeko, berriz, erabili <interface>Bilatu zerbitzarian</interface>."
+
+#, fuzzy
+#~| msgid "Search..."
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search..."
+#~ msgstr "Bilatu..."
+
+#, fuzzy
+#~| msgid "Search...<%1>"
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search...<%1>"
+#~ msgstr "Bilatu...<%1>"
 
 #, fuzzy
 #~| msgid "Serial number:"

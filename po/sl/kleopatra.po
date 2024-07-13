@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 00:39+0000\n"
+"POT-Creation-Date: 2024-07-13 00:40+0000\n"
 "PO-Revision-Date: 2024-07-06 07:04+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -6453,7 +6453,7 @@ msgctxt "@title:column"
 msgid "Keygrip"
 msgstr "Držalo ključa"
 
-#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
+#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:463
 #: src/dialogs/lookupcertificatesdialog.cpp:238
 #: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:166
 #, kde-format
@@ -6698,7 +6698,7 @@ msgid "Status:"
 msgstr "Stanje:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:193
+#: src/dialogs/certifywidget.cpp:175
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Prstni odtis:"
@@ -7039,7 +7039,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Potrdi grupo potrdil %1"
 
-#: src/dialogs/certifywidget.cpp:176
+#: src/dialogs/certifywidget.cpp:158
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7051,18 +7051,18 @@ msgstr ""
 "določilnike.<br><i>Opomba: Samo prstni odtis jasno identificira ključ in "
 "njegovega lastnika.</i>"
 
-#: src/dialogs/certifywidget.cpp:198
+#: src/dialogs/certifywidget.cpp:180
 #, kde-format
 msgid "Certify with:"
 msgstr "Potrdi z:"
 
-#: src/dialogs/certifywidget.cpp:210
+#: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Nastavi zaupanje lastnika"
 
-#: src/dialogs/certifywidget.cpp:212
+#: src/dialogs/certifywidget.cpp:194
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7072,40 +7072,40 @@ msgstr ""
 "Kliknite, da nastavite raven zaupanja izbranega certifikacijskega ključa na "
 "brezpogojno zaupanje. To običajno želite narediti za lastne ključe."
 
-#: src/dialogs/certifywidget.cpp:227
+#: src/dialogs/certifywidget.cpp:209
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "Eno ali več potrdil ni mogoče potrditi."
 
-#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:215 src/dialogs/useridswidget.cpp:126
 #, kde-format
 msgid "User IDs"
 msgstr "Uporabniški določilnik"
 
-#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
-#: src/dialogs/certifywidget.cpp:481
+#: src/dialogs/certifywidget.cpp:222 src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Uporabniški določilnik"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Advanced"
 msgstr "Napredno"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Show advanced options"
 msgstr "Prikaži napredne možnosti"
 
-#: src/dialogs/certifywidget.cpp:250
+#: src/dialogs/certifywidget.cpp:232
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Potrdi tako, da je vidno vsem (je moč izvoziti)"
 
-#: src/dialogs/certifywidget.cpp:252
+#: src/dialogs/certifywidget.cpp:234
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7116,19 +7116,19 @@ msgstr ""
 "Označite to možnost, če želite svoja potrdila deliti z drugimi. Če želite "
 "potrdila samo označiti kot certificirane zase, jih lahko počistite."
 
-#: src/dialogs/certifywidget.cpp:261
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish in internal directory"
 msgstr "Objavi v internem imeniku"
 
-#: src/dialogs/certifywidget.cpp:263
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
 msgstr "Objavi na %1"
 
-#: src/dialogs/certifywidget.cpp:266
+#: src/dialogs/certifywidget.cpp:248
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7138,17 +7138,17 @@ msgstr ""
 "Označite to možnost, če želite po uspešnem potrjevanju prenesti svoja "
 "potrdila v imenik potrdil."
 
-#: src/dialogs/certifywidget.cpp:280
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Tags:"
 msgstr "Značke:"
 
-#: src/dialogs/certifywidget.cpp:284
+#: src/dialogs/certifywidget.cpp:266
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "To lahko uporabite za dodajanje dodatnih informacij potrjevanju."
 
-#: src/dialogs/certifywidget.cpp:285
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -7157,17 +7157,17 @@ msgstr ""
 "Oznake, ki jih je ustvaril vsak, ki ima popolno zaupanje v certifikat, so "
 "prikazane v seznamu ključev in jih je mogoče preiskovati."
 
-#: src/dialogs/certifywidget.cpp:300
+#: src/dialogs/certifywidget.cpp:282
 #, kde-format
 msgid "Expiration:"
 msgstr "Pretečeni rok:"
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:289
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Lahko uporabite to nastavitev datuma poteka potrdila."
 
-#: src/dialogs/certifywidget.cpp:308
+#: src/dialogs/certifywidget.cpp:290
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7177,18 +7177,18 @@ msgstr ""
 "Z nastavitvijo datuma poteka omejite veljavnost vašega potrdila na določen "
 "čas. Ko je datum poteka preteče, vaše potrdilo ni več veljavno."
 
-#: src/dialogs/certifywidget.cpp:323
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Potrdi kot zaupanja vreden uvajalec"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:306
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Lahko uporabite to za potrjevanje zaupanja vrednega uvajalca za domeno."
 
-#: src/dialogs/certifywidget.cpp:325
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7199,12 +7199,12 @@ msgstr ""
 "zaupanja vrednega uvajalca, smatramo kot potrjena, kar pomeni, da zaupanja "
 "vreden uvajalec deluje kot nekakšen vmesni potrjevalni agent za domeno."
 
-#: src/dialogs/certifywidget.cpp:336
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Domain:"
 msgstr "Domena:"
 
-#: src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -7217,36 +7217,36 @@ msgstr ""
 "določilnike.<br><i>Opomba: Samo prstni odtis jasno identificira ključ in "
 "njegovega lastnika.</i>"
 
-#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
+#: src/dialogs/certifywidget.cpp:479 src/dialogs/certifywidget.cpp:480
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "Potrdila S/MIME ni mogoče potrditi."
 
-#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:482 src/dialogs/certifywidget.cpp:483
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr "Poteklih ali preklicanih potrdil ni mogoče potrditi."
 
-#: src/dialogs/certifywidget.cpp:812
+#: src/dialogs/certifywidget.cpp:794
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Ali je to vaš lastni ključ?"
 
-#: src/dialogs/certifywidget.cpp:827
+#: src/dialogs/certifywidget.cpp:809
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr "<p>Sprememba zaupanja v ključ za <b>%1</b> ni uspela:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:830
+#: src/dialogs/certifywidget.cpp:812
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Sprememba zaupanja v potrdilo ni uspela"
 
-#: src/dialogs/certifywidget.cpp:837
+#: src/dialogs/certifywidget.cpp:819
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Zaupanje lastnika je bilo uspešno nastavljeno."
@@ -12921,10 +12921,12 @@ msgid "Replace %1 with new key"
 msgstr "Zamenjaj %1 z novim ključem"
 
 #: src/view/searchbar.cpp:137
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search..."
-msgstr "Poišči…"
+msgid "Enter search term"
+msgstr "Vnesite iskalni niz"
 
 #: src/view/searchbar.cpp:138
 #, kde-format
@@ -12966,10 +12968,12 @@ msgstr ""
 "pripadajo."
 
 #: src/view/searchbar.cpp:197
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search...<%1>"
-msgstr "Poišči …<%1>"
+msgid "Enter search term <%1>"
+msgstr "Vnesite iskalni niz"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format
@@ -13016,7 +13020,7 @@ msgstr "Kleopatra trenutno podpira naslednje vrste kartic:"
 msgid "Reload"
 msgstr "Znova naloži"
 
-#: src/view/smartcardswidget.cpp:172
+#: src/view/smartcardswidget.cpp:180
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -13024,19 +13028,19 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardswidget.cpp:177
+#: src/view/smartcardswidget.cpp:185
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/smartcardswidget.cpp:236
+#: src/view/smartcardswidget.cpp:246
 #, kde-format
 msgctxt "@action"
 msgid "Reload"
 msgstr "Znova naloži"
 
-#: src/view/smartcardswidget.cpp:237
+#: src/view/smartcardswidget.cpp:247
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Reload smart cards"
@@ -13247,6 +13251,14 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search..."
+#~ msgstr "Poišči…"
+
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search...<%1>"
+#~ msgstr "Poišči …<%1>"
 
 #~ msgctxt "@label:textbox"
 #~ msgid "Serial number:"

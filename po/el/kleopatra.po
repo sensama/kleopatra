@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 00:39+0000\n"
+"POT-Creation-Date: 2024-07-13 00:40+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -6633,7 +6633,7 @@ msgctxt "@title:column"
 msgid "Keygrip"
 msgstr ""
 
-#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
+#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:463
 #: src/dialogs/lookupcertificatesdialog.cpp:238
 #: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:166
 #, fuzzy, kde-format
@@ -6891,7 +6891,7 @@ msgid "Status:"
 msgstr "Κατάσταση"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:193
+#: src/dialogs/certifywidget.cpp:175
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Αποτύπωμα:"
@@ -7265,7 +7265,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Πιστοποίηση πιστοποιητικού: %1"
 
-#: src/dialogs/certifywidget.cpp:176
+#: src/dialogs/certifywidget.cpp:158
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7277,18 +7277,18 @@ msgstr ""
 "πιστοποιήσετε τα αναγνωριστικά χρήστη.<br><i>Σημείωση: Μόνο το δακτυλικό "
 "αποτύπωμα ξεκάθαρα ταυτοποιεί το κλειδί και τον ιδιοκτήτη του.</i>"
 
-#: src/dialogs/certifywidget.cpp:198
+#: src/dialogs/certifywidget.cpp:180
 #, kde-format
 msgid "Certify with:"
 msgstr "Πιστοποίηση με:"
 
-#: src/dialogs/certifywidget.cpp:210
+#: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Ρύθμιση εμπιστοσύνης κατόχου"
 
-#: src/dialogs/certifywidget.cpp:212
+#: src/dialogs/certifywidget.cpp:194
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7299,7 +7299,7 @@ msgstr ""
 "πιστοποίησης στην απόλυτη εμπιστοσύνη. Αυτό είναι που θέλετε συνήθως να "
 "κάνετε για τα δικά σας κλειδιά."
 
-#: src/dialogs/certifywidget.cpp:227
+#: src/dialogs/certifywidget.cpp:209
 #, fuzzy, kde-format
 #| msgid "In order to mark the certificate as valid it needs to be certified."
 msgctxt "@info"
@@ -7307,35 +7307,35 @@ msgid "One or more certificates cannot be certified."
 msgstr ""
 "Για να σημειωθεί το πιστοποιητικό ως έγκυρο χρειάζεται να πιστοποιηθεί."
 
-#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:215 src/dialogs/useridswidget.cpp:126
 #, kde-format
 msgid "User IDs"
 msgstr "Αναγνωριστικά χρηστών"
 
-#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
-#: src/dialogs/certifywidget.cpp:481
+#: src/dialogs/certifywidget.cpp:222 src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:463
 #, fuzzy, kde-format
 #| msgid "User IDs"
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Αναγνωριστικά χρηστών"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Advanced"
 msgstr "Προχωρημένο"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Show advanced options"
 msgstr "Εμφάνιση προχωρημένων ρυθμίσεων"
 
-#: src/dialogs/certifywidget.cpp:250
+#: src/dialogs/certifywidget.cpp:232
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Πιστοποίηση ορατή για όλους (εξαγώγιμη)"
 
-#: src/dialogs/certifywidget.cpp:252
+#: src/dialogs/certifywidget.cpp:234
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7344,13 +7344,13 @@ msgid ""
 "uncheck it."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:261
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish in internal directory"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:263
+#: src/dialogs/certifywidget.cpp:245
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Publish Revocation"
@@ -7359,7 +7359,7 @@ msgctxt "@label:checkbox"
 msgid "Publish to %1"
 msgstr "Δημοσίευση ανάκλησης"
 
-#: src/dialogs/certifywidget.cpp:266
+#: src/dialogs/certifywidget.cpp:248
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7367,19 +7367,19 @@ msgid ""
 "directory after successful certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:280
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Tags:"
 msgstr "Ετικέτες:"
 
-#: src/dialogs/certifywidget.cpp:284
+#: src/dialogs/certifywidget.cpp:266
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 "Μπορείτε να το χρησιμοποιήσετε αυτό για να προσθέσετε πληροφορία σε ένα "
 "πιστοποιητικό."
 
-#: src/dialogs/certifywidget.cpp:285
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -7388,19 +7388,19 @@ msgstr ""
 "Οι ετικέτες που δημιουργούνται από οποιονδήποτε με πλήρη εμπιστοσύνη "
 "πιστοποίησης φαίνονται στη λίστα κλειδιών και μπορούν να αναζητηθούν."
 
-#: src/dialogs/certifywidget.cpp:300
+#: src/dialogs/certifywidget.cpp:282
 #, kde-format
 msgid "Expiration:"
 msgstr "Λήξη:"
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:289
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "Μπορείτε να το χρησιμοποιήσετε αυτό για να ρυθμίσετε μια ημερομηνία λήξης "
 "για ένα πιστοποιητικό."
 
-#: src/dialogs/certifywidget.cpp:308
+#: src/dialogs/certifywidget.cpp:290
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7411,19 +7411,19 @@ msgstr ""
 "πιστοποίησης σε ένα ορισμένο χρονικό διάστημα. Όταν περάσει η ημερομηνία "
 "λήξης, η πιστοποίηση δεν είναι πλέον έγκυρη."
 
-#: src/dialogs/certifywidget.cpp:323
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Πιστοποίηση ως έμπιστος ενδιάμεσος"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:306
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Μπορείτε να το χρησιμοποιήσετε αυτό για να πιστοποιήσετε έναν έμπιστο "
 "ενδιάμεσο για έναν τομέα."
 
-#: src/dialogs/certifywidget.cpp:325
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7435,12 +7435,12 @@ msgstr ""
 "πιστοποιημένα, δηλ. ένας έμπιστος ενδιάμεσος ενεργεί ως ένα είδος ενδιάμεσου "
 "της αρχής πιστοποίησης (CA) για έναν τομέα."
 
-#: src/dialogs/certifywidget.cpp:336
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Domain:"
 msgstr "Τομέας:"
 
-#: src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:431
 #, fuzzy, kde-format
 #| msgid ""
 #| "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7457,7 +7457,7 @@ msgstr ""
 "πιστοποιήσετε τα αναγνωριστικά χρήστη.<br><i>Σημείωση: Μόνο το δακτυλικό "
 "αποτύπωμα ξεκάθαρα ταυτοποιεί το κλειδί και τον ιδιοκτήτη του.</i>"
 
-#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
+#: src/dialogs/certifywidget.cpp:479 src/dialogs/certifywidget.cpp:480
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for signing."
@@ -7465,7 +7465,7 @@ msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "Το πιστοποιητικό αυτό δεν μπορεί να χρησιμοποιηθεί για υπογραφή."
 
-#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:482 src/dialogs/certifywidget.cpp:483
 #, fuzzy, kde-format
 #| msgid "In order to mark the certificate as valid it needs to be certified."
 msgctxt "@info:tooltip"
@@ -7473,12 +7473,12 @@ msgid "Expired or revoked certificates cannot be certified."
 msgstr ""
 "Για να σημειωθεί το πιστοποιητικό ως έγκυρο χρειάζεται να πιστοποιηθεί."
 
-#: src/dialogs/certifywidget.cpp:812
+#: src/dialogs/certifywidget.cpp:794
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Αυτό το κλειδί είναι δικό σας;"
 
-#: src/dialogs/certifywidget.cpp:827
+#: src/dialogs/certifywidget.cpp:809
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -7486,14 +7486,14 @@ msgstr ""
 "<p>Η αλλαγή του επιπέδου εμπιστοσύνης πιστοποίησης του κλειδιού ήταν <b>%1</"
 "b>ανεπιτυχής:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:830
+#: src/dialogs/certifywidget.cpp:812
 #, fuzzy, kde-format
 #| msgid "Certification Trust Change Failed"
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Αποτυχία τροποποίησης της εμπιστοσύνης πιστοποιητικού"
 
-#: src/dialogs/certifywidget.cpp:837
+#: src/dialogs/certifywidget.cpp:819
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Η εμπιστοσύνη του κατόχου ρυθμίστηκε επιτυχώς."
@@ -13356,10 +13356,11 @@ msgstr "Αντικατάσταση του %1 με νέο κλειδί"
 
 #: src/view/searchbar.cpp:137
 #, fuzzy, kde-format
-#| msgid "Search..."
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search..."
-msgstr "Αναζήτηση..."
+msgid "Enter search term"
+msgstr "Εισάγετε όρο αναζήτησης"
 
 #: src/view/searchbar.cpp:138
 #, kde-format
@@ -13404,10 +13405,11 @@ msgstr ""
 
 #: src/view/searchbar.cpp:197
 #, fuzzy, kde-format
-#| msgid "Search...<%1>"
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search...<%1>"
-msgstr "Αναζήτηση...%1"
+msgid "Enter search term <%1>"
+msgstr "Εισάγετε όρο αναζήτησης"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format
@@ -13454,7 +13456,7 @@ msgstr "Η Kleopatra προς το παρόν υποστηρίζει τους α
 msgid "Reload"
 msgstr "Επαναφόρτωση"
 
-#: src/view/smartcardswidget.cpp:172
+#: src/view/smartcardswidget.cpp:180
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -13462,20 +13464,20 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardswidget.cpp:177
+#: src/view/smartcardswidget.cpp:185
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/smartcardswidget.cpp:236
+#: src/view/smartcardswidget.cpp:246
 #, fuzzy, kde-format
 #| msgid "Reload"
 msgctxt "@action"
 msgid "Reload"
 msgstr "Επαναφόρτωση"
 
-#: src/view/smartcardswidget.cpp:237
+#: src/view/smartcardswidget.cpp:247
 #, fuzzy, kde-format
 #| msgid "smart card"
 msgctxt "@info:tooltip"
@@ -13691,6 +13693,18 @@ msgstr ""
 "Εισαγωγή πιστοποιητικού από αρχείο.<nl/>Για να εισάγετε από ένα δημόσιο "
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
+
+#, fuzzy
+#~| msgid "Search..."
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search..."
+#~ msgstr "Αναζήτηση..."
+
+#, fuzzy
+#~| msgid "Search...<%1>"
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search...<%1>"
+#~ msgstr "Αναζήτηση...%1"
 
 #, fuzzy
 #~| msgid "Serial number:"

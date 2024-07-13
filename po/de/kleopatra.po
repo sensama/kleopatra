@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-12 00:39+0000\n"
-"PO-Revision-Date: 2024-07-01 17:19+0200\n"
+"POT-Creation-Date: 2024-07-13 00:40+0000\n"
+"PO-Revision-Date: 2024-07-05 12:25+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
 "Language: de\n"
@@ -6542,7 +6542,7 @@ msgctxt "@title:column"
 msgid "Keygrip"
 msgstr "Keygrip"
 
-#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:481
+#: src/dialogs/cardinfotab.cpp:74 src/dialogs/certifywidget.cpp:463
 #: src/dialogs/lookupcertificatesdialog.cpp:238
 #: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:166
 #, kde-format
@@ -6788,7 +6788,7 @@ msgid "Status:"
 msgstr "Status:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
-#: src/dialogs/certifywidget.cpp:193
+#: src/dialogs/certifywidget.cpp:175
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Fingerabdruck:"
@@ -7127,7 +7127,7 @@ msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
 msgstr "Beglaubigung Zertifikatsgruppe %1"
 
-#: src/dialogs/certifywidget.cpp:176
+#: src/dialogs/certifywidget.cpp:158
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -7139,18 +7139,18 @@ msgstr ""
 "zertifizieren möchten.<br><i>Hinweis: Nur der Fingerabdruck identifiziert "
 "den Schlüssel und seinen Besitzer eindeutig.</i>"
 
-#: src/dialogs/certifywidget.cpp:198
+#: src/dialogs/certifywidget.cpp:180
 #, kde-format
 msgid "Certify with:"
 msgstr "Beglaubigen mit:"
 
-#: src/dialogs/certifywidget.cpp:210
+#: src/dialogs/certifywidget.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Vertrauen in den Eigentümer einrichten"
 
-#: src/dialogs/certifywidget.cpp:212
+#: src/dialogs/certifywidget.cpp:194
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7161,40 +7161,40 @@ msgstr ""
 "Beglaubigungszertifikats auf unbedingtes Vertrauen zu setzen. Dies sollten "
 "Sie normalerweise für Ihre eigenen Schlüssel tun."
 
-#: src/dialogs/certifywidget.cpp:227
+#: src/dialogs/certifywidget.cpp:209
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "Ein oder mehrere Zertifikate können nicht beglaubigt werden."
 
-#: src/dialogs/certifywidget.cpp:233 src/dialogs/useridswidget.cpp:126
+#: src/dialogs/certifywidget.cpp:215 src/dialogs/useridswidget.cpp:126
 #, kde-format
 msgid "User IDs"
 msgstr "Benutzerkennungen"
 
-#: src/dialogs/certifywidget.cpp:240 src/dialogs/certifywidget.cpp:467
-#: src/dialogs/certifywidget.cpp:481
+#: src/dialogs/certifywidget.cpp:222 src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
 msgstr "Benutzerkennung"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
-#: src/dialogs/certifywidget.cpp:244
+#: src/dialogs/certifywidget.cpp:226
 #, kde-format
 msgid "Show advanced options"
 msgstr "Erweiterte Einstellungen anzeigen"
 
-#: src/dialogs/certifywidget.cpp:250
+#: src/dialogs/certifywidget.cpp:232
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Für alle sichtbar beglaubigen (Exportierbar)"
 
-#: src/dialogs/certifywidget.cpp:252
+#: src/dialogs/certifywidget.cpp:234
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7206,19 +7206,19 @@ msgstr ""
 "möchten. Wenn Sie Zertifikate nur für sich selbst beglaubigen möchten, "
 "können Sie diese Option deaktivieren."
 
-#: src/dialogs/certifywidget.cpp:261
+#: src/dialogs/certifywidget.cpp:243
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish in internal directory"
 msgstr "In internem Verzeichnis veröffentlichen"
 
-#: src/dialogs/certifywidget.cpp:263
+#: src/dialogs/certifywidget.cpp:245
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Publish to %1"
 msgstr "Veröffentlichen auf %1"
 
-#: src/dialogs/certifywidget.cpp:266
+#: src/dialogs/certifywidget.cpp:248
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7229,19 +7229,19 @@ msgstr ""
 "erfolgreicher Beglaubigung in ein Zertifikatsverzeichnis (bzw. auf einen "
 "Schlüsselserver) hochladen möchten."
 
-#: src/dialogs/certifywidget.cpp:280
+#: src/dialogs/certifywidget.cpp:262
 #, kde-format
 msgid "Tags:"
 msgstr "Tags:"
 
-#: src/dialogs/certifywidget.cpp:284
+#: src/dialogs/certifywidget.cpp:266
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 "Dies kann genutzt werden, um einer Beglaubigung zusätzliche Informationen "
 "hinzuzufügen."
 
-#: src/dialogs/certifywidget.cpp:285
+#: src/dialogs/certifywidget.cpp:267
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -7250,19 +7250,19 @@ msgstr ""
 "Tags, welche von Schlüsseln mit vollem Beglaubigungsvertrauen erstellt "
 "wurden, werden in der Schlüssel-Liste angezeigt und können durchsucht werden."
 
-#: src/dialogs/certifywidget.cpp:300
+#: src/dialogs/certifywidget.cpp:282
 #, kde-format
 msgid "Expiration:"
 msgstr "Ablaufdatum:"
 
-#: src/dialogs/certifywidget.cpp:307
+#: src/dialogs/certifywidget.cpp:289
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "Dies kann genutzt werden, um ein Ablaufdatum für die Beglaubigung "
 "festzulegen."
 
-#: src/dialogs/certifywidget.cpp:308
+#: src/dialogs/certifywidget.cpp:290
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -7273,19 +7273,19 @@ msgstr ""
 "Beglaubigung auf eine bestimmte Zeitspanne begrenzen. Ist das Ablaufdatum "
 "überschritten, ist Ihre Beglaubigung nicht mehr gültig."
 
-#: src/dialogs/certifywidget.cpp:323
+#: src/dialogs/certifywidget.cpp:305
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Als vertrauenswürdiger Vermittler beglaubigt"
 
-#: src/dialogs/certifywidget.cpp:324
+#: src/dialogs/certifywidget.cpp:306
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Sie können dies verwenden, um einen vertrauenswürdigen Vermittler für eine "
 "Domäne zu beglaubigen."
 
-#: src/dialogs/certifywidget.cpp:325
+#: src/dialogs/certifywidget.cpp:307
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -7297,12 +7297,12 @@ msgstr ""
 "behandelt, d. h. ein vertrauenswürdiger Vermittler fungiert als eine Art "
 "Zwischen-Beglaubigungsinstanz (CA) für eine Domäne."
 
-#: src/dialogs/certifywidget.cpp:336
+#: src/dialogs/certifywidget.cpp:318
 #, kde-format
 msgid "Domain:"
 msgstr "Domain:"
 
-#: src/dialogs/certifywidget.cpp:449
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -7315,25 +7315,25 @@ msgstr ""
 "zertifizieren möchten.<br><i>Hinweis: Nur die Fingerabdrücke identifizieren "
 "Zertifikate und ihre Besitzer eindeutig.</i>"
 
-#: src/dialogs/certifywidget.cpp:497 src/dialogs/certifywidget.cpp:498
+#: src/dialogs/certifywidget.cpp:479 src/dialogs/certifywidget.cpp:480
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
 msgstr "S/MIME Zertifikate können nicht beglaubigt werden."
 
-#: src/dialogs/certifywidget.cpp:500 src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:482 src/dialogs/certifywidget.cpp:483
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
 msgstr ""
 "Abgelaufene oder widerrufene Zertifikate können nicht beglaubigt werden."
 
-#: src/dialogs/certifywidget.cpp:812
+#: src/dialogs/certifywidget.cpp:794
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Ist das Ihr eigener Schlüssel?"
 
-#: src/dialogs/certifywidget.cpp:827
+#: src/dialogs/certifywidget.cpp:809
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -7341,13 +7341,13 @@ msgstr ""
 "<p>Das Ändern des Beglaubigungsvertrauens des Schlüssels <b>%1</b> ist "
 "fehlgeschlagen:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:830
+#: src/dialogs/certifywidget.cpp:812
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Trust Change Failed"
 msgstr "Fehler beim Ändern des Beglaubigungsvertrauens"
 
-#: src/dialogs/certifywidget.cpp:837
+#: src/dialogs/certifywidget.cpp:819
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Vertrauen in die Eigentümer erfolgreich eingerichtet."
@@ -13065,10 +13065,11 @@ msgstr "%1 mit neuem Schlüssel ersetzen"
 
 #: src/view/searchbar.cpp:137
 #, fuzzy, kde-format
-#| msgid "Search..."
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search..."
-msgstr "Suchen …"
+msgid "Enter search term"
+msgstr "Suchbegriff eingeben"
 
 #: src/view/searchbar.cpp:138
 #, kde-format
@@ -13111,10 +13112,11 @@ msgstr ""
 
 #: src/view/searchbar.cpp:197
 #, fuzzy, kde-format
-#| msgid "Search...<%1>"
+#| msgctxt "@info::placeholder"
+#| msgid "Enter search term"
 msgctxt "@info:placeholder"
-msgid "Search...<%1>"
-msgstr "Suchen …<%1>"
+msgid "Enter search term <%1>"
+msgstr "Suchbegriff eingeben"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format
@@ -13161,7 +13163,7 @@ msgstr "Kleopatra unterstützt aktuell die folgenden Kartentypen:"
 msgid "Reload"
 msgstr "Aktualisieren"
 
-#: src/view/smartcardswidget.cpp:172
+#: src/view/smartcardswidget.cpp:180
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -13169,19 +13171,19 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardswidget.cpp:177
+#: src/view/smartcardswidget.cpp:185
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/smartcardswidget.cpp:236
+#: src/view/smartcardswidget.cpp:246
 #, kde-format
 msgctxt "@action"
 msgid "Reload"
 msgstr "Aktualisieren"
 
-#: src/view/smartcardswidget.cpp:237
+#: src/view/smartcardswidget.cpp:247
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Reload smart cards"
@@ -13391,8 +13393,21 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-"Um ein Zertifikat von einem öffentlichen Schlüsselserver zu importieren, "
-"verwenden Sie stattdessen „Auf Server suchen“."
+"Ein Zertifikat oder einen geheimen Schlüssel aus einer Datei importieren.<nl/"
+">Um ein Zertifikat von einem öffentlichen Schlüsselserver zu importieren, "
+"bitte „Auf Server suchen“ verwenden."
+
+#, fuzzy
+#~| msgid "Search..."
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search..."
+#~ msgstr "Suchen …"
+
+#, fuzzy
+#~| msgid "Search...<%1>"
+#~ msgctxt "@info:placeholder"
+#~ msgid "Search...<%1>"
+#~ msgstr "Suchen …<%1>"
 
 #, fuzzy
 #~| msgid "Serial number:"

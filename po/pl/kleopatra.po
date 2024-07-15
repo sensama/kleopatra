@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1684595 $
+# Version: $Revision: 1684772 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
 # Mikolaj Machowski <mikmach@wp.pl>, 2004.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-13 00:40+0000\n"
-"PO-Revision-Date: 2024-06-16 10:46+0200\n"
+"PO-Revision-Date: 2024-07-14 12:56+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -150,23 +150,18 @@ msgid "(c) 2010-%1 The Kleopatra developers, g10 Code GmbH"
 msgstr "(c) 2010-%1 Programiści Kleopatry, g10 Code GmbH"
 
 #: src/commands/addadskcommand.cpp:106
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-#| "%2</p>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "<p>An error occurred while trying to add an ADSK to <b>%1</b>:</p><p>%2</p>"
 msgstr ""
-"<p>Wystąpił błąd podczas próby dodania nowego podklucza do <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>Wystąpił błąd podczas próby dodania nowego ADSK do <b>%1</b>:</p><p>%2</p>"
 
 #: src/commands/addadskcommand.cpp:114
-#, fuzzy, kde-format
-#| msgid "Subkey added successfully."
+#, kde-format
 msgctxt "@info"
 msgid "ADSK added successfully."
-msgstr "Pomyślnie dodano podklucz."
+msgstr "Pomyślnie dodano ADSK."
 
 #: src/commands/addadskcommand.cpp:128
 #, kde-format
@@ -177,17 +172,21 @@ msgid ""
 "want to add the ADSK specified in the GnuPG configuration to your "
 "certificate?"
 msgstr ""
+"Dodając ADSK do swojego certyfikatu, umożliwisz posiadaczowi ADSK "
+"odszyfrowywanie wszystkich nowych wiadomości, które zostaną zaszyfrowane "
+"twoim certyfikatem. Czy dodać ADSK określony w ustawieniach GnuPG do twojego "
+"certyfikatu?"
 
 #: src/commands/addadskcommand.cpp:130
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Add ADSK"
-msgstr ""
+msgstr "Dodaj ADSK"
 
 #: src/commands/addadskcommand.cpp:131
 #, kde-format
 msgid "Add ADSK"
-msgstr ""
+msgstr "Dodaj ADSK"
 
 #: src/commands/addsubkeycommand.cpp:168
 #, kde-format
@@ -3028,9 +3027,7 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp:405
 #: src/commands/refreshcertificatescommand.cpp:421
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was not found.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
@@ -5146,8 +5143,7 @@ msgid "Encryption succeeded."
 msgstr "Udane szyfrowanie."
 
 #: src/crypto/gui/certificatelineedit.cpp:290
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Podaj nazwę lub adres e-mail..."
@@ -5427,8 +5423,7 @@ msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>Odbiorcy zdefiniowani w ustawieniach GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
-#, fuzzy, kde-format
-#| msgid "Force decryption"
+#, kde-format
 msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Wymuś odszyfrowanie"
@@ -6076,11 +6071,10 @@ msgid "Unknown Recipient:"
 msgstr "Nieznany adresat:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:33
-#, fuzzy, kde-format
-#| msgid "Search"
+#, kde-format
 msgctxt "@action:button"
 msgid "Search"
-msgstr "Szukaj"
+msgstr "Poszukaj"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:36
 #, kde-format
@@ -7705,12 +7699,10 @@ msgid "Valid Until"
 msgstr "Ważny do"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:241
-#, fuzzy, kde-format
-#| msgctxt "@label:textbox"
-#| msgid "<h3>Protocol:</h3>"
+#, kde-format
 msgctxt "@title:column"
 msgid "Protocol"
-msgstr "<h3>Protokół:</h3>"
+msgstr "Protokół"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:242
 #: src/dialogs/subkeyswidget.cpp:165
@@ -7720,8 +7712,7 @@ msgid "Key ID"
 msgstr "ID klucza"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:243
-#, fuzzy, kde-format
-#| msgid "Origin"
+#, kde-format
 msgctxt "@title:column"
 msgid "Origin"
 msgstr "Pochodzenie"
@@ -7751,17 +7742,14 @@ msgstr "Wpisz adres pocztowy, aby poszukać odpowiadających mu certyfikatów."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:415
 #: src/dialogs/lookupcertificatesdialog.cpp:418
-#, fuzzy, kde-format
-#| msgid "LDAP URL"
+#, kde-format
 msgid "LDAP"
-msgstr "URL LDAP"
+msgstr "LDAP"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:420
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "OpenPGP Keyserver"
+#, kde-format
 msgid "Keyserver"
-msgstr "Otwórz serwer kluczy OpenPGP"
+msgstr "Serwer kluczy"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
 #, kde-format
@@ -8144,48 +8132,39 @@ msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(niewymagane) Ustawienie początkowego kodu PIN (SigG)"
 
 #: src/dialogs/smartcardwindow.cpp:55
-#, fuzzy, kde-format
-#| msgid "Smartcard Management"
+#, kde-format
 msgid "Smart Card Management"
-msgstr "Zarządzanie kartami inteligentymi"
+msgstr "Zarządzanie kartami inteligentnymi"
 
 #: src/dialogs/smartcardwindow.cpp:92 src/dialogs/smartcardwindow.cpp:114
-#, fuzzy, kde-format
-#| msgid "smart card"
+#, kde-format
 msgctxt "@info:status"
 msgid "Loading smart cards..."
-msgstr "karta inteligentna"
+msgstr "Wczytywanie kart inteligentnych..."
 
 #: src/dialogs/smartcardwindow.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "As in 'this secret key is stored on smart card <serial number>'"
-#| msgid "smart card %1"
+#, kde-format
 msgctxt "@info:status"
 msgid "Updating smart card %1..."
-msgstr "karta inteligentna %1"
+msgstr "Uaktualnianie karty inteligentnej %1..."
 
 #: src/dialogs/smartcardwindow.cpp:99
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid "Updating certificate..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Updating smart card..."
-msgstr "Uaktualnianie certyfikatu.."
+msgstr "Uaktualnianie karty inteligentnej..."
 
 #: src/dialogs/smartcardwindow.cpp:106 src/dialogs/smartcardwindow.cpp:118
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Reading certificates from smart card ..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Importing certificates from smart cards..."
-msgstr "Wczytywanie certyfikatów z karty inteligentnej..."
+msgstr "Importowanie certyfikatów z kart inteligentnych..."
 
 #: src/dialogs/smartcardwindow.cpp:130
-#, fuzzy, kde-format
-#| msgid "Manage Smartcards"
+#, kde-format
 msgctxt "@title:window"
 msgid "Manage Smart Cards"
-msgstr "Zarządzanie kartami inteligentnymi"
+msgstr "Zarządzaj kartami inteligentnymi"
 
 #: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
@@ -8257,7 +8236,7 @@ msgstr "Wyeksportuj podklucz poufny"
 #, kde-format
 msgctxt "@action:button"
 msgid "Add ADSK"
-msgstr ""
+msgstr "Dodaj ADSK"
 
 #: src/dialogs/subkeyswidget.cpp:188
 #, kde-format
@@ -8268,6 +8247,10 @@ msgid ""
 "decrypt all new messages that are encrypted for your certificate, if the "
 "client encrypting the message supports this functionality."
 msgstr ""
+"Dodaj ADSK określony w ustawieniach GnuPG do swojego certyfikatu. Dodając "
+"ADSK do swojego certyfikatu, umożliwisz posiadaczowi ADSK odszyfrowywanie "
+"wszystkich nowych wiadomości, które zostaną zaszyfrowane twoim certyfikatem, "
+"jeśli program szyfrujący wiadomości obsługuje tę możliwość."
 
 #: src/dialogs/subkeyswidget.cpp:200 src/dialogs/useridswidget.cpp:156
 #: src/dialogs/weboftrustwidget.cpp:137
@@ -11792,19 +11775,16 @@ msgstr ""
 "istniejący plik."
 
 #: src/utils/overwritedialog.cpp:250
-#, fuzzy, kde-format
-#| msgid "Appearance"
+#, kde-format
 msgctxt "@action:button"
 msgid "Append"
-msgstr "Wygląd"
+msgstr "Dołącz"
 
 #: src/utils/overwritedialog.cpp:251
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Overwrite the existing file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Append the new file to the existing file."
-msgstr "Zastąp istniejący plik."
+msgstr "Dodaj nowy plik do istniejącego pliku."
 
 #: src/utils/overwritedialog.cpp:256
 #, kde-format
@@ -12444,8 +12424,7 @@ msgid "Recipients"
 msgstr "Adresaci"
 
 #: src/view/padwidget.cpp:157
-#, fuzzy, kde-format
-#| msgid "Enter a message to encrypt or decrypt..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Wpisz wiadomość do zaszyfrowania lub odszyfrowania..."
@@ -12558,8 +12537,7 @@ msgid "Keys:"
 msgstr "Klucze:"
 
 #: src/view/pgpcardwidget.cpp:214
-#, fuzzy, kde-format
-#| msgid "Generate New Keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate New Keys"
 msgstr "Utwórz nowe klucze"
@@ -12599,8 +12577,7 @@ msgstr ""
 "ten musi składać się z co najmniej 6 znaków."
 
 #: src/view/pgpcardwidget.cpp:237
-#, fuzzy, kde-format
-#| msgid "Unblock Card"
+#, kde-format
 msgctxt "@action:button"
 msgid "Unblock Card"
 msgstr "Odblokuj kartę"
@@ -12614,8 +12591,7 @@ msgstr ""
 "administratora."
 
 #: src/view/pgpcardwidget.cpp:251
-#, fuzzy, kde-format
-#| msgid "Change Admin PIN"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change Admin PIN"
 msgstr "Zmień PIN administratora"
@@ -12915,9 +12891,7 @@ msgid "Replace %1 with new key"
 msgstr "Zastąp %1 nowym kluczem"
 
 #: src/view/searchbar.cpp:137
-#, fuzzy, kde-format
-#| msgctxt "@info::placeholder"
-#| msgid "Enter search term"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Wpisz wyrażenie do poszukania"
@@ -12963,12 +12937,10 @@ msgstr ""
 "podają."
 
 #: src/view/searchbar.cpp:197
-#, fuzzy, kde-format
-#| msgctxt "@info::placeholder"
-#| msgid "Enter search term"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"
-msgstr "Wpisz wyrażenie do poszukania"
+msgstr "Wpisz wyrażenie do poszukania <%1>"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format
@@ -13030,18 +13002,16 @@ msgid "%1 - %2"
 msgstr "%1 - %2"
 
 #: src/view/smartcardswidget.cpp:246
-#, fuzzy, kde-format
-#| msgid "Reload"
+#, kde-format
 msgctxt "@action"
 msgid "Reload"
 msgstr "Odśwież"
 
 #: src/view/smartcardswidget.cpp:247
-#, fuzzy, kde-format
-#| msgid "smart card"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Reload smart cards"
-msgstr "karta inteligentna"
+msgstr "Wczytaj ponownie karty inteligentne"
 
 #: src/view/smartcardwidget.cpp:30
 #, kde-format
@@ -13078,7 +13048,7 @@ msgstr "Karta PIV v%1"
 #, kde-format
 msgctxt "@label"
 msgid "Card type:"
-msgstr ""
+msgstr "Rodzaj karty:"
 
 #: src/view/smartcardwidget.cpp:81
 #, kde-format

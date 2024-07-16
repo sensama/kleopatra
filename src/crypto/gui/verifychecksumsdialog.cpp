@@ -14,6 +14,7 @@
 #ifndef QT_NO_DIRMODEL
 
 #include <Libkleo/SystemInfo>
+#include <Libkleo/TreeView>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -139,7 +140,7 @@ static int find_layout_item(const QBoxLayout &blay)
 struct BaseWidget {
     QSortFilterProxyModel proxy;
     QLabel label;
-    QTreeView view;
+    Kleo::TreeView view;
 
     BaseWidget(QFileSystemModel *model, QWidget *parent, QVBoxLayout *vlay)
         : proxy()

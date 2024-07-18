@@ -204,6 +204,8 @@ public:
         Success, //< a certificate or group is set
         None, //< entered text does not match any certificates or groups
         Ambiguous, //< entered text matches multiple certificates or groups
+        Revoked, //< the selected cert is revoked
+        Expired, //< the selected cert is expired
     };
     enum class CursorPositioning {
         MoveToEnd,
@@ -588,7 +590,13 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
                 mStatus = Status::None;
             }
         } else {
-            mStatus = Status::None;
+            if (!mUserId.isNull() && (mUserId.isRevoked() || mUserId.parent().isRevoked())) {
+                mStatus = Status::Revoked;
+            } else if (!mUserId.isNull() && mUserId.parent().isExpired()) {
+                mStatus = Status::Expired;
+            } else {
+                mStatus = Status::None;
+            }
         }
     }
     mKey = newKey;
@@ -635,6 +643,10 @@ QString CertificateLineEdit::Private::errorMessage() const
         return i18n("No matching certificates or groups found");
     case Status::Ambiguous:
         return i18n("Multiple matching certificates or groups found");
+    case Status::Expired:
+        return i18n("This certificate is expired");
+    case Status::Revoked:
+        return i18n("This certificate is revoked");
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
         Q_ASSERT(!"Invalid status");
@@ -665,6 +677,9 @@ QIcon CertificateLineEdit::Private::statusIcon() const
         } else {
             return QIcon::fromTheme(QStringLiteral("emblem-error"));
         }
+    case Status::Expired:
+    case Status::Revoked:
+        return QIcon::fromTheme(QStringLiteral("emblem-error"));
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
         Q_ASSERT(!"Invalid status");

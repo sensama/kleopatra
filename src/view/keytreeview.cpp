@@ -67,6 +67,9 @@ public:
             if (column == tagsColumn) {
                 Tags::enableTags();
             }
+            if (columnWidth(column) == 0) {
+                resizeColumnToContents(column);
+            }
         });
     }
 

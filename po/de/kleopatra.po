@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-13 00:40+0000\n"
-"PO-Revision-Date: 2024-07-05 12:25+0200\n"
+"PO-Revision-Date: 2024-07-17 12:16+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
 "Language: de\n"
@@ -3081,9 +3081,7 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp:405
 #: src/commands/refreshcertificatescommand.cpp:421
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was not found.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
@@ -3098,7 +3096,7 @@ msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>Das Zertifikat wurde aktualisiert.</para>"
-msgstr[1] "Das Zertifikat wurde aktualisiert."
+msgstr[1] "<para>Die Zertifikate wurden aktualisiert.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:416
 #, kde-format
@@ -3118,7 +3116,7 @@ msgctxt "@title:window"
 msgid "Certificate Updated"
 msgid_plural "Certificates Updated"
 msgstr[0] "Zertifikat aktualisiert"
-msgstr[1] "Zertifikat aktualisiert"
+msgstr[1] "Zertifikate aktualisiert"
 
 #: src/commands/refreshcertificatescommand.cpp:440
 #, kde-format
@@ -3330,7 +3328,7 @@ msgctxt "@action:button"
 msgid "Publish Revocation"
 msgid_plural "Publish Revocations"
 msgstr[0] "Rückruf auf Schlüsselserver veröffentlichen"
-msgstr[1] "Rückruf auf Schlüsselserver veröffentlichen"
+msgstr[1] "Rückrufe auf Schlüsselserver veröffentlichen"
 
 #: src/commands/revokecertificationcommand.cpp:221
 #, kde-format
@@ -4131,7 +4129,7 @@ msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
 msgstr[0] "Gruppe Löschen"
-msgstr[1] "Löschen"
+msgstr[1] "Gruppen Löschen"
 
 #: src/conf/groupsconfigwidget.cpp:475
 #, kde-format
@@ -5235,8 +5233,7 @@ msgid "Encryption succeeded."
 msgstr "Verschlüsseln abgeschlossen."
 
 #: src/crypto/gui/certificatelineedit.cpp:290
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Bitte geben Sie einen Namen oder eine E-Mail-Adresse ein …"
@@ -6579,7 +6576,7 @@ msgstr "Eigentümer"
 msgctxt "@info"
 msgid "Smartcard information is only available for your own certificates."
 msgstr ""
-"Informationen zu Smartcards sind nur für Ihre eigenen Zertifikate verfügbar."
+"Informationen bezüglich Smartcards sind nur für eigene Zertifikate verfügbar."
 
 #: src/dialogs/cardinfotab.cpp:90
 #: src/dialogs/certificateselectiondialog.cpp:162
@@ -7474,7 +7471,7 @@ msgstr ""
 msgid "The following certificate was selected for deletion:"
 msgid_plural "The following certificates were selected for deletion:"
 msgstr[0] "Das folgende Zertifikat wurde zum Löschen ausgewählt:"
-msgstr[1] "Dies sind die Zertifikate, die Sie zum Löschen ausgewählt haben:"
+msgstr[1] "Die folgenden Zertifikate wurden zum Löschen ausgewählt:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:222
 #, kde-format
@@ -7488,7 +7485,7 @@ msgstr[0] ""
 "Das folgende Zertifikat wird gelöscht, obwohl Sie es <b>nicht</b> explizit "
 "ausgewählt haben (<a href=\"whatsthis://\">Warum?</a>):"
 msgstr[1] ""
-"Diese Zertifikate werden außerdem gelöscht, obwohl Sie sie <b>nicht</b> "
+"Die folgenden Zertifikate werden gelöscht, obwohl Sie sie <b>nicht</b> "
 "explizit zum Löschen ausgewählt haben (<a href=\"whatsthis://\">Warum?</a>):"
 
 #: src/dialogs/deletecertificatesdialog.cpp:253
@@ -10237,7 +10234,7 @@ msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1 Bit)"
-msgstr[1] "%2 (%1 Bit)"
+msgstr[1] "%2 (%1 Bits)"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:338
 #, kde-format
@@ -10245,7 +10242,7 @@ msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "1 Bit"
-msgstr[1] "%1 Bit"
+msgstr[1] "%1 Bits"
 
 #: src/newcertificatewizard/enterdetailspage.cpp:66
 #, kde-format
@@ -12592,11 +12589,10 @@ msgid "Recipients"
 msgstr "Empfänger"
 
 #: src/view/padwidget.cpp:157
-#, fuzzy, kde-format
-#| msgid "Enter a message to encrypt or decrypt..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
-msgstr "Geben Sie eine Nachricht zum Verschlüsseln oder Entschlüsseln ein …"
+msgstr "Geben Sie eine zu ver- oder entschlüsselnde Nachricht ein …"
 
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format
@@ -13224,7 +13220,7 @@ msgstr "PIV-v%1-Karte"
 #, kde-format
 msgctxt "@label"
 msgid "Card type:"
-msgstr ""
+msgstr "Kartentyp:"
 
 #: src/view/smartcardwidget.cpp:81
 #, kde-format

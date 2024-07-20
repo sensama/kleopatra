@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-13 00:40+0000\n"
+"POT-Creation-Date: 2024-07-20 00:40+0000\n"
 "PO-Revision-Date: 2024-07-17 12:16+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
@@ -5232,40 +5232,54 @@ msgstr "Verschlüsseln fehlgeschlagen: %1"
 msgid "Encryption succeeded."
 msgstr "Verschlüsseln abgeschlossen."
 
-#: src/crypto/gui/certificatelineedit.cpp:290
+#: src/crypto/gui/certificatelineedit.cpp:292
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Bitte geben Sie einen Namen oder eine E-Mail-Adresse ein …"
 
-#: src/crypto/gui/certificatelineedit.cpp:307
+#: src/crypto/gui/certificatelineedit.cpp:309
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "Zertifikatsliste anzeigen"
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:310
 #, kde-format
 msgid "Show certificate list"
 msgstr "Zertifikatsliste anzeigen"
 
-#: src/crypto/gui/certificatelineedit.cpp:327
+#: src/crypto/gui/certificatelineedit.cpp:329
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Details anzeigen"
 
-#: src/crypto/gui/certificatelineedit.cpp:635
+#: src/crypto/gui/certificatelineedit.cpp:643
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "Keine passenden Zertifikate oder Gruppen gefunden"
 
-#: src/crypto/gui/certificatelineedit.cpp:637
+#: src/crypto/gui/certificatelineedit.cpp:645
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "Mehrere passende Zertifikate oder Gruppen gefunden"
 
-#: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
+#: src/crypto/gui/certificatelineedit.cpp:647
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgid "This certificate is expired"
+msgstr "Dieses Zertifikat ist abgelaufen."
+
+#: src/crypto/gui/certificatelineedit.cpp:649
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgid "This certificate is revoked"
+msgstr "Dieses Zertifikat ist abgelaufen."
+
+#: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -5993,34 +6007,34 @@ msgstr ""
 "Hier wird der Status und der Fortschritt der Verschlüsselungs-Operationen "
 "angezeigt."
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Authentizität sicherstellen (signieren)"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "Signieren als:"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Verschlüsseln"
 
-#: src/crypto/gui/signencryptwidget.cpp:208
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Für mich verschlüsseln:"
 
-#: src/crypto/gui/signencryptwidget.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:240
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Für andere verschlüsseln:"
 
-#: src/crypto/gui/signencryptwidget.cpp:257
+#: src/crypto/gui/signencryptwidget.cpp:275
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -6028,7 +6042,7 @@ msgstr ""
 "Mit Passwort verschlüsseln. Jeder, dem Sie das Passwort mitteilen, kann die "
 "Daten lesen."
 
-#: src/crypto/gui/signencryptwidget.cpp:259
+#: src/crypto/gui/signencryptwidget.cpp:277
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -6042,25 +6056,26 @@ msgstr ""
 "entschlüsseln. Ein Passwort zu verwenden ist <b>weniger sicher</b> als "
 "öffentliche Schlüssel zu verwenden, selbst mit einem sehr starken Passwort."
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:379
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Empfängerschlüssel"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:638
+#: src/crypto/gui/signencryptwidget.cpp:921
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Dieses Zertifikat ist abgelaufen."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:641
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Dieses Zertifikat läuft heute ab."
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:643
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -6068,28 +6083,36 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Dieses Zertifikat läuft morgen ab."
 msgstr[1] "Dieses Zertifikat läuft in %1 Tagen ab."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:648
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Dieses Zertifikat kann nicht zum Verschlüsseln verwendet werden."
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:650
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Dieses Zertifikat kann nicht zum Signieren verwendet werden."
 
-#: src/crypto/gui/signencryptwidget.cpp:841
+#: src/crypto/gui/signencryptwidget.cpp:881
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Für folgende Empfänger kann kein Schlüssel gefunden werden:"
 
-#: src/crypto/gui/signencryptwidget.cpp:843
+#: src/crypto/gui/signencryptwidget.cpp:883
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Einige Schlüssel wurden nicht gefunden"
+
+#: src/crypto/gui/signencryptwidget.cpp:924
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgctxt "@info"
+msgid "This certificate is revoked."
+msgstr "Dieses Zertifikat ist abgelaufen."
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format

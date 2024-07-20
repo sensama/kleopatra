@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-13 00:40+0000\n"
+"POT-Creation-Date: 2024-07-20 00:40+0000\n"
 "PO-Revision-Date: 2005-03-16 02:05-0800\n"
 "Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
 "Language-Team:  <ta@li.org>\n"
@@ -5240,46 +5240,58 @@ msgstr ""
 msgid "Encryption succeeded."
 msgstr ""
 
-#: src/crypto/gui/certificatelineedit.cpp:290
+#: src/crypto/gui/certificatelineedit.cpp:292
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "&விவரங்கள்"
 
-#: src/crypto/gui/certificatelineedit.cpp:307
+#: src/crypto/gui/certificatelineedit.cpp:309
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "சான்றிதழை அழிக்க முடியவில்லை."
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:310
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Show certificate list"
 msgstr "சான்றிதழை அழிக்க முடியவில்லை."
 
-#: src/crypto/gui/certificatelineedit.cpp:327
+#: src/crypto/gui/certificatelineedit.cpp:329
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "&விவரங்கள்"
 
-#: src/crypto/gui/certificatelineedit.cpp:635
+#: src/crypto/gui/certificatelineedit.cpp:643
 #, fuzzy, kde-format
 #| msgid "Fetching Certificate Chain"
 msgid "No matching certificates or groups found"
 msgstr "கொணர்ந்தச் சான்றிதழ் சங்கிலி"
 
-#: src/crypto/gui/certificatelineedit.cpp:637
+#: src/crypto/gui/certificatelineedit.cpp:645
 #, fuzzy, kde-format
 #| msgid "Fetching Certificate Chain"
 msgid "Multiple matching certificates or groups found"
 msgstr "கொணர்ந்தச் சான்றிதழ் சங்கிலி"
 
-#: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
+#: src/crypto/gui/certificatelineedit.cpp:647
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgid "This certificate is expired"
+msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
+
+#: src/crypto/gui/certificatelineedit.cpp:649
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgid "This certificate is revoked"
+msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
+
+#: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Kleopatra Error"
@@ -6008,44 +6020,44 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "சான்றிதழ் தகவல்"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, fuzzy, kde-format
 #| msgid "For &signing only"
 msgid "Sign as:"
 msgstr "கையொப்பத்திற்கு மட்டுமே"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "மறையாக்கத்திற்கு மட்டுமே"
 
-#: src/crypto/gui/signencryptwidget.cpp:208
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for me:"
 msgstr "சான்றிதழை அழிக்க முடியவில்லை."
 
-#: src/crypto/gui/signencryptwidget.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:240
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for others:"
 msgstr "சான்றிதழை அழிக்க முடியவில்லை."
 
-#: src/crypto/gui/signencryptwidget.cpp:257
+#: src/crypto/gui/signencryptwidget.cpp:275
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:259
+#: src/crypto/gui/signencryptwidget.cpp:277
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -6055,28 +6067,29 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:379
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "விவரிப்பு"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:638
+#: src/crypto/gui/signencryptwidget.cpp:921
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:641
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:643
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@info"
@@ -6085,27 +6098,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "சான்றிதழை பதிவிறக்க முடியவில்லை"
 msgstr[1] "சான்றிதழை பதிவிறக்க முடியவில்லை"
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:648
 #, fuzzy, kde-format
 #| msgid "Issuer certificate not found ( %1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "வெளியீட்டாளர் சான்றிதழைக் காணவில்லை (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:650
 #, fuzzy, kde-format
 #| msgid "Issuer certificate not found ( %1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "வெளியீட்டாளர் சான்றிதழைக் காணவில்லை (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:841
+#: src/crypto/gui/signencryptwidget.cpp:881
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/crypto/gui/signencryptwidget.cpp:843
+#: src/crypto/gui/signencryptwidget.cpp:883
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -6115,6 +6128,13 @@ msgid "Failed to find some keys"
 msgstr ""
 "ஜிபிஜிஎசெமை செயலாக்க முடியவில்லை\n"
 "%1"
+
+#: src/crypto/gui/signencryptwidget.cpp:924
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate is revoked."
+msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format

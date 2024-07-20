@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-13 00:40+0000\n"
+"POT-Creation-Date: 2024-07-20 00:40+0000\n"
 "PO-Revision-Date: 2009-02-27 21:59+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -5156,46 +5156,58 @@ msgstr ""
 msgid "Encryption succeeded."
 msgstr ""
 
-#: src/crypto/gui/certificatelineedit.cpp:290
+#: src/crypto/gui/certificatelineedit.cpp:292
 #, fuzzy, kde-format
 #| msgid "&EMail address:"
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "ई-मेल पताः (&E)"
 
-#: src/crypto/gui/certificatelineedit.cpp:307
+#: src/crypto/gui/certificatelineedit.cpp:309
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "प्रमानपत्र वैधता देखाव"
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:310
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Show certificate list"
 msgstr "प्रमानपत्र वैधता देखाव"
 
-#: src/crypto/gui/certificatelineedit.cpp:327
+#: src/crypto/gui/certificatelineedit.cpp:329
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "विवरन देखाव"
 
-#: src/crypto/gui/certificatelineedit.cpp:635
+#: src/crypto/gui/certificatelineedit.cpp:643
 #, fuzzy, kde-format
 #| msgid "Fetching Certificate Chain"
 msgid "No matching certificates or groups found"
 msgstr "प्रमानपत्र संकली प्राप्त करत हे "
 
-#: src/crypto/gui/certificatelineedit.cpp:637
+#: src/crypto/gui/certificatelineedit.cpp:645
 #, fuzzy, kde-format
 #| msgid "Fetching Certificate Chain"
 msgid "Multiple matching certificates or groups found"
 msgstr "प्रमानपत्र संकली प्राप्त करत हे "
 
-#: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
+#: src/crypto/gui/certificatelineedit.cpp:647
+#, fuzzy, kde-format
+#| msgid "This certificate has expired."
+msgid "This certificate is expired"
+msgstr "प्रमानपत्र के मियाद खतम हो गे हे."
+
+#: src/crypto/gui/certificatelineedit.cpp:649
+#, fuzzy, kde-format
+#| msgid "This certificate has expired."
+msgid "This certificate is revoked"
+msgstr "प्रमानपत्र के मियाद खतम हो गे हे."
+
+#: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
@@ -5930,44 +5942,44 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "प्रमानीकरन"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, fuzzy, kde-format
 #| msgid "Sign"
 msgid "Sign as:"
 msgstr "दसखत"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "एनक्रिप्ट"
 
-#: src/crypto/gui/signencryptwidget.cpp:208
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, fuzzy, kde-format
 #| msgid "Encrypt only"
 msgid "Encrypt for me:"
 msgstr "सिरिफ एनक्रिप्ट"
 
-#: src/crypto/gui/signencryptwidget.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:240
 #, kde-format
 msgid "Encrypt for others:"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:257
+#: src/crypto/gui/signencryptwidget.cpp:275
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:259
+#: src/crypto/gui/signencryptwidget.cpp:277
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5977,28 +5989,29 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:379
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "पावइया"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:638
+#: src/crypto/gui/signencryptwidget.cpp:921
 #, fuzzy, kde-format
 #| msgid "This certificate has expired."
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "प्रमानपत्र के मियाद खतम हो गे हे."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:641
 #, fuzzy, kde-format
 #| msgid "This certificate has expired."
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "प्रमानपत्र के मियाद खतम हो गे हे."
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:643
 #, fuzzy, kde-format
 #| msgid "This certificate has expired."
 msgctxt "@info"
@@ -6007,27 +6020,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "प्रमानपत्र के मियाद खतम हो गे हे."
 msgstr[1] "प्रमानपत्र के मियाद खतम हो गे हे."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:648
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "जारीकर्ता प्रमानपत्र नइ मिलिस ( %1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:650
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "जारीकर्ता प्रमानपत्र नइ मिलिस ( %1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:841
+#: src/crypto/gui/signencryptwidget.cpp:881
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "साकेट: %1 बाइंड नइ कर सकिस."
 
-#: src/crypto/gui/signencryptwidget.cpp:843
+#: src/crypto/gui/signencryptwidget.cpp:883
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -6037,6 +6050,13 @@ msgid "Failed to find some keys"
 msgstr ""
 "जीपीजीएसएम चलाय मं फेल:\n"
 "%1"
+
+#: src/crypto/gui/signencryptwidget.cpp:924
+#, fuzzy, kde-format
+#| msgid "This certificate has expired."
+msgctxt "@info"
+msgid "This certificate is revoked."
+msgstr "प्रमानपत्र के मियाद खतम हो गे हे."
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-13 00:40+0000\n"
+"POT-Creation-Date: 2024-07-20 00:40+0000\n"
 "PO-Revision-Date: 2024-07-13 06:41+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -5162,40 +5162,54 @@ msgstr "Šifriranje ni uspelo: %1"
 msgid "Encryption succeeded."
 msgstr "Šifriranje je uspelo."
 
-#: src/crypto/gui/certificatelineedit.cpp:290
+#: src/crypto/gui/certificatelineedit.cpp:292
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Vnesite ime ali e-poštni naslov…"
 
-#: src/crypto/gui/certificatelineedit.cpp:307
+#: src/crypto/gui/certificatelineedit.cpp:309
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "Pokaži seznam potrdil"
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:310
 #, kde-format
 msgid "Show certificate list"
 msgstr "Pokaži seznam potrdil"
 
-#: src/crypto/gui/certificatelineedit.cpp:327
+#: src/crypto/gui/certificatelineedit.cpp:329
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Pokaži podrobnosti"
 
-#: src/crypto/gui/certificatelineedit.cpp:635
+#: src/crypto/gui/certificatelineedit.cpp:643
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "Nobene ustreznega potrdila ali grupe ni bilo najdene"
 
-#: src/crypto/gui/certificatelineedit.cpp:637
+#: src/crypto/gui/certificatelineedit.cpp:645
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "Najdenih več ustreznih potrdil ali grup"
 
-#: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
+#: src/crypto/gui/certificatelineedit.cpp:647
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgid "This certificate is expired"
+msgstr "To potrdilo je poteklo."
+
+#: src/crypto/gui/certificatelineedit.cpp:649
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgid "This certificate is revoked"
+msgstr "To potrdilo je poteklo."
+
+#: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -5907,40 +5921,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Tu sta prikazana stanje in napredek šifrirnih opravil."
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Dokaži pristnost (podpiši)"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "Podpiši kot:"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Šifriraj"
 
-#: src/crypto/gui/signencryptwidget.cpp:208
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Šifriraj zame:"
 
-#: src/crypto/gui/signencryptwidget.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:240
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Šifriraj za druge:"
 
-#: src/crypto/gui/signencryptwidget.cpp:257
+#: src/crypto/gui/signencryptwidget.cpp:275
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "Šifriraj z geslom. Vsakdo z geslom bo lahko prebral podatke."
 
-#: src/crypto/gui/signencryptwidget.cpp:259
+#: src/crypto/gui/signencryptwidget.cpp:277
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5954,25 +5968,26 @@ msgstr ""
 "<b>manj varna</b> od šifriranja z javnimi ključi, celo če izberete zelo "
 "močno geslo."
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:379
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "prejemnikov ključ"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:638
+#: src/crypto/gui/signencryptwidget.cpp:921
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "To potrdilo je poteklo."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:641
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "To potrdilo bo poteklo danes."
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:643
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5982,28 +5997,36 @@ msgstr[1] "To potrdilo bo poteklo čez %1 dan."
 msgstr[2] "To potrdilo bo poteklo čez %1 dneva."
 msgstr[3] "To potrdilo bo poteklo čez %1 dni."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:648
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Tega potrdila ni mogoče uporabljati za šifriranje."
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:650
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Tega potrdila ni mogoče uporabljati za podpisovanje."
 
-#: src/crypto/gui/signencryptwidget.cpp:841
+#: src/crypto/gui/signencryptwidget.cpp:881
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ni bilo mogoče najti ključa za naslednje prejemnike:"
 
-#: src/crypto/gui/signencryptwidget.cpp:843
+#: src/crypto/gui/signencryptwidget.cpp:883
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Ni bilo mogoče najti nekaterih ključev"
+
+#: src/crypto/gui/signencryptwidget.cpp:924
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgctxt "@info"
+msgid "This certificate is revoked."
+msgstr "To potrdilo je poteklo."
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format

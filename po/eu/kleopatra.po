@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-13 00:40+0000\n"
+"POT-Creation-Date: 2024-07-20 00:40+0000\n"
 "PO-Revision-Date: 2024-07-19 00:54+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -5139,40 +5139,54 @@ msgstr "Zifratzea huts egin du: %1"
 msgid "Encryption succeeded."
 msgstr "Zifratzea ondo egin da."
 
-#: src/crypto/gui/certificatelineedit.cpp:290
+#: src/crypto/gui/certificatelineedit.cpp:292
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Mesedez, sartu izen bat edo e-posta helbide bat..."
 
-#: src/crypto/gui/certificatelineedit.cpp:307
+#: src/crypto/gui/certificatelineedit.cpp:309
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "Erakutsi ziurtagiri-zerrenda"
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:310
 #, kde-format
 msgid "Show certificate list"
 msgstr "Erakutsi ziurtagiri-zerrenda"
 
-#: src/crypto/gui/certificatelineedit.cpp:327
+#: src/crypto/gui/certificatelineedit.cpp:329
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Erakutsi xehetasunak"
 
-#: src/crypto/gui/certificatelineedit.cpp:635
+#: src/crypto/gui/certificatelineedit.cpp:643
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "Ez da aurkitu bat datorren ziurtagiriri edo talderik"
 
-#: src/crypto/gui/certificatelineedit.cpp:637
+#: src/crypto/gui/certificatelineedit.cpp:645
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "Bat datozen ziurtagiri edo talde anizkoitzak aurkitu dira"
 
-#: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
+#: src/crypto/gui/certificatelineedit.cpp:647
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgid "This certificate is expired"
+msgstr "Ziurtagiri hori iraungita dago."
+
+#: src/crypto/gui/certificatelineedit.cpp:649
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgid "This certificate is revoked"
+msgstr "Ziurtagiri hori iraungita dago."
+
+#: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -5892,34 +5906,34 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Kriptografia eragiketen egoera eta aurrerapena hemen erakusten da."
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Egiazkotasuna frogatu (sinatu)"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "Sinatu honela:"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Zifratu"
 
-#: src/crypto/gui/signencryptwidget.cpp:208
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Zifratu niretzat:"
 
-#: src/crypto/gui/signencryptwidget.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:240
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Zifratu besteentzat:"
 
-#: src/crypto/gui/signencryptwidget.cpp:257
+#: src/crypto/gui/signencryptwidget.cpp:275
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5927,7 +5941,7 @@ msgstr ""
 "Ziratu pasahitzarekin. Pasahitza partekatzen diozun edonork datuak irakur "
 "ditzake."
 
-#: src/crypto/gui/signencryptwidget.cpp:259
+#: src/crypto/gui/signencryptwidget.cpp:277
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5941,25 +5955,26 @@ msgstr ""
 "Pasahitz bat erabiltzea ez da gako publikoko kriptografia erabiltzea "
 "<b>bezain segurua</b>. Pasahitz oso sendo bat hartuta ere."
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:379
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "hartzailearen gakoa"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:638
+#: src/crypto/gui/signencryptwidget.cpp:921
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Ziurtagiri hori iraungita dago."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:641
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Ziurtagiri hori gaur iraungiko da."
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:643
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5967,28 +5982,36 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Ziurtagiri hori bihar iraungiko da."
 msgstr[1] "Ziurtagiri hori %1 egun barru iraungiko da."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:648
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Ziurtagiri hori ezin da zifratzeko erabili."
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:650
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Ziurtagiri hori ezin da sinatzeko erabili."
 
-#: src/crypto/gui/signencryptwidget.cpp:841
+#: src/crypto/gui/signencryptwidget.cpp:881
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ezin izan du ondoko hartzaileentzako ziurtagiririk aurkitu:"
 
-#: src/crypto/gui/signencryptwidget.cpp:843
+#: src/crypto/gui/signencryptwidget.cpp:883
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Gako batzuk bilatzean huts egin du"
+
+#: src/crypto/gui/signencryptwidget.cpp:924
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate is expired."
+msgctxt "@info"
+msgid "This certificate is revoked."
+msgstr "Ziurtagiri hori iraungita dago."
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format

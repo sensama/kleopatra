@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-13 00:40+0000\n"
+"POT-Creation-Date: 2024-07-20 00:40+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -5170,42 +5170,54 @@ msgstr "暗号化に失敗しました: %1"
 msgid "Encryption succeeded."
 msgstr "暗号化に成功しました。"
 
-#: src/crypto/gui/certificatelineedit.cpp:290
+#: src/crypto/gui/certificatelineedit.cpp:292
 #, fuzzy, kde-format
 #| msgid "Please enter a name or email address..."
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "名前かメールアドレスを入力してください..."
 
-#: src/crypto/gui/certificatelineedit.cpp:307
+#: src/crypto/gui/certificatelineedit.cpp:309
 #, fuzzy, kde-format
 #| msgid "Show certificate list"
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "証明書リストを表示"
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:310
 #, kde-format
 msgid "Show certificate list"
 msgstr "証明書リストを表示"
 
-#: src/crypto/gui/certificatelineedit.cpp:327
+#: src/crypto/gui/certificatelineedit.cpp:329
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "詳細を表示"
 
-#: src/crypto/gui/certificatelineedit.cpp:635
+#: src/crypto/gui/certificatelineedit.cpp:643
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "マッチする証明書かグループが見つかりません"
 
-#: src/crypto/gui/certificatelineedit.cpp:637
+#: src/crypto/gui/certificatelineedit.cpp:645
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "複数のマッチする証明書かグループが見つかりました"
 
-#: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
+#: src/crypto/gui/certificatelineedit.cpp:647
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgid "This certificate is expired"
+msgstr "署名用証明書が失効しています"
+
+#: src/crypto/gui/certificatelineedit.cpp:649
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgid "This certificate is revoked"
+msgstr "署名用証明書が失効しています"
+
+#: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -5927,41 +5939,41 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "ここに crypto 操作のステータスと進捗が表示されます。"
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "真偽を証明 (署名)"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "署名 (名義で):"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "暗号化"
 
-#: src/crypto/gui/signencryptwidget.cpp:208
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "自分自身のために暗号化:"
 
-#: src/crypto/gui/signencryptwidget.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:240
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "他の方のために暗号化:"
 
-#: src/crypto/gui/signencryptwidget.cpp:257
+#: src/crypto/gui/signencryptwidget.cpp:275
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "パスワードで暗号化 (パスワードを共有したすべての人がデータを読み取れます)"
 
-#: src/crypto/gui/signencryptwidget.cpp:259
+#: src/crypto/gui/signencryptwidget.cpp:277
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5975,27 +5987,28 @@ msgstr ""
 "スワードを使うことは公開鍵暗号<b>よりセキュアでない</b>とされます。とても強い"
 "パスワードを選んだとしてもです。"
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:379
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "受信者の鍵"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:638
+#: src/crypto/gui/signencryptwidget.cpp:921
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:641
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:643
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
@@ -6003,31 +6016,38 @@ msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:648
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "発行者証明書が見つかりません (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:650
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "発行者証明書が見つかりません (%1)"
 
-#: src/crypto/gui/signencryptwidget.cpp:841
+#: src/crypto/gui/signencryptwidget.cpp:881
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "以下の受信者の鍵を見つけられませんでした:"
 
-#: src/crypto/gui/signencryptwidget.cpp:843
+#: src/crypto/gui/signencryptwidget.cpp:883
 #, fuzzy, kde-format
 #| msgid "Failed to find some keys"
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "いくつかの鍵を見つけるのに失敗"
+
+#: src/crypto/gui/signencryptwidget.cpp:924
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgctxt "@info"
+msgid "This certificate is revoked."
+msgstr "署名用証明書が失効しています"
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format

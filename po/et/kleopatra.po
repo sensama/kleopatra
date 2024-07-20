@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-13 00:40+0000\n"
+"POT-Creation-Date: 2024-07-20 00:40+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -5349,46 +5349,58 @@ msgstr "Krüptimine nurjus: %1"
 msgid "Encryption succeeded."
 msgstr "Krüptimine õnnestus."
 
-#: src/crypto/gui/certificatelineedit.cpp:290
+#: src/crypto/gui/certificatelineedit.cpp:292
 #, fuzzy, kde-format
 #| msgid "Please enter a name or email address..."
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Palun kirjuta nimi või e-posti aadress..."
 
-#: src/crypto/gui/certificatelineedit.cpp:307
+#: src/crypto/gui/certificatelineedit.cpp:309
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "Sertifikaadi kehtivuse näitamine"
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:310
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Show certificate list"
 msgstr "Sertifikaadi kehtivuse näitamine"
 
-#: src/crypto/gui/certificatelineedit.cpp:327
+#: src/crypto/gui/certificatelineedit.cpp:329
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Näita üksikasju"
 
-#: src/crypto/gui/certificatelineedit.cpp:635
+#: src/crypto/gui/certificatelineedit.cpp:643
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "No matching certificates or groups found"
 msgstr "(sobivaid sertifikaate ei leitud)"
 
-#: src/crypto/gui/certificatelineedit.cpp:637
+#: src/crypto/gui/certificatelineedit.cpp:645
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "Multiple matching certificates or groups found"
 msgstr "(sobivaid sertifikaate ei leitud)"
 
-#: src/crypto/gui/certificatelineedit.cpp:712 src/dialogs/expirydialog.cpp:219
+#: src/crypto/gui/certificatelineedit.cpp:647
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgid "This certificate is expired"
+msgstr "Allkirjastamise sertifikaat on aegunud"
+
+#: src/crypto/gui/certificatelineedit.cpp:649
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgid "This certificate is revoked"
+msgstr "Allkirjastamise sertifikaat on aegunud"
+
+#: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
@@ -6136,43 +6148,43 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Siin näeb krüptotoimingute olekut ja edenemist."
 
-#: src/crypto/gui/signencryptwidget.cpp:171
+#: src/crypto/gui/signencryptwidget.cpp:172
 #, fuzzy, kde-format
 #| msgid "Prove authenticity (sign)"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Autentsuse tõendamine (allkiri)"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:173
 #, kde-format
 msgid "Sign as:"
 msgstr "Allkirjastaja:"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Krüptimine"
 
-#: src/crypto/gui/signencryptwidget.cpp:208
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Krüptimine endale:"
 
-#: src/crypto/gui/signencryptwidget.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:240
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Krüptimine teistele:"
 
-#: src/crypto/gui/signencryptwidget.cpp:257
+#: src/crypto/gui/signencryptwidget.cpp:275
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "Krüptimine parooliga. Andmeid saavad lugeda kõik, kellega parooli jagad."
 
-#: src/crypto/gui/signencryptwidget.cpp:259
+#: src/crypto/gui/signencryptwidget.cpp:277
 #, fuzzy, kde-format
 #| msgctxt "Tooltip information for symetric encryption"
 #| msgid ""
@@ -6192,28 +6204,29 @@ msgstr ""
 "<b>vähem turvaline</b> kui avalikku krüptovõtit isegi siis, kui valid välja "
 "väga tugeva parooli."
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:379
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Saaja"
 
-#: src/crypto/gui/signencryptwidget.cpp:597
+#: src/crypto/gui/signencryptwidget.cpp:638
+#: src/crypto/gui/signencryptwidget.cpp:921
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Allkirjastamise sertifikaat on aegunud"
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:641
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "sertifikaat on aegunud"
 
-#: src/crypto/gui/signencryptwidget.cpp:602
+#: src/crypto/gui/signencryptwidget.cpp:643
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -6222,33 +6235,40 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "See sertifikaat on sinu võtmehoidjas uus."
 msgstr[1] "See sertifikaat on sinu võtmehoidjas uus."
 
-#: src/crypto/gui/signencryptwidget.cpp:607
+#: src/crypto/gui/signencryptwidget.cpp:648
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "See sertifikaat on kohalikult keelatud."
 
-#: src/crypto/gui/signencryptwidget.cpp:609
+#: src/crypto/gui/signencryptwidget.cpp:650
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "See sertifikaat on kohalikult keelatud."
 
-#: src/crypto/gui/signencryptwidget.cpp:841
+#: src/crypto/gui/signencryptwidget.cpp:881
 #, fuzzy, kde-format
 #| msgctxt "%1 is user input that could not be found"
 #| msgid "Could not find a key for '%1'"
 msgid "Could not find a key for the following recipients:"
 msgstr "'%1' võtit ei leitud"
 
-#: src/crypto/gui/signencryptwidget.cpp:843
+#: src/crypto/gui/signencryptwidget.cpp:883
 #, fuzzy, kde-format
 #| msgid "Failed to find recipient"
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Saajat ei leitud"
+
+#: src/crypto/gui/signencryptwidget.cpp:924
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is revoked."
+msgstr "Allkirjastamise sertifikaat on aegunud"
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format

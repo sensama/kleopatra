@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:40+0000\n"
+"POT-Creation-Date: 2024-07-22 00:40+0000\n"
 "PO-Revision-Date: 2022-02-26 11:47+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: Hindi <kde-l10n-hi@kde.org>\n"
@@ -1095,13 +1095,13 @@ msgid ""
 "not be added to the group."
 msgstr "जारीकर्ता प्रमाणपत्र नहीं मिला ( %1)"
 
-#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:330
+#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:316
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr ""
 
-#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:333
+#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:319
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
@@ -2309,7 +2309,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr ""
 
 #: src/commands/importcertificatescommand.cpp:420
-#: src/conf/groupsconfigwidget.cpp:204
+#: src/conf/groupsconfigwidget.cpp:190
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@action:button"
@@ -3982,7 +3982,7 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:158 src/dialogs/editgroupdialog.cpp:175
+#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:175
 #: src/dialogs/editgroupdialog.cpp:235
 #, fuzzy, kde-format
 #| msgid "Search:"
@@ -3990,20 +3990,20 @@ msgctxt "@label"
 msgid "Search:"
 msgstr "ढूंढें:"
 
-#: src/conf/groupsconfigwidget.cpp:159 src/conf/groupsconfigwidget.cpp:165
+#: src/conf/groupsconfigwidget.cpp:145 src/conf/groupsconfigwidget.cpp:151
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgctxt "@label"
 msgid "Search groups"
 msgstr "नए हस्ताक्षर:"
 
-#: src/conf/groupsconfigwidget.cpp:160 src/conf/groupsconfigwidget.cpp:166
+#: src/conf/groupsconfigwidget.cpp:146 src/conf/groupsconfigwidget.cpp:152
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:167 src/dialogs/editgroupdialog.cpp:184
+#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:184
 #: src/dialogs/editgroupdialog.cpp:244
 #, fuzzy, kde-format
 #| msgid "New user IDs:"
@@ -4011,28 +4011,28 @@ msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "नया उपयोक्ता आईडी:"
 
-#: src/conf/groupsconfigwidget.cpp:184
+#: src/conf/groupsconfigwidget.cpp:170
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "विवरण (&D) "
 
-#: src/conf/groupsconfigwidget.cpp:193
+#: src/conf/groupsconfigwidget.cpp:179
 #, fuzzy, kde-format
 #| msgid "A.k.a."
 msgctxt "@action:button"
 msgid "New"
 msgstr "A.k.a."
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:155
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:155
 #: src/view/pgpcardwidget.cpp:174
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:200
+#: src/conf/groupsconfigwidget.cpp:186
 #: src/dialogs/deletecertificatesdialog.cpp:166
 #, fuzzy, kde-format
 #| msgid "Delete"
@@ -4040,14 +4040,14 @@ msgctxt "@action:button"
 msgid "Delete"
 msgstr "मिटाएँ"
 
-#: src/conf/groupsconfigwidget.cpp:205
+#: src/conf/groupsconfigwidget.cpp:191
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
 msgstr "प्रमाणपत्र (&C)"
 
-#: src/conf/groupsconfigwidget.cpp:209
+#: src/conf/groupsconfigwidget.cpp:195
 #: src/dialogs/certificatedetailsdialog.cpp:65
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
@@ -4055,13 +4055,13 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "सिर्फ एनक्रिप्टिंग के लिए (&e)"
 
-#: src/conf/groupsconfigwidget.cpp:370
+#: src/conf/groupsconfigwidget.cpp:356
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr ""
 
-#: src/conf/groupsconfigwidget.cpp:401
+#: src/conf/groupsconfigwidget.cpp:387
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -4072,7 +4072,7 @@ msgid ""
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr "<qt><p>प्रमाणपत्र:</p><p><b>%1</b> को मिटाने के दौरान एक त्रुटि हुई</p></qt>"
 
-#: src/conf/groupsconfigwidget.cpp:407
+#: src/conf/groupsconfigwidget.cpp:393
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4084,7 +4084,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/conf/groupsconfigwidget.cpp:419
+#: src/conf/groupsconfigwidget.cpp:405
 #, fuzzy, kde-format
 #| msgid "Delete"
 msgctxt "@title:window"
@@ -4093,7 +4093,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "मिटाएँ"
 msgstr[1] "मिटाएँ"
 
-#: src/conf/groupsconfigwidget.cpp:475
+#: src/conf/groupsconfigwidget.cpp:461
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"

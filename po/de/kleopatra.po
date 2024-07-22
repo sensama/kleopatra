@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:40+0000\n"
+"POT-Creation-Date: 2024-07-22 00:40+0000\n"
 "PO-Revision-Date: 2024-07-17 12:16+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
@@ -1079,13 +1079,13 @@ msgstr ""
 "Einige der ausgewählten Zertifikate können nicht zum Verschlüsseln verwendet "
 "werden. Diese werden der Gruppe nicht hinzugefügt."
 
-#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:330
+#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:316
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "Neue Gruppe"
 
-#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:333
+#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:319
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
@@ -2300,7 +2300,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr "Sie haben ein neues Zertifikat (öffentlicher Schlüssel) importiert"
 
 #: src/commands/importcertificatescommand.cpp:420
-#: src/conf/groupsconfigwidget.cpp:204
+#: src/conf/groupsconfigwidget.cpp:190
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
@@ -4026,78 +4026,78 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_gruppen-funktion_gnupg_de.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:158 src/dialogs/editgroupdialog.cpp:175
+#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:175
 #: src/dialogs/editgroupdialog.cpp:235
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
 msgstr "Suchen:"
 
-#: src/conf/groupsconfigwidget.cpp:159 src/conf/groupsconfigwidget.cpp:165
+#: src/conf/groupsconfigwidget.cpp:145 src/conf/groupsconfigwidget.cpp:151
 #, kde-format
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Gruppen suchen"
 
-#: src/conf/groupsconfigwidget.cpp:160 src/conf/groupsconfigwidget.cpp:166
+#: src/conf/groupsconfigwidget.cpp:146 src/conf/groupsconfigwidget.cpp:152
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "Sucht in der Liste nach Gruppen, die dem Suchbegriff entsprechen."
 
-#: src/conf/groupsconfigwidget.cpp:167 src/dialogs/editgroupdialog.cpp:184
+#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:184
 #: src/dialogs/editgroupdialog.cpp:244
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
 msgstr "Suchbegriff eingeben"
 
-#: src/conf/groupsconfigwidget.cpp:184
+#: src/conf/groupsconfigwidget.cpp:170
 #, kde-format
 msgctxt "groups of keys"
 msgid "groups"
 msgstr "Gruppen"
 
-#: src/conf/groupsconfigwidget.cpp:193
+#: src/conf/groupsconfigwidget.cpp:179
 #, kde-format
 msgctxt "@action:button"
 msgid "New"
 msgstr "Neu"
 
-#: src/conf/groupsconfigwidget.cpp:196 src/view/pgpcardwidget.cpp:155
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:155
 #: src/view/pgpcardwidget.cpp:174
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: src/conf/groupsconfigwidget.cpp:200
+#: src/conf/groupsconfigwidget.cpp:186
 #: src/dialogs/deletecertificatesdialog.cpp:166
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete"
 msgstr "Löschen"
 
-#: src/conf/groupsconfigwidget.cpp:205
+#: src/conf/groupsconfigwidget.cpp:191
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
 msgstr "Beginne den Beglaubigungsprozess für alle Zertifikate der Gruppe."
 
-#: src/conf/groupsconfigwidget.cpp:209
+#: src/conf/groupsconfigwidget.cpp:195
 #: src/dialogs/certificatedetailsdialog.cpp:65
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Exportieren"
 
-#: src/conf/groupsconfigwidget.cpp:370
+#: src/conf/groupsconfigwidget.cpp:356
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Gruppe bearbeiten"
 
-#: src/conf/groupsconfigwidget.cpp:401
+#: src/conf/groupsconfigwidget.cpp:387
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4107,7 +4107,7 @@ msgstr ""
 "<para>Wollen Sie die Benutzerkennung<nl/><emphasis>%1</emphasis><nl/"
 ">wirklich widerrufen?</para>"
 
-#: src/conf/groupsconfigwidget.cpp:407
+#: src/conf/groupsconfigwidget.cpp:393
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4123,7 +4123,7 @@ msgstr[1] ""
 "<para>Wollen Sie diese %1 Gruppen wirklich löschen?</para> <para>Nach dem "
 "Löschen können sie nicht wiederhergestellt werden.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:419
+#: src/conf/groupsconfigwidget.cpp:405
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
@@ -4131,7 +4131,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Gruppe Löschen"
 msgstr[1] "Gruppen Löschen"
 
-#: src/conf/groupsconfigwidget.cpp:475
+#: src/conf/groupsconfigwidget.cpp:461
 #, kde-format
 msgctxt "@info"
 msgid ""

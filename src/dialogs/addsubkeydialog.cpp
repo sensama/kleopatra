@@ -11,12 +11,12 @@
 
 #include "addsubkeydialog.h"
 
-#include "utils/expiration.h"
 #include "utils/gui-helper.h"
 #include "utils/scrollarea.h"
 
 #include <Libkleo/Compat>
 #include <Libkleo/Compliance>
+#include <Libkleo/Expiration>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 
@@ -168,7 +168,7 @@ AddSubkeyDialog::~AddSubkeyDialog() = default;
 
 bool AddSubkeyDialog::unlimitedValidityIsAllowed() const
 {
-    return !Kleo::maximumExpirationDate().isValid();
+    return !Expiration::maximumExpirationDate().isValid();
 }
 
 void AddSubkeyDialog::setKeyType(const QString &algorithm)
@@ -181,8 +181,8 @@ void AddSubkeyDialog::setKeyType(const QString &algorithm)
 
 void AddSubkeyDialog::loadDefaults()
 {
-    setExpiryDate(defaultExpirationDate(unlimitedValidityIsAllowed() ? ExpirationOnUnlimitedValidity::NoExpiration
-                                                                     : ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
+    setExpiryDate(defaultExpirationDate(unlimitedValidityIsAllowed() ? Expiration::ExpirationOnUnlimitedValidity::NoExpiration
+                                                                     : Expiration::ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
     loadAlgorithms();
     loadDefaultKeyType();
 }

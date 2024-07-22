@@ -348,10 +348,6 @@ set(_kleopatra_SRCS
   dialogs/groupdetailsdialog.h
   dialogs/lookupcertificatesdialog.cpp
   dialogs/lookupcertificatesdialog.h
-  dialogs/nameandemailwidget.cpp
-  dialogs/nameandemailwidget.h
-  dialogs/newopenpgpcertificatedetailsdialog.cpp
-  dialogs/newopenpgpcertificatedetailsdialog.h
   dialogs/pivcardapplicationadministrationkeyinputdialog.cpp
   dialogs/pivcardapplicationadministrationkeyinputdialog.h
   dialogs/revokekeydialog.cpp
@@ -380,8 +376,6 @@ set(_kleopatra_SRCS
   newcertificatewizard/advancedsettingsdialog_p.h
   newcertificatewizard/enterdetailspage.cpp
   newcertificatewizard/enterdetailspage_p.h
-  newcertificatewizard/keyalgo.cpp
-  newcertificatewizard/keyalgo_p.h
   newcertificatewizard/keycreationpage.cpp
   newcertificatewizard/keycreationpage_p.h
   newcertificatewizard/listwidget.cpp
@@ -442,8 +436,6 @@ set(_kleopatra_SRCS
   utils/email.h
   utils/emptypassphraseprovider.cpp
   utils/emptypassphraseprovider.h
-  utils/expiration.cpp
-  utils/expiration.h
   utils/filedialog.cpp
   utils/filedialog.h
   utils/gui-helper.cpp
@@ -458,8 +450,6 @@ set(_kleopatra_SRCS
   utils/kdpipeiodevice.h
   utils/keyexportdraghandler.cpp
   utils/keyexportdraghandler.h
-  utils/keyparameters.cpp
-  utils/keyparameters.h
   utils/kuniqueservice.cpp
   utils/kuniqueservice.h
   utils/log.cpp
@@ -467,8 +457,6 @@ set(_kleopatra_SRCS
   utils/memory-helpers.h
   utils/migration.cpp
   utils/migration.h
-  utils/multivalidator.cpp
-  utils/multivalidator.h
   utils/output.cpp
   utils/output.h
   utils/overwritedialog.cpp
@@ -485,8 +473,6 @@ set(_kleopatra_SRCS
   utils/types.h
   utils/userinfo.cpp
   utils/userinfo.h
-  utils/validation.cpp
-  utils/validation.h
   utils/writecertassuantransaction.cpp
   utils/writecertassuantransaction.h
   utils/wsastarter.cpp
@@ -495,10 +481,6 @@ set(_kleopatra_SRCS
   view/anchorcache_p.h
   view/cardkeysview.cpp
   view/cardkeysview.h
-  view/errorlabel.cpp
-  view/errorlabel.h
-  view/formtextinput.cpp
-  view/formtextinput.h
   view/htmllabel.cpp
   view/htmllabel.h
   view/infofield.cpp

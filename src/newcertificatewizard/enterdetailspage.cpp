@@ -19,7 +19,6 @@
 
 #include "utils/scrollarea.h"
 #include "utils/userinfo.h"
-#include "utils/validation.h"
 
 #include <settings.h>
 
@@ -28,6 +27,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/OidMap>
 #include <Libkleo/Stl_Util>
+#include <Libkleo/Validation>
 
 #include <KLocalizedString>
 

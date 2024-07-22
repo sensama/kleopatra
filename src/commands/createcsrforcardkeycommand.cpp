@@ -22,9 +22,9 @@
 #include "smartcard/readerstatus.h"
 
 #include "utils/filedialog.h"
-#include "utils/keyparameters.h"
 
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyParameters>
 #include <Libkleo/KeyUsage>
 
 #include <KLocalizedString>

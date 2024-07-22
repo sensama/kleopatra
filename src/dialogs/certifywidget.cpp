@@ -14,7 +14,6 @@
 #include "dialogs/animatedexpander.h"
 #include "view/infofield.h"
 #include <utils/accessibility.h>
-#include <utils/expiration.h>
 #include <utils/gui-helper.h>
 
 #include <settings.h>
@@ -31,6 +30,7 @@
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/DefaultKeyFilter>
+#include <Libkleo/Expiration>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
@@ -282,8 +282,8 @@ public:
             mExpirationCheckBox->setText(i18n("Expiration:"));
 
             mExpirationDateEdit = new KDateComboBox{q};
-            Kleo::setUpExpirationDateComboBox(mExpirationDateEdit, {QDate::currentDate().addDays(1), QDate{}});
-            mExpirationDateEdit->setDate(Kleo::defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
+            Expiration::setUpExpirationDateComboBox(mExpirationDateEdit, {QDate::currentDate().addDays(1), QDate{}});
+            mExpirationDateEdit->setDate(Expiration::defaultExpirationDate(Expiration::ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
             mExpirationDateEdit->setEnabled(mExpirationCheckBox->isChecked());
 
             const auto tooltip = i18n("You can use this to set an expiration date for a certification.") + QStringLiteral("<br/><br/>")

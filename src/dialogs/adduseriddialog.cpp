@@ -13,11 +13,11 @@
 
 #include "adduseriddialog.h"
 
-#include "nameandemailwidget.h"
-
 #include "utils/accessibility.h"
 #include "utils/scrollarea.h"
 #include "view/htmllabel.h"
+
+#include <Libkleo/NameAndEmailWidget>
 
 #include <KConfigGroup>
 #include <KLocalizedString>

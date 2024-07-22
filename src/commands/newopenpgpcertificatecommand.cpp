@@ -15,16 +15,16 @@
 
 #include "command_p.h"
 
-#include "dialogs/newopenpgpcertificatedetailsdialog.h"
 #include "kleopatraapplication.h"
 #include "utils/emptypassphraseprovider.h"
-#include "utils/keyparameters.h"
 #include "utils/userinfo.h"
 
 #include <settings.h>
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyParameters>
+#include <Libkleo/OpenPGPCertificateCreationDialog>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -68,7 +68,7 @@ private:
     KeyParameters keyParameters;
     bool protectKeyWithPassword = false;
     EmptyPassphraseProvider emptyPassphraseProvider;
-    QPointer<NewOpenPGPCertificateDetailsDialog> detailsDialog;
+    QPointer<OpenPGPCertificateCreationDialog> detailsDialog;
     QPointer<QGpgME::Job> job;
     QPointer<QProgressDialog> progressDialog;
 };
@@ -87,7 +87,7 @@ const NewOpenPGPCertificateCommand::Private *NewOpenPGPCertificateCommand::d_fun
 
 void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
 {
-    detailsDialog = new NewOpenPGPCertificateDetailsDialog;
+    detailsDialog = new OpenPGPCertificateCreationDialog;
     detailsDialog->setAttribute(Qt::WA_DeleteOnClose);
     applyWindowID(detailsDialog);
 

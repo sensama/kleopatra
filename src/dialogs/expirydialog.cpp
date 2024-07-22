@@ -14,9 +14,9 @@
 #include "expirydialog.h"
 
 #include "utils/accessibility.h"
-#include "utils/expiration.h"
 #include "utils/gui-helper.h"
 
+#include <Libkleo/Expiration>
 #include <Libkleo/Formatting>
 
 #include <KDateComboBox>
@@ -103,7 +103,7 @@ private:
                 hboxLayout->addWidget(onRB);
 
                 onCB = new KDateComboBox{mainWidget};
-                setUpExpirationDateComboBox(onCB);
+                Kleo::Expiration::setUpExpirationDateComboBox(onCB);
 
                 hboxLayout->addWidget(onCB);
 
@@ -150,7 +150,7 @@ void ExpiryDialog::Private::slotOnDateChanged()
 
 bool Kleo::Dialogs::ExpiryDialog::Private::unlimitedValidityAllowed() const
 {
-    return !Kleo::maximumExpirationDate().isValid();
+    return !Kleo::Expiration::maximumExpirationDate().isValid();
 }
 
 bool Kleo::Dialogs::ExpiryDialog::Private::fixedExpirationDate() const
@@ -183,7 +183,7 @@ void ExpiryDialog::setDateOfExpiry(const QDate &date)
     if (date.isValid()) {
         d->ui.onRB->setChecked(true);
         if (date <= current) {
-            d->ui.onCB->setDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
+            d->ui.onCB->setDate(defaultExpirationDate(Kleo::Expiration::ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
         } else {
             d->ui.onCB->setDate(date);
         }
@@ -193,7 +193,7 @@ void ExpiryDialog::setDateOfExpiry(const QDate &date)
         } else {
             d->ui.onRB->setChecked(true);
         }
-        d->ui.onCB->setDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
+        d->ui.onCB->setDate(defaultExpirationDate(Kleo::Expiration::ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
     }
 }
 
@@ -215,8 +215,8 @@ bool ExpiryDialog::updateExpirationOfAllSubkeys() const
 void ExpiryDialog::accept()
 {
     const auto date = dateOfExpiry();
-    if (!Kleo::isValidExpirationDate(date)) {
-        KMessageBox::error(this, i18nc("@info", "Error: %1", Kleo::validityPeriodHint()));
+    if (!Kleo::Expiration::isValidExpirationDate(date)) {
+        KMessageBox::error(this, i18nc("@info", "Error: %1", Kleo::Expiration::validityPeriodHint()));
         return;
     }
 

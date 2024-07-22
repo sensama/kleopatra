@@ -12,8 +12,8 @@
 
 #include "dialogs/animatedexpander.h"
 #include "utils/accessibility.h"
-#include "view/errorlabel.h"
 
+#include <Libkleo/ErrorLabel>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 

@@ -15,8 +15,8 @@
 #include "command_p.h"
 
 #include "dialogs/expirydialog.h"
-#include "utils/expiration.h"
 
+#include <Libkleo/Expiration>
 #include <Libkleo/Formatting>
 
 #include <KLocalizedString>
@@ -302,7 +302,7 @@ void ChangeExpiryCommand::doStart()
     const Subkey subkey = !d->subkey.isNull() ? d->subkey : d->key.subkey(0);
     d->dialog->setDateOfExpiry((subkey.neverExpires() //
                                     ? QDate{} //
-                                    : defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration)));
+                                    : Kleo::Expiration::defaultExpirationDate(Kleo::Expiration::ExpirationOnUnlimitedValidity::InternalDefaultExpiration)));
     if (mode == ExpiryDialog::Mode::UpdateIndividualSubkey && subkey.keyID() != subkey.parent().keyID()) {
         d->dialog->setPrimaryKey(subkey.parent());
     } else if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {

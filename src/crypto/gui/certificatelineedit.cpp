@@ -14,7 +14,6 @@
 #include "commands/detailscommand.h"
 #include "dialogs/groupdetailsdialog.h"
 #include "utils/accessibility.h"
-#include "view/errorlabel.h"
 
 #include <QAccessible>
 #include <QAction>
@@ -25,6 +24,7 @@
 #include "kleopatra_debug.h"
 
 #include <Libkleo/Debug>
+#include <Libkleo/ErrorLabel>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>

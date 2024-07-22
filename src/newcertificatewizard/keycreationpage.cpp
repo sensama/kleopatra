@@ -17,10 +17,9 @@
 
 #include "kleopatraapplication.h"
 
-#include "utils/keyparameters.h"
-
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyParameters>
 #include <Libkleo/KeyUsage>
 
 #include <KConfigGroup>

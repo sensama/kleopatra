@@ -13,11 +13,11 @@
 #include "certificatedetailsinputwidget.h"
 
 #include <utils/userinfo.h>
-#include <utils/validation.h>
 
 #include <Libkleo/Dn>
 #include <Libkleo/OidMap>
 #include <Libkleo/Stl_Util>
+#include <Libkleo/Validation>
 
 #include <KConfigGroup>
 #include <KLocalizedString>

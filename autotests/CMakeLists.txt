@@ -29,11 +29,3 @@ ecm_add_test(
     TEST_NAME stripsuffixtest
     LINK_LIBRARIES KF6::I18n KPim6::Libkleo Qt::Test
 )
-
-ecm_add_test(
-    keyparameterstest.cpp
-    ${CMAKE_SOURCE_DIR}/src/utils/keyparameters.cpp
-    ${logging_category_srcs}
-    TEST_NAME keyparameterstest
-    LINK_LIBRARIES KPim6::Libkleo Gpgmepp Qt::Test
-)

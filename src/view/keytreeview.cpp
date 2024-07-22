@@ -63,11 +63,6 @@ public:
     explicit TreeViewInternal(QWidget *parent = nullptr)
         : Kleo::TreeView{parent}
     {
-        connect(this, &TreeView::columnEnabled, this, [this](int column) {
-            if (column == tagsColumn) {
-                Tags::enableTags();
-            }
-        });
     }
 
     QSize minimumSizeHint() const override
@@ -226,9 +221,6 @@ void KeyTreeView::restoreLayout(const KConfigGroup &group)
         }
     } else {
         m_onceResized = true;
-    }
-    if (!m_view->isColumnHidden(tagsColumn)) {
-        Tags::enableTags();
     }
 }
 

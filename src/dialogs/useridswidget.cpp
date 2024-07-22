@@ -282,8 +282,7 @@ void UserIdsWidget::Private::setUpUserIDTable()
         item->setData(4, Qt::DisplayRole, Formatting::origin(uid.origin()));
         userIDTable->addTopLevelItem(item);
     }
-    userIDTable->restoreColumnLayout(QStringLiteral("UserIDTable"));
-    if (!Tags::tagsEnabled()) {
+    if (!userIDTable->restoreColumnLayout(QStringLiteral("UserIDTable"))) {
         userIDTable->hideColumn(3);
     }
     for (int i = 0; i < userIDTable->columnCount(); i++) {

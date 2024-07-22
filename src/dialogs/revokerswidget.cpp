@@ -49,7 +49,7 @@ public:
 #if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
             const auto fingerprint = QString::fromLatin1(key.revocationKey(ui.revokersTree->currentIndex().row()).fingerprint());
             auto cmd = Command::commandForQuery(fingerprint);
-            cmd->setParentWId(q->winId());
+            cmd->setParentWidget(q->window());
             cmd->start();
 #endif
         });

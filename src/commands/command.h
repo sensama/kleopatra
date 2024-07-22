@@ -94,6 +94,9 @@ public:
     static Command *commandForQuery(const QString &query);
 
     void setParentWidget(QWidget *widget);
+
+    // Prefer Command::setParentWidget over Command::setParentWId; QWidget::winId can cause unexpected problems
+    // when called on non-toplevel widgets
     void setParentWId(WId wid);
     void setView(QAbstractItemView *view);
     void setKey(const GpgME::Key &key);

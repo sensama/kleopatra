@@ -212,7 +212,16 @@ static std::vector<QAction *> actionsForCardSlot(SmartCard::AppType appType)
     case AppType::P15App:
         return SmartCardActions::instance()->actions({u"card_all_show_certificate_details"_s});
     case AppType::OpenPGPApp:
+        break;
     case AppType::PIVApp:
+        return SmartCardActions::instance()->actions({
+            u"card_all_show_certificate_details"_s,
+            u"card_piv_generate_key"_s,
+            u"card_piv_write_key"_s,
+            u"card_piv_write_certificate"_s,
+            u"card_piv_read_certificate"_s,
+            u"card_piv_create_csr"_s,
+        });
     case AppType::NoApp:
         break;
     };
@@ -290,6 +299,9 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
     }
     mainLayout->addWidget(mTreeWidget);
 
+    connect(mTreeWidget, &QTreeWidget::currentItemChanged, this, [this]() {
+        Q_EMIT currentCardSlotChanged();
+    });
     if (auto action = SmartCardActions::instance()->action(u"card_all_show_certificate_details"_s)) {
         connect(mTreeWidget, &QAbstractItemView::doubleClicked, action, &QAction::trigger);
     }

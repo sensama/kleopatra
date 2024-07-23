@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-20 00:40+0000\n"
-"PO-Revision-Date: 2024-06-22 13:42+0200\n"
+"PO-Revision-Date: 2024-07-20 19:38+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3035,14 +3035,12 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp:405
 #: src/commands/refreshcertificatescommand.cpp:421
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was not found.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "<para>Il certificato non è stato trovato.</para>"
-msgstr[1] "<para>Il certificato non è stato trovato.</para>"
+msgstr[1] "<para>I certificati non sono stati trovati.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:408
 #: src/commands/refreshcertificatescommand.cpp:425
@@ -5160,11 +5158,10 @@ msgid "Encryption succeeded."
 msgstr "Cifratura riuscita."
 
 #: src/crypto/gui/certificatelineedit.cpp:292
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
-msgstr "Inserisci un nome o un indirizzo di posta elettronica..."
+msgstr "Digita un nome o un indirizzo di posta elettronica..."
 
 #: src/crypto/gui/certificatelineedit.cpp:309
 #, kde-format
@@ -5194,18 +5191,14 @@ msgid "Multiple matching certificates or groups found"
 msgstr "Trovati più certificati o gruppi corrispondenti"
 
 #: src/crypto/gui/certificatelineedit.cpp:647
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgid "This certificate is expired"
-msgstr "Il certificato è scaduto."
+msgstr "Questo certificato è scaduto"
 
 #: src/crypto/gui/certificatelineedit.cpp:649
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgid "This certificate is revoked"
-msgstr "Il certificato è scaduto."
+msgstr "Questo certificato è revocato"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #: src/view/formtextinput.cpp:120
@@ -6026,12 +6019,10 @@ msgid "Failed to find some keys"
 msgstr "Impossibile trovare alcune chiavi"
 
 #: src/crypto/gui/signencryptwidget.cpp:924
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
-msgstr "Il certificato è scaduto."
+msgstr "Questo certificato è revocato."
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format
@@ -8174,42 +8165,33 @@ msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(opzionale) Imposta PIN iniziale (SigG)"
 
 #: src/dialogs/smartcardwindow.cpp:55
-#, fuzzy, kde-format
-#| msgid "Smartcard Management"
+#, kde-format
 msgid "Smart Card Management"
-msgstr "Gestione della smart card"
+msgstr "Gestione delle smart card"
 
 #: src/dialogs/smartcardwindow.cpp:92 src/dialogs/smartcardwindow.cpp:114
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Reload smart cards"
+#, kde-format
 msgctxt "@info:status"
 msgid "Loading smart cards..."
-msgstr "Ricarica le smart card"
+msgstr "Caricamento delle smart card..."
 
 #: src/dialogs/smartcardwindow.cpp:97
-#, fuzzy, kde-format
-#| msgctxt "As in 'this secret key is stored on smart card <serial number>'"
-#| msgid "smart card %1"
+#, kde-format
 msgctxt "@info:status"
 msgid "Updating smart card %1..."
-msgstr "smart card %1"
+msgstr "Aggiornamento della smart card %1"
 
 #: src/dialogs/smartcardwindow.cpp:99
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid "Updating certificate..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Updating smart card..."
-msgstr "Aggiornamento del certificato..."
+msgstr "Aggiornamento della smart card..."
 
 #: src/dialogs/smartcardwindow.cpp:106 src/dialogs/smartcardwindow.cpp:118
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Reading certificates from smart card ..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Importing certificates from smart cards..."
-msgstr "Lettura certificati da smart card..."
+msgstr "Importazione certificati dalle smart card..."
 
 #: src/dialogs/smartcardwindow.cpp:130
 #, kde-format
@@ -12528,8 +12510,7 @@ msgid "Recipients"
 msgstr "Destinatari"
 
 #: src/view/padwidget.cpp:157
-#, fuzzy, kde-format
-#| msgid "Enter a message to encrypt or decrypt..."
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Inserisci un messaggio da cifrare o da decifrare..."
@@ -12998,12 +12979,10 @@ msgid "Replace %1 with new key"
 msgstr "Sostituisci %1 con una nuova chiave"
 
 #: src/view/searchbar.cpp:137
-#, fuzzy, kde-format
-#| msgctxt "@info::placeholder"
-#| msgid "Enter search term"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term"
-msgstr "Inserisci un termine di ricerca"
+msgstr "Digita un termine di ricerca"
 
 #: src/view/searchbar.cpp:138
 #, kde-format
@@ -13046,12 +13025,10 @@ msgstr ""
 "appartenere."
 
 #: src/view/searchbar.cpp:197
-#, fuzzy, kde-format
-#| msgctxt "@info::placeholder"
-#| msgid "Enter search term"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"
-msgstr "Inserisci un termine di ricerca"
+msgstr "Digita termine di ricerca <%1>"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format
@@ -13113,8 +13090,7 @@ msgid "%1 - %2"
 msgstr "%1 - %2"
 
 #: src/view/smartcardswidget.cpp:246
-#, fuzzy, kde-format
-#| msgid "Reload"
+#, kde-format
 msgctxt "@action"
 msgid "Reload"
 msgstr "Ricarica"
@@ -13160,7 +13136,7 @@ msgstr "Scheda PIV v%1"
 #, kde-format
 msgctxt "@label"
 msgid "Card type:"
-msgstr ""
+msgstr "Tipo di scheda:"
 
 #: src/view/smartcardwidget.cpp:81
 #, kde-format

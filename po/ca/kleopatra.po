@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-22 00:40+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2024-07-20 09:55+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -11953,44 +11953,53 @@ msgstr "%1 (requerit)"
 msgid "Loading certificate cache..."
 msgstr "S'està carregant la memòria cau dels certificats..."
 
-#: src/view/keylistcontroller.cpp:327
+#: src/view/keylistcontroller.cpp:328
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "Parell nou de claus OpenPGP..."
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:329
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Crea un certificat OpenPGP nou"
 
-#: src/view/keylistcontroller.cpp:336
+#: src/view/keylistcontroller.cpp:337
 #, kde-format
 msgid "Export..."
 msgstr "Exporta..."
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:338
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "Exporta el certificat seleccionat (clau pública) a un fitxer"
 
-#: src/view/keylistcontroller.cpp:345
+#: src/view/keylistcontroller.cpp:346
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Publica al servidor..."
 
-#: src/view/keylistcontroller.cpp:346
-#, kde-format
-msgid "Publish the selected certificate (public key) on a public keyserver"
+#: src/view/keylistcontroller.cpp:348
+#, fuzzy, kde-format
+#| msgid "Publish the selected certificate (public key) on a public keyserver"
+msgid "Publish the selected certificate (public key) to internal directory"
 msgstr ""
 "Publica el certificat seleccionat (clau pública) a un servidor de claus "
 "públic"
 
-#: src/view/keylistcontroller.cpp:355
+#: src/view/keylistcontroller.cpp:349
+#, fuzzy, kde-format
+#| msgid "Publish the selected certificate (public key) on a public keyserver"
+msgid "Publish the selected certificate (public key) on %1"
+msgstr ""
+"Publica el certificat seleccionat (clau pública) a un servidor de claus "
+"públic"
+
+#: src/view/keylistcontroller.cpp:358
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Publica al proveïdor de correu..."
 
-#: src/view/keylistcontroller.cpp:356
+#: src/view/keylistcontroller.cpp:359
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11999,244 +12008,253 @@ msgstr ""
 "Publica el certificat seleccionat (clau pública) al directori web de claus "
 "del proveïdor si s'ofereix"
 
-#: src/view/keylistcontroller.cpp:365
+#: src/view/keylistcontroller.cpp:368
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Còpia de seguretat de les claus secretes..."
 
-#: src/view/keylistcontroller.cpp:374
+#: src/view/keylistcontroller.cpp:377
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Imprimeix la clau secreta..."
 
-#: src/view/keylistcontroller.cpp:383
+#: src/view/keylistcontroller.cpp:386
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Cerca al servidor..."
 
-#: src/view/keylistcontroller.cpp:384
-#, kde-format
-msgid "Search for certificates online using a public keyserver"
-msgstr "Cerca els certificats en línia usant un servidor de claus públic"
+#: src/view/keylistcontroller.cpp:388
+#, fuzzy, kde-format
+#| msgctxt "@option:check"
+#| msgid "Upload revoked certificate to internal directory"
+msgid "Search for certificates in internal directory"
+msgstr "Puja el certificat revocat al directori intern"
 
-#: src/view/keylistcontroller.cpp:392 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:389
+#, fuzzy, kde-format
+#| msgctxt "@info:shell"
+#| msgid "Search for a certificate on a keyserver"
+msgid "Search for certificates on %1"
+msgstr "Cerca un certificat al servidor de claus"
+
+#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Importa..."
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:398
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Importa un certificat des d'un fitxer"
 
-#: src/view/keylistcontroller.cpp:401
+#: src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Desencriptatge/verificació..."
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:407
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Desencripta i/o verifica els fitxers"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:415
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Signa/encripta..."
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Encripta i/o signa els fitxers"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:424
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Signa/encripta una carpeta..."
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Encripta i/o signa els fitxers"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:433
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Crea fitxers de suma de verificació..."
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:442
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Comprova la suma de verificació..."
 
-#: src/view/keylistcontroller.cpp:447
+#: src/view/keylistcontroller.cpp:452
 #, kde-format
 msgid "Redisplay"
 msgstr "Torna a mostrar"
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:461
 #, kde-format
 msgid "Stop Operation"
 msgstr "Atura l'operació"
 
-#: src/view/keylistcontroller.cpp:469
+#: src/view/keylistcontroller.cpp:474
 #, kde-format
 msgid "Details"
 msgstr "Detalls"
 
-#: src/view/keylistcontroller.cpp:479
+#: src/view/keylistcontroller.cpp:484
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Revoca un certificat..."
 
-#: src/view/keylistcontroller.cpp:480
+#: src/view/keylistcontroller.cpp:485
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Revoca els certificats OpenPGP seleccionats"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:493
 #, kde-format
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:494
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Suprimeix els certificats seleccionats"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:502
 #, kde-format
 msgid "Update Certificates"
 msgstr "Actualitza els certificats"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Update selected certificates"
 msgstr "Actualitza els certificats seleccionats"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:511
 #, kde-format
 msgid "Certify..."
 msgstr "Certifica..."
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:512
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Certifica la validesa del certificat seleccionat"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:520
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Revoca la certificació..."
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:521
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Revoca la certificació del certificat seleccionat"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:529
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Canvia el final del període de validesa..."
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:538
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Canvia el dret de certificació..."
 
-#: src/view/keylistcontroller.cpp:534
+#: src/view/keylistcontroller.cpp:539
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "Concedeix o revoca el dret de certificació del certificat seleccionat"
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:547
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Canvia la frase de pas..."
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:556
 #, kde-format
 msgid "Add User ID..."
 msgstr "Afegeix un ID d'usuari..."
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:565
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Crea un grup..."
 
-#: src/view/keylistcontroller.cpp:561
+#: src/view/keylistcontroller.cpp:566
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Crea un grup a partir dels certificats seleccionats"
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:574
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr "Copia a la targeta"
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:575
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Copia el certificat seleccionat a la targeta intel·ligent"
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:584
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Actualitza els certificats OpenPGP"
 
-#: src/view/keylistcontroller.cpp:589
+#: src/view/keylistcontroller.cpp:594
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr "Copia"
 
-#: src/view/keylistcontroller.cpp:606
+#: src/view/keylistcontroller.cpp:611
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Sol·licitud de certificació S/MIME nova..."
 
-#: src/view/keylistcontroller.cpp:607
+#: src/view/keylistcontroller.cpp:612
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Crea una sol·licitud nova de signatura de certificat S/MIME (CSR)"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:623
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Confia en el certificat arrel"
 
-#: src/view/keylistcontroller.cpp:627
+#: src/view/keylistcontroller.cpp:632
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Desconfia del certificat arrel"
 
-#: src/view/keylistcontroller.cpp:636
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Technical Details"
 msgstr "Detalls tècnics"
 
-#: src/view/keylistcontroller.cpp:646
+#: src/view/keylistcontroller.cpp:651
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "Actualitza els certificats S/MIME"
 
-#: src/view/keylistcontroller.cpp:655
+#: src/view/keylistcontroller.cpp:660
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Neteja el cau de la CRL"
 
-#: src/view/keylistcontroller.cpp:664
+#: src/view/keylistcontroller.cpp:669
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Bolcat del cau de la CRL"
 
-#: src/view/keylistcontroller.cpp:673
+#: src/view/keylistcontroller.cpp:678
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Importa la CRL des d'un fitxer..."
@@ -13325,6 +13343,9 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
+
+#~ msgid "Search for certificates online using a public keyserver"
+#~ msgstr "Cerca els certificats en línia usant un servidor de claus públic"
 
 #~ msgctxt "@info:placeholder"
 #~ msgid "Search..."

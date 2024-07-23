@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-22 00:40+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -11208,286 +11208,302 @@ msgstr "%1（必填）"
 msgid "Loading certificate cache..."
 msgstr "正在加载证书缓存..."
 
-#: src/view/keylistcontroller.cpp:327
+#: src/view/keylistcontroller.cpp:328
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "新建 OpenPGP 密钥对..."
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:329
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "创建新的 OpenPGP 证书"
 
-#: src/view/keylistcontroller.cpp:336
+#: src/view/keylistcontroller.cpp:337
 #, kde-format
 msgid "Export..."
 msgstr "导出..."
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:338
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "将选定的证书（公钥）导出到文件"
 
-#: src/view/keylistcontroller.cpp:345
+#: src/view/keylistcontroller.cpp:346
 #, kde-format
 msgid "Publish on Server..."
 msgstr "在服务器上发布..."
 
-#: src/view/keylistcontroller.cpp:346
-#, kde-format
-msgid "Publish the selected certificate (public key) on a public keyserver"
+#: src/view/keylistcontroller.cpp:348
+#, fuzzy, kde-format
+#| msgid "Publish the selected certificate (public key) on a public keyserver"
+msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "在公钥服务器上发布选定的证书（公钥）"
 
-#: src/view/keylistcontroller.cpp:355
+#: src/view/keylistcontroller.cpp:349
+#, fuzzy, kde-format
+#| msgid "Publish the selected certificate (public key) on a public keyserver"
+msgid "Publish the selected certificate (public key) on %1"
+msgstr "在公钥服务器上发布选定的证书（公钥）"
+
+#: src/view/keylistcontroller.cpp:358
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "在邮件提供商处发布..."
 
-#: src/view/keylistcontroller.cpp:356
+#: src/view/keylistcontroller.cpp:359
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr "在邮件提供者的网络密钥目录发布所选证书（公钥）"
 
-#: src/view/keylistcontroller.cpp:365
+#: src/view/keylistcontroller.cpp:368
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "备份私钥..."
 
-#: src/view/keylistcontroller.cpp:374
+#: src/view/keylistcontroller.cpp:377
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "打印私钥..."
 
-#: src/view/keylistcontroller.cpp:383
+#: src/view/keylistcontroller.cpp:386
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "在服务器上查找..."
 
-#: src/view/keylistcontroller.cpp:384
-#, kde-format
-msgid "Search for certificates online using a public keyserver"
-msgstr "使用公钥服务器在线搜索证书"
+#: src/view/keylistcontroller.cpp:388
+#, fuzzy, kde-format
+#| msgctxt "@info:shell"
+#| msgid "Search for a certificate on a keyserver"
+msgid "Search for certificates in internal directory"
+msgstr "在密钥服务器上搜索证书"
 
-#: src/view/keylistcontroller.cpp:392 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:389
+#, fuzzy, kde-format
+#| msgctxt "@info:shell"
+#| msgid "Search for a certificate on a keyserver"
+msgid "Search for certificates on %1"
+msgstr "在密钥服务器上搜索证书"
+
+#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "导入..."
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:398
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "从文件导入证书"
 
-#: src/view/keylistcontroller.cpp:401
+#: src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "解密/校验..."
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:407
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "解密和/或校验文件"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:415
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "签名/加密..."
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "加密和/或签名文件"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:424
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "签名/加密文件夹..."
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "加密和/或签名文件夹"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:433
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "创建校验和文件..."
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:442
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "验证校验和文件..."
 
-#: src/view/keylistcontroller.cpp:447
+#: src/view/keylistcontroller.cpp:452
 #, kde-format
 msgid "Redisplay"
 msgstr "重新显示"
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:461
 #, kde-format
 msgid "Stop Operation"
 msgstr "停止操作"
 
-#: src/view/keylistcontroller.cpp:469
+#: src/view/keylistcontroller.cpp:474
 #, kde-format
 msgid "Details"
 msgstr "细节"
 
-#: src/view/keylistcontroller.cpp:479
+#: src/view/keylistcontroller.cpp:484
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "吊销证书..."
 
-#: src/view/keylistcontroller.cpp:480
+#: src/view/keylistcontroller.cpp:485
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "吊销所选的 OpenPGP 证书"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:493
 #, kde-format
 msgid "Delete"
 msgstr "删除"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:494
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "删除选中的证书"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:502
 #, kde-format
 msgid "Update Certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Update selected certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:511
 #, kde-format
 msgid "Certify..."
 msgstr "认证..."
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:512
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "验证所选证书的有效性"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:520
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "吊销认证..."
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:521
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "撤销选定证书的认证"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:529
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "更改有效期..."
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:538
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "更改认证权限..."
 
-#: src/view/keylistcontroller.cpp:534
+#: src/view/keylistcontroller.cpp:539
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "授予或吊销所选证书的验证权限"
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:547
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "更改密码句..."
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:556
 #, kde-format
 msgid "Add User ID..."
 msgstr "添加用户 ID..."
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:565
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:561
+#: src/view/keylistcontroller.cpp:566
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:574
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:575
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:584
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "刷新 OpenPGP 证书"
 
-#: src/view/keylistcontroller.cpp:589
+#: src/view/keylistcontroller.cpp:594
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:606
+#: src/view/keylistcontroller.cpp:611
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "新建 S/MIME 认证请求..."
 
-#: src/view/keylistcontroller.cpp:607
+#: src/view/keylistcontroller.cpp:612
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "创建新的 S/MIME 证书签名请求(CSR)"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:623
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "受信任的根证书"
 
-#: src/view/keylistcontroller.cpp:627
+#: src/view/keylistcontroller.cpp:632
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "不信任的根证书"
 
-#: src/view/keylistcontroller.cpp:636
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Technical Details"
 msgstr "技术细节"
 
-#: src/view/keylistcontroller.cpp:646
+#: src/view/keylistcontroller.cpp:651
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "刷新 S/MIME 证书"
 
-#: src/view/keylistcontroller.cpp:655
+#: src/view/keylistcontroller.cpp:660
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "清除 CRL 缓存"
 
-#: src/view/keylistcontroller.cpp:664
+#: src/view/keylistcontroller.cpp:669
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "转储 CRL 缓存"
 
-#: src/view/keylistcontroller.cpp:673
+#: src/view/keylistcontroller.cpp:678
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "从文件导入 CRL..."
@@ -12530,3 +12546,6 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgid "Search for certificates online using a public keyserver"
+#~ msgstr "使用公钥服务器在线搜索证书"

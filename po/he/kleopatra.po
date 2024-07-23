@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-22 00:40+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2024-07-12 23:40+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -11154,42 +11154,49 @@ msgstr "%1 (נחוץ)"
 msgid "Loading certificate cache..."
 msgstr "מטמון האישורים נטען…"
 
-#: src/view/keylistcontroller.cpp:327
+#: src/view/keylistcontroller.cpp:328
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "צמד מפתחות OpenPGP חדש…"
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:329
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "יצירת אישור OpenPGP חדש"
 
-#: src/view/keylistcontroller.cpp:336
+#: src/view/keylistcontroller.cpp:337
 #, kde-format
 msgid "Export..."
 msgstr "ייצוא…"
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:338
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "לייצא את האישור הנבחר (מפתח ציבורי) לקובץ"
 
-#: src/view/keylistcontroller.cpp:345
+#: src/view/keylistcontroller.cpp:346
 #, kde-format
 msgid "Publish on Server..."
 msgstr "פרסום בשרת…"
 
-#: src/view/keylistcontroller.cpp:346
-#, kde-format
-msgid "Publish the selected certificate (public key) on a public keyserver"
+#: src/view/keylistcontroller.cpp:348
+#, fuzzy, kde-format
+#| msgid "Publish the selected certificate (public key) on a public keyserver"
+msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "פרסום האישור הנבחר (מפתח ציבורי) לשרת מפתחות ציבורי"
 
-#: src/view/keylistcontroller.cpp:355
+#: src/view/keylistcontroller.cpp:349
+#, fuzzy, kde-format
+#| msgid "Publish the selected certificate (public key) on a public keyserver"
+msgid "Publish the selected certificate (public key) on %1"
+msgstr "פרסום האישור הנבחר (מפתח ציבורי) לשרת מפתחות ציבורי"
+
+#: src/view/keylistcontroller.cpp:358
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "פרסום בספק הדוא״ל…"
 
-#: src/view/keylistcontroller.cpp:356
+#: src/view/keylistcontroller.cpp:359
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11198,244 +11205,253 @@ msgstr ""
 "פרסום האישור הנבחר (מפתח ציבורי) בספריית המפתחות המקוונת של ספק הדוא״ל אם יש "
 "הצעה כזאת"
 
-#: src/view/keylistcontroller.cpp:365
+#: src/view/keylistcontroller.cpp:368
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "גיבוי המפתחות הסודיים…"
 
-#: src/view/keylistcontroller.cpp:374
+#: src/view/keylistcontroller.cpp:377
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "הדפסת מפתח סודי…"
 
-#: src/view/keylistcontroller.cpp:383
+#: src/view/keylistcontroller.cpp:386
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "איתור בשרת…"
 
-#: src/view/keylistcontroller.cpp:384
-#, kde-format
-msgid "Search for certificates online using a public keyserver"
-msgstr "חיפוש אישורים באינטרנט באמצעות שרת מפתחות ציבורי"
+#: src/view/keylistcontroller.cpp:388
+#, fuzzy, kde-format
+#| msgctxt "@info:shell"
+#| msgid "Search for a certificate on a keyserver"
+msgid "Search for certificates in internal directory"
+msgstr "חיפוש אחר אישור בשרת מפתחות"
 
-#: src/view/keylistcontroller.cpp:392 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:389
+#, fuzzy, kde-format
+#| msgctxt "@info:shell"
+#| msgid "Search for a certificate on a keyserver"
+msgid "Search for certificates on %1"
+msgstr "חיפוש אחר אישור בשרת מפתחות"
+
+#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "ייבוא…"
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:398
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "ייבוא אישור מקובץ"
 
-#: src/view/keylistcontroller.cpp:401
+#: src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "פענוח/אימות…"
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:407
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "פענוח ו/או אימות קבצים"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:415
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "חתימה/הצפנה…"
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "הצפנה ו/או חתימה על קבצים"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:424
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "חתימת/הצפנת תיקייה…"
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "הצפנה ו/או חתימה על תיקיות"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:433
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "יצירת קובצי סכום בדיקה…"
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:442
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "אימות קובצי סכום בדיקה…"
 
-#: src/view/keylistcontroller.cpp:447
+#: src/view/keylistcontroller.cpp:452
 #, kde-format
 msgid "Redisplay"
 msgstr "הצגה מחדש"
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:461
 #, kde-format
 msgid "Stop Operation"
 msgstr "עצירת הפעולה"
 
-#: src/view/keylistcontroller.cpp:469
+#: src/view/keylistcontroller.cpp:474
 #, kde-format
 msgid "Details"
 msgstr "פרטים"
 
-#: src/view/keylistcontroller.cpp:479
+#: src/view/keylistcontroller.cpp:484
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "שלילת אישור…"
 
-#: src/view/keylistcontroller.cpp:480
+#: src/view/keylistcontroller.cpp:485
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "שלילת אישור ה־OpenPGP הנבחר"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:493
 #, kde-format
 msgid "Delete"
 msgstr "מחיקה"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:494
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "מחיקת האישורים הנבחרים"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:502
 #, kde-format
 msgid "Update Certificates"
 msgstr "עדכון אישורים"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Update selected certificates"
 msgstr "עדכון האישורים הנבחרים"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:511
 #, kde-format
 msgid "Certify..."
 msgstr "אישור…"
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:512
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "אישור תוקף האישור הנבחר"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:520
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "שלילת הסמכה…"
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:521
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "שלילת ההסמכה של האישור הנבחר"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:529
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "החלפת תקופת סוף התוקף…"
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:538
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "שינוי כוח אישור…"
 
-#: src/view/keylistcontroller.cpp:534
+#: src/view/keylistcontroller.cpp:539
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "הענקת או שלילת כוח ההסמכה של האישור הנבחר"
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:547
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "החלפת מילת צופן…"
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:556
 #, kde-format
 msgid "Add User ID..."
 msgstr "הוספת מזהה משתמש…"
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:565
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "יצירת קבוצה…"
 
-#: src/view/keylistcontroller.cpp:561
+#: src/view/keylistcontroller.cpp:566
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "יצירת קבוצה מהאישורים הנבחרים"
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:574
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr "העתקה לכרטיס"
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:575
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "העתקת האישורים הנבחרים לכרטיס החכם"
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:584
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "רענון אישורי OpenPGP"
 
-#: src/view/keylistcontroller.cpp:589
+#: src/view/keylistcontroller.cpp:594
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr "העתקה"
 
-#: src/view/keylistcontroller.cpp:606
+#: src/view/keylistcontroller.cpp:611
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "בקשת אישור S/MIME חדשה…"
 
-#: src/view/keylistcontroller.cpp:607
+#: src/view/keylistcontroller.cpp:612
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "יצירת בקשת חתימת אישור מסוג S/MIME‏ (CSR)"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:623
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "מתן אמות באישור על"
 
-#: src/view/keylistcontroller.cpp:627
+#: src/view/keylistcontroller.cpp:632
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "אי אימון באישור העל"
 
-#: src/view/keylistcontroller.cpp:636
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Technical Details"
 msgstr "פרטים טכניים"
 
-#: src/view/keylistcontroller.cpp:646
+#: src/view/keylistcontroller.cpp:651
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "רענון אישורי S/MIME"
 
-#: src/view/keylistcontroller.cpp:655
+#: src/view/keylistcontroller.cpp:660
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "פינוי מטמון רשימת שלילה (CRL)"
 
-#: src/view/keylistcontroller.cpp:664
+#: src/view/keylistcontroller.cpp:669
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "היטל מטמון רשימת שלילה (CRL)"
 
-#: src/view/keylistcontroller.cpp:673
+#: src/view/keylistcontroller.cpp:678
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "ייבוא רשימת שלילה (CRL) מקובץ…"
@@ -12482,6 +12498,9 @@ msgid ""
 msgstr ""
 "ייבוא אישור מקובץ.<nl/>כדי לייבא משרת מפתחות ציבורי יש להשתמש באפשרות "
 "<interface>איתור בשרת</interface> במקום."
+
+#~ msgid "Search for certificates online using a public keyserver"
+#~ msgstr "חיפוש אישורים באינטרנט באמצעות שרת מפתחות ציבורי"
 
 #~ msgctxt "@info:placeholder"
 #~ msgid "Search..."

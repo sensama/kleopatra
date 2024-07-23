@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-22 00:40+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -12345,46 +12345,54 @@ msgstr "(vyžadované)"
 msgid "Loading certificate cache..."
 msgstr "Načítavanie vyrovnávacej pamäti certifikátov..."
 
-#: src/view/keylistcontroller.cpp:327
+#: src/view/keylistcontroller.cpp:328
 #, fuzzy, kde-format
 #| msgid "New Key Pair..."
 msgid "New OpenPGP Key Pair..."
 msgstr "Nový pár kľúčov..."
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:329
 #, fuzzy, kde-format
 #| msgid "OpenPGP Certificates"
 msgid "Create a new OpenPGP certificate"
 msgstr "Certifikáty OpenPGP"
 
-#: src/view/keylistcontroller.cpp:336
+#: src/view/keylistcontroller.cpp:337
 #, kde-format
 msgid "Export..."
 msgstr "Exportovať..."
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:338
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "Exportovať vybraný certifikát (verejný kľúč) do súboru."
 
-#: src/view/keylistcontroller.cpp:345
+#: src/view/keylistcontroller.cpp:346
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Publikovať na serveri..."
 
-#: src/view/keylistcontroller.cpp:346
-#, kde-format
-msgid "Publish the selected certificate (public key) on a public keyserver"
+#: src/view/keylistcontroller.cpp:348
+#, fuzzy, kde-format
+#| msgid "Publish the selected certificate (public key) on a public keyserver"
+msgid "Publish the selected certificate (public key) to internal directory"
 msgstr ""
 "Publikovať vybraný certifikát (verejný kľúč) na verejnom serveri kľúčovs"
 
-#: src/view/keylistcontroller.cpp:355
+#: src/view/keylistcontroller.cpp:349
+#, fuzzy, kde-format
+#| msgid "Publish the selected certificate (public key) on a public keyserver"
+msgid "Publish the selected certificate (public key) on %1"
+msgstr ""
+"Publikovať vybraný certifikát (verejný kľúč) na verejnom serveri kľúčovs"
+
+#: src/view/keylistcontroller.cpp:358
 #, fuzzy, kde-format
 #| msgid "Publish on Server..."
 msgid "Publish at Mail Provider..."
 msgstr "Publikovať na serveri..."
 
-#: src/view/keylistcontroller.cpp:356
+#: src/view/keylistcontroller.cpp:359
 #, fuzzy, kde-format
 #| msgid "Publish the selected certificate (public key) on a public keyserver"
 msgid ""
@@ -12393,261 +12401,268 @@ msgid ""
 msgstr ""
 "Publikovať vybraný certifikát (verejný kľúč) na verejnom serveri kľúčovs"
 
-#: src/view/keylistcontroller.cpp:365
+#: src/view/keylistcontroller.cpp:368
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgid "Backup Secret Keys..."
 msgstr "Exportovať tajné kľúče..."
 
-#: src/view/keylistcontroller.cpp:374
+#: src/view/keylistcontroller.cpp:377
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Vytlačiť tajný kľúč..."
 
-#: src/view/keylistcontroller.cpp:383
+#: src/view/keylistcontroller.cpp:386
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Vyhľadať na serveri..."
 
-#: src/view/keylistcontroller.cpp:384
-#, kde-format
-msgid "Search for certificates online using a public keyserver"
-msgstr "Hľadať certifikáty online pomocou verejného servera kľúčov"
+#: src/view/keylistcontroller.cpp:388
+#, fuzzy, kde-format
+#| msgid "Search for a certificate on a keyserver"
+msgid "Search for certificates in internal directory"
+msgstr "Hľadať certifikát na serveri kľúčov"
 
-#: src/view/keylistcontroller.cpp:392 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:389
+#, fuzzy, kde-format
+#| msgid "Search for a certificate on a keyserver"
+msgid "Search for certificates on %1"
+msgstr "Hľadať certifikát na serveri kľúčov"
+
+#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Importovať..."
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:398
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Importovať certifikáty zo súboru"
 
-#: src/view/keylistcontroller.cpp:401
+#: src/view/keylistcontroller.cpp:406
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Dešifrovať/Overiť..."
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:407
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Dešifrovať a/alebo overiť súbory"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:415
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Podpíš/zašifruj..."
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Zašifrovať a/alebo podpísať súbory"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:424
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Podpísať/Zašifrovať priečinok..."
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Zašifrovať a/alebo podpísať priečinky"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:433
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Vytvoriť súbory kontrolného súčtu..."
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:442
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Overiť súbory kontrolného súčtu..."
 
-#: src/view/keylistcontroller.cpp:447
+#: src/view/keylistcontroller.cpp:452
 #, kde-format
 msgid "Redisplay"
 msgstr "Znovu zobraziť"
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:461
 #, kde-format
 msgid "Stop Operation"
 msgstr "Zastaviť operáciu"
 
-#: src/view/keylistcontroller.cpp:469
+#: src/view/keylistcontroller.cpp:474
 #, kde-format
 msgid "Details"
 msgstr "Detaily"
 
-#: src/view/keylistcontroller.cpp:479
+#: src/view/keylistcontroller.cpp:484
 #, fuzzy, kde-format
 #| msgid "Revoke This Certificate..."
 msgid "Revoke Certificate..."
 msgstr "Zrušiť tento certifikát..."
 
-#: src/view/keylistcontroller.cpp:480
+#: src/view/keylistcontroller.cpp:485
 #, fuzzy, kde-format
 #| msgid "Delete selected certificates"
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Vymazať vybrané certifikáty"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:493
 #, kde-format
 msgid "Delete"
 msgstr "Vymazať"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:494
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Vymazať vybrané certifikáty"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:502
 #, fuzzy, kde-format
 #| msgctxt "@title:tab"
 #| msgid "Imported Certificates"
 msgid "Update Certificates"
 msgstr "Importované certifikáty"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:503
 #, fuzzy, kde-format
 #| msgid "Delete selected certificates"
 msgid "Update selected certificates"
 msgstr "Vymazať vybrané certifikáty"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:511
 #, kde-format
 msgid "Certify..."
 msgstr "Certifikovať..."
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:512
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Certifikovať platnosť vybraného certifikátu"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:520
 #, fuzzy, kde-format
 #| msgid "Revoke This Certificate..."
 msgid "Revoke Certification..."
 msgstr "Zrušiť tento certifikát..."
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:521
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
 msgid "Revoke the certification of the selected certificate"
 msgstr "Certifikovať platnosť vybraného certifikátu"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:529
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:538
 #, fuzzy, kde-format
 #| msgid "Change Certification Trust..."
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Zmeniť dôveryhodnosť certifikátu..."
 
-#: src/view/keylistcontroller.cpp:534
+#: src/view/keylistcontroller.cpp:539
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "Certifikovať platnosť vybraného certifikátu"
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:547
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Zmeniť heslo..."
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:556
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "Pridať ID užívateľa..."
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:565
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Nas&taviť %1..."
 
-#: src/view/keylistcontroller.cpp:561
+#: src/view/keylistcontroller.cpp:566
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Certifikovať platnosť vybraného certifikátu"
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:574
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:575
 #, fuzzy, kde-format
 #| msgid "Delete selected certificates"
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Vymazať vybrané certifikáty"
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:584
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Obnoviť OpenPGP certifikáty"
 
-#: src/view/keylistcontroller.cpp:589
+#: src/view/keylistcontroller.cpp:594
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:606
+#: src/view/keylistcontroller.cpp:611
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "Certifikáty S/MIME"
 
-#: src/view/keylistcontroller.cpp:607
+#: src/view/keylistcontroller.cpp:612
 #, fuzzy, kde-format
 #| msgid "Create a new key pair or certificate signing request"
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Vytvoriť nový pár kľúčov alebo požiadavku na podpísanie certifikátu"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:623
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Dôverovať koreňovému certifikátu"
 
-#: src/view/keylistcontroller.cpp:627
+#: src/view/keylistcontroller.cpp:632
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Nedôverovať koreňovému certifikátu"
 
-#: src/view/keylistcontroller.cpp:636
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Technical Details"
 msgstr "Technické detaily"
 
-#: src/view/keylistcontroller.cpp:646
+#: src/view/keylistcontroller.cpp:651
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "Certifikáty S/MIME"
 
-#: src/view/keylistcontroller.cpp:655
+#: src/view/keylistcontroller.cpp:660
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Vymazať vyrovnávaciu pamäť CRL"
 
-#: src/view/keylistcontroller.cpp:664
+#: src/view/keylistcontroller.cpp:669
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Vypísať vyrovnávaciu pamäť CRL"
 
-#: src/view/keylistcontroller.cpp:673
+#: src/view/keylistcontroller.cpp:678
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Importovať CRL zo súboru..."
@@ -13774,6 +13789,9 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\"."
+
+#~ msgid "Search for certificates online using a public keyserver"
+#~ msgstr "Hľadať certifikáty online pomocou verejného servera kľúčov"
 
 #, fuzzy
 #~| msgid "Search..."

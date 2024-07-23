@@ -150,9 +150,6 @@ set_package_properties(LibAssuan PROPERTIES
   PURPOSE "Needed for Kleopatra to act as the GnuPG UI Server"
 )
 find_package(LibGpgError ${GPG_ERROR_REQUIRED_VERSION} REQUIRED)
-set_package_properties(LibGpgError PROPERTIES
-  TYPE REQUIRED
-)
 
 set(kleopatra_release FALSE)
 

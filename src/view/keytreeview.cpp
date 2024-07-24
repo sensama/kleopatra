@@ -10,7 +10,9 @@
 #include <config-kleopatra.h>
 
 #include "keytreeview.h"
+#include "kleopatraapplication.h"
 #include "searchbar.h"
+#include "settings.h"
 
 #include <Libkleo/KeyList>
 #include <Libkleo/KeyListModel>
@@ -298,6 +300,10 @@ void KeyTreeView::init()
     m_proxy->setFilterRegularExpression(QRegularExpression::escape(m_stringFilter.trimmed()));
     m_proxy->setKeyFilter(m_keyFilter);
     m_proxy->setSortCaseSensitivity(Qt::CaseInsensitive);
+    m_proxy->setShowDisabledKeys(Settings{}.showDisabledKeys());
+    connect(dynamic_cast<KleopatraApplication *>(qApp), &KleopatraApplication::configurationChanged, this, [this]() {
+        m_proxy->setShowDisabledKeys(Settings{}.showDisabledKeys());
+    });
 
     auto rearangingModel = new KeyRearrangeColumnsProxyModel(this);
     rearangingModel->setSourceModel(m_proxy);

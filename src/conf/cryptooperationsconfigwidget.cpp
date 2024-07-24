@@ -71,6 +71,7 @@ void CryptoOperationsConfigWidget::setupGui()
     mSymmetricOnlyCB->setToolTip(i18nc("@info", "Set this option to disable public key encryption."));
     mPublicKeyOnlyCB = new QCheckBox(i18n("Use public-key encryption only."));
     mPublicKeyOnlyCB->setToolTip(i18nc("@info", "Set this option to disable password-based encryption."));
+    mShowDisabledKeysCB = new QCheckBox(i18nc("@info", "Show disabled certificates"));
 
     connect(mSymmetricOnlyCB, &QCheckBox::toggled, this, [this]() {
         if (mSymmetricOnlyCB->isChecked()) {
@@ -92,6 +93,7 @@ void CryptoOperationsConfigWidget::setupGui()
     baseLay->addWidget(mTmpDirCB);
     baseLay->addWidget(mSymmetricOnlyCB);
     baseLay->addWidget(mPublicKeyOnlyCB);
+    baseLay->addWidget(mShowDisabledKeysCB);
 
     auto comboLay = new QGridLayout;
 
@@ -137,6 +139,7 @@ void CryptoOperationsConfigWidget::defaults()
 
     Settings settings;
     settings.setChecksumDefinitionId(settings.findItem(QStringLiteral("ChecksumDefinitionId"))->getDefault().toString());
+    settings.setShowDisabledKeys(settings.findItem(QStringLiteral("ShowDisabledKeys"))->getDefault().toBool());
 
     load(filePrefs, settings, classifyConfig);
 }
@@ -161,6 +164,8 @@ void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &f
     mPublicKeyOnlyCB->setEnabled(!filePrefs.isPublicKeyEncryptionOnlyImmutable());
     mTreatP7mEmailCB->setChecked(classifyConfig.p7mWithoutExtensionAreEmail());
     mTreatP7mEmailCB->setEnabled(!classifyConfig.isP7mWithoutExtensionAreEmailImmutable());
+    mShowDisabledKeysCB->setChecked(settings.showDisabledKeys());
+    mShowDisabledKeysCB->setEnabled(!settings.isShowDisabledKeysImmutable());
 
     const auto defaultChecksumDefinitionId = settings.checksumDefinitionId();
     {
@@ -227,6 +232,7 @@ void CryptoOperationsConfigWidget::save()
         const auto id = mChecksumDefinitionCB.widget()->itemData(idx).toString();
         settings.setChecksumDefinitionId(id);
     }
+    settings.setShowDisabledKeys(mShowDisabledKeysCB->isChecked());
     settings.save();
 
     const int aidx = mArchiveDefinitionCB.widget()->currentIndex();

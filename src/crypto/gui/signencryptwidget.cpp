@@ -882,7 +882,6 @@ bool SignEncryptWidget::validate()
 void SignEncryptWidget::Private::updateCheckBoxes()
 {
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
-    const bool havePublicKeys = !KeyCache::instance()->keys().empty();
     const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
     mSigChk->setEnabled(haveSecretKeys);
     mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);

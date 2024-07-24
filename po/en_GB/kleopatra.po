@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2024-07-05 13:45+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -2807,26 +2807,26 @@ msgid "No Directory Servers Configured"
 msgstr "No Directory Servers Configured"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "You are not allowed to create S/MIME certificate signing requests."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Could not start key pair creation: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Creating Key Pair..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5135,7 +5135,6 @@ msgid "This certificate is revoked"
 msgstr "This certificate is expired."
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6326,7 +6325,6 @@ msgid "Authentication"
 msgstr "Authentication"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6366,13 +6364,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "Enter a name and/or an email address to use for the user ID."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Enter a name or an email address."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "There is a problem."
@@ -7684,114 +7680,6 @@ msgstr "LDAP"
 #, kde-format
 msgid "Keyserver"
 msgstr "Keyserver"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "Name"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "Enter a name."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "Email address"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "Enter an email address."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "The name must not include <, >, and @."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"The name must be in the format required by your organisation and it must not "
-"include <, >, and @."
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"The name must be in the format required by your organisation and it must not "
-"include less-than sign, greater-than sign, and at sign."
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr "Enter an email address in the correct format, like name@example.com."
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-"Enter an email address in the correct format required by your organisation."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Protect the generated key with a passphrase."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, kde-format
-msgid "Advanced options"
-msgstr "Advanced options"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, kde-format
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "Key Material"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "Create OpenPGP Certificate"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "Enter a name and an email address to use for the certificate."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "Enter a name and/or an email address to use for the certificate."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, kde-format
@@ -9512,47 +9400,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "String or Fingerprint for query and search"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Failed to execute command"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Ambiguous protocol: --openpgp and --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "No search string specified for --search"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "No fingerprint argument specified for --query"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Ambiguous commands \"%1\" and \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "No files specified for \"%1\" command"
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Cannot read \"%1\""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Opening an external link is administratively prohibited."
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "Prohibited"
@@ -10052,6 +9940,11 @@ msgstr "Real name:"
 msgid "EMail address:"
 msgstr "EMail address:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "Protect the generated key with a passphrase."
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10087,22 +9980,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Create"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Operation cancelled."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Could not create key pair: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Could not write output file %1: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "Key pair created successfully."
@@ -11392,36 +11285,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Decrypt/Verify..."
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "The date cannot be changed."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "Enter a date between %1 and %2."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "Three years from now"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "Two years from now"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "One year from now"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11747,22 +11610,6 @@ msgstr "Certificates:"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Reading certificates from smart card ..."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "Error: Enter a value."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "Error: Enter a value in the correct format."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (required)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -13146,6 +12993,109 @@ msgid ""
 msgstr ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Name"
+
+#~ msgid "Enter a name."
+#~ msgstr "Enter a name."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "Email address"
+
+#~ msgid "Enter an email address."
+#~ msgstr "Enter an email address."
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "The name must not include <, >, and @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "The name must be in the format required by your organisation and it must "
+#~ "not include <, >, and @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "The name must be in the format required by your organisation and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr ""
+#~ "Enter an email address in the correct format, like name@example.com."
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organisation."
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+
+#~ msgid "Advanced options"
+#~ msgstr "Advanced options"
+
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "Key Material"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "Create OpenPGP Certificate"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "Enter a name and an email address to use for the certificate."
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr "Enter a name and/or an email address to use for the certificate."
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "The date cannot be changed."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "Enter a date between %1 and %2."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "Three years from now"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "Two years from now"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "One year from now"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "Error: Enter a value."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "Error: Enter a value in the correct format."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (required)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "Search for certificates online using a public keyserver"

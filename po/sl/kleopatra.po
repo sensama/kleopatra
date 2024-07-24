@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
-"PO-Revision-Date: 2024-07-20 05:51+0200\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
+"PO-Revision-Date: 2024-07-23 07:24+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -2835,26 +2835,26 @@ msgid "No Directory Servers Configured"
 msgstr "Ni nobenega nastavljenega imeniškega strežnika"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Nimate dovoljenja za kreiranje zahtevkov podpisovanja potrdil S/MIME."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Ustvarjanja potrdila ni bilo mogoče začeti: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Ustvarjanje para ključev…"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5206,7 +5206,6 @@ msgid "This certificate is revoked"
 msgstr "To potrdilo je preklicano"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6396,7 +6395,6 @@ msgid "Authentication"
 msgstr "Overjanje"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6438,13 +6436,11 @@ msgstr ""
 "Vnesite ime in/ali naslov e-pošte za uporabo v uporabnikovem določilniku."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Vnesite ime ali e-poštni naslov."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "Obstaja problem."
@@ -7796,114 +7792,6 @@ msgstr "LDAP"
 #, kde-format
 msgid "Keyserver"
 msgstr "Strežnik ključev"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "Ime"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "Vnesite ime."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "E-poštni naslov"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "Vnesite e-poštni naslov."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "Ne sme vsebovati <, >, in @."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr "Ime ne sme vsebovati znakov: manj, več in afne."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"Ime mora biti v formatu, kot jo zahteva vaša organizacija in ne sme "
-"vsebovati <, >, in @."
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"Ime mora biti v formatu, kot jo zahteva vaša organizacija in ne sme "
-"vsebovati znakov: manj, več in afne."
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr "Vnesite e-poštni naslov v pravilnem formatu kot npr. ime@primer.com."
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-"Vnesite naslov e-pošte v ustreznem formatu, kot ga zahtevajo pravila vaše "
-"organizacije."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Zavaruj generiran ključ s geselno frazo."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Šifrira tajni ključ z neobnovljivo geselno frazo. Po gesel frazi boste "
-"vprašani med generiranjem ključa."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, kde-format
-msgid "Advanced options"
-msgstr "Napredne možnosti"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, kde-format
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "Snov ključa"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "Kreiraj potrdilo OpenPGP"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "Vnesite ime in naslov e-pošte za uporabo tega potrdila."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "Vnesite ime in/ali naslov e-pošte za uporabo tega potrdila."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, kde-format
@@ -9631,47 +9519,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Niz ali prstni odtis za poizvedbo in iskanje"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Ni bilo mogoče izvesti ukaza"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Dvoumni protokol: --openpgp in --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Za --search ni bilo navedenega iskalnega niza"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Za --query ni bilo navedenega prstnega odtisa"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Dvoumna ukaza \"%1\" in \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Za ukaz \"%1\" ni bilo podanih datotek"
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Ni mogoče brati \"%1\""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Odpiranje zunanje povezave je administrativno prepovedano."
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "Prepovedano"
@@ -10180,6 +10068,11 @@ msgstr "Resnično ime:"
 msgid "EMail address:"
 msgstr "E-poštni naslov:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "Zavaruj generiran ključ s geselno frazo."
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10215,22 +10108,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Ustvari"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Opravilo preklicano."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Ni bilo mogoče ustvariti para ključev: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Ni mogoče pisati v izhodno datoteko %1: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "Par ključev uspešno ustvarjen."
@@ -11523,36 +11416,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Dešifriraj/preveri..."
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "Datum ne sme biti spremenjen."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "Vnesite datum med %1 in %2."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "Tri leta od zdaj"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "Dve leti od zdaj"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "Eno leto od zdaj"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11880,22 +11743,6 @@ msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Branje potrdil s pametne kartice ..."
 
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "Napaka: vnesite vrednost."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "Napaka: vnesite vrednost v ustreznem formatu."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (zahtevano)"
-
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
 msgid "Loading certificate cache..."
@@ -11927,16 +11774,14 @@ msgid "Publish on Server..."
 msgstr "Objavi na strežniku…"
 
 #: src/view/keylistcontroller.cpp:348
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
-msgstr "Izbrano potrdilo (javni ključ) objavi na javnem strežniku ključev"
+msgstr "Objavi izbrano potrdilo (javni ključ) v notranjem imeniku"
 
 #: src/view/keylistcontroller.cpp:349
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid "Publish the selected certificate (public key) on %1"
-msgstr "Izbrano potrdilo (javni ključ) objavi na javnem strežniku ključev"
+msgstr "Objavi izbrano potrdilo (javni ključ) na %1"
 
 #: src/view/keylistcontroller.cpp:358
 #, kde-format
@@ -11968,18 +11813,14 @@ msgid "Lookup on Server..."
 msgstr "Poišči potrdila na strežniku…"
 
 #: src/view/keylistcontroller.cpp:388
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Upload revoked certificate to internal directory"
+#, kde-format
 msgid "Search for certificates in internal directory"
-msgstr "Prenesi preklicano potrdilo v notranji imenik"
+msgstr "Poišči potrdila v notranjem imeniku"
 
 #: src/view/keylistcontroller.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info:shell"
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgid "Search for certificates on %1"
-msgstr "Poišči potrdilo na strežniku ključev"
+msgstr "Poišči potrdila na %1"
 
 #: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
 #, kde-format
@@ -13280,6 +13121,108 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Ime"
+
+#~ msgid "Enter a name."
+#~ msgstr "Vnesite ime."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "E-poštni naslov"
+
+#~ msgid "Enter an email address."
+#~ msgstr "Vnesite e-poštni naslov."
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "Ne sme vsebovati <, >, in @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr "Ime ne sme vsebovati znakov: manj, več in afne."
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "Ime mora biti v formatu, kot jo zahteva vaša organizacija in ne sme "
+#~ "vsebovati <, >, in @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "Ime mora biti v formatu, kot jo zahteva vaša organizacija in ne sme "
+#~ "vsebovati znakov: manj, več in afne."
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr ""
+#~ "Vnesite e-poštni naslov v pravilnem formatu kot npr. ime@primer.com."
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr ""
+#~ "Vnesite naslov e-pošte v ustreznem formatu, kot ga zahtevajo pravila vaše "
+#~ "organizacije."
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Šifrira tajni ključ z neobnovljivo geselno frazo. Po gesel frazi boste "
+#~ "vprašani med generiranjem ključa."
+
+#~ msgid "Advanced options"
+#~ msgstr "Napredne možnosti"
+
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "Snov ključa"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "Kreiraj potrdilo OpenPGP"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "Vnesite ime in naslov e-pošte za uporabo tega potrdila."
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr "Vnesite ime in/ali naslov e-pošte za uporabo tega potrdila."
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "Datum ne sme biti spremenjen."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "Vnesite datum med %1 in %2."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "Tri leta od zdaj"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "Dve leti od zdaj"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "Eno leto od zdaj"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "Napaka: vnesite vrednost."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "Napaka: vnesite vrednost v ustreznem formatu."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (zahtevano)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "Poišči potrdilo na javnem strežniku s ključi"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2024-03-11 16:36+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -2830,26 +2830,26 @@ msgid "No Directory Servers Configured"
 msgstr "Ei määritettyjä hakemistopalvelimia"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Sinulla ei ole oikeutta luoda S/MIME-varmenteen allekirjoituspyyntöjä."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Avainparin luontia ei voitu käynnistää: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Luodaan avainparia…"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5202,7 +5202,6 @@ msgid "This certificate is revoked"
 msgstr "Tämä varmenne on vanhentunut."
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6400,7 +6399,6 @@ msgid "Authentication"
 msgstr "Todennus"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6440,13 +6438,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "Anna käyttäjätunnisteen käyttämä nimi tai sähköpostiosoite."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Anna nimi tai sähköpostiosoite."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "Havaittiin ongelma."
@@ -7837,115 +7833,6 @@ msgstr "LDAP-osoite"
 #| msgid "OpenPGP keyserver:"
 msgid "Keyserver"
 msgstr "OpenPGP-avainpalvelin"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "Nimi"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "Anna nimi."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "Sähköpostiosoite"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "Anna sähköpostiosoite."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "Ei saa sisältää merkkejä <, > tai @."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr "Ei saa sisältää pienempi kuin-, suurempi kuin- tai miukumaukumerkkiä."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"On oltava organisaation vaatimassa muodossa eikä saa sisältää merkkejä <, > "
-"tai @."
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"On oltava organisaation vaatimassa muodossa eikä saa sisältää pienempi "
-"kuin-, suurempi kuin- tai miukumaukumerkkiä."
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr "Anna sähköpostiosoite oikeassa muodossa, esim. nimi@esimerkki.fi."
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr "Anna sähköpostiosoite organisaation vaatimassa oikeassa muodossa."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Suojaa luotu avain salasanalla."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Salaa salaisen avaimen palauttamattomissa olevalla salasanalla. Salasana "
-"kysytään avainta luotaessa."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
-msgid "Advanced options"
-msgstr "Näytä lisäasetukset"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Key Material"
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "Avainmateriaali"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "Luo OpenPGP-varmenne"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "Anna varmenteessa käytettävä nimi ja sähköpostiosoite."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "Anna varmenteessa käytettävä nimi tai sähköpostiosoite tai kumpikin."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, fuzzy, kde-format
@@ -9713,47 +9600,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Etsittävä merkkijono tai sormenjälki"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Komennon suoritus epäonnistui"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Monitulkintainen käytänne: --openpgp ja --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search-parametrin hakujonoa ei annettu"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query-parametrille ei annettu sormenjälkeä"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Monitulkintaiset komennot: ”%1” ja ”%2”"
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "”%1”-komennolle ei annettu tiedostoparametreja"
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Ei voida lukea: ”%1”"
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Ulkoisen linkin avaaminen on ylläpidollisesti kielletty."
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "Kielletty"
@@ -10268,6 +10155,11 @@ msgstr "Oikea nimi:"
 msgid "EMail address:"
 msgstr "Sähköpostiosoite:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "Suojaa luotu avain salasanalla."
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, fuzzy, kde-format
 #| msgid ""
@@ -10306,22 +10198,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Luo"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Toiminto peruttu."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Avainparin luonti epäonnistui: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Ei voida kirjoittaa tulostiedostoa %1: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "Avainparin luonti onnistui."
@@ -11636,36 +11528,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Pura tai todenna salaus…"
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "Päivämäärää ei voi muuttaa."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "Anna aika väliltä %1–%2."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "Kolme vuotta tästä"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "Kaksi vuotta tästä"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "Vuosi tästä"
-
 # FD = file descriptor? Pitäisikö kääntää?
 #: src/utils/input.cpp:218
 #, kde-format
@@ -11992,22 +11854,6 @@ msgstr "Varmenteet:"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Luetaan varmennetta älykortilta…"
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "Virhe: Anna arvo."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "Virhe: Anna arvo oikeassa muodossa."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (vaadittu)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -13405,6 +13251,112 @@ msgid ""
 msgstr ""
 "Tuo varmenne tiedostosta.<nl/>Tuodaksesi julkisesta avainpalvelimesta käytä "
 "tämän sijaan toimintoa<interface>Etsi palvelimesta</interface>."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Nimi"
+
+#~ msgid "Enter a name."
+#~ msgstr "Anna nimi."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "Sähköpostiosoite"
+
+#~ msgid "Enter an email address."
+#~ msgstr "Anna sähköpostiosoite."
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "Ei saa sisältää merkkejä <, > tai @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "Ei saa sisältää pienempi kuin-, suurempi kuin- tai miukumaukumerkkiä."
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "On oltava organisaation vaatimassa muodossa eikä saa sisältää merkkejä <, "
+#~ "> tai @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "On oltava organisaation vaatimassa muodossa eikä saa sisältää pienempi "
+#~ "kuin-, suurempi kuin- tai miukumaukumerkkiä."
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr "Anna sähköpostiosoite oikeassa muodossa, esim. nimi@esimerkki.fi."
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr "Anna sähköpostiosoite organisaation vaatimassa oikeassa muodossa."
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Salaa salaisen avaimen palauttamattomissa olevalla salasanalla. Salasana "
+#~ "kysytään avainta luotaessa."
+
+#, fuzzy
+#~| msgid "Show advanced options"
+#~ msgid "Advanced options"
+#~ msgstr "Näytä lisäasetukset"
+
+#, fuzzy
+#~| msgctxt "@title:group"
+#~| msgid "Key Material"
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "Avainmateriaali"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "Luo OpenPGP-varmenne"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "Anna varmenteessa käytettävä nimi ja sähköpostiosoite."
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr ""
+#~ "Anna varmenteessa käytettävä nimi tai sähköpostiosoite tai kumpikin."
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "Päivämäärää ei voi muuttaa."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "Anna aika väliltä %1–%2."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "Kolme vuotta tästä"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "Kaksi vuotta tästä"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "Vuosi tästä"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "Virhe: Anna arvo."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "Virhe: Anna arvo oikeassa muodossa."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (vaadittu)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "Etsi varmenteita verkosta julkisesta avainpalvelimesta"

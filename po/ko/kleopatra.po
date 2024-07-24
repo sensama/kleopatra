@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2765,26 +2765,26 @@ msgid "No Directory Servers Configured"
 msgstr "설정한 디렉터리 서버 없음"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME 인증서 서명 요청 생성이 허용되어 있지 않습니다."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "키 쌍 생성을 시작할 수 없음: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "키 쌍 생성 중..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5060,7 +5060,6 @@ msgid "This certificate is revoked"
 msgstr "이 인증서가 만료되었습니다."
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6253,7 +6252,6 @@ msgid "Authentication"
 msgstr "인증"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6293,13 +6291,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "사용자 ID에 사용할 이름 그리고/또는 이메일 주소를 입력하십시오."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "이름이나 이메일 주소를 입력하십시오."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "문제가 발생했습니다."
@@ -7680,115 +7676,6 @@ msgstr ""
 #| msgid "OpenPGP keyserver:"
 msgid "Keyserver"
 msgstr "OpenPGP 키 서버:"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "이름"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "이름을 입력하십시오."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "이메일 주소"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "이메일 주소를 입력하십시오."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "이름에는 <, >, @ 기호를 포함할 수 없습니다."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr "이름에는 부등호, 등호, @ 기호를 포함할 수 없습니다."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"조직에서 요구한 형식대로 이름을 입력해야 하며, <, >, @ 기호를 포함할 수 없습"
-"니다."
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"조직에서 요구한 형식대로 이름을 입력해야 하며, 부등호, 등호, @ 기호를 포함할 "
-"수 없습니다."
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr "name@example.com과 같이 올바른 형식의 이메일 주소를 입력하십시오."
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr "조직에서 요구하는 형식의 이메일 주소를 입력하십시오."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "생성한 키를 암구호로 보호합니다."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"비밀 키를 다시 찾을 수 없는 암구호로 보호합니다. 키를 생성할 때 해당 암구호"
-"를 물어 봅니다."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
-msgid "Advanced options"
-msgstr "고급 옵션 표시"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Key Material"
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "키 구성"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "OpenPGP 인증서 생성"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "인증서에 사용할 이름과 이메일 주소를 입력하십시오."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "인증서에 사용할 이름 그리고/또는 이메일 주소를 입력하십시오."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, fuzzy, kde-format
@@ -9539,47 +9426,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "질의와 검색에 사용할 문자열이나 지문"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "명령을 실행할 수 없음"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "모호한 프로토콜: --openpgp와 --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search에 검색 문자열을 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query에 지문 인자를 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "모호한 명령: \"%1\"와(과) \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "\"%1\" 명령에 파일을 지정하지 않았음"
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\"에서 읽을 수 없음"
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "관리자에 의해서 외부 링크 열기가 금지되었습니다."
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "금지됨"
@@ -10086,6 +9973,11 @@ msgstr "실명:"
 msgid "EMail address:"
 msgstr "이메일 주소:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "생성한 키를 암구호로 보호합니다."
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, fuzzy, kde-format
 #| msgid ""
@@ -10124,22 +10016,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "생성"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "작업이 취소되었습니다."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "키 쌍을 생성할 수 없음: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "출력 파일 %1에 쓸 수 없음: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "키 쌍을 생성했습니다."
@@ -11421,36 +11313,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "복호화/검증..."
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "날짜를 변경할 수 없습니다."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "%1부터 %2 사이의 날짜를 입력하십시오."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "오늘부터 3년"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "오늘부터 2년"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "오늘부터 1년"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11775,22 +11637,6 @@ msgstr "인증서:"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "인증서 캐시 불러오는 중..."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "오류: 값을 입력하십시오."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "오류: 올바른 형식의 값을 입력하십시오."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1(필요함)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -13179,6 +13025,110 @@ msgid ""
 msgstr ""
 "파일에서 인증서를 가져옵니다.<nl/>공개 키 서버에서 키를 가져오려면 "
 "<interface>서버에서 찾아보기</interface>를 사용하십시오."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "이름"
+
+#~ msgid "Enter a name."
+#~ msgstr "이름을 입력하십시오."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "이메일 주소"
+
+#~ msgid "Enter an email address."
+#~ msgstr "이메일 주소를 입력하십시오."
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "이름에는 <, >, @ 기호를 포함할 수 없습니다."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr "이름에는 부등호, 등호, @ 기호를 포함할 수 없습니다."
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "조직에서 요구한 형식대로 이름을 입력해야 하며, <, >, @ 기호를 포함할 수 없"
+#~ "습니다."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "조직에서 요구한 형식대로 이름을 입력해야 하며, 부등호, 등호, @ 기호를 포함"
+#~ "할 수 없습니다."
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr "name@example.com과 같이 올바른 형식의 이메일 주소를 입력하십시오."
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr "조직에서 요구하는 형식의 이메일 주소를 입력하십시오."
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "비밀 키를 다시 찾을 수 없는 암구호로 보호합니다. 키를 생성할 때 해당 암구"
+#~ "호를 물어 봅니다."
+
+#, fuzzy
+#~| msgid "Show advanced options"
+#~ msgid "Advanced options"
+#~ msgstr "고급 옵션 표시"
+
+#, fuzzy
+#~| msgctxt "@title:group"
+#~| msgid "Key Material"
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "키 구성"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "OpenPGP 인증서 생성"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "인증서에 사용할 이름과 이메일 주소를 입력하십시오."
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr "인증서에 사용할 이름 그리고/또는 이메일 주소를 입력하십시오."
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "날짜를 변경할 수 없습니다."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "%1부터 %2 사이의 날짜를 입력하십시오."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "오늘부터 3년"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "오늘부터 2년"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "오늘부터 1년"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "오류: 값을 입력하십시오."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "오류: 올바른 형식의 값을 입력하십시오."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1(필요함)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "온라인 공개 키 서버에서 인증서 찾아보기"

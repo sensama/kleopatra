@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2024-06-30 11:02+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -2728,26 +2728,26 @@ msgid "No Directory Servers Configured"
 msgstr "沒有設定目錄伺服器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您不被允許建立 S/MIME 憑證簽章請求。"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "無法開始建立金鑰對：%1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "正在建立金鑰對..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -4955,7 +4955,6 @@ msgid "This certificate is revoked"
 msgstr "此憑證已過期。"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6124,7 +6123,6 @@ msgid "Authentication"
 msgstr "認證"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6164,13 +6162,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "輸入使用者 ID 用的名稱或電子郵件地址。"
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "輸入名稱或是電子郵件地址。"
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "有問題。"
@@ -7431,109 +7427,6 @@ msgstr "LDAP"
 #, kde-format
 msgid "Keyserver"
 msgstr "金鑰伺服器"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "名稱"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "請輸入名稱。"
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "電子郵件地址"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "請輸入一個電子郵件地址。"
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "名稱不能包含 <、> 或 @。"
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr "名稱不能包含小於符號、大於符號，或小老鼠 (at) 符號。"
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr "名稱必須符合您的組織所要求的格式，並且不能包含 <、> 或 @。"
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"名稱必須符合您的組織所要求的格式，並且包含小於符號、大於符號，或小老鼠 (at) "
-"符號。"
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr "請輸入正確格式的電子郵件地址，如 name@example.com。"
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr "請輸入符合您組織的格式要求的電子郵件地址。"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "用密碼保護產生的金鑰。"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr "用無法讀出的密碼將私鑰進行加密。產生金鑰時將會向您詢問密碼。"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, kde-format
-msgid "Advanced options"
-msgstr "進階選項"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgid "Key Material"
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "金鑰型式"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "建立 OpenPGP 憑證"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "輸入憑證用的名稱及電子郵件地址。"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "輸入憑證用的名稱或電子郵件地址。"
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, kde-format
@@ -9156,47 +9049,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "查詢及搜尋用的字串或指紋"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "執行指令時失敗"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "不明確的協定：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "對於 --query 沒有指定指紋參數"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "不明確的指令 \"%1\" 與 \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "無法讀取 \"%1\""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "被禁止"
@@ -9686,6 +9579,11 @@ msgstr "真實姓名："
 msgid "EMail address:"
 msgstr "電子郵件地址："
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "用密碼保護產生的金鑰。"
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -9718,22 +9616,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "建立"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "操作已取消。"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "無法建立金鑰對：%1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "無法寫入輸出檔案 %1：%2。"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "已成功產生金鑰對。"
@@ -10984,36 +10882,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "解密/檢查..."
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "日期無法變更。"
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "輸入在 %1 和 %2 之間的日期。"
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "現在起三年"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "現在起兩年"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "現在起一年"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11332,22 +11200,6 @@ msgstr "憑證："
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "從智慧卡讀取憑證中 ..."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "錯誤：請輸入值。"
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "錯誤：請輸入正確格式的值。"
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1（必要）"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -12700,6 +12552,103 @@ msgid ""
 msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "名稱"
+
+#~ msgid "Enter a name."
+#~ msgstr "請輸入名稱。"
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "電子郵件地址"
+
+#~ msgid "Enter an email address."
+#~ msgstr "請輸入一個電子郵件地址。"
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "名稱不能包含 <、> 或 @。"
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr "名稱不能包含小於符號、大於符號，或小老鼠 (at) 符號。"
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr "名稱必須符合您的組織所要求的格式，並且不能包含 <、> 或 @。"
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "名稱必須符合您的組織所要求的格式，並且包含小於符號、大於符號，或小老鼠 "
+#~ "(at) 符號。"
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr "請輸入正確格式的電子郵件地址，如 name@example.com。"
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr "請輸入符合您組織的格式要求的電子郵件地址。"
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr "用無法讀出的密碼將私鑰進行加密。產生金鑰時將會向您詢問密碼。"
+
+#~ msgid "Advanced options"
+#~ msgstr "進階選項"
+
+#, fuzzy
+#~| msgid "Key Material"
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "金鑰型式"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "建立 OpenPGP 憑證"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "輸入憑證用的名稱及電子郵件地址。"
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr "輸入憑證用的名稱或電子郵件地址。"
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "日期無法變更。"
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "輸入在 %1 和 %2 之間的日期。"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "現在起三年"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "現在起兩年"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "現在起一年"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "錯誤：請輸入值。"
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "錯誤：請輸入正確格式的值。"
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1（必要）"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "用公開金鑰伺服器在線上搜尋憑證"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2005-03-16 02:05-0800\n"
 "Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
 "Language-Team:  <ta@li.org>\n"
@@ -2956,20 +2956,20 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, fuzzy, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "&விசை ஜோடி மற்றும் சான்றிதழ் வேண்டுகோளை உருவாக்கு"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, fuzzy, kde-format
 #| msgid "Could not start certificate generation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "சான்றிதழ் உருவாக்கத்தை தொடங்க முடியவில்லை: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, fuzzy, kde-format
 #| msgid "Fetching keys..."
 msgctxt "@title"
@@ -2977,7 +2977,7 @@ msgid "Creating Key Pair..."
 msgstr "விசைகள் கொணரப்படுகின்றன"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5292,7 +5292,6 @@ msgid "This certificate is revoked"
 msgstr "சிஏ சான்றிதழ்கள் அழிக்கப்படுகின்றன"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Kleopatra Error"
 msgctxt "@info"
@@ -6529,7 +6528,6 @@ msgid "Authentication"
 msgstr "சான்றிதழ் தகவல்"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid "Validate"
 msgctxt "@option:check"
@@ -6572,13 +6570,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr ""
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr ""
@@ -7935,112 +7931,6 @@ msgstr ""
 #| msgid "Certificate Manager Error"
 msgid "Keyserver"
 msgstr "சான்றிதழ் மேலாளர் பிழை"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, fuzzy, kde-format
-#| msgid "Serial Number"
-msgctxt "@label"
-msgid "Name"
-msgstr "வரிசை எண்"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "Serial Number"
-msgid "Enter a name."
-msgstr "வரிசை எண்"
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, fuzzy, kde-format
-#| msgid "&Details"
-msgid "Enter an email address."
-msgstr "&விவரங்கள்"
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Canceled."
-msgid "Advanced options"
-msgstr "ரத்தானது"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgid "Key Categories"
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "விசை வகைகள்"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Error"
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "சான்றிதழ் மேலாளர் பிழை"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, fuzzy, kde-format
@@ -9717,7 +9607,7 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -9727,43 +9617,43 @@ msgstr ""
 "ஜிபிஜிஎசெமை செயலாக்க முடியவில்லை\n"
 "%1"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot read \"%1\""
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -10284,6 +10174,11 @@ msgstr "வரிசை எண்"
 msgid "EMail address:"
 msgstr ""
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr ""
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10315,25 +10210,25 @@ msgctxt "@action"
 msgid "Create"
 msgstr ""
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid "Operation canceled."
 msgstr "சான்றிதழை பதிவிறக்க முடியவில்லை"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not create key pair: %1"
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not write output file %1: %2"
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, fuzzy, kde-format
 #| msgid "CRL cache cleared successfully."
 msgid "Key pair created successfully."
@@ -11569,37 +11464,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "விசைகள் அழிக்கப்படுகின்றன..."
 
-#: src/utils/expiration.cpp:104
-#, fuzzy, kde-format
-#| msgid "CRL cache cleared successfully."
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "CRL நினைவகம் வெற்றிகரமாக காலிசெய்யப்பட்டது."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr ""
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr ""
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr ""
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr ""
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11939,22 +11803,6 @@ msgstr "&சான்றிதழ்கள்"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "சான்றிதழ் ஏற்றுமதி செய்யப்படுகின்றன.."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr ""
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr ""
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr ""
 
 #: src/view/keycacheoverlay.cpp:40
 #, fuzzy, kde-format
@@ -13403,6 +13251,45 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Serial Number"
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "வரிசை எண்"
+
+#, fuzzy
+#~| msgid "Serial Number"
+#~ msgid "Enter a name."
+#~ msgstr "வரிசை எண்"
+
+#, fuzzy
+#~| msgid "&Details"
+#~ msgid "Enter an email address."
+#~ msgstr "&விவரங்கள்"
+
+#, fuzzy
+#~| msgid "Canceled."
+#~ msgid "Advanced options"
+#~ msgstr "ரத்தானது"
+
+#, fuzzy
+#~| msgid "Key Categories"
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "விசை வகைகள்"
+
+#, fuzzy
+#~| msgid "Certificate Manager Error"
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "சான்றிதழ் மேலாளர் பிழை"
+
+#, fuzzy
+#~| msgid "CRL cache cleared successfully."
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "CRL நினைவகம் வெற்றிகரமாக காலிசெய்யப்பட்டது."
 
 #, fuzzy
 #~| msgid "Search for external certificates initially"

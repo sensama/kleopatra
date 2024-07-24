@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2024-07-14 21:36+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -2829,27 +2829,27 @@ msgid "No Directory Servers Configured"
 msgstr "Няма конфигурирани сървъри на директории"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
 "Нямате права за създаването на заявки за подписване на сертификат S/MIME."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Не може да започне създаването на двойка ключове: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Създаване на двойка ключове..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5191,7 +5191,6 @@ msgid "This certificate is revoked"
 msgstr "Сертификатът е изтекъл"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6390,7 +6389,6 @@ msgid "Authentication"
 msgstr "Удостоверяване"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6434,13 +6432,11 @@ msgstr ""
 "идентификатор."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Enter a name or an email address."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "Има проблем."
@@ -7768,115 +7764,6 @@ msgstr "LDAP"
 #, kde-format
 msgid "Keyserver"
 msgstr "Сървър за ключове"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "Име"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "Въведете име."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "Имейл адрес"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "Въведете имейл адрес."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "Името не трябва да включва <, > и @."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"Името не трябва да включва знаците \"по-малко от\", \"по-голямо от\" и \"at"
-"\"."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"Името трябва да е във формат, изискван от вашата организация, и не трябва да "
-"включва <, > и @."
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"Името трябва да е във формат, изискван от вашата организация, и не трябва да "
-"включва знаците less-than, greater-than и at."
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr "Въведете имейл адрес в правилния формат, например name@example.com."
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-"Въведете имейл адрес в правилния формат, изискван от вашата организация."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Защита на генерирания ключ с парола."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Криптира тайния ключ с невъзможна за възстановяване парола. По време на "
-"генерирането на ключа ще ви бъде поискана паролата."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, kde-format
-msgid "Advanced options"
-msgstr "Разширени настройки"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, kde-format
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "Основен материал"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "Създаване на OpenPGP сертификати"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "Въведете име и имейл адрес, които да използвате за сертификата."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "Въведете име и/или имейл адрес, които да използвате за сертификата."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, kde-format
@@ -9623,47 +9510,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Низ или отпечатък за заявка и търсене"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Неуспешно изпълнение на команда"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Неясен протокол: --openpgp и --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Не е посочен низ за търсене за --search"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Не е посочен аргумент за пръстов отпечатък за --query"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Двусмислени команди \"%1\"и \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Не са посочени файлове за командата \"%1\""
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Не може да се прочете \"%1\""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Отварянето на външна връзка е административно забранено."
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "Забранено"
@@ -10167,6 +10054,11 @@ msgstr "Истинско име:"
 msgid "EMail address:"
 msgstr "Имейл адрес:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "Защита на генерирания ключ с парола."
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10202,22 +10094,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Създаване"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Операцията е отменена."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Не можа да се създаде двойка ключове: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Не може да се запише изходен файл %1: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "Двойката ключове е създадена успешно."
@@ -11528,36 +11420,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Дешифриране/потвърждаване..."
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "Датата не може да бъде променяна."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "Въведете дата между %1 и %2."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "За три години напред"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "За две години напред"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "Една година напред"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11885,22 +11747,6 @@ msgstr "Сертификати:"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Прочитат се сертификатите от смарт картата..."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "Грешка: Въведете стойност."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "Грешка: Въведете стойност в правилния формат."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (задължителен)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -13297,6 +13143,108 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Име"
+
+#~ msgid "Enter a name."
+#~ msgstr "Въведете име."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "Имейл адрес"
+
+#~ msgid "Enter an email address."
+#~ msgstr "Въведете имейл адрес."
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "Името не трябва да включва <, > и @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "Името не трябва да включва знаците \"по-малко от\", \"по-голямо от\" и "
+#~ "\"at\"."
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "Името трябва да е във формат, изискван от вашата организация, и не трябва "
+#~ "да включва <, > и @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "Името трябва да е във формат, изискван от вашата организация, и не трябва "
+#~ "да включва знаците less-than, greater-than и at."
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr "Въведете имейл адрес в правилния формат, например name@example.com."
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr ""
+#~ "Въведете имейл адрес в правилния формат, изискван от вашата организация."
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Криптира тайния ключ с невъзможна за възстановяване парола. По време на "
+#~ "генерирането на ключа ще ви бъде поискана паролата."
+
+#~ msgid "Advanced options"
+#~ msgstr "Разширени настройки"
+
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "Основен материал"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "Създаване на OpenPGP сертификати"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "Въведете име и имейл адрес, които да използвате за сертификата."
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr "Въведете име и/или имейл адрес, които да използвате за сертификата."
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "Датата не може да бъде променяна."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "Въведете дата между %1 и %2."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "За три години напред"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "За две години напред"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "Една година напред"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "Грешка: Въведете стойност."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "Грешка: Въведете стойност в правилния формат."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (задължителен)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr ""

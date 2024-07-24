@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
-"PO-Revision-Date: 2024-07-20 10:38+0200\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
+"PO-Revision-Date: 2024-07-23 11:32+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -2845,7 +2845,7 @@ msgid "No Directory Servers Configured"
 msgstr "Geen mapserver ingesteld"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -2853,20 +2853,20 @@ msgstr ""
 "toegestaan."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Kon het aanmaken van een sleutelpaar niet starten: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Sleutelpaar aanmaken..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5217,7 +5217,6 @@ msgid "This certificate is revoked"
 msgstr "Dit certificaat is ingetrokken"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6420,7 +6419,6 @@ msgid "Authentication"
 msgstr "Authenticatie"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6460,13 +6458,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "Voer een naam en/of e-mailadres in om te gebruiken als gebruiker-id."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Voer een naam of een e-mailadres in."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "Er is een probleem."
@@ -7800,116 +7796,6 @@ msgstr "LDAP"
 #, kde-format
 msgid "Keyserver"
 msgstr "Keyserver"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "Naam"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "Een naam invoeren."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "E-mailadres"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "E-mailadres invoeren."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "De naam mag geen <, >, en @ bevatten."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"De naam mag geen minder-dan-teken, groter-dan-teken en apenstaartje bevatten."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"De naam moet in het formaat, vereist door uw organisatie, zijn en mag geen "
-"<, > en @ bevatten."
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"De naam moet in het formaat, vereist door uw organisatie, zijn en mag geen "
-"kleiner-dan-teken, groter-dan-teken en apenstaartje bevatten."
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr "Voer een e-mailadres in in het juiste formaat, zoals jan@jansen.nl."
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-"Voer een e-mailadres in in het juiste formaat, zoals vereist door uw "
-"organisatie. "
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "De gegenereerde sleutel met een wachtwoord beschermen."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"De geheime sleutel versleutelen met een niet te herstellen wachtwoordzin. U "
-"zal om een wachtwoordzin gevraagd worden tijdens de generatie van de sleutel."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, kde-format
-msgid "Advanced options"
-msgstr "Geavanceerde opties"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, kde-format
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "Sleutelmateriaal"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "OpenPGP-certificaat aanmaken"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "Voer een naam en e-mailadres in om te gebruiken voor het certificaat."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr ""
-"Voer een naam en/of e-mailadres in om te gebruiken voor het certificaat."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, kde-format
@@ -9660,47 +9546,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Tekenreeks of vingerafdruk voor query en zoeken"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Uitvoeren commando is mislukt"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Dubbelzinnig protocol: --openpgp en --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Geen zoektekst gespecificeerd voor --search"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Geen argument met vingerafdruk gespecificeerd voor --query"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Dubbelzinnige commando's \"%1\" en \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Geen bestanden gespecificeerd voor commando \"%1\""
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Kan \"%1\" niet lezen"
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Een externe koppeling openen is administratief verboden."
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "Verboden"
@@ -10200,6 +10086,11 @@ msgstr "Echte naam:"
 msgid "EMail address:"
 msgstr "E-mailadres:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "De gegenereerde sleutel met een wachtwoord beschermen."
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10235,22 +10126,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Aanmaken"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Operatie geannuleerd."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Kon sleutelpaar niet aanmaken: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Kon uitvoerbestand %1 niet opslaan: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "Sleutelpaar met succes aangemaakt."
@@ -11552,36 +11443,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Ontcijferen/verifiëren..."
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "De datum kan niet worden gewijzigd."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "Een datum tussen %1 en %2 invoeren."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "Drie jaar vanaf nu"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "Twee jaar vanaf nu"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "Eén jaar vanaf nu"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11910,22 +11771,6 @@ msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Certificaten lezen uit de smartcard..."
 
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "Fout: voer een waarde in."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "Fout: voer een waarde in in het juiste formaat."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (vereist)"
-
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
 msgid "Loading certificate cache..."
@@ -11958,20 +11803,16 @@ msgid "Publish on Server..."
 msgstr "Op server publiceren..."
 
 #: src/view/keylistcontroller.cpp:348
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr ""
-"Het geselecteerde certificaat (publieke sleutel) op een publieke "
-"sleutelserver publiceren"
+"Het geselecteerde certificaat (publieke sleutel) op een interne map "
+"publiceren"
 
 #: src/view/keylistcontroller.cpp:349
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid "Publish the selected certificate (public key) on %1"
-msgstr ""
-"Het geselecteerde certificaat (publieke sleutel) op een publieke "
-"sleutelserver publiceren"
+msgstr "Het geselecteerde certificaat (publieke sleutel) op %1 publiceren"
 
 #: src/view/keylistcontroller.cpp:358
 #, kde-format
@@ -12003,18 +11844,14 @@ msgid "Lookup on Server..."
 msgstr "Op server opzoeken..."
 
 #: src/view/keylistcontroller.cpp:388
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Upload revoked certificate to internal directory"
+#, kde-format
 msgid "Search for certificates in internal directory"
-msgstr "Ingetrokken certificaat uploaden naar interne directory"
+msgstr "Naar certificaten in een interne map zoeken"
 
 #: src/view/keylistcontroller.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info:shell"
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgid "Search for certificates on %1"
-msgstr "Zoeken naar een certificaat op een sleutelserver"
+msgstr "Naar certificaten op %1 zoeken"
 
 #: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
 #, kde-format
@@ -13328,6 +13165,112 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Naam"
+
+#~ msgid "Enter a name."
+#~ msgstr "Een naam invoeren."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "E-mailadres"
+
+#~ msgid "Enter an email address."
+#~ msgstr "E-mailadres invoeren."
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "De naam mag geen <, >, en @ bevatten."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "De naam mag geen minder-dan-teken, groter-dan-teken en apenstaartje "
+#~ "bevatten."
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "De naam moet in het formaat, vereist door uw organisatie, zijn en mag "
+#~ "geen <, > en @ bevatten."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "De naam moet in het formaat, vereist door uw organisatie, zijn en mag "
+#~ "geen kleiner-dan-teken, groter-dan-teken en apenstaartje bevatten."
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr "Voer een e-mailadres in in het juiste formaat, zoals jan@jansen.nl."
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr ""
+#~ "Voer een e-mailadres in in het juiste formaat, zoals vereist door uw "
+#~ "organisatie. "
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "De geheime sleutel versleutelen met een niet te herstellen wachtwoordzin. "
+#~ "U zal om een wachtwoordzin gevraagd worden tijdens de generatie van de "
+#~ "sleutel."
+
+#~ msgid "Advanced options"
+#~ msgstr "Geavanceerde opties"
+
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "Sleutelmateriaal"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "OpenPGP-certificaat aanmaken"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr ""
+#~ "Voer een naam en e-mailadres in om te gebruiken voor het certificaat."
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr ""
+#~ "Voer een naam en/of e-mailadres in om te gebruiken voor het certificaat."
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "De datum kan niet worden gewijzigd."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "Een datum tussen %1 en %2 invoeren."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "Drie jaar vanaf nu"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "Twee jaar vanaf nu"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "Eén jaar vanaf nu"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "Fout: voer een waarde in."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "Fout: voer een waarde in in het juiste formaat."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (vereist)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "Online zoeken naar certificaten met een publieke sleutelserver"

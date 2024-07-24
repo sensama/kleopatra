@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
-"PO-Revision-Date: 2024-07-12 23:40+0300\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
+"PO-Revision-Date: 2024-07-22 20:00+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2659,26 +2659,26 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "אסור לך ליצור בקשות חתימת אישורי S/MIME."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "לא ניתן להתחיל יצירת צמד מפתחות: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "נוצר צמד מפתחות…"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -2837,16 +2837,14 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp:405
 #: src/commands/refreshcertificatescommand.cpp:421
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was not found.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "<para>האישור לא נמצא.</para>"
-msgstr[1] "<para>האישור לא נמצא.</para>"
-msgstr[2] "<para>האישור לא נמצא.</para>"
-msgstr[3] "<para>האישור לא נמצא.</para>"
+msgstr[1] "<para>האישורים לא נמצאו.</para>"
+msgstr[2] "<para>האישורים לא נמצאו.</para>"
+msgstr[3] "<para>האישורים לא נמצאו.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:408
 #: src/commands/refreshcertificatescommand.cpp:425
@@ -4839,21 +4837,16 @@ msgid "Multiple matching certificates or groups found"
 msgstr "נמצאו כמה קבוצות אישורים תואמות"
 
 #: src/crypto/gui/certificatelineedit.cpp:647
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgid "This certificate is expired"
-msgstr "האישור הזה כבר פג."
+msgstr "תוקף האישור הזה כבר פג"
 
 #: src/crypto/gui/certificatelineedit.cpp:649
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgid "This certificate is revoked"
-msgstr "האישור הזה כבר פג."
+msgstr "האישור הזה כבר נשלל"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -5625,12 +5618,10 @@ msgid "Failed to find some keys"
 msgstr "איתור חלק מהמפתחות נכשל"
 
 #: src/crypto/gui/signencryptwidget.cpp:924
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
-msgstr "האישור הזה כבר פג."
+msgstr "האישור הזה כבר נשלל."
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format
@@ -5999,7 +5990,6 @@ msgid "Authentication"
 msgstr "אימות"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6039,13 +6029,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr ""
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr ""
@@ -7301,106 +7289,6 @@ msgstr ""
 #, kde-format
 msgid "Keyserver"
 msgstr "שרת מפתחות"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "שם"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "נא למלא שם."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "כתובת דוא״ל"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "נא למלא כתובת דוא״ל."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "השם לא יכול להכיל <, > ו־ @."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr "השם לא יכול להכיל את הסימנים: קטן מאשר, גדול מאשר וכרוכית."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, kde-format
-msgid "Advanced options"
-msgstr "אפשרויות מתקדמות"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, kde-format
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "חומר המפתח"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "יצירת אישור OpenPGP"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, kde-format
@@ -9001,47 +8889,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "מחרוזת או טביעת אצבע לתשאול וחיפוש"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "הרצת הפקודה נכשלה"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "פרוטוקול דו־משמעי: ‎--openpgp עם ‎--cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "לא ניתן לקרוא את „%1”"
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -9522,6 +9410,11 @@ msgstr "שם אמיתי:"
 msgid "EMail address:"
 msgstr "כתובת דוא״ל:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr ""
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -9553,22 +9446,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "יצירה"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "הפעולה בוטלה."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "לא ניתן ליצור צמד מפתחות: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "לא ניתן לכתוב את קובץ הפלט %1:‏ %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "צמד המפתחות נוצר בהצלחה."
@@ -10788,36 +10681,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "פענוח/אימות…"
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "אי אפשר לשנות את התאריך."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "נא לציין תאריך בין %1 ל־%2."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "שלוש שנים מעכשיו"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "שנתיים מעכשיו"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "שנה מעכשיו"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11132,22 +10995,6 @@ msgstr "אישורים:"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "האישורים נקראים מהכרטיס החכם…"
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "שגיאה: נא למלא ערך."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "שגיאה: נא למלא ערך בתבנית הנכונה."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (נחוץ)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -12176,9 +12023,7 @@ msgid "Replace %1 with new key"
 msgstr "החלפה של %1 במפתח חדש"
 
 #: src/view/searchbar.cpp:137
-#, fuzzy, kde-format
-#| msgctxt "@info::placeholder"
-#| msgid "Enter search term"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "נא למלא ביטוי לחיפוש"
@@ -12219,12 +12064,10 @@ msgid ""
 msgstr ""
 
 #: src/view/searchbar.cpp:197
-#, fuzzy, kde-format
-#| msgctxt "@info::placeholder"
-#| msgid "Enter search term"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"
-msgstr "נא למלא ביטוי לחיפוש"
+msgstr "נא למלא ביטוי לחיפוש <%1>"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format
@@ -12498,6 +12341,69 @@ msgid ""
 msgstr ""
 "ייבוא אישור מקובץ.<nl/>כדי לייבא משרת מפתחות ציבורי יש להשתמש באפשרות "
 "<interface>איתור בשרת</interface> במקום."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "שם"
+
+#~ msgid "Enter a name."
+#~ msgstr "נא למלא שם."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "כתובת דוא״ל"
+
+#~ msgid "Enter an email address."
+#~ msgstr "נא למלא כתובת דוא״ל."
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "השם לא יכול להכיל <, > ו־ @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr "השם לא יכול להכיל את הסימנים: קטן מאשר, גדול מאשר וכרוכית."
+
+#~ msgid "Advanced options"
+#~ msgstr "אפשרויות מתקדמות"
+
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "חומר המפתח"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "יצירת אישור OpenPGP"
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "אי אפשר לשנות את התאריך."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "נא לציין תאריך בין %1 ל־%2."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "שלוש שנים מעכשיו"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "שנתיים מעכשיו"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "שנה מעכשיו"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "שגיאה: נא למלא ערך."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "שגיאה: נא למלא ערך בתבנית הנכונה."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (נחוץ)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "חיפוש אישורים באינטרנט באמצעות שרת מפתחות ציבורי"

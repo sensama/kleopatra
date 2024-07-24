@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
-"PO-Revision-Date: 2024-07-20 09:52+0200\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
+"PO-Revision-Date: 2024-07-23 11:49+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -2831,26 +2831,26 @@ msgid "No Directory Servers Configured"
 msgstr "Ez da direktorio zerbitzaririk konfiguratu"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Ez duzu S/MIME ziurtagiria sinatzeko eskaera bat sortzeko baimenik."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Ezin izan du gako-pare sorrera abiatu: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Gako parea sortzen..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5183,7 +5183,6 @@ msgid "This certificate is revoked"
 msgstr "Ziurtagiri hori indargabetuta dago"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6378,7 +6377,6 @@ msgid "Authentication"
 msgstr "Egiazkotzea"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6419,13 +6417,11 @@ msgstr ""
 "Sartu erabiltzaile IDarekin erabiltzeko izen bat eta/edo e-posta helbide bat."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Sartu izen bat edo e-posta helbide bat."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "Arazo bat dago."
@@ -7750,117 +7746,6 @@ msgstr "LDAP"
 #, kde-format
 msgid "Keyserver"
 msgstr "gako-zerbitzaria"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "Izena"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "Sartu izen bat."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "E-posta helbidea"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "Sartu e-posta helbide bat"
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "Izenak ez du izan behar,  <, >, eta @."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"Izenak ez du izan behar txikiagoa-baina ikurra, handiagoa-baina ikurra, eta "
-"abildua ikurra."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"Izena, zure erakundeak eskatutako formatuan egon behar da, eta ez ditu izan "
-"behar <, >, and @."
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"Izena, zure erakundeak eskatutako formatuan egon behar da, eta ez ditu izan "
-"behar txikiagoa-baina ikurra, handiagoa-baina ikurra, eta abildua ikurra.."
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr ""
-"Sartu e-posta helbide bat formatu egokian, izena@adibidea.com esaterako."
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-"Sartu e-posta helbide bat zure erakundeak eskatutako formatu egokian, "
-"izena@adibidea.com esaterako."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Babestu sortutako gakoa pasaesaldi batekin."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Gako sekretua pasaesaldi berreskuraezin batekin zifratzen du. Pasaesaldia "
-"galdetuko zaizu gakoa sortzerakoan."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, kde-format
-msgid "Advanced options"
-msgstr "Aukera aurreratuak"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, kde-format
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "Gakoaren materiala"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "Sortu OpenPGP ziurtagiria"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "Sartu ziurtagiriarekin erabiltzeko izena eta e-posta helbidea."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "Sartu, ziurtagiriarekin erabiltzeko izena eta/edo e-posta helbidea."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, kde-format
@@ -9592,47 +9477,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Itaun edo bilaketarako kate edo hatz-marka"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Komandoa exekutatzea huts egin du"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Protokolo anbiguoa: --openpgp eta --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Ez da «--search» aukerarako bilaketa katerik zehaztu"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Ez da «--query» aukerarako hatz-marka argumenturik zehaztu"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Komando anbiguoak \"%1\" eta \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Ez da \"%1\" komandorako fitxategirik zehaztu"
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Ezin du irakurri \"%1\""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Kanpoko esteka bat irekitzea administratiboki debekatuta dago."
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "Debekatuta"
@@ -10134,6 +10019,11 @@ msgstr "Benetako izena:"
 msgid "EMail address:"
 msgstr "E-posta helbidea:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "Babestu sortutako gakoa pasaesaldi batekin."
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10169,22 +10059,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Sortu"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Eragiketa bertan behera utzi da."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Ezin izan du gako-parea sortu: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Ezin izan du %1 irteera-fitxategia idatzi: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "Gako-parea ondo sortu da."
@@ -11502,36 +11392,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Deszifratu/Egiaztatu..."
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "Data ezin da aldatu."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "Sartu %1 eta %2 arteko data bat."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "Hemendik hiru urtera"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "Hemendik bi urtera"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "Hemendik urtebetera"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11862,22 +11722,6 @@ msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Txartel-adimenduneko ziurtagiriak irakurtzen..."
 
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "Errorea: Sartu balio bat."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "Errorea: Sartu balio bat formatu egokian."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (beharrezkoa)"
-
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
 msgid "Loading certificate cache..."
@@ -11909,20 +11753,15 @@ msgid "Publish on Server..."
 msgstr "Argitaratu zerbitzarian..."
 
 #: src/view/keylistcontroller.cpp:348
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr ""
-"Argitaratu hautatutako ziurtagiria (gako publikoa) gako-zerbitzari publiko "
-"batean"
+"Argitaratu hautatutako ziurtagiria (gako publikoa) barneko direktorioan"
 
 #: src/view/keylistcontroller.cpp:349
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid "Publish the selected certificate (public key) on %1"
-msgstr ""
-"Argitaratu hautatutako ziurtagiria (gako publikoa) gako-zerbitzari publiko "
-"batean"
+msgstr "Argitaratu hautatutako ziurtagiria (gako publikoa) %1(e)an"
 
 #: src/view/keylistcontroller.cpp:358
 #, kde-format
@@ -11954,18 +11793,14 @@ msgid "Lookup on Server..."
 msgstr "Bilatu zerbitzarian..."
 
 #: src/view/keylistcontroller.cpp:388
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Upload revoked certificate to internal directory"
+#, kde-format
 msgid "Search for certificates in internal directory"
-msgstr "Zama-igo indargabetutako ziurtagiria barneko direktoriora"
+msgstr "Bilatu ziurtagiriak barneko direktoriora"
 
 #: src/view/keylistcontroller.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info:shell"
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgid "Search for certificates on %1"
-msgstr "Bilatu ziurtagiri bat gako-zerbitzari batean"
+msgstr "Bilatu ziurtagiriak %1(e)an"
 
 #: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
 #, kde-format
@@ -13269,6 +13104,111 @@ msgid ""
 msgstr ""
 "Inportatu ziurtagiria fitxategi batetik.<nl/>Gako-zerbitzari publiko batetik "
 "inportatzeko, berriz, erabili <interface>Bilatu zerbitzarian</interface>."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Izena"
+
+#~ msgid "Enter a name."
+#~ msgstr "Sartu izen bat."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "E-posta helbidea"
+
+#~ msgid "Enter an email address."
+#~ msgstr "Sartu e-posta helbide bat"
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "Izenak ez du izan behar,  <, >, eta @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "Izenak ez du izan behar txikiagoa-baina ikurra, handiagoa-baina ikurra, "
+#~ "eta abildua ikurra."
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "Izena, zure erakundeak eskatutako formatuan egon behar da, eta ez ditu "
+#~ "izan behar <, >, and @."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "Izena, zure erakundeak eskatutako formatuan egon behar da, eta ez ditu "
+#~ "izan behar txikiagoa-baina ikurra, handiagoa-baina ikurra, eta abildua "
+#~ "ikurra.."
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr ""
+#~ "Sartu e-posta helbide bat formatu egokian, izena@adibidea.com esaterako."
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr ""
+#~ "Sartu e-posta helbide bat zure erakundeak eskatutako formatu egokian, "
+#~ "izena@adibidea.com esaterako."
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Gako sekretua pasaesaldi berreskuraezin batekin zifratzen du. Pasaesaldia "
+#~ "galdetuko zaizu gakoa sortzerakoan."
+
+#~ msgid "Advanced options"
+#~ msgstr "Aukera aurreratuak"
+
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "Gakoaren materiala"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "Sortu OpenPGP ziurtagiria"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "Sartu ziurtagiriarekin erabiltzeko izena eta e-posta helbidea."
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr "Sartu, ziurtagiriarekin erabiltzeko izena eta/edo e-posta helbidea."
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "Data ezin da aldatu."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "Sartu %1 eta %2 arteko data bat."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "Hemendik hiru urtera"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "Hemendik bi urtera"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "Hemendik urtebetera"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "Errorea: Sartu balio bat."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "Errorea: Sartu balio bat formatu egokian."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (beharrezkoa)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "Bilatu ziurtagiriak lerroan gako-zerbitzari publiko bat erabiliz"

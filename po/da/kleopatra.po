@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -3033,27 +3033,27 @@ msgid "No Directory Servers Configured"
 msgstr "Ingen mappeserver indstillet"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, fuzzy, kde-format
 #| msgid "Create a new key pair or certificate signing request"
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Opret et ny nøglepar eller certifikatssigneringsanmodning"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Kunne ikke starte oprettelse af nøglepar: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Opretter nøglepar..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5486,7 +5486,6 @@ msgid "This certificate is revoked"
 msgstr "Signeringscertifikat er udløbet"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Error"
@@ -6750,7 +6749,6 @@ msgid "Authentication"
 msgstr "Godkendelse"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "@option:check"
@@ -6794,14 +6792,12 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, fuzzy, kde-format
 #| msgid "Please enter a name or email address..."
 msgid "Enter a name or an email address."
 msgstr "Angiv venligst et navn eller en e-mailadresse..."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr ""
@@ -8236,115 +8232,6 @@ msgstr "LDAP-URL"
 #| msgid "OpenPGP:"
 msgid "Keyserver"
 msgstr "OpenPGP:"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, fuzzy, kde-format
-#| msgid "Name"
-msgctxt "@label"
-msgid "Name"
-msgstr "Navn"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "new dns name"
-msgid "Enter a name."
-msgstr "nyt DNS-navn"
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, fuzzy, kde-format
-#| msgid "EMail address:"
-msgctxt "@label"
-msgid "Email address"
-msgstr "E-mailadresse:"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
-msgid "Enter an email address."
-msgstr "Angiv venligst et navn eller en e-mailadresse..."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Advanced Settings"
-msgid "Advanced options"
-msgstr "Avancerede indstillinger"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgid "Key Material"
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "Nøglemateriale"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, fuzzy, kde-format
-#| msgid "OpenPGP Certificates"
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "OpenPGP-certifikater"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "Angiv venligst et navn eller en e-mailadresse..."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "Angiv venligst et navn eller en e-mailadresse..."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, fuzzy, kde-format
@@ -10112,47 +9999,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Mislykkedes at køre kommando"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Tvetydig protokol: --openpgp og --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Ingen søgestreng angivet til --search"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Ingen fingeraftryksargument angivet for --query"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Flertydige kommandoer \"%1\" og \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Ingen filer angivet for \"%1\"-kommando"
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Kan ikke læse \"%1\""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -10664,6 +10551,11 @@ msgstr "Rigtigt navn:"
 msgid "EMail address:"
 msgstr "E-mailadresse:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr ""
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10698,22 +10590,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Opret"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Handling annulleret."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Kunne ikke oprette nøglepar: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Kunne ikke skrive outputfilen %1: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "Nøglepar er oprettet."
@@ -12041,37 +11933,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Dekryptér/verificér..."
 
-#: src/utils/expiration.cpp:104
-#, fuzzy, kde-format
-#| msgid "The validity of the signature cannot be verified."
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "Gyldigheden af dette certifikat kan ikke verificeres."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr ""
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr ""
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr ""
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr ""
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -12414,23 +12275,6 @@ msgstr "Certifikater:"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Indlæser certifikat-cache..."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr ""
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr ""
-
-#: src/view/formtextinput.cpp:86
-#, fuzzy, kde-format
-#| msgid "(required)"
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "(kræves)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -13892,6 +13736,67 @@ msgid ""
 msgstr ""
 "Brug i stedet \"Opslå på server\" for at importere fra en offentlig "
 "nøgleserver."
+
+#, fuzzy
+#~| msgid "Name"
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Navn"
+
+#, fuzzy
+#~| msgid "new dns name"
+#~ msgid "Enter a name."
+#~ msgstr "nyt DNS-navn"
+
+#, fuzzy
+#~| msgid "EMail address:"
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "E-mailadresse:"
+
+#, fuzzy
+#~| msgid "Please enter a name or email address..."
+#~ msgid "Enter an email address."
+#~ msgstr "Angiv venligst et navn eller en e-mailadresse..."
+
+#, fuzzy
+#~| msgid "Advanced Settings"
+#~ msgid "Advanced options"
+#~ msgstr "Avancerede indstillinger"
+
+#, fuzzy
+#~| msgid "Key Material"
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "Nøglemateriale"
+
+#, fuzzy
+#~| msgid "OpenPGP Certificates"
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "OpenPGP-certifikater"
+
+#, fuzzy
+#~| msgid "Please enter a name or email address..."
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "Angiv venligst et navn eller en e-mailadresse..."
+
+#, fuzzy
+#~| msgid "Please enter a name or email address..."
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr "Angiv venligst et navn eller en e-mailadresse..."
+
+#, fuzzy
+#~| msgid "The validity of the signature cannot be verified."
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "Gyldigheden af dette certifikat kan ikke verificeres."
+
+#, fuzzy
+#~| msgid "(required)"
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "(kræves)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "Søg efter certifikater online via en offentlig nøgleserver"

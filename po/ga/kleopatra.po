@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -2916,7 +2916,7 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Create a new certificate"
@@ -2924,14 +2924,14 @@ msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Cruthaigh teastas nua"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, fuzzy, kde-format
 #| msgid "Could not listen to socket: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "Níorbh fhéidir éisteacht le soicéad: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -2940,7 +2940,7 @@ msgid "Creating Key Pair..."
 msgstr "Eochair á Cruthú..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5279,7 +5279,6 @@ msgid "This certificate is revoked"
 msgstr "Roghnaigh Teastas Sínithe"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
 msgctxt "@info"
@@ -6509,7 +6508,6 @@ msgid "Authentication"
 msgstr "Fíordheimhniú"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "@option:check"
@@ -6554,13 +6552,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr ""
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr ""
@@ -7957,113 +7953,6 @@ msgstr "URL LDAP"
 #| msgid "OpenPGP:"
 msgid "Keyserver"
 msgstr "OpenPGP:"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, fuzzy, kde-format
-#| msgid "Name"
-msgctxt "@label"
-msgid "Name"
-msgstr "Ainm"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "Real name:"
-msgid "Enter a name."
-msgstr "Fíorainm:"
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, fuzzy, kde-format
-#| msgid "EMail address:"
-msgctxt "@label"
-msgid "Email address"
-msgstr "Seoladh ríomhphoist:"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, fuzzy, kde-format
-#| msgid "EMail address:"
-msgid "Enter an email address."
-msgstr "Seoladh ríomhphoist:"
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr ""
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Advanced Settings"
-msgid "Advanced options"
-msgstr "Ardsocruithe"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgid "&Update"
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "N&uashonraigh"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, fuzzy, kde-format
-#| msgid "OpenPGP Certificates"
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "Teastais OpenPGP"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr ""
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr ""
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, fuzzy, kde-format
@@ -9752,48 +9641,48 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to execute command"
 msgstr "Theip ar rith %1: %2"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -10295,6 +10184,11 @@ msgstr "Fíorainm:"
 msgid "EMail address:"
 msgstr "Seoladh ríomhphoist:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr ""
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10328,23 +10222,23 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Cruthaigh Eochair"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Cealaíodh an oibríocht."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, fuzzy, kde-format
 #| msgid "Could not create socket: %1"
 msgid "Could not create key pair: %1"
 msgstr "Níorbh fhéidir soicéad a chruthú: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Níorbh fhéidir aschomhad %1 a scríobh: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, fuzzy, kde-format
 #| msgid "Certification successful."
 msgid "Key pair created successfully."
@@ -11554,37 +11448,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Díchriptigh/Fíoraigh..."
 
-#: src/utils/expiration.cpp:104
-#, fuzzy, kde-format
-#| msgid "Certification successful."
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "D'éirigh leis an deimhniúcháin."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr ""
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr ""
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr ""
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr ""
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -11924,23 +11787,6 @@ msgstr "Teastais"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Taisce na dteastas á luchtú..."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr ""
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr ""
-
-#: src/view/formtextinput.cpp:86
-#, fuzzy, kde-format
-#| msgid "(required)"
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "(riachtanach)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -13392,6 +13238,57 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Name"
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Ainm"
+
+#, fuzzy
+#~| msgid "Real name:"
+#~ msgid "Enter a name."
+#~ msgstr "Fíorainm:"
+
+#, fuzzy
+#~| msgid "EMail address:"
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "Seoladh ríomhphoist:"
+
+#, fuzzy
+#~| msgid "EMail address:"
+#~ msgid "Enter an email address."
+#~ msgstr "Seoladh ríomhphoist:"
+
+#, fuzzy
+#~| msgid "Advanced Settings"
+#~ msgid "Advanced options"
+#~ msgstr "Ardsocruithe"
+
+#, fuzzy
+#~| msgid "&Update"
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "N&uashonraigh"
+
+#, fuzzy
+#~| msgid "OpenPGP Certificates"
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "Teastais OpenPGP"
+
+#, fuzzy
+#~| msgid "Certification successful."
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "D'éirigh leis an deimhniúcháin."
+
+#, fuzzy
+#~| msgid "(required)"
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "(riachtanach)"
 
 #, fuzzy
 #~| msgid "Hierarchical Certificate List"

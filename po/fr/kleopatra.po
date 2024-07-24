@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2024-06-08 08:32+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -2902,7 +2902,7 @@ msgid "No Directory Servers Configured"
 msgstr "Aucun serveur d'annuaire configuré"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -2910,20 +2910,20 @@ msgstr ""
 "« S/MIME »."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Impossible de lancer la création de la paire de clés : %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Création de la paire de clés..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5309,7 +5309,6 @@ msgid "This certificate is revoked"
 msgstr "Le certificat a expiré"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6536,7 +6535,6 @@ msgid "Authentication"
 msgstr "Authentification"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6580,13 +6578,11 @@ msgstr ""
 "l'identifiant utilisateur."
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Veuillez saisir un nom ou une adresse de courriel."
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "Il y a un problème."
@@ -7940,123 +7936,6 @@ msgstr "URL LDAP"
 #| msgid "OpenPGP Keyserver"
 msgid "Keyserver"
 msgstr "Serveur de clés « OpenPGP »"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "Nom"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "Saisir un nom."
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "Adresse de courriel"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "Veuillez saisir une adresse de courriel."
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr ""
-"Le nom ne doit pas inclure les caractères suivants : « < », « > » et « @ »."
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"Le nom ne doit pas contenir les caractères suivants : inférieur à, supérieur "
-"à, et le signe arobase."
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"Le nom doit être dans le format requis par votre organisation et ne doit pas "
-"inclure les caractères suivants : « < », « > » et « @ »."
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"Le nom ne doit être dans le format demandé par votre organisation et ne doit "
-"contenir aucun des caractères suivants : inférieur à, supérieur à, et le "
-"signe arobase."
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr ""
-"Veuillez saisir une adresse de courriel dans un format correct, comme "
-"« nom@exemple.com »."
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-"Veuillez saisir une adresse de courriel dans un format correct, tel que "
-"demandé par votre organisation."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Protéger la clé générée avec une phrase de mots de passe."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Chiffre la clé privée avec une phrase de mots de passe non découvrable. Elle "
-"vous sera demandée durant la génération de la clé."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, kde-format
-msgid "Advanced options"
-msgstr "Options avancées"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, kde-format
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "Élément de clé"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "Créer un certificat « OpenPGP »"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr ""
-"Veuillez saisir un nom et une adresse de courriel à utiliser pour le "
-"certificat."
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr ""
-"Saisir un nom et / ou une adresse de courriel à utiliser pour le certificat."
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, kde-format
@@ -9843,48 +9722,48 @@ msgstr ""
 "Aucune chaîne ou empreinte numérique spécifiée pour une demande ou une "
 "recherche"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "L'exécution de la commande a échoué"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Protocole ambigu : --openpgp et --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Aucune chaîne de recherche définie pour --search"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Aucune empreinte numérique spécifiée en argument de --query"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Commandes ambiguës « %1 » et « %2 »"
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Aucun fichier spécifié pour la commande « %1 »"
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Impossible de lire « %1 »"
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 "L'ouverture d'un lien externe est interdit pour des raisons administratives."
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "Interdit"
@@ -10394,6 +10273,11 @@ msgstr "Nom réel :"
 msgid "EMail address:"
 msgstr "Adresse électronique :"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "Protéger la clé générée avec une phrase de mots de passe."
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
 msgctxt "@info:tooltip"
@@ -10430,22 +10314,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "Créer"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "Opération annulée."
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "Impossible de créer la paire de clés : %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "Impossible d'écrire le fichier de destination %1 : %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "La paire de clés a été créé avec succès."
@@ -11770,36 +11654,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Déchiffrer / vérifier..."
 
-#: src/utils/expiration.cpp:104
-#, kde-format
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "Il est impossible de modifier la date."
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, kde-format
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "Saisir une date entre %1 et %2."
-
-#: src/utils/expiration.cpp:139
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "Trois années à partir de maintenant"
-
-#: src/utils/expiration.cpp:140
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "Deux années à partir de maintenant"
-
-#: src/utils/expiration.cpp:141
-#, kde-format
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "Une année à partir de maintenant"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -12134,22 +11988,6 @@ msgstr "Certificats :"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "Lecture des certificats à partir de la carte mémoire..."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "Erreur : saisir une valeur."
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "Erreur : saisir une valeur dans le format correct."
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (requis)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -13580,6 +13418,118 @@ msgstr ""
 "Importer un certificat à partir d'un fichier. <nl/>Pour importer à partir "
 "d'un serveur de clés publiques, veuillez plutôt utiliser "
 "<interface>Rechercher sur le serveur</interface>."
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Enter a name."
+#~ msgstr "Saisir un nom."
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "Adresse de courriel"
+
+#~ msgid "Enter an email address."
+#~ msgstr "Veuillez saisir une adresse de courriel."
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr ""
+#~ "Le nom ne doit pas inclure les caractères suivants : « < », « > » et "
+#~ "« @ »."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "Le nom ne doit pas contenir les caractères suivants : inférieur à, "
+#~ "supérieur à, et le signe arobase."
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "Le nom doit être dans le format requis par votre organisation et ne doit "
+#~ "pas inclure les caractères suivants : « < », « > » et « @ »."
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "Le nom ne doit être dans le format demandé par votre organisation et ne "
+#~ "doit contenir aucun des caractères suivants : inférieur à, supérieur à, "
+#~ "et le signe arobase."
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr ""
+#~ "Veuillez saisir une adresse de courriel dans un format correct, comme "
+#~ "« nom@exemple.com »."
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr ""
+#~ "Veuillez saisir une adresse de courriel dans un format correct, tel que "
+#~ "demandé par votre organisation."
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Chiffre la clé privée avec une phrase de mots de passe non découvrable. "
+#~ "Elle vous sera demandée durant la génération de la clé."
+
+#~ msgid "Advanced options"
+#~ msgstr "Options avancées"
+
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "Élément de clé"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "Créer un certificat « OpenPGP »"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr ""
+#~ "Veuillez saisir un nom et une adresse de courriel à utiliser pour le "
+#~ "certificat."
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr ""
+#~ "Saisir un nom et / ou une adresse de courriel à utiliser pour le "
+#~ "certificat."
+
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "Il est impossible de modifier la date."
+
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "Saisir une date entre %1 et %2."
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "Trois années à partir de maintenant"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "Deux années à partir de maintenant"
+
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "Une année à partir de maintenant"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "Erreur : saisir une valeur."
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "Erreur : saisir une valeur dans le format correct."
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (requis)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-07-24 00:40+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -2885,26 +2885,26 @@ msgid "No Directory Servers Configured"
 msgstr "ディレクトリサーバが設定されていません"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:527
+#: src/kleopatraapplication.cpp:539
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME 証明書署名要求の作成は許されていません。"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:157
-#: src/newcertificatewizard/keycreationpage.cpp:86
+#: src/newcertificatewizard/keycreationpage.cpp:85
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "鍵ペアの作成を開始できませんでした: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:167
-#: src/newcertificatewizard/keycreationpage.cpp:49
+#: src/newcertificatewizard/keycreationpage.cpp:48
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "鍵ペアを作成中..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:168
-#: src/newcertificatewizard/keycreationpage.cpp:53
+#: src/newcertificatewizard/keycreationpage.cpp:52
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -5218,7 +5218,6 @@ msgid "This certificate is revoked"
 msgstr "署名用証明書が失効しています"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
-#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6432,7 +6431,6 @@ msgid "Authentication"
 msgstr "認証"
 
 #: src/dialogs/addsubkeydialog.cpp:116
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:124
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
@@ -6474,13 +6472,11 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "ユーザ ID に使う名前 (かつ/および) メールアドレスを入力してください。"
 
 #: src/dialogs/adduseriddialog.cpp:131
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:303
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "名前かメールアドレスを入力。"
 
 #: src/dialogs/adduseriddialog.cpp:142
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:314
 #, kde-format
 msgid "There is a problem."
 msgstr "問題があります。"
@@ -7856,119 +7852,6 @@ msgstr ""
 #| msgid "OpenPGP keyserver:"
 msgid "Keyserver"
 msgstr "OpenPGP 鍵サーバ:"
-
-#: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:160
-#, kde-format
-msgctxt "@label"
-msgid "Name"
-msgstr "名前"
-
-#: src/dialogs/nameandemailwidget.cpp:62
-#, kde-format
-msgid "Enter a name."
-msgstr "名前を入力してください。"
-
-#: src/dialogs/nameandemailwidget.cpp:76 src/dialogs/nameandemailwidget.cpp:214
-#, kde-format
-msgctxt "@label"
-msgid "Email address"
-msgstr "メールアドレス"
-
-#: src/dialogs/nameandemailwidget.cpp:77
-#, kde-format
-msgid "Enter an email address."
-msgstr "メールアドレスを入力してください。"
-
-#: src/dialogs/nameandemailwidget.cpp:95
-#, kde-format
-msgid "The name must not include <, >, and @."
-msgstr "名前には <, >, そして @ が含まれてはなりません。"
-
-#: src/dialogs/nameandemailwidget.cpp:96
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must not include less-than sign, greater-than sign, and at sign."
-msgstr "名前には＜記号、＞記号、そしてアットマークが含まれてはなりません。"
-
-#: src/dialogs/nameandemailwidget.cpp:99
-#, kde-format
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include <, >, and @."
-msgstr ""
-"名前はあなたの組織に必要とされるフォーマットで、＜記号、＞記号、そしてアット"
-"マークが含まれてはなりません。"
-
-#: src/dialogs/nameandemailwidget.cpp:102
-#, kde-format
-msgctxt "text for screen readers"
-msgid ""
-"The name must be in the format required by your organization and it must not "
-"include less-than sign, greater-than sign, and at sign."
-msgstr ""
-"名前はあなたの組織に必要とされるフォーマットで、小なり記号、大なり記号、そし"
-"てアットマークが含まれてはなりません。"
-
-#: src/dialogs/nameandemailwidget.cpp:111
-#, kde-format
-msgid "Enter an email address in the correct format, like name@example.com."
-msgstr ""
-"正しいフォーマットでメールアドレスを入力してください (name@example.com のよう"
-"に)。"
-
-#: src/dialogs/nameandemailwidget.cpp:114
-#, kde-format
-msgid ""
-"Enter an email address in the correct format required by your organization."
-msgstr ""
-"あなたの組織に必要とされるフォーマットで、正しく、名前を入力してください。"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:99
-#: src/newcertificatewizard/enterdetailspage.cpp:142
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "作成された鍵をパスフレーズで保護する。"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:101
-#, kde-format
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"当てられないにくいパスフレーズで秘密鍵を暗号化する。鍵の生成時にパスフレーズ"
-"を聞かれます。"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Show advanced options"
-msgid "Advanced options"
-msgstr "高度なオプションを表示"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:111
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Key Material"
-msgctxt "The algorithm and strength of encryption key"
-msgid "Key Material"
-msgstr "鍵マテリアル"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:151
-#, kde-format
-msgctxt "title:window"
-msgid "Create OpenPGP Certificate"
-msgstr "OpenPGP 証明書を作成"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:159
-#, kde-format
-msgid "Enter a name and an email address to use for the certificate."
-msgstr "証明書に使うための名前とメールアドレスを入力してください。"
-
-#: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:160
-#, kde-format
-msgid "Enter a name and/or an email address to use for the certificate."
-msgstr ""
-"証明書に使うための名前かメールアドレス(もしくは両方)を入力してください。"
 
 #: src/dialogs/revokekeydialog.cpp:101
 #, fuzzy, kde-format
@@ -9735,47 +9618,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "問い合わせと検索のための文字またはフィンガープリント"
 
-#: src/kleopatraapplication.cpp:423
+#: src/kleopatraapplication.cpp:435
 #, kde-format
 msgid "Failed to execute command"
 msgstr "コマンド実行に失敗"
 
-#: src/kleopatraapplication.cpp:465
+#: src/kleopatraapplication.cpp:477
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "あいまいなプロトコル: --openpgp または --cms"
 
-#: src/kleopatraapplication.cpp:499
+#: src/kleopatraapplication.cpp:511
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search に対して何の検索文字もありません"
 
-#: src/kleopatraapplication.cpp:510
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query に対してフィンガープリント引数が指定されてません"
 
-#: src/kleopatraapplication.cpp:571
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "あいまいなコマンド \"%1\" と \"%2\""
 
-#: src/kleopatraapplication.cpp:578
+#: src/kleopatraapplication.cpp:590
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "\"%1\"コマンドに対してファイルが指定されてません"
 
-#: src/kleopatraapplication.cpp:592
+#: src/kleopatraapplication.cpp:604
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\" を読めません"
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "外部リンクを開くことは管理として禁止されてます。"
 
-#: src/kleopatraapplication.cpp:876
+#: src/kleopatraapplication.cpp:888
 #, kde-format
 msgid "Prohibited"
 msgstr "禁止されてます"
@@ -10307,6 +10190,11 @@ msgstr "実名:"
 msgid "EMail address:"
 msgstr "メールアドレス:"
 
+#: src/newcertificatewizard/enterdetailspage.cpp:142
+#, kde-format
+msgid "Protect the generated key with a passphrase."
+msgstr "作成された鍵をパスフレーズで保護する。"
+
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, fuzzy, kde-format
 #| msgid ""
@@ -10345,22 +10233,22 @@ msgctxt "@action"
 msgid "Create"
 msgstr "作成"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Operation canceled."
 msgstr "操作がキャンセルされました。"
 
-#: src/newcertificatewizard/keycreationpage.cpp:139
+#: src/newcertificatewizard/keycreationpage.cpp:138
 #, kde-format
 msgid "Could not create key pair: %1"
 msgstr "鍵ペアを作成できませんでした: %1"
 
-#: src/newcertificatewizard/keycreationpage.cpp:146
+#: src/newcertificatewizard/keycreationpage.cpp:145
 #, kde-format
 msgid "Could not write output file %1: %2"
 msgstr "出力をファイル %1 に書き出せませんでした: %2"
 
-#: src/newcertificatewizard/keycreationpage.cpp:153
+#: src/newcertificatewizard/keycreationpage.cpp:152
 #, kde-format
 msgid "Key pair created successfully."
 msgstr "鍵ペアができました。"
@@ -11660,45 +11548,6 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "復号/検証..."
 
-#: src/utils/expiration.cpp:104
-#, fuzzy, kde-format
-#| msgid "The validity period cannot be changed."
-msgctxt "@info"
-msgid "The date cannot be changed."
-msgstr "有効期間は変更できません。"
-
-#: src/utils/expiration.cpp:107 src/utils/expiration.cpp:113
-#, fuzzy, kde-format
-#| msgctxt "... between <a date> and <another date>."
-#| msgid "The validity period must end between %1 and %2."
-msgctxt "@info ... between <a date> and <another date>."
-msgid "Enter a date between %1 and %2."
-msgstr "有効期間は %1 から %2 の間でないといけません。"
-
-#: src/utils/expiration.cpp:139
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "Two years from now"
-msgctxt "@item:inlistbox"
-msgid "Three years from now"
-msgstr "今から 2 年間"
-
-#: src/utils/expiration.cpp:140
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "Two years from now"
-msgctxt "@item:inlistbox"
-msgid "Two years from now"
-msgstr "今から 2 年間"
-
-#: src/utils/expiration.cpp:141
-#, fuzzy, kde-format
-#| msgctxt "Date for expiration of certification"
-#| msgid "One year from now"
-msgctxt "@item:inlistbox"
-msgid "One year from now"
-msgstr "今から 1 年間"
-
 #: src/utils/input.cpp:218
 #, kde-format
 msgid "Could not open FD %1 for reading"
@@ -12024,22 +11873,6 @@ msgstr "証明書:"
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
 msgstr "証明書のキャッシュを読み込み中..."
-
-#: src/view/formtextinput.cpp:28
-#, kde-format
-msgid "Error: Enter a value."
-msgstr "エラー: 値を入力してください。"
-
-#: src/view/formtextinput.cpp:33
-#, kde-format
-msgid "Error: Enter a value in the correct format."
-msgstr "エラー: 正しいフォーマットで値を入力してください。"
-
-#: src/view/formtextinput.cpp:86
-#, kde-format
-msgctxt "@label label text (required)"
-msgid "%1 (required)"
-msgstr "%1 (必須)"
 
 #: src/view/keycacheoverlay.cpp:40
 #, kde-format
@@ -13438,6 +13271,128 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#~ msgctxt "@label"
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#~ msgid "Enter a name."
+#~ msgstr "名前を入力してください。"
+
+#~ msgctxt "@label"
+#~ msgid "Email address"
+#~ msgstr "メールアドレス"
+
+#~ msgid "Enter an email address."
+#~ msgstr "メールアドレスを入力してください。"
+
+#~ msgid "The name must not include <, >, and @."
+#~ msgstr "名前には <, >, そして @ が含まれてはなりません。"
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must not include less-than sign, greater-than sign, and at sign."
+#~ msgstr "名前には＜記号、＞記号、そしてアットマークが含まれてはなりません。"
+
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include <, >, and @."
+#~ msgstr ""
+#~ "名前はあなたの組織に必要とされるフォーマットで、＜記号、＞記号、そしてアッ"
+#~ "トマークが含まれてはなりません。"
+
+#~ msgctxt "text for screen readers"
+#~ msgid ""
+#~ "The name must be in the format required by your organization and it must "
+#~ "not include less-than sign, greater-than sign, and at sign."
+#~ msgstr ""
+#~ "名前はあなたの組織に必要とされるフォーマットで、小なり記号、大なり記号、そ"
+#~ "してアットマークが含まれてはなりません。"
+
+#~ msgid "Enter an email address in the correct format, like name@example.com."
+#~ msgstr ""
+#~ "正しいフォーマットでメールアドレスを入力してください (name@example.com の"
+#~ "ように)。"
+
+#~ msgid ""
+#~ "Enter an email address in the correct format required by your "
+#~ "organization."
+#~ msgstr ""
+#~ "あなたの組織に必要とされるフォーマットで、正しく、名前を入力してください。"
+
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "当てられないにくいパスフレーズで秘密鍵を暗号化する。鍵の生成時にパスフレー"
+#~ "ズを聞かれます。"
+
+#, fuzzy
+#~| msgid "Show advanced options"
+#~ msgid "Advanced options"
+#~ msgstr "高度なオプションを表示"
+
+#, fuzzy
+#~| msgctxt "@title:group"
+#~| msgid "Key Material"
+#~ msgctxt "The algorithm and strength of encryption key"
+#~ msgid "Key Material"
+#~ msgstr "鍵マテリアル"
+
+#~ msgctxt "title:window"
+#~ msgid "Create OpenPGP Certificate"
+#~ msgstr "OpenPGP 証明書を作成"
+
+#~ msgid "Enter a name and an email address to use for the certificate."
+#~ msgstr "証明書に使うための名前とメールアドレスを入力してください。"
+
+#~ msgid "Enter a name and/or an email address to use for the certificate."
+#~ msgstr ""
+#~ "証明書に使うための名前かメールアドレス(もしくは両方)を入力してください。"
+
+#, fuzzy
+#~| msgid "The validity period cannot be changed."
+#~ msgctxt "@info"
+#~ msgid "The date cannot be changed."
+#~ msgstr "有効期間は変更できません。"
+
+#, fuzzy
+#~| msgctxt "... between <a date> and <another date>."
+#~| msgid "The validity period must end between %1 and %2."
+#~ msgctxt "@info ... between <a date> and <another date>."
+#~ msgid "Enter a date between %1 and %2."
+#~ msgstr "有効期間は %1 から %2 の間でないといけません。"
+
+#, fuzzy
+#~| msgctxt "Date for expiration of certification"
+#~| msgid "Two years from now"
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Three years from now"
+#~ msgstr "今から 2 年間"
+
+#, fuzzy
+#~| msgctxt "Date for expiration of certification"
+#~| msgid "Two years from now"
+#~ msgctxt "@item:inlistbox"
+#~ msgid "Two years from now"
+#~ msgstr "今から 2 年間"
+
+#, fuzzy
+#~| msgctxt "Date for expiration of certification"
+#~| msgid "One year from now"
+#~ msgctxt "@item:inlistbox"
+#~ msgid "One year from now"
+#~ msgstr "今から 1 年間"
+
+#~ msgid "Error: Enter a value."
+#~ msgstr "エラー: 値を入力してください。"
+
+#~ msgid "Error: Enter a value in the correct format."
+#~ msgstr "エラー: 正しいフォーマットで値を入力してください。"
+
+#~ msgctxt "@label label text (required)"
+#~ msgid "%1 (required)"
+#~ msgstr "%1 (必須)"
 
 #~ msgid "Search for certificates online using a public keyserver"
 #~ msgstr "証明書を公開鍵サーバを使ってオンラインで検索する"

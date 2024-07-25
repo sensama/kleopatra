@@ -158,10 +158,10 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         connect(mUseKeyServerCheckBox, &QCheckBox::toggled, q, [this]() {
             if (!mUseKeyServerCheckBox->isChecked()) {
                 mOpenPGPKeyserverEdit.widget()->setText(QStringLiteral("none"));
-                q->changed();
+                Q_EMIT q->changed();
             } else if (mOpenPGPKeyserverEdit.widget()->text() == QStringLiteral("none")) {
                 mOpenPGPKeyserverEdit.widget()->setText({});
-                q->changed();
+                Q_EMIT q->changed();
             }
         });
 
@@ -171,7 +171,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
             mRetrieveKeysEntry = configEntry("gpg", "auto-key-retrieve", CryptoConfigEntry::ArgType_None, SingleValue, DoNotShowError);
             mRetrieveKeysCheckBox->setEnabled(!mRetrieveKeysEntry->isReadOnly());
             connect(mRetrieveKeysCheckBox, &QCheckBox::toggled, q, [this]() {
-                q->changed();
+                Q_EMIT q->changed();
             });
         }
 

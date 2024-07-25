@@ -128,6 +128,7 @@ void CertificateRequester::setMultipleCertificatesAllowed(bool allow)
         return;
     }
     d->multipleCertificatesAllowed = allow;
+    Q_EMIT multipleCertificatesAllowedChanged(d->multipleCertificatesAllowed);
 }
 
 bool CertificateRequester::multipleCertificatesAllowed() const
@@ -141,6 +142,7 @@ void CertificateRequester::setOnlySigningCertificatesAllowed(bool allow)
         return;
     }
     d->onlySigningCertificatesAllowed = allow;
+    Q_EMIT onlySigningCertificatesAllowedChanged(d->onlySigningCertificatesAllowed);
 }
 
 bool CertificateRequester::onlySigningCertificatesAllowed() const
@@ -154,6 +156,7 @@ void CertificateRequester::setOnlyEncryptionCertificatesAllowed(bool allow)
         return;
     }
     d->onlyEncryptionCertificatesAllowed = allow;
+    Q_EMIT onlyEncryptionCertificatesAllowedChanged(d->onlyEncryptionCertificatesAllowed);
 }
 
 bool CertificateRequester::onlyEncryptionCertificatesAllowed() const
@@ -167,6 +170,7 @@ void CertificateRequester::setOnlyOpenPGPCertificatesAllowed(bool allow)
         return;
     }
     d->onlyOpenPGPCertificatesAllowed = allow;
+    Q_EMIT onlyOpenPGPCertificatesAllowedChanged(d->onlyOpenPGPCertificatesAllowed);
 }
 
 bool CertificateRequester::onlyOpenPGPCertificatesAllowed() const
@@ -180,6 +184,7 @@ void CertificateRequester::setOnlyX509CertificatesAllowed(bool allow)
         return;
     }
     d->onlyX509CertificatesAllowed = allow;
+    Q_EMIT onlyX509CertificatesAllowedChanged(d->onlyX509CertificatesAllowed);
 }
 
 bool CertificateRequester::onlyX509CertificatesAllowed() const
@@ -193,6 +198,7 @@ void CertificateRequester::setOnlySecretKeysAllowed(bool allow)
         return;
     }
     d->onlySecretKeysAllowed = allow;
+    Q_EMIT onlySecretKeysAllowedChanged(d->onlySecretKeysAllowed);
 }
 
 bool CertificateRequester::onlySecretKeysAllowed() const

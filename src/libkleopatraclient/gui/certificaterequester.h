@@ -21,13 +21,16 @@ namespace Gui
 class KLEOPATRACLIENTGUI_EXPORT CertificateRequester : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(bool multipleCertificatesAllowed READ multipleCertificatesAllowed WRITE setMultipleCertificatesAllowed)
-    Q_PROPERTY(bool onlySigningCertificatesAllowed READ onlySigningCertificatesAllowed WRITE setOnlySigningCertificatesAllowed)
-    Q_PROPERTY(bool onlyEncryptionCertificatesAllowed READ onlyEncryptionCertificatesAllowed WRITE setOnlyEncryptionCertificatesAllowed)
-    Q_PROPERTY(bool onlyOpenPGPCertificatesAllowed READ onlyOpenPGPCertificatesAllowed WRITE setOnlyOpenPGPCertificatesAllowed)
-    Q_PROPERTY(bool onlyX509CertificatesAllowed READ onlyX509CertificatesAllowed WRITE setOnlyX509CertificatesAllowed)
-    Q_PROPERTY(bool onlySecretKeysAllowed READ onlySecretKeysAllowed WRITE setOnlySecretKeysAllowed)
-    Q_PROPERTY(QStringList selectedCertificates READ selectedCertificates WRITE setSelectedCertificates)
+    Q_PROPERTY(bool multipleCertificatesAllowed READ multipleCertificatesAllowed WRITE setMultipleCertificatesAllowed NOTIFY multipleCertificatesAllowedChanged)
+    Q_PROPERTY(bool onlySigningCertificatesAllowed READ onlySigningCertificatesAllowed WRITE setOnlySigningCertificatesAllowed NOTIFY
+                   onlySigningCertificatesAllowedChanged)
+    Q_PROPERTY(bool onlyEncryptionCertificatesAllowed READ onlyEncryptionCertificatesAllowed WRITE setOnlyEncryptionCertificatesAllowed NOTIFY
+                   onlyEncryptionCertificatesAllowedChanged)
+    Q_PROPERTY(bool onlyOpenPGPCertificatesAllowed READ onlyOpenPGPCertificatesAllowed WRITE setOnlyOpenPGPCertificatesAllowed NOTIFY
+                   onlyOpenPGPCertificatesAllowedChanged)
+    Q_PROPERTY(bool onlyX509CertificatesAllowed READ onlyX509CertificatesAllowed WRITE setOnlyX509CertificatesAllowed NOTIFY onlyX509CertificatesAllowedChanged)
+    Q_PROPERTY(bool onlySecretKeysAllowed READ onlySecretKeysAllowed WRITE setOnlySecretKeysAllowed NOTIFY onlySecretKeysAllowedChanged)
+    Q_PROPERTY(QStringList selectedCertificates READ selectedCertificates WRITE setSelectedCertificates NOTIFY selectedCertificatesChanged)
 public:
     explicit CertificateRequester(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~CertificateRequester() override;
@@ -57,6 +60,13 @@ public:
     QString selectedCertificate() const;
 
 Q_SIGNALS:
+    void multipleCertificatesAllowedChanged(bool multipleCertificatesAllowed);
+    void onlySigningCertificatesAllowedChanged(bool onlySigningCertificatesAllowed);
+    void onlyEncryptionCertificatesAllowedChanged(bool onlyEncryptionCertificatesAllowed);
+    void onlyOpenPGPCertificatesAllowedChanged(bool onlyOpenPGPCertificatesAllowed);
+    void onlyX509CertificatesAllowedChanged(bool onlyX509CertificatesAllowed);
+    void onlySecretKeysAllowedChanged(bool onlySecretKeysAllowed);
+
     void selectedCertificatesChanged(const QStringList &certs);
 
 private:

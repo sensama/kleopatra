@@ -276,7 +276,7 @@ public:
                 const auto background = KColorScheme(QPalette::Active, KColorScheme::View)
                                             .background(DeVSCompliance::isCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground)
                                             .color();
-                statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").arg(color.name()).arg(background.name()));
+                statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").arg(color.name(), background.name()));
             }
             statusBar->insertPermanentWidget(0, statusLbl.release());
             showStatusbar = true;
@@ -503,7 +503,7 @@ MainWindow::Private::Private(MainWindow *qq)
     // make toolbar buttons accessible by keyboard
     auto toolbar = q->findChild<KToolBar *>();
     if (toolbar) {
-        auto toolbarButtons = toolbar->findChildren<QToolButton *>();
+        const auto toolbarButtons = toolbar->findChildren<QToolButton *>();
         for (auto b : toolbarButtons) {
             b->setFocusPolicy(Qt::TabFocus);
         }

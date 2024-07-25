@@ -52,7 +52,7 @@ KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
     setCentralWidget(mCentralWidget);
 
     mWatcher = new KProcess;
-    connect(mWatcher, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotWatcherExited(int, QProcess::ExitStatus)));
+    connect(mWatcher, &KProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
 
     connect(mWatcher, &QProcess::readyReadStandardOutput, this, &KWatchGnuPGMainWindow::slotReadStdout);
 
@@ -105,7 +105,7 @@ void KWatchGnuPGMainWindow::slotConfigureToolbars()
 
 void KWatchGnuPGMainWindow::startWatcher()
 {
-    disconnect(mWatcher, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotWatcherExited(int, QProcess::ExitStatus)));
+    disconnect(mWatcher, &QProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
     if (mWatcher->state() == QProcess::Running) {
         mWatcher->kill();
         while (mWatcher->state() == QProcess::Running) {
@@ -134,7 +134,7 @@ void KWatchGnuPGMainWindow::startWatcher()
         mCentralWidget->append(i18n("[%1] Log started", QDateTime::currentDateTime().toString(Qt::ISODate)));
         mCentralWidget->ensureCursorVisible();
     }
-    connect(mWatcher, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotWatcherExited(int, QProcess::ExitStatus)));
+    connect(mWatcher, &QProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
 }
 
 void KWatchGnuPGMainWindow::setGnuPGConfig()
@@ -230,7 +230,7 @@ void KWatchGnuPGMainWindow::slotSaveAs()
 
 void KWatchGnuPGMainWindow::slotQuit()
 {
-    disconnect(mWatcher, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(slotWatcherExited(int, QProcess::ExitStatus)));
+    disconnect(mWatcher, &QProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
     mWatcher->kill();
     qApp->quit();
 }

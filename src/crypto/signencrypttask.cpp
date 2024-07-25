@@ -700,7 +700,9 @@ std::unique_ptr<QGpgME::SignJob> SignEncryptTask::Private::createSignJob(GpgME::
     std::unique_ptr<QGpgME::SignJob> signJob(backend->signJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signJob.get());
     connect(signJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
-    connect(signJob.get(), SIGNAL(result(GpgME::SigningResult, QByteArray)), q, SLOT(slotResult(GpgME::SigningResult)));
+    connect(signJob.get(), &QGpgME::SignJob::result, q, [this](const GpgME::SigningResult &signingResult, const QByteArray &) {
+        slotResult(signingResult);
+    });
     return signJob;
 }
 
@@ -712,9 +714,11 @@ std::unique_ptr<QGpgME::SignEncryptJob> SignEncryptTask::Private::createSignEncr
     kleo_assert(signEncryptJob.get());
     connect(signEncryptJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
     connect(signEncryptJob.get(),
-            SIGNAL(result(GpgME::SigningResult, GpgME::EncryptionResult, QByteArray)),
+            &QGpgME::SignEncryptJob::result,
             q,
-            SLOT(slotResult(GpgME::SigningResult, GpgME::EncryptionResult)));
+            [this](const GpgME::SigningResult &signingResult, const GpgME::EncryptionResult &encryptionResult) {
+                slotResult(signingResult, encryptionResult);
+            });
     return signEncryptJob;
 }
 
@@ -725,7 +729,9 @@ std::unique_ptr<QGpgME::EncryptJob> SignEncryptTask::Private::createEncryptJob(G
     std::unique_ptr<QGpgME::EncryptJob> encryptJob(backend->encryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(encryptJob.get());
     connect(encryptJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
-    connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult, QByteArray)), q, SLOT(slotResult(GpgME::EncryptionResult)));
+    connect(encryptJob.get(), &QGpgME::EncryptJob::result, q, [this](const GpgME::EncryptionResult &encryptionResult) {
+        slotResult(encryptionResult);
+    });
     return encryptJob;
 }
 

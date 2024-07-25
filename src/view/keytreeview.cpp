@@ -91,8 +91,6 @@ private:
     }
 
 private:
-    QMenu *mHeaderPopup = nullptr;
-
     QList<QAction *> mColumnActions;
 };
 

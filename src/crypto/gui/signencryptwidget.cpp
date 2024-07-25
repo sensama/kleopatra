@@ -520,7 +520,7 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, this, [this]() {
         // Check if any unknown recipient can now be found.
-        for (auto w : d->mUnknownWidgets) {
+        for (auto w : std::as_const(d->mUnknownWidgets)) {
             auto key = KeyCache::instance()->findByKeyIDOrFingerprint(w->keyID().toLatin1().constData());
             if (key.isNull()) {
                 std::vector<std::string> subids;

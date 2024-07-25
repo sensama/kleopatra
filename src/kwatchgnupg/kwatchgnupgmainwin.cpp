@@ -52,8 +52,7 @@ KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
     setCentralWidget(mCentralWidget);
 
     mWatcher = new KProcess;
-    connect(mWatcher, &KProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
-
+    connect(mWatcher, &QProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
     connect(mWatcher, &QProcess::readyReadStandardOutput, this, &KWatchGnuPGMainWindow::slotReadStdout);
 
     slotReadConfig();

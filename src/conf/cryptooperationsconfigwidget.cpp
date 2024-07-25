@@ -108,11 +108,11 @@ void CryptoOperationsConfigWidget::setupGui()
     baseLay->addLayout(comboLay);
     baseLay->addStretch(1);
 
-    for (auto cb : findChildren<QCheckBox *>()) {
-        connect(cb, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    for (const auto checkboxes = findChildren<QCheckBox *>(); auto checkbox : checkboxes) {
+        connect(checkbox, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     }
-    for (auto combo : findChildren<QComboBox *>()) {
-        connect(combo, &QComboBox::currentIndexChanged, this, &CryptoOperationsConfigWidget::changed);
+    for (const auto comboboxes = findChildren<QComboBox *>(); auto combobox : comboboxes) {
+        connect(combobox, &QComboBox::currentIndexChanged, this, &CryptoOperationsConfigWidget::changed);
     }
 }
 

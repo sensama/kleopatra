@@ -340,7 +340,7 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
         setOperationMode((operationMode() & ~ArchiveMask) | ArchiveAllowed);
         archive = true;
     }
-    for (const auto &file : d->files) {
+    for (const auto &file : std::as_const(d->files)) {
         if (QFileInfo(file).isDir()) {
             setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
             archive = true;

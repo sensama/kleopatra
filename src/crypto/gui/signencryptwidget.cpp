@@ -265,7 +265,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->addRecipientWidget();
 
         // Checkbox for password
-        d->mSymmetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
+        d->mSymmetric = new QCheckBox(i18nc("@option:check", "Encrypt with password. Anyone you share the password with can read the data."));
         d->mSymmetric->setToolTip(i18nc("Tooltip information for symmetric encryption",
                                         "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                         "Anyone who has the password can read the data without any secret key. "

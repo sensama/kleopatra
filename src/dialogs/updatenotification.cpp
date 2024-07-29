@@ -197,7 +197,7 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version)
 
     lay->addWidget(logo, 0, 0);
     lay->addWidget(label, 0, 1);
-    const auto chk = new QCheckBox(i18n("Show this notification for future updates."));
+    const auto chk = new QCheckBox(i18nc("@option:check", "Show this notification for future updates."));
     lay->addWidget(chk, 1, 0, 1, -1);
 
     KConfigGroup updatecfg(KSharedConfig::openConfig(), QStringLiteral("UpdateNotification"));

@@ -56,20 +56,20 @@ void CryptoOperationsConfigWidget::setupGui()
 {
     auto baseLay = new QVBoxLayout(this);
 
-    mPGPFileExtCB = new QCheckBox(i18n(R"(Create OpenPGP encrypted files with ".pgp" file extensions instead of ".gpg")"));
-    mASCIIArmorCB = new QCheckBox(i18n("Create signed or encrypted files as text files."));
+    mPGPFileExtCB = new QCheckBox(i18nc("@option:check", R"(Create OpenPGP encrypted files with ".pgp" file extensions instead of ".gpg")"));
+    mASCIIArmorCB = new QCheckBox(i18nc("@option:check", "Create signed or encrypted files as text files."));
     mASCIIArmorCB->setToolTip(i18nc("@info",
                                     "Set this option to encode encrypted or signed files as base64 encoded text. "
                                     "So that they can be opened with an editor or sent in a mail body. "
                                     "This will increase file size by one third."));
     mTreatP7mEmailCB = new QCheckBox(i18nc("@option:check", "Treat .p7m files without extensions as mails."));
-    mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
-    mAutoExtractArchivesCB = new QCheckBox(i18n("Automatically extract file archives after decryption"));
-    mTmpDirCB = new QCheckBox(i18n("Create temporary decrypted files in the folder of the encrypted file."));
+    mAutoDecryptVerifyCB = new QCheckBox(i18nc("@option:check", "Automatically start operation based on input detection for decrypt/verify."));
+    mAutoExtractArchivesCB = new QCheckBox(i18nc("@option:check", "Automatically extract file archives after decryption"));
+    mTmpDirCB = new QCheckBox(i18nc("@option:check", "Create temporary decrypted files in the folder of the encrypted file."));
     mTmpDirCB->setToolTip(i18nc("@info", "Set this option to avoid using the users temporary directory."));
-    mSymmetricOnlyCB = new QCheckBox(i18n("Use symmetric encryption only."));
+    mSymmetricOnlyCB = new QCheckBox(i18nc("@option:check", "Use symmetric encryption only."));
     mSymmetricOnlyCB->setToolTip(i18nc("@info", "Set this option to disable public key encryption."));
-    mPublicKeyOnlyCB = new QCheckBox(i18n("Use public-key encryption only."));
+    mPublicKeyOnlyCB = new QCheckBox(i18nc("@option:check", "Use public-key encryption only."));
     mPublicKeyOnlyCB->setToolTip(i18nc("@info", "Set this option to disable password-based encryption."));
 
     connect(mSymmetricOnlyCB, &QCheckBox::toggled, this, [this]() {

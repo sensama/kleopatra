@@ -89,7 +89,7 @@ private:
                 vboxLayout->addWidget(label);
             }
 
-            neverRB = new QRadioButton(i18n("Unlimited validity"), mainWidget);
+            neverRB = new QRadioButton(i18nc("@option:radio", "Unlimited validity"), mainWidget);
             neverRB->setChecked(false);
 
             vboxLayout->addWidget(neverRB);

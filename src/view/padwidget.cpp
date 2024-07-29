@@ -169,8 +169,8 @@ public:
             mSigEncWidget->setProtocol(GpgME::OpenPGP);
         } else {
             auto grp = new QButtonGroup(q);
-            auto mPGPRB = new QRadioButton(i18n("OpenPGP"));
-            auto mCMSRB = new QRadioButton(i18n("S/MIME"));
+            auto mPGPRB = new QRadioButton(i18nc("@option:radio", "OpenPGP"));
+            auto mCMSRB = new QRadioButton(i18nc("@option:radio", "S/MIME"));
             grp->addButton(mPGPRB);
             grp->addButton(mCMSRB);
 

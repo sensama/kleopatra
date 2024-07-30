@@ -51,6 +51,8 @@
 #include <KActionCollection>
 #include <KActionMenu>
 #include <KColorScheme>
+#include <KColorSchemeManager>
+#include <KColorSchemeMenu>
 #include <KConfigDialog>
 #include <KConfigGroup>
 #include <KEditToolBar>
@@ -706,6 +708,10 @@ void MainWindow::Private::setupActions()
     KStandardAction::configureToolbars(q, SLOT(configureToolbars()), coll);
     KStandardAction::keyBindings(q, SLOT(editKeybindings()), coll);
     KStandardAction::preferences(qApp, SLOT(openOrRaiseConfigDialog()), coll);
+
+    auto manager = new KColorSchemeManager(q);
+    KActionMenu *schemeMenu = KColorSchemeMenu::createMenu(manager, q);
+    coll->addAction(QStringLiteral("colorscheme_menu"), schemeMenu->menu()->menuAction());
 
     focusToClickSearchAction = new QAction(i18nc("@action", "Set Focus to Quick Search"), q);
     coll->addAction(QStringLiteral("focus_to_quickseach"), focusToClickSearchAction);

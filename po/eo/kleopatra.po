@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-27 00:41+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-07-27 14:20+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -3665,7 +3665,11 @@ msgid "GnuPG System"
 msgstr "GnuPG-sistemo"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+#| "\".gpg\""
+msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
@@ -3673,10 +3677,10 @@ msgstr ""
 "Kreu OpenPGP ĉifritajn dosierojn kun \".pgp\" dosier-etendoj anstataŭ \".gpg"
 "\""
 
-#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#: src/kcfg/fileoperationspreferences.kcfg:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create signed or encrypted files as text files."
+msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "Krei subskribitajn aŭ ĉifritajn dosierojn kiel tekstajn dosierojn."
 
@@ -3698,23 +3702,27 @@ msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
 msgstr "Pritrakti .p7m-dosierojn sen finaĵoj kiel poŝtojn."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Automatically start operation based on input detection for decrypt/verify."
+msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr "Aŭtomate ekfunkciigi surbaze de eniga detekto por deĉifri/konfirmi."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Automatically extract file archives after decryption"
+msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Aŭtomate ĉerpi dosierojn post deĉifrado"
 
-#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#: src/kcfg/fileoperationspreferences.kcfg:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create temporary decrypted files in the folder of the encrypted file."
+msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
 "Kreu provizorajn malĉifritajn dosierojn en la dosierujo de la ĉifrita "
@@ -3727,10 +3735,10 @@ msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Agordu ĉi tiun elekteblon por eviti uzi la provizoran dosierujon de uzantoj."
 
-#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#: src/kcfg/fileoperationspreferences.kcfg:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Uzi nur simetrian ĉifradon."
 
@@ -3741,7 +3749,9 @@ msgid "Set this option to disable public key encryption."
 msgstr "Agordu ĉi tiun elekteblon por malŝalti publik-ŝlosilan ĉifradon."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use public-key encryption only."
+msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Uzi nur publik-ŝlosilan ĉifradon."
 
@@ -5327,14 +5337,12 @@ msgstr "Aldoni Ricevanton..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:410
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:414
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5854,7 +5862,11 @@ msgid "Encrypt for others:"
 msgstr "Ĉifri por aliaj:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Encrypt with password. Anyone you share the password with can read the "
+#| "data."
+msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
@@ -7461,7 +7473,9 @@ msgid "Please select until when the certificate should be valid:"
 msgstr "Bonvolu elekti ĝis kiam la atestilo estos valida:"
 
 #: src/dialogs/expirydialog.cpp:92
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlimited validity"
+msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Senlima valideco"
 
@@ -7523,7 +7537,9 @@ msgid "Algorithm:"
 msgstr "Algoritmo:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup encryption key"
+msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Rezerva ĉifrada ŝlosilo"
 
@@ -8148,7 +8164,9 @@ msgid "Update Available"
 msgstr "Ĝisdatigo Disponebla"
 
 #: src/dialogs/updatenotification.cpp:200
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show this notification for future updates."
+msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Montri ĉi tiun sciigon por estontaj ĝisdatigoj."
 
@@ -8468,6 +8486,13 @@ msgstr ""
 "Agordu ĉi tion por ke kleopatra defaŭlte al pgp-dosier-estendoj por OpenPGP-"
 "dosieroj."
 
+#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:15
+#, kde-format
+msgid ""
+"Automatically start operation based on input detection for decrypt/verify."
+msgstr "Aŭtomate ekfunkciigi surbaze de eniga detekto por deĉifri/konfirmi."
+
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
@@ -8512,6 +8537,12 @@ msgstr ""
 "Dum ĉifrado de pluraj dosieroj aŭ dosierujo Kleopatra kreas ĉifritan arkivon "
 "per ĉi tiu komando."
 
+#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:30
+#, kde-format
+msgid "Create signed or encrypted files as text files."
+msgstr "Krei subskribitajn aŭ ĉifritajn dosierojn kiel tekstajn dosierojn."
+
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
@@ -8524,12 +8555,26 @@ msgstr ""
 "bazo64 kodita teksto. Por ke ili estu malfermitaj per redaktilo aŭ senditaj "
 "en poŝta korpo. Ĉi tio pliigos dosiergrandecon je unu triono."
 
+#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:35
+#, kde-format
+msgid "Create temporary decrypted files in the folder of the encrypted file."
+msgstr ""
+"Kreu provizorajn malĉifritajn dosierojn en la dosierujo de la ĉifrita "
+"dosiero."
+
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Agordu ĉi tiun elekteblon por eviti uzi la provizoran dosierujon de uzantoj."
+
+#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:40
+#, kde-format
+msgid "Use symmetric encryption only."
+msgstr "Uzi nur simetrian ĉifradon."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
@@ -12164,6 +12209,20 @@ msgstr "Ricevantoj"
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Enigi mesaĝon por ĉifri aŭ malĉifri..."
+
+#: src/view/padwidget.cpp:172
+#, fuzzy, kde-format
+#| msgid "OpenPGP"
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/view/padwidget.cpp:173
+#, fuzzy, kde-format
+#| msgid "S/MIME"
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
 
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-27 00:41+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -3622,16 +3622,20 @@ msgid "GnuPG System"
 msgstr "GnuPG 시스템"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+#| "\".gpg\""
+msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
 msgstr "OpenPGP로 암호화된 파일에 \".gpg\" 확장자 대신 \".pgp\" 확장자 사용"
 
-#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#: src/kcfg/fileoperationspreferences.kcfg:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create signed or encrypted files as text files."
+msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "서명되거나 암호화된 파일을 텍스트 형식으로 만듭니다."
 
@@ -3653,23 +3657,27 @@ msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
 msgstr "확장이 없는 .p7m 파일을 이메일로 취급합니다."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Automatically start operation based on input detection for decrypt/verify."
+msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr "입력 내용을 감지하여 복호화/검증 작업을 자동으로 시작합니다."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Automatically extract file archives after decryption"
+msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "암호화 해제 후 자동으로 압축 풀기"
 
-#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#: src/kcfg/fileoperationspreferences.kcfg:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create temporary decrypted files in the folder of the encrypted file."
+msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "암호화된 파일이 저장된 폴더에 임시로 복호화된 파일을 만듭니다."
 
@@ -3679,10 +3687,10 @@ msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "이 옵션을 사용하면 사용자의 임시 디렉터리를 사용하지 않습니다."
 
-#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#: src/kcfg/fileoperationspreferences.kcfg:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "대칭 키 암호화만 사용합니다."
 
@@ -3695,6 +3703,7 @@ msgstr "이 옵션을 사용하면 공개 키 암호화를 비활성화합니다
 #: src/conf/cryptooperationsconfigwidget.cpp:72
 #, fuzzy, kde-format
 #| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "대칭 키 암호화만 사용합니다."
 
@@ -5258,14 +5267,12 @@ msgstr "받는 사람 추가..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:410
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:414
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5785,7 +5792,11 @@ msgid "Encrypt for others:"
 msgstr "다른 사람에게 암호화:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Encrypt with password. Anyone you share the password with can read the "
+#| "data."
+msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
@@ -7452,7 +7463,9 @@ msgid "Please select until when the certificate should be valid:"
 msgstr "인증서가 유효함으로 간주될 날짜를 선택하십시오:"
 
 #: src/dialogs/expirydialog.cpp:92
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlimited validity"
+msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "무제한 유효"
 
@@ -7517,7 +7530,9 @@ msgid "Algorithm:"
 msgstr "알고리즘:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup encryption key"
+msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "암호화 키 백업"
 
@@ -8160,7 +8175,9 @@ msgid "Update Available"
 msgstr "업데이트 사용 가능"
 
 #: src/dialogs/updatenotification.cpp:200
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show this notification for future updates."
+msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "다음 업데이트가 나왔을 때 이 알림을 표시합니다."
 
@@ -8480,6 +8497,13 @@ msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr "Kleopatra에서 OpenPGP 파일에 pgp 확장자를 기본값으로 사용합니다."
 
+#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:15
+#, kde-format
+msgid ""
+"Automatically start operation based on input detection for decrypt/verify."
+msgstr "입력 내용을 감지하여 복호화/검증 작업을 자동으로 시작합니다."
+
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
@@ -8523,6 +8547,12 @@ msgstr ""
 "Kleopatra에서 파일 여러 개나 폴더를 암호화할 때 이 명령으로 암호화된 압축 파"
 "일을 만듭니다."
 
+#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:30
+#, kde-format
+msgid "Create signed or encrypted files as text files."
+msgstr "서명되거나 암호화된 파일을 텍스트 형식으로 만듭니다."
+
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
@@ -8535,11 +8565,23 @@ msgstr ""
 "다. 편집기로 열어 보거나 이메일 본문에 첨부할 수 있습니다. 파일 크기가 약 "
 "1/3 증가합니다."
 
+#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:35
+#, kde-format
+msgid "Create temporary decrypted files in the folder of the encrypted file."
+msgstr "암호화된 파일이 저장된 폴더에 임시로 복호화된 파일을 만듭니다."
+
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "이 옵션을 사용하면 사용자의 임시 디렉터리를 사용하지 않습니다."
+
+#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:40
+#, kde-format
+msgid "Use symmetric encryption only."
+msgstr "대칭 키 암호화만 사용합니다."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
@@ -12190,6 +12232,20 @@ msgstr "받는 사람"
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "암호화하거나 복호화할 메시지 입력..."
+
+#: src/view/padwidget.cpp:172
+#, fuzzy, kde-format
+#| msgid "OpenPGP"
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/view/padwidget.cpp:173
+#, fuzzy, kde-format
+#| msgid "S/MIME"
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
 
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-27 00:41+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-03-27 14:09+0100\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: Assamese <alministradores@softastur.org>\n"
@@ -3360,15 +3360,15 @@ msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
 #, kde-format
+msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
 msgstr ""
 
-#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
+msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr ""
 
@@ -3387,23 +3387,22 @@ msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
 msgstr ""
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
+msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
+msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr ""
 
-#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
+msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
 
@@ -3413,10 +3412,9 @@ msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 
-#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
+msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr ""
 
@@ -3428,6 +3426,7 @@ msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
+msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr ""
 
@@ -4893,14 +4892,12 @@ msgstr ""
 
 #: src/crypto/gui/resolverecipientspage.cpp:410
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr ""
 
 #: src/crypto/gui/resolverecipientspage.cpp:414
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr ""
@@ -5390,6 +5387,7 @@ msgstr "Cifráu"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
 #, kde-format
+msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
@@ -6932,6 +6930,7 @@ msgstr ""
 
 #: src/dialogs/expirydialog.cpp:92
 #, kde-format
+msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr ""
 
@@ -6995,9 +6994,11 @@ msgid "Algorithm:"
 msgstr "Algoritumu:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgctxt "@option:check"
 msgid "Backup encryption key"
-msgstr ""
+msgstr "Cifráu"
 
 #: src/dialogs/gencardkeydialog.cpp:83
 #, kde-format
@@ -7610,6 +7611,7 @@ msgstr ""
 
 #: src/dialogs/updatenotification.cpp:200
 #, kde-format
+msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr ""
 
@@ -7915,6 +7917,13 @@ msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr ""
 
+#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:15
+#, kde-format
+msgid ""
+"Automatically start operation based on input detection for decrypt/verify."
+msgstr ""
+
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
@@ -7952,6 +7961,12 @@ msgid ""
 "archive with this command."
 msgstr ""
 
+#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:30
+#, kde-format
+msgid "Create signed or encrypted files as text files."
+msgstr ""
+
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
@@ -7961,10 +7976,22 @@ msgid ""
 "increase file size by one third."
 msgstr ""
 
+#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:35
+#, kde-format
+msgid "Create temporary decrypted files in the folder of the encrypted file."
+msgstr ""
+
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
+msgstr ""
+
+#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:40
+#, kde-format
+msgid "Use symmetric encryption only."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
@@ -11369,6 +11396,20 @@ msgstr ""
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
+msgstr ""
+
+#: src/view/padwidget.cpp:172
+#, fuzzy, kde-format
+#| msgctxt "proper name of a type of smartcard"
+#| msgid "OpenPGP"
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/view/padwidget.cpp:173
+#, kde-format
+msgctxt "@option:radio"
+msgid "S/MIME"
 msgstr ""
 
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348

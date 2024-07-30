@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-27 00:41+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-06-30 11:02+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -3560,16 +3560,20 @@ msgid "GnuPG System"
 msgstr "GnuPG 系統"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+#| "\".gpg\""
+msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
 msgstr "所建立的 OpenPGP 加密檔用 \".pgp\" 而不是用 \".gpg\" 做副檔名。"
 
-#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#: src/kcfg/fileoperationspreferences.kcfg:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create signed or encrypted files as text files."
+msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "將簽署或加密的檔案作為文字檔案建立。"
 
@@ -3588,23 +3592,25 @@ msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
 msgstr "將沒有副檔名的 .p7m 檔案視為郵件。"
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
+msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Automatically extract file archives after decryption"
+msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "解密後自動解開封存檔"
 
-#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#: src/kcfg/fileoperationspreferences.kcfg:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create temporary decrypted files in the folder of the encrypted file."
+msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "在加密檔案的資料夾中建立暫時解密的檔案。"
 
@@ -3614,10 +3620,10 @@ msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 
-#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#: src/kcfg/fileoperationspreferences.kcfg:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "只使用對稱加密。"
 
@@ -3630,6 +3636,7 @@ msgstr "設定此選項來停用公鑰加密。"
 #: src/conf/cryptooperationsconfigwidget.cpp:72
 #, fuzzy, kde-format
 #| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "只使用對稱加密。"
 
@@ -5149,14 +5156,12 @@ msgstr "新增收件者..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:410
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:414
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5663,7 +5668,11 @@ msgid "Encrypt for others:"
 msgstr "為別人加密："
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Encrypt with password. Anyone you share the password with can read the "
+#| "data."
+msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "利用密碼加密。任何知道密碼的人都可以讀取資料。"
@@ -7211,7 +7220,9 @@ msgid "Please select until when the certificate should be valid:"
 msgstr "請選擇憑證應該維持有效到何時："
 
 #: src/dialogs/expirydialog.cpp:92
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlimited validity"
+msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "無限期"
 
@@ -7273,7 +7284,9 @@ msgid "Algorithm:"
 msgstr "演算法："
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup encryption key"
+msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "備份加密金鑰"
 
@@ -7881,7 +7894,9 @@ msgid "Update Available"
 msgstr "有可用的更新"
 
 #: src/dialogs/updatenotification.cpp:200
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show this notification for future updates."
+msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "為未來更新顯示本通知。"
 
@@ -8183,6 +8198,13 @@ msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr "設定此做為 kleopatra 產生的 OpenPGP 檔預設的副檔名。"
 
+#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:15
+#, kde-format
+msgid ""
+"Automatically start operation based on input detection for decrypt/verify."
+msgstr ""
+
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
@@ -8223,6 +8245,12 @@ msgid ""
 msgstr ""
 "加密多個檔案或是整個資料夾時 Kleopatra 會用這個指令建立一個加密的封存檔。"
 
+#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:30
+#, kde-format
+msgid "Create signed or encrypted files as text files."
+msgstr "將簽署或加密的檔案作為文字檔案建立。"
+
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
@@ -8232,11 +8260,23 @@ msgid ""
 "increase file size by one third."
 msgstr ""
 
+#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:35
+#, kde-format
+msgid "Create temporary decrypted files in the folder of the encrypted file."
+msgstr "在加密檔案的資料夾中建立暫時解密的檔案。"
+
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "設定此選項來避免使用使用者的暫存目錄。"
+
+#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:40
+#, kde-format
+msgid "Use symmetric encryption only."
+msgstr "只使用對稱加密。"
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
@@ -11744,6 +11784,20 @@ msgstr "收件者"
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "輸入要加密或解密的訊息..."
+
+#: src/view/padwidget.cpp:172
+#, fuzzy, kde-format
+#| msgid "OpenPGP"
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/view/padwidget.cpp:173
+#, fuzzy, kde-format
+#| msgid "S/MIME"
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
 
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format

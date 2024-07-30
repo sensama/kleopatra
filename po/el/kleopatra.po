@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-27 00:41+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2023-08-03 16:51+0300\n"
 "Last-Translator: Theofilos Intzoglou <int.teo@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -3842,7 +3842,11 @@ msgid "GnuPG System"
 msgstr "Σύστημα GnuPG"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+#| "\".gpg\""
+msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
@@ -3850,10 +3854,10 @@ msgstr ""
 "Δημιουργία OpenPGP κρυπτογραφημένων αρχείων με επεκτάσεις αρχείων \".pgp\" "
 "αντί για \".gpg\""
 
-#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#: src/kcfg/fileoperationspreferences.kcfg:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create signed or encrypted files as text files."
+msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr ""
 "Δημιουργία υπογεγραμμένων ή/και κρυπτογραφημένων αρχείων ως αρχείων κειμένου."
@@ -3877,10 +3881,11 @@ msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
 msgstr ""
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Automatically start operation based on input detection for decrypt/verify."
+msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
@@ -3888,14 +3893,17 @@ msgstr ""
 "αποκρυπτογράφηση/επαλήθευση."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Automatically extract file archives after decryption"
+msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Αυτόματη εξαγωγή αρχείων μετά την αποκρυπτογράφηση"
 
-#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#: src/kcfg/fileoperationspreferences.kcfg:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create temporary decrypted files in the folder of the encrypted file."
+msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
 "Δημιουργία προσωρινών αποκρυπτογραφημένων αρχείων στο φάκελο του "
@@ -3909,10 +3917,10 @@ msgstr ""
 "Ρυθμίστε αυτήν την επιλογή για να αποφύγετε τη χρήση του προσωρινού "
 "καταλόγου των χρηστών."
 
-#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#: src/kcfg/fileoperationspreferences.kcfg:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
@@ -3927,6 +3935,7 @@ msgstr ""
 #: src/conf/cryptooperationsconfigwidget.cpp:72
 #, fuzzy, kde-format
 #| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
@@ -5555,14 +5564,12 @@ msgstr "Προσθήκη παραλήπτη..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:410
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:414
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -6099,7 +6106,11 @@ msgid "Encrypt for others:"
 msgstr "Κρυπτογράφηση για άλλους:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Encrypt with password. Anyone you share the password with can read the "
+#| "data."
+msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
@@ -7817,7 +7828,9 @@ msgstr ""
 "Παρακαλούμε επιλέξτε μέχρι πότε θα πρέπει να είναι έγκυρο το πιστοποιητικό:"
 
 #: src/dialogs/expirydialog.cpp:92
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlimited validity"
+msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Απεριόριστη εγκυρότητα"
 
@@ -7882,7 +7895,9 @@ msgid "Algorithm:"
 msgstr "Αλγόριθμος:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup encryption key"
+msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Εφεδρικό αντίγραφο κλειδιού κρυπτογράφησης"
 
@@ -8545,7 +8560,9 @@ msgid "Update Available"
 msgstr "Ενημέρωση διαθέσιμη"
 
 #: src/dialogs/updatenotification.cpp:200
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show this notification for future updates."
+msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Να εμφανίζεται αυτή η ειδοποίηση για μελλοντικές ενημερώσεις."
 
@@ -8881,6 +8898,15 @@ msgstr ""
 "Ρυθμίστε το για να χρησιμοποιεί εξ ορισμού η kleopatra τις επεκτάσεις pgp "
 "για OpenPGP αρχεία."
 
+#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:15
+#, kde-format
+msgid ""
+"Automatically start operation based on input detection for decrypt/verify."
+msgstr ""
+"Αυτόματη εκκίνηση λειτουργίας με βάση την ανίχνευση εισόδου για "
+"αποκρυπτογράφηση/επαλήθευση."
+
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
@@ -8925,6 +8951,13 @@ msgstr ""
 "Με την κρυπτογράφηση πολλών αρχείων ή ενός φακέλου η Kleopatra δημιουργεί "
 "μια κρυπτογραφημένη αρχειοθήκη με αυτήν την εντολή."
 
+#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:30
+#, kde-format
+msgid "Create signed or encrypted files as text files."
+msgstr ""
+"Δημιουργία υπογεγραμμένων ή/και κρυπτογραφημένων αρχείων ως αρχείων κειμένου."
+
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
@@ -8938,6 +8971,14 @@ msgstr ""
 "ή να αποσταλούν στο σώμα ενός μηνύματος αλληλογραφίας. Αυτό θα αυξήσει το "
 "μέγεθος του αρχείου κατά ένα τρίτο."
 
+#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:35
+#, kde-format
+msgid "Create temporary decrypted files in the folder of the encrypted file."
+msgstr ""
+"Δημιουργία προσωρινών αποκρυπτογραφημένων αρχείων στο φάκελο του "
+"κρυπτογραφημένου αρχείου."
+
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
@@ -8945,6 +8986,12 @@ msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Ενεργοποιήστε αυτήν την επιλογή για να αποφύγετε τη χρήση προσωρινού "
 "καταλόγου."
+
+#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:40
+#, kde-format
+msgid "Use symmetric encryption only."
+msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
@@ -12726,6 +12773,20 @@ msgstr "Παραλήπτες"
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Δώστε ένα μήνυμα για (απο)κρυπτογράφηση..."
+
+#: src/view/padwidget.cpp:172
+#, fuzzy, kde-format
+#| msgid "OpenPGP"
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/view/padwidget.cpp:173
+#, fuzzy, kde-format
+#| msgid "S/MIME"
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
 
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format

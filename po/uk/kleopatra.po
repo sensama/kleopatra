@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-27 00:41+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-07-25 08:42+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -3754,7 +3754,11 @@ msgid "GnuPG System"
 msgstr "Система GnuPG"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+#| "\".gpg\""
+msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
@@ -3762,10 +3766,10 @@ msgstr ""
 "Створювати зашифровані за допомогою OpenPGP файли з суфіксом назви «.pgp», "
 "замість «.gpg»"
 
-#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#: src/kcfg/fileoperationspreferences.kcfg:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create signed or encrypted files as text files."
+msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "Створювати підписані або зашифровані файли як текстові файли."
 
@@ -3789,10 +3793,11 @@ msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
 msgstr "Вважати файли .p7m без суфікса назви повідомленнями електронної пошти."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Automatically start operation based on input detection for decrypt/verify."
+msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
@@ -3800,14 +3805,17 @@ msgstr ""
 "вхідними даними."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Automatically extract file archives after decryption"
+msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Автоматично видобувати дані з архівів після розшифрування"
 
-#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#: src/kcfg/fileoperationspreferences.kcfg:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create temporary decrypted files in the folder of the encrypted file."
+msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Створювати тимчасові зашифровані файли у теці зашифрованого файла."
 
@@ -3819,10 +3827,10 @@ msgstr ""
 "Встановіть цей параметр, щоб уникати використання тимчасового каталогу "
 "користувача."
 
-#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#: src/kcfg/fileoperationspreferences.kcfg:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Використовувати лише симетричне шифрування."
 
@@ -3835,7 +3843,9 @@ msgstr ""
 "ключа."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use public-key encryption only."
+msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Скористатися лише шифруванням відкритим ключем."
 
@@ -5450,14 +5460,12 @@ msgstr "Додати отримувача…"
 
 #: src/crypto/gui/resolverecipientspage.cpp:410
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:414
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5983,7 +5991,11 @@ msgid "Encrypt for others:"
 msgstr "Зашифрувати для інших:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Encrypt with password. Anyone you share the password with can read the "
+#| "data."
+msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "Зашифрувати з паролем. Дані зможе прочитати будь-хто, у кого є пароль."
@@ -7651,7 +7663,9 @@ msgid "Please select until when the certificate should be valid:"
 msgstr "Будь ласка, виберіть, до якої дати буде чинним сертифікат:"
 
 #: src/dialogs/expirydialog.cpp:92
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlimited validity"
+msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Є чинним без обмежень"
 
@@ -7713,7 +7727,9 @@ msgid "Algorithm:"
 msgstr "Алгоритм:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup encryption key"
+msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Створити резервну копію ключа шифрування"
 
@@ -8343,7 +8359,9 @@ msgid "Update Available"
 msgstr "Доступне оновлення"
 
 #: src/dialogs/updatenotification.cpp:200
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show this notification for future updates."
+msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Показувати це сповіщення для майбутніх оновлень."
 
@@ -8673,6 +8691,15 @@ msgstr ""
 "Встановіть, щоб наказати kleopatra використовувати для файлів OpenPGP "
 "типовий суфікс назв pgp."
 
+#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:15
+#, kde-format
+msgid ""
+"Automatically start operation based on input detection for decrypt/verify."
+msgstr ""
+"Автоматично виконувати дію на основі визначення розшифрування/перевірки за "
+"вхідними даними."
+
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
@@ -8717,6 +8744,12 @@ msgstr ""
 "За допомогою цієї команди Kleopatra створює архів під час шифрування "
 "декількох файлів або теки."
 
+#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:30
+#, kde-format
+msgid "Create signed or encrypted files as text files."
+msgstr "Створювати підписані або зашифровані файли як текстові файли."
+
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
@@ -8731,6 +8764,12 @@ msgstr ""
 "повідомлення електронної пошти. Використання цього кодування призведе до "
 "збільшення розміру файла приблизно на одну третину."
 
+#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:35
+#, kde-format
+msgid "Create temporary decrypted files in the folder of the encrypted file."
+msgstr "Створювати тимчасові зашифровані файли у теці зашифрованого файла."
+
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
@@ -8738,6 +8777,12 @@ msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Встановіть цей параметр, щоб уникати використання тимчасового каталогу "
 "користувача."
+
+#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:40
+#, kde-format
+msgid "Use symmetric encryption only."
+msgstr "Використовувати лише симетричне шифрування."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
@@ -12412,6 +12457,20 @@ msgstr "Отримувачі"
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Введіть повідомлення для шифрування або розшифровування…"
+
+#: src/view/padwidget.cpp:172
+#, fuzzy, kde-format
+#| msgid "OpenPGP"
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/view/padwidget.cpp:173
+#, fuzzy, kde-format
+#| msgid "S/MIME"
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
 
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format

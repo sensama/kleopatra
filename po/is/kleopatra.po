@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-27 00:41+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2009-11-18 11:22+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <kde-isl@molar.is>\n"
@@ -3725,16 +3725,16 @@ msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
 #, kde-format
+msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
 msgstr ""
 
-#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#: src/kcfg/fileoperationspreferences.kcfg:30
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
+msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "Eyði lyklum..."
 
@@ -3753,24 +3753,23 @@ msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
 msgstr ""
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
+msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
+msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr ""
 
-#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#: src/kcfg/fileoperationspreferences.kcfg:35
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
+msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Eyði lyklum..."
 
@@ -3780,10 +3779,9 @@ msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 
-#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
+msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr ""
 
@@ -3795,6 +3793,7 @@ msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
+msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr ""
 
@@ -5358,14 +5357,12 @@ msgstr ""
 
 #: src/crypto/gui/resolverecipientspage.cpp:410
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
 #, fuzzy, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:414
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
 #, fuzzy, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5893,6 +5890,7 @@ msgstr "Útflutningur skírteinis tókst ekki"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
 #, kde-format
+msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
@@ -7531,6 +7529,7 @@ msgstr "Vista skírteini"
 #: src/dialogs/expirydialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
+msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Skírteinanotkun"
 
@@ -7596,9 +7595,11 @@ msgid "Algorithm:"
 msgstr ""
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Export Certificates..."
+msgctxt "@option:check"
 msgid "Backup encryption key"
-msgstr ""
+msgstr "Flytja út skírteini..."
 
 #: src/dialogs/gencardkeydialog.cpp:83
 #, fuzzy, kde-format
@@ -8239,6 +8240,7 @@ msgstr ""
 
 #: src/dialogs/updatenotification.cpp:200
 #, kde-format
+msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr ""
 
@@ -8570,6 +8572,13 @@ msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr ""
 
+#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:15
+#, kde-format
+msgid ""
+"Automatically start operation based on input detection for decrypt/verify."
+msgstr ""
+
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
@@ -8607,6 +8616,13 @@ msgid ""
 "archive with this command."
 msgstr ""
 
+#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:30
+#, fuzzy, kde-format
+#| msgid "Deleting keys..."
+msgid "Create signed or encrypted files as text files."
+msgstr "Eyði lyklum..."
+
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
@@ -8616,10 +8632,23 @@ msgid ""
 "increase file size by one third."
 msgstr ""
 
+#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:35
+#, fuzzy, kde-format
+#| msgid "Deleting keys..."
+msgid "Create temporary decrypted files in the folder of the encrypted file."
+msgstr "Eyði lyklum..."
+
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
+msgstr ""
+
+#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:40
+#, kde-format
+msgid "Use symmetric encryption only."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
@@ -12172,6 +12201,18 @@ msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr ""
 
+#: src/view/padwidget.cpp:172
+#, fuzzy, kde-format
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/view/padwidget.cpp:173
+#, fuzzy, kde-format
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
+
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
@@ -13323,11 +13364,6 @@ msgstr ""
 #~| msgid "Stop Operation"
 #~ msgid "File Operations"
 #~ msgstr "Stöðva aðgerð"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgid "Backup Secret Key"
-#~ msgstr "Flytja út skírteini..."
 
 #, fuzzy
 #~| msgid "Certificate Export Failed"

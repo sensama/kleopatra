@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-27 00:41+0000\n"
+"POT-Creation-Date: 2024-07-30 00:42+0000\n"
 "PO-Revision-Date: 2024-07-25 09:59+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -3724,7 +3724,11 @@ msgid "GnuPG System"
 msgstr "GnuPG-systeem"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+#| "\".gpg\""
+msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
@@ -3732,10 +3736,10 @@ msgstr ""
 "Maak met OpenPGP versleutelde bestanden met de extensie \".pgp\" in plaats "
 "van \".gpg\""
 
-#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#: src/kcfg/fileoperationspreferences.kcfg:30
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Create signed or encrypted files as text files."
+msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "Ondertekende of versleutelde bestanden maken als tekstbestanden."
 
@@ -3758,10 +3762,11 @@ msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
 msgstr "Behandel .p7m bestanden zonder extensies als e-mails."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Automatically start operation based on input detection for decrypt/verify."
+msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
@@ -3769,14 +3774,17 @@ msgstr ""
 "ontcijferen/verifiëren."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Automatically extract file archives after decryption"
+msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Bestandsarchieven automatisch uitpakken na ontcijferen"
 
-#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#: src/kcfg/fileoperationspreferences.kcfg:35
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Create temporary decrypted files in the folder of the encrypted file."
+msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
 "Tijdelijke ontsleutelde bestanden maken in de map met het versleutelde "
@@ -3790,10 +3798,10 @@ msgstr ""
 "Stel deze optie in om te vermijden de tijdelijke map van gebruikers te "
 "gebruiken."
 
-#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#: src/kcfg/fileoperationspreferences.kcfg:40
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Alleen symmetrische versleuteling gebruiken."
 
@@ -3805,7 +3813,9 @@ msgstr ""
 "Stel deze optie in om versleuteling met publieke sleutels uit te schakelen."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Use public-key encryption only."
+msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Alleen versleuteling met publieke sleutel gebruiken."
 
@@ -5413,14 +5423,12 @@ msgstr "Ontvanger toevoegen..."
 
 #: src/crypto/gui/resolverecipientspage.cpp:410
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:357
-#: src/view/padwidget.cpp:172
 #, kde-format
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/crypto/gui/resolverecipientspage.cpp:414
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:358
-#: src/view/padwidget.cpp:173
 #, kde-format
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -5952,7 +5960,11 @@ msgid "Encrypt for others:"
 msgstr "Voor anderen versleutelen:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "Encrypt with password. Anyone you share the password with can read the "
+#| "data."
+msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
@@ -7577,7 +7589,9 @@ msgid "Please select until when the certificate should be valid:"
 msgstr "Selecteer tot wanneer het certificaat geldig zou moeten zijn:"
 
 #: src/dialogs/expirydialog.cpp:92
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unlimited validity"
+msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Onbeperkte geldigheid"
 
@@ -7639,7 +7653,9 @@ msgid "Algorithm:"
 msgstr "Algoritme:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup encryption key"
+msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Reservekopie van versleutelingssleutel maken"
 
@@ -8268,7 +8284,9 @@ msgid "Update Available"
 msgstr "Item voor bijwerken beschikbaar"
 
 #: src/dialogs/updatenotification.cpp:200
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show this notification for future updates."
+msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Deze melding tonen voor later bijwerken."
 
@@ -8591,6 +8609,15 @@ msgstr ""
 "Stel dit in om kleopatra standaard de bestandsextensie pgp te laten "
 "gebruiken voor OpenPGP-bestanden."
 
+#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:15
+#, kde-format
+msgid ""
+"Automatically start operation based on input detection for decrypt/verify."
+msgstr ""
+"De bewerking automatisch starten gebaseerd op invoerdetectie voor "
+"ontcijferen/verifiëren."
+
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
@@ -8635,6 +8662,12 @@ msgstr ""
 "Bij versleutelen van meerdere bestanden of een map maakt Kleopatra een "
 "versleuteld archief met dit commando."
 
+#. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:30
+#, kde-format
+msgid "Create signed or encrypted files as text files."
+msgstr "Ondertekende of versleutelde bestanden maken als tekstbestanden."
+
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
@@ -8648,6 +8681,14 @@ msgstr ""
 "verzonden in een e-mailbericht. Dit zal de bestandsgrootte met een derde "
 "vergroten."
 
+#. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:35
+#, kde-format
+msgid "Create temporary decrypted files in the folder of the encrypted file."
+msgstr ""
+"Tijdelijke ontsleutelde bestanden maken in de map met het versleutelde "
+"bestand."
+
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
@@ -8655,6 +8696,12 @@ msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Stel deze optie in om te vermijden de tijdelijke map van gebruikers te "
 "gebruiken."
+
+#. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
+#: src/kcfg/fileoperationspreferences.kcfg:40
+#, kde-format
+msgid "Use symmetric encryption only."
+msgstr "Alleen symmetrische versleuteling gebruiken."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
@@ -12325,6 +12372,20 @@ msgstr "Ontvangers"
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Een bericht invoeren om te versleutelen of te ontcijferen..."
+
+#: src/view/padwidget.cpp:172
+#, fuzzy, kde-format
+#| msgid "OpenPGP"
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/view/padwidget.cpp:173
+#, fuzzy, kde-format
+#| msgid "S/MIME"
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
 
 #: src/view/padwidget.cpp:310 src/view/padwidget.cpp:348
 #, kde-format

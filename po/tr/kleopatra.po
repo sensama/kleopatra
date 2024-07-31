@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-30 00:42+0000\n"
-"PO-Revision-Date: 2024-07-25 13:08+0300\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"PO-Revision-Date: 2024-07-30 18:46+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -2821,7 +2821,7 @@ msgid "No Directory Servers Configured"
 msgstr "Hiçbir Dizin Sunucusu Yapılandırılmamış"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:539
+#: src/kleopatraapplication.cpp:530
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "İmzalama istekleri için S/MIME sertifikası oluşturma izniniz yok."
@@ -3697,24 +3697,18 @@ msgid "GnuPG System"
 msgstr "GnuPG Sistemi"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
-#| "\".gpg\""
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
-msgstr ""
-"OpenPGP şifreli dosyalarını “.gpg” uzantısı yerine “.pgp” uzantılarıyla "
-"oluştur"
+msgstr "OpenPGP şifreli dosyalarını “.gpg” yerine “.pgp” uzantısıyla oluştur"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#, fuzzy, kde-format
-#| msgid "Create signed or encrypted files as text files."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
-msgstr "İmzalı veya şifreli dosyaları, metin dosyası olarak oluştur."
+msgstr "İmzalı veya şifreli dosyaları, metin dosyası olarak oluştur"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:62
 #, kde-format
@@ -3735,31 +3729,26 @@ msgid "Treat .p7m files without extensions as mails."
 msgstr "Uzantısız .p7m dosyalarına posta olarak davranın."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatically start operation based on input detection for decrypt/verify."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
 "Şifre çözme/doğrulama için girdi algılaması tabanlı işlemleri kendiliğinden "
-"başlatın."
+"başlat"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, fuzzy, kde-format
-#| msgid "Automatically extract file archives after decryption"
+#, kde-format
 msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Şifre çözümü sonrası dosya arşivlerini kendiliğinden çıkar"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create temporary decrypted files in the folder of the encrypted file."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
-"Geçici olarak şifresi çözülen dosyaları şifreli dosyanın klasöründe oluştur."
+"Geçici olarak şifresi çözülen dosyaları şifreli dosyanın klasöründe oluştur"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
@@ -3770,11 +3759,10 @@ msgstr ""
 "ayarlayın."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
-msgstr "Yalnızca simetrik şifreleme kullanın."
+msgstr "Yalnızca simetrik şifreleme kullan"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
@@ -3784,11 +3772,10 @@ msgstr ""
 "Genel anahtar şifrelemesini devre dışı bırakmak için bu seçeneği ayarlayın."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use public-key encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
-msgstr "Yalnızca genel anahtar şifrelemesi kullanın."
+msgstr "Yalnızca genel anahtar şifrelemesi kullan"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
 #, kde-format
@@ -5889,15 +5876,12 @@ msgid "Encrypt for others:"
 msgstr "Başkaları için şifrele:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypt with password. Anyone you share the password with can read the "
-#| "data."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
-"Parola ile şifrele. Parolayı paylaştığınız herhangi biri veriyi okuyabilir."
+"Parola ile şifrele (parolayı paylaştığınız herhangi biri veriyi okuyabilir)"
 
 #: src/crypto/gui/signencryptwidget.cpp:270
 #, kde-format
@@ -6351,7 +6335,7 @@ msgctxt "@title:window"
 msgid "Add Subkey"
 msgstr "Alt Anahtar Ekle"
 
-#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#: src/dialogs/addsubkeydialog.cpp:156
 #, kde-format
 msgid "Expiration of primary key: %1"
 msgstr "Birincil anahtarın son kullanım tarihi: %1"
@@ -6634,7 +6618,6 @@ msgid "Valid from:"
 msgstr "Geçerlilik süresi başlangıcı:"
 
 #: src/dialogs/certificatedetailswidget.cpp:197
-#: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Geçerlilik süresi sonu:"
@@ -7497,22 +7480,29 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Grubu Düzenle"
 
-#: src/dialogs/expirydialog.cpp:87
+#: src/dialogs/expirydialog.cpp:86
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "Alt anahtarın hangi tarihe dek geçerli olması gerektiğini seçin:"
 
-#: src/dialogs/expirydialog.cpp:88
+#: src/dialogs/expirydialog.cpp:87
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "Sertifikanın hangi tarihe dek geçerli olması gerektiğini seçin:"
 
-#: src/dialogs/expirydialog.cpp:92
-#, fuzzy, kde-format
-#| msgid "Unlimited validity"
+#: src/dialogs/expirydialog.cpp:91
+#, kde-format
 msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Sınırsız geçerlilik"
+
+#: src/dialogs/expirydialog.cpp:102 src/dialogs/expirydialog.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@info ... between <a date> and <another date>."
+#| msgid "Enter a date between %1 and %2."
+msgctxt "The placeholders are dates"
+msgid "Valid until (between %1 and %2):"
+msgstr "%1 ve %2 arasında bir tarih girin."
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7530,6 +7520,18 @@ msgstr "%1 tarihine dek geçerli"
 msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "Geçerlilik Periyodunu Değiştir"
+
+#: src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgctxt "The placeholder is a date"
+msgid "Same validity as the primary key (%1)"
+msgstr ""
+
+#: src/dialogs/expirydialog.cpp:247
+#, kde-format
+msgctxt "'unlimited' means 'forever', here"
+msgid "Same validity as the primary key (unlimited)"
+msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7572,8 +7574,7 @@ msgid "Algorithm:"
 msgstr "Algoritma:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Backup encryption key"
+#, kde-format
 msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Yedek şifreleme anahtarı"
@@ -8201,11 +8202,10 @@ msgid "Update Available"
 msgstr "Güncelleme Kullanılabilir"
 
 #: src/dialogs/updatenotification.cpp:200
-#, fuzzy, kde-format
-#| msgid "Show this notification for future updates."
+#, kde-format
 msgctxt "@option:check"
 msgid "Show this notification for future updates."
-msgstr "Gelecekteki güncellemeler için bu bildirimi göster."
+msgstr "Gelecekteki güncellemeler için bu bildirimi göster"
 
 #: src/dialogs/updatenotification.cpp:207
 #, kde-format
@@ -9280,7 +9280,7 @@ msgstr "&Görünüm"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:137
+#: src/kleopatra.rc:44 src/kleopatra.rc:138
 #, kde-format
 msgid "&Certificates"
 msgstr "&Sertifikalar"
@@ -9298,25 +9298,25 @@ msgid "&Settings"
 msgstr "Ayar&lar"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:88
+#: src/kleopatra.rc:89
 #, kde-format
 msgid "&Window"
 msgstr "&Pencere"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:99
+#: src/kleopatra.rc:100
 #, kde-format
 msgid "&Help"
 msgstr "&Yardım"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:106
+#: src/kleopatra.rc:107
 #, kde-format
 msgid "&More Documentation"
 msgstr "&Daha Fazla Belgelendirme"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:120 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Ana Araç Çubuğu"
@@ -9447,47 +9447,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Sorgu ve arama için dizi veya parmak izi"
 
-#: src/kleopatraapplication.cpp:435
+#: src/kleopatraapplication.cpp:426
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Komut yürütülemedi"
 
-#: src/kleopatraapplication.cpp:477
+#: src/kleopatraapplication.cpp:468
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Belirsiz protokol: --openpgp ve --cms"
 
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:502
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "--search için arama dizisi yok"
 
-#: src/kleopatraapplication.cpp:522
+#: src/kleopatraapplication.cpp:513
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "--query için parmak izi değişkeni belirtilmedi"
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:574
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Belirsiz komutlar “%1” ve “%2”"
 
-#: src/kleopatraapplication.cpp:590
+#: src/kleopatraapplication.cpp:581
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "“%1” komutu için dosya belirtilmedi"
 
-#: src/kleopatraapplication.cpp:604
+#: src/kleopatraapplication.cpp:595
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "“%1” okunamıyor"
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Dış bir bağlantıyı açmak yönetim tarafından yasaklandı."
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr "Yasaklı"
@@ -9559,7 +9559,7 @@ msgstr "Kleopatra Hatası"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Kleopatra’ya bağlanırken hata oluştu: %1"
 
-#: src/main.cpp:137
+#: src/main.cpp:133
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9574,13 +9574,13 @@ msgstr ""
 "para><para><application>Kleopatra</application> bu ayarlarla çalışmayacaktır."
 "</para><para>Bu sorunu çözmek için lütfen sistem yöneticinize danışın.</para>"
 
-#: src/main.cpp:141
+#: src/main.cpp:137
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME Çok Eski"
 
-#: src/main.cpp:163
+#: src/main.cpp:159
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9596,23 +9596,23 @@ msgstr ""
 "yönetin ve <filename>AppData\\Roaming\\gnupg</filename> dizinini düzgün "
 "izinlerle kopyalayın.</para>"
 
-#: src/main.cpp:167
+#: src/main.cpp:163
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Sürdürmek istediğinizden emin misiniz?</para>"
 
-#: src/main.cpp:168
+#: src/main.cpp:164
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Yönetici Olarak Çalıştırma"
 
-#: src/main.cpp:237
+#: src/main.cpp:233
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG Arayüz Sunucusu Hatası"
 
-#: src/main.cpp:241
+#: src/main.cpp:237
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9631,24 +9631,24 @@ msgstr ""
 "<br/>Kleopatra’yı kullanmayı sürdürmeyi deneyebilirsiniz; ancak büyük "
 "olasılıkla başka sorunlarla karşılaşacaksınız.</qt>"
 
-#: src/main.cpp:271
+#: src/main.cpp:267
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Geçersiz argümanlar: %1"
 
-#: src/mainwindow.cpp:114
+#: src/mainwindow.cpp:116
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "Çı&k: <application>%1</application>"
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:123
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Yalnızca Pencereyi &Kapat"
 
-#: src/mainwindow.cpp:220
+#: src/mainwindow.cpp:222
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9659,13 +9659,13 @@ msgstr ""
 "kullanılıyor olabilir.<nl/><application>%1</application> uygulamasından "
 "çıkmadan yalnızca bu pencereyi kapatmak isteyebilirsiniz."
 
-#: src/mainwindow.cpp:223
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Gerçekten Çık?"
 
-#: src/mainwindow.cpp:310
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9674,28 +9674,28 @@ msgstr ""
 "GnuPG Günlük Kaydı Görüntüleyicisi (kwatchgnupg) başlatılamadı. Lütfen "
 "kurulumunuzu denetleyin."
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "KWatchGnuPG Başlatılırken Hata"
 
-#: src/mainwindow.cpp:572
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG Günlük Görüntüleyicisi"
 
-#: src/mainwindow.cpp:584
+#: src/mainwindow.cpp:586
 #, kde-format
 msgid "Debug View"
 msgstr "Hata Ayıklama Görünümü"
 
-#: src/mainwindow.cpp:597
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Arka Plan Süreçlerini Yeniden Başlat"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9705,23 +9705,23 @@ msgstr ""
 "Arka plan süreçlerini yeniden başlat; örneğin, yapılandırmaya değişiklik "
 "yaptıktan sonra."
 
-#: src/mainwindow.cpp:610
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Check for updates"
 msgstr "Güncellemeleri denetle"
 
-#: src/mainwindow.cpp:623
+#: src/mainwindow.cpp:625
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Sertifikalar"
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:626
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Sertifika genel görünümünü göster"
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:636
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9729,51 +9729,51 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Not Defteri"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Metin şifrelemek/şifre çözmek ve imzalamak/doğrulamak için defteri göster"
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:647
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Akıllı Kartlar"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Akıllı kart yönetimini göster"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:659
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Öz Sınama Gerçekleştir"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Grupları Yapılandır…"
 
-#: src/mainwindow.cpp:680
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Gruplar"
 
-#: src/mainwindow.cpp:710
+#: src/mainwindow.cpp:716
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Odağı Tez Aramaya Taşı"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:728
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win İnceleme"
 
-#: src/mainwindow.cpp:726
+#: src/mainwindow.cpp:732
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9781,48 +9781,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:743
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "Şifreleme ve İmzalama &Hızlı Kılavuzu"
 
-#: src/mainwindow.cpp:738
+#: src/mainwindow.cpp:744
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:752
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&Parola Tabanlı Şifreleme"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:753
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:760
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "Sertifika &Grupları"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:770
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Outlook’ta &Posta Şifrelemesi"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:771
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9830,41 +9830,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:781
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Sertifikasyon Yönetimi"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:782
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:790
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "&Akıllı Kartlar Ayarları"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:791
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:792
+#: src/mainwindow.cpp:798
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG Komut &Satırı"
 
-#: src/mainwindow.cpp:802
+#: src/mainwindow.cpp:808
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "VS-NfD Onayı için Kılavuz"
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:809
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9872,12 +9872,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:817
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "VS-NfD Onayı için Güvenlik İşlemleri"
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:818
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9885,7 +9885,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:839
+#: src/mainwindow.cpp:845
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9894,7 +9894,7 @@ msgstr ""
 "Hâlâ süren bazı arka plan işlemleri var. Bunlar pencere kapatıldığında "
 "bitirilecek. Sürdürülsün mü?"
 
-#: src/mainwindow.cpp:842
+#: src/mainwindow.cpp:848
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Süren Arka Plan Görevleri"
@@ -12260,15 +12260,13 @@ msgid "Enter a message to encrypt or decrypt..."
 msgstr "Şifrelemek veya şifresini çözmek için bir ileti gir…"
 
 #: src/view/padwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/view/padwidget.cpp:173
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -13168,10 +13166,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "The date cannot be changed."
 #~ msgstr "Tarih değiştirilemez."
-
-#~ msgctxt "@info ... between <a date> and <another date>."
-#~ msgid "Enter a date between %1 and %2."
-#~ msgstr "%1 ve %2 arasında bir tarih girin."
 
 #~ msgctxt "@item:inlistbox"
 #~ msgid "Three years from now"

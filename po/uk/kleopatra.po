@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-30 00:42+0000\n"
-"PO-Revision-Date: 2024-07-25 08:42+0300\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"PO-Revision-Date: 2024-07-30 09:52+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -2854,7 +2854,7 @@ msgid "No Directory Servers Configured"
 msgstr "Не налаштовано серверів каталогів"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:539
+#: src/kleopatraapplication.cpp:530
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -3754,10 +3754,7 @@ msgid "GnuPG System"
 msgstr "Система GnuPG"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
-#| "\".gpg\""
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3767,8 +3764,7 @@ msgstr ""
 "замість «.gpg»"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#, fuzzy, kde-format
-#| msgid "Create signed or encrypted files as text files."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "Створювати підписані або зашифровані файли як текстові файли."
@@ -3794,9 +3790,7 @@ msgid "Treat .p7m files without extensions as mails."
 msgstr "Вважати файли .p7m без суфікса назви повідомленнями електронної пошти."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatically start operation based on input detection for decrypt/verify."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
@@ -3805,16 +3799,13 @@ msgstr ""
 "вхідними даними."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, fuzzy, kde-format
-#| msgid "Automatically extract file archives after decryption"
+#, kde-format
 msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Автоматично видобувати дані з архівів після розшифрування"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create temporary decrypted files in the folder of the encrypted file."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Створювати тимчасові зашифровані файли у теці зашифрованого файла."
@@ -3828,8 +3819,7 @@ msgstr ""
 "користувача."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Використовувати лише симетричне шифрування."
@@ -3843,8 +3833,7 @@ msgstr ""
 "ключа."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use public-key encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Скористатися лише шифруванням відкритим ключем."
@@ -5991,10 +5980,7 @@ msgid "Encrypt for others:"
 msgstr "Зашифрувати для інших:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypt with password. Anyone you share the password with can read the "
-#| "data."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -6457,7 +6443,7 @@ msgctxt "@title:window"
 msgid "Add Subkey"
 msgstr "Додати підключ"
 
-#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#: src/dialogs/addsubkeydialog.cpp:156
 #, kde-format
 msgid "Expiration of primary key: %1"
 msgstr "Завершення строку дії основного ключа: %1"
@@ -6741,7 +6727,6 @@ msgid "Valid from:"
 msgstr "Дійсний з:"
 
 #: src/dialogs/certificatedetailswidget.cpp:197
-#: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Чинний до:"
@@ -7652,22 +7637,29 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Змінити групу"
 
-#: src/dialogs/expirydialog.cpp:87
+#: src/dialogs/expirydialog.cpp:86
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "Будь ласка, виберіть, до якої дати буде чинним підключ:"
 
-#: src/dialogs/expirydialog.cpp:88
+#: src/dialogs/expirydialog.cpp:87
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "Будь ласка, виберіть, до якої дати буде чинним сертифікат:"
 
-#: src/dialogs/expirydialog.cpp:92
-#, fuzzy, kde-format
-#| msgid "Unlimited validity"
+#: src/dialogs/expirydialog.cpp:91
+#, kde-format
 msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Є чинним без обмежень"
+
+#: src/dialogs/expirydialog.cpp:102 src/dialogs/expirydialog.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@info ... between <a date> and <another date>."
+#| msgid "Enter a date between %1 and %2."
+msgctxt "The placeholders are dates"
+msgid "Valid until (between %1 and %2):"
+msgstr "Введіть дату від %1 до %2."
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7685,6 +7677,18 @@ msgstr "Чинний до %1"
 msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "Зміна кінця строку дії"
+
+#: src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgctxt "The placeholder is a date"
+msgid "Same validity as the primary key (%1)"
+msgstr ""
+
+#: src/dialogs/expirydialog.cpp:247
+#, kde-format
+msgctxt "'unlimited' means 'forever', here"
+msgid "Same validity as the primary key (unlimited)"
+msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7727,8 +7731,7 @@ msgid "Algorithm:"
 msgstr "Алгоритм:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Backup encryption key"
+#, kde-format
 msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Створити резервну копію ключа шифрування"
@@ -8359,8 +8362,7 @@ msgid "Update Available"
 msgstr "Доступне оновлення"
 
 #: src/dialogs/updatenotification.cpp:200
-#, fuzzy, kde-format
-#| msgid "Show this notification for future updates."
+#, kde-format
 msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Показувати це сповіщення для майбутніх оновлень."
@@ -9456,7 +9458,7 @@ msgstr "&Перегляд"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:137
+#: src/kleopatra.rc:44 src/kleopatra.rc:138
 #, kde-format
 msgid "&Certificates"
 msgstr "&Сертифікати"
@@ -9474,25 +9476,25 @@ msgid "&Settings"
 msgstr "П&араметри"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:88
+#: src/kleopatra.rc:89
 #, kde-format
 msgid "&Window"
 msgstr "&Вікно"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:99
+#: src/kleopatra.rc:100
 #, kde-format
 msgid "&Help"
 msgstr "&Довідка"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:106
+#: src/kleopatra.rc:107
 #, kde-format
 msgid "&More Documentation"
 msgstr "Д&одаткова документація"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:120 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Головна панель"
@@ -9623,47 +9625,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Рядок або відбиток для запитів і пошуку"
 
-#: src/kleopatraapplication.cpp:435
+#: src/kleopatraapplication.cpp:426
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Не вдалося виконати команду"
 
-#: src/kleopatraapplication.cpp:477
+#: src/kleopatraapplication.cpp:468
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Двозначність протоколу: --openpgp і --cms"
 
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:502
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Не вказано рядка пошуку із --search"
 
-#: src/kleopatraapplication.cpp:522
+#: src/kleopatraapplication.cpp:513
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Не вказано аргументу з відбитком у параметрі --query"
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:574
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Неоднозначні команди «%1» і «%2»"
 
-#: src/kleopatraapplication.cpp:590
+#: src/kleopatraapplication.cpp:581
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Не вказано файлів для команди «%1»"
 
-#: src/kleopatraapplication.cpp:604
+#: src/kleopatraapplication.cpp:595
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Не вдалося виконати читання «%1»"
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Відкриття зовнішніх посилань адміністративно заборонено."
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr "Заборонено"
@@ -9740,7 +9742,7 @@ msgstr "Помилка Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Під час спроби встановити з'єднання із Kleopatra сталася помилка: %1"
 
-#: src/main.cpp:137
+#: src/main.cpp:133
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9756,13 +9758,13 @@ msgstr ""
 "працювати за цих параметрів.</para><para>Будь ласка, попросіть про допомогу "
 "в усуванні цієї проблеми у адміністратора вашої системи.</para>"
 
-#: src/main.cpp:141
+#: src/main.cpp:137
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "Застара GpgME"
 
-#: src/main.cpp:163
+#: src/main.cpp:159
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9779,23 +9781,23 @@ msgstr ""
 "скопіюйте каталог <filename>AppData\\Roaming\\gnupg</filename> із належними "
 "правами доступу.</para>"
 
-#: src/main.cpp:167
+#: src/main.cpp:163
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Ви справді хочете продовжити виконання дії?</para>"
 
-#: src/main.cpp:168
+#: src/main.cpp:164
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Працюємо від імені адміністратора"
 
-#: src/main.cpp:237
+#: src/main.cpp:233
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Помилка сервера інтерфейсу користувача GPG"
 
-#: src/main.cpp:241
+#: src/main.cpp:237
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9815,24 +9817,24 @@ msgstr ""
 "продовжувати користуватися Kleopatra, але у роботі програми можуть виникати "
 "інші проблеми.</qt>"
 
-#: src/main.cpp:271
+#: src/main.cpp:267
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Некоректні аргументи: %1"
 
-#: src/mainwindow.cpp:114
+#: src/mainwindow.cpp:116
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "Ви&йти з <application>%1</application>"
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:123
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Просто &закрити вікно"
 
-#: src/mainwindow.cpp:220
+#: src/mainwindow.cpp:222
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9843,13 +9845,13 @@ msgstr ""
 "служба.<nl/>Отже, ви можете просто закрити це вікно без виходу з "
 "<application>%1</application>."
 
-#: src/mainwindow.cpp:223
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Справді вийти?"
 
-#: src/mainwindow.cpp:310
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9858,28 +9860,28 @@ msgstr ""
 "Не вдалося запустити переглядач журналу GnuPG (kwatchgnupg). Будь ласка, "
 "перевірте встановлені вами компоненти."
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Помилка під час запуску KWatchGnuPG"
 
-#: src/mainwindow.cpp:572
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Переглядач журналу GnuPG"
 
-#: src/mainwindow.cpp:584
+#: src/mainwindow.cpp:586
 #, kde-format
 msgid "Debug View"
 msgstr "Панель діагностики"
 
-#: src/mainwindow.cpp:597
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Перезапустити фонові процеси"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9888,23 +9890,23 @@ msgid ""
 msgstr ""
 "Перезапустити фонові процеси після, наприклад, внесення змін до налаштувань."
 
-#: src/mainwindow.cpp:610
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Check for updates"
 msgstr "Перевірити наявність оновлень"
 
-#: src/mainwindow.cpp:623
+#: src/mainwindow.cpp:625
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Сертифікати"
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:626
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Показувати огляд сертифіката"
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:636
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9912,52 +9914,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Нотатник"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Показувати панель нотатника для шифрування/розшифрування та підписування/"
 "перевірки тексту"
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:647
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Картки пам'яті"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Показувати панель керування картками пам'яті"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:659
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Виконати самоперевірку"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Налаштувати групи…"
 
-#: src/mainwindow.cpp:680
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Групи"
 
-#: src/mainwindow.cpp:710
+#: src/mainwindow.cpp:716
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Перевести фокус до поля швидкого пошуку"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:728
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Довідник з gpg4win"
 
-#: src/mainwindow.cpp:726
+#: src/mainwindow.cpp:732
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9965,48 +9967,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:743
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Короткі настанови щодо шифрування і підписування"
 
-#: src/mainwindow.cpp:738
+#: src/mainwindow.cpp:744
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:752
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&Шифрування на основі пароля"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:753
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:760
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Групи сертифікатів"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:770
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Ш&ифрування пошти в Outlook"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:771
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10014,41 +10016,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:781
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Керування сертифікацією"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:782
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:790
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Налаштування с&марткарток"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:791
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:792
+#: src/mainwindow.cpp:798
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Кома&ндний рядок GnuPG"
 
-#: src/mainwindow.cpp:802
+#: src/mainwindow.cpp:808
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Підручник щодо затвердження VS-NfD"
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:809
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10056,12 +10058,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:817
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "Безпечні дії щодо затвердження VS-NfD"
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:818
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10069,7 +10071,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:839
+#: src/mainwindow.cpp:845
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10078,7 +10080,7 @@ msgstr ""
 "Все ще виконуються деякі фонові дії. Їх буде припинено, якщо ви закриєте "
 "вікно. Продовжувати?"
 
-#: src/mainwindow.cpp:842
+#: src/mainwindow.cpp:848
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Виконуються фонові завдання"
@@ -12459,15 +12461,13 @@ msgid "Enter a message to encrypt or decrypt..."
 msgstr "Введіть повідомлення для шифрування або розшифровування…"
 
 #: src/view/padwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/view/padwidget.cpp:173
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -13374,10 +13374,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "The date cannot be changed."
 #~ msgstr "Дату не можна змінювати."
-
-#~ msgctxt "@info ... between <a date> and <another date>."
-#~ msgid "Enter a date between %1 and %2."
-#~ msgstr "Введіть дату від %1 до %2."
 
 #~ msgctxt "@item:inlistbox"
 #~ msgid "Three years from now"

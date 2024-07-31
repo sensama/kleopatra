@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-30 00:42+0000\n"
-"PO-Revision-Date: 2024-07-25 04:48+0200\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"PO-Revision-Date: 2024-07-30 06:37+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -2794,7 +2794,7 @@ msgid "No Directory Servers Configured"
 msgstr "Directory-ის სერვერები მორგებული არაა"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:539
+#: src/kleopatraapplication.cpp:530
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "S/MIME სერტიფიკატის ხელმოწერის მოთხოვნების შექმნის უფლება არ გაქვთ."
@@ -3663,10 +3663,7 @@ msgid "GnuPG System"
 msgstr "GnuPG სისტემა"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
-#| "\".gpg\""
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3676,8 +3673,7 @@ msgstr ""
 "გამოყენება"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#, fuzzy, kde-format
-#| msgid "Create signed or encrypted files as text files."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "შექმენით ხელმოწერილი ან დაშიფრული ფაილები ტექსტური ფაილების სახით."
@@ -3701,9 +3697,7 @@ msgid "Treat .p7m files without extensions as mails."
 msgstr "გაფართოების არმქონე .p7m ფაილების ელფოსტად აღქმა."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatically start operation based on input detection for decrypt/verify."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
@@ -3711,16 +3705,13 @@ msgstr ""
 "დაშიფვრა/გაშიფვრის პროცესის ავტომატური დაწყება შეყვანის ტიპის მიხედვით."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, fuzzy, kde-format
-#| msgid "Automatically extract file archives after decryption"
+#, kde-format
 msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "გაშიფვრის შემდეგ არქივების ავტომატური გაშლა"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create temporary decrypted files in the folder of the encrypted file."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "დროებითი დაშიფრული ფაილების შექმნა დაშიფრული ფაილის საქაღალდეში."
@@ -3734,8 +3725,7 @@ msgstr ""
 "ასაცილებლად."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "მხოლოდ სიმეტრიული დაშიფვრის გამოყენება."
@@ -3747,8 +3737,7 @@ msgid "Set this option to disable public key encryption."
 msgstr "დააყენეთ ეს პარამეტრი, რათა საჯარო გასაღების დაშიფვრა გამორთოთ."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use public-key encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "მხოლოდ სიმეტრიული დაშიფვრის გამოყენება."
@@ -5855,10 +5844,7 @@ msgid "Encrypt for others:"
 msgstr "სხვებისთვის დაშიფვრა:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypt with password. Anyone you share the password with can read the "
-#| "data."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -6318,7 +6304,7 @@ msgctxt "@title:window"
 msgid "Add Subkey"
 msgstr "ქვეგასაღების დამატება"
 
-#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#: src/dialogs/addsubkeydialog.cpp:156
 #, kde-format
 msgid "Expiration of primary key: %1"
 msgstr "ვადა ამოიწურა ძირითადი გასაღებისთვის: %1"
@@ -6598,7 +6584,6 @@ msgid "Valid from:"
 msgstr "ძალაშია:"
 
 #: src/dialogs/certificatedetailswidget.cpp:197
-#: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "ვადა:"
@@ -7456,22 +7441,29 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "ჯგუფის ჩასწორება"
 
-#: src/dialogs/expirydialog.cpp:87
+#: src/dialogs/expirydialog.cpp:86
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "აირჩიეთ, სადამდე იქნება ქვეგასაღები სწორი:"
 
-#: src/dialogs/expirydialog.cpp:88
+#: src/dialogs/expirydialog.cpp:87
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "აირჩიეთ, სადამდე იქნება სერტიფიკატი სწორი:"
 
-#: src/dialogs/expirydialog.cpp:92
-#, fuzzy, kde-format
-#| msgid "Unlimited validity"
+#: src/dialogs/expirydialog.cpp:91
+#, kde-format
 msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "შეუზღუდავი სისწორე"
+
+#: src/dialogs/expirydialog.cpp:102 src/dialogs/expirydialog.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@info ... between <a date> and <another date>."
+#| msgid "Enter a date between %1 and %2."
+msgctxt "The placeholders are dates"
+msgid "Valid until (between %1 and %2):"
+msgstr "შეიყვანეთ თარიღი შუალედიდან %1-%2."
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7489,6 +7481,18 @@ msgstr "მოქმედია %1-მდე"
 msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "ვარგისიანობის პერიოდის შეცვლა"
+
+#: src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgctxt "The placeholder is a date"
+msgid "Same validity as the primary key (%1)"
+msgstr ""
+
+#: src/dialogs/expirydialog.cpp:247
+#, kde-format
+msgctxt "'unlimited' means 'forever', here"
+msgid "Same validity as the primary key (unlimited)"
+msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7531,8 +7535,7 @@ msgid "Algorithm:"
 msgstr "ალგორითმი:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Backup encryption key"
+#, kde-format
 msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "დაშიფვრის გასაღების მარქაფი"
@@ -8159,8 +8162,7 @@ msgid "Update Available"
 msgstr "ხელმისაწვდომია განახლება"
 
 #: src/dialogs/updatenotification.cpp:200
-#, fuzzy, kde-format
-#| msgid "Show this notification for future updates."
+#, kde-format
 msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "ამ გაფრთხილების ჩვენება მომავალი განახლებებისთვის."
@@ -9227,7 +9229,7 @@ msgstr "&ხედი"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:137
+#: src/kleopatra.rc:44 src/kleopatra.rc:138
 #, kde-format
 msgid "&Certificates"
 msgstr "&სერტიფიკატები"
@@ -9245,25 +9247,25 @@ msgid "&Settings"
 msgstr "გამართვა"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:88
+#: src/kleopatra.rc:89
 #, kde-format
 msgid "&Window"
 msgstr "&ფანჯარა"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:99
+#: src/kleopatra.rc:100
 #, kde-format
 msgid "&Help"
 msgstr "&დახმარება"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:106
+#: src/kleopatra.rc:107
 #, kde-format
 msgid "&More Documentation"
 msgstr "&მეტი დოკუმენტაცია"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:120 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "ხელსაწყოთა მთავარი ზოლი"
@@ -9394,47 +9396,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "სტრიქონი ან ანაბეჭდი მოთხოვნისა და ძებნისთვის"
 
-#: src/kleopatraapplication.cpp:435
+#: src/kleopatraapplication.cpp:426
 #, kde-format
 msgid "Failed to execute command"
 msgstr "ბრძანების შესრულების შეცდომა"
 
-#: src/kleopatraapplication.cpp:477
+#: src/kleopatraapplication.cpp:468
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "გაურკვეველი პროტოკოლი: --openpgp და --cms"
 
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:502
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "პარამეტრისთვის --search სტრიქონი მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:522
+#: src/kleopatraapplication.cpp:513
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "პარამეტრისთვის --query ანაბეჭდის არგუმენტი მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:574
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "ბუნდოვანი ბრძანებები \"%1\" და \"%2\""
 
-#: src/kleopatraapplication.cpp:590
+#: src/kleopatraapplication.cpp:581
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "ბრძანებისთვის \"%1\" ფაილები მითითებული არაა"
 
-#: src/kleopatraapplication.cpp:604
+#: src/kleopatraapplication.cpp:595
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "\"%1\"-ის წაკითხვა შეუძლებელია"
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "გარე ბმული გახსნა აკრძალულია ადმინისტრაციულად."
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr "აკრძალულია"
@@ -9507,7 +9509,7 @@ msgstr "Kleopatra -ის შეცდომა"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "შეცდომა Kleopatra-სთან მიერთებისას: %1"
 
-#: src/main.cpp:137
+#: src/main.cpp:133
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9523,13 +9525,13 @@ msgstr ""
 "არ იმუშავებს.</para><para>სთხოვეთ თქვენს სისტემურ ადმინისტრატორს, დაგეხმაროთ "
 "ან პრობლემის მოგვარებაში.</para>"
 
-#: src/main.cpp:141
+#: src/main.cpp:137
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME ძალიან ძველია"
 
-#: src/main.cpp:163
+#: src/main.cpp:159
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9545,23 +9547,23 @@ msgstr ""
 "მომხმარებლები და დააკოპირეთ <filename>AppData\\Roaming\\gnupg</filename> "
 "საქაღალდე სწორი წვდომებით.</para>"
 
-#: src/main.cpp:167
+#: src/main.cpp:163
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>დარწმუნებული ბრძანდებით, რომ გნებავთ, გააგრძელოთ?</para>"
 
-#: src/main.cpp:168
+#: src/main.cpp:164
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "გაშვებულია ადმინისტრატორით"
 
-#: src/main.cpp:237
+#: src/main.cpp:233
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI სერვერის შეცდომა"
 
-#: src/main.cpp:241
+#: src/main.cpp:237
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9580,24 +9582,24 @@ msgstr ""
 "დაუკავშირდით.<br/>შეგიძლიათ, სცადოთ, გააგრძელოთ Kleopatra-ის გამოყენება, "
 "მაგრამ, ალბათ, სხვა პრობლემებსაც შეეჩეხებით.</qt>"
 
-#: src/main.cpp:271
+#: src/main.cpp:267
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "არასწორი არგუმენტები: %1"
 
-#: src/mainwindow.cpp:114
+#: src/mainwindow.cpp:116
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "<application>%1</application>-დან &გასვლა"
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:123
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "&მხოლოდ ფანჯრის დახურვა"
 
-#: src/mainwindow.cpp:220
+#: src/mainwindow.cpp:222
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9608,13 +9610,13 @@ msgstr ""
 "სახით იყოს გამოყენებული.<nl/>შეიძლება, ფანჯარა უბრალოდ დახუროთ, <application>"
 "%1</application>-დან გასვლის გარეშე."
 
-#: src/mainwindow.cpp:223
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "მართლა გავიდე?"
 
-#: src/mainwindow.cpp:310
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9623,28 +9625,28 @@ msgstr ""
 "GnuPG-ის ჟურნალის გამხსნელის (kwatchgnupg) გაშვება შეუძლებელია. შეამოწმეთ "
 "თქვენი ფაილები."
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "KWatchGnuPG-ის გაშვების შეცდომა"
 
-#: src/mainwindow.cpp:572
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG-ის ჟურნალის ნახვა"
 
-#: src/mainwindow.cpp:584
+#: src/mainwindow.cpp:586
 #, kde-format
 msgid "Debug View"
 msgstr "გამართვის ხედი"
 
-#: src/mainwindow.cpp:597
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "ფონური პროცესების გადატვირთვა"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9652,23 +9654,23 @@ msgid ""
 "configuration."
 msgstr "ფონური პროცესების გადატვირთვა, მაგ: კონფიგურაციის ცვლილებების შემდეგ."
 
-#: src/mainwindow.cpp:610
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Check for updates"
 msgstr "განახლებების შემოწმება"
 
-#: src/mainwindow.cpp:623
+#: src/mainwindow.cpp:625
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "სერტიფიკატები"
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:626
 #, kde-format
 msgid "Show certificate overview"
 msgstr "სერტიფიკატის მიმოხილვის ჩვენება"
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:636
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9676,50 +9678,50 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Notepad"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr "ტექსტის დაშიფვრა/გაშიფვრის და ხელმოწერა/გადამოწმების ბლოკნოტის ჩვენება"
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:647
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "სმარტ ბარათები"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Show smartcard management"
 msgstr "სმარტ ბარათების მართვის ჩვენება"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:659
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "თვითტესტის შესრულება"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "Configure Groups..."
 msgstr "ჯგუფების მორგება..."
 
-#: src/mainwindow.cpp:680
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "ჯგუფები"
 
-#: src/mainwindow.cpp:710
+#: src/mainwindow.cpp:716
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "ფოკუსის სწრაფ ძებნაზე დაყენება"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:728
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win-ის მოკლე დოკუმენტაცია"
 
-#: src/mainwindow.cpp:726
+#: src/mainwindow.cpp:732
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9727,48 +9729,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:743
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&დაშიფვრისა და ხელმოწერის სწრაფი გიდი"
 
-#: src/mainwindow.cpp:738
+#: src/mainwindow.cpp:744
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:752
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&პაროლზე-ბაზირებული დაშიფვრა"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:753
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:760
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "სერტიფიკატის ჯ&გუფები"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:770
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "&ელფოსტის დაშიფვრა Outlook-ში"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:771
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9776,41 +9778,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:781
 #, kde-format
 msgid "&Certification Management"
 msgstr "&სერტიფიკაციის მართვა"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:782
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:790
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "&სმარტ ბარათების მორგება"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:791
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:792
+#: src/mainwindow.cpp:798
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG-ის &ბრძანების სტრიქონი"
 
-#: src/mainwindow.cpp:802
+#: src/mainwindow.cpp:808
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "სახელმძღვანელო VS-NfD-ის დადასტურებისთვის"
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:809
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9818,12 +9820,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:817
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "სახელმძღვანელო VS-NfD-ის დადასტურებისთვის"
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:818
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9831,7 +9833,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:839
+#: src/mainwindow.cpp:845
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9840,7 +9842,7 @@ msgstr ""
 "ფონური ოპერაციები ჯერ კიდევ გაშვებულია. ისინი გაჩერდება, თუ ფანჯარას "
 "დახურავთ. გავაგრძელო?"
 
-#: src/mainwindow.cpp:842
+#: src/mainwindow.cpp:848
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "მიმდინარე ფონური ამოცანები"
@@ -12205,15 +12207,13 @@ msgid "Enter a message to encrypt or decrypt..."
 msgstr "შეიყვანეთ დასაშიფრი ან გასაშიფრი შეტყობინება..."
 
 #: src/view/padwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/view/padwidget.cpp:173
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -13111,10 +13111,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "The date cannot be changed."
 #~ msgstr "თარიღს ვერ შეცვლით."
-
-#~ msgctxt "@info ... between <a date> and <another date>."
-#~ msgid "Enter a date between %1 and %2."
-#~ msgstr "შეიყვანეთ თარიღი შუალედიდან %1-%2."
 
 #~ msgctxt "@item:inlistbox"
 #~ msgid "Three years from now"

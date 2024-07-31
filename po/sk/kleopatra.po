@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-30 00:42+0000\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -2996,7 +2996,7 @@ msgid "No Directory Servers Configured"
 msgstr "Nenastavený žiadny adresárový server"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:539
+#: src/kleopatraapplication.cpp:530
 #, fuzzy, kde-format
 #| msgid "Create a new key pair or certificate signing request"
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -6692,7 +6692,7 @@ msgctxt "@title:window"
 msgid "Add Subkey"
 msgstr "Podkľúče:"
 
-#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#: src/dialogs/addsubkeydialog.cpp:156
 #, kde-format
 msgid "Expiration of primary key: %1"
 msgstr ""
@@ -6997,7 +6997,6 @@ msgid "Valid from:"
 msgstr "Platné od:"
 
 #: src/dialogs/certificatedetailswidget.cpp:197
-#: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Platný do:"
@@ -7936,24 +7935,31 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Upraviť skupinu"
 
-#: src/dialogs/expirydialog.cpp:87
+#: src/dialogs/expirydialog.cpp:86
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the subkey should be valid:"
 msgstr "Prosím, vyberte si jeden z nasledovných certifikátov:"
 
-#: src/dialogs/expirydialog.cpp:88
+#: src/dialogs/expirydialog.cpp:87
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the certificate should be valid:"
 msgstr "Prosím, vyberte si jeden z nasledovných certifikátov:"
 
-#: src/dialogs/expirydialog.cpp:92
+#: src/dialogs/expirydialog.cpp:91
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Ukázať platnosť certifikátu"
+
+#: src/dialogs/expirydialog.cpp:102 src/dialogs/expirydialog.cpp:237
+#, fuzzy, kde-format
+#| msgid "Valid until:"
+msgctxt "The placeholders are dates"
+msgid "Valid until (between %1 and %2):"
+msgstr "Platný do:"
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7973,6 +7979,18 @@ msgstr "Platný do:"
 msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "Zmeniť držiteľa karty"
+
+#: src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgctxt "The placeholder is a date"
+msgid "Same validity as the primary key (%1)"
+msgstr ""
+
+#: src/dialogs/expirydialog.cpp:247
+#, kde-format
+msgctxt "'unlimited' means 'forever', here"
+msgid "Same validity as the primary key (unlimited)"
+msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -9733,7 +9751,7 @@ msgstr "P&ohľad"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:137
+#: src/kleopatra.rc:44 src/kleopatra.rc:138
 #, kde-format
 msgid "&Certificates"
 msgstr "&Certifikáty"
@@ -9751,25 +9769,25 @@ msgid "&Settings"
 msgstr "Na&stavenie"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:88
+#: src/kleopatra.rc:89
 #, kde-format
 msgid "&Window"
 msgstr "&Okno"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:99
+#: src/kleopatra.rc:100
 #, kde-format
 msgid "&Help"
 msgstr "&Pomocník"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:106
+#: src/kleopatra.rc:107
 #, kde-format
 msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:120 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Hlavný panel nástrojov"
@@ -9924,47 +9942,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:435
+#: src/kleopatraapplication.cpp:426
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Nepodarilo sa vykonať príkaz"
 
-#: src/kleopatraapplication.cpp:477
+#: src/kleopatraapplication.cpp:468
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Dvojznačný protokol: --openpgp a --cms"
 
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:502
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Nezadaný žiadny reťazec pre --search"
 
-#: src/kleopatraapplication.cpp:522
+#: src/kleopatraapplication.cpp:513
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Nezadaný žiadny argument odtlačku prsta pre --query"
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:574
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Dvojznačné príkazy \"%1\" a \"%2\""
 
-#: src/kleopatraapplication.cpp:590
+#: src/kleopatraapplication.cpp:581
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Neboli určené žiadne súbory pre príkaz \"%1\""
 
-#: src/kleopatraapplication.cpp:604
+#: src/kleopatraapplication.cpp:595
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Nedá sa čítať \"%1\""
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr ""
@@ -10035,7 +10053,7 @@ msgstr "Chyba Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Nastala chyba počas pripojenia ku Kleopatre: %1"
 
-#: src/main.cpp:137
+#: src/main.cpp:133
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10051,13 +10069,13 @@ msgstr ""
 "fungovať v tomto nastavení.</para><para>Prosím, požiadajte vášho "
 "administrátora o pomoc pri riešení tohto problému.</para>"
 
-#: src/main.cpp:141
+#: src/main.cpp:137
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "Príliš staré GpgME"
 
-#: src/main.cpp:163
+#: src/main.cpp:159
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10068,23 +10086,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:167
+#: src/main.cpp:163
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:168
+#: src/main.cpp:164
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:237
+#: src/main.cpp:233
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Chyba GPG UI Servera"
 
-#: src/main.cpp:241
+#: src/main.cpp:237
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -10098,25 +10116,25 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:271
+#: src/main.cpp:267
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Neplatné argumenty: %1"
 
-#: src/mainwindow.cpp:114
+#: src/mainwindow.cpp:116
 #, fuzzy, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "Ukončiť aplikáciu <application>%1</application>"
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:123
 #, fuzzy, kde-format
 #| msgid "Only &Close Window"
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Iba &zavrieť okno"
 
-#: src/mainwindow.cpp:220
+#: src/mainwindow.cpp:222
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "%1 may be used by other applications as a service.\n"
@@ -10129,13 +10147,13 @@ msgstr ""
 "%1 môže byť použitý v iných aplikáciách ako služba.\n"
 "Môžno budete chcieť namiesto toho toto okno zatvoriť bez ukončenia %1."
 
-#: src/mainwindow.cpp:223
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Naozaj skončiť?"
 
-#: src/mainwindow.cpp:310
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -10144,28 +10162,28 @@ msgstr ""
 "Nepodarilo sa spustiť prehliadač záznamu GnuPG (kwatchgnupg). Prosím, "
 "skontrolujte si vašu inštaláciu."
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Chyba pri spúšťaní KWatchGnuPG"
 
-#: src/mainwindow.cpp:572
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Prehliadač záznamu GnuPG"
 
-#: src/mainwindow.cpp:584
+#: src/mainwindow.cpp:586
 #, kde-format
 msgid "Debug View"
 msgstr ""
 
-#: src/mainwindow.cpp:597
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -10173,24 +10191,24 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:610
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Check for updates"
 msgstr "Skontrolovať aktualizácie"
 
-#: src/mainwindow.cpp:623
+#: src/mainwindow.cpp:625
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certifikáty"
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:626
 #, fuzzy, kde-format
 #| msgid "Show certificate details"
 msgid "Show certificate overview"
 msgstr "Ukázať podrobnosti certifikátu"
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:636
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -10198,55 +10216,55 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Zápisník"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:647
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "SmartCard"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:648
 #, fuzzy, kde-format
 #| msgid "Smartcard Management"
 msgid "Show smartcard management"
 msgstr "Správa smart kariet"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:659
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Vykonať samotestovanie"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:670
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgid "Configure Groups..."
 msgstr "Nas&taviť %1..."
 
-#: src/mainwindow.cpp:680
+#: src/mainwindow.cpp:682
 #, fuzzy, kde-format
 #| msgid "Groups"
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Skupiny"
 
-#: src/mainwindow.cpp:710
+#: src/mainwindow.cpp:716
 #, fuzzy, kde-format
 #| msgid "Set Focus to Quick Search"
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Nastaviť zameranie na rýchle hľadanie"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:728
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win Compendium"
 
-#: src/mainwindow.cpp:726
+#: src/mainwindow.cpp:732
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -10254,53 +10272,53 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:743
 #, fuzzy, kde-format
 #| msgid "Quick Encrypt EMail"
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "Rýchlo šifrovať e-mail"
 
-#: src/mainwindow.cpp:738
+#: src/mainwindow.cpp:744
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:752
 #, fuzzy, kde-format
 #| msgid "Force decryption"
 msgid "&Password-based Encryption"
 msgstr "Vynútiť dešifrovanie"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:753
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:760
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certificate Dump"
 msgid "Certificate &Groups"
 msgstr "Výpis certifikátu"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:770
 #, fuzzy, kde-format
 #| msgid "Encryption Options"
 msgid "&Mail Encryption in Outlook"
 msgstr "Možnosti šifrovania"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:771
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10308,43 +10326,43 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:781
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "&Certification Management"
 msgstr "Certifikácia"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:782
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:790
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "&Smartcard Setup"
 msgstr "SmartCard"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:791
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:792
+#: src/mainwindow.cpp:798
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:802
+#: src/mainwindow.cpp:808
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:809
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10352,12 +10370,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:817
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:818
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10365,7 +10383,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:839
+#: src/mainwindow.cpp:845
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10374,7 +10392,7 @@ msgstr ""
 "Stále existujú niektoré operácie prebiehajúce na pozadí. Tieto budú ukončené "
 "pri zatváraní okna. Pokračovať?"
 
-#: src/mainwindow.cpp:842
+#: src/mainwindow.cpp:848
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Úlohy prebiehajúce na pozadí"

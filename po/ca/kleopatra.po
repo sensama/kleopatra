@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-30 00:42+0000\n"
-"PO-Revision-Date: 2024-07-25 09:23+0200\n"
+"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"PO-Revision-Date: 2024-07-30 10:14+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -2846,7 +2846,7 @@ msgid "No Directory Servers Configured"
 msgstr "No s'ha configurat cap servidor de directori"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:539
+#: src/kleopatraapplication.cpp:530
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -3728,10 +3728,7 @@ msgid "GnuPG System"
 msgstr "Sistema GnuPG"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
-#| "\".gpg\""
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3741,8 +3738,7 @@ msgstr ""
 "«.gpg»"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#, fuzzy, kde-format
-#| msgid "Create signed or encrypted files as text files."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "Crea fitxers signats o encriptats com a fitxers de text."
@@ -3767,9 +3763,7 @@ msgid "Treat .p7m files without extensions as mails."
 msgstr "Tracta els fitxers «.p7m» sense extensió com a correus."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatically start operation based on input detection for decrypt/verify."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
@@ -3778,16 +3772,13 @@ msgstr ""
 "desencriptar/verificar."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, fuzzy, kde-format
-#| msgid "Automatically extract file archives after decryption"
+#, kde-format
 msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Extreu automàticament els arxius de fitxers després del desencriptatge"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create temporary decrypted files in the folder of the encrypted file."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
@@ -3801,11 +3792,10 @@ msgstr ""
 "Establir aquesta opció per a evitar l'ús del directori temporal dels usuaris."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
-msgstr "Usa només l'encriptatge simètric."
+msgstr "Usa només encriptatge simètric."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
@@ -3815,8 +3805,7 @@ msgstr ""
 "Establir aquesta opció per a desactivar l'encriptatge amb la clau pública."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use public-key encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Usa només l'encriptatge de clau pública."
@@ -5948,10 +5937,7 @@ msgid "Encrypt for others:"
 msgstr "Encripta per a altres:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypt with password. Anyone you share the password with can read the "
-#| "data."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -6413,7 +6399,7 @@ msgctxt "@title:window"
 msgid "Add Subkey"
 msgstr "Addició de subclau"
 
-#: src/dialogs/addsubkeydialog.cpp:156 src/dialogs/expirydialog.cpp:235
+#: src/dialogs/addsubkeydialog.cpp:156
 #, kde-format
 msgid "Expiration of primary key: %1"
 msgstr "Expiració de la clau primària: %1"
@@ -6698,7 +6684,6 @@ msgid "Valid from:"
 msgstr "Vàlid des de:"
 
 #: src/dialogs/certificatedetailswidget.cpp:197
-#: src/dialogs/expirydialog.cpp:100
 #, kde-format
 msgid "Valid until:"
 msgstr "Vàlid fins a:"
@@ -7564,22 +7549,29 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Edició d'un grup"
 
-#: src/dialogs/expirydialog.cpp:87
+#: src/dialogs/expirydialog.cpp:86
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "Seleccioneu fins quan hauria de ser vàlida aquesta subclau:"
 
-#: src/dialogs/expirydialog.cpp:88
+#: src/dialogs/expirydialog.cpp:87
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "Seleccioneu fins quan hauria de ser vàlid aquest certificat:"
 
-#: src/dialogs/expirydialog.cpp:92
-#, fuzzy, kde-format
-#| msgid "Unlimited validity"
+#: src/dialogs/expirydialog.cpp:91
+#, kde-format
 msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Validesa sense límit"
+
+#: src/dialogs/expirydialog.cpp:102 src/dialogs/expirydialog.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@info ... between <a date> and <another date>."
+#| msgid "Enter a date between %1 and %2."
+msgctxt "The placeholders are dates"
+msgid "Valid until (between %1 and %2):"
+msgstr "Introduïu una data entre %1 i %2."
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7597,6 +7589,18 @@ msgstr "Vàlid fins al %1"
 msgctxt "@title:window"
 msgid "Change Validity Period"
 msgstr "Canvia el període de validesa"
+
+#: src/dialogs/expirydialog.cpp:235
+#, kde-format
+msgctxt "The placeholder is a date"
+msgid "Same validity as the primary key (%1)"
+msgstr ""
+
+#: src/dialogs/expirydialog.cpp:247
+#, kde-format
+msgctxt "'unlimited' means 'forever', here"
+msgid "Same validity as the primary key (unlimited)"
+msgstr ""
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7639,8 +7643,7 @@ msgid "Algorithm:"
 msgstr "Algorisme:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Backup encryption key"
+#, kde-format
 msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Fes una còpia de seguretat de la clau d'encriptatge"
@@ -8271,8 +8274,7 @@ msgid "Update Available"
 msgstr "Actualització disponible"
 
 #: src/dialogs/updatenotification.cpp:200
-#, fuzzy, kde-format
-#| msgid "Show this notification for future updates."
+#, kde-format
 msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Mostra aquesta notificació per a futures actualitzacions."
@@ -9365,7 +9367,7 @@ msgstr "&Visualitza"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:137
+#: src/kleopatra.rc:44 src/kleopatra.rc:138
 #, kde-format
 msgid "&Certificates"
 msgstr "&Certificats"
@@ -9383,25 +9385,25 @@ msgid "&Settings"
 msgstr "A&rranjament"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:88
+#: src/kleopatra.rc:89
 #, kde-format
 msgid "&Window"
 msgstr "&Finestra"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:99
+#: src/kleopatra.rc:100
 #, kde-format
 msgid "&Help"
 msgstr "&Ajuda"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:106
+#: src/kleopatra.rc:107
 #, kde-format
 msgid "&More Documentation"
 msgstr "&Més documentació"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:120 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Barra d'eines principal"
@@ -9533,47 +9535,47 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Cadena o empremta digital per a les consultes i cerques"
 
-#: src/kleopatraapplication.cpp:435
+#: src/kleopatraapplication.cpp:426
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Ha fallat en executar l'ordre"
 
-#: src/kleopatraapplication.cpp:477
+#: src/kleopatraapplication.cpp:468
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Protocol ambigu: --openpgp i --cms"
 
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:502
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "«--search» no especifica cap cadena de cerca"
 
-#: src/kleopatraapplication.cpp:522
+#: src/kleopatraapplication.cpp:513
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "«--query» no especifica cap argument d'empremta digital"
 
-#: src/kleopatraapplication.cpp:583
+#: src/kleopatraapplication.cpp:574
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Ordres ambigües «%1» i «%2»"
 
-#: src/kleopatraapplication.cpp:590
+#: src/kleopatraapplication.cpp:581
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "No s'ha especificat cap fitxer per a l'ordre «%1»"
 
-#: src/kleopatraapplication.cpp:604
+#: src/kleopatraapplication.cpp:595
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "No s'ha pogut llegir «%1»"
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Obrir un enllaç extern està prohibit administrativament."
 
-#: src/kleopatraapplication.cpp:888
+#: src/kleopatraapplication.cpp:879
 #, kde-format
 msgid "Prohibited"
 msgstr "Prohibit"
@@ -9648,7 +9650,7 @@ msgstr "Error del Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "S'ha produït un error en connectar amb el Kleopatra: %1"
 
-#: src/main.cpp:137
+#: src/main.cpp:133
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9664,13 +9666,13 @@ msgstr ""
 "application> no funcionarà en aquest arranjament.</para><para>Demaneu ajuda "
 "a l'administrador per a solucionar aquest problema.</para>"
 
-#: src/main.cpp:141
+#: src/main.cpp:137
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME massa antiga"
 
-#: src/main.cpp:163
+#: src/main.cpp:159
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9686,23 +9688,23 @@ msgstr ""
 "les com un usuari normal i copieu el directori <filename>AppData\\Roaming"
 "\\gnupg</filename> amb els permisos adequats.</para>"
 
-#: src/main.cpp:167
+#: src/main.cpp:163
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Segur que voleu continuar?</para>"
 
-#: src/main.cpp:168
+#: src/main.cpp:164
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Funcionant com a administrador"
 
-#: src/main.cpp:237
+#: src/main.cpp:233
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Error del servidor IU del GPG"
 
-#: src/main.cpp:241
+#: src/main.cpp:237
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9721,24 +9723,24 @@ msgstr ""
 "amb el vostre administrador per a obtenir ajuda.<br/>Podeu intentar "
 "continuar usant el Kleopatra però podrien haver-hi altres problemes.</qt>"
 
-#: src/main.cpp:271
+#: src/main.cpp:267
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Arguments no vàlids: %1"
 
-#: src/mainwindow.cpp:114
+#: src/mainwindow.cpp:116
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "&Surt de <application>%1</application>"
 
-#: src/mainwindow.cpp:121
+#: src/mainwindow.cpp:123
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "&Tanca només la finestra"
 
-#: src/mainwindow.cpp:220
+#: src/mainwindow.cpp:222
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9749,13 +9751,13 @@ msgstr ""
 "servei.<nl/>En canvi, potser voldríeu tancar aquesta finestra sense sortir "
 "del <application>%1</application>."
 
-#: src/mainwindow.cpp:223
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Surto?"
 
-#: src/mainwindow.cpp:310
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9764,28 +9766,28 @@ msgstr ""
 "No s'ha pogut iniciar el visualitzador del registre de GnuPG (kwatchgnupg). "
 "Comproveu la instal·lació."
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Error en iniciar el KWatchGnuPG"
 
-#: src/mainwindow.cpp:572
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Visualitzador del registre de GnuPG"
 
-#: src/mainwindow.cpp:584
+#: src/mainwindow.cpp:586
 #, kde-format
 msgid "Debug View"
 msgstr "Vista del depurador"
 
-#: src/mainwindow.cpp:597
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Reinicia els processos en segon pla"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9795,23 +9797,23 @@ msgstr ""
 "Reinicia els processos en segon pla, p. ex. després de fer canvis a la "
 "configuració."
 
-#: src/mainwindow.cpp:610
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Check for updates"
 msgstr "Comprova si hi ha actualitzacions"
 
-#: src/mainwindow.cpp:623
+#: src/mainwindow.cpp:625
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certificats"
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:626
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Mostra un resum del certificat"
 
-#: src/mainwindow.cpp:634
+#: src/mainwindow.cpp:636
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9819,52 +9821,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Bloc de notes"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Mostra una àrea per al text d'encriptatge/desencriptatge i signatura/"
 "verificació"
 
-#: src/mainwindow.cpp:645
+#: src/mainwindow.cpp:647
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Targetes intel·ligents"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Mostra la gestió de targetes intel·ligents"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:659
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Executa una autocomprovació"
 
-#: src/mainwindow.cpp:668
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Configura els grups..."
 
-#: src/mainwindow.cpp:680
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Grups"
 
-#: src/mainwindow.cpp:710
+#: src/mainwindow.cpp:716
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Estableix el focus a la cerca ràpida"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:728
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Compendi del Gpg4win"
 
-#: src/mainwindow.cpp:726
+#: src/mainwindow.cpp:732
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9872,48 +9874,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:737
+#: src/mainwindow.cpp:743
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "Guia &ràpida d'encriptatge i signatura"
 
-#: src/mainwindow.cpp:738
+#: src/mainwindow.cpp:744
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:752
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "Encriptatge basat en contra&senyes"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:753
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:760
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Grups de certificats"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:770
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Encriptatge de &correu a l'Outlook"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:771
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9921,41 +9923,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:781
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Gestió de certificats"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:782
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:790
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Configuració de &targetes intel·ligents"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:791
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:792
+#: src/mainwindow.cpp:798
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "&Línia d'ordres del GnuPG"
 
-#: src/mainwindow.cpp:802
+#: src/mainwindow.cpp:808
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Manual per a l'aprovació de VS-NfD (anglès)"
 
-#: src/mainwindow.cpp:803
+#: src/mainwindow.cpp:809
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9963,12 +9965,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:817
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "SecOps per a l'aprovació de VS-NfD (anglès)"
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:818
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9976,7 +9978,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:839
+#: src/mainwindow.cpp:845
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9985,7 +9987,7 @@ msgstr ""
 "Encara hi ha algunes operacions en curs en segon pla. Es finalitzaran en "
 "tancar la finestra. Continuo?"
 
-#: src/mainwindow.cpp:842
+#: src/mainwindow.cpp:848
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tasques en curs en segon pla"
@@ -12381,15 +12383,13 @@ msgid "Enter a message to encrypt or decrypt..."
 msgstr "Introduïu un missatge a encriptar o desencriptar..."
 
 #: src/view/padwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/view/padwidget.cpp:173
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -13300,10 +13300,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "The date cannot be changed."
 #~ msgstr "No es pot canviar la data."
-
-#~ msgctxt "@info ... between <a date> and <another date>."
-#~ msgid "Enter a date between %1 and %2."
-#~ msgstr "Introduïu una data entre %1 i %2."
 
 #~ msgctxt "@item:inlistbox"
 #~ msgid "Three years from now"

@@ -45,6 +45,7 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
     const Kleo::Settings settings{};
     if (settings.cmsEnabled() && settings.cmsSigningAllowed()) {
         mSmimeSignClipboardAction = new QAction(i18nc("@action", "S/MIME-Sign..."), this);
+        Q_SET_OBJECT_NAME(mSmimeSignClipboardAction);
     }
     mOpenPGPSignClipboardAction = new QAction(i18nc("@action", "OpenPGP-Sign..."), this);
     mDecryptVerifyClipboardAction = new QAction(i18nc("@action", "Decrypt/Verify..."), this);
@@ -52,7 +53,6 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
     Q_SET_OBJECT_NAME(mClipboardMenu);
     Q_SET_OBJECT_NAME(mImportClipboardAction);
     Q_SET_OBJECT_NAME(mEncryptClipboardAction);
-    Q_SET_OBJECT_NAME(mSmimeSignClipboardAction);
     Q_SET_OBJECT_NAME(mOpenPGPSignClipboardAction);
     Q_SET_OBJECT_NAME(mDecryptVerifyClipboardAction);
 

@@ -264,7 +264,7 @@ void KeyTreeView::init()
             menu->addAction(KStandardAction::copy(
                 this,
                 [this]() {
-                    QGuiApplication::clipboard()->setText(m_view->currentIndex().data(KeyList::ClipboardRole).toString());
+                    QGuiApplication::clipboard()->setText(m_view->currentIndex().data(Kleo::ClipboardRole).toString());
                 },
                 this));
             menu->popup(m_view->mapToGlobal(pos));
@@ -675,14 +675,6 @@ void KeyTreeView::restoreStateAfterModelChange()
 
     setUpTagKeys();
     initializeColumnSizes();
-}
-
-void KeyTreeView::keyPressEvent(QKeyEvent *event)
-{
-    if (event == QKeySequence::Copy) {
-        QGuiApplication::clipboard()->setText(view()->currentIndex().data(KeyList::ClipboardRole).toString());
-        event->accept();
-    }
 }
 
 #include "moc_keytreeview.cpp"

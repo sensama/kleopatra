@@ -23,9 +23,6 @@ public:
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;
 
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-
 private:
     class Private;
     const std::unique_ptr<Private> d;

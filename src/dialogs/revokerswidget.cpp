@@ -85,7 +85,7 @@ public:
                 menu->addAction(KStandardAction::copy(
                     widget,
                     [this]() {
-                        QGuiApplication::clipboard()->setText(revokersTree->currentIndex().data(KeyList::ClipboardRole).toString());
+                        QGuiApplication::clipboard()->setText(revokersTree->currentIndex().data(Kleo::ClipboardRole).toString());
                     },
                     widget));
                 menu->popup(widget->mapToGlobal(pos));
@@ -119,19 +119,19 @@ void RevokersWidget::setKey(const GpgME::Key &key)
         auto revokerKey = Kleo::KeyCache::instance()->findByFingerprint(revoker.fingerprint());
         item->setData(Private::Fingerprint, Qt::DisplayRole, Formatting::prettyID(revoker.fingerprint()));
         item->setData(Private::Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(revoker.fingerprint()));
-        item->setData(Private::Fingerprint, KeyList::ClipboardRole, QString::fromLatin1(revoker.fingerprint()));
+        item->setData(Private::Fingerprint, Kleo::ClipboardRole, QString::fromLatin1(revoker.fingerprint()));
         if (!revokerKey.isNull()) {
             item->setData(Private::Name, Qt::DisplayRole, Formatting::prettyName(revokerKey));
-            item->setData(Private::Name, KeyList::ClipboardRole, Formatting::prettyName(revokerKey));
+            item->setData(Private::Name, Kleo::ClipboardRole, Formatting::prettyName(revokerKey));
             item->setData(Private::Email, Qt::DisplayRole, Formatting::prettyEMail(revokerKey));
-            item->setData(Private::Email, KeyList::ClipboardRole, Formatting::prettyEMail(revokerKey));
+            item->setData(Private::Email, Kleo::ClipboardRole, Formatting::prettyEMail(revokerKey));
         } else {
             item->setData(Private::Name, Qt::DisplayRole, {});
             item->setData(Private::Email, Qt::DisplayRole, {});
             item->setData(Private::Name, Qt::AccessibleTextRole, i18nc("text for screen readers for an unknown name", "unknown name"));
             item->setData(Private::Email, Qt::AccessibleTextRole, i18nc("text for screen readers for an unknown email", "unknown email"));
-            item->setData(Private::Name, KeyList::ClipboardRole, {});
-            item->setData(Private::Email, KeyList::ClipboardRole, {});
+            item->setData(Private::Name, Kleo::ClipboardRole, {});
+            item->setData(Private::Email, Kleo::ClipboardRole, {});
         }
 
         d->ui.revokersTree->addTopLevelItem(item);
@@ -152,13 +152,6 @@ void RevokersWidget::setKey(const GpgME::Key &key)
 GpgME::Key RevokersWidget::key() const
 {
     return d->key;
-}
-
-void RevokersWidget::keyPressEvent(QKeyEvent *event)
-{
-    if (event == QKeySequence::Copy) {
-        QGuiApplication::clipboard()->setText(d->ui.revokersTree->currentIndex().data(KeyList::ClipboardRole).toString());
-    }
 }
 
 #include "moc_revokerswidget.cpp"

@@ -138,7 +138,6 @@ Q_SIGNALS:
 
 protected:
     KeyTreeView(const KeyTreeView &);
-    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     void init();

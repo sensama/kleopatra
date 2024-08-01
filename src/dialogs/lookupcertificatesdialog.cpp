@@ -129,7 +129,7 @@ private:
 
     void copySelectedValue()
     {
-        auto clipboardData = ui.resultTV->currentIndex().data(KeyList::ClipboardRole).toString();
+        auto clipboardData = ui.resultTV->currentIndex().data(Kleo::ClipboardRole).toString();
         if (clipboardData.isEmpty()) {
             clipboardData = ui.resultTV->currentIndex().data().toString();
         }
@@ -402,14 +402,14 @@ void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> 
         item->setData(Private::Email, Qt::DisplayRole, Formatting::prettyEMail(cert));
         item->setData(Private::Fingerprint, Qt::DisplayRole, Formatting::prettyID(cert.primaryFingerprint()));
         item->setData(Private::Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.primaryFingerprint()));
-        item->setData(Private::Fingerprint, KeyList::ClipboardRole, QString::fromLatin1(cert.primaryFingerprint()));
+        item->setData(Private::Fingerprint, Kleo::ClipboardRole, QString::fromLatin1(cert.primaryFingerprint()));
         item->setData(Private::ValidFrom, Qt::DisplayRole, Formatting::creationDateString(cert));
         item->setData(Private::ValidFrom, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(cert));
         item->setData(Private::ValidUntil, Qt::DisplayRole, Formatting::expirationDateString(cert));
         item->setData(Private::ValidUntil, Qt::AccessibleTextRole, Formatting::accessibleExpirationDate(cert));
         item->setData(Private::KeyID, Qt::DisplayRole, Formatting::prettyID(cert.keyID()));
         item->setData(Private::KeyID, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.keyID()));
-        item->setData(Private::KeyID, KeyList::ClipboardRole, QString::fromLatin1(cert.keyID()));
+        item->setData(Private::KeyID, Kleo::ClipboardRole, QString::fromLatin1(cert.keyID()));
 
         if (cert.protocol() == Protocol::CMS) {
             item->setData(Private::Origin, Qt::DisplayRole, i18n("LDAP"));
@@ -510,14 +510,6 @@ void LookupCertificatesDialog::Private::enableDisableWidgets()
     ui.saveAsPB->setEnabled(n == 1);
     ui.importPB()->setEnabled(n != 0);
     ui.importPB()->setDefault(false); // otherwise Import becomes default button if enabled and return triggers both a search and accept()
-}
-
-void LookupCertificatesDialog::keyPressEvent(QKeyEvent *event)
-{
-    if (event == QKeySequence::Copy && d->ui.resultTV->hasFocus()) {
-        d->copySelectedValue();
-        event->accept();
-    }
 }
 
 #include "moc_lookupcertificatesdialog.cpp"

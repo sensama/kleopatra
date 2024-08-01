@@ -596,7 +596,7 @@ void KeyListController::createActions(KActionCollection *coll)
             "edit-copy",
             this,
             [this](bool) {
-                QGuiApplication::clipboard()->setText(currentView()->currentIndex().data(KeyList::ClipboardRole).toString());
+                QGuiApplication::clipboard()->setText(currentView()->currentIndex().data(Kleo::ClipboardRole).toString());
             },
             QStringLiteral("Ctrl+C"),
         }

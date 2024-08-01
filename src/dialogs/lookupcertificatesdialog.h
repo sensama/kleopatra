@@ -61,9 +61,6 @@ Q_SIGNALS:
 public Q_SLOTS:
     void accept() override;
 
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-
 private:
     class Private;
     const std::unique_ptr<Private> d;

@@ -423,7 +423,7 @@ void KleopatraApplication::slotActivateRequested(const QStringList &arguments, c
     }
 
     if (!err.isEmpty()) {
-        KMessageBox::error(nullptr, err.toHtmlEscaped(), i18n("Failed to execute command"));
+        KMessageBox::error(nullptr, err.toHtmlEscaped(), i18nc("@title:window", "Failed to execute command"));
         Q_EMIT setExitValue(1);
         return;
     }
@@ -876,7 +876,7 @@ bool KleopatraApplication::ignoreNewInstance() const
 void KleopatraApplication::blockUrl(const QUrl &url)
 {
     qCDebug(KLEOPATRA_LOG) << "Blocking URL" << url;
-    KMessageBox::error(mainWindow(), i18n("Opening an external link is administratively prohibited."), i18n("Prohibited"));
+    KMessageBox::error(mainWindow(), i18n("Opening an external link is administratively prohibited."), i18nc("@title:window", "Prohibited"));
 }
 
 void KleopatraApplication::startGpgAgent()

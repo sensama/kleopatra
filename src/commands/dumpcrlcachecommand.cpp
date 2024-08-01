@@ -314,7 +314,7 @@ void DumpCrlCacheCommand::Private::refreshView()
         KMessageBox::error(dialog ? static_cast<QWidget *>(dialog) : parentWidgetOrView(),
                            i18n("Unable to start process gpgsm. "
                                 "Please check your installation."),
-                           i18n("Dump CRL Cache Error"));
+                           i18nc("@title:window", "Dump CRL Cache Error"));
         finished();
     }
 }

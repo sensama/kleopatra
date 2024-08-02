@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-02 00:41+0000\n"
 "PO-Revision-Date: 2007-09-03 13:42+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -1358,8 +1358,11 @@ msgid "CRL Cache Dump"
 msgstr "تخلیه نهانگاه CRL:"
 
 #: src/commands/dumpcrlcachecommand.cpp:317
+#: src/commands/dumpcrlcachecommand.cpp:343
+#: src/commands/dumpcrlcachecommand.cpp:349
 #, fuzzy, kde-format
 #| msgid "Dump CRL Cache..."
+msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "تخلیه نهانگاه CRL..."
 
@@ -1375,14 +1378,6 @@ msgid ""
 msgstr ""
 "فرایند GpgSM که می‌خواست پرونده CRL را وارد کند، به علت یک خطای غیرمنتظره "
 "زودتر از موعد به پایان رسید."
-
-#: src/commands/dumpcrlcachecommand.cpp:343
-#: src/commands/dumpcrlcachecommand.cpp:349
-#, fuzzy, kde-format
-#| msgid "Dump CRL Cache..."
-msgctxt "@title:window"
-msgid "Dump CRL Cache Error"
-msgstr "تخلیه نهانگاه CRL..."
 
 #: src/commands/dumpcrlcachecommand.cpp:346
 #, fuzzy, kde-format
@@ -9646,6 +9641,7 @@ msgstr ""
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
 #| "%1"
+msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr ""
 "خرابی در اجرای gpgsm:\n"
@@ -9689,6 +9685,7 @@ msgstr ""
 
 #: src/kleopatraapplication.cpp:879
 #, kde-format
+msgctxt "@title:window"
 msgid "Prohibited"
 msgstr ""
 
@@ -9971,18 +9968,18 @@ msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "&جزئیات‌"
 
-#: src/mainwindow.cpp:716
+#: src/mainwindow.cpp:719
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr ""
 
-#: src/mainwindow.cpp:728
+#: src/mainwindow.cpp:731
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr ""
 
-#: src/mainwindow.cpp:732
+#: src/mainwindow.cpp:735
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9990,50 +9987,50 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:743
+#: src/mainwindow.cpp:746
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr ""
 
-#: src/mainwindow.cpp:744
+#: src/mainwindow.cpp:747
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:752
+#: src/mainwindow.cpp:755
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "&Password-based Encryption"
 msgstr "فقط برای &رمزبندی‌"
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:756
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:760
+#: src/mainwindow.cpp:763
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgid "Certificate &Groups"
 msgstr "کاربرد گواهی‌نامه"
 
-#: src/mainwindow.cpp:761
+#: src/mainwindow.cpp:764
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:770
+#: src/mainwindow.cpp:773
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr ""
 
-#: src/mainwindow.cpp:771
+#: src/mainwindow.cpp:774
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10041,43 +10038,43 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:784
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "&Certification Management"
 msgstr "خطای مدیر گواهی‌نامه"
 
-#: src/mainwindow.cpp:782
+#: src/mainwindow.cpp:785
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:790
+#: src/mainwindow.cpp:793
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgid "&Smartcard Setup"
 msgstr "برگزیدن پرونده CRL"
 
-#: src/mainwindow.cpp:791
+#: src/mainwindow.cpp:794
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:798
+#: src/mainwindow.cpp:801
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:808
+#: src/mainwindow.cpp:811
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:809
+#: src/mainwindow.cpp:812
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10085,12 +10082,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:817
+#: src/mainwindow.cpp:820
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:818
+#: src/mainwindow.cpp:821
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10098,14 +10095,14 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:845
+#: src/mainwindow.cpp:848
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
 msgstr ""
 
-#: src/mainwindow.cpp:848
+#: src/mainwindow.cpp:851
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr ""
@@ -11492,13 +11489,13 @@ msgctxt "@action"
 msgid "S/MIME-Sign..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:49
+#: src/utils/clipboardmenu.cpp:50
 #, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:50
+#: src/utils/clipboardmenu.cpp:51
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@action"
@@ -13311,6 +13308,11 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Dump CRL Cache..."
+#~ msgid "Dump CRL Cache Error"
+#~ msgstr "تخلیه نهانگاه CRL..."
 
 #, fuzzy
 #~| msgid "Could not generate certificate: %1"

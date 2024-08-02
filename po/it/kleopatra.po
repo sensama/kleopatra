@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-31 00:41+0000\n"
+"POT-Creation-Date: 2024-08-02 00:41+0000\n"
 "PO-Revision-Date: 2024-07-20 19:38+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -1291,7 +1291,10 @@ msgid "CRL Cache Dump"
 msgstr "Esportazione della cache delle CRL"
 
 #: src/commands/dumpcrlcachecommand.cpp:317
+#: src/commands/dumpcrlcachecommand.cpp:343
+#: src/commands/dumpcrlcachecommand.cpp:349
 #, kde-format
+msgctxt "@title:window"
 msgid "Dump CRL Cache Error"
 msgstr "Errore durante l'esportazione della cache delle CRL"
 
@@ -1305,13 +1308,6 @@ msgstr ""
 "Il processo GpgSM che ha provato ad esportare la cache delle CRL è terminato "
 "prematuramente a causa di un errore inatteso. Controlla il risultato di "
 "«gpgsm --call-dirmngr listcrls» per i dettagli."
-
-#: src/commands/dumpcrlcachecommand.cpp:343
-#: src/commands/dumpcrlcachecommand.cpp:349
-#, kde-format
-msgctxt "@title:window"
-msgid "Dump CRL Cache Error"
-msgstr "Errore durante l'esportazione della cache delle CRL"
 
 #: src/commands/dumpcrlcachecommand.cpp:346
 #, kde-format
@@ -9544,7 +9540,9 @@ msgid "String or Fingerprint for query and search"
 msgstr "Stringa o impronta digitale per interrogazioni e ricerche"
 
 #: src/kleopatraapplication.cpp:426
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Failed to execute command"
+msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Esecuzione del comando non riuscita"
 
@@ -9584,7 +9582,9 @@ msgid "Opening an external link is administratively prohibited."
 msgstr "L'apertura di un collegamento esterno è proibito amministrativamente."
 
 #: src/kleopatraapplication.cpp:879
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Prohibited"
+msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "Proibito"
 
@@ -9864,18 +9864,18 @@ msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Gruppi"
 
-#: src/mainwindow.cpp:716
+#: src/mainwindow.cpp:719
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Imposta il fuoco sulla ricerca veloce"
 
-#: src/mainwindow.cpp:728
+#: src/mainwindow.cpp:731
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Compendio di Gpg4win"
 
-#: src/mainwindow.cpp:732
+#: src/mainwindow.cpp:735
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9883,48 +9883,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:743
+#: src/mainwindow.cpp:746
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Guida rapida cifratura e firma"
 
-#: src/mainwindow.cpp:744
+#: src/mainwindow.cpp:747
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:752
+#: src/mainwindow.cpp:755
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "Cifratura basata su &password"
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:756
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:760
+#: src/mainwindow.cpp:763
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Gruppi di certificati"
 
-#: src/mainwindow.cpp:761
+#: src/mainwindow.cpp:764
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:770
+#: src/mainwindow.cpp:773
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Cifratura dei &messaggi in Outlook"
 
-#: src/mainwindow.cpp:771
+#: src/mainwindow.cpp:774
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9932,41 +9932,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:784
 #, kde-format
 msgid "&Certification Management"
 msgstr "Gestione dei &certificati"
 
-#: src/mainwindow.cpp:782
+#: src/mainwindow.cpp:785
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:790
+#: src/mainwindow.cpp:793
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Configurazione delle &smart card"
 
-#: src/mainwindow.cpp:791
+#: src/mainwindow.cpp:794
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:798
+#: src/mainwindow.cpp:801
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Riga di co&mando di GnuPG"
 
-#: src/mainwindow.cpp:808
+#: src/mainwindow.cpp:811
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Manuale per l'approvazione VS-NfD"
 
-#: src/mainwindow.cpp:809
+#: src/mainwindow.cpp:812
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9974,12 +9974,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:817
+#: src/mainwindow.cpp:820
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "SecOps per l'approvazione VS-NfD"
 
-#: src/mainwindow.cpp:818
+#: src/mainwindow.cpp:821
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9987,7 +9987,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:845
+#: src/mainwindow.cpp:848
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9996,7 +9996,7 @@ msgstr ""
 "C'è ancora qualche operazione in sottofondo in esecuzione. Queste verranno "
 "interrotte quando la finestra verrà chiusa. Vuoi procedere lo stesso?"
 
-#: src/mainwindow.cpp:848
+#: src/mainwindow.cpp:851
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Operazioni in sottofondo in esecuzione"
@@ -11449,13 +11449,13 @@ msgctxt "@action"
 msgid "S/MIME-Sign..."
 msgstr "Firma con S/MIME..."
 
-#: src/utils/clipboardmenu.cpp:49
+#: src/utils/clipboardmenu.cpp:50
 #, kde-format
 msgctxt "@action"
 msgid "OpenPGP-Sign..."
 msgstr "Firma con OpenPGP..."
 
-#: src/utils/clipboardmenu.cpp:50
+#: src/utils/clipboardmenu.cpp:51
 #, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
@@ -13200,6 +13200,9 @@ msgid ""
 msgstr ""
 "Importa il certificato da un file.<nl/>Per importare da un server delle "
 "chiavi pubblico usa invece <interface>Cerca sul server</interface>."
+
+#~ msgid "Dump CRL Cache Error"
+#~ msgstr "Errore durante l'esportazione della cache delle CRL"
 
 #~ msgctxt "@option:check"
 #~ msgid "Show tags attached to certificates"

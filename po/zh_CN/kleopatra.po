@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:41+0000\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -3460,10 +3460,7 @@ msgid "GnuPG System"
 msgstr "GnuPG 系统"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
-#| "\".gpg\""
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3471,8 +3468,7 @@ msgid ""
 msgstr "创建 OpenPGP 加密文件时，以“.pgp”为扩展名，而不是“.gpg”"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#, fuzzy, kde-format
-#| msgid "Create signed or encrypted files as text files."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "创建文本文件格式的签名或加密文件"
@@ -3495,25 +3491,20 @@ msgid "Treat .p7m files without extensions as mails."
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatically start operation based on input detection for decrypt/verify."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr "基于输入检测自动开始解密或验证操作"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, fuzzy, kde-format
-#| msgid "Automatically extract file archives after decryption"
+#, kde-format
 msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "解密后自动解压文件"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create temporary decrypted files in the folder of the encrypted file."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "在加密文件的文件夹中创建临时解密文件。"
@@ -3525,8 +3516,7 @@ msgid "Set this option to avoid using the users temporary directory."
 msgstr "设置此选项以避免使用用户临时目录。"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "只使用对称加密。"
@@ -3538,11 +3528,10 @@ msgid "Set this option to disable public key encryption."
 msgstr "选中此选项以禁用公钥加密。"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
-msgstr "只使用对称加密。"
+msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
 #, kde-format
@@ -5551,10 +5540,7 @@ msgid "Encrypt for others:"
 msgstr "为他人加密："
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypt with password. Anyone you share the password with can read the "
-#| "data."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -6890,13 +6876,21 @@ msgid ""
 "continue:</para>"
 msgstr ""
 
-#: src/dialogs/debugdialog.cpp:82
+#: src/dialogs/debugdialog.cpp:62
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "%1 Configuration Check"
+msgctxt "@title:window"
+msgid "GnuPG Configuration Overview"
+msgstr "%1 配置检查"
+
+#: src/dialogs/debugdialog.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: src/dialogs/debugdialog.cpp:111
+#: src/dialogs/debugdialog.cpp:116
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
@@ -7092,19 +7086,16 @@ msgid "Please select until when the certificate should be valid:"
 msgstr "请选择证书有效期："
 
 #: src/dialogs/expirydialog.cpp:91
-#, fuzzy, kde-format
-#| msgid "Unlimited validity"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "永远有效"
 
 #: src/dialogs/expirydialog.cpp:102 src/dialogs/expirydialog.cpp:237
-#, fuzzy, kde-format
-#| msgctxt "Valid until DATE"
-#| msgid "Valid until %1"
+#, kde-format
 msgctxt "The placeholders are dates"
 msgid "Valid until (between %1 and %2):"
-msgstr "有效期至：%1"
+msgstr ""
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7176,8 +7167,7 @@ msgid "Algorithm:"
 msgstr "算法："
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Backup encryption key"
+#, kde-format
 msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "备份加密密钥"
@@ -7786,8 +7776,7 @@ msgid "Update Available"
 msgstr "有可用更新"
 
 #: src/dialogs/updatenotification.cpp:200
-#, fuzzy, kde-format
-#| msgid "Show this notification for future updates."
+#, kde-format
 msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "显示此通知以供将来更新。"
@@ -8932,8 +8921,7 @@ msgid "String or Fingerprint for query and search"
 msgstr "用于查询和搜索的字符串或指纹"
 
 #: src/kleopatraapplication.cpp:426
-#, fuzzy, kde-format
-#| msgid "Failed to execute command"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "执行命令失败"
@@ -8974,8 +8962,7 @@ msgid "Opening an external link is administratively prohibited."
 msgstr "在行政上禁止打开外部链接。"
 
 #: src/kleopatraapplication.cpp:879
-#, fuzzy, kde-format
-#| msgid "Prohibited"
+#, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "已封禁"
@@ -9166,9 +9153,10 @@ msgid "GnuPG Log Viewer"
 msgstr "GnuPG 日志查看器"
 
 #: src/mainwindow.cpp:586
-#, kde-format
-msgid "Debug View"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Show GnuPG system configuration"
+msgid "Show GnuPG Configuration"
+msgstr "显示 GnuPG 系统配置"
 
 #: src/mainwindow.cpp:599
 #, kde-format
@@ -11653,15 +11641,13 @@ msgid "Enter a message to encrypt or decrypt..."
 msgstr "输入欲加密或解密的消息..."
 
 #: src/view/padwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/view/padwidget.cpp:173
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -12424,6 +12410,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgid "Dump CRL Cache Error"
-#~ msgstr "转储 CRL 缓存出错"

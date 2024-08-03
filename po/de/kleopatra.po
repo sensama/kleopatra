@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:41+0000\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
 "PO-Revision-Date: 2024-07-30 09:17+0200\n"
 "Last-Translator: aheinecke <aheinecke@gnupg.org>\n"
 "Language-Team: English <kde-i18n-de@kde.org>\n"
@@ -7405,13 +7405,20 @@ msgstr ""
 "para><para>Ausgewählte Smartcard: <emphasis>%2</emphasis></para><para>Wählen "
 "Sie eine der folgenden Optionen aus, um fortzufahren:</para>"
 
-#: src/dialogs/debugdialog.cpp:82
+#: src/dialogs/debugdialog.cpp:62
+#, fuzzy, kde-format
+#| msgid "GnuPG Configuration Self-Check Results"
+msgctxt "@title:window"
+msgid "GnuPG Configuration Overview"
+msgstr "Ergebnis der GnuPG-Konfigurationsüberprüfung"
+
+#: src/dialogs/debugdialog.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
 msgstr "Kopieren"
 
-#: src/dialogs/debugdialog.cpp:111
+#: src/dialogs/debugdialog.cpp:116
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
@@ -9878,9 +9885,10 @@ msgid "GnuPG Log Viewer"
 msgstr "GnuPG-Protokollanzeige"
 
 #: src/mainwindow.cpp:586
-#, kde-format
-msgid "Debug View"
-msgstr "Debug-Werkzeuge"
+#, fuzzy, kde-format
+#| msgid "Show GnuPG system configuration"
+msgid "Show GnuPG Configuration"
+msgstr "GnuPG-System-Einstellungen anzeigen"
 
 #: src/mainwindow.cpp:599
 #, kde-format
@@ -13288,6 +13296,9 @@ msgstr ""
 "Ein Zertifikat oder einen geheimen Schlüssel aus einer Datei importieren.<nl/"
 ">Um ein Zertifikat von einem öffentlichen Schlüsselserver zu importieren, "
 "bitte „Auf Server suchen“ verwenden."
+
+#~ msgid "Debug View"
+#~ msgstr "Debug-Werkzeuge"
 
 #~ msgid "Dump CRL Cache Error"
 #~ msgstr "Fehler beim Ausgeben der lokalen Sperrlisten-Zwischenspeichers"
@@ -17003,9 +17014,6 @@ msgstr ""
 #~ msgid_plural "<b>%1 good signatures</b>"
 #~ msgstr[0] "<b>Gültige Unterschrift</b>"
 #~ msgstr[1] "<b>%1 gültige Unterschriften.</b>"
-
-#~ msgid "GnuPG Configuration Self-Check Results"
-#~ msgstr "Ergebnis der GnuPG-Konfigurationsüberprüfung"
 
 #~ msgid "This is the result of the GnuPG configuration self-check:"
 #~ msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"

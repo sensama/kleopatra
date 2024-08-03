@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:41+0000\n"
-"PO-Revision-Date: 2024-07-31 10:01+0200\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"PO-Revision-Date: 2024-08-02 13:02+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -7326,13 +7326,21 @@ msgstr ""
 "para><para>Geselecteerde smartcard: <emphasis>%2</emphasis></para><para>Kies "
 "een van de volgende opties om door te gaan:</para>"
 
-#: src/dialogs/debugdialog.cpp:82
+#: src/dialogs/debugdialog.cpp:62
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "%1 Configuration Check"
+msgctxt "@title:window"
+msgid "GnuPG Configuration Overview"
+msgstr "%1-configuratie controleren"
+
+#: src/dialogs/debugdialog.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
 msgstr "Naar klembord kopiëren"
 
-#: src/dialogs/debugdialog.cpp:111
+#: src/dialogs/debugdialog.cpp:116
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
@@ -9544,8 +9552,7 @@ msgid "String or Fingerprint for query and search"
 msgstr "Tekenreeks of vingerafdruk voor query en zoeken"
 
 #: src/kleopatraapplication.cpp:426
-#, fuzzy, kde-format
-#| msgid "Failed to execute command"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Uitvoeren commando is mislukt"
@@ -9586,8 +9593,7 @@ msgid "Opening an external link is administratively prohibited."
 msgstr "Een externe koppeling openen is administratief verboden."
 
 #: src/kleopatraapplication.cpp:879
-#, fuzzy, kde-format
-#| msgid "Prohibited"
+#, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "Verboden"
@@ -9785,9 +9791,10 @@ msgid "GnuPG Log Viewer"
 msgstr "GnuPG-logweergave"
 
 #: src/mainwindow.cpp:586
-#, kde-format
-msgid "Debug View"
-msgstr "Debugweergave"
+#, fuzzy, kde-format
+#| msgid "Show GnuPG system configuration"
+msgid "Show GnuPG Configuration"
+msgstr "Configuratie van GnuPG-systeemconfiguratie tonen"
 
 #: src/mainwindow.cpp:599
 #, kde-format
@@ -13178,6 +13185,9 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgid "Debug View"
+#~ msgstr "Debugweergave"
 
 #~ msgid "Dump CRL Cache Error"
 #~ msgstr "Fout bij CRL-cache-dump"

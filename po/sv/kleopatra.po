@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:41+0000\n"
-"PO-Revision-Date: 2024-07-31 07:12+0200\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"PO-Revision-Date: 2024-08-02 08:00+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -7237,13 +7237,21 @@ msgstr ""
 "<emphasis>%2</emphasis></para><para>Välj ett av följande alternativ för att "
 "fortsätta:</para>"
 
-#: src/dialogs/debugdialog.cpp:82
+#: src/dialogs/debugdialog.cpp:62
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "%1 Configuration Check"
+msgctxt "@title:window"
+msgid "GnuPG Configuration Overview"
+msgstr "%1 inställningskontroll"
+
+#: src/dialogs/debugdialog.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
 msgstr "Kopiera till klippbordet"
 
-#: src/dialogs/debugdialog.cpp:111
+#: src/dialogs/debugdialog.cpp:116
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
@@ -9434,8 +9442,7 @@ msgid "String or Fingerprint for query and search"
 msgstr "Sträng eller fingeravtryck för fråga och sök"
 
 #: src/kleopatraapplication.cpp:426
-#, fuzzy, kde-format
-#| msgid "Failed to execute command"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Misslyckades köra kommando"
@@ -9476,8 +9483,7 @@ msgid "Opening an external link is administratively prohibited."
 msgstr "Att öppna en extern länk är administrativt förhindrat."
 
 #: src/kleopatraapplication.cpp:879
-#, fuzzy, kde-format
-#| msgid "Prohibited"
+#, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "Förhindrat"
@@ -9678,9 +9684,10 @@ msgid "GnuPG Log Viewer"
 msgstr "GnuPG-loggvisning"
 
 #: src/mainwindow.cpp:586
-#, kde-format
-msgid "Debug View"
-msgstr "Felsökningsvy"
+#, fuzzy, kde-format
+#| msgid "Show GnuPG system configuration"
+msgid "Show GnuPG Configuration"
+msgstr "Visa inställning av GnuPG-systemet"
 
 #: src/mainwindow.cpp:599
 #, kde-format
@@ -13045,6 +13052,9 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
+
+#~ msgid "Debug View"
+#~ msgstr "Felsökningsvy"
 
 #~ msgid "Dump CRL Cache Error"
 #~ msgstr "Fel vid hämtning av innehåll i CRL-cache"

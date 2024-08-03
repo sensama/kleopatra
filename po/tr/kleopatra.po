@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-02 00:41+0000\n"
-"PO-Revision-Date: 2024-08-01 01:35+0300\n"
+"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"PO-Revision-Date: 2024-08-02 14:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.07.70\n"
+"X-Generator: Lokalize 24.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -7250,13 +7250,21 @@ msgstr ""
 "kartı: <emphasis>%2</emphasis></para><para>Sürdürmek için aşağıdaki "
 "seçeneklerden birini seçin:</para>"
 
-#: src/dialogs/debugdialog.cpp:82
+#: src/dialogs/debugdialog.cpp:62
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "%1 Configuration Check"
+msgctxt "@title:window"
+msgid "GnuPG Configuration Overview"
+msgstr "%1 Yapılandırma Denetimi"
+
+#: src/dialogs/debugdialog.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
 msgstr "Panoya Kopyala"
 
-#: src/dialogs/debugdialog.cpp:111
+#: src/dialogs/debugdialog.cpp:116
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
@@ -9442,11 +9450,10 @@ msgid "String or Fingerprint for query and search"
 msgstr "Sorgu ve arama için dizi veya parmak izi"
 
 #: src/kleopatraapplication.cpp:426
-#, fuzzy, kde-format
-#| msgid "Failed to execute command"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to execute command"
-msgstr "Komut yürütülemedi"
+msgstr "Komut Yürütülemedi"
 
 #: src/kleopatraapplication.cpp:468
 #, kde-format
@@ -9484,8 +9491,7 @@ msgid "Opening an external link is administratively prohibited."
 msgstr "Dış bir bağlantıyı açmak yönetim tarafından yasaklandı."
 
 #: src/kleopatraapplication.cpp:879
-#, fuzzy, kde-format
-#| msgid "Prohibited"
+#, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "Yasaklı"
@@ -9683,9 +9689,10 @@ msgid "GnuPG Log Viewer"
 msgstr "GnuPG Günlük Görüntüleyicisi"
 
 #: src/mainwindow.cpp:586
-#, kde-format
-msgid "Debug View"
-msgstr "Hata Ayıklama Görünümü"
+#, fuzzy, kde-format
+#| msgid "Show GnuPG system configuration"
+msgid "Show GnuPG Configuration"
+msgstr "GnuPG sistem yapılandırmasını göster"
 
 #: src/mainwindow.cpp:599
 #, kde-format
@@ -13058,6 +13065,9 @@ msgid ""
 msgstr ""
 "Bir dosyadan sertifika içe aktarın.<nl/>Genel bir anahtar sunucusundan içe "
 "aktarmak için <interface>Sunucuda Ara</interface> seçeneğini kullanın."
+
+#~ msgid "Debug View"
+#~ msgstr "Hata Ayıklama Görünümü"
 
 #~ msgid "Dump CRL Cache Error"
 #~ msgstr "CRL Önbelleği Dökme Hatası"

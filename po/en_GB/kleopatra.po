@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-03 00:40+0000\n"
-"PO-Revision-Date: 2024-07-05 13:45+0100\n"
+"PO-Revision-Date: 2024-08-03 12:39+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
 "Language: en_GB\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.0\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2994,14 +2994,12 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp:405
 #: src/commands/refreshcertificatescommand.cpp:421
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The certificate was not found.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "<para>The certificate was not found.</para>"
-msgstr[1] "<para>The certificate was not found.</para>"
+msgstr[1] "<para>The certificates were not found.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:408
 #: src/commands/refreshcertificatescommand.cpp:425
@@ -3674,10 +3672,7 @@ msgid "GnuPG System"
 msgstr "GnuPG System"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
-#| "\".gpg\""
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3687,8 +3682,7 @@ msgstr ""
 "gpg\""
 
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#, fuzzy, kde-format
-#| msgid "Create signed or encrypted files as text files."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "Create signed or encrypted files as text files."
@@ -3712,9 +3706,7 @@ msgid "Treat .p7m files without extensions as mails."
 msgstr "Treat .p7m files without extensions as mails."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatically start operation based on input detection for decrypt/verify."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
@@ -3722,16 +3714,13 @@ msgstr ""
 "Automatically start operation based on input detection for decrypt/verify."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, fuzzy, kde-format
-#| msgid "Automatically extract file archives after decryption"
+#, kde-format
 msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Automatically extract file archives after decryption"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create temporary decrypted files in the folder of the encrypted file."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Create temporary decrypted files in the folder of the encrypted file."
@@ -3743,8 +3732,7 @@ msgid "Set this option to avoid using the users temporary directory."
 msgstr "Set this option to avoid using the users temporary directory."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Use symmetric encryption only."
@@ -3756,8 +3744,7 @@ msgid "Set this option to disable public key encryption."
 msgstr "Set this option to disable public key encryption."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use public-key encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Use public-key encryption only."
@@ -5115,18 +5102,14 @@ msgid "Multiple matching certificates or groups found"
 msgstr "Multiple matching certificates or groups found"
 
 #: src/crypto/gui/certificatelineedit.cpp:647
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgid "This certificate is expired"
-msgstr "This certificate is expired."
+msgstr "This certificate is expired"
 
 #: src/crypto/gui/certificatelineedit.cpp:649
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgid "This certificate is revoked"
-msgstr "This certificate is expired."
+msgstr "This certificate is revoked"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
 #, kde-format
@@ -5856,17 +5839,13 @@ msgid "Encrypt for me:"
 msgstr "Encrypt for me:"
 
 #: src/crypto/gui/signencryptwidget.cpp:241
-#, fuzzy, kde-format
-#| msgid "Encrypt for others:"
+#, kde-format
 msgctxt "@label"
 msgid "Encrypt for others:"
 msgstr "Encrypt for others:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypt with password. Anyone you share the password with can read the "
-#| "data."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5938,12 +5917,10 @@ msgid "Failed to find some keys"
 msgstr "Failed to find some keys"
 
 #: src/crypto/gui/signencryptwidget.cpp:912
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate is expired."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
-msgstr "This certificate is expired."
+msgstr "This certificate is revoked."
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format
@@ -7233,12 +7210,10 @@ msgstr ""
 "continue:</para>"
 
 #: src/dialogs/debugdialog.cpp:62
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "%1 Configuration Check"
+#, kde-format
 msgctxt "@title:window"
 msgid "GnuPG Configuration Overview"
-msgstr "%1 Configuration Check"
+msgstr "GnuPG Configuration Overview"
 
 #: src/dialogs/debugdialog.cpp:84
 #, kde-format
@@ -7477,19 +7452,16 @@ msgid "Please select until when the certificate should be valid:"
 msgstr "Please select until when the certificate should be valid:"
 
 #: src/dialogs/expirydialog.cpp:91
-#, fuzzy, kde-format
-#| msgid "Unlimited validity"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Unlimited validity"
 
 #: src/dialogs/expirydialog.cpp:102 src/dialogs/expirydialog.cpp:237
-#, fuzzy, kde-format
-#| msgctxt "@info ... between <a date> and <another date>."
-#| msgid "Enter a date between %1 and %2."
+#, kde-format
 msgctxt "The placeholders are dates"
 msgid "Valid until (between %1 and %2):"
-msgstr "Enter a date between %1 and %2."
+msgstr "Valid until (between %1 and %2):"
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7512,13 +7484,13 @@ msgstr "Change Validity Period"
 #, kde-format
 msgctxt "The placeholder is a date"
 msgid "Same validity as the primary key (%1)"
-msgstr ""
+msgstr "Same validity as the primary key (%1)"
 
 #: src/dialogs/expirydialog.cpp:247
 #, kde-format
 msgctxt "'unlimited' means 'forever', here"
 msgid "Same validity as the primary key (unlimited)"
-msgstr ""
+msgstr "Same validity as the primary key (unlimited)"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7561,8 +7533,7 @@ msgid "Algorithm:"
 msgstr "Algorithm:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Backup encryption key"
+#, kde-format
 msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Backup encryption key"
@@ -8189,8 +8160,7 @@ msgid "Update Available"
 msgstr "Update Available"
 
 #: src/dialogs/updatenotification.cpp:200
-#, fuzzy, kde-format
-#| msgid "Show this notification for future updates."
+#, kde-format
 msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Show this notification for future updates."
@@ -9424,8 +9394,7 @@ msgid "String or Fingerprint for query and search"
 msgstr "String or Fingerprint for query and search"
 
 #: src/kleopatraapplication.cpp:426
-#, fuzzy, kde-format
-#| msgid "Failed to execute command"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Failed to execute command"
@@ -9466,8 +9435,7 @@ msgid "Opening an external link is administratively prohibited."
 msgstr "Opening an external link is administratively prohibited."
 
 #: src/kleopatraapplication.cpp:879
-#, fuzzy, kde-format
-#| msgid "Prohibited"
+#, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "Prohibited"
@@ -9666,10 +9634,9 @@ msgid "GnuPG Log Viewer"
 msgstr "GnuPG Log Viewer"
 
 #: src/mainwindow.cpp:586
-#, fuzzy, kde-format
-#| msgid "Show GnuPG system configuration"
+#, kde-format
 msgid "Show GnuPG Configuration"
-msgstr "Show GnuPG system configuration"
+msgstr "Show GnuPG Configuration"
 
 #: src/mainwindow.cpp:599
 #, kde-format
@@ -11670,16 +11637,14 @@ msgid "Publish on Server..."
 msgstr "Publish on Server..."
 
 #: src/view/keylistcontroller.cpp:348
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
-msgstr "Publish the selected certificate (public key) on a public keyserver"
+msgstr "Publish the selected certificate (public key) to internal directory"
 
 #: src/view/keylistcontroller.cpp:349
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid "Publish the selected certificate (public key) on %1"
-msgstr "Publish the selected certificate (public key) on a public keyserver"
+msgstr "Publish the selected certificate (public key) on %1"
 
 #: src/view/keylistcontroller.cpp:358
 #, kde-format
@@ -11711,18 +11676,14 @@ msgid "Lookup on Server..."
 msgstr "Lookup on Server..."
 
 #: src/view/keylistcontroller.cpp:388
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Upload revoked certificate to internal directory"
+#, kde-format
 msgid "Search for certificates in internal directory"
-msgstr "Upload revoked certificate to internal directory"
+msgstr "Search for certificates in internal directory"
 
 #: src/view/keylistcontroller.cpp:389
-#, fuzzy, kde-format
-#| msgctxt "@info:shell"
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgid "Search for certificates on %1"
-msgstr "Search for a certificate on a keyserver"
+msgstr "Search for certificates on %1"
 
 #: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
 #, kde-format
@@ -12234,15 +12195,13 @@ msgid "Enter a message to encrypt or decrypt..."
 msgstr "Enter a message to encrypt or decrypt..."
 
 #: src/view/padwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/view/padwidget.cpp:173
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
@@ -12705,9 +12664,7 @@ msgid "Replace %1 with new key"
 msgstr "Replace %1 with new key"
 
 #: src/view/searchbar.cpp:137
-#, fuzzy, kde-format
-#| msgctxt "@info::placeholder"
-#| msgid "Enter search term"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Enter search term"
@@ -12751,12 +12708,10 @@ msgstr ""
 "certificates actually belong to the identity they claim to belong to."
 
 #: src/view/searchbar.cpp:197
-#, fuzzy, kde-format
-#| msgctxt "@info::placeholder"
-#| msgid "Enter search term"
+#, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"
-msgstr "Enter search term"
+msgstr "Enter search term <%1>"
 
 #: src/view/smartcardswidget.cpp:56
 #, kde-format

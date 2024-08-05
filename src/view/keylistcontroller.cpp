@@ -1044,7 +1044,7 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
                     } else {
                         hasAuthenticate = true;
                     }
-                } else {
+                } else if (!subkey.canRenc()) { // we don't mind ADSKs
                     invalid = true;
                     break;
                 }

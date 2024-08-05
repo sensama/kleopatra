@@ -258,6 +258,9 @@ void CertificateToCardCommand::Private::startKeyToOpenPGPCard()
     }
 
     subkeys = key().subkeys();
+    Kleo::erase_if(subkeys, [](const auto &key) {
+        return key.canRenc();
+    });
     remainingSubkeys = subkeys;
 
     for (const auto &subkey : subkeys) {

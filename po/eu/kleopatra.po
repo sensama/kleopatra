@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-03 00:40+0000\n"
-"PO-Revision-Date: 2024-07-25 17:08+0200\n"
+"PO-Revision-Date: 2024-08-04 09:08+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -3702,10 +3702,7 @@ msgid "GnuPG System"
 msgstr "GnuPG Sistema"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
-#| "\".gpg\""
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3715,8 +3712,7 @@ msgstr ""
 "\" luzapenarekin."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:60
-#, fuzzy, kde-format
-#| msgid "Create signed or encrypted files as text files."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create signed or encrypted files as text files."
 msgstr "Sortu sinatutako edo zifratutako fitxategiak testu-fitxategi gisa."
@@ -3740,27 +3736,22 @@ msgid "Treat .p7m files without extensions as mails."
 msgstr "Luzapenik gabeko «.p7m» fitxategiak postatzat hartu."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatically start operation based on input detection for decrypt/verify."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
-"Abiatu deszifratze/egiaztatze sarrera antzematean oinarritutako eragiketa "
-"automatikoa."
+"Eragiketa automatikoki abiatu deszifratzeko/egiaztatzeko sarrera antzematean "
+"oinarrituta."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, fuzzy, kde-format
-#| msgid "Automatically extract file archives after decryption"
+#, kde-format
 msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
-msgstr "Deszifratu ondoren automatikoki erauzi fitxategi artxiboak"
+msgstr "Fitxategi artxiboak automatikoki erauzi deszifratu ondoren"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "Create temporary decrypted files in the folder of the encrypted file."
+#, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
@@ -3776,11 +3767,10 @@ msgstr ""
 "saihesteko."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:70
-#, fuzzy, kde-format
-#| msgid "Use symmetric encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
-msgstr "Erabili bakarrik zifratze simetrikoa."
+msgstr "Erabili zifratze simetrikoa bakarrik."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
@@ -3789,8 +3779,7 @@ msgid "Set this option to disable public key encryption."
 msgstr "Ezarri aukera hori gako publikoko zifratzea ezgaitzeko."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:72
-#, fuzzy, kde-format
-#| msgid "Use public-key encryption only."
+#, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Gako-publikoko zifratzea bakarrik erabili."
@@ -5916,15 +5905,12 @@ msgid "Encrypt for others:"
 msgstr "Zifratu besteentzat:"
 
 #: src/crypto/gui/signencryptwidget.cpp:268
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypt with password. Anyone you share the password with can read the "
-#| "data."
+#, kde-format
 msgctxt "@option:check"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
-"Ziratu pasahitzarekin. Pasahitza partekatzen diozun edonork datuak irakur "
+"Zifratu pasahitzarekin. Pasahitza partekatzen diozun orok datuak irakur "
 "ditzake."
 
 #: src/crypto/gui/signencryptwidget.cpp:270
@@ -7294,12 +7280,10 @@ msgstr ""
 "aukeratu ondoko aukeretako bat:</para>"
 
 #: src/dialogs/debugdialog.cpp:62
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "%1 Configuration Check"
+#, kde-format
 msgctxt "@title:window"
 msgid "GnuPG Configuration Overview"
-msgstr "%1(e)ren konpilazio azterketa"
+msgstr "GnuPG konfigurazioaren ikuspegi orokorra"
 
 #: src/dialogs/debugdialog.cpp:84
 #, kde-format
@@ -7543,19 +7527,16 @@ msgid "Please select until when the certificate should be valid:"
 msgstr "Mesedez, aukeratu ziurtagiriak noiz arte balio behar duen:"
 
 #: src/dialogs/expirydialog.cpp:91
-#, fuzzy, kde-format
-#| msgid "Unlimited validity"
+#, kde-format
 msgctxt "@option:radio"
 msgid "Unlimited validity"
 msgstr "Baliotasun mugagabea"
 
 #: src/dialogs/expirydialog.cpp:102 src/dialogs/expirydialog.cpp:237
-#, fuzzy, kde-format
-#| msgctxt "@info ... between <a date> and <another date>."
-#| msgid "Enter a date between %1 and %2."
+#, kde-format
 msgctxt "The placeholders are dates"
 msgid "Valid until (between %1 and %2):"
-msgstr "Sartu %1 eta %2 arteko data bat."
+msgstr "Noiz arte balio du (%1 eta %2 artean):"
 
 #: src/dialogs/expirydialog.cpp:121
 #, kde-format
@@ -7578,13 +7559,13 @@ msgstr "Aldatu baliotasun aldia"
 #, kde-format
 msgctxt "The placeholder is a date"
 msgid "Same validity as the primary key (%1)"
-msgstr ""
+msgstr "Gako nagusiaren baliotasun bera (%1)"
 
 #: src/dialogs/expirydialog.cpp:247
 #, kde-format
 msgctxt "'unlimited' means 'forever', here"
 msgid "Same validity as the primary key (unlimited)"
-msgstr ""
+msgstr "Gako nagusiaren baliotasun bera (mugagabea)"
 
 #: src/dialogs/exportdialog.cpp:67
 #, kde-format
@@ -7627,8 +7608,7 @@ msgid "Algorithm:"
 msgstr "Algoritmoa:"
 
 #: src/dialogs/gencardkeydialog.cpp:82
-#, fuzzy, kde-format
-#| msgid "Backup encryption key"
+#, kde-format
 msgctxt "@option:check"
 msgid "Backup encryption key"
 msgstr "Egin zifratzeko gakoaren babeskopia"
@@ -8256,8 +8236,7 @@ msgid "Update Available"
 msgstr "Eguneratzea erabilgarri dago."
 
 #: src/dialogs/updatenotification.cpp:200
-#, fuzzy, kde-format
-#| msgid "Show this notification for future updates."
+#, kde-format
 msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Erakutsi jakinarazpen hori etorkizuneko eguneratzeetarako."
@@ -9502,8 +9481,7 @@ msgid "String or Fingerprint for query and search"
 msgstr "Itaun edo bilaketarako kate edo hatz-marka"
 
 #: src/kleopatraapplication.cpp:426
-#, fuzzy, kde-format
-#| msgid "Failed to execute command"
+#, kde-format
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Komandoa exekutatzea huts egin du"
@@ -9544,8 +9522,7 @@ msgid "Opening an external link is administratively prohibited."
 msgstr "Kanpoko esteka bat irekitzea administratiboki debekatuta dago."
 
 #: src/kleopatraapplication.cpp:879
-#, fuzzy, kde-format
-#| msgid "Prohibited"
+#, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "Debekatuta"
@@ -9745,10 +9722,9 @@ msgid "GnuPG Log Viewer"
 msgstr "GnuPG egunkari ikustailea"
 
 #: src/mainwindow.cpp:586
-#, fuzzy, kde-format
-#| msgid "Show GnuPG system configuration"
+#, kde-format
 msgid "Show GnuPG Configuration"
-msgstr "Erakutsi GnuPG sistemaren konfigurazioa"
+msgstr "Erakutsi GnuPGren konfigurazioa"
 
 #: src/mainwindow.cpp:599
 #, kde-format
@@ -12344,15 +12320,13 @@ msgid "Enter a message to encrypt or decrypt..."
 msgstr "Sartu zifratu edo deszifratu beharreko mezu bat..."
 
 #: src/view/padwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
 #: src/view/padwidget.cpp:173
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"

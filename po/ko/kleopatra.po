@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"POT-Creation-Date: 2024-08-06 00:40+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1022,7 +1022,7 @@ msgctxt "@title"
 msgid "Error Saving Request"
 msgstr "요청 저장 오류"
 
-#: src/commands/creategroupcommand.cpp:97
+#: src/commands/creategroupcommand.cpp:101
 #, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
@@ -1031,7 +1031,7 @@ msgstr ""
 "선택한 인증서 중 아무것도 암호화에 사용할 수 없습니다. 그룹을 생성하지 않습니"
 "다."
 
-#: src/commands/creategroupcommand.cpp:102
+#: src/commands/creategroupcommand.cpp:106
 #, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
@@ -1040,13 +1040,13 @@ msgstr ""
 "선택한 인증서 중 일부는 암호화에 사용할 수 없습니다. 해당 인증서는 그룹에 추"
 "가되지 않습니다."
 
-#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:316
+#: src/commands/creategroupcommand.cpp:110 src/conf/groupsconfigwidget.cpp:308
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "새 그룹"
 
-#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:319
+#: src/commands/creategroupcommand.cpp:115 src/conf/groupsconfigwidget.cpp:311
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
@@ -3852,8 +3852,8 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:175
-#: src/dialogs/editgroupdialog.cpp:235
+#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:177
+#: src/dialogs/editgroupdialog.cpp:237
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
@@ -3871,8 +3871,8 @@ msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "검색어와 일치하는 그룹을 찾습니다."
 
-#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:184
-#: src/dialogs/editgroupdialog.cpp:244
+#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:186
+#: src/dialogs/editgroupdialog.cpp:246
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
@@ -3917,13 +3917,13 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "내보내기"
 
-#: src/conf/groupsconfigwidget.cpp:356
+#: src/conf/groupsconfigwidget.cpp:355
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "그룹 편집"
 
-#: src/conf/groupsconfigwidget.cpp:387
+#: src/conf/groupsconfigwidget.cpp:393
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3933,7 +3933,7 @@ msgstr ""
 "<para>이 그룹을 삭제하시겠습니까?</para><para><emphasis>%1</emphasis></"
 "para><para>삭제한 그룹은 복원할 수 없습니다.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:393
+#: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3946,14 +3946,14 @@ msgstr[0] ""
 "<para>선택한 그룹 %1개를 삭제하시겠습니까?</para><para>삭제한 그룹은 복원할 "
 "수 없습니다.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:405
+#: src/conf/groupsconfigwidget.cpp:411
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
 msgstr[0] "그룹 삭제"
 
-#: src/conf/groupsconfigwidget.cpp:461
+#: src/conf/groupsconfigwidget.cpp:467
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7371,85 +7371,85 @@ msgid ""
 "encryption."
 msgstr "이 인증서를 암호화에 사용할 수 없어서 그룹에 추가할 수 없습니다."
 
-#: src/dialogs/editgroupdialog.cpp:157
+#: src/dialogs/editgroupdialog.cpp:159
 #, kde-format
 msgctxt "Name of a group of keys"
 msgid "Name:"
 msgstr "이름:"
 
-#: src/dialogs/editgroupdialog.cpp:169
+#: src/dialogs/editgroupdialog.cpp:171
 #, kde-format
 msgctxt "@title"
 msgid "Available Keys"
 msgstr "사용 가능한 키"
 
-#: src/dialogs/editgroupdialog.cpp:176 src/dialogs/editgroupdialog.cpp:182
+#: src/dialogs/editgroupdialog.cpp:178 src/dialogs/editgroupdialog.cpp:184
 #, kde-format
 msgctxt "@label"
 msgid "Search available keys"
 msgstr "사용 가능한 키 검색"
 
-#: src/dialogs/editgroupdialog.cpp:177 src/dialogs/editgroupdialog.cpp:183
+#: src/dialogs/editgroupdialog.cpp:179 src/dialogs/editgroupdialog.cpp:185
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr "사용 가능한 키 목록에서 검색어와 일치하는 키를 찾습니다."
 
-#: src/dialogs/editgroupdialog.cpp:197
+#: src/dialogs/editgroupdialog.cpp:199
 #, kde-format
 msgid "available keys"
 msgstr "사용 가능한 키"
 
-#: src/dialogs/editgroupdialog.cpp:213
+#: src/dialogs/editgroupdialog.cpp:215
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Keys"
 msgstr "선택한 키 추가"
 
-#: src/dialogs/editgroupdialog.cpp:214
+#: src/dialogs/editgroupdialog.cpp:216
 #, fuzzy, kde-format
 #| msgid "Add the selected keys to the group"
 msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "선택한 키를 그룹에 추가"
 
-#: src/dialogs/editgroupdialog.cpp:220
+#: src/dialogs/editgroupdialog.cpp:222
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Keys"
 msgstr "선택한 키 삭제"
 
-#: src/dialogs/editgroupdialog.cpp:221
+#: src/dialogs/editgroupdialog.cpp:223
 #, fuzzy, kde-format
 #| msgid "Remove the selected keys from the group"
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "선택한 키를 그룹에서 삭제"
 
-#: src/dialogs/editgroupdialog.cpp:229
+#: src/dialogs/editgroupdialog.cpp:231
 #, kde-format
 msgctxt "@title"
 msgid "Group Keys"
 msgstr "그룹 키"
 
-#: src/dialogs/editgroupdialog.cpp:236 src/dialogs/editgroupdialog.cpp:242
+#: src/dialogs/editgroupdialog.cpp:238 src/dialogs/editgroupdialog.cpp:244
 #, kde-format
 msgctxt "@label"
 msgid "Search group keys"
 msgstr "그룹 키 검색"
 
-#: src/dialogs/editgroupdialog.cpp:237 src/dialogs/editgroupdialog.cpp:243
+#: src/dialogs/editgroupdialog.cpp:239 src/dialogs/editgroupdialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of group keys for keys matching the search term."
 msgstr "그룹 키 목록에서 검색어와 일치하는 키를 찾습니다."
 
-#: src/dialogs/editgroupdialog.cpp:256
+#: src/dialogs/editgroupdialog.cpp:258
 #, kde-format
 msgid "group keys"
 msgstr "그룹 키"
 
-#: src/dialogs/editgroupdialog.cpp:423
+#: src/dialogs/editgroupdialog.cpp:424
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"

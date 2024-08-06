@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-03 00:40+0000\n"
+"POT-Creation-Date: 2024-08-06 00:40+0000\n"
 "PO-Revision-Date: 2024-08-03 09:00+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -1029,7 +1029,7 @@ msgctxt "@title"
 msgid "Error Saving Request"
 msgstr "Fel när begäran skulle sparas"
 
-#: src/commands/creategroupcommand.cpp:97
+#: src/commands/creategroupcommand.cpp:101
 #, kde-format
 msgid ""
 "None of the selected certificates can be used for encryption. No group will "
@@ -1038,7 +1038,7 @@ msgstr ""
 "Inget av de valda certifikaten kan användas för kryptering. Ingen grupp "
 "skapas."
 
-#: src/commands/creategroupcommand.cpp:102
+#: src/commands/creategroupcommand.cpp:106
 #, kde-format
 msgid ""
 "Some of the selected certificates cannot be used for encryption. These will "
@@ -1047,13 +1047,13 @@ msgstr ""
 "Vissa av de valda certifikaten kan användas för kryptering. De läggs inte "
 "till i gruppen."
 
-#: src/commands/creategroupcommand.cpp:106 src/conf/groupsconfigwidget.cpp:316
+#: src/commands/creategroupcommand.cpp:110 src/conf/groupsconfigwidget.cpp:308
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
 msgstr "Ny grupp"
 
-#: src/commands/creategroupcommand.cpp:109 src/conf/groupsconfigwidget.cpp:319
+#: src/commands/creategroupcommand.cpp:115 src/conf/groupsconfigwidget.cpp:311
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
@@ -3906,8 +3906,8 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:175
-#: src/dialogs/editgroupdialog.cpp:235
+#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:177
+#: src/dialogs/editgroupdialog.cpp:237
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
@@ -3925,8 +3925,8 @@ msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "Sök i listan efter grupper som motsvarar sökbegreppet."
 
-#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:184
-#: src/dialogs/editgroupdialog.cpp:244
+#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:186
+#: src/dialogs/editgroupdialog.cpp:246
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
@@ -3971,13 +3971,13 @@ msgctxt "@action:button"
 msgid "Export"
 msgstr "Exportera"
 
-#: src/conf/groupsconfigwidget.cpp:356
+#: src/conf/groupsconfigwidget.cpp:355
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Redigera grupp"
 
-#: src/conf/groupsconfigwidget.cpp:387
+#: src/conf/groupsconfigwidget.cpp:393
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3988,7 +3988,7 @@ msgstr ""
 "emphasis></para><para>När den väl har tagits bort kan den inte återställas.</"
 "para>"
 
-#: src/conf/groupsconfigwidget.cpp:393
+#: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4004,7 +4004,7 @@ msgstr[1] ""
 "<para>Vill du verkligen ta bort %1 grupper?</para><para>När de väl har "
 "tagits bort kan de inte återställas.</para>"
 
-#: src/conf/groupsconfigwidget.cpp:405
+#: src/conf/groupsconfigwidget.cpp:411
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
@@ -4012,7 +4012,7 @@ msgid_plural "Delete Groups"
 msgstr[0] "Ta bort grupp"
 msgstr[1] "Ta bort grupper"
 
-#: src/conf/groupsconfigwidget.cpp:461
+#: src/conf/groupsconfigwidget.cpp:467
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -7388,25 +7388,25 @@ msgstr ""
 "Certifikatet kan inte läggas till i gruppen eftersom det inte kan användas "
 "för kryptering."
 
-#: src/dialogs/editgroupdialog.cpp:157
+#: src/dialogs/editgroupdialog.cpp:159
 #, kde-format
 msgctxt "Name of a group of keys"
 msgid "Name:"
 msgstr "Namn:"
 
-#: src/dialogs/editgroupdialog.cpp:169
+#: src/dialogs/editgroupdialog.cpp:171
 #, kde-format
 msgctxt "@title"
 msgid "Available Keys"
 msgstr "Tillgängliga nycklar"
 
-#: src/dialogs/editgroupdialog.cpp:176 src/dialogs/editgroupdialog.cpp:182
+#: src/dialogs/editgroupdialog.cpp:178 src/dialogs/editgroupdialog.cpp:184
 #, kde-format
 msgctxt "@label"
 msgid "Search available keys"
 msgstr "Sök efter tillgängliga nycklar"
 
-#: src/dialogs/editgroupdialog.cpp:177 src/dialogs/editgroupdialog.cpp:183
+#: src/dialogs/editgroupdialog.cpp:179 src/dialogs/editgroupdialog.cpp:185
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
@@ -7414,48 +7414,48 @@ msgstr ""
 "Sök i listan över tillgängliga nycklar efter nycklar som motsvarar "
 "sökbegreppet."
 
-#: src/dialogs/editgroupdialog.cpp:197
+#: src/dialogs/editgroupdialog.cpp:199
 #, kde-format
 msgid "available keys"
 msgstr "tillgängliga nycklar"
 
-#: src/dialogs/editgroupdialog.cpp:213
+#: src/dialogs/editgroupdialog.cpp:215
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Keys"
 msgstr "Lägg till tillgängliga nycklar"
 
-#: src/dialogs/editgroupdialog.cpp:214
+#: src/dialogs/editgroupdialog.cpp:216
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "Lägg till markerade nycklar i gruppen"
 
-#: src/dialogs/editgroupdialog.cpp:220
+#: src/dialogs/editgroupdialog.cpp:222
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Keys"
 msgstr "Ta bort tillgängliga nycklar"
 
-#: src/dialogs/editgroupdialog.cpp:221
+#: src/dialogs/editgroupdialog.cpp:223
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "Ta bort markerade nycklar från gruppen"
 
-#: src/dialogs/editgroupdialog.cpp:229
+#: src/dialogs/editgroupdialog.cpp:231
 #, kde-format
 msgctxt "@title"
 msgid "Group Keys"
 msgstr "Gruppera nycklar"
 
-#: src/dialogs/editgroupdialog.cpp:236 src/dialogs/editgroupdialog.cpp:242
+#: src/dialogs/editgroupdialog.cpp:238 src/dialogs/editgroupdialog.cpp:244
 #, kde-format
 msgctxt "@label"
 msgid "Search group keys"
 msgstr "Sök efter grupperade nycklar"
 
-#: src/dialogs/editgroupdialog.cpp:237 src/dialogs/editgroupdialog.cpp:243
+#: src/dialogs/editgroupdialog.cpp:239 src/dialogs/editgroupdialog.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of group keys for keys matching the search term."
@@ -7463,12 +7463,12 @@ msgstr ""
 "Sök i listan över grupperade nycklar efter nycklar som motsvarar "
 "sökbegreppet."
 
-#: src/dialogs/editgroupdialog.cpp:256
+#: src/dialogs/editgroupdialog.cpp:258
 #, kde-format
 msgid "group keys"
 msgstr "grupperade nycklar"
 
-#: src/dialogs/editgroupdialog.cpp:423
+#: src/dialogs/editgroupdialog.cpp:424
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
